@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter public class OpeningInstanceFactory {
+@Getter @Setter public class ServerConfigurationFactory {
 	
 	private long 	  	 id;
 	private String		 ip;
@@ -31,7 +31,7 @@ import lombok.Setter;
 	private String		 ladderIp;
 	private int			 ladderPort;
 	
-	public OpeningInstanceFactory(long id, String ip, long port, int slots, String bungeeName, String screenName, String world, String systemName, long ram, String command, int nettyThreads, 
+	public ServerConfigurationFactory(long id, String ip, long port, int slots, String bungeeName, String screenName, String world, String systemName, long ram, String command, int nettyThreads, 
 			int parallelThreads, List<String> plugins, String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, String ladderIp, int ladderPort) {
 		setId(id);
 		setIp(ip);
