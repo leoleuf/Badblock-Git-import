@@ -28,11 +28,15 @@ import lombok.Setter;
 	private boolean		 random;
 	private String		 toWorld;
 	private String		 rabbitHostname;
+	private int			 rabbitPort;
+	private String		 rabbitUsername;
+	private String		 rabbitPassword;
+	private String		 rabbitVirtualHostname;
 	private String		 ladderIp;
 	private int			 ladderPort;
 	
 	public ServerConfigurationFactory(long id, String ip, long port, int slots, String bungeeName, String screenName, String world, String systemName, long ram, String command, int nettyThreads, 
-			int parallelThreads, List<String> plugins, String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, String ladderIp, int ladderPort) {
+			int parallelThreads, List<String> plugins, String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, int rabbitPort, String rabbitUsername, String rabbitPassword, String rabbitVirtualHostname, String ladderIp, int ladderPort) {
 		setId(id);
 		setIp(ip);
 		setPort(port);
@@ -54,6 +58,10 @@ import lombok.Setter;
 		setRandom(random);
 		setToWorld(toWorld);
 		setRabbitHostname(rabbitHostname);
+		setRabbitPort(rabbitPort);
+		setRabbitUsername(rabbitUsername);
+		setRabbitPassword(rabbitPassword);
+		setRabbitVirtualHostname(rabbitVirtualHostname);
 		setLadderIp(ladderIp);
 		setLadderPort(ladderPort);
 	}
