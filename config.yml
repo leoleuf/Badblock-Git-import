@@ -1,0 +1,324 @@
+lang:
+  error: §cErreur
+  anim:
+    nolobby: §cAucun lobby ouvert.
+  connect:
+    badybots: §8(§b§lBadyBots§c§l!§8) §cConnexion interrompue.
+    toolong: §cVotre pseudo minecraft est trop long.
+    specialcharacters: §cVotre pseudo minecraft n'est pas conforme.
+  commands:
+    antihackcolor: §8(§b§lGuardian§8) §cLe couleurs sont interdites.
+    database:
+      connected: §a[Others] Base de données : OK
+      cannotbeconnected: Operation cannot be executed because the database was not connected.
+      error: §c[Others] > @0
+    party:
+      unknown: §cInconnu
+      connected: §b[Groupe] §e@0 s'est connecté(e).
+      disconnected: §b[Groupe] §e@0 s'est déconnecté(e).
+      onlyplayers: §cLes groupes sont réservés aux joueurs, pas aux machines !
+      unknowncommand: §cCommande inconnue. §8Tapez §b/groupe help§8 pour voir la liste des commandes.
+      notinagroup: §cVous n'êtes pas dans un groupe.
+      leader: '§c[Leader] '
+      groupmessageprefix: '§7[Groupe] '
+      spacer: ' §l§8» §7'
+      infos:
+        nogroup: §cAucun groupe en mémoire.
+        memory: §e@0 groupes en mémoire, @1 groupes en ligne (@2%), @3 groupes hors-ligne (@4%)
+      help:
+        text:
+          - §8§l«§b§l-§8§l»§m------§f§8§l«§b§l-§8§l»§b §b§lGroupes §8§l«§b§l-§8§l»§m------§f§8§l«§b§l-§8§l»
+          - §c> §6/groupe §bhelp§6: liste des commandes
+          - §c> §6/groupe §blist§6: liste des membres de son groupe
+          - §c> §6/groupe §btoggle§6: dire qui peut envoyer des requêtes de groupe
+          - §c> §6/groupe §binvite <pseudo>§6: ajouter un joueur dans son groupe (auto-création)
+          - §c> §6/groupe §baccept <pseudo>§6: accepter un joueur de rejoindre son groupe
+          - §c> §6/groupe §bkick §b<pseudo> §6: éjecter un membre de son groupe
+          - §c> §6/groupe §blead §b<pseudo> §6: remplacer le leader du groupe
+          - §c> §6/groupe §bleave §6: quitter un groupe
+          - §c> §6/groupe §bfollow §6: activer le suivi ou non dans le groupe
+          - §c> §6/groupe §btp <pseudo> §6: se téléporter dans la partie d'un membre du groupe
+          - §c> §b% §6: caractère dans le chat pour parler en groupe
+          - §8§l«§b§l-§8§l»§m--------------------------§f§8§l«§b§l-§8§l»§b
+        click:
+          - nothing
+          - run|groupe help
+          - run|groupe list
+          - run|groupe set
+          - 'suggest|groupe invite '
+          - 'suggest|groupe accept '
+          - 'suggest|groupe kick '
+          - 'suggest|groupe admin '
+          - run|groupe leave
+          - run|groupe follow
+          - run|follow
+          - 'suggest|groupe tp '
+          - 'suggest|%'
+          - nothing
+        hover:
+          - nothing
+          - §bVoir les commandes disponibles des joueurs
+          - §bVoir la liste des membres de son groupe
+          - §bDéfinir quel type de personne peut vous envoyer des requêtes
+          - §bInviter quelqu'un dans son groupe
+          - §bAller dans le groupe de quelqu'un
+          - §bÉjecter quelqu'un de son groupe
+          - §bInverser les roles (changement de leader)
+          - §bQuitter son groupe
+          - §bActiver ou désactiver le suivi dans le groupe
+          - §bSe téléporter dans la partie d'un membre du groupe
+          - §bParler avec les autres membres du groupe avec le prefix %
+          - nothing
+      himself: §cLa schizophrénie n'est pas acceptée sur ce serveur.
+      list:
+        notinagroup: §cVous devez être dans un groupe pour pouvoir effectuer cette commande.
+        list: §bListe des joueurs dans ce groupe :
+        leader: '§c> §c[LEADER] §6@0 §e- '
+        offline: §cDéconnecté
+        follow:
+          on: §a[SUIVI ON]
+          off: §c[SUIVI OFF]
+      alreadyingroup: §cCe joueur est déjà dans votre groupe.
+      foo: §cCe joueur est buggé.
+      offline: §cCe joueur est hors-ligne.
+      waitingfor: §cCe joueur est déjà en attente d'être accepté dans le groupe.
+      maxslots: §cLe nombre de joueurs maximal dans un groupe est de 16.
+      new: §8Vous avez reçu une nouvelle demande de groupe de la part de §b@0§8.
+      accept: §8[§l§aAccepter§8]
+      notinagroup: §cCe joueur n'est pas dans un groupe.
+      hoveraccept: §aAccepter la demande de groupe de @0
+      sended: §8Demande de groupe envoyée à §b@0§8. (Tapez §c/groupe kick @1 §8pour l'annuler)
+      accept:
+        usage: §8Utilisation: /groupe §baccept <pseudo>
+        alreadyingroup: §cVous êtes déjà dans un groupe, quittez le avant.
+        expire: §cLa demande a expirée/n'a pas été faite par l'administrateur du groupe demandé.
+        already: §cVous êtes déjà dans son groupe.
+        notleader: §e@0 n'est pas administrateur du groupe où il est.
+        join: §e@0 a rejoint le groupe. (@1/8)
+      admin:
+        usage: §8Utilisation: /groupe §badmin <pseudo>
+        youarenotinagroup: §cVous n'êtes dans aucun groupe.
+        notaleader: §cVous n'êtes pas l'administrateur de ce groupe.
+        notnow: §cCe joueur n'a pas accepté encore l'invitation dans votre groupe.
+        notinyourgroup: §cCe joueur n'est pas dans votre groupe.
+        message: §e@0 est le nouvel administrateur de la partie !
+      follow:
+        usage: §8Utilisation: /groupe §bfollow
+        antispam: §cVeuillez patienter 15 secondes entre chaque interaction.
+        youarenotinagroup: §cVous n'êtes dans aucun groupe.
+        leaderdisabled: §eLe suivi de @0§e est §cdésactivé§e.
+        leaderdisabledinfo: §cLe leader du groupe a désactivé les téléportations en jeu, les joueurs peuvent rejoindre par eux même leur partie.
+        disabled: §eLe suivi de @0§e est §cdésactivé§e, il ne sera plus téléporté en jeu.
+        enabledmessage: §aVous pouvez désormais rentrer dans les jeux.
+        enabled: §eLe suivi de @0§e est §aactivé§e, il pourra être de nouveau téléporté en jeu.
+        leaderenabledinfo: §aLe leader du groupe a activé les téléportations en jeu, les joueurs sont désormais téléportés avec lui.
+        notnow: §cVous ne pouvez plus rentrer de vous même dans les jeux.
+      leave:
+        usage: §8Utilisation: /groupe §bleave
+        youarenotinagroup: §cVous n'êtes dans aucun groupe.
+        messageremoved: §eL'administrateur @0 a dissous le groupe. (0/8)
+        messageremovedandquit: §aVous avez quitté et dissous le groupe.
+        message: §e@0 a quitté le groupe. (@1/8)
+        messagefy: §aVous avez quitté le groupe.
+        nomoreplayers: §cPlus de joueurs dans le groupe, dissolution du groupe...
+      tp:
+        youarenotinagroup: §cVous n'êtes dans aucun groupe.
+        usage: §8Utilisation: /groupe §btp <pseudo>
+        offlineleader: §cLe leader n'est pas connecté.
+        leaderatloginserver: §cLe leader est sur le serveur de connexion, impossible de vous y téléporter.
+        offlineplayer: §cCe joueur n'est pas connecté.
+        playeratloginserver: §cLe joueur est sur le serveur de connexion, impossible de vous y téléporter.
+        notinyourgroup: §cCe joueur n'est pas dans votre groupe.
+      kick:
+        usage: §8Utilisation: /groupe §bkick <pseudo>
+        youarenotinagroup: §cVous n'êtes dans aucun groupe.
+        notinyourgroup: §cCe joueur n'est pas dans votre groupe.
+        kicked: §cVous avez été éjecté du groupe.
+        bye: §cPlus de joueurs dans le groupe, dissolution du groupe...
+        notloaded: §cCe joueur n'est pas chargé.
+        cancelled:
+          from: §cDemande de groupe annulée par @0.
+          to: §cDemande de groupe envers @0 annulée.
+        message: §e@0 a été éjecté du groupe. (@1/8)
+      invite:
+        usage: §8Utilisation: /groupe §binvite <pseudo>
+        notaleader: §cVous n'êtes pas l'administrateur de ce groupe.
+      set:
+        onlyfor: '§bCliquez pour vouloir accepter les nouvelles demandes de groupe seulement de : '
+        all:
+          message: §a - Tout le monde
+          done: §bVous acceptez désormais les demandes de groupe §ade tout le monde§b.
+          hover: §aCliquez ici pour recevoir les demandes de groupe de tout le monde.
+          already: §cVous acceptez déjà les demandes de groupe de tout le monde.
+        friends:
+          message: §8 - Vos amis seulement
+          error: §cCe joueur n'accepte pas les nouvelles demandes de groupe pour ceux qui ne sont pas en amitié avec lui.
+          done: §bVous acceptez désormais les demandes de groupe §8seulement de vos amis§b.
+          hover: §8Cliquez ici pour recevoir les demandes de groupe seulement de vos amis.
+          already: §cVous acceptez déjà les demandes de groupe seulement de vos amis.
+        noone:
+          message: §c - Personne
+          error: §cCe joueur n'accepte pas les nouvelles demandes de groupe.
+          done: §bVous acceptez désormais les demandes de groupe §cde personne§b.
+          already: §cVous acceptez déjà les demandes de groupe de personne.
+          hover: §cCliquez ici pour ne plus recevoir de demandes de groupe.
+        invalid: §cType invalide.
+    maintenance:
+      on: 
+        message: §4§l[Alerte] §bVous avez activé la maintenance.
+        broadcast: §4§l[Alerte] §cUne maintenance a été §aactivée§c.
+      off:
+        message: §4§l[Alerte] §bVous avez désactivé la maintenance.
+        broadcast: §4§l[Alerte] §cUne maintenance a été §4désactivée§c.
+    badsender: §6[INFO] §bVous devez être un joueur pour pouvoir exécuter cette commande.
+    thanks:
+      bigban: §6[INFO] &aMerci d'avoir utilisé le /bban :D
+      bigpardon: §6[INFO] §aMerci d'avoir utilisé le /bpardon :D
+      bigtempban: §6[INFO] §aMerci d'avoir utilisé le /btempban :D
+    friend:
+      connected: §b@0 s'est connecté(e).
+      accept: §8[§l§aAccepter§8]
+      refused: §8[§c§lRefuser§8]
+      nowith: §cVous n'êtes pas ami avec @0. 
+      disconnected: §b@0§e s'est déconnecté(e).
+      onlyplayers: §cLes amis sont réservés aux joueurs, pas aux machines !
+      unknowncommand: §cCommande inconnue. §8Tapez §b/friends help§8 pour voir la liste des commandes.
+      clear: §cDemandes d'amitiés supprimées!
+      reachedlimit: §cVotre limite d'ami a été dépassée !
+      done: §8Vous êtes désormais ami avec §b@0§8.
+      sended: §8Demande d'amitié envoyée à §b@0§8.
+      bomberfriendsdone: §aAjout massif terminé.
+      unknownplayer: §cLe joueur @0 ne s'est jamais connecté.
+      received: §8Vous avez reçu une nouvelle demande d'ami de la part de §b@0§8.
+      accepthover: §aAccepter la demande d'ami de @0
+      refusedhover: §cRefuser la demande d'ami de @0
+      himself: §cLa schizophrénie n'est pas acceptée sur ce serveur.
+      nope: §cCe joueur n'est pas dans votre liste d'amis.
+      cancelled: §cVous avez annulé votre demande d'amitié envers §b@0§c.
+      refused: §cVous avez refusé la demande d'amitié de §b@0§c.
+      removedfromyourlist: §cVous n'êtes désormais plus ami avec §b@0§8.
+      noone: §cAucun
+      noone2: §cAucune
+      online: §bAmi@0 en ligne (@1) : @2
+      newfriendsdemands: §b@0 nouvelle@1 demande@1 d'amitié. §b(@2§b)
+      foracceptademand: §8Pour accepter une demande d'ami, tapez §b/friends add <pseudo>§8.
+      set:
+        on:
+          already: §cVos nouvelles demandes d'amitiés sont déjà autorisées.
+          done: §8Vos nouvelles demandes d'amitiés sont désormais §aautorisées§8.
+          ondemand: §cCe joueur n'accepte pas les nouvelles demandes d'amis.
+        off:
+          already: §cVos nouvelles demandes d'amitiés sont déjà interdites.
+          done: §8Vos nouvelles demandes d'amitiés sont désormais §cinterdites§8.
+      list:
+        accepted: §aDemandes acceptées: @0
+        waiting: §8Demandes en attente: @0
+      add:
+        usage: §8Utilisation: /friends add §b<pseudo>
+      remove:
+        usage: §8Utilisation: /friends remove §b<pseudo>
+        waitbetweeninteractions: §cVeuillez patienter entre chaque interaction de lien d'amitié.
+      help:
+        - §8§l«§b§l-§8§l»§m------§f§8§l«§b§l-§8§l»§b §b§lAmis §8§l«§b§l-§8§l»§m------§f§8§l«§b§l-§8§l»
+        - §c> §6/friends §bhelp §6: liste des commandes
+        - §c> §6/friends §badd <pseudo> §6: ajouter/accepter un joueur à ses amis
+        - §c> §6/friends §bremove <pseudo> §6: retirer un joueur de ses amis
+        - §c> §6/friends §bon/off §6: activer/désactiver les nouvelles demandes d'amis
+        - §c> §6/friends §blist §6: liste de vos amis
+        - §8§l«§b§l-§8§l»§m----------------------§f§8§l«§b§l-§8§l»§b
+      already:
+        wait: §cCe joueur est déjà en attente d'ajout.
+        inlist: §cCe joueur est déjà dans votre liste d'amis.
+    msg:
+      himself: §cLa schizophrénie n'est pas acceptée sur ce serveur.
+      onlyplayers: §8[§bMP§8] §cLes messages privés sont réservés aux joueurs, pas aux machines !
+      usage: §8[§bMP§8] §bUtilisation: /msg <pseudo | set> [message]
+      rusage: §bUtilisation: /r <message>
+      disconnected: §8[§bMP§8] §cLe joueur @0 n'est pas connecté.
+      wait: §8[§bMP§8] §cVeuillez patienter entre chaque message.
+      spammer: §8[§bMP§8] §cNe dîtes pas la même chose!
+      clickforrespond: §bCliquez ici pour répondre à @0.
+      from: §8[moi -> @0] §7@1
+      youaremute: §cVous êtes mute :o
+      mute: §cCe joueur est mute :o
+      respondusage: §bUtilisation: /r <message>
+      to: §8[@0 -> moi] §l§e@1
+      fromto: §8[§bMP §c§lSPY§8] §f§7[@0 -> @1] @2
+      sender: §bEnvoyeur: §b@0
+      sendto: §bEnvoyé à: §8@0
+      server: §bServeur: §8@0
+      date: §bDate: §8@0
+      noonetorespond: §cVous n'avez personne à qui répondre.
+      clickforsend: §bCliquez ici pour envoyer un messsage à @0
+      spymode:
+        alreadybutnoperm: §8[§bMP §c§lSPY§8] §aSpy mode toujours activé mais tu n'as pas la perm, tu ne l'as donc plus :o
+        connected: §aSpy mode toujours activé :0 
+        permission: §cCommande inconnue.
+        enabled: §bSpy §aactivé§b.
+        disabled: §bSpy §cdésactivé§b.
+      errors:
+        refused: §8[§bMP§8] §cCe joueur n'accepte pas les nouveaux messages privés.
+        onlyfriends: §8[§bMP§8] §cCe joueur accepte seulement les nouveaux messages privés de ses amis.
+      set:
+        onlyfor: §8[§bMP§8] §bCliquez pour vouloir accepter les messages seulement de : 
+        for:
+          all:
+            done: §8[§bMP§8] §bVous acceptez désormais les messages §ade tout le monde§b.
+            hover: §8[§bMP§8] §aCliquez ici pour recevoir les messages privés de tout le monde.
+            already: §8[§bMP§8] §cVous acceptez déjà les messages de tout le monde.
+          friends:
+            done: §8[§bMP§8] §bVous acceptez désormais les messages §8seulement de vos amis§b.
+            hover: §8[§bMP§8] §8Cliquez ici pour recevoir les messages privés seulement de vos amis.
+            already: §8[§bMP§8] §cVous acceptez déjà les messages seulement de vos amis.
+          noone:
+            done: §8[§bMP§8] §bVous acceptez désormais les messages §cde personne§b.
+            already: §8[§bMP§8] §cVous acceptez déjà les messages de personne.
+            hover: §8[§bMP§8] §cCliquez ici pour ne plus recevoir de messages privés.
+          invalid: §8[§bMP§8] §cType invalide.
+    anim:
+      onlyforplayers: '§cSeul un joueur peut exécuter cette commande.'
+      closed: '§cLe serveur d'animation est clos.'
+      nolobbyopened:
+        anim: '§cAucun lobby d'animation ouvert.'
+        normal: §cAucun lobby ouvert.
+      teleportedto: '§aTéléporté au serveur @0.'
+      kicked: §a@0 joueur@1 kické@1.
+      invalidargument: §cArgument invalide.
+      on: §aON
+      off: §cOFF
+      status: '§bStatus du serveur: @0'
+      connectedplayers: '§bJoueur@0 connecté@0: §e@1'
+      alternativescommand: '§bCommandes alternatives: <on/off/kickall>'
+      alerterror: '§cIl est impossible de définir une alerte d'animation quand le serveur n'est pas disponible aux joueurs.'
+      minvalue: '§cLa valeur doit au minimum à 1.'
+      mustbeanumber: §cLe temps entre chaque message doit être un nombre.
+      secondsbetweenmessage: '§bSecondes entre chaque message: §e@0'
+      eventname: '§bNom de l'événement: §e@0'
+      chatstaff:
+        on: §6[ChatStaff ~ @0] §aa activé le serveur animation.
+        off: §6[ChatStaff ~ @0] §ea désactivé le serveur animation.
+      broadcast:
+        text:
+          - §6[INFO] §bÉVÉNEMENT D'ANIMATION OUVERT /!\ §e@0§b /!\
+          - §aCliquez ici pour rejoindre l'événement
+        hover:
+          - Cliquez ici pour rejoindre l'événement
+      serveralready:
+        on: §cLe serveur animation est déjà disponible.
+        off: §cLe serveur animation est déjà désactivé.
+      alert:
+        done: §aAlerte désactivée avec succès.
+        alreadystopped: §cLes alertes sont déjà désactivées.
+        status: '§bStatus de l'annonce: @0'
+      done:
+        on: §aServeur animation activé.
+        off: §cServeur animation désactivé.
+      anim:
+        edited: §aL'annonce a bien été modifiée.
+        activated: §aL'annonce a bien été activée.
+      usage:
+        alert: '§cUtilisation: /anim alert set <timeBetweenMessages> <eventName>'
+        general:
+          - "§cUtilisation:"
+          - "§c- /anim state <on/off/kickall>"
+          - "§c- /anim alert <set/stop>"
