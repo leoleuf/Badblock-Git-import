@@ -1,4 +1,4 @@
-package fr.xmalware.badybots;
+package fr.badblock.badybots.badips;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import fr.xmalware.badybots.logs.Log;
-import fr.xmalware.badybots.logs.Log.LogType;
+import fr.badblock.badybots.badips.logs.Log;
+import fr.badblock.badybots.badips.logs.Log.LogType;
 
 public class Main {
 

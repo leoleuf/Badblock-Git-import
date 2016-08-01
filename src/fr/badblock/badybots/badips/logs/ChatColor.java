@@ -1,4 +1,4 @@
-package fr.xmalware.badybots.logs;
+package fr.badblock.badybots.badips.logs;
 
 /**
  * 

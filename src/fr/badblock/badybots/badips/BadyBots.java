@@ -1,4 +1,4 @@
-package fr.xmalware.badybots;
+package fr.badblock.badybots.badips;
 
 public class BadyBots {
 	
