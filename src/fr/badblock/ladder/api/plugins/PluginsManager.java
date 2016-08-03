@@ -37,6 +37,10 @@ public class PluginsManager {
 
 	private EventDispatcher dispatcher;
 	
+	public Command getCommandByName(String name){
+		return commands.get(name);
+	}
+	
 	public List<String> getCommandsNames(){
 		List<String> commands = new ArrayList<String>();
 		for(String command : this.commands.keySet())
@@ -245,8 +249,10 @@ public class PluginsManager {
 		listenersByPlugin.remove(plugin);
 	}
 
-	public void dispatchEvent(Event e){
+	public <T extends Event> T dispatchEvent(T e){
 		dispatcher.dispatch(e);
+		
+		return e;
 	}
 
 	public void registerCommand(Plugin plugin, Command command) {
