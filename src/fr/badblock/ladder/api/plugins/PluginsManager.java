@@ -38,7 +38,7 @@ public class PluginsManager {
 	private EventDispatcher dispatcher;
 	
 	public Command getCommandByName(String name){
-		return commands.get(name);
+		return commands.get(name.toLowerCase());
 	}
 	
 	public List<String> getCommandsNames(){
