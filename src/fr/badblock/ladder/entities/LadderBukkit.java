@@ -15,13 +15,19 @@ import com.google.gson.JsonParser;
 
 import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.Bukkit;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.entities.PlayerIp;
+import fr.badblock.ladder.api.events.all.BukkitCommandEvent;
 import fr.badblock.ladder.api.events.all.MatchmakingJoinEvent;
 import fr.badblock.ladder.api.events.all.MatchmakingServerEvent;
 import fr.badblock.ladder.api.events.all.MatchmakingServerEvent.ServerStatus;
+import fr.badblock.ladder.api.plugins.PluginsManager;
+import fr.badblock.ladder.commands.CommandAlert;
+import fr.badblock.ladder.commands.CommandEnd;
+import fr.badblock.ladder.commands.CommandPermissions;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
@@ -35,6 +41,7 @@ import fr.badblock.protocol.packets.PacketPlayerLogin;
 import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
 import fr.badblock.protocol.packets.PacketReconnectionInvitation;
+import fr.badblock.protocol.packets.PacketSimpleCommand;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
@@ -199,4 +206,24 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 	@Override public void handle(PacketLadderStop packet){}
 
 	@Override public void handle(PacketPlayerLogin packet){}
+
+	@Override
+	public void handle(PacketSimpleCommand packet) {
+		String[] parts = packet.getCommand().split(" ");
+		
+		PluginsManager pmanager = Ladder.getInstance().getPluginsManager();
+		
+		Command command = pmanager.getCommandByName(parts[0]);
+		
+		if(command == null)
+			return;
+		
+		if(command instanceof CommandEnd || command instanceof CommandAlert || command instanceof CommandPermissions)
+			return;
+		
+		boolean dispatch = !pmanager.dispatchEvent(new BukkitCommandEvent(command, packet.getCommand())).isCancelled();
+		
+		if(dispatch)
+			Ladder.getInstance().getConsoleCommandSender().forceCommand(packet.getCommand());
+	}
 }

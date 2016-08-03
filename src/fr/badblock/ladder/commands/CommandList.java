@@ -1,7 +1,6 @@
 package fr.badblock.ladder.commands;
 
 import fr.badblock.ladder.api.Ladder;
-import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.Player;

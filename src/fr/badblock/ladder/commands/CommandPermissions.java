@@ -11,7 +11,6 @@ import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.api.utils.Time;
-import fr.badblock.ladder.entities.LadderPermissionManager;
 import fr.badblock.permissions.PermissibleGroup;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.permissions.Permission;
