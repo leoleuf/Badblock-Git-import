@@ -17,6 +17,7 @@ import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.Bukkit;
+import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.entities.PlayerIp;
@@ -211,7 +212,8 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 	public void handle(PacketSimpleCommand packet) {
 		String[] parts = packet.getCommand().split(" ");
 		
-		PluginsManager pmanager = Ladder.getInstance().getPluginsManager();
+		Ladder ladder = Ladder.getInstance();
+		PluginsManager pmanager = ladder.getPluginsManager();
 		
 		Command command = pmanager.getCommandByName(parts[0]);
 		
@@ -221,9 +223,10 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 		if(command instanceof CommandEnd || command instanceof CommandAlert || command instanceof CommandPermissions)
 			return;
 		
-		boolean dispatch = !pmanager.dispatchEvent(new BukkitCommandEvent(command, packet.getCommand())).isCancelled();
-		
-		if(dispatch)
-			Ladder.getInstance().getConsoleCommandSender().forceCommand(packet.getCommand());
+		Player player = packet.getPlayer() != null ? ladder.getPlayer(packet.getPlayer()) : null;
+		CommandSender commandSender = player == null ? ladder.getConsoleCommandSender() : player;
+		boolean dispatch = !pmanager.dispatchEvent(new BukkitCommandEvent(command, player, packet.getCommand())).isCancelled();
+		if(dispatch) commandSender.forceCommand(packet.getCommand());
 	}
+	
 }
