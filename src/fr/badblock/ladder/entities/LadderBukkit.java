@@ -210,12 +210,16 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 
 	@Override
 	public void handle(PacketSimpleCommand packet) {
+		System.out.println("Received");
+		
 		String[] parts = packet.getCommand().split(" ");
 		
 		Ladder ladder = Ladder.getInstance();
 		PluginsManager pmanager = ladder.getPluginsManager();
 		
 		Command command = pmanager.getCommandByName(parts[0]);
+		
+		System.out.println("Command : " + parts[0] + " (" + command + ")");
 		
 		if(command == null)
 			return;
@@ -225,7 +229,13 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 		
 		Player player = packet.getPlayer() != null ? ladder.getPlayer(packet.getPlayer()) : null;
 		CommandSender commandSender = player == null ? ladder.getConsoleCommandSender() : player;
+		
+		System.out.println("Player : " + packet.getPlayer() + "(" + commandSender + ")");
+		
 		boolean dispatch = !pmanager.dispatchEvent(new BukkitCommandEvent(command, player, packet.getCommand())).isCancelled();
+		
+		System.out.println("Allow dispatching : " + dispatch);
+		
 		if(dispatch) commandSender.forceCommand(packet.getCommand());
 	}
 	
