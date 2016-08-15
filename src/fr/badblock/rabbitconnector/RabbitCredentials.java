@@ -1,6 +1,5 @@
 package fr.badblock.rabbitconnector;
 
-import com.google.gson.Gson;
 import com.rabbitmq.client.ConnectionFactory;
 
 import fr.badblock.rabbitconnector.workers.RabbitService;
