@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter public class ConfigurationKey {
-
 	public String				displayName;
 	public String				key;
 	public List<String>			possibleValues;
@@ -16,5 +15,4 @@ import lombok.Setter;
 		this.setKey(key);
 		this.setPossibleValues(possibleValues);
 	}
-	
 }

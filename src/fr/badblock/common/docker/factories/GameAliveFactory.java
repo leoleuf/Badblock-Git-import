@@ -3,8 +3,7 @@ package fr.badblock.common.docker.factories;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter public class GameAliveFactory {
-
+@Getter@Setter public class GameAliveFactory {
 	private String 		name;
 	private boolean 	isJoinable;
 	private int			players;
@@ -16,5 +15,4 @@ import lombok.Setter;
 		this.setPlayers(players);
 		this.setSlots(slots);
 	}
-	
 }

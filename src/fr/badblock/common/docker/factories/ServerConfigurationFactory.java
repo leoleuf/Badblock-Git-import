@@ -10,8 +10,7 @@ import fr.badblock.common.docker.configuration.ConfigurationKey;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter public class ServerConfigurationFactory {
-	
+@Getter@Setter public class ServerConfigurationFactory {
 	private long 	  	 					id;
 	private String		 					ip;
 	private long		 					port;
@@ -84,5 +83,4 @@ import lombok.Setter;
 	public String get(ConfigurationKey key) {
 		return this.getConfig().get(key);
 	}
-	
 }
