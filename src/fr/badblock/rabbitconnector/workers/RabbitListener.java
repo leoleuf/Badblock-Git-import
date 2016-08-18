@@ -67,8 +67,8 @@ import lombok.Setter;
 										RabbitMessage rabbitMessage = RabbitMessage.fromJson(message);
 										if (!rabbitMessage.isExpired()) {
 											if (debug) 
-												System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + message);
-											onPacketReceiving(message);
+												System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + rabbitMessage.getMessage());
+											onPacketReceiving(rabbitMessage.getMessage());
 										}else if (debug) System.out.println("[RabbitConnector] Error during a receiving of a packet from " + queueName + ": EXPIRED!");
 									}catch(Exception error) {
 										System.out.println("[RabbitConnector] Error during the handle delivery.");
