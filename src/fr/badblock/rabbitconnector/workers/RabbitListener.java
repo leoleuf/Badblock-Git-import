@@ -64,12 +64,12 @@ import lombok.Setter;
 									String message = new String(body, "UTF-8");
 									if (rabbitService.isDead()) return;
 									try {
-										//RabbitMessage rabbitMessage = RabbitMessage.fromJson(message);
-									//	if (!rabbitMessage.isExpired()) {
-										//	if (debug) 
-										System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + message);
+										RabbitMessage rabbitMessage = RabbitMessage.fromJson(message);
+										if (!rabbitMessage.isExpired()) {
+											if (debug) 
+												System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + message);
 											onPacketReceiving(message);
-										//}else if (debug) System.out.println("[RabbitConnector] Error during a receiving of a packet from " + queueName + ": EXPIRED!");
+										}else if (debug) System.out.println("[RabbitConnector] Error during a receiving of a packet from " + queueName + ": EXPIRED!");
 									}catch(Exception error) {
 										System.out.println("[RabbitConnector] Error during the handle delivery.");
 										error.printStackTrace();

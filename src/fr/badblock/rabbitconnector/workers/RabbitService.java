@@ -44,16 +44,16 @@ import lombok.Setter;
 			if (this.getConnection() == null || !this.getConnection().isOpen()) this.setConnection(connectionFactory.newConnection());
 			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) this.setChannel(this.getConnection().createChannel());
 			if (this.getConnection() != null && this.getConnection().isOpen() && this.getChannel() != null && this.getChannel().isOpen()) {
-				//String message = new RabbitMessage(ttl, body).toJson();
+				String message = new RabbitMessage(ttl, body).toJson();
 				if (type.equals(RabbitPacketType.MESSAGE_BROKER)) {
 					this.getChannel().queueDeclare(queueName, false, false, false, null);
-					this.getChannel().basicPublish("", queueName, null, body.getBytes(encodage.getName()));
+					this.getChannel().basicPublish("", queueName, null, message.getBytes(encodage.getName()));
 					if (debug) System.out.println("[RabbitConnector] Packet sended to '" + queueName + "' : " + body);
 					return;
 				}
 				if (type.equals(RabbitPacketType.PUBLISHER)) {
 					this.getChannel().exchangeDeclare(queueName, "fanout");
-					this.getChannel().basicPublish(queueName, "", null, body.getBytes(encodage.getName()));
+					this.getChannel().basicPublish(queueName, "", null, message.getBytes(encodage.getName()));
 					if (debug) System.out.println("[RabbitConnector] Packet sended to '" + queueName + "' : " + body);
 					return;
 				}
