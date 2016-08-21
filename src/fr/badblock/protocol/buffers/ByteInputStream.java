@@ -6,16 +6,18 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 import fr.badblock.protocol.utils.CompressUtils;
+import lombok.Getter;
 
 public class ByteInputStream extends InputStream {
-	private final InputStream stream;
+	@Getter
+	private final InputStream realStream;
 
 	public ByteInputStream(InputStream stream){
-		this.stream = stream;
+		this.realStream = stream;
 	}
 
 	public byte readByte() throws IOException {
-		return (byte) stream.read();
+		return (byte) realStream.read();
 	}
 
 	public int readUnsignedByte() throws IOException {
@@ -132,6 +134,6 @@ public class ByteInputStream extends InputStream {
 	
 	@Override
 	public int read() throws IOException {
-		return stream.read();
+		return realStream.read();
 	}
 }
