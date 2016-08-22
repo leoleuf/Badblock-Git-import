@@ -73,9 +73,10 @@ public class PermissionManager {
 	
 	public PermissiblePlayer createPlayer(String name, JsonObject object){
 		JsonObject permissions = new JsonObject();
-		if(object.has("permissions"))
+		if(object.has("permissions")) {
 			permissions = object.get("permissions").getAsJsonObject();
-
+			System.out.println("Current 'permissions' field exists, get these data and create a new PermissiblePlayer (" + name + " - " + permissions.toString() + " - createPlayer(String, JsonObject))");
+		}
 		return new PermissiblePlayer(name, permissions);
 	}
 }

@@ -1,24 +1,18 @@
 package fr.badblock.permissions;
 
-import lombok.Data;
+import lombok.Getter;
 
 /**
  * Représente une permission
  * Classe compatible Spigot/BungeeCord/Ladder
  * @author LeLanN
  */
-@Data public class Permission {
+@Getter public class Permission {
 	private boolean antiPermission;
 	private String permission;
 	private boolean all;
 	
 	public Permission(String permission){
-		if(permission == null){
-			antiPermission = false;
-			all			   = false;
-			permission	   = "";
-		}
-		
 		if(permission.startsWith("-")){
 			antiPermission = true;
 			permission = permission.substring(1);
@@ -68,6 +62,10 @@ import lombok.Data;
 	@Override
 	public String toString(){
 		return (antiPermission ? "-" : "") + permission + (all ? (permission.isEmpty() ? "*" : ".*") : "");
+	}
+	
+	public String getPermission() {
+		return this.permission;
 	}
 	
 	/**

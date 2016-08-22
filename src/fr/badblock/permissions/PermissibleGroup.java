@@ -16,15 +16,10 @@ import lombok.Data;
 	private       String		   superGroup;
 	private	final String		   name;
 	private		  String		   displayName;
-	private 	  int			   power;
 	
 	public PermissibleGroup(JsonObject from){
 		this.name 		 = from.get("name").getAsString();
 		this.displayName = from.get("displayName").getAsString();
-		
-		if(!from.has("power")){
-			   this.power = 0;
-		} else this.power = from.get("power").getAsInt();
 		
 		if(from.get("superGroup") == null){
 			from.addProperty("superGroup", "default");
@@ -101,8 +96,7 @@ import lombok.Data;
 		object.addProperty("name",        name);
 		object.addProperty("displayName", displayName);
 		object.addProperty("superGroup",  superGroup);
-		object.addProperty("power",  	  power);
-
+		
 		JsonArray array   = new JsonArray();
 
 		for(Permission permission : permissions){

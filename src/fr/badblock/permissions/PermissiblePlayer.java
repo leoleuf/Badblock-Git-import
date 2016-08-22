@@ -69,6 +69,7 @@ import lombok.Data;
 		for(JsonElement element : perms){
 			permissions.add(new Permission(element.getAsString()));
 		}
+		System.out.println("Foreach as json permissions (" + name + " - " + perms.toString() + " - reload(JsonObject))");
 	}
 	
 	@Override
@@ -96,9 +97,6 @@ import lombok.Data;
 	}
 	
 	public boolean hasPermission(String permission){
-		if(permission == null)
-			return true;
-		
 		return hasPermission(new Permission(permission));
 	}
 
@@ -162,6 +160,7 @@ import lombok.Data;
 		for(Permission permission : permissions){
 			array.add(new JsonPrimitive(permission.toString()));
 		}
+		System.out.println("Save as json permissions (" + name + " - " + array.toString() + " - saveAsJson())");
 		
 		object.add("permissions", array);
 	
@@ -206,5 +205,6 @@ import lombok.Data;
 		permissions.clear();
 		
 		setParent(-1, PermissionManager.getInstance().getGroup("default"));
+		System.out.println("Remove all permissions ? " + name);
 	}
 }
