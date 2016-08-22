@@ -36,8 +36,8 @@ import lombok.Setter;
 		connectionFactory.setHost(getHostname());
 		connectionFactory.setPort(getPort());
 		connectionFactory.setAutomaticRecoveryEnabled(true);
-		connectionFactory.setConnectionTimeout(30000);
-		connectionFactory.setRequestedHeartbeat(4);
+		connectionFactory.setConnectionTimeout(60000);
+		connectionFactory.setRequestedHeartbeat(60);
 		return connectionFactory;
 	}
 	
