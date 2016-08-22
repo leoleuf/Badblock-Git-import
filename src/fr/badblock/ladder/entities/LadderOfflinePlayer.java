@@ -60,6 +60,8 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	@Override
 	public void saveData(){
 		punished.save(getData());
+		System.out.println("Save permissions in file (saveData()) > " + this.name + " > " + permissions.saveAsJson());
+		
 		getData().add("permissions", permissions.saveAsJson());
 		
 		if(lastAddress != null)

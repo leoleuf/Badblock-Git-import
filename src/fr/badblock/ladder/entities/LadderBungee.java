@@ -74,6 +74,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	@Override
 	public void sendPermissions() {
 		JsonArray array = Proxy.getInstance().getPermissions().saveAsJson();
+		System.out.println("Send permissions (*) [" + array.toString() + "] to '" + name + "'.");
 		sendPacket(new PacketPlayerData(DataType.PERMISSION, DataAction.SEND, "*", array.toString()));
 	}
 
@@ -191,6 +192,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			}
 		} else if(packet.getType() == DataType.PERMISSION){
 			JsonElement ret = Proxy.getInstance().getPermissions().handlePermissionPacket(packet.getAction(), packet.getKey());
+			System.out.println("Handle permissions packet [" + packet.getAction() + "] / " + "[" + packet.getKey() + "] / '" + ret.toString() + "' / '" + name + "'.");
 			if(packet.getAction() == DataAction.REQUEST){
 				sendPacket(new PacketPlayerData(DataType.PERMISSION, DataAction.SEND, packet.getKey(), ret.toString()));
 			}

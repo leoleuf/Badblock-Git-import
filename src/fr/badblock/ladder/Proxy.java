@@ -278,6 +278,7 @@ public class Proxy extends Ladder {
 	}
 	
 	public void loadPermissions(boolean send){
+		System.out.println("Loaded permissions.json");
 		this.permissions     = new LadderPermissionManager(new File("permissions.json"));
 		this.permissions.save();
 		if(!send) return;
