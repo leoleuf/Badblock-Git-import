@@ -97,6 +97,8 @@ import lombok.Data;
 	}
 	
 	public boolean hasPermission(String permission){
+		if(permission == null)
+ 			return true;
 		return hasPermission(new Permission(permission));
 	}
 

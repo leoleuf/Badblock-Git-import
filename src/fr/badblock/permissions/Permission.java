@@ -13,6 +13,11 @@ import lombok.Getter;
 	private boolean all;
 	
 	public Permission(String permission){
+ 		if(permission == null){
+ 			antiPermission = false;
+ 			all			   = false;
+ 			permission	   = "";
+ 		}
 		if(permission.startsWith("-")){
 			antiPermission = true;
 			permission = permission.substring(1);
