@@ -23,18 +23,11 @@ public class ByteOutputStream extends OutputStream {
 	}
 	
 	public void writeBytes(byte... values) throws IOException {
-		for(byte value : values)
-			writeByte(value);
-	}
-	
-	public void writeBytes(Byte... values) throws IOException {
-		for(byte value : values)
-			writeByte(value);
+		out.write(values);
 	}
 	
 	public void writeShort(short value) throws IOException {
-		writeByte((byte) (value >>> 8));
-		writeByte((byte) value);
+		writeBytes((byte) (value >>> 8), (byte) value);
 	}
 	
 	public void writeUnsignedShort(int value) throws IOException {
@@ -43,6 +36,7 @@ public class ByteOutputStream extends OutputStream {
 	
 	public void writeInt(int value) throws IOException {
 		int part;
+		
         while(true) {
             part = value & 0x7F;
 

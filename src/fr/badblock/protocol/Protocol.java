@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.badblock.protocol.buffers.ByteFakeInputStream;
+import fr.badblock.protocol.buffers.ByteFakeOutputStream;
 import fr.badblock.protocol.buffers.ByteInputStream;
 import fr.badblock.protocol.buffers.ByteOutputStream;
 import fr.badblock.protocol.packets.Packet;
@@ -101,15 +103,17 @@ public abstract class Protocol {
 	}
 	
 	public void readPacket(ByteInputStream input, final PacketHandler handler) throws Exception {
-		int id = input.readByte();
+		int 		 id 	= input.readByte();
 		final Packet packet = getPacketById(id);
-
-		packet.read(input);
+		
+		byte[] bytes = new byte[ input.readInt() ];
+		input.getRealStream().read(bytes);
 
 		new Thread(){
 			@Override
 			public void run(){
 				try {
+					packet.read( new ByteFakeInputStream(bytes) );
 					packet.handle(handler);
 				} catch (Exception e) {
 					new InvalidPacketException(packet, e).printStackTrace();
@@ -119,7 +123,13 @@ public abstract class Protocol {
 	}
 	
 	public void writePacket(ByteOutputStream output, Packet packet) throws Exception {
+		ByteFakeOutputStream stream = new ByteFakeOutputStream();
+		
 		output.writeInt(getIdByClass(packet.getClass()));
-		packet.write(output);
+		
+		packet.write(stream);
+		
+		output.writeInt(stream.size());
+		stream.pastResult(stream);
 	}
 }
