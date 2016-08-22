@@ -33,10 +33,11 @@ public class SocketHandler extends Thread implements PacketSender {
 	private int sendId    = 0;
 
 	private boolean debug = false;
-	private Thread				  thread;
-	
+
 	@Getter
 	private boolean				   running;
+
+	private Thread				   thread;
 
 	public SocketHandler(Socket socket, Protocol protocolIn, Protocol protocolOut, PacketHandler handler, boolean debug) throws IOException {
 		super("Socket Handler (" + socket.getInetAddress() + ")");
