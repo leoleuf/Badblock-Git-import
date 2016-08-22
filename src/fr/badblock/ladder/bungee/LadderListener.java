@@ -181,7 +181,7 @@ public class LadderListener implements Listener {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
 
 			if(e.getMessage().equalsIgnoreCase("/register 123456789 123456789")
-					|| e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/register pass12345") || e.getMessage().equalsIgnoreCase("/login pass12345"))
+					|| e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/register pass12345") || e.getMessage().equalsIgnoreCase("/login pass12345")
 					|| bPlayer.getServer() == null) {
 				bPlayer.disconnect();
 			}
