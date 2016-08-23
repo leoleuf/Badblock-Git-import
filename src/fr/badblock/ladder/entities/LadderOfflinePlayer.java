@@ -49,7 +49,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		this.name 		  = name;
 		
 		this.lastAddress  = address;
-		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, this);
+		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, getData());
 		this.punished     = Punished.fromJson(getData());
 		
 		Proxy.getInstance().getIpData(address);
