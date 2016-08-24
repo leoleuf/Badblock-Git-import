@@ -56,7 +56,7 @@ import lombok.Getter;
 	 * @return La réponse
 	 */
 	public Reponse has(Permission perm){
-		if(perm.permission.equals(permission)
+		if(perm.permission.equalsIgnoreCase(permission)
 			|| (perm.permission.startsWith(permission) && all)){
 			return antiPermission == perm.antiPermission ? Reponse.YES : Reponse.NO;
 		}
@@ -67,6 +67,18 @@ import lombok.Getter;
 	@Override
 	public String toString(){
 		return (antiPermission ? "-" : "") + permission + (all ? (permission.isEmpty() ? "*" : ".*") : "");
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+	    if (other == null) return false;
+	    if (other == this) return true;
+	    if (!(other instanceof Permission)) return false;
+	    Permission permission = (Permission) other;
+	    if (!permission.getPermission().equalsIgnoreCase(this.getPermission())) return false;
+	    if (permission.isAll() != this.isAll()) return false;
+	    if (permission.isAntiPermission() != this.isAntiPermission()) return false;
+	    return true;
 	}
 	
 	public String getPermission() {

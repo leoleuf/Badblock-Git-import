@@ -116,4 +116,5 @@ import lombok.Data;
 	public void setParent(long end, Permissible group) {
 		this.superGroup = group.getName().toLowerCase();
 	}
+	
 }
