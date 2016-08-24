@@ -1,4 +1,4 @@
-package fr.badblock.common.docker.configuration;
+package fr.badblock.docker.configuration;
 
 import java.util.List;
 

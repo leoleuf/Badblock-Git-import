@@ -1,4 +1,4 @@
-package fr.badblock.common.docker.factories;
+package fr.badblock.docker.factories;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import fr.badblock.common.docker.configuration.ConfigurationKey;
+import fr.badblock.docker.configuration.ConfigurationKey;
 import lombok.Getter;
 import lombok.Setter;
 

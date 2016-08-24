@@ -1,4 +1,4 @@
-package fr.badblock.common.docker.factories;
+package fr.badblock.docker.factories;
 
 import lombok.Getter;
 import lombok.Setter;
