@@ -10,7 +10,7 @@
 		if (empty($subnet)) continue;
 		$subnetsRulesRequest = mysqli_query($db, "SELECT * FROM vrack_rules WHERE rule_cluster = '".secure($db, $subnet)."'");
 		while($subnetsRulesData = mysqli_fetch_assoc($subnetsRulesRequest)) {
-			array_push($rules, json_encode($subnetsRulesData));
+			array_push($rules, $subnetsRulesData);
 		}
     }
 	
