@@ -59,8 +59,8 @@ import lombok.Setter;
 	public void win(){
 		if(hasEnded) return;
 		incrementWins();
-		int xp = getXPReward(); giveXP(xp);
-		int gold = getCoinsReward(); addCoins(gold);
+		int xp = (int) (getXPReward() * MJPlugin.getInstance().getBoostXP()); giveXP(xp) ;
+		int gold = (int) (getCoinsReward() * MJPlugin.getInstance().getBoostXP()); addCoins(gold);
 
 		sendMessage("%gold%Vous avez gagné %aqua%" + gold + " BadCoins %gold%et %aqua%" + xp + " XP %gold%!");
 		new BadblockCommand().run(getPlayer(), new String[]{});
@@ -76,7 +76,8 @@ import lombok.Setter;
 	public void loose(Player p){
 		if(hasEnded) return;
 		incrementLooses();
-		int xp = getXPReward(); giveXP(xp);
+		int xp = (int) (getXPReward() * MJPlugin.getInstance().getBoostXP());
+		giveXP(xp);
 		sendMessage("%gold%Vous avez gagné %aqua%0 BadCoins %gold%et %aqua%" + xp + " XP %gold%!");
 		new BadblockCommand().run(p, new String[]{});
 		hasEnded = true;

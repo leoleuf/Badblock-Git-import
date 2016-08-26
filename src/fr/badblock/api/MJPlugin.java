@@ -40,6 +40,9 @@ public abstract class MJPlugin extends BPlugin{
 	public static MJPlugin getInstance(){
 		return (MJPlugin) BPlugin.getInstance();
 	}
+
+	@Getter @Setter public double					boostXP;
+	@Getter @Setter public double					boostBadcoins;
 	
 	@Getter private static Speaker speaker;
 	
