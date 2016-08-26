@@ -58,6 +58,7 @@ import lombok.Setter;
 
 	public void win(){
 		if(hasEnded) return;
+		if (isSpectator()) return;
 		incrementWins();
 		int xp = (int) (getXPReward() * MJPlugin.getInstance().getBoostXP()); giveXP(xp) ;
 		int gold = (int) (getCoinsReward() * MJPlugin.getInstance().getBoostXP()); addCoins(gold);
@@ -75,6 +76,7 @@ import lombok.Setter;
 	
 	public void loose(Player p){
 		if(hasEnded) return;
+		if (isSpectator()) return;
 		incrementLooses();
 		int xp = (int) (getXPReward() * MJPlugin.getInstance().getBoostXP());
 		giveXP(xp);
