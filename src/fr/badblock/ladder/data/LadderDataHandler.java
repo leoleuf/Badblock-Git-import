@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonWriter;
 
 import fr.badblock.ladder.api.data.DataHandler;
 import fr.badblock.ladder.api.utils.FileUtils;
@@ -76,7 +77,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	
 	public void saveSync(){
 		if(!data.entrySet().isEmpty())
-			FileUtils.save(file, data, false);
+			FileUtils.save(file, data, true);
 		else if(file.exists()) file.delete();
 	}
 }
