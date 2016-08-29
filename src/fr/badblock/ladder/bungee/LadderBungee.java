@@ -61,6 +61,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.protocol.packet.Title;
 import net.md_5.bungee.protocol.packet.Title.Action;
 
+@SuppressWarnings("deprecation")
 public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private static LadderBungee instance;
 	@Getter private LadderHandler	    client;

@@ -109,6 +109,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.readOnlyData = object;
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void handle(PacketPlayerChat chat){
 		ProxiedPlayer player = BungeeCord.getInstance().getPlayer(uniqueId);
 		if(player == null) return;

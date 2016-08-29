@@ -175,6 +175,7 @@ public class LadderListener implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onSpeak(ChatEvent e){
 		if(e.getSender() instanceof ProxiedPlayer) {
