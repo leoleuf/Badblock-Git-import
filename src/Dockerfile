@@ -10,12 +10,9 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4
     && rm /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu && apt-get update -y --force-yes && apt-get upgrade -y --force-yes && apt-get dist-upgrade -y --force-yes && apt-get install -y --force-yes screen nano htop nload screen
 
-COPY spigot /usr/local/bin/
-ONBUILD COPY . /usr/src/minecraft
+COPY executor /home
 
 EXPOSE 25565
 
-VOLUME ["/opt/minecraft", "/var/lib/minecraft"]
-
-ENTRYPOINT ["/usr/local/bin/spigot"]
+ENTRYPOINT ["/home/executor"]
 CMD ["run"]
