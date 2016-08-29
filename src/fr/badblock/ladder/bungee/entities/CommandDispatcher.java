@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import com.google.common.collect.ImmutableSet;
 
-import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.bungee.LadderBungee;
 import fr.badblock.ladder.bungee.Player;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketPlayerChat;
 import fr.badblock.protocol.packets.PacketPlayerChat.ChatAction;
+import fr.badblock.protocol.utils.StringUtils;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;

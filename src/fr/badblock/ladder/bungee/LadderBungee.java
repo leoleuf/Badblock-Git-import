@@ -15,7 +15,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
 import fr.badblock.ladder.bungee.utils.FileUtils;
@@ -41,6 +40,7 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
+import fr.badblock.protocol.utils.StringUtils;
 import fr.badblock.skins.SkinFactoryBungee;
 import lombok.Getter;
 import net.md_5.bungee.BungeeCord;

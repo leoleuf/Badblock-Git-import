@@ -2,7 +2,6 @@ package fr.badblock.ladder.bungee;
 
 import java.util.UUID;
 
-import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
 import fr.badblock.permissions.Permission;
@@ -10,6 +9,7 @@ import fr.badblock.protocol.packets.PacketPlayerJoin;
 import fr.badblock.protocol.packets.PacketPlayerLogin;
 import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
+import fr.badblock.protocol.utils.StringUtils;
 import fr.badblock.skins.SkinFactoryBungee;
 import fr.badblock.skins.format.SkinProfile;
 import fr.badblock.skins.storage.SkinStorage;
