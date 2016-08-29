@@ -76,7 +76,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	
 	public void saveSync(){
 		if(!data.entrySet().isEmpty())
-			FileUtils.save(file, data, true);
+			FileUtils.save(file, data, false);
 		else if(file.exists()) file.delete();
 	}
 }
