@@ -12,7 +12,5 @@ RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4
 
 COPY executor /home
 
-EXPOSE 25565
-
 ENTRYPOINT ["/home/executor"]
 CMD ["run"]
