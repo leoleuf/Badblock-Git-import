@@ -5,7 +5,7 @@ run() {
 	echo "Waiting for files..."
 	sleep 10
 	cd /home/
-	sh boot.sh
+	sh start.sh
 }
 
 case "$1" in
