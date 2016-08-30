@@ -2,10 +2,10 @@
 
 run() {
 	sleep 1
-	echo "Waiting for files..."
-	sleep 10
-	cd /home/
-	sh boot.sh
+	while true; do
+	echo "ok"
+	sleep 1
+	done
 }
 
 case "$1" in
