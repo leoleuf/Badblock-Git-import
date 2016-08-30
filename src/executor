@@ -6,6 +6,12 @@ run() {
 	sleep 10
 	cd /home/
 	sh start.sh
+	trap safe_shutdown EXIT
+}
+
+safe_shutdown() {
+    echo "Envoi d'un signal de fermeture sécurisée..."
+    console_command stop
 }
 
 case "$1" in
