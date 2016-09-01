@@ -1139,7 +1139,7 @@ public abstract class Entity implements ICommandListener {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
-            this.ac();
+        	this.ac();
             return false;
         }
     }
