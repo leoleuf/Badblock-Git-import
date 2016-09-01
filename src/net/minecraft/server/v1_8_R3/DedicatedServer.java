@@ -133,8 +133,6 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
         }
         // Spigot End
         if (!this.p.a() && !eulaAgreed) { // Spigot
-            DedicatedServer.LOGGER.info("You need to agree to the EULA in order to run the server. Go to eula.txt for more info.");
-            this.p.b();
             return false;
         } else {
             if (this.T()) {
