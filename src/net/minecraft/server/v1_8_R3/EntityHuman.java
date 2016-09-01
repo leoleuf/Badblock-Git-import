@@ -955,6 +955,7 @@ public abstract class EntityHuman extends EntityLiving {
 
     public void attack(Entity entity) {
         if (entity.aD()) {
+        	System.out.println("c'est partit mon kiki !");
             if (!entity.l(this)) {
                 float f = (float) this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
                 byte b0 = 0;

@@ -1083,6 +1083,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
         if (this.playerInteractManager.getGameMode() == WorldSettings.EnumGamemode.SPECTATOR) {
             this.setSpectatorTarget(entity);
         } else {
+        	System.out.println("Vui je vais butter " + entity.getName());
             super.attack(entity);
         }
 
