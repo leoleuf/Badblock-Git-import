@@ -16,7 +16,7 @@ public class Main {
 				DEBUG = true;
 			}
 		}
-		
+	
 		System.out.println("Welcome to " + Proxy.LADDER_VERSION + " ! Launching...");
 		
 		ConsoleReader reader = null;
