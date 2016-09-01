@@ -20,11 +20,9 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
         this.a((ICommand) (new CommandEffect()));
         this.a((ICommand) (new CommandEnchant()));
         this.a((ICommand) (new CommandParticle()));
-        this.a((ICommand) (new CommandMe()));
         this.a((ICommand) (new CommandSeed()));
         this.a((ICommand) (new CommandHelp()));
         this.a((ICommand) (new CommandDebug()));
-        this.a((ICommand) (new CommandTell()));
         this.a((ICommand) (new CommandSay()));
         this.a((ICommand) (new CommandSpawnpoint()));
         this.a((ICommand) (new CommandSetWorldSpawn()));
@@ -55,11 +53,6 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
             this.a((ICommand) (new CommandSaveAll()));
             this.a((ICommand) (new CommandSaveOff()));
             this.a((ICommand) (new CommandSaveOn()));
-            this.a((ICommand) (new CommandBanIp()));
-            this.a((ICommand) (new CommandPardonIP()));
-            this.a((ICommand) (new CommandBan()));
-            this.a((ICommand) (new CommandBanList()));
-            this.a((ICommand) (new CommandPardon()));
             this.a((ICommand) (new CommandKick()));
             this.a((ICommand) (new CommandList()));
             this.a((ICommand) (new CommandWhitelist()));
