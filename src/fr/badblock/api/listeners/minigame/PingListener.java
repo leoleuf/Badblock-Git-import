@@ -30,15 +30,15 @@ public class PingListener implements Listener{
 	}
 	
 	public static void kick(){
-		new BRunnable(40L){
+		for(final Player p : Bukkit.getOnlinePlayers()){
+			plugin.kick(p);
+		}
+		new BRunnable(20 * 10L){
 			private int time = 8;
 			
 			@Override
 			public void run(){
 				if(time <= 0){
-					for(final Player p : Bukkit.getOnlinePlayers()){
-						plugin.kick(p);
-					}
 					
 					Bukkit.shutdown();
 				}
