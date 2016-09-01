@@ -144,7 +144,9 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
 		this.setPVP(this.propertyManager.getBoolean("pvp", true));
 		this.setAllowFlight(this.propertyManager.getBoolean("allow-flight", false));
 		this.setResourcePack(this.propertyManager.getString("resource-pack", ""), this.propertyManager.getString("resource-pack-hash", ""));
-		this.setMotd(this.propertyManager.getString("motd", "A Minecraft Server"));
+        String serverName = this.propertyManager.getString("server-name", "unknow");
+        
+        this.setMotd(this.propertyManager.getString("motd", "BadBlock server " + serverName));
 		this.setForceGamemode(this.propertyManager.getBoolean("force-gamemode", false));
 		this.setIdleTimeout(this.propertyManager.getInt("player-idle-timeout", 0));
 		if (this.propertyManager.getInt("difficulty", 1) < 0) {
