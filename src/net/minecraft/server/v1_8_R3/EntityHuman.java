@@ -821,7 +821,7 @@ public abstract class EntityHuman extends EntityLiving {
                 return true;
             }
         }
-        
+
         if (this instanceof EntityPlayer) {
             return !team.hasPlayer(((EntityPlayer) this).getBukkitEntity());
         }
@@ -955,7 +955,6 @@ public abstract class EntityHuman extends EntityLiving {
 
     public void attack(Entity entity) {
         if (entity.aD()) {
-        	System.out.println("c'est partit mon kiki !");
             if (!entity.l(this)) {
                 float f = (float) this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).getValue();
                 byte b0 = 0;
@@ -972,8 +971,6 @@ public abstract class EntityHuman extends EntityLiving {
                 if (this.isSprinting()) {
                     ++i;
                 }
-                
-                System.out.println(f + " " + f1);
 
                 if (f > 0.0F || f1 > 0.0F) {
                     boolean flag = !world.paperSpigotConfig.disablePlayerCrits && this.fallDistance > 0.0F && !this.onGround && !this.k_() && !this.V() && !this.hasEffect(MobEffectList.BLINDNESS) && this.vehicle == null && entity instanceof EntityLiving; // PaperSpigot
@@ -1003,10 +1000,8 @@ public abstract class EntityHuman extends EntityLiving {
                     double d2 = entity.motZ;
                     boolean flag2 = entity.damageEntity(DamageSource.playerAttack(this), f);
 
-                    System.out.println(flag2);
-                    
                     if (flag2) {
-                    	if (i > 0) {
+                        if (i > 0) {
                             entity.g((double) (-MathHelper.sin(this.yaw * 3.1415927F / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(this.yaw * 3.1415927F / 180.0F) * (float) i * 0.5F));
                             this.motX *= 0.6D;
                             this.motZ *= 0.6D;
@@ -1039,13 +1034,11 @@ public abstract class EntityHuman extends EntityLiving {
                         }
 
                         if (flag) {
-                        	System.out.println("b entity");
                             this.b(entity);
                         }
 
                         if (f1 > 0.0F) {
-                        	System.out.println("c entity");
-                        	this.c(entity);
+                            this.c(entity);
                         }
 
                         if (f >= 18.0F) {

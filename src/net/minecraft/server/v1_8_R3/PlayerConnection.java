@@ -1302,9 +1302,7 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
     }
 
     public void a(PacketPlayInUseEntity packetplayinuseentity) {
-        System.out.println("Player Interact : " + packetplayinuseentity.a());
-    	
-    	if (this.player.dead) return; // CraftBukkit
+        if (this.player.dead) return; // CraftBukkit
         PlayerConnectionUtils.ensureMainThread(packetplayinuseentity, this, this.player.u());
         WorldServer worldserver = this.minecraftServer.getWorldServer(this.player.dimension);
         Entity entity = packetplayinuseentity.a((World) worldserver);
@@ -1318,8 +1316,7 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
 
         this.player.resetIdleTimer();
         if (entity != null) {
-        	System.out.println("Interact with : " + entity.getName());
-        	boolean flag = this.player.hasLineOfSight(entity);
+            boolean flag = this.player.hasLineOfSight(entity);
             double d0 = 36.0D;
 
             if (!flag) {
@@ -1375,7 +1372,6 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
                     }
                     // CraftBukkit end
                 } else if (packetplayinuseentity.a() == PacketPlayInUseEntity.EnumEntityUseAction.ATTACK) {
-                	System.out.print("This is a fucking attack");
                     if (entity instanceof EntityItem || entity instanceof EntityExperienceOrb || entity instanceof EntityArrow || (entity == this.player && !player.isSpectator())) { // CraftBukkit
                         this.disconnect("Attempting to attack an invalid entity");
                         this.minecraftServer.warning("Player " + this.player.getName() + " tried to attack an invalid entity");

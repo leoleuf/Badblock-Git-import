@@ -477,29 +477,20 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
     }
 
     public boolean damageEntity(DamageSource damagesource, float f) {
-    	System.out.println("et je tape tape tape, c'est ma façon d'aimer ! :D");
-
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
-        	System.out.println("vamonooooos ;o");
-
             boolean flag = this.server.ae() && this.cr() && "fall".equals(damagesource.translationIndex);
 
             if (!flag && this.invulnerableTicks > 0 && damagesource != DamageSource.OUT_OF_WORLD) {
                 return false;
             } else {
-            	System.out.println("mouihihihi");
                 if (damagesource instanceof EntityDamageSource) {
                     Entity entity = damagesource.getEntity();
 
-                    System.out.println("tu vas crever =D");
-                    
                     if (entity instanceof EntityHuman && !this.a((EntityHuman) entity)) {
                         return false;
                     }
-                    
-                    System.out.println("si si je te jure");
 
                     if (entity instanceof EntityArrow) {
                         EntityArrow entityarrow = (EntityArrow) entity;
@@ -516,12 +507,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
     }
 
     public boolean a(EntityHuman entityhuman) {
-    	System.out.println("pvp mode : " + cr());
-    	boolean can = super.a(entityhuman);
-    	
-    	System.out.println("team : " + cr());
-    	
-        return !this.cr() ? false : can;
+        return !this.cr() ? false : super.a(entityhuman);
     }
 
     private boolean cr() {
@@ -1097,7 +1083,6 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
         if (this.playerInteractManager.getGameMode() == WorldSettings.EnumGamemode.SPECTATOR) {
             this.setSpectatorTarget(entity);
         } else {
-        	System.out.println("Vui je vais butter " + entity.getName());
             super.attack(entity);
         }
 
