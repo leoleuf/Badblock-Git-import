@@ -9,7 +9,6 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
         this.a((new CommandGamemode()));
         this.a((new CommandDifficulty()));
         this.a((new CommandGamemodeDefault()));
-        this.a((new CommandKill()));
         this.a((new CommandToggleDownfall()));
         this.a((new CommandWeather()));
         this.a((new CommandXp()));
@@ -19,18 +18,13 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
         this.a((new CommandStats()));
         this.a((new CommandEffect()));
         this.a((new CommandEnchant()));
-        this.a((new CommandParticle()));
         this.a((new CommandSeed()));
         this.a((new CommandHelp()));
         this.a((new CommandDebug()));
-        this.a((new CommandSay()));
         this.a((new CommandSpawnpoint()));
         this.a((new CommandSetWorldSpawn()));
-        this.a((new CommandGamerule()));
-        this.a((new CommandClear()));
         this.a((new CommandTestFor()));
         this.a((new CommandSpreadPlayers()));
-        this.a((new CommandPlaySound()));
         this.a((new CommandScoreboard()));
         this.a((new CommandExecute()));
         this.a((new CommandTrigger()));
@@ -53,10 +47,8 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
             this.a((new CommandSaveAll()));
             this.a((new CommandSaveOff()));
             this.a((new CommandSaveOn()));
-            this.a((new CommandKick()));
             this.a((new CommandList()));
             this.a((new CommandWhitelist()));
-            this.a((new CommandIdleTimeout()));
         } else {
             this.a((new CommandPublish()));
         }
