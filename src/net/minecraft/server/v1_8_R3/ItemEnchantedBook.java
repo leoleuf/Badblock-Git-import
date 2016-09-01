@@ -26,7 +26,7 @@ public class ItemEnchantedBook extends Item {
 
         for (int i = 0; i < nbttaglist.size(); ++i) {
             NBTTagCompound nbttagcompound = nbttaglist.get(i);
- 
+
             if (nbttagcompound.getShort("id") == weightedrandomenchant.enchantment.id) {
                 if (nbttagcompound.getShort("lvl") < weightedrandomenchant.level) {
                     nbttagcompound.setShort("lvl", (short) weightedrandomenchant.level);
