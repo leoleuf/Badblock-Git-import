@@ -599,7 +599,6 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         server.getHandle().playerFileData.save(getHandle());
     }
 
-    @Deprecated
     @Override
     public void updateInventory() {
         getHandle().updateInventory(getHandle().activeContainer);
