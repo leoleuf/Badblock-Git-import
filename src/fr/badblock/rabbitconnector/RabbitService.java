@@ -1,12 +1,9 @@
-package fr.badblock.rabbitconnector.workers;
+package fr.badblock.rabbitconnector;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-import fr.badblock.rabbitconnector.RabbitConnector;
-import fr.badblock.rabbitconnector.RabbitCredentials;
-import fr.badblock.rabbitconnector.types.RabbitPacketType;
 import fr.badblock.utils.Encodage;
 import lombok.Getter;
 import lombok.Setter;
@@ -74,7 +71,7 @@ import lombok.Setter;
 	}
 
 	public void remove() {
-		System.out.println("[RabbitConnector] Unregistered service! (" + name + ")");
+		System.out.println("[RabbitConnector] Unregistered service! (" + this.getName() + ")");
 		try {
 			if (this.getConnection() != null && this.getConnection().isOpen()) this.getConnection().close();
 			if (this.getChannel() != null && this.getChannel().isOpen()) this.getChannel().close();

@@ -1,4 +1,4 @@
-package fr.badblock.rabbitconnector.workers;
+package fr.badblock.rabbitconnector;
 
 import java.io.IOException;
 
@@ -8,17 +8,15 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-import fr.badblock.rabbitconnector.types.RabbitListenerType;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter @Setter public abstract class RabbitListener {
+@Data public abstract class RabbitListener {
 
 	private RabbitService			rabbitService;
 	private String					queueName;
 	private boolean					debug;
 	private RabbitListenerType		type;
-	private Consumer				consumer;
+	Consumer						consumer;
 
 	public RabbitListener (final RabbitService rabbitService, final String queueName, final boolean debug, final RabbitListenerType type) {
 		this.setRabbitService(rabbitService);
@@ -35,7 +33,7 @@ import lombok.Setter;
 						try {
 							if (rabbitService.getConnection() == null || !rabbitService.getConnection().isOpen()) rabbitService.setConnection(rabbitService.getCredentials().getConnectionFactory().newConnection());
 							if (rabbitService.getConnection() != null && (rabbitService.getChannel() == null || !rabbitService.getChannel().isOpen())) rabbitService.setChannel(rabbitService.getConnection().createChannel());
-							consumer = null;
+							setConsumer(null);
 						}catch(Exception error) {
 							System.out.println("[RabbitConnector] Error during trying to connect (" + error.getMessage() + ").");
 						}
@@ -46,7 +44,7 @@ import lombok.Setter;
 						}
 					}
 					try {
-						if (consumer == null) {
+						if (getConsumer() == null) {
 							Channel channel = rabbitService.getChannel();
 							String finalQueueName = queueName;
 							if (type.equals(RabbitListenerType.MESSAGE_BROKER))
@@ -57,7 +55,7 @@ import lombok.Setter;
 								finalQueueName = tempQueueName;
 								channel.queueBind(tempQueueName, queueName, "");
 							}
-							consumer = new DefaultConsumer(channel) {
+							setConsumer(new DefaultConsumer(channel) {
 								@Override
 								public void handleDelivery(String consumerTag, Envelope envelope,
 										AMQP.BasicProperties properties, byte[] body) throws IOException {
@@ -75,8 +73,8 @@ import lombok.Setter;
 										error.printStackTrace();
 									}
 								}
-							};
-							channel.basicConsume(finalQueueName, true, consumer);
+							});
+							channel.basicConsume(finalQueueName, true, getConsumer());
 							System.out.println("[RabbitConnector] Loaded listener from " + queueName + " (" + getClass().getSimpleName() + ").");
 						}
 					}catch(Exception error) {

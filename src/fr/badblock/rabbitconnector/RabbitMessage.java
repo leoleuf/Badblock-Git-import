@@ -1,6 +1,5 @@
-package fr.badblock.rabbitconnector.workers;
+package fr.badblock.rabbitconnector;
 
-import fr.badblock.rabbitconnector.RabbitConnector;
 import lombok.Getter;
 import lombok.Setter;
 

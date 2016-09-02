@@ -1,4 +1,4 @@
-package fr.badblock.rabbitconnector.types;
+package fr.badblock.rabbitconnector;
 
 public enum RabbitPacketType {
 

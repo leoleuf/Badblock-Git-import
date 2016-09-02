@@ -6,7 +6,6 @@ import java.util.concurrent.ConcurrentMap;
 
 import com.google.gson.Gson;
 
-import fr.badblock.rabbitconnector.workers.RabbitService;
 import lombok.Getter;
 import lombok.Setter;
 

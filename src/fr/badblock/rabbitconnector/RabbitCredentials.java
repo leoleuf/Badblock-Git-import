@@ -2,7 +2,6 @@ package fr.badblock.rabbitconnector;
 
 import com.rabbitmq.client.ConnectionFactory;
 
-import fr.badblock.rabbitconnector.workers.RabbitService;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,12 +22,16 @@ import lombok.Setter;
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setVirtualHost(virtualHost);
-		this.setConnectionFactory(buildFactory());
+		this.flushChanges();
 		RabbitConnector.getInstance().getCredentials().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new credentials! (" + name + ")");
 	}
 	
-	public ConnectionFactory buildFactory() {
+	public void flushChanges() {
+		this.setConnectionFactory(buildFactory());
+	}
+	
+	private ConnectionFactory buildFactory() {
 		ConnectionFactory connectionFactory = new ConnectionFactory();
 		connectionFactory.setUsername(getUsername());
 		connectionFactory.setPassword(getPassword());
@@ -42,7 +45,7 @@ import lombok.Setter;
 	}
 	
 	public void remove() {
-		System.out.println("[RabbitConnector] Unregistered credentials (" + name + ")");
+		System.out.println("[RabbitConnector] Unregistered credentials (" + this.getName() + ")");
 		RabbitConnector.getInstance().getCredentials().remove(this.getName());
 		for (RabbitService rabbitService : RabbitConnector.getInstance().getServices().values())
 			if (rabbitService.getCredentials().equals(this)) rabbitService.remove();
