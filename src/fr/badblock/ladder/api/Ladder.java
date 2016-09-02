@@ -28,6 +28,7 @@ import fr.badblock.ladder.api.plugins.PluginsManager;
 import fr.badblock.permissions.PermissionManager;
 import fr.badblock.protocol.packets.Packet;
 import lombok.Getter;
+import lombok.Setter;
 
 public abstract class Ladder {
 	@Getter protected static Ladder 			   instance;
@@ -51,6 +52,9 @@ public abstract class Ladder {
 	protected final	CommandSender				   consoleCommandSender;
 	@Getter
 	protected final ConfigurationProvider   	   configurationProvider;
+	@Getter@Setter
+	protected int maxPlayers;
+	
 	
 	public Ladder(String version, Logger logger, CommandSender consoleCommandSender, ConfigurationProvider configurationProvider) throws IOException {
 		instance 				   = this;
