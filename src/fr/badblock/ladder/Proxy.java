@@ -102,6 +102,7 @@ public class Proxy extends Ladder {
 	@Getter private int		  		port;
 	
 	@Getter private String	  		alertPrefix;
+	@Getter private int				maxPlayers;
 	
 	@Getter
 	private final SocketHost  		host;
@@ -195,10 +196,13 @@ public class Proxy extends Ladder {
 			configuration.set("port", 26850);
 		if(!configuration.contains("alert"))
 			configuration.set("alert", "&4[&cAlert&4] &r");
-		
+		if(!configuration.contains("maxplayers"))
+			configuration.set("maxplayers", -1);
+
 		ip   		= configuration.getString("ip");
 		port 		= configuration.getInt("port");
 		alertPrefix = configuration.getString("alert");
+		maxPlayers  = configuration.getInt("maxplayers");
 		
 		getConfigurationProvider().save(configuration, CONFIG_FILE);
 		
