@@ -9,10 +9,10 @@ public enum RabbitAvailabilityType {
 	/**
 	 * Persistence récurrente, le message restera persistant jusqu'à son traitement
 	 */
-	RECURRENT_PERSISTENCE,
+	RECURRENT_PERSISTENT,
 	/**
 	 * Pas de persistance
 	 */
-	NO_PERSISTENCE;
+	NO_PERSISTENT;
 	
 }
