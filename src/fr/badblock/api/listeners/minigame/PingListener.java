@@ -30,22 +30,20 @@ public class PingListener implements Listener{
 	}
 	
 	public static void kick(){
-		new BRunnable(20 * 10L){
-			
+		Bukkit.getScheduler().runTaskLater(MJPlugin.getInstance(), new Runnable() {
 			@Override
-			public void run(){
+			public void run() {
 				for(final Player p : Bukkit.getOnlinePlayers()){
 					plugin.kick(p);
 				}
-				new BRunnable(20 * 10L){
-					
-					@Override
-					public void run(){
-							Bukkit.shutdown();
-					}
-				}.start();
 			}
-		}.start();
+		}, 20 * 10);
+		Bukkit.getScheduler().runTaskLater(MJPlugin.getInstance(), new Runnable() {
+			@Override
+			public void run() {
+				Bukkit.shutdown();
+			}
+		}, 20 * 20);
 	}
 	@EventHandler
 	public void onPing(ServerListPingEvent e){
