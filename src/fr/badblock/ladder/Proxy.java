@@ -72,7 +72,6 @@ import fr.badblock.protocol.packets.PacketPlayerData.DataType;
 import fr.badblock.protocol.socket.SocketHost;
 import jline.console.ConsoleReader;
 import lombok.Getter;
-import lombok.Setter;
 
 public class Proxy extends Ladder {
 	@Getter protected static Proxy instance;
