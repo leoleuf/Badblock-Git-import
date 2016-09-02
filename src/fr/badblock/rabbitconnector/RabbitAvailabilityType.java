@@ -1,17 +1,21 @@
 package fr.badblock.rabbitconnector;
 
+/**
+ * An enumeration for set a custom time to live in Rabbit messages
+ * @author xMalware
+ */
 public enum RabbitAvailabilityType {
 
 	/**
-	 * Persistence temporaire (TTL à préciser, 10 secondes par défaut)
+	 * Temporary persistence (timeToLive should be set, ten seconds for expire by default)
 	 */
 	TEMPORARY_PERSISTENT,
 	/**
-	 * Persistence récurrente, le message restera persistant jusqu'à son traitement
+	 * Reccurrent persistence, the message will keeping alive util the pull of it
 	 */
 	RECURRENT_PERSISTENT,
 	/**
-	 * Pas de persistance
+	 * No persistence
 	 */
 	NO_PERSISTENT;
 	
