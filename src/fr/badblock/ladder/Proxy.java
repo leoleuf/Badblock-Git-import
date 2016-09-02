@@ -103,7 +103,6 @@ public class Proxy extends Ladder {
 	@Getter private int		  		port;
 	
 	@Getter private String	  		alertPrefix;
-	@Getter@Setter private int		maxPlayers;
 	
 	@Getter
 	private final SocketHost  		host;
