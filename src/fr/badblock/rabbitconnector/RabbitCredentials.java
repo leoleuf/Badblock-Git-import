@@ -5,6 +5,11 @@ import com.rabbitmq.client.ConnectionFactory;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * A RabbitCredentials object who will allow 
+ * @author root
+ *
+ */
 @Getter @Setter public class RabbitCredentials {
 	
 	private String					name;
