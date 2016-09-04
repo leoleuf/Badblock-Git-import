@@ -1,10 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+// CraftBukkit start
+import java.io.PrintStream;
+import java.lang.reflect.Modifier;
 import java.net.InetAddress;
 import java.net.Proxy;
 import java.util.Collections;
@@ -12,18 +12,22 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-// CraftBukkit start
-import java.io.PrintStream;
-import org.apache.logging.log4j.Level;
-
-import co.aikar.timings.SpigotTimings; // Spigot
-import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.craftbukkit.v1_8_R3.LoggerOutputStream;
 import org.bukkit.craftbukkit.v1_8_R3.util.Waitable;
 import org.bukkit.event.server.RemoteServerCommandEvent;
+import org.bukkit.event.server.ServerCommandEvent;
+
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import co.aikar.timings.SpigotTimings; // Spigot
+import fr.badblock.minecraftserver.BadblockConfig;
+import fr.badblock.minecraftserver.JsonUtils;
 // CraftBukkit end
 
 public class DedicatedServer extends MinecraftServer implements IMinecraftServer {
@@ -177,6 +181,10 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
 		// PaperSpigot start
 		org.github.paperspigot.PaperSpigotConfig.init((File) options.valueOf("paper-settings"));
 		org.github.paperspigot.PaperSpigotConfig.registerCommands();
+		
+		BadblockConfig.config = JsonUtils.load(new File("badblock.json"), BadblockConfig.class);
+		JsonUtils.save(new File("badblock.json"), BadblockConfig.config, true);
+		
 		// PaperSpigot end
 
 		DedicatedServer.LOGGER.info("Generating keypair");
