@@ -21,9 +21,9 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 public class JsonUtils {
-	public static Gson	gson 	   = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT)
+	public static Gson	gson 	   = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
 			 .disableHtmlEscaping().create();
-	public static Gson	prettyGson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT)
+	public static Gson	prettyGson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
 			 .disableHtmlEscaping()
 			 .setPrettyPrinting().create();
 
