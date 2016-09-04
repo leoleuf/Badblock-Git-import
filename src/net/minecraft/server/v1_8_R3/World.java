@@ -1596,7 +1596,10 @@ public abstract class World implements IBlockAccess {
         boolean flag = true; // PaperSpigot - Remove unused list
 
         if (flag && tileentity instanceof IUpdatePlayerListBox) {
-            this.tileEntityList.add(tileentity);
+        	IUpdatePlayerListBox listBox = (IUpdatePlayerListBox) tileentity;
+        	
+        	if(listBox.mustUpdatePlayerListBox())
+        		this.tileEntityList.add(tileentity);
         }
 
         return flag;
