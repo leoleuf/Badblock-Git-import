@@ -1,31 +1,38 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.Callable;
+// PaperSpigot start
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.bukkit.Bukkit;
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
-import org.bukkit.craftbukkit.v1_8_R3.util.LongHashSet;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.generator.ChunkGenerator;
-import co.aikar.timings.SpigotTimings;
-
-import java.util.*;
-import java.util.concurrent.Callable;
-
-// PaperSpigot start
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.github.paperspigot.event.ServerExceptionEvent;
 import org.github.paperspigot.exception.ServerInternalException;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 // PaperSpigot end
 
 // CraftBukkit start
@@ -1606,7 +1613,10 @@ public abstract class World implements IBlockAccess {
 
                 //this.h.add(tileentity); // PaperSpigot - Remove unused list
                 if (tileentity instanceof IUpdatePlayerListBox) {
-                    this.tileEntityList.add(tileentity);
+                	IUpdatePlayerListBox listBox = (IUpdatePlayerListBox) tileentity;
+                	
+                	if(listBox.mustUpdatePlayerListBox())
+                		this.tileEntityList.add(tileentity);
                 }
             }
         }
