@@ -269,6 +269,13 @@ public abstract class Entity implements ICommandListener {
     private boolean paperNetherCheck() {
         return this.world.paperSpigotConfig.netherVoidTopDamage && this.world.getWorld().getEnvironment() == org.bukkit.World.Environment.NETHER && this.locY >= 128.0D;
     }
+    
+    /**
+     * Check if the world must tick this entity
+     */
+    public boolean tickable(){
+    	return true;
+    }
 
     public void K() {
         this.world.methodProfiler.a("entityBaseTick");
