@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 // CraftBukkit start
 import java.io.PrintStream;
-import java.lang.reflect.Modifier;
 import java.net.InetAddress;
 import java.net.Proxy;
 import java.util.Collections;
@@ -22,8 +21,6 @@ import org.bukkit.event.server.RemoteServerCommandEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import co.aikar.timings.SpigotTimings; // Spigot
 import fr.badblock.minecraftserver.BadblockConfig;
@@ -463,7 +460,6 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
 	}
 
 	public void aQ() {
-		ServerGUI.a(this);
 		this.s = true;
 	}
 
