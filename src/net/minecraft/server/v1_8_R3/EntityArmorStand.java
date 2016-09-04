@@ -24,22 +24,10 @@ public class EntityArmorStand extends EntityLiving {
     private long i;
     private int bi;
     private boolean bj;
-    public Vector3f headPose;
-    public Vector3f bodyPose;
-    public Vector3f leftArmPose;
-    public Vector3f rightArmPose;
-    public Vector3f leftLegPose;
-    public Vector3f rightLegPose;
 
     public EntityArmorStand(World world) {
         super(world);
         this.items = new ItemStack[5];
-        this.headPose = EntityArmorStand.a;
-        this.bodyPose = EntityArmorStand.b;
-        this.leftArmPose = EntityArmorStand.c;
-        this.rightArmPose = EntityArmorStand.d;
-        this.leftLegPose = EntityArmorStand.e;
-        this.rightLegPose = EntityArmorStand.f;
         this.b(true);
         this.noclip = this.hasGravity();
         this.setSize(0.5F, 1.975F);
@@ -211,28 +199,28 @@ public class EntityArmorStand extends EntityLiving {
     private NBTTagCompound z() {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-        if (!EntityArmorStand.a.equals(this.headPose)) {
-            nbttagcompound.set("Head", this.headPose.a());
+        if (!EntityArmorStand.a.equals(this.headPose())) {
+            nbttagcompound.set("Head", this.headPose().a());
         }
 
-        if (!EntityArmorStand.b.equals(this.bodyPose)) {
-            nbttagcompound.set("Body", this.bodyPose.a());
+        if (!EntityArmorStand.b.equals(this.bodyPose())) {
+            nbttagcompound.set("Body", this.bodyPose().a());
         }
 
-        if (!EntityArmorStand.c.equals(this.leftArmPose)) {
-            nbttagcompound.set("LeftArm", this.leftArmPose.a());
+        if (!EntityArmorStand.c.equals(this.leftArmPose())) {
+            nbttagcompound.set("LeftArm", this.leftArmPose().a());
         }
 
-        if (!EntityArmorStand.d.equals(this.rightArmPose)) {
-            nbttagcompound.set("RightArm", this.rightArmPose.a());
+        if (!EntityArmorStand.d.equals(this.rightArmPose())) {
+            nbttagcompound.set("RightArm", this.rightArmPose().a());
         }
 
-        if (!EntityArmorStand.e.equals(this.leftLegPose)) {
-            nbttagcompound.set("LeftLeg", this.leftLegPose.a());
+        if (!EntityArmorStand.e.equals(this.leftLegPose())) {
+            nbttagcompound.set("LeftLeg", this.leftLegPose().a());
         }
 
-        if (!EntityArmorStand.f.equals(this.rightLegPose)) {
-            nbttagcompound.set("RightLeg", this.rightLegPose.a());
+        if (!EntityArmorStand.f.equals(this.rightLegPose())) {
+            nbttagcompound.set("RightLeg", this.rightLegPose().a());
         }
 
         return nbttagcompound;
@@ -496,42 +484,7 @@ public class EntityArmorStand extends EntityLiving {
 
     public void t_() {
         super.t_();
-        Vector3f vector3f = this.datawatcher.h(11);
-
-        if (!this.headPose.equals(vector3f)) {
-            this.setHeadPose(vector3f);
-        }
-
-        Vector3f vector3f1 = this.datawatcher.h(12);
-
-        if (!this.bodyPose.equals(vector3f1)) {
-            this.setBodyPose(vector3f1);
-        }
-
-        Vector3f vector3f2 = this.datawatcher.h(13);
-
-        if (!this.leftArmPose.equals(vector3f2)) {
-            this.setLeftArmPose(vector3f2);
-        }
-
-        Vector3f vector3f3 = this.datawatcher.h(14);
-
-        if (!this.rightArmPose.equals(vector3f3)) {
-            this.setRightArmPose(vector3f3);
-        }
-
-        Vector3f vector3f4 = this.datawatcher.h(15);
-
-        if (!this.leftLegPose.equals(vector3f4)) {
-            this.setLeftLegPose(vector3f4);
-        }
-
-        Vector3f vector3f5 = this.datawatcher.h(16);
-
-        if (!this.rightLegPose.equals(vector3f5)) {
-            this.setRightLegPose(vector3f5);
-        }
-
+        //TODO optimize t_()
         boolean flag = this.s();
 
         if (!this.bj && flag) {
@@ -665,44 +618,62 @@ public class EntityArmorStand extends EntityLiving {
     }
 
     public void setHeadPose(Vector3f vector3f) {
-        this.headPose = vector3f;
         this.datawatcher.watch(11, vector3f);
     }
 
     public void setBodyPose(Vector3f vector3f) {
-        this.bodyPose = vector3f;
         this.datawatcher.watch(12, vector3f);
     }
 
     public void setLeftArmPose(Vector3f vector3f) {
-        this.leftArmPose = vector3f;
         this.datawatcher.watch(13, vector3f);
     }
 
     public void setRightArmPose(Vector3f vector3f) {
-        this.rightArmPose = vector3f;
         this.datawatcher.watch(14, vector3f);
     }
 
     public void setLeftLegPose(Vector3f vector3f) {
-        this.leftLegPose = vector3f;
         this.datawatcher.watch(15, vector3f);
     }
 
     public void setRightLegPose(Vector3f vector3f) {
-        this.rightLegPose = vector3f;
         this.datawatcher.watch(16, vector3f);
     }
 
     public Vector3f t() {
-        return this.headPose;
+        return this.headPose();
     }
 
     public Vector3f u() {
-        return this.bodyPose;
+        return this.bodyPose();
     }
 
     public boolean ad() {
         return super.ad() && !this.s();
+    }
+    
+    public Vector3f headPose(){
+    	return this.datawatcher.h(11);
+    }
+    
+    public Vector3f bodyPose(){
+    	return this.datawatcher.h(12);
+    }
+    
+    public Vector3f leftArmPose(){
+    	return this.datawatcher.h(13);
+    }
+    
+    public Vector3f rightArmPose(){
+    	return this.datawatcher.h(14);
+    }
+    
+    public Vector3f leftLegPose(){
+    	return this.datawatcher.h(15);
+    }
+    
+    public Vector3f rightLegPose(){
+    	return this.datawatcher.h(16);
     }
 }
