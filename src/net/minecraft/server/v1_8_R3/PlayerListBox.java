@@ -1,6 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.util.Vector;
+
 import javax.swing.JList;
 
 public class PlayerListBox extends JList implements IUpdatePlayerListBox {
@@ -24,5 +25,10 @@ public class PlayerListBox extends JList implements IUpdatePlayerListBox {
             this.setListData(vector);
         }
 
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return true;
     }
 }

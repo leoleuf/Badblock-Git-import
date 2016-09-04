@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class TileEntityLightDetector extends TileEntity implements IUpdatePlayerListBox {
 
     public TileEntityLightDetector() {}
@@ -12,5 +14,10 @@ public class TileEntityLightDetector extends TileEntity implements IUpdatePlayer
             }
         }
 
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickLightDetector;
     }
 }

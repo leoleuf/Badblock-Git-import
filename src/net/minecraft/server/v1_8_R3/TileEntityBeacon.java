@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -13,6 +12,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.github.paperspigot.event.block.BeaconEffectEvent;
+
+import com.google.common.collect.Lists;
+
+import fr.badblock.minecraftserver.BadblockConfig;
 // PaperSpigot end
 
 public class TileEntityBeacon extends TileEntityContainer implements IUpdatePlayerListBox, IInventory {
@@ -57,6 +60,11 @@ public class TileEntityBeacon extends TileEntityContainer implements IUpdatePlay
             this.m();
         }
 
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickBeacon;
     }
 
     public void m() {

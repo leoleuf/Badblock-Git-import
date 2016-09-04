@@ -1,8 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import fr.badblock.minecraftserver.BadblockConfig;
 
 public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox {
 
@@ -126,6 +129,11 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
             }
 
         }
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickPiston;
     }
 
     public void a(NBTTagCompound nbttagcompound) {

@@ -2,6 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class TileEntityEnchantTable extends TileEntity implements IUpdatePlayerListBox, ITileEntityContainer {
 
     public int a;
@@ -94,6 +96,11 @@ public class TileEntityEnchantTable extends TileEntity implements IUpdatePlayerL
         f2 = MathHelper.a(f2, -f3, f3);
         this.i += (f2 - this.i) * 0.9F;
         this.f += this.i;
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickEnchantTable;
     }
 
     public String getName() {

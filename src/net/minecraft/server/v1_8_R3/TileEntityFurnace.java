@@ -9,6 +9,8 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class TileEntityFurnace extends TileEntityContainer implements IUpdatePlayerListBox, IWorldInventory {
 
     private static final int[] a = new int[] { 0};
@@ -259,6 +261,11 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
             this.update();
         }
 
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickFurnace;
     }
 
     public int a(ItemStack itemstack) {

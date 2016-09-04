@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerListBox {
 
     private final MobSpawnerAbstract a = new MobSpawnerAbstract() {
@@ -38,6 +40,11 @@ public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerLis
 
     public void c() {
         this.a.c();
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickMobSpawner;
     }
 
     public Packet getUpdatePacket() {

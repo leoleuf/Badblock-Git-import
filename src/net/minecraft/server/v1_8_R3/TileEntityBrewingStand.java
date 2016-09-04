@@ -6,6 +6,8 @@ import java.util.List;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftHumanEntity;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.BrewEvent;
+
+import fr.badblock.minecraftserver.BadblockConfig;
 // CraftBukkit end
 
 public class TileEntityBrewingStand extends TileEntityContainer implements IUpdatePlayerListBox, IWorldInventory {
@@ -104,6 +106,11 @@ public class TileEntityBrewingStand extends TileEntityContainer implements IUpda
             }
         }
 
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickBrewingStand;
     }
 
     private boolean n() {

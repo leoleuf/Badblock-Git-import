@@ -9,6 +9,8 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.inventory.Inventory;
+
+import fr.badblock.minecraftserver.BadblockConfig;
 // CraftBukkit end
 
 public class TileEntityHopper extends TileEntityContainer implements IHopper, IUpdatePlayerListBox {
@@ -177,6 +179,11 @@ public class TileEntityHopper extends TileEntityContainer implements IHopper, IU
             }
 
         }
+    }
+    
+    @Override
+    public boolean mustUpdatePlayerListBox(){
+    	return BadblockConfig.config.tileEntities.tickHopper;
     }
 
     public boolean m() {
