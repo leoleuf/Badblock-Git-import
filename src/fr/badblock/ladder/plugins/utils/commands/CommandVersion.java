@@ -14,7 +14,7 @@ public class CommandVersion extends Command {
 		ChatColor.GREEN + "Le réchauffement climatique est (en partie) dû à ceux qui produisent du CO2 dans l'unique espoir de trouver une version.",
 		ChatColor.GREEN + "BadBlock utilise la version (bzzzz) de MineCraft. En vous remerciant de votre appel.",
 		ChatColor.GREEN + "Bravo ! Vous avez réussi à infiltrer les profondeurs de BadBlock en tapant cette commande ! Ou pas.",
-		ChatColor.GREEN + "Aux âmes bien nées, la valeur n'attend point le nomre des versions.",
+		ChatColor.GREEN + "Aux âmes bien nées, la valeur n'attend point le nombre des versions.",
 		ChatColor.GREEN + "Ma version ? Et toi je t'en pose des questions ?"
 	};
 	
