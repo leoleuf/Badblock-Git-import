@@ -15,7 +15,6 @@ import fr.badblock.ladder.api.plugins.Plugin;
 import fr.badblock.ladder.plugins.matchmaking.MatchServer;
 import fr.badblock.ladder.plugins.utils.commands.CommandAdminChat;
 import fr.badblock.ladder.plugins.utils.commands.CommandChatStaff;
-import fr.badblock.ladder.plugins.utils.commands.CommandEvent;
 import fr.badblock.ladder.plugins.utils.commands.CommandPic;
 import fr.badblock.ladder.plugins.utils.commands.CommandPlugins;
 import fr.badblock.ladder.plugins.utils.commands.CommandVersion;
@@ -37,7 +36,6 @@ public class LadderUtils extends Plugin implements Listener {
 		getLadder().getPluginsManager().registerCommand(this, new CommandPic(this));
 		getLadder().getPluginsManager().registerCommand(this, new CommandChatStaff());
 		getLadder().getPluginsManager().registerCommand(this, new CommandAdminChat());
-		getLadder().getPluginsManager().registerCommand(this, new CommandEvent());
 
 		picBest 	 = getConfig().getInt("pic.best");
 		picBestToday = getConfig().getInt("pic." + getDate());
