@@ -2,13 +2,15 @@ package fr.badblock.api.listeners.minigame;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.badblock.api.MJPlugin;
 import fr.badblock.api.MJPlugin.GameStatus;
@@ -33,9 +35,22 @@ public class ConnectionListener implements Listener {
 		BPlayersManager.getInstance().disconnect(e.getPlayer());
 		e.setQuitMessage(null);
 		
-		if(Bukkit.getOnlinePlayers().size() == 0 && MJPlugin.getInstance().getStatus() != GameStatus.WAITING_PLAYERS){
-			Bukkit.shutdown();
-		}
+		new BukkitRunnable(){
+			@Override
+			public void run(){
+				int p = 0;
+				
+				for(Player player : Bukkit.getOnlinePlayers()){
+					if(player.isOnline() && !BPlayersManager.getInstance().getPlayer(player).isSpectator()){
+						p++;
+					}
+				}
+				
+				if(p == 0 && MJPlugin.getInstance().getStatus() != GameStatus.WAITING_PLAYERS){
+					Bukkit.shutdown();
+				}
+			}
+		}.runTaskLater(plugin, 10L);
 	}
 
 	@EventHandler
