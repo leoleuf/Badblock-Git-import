@@ -6,6 +6,7 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
 
     public CommandDispatcher() {
         this.a((new CommandTime()));
+        this.a((new CommandGamerule()));
         this.a((new CommandGamemode()));
         this.a((new CommandDifficulty()));
         this.a((new CommandGamemodeDefault()));
