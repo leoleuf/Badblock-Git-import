@@ -38,7 +38,7 @@ public class OpeningInstanceFactory {
 
 	public OpeningInstanceFactory(long id, String ip, long port, int slots, String bungeeName, String screenName,
 			String world, String system, long ram, String command, int nettyThreads, int parallelThreads,
-			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, Map<String, String> furtherInformations) {
+			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, Map<String, String> furtherInformations) {
 		setId(id);
 		setIp(ip);
 		setPort(port);
@@ -58,6 +58,7 @@ public class OpeningInstanceFactory {
 		setLogFile(logFile);
 		setRandom(random);
 		setToWorld(toWorld);
+		setRabbitHostname(rabbitHostname);
 		setFurtherInformations(furtherInformations);
 	}
 
