@@ -2,6 +2,7 @@ package fr.badblock.docker.factories;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,12 +34,11 @@ public class OpeningInstanceFactory {
 	private OutputStream outputStream;
 	private Process process;
 	private String rabbitHostname;
-	private String ladderIp;
-	private int ladderPort;
+	private Map<String, String> furtherInformations;
 
 	public OpeningInstanceFactory(long id, String ip, long port, int slots, String bungeeName, String screenName,
 			String world, String systemName, long ram, String command, int nettyThreads, int parallelThreads,
-			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld) {
+			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, Map<String, String> furtherInformations) {
 		setId(id);
 		setIp(ip);
 		setPort(port);
@@ -58,6 +58,7 @@ public class OpeningInstanceFactory {
 		setLogFile(logFile);
 		setRandom(random);
 		setToWorld(toWorld);
+		setFurtherInformations(furtherInformations);
 	}
 
 }
