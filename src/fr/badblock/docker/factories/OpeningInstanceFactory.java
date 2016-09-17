@@ -37,7 +37,7 @@ public class OpeningInstanceFactory {
 	private Map<String, String> furtherInformations;
 
 	public OpeningInstanceFactory(long id, String ip, long port, int slots, String bungeeName, String screenName,
-			String world, String systemName, long ram, String command, int nettyThreads, int parallelThreads,
+			String world, String system, long ram, String command, int nettyThreads, int parallelThreads,
 			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, Map<String, String> furtherInformations) {
 		setId(id);
 		setIp(ip);
