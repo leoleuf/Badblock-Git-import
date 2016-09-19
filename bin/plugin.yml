@@ -1,5 +1,0 @@
-name: BadblockAPI
-main: fr.badblock.api.APIPlugin
-version: 1.0.0
-authors: ['LeLanN']
-softdepend: ['PermissionsEx']
