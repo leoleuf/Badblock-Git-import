@@ -84,14 +84,12 @@ public class SocketHandler extends Thread implements PacketSender {
 				}
 			}
 		};
-		thread.start();
 	}	
 
 	@Override
 	public void run(){
-
 		running = true;
-
+		thread.start();
 		try {
 			while(in.readByte() != -1){
 				if(debug){
