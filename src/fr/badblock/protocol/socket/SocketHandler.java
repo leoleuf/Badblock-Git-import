@@ -50,11 +50,45 @@ public class SocketHandler extends Thread implements PacketSender {
 		this.handler     = handler;
 
 		this.packets 	 = new LinkedBlockingDeque<>();
+		thread = new Thread("Ladder/sendPacketsThread") {
+			@Override
+			public void run(){
+				synchronized (thread) {
+					while(running){
+						try {
+							if(packets.size() > 200){
+								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
+							}
+							while (!packets.isEmpty()) {
+								Iterator<Packet> iterator = packets.iterator();
+								while (iterator.hasNext()) {
+									Packet packet = iterator.next();
+									iterator.remove();
+									if(packet == null) continue;
+									try {
+										out.writeByte((byte) 0);
+										if (debug) {
+											out.writeInt(sendId);
+											sendId++;
+										}
+										protocolOut.writePacket(out, packet);
+									} catch(Throwable e){
+										System.out.println("Méchant packet (" + packet + ") :");
+										e.printStackTrace();
+									}
+								}
+							}
+							thread.wait();
+						} catch (Exception e) {}
+					}
+				}
+			}
+		};
+		thread.start();
 	}	
 
 	@Override
 	public void run(){
-		sendPacketsThread();
 
 		running = true;
 
@@ -103,44 +137,6 @@ public class SocketHandler extends Thread implements PacketSender {
 		synchronized(thread) {
 			thread.notify();
 		}
-	}
-
-	private void sendPacketsThread(){
-		thread = new Thread("Ladder/sendPacketsThread") {
-			@Override
-			public void run(){
-				synchronized (thread) {
-					while(running){
-						try {
-							if(packets.size() > 200){
-								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
-							}
-							while (!packets.isEmpty()) {
-								Iterator<Packet> iterator = packets.iterator();
-								while (iterator.hasNext()) {
-									Packet packet = iterator.next();
-									iterator.remove();
-									if(packet == null) continue;
-									try {
-										out.writeByte((byte) 0);
-										if (debug) {
-											out.writeInt(sendId);
-											sendId++;
-										}
-										protocolOut.writePacket(out, packet);
-									} catch(Throwable e){
-										System.out.println("Méchant packet (" + packet + ") :");
-										e.printStackTrace();
-									}
-								}
-							}
-							thread.wait();
-						} catch (Exception e) {}
-					}
-				}
-			}
-		};
-		thread.start();
 	}
 
 	protected void socketClosed(){}
