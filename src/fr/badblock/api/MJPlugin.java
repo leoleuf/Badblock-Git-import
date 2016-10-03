@@ -36,8 +36,9 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive.Serve
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class MJPlugin extends BPlugin{
-	public static MJPlugin getInstance(){
+public abstract class MJPlugin extends BPlugin {
+	
+	public static MJPlugin getInstance() {
 		return (MJPlugin) BPlugin.getInstance();
 	}
 
