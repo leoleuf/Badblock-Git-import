@@ -3,6 +3,7 @@ package fr.badblock.ladder.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.commands.Command;
@@ -17,7 +18,7 @@ import fr.badblock.permissions.Permission;
 import fr.badblock.permissions.PermissionManager;
 
 public class CommandPermissions extends Command {
-	
+
 	private String[] help = new String[] {
 			ChatColor.GOLD + "/perms groups : " + ChatColor.RED + "Liste des groupes",
 			ChatColor.GOLD + "/perms group <group> create/destroy (<inheritance>) : " + ChatColor.RED + "Ajoute/Détruit un groupe",
@@ -112,7 +113,7 @@ public class CommandPermissions extends Command {
 				messages.add(ChatColor.GOLD + "Ses groups secondaires sont : " + ChatColor.RED + StringUtils.join(p.getAlternateGroups().keySet(), ","));
 				messages.add(ChatColor.GOLD + "Permission supplémentaires : ");
 				p.getPermissions().forEach(permission -> messages.add(ChatColor.RED + "- " + ChatColor.GOLD + permission.toString()));
-				
+
 				sender.sendMessages(messages.toArray(new String[0]));
 				return;
 			}
@@ -129,6 +130,11 @@ public class CommandPermissions extends Command {
 				}
 				p.removeAll();
 				player.saveData();
+				Player po = Proxy.getInstance().getPlayer(player.getName());
+				if (po != null) {
+					po.sendToBukkit("permissions");
+					po.sendToBungee("permissions");
+				}
 				sender.sendMessage(ChatColor.GOLD + "Les permissions du joueur ont bien été supprimées !");
 				return;
 			}
@@ -143,6 +149,11 @@ public class CommandPermissions extends Command {
 				} else {
 					p.addPermission(perm);
 					player.saveData();
+					Player po = Proxy.getInstance().getPlayer(player.getName());
+					if (po != null) {
+						po.sendToBukkit("permissions");
+						po.sendToBungee("permissions");
+					}
 					sender.sendMessage(ChatColor.GOLD + "Le joueur " + ChatColor.RED + args[1] + ChatColor.GOLD + " a maintenant la permission " + ChatColor.RED + perm);
 				}
 				return;
@@ -158,6 +169,11 @@ public class CommandPermissions extends Command {
 				} else {
 					p.removePermission(perm);
 					player.saveData();
+					Player po = Proxy.getInstance().getPlayer(player.getName());
+					if (po != null) {
+						po.sendToBukkit("permissions");
+						po.sendToBungee("permissions");
+					}
 					sender.sendMessage(ChatColor.GOLD + "Le joueur " + ChatColor.RED + args[1] + ChatColor.GOLD + " n'a plus la permission " + ChatColor.RED + perm);
 				}
 				return;
@@ -202,6 +218,11 @@ public class CommandPermissions extends Command {
 					}
 					p.setParent(end, group);
 					player.saveData();
+					Player po = Proxy.getInstance().getPlayer(player.getName());
+					if (po != null) {
+						po.sendToBukkit("permissions");
+						po.sendToBungee("permissions");
+					}
 					sender.sendMessage(ChatColor.GOLD + "Le joueur a maintenant pour groupe " + ChatColor.RED + group.getName() + ChatColor.GOLD + " (" + durationStr + ").");
 					return;
 				}
@@ -226,6 +247,11 @@ public class CommandPermissions extends Command {
 						p.addParent(end, group);
 					}
 					player.saveData();
+					Player po = Proxy.getInstance().getPlayer(player.getName());
+					if (po != null) {
+						po.sendToBukkit("permissions");
+						po.sendToBungee("permissions");
+					}
 					sender.sendMessage(ChatColor.GOLD + "Le joueur a maintenant pour groupe " + ChatColor.RED + group.getName() + ChatColor.GOLD + " (" + durationStr + ").");
 					return;
 				} 
@@ -246,6 +272,11 @@ public class CommandPermissions extends Command {
 					}
 					p.removeParent(group);
 					player.saveData();
+					Player po = Proxy.getInstance().getPlayer(player.getName());
+					if (po != null) {
+						po.sendToBukkit("permissions");
+						po.sendToBungee("permissions");
+					}
 					sender.sendMessage(ChatColor.GOLD + "Le joueur n'a plus le groupe " + ChatColor.RED + group.getName() + ChatColor.GOLD + ".");
 					return;
 				}
@@ -263,7 +294,7 @@ public class CommandPermissions extends Command {
 			help(sender); return;
 		}
 	}
-	
+
 	public void groupPermissionRemove(CommandSender sender, PermissibleGroup group, String[] args) {
 		if (!sender.hasPermission("ladder.commands.permission.groups." + group.getName() + ".addpermission." + args[3])) {
 			sender.sendMessage("§cVous n'avez pas la permission de retirer cette permissions à ce groupe.");
@@ -299,7 +330,7 @@ public class CommandPermissions extends Command {
 		}
 		return true;
 	}
-	
+
 	public void groupCreate(CommandSender sender, PermissibleGroup group, String[] args) {
 		if (!sender.hasPermission("ladder.commands.permission.groups.create")) {
 			sender.sendMessage("§cVous n'avez pas la permission de créer un groupe.");
@@ -312,7 +343,7 @@ public class CommandPermissions extends Command {
 		getPermissionsManager().createGroup(args[1], inheritance);
 		sender.sendMessage(ChatColor.GOLD + "Le groupe " + ChatColor.RED + args[1] + ChatColor.GOLD + " a bien été créé avec comme inhéritance " + ChatColor.RED + inheritance);
 	}
-	
+
 	public void groupDestroy(CommandSender sender, PermissibleGroup group, String[] args) {
 		if (!sender.hasPermission("ladder.commands.permission.groups." + group.getName() + ".destroy")) {
 			sender.sendMessage("§cVous n'avez pas la permission de détruire un groupe.");
@@ -321,7 +352,7 @@ public class CommandPermissions extends Command {
 		getPermissionsManager().removeGroup(args[1]);
 		sender.sendMessage(ChatColor.GOLD + "Le groupe a bien été supprimé !");
 	}
-	
+
 	public void groupInfo(CommandSender sender, PermissibleGroup group) {
 		if (!sender.hasPermission("ladder.commands.permission.groups." + group.getName() + ".showpermissions")) {
 			sender.sendMessage("§cVous n'avez pas la permission de voir les permissions de ce groupe.");
@@ -349,9 +380,9 @@ public class CommandPermissions extends Command {
 		}
 		sender.sendMessages(messages.toArray(new String[0]));
 	}
-	
+
 	public void help(CommandSender sender) {
 		sender.sendMessages(help);
 	}
-	
+
 }
