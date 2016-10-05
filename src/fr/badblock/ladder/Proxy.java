@@ -293,10 +293,6 @@ public class Proxy extends Ladder {
 		for(Bukkit bukkit : getBukkitServers()){
 			bukkit.sendPermissions();
 		}
-		
-		//for(Bukkit     bukkit : getBukkitServers()){
-		//	bukkit.sendPermissions();
-		//}	
 	}
 	
 	public void loadMotd(boolean send){
