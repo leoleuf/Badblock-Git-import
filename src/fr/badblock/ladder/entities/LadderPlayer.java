@@ -109,7 +109,7 @@ import lombok.Setter;
 			if(getData().has(part))
 				obj.add(part, getData().get(part));
 		}
-		
+		System.out.println("envoi: " + DataType.PLAYER + " / " + DataAction.MODIFICATION + " / " + name.toLowerCase() + " / " + obj.toString());
 		Packet packet = new PacketPlayerData(DataType.PLAYER, DataAction.MODIFICATION, name.toLowerCase(), obj.toString());
 		sendPacket(packet);
 	}
