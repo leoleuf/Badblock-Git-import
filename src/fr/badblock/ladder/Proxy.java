@@ -290,6 +290,10 @@ public class Proxy extends Ladder {
 			bungee.sendPermissions();
 		}
 		
+		for(Bukkit bukkit : getBukkitServers()){
+			bukkit.sendPermissions();
+		}
+		
 		//for(Bukkit     bukkit : getBukkitServers()){
 		//	bukkit.sendPermissions();
 		//}	
