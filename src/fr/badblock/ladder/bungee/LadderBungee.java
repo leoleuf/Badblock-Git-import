@@ -69,6 +69,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<UUID, Player>   		players;
+	protected int						ladderPlayers;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 
@@ -259,6 +260,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				if(player.getServer() != null)
 					getClient().sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getServer().getInfo().getName()));
 			}
+		} else if(packet.getType() == DataType.PLAYER_NUMBER && packet.getAction() == DataAction.SEND){
+			ladderPlayers = Integer.parseInt(packet.getData());
 		} else if(packet.getType() == DataType.SERVERS){
 			if(packet.getAction() == DataAction.SEND){
 				List<String> servers 				  = new ArrayList<>();
