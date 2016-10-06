@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -55,25 +56,19 @@ public class LadderHttpHandler extends AbstractHandler {
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		if (target.equals("/favicon.ico")) return;
 		if(pages.containsKey(target)){
+			request.setCharacterEncoding("UTF-8");
+			String string = IOUtils.toString(request.getInputStream());
 			try {
-			    new JsonParser().parse(baseRequest.getReader());
+			    new JsonParser().parse(string);
 			    // Valid.
 			} catch (JsonParseException e) {
-				System.out.println(target + " => Invalid JSON: ");
-			    String line = "";
-			    while ((line = baseRequest.getReader().readLine()) != null) {
-			    	System.out.println(line);
-			    }
+				System.out.println(target + " => Invalid JSON: " + string);
 			    return;
 			}
-			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
+			JsonObject object =  gson.fromJson(string, JsonObject.class);
 			if (object == null) {
-				System.out.println(target + " => Invalid JSON: ");
-			    String line = "";
-			    while ((line = baseRequest.getReader().readLine()) != null) {
-			    	System.out.println(line);
-			    }
-			    return;
+				System.out.println(target + " => Invalid JSON: " + string);
+				return;
 			}
 			
 			response.setContentType("application/json; charset=utf-8");
