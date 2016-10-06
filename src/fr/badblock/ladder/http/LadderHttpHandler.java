@@ -63,13 +63,16 @@ public class LadderHttpHandler extends AbstractHandler {
 			String line = "";
 			Map<String, String> maps = new HashMap<>();
 			while ((line = bufferedReader.readLine()) != null) {
-				String[] splitter = line.split("=");
-				if (splitter.length >= 2) {
-					System.out.println(target + " => Invalid JSON: " + line);
-					continue;
+				String[] splitterO = line.split("&");
+				for (String o : splitterO) {
+					String[] splitter = o.split("=");
+					if (splitter.length >= 2) {
+						System.out.println(target + " => Invalid JSON: " + o);
+						continue;
+					}
+					String data = StringUtils.join(o.split("="), "=", 1);
+					maps.put(o, data);
 				}
-				String data = StringUtils.join(line.split("="), "=", 1);
-				maps.put(line, data);
 			}
 
 			response.setContentType("application/json; charset=utf-8");
