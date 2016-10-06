@@ -55,18 +55,27 @@ public class LadderHttpHandler extends AbstractHandler {
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		if (target.equals("/favicon.ico")) return;
 		if(pages.containsKey(target)){
-			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
 			try {
 			    new JsonParser().parse(baseRequest.getReader());
 			    // Valid.
 			} catch (JsonParseException e) {
-			    System.out.println(target + " => Invalid JSON: ");
+				System.out.println(target + " => Invalid JSON: ");
 			    String line = "";
 			    while ((line = baseRequest.getReader().readLine()) != null) {
 			    	System.out.println(line);
 			    }
+			    return;
 			}
-
+			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
+			if (object == null) {
+				System.out.println(target + " => Invalid JSON: ");
+			    String line = "";
+			    while ((line = baseRequest.getReader().readLine()) != null) {
+			    	System.out.println(line);
+			    }
+			    return;
+			}
+			
 			response.setContentType("application/json; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
 
