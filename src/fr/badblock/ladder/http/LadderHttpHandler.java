@@ -59,6 +59,9 @@ public class LadderHttpHandler extends AbstractHandler {
 		if (target.equals("/favicon.ico")) return;
 		if(pages.containsKey(target)){
 			request.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json; charset=utf-8");
+			response.setStatus(HttpServletResponse.SC_ACCEPTED);
+			baseRequest.setHandled(true);
 			BufferedReader bufferedReader = request.getReader();
 			String line = "";
 			Map<String, String> maps = new HashMap<>();
@@ -75,11 +78,7 @@ public class LadderHttpHandler extends AbstractHandler {
 				}
 			}
 
-			response.setContentType("application/json; charset=utf-8");
-			response.setStatus(HttpServletResponse.SC_ACCEPTED);
-
 			response.getWriter().println(pages.get(target).call(maps));
-			baseRequest.setHandled(true);
 		} else {
 			response.setContentType("text/html; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
