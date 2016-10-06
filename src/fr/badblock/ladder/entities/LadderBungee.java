@@ -152,6 +152,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	@Override
 	public void handle(PacketPlayerData packet) {
 		if(packet.getType() == DataType.PLAYER){
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(packet.getKey());
 
 			if(player == null) return;
@@ -169,6 +170,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
 			}
 		} else if(packet.getType() == DataType.IP){
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 			PlayerIp player = null;
 			try {
 				player = Ladder.getInstance().getIpData(InetAddress.getByName(packet.getKey()));
@@ -205,12 +207,14 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			}
 		} else if(packet.getType() == DataType.MOTD){
 			sendMotd(Proxy.getInstance().getMotd());
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 		} else if(packet.getType() == DataType.PLAYERS){
 			for(Player player : Ladder.getInstance().getOnlinePlayers()){
 				sendPacket(new PacketPlayerJoin(player.getName(), player.getUniqueId(), player.getAddress()));
 				if(player.getBukkitServer() != null)
 					sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getBukkitServer().getName()));
 			}
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 		}
 	}
 
@@ -247,6 +251,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 			sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
 			sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 		}
 	}
 
@@ -264,6 +269,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 		Proxy.getInstance().playerConnect(player);
 		((LadderIpDataHandler) player.getIpData()).getPlayers().add(player.getUniqueId());
+		sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 	}
 
 	@Override
@@ -291,6 +297,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			Proxy.getInstance().playerDisconnect(player);
 
 			getPlayers().remove(player.getUniqueId());
+			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
 		}
 	}
 
