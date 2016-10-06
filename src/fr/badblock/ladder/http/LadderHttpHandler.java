@@ -66,7 +66,7 @@ public class LadderHttpHandler extends AbstractHandler {
 				String[] splitterO = line.split("&");
 				for (String o : splitterO) {
 					String[] splitter = o.split("=");
-					if (splitter.length >= 2) {
+					if (splitter.length < 2) {
 						System.out.println(target + " => Invalid JSON: " + o);
 						continue;
 					}
