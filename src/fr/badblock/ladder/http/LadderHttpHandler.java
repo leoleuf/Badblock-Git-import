@@ -71,7 +71,7 @@ public class LadderHttpHandler extends AbstractHandler {
 						continue;
 					}
 					String data = StringUtils.join(o.split("="), "=", 1);
-					maps.put(o, data);
+					maps.put(o.split("=")[0], data);
 				}
 			}
 

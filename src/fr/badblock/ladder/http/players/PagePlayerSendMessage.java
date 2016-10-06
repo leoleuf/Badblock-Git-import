@@ -2,7 +2,6 @@ package fr.badblock.ladder.http.players;
 
 import java.util.Map;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
@@ -18,7 +17,6 @@ public class PagePlayerSendMessage extends LadderPage {
 	@Override
 	public JsonObject call(Map<String, String> input) {
 		JsonObject object = new JsonObject();
-		System.out.println(new Gson().toJson(input));
 		if (!input.containsKey("name")) {
 			object.addProperty("error", "Aucun pseudo!");
 		} else if (!input.containsKey("message")) {
