@@ -62,6 +62,7 @@ import fr.badblock.ladder.entities.LadderPermissionManager;
 import fr.badblock.ladder.http.LadderHttpHandler;
 import fr.badblock.ladder.log.LadderLogger;
 import fr.badblock.ladder.log.LoggerOutputStream;
+import fr.badblock.ladder.sql.BadblockDatabase;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
 import fr.badblock.protocol.packets.PacketLadderStop;
@@ -200,6 +201,17 @@ public class Proxy extends Ladder {
 			configuration.set("maxplayers", -1);
 		if(!configuration.contains("portHttp"))
 			configuration.set("portHttp", 8080);
+		if(!configuration.contains("dbHostname"))
+			configuration.set("dbHostname", "127.0.0.1");
+		if(!configuration.contains("dbPort"))
+			configuration.set("dbPort", 3306);
+		if(!configuration.contains("dbUsername"))
+			configuration.set("dbUsername", "root");
+		if(!configuration.contains("dbPassword"))
+			configuration.set("dbPassword", "azerty123");
+		if(!configuration.contains("dbDatabase"))
+			configuration.set("dbDatabase", "root");
+		BadblockDatabase.getInstance().connect(configuration.getString("dbHostname"), configuration.getInt("dbPort"), configuration.getString("dbUsername"), configuration.getString("dbPassword"), configuration.getString("dbDatabase"));
 
 		ip   		= configuration.getString("ip");
 		port 		= configuration.getInt("port");

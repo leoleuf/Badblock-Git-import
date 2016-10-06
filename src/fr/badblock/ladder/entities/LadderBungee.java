@@ -3,6 +3,8 @@ package fr.badblock.ladder.entities;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,6 +31,9 @@ import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
 import fr.badblock.ladder.data.LadderIpDataHandler;
+import fr.badblock.ladder.sql.BadblockDatabase;
+import fr.badblock.ladder.sql.Request;
+import fr.badblock.ladder.sql.Request.RequestType;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
@@ -233,26 +238,42 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			player.disconnect("&cLe serveur est plein, veuillez réessayer dans quelques instants !");
 		}
 
-		Ladder.getInstance().getPluginsManager().dispatchEvent(event);
-
-		player.getPunished().checkEnd();
-		player.getIpAsPunished().checkEnd();
-
-		if(player.getPunished().isBan()){
-			player.disconnect(player.getPunished().buildBanReason()); return;
-		} else if((player.getIpData()).getAsPunished().isBan()){
-			player.disconnect(player.getIpData().getAsPunished().buildBanReason()); return;
-		}
+		// Récupération des points boutique
 		
-		if(event.isCancelled()) {
-			player.disconnect(event.getCancelReason()); return;
-		} else {
-			loginPlayer.put(player.getName().toLowerCase(), player);
+		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT ptsboutique FROM joueurs WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "'", RequestType.GETTER) {
+			@Override
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next()) {
+						player.getData().addProperty("shoppoints", resultSet.getInt("ptsboutique"));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				Ladder.getInstance().getPluginsManager().dispatchEvent(event);
 
-			sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
-			sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
-			sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
-		}
+				player.getPunished().checkEnd();
+				player.getIpAsPunished().checkEnd();
+
+				if(player.getPunished().isBan()){
+					player.disconnect(player.getPunished().buildBanReason()); return;
+				} else if((player.getIpData()).getAsPunished().isBan()){
+					player.disconnect(player.getIpData().getAsPunished().buildBanReason()); return;
+				}
+				
+				if(event.isCancelled()) {
+					player.disconnect(event.getCancelReason()); return;
+				} else {
+					loginPlayer.put(player.getName().toLowerCase(), player);
+
+					sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
+					sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
+					sendPacket(new PacketPlayerData(DataType.PLAYER_NUMBER, DataAction.SEND, "", Integer.toString(Ladder.getInstance().getOnlinePlayers().size())));
+				}
+			}
+		});
+		
+		
 	}
 
 	@Override
