@@ -5,7 +5,7 @@ import java.util.Map;
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
-import fr.badblock.ladder.api.entities.OfflinePlayer;
+import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.http.LadderPage;
 
 public class PagePlayerIsConnected extends LadderPage{
@@ -20,7 +20,7 @@ public class PagePlayerIsConnected extends LadderPage{
 		if (!input.containsKey("name")) {
 			object.addProperty("error", "Aucun pseudo!");
 		} else {
-			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
+			Player player = Ladder.getInstance().getPlayer(input.get("name"));
 			object.addProperty("connected", player != null);
 		}
 		
