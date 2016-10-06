@@ -19,6 +19,7 @@ import com.google.gson.GsonBuilder;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.utils.StringUtils;
+import fr.badblock.ladder.http.players.PageBroadcast;
 import fr.badblock.ladder.http.players.PageExist;
 import fr.badblock.ladder.http.players.PageGetData;
 import fr.badblock.ladder.http.players.PageIsConnected;
@@ -49,6 +50,7 @@ public class LadderHttpHandler extends AbstractHandler {
 		addHandler(new PageGetData());
 		addHandler(new PageIsConnected());
 		addHandler(new PageSendMessage());
+		addHandler(new PageBroadcast());
 		addHandler(new PageExist());
 	}
 
