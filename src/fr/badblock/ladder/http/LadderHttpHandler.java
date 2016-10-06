@@ -57,7 +57,8 @@ public class LadderHttpHandler extends AbstractHandler {
 		if (target.equals("/favicon.ico")) return;
 		if(pages.containsKey(target)){
 			request.setCharacterEncoding("UTF-8");
-			String string = IOUtils.toString(request.getInputStream());
+			String string = IOUtils.toString(request.getReader());
+			System.out.println(target + " => Invalid coming-data: " + string);
 			try {
 			    new JsonParser().parse(string);
 			    // Valid.
