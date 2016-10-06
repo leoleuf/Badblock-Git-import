@@ -22,7 +22,8 @@ import fr.badblock.ladder.http.players.PageIsConnected;
 import fr.badblock.ladder.http.players.PageSendMessage;
 
 public class LadderHttpHandler extends AbstractHandler {
-	private Map<String, LadderPage> pages;
+	
+	private Map<String, LadderPage> pages = Maps.newConcurrentMap();
 	private Gson gson = new Gson();
 
 	public LadderHttpHandler(int port) {
@@ -40,14 +41,13 @@ public class LadderHttpHandler extends AbstractHandler {
 					e.printStackTrace();
 					return;
 				}
+				addHandler(new PageGetData());
+				addHandler(new PageIsConnected());
+				addHandler(new PageSendMessage());
+				addHandler(new PageExist());
 			}
 		}.start();
-		pages = Maps.newConcurrentMap();
 
-		addHandler(new PageGetData());
-		addHandler(new PageIsConnected());
-		addHandler(new PageSendMessage());
-		addHandler(new PageExist());
 	}
 
 	@Override
