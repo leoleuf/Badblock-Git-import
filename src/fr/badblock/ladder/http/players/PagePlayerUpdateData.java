@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
-import fr.badblock.ladder.http.LadderHttpHandler;
 import fr.badblock.ladder.http.LadderPage;
 
 public class PagePlayerUpdateData extends LadderPage {
@@ -26,7 +24,7 @@ public class PagePlayerUpdateData extends LadderPage {
 		} else {
 			object.addProperty("name", input.get("name"));
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
-			input.entrySet().stream().filter(entry -> !entry.getKey().equals("name")).forEach(entry -> player.getData().add(entry.getKey(), LadderHttpHandler.gson.fromJson(entry.getValue(), JsonElement.class)));
+			input.entrySet().stream().filter(entry -> !entry.getKey().equals("name")).forEach(entry -> player.getData().addProperty(entry.getKey(), entry.getValue()));
 			player.saveData();
 			Player plo = Ladder.getInstance().getPlayer(player.getName());
 			if (plo != null) {
