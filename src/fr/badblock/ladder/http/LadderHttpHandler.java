@@ -41,13 +41,12 @@ public class LadderHttpHandler extends AbstractHandler {
 					e.printStackTrace();
 					return;
 				}
-				addHandler(new PageGetData());
-				addHandler(new PageIsConnected());
-				addHandler(new PageSendMessage());
-				addHandler(new PageExist());
 			}
 		}.start();
-
+		addHandler(new PageGetData());
+		addHandler(new PageIsConnected());
+		addHandler(new PageSendMessage());
+		addHandler(new PageExist());
 	}
 
 	@Override
