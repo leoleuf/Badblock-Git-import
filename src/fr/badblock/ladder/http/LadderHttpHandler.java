@@ -26,46 +26,52 @@ public class LadderHttpHandler extends AbstractHandler {
 	private Gson gson = new Gson();
 
 	public LadderHttpHandler(int port) {
-		Server server = new Server(port);
-		server.setHandler(this);
-		try {
-			server.start();
-			server.join();
-		} catch (Exception e) {
-			Ladder.getInstance().getConsoleCommandSender().sendMessage("§b[LadderHTTP] §cUnable to create HttpHandler (port " + port + "). See the stack trace:");
-			e.printStackTrace();
-			return;
-		}
-		pages = Maps.newConcurrentMap();
-		
-		addHandler(new PageGetData());
-		addHandler(new PageIsConnected());
-		addHandler(new PageSendMessage());
-		addHandler(new PageExist());
+		AbstractHandler abstractHandler = this;
+		new Thread() {
+			@Override
+			public void run() {
+				Server server = new Server(port);
+				server.setHandler(abstractHandler);
+				try {
+					server.start();
+					server.join();
+				} catch (Exception e) {
+					Ladder.getInstance().getConsoleCommandSender().sendMessage("§b[LadderHTTP] §cUnable to create HttpHandler (port " + port + "). See the stack trace:");
+					e.printStackTrace();
+					return;
+				}
+				pages = Maps.newConcurrentMap();
+
+				addHandler(new PageGetData());
+				addHandler(new PageIsConnected());
+				addHandler(new PageSendMessage());
+				addHandler(new PageExist());
+			}
+		}.start();
 	}
-	
+
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		if(pages.containsKey(target) && request.getContentType() != null && request.getContentType().equals("application/json")){
 			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
-			
+
 			response.setContentType("application/json; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
-			
+
 			response.getWriter().println(pages.get(target).call(object));
 			baseRequest.setHandled(true);
 		} else {
 			response.setContentType("text/html; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			response.getWriter().println("403 Not allowed");
-			
+
 			baseRequest.setHandled(true);
 		}
 	}
-	
+
 	public void addHandler(LadderPage page){
 		if(!pages.containsKey(page.getPath()))
 			pages.put(page.getPath(), page);
 	}
-	
+
 }
