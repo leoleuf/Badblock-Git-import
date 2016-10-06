@@ -19,11 +19,11 @@ import com.google.gson.GsonBuilder;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.utils.StringUtils;
-import fr.badblock.ladder.http.players.PageBroadcast;
-import fr.badblock.ladder.http.players.PageExist;
-import fr.badblock.ladder.http.players.PageGetData;
-import fr.badblock.ladder.http.players.PageIsConnected;
-import fr.badblock.ladder.http.players.PageSendMessage;
+import fr.badblock.ladder.http.players.PagePlayerExists;
+import fr.badblock.ladder.http.players.PagePlayerGetData;
+import fr.badblock.ladder.http.players.PagePlayerIsConnected;
+import fr.badblock.ladder.http.players.PagePlayerSendMessage;
+import fr.badblock.ladder.http.players.PageServerBroadcast;
 
 public class LadderHttpHandler extends AbstractHandler {
 
@@ -47,11 +47,11 @@ public class LadderHttpHandler extends AbstractHandler {
 				}
 			}
 		}.start();
-		addHandler(new PageGetData());
-		addHandler(new PageIsConnected());
-		addHandler(new PageSendMessage());
-		addHandler(new PageBroadcast());
-		addHandler(new PageExist());
+		addHandler(new PagePlayerGetData());
+		addHandler(new PagePlayerIsConnected());
+		addHandler(new PagePlayerSendMessage());
+		addHandler(new PageServerBroadcast());
+		addHandler(new PagePlayerExists());
 	}
 
 	@Override

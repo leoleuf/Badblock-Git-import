@@ -13,8 +13,8 @@ import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.http.LadderHttpHandler;
 import fr.badblock.ladder.http.LadderPage;
 
-public class PageUpdateData extends LadderPage {
-	public PageUpdateData() {
+public class PagePlayerUpdateData extends LadderPage {
+	public PagePlayerUpdateData() {
 		super("/players/updateData/");
 	}
 

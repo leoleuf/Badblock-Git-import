@@ -8,9 +8,9 @@ import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.http.LadderPage;
 
-public class PageExist extends LadderPage{
-	public PageExist() {
-		super("/players/exist/");
+public class PagePlayerGetData extends LadderPage {
+	public PagePlayerGetData() {
+		super("/players/getData/");
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class PageExist extends LadderPage{
 			object.addProperty("error", "Aucun pseudo!");
 		} else {
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
-			object.addProperty("exist", player.hasPlayed());
+			object.add("data", player.getData());
 		}
 		
 		return object;
