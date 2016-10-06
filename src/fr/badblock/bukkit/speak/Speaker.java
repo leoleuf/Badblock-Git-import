@@ -186,7 +186,7 @@ public class Speaker implements PacketHandler {
 
 	@Override
 	public void handle(PacketPlayerData packet) {
-		System.out.println(packet.getType() + " / " + packet.getAction() + " / " + packet.getKey() + " / " + packet.getData());
+		System.out.println("Receive > " + packet.getType() + " / " + packet.getAction() + " / " + packet.getKey() + " / " + packet.getData());
 		if(packet.getType() == DataType.PLAYER && packet.getAction() == DataAction.SEND){
 			Callback<JsonObject> callback = requestedPlayers.get(packet.getKey().toLowerCase());
 
