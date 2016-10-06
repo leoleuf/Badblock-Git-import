@@ -20,7 +20,6 @@ public class PagePlayerSendMessage extends LadderPage {
 		
 		if (!input.containsKey("name")) {
 			object.addProperty("error", "Aucun pseudo!");
-			object.addProperty("error", "Aucun pseudo!");
 		} else if (!input.containsKey("message")) {
 			object.addProperty("error", "Aucun message!");
 		} else {
