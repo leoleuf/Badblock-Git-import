@@ -14,6 +14,8 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.http.players.PageExist;
@@ -54,6 +56,16 @@ public class LadderHttpHandler extends AbstractHandler {
 		if (target.equals("/favicon.ico")) return;
 		if(pages.containsKey(target)){
 			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
+			try {
+			    new JsonParser().parse(baseRequest.getReader());
+			    // Valid.
+			} catch (JsonParseException e) {
+			    System.out.println(target + " => Invalid JSON: ");
+			    String line = "";
+			    while ((line = baseRequest.getReader().readLine()) != null) {
+			    	System.out.println(line);
+			    }
+			}
 
 			response.setContentType("application/json; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
