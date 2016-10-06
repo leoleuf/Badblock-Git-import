@@ -15,6 +15,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.http.players.PageExist;
 import fr.badblock.ladder.http.players.PageGetData;
 import fr.badblock.ladder.http.players.PageIsConnected;
@@ -23,6 +24,25 @@ import fr.badblock.ladder.http.players.PageSendMessage;
 public class LadderHttpHandler extends AbstractHandler {
 	private Map<String, LadderPage> pages;
 	private Gson gson = new Gson();
+
+	public LadderHttpHandler(int port) {
+		Server server = new Server(port);
+		server.setHandler(this);
+		try {
+			server.start();
+			server.join();
+		} catch (Exception e) {
+			Ladder.getInstance().getConsoleCommandSender().sendMessage("§b[LadderHTTP] §cUnable to create HttpHandler (port " + port + "). See the stack trace:");
+			e.printStackTrace();
+			return;
+		}
+		pages = Maps.newConcurrentMap();
+		
+		addHandler(new PageGetData());
+		addHandler(new PageIsConnected());
+		addHandler(new PageSendMessage());
+		addHandler(new PageExist());
+	}
 	
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -48,19 +68,4 @@ public class LadderHttpHandler extends AbstractHandler {
 			pages.put(page.getPath(), page);
 	}
 	
-	public LadderHttpHandler(){
-		pages = Maps.newConcurrentMap();
-		
-		addHandler(new PageGetData());
-		addHandler(new PageIsConnected());
-		addHandler(new PageSendMessage());
-		addHandler(new PageExist());
-	}
-
-	public static void main(String[] args) throws Exception {
-		Server server = new Server(8080);
-		server.setHandler(new LadderHttpHandler());
-		server.start();
-		server.join();
-	}
 }

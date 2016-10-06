@@ -59,6 +59,7 @@ import fr.badblock.ladder.entities.LadderBukkit;
 import fr.badblock.ladder.entities.LadderBungee;
 import fr.badblock.ladder.entities.LadderOfflinePlayer;
 import fr.badblock.ladder.entities.LadderPermissionManager;
+import fr.badblock.ladder.http.LadderHttpHandler;
 import fr.badblock.ladder.log.LadderLogger;
 import fr.badblock.ladder.log.LoggerOutputStream;
 import fr.badblock.protocol.packets.Packet;
@@ -197,11 +198,14 @@ public class Proxy extends Ladder {
 			configuration.set("alert", "&4[&cAlert&4] &r");
 		if(!configuration.contains("maxplayers"))
 			configuration.set("maxplayers", -1);
+		if(!configuration.contains("portHttp"))
+			configuration.set("portHttp", 8080);
 
 		ip   		= configuration.getString("ip");
 		port 		= configuration.getInt("port");
 		alertPrefix = configuration.getString("alert");
 		maxPlayers  = configuration.getInt("maxplayers");
+		new LadderHttpHandler(configuration.getInt("portHttp"));
 		
 		getConfigurationProvider().save(configuration, CONFIG_FILE);
 		
