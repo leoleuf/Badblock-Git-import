@@ -40,20 +40,19 @@ public class LadderHttpHandler extends AbstractHandler {
 					e.printStackTrace();
 					return;
 				}
-				pages = Maps.newConcurrentMap();
-
-				addHandler(new PageGetData());
-				addHandler(new PageIsConnected());
-				addHandler(new PageSendMessage());
-				addHandler(new PageExist());
 			}
 		}.start();
+		pages = Maps.newConcurrentMap();
+
+		addHandler(new PageGetData());
+		addHandler(new PageIsConnected());
+		addHandler(new PageSendMessage());
+		addHandler(new PageExist());
 	}
 
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		if (target.equals("/favicon.ico")) return;
-		System.out.println(target);
 		if(pages.containsKey(target)){
 			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
 
