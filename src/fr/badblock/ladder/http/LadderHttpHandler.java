@@ -52,7 +52,8 @@ public class LadderHttpHandler extends AbstractHandler {
 
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		if(pages.containsKey(target) && request.getContentType() != null && request.getContentType().equals("application/json")){
+		if (target.equals("/favicon.ico")) return;
+		if(pages.containsKey(target)){
 			JsonObject object =  gson.fromJson(baseRequest.getReader(), JsonObject.class);
 
 			response.setContentType("application/json; charset=utf-8");
