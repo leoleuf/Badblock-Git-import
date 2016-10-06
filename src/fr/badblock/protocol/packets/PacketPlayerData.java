@@ -97,7 +97,8 @@ public class PacketPlayerData implements Packet {
 		COMMANDS(4),
 		SERVERS(5),
 		PLAYERS(6),
-		MOTD(7);
+		MOTD(7),
+		PLAYER_NUMBER(8);
 
 		private final int id;
 
