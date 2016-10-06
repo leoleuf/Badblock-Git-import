@@ -24,7 +24,6 @@ public class PagePlayerUpdateShopPoints extends LadderPage {
 		} else {
 			OfflinePlayer offlinePlayer = Ladder.getInstance().getOfflinePlayer(input.get("name"));
 			if (offlinePlayer == null) return object;
-			offlinePlayer.getData().remove("shoppoints");
 			offlinePlayer.getData().addProperty("shoppoints", input.get("shoppoints"));
 			offlinePlayer.saveData();
 			Player player = Ladder.getInstance().getPlayer(input.get("name"));
