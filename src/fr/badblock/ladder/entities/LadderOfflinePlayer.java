@@ -23,6 +23,8 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Getter protected final InetAddress			lastAddress;
 	
+	@Getter private 		String				loginPassword;
+	
 	public Punished getPunished(){
 		punished.checkEnd();
 		return punished;
@@ -45,6 +47,9 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		UUID uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 		if (!getData().has("uniqueId"))
 			getData().addProperty("uniqueId", uniqueId.toString());
+		
+		if (!getData().has("loginPassword"))
+			getData().addProperty("loginPassword", "");
 		
 		this.name 		  = name;
 		
