@@ -248,7 +248,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 						player.getData().addProperty("shoppoints", resultSet.getInt("ptsboutique"));
 						player.saveData();
 					}else{
-						player.getData().addProperty("shoppoints", 0);
+						player.getData().addProperty("shoppoints", -1);
 						player.saveData();
 					}
 				} catch (SQLException e) {
