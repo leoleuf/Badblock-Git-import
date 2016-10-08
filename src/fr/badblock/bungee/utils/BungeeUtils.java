@@ -11,6 +11,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.ProxyReloadEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -77,7 +78,6 @@ public class BungeeUtils extends Plugin implements Listener{
 	
 	@EventHandler
 	public void onServerConnect(ServerConnectEvent e) {
-		System.out.println(e.getTarget() + " / " + (e.getTarget() != null ? e.getTarget().getName() : "null"));
 		if (e.getTarget() == skeleton) {
 			ServerInfo serverInfo = this.roundrobinLogin();
 			System.out.println("roundrobinLogin: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
@@ -87,6 +87,13 @@ public class BungeeUtils extends Plugin implements Listener{
 			System.out.println("roundrobinHub: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
 			if (serverInfo != null) e.setTarget(serverInfo);
 		}
+	}
+	
+
+	
+	@EventHandler
+	public void onServerConnectionFail(ServerConnectionFailEvent e) {
+		System.out.println("fail > " + e.getFallback().getName());
 	}
 
 	public ServerInfo roundrobinHub() {
