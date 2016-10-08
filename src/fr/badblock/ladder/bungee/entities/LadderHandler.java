@@ -46,7 +46,7 @@ public class LadderHandler {
 		try {
 			socketHandler = new LadderSocketHandler(host, handler, ip, port);
 		} catch (IOException e) {
-			System.out.println("Fatal error : can not connect to Ladder anymore. Ladder is probably off, rebooting (waiting 10 minutes) :");
+			System.out.println("Fatal error : can not connect to Ladder anymore. Ladder is probably off, rebooting (waiting 10 seconds) :");
 			try {
 				Thread.sleep(5000L);
 			} catch (InterruptedException exception){}
