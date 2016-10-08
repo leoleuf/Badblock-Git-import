@@ -8,6 +8,8 @@ import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.api.event.LoginEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyReloadEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -71,6 +73,13 @@ public class BungeeUtils extends Plugin implements Listener{
 				e.setCancelled(true);
 			}
 		}
+	}
+	
+
+
+	@EventHandler
+	public void onLogin(PostLoginEvent event) {
+		System.out.println(event.getPlayer().getServer() + " / " + (event.getPlayer().getServer() != null ? event.getPlayer().getServer().getInfo().getName() : "null"));
 	}
 
 	@EventHandler
