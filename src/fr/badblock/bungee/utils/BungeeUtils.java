@@ -59,6 +59,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			}
 		}
 		hubMaxPlayers = config.getInt("hubMaxPlayers", 200);
+		loginMaxPlayers = config.getInt("loginMaxPlayers", 200);
 	}
 	
 	@EventHandler
