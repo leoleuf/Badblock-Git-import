@@ -1,4 +1,4 @@
-package com.lelann.bungee.commands;
+package fr.badblock.bungee.utils.commands;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,9 +13,10 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
 import com.google.common.collect.ImmutableSet;
-import com.lelann.bungee.party.PartiesManager;
-import com.lelann.bungee.party.Party;
-import com.lelann.bungee.utils.ChatUtils;
+
+import fr.badblock.bungee.utils.party.PartiesManager;
+import fr.badblock.bungee.utils.party.Party;
+import fr.badblock.bungee.utils.utils.ChatUtils;
 
 public class PartyCommand extends Command implements TabExecutor{
 	public PartyCommand() {

@@ -1,4 +1,4 @@
-package com.lelann.bungee.commands;
+package fr.badblock.bungee.utils.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;

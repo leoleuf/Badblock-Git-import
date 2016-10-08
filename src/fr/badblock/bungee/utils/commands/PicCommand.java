@@ -1,11 +1,10 @@
-package com.lelann.bungee.commands;
+package fr.badblock.bungee.utils.commands;
 
+import fr.badblock.bungee.utils.BungeeUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.plugin.Command;
-
-import com.lelann.bungee.BungeeUtils;
 
 public class PicCommand extends Command{
 	public PicCommand(){

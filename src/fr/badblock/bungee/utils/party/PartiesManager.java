@@ -1,15 +1,14 @@
-package com.lelann.bungee.party;
+package fr.badblock.bungee.utils.party;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import fr.badblock.bungee.utils.BungeeUtils;
+import fr.badblock.bungee.utils.commands.PartyCommand;
+import fr.badblock.bungee.utils.utils.ChatUtils;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-
-import com.lelann.bungee.BungeeUtils;
-import com.lelann.bungee.commands.PartyCommand;
-import com.lelann.bungee.utils.ChatUtils;
 
 public class PartiesManager {
 	private static PartiesManager instance;

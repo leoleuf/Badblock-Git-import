@@ -1,13 +1,12 @@
-package com.lelann.bungee.commands;
+package fr.badblock.bungee.utils.commands;
 
+import fr.badblock.bungee.utils.BungeeUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.protocol.ProtocolConstants;
-
-import com.lelann.bungee.BungeeUtils;
 
 public class HubCommand extends Command{
 	public HubCommand(){

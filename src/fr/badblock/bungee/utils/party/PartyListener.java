@@ -1,7 +1,9 @@
-package com.lelann.bungee.party;
+package fr.badblock.bungee.utils.party;
 
 import java.util.UUID;
 
+import fr.badblock.bungee.utils.BungeeUtils;
+import fr.badblock.bungee.utils.utils.ChatUtils;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -9,9 +11,6 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
-
-import com.lelann.bungee.BungeeUtils;
-import com.lelann.bungee.utils.ChatUtils;
 
 public class PartyListener implements Listener {
 	@EventHandler

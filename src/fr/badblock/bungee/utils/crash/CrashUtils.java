@@ -1,4 +1,4 @@
-package com.lelann.bungee.crash;
+package fr.badblock.bungee.utils.crash;
 
 import java.lang.reflect.Method;
 

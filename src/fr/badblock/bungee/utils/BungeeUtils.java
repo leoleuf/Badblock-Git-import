@@ -1,13 +1,12 @@
-package com.lelann.bungee;
+package fr.badblock.bungee.utils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lelann.bungee.commands.HubCommand;
-import com.lelann.bungee.commands.ReloadCommand;
-
+import fr.badblock.bungee.utils.commands.HubCommand;
+import fr.badblock.bungee.utils.commands.ReloadCommand;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

@@ -1,13 +1,12 @@
-package com.lelann.bungee.party;
+package fr.badblock.bungee.utils.party;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import fr.badblock.bungee.utils.utils.ChatUtils;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-
-import com.lelann.bungee.utils.ChatUtils;
 
 public class Party {
 	public static int MAX_PLAYERS_IN_PARTY = 8;
