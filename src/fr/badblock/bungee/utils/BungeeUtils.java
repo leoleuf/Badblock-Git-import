@@ -31,6 +31,10 @@ public class BungeeUtils extends Plugin implements Listener{
 		instance = this;
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
+		loadConfig();
+	}
+
+	public void loadConfig(){
 		File f = new File(getDataFolder(), "config.yml");
 		getDataFolder().mkdirs();
 		if(!f.exists()){
@@ -45,18 +49,6 @@ public class BungeeUtils extends Plugin implements Listener{
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
-		}
-		loadConfig();
-	}
-
-	public void loadConfig(){
-		File f2 = new File(getDataFolder(), "randomhub.yml");
-		if(!f2.exists()){
-			try {
-				f2.createNewFile();
-			} catch (IOException e) {
-				return;
-			}
 		}
 		hubMaxPlayers = config.getInt("hubMaxPlayers", 200);
 		loginMaxPlayers = config.getInt("loginMaxPlayers", 200);
