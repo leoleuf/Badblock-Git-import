@@ -2,6 +2,7 @@ package fr.badblock.bungee.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 import fr.badblock.bungee.utils.commands.HubCommand;
 import net.md_5.bungee.BungeeCord;
@@ -23,14 +24,18 @@ public class BungeeUtils extends Plugin implements Listener{
 
 	public static BungeeUtils instance;
 
-	private int hubMaxPlayers;
-	private int loginMaxPlayers;
+	private int 		hubMaxPlayers;
+	private int 		loginMaxPlayers;
+	private ServerInfo	skeleton;
 
 	@Override
 	public void onEnable(){
 		instance = this;
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
+		// Création d'un serveur skeleton
+		skeleton = BungeeCord.getInstance().constructServerInfo("skeleton", new InetSocketAddress("127.0.0.1", 8889), "skeleton", false);
+		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
 		loadConfig();
 	}
 
@@ -53,12 +58,12 @@ public class BungeeUtils extends Plugin implements Listener{
 		hubMaxPlayers = config.getInt("hubMaxPlayers", 200);
 		loginMaxPlayers = config.getInt("loginMaxPlayers", 200);
 	}
-	
+
 	@EventHandler
 	public void onReload(ProxyReloadEvent e){
 		loadConfig();
 	}
-	
+
 	@EventHandler
 	public void onCommand(ChatEvent e){
 		if(e.isCommand() && e.getSender() instanceof ProxiedPlayer){
@@ -69,23 +74,20 @@ public class BungeeUtils extends Plugin implements Listener{
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onServerConnect(ServerConnectEvent e) {
 		System.out.println(e.getTarget() + " / " + (e.getTarget() != null ? e.getTarget().getName() : "null"));
-		if (e.getTarget() == null) {
-			System.out.println("bruh");
-			if(e.getPlayer().getServer() != null) {
-				ServerInfo serverInfo = this.roundrobinHub();
-				System.out.println("roundrobinHub: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
-				if (serverInfo != null) e.setTarget(serverInfo);
-			}
-		} else if(e.getPlayer().getServer() == null){
+		if (e.getTarget() == skeleton) {
 			if (e.getTarget().getName().startsWith("login")) {
 				ServerInfo serverInfo = this.roundrobinLogin();
 				System.out.println("roundrobinLogin: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
 				if (serverInfo != null) e.setTarget(serverInfo);
 			}
+		} else if(e.getTarget().getName().equals("lobby")){
+			ServerInfo serverInfo = this.roundrobinHub();
+			System.out.println("roundrobinHub: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
+			if (serverInfo != null) e.setTarget(serverInfo);
 		}
 	}
 
@@ -112,5 +114,5 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 		return result;
 	}
-	
+
 }
