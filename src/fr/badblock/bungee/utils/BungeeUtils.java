@@ -80,7 +80,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			ServerInfo serverInfo = this.roundrobinLogin();
 			System.out.println("roundrobinLogin: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
 			if (serverInfo != null) e.setTarget(serverInfo);
-		} else if(e.getTarget().getName().equals("lobby")){
+		}else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
 			ServerInfo serverInfo = this.roundrobinHub();
 			System.out.println("roundrobinHub: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
 			if (serverInfo != null) e.setTarget(serverInfo);
