@@ -77,11 +77,9 @@ public class BungeeUtils extends Plugin implements Listener{
 	public void onServerConnect(ServerConnectEvent e) {
 		System.out.println(e.getTarget() + " / " + (e.getTarget() != null ? e.getTarget().getName() : "null"));
 		if (e.getTarget() == skeleton) {
-			if (e.getTarget().getName().startsWith("login")) {
-				ServerInfo serverInfo = this.roundrobinLogin();
-				System.out.println("roundrobinLogin: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
-				if (serverInfo != null) e.setTarget(serverInfo);
-			}
+			ServerInfo serverInfo = this.roundrobinLogin();
+			System.out.println("roundrobinLogin: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
+			if (serverInfo != null) e.setTarget(serverInfo);
 		} else if(e.getTarget().getName().equals("lobby")){
 			ServerInfo serverInfo = this.roundrobinHub();
 			System.out.println("roundrobinHub: " + serverInfo + " / " + (serverInfo != null ? serverInfo.getName() : "null"));
