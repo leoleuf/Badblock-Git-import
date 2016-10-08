@@ -2,14 +2,13 @@ package fr.badblock.bungee.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 import fr.badblock.bungee.utils.commands.HubCommand;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
-import net.md_5.bungee.api.event.LoginEvent;
-import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyReloadEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -33,7 +32,8 @@ public class BungeeUtils extends Plugin implements Listener{
 	public void onEnable(){
 		instance = this;
 		// Création d'un serveur skeleton
-		skeleton = BungeeCord.getInstance().getServerInfo("skeleton");
+		skeleton = BungeeCord.getInstance().constructServerInfo("skeleton", new InetSocketAddress("127.0.0.1", 8889), "skeleton", false);
+		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
 		loadConfig();
@@ -75,13 +75,6 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 	}
 	
-
-
-	@EventHandler
-	public void onLogin(PostLoginEvent event) {
-		System.out.println(event.getPlayer().getServer() + " / " + (event.getPlayer().getServer() != null ? event.getPlayer().getServer().getInfo().getName() : "null"));
-	}
-
 	@EventHandler
 	public void onServerConnect(ServerConnectEvent e) {
 		System.out.println(e.getTarget() + " / " + (e.getTarget() != null ? e.getTarget().getName() : "null"));
