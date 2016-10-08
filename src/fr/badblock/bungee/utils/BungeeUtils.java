@@ -34,6 +34,9 @@ public class BungeeUtils extends Plugin implements Listener{
 		// Création d'un serveur skeleton
 		skeleton = BungeeCord.getInstance().constructServerInfo("skeleton", new InetSocketAddress("127.0.0.1", 8889), "skeleton", false);
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
+		ServerInfo lobbySkeleton = BungeeCord.getInstance().constructServerInfo("lobby", new InetSocketAddress("127.0.0.1", 8890), "lobbySkeleton", false);
+		BungeeCord.getInstance().getServers().put("lobby", lobbySkeleton);
+		
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
 		loadConfig();
@@ -79,10 +82,14 @@ public class BungeeUtils extends Plugin implements Listener{
 	public void onServerConnect(ServerConnectEvent e) {
 		if (e.getTarget() == skeleton) {
 			ServerInfo serverInfo = this.roundrobinLogin();
-			if (serverInfo != null) e.setTarget(serverInfo);
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}
 		}else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
 			ServerInfo serverInfo = this.roundrobinHub();
-			if (serverInfo != null) e.setTarget(serverInfo);
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}
 		}
 	}
 
