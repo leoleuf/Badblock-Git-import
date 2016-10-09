@@ -1,7 +1,6 @@
 package fr.badblock.docker;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,6 @@ public class DockerUtils {
 		Map<String, Long> result = new HashMap<>();
 		for (File filze : files) {
 			if (filze == null) continue;
-			System.out.println("METHOD > " + filze.getAbsolutePath() + " / " + new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new File(filze.getAbsolutePath()).lastModified()));
 			result.put(filze.getAbsolutePath().replace(folder, ""), filze.lastModified());
 		}
 		return result;
