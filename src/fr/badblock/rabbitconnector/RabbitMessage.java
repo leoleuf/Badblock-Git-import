@@ -18,7 +18,7 @@ import lombok.Setter;
 	}
 	
 	public boolean isExpired() {
-		return getExpire() == -1L || getExpire() < System.currentTimeMillis();
+		return getExpire() != -1L && getExpire() < System.currentTimeMillis();
 	}
 	
 	public String toJson() {
