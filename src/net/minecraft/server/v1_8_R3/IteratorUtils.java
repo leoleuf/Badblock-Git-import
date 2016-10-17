@@ -58,7 +58,7 @@ public class IteratorUtils {
 
         @Override
 		public Iterator<T[]> iterator() {
-            return this.b.length <= 0 ? Collections.singletonList((Object[]) IteratorUtils.b(this.a, 0)).iterator() : new IteratorUtils.ClassIterable.ClassIterable$ClassIterator(this.a, this.b, (IteratorUtils.SyntheticClass_1) null);
+            return this.b.length <= 0 ? Collections.singletonList((T[]) IteratorUtils.b(this.a, 0)).iterator() : new IteratorUtils.ClassIterable.ClassIterable$ClassIterator(this.a, this.b, (IteratorUtils.SyntheticClass_1) null);
         }
 
         ClassIterable(Class oclass, Iterable[] aiterable, IteratorUtils.SyntheticClass_1 iteratorutils_syntheticclass_1) {
