@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin;
 /**
  * Exception thrown when a server event listener throws an exception
  */
+@SuppressWarnings("serial")
 public class ServerEventException extends ServerPluginException {
 
     private final Listener listener;

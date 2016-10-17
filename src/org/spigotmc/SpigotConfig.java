@@ -151,7 +151,7 @@ public class SpigotConfig
         return config.getInt( path, config.getInt( path ) );
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings("rawtypes")
 	private static <T> List getList(String path, T def)
     {
         config.addDefault( path, def );

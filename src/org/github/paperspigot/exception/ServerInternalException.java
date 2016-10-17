@@ -6,6 +6,7 @@ import org.github.paperspigot.event.ServerExceptionEvent;
 /**
  * Thrown when the internal server throws a recoverable exception.
  */
+@SuppressWarnings("serial")
 public class ServerInternalException extends ServerException {
 
     public ServerInternalException(String message) {

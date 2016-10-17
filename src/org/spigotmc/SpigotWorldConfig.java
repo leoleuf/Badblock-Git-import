@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+@SuppressWarnings("unused")
 public class SpigotWorldConfig
 {
 
@@ -59,13 +60,14 @@ public class SpigotWorldConfig
         return config.getInt( "world-settings." + worldName + "." + path, config.getInt( "world-settings.default." + path ) );
     }
 
-    private <T> List getList(String path, T def)
+    @SuppressWarnings("rawtypes")
+	private <T> List getList(String path, T def)
     {
         config.addDefault( "world-settings.default." + path, def );
         return config.getList( "world-settings." + worldName + "." + path, config.getList( "world-settings.default." + path ) );
     }
 
-    private String getString(String path, String def)
+	private String getString(String path, String def)
     {
         config.addDefault( "world-settings.default." + path, def );
         return config.getString( "world-settings." + worldName + "." + path, config.getString( "world-settings.default." + path ) );
@@ -222,7 +224,8 @@ public class SpigotWorldConfig
     public List<Integer> hiddenBlocks;
     public List<Integer> replaceBlocks;
     public AntiXray antiXrayInstance;
-    private void antiXray()
+    @SuppressWarnings("unchecked")
+	private void antiXray()
     {
         antiXray = getBoolean( "anti-xray.enabled", true );
         log( "Anti X-Ray: " + antiXray );

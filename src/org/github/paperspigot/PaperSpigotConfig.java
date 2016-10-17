@@ -26,6 +26,7 @@ import com.google.common.base.Throwables;
 import net.minecraft.server.v1_8_R3.Items;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 
+@SuppressWarnings("unused")
 public class PaperSpigotConfig
 {
 
@@ -137,7 +138,8 @@ public class PaperSpigotConfig
         return config.getInt( path, config.getInt( path ) );
     }
 
-    private static <T> List getList(String path, T def)
+    @SuppressWarnings("rawtypes")
+	private static <T> List getList(String path, T def)
     {
         config.addDefault( path, def );
         return config.getList( path, config.getList( path ) );
@@ -174,7 +176,8 @@ public class PaperSpigotConfig
     }
 
     public static Set<Integer> dataValueAllowedItems;
-    private static void dataValueAllowedItems()
+    @SuppressWarnings("unchecked")
+	private static void dataValueAllowedItems()
     {
         dataValueAllowedItems = new HashSet<Integer>( getList( "data-value-allowed-items", Collections.emptyList() ) );
         Bukkit.getLogger().info( "Data value allowed items: " + StringUtils.join(dataValueAllowedItems, ", ") );
@@ -224,7 +227,7 @@ public class PaperSpigotConfig
     }
 
     public static boolean warnForExcessiveVelocity;
-    private static void excessiveVelocityWarning()
+	private static void excessiveVelocityWarning()
     {
         warnForExcessiveVelocity = getBoolean("warnWhenSettingExcessiveVelocity", true);
     }

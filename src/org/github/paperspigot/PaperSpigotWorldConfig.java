@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+@SuppressWarnings("unused")
 public class PaperSpigotWorldConfig
 {
 
@@ -64,7 +65,8 @@ public class PaperSpigotWorldConfig
         return (float) getDouble( path, def );
     }
 
-    private <T> List getList(String path, T def)
+    @SuppressWarnings("rawtypes")
+	private <T> List getList(String path, T def)
     {
         config.addDefault( "world-settings.default." + path, def );
         return config.getList( "world-settings." + worldName + "." + path, config.getList( "world-settings.default." + path ) );

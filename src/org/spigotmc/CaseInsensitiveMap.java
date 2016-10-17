@@ -4,9 +4,10 @@ import java.util.Map;
 
 import gnu.trove.map.hash.TCustomHashMap;
 
+@SuppressWarnings("unchecked")
 public class CaseInsensitiveMap<V> extends TCustomHashMap<String, V> {
 
-    public CaseInsensitiveMap() {
+	public CaseInsensitiveMap() {
         super(CaseInsensitiveHashingStrategy.INSTANCE);
     }
 

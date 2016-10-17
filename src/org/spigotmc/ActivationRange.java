@@ -97,7 +97,8 @@ public class ActivationRange
      *
      * @param world
      */
-    public static void activateEntities(World world)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public static void activateEntities(World world)
     {
         SpigotTimings.entityActivationCheckTimer.startTiming();
         final int miscActivationRange = world.spigotConfig.miscActivationRange;

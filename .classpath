@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="libs/jline-2.12.1.jar"/>
+	<classpathentry kind="lib" path="libs/jopt-simple-3.2-rc1.jar"/>
+	<classpathentry kind="lib" path="libs/paperspigot-1.8.8-depends.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

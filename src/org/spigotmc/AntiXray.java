@@ -108,7 +108,8 @@ public class AntiXray
     /**
      * Removes all non exposed ores from the chunk buffer.
      */
-    public void obfuscate(int chunkX, int chunkY, int bitmask, byte[] buffer, World world)
+    @SuppressWarnings("deprecation")
+	public void obfuscate(int chunkX, int chunkY, int bitmask, byte[] buffer, World world)
     {
         // If the world is marked as obfuscated
         if ( world.spigotConfig.antiXray )
