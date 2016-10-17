@@ -34,6 +34,7 @@ import net.minecraft.server.v1_8_R3.AttributeRanged;
 import net.minecraft.server.v1_8_R3.GenericAttributes;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 
+@SuppressWarnings("unused")
 public class SpigotConfig
 {
 
@@ -150,7 +151,8 @@ public class SpigotConfig
         return config.getInt( path, config.getInt( path ) );
     }
 
-    private static <T> List getList(String path, T def)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private static <T> List getList(String path, T def)
     {
         config.addDefault( path, def );
         return (List<T>) config.getList( path, config.getList( path ) );
@@ -169,13 +171,13 @@ public class SpigotConfig
     }
 
     public static boolean logCommands;
-    private static void logCommands()
+	private static void logCommands()
     {
         logCommands = getBoolean( "commands.log", true );
     }
 
     public static int tabComplete;
-    private static void tabComplete()
+	private static void tabComplete()
     {
         if ( version < 6 )
         {
@@ -239,7 +241,8 @@ public class SpigotConfig
         bungee = getBoolean( "settings.bungeecord", false );
     }
 
-    private static void timings()
+	@SuppressWarnings("unchecked")
+	private static void timings()
     {
         boolean timings = getBoolean( "timings.enabled", true );
         boolean verboseTimings = getBoolean( "timings.verbose", true );
@@ -272,7 +275,7 @@ public class SpigotConfig
         return time;
     }
 
-    private static void nettyThreads()
+	private static void nettyThreads()
     {
         int count = getInt( "settings.netty-threads", 4 );
         System.setProperty( "io.netty.eventLoopThreads", Integer.toString( count ) );
@@ -330,7 +333,8 @@ public class SpigotConfig
     }
 
     public static List<String> spamExclusions;
-    private static void spamExclusions()
+    @SuppressWarnings("unchecked")
+	private static void spamExclusions()
     {
         spamExclusions = getList( "commands.spam-exclusions", Arrays.asList( new String[]
         {
@@ -351,7 +355,8 @@ public class SpigotConfig
     }
 
     public static Set<String> replaceCommands;
-    private static void replaceCommands()
+    @SuppressWarnings("unchecked")
+	private static void replaceCommands()
     {
         if ( config.contains( "replace-commands" ) )
         {
