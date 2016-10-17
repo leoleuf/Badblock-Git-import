@@ -63,7 +63,7 @@ public abstract class ChatBaseComponent implements IChatBaseComponent {
 
     @Override
 	public Iterator<IChatBaseComponent> iterator() {
-        return Iterators.concat((Iterator<ChatBaseComponent>) Iterators.forArray(new ChatBaseComponent[] { this}), (Iterator<ChatBaseComponent>)  a(this.a));
+        return Iterators.concat((Iterator<ChatBaseComponent>) Iterators.forArray(new ChatBaseComponent[] { this}), (Iterator<IChatBaseComponent>)  a(this.a));
     }
 
     @Override
