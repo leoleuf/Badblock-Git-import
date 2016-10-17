@@ -6,7 +6,8 @@ public class ItemPiston extends ItemBlock {
         super(block);
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return 7;
     }
 }

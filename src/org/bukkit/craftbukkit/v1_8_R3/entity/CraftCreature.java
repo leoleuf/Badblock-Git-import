@@ -11,7 +11,8 @@ public class CraftCreature extends CraftLivingEntity implements Creature {
         super(server, entity);
     }
 
-    public void setTarget(LivingEntity target) {
+    @Override
+	public void setTarget(LivingEntity target) {
         EntityCreature entity = getHandle();
         if (target == null) {
             entity.setGoalTarget(null, null, false);
@@ -20,7 +21,8 @@ public class CraftCreature extends CraftLivingEntity implements Creature {
         }
     }
 
-    public CraftLivingEntity getTarget() {
+    @Override
+	public CraftLivingEntity getTarget() {
         if (getHandle().getGoalTarget() == null) return null;
 
         return (CraftLivingEntity) getHandle().getGoalTarget().getBukkitEntity();

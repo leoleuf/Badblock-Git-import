@@ -55,7 +55,7 @@ public class RestartCommand extends Command
                 WatchdogThread.doStop();
 
                 // Kick all players
-                for ( EntityPlayer p : (List< EntityPlayer>) MinecraftServer.getServer().getPlayerList().players )
+                for ( EntityPlayer p : MinecraftServer.getServer().getPlayerList().players )
                 {
                     p.playerConnection.disconnect(SpigotConfig.restartMessage);
                 }

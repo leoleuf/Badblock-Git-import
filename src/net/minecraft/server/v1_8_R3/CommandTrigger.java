@@ -10,19 +10,23 @@ public class CommandTrigger extends CommandAbstract {
 
     public CommandTrigger() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "trigger";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 0;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.trigger.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 3) {
             throw new ExceptionUsage("commands.trigger.usage", new Object[0]);
         } else {
@@ -77,7 +81,8 @@ public class CommandTrigger extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             Scoreboard scoreboard = MinecraftServer.getServer().getWorldServer(0).getScoreboard();
             ArrayList arraylist = Lists.newArrayList();

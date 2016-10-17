@@ -44,11 +44,13 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
         super(type, data);
     }
 
-    public boolean isOpen() {
+    @Override
+	public boolean isOpen() {
         return ((getData() & 0x4) == 0x4);
     }
 
-    public void setOpen(boolean isOpen) {
+    @Override
+	public void setOpen(boolean isOpen) {
         byte data = getData();
 
         if (isOpen) {
@@ -82,7 +84,8 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
         setData((byte) dat);
     }
 
-    public BlockFace getAttachedFace() {
+    @Override
+	public BlockFace getAttachedFace() {
         byte data = (byte) (getData() & 0x3);
 
         switch (data) {
@@ -103,7 +106,8 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
 
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0xC);
 
         switch (face) {

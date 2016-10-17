@@ -37,7 +37,8 @@ public class ChunkProviderServer implements IChunkProvider {
         this.chunkProvider = ichunkprovider;
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return this.chunks.containsKey(LongHash.toLong(i, j)); // CraftBukkit
     }
 
@@ -140,7 +141,7 @@ public class ChunkProviderServer implements IChunkProvider {
     }
     public Chunk originalGetChunkAt(int i, int j) {
         this.unloadQueue.remove(i, j);
-        Chunk chunk = (Chunk) this.chunks.get(LongHash.toLong(i, j));
+        Chunk chunk = this.chunks.get(LongHash.toLong(i, j));
         boolean newChunk = false;
         // CraftBukkit end
 
@@ -157,9 +158,9 @@ public class ChunkProviderServer implements IChunkProvider {
                         CrashReport crashreport = CrashReport.a(throwable, "Exception generating new chunk");
                         CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Chunk to be generated");
 
-                        crashreportsystemdetails.a("Location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(i), Integer.valueOf(j)}));
-                        crashreportsystemdetails.a("Position hash", (Object) Long.valueOf(LongHash.toLong(i, j))); // CraftBukkit - Use LongHash
-                        crashreportsystemdetails.a("Generator", (Object) this.chunkProvider.getName());
+                        crashreportsystemdetails.a("Location", String.format("%d,%d", new Object[] { Integer.valueOf(i), Integer.valueOf(j)}));
+                        crashreportsystemdetails.a("Position hash", Long.valueOf(LongHash.toLong(i, j))); // CraftBukkit - Use LongHash
+                        crashreportsystemdetails.a("Generator", this.chunkProvider.getName());
                         throw new ReportedException(crashreport);
                     }
                 }
@@ -203,9 +204,10 @@ public class ChunkProviderServer implements IChunkProvider {
         return chunk;
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
         // CraftBukkit start
-        Chunk chunk = (Chunk) this.chunks.get(LongHash.toLong(i, j));
+        Chunk chunk = this.chunks.get(LongHash.toLong(i, j));
 
         chunk = chunk == null ? (!this.world.ad() && !this.forceChunkLoad ? this.emptyChunk : this.getChunkAt(i, j)) : chunk;
 
@@ -278,7 +280,8 @@ public class ChunkProviderServer implements IChunkProvider {
         }
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
         Chunk chunk = this.getOrCreateChunk(i, j);
 
         if (!chunk.isDone()) {
@@ -287,12 +290,12 @@ public class ChunkProviderServer implements IChunkProvider {
                 this.chunkProvider.getChunkAt(ichunkprovider, i, j);
 
                 // CraftBukkit start
-                BlockSand.instaFall = true;
+                BlockFalling.instaFall = true;
                 Random random = new Random();
                 random.setSeed(world.getSeed());
                 long xRand = random.nextLong() / 2L * 2L + 1L;
                 long zRand = random.nextLong() / 2L * 2L + 1L;
-                random.setSeed((long) i * xRand + (long) j * zRand ^ world.getSeed());
+                random.setSeed(i * xRand + j * zRand ^ world.getSeed());
 
                 org.bukkit.World world = this.world.getWorld();
                 if (world != null) {
@@ -305,7 +308,7 @@ public class ChunkProviderServer implements IChunkProvider {
                         this.world.populating = false;
                     }
                 }
-                BlockSand.instaFall = false;
+                BlockFalling.instaFall = false;
                 this.world.getServer().getPluginManager().callEvent(new org.bukkit.event.world.ChunkPopulateEvent(chunk.bukkitChunk));
                 // CraftBukkit end
                 
@@ -315,7 +318,8 @@ public class ChunkProviderServer implements IChunkProvider {
 
     }
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         if (this.chunkProvider != null && this.chunkProvider.a(ichunkprovider, chunk, i, j)) {
             Chunk chunk1 = this.getOrCreateChunk(i, j);
 
@@ -326,7 +330,8 @@ public class ChunkProviderServer implements IChunkProvider {
         }
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         int i = 0;
 
         // CraftBukkit start
@@ -352,14 +357,16 @@ public class ChunkProviderServer implements IChunkProvider {
         return true;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         if (this.chunkLoader != null) {
             this.chunkLoader.b();
         }
 
     }
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         if (!this.world.savingDisabled) {
             // CraftBukkit start
             Server server = this.world.getServer();
@@ -407,31 +414,38 @@ public class ChunkProviderServer implements IChunkProvider {
         return this.chunkProvider.unloadChunks();
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return !this.world.savingDisabled;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         // CraftBukkit - this.chunks.count() -> .size()
         return "ServerChunkCache: " + this.chunks.size() + " Drop: " + this.unloadQueue.size();
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         return this.chunkProvider.getMobsFor(enumcreaturetype, blockposition);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         return this.chunkProvider.findNearestMapFeature(world, s, blockposition);
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         // CraftBukkit - this.chunks.count() -> this.chunks.size()
         return this.chunks.size();
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {}
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {}
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 }

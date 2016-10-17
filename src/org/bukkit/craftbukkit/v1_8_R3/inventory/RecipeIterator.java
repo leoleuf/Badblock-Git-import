@@ -20,11 +20,13 @@ public class RecipeIterator implements Iterator<Recipe> {
         this.smeltingVanilla = RecipesFurnace.getInstance().recipes.keySet().iterator();
     }
 
-    public boolean hasNext() {
+    @Override
+	public boolean hasNext() {
         return recipes.hasNext() || smeltingCustom.hasNext() || smeltingVanilla.hasNext();
     }
 
-    public Recipe next() {
+    @Override
+	public Recipe next() {
         if (recipes.hasNext()) {
             removeFrom = recipes;
             return recipes.next().toBukkitRecipe();
@@ -44,7 +46,8 @@ public class RecipeIterator implements Iterator<Recipe> {
         }
     }
 
-    public void remove() {
+    @Override
+	public void remove() {
         if (removeFrom == null) {
             throw new IllegalStateException();
         }

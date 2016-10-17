@@ -16,45 +16,55 @@ public abstract class CraftMinecart extends CraftVehicle implements Minecart {
         super(server, entity);
     }
 
-    public void setDamage(double damage) {
+    @Override
+	public void setDamage(double damage) {
         getHandle().setDamage((float) damage);
     }
 
-    public double getDamage() {
+    @Override
+	public double getDamage() {
         return getHandle().getDamage();
     }
 
-    public double getMaxSpeed() {
+    @Override
+	public double getMaxSpeed() {
         return getHandle().maxSpeed;
     }
 
-    public void setMaxSpeed(double speed) {
+    @Override
+	public void setMaxSpeed(double speed) {
         if (speed >= 0D) {
             getHandle().maxSpeed = speed;
         }
     }
 
-    public boolean isSlowWhenEmpty() {
+    @Override
+	public boolean isSlowWhenEmpty() {
         return getHandle().slowWhenEmpty;
     }
 
-    public void setSlowWhenEmpty(boolean slow) {
+    @Override
+	public void setSlowWhenEmpty(boolean slow) {
         getHandle().slowWhenEmpty = slow;
     }
 
-    public Vector getFlyingVelocityMod() {
+    @Override
+	public Vector getFlyingVelocityMod() {
         return getHandle().getFlyingVelocityMod();
     }
 
-    public void setFlyingVelocityMod(Vector flying) {
+    @Override
+	public void setFlyingVelocityMod(Vector flying) {
         getHandle().setFlyingVelocityMod(flying);
     }
 
-    public Vector getDerailedVelocityMod() {
+    @Override
+	public Vector getDerailedVelocityMod() {
         return getHandle().getDerailedVelocityMod();
     }
 
-    public void setDerailedVelocityMod(Vector derailed) {
+    @Override
+	public void setDerailedVelocityMod(Vector derailed) {
         getHandle().setDerailedVelocityMod(derailed);
     }
 
@@ -63,17 +73,20 @@ public abstract class CraftMinecart extends CraftVehicle implements Minecart {
         return (EntityMinecartAbstract) entity;
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setDamage(int damage) {
         setDamage(damage);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int _INVALID_getDamage() {
         return NumberConversions.ceil(getDamage());
     }
 
-    public void setDisplayBlock(MaterialData material) {
+    @Override
+	public void setDisplayBlock(MaterialData material) {
         if(material != null) {
             IBlockData block = CraftMagicNumbers.getBlock(material.getItemTypeId()).fromLegacyData(material.getData());
             this.getHandle().setDisplayBlock(block);
@@ -84,16 +97,19 @@ public abstract class CraftMinecart extends CraftVehicle implements Minecart {
         }
     }
 
-    public MaterialData getDisplayBlock() {
+    @Override
+	public MaterialData getDisplayBlock() {
         IBlockData blockData = getHandle().getDisplayBlock();
         return CraftMagicNumbers.getMaterial(blockData.getBlock()).getNewData((byte) blockData.getBlock().toLegacyData(blockData));
     }
 
-    public void setDisplayBlockOffset(int offset) {
+    @Override
+	public void setDisplayBlockOffset(int offset) {
         getHandle().SetDisplayBlockOffset(offset);
     }
 
-    public int getDisplayBlockOffset() {
+    @Override
+	public int getDisplayBlockOffset() {
         return getHandle().getDisplayBlockOffset();
     }
 }

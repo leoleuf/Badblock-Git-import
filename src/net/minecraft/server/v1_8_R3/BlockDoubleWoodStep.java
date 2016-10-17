@@ -4,7 +4,8 @@ public class BlockDoubleWoodStep extends BlockWoodenStep {
 
     public BlockDoubleWoodStep() {}
 
-    public boolean l() {
+    @Override
+	public boolean l() {
         return true;
     }
 }

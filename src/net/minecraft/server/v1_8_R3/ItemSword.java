@@ -19,7 +19,8 @@ public class ItemSword extends Item {
         return this.b.c();
     }
 
-    public float getDestroySpeed(ItemStack itemstack, Block block) {
+    @Override
+	public float getDestroySpeed(ItemStack itemstack, Block block) {
         if (block == Blocks.WEB) {
             return 15.0F;
         } else {
@@ -29,37 +30,44 @@ public class ItemSword extends Item {
         }
     }
 
-    public boolean a(ItemStack itemstack, EntityLiving entityliving, EntityLiving entityliving1) {
+    @Override
+	public boolean a(ItemStack itemstack, EntityLiving entityliving, EntityLiving entityliving1) {
         itemstack.damage(1, entityliving1);
         return true;
     }
 
-    public boolean a(ItemStack itemstack, World world, Block block, BlockPosition blockposition, EntityLiving entityliving) {
-        if ((double) block.g(world, blockposition) != 0.0D) {
+    @Override
+	public boolean a(ItemStack itemstack, World world, Block block, BlockPosition blockposition, EntityLiving entityliving) {
+        if (block.g(world, blockposition) != 0.0D) {
             itemstack.damage(2, entityliving);
         }
 
         return true;
     }
 
-    public EnumAnimation e(ItemStack itemstack) {
+    @Override
+	public EnumAnimation e(ItemStack itemstack) {
         return EnumAnimation.BLOCK;
     }
 
-    public int d(ItemStack itemstack) {
+    @Override
+	public int d(ItemStack itemstack) {
         return 72000;
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         entityhuman.a(itemstack, this.d(itemstack));
         return itemstack;
     }
 
-    public boolean canDestroySpecialBlock(Block block) {
+    @Override
+	public boolean canDestroySpecialBlock(Block block) {
         return block == Blocks.WEB;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return this.b.e();
     }
 
@@ -67,14 +75,16 @@ public class ItemSword extends Item {
         return this.b.toString();
     }
 
-    public boolean a(ItemStack itemstack, ItemStack itemstack1) {
+    @Override
+	public boolean a(ItemStack itemstack, ItemStack itemstack1) {
         return this.b.f() == itemstack1.getItem() ? true : super.a(itemstack, itemstack1);
     }
 
-    public Multimap<String, AttributeModifier> i() {
+    @Override
+	public Multimap<String, AttributeModifier> i() {
         Multimap multimap = super.i();
 
-        multimap.put(GenericAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ItemSword.f, "Weapon modifier", (double) this.a, 0));
+        multimap.put(GenericAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(Item.f, "Weapon modifier", this.a, 0));
         return multimap;
     }
 }

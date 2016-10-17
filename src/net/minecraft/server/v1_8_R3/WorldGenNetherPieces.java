@@ -106,7 +106,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             byte b0 = 1;
 
             if (this.m == EnumDirection.WEST || this.m == EnumDirection.NORTH) {
@@ -123,7 +124,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece5(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 8, 1, 8, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 8, 5, 8, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 6, 0, 8, 6, 5, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -164,7 +166,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 1, 0, true);
         }
 
@@ -174,7 +177,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece4(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             int i = this.a(Blocks.NETHER_BRICK_STAIRS, 2);
 
             for (int j = 0; j <= 9; ++j) {
@@ -220,17 +224,20 @@ public class WorldGenNetherPieces {
             this.b = random.nextInt(3) == 0;
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Chest");
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Chest", this.b);
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.b((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 1, true);
         }
 
@@ -240,7 +247,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece8(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 4, 5, 4, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 4, 2, 0, 4, 5, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -250,9 +258,9 @@ public class WorldGenNetherPieces {
             this.a(world, structureboundingbox, 0, 2, 4, 3, 5, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 1, 3, 4, 1, 4, 4, Blocks.NETHER_BRICK_FENCE.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 3, 3, 4, 3, 4, 4, Blocks.NETHER_BRICK_FENCE.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
-            if (this.b && structureboundingbox.b((BaseBlockPosition) (new BlockPosition(this.a(3, 3), this.d(2), this.b(3, 3))))) {
+            if (this.b && structureboundingbox.b((new BlockPosition(this.a(3, 3), this.d(2), this.b(3, 3))))) {
                 this.b = false;
-                this.a(world, structureboundingbox, random, 3, 2, 3, WorldGenNetherPieces.WorldGenNetherPiece8.a, 2 + random.nextInt(4));
+                this.a(world, structureboundingbox, random, 3, 2, 3, WorldGenNetherPiece.a, 2 + random.nextInt(4));
             }
 
             this.a(world, structureboundingbox, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -280,17 +288,20 @@ public class WorldGenNetherPieces {
             this.b = random.nextInt(3) == 0;
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Chest");
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Chest", this.b);
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.c((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 1, true);
         }
 
@@ -300,7 +311,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece10(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 4, 5, 4, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 0, 5, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -310,9 +322,9 @@ public class WorldGenNetherPieces {
             this.a(world, structureboundingbox, 1, 2, 4, 4, 5, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 1, 3, 4, 1, 4, 4, Blocks.NETHER_BRICK_FENCE.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 3, 3, 4, 3, 4, 4, Blocks.NETHER_BRICK_FENCE.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
-            if (this.b && structureboundingbox.b((BaseBlockPosition) (new BlockPosition(this.a(1, 3), this.d(2), this.b(1, 3))))) {
+            if (this.b && structureboundingbox.b((new BlockPosition(this.a(1, 3), this.d(2), this.b(1, 3))))) {
                 this.b = false;
-                this.a(world, structureboundingbox, random, 1, 2, 3, WorldGenNetherPieces.WorldGenNetherPiece10.a, 2 + random.nextInt(4));
+                this.a(world, structureboundingbox, random, 1, 2, 3, WorldGenNetherPiece.a, 2 + random.nextInt(4));
             }
 
             this.a(world, structureboundingbox, 0, 6, 0, 4, 6, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -337,7 +349,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 1, 0, true);
             this.b((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 1, true);
             this.c((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 1, true);
@@ -349,7 +362,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece7(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 4, 5, 4, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 0, 5, 0, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -378,7 +392,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 1, 0, true);
         }
 
@@ -388,7 +403,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece9(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 4, 1, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 4, 5, 4, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 0, 5, 4, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -419,7 +435,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 5, 3, true);
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 5, 11, true);
         }
@@ -430,7 +447,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece11(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 5, 0, 12, 13, 12, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 5, 0, 1, 12, 12, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -558,7 +576,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 5, 3, true);
         }
 
@@ -568,7 +587,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece6(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 3, 0, 12, 4, 12, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 5, 0, 12, 13, 12, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 5, 0, 1, 12, 12, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -638,8 +658,8 @@ public class WorldGenNetherPieces {
             this.a(world, Blocks.FLOWING_LAVA.getBlockData(), 6, 5, 6, structureboundingbox);
             BlockPosition blockposition = new BlockPosition(this.a(6, 6), this.d(5), this.b(6, 6));
 
-            if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
-                world.a((Block) Blocks.FLOWING_LAVA, blockposition, random);
+            if (structureboundingbox.b(blockposition)) {
+                world.a(Blocks.FLOWING_LAVA, blockposition, random);
             }
 
             return true;
@@ -658,12 +678,14 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Mob");
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Mob", this.b);
         }
@@ -674,7 +696,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece12(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 2, 0, 6, 7, 7, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 1, 0, 0, 5, 1, 7, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 1, 2, 1, 5, 2, 7, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -696,7 +719,7 @@ public class WorldGenNetherPieces {
             if (!this.b) {
                 BlockPosition blockposition = new BlockPosition(this.a(3, 5), this.d(5), this.b(3, 5));
 
-                if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+                if (structureboundingbox.b(blockposition)) {
                     this.b = true;
                     world.setTypeAndData(blockposition, Blocks.MOB_SPAWNER.getBlockData(), 2);
                     TileEntity tileentity = world.getTileEntity(blockposition);
@@ -727,7 +750,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.c((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 6, 2, false);
         }
 
@@ -737,7 +761,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece14(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 6, 10, 6, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 1, 8, 0, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -778,7 +803,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 2, 0, false);
             this.b((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 2, false);
             this.c((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 0, 2, false);
@@ -790,7 +816,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece13(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 6, 1, 6, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 6, 7, 6, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 2, 0, 1, 6, 0, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -845,7 +872,8 @@ public class WorldGenNetherPieces {
 
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 8, 3, false);
             this.b((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 3, 8, false);
             this.c((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 3, 8, false);
@@ -857,7 +885,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece1(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 7, 3, 0, 11, 4, 18, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 3, 7, 18, 4, 11, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 8, 5, 0, 10, 7, 18, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
@@ -920,18 +949,21 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece2(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getInt("Seed");
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("Seed", this.b);
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
-            Random random1 = new Random((long) this.b);
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+            Random random1 = new Random(this.b);
 
             int i;
             int j;
@@ -975,7 +1007,8 @@ public class WorldGenNetherPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenNetherPieces.WorldGenNetherPiece15) structurepiece, list, random, 1, 3, false);
         }
 
@@ -985,7 +1018,8 @@ public class WorldGenNetherPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenNetherPieces.WorldGenNetherPiece3(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 3, 0, 4, 4, 18, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
             this.a(world, structureboundingbox, 1, 5, 0, 3, 7, 18, Blocks.AIR.getBlockData(), Blocks.AIR.getBlockData(), false);
             this.a(world, structureboundingbox, 0, 5, 0, 0, 5, 18, Blocks.NETHER_BRICK.getBlockData(), Blocks.NETHER_BRICK.getBlockData(), false);
@@ -1050,11 +1084,13 @@ public class WorldGenNetherPieces {
 
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
         }
     }
@@ -1069,9 +1105,11 @@ public class WorldGenNetherPieces {
             super(i);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {}
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {}
 
-        protected void a(NBTTagCompound nbttagcompound) {}
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {}
 
         private int a(List<WorldGenNetherPieces.WorldGenNetherPieceWeight> list) {
             boolean flag = false;

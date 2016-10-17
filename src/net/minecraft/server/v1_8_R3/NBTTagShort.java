@@ -14,28 +14,34 @@ public class NBTTagShort extends NBTBase.NBTNumber {
         this.data = short0;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeShort(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(80L);
         this.data = datainput.readShort();
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 2;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "" + this.data + "s";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagShort(this.data);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (super.equals(object)) {
             NBTTagShort nbttagshort = (NBTTagShort) object;
 
@@ -45,31 +51,38 @@ public class NBTTagShort extends NBTBase.NBTNumber {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ this.data;
     }
 
-    public long c() {
-        return (long) this.data;
-    }
-
-    public int d() {
+    @Override
+	public long c() {
         return this.data;
     }
 
-    public short e() {
+    @Override
+	public int d() {
         return this.data;
     }
 
-    public byte f() {
+    @Override
+	public short e() {
+        return this.data;
+    }
+
+    @Override
+	public byte f() {
         return (byte) (this.data & 255);
     }
 
-    public double g() {
-        return (double) this.data;
+    @Override
+	public double g() {
+        return this.data;
     }
 
-    public float h() {
-        return (float) this.data;
+    @Override
+	public float h() {
+        return this.data;
     }
 }

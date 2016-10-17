@@ -6,19 +6,23 @@ public class CommandWorldBorder extends CommandAbstract {
 
     public CommandWorldBorder() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "worldborder";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.worldborder.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.worldborder.usage", new Object[0]);
         } else {
@@ -71,8 +75,8 @@ public class CommandWorldBorder extends CommandAbstract {
                 }
 
                 BlockPosition blockposition = icommandlistener.getChunkCoordinates();
-                double d2 = b((double) blockposition.getX() + 0.5D, astring[1], true);
-                double d3 = b((double) blockposition.getZ() + 0.5D, astring[2], true);
+                double d2 = b(blockposition.getX() + 0.5D, astring[1], true);
+                double d3 = b(blockposition.getZ() + 0.5D, astring[2], true);
 
                 worldborder.setCenter(d2, d3);
                 a(icommandlistener, this, "commands.worldborder.center.success", new Object[] { Double.valueOf(d2), Double.valueOf(d3)});
@@ -142,7 +146,8 @@ public class CommandWorldBorder extends CommandAbstract {
         return MinecraftServer.getServer().worldServer[0].getWorldBorder();
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, new String[] { "set", "center", "damage", "warning", "add", "get"}) : (astring.length == 2 && astring[0].equals("damage") ? a(astring, new String[] { "buffer", "amount"}) : (astring.length >= 2 && astring.length <= 3 && astring[0].equals("center") ? b(astring, 1, blockposition) : (astring.length == 2 && astring[0].equals("warning") ? a(astring, new String[] { "time", "distance"}) : null)));
     }
 }

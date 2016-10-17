@@ -10,33 +10,40 @@ public class SourceBlock implements ISourceBlock {
         this.b = blockposition;
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return this.a;
     }
 
-    public double getX() {
-        return (double) this.b.getX() + 0.5D;
+    @Override
+	public double getX() {
+        return this.b.getX() + 0.5D;
     }
 
-    public double getY() {
-        return (double) this.b.getY() + 0.5D;
+    @Override
+	public double getY() {
+        return this.b.getY() + 0.5D;
     }
 
-    public double getZ() {
-        return (double) this.b.getZ() + 0.5D;
+    @Override
+	public double getZ() {
+        return this.b.getZ() + 0.5D;
     }
 
-    public BlockPosition getBlockPosition() {
+    @Override
+	public BlockPosition getBlockPosition() {
         return this.b;
     }
 
-    public int f() {
+    @Override
+	public int f() {
         IBlockData iblockdata = this.a.getType(this.b);
 
         return iblockdata.getBlock().toLegacyData(iblockdata);
     }
 
-    public <T extends TileEntity> T getTileEntity() {
+    @Override
+	public <T extends TileEntity> T getTileEntity() {
         return (T) this.a.getTileEntity(this.b);
     }
 }

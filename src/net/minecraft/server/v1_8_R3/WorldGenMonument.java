@@ -39,11 +39,13 @@ public class WorldGenMonument extends StructureGenerator {
 
     }
 
-    public String a() {
+    @Override
+	public String a() {
         return "Monument";
     }
 
-    protected boolean a(int i, int j) {
+    @Override
+	protected boolean a(int i, int j) {
         int k = i;
         int l = j;
 
@@ -78,7 +80,8 @@ public class WorldGenMonument extends StructureGenerator {
         return false;
     }
 
-    protected StructureStart b(int i, int j) {
+    @Override
+	protected StructureStart b(int i, int j) {
         return new WorldGenMonument.WorldGenMonumentStart(this.c, this.b, i, j);
     }
 
@@ -106,8 +109,8 @@ public class WorldGenMonument extends StructureGenerator {
             random.setSeed(world.getSeed());
             long k = random.nextLong();
             long l = random.nextLong();
-            long i1 = (long) i * k;
-            long j1 = (long) j * l;
+            long i1 = i * k;
+            long j1 = j * l;
 
             random.setSeed(i1 ^ j1 ^ world.getSeed());
             int k1 = i * 16 + 8 - 29;
@@ -119,7 +122,8 @@ public class WorldGenMonument extends StructureGenerator {
             this.d = true;
         }
 
-        public void a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public void a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (!this.d) {
                 this.a.clear();
                 this.b(world, random, this.e(), this.f());
@@ -128,16 +132,19 @@ public class WorldGenMonument extends StructureGenerator {
             super.a(world, random, structureboundingbox);
         }
 
-        public boolean a(ChunkCoordIntPair chunkcoordintpair) {
+        @Override
+		public boolean a(ChunkCoordIntPair chunkcoordintpair) {
             return this.c.contains(chunkcoordintpair) ? false : super.a(chunkcoordintpair);
         }
 
-        public void b(ChunkCoordIntPair chunkcoordintpair) {
+        @Override
+		public void b(ChunkCoordIntPair chunkcoordintpair) {
             super.b(chunkcoordintpair);
             this.c.add(chunkcoordintpair);
         }
 
-        public void a(NBTTagCompound nbttagcompound) {
+        @Override
+		public void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             NBTTagList nbttaglist = new NBTTagList();
             Iterator iterator = this.c.iterator();
@@ -154,7 +161,8 @@ public class WorldGenMonument extends StructureGenerator {
             nbttagcompound.set("Processed", nbttaglist);
         }
 
-        public void b(NBTTagCompound nbttagcompound) {
+        @Override
+		public void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             if (nbttagcompound.hasKeyOfType("Processed", 9)) {
                 NBTTagList nbttaglist = nbttagcompound.getList("Processed", 10);

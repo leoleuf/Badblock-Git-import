@@ -28,21 +28,25 @@ public class WorldLoaderServer extends WorldLoader {
         return 19133;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         RegionFileCache.a();
     }
 
-    public IDataManager a(String s, boolean flag) {
+    @Override
+	public IDataManager a(String s, boolean flag) {
         return new ServerNBTManager(this.a, s, flag);
     }
 
-    public boolean isConvertable(String s) {
+    @Override
+	public boolean isConvertable(String s) {
         WorldData worlddata = this.c(s);
 
         return worlddata != null && worlddata.l() != this.c();
     }
 
-    public boolean convert(String s, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean convert(String s, IProgressUpdate iprogressupdate) {
         iprogressupdate.a(0);
         ArrayList arraylist = Lists.newArrayList();
         ArrayList arraylist1 = Lists.newArrayList();
@@ -74,8 +78,8 @@ public class WorldLoaderServer extends WorldLoader {
         }
 
         this.a(new File(file, "region"), (Iterable) arraylist, (WorldChunkManager) object, 0, i, iprogressupdate);
-        this.a(new File(file1, "region"), (Iterable) arraylist1, new WorldChunkManagerHell(BiomeBase.HELL, 0.0F), arraylist.size(), i, iprogressupdate);
-        this.a(new File(file2, "region"), (Iterable) arraylist2, new WorldChunkManagerHell(BiomeBase.SKY, 0.0F), arraylist.size() + arraylist1.size(), i, iprogressupdate);
+        this.a(new File(file1, "region"), arraylist1, new WorldChunkManagerHell(BiomeBase.HELL, 0.0F), arraylist.size(), i, iprogressupdate);
+        this.a(new File(file2, "region"), arraylist2, new WorldChunkManagerHell(BiomeBase.SKY, 0.0F), arraylist.size() + arraylist1.size(), i, iprogressupdate);
         worlddata.e(19133);
         if (worlddata.getType() == WorldType.NORMAL_1_1) {
             worlddata.a(WorldType.NORMAL);
@@ -117,7 +121,7 @@ public class WorldLoaderServer extends WorldLoader {
 
             this.a(file, file1, worldchunkmanager, i, j, iprogressupdate);
             ++i;
-            int k = (int) Math.round(100.0D * (double) i / (double) j);
+            int k = (int) Math.round(100.0D * i / j);
 
             iprogressupdate.a(k);
         }
@@ -158,8 +162,8 @@ public class WorldLoaderServer extends WorldLoader {
                     }
                 }
 
-                l = (int) Math.round(100.0D * (double) (i * 1024) / (double) (j * 1024));
-                int i1 = (int) Math.round(100.0D * (double) ((k + 1) * 32 + i * 1024) / (double) (j * 1024));
+                l = (int) Math.round(100.0D * (i * 1024) / (j * 1024));
+                int i1 = (int) Math.round(100.0D * ((k + 1) * 32 + i * 1024) / (j * 1024));
 
                 if (i1 > l) {
                     iprogressupdate.a(i1);
@@ -177,7 +181,8 @@ public class WorldLoaderServer extends WorldLoader {
     private void a(File file, Collection<File> collection) {
         File file1 = new File(file, "region");
         File[] afile = file1.listFiles(new FilenameFilter() {
-            public boolean accept(File file, String s) {
+            @Override
+			public boolean accept(File file, String s) {
                 return s.endsWith(".mcr");
             }
         });

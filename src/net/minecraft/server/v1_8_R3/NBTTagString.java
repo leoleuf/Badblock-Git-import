@@ -19,33 +19,40 @@ public class NBTTagString extends NBTBase {
         }
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeUTF(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(288L);
         this.data = datainput.readUTF();
-        nbtreadlimiter.a((long) (16 * this.data.length()));
+        nbtreadlimiter.a(16 * this.data.length());
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 8;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "\"" + this.data.replace("\"", "\\\"") + "\"";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagString(this.data);
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return this.data.isEmpty();
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!super.equals(object)) {
             return false;
         } else {
@@ -55,11 +62,13 @@ public class NBTTagString extends NBTBase {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ this.data.hashCode();
     }
 
-    public String a_() {
+    @Override
+	public String a_() {
         return this.data;
     }
 }

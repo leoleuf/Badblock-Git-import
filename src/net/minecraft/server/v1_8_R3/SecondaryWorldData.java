@@ -8,127 +8,165 @@ public class SecondaryWorldData extends WorldData {
         this.b = worlddata;
     }
 
-    public NBTTagCompound a() {
+    @Override
+	public NBTTagCompound a() {
         return this.b.a();
     }
 
-    public NBTTagCompound a(NBTTagCompound nbttagcompound) {
+    @Override
+	public NBTTagCompound a(NBTTagCompound nbttagcompound) {
         return this.b.a(nbttagcompound);
     }
 
-    public long getSeed() {
+    @Override
+	public long getSeed() {
         return this.b.getSeed();
     }
 
-    public int c() {
+    @Override
+	public int c() {
         return this.b.c();
     }
 
-    public int d() {
+    @Override
+	public int d() {
         return this.b.d();
     }
 
-    public int e() {
+    @Override
+	public int e() {
         return this.b.e();
     }
 
-    public long getTime() {
+    @Override
+	public long getTime() {
         return this.b.getTime();
     }
 
-    public long getDayTime() {
+    @Override
+	public long getDayTime() {
         return this.b.getDayTime();
     }
 
-    public NBTTagCompound i() {
+    @Override
+	public NBTTagCompound i() {
         return this.b.i();
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.b.getName();
     }
 
-    public int l() {
+    @Override
+	public int l() {
         return this.b.l();
     }
 
-    public boolean isThundering() {
+    @Override
+	public boolean isThundering() {
         return this.b.isThundering();
     }
 
-    public int getThunderDuration() {
+    @Override
+	public int getThunderDuration() {
         return this.b.getThunderDuration();
     }
 
-    public boolean hasStorm() {
+    @Override
+	public boolean hasStorm() {
         return this.b.hasStorm();
     }
 
-    public int getWeatherDuration() {
+    @Override
+	public int getWeatherDuration() {
         return this.b.getWeatherDuration();
     }
 
-    public WorldSettings.EnumGamemode getGameType() {
+    @Override
+	public WorldSettings.EnumGamemode getGameType() {
         return this.b.getGameType();
     }
 
-    public void setTime(long i) {}
+    @Override
+	public void setTime(long i) {}
 
-    public void setDayTime(long i) {}
+    @Override
+	public void setDayTime(long i) {}
 
-    public void setSpawn(BlockPosition blockposition) {}
+    @Override
+	public void setSpawn(BlockPosition blockposition) {}
 
-    public void a(String s) {}
+    @Override
+	public void a(String s) {}
 
-    public void e(int i) {}
+    @Override
+	public void e(int i) {}
 
-    public void setThundering(boolean flag) {}
+    @Override
+	public void setThundering(boolean flag) {}
 
-    public void setThunderDuration(int i) {}
+    @Override
+	public void setThunderDuration(int i) {}
 
-    public void setStorm(boolean flag) {}
+    @Override
+	public void setStorm(boolean flag) {}
 
-    public void setWeatherDuration(int i) {}
+    @Override
+	public void setWeatherDuration(int i) {}
 
-    public boolean shouldGenerateMapFeatures() {
+    @Override
+	public boolean shouldGenerateMapFeatures() {
         return this.b.shouldGenerateMapFeatures();
     }
 
-    public boolean isHardcore() {
+    @Override
+	public boolean isHardcore() {
         return this.b.isHardcore();
     }
 
-    public WorldType getType() {
+    @Override
+	public WorldType getType() {
         return this.b.getType();
     }
 
-    public void a(WorldType worldtype) {}
+    @Override
+	public void a(WorldType worldtype) {}
 
-    public boolean v() {
+    @Override
+	public boolean v() {
         return this.b.v();
     }
 
-    public void c(boolean flag) {}
+    @Override
+	public void c(boolean flag) {}
 
-    public boolean w() {
+    @Override
+	public boolean w() {
         return this.b.w();
     }
 
-    public void d(boolean flag) {}
+    @Override
+	public void d(boolean flag) {}
 
-    public GameRules x() {
+    @Override
+	public GameRules x() {
         return this.b.x();
     }
 
-    public EnumDifficulty getDifficulty() {
+    @Override
+	public EnumDifficulty getDifficulty() {
         return this.b.getDifficulty();
     }
 
-    public void setDifficulty(EnumDifficulty enumdifficulty) {}
+    @Override
+	public void setDifficulty(EnumDifficulty enumdifficulty) {}
 
-    public boolean isDifficultyLocked() {
+    @Override
+	public boolean isDifficultyLocked() {
         return this.b.isDifficultyLocked();
     }
 
-    public void e(boolean flag) {}
+    @Override
+	public void e(boolean flag) {}
 }

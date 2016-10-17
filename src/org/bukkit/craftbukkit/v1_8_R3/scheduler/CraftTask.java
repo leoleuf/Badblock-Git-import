@@ -43,19 +43,23 @@ public class CraftTask implements BukkitTask, Runnable { // Spigot
         timings = task != null ? SpigotTimings.getPluginTaskTimings(this, period) : null; // Spigot
     }
 
-    public final int getTaskId() {
+    @Override
+	public final int getTaskId() {
         return id;
     }
 
-    public final Plugin getOwner() {
+    @Override
+	public final Plugin getOwner() {
         return plugin;
     }
 
-    public boolean isSync() {
+    @Override
+	public boolean isSync() {
         return true;
     }
 
-    public void run() {
+    @Override
+	public void run() {
         if (timings != null && isSync()) timings.startTiming(); // Spigot
         task.run();
         if (timings != null && isSync()) timings.stopTiming(); // Spigot
@@ -89,7 +93,8 @@ public class CraftTask implements BukkitTask, Runnable { // Spigot
         return task.getClass();
     }
 
-    public void cancel() {
+    @Override
+	public void cancel() {
         Bukkit.getScheduler().cancelTask(id);
     }
 

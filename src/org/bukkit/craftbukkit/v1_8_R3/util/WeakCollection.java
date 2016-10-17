@@ -16,12 +16,14 @@ public final class WeakCollection<T> implements Collection<T> {
         collection = new ArrayList<WeakReference<T>>();
     }
 
-    public boolean add(T value) {
+    @Override
+	public boolean add(T value) {
         Validate.notNull(value, "Cannot add null value");
         return collection.add(new WeakReference<T>(value));
     }
 
-    public boolean addAll(Collection<? extends T> collection) {
+    @Override
+	public boolean addAll(Collection<? extends T> collection) {
         Collection<WeakReference<T>> values = this.collection;
         boolean ret = false;
         for (T value : collection) {
@@ -31,11 +33,13 @@ public final class WeakCollection<T> implements Collection<T> {
         return ret;
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
         collection.clear();
     }
 
-    public boolean contains(Object object) {
+    @Override
+	public boolean contains(Object object) {
         if (object  == null) {
             return false;
         }
@@ -47,20 +51,24 @@ public final class WeakCollection<T> implements Collection<T> {
         return false;
     }
 
-    public boolean containsAll(Collection<?> collection) {
+    @Override
+	public boolean containsAll(Collection<?> collection) {
         return toCollection().containsAll(collection);
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return !iterator().hasNext();
     }
 
-    public Iterator<T> iterator() {
+    @Override
+	public Iterator<T> iterator() {
         return new Iterator<T>() {
             Iterator<WeakReference<T>> it = collection.iterator();
             Object value = NO_VALUE;
 
-            public boolean hasNext() {
+            @Override
+			public boolean hasNext() {
                 Object value = this.value;
                 if (value != null && value != NO_VALUE) {
                     return true;
@@ -82,7 +90,8 @@ public final class WeakCollection<T> implements Collection<T> {
                 return false;
             }
 
-            public T next() throws NoSuchElementException {
+            @Override
+			public T next() throws NoSuchElementException {
                 if (!hasNext()) {
                     throw new NoSuchElementException("No more elements");
                 }
@@ -93,7 +102,8 @@ public final class WeakCollection<T> implements Collection<T> {
                 return value;
             }
 
-            public void remove() throws IllegalStateException {
+            @Override
+			public void remove() throws IllegalStateException {
                 if (value != NO_VALUE) {
                     throw new IllegalStateException("No last element");
                 }
@@ -104,7 +114,8 @@ public final class WeakCollection<T> implements Collection<T> {
         };
     }
 
-    public boolean remove(Object object) {
+    @Override
+	public boolean remove(Object object) {
         if (object == null) {
             return false;
         }
@@ -119,7 +130,8 @@ public final class WeakCollection<T> implements Collection<T> {
         return false;
     }
 
-    public boolean removeAll(Collection<?> collection) {
+    @Override
+	public boolean removeAll(Collection<?> collection) {
         Iterator<T> it = this.iterator();
         boolean ret = false;
         while (it.hasNext()) {
@@ -131,7 +143,8 @@ public final class WeakCollection<T> implements Collection<T> {
         return ret;
     }
 
-    public boolean retainAll(Collection<?> collection) {
+    @Override
+	public boolean retainAll(Collection<?> collection) {
         Iterator<T> it = this.iterator();
         boolean ret = false;
         while (it.hasNext()) {
@@ -143,7 +156,8 @@ public final class WeakCollection<T> implements Collection<T> {
         return ret;
     }
 
-    public int size() {
+    @Override
+	public int size() {
         int s = 0;
         for (T value : this) {
             s++;
@@ -151,11 +165,13 @@ public final class WeakCollection<T> implements Collection<T> {
         return s;
     }
 
-    public Object[] toArray() {
+    @Override
+	public Object[] toArray() {
         return this.toArray(new Object[0]);
     }
 
-    public <T> T[] toArray(T[] array) {
+    @Override
+	public <T> T[] toArray(T[] array) {
         return toCollection().toArray(array);
     }
 

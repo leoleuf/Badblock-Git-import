@@ -15,14 +15,15 @@ public class PacketPlayOutWindowItems implements Packet<PacketListenerPlayOut> {
         this.b = new ItemStack[list.size()];
 
         for (int j = 0; j < this.b.length; ++j) {
-            ItemStack itemstack = (ItemStack) list.get(j);
+            ItemStack itemstack = list.get(j);
 
             this.b[j] = itemstack == null ? null : itemstack.cloneItemStack();
         }
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readUnsignedByte();
         short short0 = packetdataserializer.readShort();
 
@@ -34,7 +35,8 @@ public class PacketPlayOutWindowItems implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.a);
         packetdataserializer.writeShort(this.b.length);
         ItemStack[] aitemstack = this.b;
@@ -48,7 +50,8 @@ public class PacketPlayOutWindowItems implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

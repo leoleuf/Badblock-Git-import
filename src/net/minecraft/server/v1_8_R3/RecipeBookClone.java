@@ -8,7 +8,8 @@ public class RecipeBookClone extends ShapelessRecipes implements IRecipe { // Cr
     }
     // CraftBukkit end
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         int i = 0;
         ItemStack itemstack = null;
 
@@ -35,7 +36,8 @@ public class RecipeBookClone extends ShapelessRecipes implements IRecipe { // Cr
         return itemstack != null && i > 0;
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         int i = 0;
         ItemStack itemstack = null;
 
@@ -74,15 +76,18 @@ public class RecipeBookClone extends ShapelessRecipes implements IRecipe { // Cr
         }
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 9;
     }
 
-    public ItemStack b() {
+    @Override
+	public ItemStack b() {
         return null;
     }
 
-    public ItemStack[] b(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack[] b(InventoryCrafting inventorycrafting) {
         ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
         for (int i = 0; i < aitemstack.length; ++i) {

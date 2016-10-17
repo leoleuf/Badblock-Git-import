@@ -24,7 +24,8 @@ public class FileIOThread implements Runnable {
         return FileIOThread.a;
     }
 
-    public void run() {
+    @Override
+	public void run() {
         while (true) {
             this.c();
         }
@@ -32,7 +33,7 @@ public class FileIOThread implements Runnable {
 
     private void c() {
         for (int i = 0; i < this.b.size(); ++i) {
-            IAsyncChunkSaver iasyncchunksaver = (IAsyncChunkSaver) this.b.get(i);
+            IAsyncChunkSaver iasyncchunksaver = this.b.get(i);
             boolean flag = iasyncchunksaver.c();
 
             if (!flag) {

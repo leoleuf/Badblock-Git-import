@@ -14,15 +14,18 @@ public class PacketPlayInCloseWindow implements Packet<PacketListenerPlayIn> {
     }
     // CraftBukkit end
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.id = packetdataserializer.readByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.id);
     }
 }

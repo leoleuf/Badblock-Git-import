@@ -10,7 +10,8 @@ public class EntityMinecartRideable extends EntityMinecartAbstract {
         super(world, d0, d1, d2);
     }
 
-    public boolean e(EntityHuman entityhuman) {
+    @Override
+	public boolean e(EntityHuman entityhuman) {
         if (this.passenger != null && this.passenger instanceof EntityHuman && this.passenger != entityhuman) {
             return true;
         } else if (this.passenger != null && this.passenger != entityhuman) {
@@ -24,7 +25,8 @@ public class EntityMinecartRideable extends EntityMinecartAbstract {
         }
     }
 
-    public void a(int i, int j, int k, boolean flag) {
+    @Override
+	public void a(int i, int j, int k, boolean flag) {
         if (flag) {
             if (this.passenger != null) {
                 this.passenger.mount((Entity) null);
@@ -40,7 +42,8 @@ public class EntityMinecartRideable extends EntityMinecartAbstract {
 
     }
 
-    public EntityMinecartAbstract.EnumMinecartType s() {
+    @Override
+	public EntityMinecartAbstract.EnumMinecartType s() {
         return EntityMinecartAbstract.EnumMinecartType.RIDEABLE;
     }
 }

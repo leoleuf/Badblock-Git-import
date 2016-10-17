@@ -4,7 +4,8 @@ public class ItemWorldMapBase extends Item {
 
     protected ItemWorldMapBase() {}
 
-    public boolean f() {
+    @Override
+	public boolean f() {
         return true;
     }
 

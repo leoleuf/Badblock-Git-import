@@ -23,67 +23,81 @@ public class CraftHorse extends CraftAnimals implements Horse {
         return (EntityHorse) entity;
     }
 
-    public Variant getVariant() {
+    @Override
+	public Variant getVariant() {
         return Variant.values()[getHandle().getType()];
     }
 
-    public void setVariant(Variant variant) {
+    @Override
+	public void setVariant(Variant variant) {
         Validate.notNull(variant, "Variant cannot be null");
         getHandle().setType(variant.ordinal());
     }
 
-    public Color getColor() {
+    @Override
+	public Color getColor() {
         return Color.values()[getHandle().getVariant() & 0xFF];
     }
 
-    public void setColor(Color color) {
+    @Override
+	public void setColor(Color color) {
         Validate.notNull(color, "Color cannot be null");
         getHandle().setVariant(color.ordinal() & 0xFF | getStyle().ordinal() << 8);
     }
 
-    public Style getStyle() {
+    @Override
+	public Style getStyle() {
         return Style.values()[getHandle().getVariant() >>> 8];
     }
 
-    public void setStyle(Style style) {
+    @Override
+	public void setStyle(Style style) {
         Validate.notNull(style, "Style cannot be null");
         getHandle().setVariant(getColor().ordinal() & 0xFF | style.ordinal() << 8);
     }
 
-    public boolean isCarryingChest() {
+    @Override
+	public boolean isCarryingChest() {
         return getHandle().hasChest();
     }
 
-    public void setCarryingChest(boolean chest) {
+    @Override
+	public void setCarryingChest(boolean chest) {
         if (chest == isCarryingChest()) return;
         getHandle().setHasChest(chest);
         getHandle().loadChest();
     }
 
-    public int getDomestication() {
+    @Override
+	public int getDomestication() {
         return getHandle().getTemper();
     }
 
-    public void setDomestication(int value) {
+    @Override
+	public void setDomestication(int value) {
         Validate.isTrue(value >= 0, "Domestication cannot be less than zero");
         Validate.isTrue(value <= getMaxDomestication(), "Domestication cannot be greater than the max domestication");
         getHandle().setTemper(value);
     }
 
-    public int getMaxDomestication() {
+    @Override
+	public int getMaxDomestication() {
         return getHandle().getMaxDomestication();
     }
 
-    public void setMaxDomestication(int value) {
+    @Override
+	public void setMaxDomestication(int value) {
         Validate.isTrue(value > 0, "Max domestication cannot be zero or less");
         getHandle().maxDomestication = value;
     }
 
-    public double getJumpStrength() {
+    @Override
+	public double getJumpStrength() {
         return getHandle().getJumpStrength();
     }
 
-    public void setJumpStrength(double strength) {
+    @Override
+	public void setJumpStrength(double strength) {
         Validate.isTrue(strength >= 0, "Jump strength cannot be less than zero");
         getHandle().getAttributeInstance(EntityHorse.attributeJumpStrength).setValue(strength);
     }
@@ -132,7 +146,8 @@ public class CraftHorse extends CraftAnimals implements Horse {
         }
     }
 
-    public HorseInventory getInventory() {
+    @Override
+	public HorseInventory getInventory() {
         return new CraftInventoryHorse(getHandle().inventoryChest);
     }
 
@@ -141,7 +156,8 @@ public class CraftHorse extends CraftAnimals implements Horse {
         return "CraftHorse{variant=" + getVariant() + ", owner=" + getOwner() + '}';
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.HORSE;
     }
 }

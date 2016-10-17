@@ -17,7 +17,7 @@ public class ChunkSnapshot {
 
     public IBlockData a(int i) {
         if (i >= 0 && i < this.a.length) {
-            IBlockData iblockdata = (IBlockData) Block.d.a(this.a[i]);
+            IBlockData iblockdata = Block.d.a(this.a[i]);
 
             return iblockdata != null ? iblockdata : this.b;
         } else {

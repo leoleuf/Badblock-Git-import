@@ -38,11 +38,13 @@ public class EntityArmorStand extends EntityLiving {
         this.setPosition(d0, d1, d2);
     }
 
-    public boolean bM() {
+    @Override
+	public boolean bM() {
         return super.bM() && !this.hasGravity();
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(10, Byte.valueOf((byte) 0));
         this.datawatcher.a(11, EntityArmorStand.a);
@@ -53,23 +55,28 @@ public class EntityArmorStand extends EntityLiving {
         this.datawatcher.a(16, EntityArmorStand.f);
     }
 
-    public ItemStack bA() {
+    @Override
+	public ItemStack bA() {
         return this.items[0];
     }
 
-    public ItemStack getEquipment(int i) {
+    @Override
+	public ItemStack getEquipment(int i) {
         return this.items[i];
     }
 
-    public void setEquipment(int i, ItemStack itemstack) {
+    @Override
+	public void setEquipment(int i, ItemStack itemstack) {
         this.items[i] = itemstack;
     }
 
-    public ItemStack[] getEquipment() {
+    @Override
+	public ItemStack[] getEquipment() {
         return this.items;
     }
 
-    public boolean d(int i, ItemStack itemstack) {
+    @Override
+	public boolean d(int i, ItemStack itemstack) {
         int j;
 
         if (i == 99) {
@@ -89,7 +96,8 @@ public class EntityArmorStand extends EntityLiving {
         }
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -121,7 +129,8 @@ public class EntityArmorStand extends EntityLiving {
         nbttagcompound.set("Pose", this.z());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("Equipment", 9)) {
             NBTTagList nbttaglist = nbttagcompound.getList("Equipment", 10);
@@ -226,13 +235,16 @@ public class EntityArmorStand extends EntityLiving {
         return nbttagcompound;
     }
 
-    public boolean ae() {
+    @Override
+	public boolean ae() {
         return false;
     }
 
-    protected void s(Entity entity) {}
+    @Override
+	protected void s(Entity entity) {}
 
-    protected void bL() {
+    @Override
+	protected void bL() {
         List list = this.world.getEntities(this, this.getBoundingBox());
 
         if (list != null && !list.isEmpty()) {
@@ -247,7 +259,8 @@ public class EntityArmorStand extends EntityLiving {
 
     }
 
-    public boolean a(EntityHuman entityhuman, Vec3D vec3d) {
+    @Override
+	public boolean a(EntityHuman entityhuman, Vec3D vec3d) {
         if (this.s()) {
             return false;
         } else if (!this.world.isClientSide && !entityhuman.isSpectator()) {
@@ -364,7 +377,8 @@ public class EntityArmorStand extends EntityLiving {
         }
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         // CraftBukkit start
         if (org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.handleNonLivingEntityDamageEvent(this, damagesource, f)) {
             return false;
@@ -430,7 +444,7 @@ public class EntityArmorStand extends EntityLiving {
 
     private void A() {
         if (this.world instanceof WorldServer) {
-            ((WorldServer) this.world).a(EnumParticle.BLOCK_DUST, this.locX, this.locY + (double) this.length / 1.5D, this.locZ, 10, (double) (this.width / 4.0F), (double) (this.length / 4.0F), (double) (this.width / 4.0F), 0.05D, new int[] { Block.getCombinedId(Blocks.PLANKS.getBlockData())});
+            ((WorldServer) this.world).a(EnumParticle.BLOCK_DUST, this.locX, this.locY + this.length / 1.5D, this.locZ, 10, this.width / 4.0F, this.length / 4.0F, this.width / 4.0F, 0.05D, new int[] { Block.getCombinedId(Blocks.PLANKS.getBlockData())});
         }
 
     }
@@ -466,23 +480,27 @@ public class EntityArmorStand extends EntityLiving {
 
     }
 
-    protected float h(float f, float f1) {
+    @Override
+	protected float h(float f, float f1) {
         this.aJ = this.lastYaw;
         this.aI = this.yaw;
         return 0.0F;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.isBaby() ? this.length * 0.5F : this.length * 0.9F;
     }
 
-    public void g(float f, float f1) {
+    @Override
+	public void g(float f, float f1) {
         if (!this.hasGravity()) {
             super.g(f, f1);
         }
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         //TODO optimize t_()
         boolean flag = this.s();
@@ -514,24 +532,29 @@ public class EntityArmorStand extends EntityLiving {
         this.setPosition(d0, d1, d2);
     }
 
-    protected void B() {
+    @Override
+	protected void B() {
         this.setInvisible(this.h);
     }
 
-    public void setInvisible(boolean flag) {
+    @Override
+	public void setInvisible(boolean flag) {
         this.h = flag;
         super.setInvisible(flag);
     }
 
-    public boolean isBaby() {
+    @Override
+	public boolean isBaby() {
         return this.isSmall();
     }
 
-    public void G() {
+    @Override
+	public void G() {
         this.die();
     }
 
-    public boolean aW() {
+    @Override
+	public boolean aW() {
         return this.isInvisible();
     }
 
@@ -649,7 +672,8 @@ public class EntityArmorStand extends EntityLiving {
         return this.bodyPose();
     }
 
-    public boolean ad() {
+    @Override
+	public boolean ad() {
         return super.ad() && !this.s();
     }
     

@@ -17,7 +17,8 @@ public class BlockRedstoneLamp extends Block {
 
     }
 
-    public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
                 world.setTypeAndData(blockposition, Blocks.REDSTONE_LAMP.getBlockData(), 2);
@@ -33,10 +34,11 @@ public class BlockRedstoneLamp extends Block {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
-                world.a(blockposition, (Block) this, 4);
+                world.a(blockposition, this, 4);
             } else if (!this.a && world.isBlockIndirectlyPowered(blockposition)) {
                 // CraftBukkit start
                 if (CraftEventFactory.callRedstoneChange(world, blockposition.getX(), blockposition.getY(), blockposition.getZ(), 0, 15).getNewCurrent() != 15) {
@@ -49,7 +51,8 @@ public class BlockRedstoneLamp extends Block {
         }
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
                 // CraftBukkit start
@@ -63,11 +66,13 @@ public class BlockRedstoneLamp extends Block {
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Item.getItemOf(Blocks.REDSTONE_LAMP);
     }
 
-    protected ItemStack i(IBlockData iblockdata) {
+    @Override
+	protected ItemStack i(IBlockData iblockdata) {
         return new ItemStack(Blocks.REDSTONE_LAMP);
     }
 }

@@ -10,19 +10,23 @@ public class CommandOp extends CommandAbstract {
 
     public CommandOp() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "op";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 3;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.op.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length == 1 && astring[0].length() > 0) {
             MinecraftServer minecraftserver = MinecraftServer.getServer();
             GameProfile gameprofile = minecraftserver.getUserCache().getProfile(astring[0]);
@@ -38,7 +42,8 @@ public class CommandOp extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             String s = astring[astring.length - 1];
             ArrayList arraylist = Lists.newArrayList();

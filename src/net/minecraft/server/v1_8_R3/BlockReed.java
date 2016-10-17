@@ -16,7 +16,8 @@ public class BlockReed extends Block {
         this.a(true);
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (world.getType(blockposition.down()).getBlock() == Blocks.REEDS || this.e(world, blockposition, iblockdata)) {
             if (world.isEmpty(blockposition.up())) {
                 int i;
@@ -26,7 +27,7 @@ public class BlockReed extends Block {
                 }
 
                 if (i < world.paperSpigotConfig.reedMaxHeight) { // PaperSpigot - Configurable max growth height for reed blocks) {
-                    int j = ((Integer) iblockdata.get(BlockReed.AGE)).intValue();
+                    int j = iblockdata.get(BlockReed.AGE).intValue();
 
                     if (j >= (byte) range(3, (world.growthOdds / world.spigotConfig.caneModifier * 15) + 0.5F, 15)) { // Spigot
                         // CraftBukkit start
@@ -44,7 +45,8 @@ public class BlockReed extends Block {
         }
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         Block block = world.getType(blockposition.down()).getBlock();
 
         if (block == this) {
@@ -68,7 +70,8 @@ public class BlockReed extends Block {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         this.e(world, blockposition, iblockdata);
     }
 
@@ -86,31 +89,38 @@ public class BlockReed extends Block {
         return this.canPlace(world, blockposition);
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.REEDS;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockReed.AGE, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockReed.AGE)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockReed.AGE).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockReed.AGE});
     }
 }

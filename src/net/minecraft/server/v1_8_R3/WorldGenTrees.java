@@ -24,7 +24,8 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
         this.d = flag1;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = random.nextInt(3) + this.c;
         boolean flag = true;
 
@@ -184,7 +185,7 @@ public class WorldGenTrees extends WorldGenTreeAbstract {
     }
 
     private void a(World world, int i, BlockPosition blockposition, EnumDirection enumdirection) {
-        this.a(world, blockposition, Blocks.COCOA.getBlockData().set(BlockCocoa.AGE, Integer.valueOf(i)).set(BlockCocoa.FACING, enumdirection));
+        this.a(world, blockposition, Blocks.COCOA.getBlockData().set(BlockCocoa.AGE, Integer.valueOf(i)).set(BlockDirectional.FACING, enumdirection));
     }
 
     private void a(World world, BlockPosition blockposition, BlockStateBoolean blockstateboolean) {

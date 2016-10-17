@@ -19,17 +19,19 @@ public class PacketPlayOutMultiBlockChange implements Packet<PacketListenerPlayO
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = new ChunkCoordIntPair(packetdataserializer.readInt(), packetdataserializer.readInt());
         this.b = new PacketPlayOutMultiBlockChange.MultiBlockChangeInfo[packetdataserializer.e()];
 
         for (int i = 0; i < this.b.length; ++i) {
-            this.b[i] = new PacketPlayOutMultiBlockChange.MultiBlockChangeInfo(packetdataserializer.readShort(), (IBlockData) Block.d.a(packetdataserializer.e()));
+            this.b[i] = new PacketPlayOutMultiBlockChange.MultiBlockChangeInfo(packetdataserializer.readShort(), Block.d.a(packetdataserializer.e()));
         }
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.a.x);
         packetdataserializer.writeInt(this.a.z);
         packetdataserializer.b(this.b.length);
@@ -45,7 +47,8 @@ public class PacketPlayOutMultiBlockChange implements Packet<PacketListenerPlayO
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

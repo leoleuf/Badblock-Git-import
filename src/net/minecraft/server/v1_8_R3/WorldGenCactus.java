@@ -6,7 +6,8 @@ public class WorldGenCactus extends WorldGenerator {
 
     public WorldGenCactus() {}
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         for (int i = 0; i < 10; ++i) {
             BlockPosition blockposition1 = blockposition.a(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 

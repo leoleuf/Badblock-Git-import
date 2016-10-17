@@ -63,11 +63,13 @@ public class CraftJukebox extends CraftBlockState implements Jukebox {
         world.playEffect(getLocation(), Effect.RECORD_PLAY, record.getId());
     }
 
-    public boolean isPlaying() {
+    @Override
+	public boolean isPlaying() {
         return getRawData() == 1;
     }
 
-    public boolean eject() {
+    @Override
+	public boolean eject() {
         requirePlaced();
         boolean result = isPlaying();
         ((BlockJukeBox) Blocks.JUKEBOX).dropRecord(world.getHandle(), new BlockPosition(getX(), getY(), getZ()), null);

@@ -15,28 +15,34 @@ public class CraftArrow extends AbstractProjectile implements Arrow {
         super(server, entity);
     }
 
-    public void setKnockbackStrength(int knockbackStrength) {
+    @Override
+	public void setKnockbackStrength(int knockbackStrength) {
         Validate.isTrue(knockbackStrength >= 0, "Knockback cannot be negative");
         getHandle().setKnockbackStrength(knockbackStrength);
     }
 
-    public int getKnockbackStrength() {
+    @Override
+	public int getKnockbackStrength() {
         return getHandle().knockbackStrength;
     }
 
-    public boolean isCritical() {
+    @Override
+	public boolean isCritical() {
         return getHandle().isCritical();
     }
 
-    public void setCritical(boolean critical) {
+    @Override
+	public void setCritical(boolean critical) {
         getHandle().setCritical(critical);
     }
 
-    public ProjectileSource getShooter() {
+    @Override
+	public ProjectileSource getShooter() {
         return getHandle().projectileSource;   
     }
 
-    public void setShooter(ProjectileSource shooter) {
+    @Override
+	public void setShooter(ProjectileSource shooter) {
         if (shooter instanceof LivingEntity) {
             getHandle().shooter = ((CraftLivingEntity) shooter).getHandle();
         } else {
@@ -55,11 +61,13 @@ public class CraftArrow extends AbstractProjectile implements Arrow {
         return "CraftArrow";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.ARROW;
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public LivingEntity _INVALID_getShooter() {
         if (getHandle().shooter == null) {
             return null;
@@ -67,7 +75,8 @@ public class CraftArrow extends AbstractProjectile implements Arrow {
         return (LivingEntity) getHandle().shooter.getBukkitEntity();
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setShooter(LivingEntity shooter) {
         getHandle().shooter = ((CraftLivingEntity) shooter).getHandle();
     }
@@ -88,7 +97,8 @@ public class CraftArrow extends AbstractProjectile implements Arrow {
         }
     };
 
-    public Arrow.Spigot spigot()
+    @Override
+	public Arrow.Spigot spigot()
     {
         return spigot;
     }

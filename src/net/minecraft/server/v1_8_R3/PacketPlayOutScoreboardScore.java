@@ -32,9 +32,10 @@ public class PacketPlayOutScoreboardScore implements Packet<PacketListenerPlayOu
         this.d = PacketPlayOutScoreboardScore.EnumScoreboardAction.REMOVE;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(40);
-        this.d = (PacketPlayOutScoreboardScore.EnumScoreboardAction) packetdataserializer.a(PacketPlayOutScoreboardScore.EnumScoreboardAction.class);
+        this.d = packetdataserializer.a(PacketPlayOutScoreboardScore.EnumScoreboardAction.class);
         this.b = packetdataserializer.c(16);
         if (this.d != PacketPlayOutScoreboardScore.EnumScoreboardAction.REMOVE) {
             this.c = packetdataserializer.e();
@@ -42,9 +43,10 @@ public class PacketPlayOutScoreboardScore implements Packet<PacketListenerPlayOu
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
-        packetdataserializer.a((Enum) this.d);
+        packetdataserializer.a(this.d);
         packetdataserializer.a(this.b);
         if (this.d != PacketPlayOutScoreboardScore.EnumScoreboardAction.REMOVE) {
             packetdataserializer.b(this.c);
@@ -52,7 +54,8 @@ public class PacketPlayOutScoreboardScore implements Packet<PacketListenerPlayOu
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

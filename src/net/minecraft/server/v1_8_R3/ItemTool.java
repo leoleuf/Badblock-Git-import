@@ -21,17 +21,20 @@ public class ItemTool extends Item {
         this.a(CreativeModeTab.i);
     }
 
-    public float getDestroySpeed(ItemStack itemstack, Block block) {
+    @Override
+	public float getDestroySpeed(ItemStack itemstack, Block block) {
         return this.c.contains(block) ? this.a : 1.0F;
     }
 
-    public boolean a(ItemStack itemstack, EntityLiving entityliving, EntityLiving entityliving1) {
+    @Override
+	public boolean a(ItemStack itemstack, EntityLiving entityliving, EntityLiving entityliving1) {
         itemstack.damage(2, entityliving1);
         return true;
     }
 
-    public boolean a(ItemStack itemstack, World world, Block block, BlockPosition blockposition, EntityLiving entityliving) {
-        if ((double) block.g(world, blockposition) != 0.0D) {
+    @Override
+	public boolean a(ItemStack itemstack, World world, Block block, BlockPosition blockposition, EntityLiving entityliving) {
+        if (block.g(world, blockposition) != 0.0D) {
             itemstack.damage(1, entityliving);
         }
 
@@ -42,7 +45,8 @@ public class ItemTool extends Item {
         return this.b;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return this.b.e();
     }
 
@@ -50,14 +54,16 @@ public class ItemTool extends Item {
         return this.b.toString();
     }
 
-    public boolean a(ItemStack itemstack, ItemStack itemstack1) {
+    @Override
+	public boolean a(ItemStack itemstack, ItemStack itemstack1) {
         return this.b.f() == itemstack1.getItem() ? true : super.a(itemstack, itemstack1);
     }
 
-    public Multimap<String, AttributeModifier> i() {
+    @Override
+	public Multimap<String, AttributeModifier> i() {
         Multimap multimap = super.i();
 
-        multimap.put(GenericAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ItemTool.f, "Tool modifier", (double) this.d, 0));
+        multimap.put(GenericAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(Item.f, "Tool modifier", this.d, 0));
         return multimap;
     }
 }

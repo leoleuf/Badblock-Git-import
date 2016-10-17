@@ -48,7 +48,8 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
         LoginListener.random.nextBytes(this.e);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         if (this.g == LoginListener.EnumProtocolState.READY_TO_ACCEPT) {
             this.b();
         } else if (this.g == LoginListener.EnumProtocolState.e) {
@@ -132,8 +133,9 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
                         LoginListener.this.networkManager.a(LoginListener.this.server.aK());
                     }
 
-                    public void operationComplete(ChannelFuture future) throws Exception { // CraftBukkit - fix decompile error
-                        this.a((ChannelFuture) future);
+                    @Override
+					public void operationComplete(ChannelFuture future) throws Exception { // CraftBukkit - fix decompile error
+                        this.a(future);
                     }
                 }, new GenericFutureListener[0]);
             }
@@ -151,7 +153,8 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
 
     }
 
-    public void a(IChatBaseComponent ichatbasecomponent) {
+    @Override
+	public void a(IChatBaseComponent ichatbasecomponent) {
         LoginListener.c.info(this.d() + " lost connection: " + ichatbasecomponent.c());
     }
 
@@ -159,7 +162,8 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
         return this.i != null ? this.i.toString() + " (" + this.networkManager.getSocketAddress().toString() + ")" : String.valueOf(this.networkManager.getSocketAddress());
     }
 
-    public void a(PacketLoginInStart packetlogininstart) {
+    @Override
+	public void a(PacketLoginInStart packetlogininstart) {
         Validate.validState(this.g == LoginListener.EnumProtocolState.HELLO, "Unexpected hello packet", new Object[0]);
         this.i = packetlogininstart.a();
         if (this.server.getOnlineMode() && !this.networkManager.c()) {
@@ -185,7 +189,8 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
 
     }
 
-    public void a(PacketLoginInEncryptionBegin packetlogininencryptionbegin) {
+    @Override
+	public void a(PacketLoginInEncryptionBegin packetlogininencryptionbegin) {
         Validate.validState(this.g == LoginListener.EnumProtocolState.KEY, "Unexpected key packet", new Object[0]);
         PrivateKey privatekey = this.server.Q().getPrivate();
 
@@ -196,7 +201,8 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
             this.g = LoginListener.EnumProtocolState.AUTHENTICATING;
             this.networkManager.a(this.loginKey);
             (new Thread("User Authenticator #" + LoginListener.b.incrementAndGet()) {
-                public void run() {
+                @Override
+				public void run() {
                     GameProfile gameprofile = LoginListener.this.i;
 
                     try {

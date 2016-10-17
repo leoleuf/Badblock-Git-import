@@ -11,13 +11,15 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         this.cm();
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Byte.valueOf((byte) 0));
         this.datawatcher.a(17, "");
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         if (this.getOwnerUUID() == null) {
             nbttagcompound.setString("OwnerUUID", "");
@@ -28,7 +30,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         nbttagcompound.setBoolean("Sitting", this.isSitting());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         String s = "";
 
@@ -61,7 +64,7 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
             double d1 = this.random.nextGaussian() * 0.02D;
             double d2 = this.random.nextGaussian() * 0.02D;
 
-            this.world.addParticle(enumparticle, this.locX + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, this.locY + 0.5D + (double) (this.random.nextFloat() * this.length), this.locZ + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, d0, d1, d2, new int[0]);
+            this.world.addParticle(enumparticle, this.locX + this.random.nextFloat() * this.width * 2.0F - this.width, this.locY + 0.5D + this.random.nextFloat() * this.length, this.locZ + this.random.nextFloat() * this.width * 2.0F - this.width, d0, d1, d2, new int[0]);
         }
 
     }
@@ -99,7 +102,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
 
     }
 
-    public String getOwnerUUID() {
+    @Override
+	public String getOwnerUUID() {
         return this.datawatcher.getString(17);
     }
 
@@ -107,7 +111,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         this.datawatcher.watch(17, s);
     }
 
-    public EntityLiving getOwner() {
+    @Override
+	public EntityLiving getOwner() {
         try {
             UUID uuid = UUID.fromString(this.getOwnerUUID());
 
@@ -129,7 +134,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         return true;
     }
 
-    public ScoreboardTeamBase getScoreboardTeam() {
+    @Override
+	public ScoreboardTeamBase getScoreboardTeam() {
         if (this.isTamed()) {
             EntityLiving entityliving = this.getOwner();
 
@@ -141,7 +147,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         return super.getScoreboardTeam();
     }
 
-    public boolean c(EntityLiving entityliving) {
+    @Override
+	public boolean c(EntityLiving entityliving) {
         if (this.isTamed()) {
             EntityLiving entityliving1 = this.getOwner();
 
@@ -157,7 +164,8 @@ public abstract class EntityTameableAnimal extends EntityAnimal implements Entit
         return super.c(entityliving);
     }
 
-    public void die(DamageSource damagesource) {
+    @Override
+	public void die(DamageSource damagesource) {
         if (!this.world.isClientSide && this.world.getGameRules().getBoolean("showDeathMessages") && this.hasCustomName() && this.getOwner() instanceof EntityPlayer) {
             ((EntityPlayer) this.getOwner()).sendMessage(this.bs().b());
         }

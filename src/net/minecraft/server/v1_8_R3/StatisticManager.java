@@ -31,7 +31,7 @@ public class StatisticManager {
     }
 
     public void setStatistic(EntityHuman entityhuman, Statistic statistic, int i) {
-        StatisticWrapper statisticwrapper = (StatisticWrapper) this.a.get(statistic);
+        StatisticWrapper statisticwrapper = this.a.get(statistic);
 
         if (statisticwrapper == null) {
             statisticwrapper = new StatisticWrapper();
@@ -42,19 +42,19 @@ public class StatisticManager {
     }
 
     public int getStatisticValue(Statistic statistic) {
-        StatisticWrapper statisticwrapper = (StatisticWrapper) this.a.get(statistic);
+        StatisticWrapper statisticwrapper = this.a.get(statistic);
 
         return statisticwrapper == null ? 0 : statisticwrapper.a();
     }
 
     public <T extends IJsonStatistic> T b(Statistic statistic) {
-        StatisticWrapper statisticwrapper = (StatisticWrapper) this.a.get(statistic);
+        StatisticWrapper statisticwrapper = this.a.get(statistic);
 
         return statisticwrapper != null ? (T) statisticwrapper.b() : null; // CraftBukkit - fix decompile error
     }
 
     public <T extends IJsonStatistic> T a(Statistic statistic, T t0) {
-        StatisticWrapper statisticwrapper = (StatisticWrapper) this.a.get(statistic);
+        StatisticWrapper statisticwrapper = this.a.get(statistic);
 
         if (statisticwrapper == null) {
             statisticwrapper = new StatisticWrapper();

@@ -12,7 +12,8 @@ public class TileEntitySign extends TileEntity {
 
     public TileEntitySign() {}
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
 
         for (int i = 0; i < 4; ++i) {
@@ -30,45 +31,56 @@ public class TileEntitySign extends TileEntity {
         this.i.b(nbttagcompound);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         this.isEditable = false;
         super.a(nbttagcompound);
         ICommandListener icommandlistener = new ICommandListener() {
-            public String getName() {
+            @Override
+			public String getName() {
                 return "Sign";
             }
 
-            public IChatBaseComponent getScoreboardDisplayName() {
+            @Override
+			public IChatBaseComponent getScoreboardDisplayName() {
                 return new ChatComponentText(this.getName());
             }
 
-            public void sendMessage(IChatBaseComponent ichatbasecomponent) {}
+            @Override
+			public void sendMessage(IChatBaseComponent ichatbasecomponent) {}
 
-            public boolean a(int i, String s) {
+            @Override
+			public boolean a(int i, String s) {
                 return true;
             }
 
-            public BlockPosition getChunkCoordinates() {
+            @Override
+			public BlockPosition getChunkCoordinates() {
                 return TileEntitySign.this.position;
             }
 
-            public Vec3D d() {
-                return new Vec3D((double) TileEntitySign.this.position.getX() + 0.5D, (double) TileEntitySign.this.position.getY() + 0.5D, (double) TileEntitySign.this.position.getZ() + 0.5D);
+            @Override
+			public Vec3D d() {
+                return new Vec3D(TileEntitySign.this.position.getX() + 0.5D, TileEntitySign.this.position.getY() + 0.5D, TileEntitySign.this.position.getZ() + 0.5D);
             }
 
-            public World getWorld() {
+            @Override
+			public World getWorld() {
                 return TileEntitySign.this.world;
             }
 
-            public Entity f() {
+            @Override
+			public Entity f() {
                 return null;
             }
 
-            public boolean getSendCommandFeedback() {
+            @Override
+			public boolean getSendCommandFeedback() {
                 return false;
             }
 
-            public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {}
+            @Override
+			public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {}
         };
 
         // CraftBukkit start - Add an option to convert signs correctly
@@ -105,14 +117,16 @@ public class TileEntitySign extends TileEntity {
         this.i.a(nbttagcompound);
     }
 
-    public Packet getUpdatePacket() {
+    @Override
+	public Packet getUpdatePacket() {
         IChatBaseComponent[] aichatbasecomponent = new IChatBaseComponent[4];
 
         System.arraycopy(this.lines, 0, aichatbasecomponent, 0, 4);
         return new PacketPlayOutUpdateSign(this.world, this.position, aichatbasecomponent);
     }
 
-    public boolean F() {
+    @Override
+	public boolean F() {
         return true;
     }
 
@@ -130,41 +144,51 @@ public class TileEntitySign extends TileEntity {
 
     public boolean b(final EntityHuman entityhuman) {
         ICommandListener icommandlistener = new ICommandListener() {
-            public String getName() {
+            @Override
+			public String getName() {
                 return entityhuman.getName();
             }
 
-            public IChatBaseComponent getScoreboardDisplayName() {
+            @Override
+			public IChatBaseComponent getScoreboardDisplayName() {
                 return entityhuman.getScoreboardDisplayName();
             }
 
-            public void sendMessage(IChatBaseComponent ichatbasecomponent) {}
+            @Override
+			public void sendMessage(IChatBaseComponent ichatbasecomponent) {}
 
-            public boolean a(int i, String s) {
+            @Override
+			public boolean a(int i, String s) {
                 return i <= 2;
             }
 
-            public BlockPosition getChunkCoordinates() {
+            @Override
+			public BlockPosition getChunkCoordinates() {
                 return TileEntitySign.this.position;
             }
 
-            public Vec3D d() {
-                return new Vec3D((double) TileEntitySign.this.position.getX() + 0.5D, (double) TileEntitySign.this.position.getY() + 0.5D, (double) TileEntitySign.this.position.getZ() + 0.5D);
+            @Override
+			public Vec3D d() {
+                return new Vec3D(TileEntitySign.this.position.getX() + 0.5D, TileEntitySign.this.position.getY() + 0.5D, TileEntitySign.this.position.getZ() + 0.5D);
             }
 
-            public World getWorld() {
+            @Override
+			public World getWorld() {
                 return entityhuman.getWorld();
             }
 
-            public Entity f() {
+            @Override
+			public Entity f() {
                 return entityhuman;
             }
 
-            public boolean getSendCommandFeedback() {
+            @Override
+			public boolean getSendCommandFeedback() {
                 return false;
             }
 
-            public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
+            @Override
+			public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
                 TileEntitySign.this.i.a(this, commandobjectiveexecutor_enumcommandresult, i);
             }
         };
@@ -178,7 +202,7 @@ public class TileEntitySign extends TileEntity {
                 if (chatclickable.a() == ChatClickable.EnumClickAction.RUN_COMMAND) {
                     // CraftBukkit start
                     // MinecraftServer.getServer().getCommandHandler().a(tileentitysignplayerwrapper, chatclickable.b());
-                    CommandBlockListenerAbstract.executeCommand(entityhuman, (org.bukkit.entity.Player) entityhuman.getBukkitEntity(), chatclickable.b());
+                    CommandBlockListenerAbstract.executeCommand(entityhuman, entityhuman.getBukkitEntity(), chatclickable.b());
                     // CraftBukkit end
                 }
             }

@@ -10,7 +10,8 @@ public class EntityMinecartChest extends EntityMinecartContainer {
         super(world, d0, d1, d2);
     }
 
-    public void a(DamageSource damagesource) {
+    @Override
+	public void a(DamageSource damagesource) {
         super.a(damagesource);
         if (this.world.getGameRules().getBoolean("doEntityDrops")) {
             this.a(Item.getItemOf(Blocks.CHEST), 1, 0.0F);
@@ -18,27 +19,33 @@ public class EntityMinecartChest extends EntityMinecartContainer {
 
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return 27;
     }
 
-    public EntityMinecartAbstract.EnumMinecartType s() {
+    @Override
+	public EntityMinecartAbstract.EnumMinecartType s() {
         return EntityMinecartAbstract.EnumMinecartType.CHEST;
     }
 
-    public IBlockData u() {
+    @Override
+	public IBlockData u() {
         return Blocks.CHEST.getBlockData().set(BlockChest.FACING, EnumDirection.NORTH);
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 8;
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:chest";
     }
 
-    public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+    @Override
+	public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
         return new ContainerChest(playerinventory, this, entityhuman);
     }
 }

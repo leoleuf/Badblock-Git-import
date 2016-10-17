@@ -21,18 +21,21 @@ public class CraftThrownPotion extends CraftProjectile implements ThrownPotion {
 
     // TODO: This one does not handle custom NBT potion effects does it?
     // In that case this method could be said to be misleading or incorrect
-    public Collection<PotionEffect> getEffects() {
+    @Override
+	public Collection<PotionEffect> getEffects() {
         return Potion.getBrewer().getEffectsFromDamage(getHandle().getPotionValue());
     }
 
-    public ItemStack getItem() {
+    @Override
+	public ItemStack getItem() {
         // We run this method once since it will set the item stack if there is none.
         getHandle().getPotionValue();
 
         return CraftItemStack.asBukkitCopy(getHandle().item);
     }
 
-    public void setItem(ItemStack item) {
+    @Override
+	public void setItem(ItemStack item) {
         // The ItemStack must not be null.
         Validate.notNull(item, "ItemStack cannot be null.");
 
@@ -52,7 +55,8 @@ public class CraftThrownPotion extends CraftProjectile implements ThrownPotion {
         return "CraftThrownPotion";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.SPLASH_POTION;
     }
 }

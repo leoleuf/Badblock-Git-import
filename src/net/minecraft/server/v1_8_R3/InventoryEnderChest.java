@@ -16,31 +16,38 @@ public class InventoryEnderChest extends InventorySubcontainer {
     public org.bukkit.entity.Player player;
     private int maxStack = MAX_STACK;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public org.bukkit.inventory.InventoryHolder getOwner() {
+    @Override
+	public org.bukkit.inventory.InventoryHolder getOwner() {
         return this.player;
     }
 
-    public void setMaxStackSize(int size) {
+    @Override
+	public void setMaxStackSize(int size) {
         maxStack = size;
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return maxStack;
     }
     // CraftBukkit end
@@ -89,11 +96,13 @@ public class InventoryEnderChest extends InventorySubcontainer {
         return nbttaglist;
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return this.a != null && !this.a.a(entityhuman) ? false : super.a(entityhuman);
     }
 
-    public void startOpen(EntityHuman entityhuman) {
+    @Override
+	public void startOpen(EntityHuman entityhuman) {
         if (this.a != null) {
             this.a.b();
         }
@@ -101,7 +110,8 @@ public class InventoryEnderChest extends InventorySubcontainer {
         super.startOpen(entityhuman);
     }
 
-    public void closeContainer(EntityHuman entityhuman) {
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {
         if (this.a != null) {
             this.a.d();
         }

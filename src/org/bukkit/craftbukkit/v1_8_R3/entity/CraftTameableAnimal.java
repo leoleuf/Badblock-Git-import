@@ -35,7 +35,8 @@ public class CraftTameableAnimal extends CraftAnimals implements Tameable, Creat
         }
     }
 
-    public AnimalTamer getOwner() {
+    @Override
+	public AnimalTamer getOwner() {
         if (getOwnerUUID() == null) {
             return null;
         }
@@ -48,11 +49,13 @@ public class CraftTameableAnimal extends CraftAnimals implements Tameable, Creat
         return owner;
     }
 
-    public boolean isTamed() {
+    @Override
+	public boolean isTamed() {
         return getHandle().isTamed();
     }
 
-    public void setOwner(AnimalTamer tamer) {
+    @Override
+	public void setOwner(AnimalTamer tamer) {
         if (tamer != null) {
             setTamed(true);
             getHandle().setGoalTarget(null, null, false);
@@ -63,7 +66,8 @@ public class CraftTameableAnimal extends CraftAnimals implements Tameable, Creat
         }
     }
 
-    public void setTamed(boolean tame) {
+    @Override
+	public void setTamed(boolean tame) {
         getHandle().setTamed(tame);
         if (!tame) {
             setOwnerUUID(null);

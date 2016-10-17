@@ -11,7 +11,8 @@ public class PathfinderGoalRandomTargetNonTamed<T extends EntityLiving> extends 
         this.g = entitytameableanimal;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         return !this.g.isTamed() && super.a();
     }
 }

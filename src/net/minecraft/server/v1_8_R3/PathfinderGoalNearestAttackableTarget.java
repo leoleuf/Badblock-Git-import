@@ -48,10 +48,10 @@ public class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> exten
                                 f = 0.1F;
                             }
 
-                            d0 *= (double) (0.7F * f);
+                            d0 *= 0.7F * f;
                         }
 
-                        if ((double) t0.g(PathfinderGoalNearestAttackableTarget.this.e) > d0) {
+                        if (t0.g(PathfinderGoalNearestAttackableTarget.this.e) > d0) {
                             return false;
                         }
                     }
@@ -60,13 +60,15 @@ public class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> exten
                 }
             }
 
-            public boolean apply(Object object) {
+            @Override
+			public boolean apply(Object object) {
                 return this.a((T) object); // CraftBukkit - fix decompile error
             }
         };
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.g > 0 && this.e.bc().nextInt(this.g) != 0) {
             return false;
         } else {
@@ -83,7 +85,8 @@ public class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> exten
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.e.setGoalTarget(this.d, d instanceof EntityPlayer ? org.bukkit.event.entity.EntityTargetEvent.TargetReason.CLOSEST_PLAYER : org.bukkit.event.entity.EntityTargetEvent.TargetReason.CLOSEST_ENTITY, true); // Craftbukkit - reason
         super.c();
     }
@@ -103,8 +106,9 @@ public class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> exten
             return d0 < d1 ? -1 : (d0 > d1 ? 1 : 0);
         }
 
-        public int compare(Entity object, Entity object1) { // CraftBukkit - fix decompile error
-            return this.a((Entity) object, (Entity) object1);
+        @Override
+		public int compare(Entity object, Entity object1) { // CraftBukkit - fix decompile error
+            return this.a(object, object1);
         }
     }
 }

@@ -9,7 +9,7 @@ import com.google.common.base.Predicates;
 
 public class PathfinderGoalEatTile extends PathfinderGoal {
 
-    private static final Predicate<IBlockData> b = BlockStatePredicate.a((Block) Blocks.TALLGRASS).a(BlockLongGrass.TYPE, Predicates.equalTo(BlockLongGrass.EnumTallGrassType.GRASS));
+    private static final Predicate<IBlockData> b = BlockStatePredicate.a(Blocks.TALLGRASS).a(BlockLongGrass.TYPE, Predicates.equalTo(BlockLongGrass.EnumTallGrassType.GRASS));
     private EntityInsentient c;
     private World d;
     int a;
@@ -20,7 +20,8 @@ public class PathfinderGoalEatTile extends PathfinderGoal {
         this.a(7);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.c.bc().nextInt(this.c.isBaby() ? 50 : 1000) != 0) {
             return false;
         } else {
@@ -30,17 +31,20 @@ public class PathfinderGoalEatTile extends PathfinderGoal {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a = 40;
         this.d.broadcastEntityEffect(this.c, (byte) 10);
         this.c.getNavigation().n();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.a = 0;
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.a > 0;
     }
 
@@ -48,7 +52,8 @@ public class PathfinderGoalEatTile extends PathfinderGoal {
         return this.a;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         this.a = Math.max(0, this.a - 1);
         if (this.a == 4) {
             BlockPosition blockposition = new BlockPosition(this.c.locX, this.c.locY, this.c.locZ);

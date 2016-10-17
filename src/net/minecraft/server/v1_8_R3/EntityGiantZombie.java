@@ -7,18 +7,21 @@ public class EntityGiantZombie extends EntityMonster {
         this.setSize(this.width * 6.0F, this.length * 6.0F);
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 10.440001F;
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(100.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.5D);
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(50.0D);
     }
 
-    public float a(BlockPosition blockposition) {
+    @Override
+	public float a(BlockPosition blockposition) {
         return this.world.o(blockposition) - 0.5F;
     }
 }

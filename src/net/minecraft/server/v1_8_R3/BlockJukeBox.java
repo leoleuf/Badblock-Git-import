@@ -10,8 +10,9 @@ public class BlockJukeBox extends BlockContainer {
         this.a(CreativeModeTab.c);
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
-        if (((Boolean) iblockdata.get(BlockJukeBox.HAS_RECORD)).booleanValue()) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+        if (iblockdata.get(BlockJukeBox.HAS_RECORD).booleanValue()) {
             this.dropRecord(world, blockposition, iblockdata);
             iblockdata = iblockdata.set(BlockJukeBox.HAS_RECORD, Boolean.valueOf(false));
             world.setTypeAndData(blockposition, iblockdata, 2);
@@ -45,11 +46,11 @@ public class BlockJukeBox extends BlockContainer {
                     world.a(blockposition, (String) null);
                     blockjukebox_tileentityrecordplayer.setRecord((ItemStack) null);
                     float f = 0.7F;
-                    double d0 = (double) (world.random.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-                    double d1 = (double) (world.random.nextFloat() * f) + (double) (1.0F - f) * 0.2D + 0.6D;
-                    double d2 = (double) (world.random.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
+                    double d0 = world.random.nextFloat() * f + (1.0F - f) * 0.5D;
+                    double d1 = world.random.nextFloat() * f + (1.0F - f) * 0.2D + 0.6D;
+                    double d2 = world.random.nextFloat() * f + (1.0F - f) * 0.5D;
                     ItemStack itemstack1 = itemstack.cloneItemStack();
-                    EntityItem entityitem = new EntityItem(world, (double) blockposition.getX() + d0, (double) blockposition.getY() + d1, (double) blockposition.getZ() + d2, itemstack1);
+                    EntityItem entityitem = new EntityItem(world, blockposition.getX() + d0, blockposition.getY() + d1, blockposition.getZ() + d2, itemstack1);
 
                     entityitem.p();
                     world.addEntity(entityitem);
@@ -58,26 +59,31 @@ public class BlockJukeBox extends BlockContainer {
         }
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         this.dropRecord(world, blockposition, iblockdata);
         super.remove(world, blockposition, iblockdata);
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         if (!world.isClientSide) {
             super.dropNaturally(world, blockposition, iblockdata, f, 0);
         }
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new BlockJukeBox.TileEntityRecordPlayer();
     }
 
-    public boolean isComplexRedstone() {
+    @Override
+	public boolean isComplexRedstone() {
         return true;
     }
 
-    public int l(World world, BlockPosition blockposition) {
+    @Override
+	public int l(World world, BlockPosition blockposition) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof BlockJukeBox.TileEntityRecordPlayer) {
@@ -91,19 +97,23 @@ public class BlockJukeBox extends BlockContainer {
         return 0;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockJukeBox.HAS_RECORD, Boolean.valueOf(i > 0));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Boolean) iblockdata.get(BlockJukeBox.HAS_RECORD)).booleanValue() ? 1 : 0;
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockJukeBox.HAS_RECORD).booleanValue() ? 1 : 0;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockJukeBox.HAS_RECORD});
     }
 
@@ -113,7 +123,8 @@ public class BlockJukeBox extends BlockContainer {
 
         public TileEntityRecordPlayer() {}
 
-        public void a(NBTTagCompound nbttagcompound) {
+        @Override
+		public void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             if (nbttagcompound.hasKeyOfType("RecordItem", 10)) {
                 this.setRecord(ItemStack.createStack(nbttagcompound.getCompound("RecordItem")));
@@ -123,7 +134,8 @@ public class BlockJukeBox extends BlockContainer {
 
         }
 
-        public void b(NBTTagCompound nbttagcompound) {
+        @Override
+		public void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             if (this.getRecord() != null) {
                 nbttagcompound.set("RecordItem", this.getRecord().save(new NBTTagCompound()));

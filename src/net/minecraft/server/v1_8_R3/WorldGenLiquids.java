@@ -10,7 +10,8 @@ public class WorldGenLiquids extends WorldGenerator {
         this.a = block;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         if (world.getType(blockposition.up()).getBlock() != Blocks.STONE) {
             return false;
         } else if (world.getType(blockposition.down()).getBlock() != Blocks.STONE) {

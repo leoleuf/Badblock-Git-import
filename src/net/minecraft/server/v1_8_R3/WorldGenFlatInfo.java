@@ -46,7 +46,8 @@ public class WorldGenFlatInfo {
 
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder stringbuilder = new StringBuilder();
 
         stringbuilder.append(3);
@@ -59,7 +60,7 @@ public class WorldGenFlatInfo {
                 stringbuilder.append(",");
             }
 
-            stringbuilder.append(((WorldGenFlatLayerInfo) this.layers.get(i)).toString());
+            stringbuilder.append(this.layers.get(i).toString());
         }
 
         stringbuilder.append(";");

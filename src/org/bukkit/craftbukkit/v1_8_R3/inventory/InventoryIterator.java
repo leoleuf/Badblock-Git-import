@@ -20,33 +20,40 @@ public class InventoryIterator implements ListIterator<ItemStack> {
         this.nextIndex = index;
     }
 
-    public boolean hasNext() {
+    @Override
+	public boolean hasNext() {
         return nextIndex < inventory.getSize();
     }
 
-    public ItemStack next() {
+    @Override
+	public ItemStack next() {
         lastDirection = true;
         return inventory.getItem(nextIndex++);
     }
 
-    public int nextIndex() {
+    @Override
+	public int nextIndex() {
         return nextIndex;
     }
 
-    public boolean hasPrevious() {
+    @Override
+	public boolean hasPrevious() {
         return nextIndex > 0;
     }
 
-    public ItemStack previous() {
+    @Override
+	public ItemStack previous() {
         lastDirection = false;
         return inventory.getItem(--nextIndex);
     }
 
-    public int previousIndex() {
+    @Override
+	public int previousIndex() {
         return nextIndex - 1;
     }
 
-    public void set(ItemStack item) {
+    @Override
+	public void set(ItemStack item) {
         if (lastDirection == null) {
             throw new IllegalStateException("No current item!");
         }
@@ -54,11 +61,13 @@ public class InventoryIterator implements ListIterator<ItemStack> {
         inventory.setItem(i, item);
     }
 
-    public void add(ItemStack item) {
+    @Override
+	public void add(ItemStack item) {
         throw new UnsupportedOperationException("Can't change the size of an inventory!");
     }
 
-    public void remove() {
+    @Override
+	public void remove() {
         throw new UnsupportedOperationException("Can't change the size of an inventory!");
     }
 }

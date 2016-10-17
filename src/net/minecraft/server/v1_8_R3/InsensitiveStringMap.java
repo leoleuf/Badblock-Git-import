@@ -13,23 +13,28 @@ public class InsensitiveStringMap<V> implements Map<String, V> {
 
     public InsensitiveStringMap() {}
 
-    public int size() {
+    @Override
+	public int size() {
         return this.a.size();
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return this.a.isEmpty();
     }
 
-    public boolean containsKey(Object object) {
+    @Override
+	public boolean containsKey(Object object) {
         return this.a.containsKey(object.toString().toLowerCase());
     }
 
-    public boolean containsValue(Object object) {
+    @Override
+	public boolean containsValue(Object object) {
         return this.a.containsKey(object);
     }
 
-    public V get(Object object) {
+    @Override
+	public V get(Object object) {
         return this.a.get(object.toString().toLowerCase());
     }
 
@@ -37,11 +42,13 @@ public class InsensitiveStringMap<V> implements Map<String, V> {
         return this.a.put(s.toLowerCase(), v0);
     }
 
-    public V remove(Object object) {
+    @Override
+	public V remove(Object object) {
         return this.a.remove(object.toString().toLowerCase());
     }
 
-    public void putAll(Map<? extends String, ? extends V> map) {
+    @Override
+	public void putAll(Map<? extends String, ? extends V> map) {
         Iterator iterator = map.entrySet().iterator();
 
         while (iterator.hasNext()) {
@@ -52,23 +59,28 @@ public class InsensitiveStringMap<V> implements Map<String, V> {
 
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
         this.a.clear();
     }
 
-    public Set<String> keySet() {
+    @Override
+	public Set<String> keySet() {
         return this.a.keySet();
     }
 
-    public Collection<V> values() {
+    @Override
+	public Collection<V> values() {
         return this.a.values();
     }
 
-    public Set<Entry<String, V>> entrySet() {
+    @Override
+	public Set<Entry<String, V>> entrySet() {
         return this.a.entrySet();
     }
 
-    public V put(String object, V object1) {
-        return this.a((String) object, object1);
+    @Override
+	public V put(String object, V object1) {
+        return this.a(object, object1);
     }
 }

@@ -12,19 +12,23 @@ public class CommandClone extends CommandAbstract {
 
     public CommandClone() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "clone";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.clone.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 9) {
             throw new ExceptionUsage("commands.clone.usage", new Object[0]);
         } else {
@@ -182,7 +186,7 @@ public class CommandClone extends CommandAbstract {
                                 while (iterator2.hasNext()) {
                                     NextTickListEntry nextticklistentry = (NextTickListEntry) iterator2.next();
 
-                                    if (structureboundingbox.b((BaseBlockPosition) nextticklistentry.a)) {
+                                    if (structureboundingbox.b(nextticklistentry.a)) {
                                         BlockPosition blockposition7 = nextticklistentry.a.a(blockposition3);
 
                                         world.b(blockposition7, nextticklistentry.a(), (int) (nextticklistentry.b - world.getWorldData().getTime()), nextticklistentry.c);
@@ -207,8 +211,9 @@ public class CommandClone extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length > 0 && astring.length <= 3 ? a(astring, 0, blockposition) : (astring.length > 3 && astring.length <= 6 ? a(astring, 3, blockposition) : (astring.length > 6 && astring.length <= 9 ? a(astring, 6, blockposition) : (astring.length == 10 ? a(astring, new String[] { "replace", "masked", "filtered"}) : (astring.length == 11 ? a(astring, new String[] { "normal", "force", "move"}) : (astring.length == 12 && "filtered".equals(astring[9]) ? a(astring, (Collection) Block.REGISTRY.keySet()) : null)))));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length > 0 && astring.length <= 3 ? a(astring, 0, blockposition) : (astring.length > 3 && astring.length <= 6 ? a(astring, 3, blockposition) : (astring.length > 6 && astring.length <= 9 ? a(astring, 6, blockposition) : (astring.length == 10 ? a(astring, new String[] { "replace", "masked", "filtered"}) : (astring.length == 11 ? a(astring, new String[] { "normal", "force", "move"}) : (astring.length == 12 && "filtered".equals(astring[9]) ? a(astring, Block.REGISTRY.keySet()) : null)))));
     }
 
     static class CommandCloneStoredTileEntity {

@@ -22,7 +22,7 @@ public class PacketEncoder extends MessageToByteEncoder<Packet> {
     }
 
     protected void a(ChannelHandlerContext channelhandlercontext, Packet packet, ByteBuf bytebuf) throws Exception {
-        Integer integer = ((EnumProtocol) channelhandlercontext.channel().attr(NetworkManager.c).get()).a(this.c, packet);
+        Integer integer = channelhandlercontext.channel().attr(NetworkManager.c).get().a(this.c, packet);
 
         if (PacketEncoder.a.isDebugEnabled()) {
             PacketEncoder.a.debug(PacketEncoder.b, "OUT: [{}:{}] {}", new Object[] { channelhandlercontext.channel().attr(NetworkManager.c).get(), integer, packet.getClass().getName()});
@@ -48,7 +48,8 @@ public class PacketEncoder extends MessageToByteEncoder<Packet> {
         }
     }
 
-    protected void encode(ChannelHandlerContext channelhandlercontext, Packet object, ByteBuf bytebuf) throws Exception {
-        this.a(channelhandlercontext, (Packet) object, bytebuf);
+    @Override
+	protected void encode(ChannelHandlerContext channelhandlercontext, Packet object, ByteBuf bytebuf) throws Exception {
+        this.a(channelhandlercontext, object, bytebuf);
     }
 }

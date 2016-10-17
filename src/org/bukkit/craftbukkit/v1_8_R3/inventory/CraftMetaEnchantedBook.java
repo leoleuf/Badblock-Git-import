@@ -126,11 +126,13 @@ class CraftMetaEnchantedBook extends CraftMetaItem implements EnchantmentStorage
         return !hasStoredEnchants();
     }
 
-    public boolean hasStoredEnchant(Enchantment ench) {
+    @Override
+	public boolean hasStoredEnchant(Enchantment ench) {
         return hasStoredEnchants() && enchantments.containsKey(ench);
     }
 
-    public int getStoredEnchantLevel(Enchantment ench) {
+    @Override
+	public int getStoredEnchantLevel(Enchantment ench) {
         Integer level = hasStoredEnchants() ? enchantments.get(ench) : null;
         if (level == null) {
             return 0;
@@ -138,11 +140,13 @@ class CraftMetaEnchantedBook extends CraftMetaItem implements EnchantmentStorage
         return level;
     }
 
-    public Map<Enchantment, Integer> getStoredEnchants() {
+    @Override
+	public Map<Enchantment, Integer> getStoredEnchants() {
         return hasStoredEnchants() ? ImmutableMap.copyOf(enchantments) : ImmutableMap.<Enchantment, Integer>of();
     }
 
-    public boolean addStoredEnchant(Enchantment ench, int level, boolean ignoreRestrictions) {
+    @Override
+	public boolean addStoredEnchant(Enchantment ench, int level, boolean ignoreRestrictions) {
         if (enchantments == null) {
             enchantments = new HashMap<Enchantment, Integer>(4);
         }
@@ -154,15 +158,18 @@ class CraftMetaEnchantedBook extends CraftMetaItem implements EnchantmentStorage
         return false;
     }
 
-    public boolean removeStoredEnchant(Enchantment ench) {
+    @Override
+	public boolean removeStoredEnchant(Enchantment ench) {
         return hasStoredEnchants() && enchantments.remove(ench) != null;
     }
 
-    public boolean hasStoredEnchants() {
+    @Override
+	public boolean hasStoredEnchants() {
         return !(enchantments == null || enchantments.isEmpty());
     }
 
-    public boolean hasConflictingStoredEnchant(Enchantment ench) {
+    @Override
+	public boolean hasConflictingStoredEnchant(Enchantment ench) {
         return checkConflictingEnchants(enchantments, ench);
     }
 }

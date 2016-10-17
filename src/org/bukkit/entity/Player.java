@@ -106,7 +106,8 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param message Message to be displayed
      */
-    public void sendRawMessage(String message);
+    @Override
+	public void sendRawMessage(String message);
 
     /**
      * Kicks player with custom kick message.
@@ -920,7 +921,8 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @return Bed Spawn Location if bed exists, otherwise null.
      */
-    public Location getBedSpawnLocation();
+    @Override
+	public Location getBedSpawnLocation();
 
     /**
      * Sets the Location where the player will spawn at their bed.
@@ -986,7 +988,8 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @deprecated Inconsistent with {@link
      *     org.bukkit.entity.Entity#isOnGround()}
      */
-    @Deprecated
+    @Override
+	@Deprecated
     public boolean isOnGround();
 
     /**
@@ -1334,6 +1337,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
         }
     }
 
-    Spigot spigot();
+    @Override
+	Spigot spigot();
     // Spigot end
 }

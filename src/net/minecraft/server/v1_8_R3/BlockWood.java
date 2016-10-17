@@ -10,23 +10,28 @@ public class BlockWood extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockWood.EnumLogVariant) iblockdata.get(BlockWood.VARIANT)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockWood.VARIANT).a();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockWood.VARIANT, BlockWood.EnumLogVariant.a(i));
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((BlockWood.EnumLogVariant) iblockdata.get(BlockWood.VARIANT)).c();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockWood.VARIANT).c();
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockWood.EnumLogVariant) iblockdata.get(BlockWood.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockWood.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockWood.VARIANT});
     }
 
@@ -59,7 +64,8 @@ public class BlockWood extends Block {
             return this.k;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.i;
         }
 
@@ -71,7 +77,8 @@ public class BlockWood extends Block {
             return BlockWood.EnumLogVariant.g[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.i;
         }
 

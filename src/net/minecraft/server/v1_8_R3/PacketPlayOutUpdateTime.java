@@ -21,17 +21,20 @@ public class PacketPlayOutUpdateTime implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readLong();
         this.b = packetdataserializer.readLong();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeLong(this.a);
         packetdataserializer.writeLong(this.b);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

@@ -4,23 +4,28 @@ public class PathfinderWater extends PathfinderAbstract {
 
     public PathfinderWater() {}
 
-    public void a(IBlockAccess iblockaccess, Entity entity) {
+    @Override
+	public void a(IBlockAccess iblockaccess, Entity entity) {
         super.a(iblockaccess, entity);
     }
 
-    public void a() {
+    @Override
+	public void a() {
         super.a();
     }
 
-    public PathPoint a(Entity entity) {
+    @Override
+	public PathPoint a(Entity entity) {
         return this.a(MathHelper.floor(entity.getBoundingBox().a), MathHelper.floor(entity.getBoundingBox().b + 0.5D), MathHelper.floor(entity.getBoundingBox().c));
     }
 
-    public PathPoint a(Entity entity, double d0, double d1, double d2) {
-        return this.a(MathHelper.floor(d0 - (double) (entity.width / 2.0F)), MathHelper.floor(d1 + 0.5D), MathHelper.floor(d2 - (double) (entity.width / 2.0F)));
+    @Override
+	public PathPoint a(Entity entity, double d0, double d1, double d2) {
+        return this.a(MathHelper.floor(d0 - entity.width / 2.0F), MathHelper.floor(d1 + 0.5D), MathHelper.floor(d2 - entity.width / 2.0F));
     }
 
-    public int a(PathPoint[] apathpoint, Entity entity, PathPoint pathpoint, PathPoint pathpoint1, float f) {
+    @Override
+	public int a(PathPoint[] apathpoint, Entity entity, PathPoint pathpoint, PathPoint pathpoint1, float f) {
         int i = 0;
         EnumDirection[] aenumdirection = EnumDirection.values();
         int j = aenumdirection.length;

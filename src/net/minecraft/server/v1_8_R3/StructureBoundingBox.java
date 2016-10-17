@@ -138,7 +138,8 @@ public class StructureBoundingBox {
         return new BlockPosition(this.a + (this.d - this.a + 1) / 2, this.b + (this.e - this.b + 1) / 2, this.c + (this.f - this.c + 1) / 2);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return Objects.toStringHelper(this).add("x0", this.a).add("y0", this.b).add("z0", this.c).add("x1", this.d).add("y1", this.e).add("z1", this.f).toString();
     }
 

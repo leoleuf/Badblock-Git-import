@@ -18,7 +18,8 @@ public class BiomeIcePlains extends BiomeBase {
         this.au.clear();
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         if (this.aD) {
             int i;
             int j;
@@ -40,11 +41,13 @@ public class BiomeIcePlains extends BiomeBase {
         super.a(world, random, blockposition);
     }
 
-    public WorldGenTreeAbstract a(Random random) {
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
         return new WorldGenTaiga2(false);
     }
 
-    protected BiomeBase d(int i) {
+    @Override
+	protected BiomeBase d(int i) {
         BiomeBase biomebase = (new BiomeIcePlains(i, true)).a(13828095, true).a(this.ah + " Spikes").c().a(0.0F, 0.5F).a(new BiomeBase.BiomeTemperature(this.an + 0.1F, this.ao + 0.1F));
 
         biomebase.an = this.an + 0.3F;

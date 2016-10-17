@@ -12,7 +12,8 @@ public class BlockCauldron extends Block {
         this.j(this.blockStateList.getBlockData().set(BlockCauldron.LEVEL, Integer.valueOf(0)));
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.3125F, 1.0F);
         super.a(world, blockposition, iblockdata, axisalignedbb, list, entity);
         float f = 0.125F;
@@ -28,30 +29,35 @@ public class BlockCauldron extends Block {
         this.j();
     }
 
-    public void j() {
+    @Override
+	public void j() {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
-        int i = ((Integer) iblockdata.get(BlockCauldron.LEVEL)).intValue();
-        float f = (float) blockposition.getY() + (6.0F + (float) (3 * i)) / 16.0F;
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+        int i = iblockdata.get(BlockCauldron.LEVEL).intValue();
+        float f = blockposition.getY() + (6.0F + 3 * i) / 16.0F;
 
-        if (!world.isClientSide && entity.isBurning() && i > 0 && entity.getBoundingBox().b <= (double) f) {
+        if (!world.isClientSide && entity.isBurning() && i > 0 && entity.getBoundingBox().b <= f) {
             entity.extinguish();
             this.a(world, blockposition, iblockdata, i - 1);
         }
 
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -60,7 +66,7 @@ public class BlockCauldron extends Block {
             if (itemstack == null) {
                 return true;
             } else {
-                int i = ((Integer) iblockdata.get(BlockCauldron.LEVEL)).intValue();
+                int i = iblockdata.get(BlockCauldron.LEVEL).intValue();
                 Item item = itemstack.getItem();
 
                 if (item == Items.WATER_BUCKET) {
@@ -82,7 +88,7 @@ public class BlockCauldron extends Block {
                             if (!entityhuman.abilities.canInstantlyBuild) {
                                 itemstack1 = new ItemStack(Items.POTION, 1, 0);
                                 if (!entityhuman.inventory.pickup(itemstack1)) {
-                                    world.addEntity(new EntityItem(world, (double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 1.5D, (double) blockposition.getZ() + 0.5D, itemstack1));
+                                    world.addEntity(new EntityItem(world, blockposition.getX() + 0.5D, blockposition.getY() + 1.5D, blockposition.getZ() + 0.5D, itemstack1));
                                 } else if (entityhuman instanceof EntityPlayer) {
                                     ((EntityPlayer) entityhuman).updateInventory(entityhuman.defaultContainer);
                                 }
@@ -118,7 +124,7 @@ public class BlockCauldron extends Block {
                                 entityhuman.inventory.setItem(entityhuman.inventory.itemInHandIndex, itemstack1);
                             } else {
                                 if (!entityhuman.inventory.pickup(itemstack1)) {
-                                    world.addEntity(new EntityItem(world, (double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 1.5D, (double) blockposition.getZ() + 0.5D, itemstack1));
+                                    world.addEntity(new EntityItem(world, blockposition.getX() + 0.5D, blockposition.getY() + 1.5D, blockposition.getZ() + 0.5D, itemstack1));
                                 } else if (entityhuman instanceof EntityPlayer) {
                                     ((EntityPlayer) entityhuman).updateInventory(entityhuman.defaultContainer);
                                 }
@@ -148,38 +154,45 @@ public class BlockCauldron extends Block {
         world.updateAdjacentComparators(blockposition, this);
     }
 
-    public void k(World world, BlockPosition blockposition) {
+    @Override
+	public void k(World world, BlockPosition blockposition) {
         if (world.random.nextInt(20) == 1) {
             IBlockData iblockdata = world.getType(blockposition);
 
-            if (((Integer) iblockdata.get(BlockCauldron.LEVEL)).intValue() < 3) {
+            if (iblockdata.get(BlockCauldron.LEVEL).intValue() < 3) {
                 world.setTypeAndData(blockposition, iblockdata.a(BlockCauldron.LEVEL), 2);
             }
 
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.CAULDRON;
     }
 
-    public boolean isComplexRedstone() {
+    @Override
+	public boolean isComplexRedstone() {
         return true;
     }
 
-    public int l(World world, BlockPosition blockposition) {
-        return ((Integer) world.getType(blockposition).get(BlockCauldron.LEVEL)).intValue();
+    @Override
+	public int l(World world, BlockPosition blockposition) {
+        return world.getType(blockposition).get(BlockCauldron.LEVEL).intValue();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockCauldron.LEVEL, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockCauldron.LEVEL)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockCauldron.LEVEL).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockCauldron.LEVEL});
     }
 }

@@ -10,23 +10,28 @@ public class CommandHelp extends CommandAbstract {
 
     public CommandHelp() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "help";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 0;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.help.usage";
     }
 
-    public List<String> b() {
+    @Override
+	public List<String> b() {
         return Arrays.asList(new String[] { "?"});
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         List list = this.d(icommandlistener);
         boolean flag = true;
         int i = (list.size() - 1) / 7;
@@ -85,7 +90,8 @@ public class CommandHelp extends CommandAbstract {
         return MinecraftServer.getServer().getCommandHandler().getCommands();
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             Set set = this.d().keySet();
 

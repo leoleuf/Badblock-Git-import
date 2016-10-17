@@ -20,7 +20,8 @@ public class PacketDecrypter extends MessageToMessageDecoder<ByteBuf> {
         list.add(this.a.a(channelhandlercontext, bytebuf));
     }
 
-    protected void decode(ChannelHandlerContext channelhandlercontext, ByteBuf object, List list) throws Exception {
-        this.a(channelhandlercontext, (ByteBuf) object, list);
+    @Override
+	protected void decode(ChannelHandlerContext channelhandlercontext, ByteBuf object, List list) throws Exception {
+        this.a(channelhandlercontext, object, list);
     }
 }

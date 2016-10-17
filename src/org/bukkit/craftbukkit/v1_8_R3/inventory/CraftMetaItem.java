@@ -160,7 +160,8 @@ class CraftMetaItem implements ItemMeta, Repairable {
             }
         }
 
-        public Map<String, Object> serialize() {
+        @Override
+		public Map<String, Object> serialize() {
             throw new AssertionError();
         }
 
@@ -403,7 +404,7 @@ class CraftMetaItem implements ItemMeta, Repairable {
                 if (!(nbttaglist.get(i) instanceof NBTTagCompound)) {
                     continue;
                 }
-                NBTTagCompound nbttagcompound = (NBTTagCompound) nbttaglist.get(i);
+                NBTTagCompound nbttagcompound = nbttaglist.get(i);
 
                 if (!nbttagcompound.hasKeyOfType(ATTRIBUTES_UUID_HIGH.NBT, 99)) {
                     continue;
@@ -464,8 +465,8 @@ class CraftMetaItem implements ItemMeta, Repairable {
         Map<Enchantment, Integer> enchantments = new HashMap<Enchantment, Integer>(ench.size());
 
         for (int i = 0; i < ench.size(); i++) {
-            int id = 0xffff & ((NBTTagCompound) ench.get(i)).getShort(ENCHANTMENTS_ID.NBT);
-            int level = 0xffff & ((NBTTagCompound) ench.get(i)).getShort(ENCHANTMENTS_LVL.NBT);
+            int id = 0xffff & ench.get(i).getShort(ENCHANTMENTS_ID.NBT);
+            int level = 0xffff & ench.get(i).getShort(ENCHANTMENTS_LVL.NBT);
 
             // Spigot start - skip invalid enchantments
             Enchantment e = Enchantment.getById(id);
@@ -637,31 +638,38 @@ class CraftMetaItem implements ItemMeta, Repairable {
         return !(hasDisplayName() || hasEnchants() || hasLore() || hasRepairCost() || !unhandledTags.isEmpty() || hideFlag != 0 || spigot.isUnbreakable()); // Spigot
     }
 
-    public String getDisplayName() {
+    @Override
+	public String getDisplayName() {
         return displayName;
     }
 
-    public final void setDisplayName(String name) {
+    @Override
+	public final void setDisplayName(String name) {
         this.displayName = name;
     }
 
-    public boolean hasDisplayName() {
+    @Override
+	public boolean hasDisplayName() {
         return !Strings.isNullOrEmpty(displayName);
     }
 
-    public boolean hasLore() {
+    @Override
+	public boolean hasLore() {
         return this.lore != null && !this.lore.isEmpty();
     }
 
-    public boolean hasRepairCost() {
+    @Override
+	public boolean hasRepairCost() {
         return repairCost > 0;
     }
 
-    public boolean hasEnchant(Enchantment ench) {
+    @Override
+	public boolean hasEnchant(Enchantment ench) {
         return hasEnchants() && enchantments.containsKey(ench);
     }
 
-    public int getEnchantLevel(Enchantment ench) {
+    @Override
+	public int getEnchantLevel(Enchantment ench) {
         Integer level = hasEnchants() ? enchantments.get(ench) : null;
         if (level == null) {
             return 0;
@@ -669,11 +677,13 @@ class CraftMetaItem implements ItemMeta, Repairable {
         return level;
     }
 
-    public Map<Enchantment, Integer> getEnchants() {
+    @Override
+	public Map<Enchantment, Integer> getEnchants() {
         return hasEnchants() ? ImmutableMap.copyOf(enchantments) : ImmutableMap.<Enchantment, Integer>of();
     }
 
-    public boolean addEnchant(Enchantment ench, int level, boolean ignoreRestrictions) {
+    @Override
+	public boolean addEnchant(Enchantment ench, int level, boolean ignoreRestrictions) {
         if (enchantments == null) {
             enchantments = new HashMap<Enchantment, Integer>(4);
         }
@@ -685,7 +695,8 @@ class CraftMetaItem implements ItemMeta, Repairable {
         return false;
     }
 
-    public boolean removeEnchant(Enchantment ench) {
+    @Override
+	public boolean removeEnchant(Enchantment ench) {
         // Spigot start
         boolean b = hasEnchants() && enchantments.remove( ench ) != null;
         if ( enchantments != null && enchantments.isEmpty() )
@@ -696,11 +707,13 @@ class CraftMetaItem implements ItemMeta, Repairable {
         // Spigot end
     }
 
-    public boolean hasEnchants() {
+    @Override
+	public boolean hasEnchants() {
         return !(enchantments == null || enchantments.isEmpty());
     }
 
-    public boolean hasConflictingEnchant(Enchantment ench) {
+    @Override
+	public boolean hasConflictingEnchant(Enchantment ench) {
         return checkConflictingEnchants(enchantments, ench);
     }
 
@@ -741,11 +754,13 @@ class CraftMetaItem implements ItemMeta, Repairable {
         return (byte) (1 << hideFlag.ordinal());
     }
 
-    public List<String> getLore() {
+    @Override
+	public List<String> getLore() {
         return this.lore == null ? null : new ArrayList<String>(this.lore);
     }
 
-    public void setLore(List<String> lore) { // too tired to think if .clone is better
+    @Override
+	public void setLore(List<String> lore) { // too tired to think if .clone is better
         if (lore == null) {
             this.lore = null;
         } else {
@@ -758,11 +773,13 @@ class CraftMetaItem implements ItemMeta, Repairable {
         }
     }
 
-    public int getRepairCost() {
+    @Override
+	public int getRepairCost() {
         return repairCost;
     }
 
-    public void setRepairCost(int cost) { // TODO: Does this have limits?
+    @Override
+	public void setRepairCost(int cost) { // TODO: Does this have limits?
         repairCost = cost;
     }
 
@@ -842,7 +859,8 @@ class CraftMetaItem implements ItemMeta, Repairable {
         }
     }
 
-    public final Map<String, Object> serialize() {
+    @Override
+	public final Map<String, Object> serialize() {
         ImmutableMap.Builder<String, Object> map = ImmutableMap.builder();
         map.put(SerializableMeta.TYPE_FIELD, SerializableMeta.classMap.get(getClass()));
         serialize(map);

@@ -28,8 +28,9 @@ public class PacketPlayOutWorldBorder implements Packet<PacketListenerPlayOut> {
         this.h = worldborder.getWarningTime();
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.a = (PacketPlayOutWorldBorder.EnumWorldBorderAction) packetdataserializer.a(PacketPlayOutWorldBorder.EnumWorldBorderAction.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.a = packetdataserializer.a(PacketPlayOutWorldBorder.EnumWorldBorderAction.class);
         switch (PacketPlayOutWorldBorder.SyntheticClass_1.a[this.a.ordinal()]) {
         case 1:
             this.e = packetdataserializer.readDouble();
@@ -67,8 +68,9 @@ public class PacketPlayOutWorldBorder implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-        packetdataserializer.a((Enum) this.a);
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        packetdataserializer.a(this.a);
         switch (PacketPlayOutWorldBorder.SyntheticClass_1.a[this.a.ordinal()]) {
         case 1:
             packetdataserializer.writeDouble(this.e);
@@ -106,7 +108,8 @@ public class PacketPlayOutWorldBorder implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

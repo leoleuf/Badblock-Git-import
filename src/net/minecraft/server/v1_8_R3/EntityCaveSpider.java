@@ -7,12 +7,14 @@ public class EntityCaveSpider extends EntitySpider {
         this.setSize(0.7F, 0.5F);
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(12.0D);
     }
 
-    public boolean r(Entity entity) {
+    @Override
+	public boolean r(Entity entity) {
         if (super.r(entity)) {
             if (entity instanceof EntityLiving) {
                 byte b0 = 0;
@@ -34,11 +36,13 @@ public class EntityCaveSpider extends EntitySpider {
         }
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         return groupdataentity;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 0.45F;
     }
 }

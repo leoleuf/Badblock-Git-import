@@ -14,7 +14,8 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
         this.h = flag1;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = this.a(random);
 
         if (!this.a(world, random, blockposition, i)) {
@@ -65,7 +66,8 @@ public class WorldGenMegaTree extends WorldGenMegaTreeAbstract {
 
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         this.b(world, blockposition.west().north());
         this.b(world, blockposition.east(2).north());
         this.b(world, blockposition.west().south(2));

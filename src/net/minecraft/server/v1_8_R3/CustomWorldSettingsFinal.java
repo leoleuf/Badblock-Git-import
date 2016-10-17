@@ -366,12 +366,14 @@ public class CustomWorldSettingsFinal {
             return jsonobject;
         }
 
-        public CustomWorldSettingsFinal.CustomWorldSettings deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
+        @Override
+		public CustomWorldSettingsFinal.CustomWorldSettings deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
             return this.a(jsonelement, type, jsondeserializationcontext);
         }
 
-        public JsonElement serialize(CustomWorldSettingsFinal.CustomWorldSettings object, Type type, JsonSerializationContext jsonserializationcontext) {
-            return this.a((CustomWorldSettingsFinal.CustomWorldSettings) object, type, jsonserializationcontext);
+        @Override
+		public JsonElement serialize(CustomWorldSettingsFinal.CustomWorldSettings object, Type type, JsonSerializationContext jsonserializationcontext) {
+            return this.a(object, type, jsonserializationcontext);
         }
     }
 
@@ -462,14 +464,15 @@ public class CustomWorldSettingsFinal {
                 return new CustomWorldSettingsFinal.CustomWorldSettings();
             } else {
                 try {
-                    return (CustomWorldSettingsFinal.CustomWorldSettings) CustomWorldSettingsFinal.CustomWorldSettings.a.fromJson(s, CustomWorldSettingsFinal.CustomWorldSettings.class);
+                    return CustomWorldSettingsFinal.CustomWorldSettings.a.fromJson(s, CustomWorldSettingsFinal.CustomWorldSettings.class);
                 } catch (Exception exception) {
                     return new CustomWorldSettingsFinal.CustomWorldSettings();
                 }
             }
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return CustomWorldSettingsFinal.CustomWorldSettings.a.toJson(this);
         }
 
@@ -558,7 +561,8 @@ public class CustomWorldSettingsFinal {
             this.aA = 16;
         }
 
-        public boolean equals(Object object) {
+        @Override
+		public boolean equals(Object object) {
             if (this == object) {
                 return true;
             } else if (object != null && this.getClass() == object.getClass()) {
@@ -570,7 +574,8 @@ public class CustomWorldSettingsFinal {
             }
         }
 
-        public int hashCode() {
+        @Override
+		public int hashCode() {
             int i = this.b != 0.0F ? Float.floatToIntBits(this.b) : 0;
 
             i = 31 * i + (this.c != 0.0F ? Float.floatToIntBits(this.c) : 0);

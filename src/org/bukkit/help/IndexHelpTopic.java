@@ -43,7 +43,8 @@ public class IndexHelpTopic extends HelpTopic {
         this.allTopics = topics;
     }
 
-    public boolean canSee(CommandSender sender) {
+    @Override
+	public boolean canSee(CommandSender sender) {
         if (sender instanceof ConsoleCommandSender) {
             return true;
         }
@@ -58,7 +59,8 @@ public class IndexHelpTopic extends HelpTopic {
         permission = amendedPermission;
     }
 
-    public String getFullText(CommandSender sender) {
+    @Override
+	public String getFullText(CommandSender sender) {
         StringBuilder sb = new StringBuilder();
 
         if (preamble != null) {

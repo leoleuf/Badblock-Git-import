@@ -24,7 +24,8 @@ public class BlockPlant extends Block {
         this.a(CreativeModeTab.c);
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return super.canPlace(world, blockposition) && this.c(world.getType(blockposition.down()).getBlock());
     }
 
@@ -32,12 +33,14 @@ public class BlockPlant extends Block {
         return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND;
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         super.doPhysics(world, blockposition, iblockdata, block);
         this.e(world, blockposition, iblockdata);
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         this.e(world, blockposition, iblockdata);
     }
 
@@ -62,15 +65,18 @@ public class BlockPlant extends Block {
         return this.c(world.getType(blockposition.down()).getBlock());
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 }

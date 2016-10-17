@@ -18,11 +18,13 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
         this.bolt = bolt;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return canceled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         canceled = cancel;
     }
 

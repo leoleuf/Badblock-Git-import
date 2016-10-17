@@ -12,7 +12,8 @@ public abstract class NBTBase {
 
     abstract void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException;
 
-    public abstract String toString();
+    @Override
+	public abstract String toString();
 
     public abstract byte getTypeId();
 
@@ -61,13 +62,15 @@ public abstract class NBTBase {
         }
     }
 
-    public abstract NBTBase clone();
+    @Override
+	public abstract NBTBase clone();
 
     public boolean isEmpty() {
         return false;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof NBTBase)) {
             return false;
         } else {
@@ -77,7 +80,8 @@ public abstract class NBTBase {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.getTypeId();
     }
 

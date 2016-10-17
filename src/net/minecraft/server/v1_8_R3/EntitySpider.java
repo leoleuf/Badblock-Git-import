@@ -19,20 +19,24 @@ public class EntitySpider extends EntityMonster {
         this.targetSelector.a(3, new EntitySpider.PathfinderGoalSpiderNearestAttackableTarget(this, EntityIronGolem.class));
     }
 
-    public double an() {
-        return (double) (this.length * 0.5F);
+    @Override
+	public double an() {
+        return this.length * 0.5F;
     }
 
-    protected NavigationAbstract b(World world) {
+    @Override
+	protected NavigationAbstract b(World world) {
         return new NavigationSpider(this, world);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, new Byte((byte) 0));
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (!this.world.isClientSide) {
             this.a(this.positionChanged);
@@ -40,33 +44,40 @@ public class EntitySpider extends EntityMonster {
 
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(16.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.30000001192092896D);
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.spider.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.spider.say";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.spider.death";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.spider.step", 0.15F, 1.0F);
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Items.STRING;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         super.dropDeathLoot(flag, i);
         if (flag && (this.random.nextInt(3) == 0 || this.random.nextInt(1 + i) > 0)) {
             this.a(Items.SPIDER_EYE, 1);
@@ -74,17 +85,21 @@ public class EntitySpider extends EntityMonster {
 
     }
 
-    public boolean k_() {
+    @Override
+	public boolean k_() {
         return this.n();
     }
 
-    public void aA() {}
+    @Override
+	public void aA() {}
 
-    public EnumMonsterType getMonsterType() {
+    @Override
+	public EnumMonsterType getMonsterType() {
         return EnumMonsterType.ARTHROPOD;
     }
 
-    public boolean d(MobEffect mobeffect) {
+    @Override
+	public boolean d(MobEffect mobeffect) {
         return mobeffect.getEffectId() == MobEffectList.POISON.id ? false : super.d(mobeffect);
     }
 
@@ -104,7 +119,8 @@ public class EntitySpider extends EntityMonster {
         this.datawatcher.watch(16, Byte.valueOf(b0));
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         Object object = super.prepare(difficultydamagescaler, groupdataentity);
 
         if (this.world.random.nextInt(100) == 0) {
@@ -134,7 +150,8 @@ public class EntitySpider extends EntityMonster {
         return (GroupDataEntity) object;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 0.65F;
     }
 
@@ -144,7 +161,8 @@ public class EntitySpider extends EntityMonster {
             super(entityspider, oclass, true);
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             float f = this.e.c(1.0F);
 
             return f >= 0.5F ? false : super.a();
@@ -157,7 +175,8 @@ public class EntitySpider extends EntityMonster {
             super(entityspider, oclass, 1.0D, true);
         }
 
-        public boolean b() {
+        @Override
+		public boolean b() {
             float f = this.b.c(1.0F);
 
             if (f >= 0.5F && this.b.bc().nextInt(100) == 0) {
@@ -168,8 +187,9 @@ public class EntitySpider extends EntityMonster {
             }
         }
 
-        protected double a(EntityLiving entityliving) {
-            return (double) (4.0F + entityliving.width);
+        @Override
+		protected double a(EntityLiving entityliving) {
+            return 4.0F + entityliving.width;
         }
     }
 

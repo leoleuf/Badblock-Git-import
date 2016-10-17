@@ -47,7 +47,8 @@ public class PacketCompressor extends MessageToByteEncoder<ByteBuf> {
         this.c = i;
     }
 
-    protected void encode(ChannelHandlerContext channelhandlercontext, ByteBuf object, ByteBuf bytebuf) throws Exception {
-        this.a(channelhandlercontext, (ByteBuf) object, bytebuf);
+    @Override
+	protected void encode(ChannelHandlerContext channelhandlercontext, ByteBuf object, ByteBuf bytebuf) throws Exception {
+        this.a(channelhandlercontext, object, bytebuf);
     }
 }

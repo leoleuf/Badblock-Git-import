@@ -8,21 +8,26 @@ public class NBTTagEnd extends NBTBase {
 
     NBTTagEnd() {}
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(64L);
     }
 
-    void write(DataOutput dataoutput) throws IOException {}
+    @Override
+	void write(DataOutput dataoutput) throws IOException {}
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 0;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "END";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagEnd();
     }
 }

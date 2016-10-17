@@ -6,15 +6,18 @@ package org.bukkit.conversations;
  * abandoned by programmatically calling the abandon() method on it.
  */
 public class ManuallyAbandonedConversationCanceller implements ConversationCanceller{
-    public void setConversation(Conversation conversation) {
+    @Override
+	public void setConversation(Conversation conversation) {
         throw new UnsupportedOperationException();
     }
 
-    public boolean cancelBasedOnInput(ConversationContext context, String input) {
+    @Override
+	public boolean cancelBasedOnInput(ConversationContext context, String input) {
         throw new UnsupportedOperationException();
     }
 
-    public ConversationCanceller clone() {
+    @Override
+	public ConversationCanceller clone() {
         throw new UnsupportedOperationException();
     }
 }

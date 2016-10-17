@@ -19,16 +19,19 @@ public abstract class BlockContainer extends Block implements IContainer {
         return this.a(world, blockposition, EnumDirection.NORTH) || this.a(world, blockposition, EnumDirection.SOUTH) || this.a(world, blockposition, EnumDirection.WEST) || this.a(world, blockposition, EnumDirection.EAST);
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return -1;
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.remove(world, blockposition, iblockdata);
         world.t(blockposition);
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
         super.a(world, blockposition, iblockdata, i, j);
         TileEntity tileentity = world.getTileEntity(blockposition);
 

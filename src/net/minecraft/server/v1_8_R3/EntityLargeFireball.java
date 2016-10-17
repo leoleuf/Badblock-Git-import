@@ -14,7 +14,8 @@ public class EntityLargeFireball extends EntityFireball {
         super(world, entityliving, d0, d1, d2);
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (!this.world.isClientSide) {
             if (movingobjectposition.entity != null) {
                 movingobjectposition.entity.damageEntity(DamageSource.fireball(this, this.shooter), 6.0F);
@@ -37,12 +38,14 @@ public class EntityLargeFireball extends EntityFireball {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("ExplosionPower", this.yield);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("ExplosionPower", 99)) {
             // CraftBukkit - set bukkitYield when setting explosionpower

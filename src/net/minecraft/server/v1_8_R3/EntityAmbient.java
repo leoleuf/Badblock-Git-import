@@ -6,11 +6,13 @@ public abstract class EntityAmbient extends EntityInsentient implements IAnimal 
         super(world);
     }
 
-    public boolean cb() {
+    @Override
+	public boolean cb() {
         return false;
     }
 
-    protected boolean a(EntityHuman entityhuman) {
+    @Override
+	protected boolean a(EntityHuman entityhuman) {
         return false;
     }
 }

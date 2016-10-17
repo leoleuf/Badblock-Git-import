@@ -27,15 +27,18 @@ public class BiomeTaiga extends BiomeBase {
 
     }
 
-    public WorldGenTreeAbstract a(Random random) {
-        return (WorldGenTreeAbstract) ((this.aI == 1 || this.aI == 2) && random.nextInt(3) == 0 ? (this.aI != 2 && random.nextInt(13) != 0 ? BiomeTaiga.aF : BiomeTaiga.aG) : (random.nextInt(3) == 0 ? BiomeTaiga.aD : BiomeTaiga.aE));
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
+        return (this.aI == 1 || this.aI == 2) && random.nextInt(3) == 0 ? (this.aI != 2 && random.nextInt(13) != 0 ? BiomeTaiga.aF : BiomeTaiga.aG) : (random.nextInt(3) == 0 ? BiomeTaiga.aD : BiomeTaiga.aE);
     }
 
-    public WorldGenerator b(Random random) {
+    @Override
+	public WorldGenerator b(Random random) {
         return random.nextInt(5) > 0 ? new WorldGenGrass(BlockLongGrass.EnumTallGrassType.FERN) : new WorldGenGrass(BlockLongGrass.EnumTallGrassType.GRASS);
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         int i;
         int j;
         int k;
@@ -53,19 +56,20 @@ public class BiomeTaiga extends BiomeBase {
             }
         }
 
-        BiomeTaiga.ag.a(BlockTallPlant.EnumTallFlowerVariants.FERN);
+        BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.FERN);
 
         for (i = 0; i < 7; ++i) {
             j = random.nextInt(16) + 8;
             k = random.nextInt(16) + 8;
             l = random.nextInt(world.getHighestBlockYAt(blockposition.a(j, 0, k)).getY() + 32);
-            BiomeTaiga.ag.generate(world, random, blockposition.a(j, l, k));
+            BiomeBase.ag.generate(world, random, blockposition.a(j, l, k));
         }
 
         super.a(world, random, blockposition);
     }
 
-    public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
+    @Override
+	public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
         if (this.aI == 1 || this.aI == 2) {
             this.ak = Blocks.GRASS.getBlockData();
             this.al = Blocks.DIRT.getBlockData();
@@ -79,7 +83,8 @@ public class BiomeTaiga extends BiomeBase {
         this.b(world, random, chunksnapshot, i, j, d0);
     }
 
-    protected BiomeBase d(int i) {
+    @Override
+	protected BiomeBase d(int i) {
         return this.id == BiomeBase.MEGA_TAIGA.id ? (new BiomeTaiga(i, 2)).a(5858897, true).a("Mega Spruce Taiga").a(5159473).a(0.25F, 0.8F).a(new BiomeBase.BiomeTemperature(this.an, this.ao)) : super.d(i);
     }
 }

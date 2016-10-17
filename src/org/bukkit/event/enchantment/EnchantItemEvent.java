@@ -102,11 +102,13 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
         return button;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 

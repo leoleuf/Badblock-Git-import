@@ -6,7 +6,8 @@ public class BlockGravel extends BlockFalling {
 
     public BlockGravel() {}
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         if (i > 3) {
             i = 3;
         }
@@ -14,7 +15,8 @@ public class BlockGravel extends BlockFalling {
         return random.nextInt(10 - i * 3) == 0 ? Items.FLINT : Item.getItemOf(this);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.m;
     }
 }

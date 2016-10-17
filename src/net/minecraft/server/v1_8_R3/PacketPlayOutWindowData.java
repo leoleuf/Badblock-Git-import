@@ -16,17 +16,20 @@ public class PacketPlayOutWindowData implements Packet<PacketListenerPlayOut> {
         this.c = k;
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readUnsignedByte();
         this.b = packetdataserializer.readShort();
         this.c = packetdataserializer.readShort();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.a);
         packetdataserializer.writeShort(this.b);
         packetdataserializer.writeShort(this.c);

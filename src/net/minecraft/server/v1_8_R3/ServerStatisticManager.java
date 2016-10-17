@@ -67,7 +67,8 @@ public class ServerStatisticManager extends StatisticManager {
 
     }
 
-    public void setStatistic(EntityHuman entityhuman, Statistic statistic, int i) {
+    @Override
+	public void setStatistic(EntityHuman entityhuman, Statistic statistic, int i) {
         if ( org.spigotmc.SpigotConfig.disableStatSaving ) return; // Spigot
         int j = statistic.d() ? this.getStatisticValue(statistic) : 0;
 

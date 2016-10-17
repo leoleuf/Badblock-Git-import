@@ -29,7 +29,7 @@ public class StructurePieceTreasure extends WeightedRandom.WeightedRandomChoice 
 
     public static void a(Random random, List<StructurePieceTreasure> list, IInventory iinventory, int i) {
         for (int j = 0; j < i; ++j) {
-            StructurePieceTreasure structurepiecetreasure = (StructurePieceTreasure) WeightedRandom.a(random, list);
+            StructurePieceTreasure structurepiecetreasure = WeightedRandom.a(random, list);
             int k = structurepiecetreasure.c + random.nextInt(structurepiecetreasure.d - structurepiecetreasure.c + 1);
 
             if (structurepiecetreasure.b.getMaxStackSize() >= k) {
@@ -51,7 +51,7 @@ public class StructurePieceTreasure extends WeightedRandom.WeightedRandomChoice 
 
     public static void a(Random random, List<StructurePieceTreasure> list, TileEntityDispenser tileentitydispenser, int i) {
         for (int j = 0; j < i; ++j) {
-            StructurePieceTreasure structurepiecetreasure = (StructurePieceTreasure) WeightedRandom.a(random, list);
+            StructurePieceTreasure structurepiecetreasure = WeightedRandom.a(random, list);
             int k = structurepiecetreasure.c + random.nextInt(structurepiecetreasure.d - structurepiecetreasure.c + 1);
 
             if (structurepiecetreasure.b.getMaxStackSize() >= k) {

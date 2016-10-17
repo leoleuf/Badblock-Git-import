@@ -103,11 +103,13 @@ public class ServerPing {
             return jsonobject;
         }
 
-        public JsonElement serialize(ServerPing object, Type type, JsonSerializationContext jsonserializationcontext) {
-            return this.a((ServerPing) object, type, jsonserializationcontext);
+        @Override
+		public JsonElement serialize(ServerPing object, Type type, JsonSerializationContext jsonserializationcontext) {
+            return this.a(object, type, jsonserializationcontext);
         }
 
-        public ServerPing deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
+        @Override
+		public ServerPing deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
             return this.a(jsonelement, type, jsondeserializationcontext);
         }
     }
@@ -148,11 +150,13 @@ public class ServerPing {
                 return jsonobject;
             }
 
-            public JsonElement serialize(ServerPing.ServerData object, Type type, JsonSerializationContext jsonserializationcontext) {
-                return this.a((ServerPing.ServerData) object, type, jsonserializationcontext);
+            @Override
+			public JsonElement serialize(ServerPing.ServerData object, Type type, JsonSerializationContext jsonserializationcontext) {
+                return this.a(object, type, jsonserializationcontext);
             }
 
-            public ServerPing.ServerData deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
+            @Override
+			public ServerPing.ServerData deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
                 return this.a(jsonelement, type, jsondeserializationcontext);
             }
         }
@@ -236,11 +240,13 @@ public class ServerPing {
                 return jsonobject;
             }
 
-            public JsonElement serialize(ServerPing.ServerPingPlayerSample object, Type type, JsonSerializationContext jsonserializationcontext) {
-                return this.a((ServerPing.ServerPingPlayerSample) object, type, jsonserializationcontext);
+            @Override
+			public JsonElement serialize(ServerPing.ServerPingPlayerSample object, Type type, JsonSerializationContext jsonserializationcontext) {
+                return this.a(object, type, jsonserializationcontext);
             }
 
-            public ServerPing.ServerPingPlayerSample deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
+            @Override
+			public ServerPing.ServerPingPlayerSample deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
                 return this.a(jsonelement, type, jsondeserializationcontext);
             }
         }

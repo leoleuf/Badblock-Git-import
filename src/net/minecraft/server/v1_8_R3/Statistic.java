@@ -42,7 +42,7 @@ public class Statistic {
 
     public Statistic h() {
         if (StatisticList.a.containsKey(this.name)) {
-            throw new RuntimeException("Duplicate stat id: \"" + ((Statistic) StatisticList.a.get(this.name)).a + "\" and \"" + this.a + "\" at id " + this.name);
+            throw new RuntimeException("Duplicate stat id: \"" + StatisticList.a.get(this.name).a + "\" and \"" + this.a + "\" at id " + this.name);
         } else {
             StatisticList.stats.add(this);
             StatisticList.a.put(this.name, this);
@@ -70,7 +70,8 @@ public class Statistic {
         return ichatbasecomponent1;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (object != null && this.getClass() == object.getClass()) {
@@ -82,11 +83,13 @@ public class Statistic {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.name.hashCode();
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "Stat{id=" + this.name + ", nameId=" + this.a + ", awardLocallyOnly=" + this.f + ", formatter=" + this.b + ", objectiveCriteria=" + this.c + '}';
     }
 

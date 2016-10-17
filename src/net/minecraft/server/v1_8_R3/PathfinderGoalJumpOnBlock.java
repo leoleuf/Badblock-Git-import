@@ -9,25 +9,30 @@ public class PathfinderGoalJumpOnBlock extends PathfinderGoalGotoTarget {
         this.c = entityocelot;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         return this.c.isTamed() && !this.c.isSitting() && super.a();
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return super.b();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         super.c();
         this.c.getGoalSit().setSitting(false);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         super.d();
         this.c.setSitting(false);
     }
 
-    public void e() {
+    @Override
+	public void e() {
         super.e();
         this.c.getGoalSit().setSitting(false);
         if (!this.f()) {
@@ -38,7 +43,8 @@ public class PathfinderGoalJumpOnBlock extends PathfinderGoalGotoTarget {
 
     }
 
-    protected boolean a(World world, BlockPosition blockposition) {
+    @Override
+	protected boolean a(World world, BlockPosition blockposition) {
         if (!world.isEmpty(blockposition.up())) {
             return false;
         } else {

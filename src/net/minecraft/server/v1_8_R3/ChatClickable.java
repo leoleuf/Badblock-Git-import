@@ -22,7 +22,8 @@ public class ChatClickable {
         return this.b;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (object != null && this.getClass() == object.getClass()) {
@@ -46,11 +47,13 @@ public class ChatClickable {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "ClickEvent{action=" + this.a + ", value=\'" + this.b + '\'' + '}';
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         int i = this.a.hashCode();
 
         i = 31 * i + (this.b != null ? this.b.hashCode() : 0);
@@ -79,7 +82,7 @@ public class ChatClickable {
         }
 
         public static ChatClickable.EnumClickAction a(String s) {
-            return (ChatClickable.EnumClickAction) ChatClickable.EnumClickAction.g.get(s);
+            return ChatClickable.EnumClickAction.g.get(s);
         }
 
         static {

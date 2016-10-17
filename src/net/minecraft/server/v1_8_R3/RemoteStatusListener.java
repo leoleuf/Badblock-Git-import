@@ -63,8 +63,8 @@ public class RemoteStatusListener extends RemoteConnectionThread {
         if (0 == this.i) {
             this.i = this.j;
             this.b("Setting default query port to " + this.i);
-            iminecraftserver.a("query.port", (Object) Integer.valueOf(this.i));
-            iminecraftserver.a("debug", (Object) Boolean.valueOf(false));
+            iminecraftserver.a("query.port", Integer.valueOf(this.i));
+            iminecraftserver.a("debug", Boolean.valueOf(false));
             iminecraftserver.a();
         }
 
@@ -97,7 +97,7 @@ public class RemoteStatusListener extends RemoteConnectionThread {
                 } else {
                     RemoteStatusReply remotestatusreply = new RemoteStatusReply(1460);
 
-                    remotestatusreply.a((int) 0);
+                    remotestatusreply.a(0);
                     remotestatusreply.a(this.a(datagrampacket.getSocketAddress()));
                     remotestatusreply.a(this.l);
                     remotestatusreply.a("SMP");
@@ -139,11 +139,11 @@ public class RemoteStatusListener extends RemoteConnectionThread {
         } else {
             this.w = i;
             this.v.b();
-            this.v.a((int) 0);
+            this.v.a(0);
             this.v.a(this.a(datagrampacket.getSocketAddress()));
             this.v.a("splitnum");
-            this.v.a((int) 128);
-            this.v.a((int) 0);
+            this.v.a(128);
+            this.v.a(0);
             this.v.a("hostname");
             this.v.a(this.l);
             this.v.a("gametype");
@@ -164,10 +164,10 @@ public class RemoteStatusListener extends RemoteConnectionThread {
             this.v.a("" + this.j);
             this.v.a("hostip");
             this.v.a(this.r);
-            this.v.a((int) 0);
-            this.v.a((int) 1);
+            this.v.a(0);
+            this.v.a(1);
             this.v.a("player_");
-            this.v.a((int) 0);
+            this.v.a(0);
             String[] astring = this.b.getPlayers();
             String[] astring1 = astring;
             int j = astring.length;
@@ -178,13 +178,13 @@ public class RemoteStatusListener extends RemoteConnectionThread {
                 this.v.a(s);
             }
 
-            this.v.a((int) 0);
+            this.v.a(0);
             return this.v.a();
         }
     }
 
     private byte[] a(SocketAddress socketaddress) {
-        return ((RemoteStatusListener.RemoteStatusChallenge) this.t.get(socketaddress)).c();
+        return this.t.get(socketaddress).c();
     }
 
     private Boolean c(DatagramPacket datagrampacket) {
@@ -195,7 +195,7 @@ public class RemoteStatusListener extends RemoteConnectionThread {
         } else {
             byte[] abyte = datagrampacket.getData();
 
-            return ((RemoteStatusListener.RemoteStatusChallenge) this.t.get(socketaddress)).a() != StatusChallengeUtils.c(abyte, 7, datagrampacket.getLength()) ? Boolean.valueOf(false) : Boolean.valueOf(true);
+            return this.t.get(socketaddress).a() != StatusChallengeUtils.c(abyte, 7, datagrampacket.getLength()) ? Boolean.valueOf(false) : Boolean.valueOf(true);
         }
     }
 
@@ -226,7 +226,8 @@ public class RemoteStatusListener extends RemoteConnectionThread {
         }
     }
 
-    public void run() {
+    @Override
+	public void run() {
         this.b("Query running on " + this.s + ":" + this.i);
         this.h = MinecraftServer.az();
         this.p = new DatagramPacket(this.o, this.o.length);
@@ -242,7 +243,7 @@ public class RemoteStatusListener extends RemoteConnectionThread {
                 } catch (PortUnreachableException portunreachableexception) {
                     ;
                 } catch (IOException ioexception) {
-                    this.a((Exception) ioexception);
+                    this.a(ioexception);
                 }
             }
         } finally {
@@ -251,7 +252,8 @@ public class RemoteStatusListener extends RemoteConnectionThread {
 
     }
 
-    public void a() {
+    @Override
+	public void a() {
         if (!this.a) {
             if (0 < this.i && '\uffff' >= this.i) {
                 if (this.g()) {

@@ -9,7 +9,8 @@ public class PathfinderGoalBreakDoor extends PathfinderGoalDoorInteract {
         super(entityinsentient);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (!super.a()) {
             return false;
         } else if (!this.a.world.getGameRules().getBoolean("mobGriefing")) {
@@ -21,12 +22,14 @@ public class PathfinderGoalBreakDoor extends PathfinderGoalDoorInteract {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         super.c();
         this.g = 0;
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         double d0 = this.a.b(this.b);
         boolean flag;
 
@@ -43,19 +46,21 @@ public class PathfinderGoalBreakDoor extends PathfinderGoalDoorInteract {
         return flag;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         super.d();
         this.a.world.c(this.a.getId(), this.b, -1);
     }
 
-    public void e() {
+    @Override
+	public void e() {
         super.e();
         if (this.a.bc().nextInt(20) == 0) {
             this.a.world.triggerEffect(1010, this.b, 0);
         }
 
         ++this.g;
-        int i = (int) ((float) this.g / 240.0F * 10.0F);
+        int i = (int) (this.g / 240.0F * 10.0F);
 
         if (i != this.h) {
             this.a.world.c(this.a.getId(), this.b, i);

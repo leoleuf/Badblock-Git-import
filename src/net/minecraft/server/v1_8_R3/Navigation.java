@@ -11,18 +11,21 @@ public class Navigation extends NavigationAbstract {
         super(entityinsentient, world);
     }
 
-    protected Pathfinder a() {
+    @Override
+	protected Pathfinder a() {
         this.a = new PathfinderNormal();
         this.a.a(true);
         return new Pathfinder(this.a);
     }
 
-    protected boolean b() {
+    @Override
+	protected boolean b() {
         return this.b.onGround || this.h() && this.o() || this.b.au() && this.b instanceof EntityZombie && this.b.vehicle instanceof EntityChicken;
     }
 
-    protected Vec3D c() {
-        return new Vec3D(this.b.locX, (double) this.p(), this.b.locZ);
+    @Override
+	protected Vec3D c() {
+        return new Vec3D(this.b.locX, this.p(), this.b.locZ);
     }
 
     private int p() {
@@ -47,7 +50,8 @@ public class Navigation extends NavigationAbstract {
         }
     }
 
-    protected void d() {
+    @Override
+	protected void d() {
         super.d();
         if (this.f) {
             if (this.c.i(new BlockPosition(MathHelper.floor(this.b.locX), (int) (this.b.getBoundingBox().b + 0.5D), MathHelper.floor(this.b.locZ)))) {
@@ -66,7 +70,8 @@ public class Navigation extends NavigationAbstract {
 
     }
 
-    protected boolean a(Vec3D vec3d, Vec3D vec3d1, int i, int j, int k) {
+    @Override
+	protected boolean a(Vec3D vec3d, Vec3D vec3d1, int i, int j, int k) {
         int l = MathHelper.floor(vec3d.a);
         int i1 = MathHelper.floor(vec3d.c);
         double d0 = vec3d1.a - vec3d.a;
@@ -89,8 +94,8 @@ public class Navigation extends NavigationAbstract {
                 k -= 2;
                 double d4 = 1.0D / Math.abs(d0);
                 double d5 = 1.0D / Math.abs(d1);
-                double d6 = (double) (l * 1) - vec3d.a;
-                double d7 = (double) (i1 * 1) - vec3d.c;
+                double d6 = l * 1 - vec3d.a;
+                double d7 = i1 * 1 - vec3d.c;
 
                 if (d0 >= 0.0D) {
                     ++d6;
@@ -139,8 +144,8 @@ public class Navigation extends NavigationAbstract {
         } else {
             for (int i2 = k1; i2 < k1 + l; ++i2) {
                 for (int j2 = l1; j2 < l1 + j1; ++j2) {
-                    double d2 = (double) i2 + 0.5D - vec3d.a;
-                    double d3 = (double) j2 + 0.5D - vec3d.c;
+                    double d2 = i2 + 0.5D - vec3d.a;
+                    double d3 = j2 + 0.5D - vec3d.c;
 
                     if (d2 * d0 + d3 * d1 >= 0.0D) {
                         Block block = this.c.getType(new BlockPosition(i2, j - 1, j2)).getBlock();
@@ -170,8 +175,8 @@ public class Navigation extends NavigationAbstract {
 
         while (iterator.hasNext()) {
             BlockPosition blockposition = (BlockPosition) iterator.next();
-            double d2 = (double) blockposition.getX() + 0.5D - vec3d.a;
-            double d3 = (double) blockposition.getZ() + 0.5D - vec3d.c;
+            double d2 = blockposition.getX() + 0.5D - vec3d.a;
+            double d3 = blockposition.getZ() + 0.5D - vec3d.c;
 
             if (d2 * d0 + d3 * d1 >= 0.0D) {
                 Block block = this.c.getType(blockposition).getBlock();

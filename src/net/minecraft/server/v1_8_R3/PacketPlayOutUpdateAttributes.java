@@ -28,7 +28,8 @@ public class PacketPlayOutUpdateAttributes implements Packet<PacketListenerPlayO
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         int i = packetdataserializer.readInt();
 
@@ -49,7 +50,8 @@ public class PacketPlayOutUpdateAttributes implements Packet<PacketListenerPlayO
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeInt(this.b.size());
         Iterator iterator = this.b.iterator();
@@ -73,7 +75,8 @@ public class PacketPlayOutUpdateAttributes implements Packet<PacketListenerPlayO
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

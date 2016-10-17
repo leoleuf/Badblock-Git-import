@@ -10,7 +10,8 @@ public class ScoreboardScore {
             return scoreboardscore.getScore() > scoreboardscore1.getScore() ? 1 : (scoreboardscore.getScore() < scoreboardscore1.getScore() ? -1 : scoreboardscore1.getPlayerName().compareToIgnoreCase(scoreboardscore.getPlayerName()));
         }
 
-        public int compare(Object object, Object object1) {
+        @Override
+		public int compare(Object object, Object object1) {
             return this.a((ScoreboardScore) object, (ScoreboardScore) object1);
         }
     };

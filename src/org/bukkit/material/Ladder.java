@@ -49,7 +49,8 @@ public class Ladder extends SimpleAttachableMaterialData {
      *
      * @return BlockFace attached to
      */
-    public BlockFace getAttachedFace() {
+    @Override
+	public BlockFace getAttachedFace() {
         byte data = getData();
 
         switch (data) {
@@ -72,7 +73,8 @@ public class Ladder extends SimpleAttachableMaterialData {
     /**
      * Sets the direction this ladder is facing
      */
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         byte data = (byte) 0x0;
 
         switch (face) {

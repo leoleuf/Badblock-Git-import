@@ -87,7 +87,8 @@ class TimingData {
         lagTotalTime = 0;
     }
 
-    protected TimingData clone() {
+    @Override
+	protected TimingData clone() {
         return new TimingData(this);
     }
 

@@ -16,19 +16,22 @@ public class PacketPlayOutAttachEntity implements Packet<PacketListenerPlayOut> 
         this.c = entity1 != null ? entity1.getId() : -1;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.b = packetdataserializer.readInt();
         this.c = packetdataserializer.readInt();
         this.a = packetdataserializer.readUnsignedByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.b);
         packetdataserializer.writeInt(this.c);
         packetdataserializer.writeByte(this.a);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

@@ -21,7 +21,8 @@ public class CraftWeather extends CraftEntity implements Weather {
         return "CraftWeather";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.WEATHER;
     }
 }

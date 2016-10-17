@@ -49,7 +49,7 @@ public class EntityTypes {
         Entity entity = null;
 
         try {
-            Class oclass = (Class) EntityTypes.c.get(s);
+            Class oclass = EntityTypes.c.get(s);
 
             if (oclass != null) {
                 entity = (Entity) oclass.getConstructor(new Class[] { World.class}).newInstance(new Object[] { world});
@@ -70,7 +70,7 @@ public class EntityTypes {
         }
 
         try {
-            Class oclass = (Class) EntityTypes.c.get(nbttagcompound.getString("id"));
+            Class oclass = EntityTypes.c.get(nbttagcompound.getString("id"));
 
             if (oclass != null) {
                 entity = (Entity) oclass.getConstructor(new Class[] { World.class}).newInstance(new Object[] { world});
@@ -109,21 +109,21 @@ public class EntityTypes {
     }
 
     public static int a(Entity entity) {
-        Integer integer = (Integer) EntityTypes.f.get(entity.getClass());
+        Integer integer = EntityTypes.f.get(entity.getClass());
 
         return integer == null ? 0 : integer.intValue();
     }
 
     public static Class<? extends Entity> a(int i) {
-        return (Class) EntityTypes.e.get(Integer.valueOf(i));
+        return EntityTypes.e.get(Integer.valueOf(i));
     }
 
     public static String b(Entity entity) {
-        return (String) EntityTypes.d.get(entity.getClass());
+        return EntityTypes.d.get(entity.getClass());
     }
 
     public static String b(int i) {
-        return (String) EntityTypes.d.get(a(i));
+        return EntityTypes.d.get(a(i));
     }
 
     public static void a() {}
@@ -135,7 +135,7 @@ public class EntityTypes {
 
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            Class oclass = (Class) EntityTypes.c.get(s);
+            Class oclass = EntityTypes.c.get(s);
 
             if ((oclass.getModifiers() & 1024) != 1024) {
                 arraylist.add(s);

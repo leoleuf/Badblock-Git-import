@@ -63,7 +63,8 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
         this.g.a(nbttagcompound);
     }
 
-    public boolean a(int i, String s) {
+    @Override
+	public boolean a(int i, String s) {
         return i <= 2;
     }
 
@@ -101,7 +102,8 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
                         return CommandBlockListenerAbstract.this.getCommand();
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });
@@ -110,7 +112,8 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
                         return CommandBlockListenerAbstract.this.getName();
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });
@@ -229,7 +232,7 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
 
     private static ArrayList<String[]> buildCommands(ICommandListener sender, String[] args, int pos) {
         ArrayList<String[]> commands = new ArrayList<String[]>();
-        java.util.List<EntityPlayer> players = (java.util.List<EntityPlayer>)PlayerSelector.getPlayers(sender, args[pos], EntityPlayer.class);
+        java.util.List<EntityPlayer> players = PlayerSelector.getPlayers(sender, args[pos], EntityPlayer.class);
 
         if (players != null) {
             for (EntityPlayer player : players) {
@@ -246,11 +249,13 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
     }
     // CraftBukkit end
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.f;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
         return new ChatComponentText(this.getName());
     }
 
@@ -258,7 +263,8 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
         this.f = s;
     }
 
-    public void sendMessage(IChatBaseComponent ichatbasecomponent) {
+    @Override
+	public void sendMessage(IChatBaseComponent ichatbasecomponent) {
         if (this.c && this.getWorld() != null && !this.getWorld().isClientSide) {
             this.d = (new ChatComponentText("[" + CommandBlockListenerAbstract.a.format(new Date()) + "] ")).addSibling(ichatbasecomponent);
             this.h();
@@ -266,13 +272,15 @@ public abstract class CommandBlockListenerAbstract implements ICommandListener {
 
     }
 
-    public boolean getSendCommandFeedback() {
+    @Override
+	public boolean getSendCommandFeedback() {
         MinecraftServer minecraftserver = MinecraftServer.getServer();
 
         return minecraftserver == null || !minecraftserver.O() || minecraftserver.worldServer[0].getGameRules().getBoolean("commandBlockOutput");
     }
 
-    public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
+    @Override
+	public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
         this.g.a(this, commandobjectiveexecutor_enumcommandresult, i);
     }
 

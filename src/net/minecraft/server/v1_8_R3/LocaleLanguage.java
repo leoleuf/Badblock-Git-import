@@ -31,7 +31,7 @@ public class LocaleLanguage {
                 String s = (String) iterator.next();
 
                 if (!s.isEmpty() && s.charAt(0) != 35) {
-                    String[] astring = (String[]) Iterables.toArray(LocaleLanguage.b.split(s), String.class);
+                    String[] astring = Iterables.toArray(LocaleLanguage.b.split(s), String.class);
 
                     if (astring != null && astring.length == 2) {
                         String s1 = astring[0];
@@ -68,7 +68,7 @@ public class LocaleLanguage {
     }
 
     private String c(String s) {
-        String s1 = (String) this.d.get(s);
+        String s1 = this.d.get(s);
 
         return s1 == null ? s : s1;
     }

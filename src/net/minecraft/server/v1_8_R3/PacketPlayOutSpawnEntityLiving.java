@@ -65,7 +65,8 @@ public class PacketPlayOutSpawnEntityLiving implements Packet<PacketListenerPlay
         this.l = entityliving.getDataWatcher();
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.b = packetdataserializer.readByte() & 255;
         this.c = packetdataserializer.readInt();
@@ -80,7 +81,8 @@ public class PacketPlayOutSpawnEntityLiving implements Packet<PacketListenerPlay
         this.m = DataWatcher.b(packetdataserializer);
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeByte(this.b & 255);
         packetdataserializer.writeInt(this.c);
@@ -95,7 +97,8 @@ public class PacketPlayOutSpawnEntityLiving implements Packet<PacketListenerPlay
         this.l.a(packetdataserializer);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

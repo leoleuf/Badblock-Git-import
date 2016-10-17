@@ -8,15 +8,18 @@ public class PacketPlayInHeldItemSlot implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInHeldItemSlot() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.itemInHandIndex = packetdataserializer.readShort();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeShort(this.itemInHandIndex);
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

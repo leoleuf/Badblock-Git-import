@@ -23,15 +23,18 @@ public class CraftSkeleton extends CraftMonster implements Skeleton {
         return "CraftSkeleton";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.SKELETON;
     }
 
-    public SkeletonType getSkeletonType() {
+    @Override
+	public SkeletonType getSkeletonType() {
         return SkeletonType.getType(getHandle().getSkeletonType());
     }
 
-    public void setSkeletonType(SkeletonType type) {
+    @Override
+	public void setSkeletonType(SkeletonType type) {
         Validate.notNull(type);
         getHandle().setSkeletonType(type.getId());
     }

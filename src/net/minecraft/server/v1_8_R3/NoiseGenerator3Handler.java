@@ -45,7 +45,7 @@ public class NoiseGenerator3Handler {
     }
 
     private static double a(int[] aint, double d0, double d1) {
-        return (double) aint[0] * d0 + (double) aint[1] * d1;
+        return aint[0] * d0 + aint[1] * d1;
     }
 
     public double a(double d0, double d1) {
@@ -54,9 +54,9 @@ public class NoiseGenerator3Handler {
         int i = a(d0 + d3);
         int j = a(d1 + d3);
         double d4 = (3.0D - NoiseGenerator3Handler.a) / 6.0D;
-        double d5 = (double) (i + j) * d4;
-        double d6 = (double) i - d5;
-        double d7 = (double) j - d5;
+        double d5 = (i + j) * d4;
+        double d6 = i - d5;
+        double d7 = j - d5;
         double d8 = d0 - d6;
         double d9 = d1 - d7;
         byte b0;
@@ -70,8 +70,8 @@ public class NoiseGenerator3Handler {
             b1 = 1;
         }
 
-        double d10 = d8 - (double) b0 + d4;
-        double d11 = d9 - (double) b1 + d4;
+        double d10 = d8 - b0 + d4;
+        double d11 = d9 - b1 + d4;
         double d12 = d8 - 1.0D + 2.0D * d4;
         double d13 = d9 - 1.0D + 2.0D * d4;
         int k = i & 255;
@@ -116,16 +116,16 @@ public class NoiseGenerator3Handler {
         int k = 0;
 
         for (int l = 0; l < j; ++l) {
-            double d5 = (d1 + (double) l) * d3 + this.c;
+            double d5 = (d1 + l) * d3 + this.c;
 
             for (int i1 = 0; i1 < i; ++i1) {
-                double d6 = (d0 + (double) i1) * d2 + this.b;
+                double d6 = (d0 + i1) * d2 + this.b;
                 double d7 = (d6 + d5) * NoiseGenerator3Handler.g;
                 int j1 = a(d6 + d7);
                 int k1 = a(d5 + d7);
-                double d8 = (double) (j1 + k1) * NoiseGenerator3Handler.h;
-                double d9 = (double) j1 - d8;
-                double d10 = (double) k1 - d8;
+                double d8 = (j1 + k1) * NoiseGenerator3Handler.h;
+                double d9 = j1 - d8;
+                double d10 = k1 - d8;
                 double d11 = d6 - d9;
                 double d12 = d5 - d10;
                 byte b0;
@@ -139,8 +139,8 @@ public class NoiseGenerator3Handler {
                     b1 = 1;
                 }
 
-                double d13 = d11 - (double) b0 + NoiseGenerator3Handler.h;
-                double d14 = d12 - (double) b1 + NoiseGenerator3Handler.h;
+                double d13 = d11 - b0 + NoiseGenerator3Handler.h;
+                double d14 = d12 - b1 + NoiseGenerator3Handler.h;
                 double d15 = d11 - 1.0D + 2.0D * NoiseGenerator3Handler.h;
                 double d16 = d12 - 1.0D + 2.0D * NoiseGenerator3Handler.h;
                 int l1 = j1 & 255;

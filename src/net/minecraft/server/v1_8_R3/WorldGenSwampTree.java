@@ -11,7 +11,8 @@ public class WorldGenSwampTree extends WorldGenTreeAbstract {
         super(false);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i;
 
         for (i = random.nextInt(4) + 5; world.getType(blockposition.down()).getBlock().getMaterial() == Material.WATER; blockposition = blockposition.down()) {

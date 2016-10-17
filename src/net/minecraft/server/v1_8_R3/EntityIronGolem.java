@@ -26,12 +26,14 @@ public class EntityIronGolem extends EntityGolem {
         this.targetSelector.a(3, new EntityIronGolem.PathfinderGoalNearestGolemTarget(this, EntityInsentient.class, 10, false, true, IMonster.e));
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Byte.valueOf((byte) 0));
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         if (--this.b <= 0) {
             this.b = 70 + this.random.nextInt(50);
             this.a = this.world.ae().getClosestVillage(new BlockPosition(this), 32);
@@ -40,24 +42,27 @@ public class EntityIronGolem extends EntityGolem {
             } else {
                 BlockPosition blockposition = this.a.a();
 
-                this.a(blockposition, (int) ((float) this.a.b() * 0.6F));
+                this.a(blockposition, (int) (this.a.b() * 0.6F));
             }
         }
 
         super.E();
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(100.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
     }
 
-    protected int j(int i) {
+    @Override
+	protected int j(int i) {
         return i;
     }
 
-    protected void s(Entity entity) {
+    @Override
+	protected void s(Entity entity) {
         if (entity instanceof IMonster && !(entity instanceof EntityCreeper) && this.bc().nextInt(20) == 0) {
             this.setGoalTarget((EntityLiving) entity, org.bukkit.event.entity.EntityTargetLivingEntityEvent.TargetReason.COLLISION, true); // CraftBukkit - set reason
         }
@@ -65,7 +70,8 @@ public class EntityIronGolem extends EntityGolem {
         super.s(entity);
     }
 
-    public void m() {
+    @Override
+	public void m() {
         super.m();
         if (this.c > 0) {
             --this.c;
@@ -83,34 +89,38 @@ public class EntityIronGolem extends EntityGolem {
             Block block = iblockdata.getBlock();
 
             if (block.getMaterial() != Material.AIR) {
-                this.world.addParticle(EnumParticle.BLOCK_CRACK, this.locX + ((double) this.random.nextFloat() - 0.5D) * (double) this.width, this.getBoundingBox().b + 0.1D, this.locZ + ((double) this.random.nextFloat() - 0.5D) * (double) this.width, 4.0D * ((double) this.random.nextFloat() - 0.5D), 0.5D, ((double) this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.getCombinedId(iblockdata)});
+                this.world.addParticle(EnumParticle.BLOCK_CRACK, this.locX + (this.random.nextFloat() - 0.5D) * this.width, this.getBoundingBox().b + 0.1D, this.locZ + (this.random.nextFloat() - 0.5D) * this.width, 4.0D * (this.random.nextFloat() - 0.5D), 0.5D, (this.random.nextFloat() - 0.5D) * 4.0D, new int[] { Block.getCombinedId(iblockdata)});
             }
         }
 
     }
 
-    public boolean a(Class<? extends EntityLiving> oclass) {
+    @Override
+	public boolean a(Class<? extends EntityLiving> oclass) {
         return this.isPlayerCreated() && EntityHuman.class.isAssignableFrom(oclass) ? false : (oclass == EntityCreeper.class ? false : super.a(oclass));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("PlayerCreated", this.isPlayerCreated());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setPlayerCreated(nbttagcompound.getBoolean("PlayerCreated"));
     }
 
-    public boolean r(Entity entity) {
+    @Override
+	public boolean r(Entity entity) {
         this.c = 10;
         this.world.broadcastEntityEffect(this, (byte) 4);
-        boolean flag = entity.damageEntity(DamageSource.mobAttack(this), (float) (7 + this.random.nextInt(15)));
+        boolean flag = entity.damageEntity(DamageSource.mobAttack(this), 7 + this.random.nextInt(15));
 
         if (flag) {
             entity.motY += 0.4000000059604645D;
-            this.a((EntityLiving) this, entity);
+            this.a(this, entity);
         }
 
         this.makeSound("mob.irongolem.throw", 1.0F, 1.0F);
@@ -126,25 +136,29 @@ public class EntityIronGolem extends EntityGolem {
         this.world.broadcastEntityEffect(this, (byte) 11);
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.irongolem.hit";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.irongolem.death";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.irongolem.walk", 1.0F, 1.0F);
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3);
 
         int k;
 
         for (k = 0; k < j; ++k) {
-            this.a(Item.getItemOf(Blocks.RED_FLOWER), 1, (float) BlockFlowers.EnumFlowerVarient.POPPY.b());
+            this.a(Item.getItemOf(Blocks.RED_FLOWER), 1, BlockFlowers.EnumFlowerVarient.POPPY.b());
         }
 
         k = 3 + this.random.nextInt(3);
@@ -174,7 +188,8 @@ public class EntityIronGolem extends EntityGolem {
 
     }
 
-    public void die(DamageSource damagesource) {
+    @Override
+	public void die(DamageSource damagesource) {
         if (!this.isPlayerCreated() && this.killer != null && this.a != null) {
             this.a.a(this.killer.getName(), -5);
         }
@@ -207,10 +222,10 @@ public class EntityIronGolem extends EntityGolem {
                                     f = 0.1F;
                                 }
 
-                                d0 *= (double) (0.7F * f);
+                                d0 *= 0.7F * f;
                             }
 
-                            if ((double) t0.g(entitycreature) > d0) {
+                            if (t0.g(entitycreature) > d0) {
                                 return false;
                             }
                         }
@@ -219,7 +234,8 @@ public class EntityIronGolem extends EntityGolem {
                     }
                 }
 
-                public boolean apply(Object object) {
+                @Override
+				public boolean apply(Object object) {
                     return this.a((T) object); // CraftBukkit - fix decompiler error
                 }
             };

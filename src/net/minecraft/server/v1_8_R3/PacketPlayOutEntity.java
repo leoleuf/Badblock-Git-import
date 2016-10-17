@@ -19,19 +19,23 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
         this.a = i;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "Entity_" + super.toString();
     }
 
@@ -50,14 +54,16 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
             this.g = flag;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             super.a(packetdataserializer);
             this.e = packetdataserializer.readByte();
             this.f = packetdataserializer.readByte();
             this.g = packetdataserializer.readBoolean();
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             super.b(packetdataserializer);
             packetdataserializer.writeByte(this.e);
             packetdataserializer.writeByte(this.f);
@@ -77,7 +83,8 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
             this.g = flag;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             super.a(packetdataserializer);
             this.b = packetdataserializer.readByte();
             this.c = packetdataserializer.readByte();
@@ -85,7 +92,8 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
             this.g = packetdataserializer.readBoolean();
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             super.b(packetdataserializer);
             packetdataserializer.writeByte(this.b);
             packetdataserializer.writeByte(this.c);
@@ -111,7 +119,8 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
             this.h = true;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             super.a(packetdataserializer);
             this.b = packetdataserializer.readByte();
             this.c = packetdataserializer.readByte();
@@ -121,7 +130,8 @@ public class PacketPlayOutEntity implements Packet<PacketListenerPlayOut> {
             this.g = packetdataserializer.readBoolean();
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             super.b(packetdataserializer);
             packetdataserializer.writeByte(this.b);
             packetdataserializer.writeByte(this.c);

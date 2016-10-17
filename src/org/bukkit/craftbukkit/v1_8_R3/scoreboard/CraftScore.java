@@ -26,19 +26,23 @@ final class CraftScore implements Score {
         this.entry = entry;
     }
 
-    public OfflinePlayer getPlayer() {
+    @Override
+	public OfflinePlayer getPlayer() {
         return Bukkit.getOfflinePlayer(entry);
     }
 
-    public String getEntry() {
+    @Override
+	public String getEntry() {
         return entry;
     }
 
-    public Objective getObjective() {
+    @Override
+	public Objective getObjective() {
         return objective;
     }
 
-    public int getScore() throws IllegalStateException {
+    @Override
+	public int getScore() throws IllegalStateException {
         Scoreboard board = objective.checkState().board;
 
         if (board.getPlayers().contains(entry)) { // Lazy
@@ -52,11 +56,13 @@ final class CraftScore implements Score {
         return 0; // Lazy
     }
 
-    public void setScore(int score) throws IllegalStateException {
+    @Override
+	public void setScore(int score) throws IllegalStateException {
         objective.checkState().board.getPlayerScoreForObjective(entry, objective.getHandle()).setScore(score);
     }
 
-    public CraftScoreboard getScoreboard() {
+    @Override
+	public CraftScoreboard getScoreboard() {
         return objective.getScoreboard();
     }
 

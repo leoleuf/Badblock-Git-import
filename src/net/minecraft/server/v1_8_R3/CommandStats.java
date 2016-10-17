@@ -11,19 +11,23 @@ public class CommandStats extends CommandAbstract {
 
     public CommandStats() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "stats";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.stats.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.stats.usage", new Object[0]);
         } else {
@@ -137,8 +141,9 @@ public class CommandStats extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, new String[] { "entity", "block"}) : (astring.length == 2 && astring[0].equals("entity") ? a(astring, this.d()) : (astring.length >= 2 && astring.length <= 4 && astring[0].equals("block") ? a(astring, 1, blockposition) : ((astring.length != 3 || !astring[0].equals("entity")) && (astring.length != 5 || !astring[0].equals("block")) ? ((astring.length != 4 || !astring[0].equals("entity")) && (astring.length != 6 || !astring[0].equals("block")) ? ((astring.length != 6 || !astring[0].equals("entity")) && (astring.length != 8 || !astring[0].equals("block")) ? null : a(astring, (Collection) this.e())) : a(astring, CommandObjectiveExecutor.EnumCommandResult.c())) : a(astring, new String[] { "set", "clear"}))));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, new String[] { "entity", "block"}) : (astring.length == 2 && astring[0].equals("entity") ? a(astring, this.d()) : (astring.length >= 2 && astring.length <= 4 && astring[0].equals("block") ? a(astring, 1, blockposition) : ((astring.length != 3 || !astring[0].equals("entity")) && (astring.length != 5 || !astring[0].equals("block")) ? ((astring.length != 4 || !astring[0].equals("entity")) && (astring.length != 6 || !astring[0].equals("block")) ? ((astring.length != 6 || !astring[0].equals("entity")) && (astring.length != 8 || !astring[0].equals("block")) ? null : a(astring, this.e())) : a(astring, CommandObjectiveExecutor.EnumCommandResult.c())) : a(astring, new String[] { "set", "clear"}))));
     }
 
     protected String[] d() {
@@ -161,7 +166,8 @@ public class CommandStats extends CommandAbstract {
         return arraylist;
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return astring.length > 0 && astring[0].equals("entity") && i == 1;
     }
 }

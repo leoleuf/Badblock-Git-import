@@ -10,23 +10,28 @@ public class BlockSandStone extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockSandStone.EnumSandstoneVariant) iblockdata.get(BlockSandStone.TYPE)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSandStone.TYPE).a();
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.d;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockSandStone.TYPE, BlockSandStone.EnumSandstoneVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockSandStone.EnumSandstoneVariant) iblockdata.get(BlockSandStone.TYPE)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSandStone.TYPE).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockSandStone.TYPE});
     }
 
@@ -49,7 +54,8 @@ public class BlockSandStone extends Block {
             return this.e;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.f;
         }
 
@@ -61,7 +67,8 @@ public class BlockSandStone extends Block {
             return BlockSandStone.EnumSandstoneVariant.d[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.f;
         }
 

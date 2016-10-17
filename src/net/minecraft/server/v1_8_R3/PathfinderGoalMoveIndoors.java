@@ -12,13 +12,14 @@ public class PathfinderGoalMoveIndoors extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         BlockPosition blockposition = new BlockPosition(this.a);
 
         if ((!this.a.world.w() || this.a.world.S() && !this.a.world.getBiome(blockposition).e()) && !this.a.world.worldProvider.o()) {
             if (this.a.bc().nextInt(50) != 0) {
                 return false;
-            } else if (this.c != -1 && this.a.e((double) this.c, this.a.locY, (double) this.d) < 4.0D) {
+            } else if (this.c != -1 && this.a.e(this.c, this.a.locY, this.d) < 4.0D) {
                 return false;
             } else {
                 Village village = this.a.world.ae().getClosestVillage(blockposition, 14);
@@ -35,11 +36,13 @@ public class PathfinderGoalMoveIndoors extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return !this.a.getNavigation().m();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.c = -1;
         BlockPosition blockposition = this.b.e();
         int i = blockposition.getX();
@@ -47,18 +50,19 @@ public class PathfinderGoalMoveIndoors extends PathfinderGoal {
         int k = blockposition.getZ();
 
         if (this.a.b(blockposition) > 256.0D) {
-            Vec3D vec3d = RandomPositionGenerator.a(this.a, 14, 3, new Vec3D((double) i + 0.5D, (double) j, (double) k + 0.5D));
+            Vec3D vec3d = RandomPositionGenerator.a(this.a, 14, 3, new Vec3D(i + 0.5D, j, k + 0.5D));
 
             if (vec3d != null) {
                 this.a.getNavigation().a(vec3d.a, vec3d.b, vec3d.c, 1.0D);
             }
         } else {
-            this.a.getNavigation().a((double) i + 0.5D, (double) j, (double) k + 0.5D, 1.0D);
+            this.a.getNavigation().a(i + 0.5D, j, k + 0.5D, 1.0D);
         }
 
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.c = this.b.e().getX();
         this.d = this.b.e().getZ();
         this.b = null;

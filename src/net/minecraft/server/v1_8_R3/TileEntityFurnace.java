@@ -28,38 +28,46 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
     private int maxStack = MAX_STACK;
     public List<HumanEntity> transaction = new java.util.ArrayList<HumanEntity>();
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public void setMaxStackSize(int size) {
+    @Override
+	public void setMaxStackSize(int size) {
         maxStack = size;
     }
     // CraftBukkit end
 
     public TileEntityFurnace() {}
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return this.items.length;
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         return this.items[i];
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         if (this.items[i] != null) {
             ItemStack itemstack;
 
@@ -80,7 +88,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         }
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         if (this.items[i] != null) {
             ItemStack itemstack = this.items[i];
 
@@ -91,7 +100,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         }
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         boolean flag = itemstack != null && itemstack.doMaterialsMatch(this.items[i]) && ItemStack.equals(itemstack, this.items[i]);
 
         this.items[i] = itemstack;
@@ -107,11 +117,13 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
 
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.hasCustomName() ? this.m : "container.furnace";
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return this.m != null && this.m.length() > 0;
     }
 
@@ -119,7 +131,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         this.m = s;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         NBTTagList nbttaglist = nbttagcompound.getList("Items", 10);
 
@@ -144,7 +157,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setShort("BurnTime", (short) this.burnTime);
         nbttagcompound.setShort("CookTime", (short) this.cookTime);
@@ -168,7 +182,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
 
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return maxStack; // CraftBukkit
     }
 
@@ -176,7 +191,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         return this.burnTime > 0;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         boolean flag = (this.w() == Blocks.LIT_FURNACE); // CraftBukkit - SPIGOT-844 - Check if furnace block is lit using the block instead of burn time // PAIL: Rename
         boolean flag1 = false;
 
@@ -362,27 +378,34 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         return fuelTime(itemstack) > 0;
     }
 
-    public boolean a(EntityHuman entityhuman) {
-        return this.world.getTileEntity(this.position) != this ? false : entityhuman.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+    @Override
+	public boolean a(EntityHuman entityhuman) {
+        return this.world.getTileEntity(this.position) != this ? false : entityhuman.e(this.position.getX() + 0.5D, this.position.getY() + 0.5D, this.position.getZ() + 0.5D) <= 64.0D;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return i == 2 ? false : (i != 1 ? true : isFuel(itemstack) || SlotFurnaceFuel.c_(itemstack));
     }
 
-    public int[] getSlotsForFace(EnumDirection enumdirection) {
+    @Override
+	public int[] getSlotsForFace(EnumDirection enumdirection) {
         return enumdirection == EnumDirection.DOWN ? TileEntityFurnace.f : (enumdirection == EnumDirection.UP ? TileEntityFurnace.a : TileEntityFurnace.g);
     }
 
-    public boolean canPlaceItemThroughFace(int i, ItemStack itemstack, EnumDirection enumdirection) {
+    @Override
+	public boolean canPlaceItemThroughFace(int i, ItemStack itemstack, EnumDirection enumdirection) {
         return this.b(i, itemstack);
     }
 
-    public boolean canTakeItemThroughFace(int i, ItemStack itemstack, EnumDirection enumdirection) {
+    @Override
+	public boolean canTakeItemThroughFace(int i, ItemStack itemstack, EnumDirection enumdirection) {
         if (enumdirection == EnumDirection.DOWN && i == 1) {
             Item item = itemstack.getItem();
 
@@ -394,15 +417,18 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         return true;
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:furnace";
     }
 
-    public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+    @Override
+	public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
         return new ContainerFurnace(playerinventory, this);
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         switch (i) {
         case 0:
             return this.burnTime;
@@ -421,7 +447,8 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
         }
     }
 
-    public void b(int i, int j) {
+    @Override
+	public void b(int i, int j) {
         switch (i) {
         case 0:
             this.burnTime = j;
@@ -441,11 +468,13 @@ public class TileEntityFurnace extends TileEntityContainer implements IUpdatePla
 
     }
 
-    public int g() {
+    @Override
+	public int g() {
         return 4;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         for (int i = 0; i < this.items.length; ++i) {
             this.items[i] = null;
         }

@@ -23,15 +23,18 @@ public abstract class CommandAbstract implements ICommand {
         return 4;
     }
 
-    public List<String> b() {
+    @Override
+	public List<String> b() {
         return Collections.emptyList();
     }
 
-    public boolean canUse(ICommandListener icommandlistener) {
+    @Override
+	public boolean canUse(ICommandListener icommandlistener) {
         return icommandlistener.a(this.a(), this.getCommand());
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return null;
     }
 
@@ -82,7 +85,7 @@ public abstract class CommandAbstract implements ICommand {
     public static BlockPosition a(ICommandListener icommandlistener, String[] astring, int i, boolean flag) throws ExceptionInvalidNumber {
         BlockPosition blockposition = icommandlistener.getChunkCoordinates();
 
-        return new BlockPosition(b((double) blockposition.getX(), astring[i], -30000000, 30000000, flag), b((double) blockposition.getY(), astring[i + 1], 0, 256, false), b((double) blockposition.getZ(), astring[i + 2], -30000000, 30000000, flag));
+        return new BlockPosition(b(blockposition.getX(), astring[i], -30000000, 30000000, flag), b(blockposition.getY(), astring[i + 1], 0, 256, false), b(blockposition.getZ(), astring[i + 2], -30000000, 30000000, flag));
     }
 
     public static double c(String s) throws ExceptionInvalidNumber {
@@ -190,7 +193,7 @@ public abstract class CommandAbstract implements ICommand {
     }
 
     public static List<Entity> c(ICommandListener icommandlistener, String s) throws ExceptionEntityNotFound {
-        return (List) (PlayerSelector.isPattern(s) ? PlayerSelector.getPlayers(icommandlistener, s, Entity.class) : Lists.newArrayList(new Entity[] { b(icommandlistener, s)}));
+        return PlayerSelector.isPattern(s) ? PlayerSelector.getPlayers(icommandlistener, s, Entity.class) : Lists.newArrayList(new Entity[] { b(icommandlistener, s)});
     }
 
     public static String d(ICommandListener icommandlistener, String s) throws ExceptionPlayerNotFound {
@@ -295,11 +298,11 @@ public abstract class CommandAbstract implements ICommand {
             }
 
             if (i != 0 || j != 0) {
-                if (d1 < (double) i) {
+                if (d1 < i) {
                     throw new ExceptionInvalidNumber("commands.generic.double.tooSmall", new Object[] { Double.valueOf(d1), Integer.valueOf(i)});
                 }
 
-                if (d1 > (double) j) {
+                if (d1 > j) {
                     throw new ExceptionInvalidNumber("commands.generic.double.tooBig", new Object[] { Double.valueOf(d1), Integer.valueOf(j)});
                 }
             }
@@ -334,11 +337,11 @@ public abstract class CommandAbstract implements ICommand {
             }
 
             if (i != 0 || j != 0) {
-                if (d1 < (double) i) {
+                if (d1 < i) {
                     throw new ExceptionInvalidNumber("commands.generic.double.tooSmall", new Object[] { Double.valueOf(d1), Integer.valueOf(i)});
                 }
 
-                if (d1 > (double) j) {
+                if (d1 > j) {
                     throw new ExceptionInvalidNumber("commands.generic.double.tooBig", new Object[] { Double.valueOf(d1), Integer.valueOf(j)});
                 }
             }
@@ -349,7 +352,7 @@ public abstract class CommandAbstract implements ICommand {
 
     public static Item f(ICommandListener icommandlistener, String s) throws ExceptionInvalidNumber {
         MinecraftKey minecraftkey = new MinecraftKey(s);
-        Item item = (Item) Item.REGISTRY.get(minecraftkey);
+        Item item = Item.REGISTRY.get(minecraftkey);
 
         if (item == null) {
             throw new ExceptionInvalidNumber("commands.give.item.notFound", new Object[] { minecraftkey});
@@ -364,7 +367,7 @@ public abstract class CommandAbstract implements ICommand {
         if (!Block.REGISTRY.d(minecraftkey)) {
             throw new ExceptionInvalidNumber("commands.give.block.notFound", new Object[] { minecraftkey});
         } else {
-            Block block = (Block) Block.REGISTRY.get(minecraftkey);
+            Block block = Block.REGISTRY.get(minecraftkey);
 
             if (block == null) {
                 throw new ExceptionInvalidNumber("commands.give.block.notFound", new Object[] { minecraftkey});
@@ -406,7 +409,7 @@ public abstract class CommandAbstract implements ICommand {
                 }
             }
 
-            chatcomponenttext.addSibling((IChatBaseComponent) list.get(i));
+            chatcomponenttext.addSibling(list.get(i));
         }
 
         return chatcomponenttext;
@@ -465,7 +468,7 @@ public abstract class CommandAbstract implements ICommand {
     }
 
     public static List<String> a(String[] astring, String... astring1) {
-        return a(astring, (Collection) Arrays.asList(astring1));
+        return a(astring, Arrays.asList(astring1));
     }
 
     public static List<String> a(String[] astring, Collection<?> collection) {
@@ -499,7 +502,8 @@ public abstract class CommandAbstract implements ICommand {
         return arraylist;
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return false;
     }
 
@@ -522,8 +526,9 @@ public abstract class CommandAbstract implements ICommand {
         return this.getCommand().compareTo(icommand.getCommand());
     }
 
-    public int compareTo(ICommand object) {
-        return this.a((ICommand) object);
+    @Override
+	public int compareTo(ICommand object) {
+        return this.a(object);
     }
 
     public static class CommandNumber {

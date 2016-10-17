@@ -12,7 +12,8 @@ public class ItemSpade extends ItemTool {
         super(1.0F, item_enumtoolmaterial, ItemSpade.c);
     }
 
-    public boolean canDestroySpecialBlock(Block block) {
+    @Override
+	public boolean canDestroySpecialBlock(Block block) {
         return block == Blocks.SNOW_LAYER ? true : block == Blocks.SNOW;
     }
 }

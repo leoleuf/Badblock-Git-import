@@ -26,7 +26,8 @@ public class CraftBeacon extends CraftBlockState implements Beacon {
         beacon = te;
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return new CraftInventoryBeacon(beacon);
     }
 

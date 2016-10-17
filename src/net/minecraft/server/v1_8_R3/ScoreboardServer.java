@@ -19,7 +19,8 @@ public class ScoreboardServer extends Scoreboard {
         this.a = minecraftserver;
     }
 
-    public void handleScoreChanged(ScoreboardScore scoreboardscore) {
+    @Override
+	public void handleScoreChanged(ScoreboardScore scoreboardscore) {
         super.handleScoreChanged(scoreboardscore);
         if (this.b.contains(scoreboardscore.getObjective())) {
             this.sendAll(new PacketPlayOutScoreboardScore(scoreboardscore));
@@ -28,19 +29,22 @@ public class ScoreboardServer extends Scoreboard {
         this.b();
     }
 
-    public void handlePlayerRemoved(String s) {
+    @Override
+	public void handlePlayerRemoved(String s) {
         super.handlePlayerRemoved(s);
         this.sendAll(new PacketPlayOutScoreboardScore(s));
         this.b();
     }
 
-    public void a(String s, ScoreboardObjective scoreboardobjective) {
+    @Override
+	public void a(String s, ScoreboardObjective scoreboardobjective) {
         super.a(s, scoreboardobjective);
         this.sendAll(new PacketPlayOutScoreboardScore(s, scoreboardobjective));
         this.b();
     }
 
-    public void setDisplaySlot(int i, ScoreboardObjective scoreboardobjective) {
+    @Override
+	public void setDisplaySlot(int i, ScoreboardObjective scoreboardobjective) {
         ScoreboardObjective scoreboardobjective1 = this.getObjectiveForSlot(i);
 
         super.setDisplaySlot(i, scoreboardobjective);
@@ -63,7 +67,8 @@ public class ScoreboardServer extends Scoreboard {
         this.b();
     }
 
-    public boolean addPlayerToTeam(String s, String s1) {
+    @Override
+	public boolean addPlayerToTeam(String s, String s1) {
         if (super.addPlayerToTeam(s, s1)) {
             ScoreboardTeam scoreboardteam = this.getTeam(s1);
 
@@ -75,18 +80,21 @@ public class ScoreboardServer extends Scoreboard {
         }
     }
 
-    public void removePlayerFromTeam(String s, ScoreboardTeam scoreboardteam) {
+    @Override
+	public void removePlayerFromTeam(String s, ScoreboardTeam scoreboardteam) {
         super.removePlayerFromTeam(s, scoreboardteam);
         this.sendAll(new PacketPlayOutScoreboardTeam(scoreboardteam, Arrays.asList(new String[] { s}), 4));
         this.b();
     }
 
-    public void handleObjectiveAdded(ScoreboardObjective scoreboardobjective) {
+    @Override
+	public void handleObjectiveAdded(ScoreboardObjective scoreboardobjective) {
         super.handleObjectiveAdded(scoreboardobjective);
         this.b();
     }
 
-    public void handleObjectiveChanged(ScoreboardObjective scoreboardobjective) {
+    @Override
+	public void handleObjectiveChanged(ScoreboardObjective scoreboardobjective) {
         super.handleObjectiveChanged(scoreboardobjective);
         if (this.b.contains(scoreboardobjective)) {
             this.sendAll(new PacketPlayOutScoreboardObjective(scoreboardobjective, 2));
@@ -95,7 +103,8 @@ public class ScoreboardServer extends Scoreboard {
         this.b();
     }
 
-    public void handleObjectiveRemoved(ScoreboardObjective scoreboardobjective) {
+    @Override
+	public void handleObjectiveRemoved(ScoreboardObjective scoreboardobjective) {
         super.handleObjectiveRemoved(scoreboardobjective);
         if (this.b.contains(scoreboardobjective)) {
             this.g(scoreboardobjective);
@@ -104,19 +113,22 @@ public class ScoreboardServer extends Scoreboard {
         this.b();
     }
 
-    public void handleTeamAdded(ScoreboardTeam scoreboardteam) {
+    @Override
+	public void handleTeamAdded(ScoreboardTeam scoreboardteam) {
         super.handleTeamAdded(scoreboardteam);
         this.sendAll(new PacketPlayOutScoreboardTeam(scoreboardteam, 0));
         this.b();
     }
 
-    public void handleTeamChanged(ScoreboardTeam scoreboardteam) {
+    @Override
+	public void handleTeamChanged(ScoreboardTeam scoreboardteam) {
         super.handleTeamChanged(scoreboardteam);
         this.sendAll(new PacketPlayOutScoreboardTeam(scoreboardteam, 2));
         this.b();
     }
 
-    public void handleTeamRemoved(ScoreboardTeam scoreboardteam) {
+    @Override
+	public void handleTeamRemoved(ScoreboardTeam scoreboardteam) {
         super.handleTeamRemoved(scoreboardteam);
         this.sendAll(new PacketPlayOutScoreboardTeam(scoreboardteam, 1));
         this.b();
@@ -221,7 +233,7 @@ public class ScoreboardServer extends Scoreboard {
 
     // CraftBukkit start - Send to players
     private void sendAll(Packet packet) {
-        for (EntityPlayer entityplayer : (List<EntityPlayer>) this.a.getPlayerList().players) {
+        for (EntityPlayer entityplayer : this.a.getPlayerList().players) {
             if (entityplayer.getBukkitEntity().getScoreboard().getHandle() == this) {
                 entityplayer.playerConnection.sendPacket(packet);
             }

@@ -6,7 +6,7 @@ import com.google.common.base.Predicate;
 
 public class BlockBanner extends BlockContainer {
 
-    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", (Predicate) EnumDirection.EnumDirectionLimit.HORIZONTAL);
+    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirection.EnumDirectionLimit.HORIZONTAL);
     public static final BlockStateInteger ROTATION = BlockStateInteger.of("rotation", 0, 15);
 
     protected BlockBanner() {
@@ -17,39 +17,48 @@ public class BlockBanner extends BlockContainer {
         this.a(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get("item.banner.white.name");
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
         return true;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean g() {
+    @Override
+	public boolean g() {
         return true;
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityBanner();
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.BANNER;
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityBanner) {
@@ -61,7 +70,7 @@ public class BlockBanner extends BlockContainer {
             nbttagcompound.remove("y");
             nbttagcompound.remove("z");
             nbttagcompound.remove("id");
-            itemstack.a("BlockEntityTag", (NBTBase) nbttagcompound);
+            itemstack.a("BlockEntityTag", nbttagcompound);
             a(world, blockposition, itemstack);
         } else {
             super.dropNaturally(world, blockposition, iblockdata, f, i);
@@ -69,18 +78,20 @@ public class BlockBanner extends BlockContainer {
 
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return !this.e(world, blockposition) && super.canPlace(world, blockposition);
     }
 
-    public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
+    @Override
+	public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
         if (tileentity instanceof TileEntityBanner) {
             TileEntityBanner tileentitybanner = (TileEntityBanner) tileentity;
             ItemStack itemstack = new ItemStack(Items.BANNER, 1, ((TileEntityBanner) tileentity).b());
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
             TileEntityBanner.a(nbttagcompound, tileentitybanner.b(), tileentitybanner.d());
-            itemstack.a("BlockEntityTag", (NBTBase) nbttagcompound);
+            itemstack.a("BlockEntityTag", nbttagcompound);
             a(world, blockposition, itemstack);
         } else {
             super.a(world, entityhuman, blockposition, iblockdata, (TileEntity) null);
@@ -123,10 +134,11 @@ public class BlockBanner extends BlockContainer {
     public static class BlockStandingBanner extends BlockBanner {
 
         public BlockStandingBanner() {
-            this.j(this.blockStateList.getBlockData().set(BlockBanner.BlockStandingBanner.ROTATION, Integer.valueOf(0)));
+            this.j(this.blockStateList.getBlockData().set(BlockBanner.ROTATION, Integer.valueOf(0)));
         }
 
-        public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        @Override
+		public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
             if (!world.getType(blockposition.down()).getBlock().getMaterial().isBuildable()) {
                 this.b(world, blockposition, iblockdata, 0);
                 world.setAir(blockposition);
@@ -135,27 +147,31 @@ public class BlockBanner extends BlockContainer {
             super.doPhysics(world, blockposition, iblockdata, block);
         }
 
-        public IBlockData fromLegacyData(int i) {
-            return this.getBlockData().set(BlockBanner.BlockStandingBanner.ROTATION, Integer.valueOf(i));
+        @Override
+		public IBlockData fromLegacyData(int i) {
+            return this.getBlockData().set(BlockBanner.ROTATION, Integer.valueOf(i));
         }
 
-        public int toLegacyData(IBlockData iblockdata) {
-            return ((Integer) iblockdata.get(BlockBanner.BlockStandingBanner.ROTATION)).intValue();
+        @Override
+		public int toLegacyData(IBlockData iblockdata) {
+            return iblockdata.get(BlockBanner.ROTATION).intValue();
         }
 
-        protected BlockStateList getStateList() {
-            return new BlockStateList(this, new IBlockState[] { BlockBanner.BlockStandingBanner.ROTATION});
+        @Override
+		protected BlockStateList getStateList() {
+            return new BlockStateList(this, new IBlockState[] { BlockBanner.ROTATION});
         }
     }
 
     public static class BlockWallBanner extends BlockBanner {
 
         public BlockWallBanner() {
-            this.j(this.blockStateList.getBlockData().set(BlockBanner.BlockWallBanner.FACING, EnumDirection.NORTH));
+            this.j(this.blockStateList.getBlockData().set(BlockBanner.FACING, EnumDirection.NORTH));
         }
 
-        public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
-            EnumDirection enumdirection = (EnumDirection) iblockaccess.getType(blockposition).get(BlockBanner.BlockWallBanner.FACING);
+        @Override
+		public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+            EnumDirection enumdirection = iblockaccess.getType(blockposition).get(BlockBanner.FACING);
             float f = 0.0F;
             float f1 = 0.78125F;
             float f2 = 0.0F;
@@ -183,8 +199,9 @@ public class BlockBanner extends BlockContainer {
 
         }
 
-        public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-            EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockBanner.BlockWallBanner.FACING);
+        @Override
+		public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+            EnumDirection enumdirection = iblockdata.get(BlockBanner.FACING);
 
             if (!world.getType(blockposition.shift(enumdirection.opposite())).getBlock().getMaterial().isBuildable()) {
                 this.b(world, blockposition, iblockdata, 0);
@@ -194,22 +211,25 @@ public class BlockBanner extends BlockContainer {
             super.doPhysics(world, blockposition, iblockdata, block);
         }
 
-        public IBlockData fromLegacyData(int i) {
+        @Override
+		public IBlockData fromLegacyData(int i) {
             EnumDirection enumdirection = EnumDirection.fromType1(i);
 
             if (enumdirection.k() == EnumDirection.EnumAxis.Y) {
                 enumdirection = EnumDirection.NORTH;
             }
 
-            return this.getBlockData().set(BlockBanner.BlockWallBanner.FACING, enumdirection);
+            return this.getBlockData().set(BlockBanner.FACING, enumdirection);
         }
 
-        public int toLegacyData(IBlockData iblockdata) {
-            return ((EnumDirection) iblockdata.get(BlockBanner.BlockWallBanner.FACING)).a();
+        @Override
+		public int toLegacyData(IBlockData iblockdata) {
+            return iblockdata.get(BlockBanner.FACING).a();
         }
 
-        protected BlockStateList getStateList() {
-            return new BlockStateList(this, new IBlockState[] { BlockBanner.BlockWallBanner.FACING});
+        @Override
+		protected BlockStateList getStateList() {
+            return new BlockStateList(this, new IBlockState[] { BlockBanner.FACING});
         }
     }
 }

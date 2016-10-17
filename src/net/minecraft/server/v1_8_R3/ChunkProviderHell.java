@@ -195,8 +195,9 @@ public class ChunkProviderHell implements IChunkProvider {
 
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
-        this.j.setSeed((long) i * 341873128712L + (long) j * 132897987541L);
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
+        this.j.setSeed(i * 341873128712L + j * 132897987541L);
         ChunkSnapshot chunksnapshot = new ChunkSnapshot();
 
         this.a(i, j, chunksnapshot);
@@ -237,11 +238,11 @@ public class ChunkProviderHell implements IChunkProvider {
         int l1;
 
         for (l1 = 0; l1 < i1; ++l1) {
-            adouble1[l1] = Math.cos((double) l1 * 3.141592653589793D * 6.0D / (double) i1) * 2.0D;
-            double d2 = (double) l1;
+            adouble1[l1] = Math.cos(l1 * 3.141592653589793D * 6.0D / i1) * 2.0D;
+            double d2 = l1;
 
             if (l1 > i1 / 2) {
-                d2 = (double) (i1 - 1 - l1);
+                d2 = i1 - 1 - l1;
             }
 
             if (d2 < 4.0D) {
@@ -273,12 +274,12 @@ public class ChunkProviderHell implements IChunkProvider {
                     double d9;
 
                     if (j2 > i1 - 4) {
-                        d9 = (double) ((float) (j2 - (i1 - 4)) / 3.0F);
+                        d9 = (j2 - (i1 - 4)) / 3.0F;
                         d4 = d4 * (1.0D - d9) + -10.0D * d9;
                     }
 
-                    if ((double) j2 < d3) {
-                        d9 = (d3 - (double) j2) / 4.0D;
+                    if (j2 < d3) {
+                        d9 = (d3 - j2) / 4.0D;
                         d9 = MathHelper.a(d9, 0.0D, 1.0D);
                         d4 = d4 * (1.0D - d9) + -10.0D * d9;
                     }
@@ -292,11 +293,13 @@ public class ChunkProviderHell implements IChunkProvider {
         return adouble;
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return true;
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
         BlockFalling.instaFall = true;
         BlockPosition blockposition = new BlockPosition(i * 16, 0, j * 16);
         ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);
@@ -340,29 +343,36 @@ public class ChunkProviderHell implements IChunkProvider {
         BlockFalling.instaFall = false;
     }
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         return false;
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         return true;
     }
 
-    public void c() {}
+    @Override
+	public void c() {}
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         return false;
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "HellRandomLevelSource";
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         if (enumcreaturetype == EnumCreatureType.MONSTER) {
             if (this.B.b(blockposition)) {
                 return this.B.b();
@@ -378,19 +388,23 @@ public class ChunkProviderHell implements IChunkProvider {
         return biomebase.getMobs(enumcreaturetype);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         return null;
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         return 0;
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {
         if (this.h.paperSpigotConfig.generateFortress) this.B.a(this, this.h, i, j, (ChunkSnapshot) null); // PaperSpigot
     }
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 }

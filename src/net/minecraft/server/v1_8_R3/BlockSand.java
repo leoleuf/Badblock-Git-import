@@ -8,23 +8,28 @@ public class BlockSand extends BlockFalling {
         this.j(this.blockStateList.getBlockData().set(BlockSand.VARIANT, BlockSand.EnumSandVariant.SAND));
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockSand.EnumSandVariant) iblockdata.get(BlockSand.VARIANT)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSand.VARIANT).a();
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((BlockSand.EnumSandVariant) iblockdata.get(BlockSand.VARIANT)).c();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockSand.VARIANT).c();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockSand.VARIANT, BlockSand.EnumSandVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockSand.EnumSandVariant) iblockdata.get(BlockSand.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSand.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockSand.VARIANT});
     }
 
@@ -49,7 +54,8 @@ public class BlockSand extends BlockFalling {
             return this.d;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.e;
         }
 
@@ -65,7 +71,8 @@ public class BlockSand extends BlockFalling {
             return BlockSand.EnumSandVariant.c[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.e;
         }
 

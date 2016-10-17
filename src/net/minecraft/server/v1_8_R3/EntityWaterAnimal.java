@@ -6,31 +6,38 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
         super(world);
     }
 
-    public boolean aY() {
+    @Override
+	public boolean aY() {
         return true;
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         return true;
     }
 
-    public boolean canSpawn() {
-        return this.world.a(this.getBoundingBox(), (Entity) this);
+    @Override
+	public boolean canSpawn() {
+        return this.world.a(this.getBoundingBox(), this);
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 120;
     }
 
-    protected boolean isTypeNotPersistent() {
+    @Override
+	protected boolean isTypeNotPersistent() {
         return true;
     }
 
-    protected int getExpValue(EntityHuman entityhuman) {
+    @Override
+	protected int getExpValue(EntityHuman entityhuman) {
         return 1 + this.world.random.nextInt(3);
     }
 
-    public void K() {
+    @Override
+	public void K() {
         int i = this.getAirTicks();
 
         super.K();
@@ -47,7 +54,8 @@ public abstract class EntityWaterAnimal extends EntityInsentient implements IAni
 
     }
 
-    public boolean aL() {
+    @Override
+	public boolean aL() {
         return false;
     }
 }

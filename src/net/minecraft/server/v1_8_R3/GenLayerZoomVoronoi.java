@@ -7,7 +7,8 @@ public class GenLayerZoomVoronoi extends GenLayer {
         super.a = genlayer;
     }
 
-    public int[] a(int i, int j, int k, int l) {
+    @Override
+	public int[] a(int i, int j, int k, int l) {
         i -= 2;
         j -= 2;
         int i1 = i >> 2;
@@ -29,20 +30,20 @@ public class GenLayerZoomVoronoi extends GenLayer {
                 double d0 = 3.6D;
 
                 this.a((long) (k2 + i1 << 2), (long) (l2 + j1 << 2));
-                double d1 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D;
-                double d2 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D;
+                double d1 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D;
+                double d2 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D;
 
                 this.a((long) (k2 + i1 + 1 << 2), (long) (l2 + j1 << 2));
-                double d3 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
-                double d4 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D;
+                double d3 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
+                double d4 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D;
 
                 this.a((long) (k2 + i1 << 2), (long) (l2 + j1 + 1 << 2));
-                double d5 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D;
-                double d6 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
+                double d5 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D;
+                double d6 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
 
                 this.a((long) (k2 + i1 + 1 << 2), (long) (l2 + j1 + 1 << 2));
-                double d7 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
-                double d8 = ((double) this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
+                double d7 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
+                double d8 = (this.a(1024) / 1024.0D - 0.5D) * 3.6D + 4.0D;
                 int k3 = aint[k2 + 1 + (l2 + 0) * k1] & 255;
                 int l3 = aint[k2 + 1 + (l2 + 1) * k1] & 255;
 
@@ -50,10 +51,10 @@ public class GenLayerZoomVoronoi extends GenLayer {
                     int j4 = ((l2 << 2) + i4) * i2 + (k2 << 2);
 
                     for (int k4 = 0; k4 < 4; ++k4) {
-                        double d9 = ((double) i4 - d2) * ((double) i4 - d2) + ((double) k4 - d1) * ((double) k4 - d1);
-                        double d10 = ((double) i4 - d4) * ((double) i4 - d4) + ((double) k4 - d3) * ((double) k4 - d3);
-                        double d11 = ((double) i4 - d6) * ((double) i4 - d6) + ((double) k4 - d5) * ((double) k4 - d5);
-                        double d12 = ((double) i4 - d8) * ((double) i4 - d8) + ((double) k4 - d7) * ((double) k4 - d7);
+                        double d9 = (i4 - d2) * (i4 - d2) + (k4 - d1) * (k4 - d1);
+                        double d10 = (i4 - d4) * (i4 - d4) + (k4 - d3) * (k4 - d3);
+                        double d11 = (i4 - d6) * (i4 - d6) + (k4 - d5) * (k4 - d5);
+                        double d12 = (i4 - d8) * (i4 - d8) + (k4 - d7) * (k4 - d7);
 
                         if (d9 < d10 && d9 < d11 && d9 < d12) {
                             aint1[j4++] = i3;

@@ -22,9 +22,10 @@ public class IpBanEntry extends ExpirableListEntry<String> {
         return jsonobject.has("ip") ? jsonobject.get("ip").getAsString() : null;
     }
 
-    protected void a(JsonObject jsonobject) {
+    @Override
+	protected void a(JsonObject jsonobject) {
         if (this.getKey() != null) {
-            jsonobject.addProperty("ip", (String) this.getKey());
+            jsonobject.addProperty("ip", this.getKey());
             super.a(jsonobject);
         }
     }

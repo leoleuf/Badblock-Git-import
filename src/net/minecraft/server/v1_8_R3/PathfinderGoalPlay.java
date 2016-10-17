@@ -16,7 +16,8 @@ public class PathfinderGoalPlay extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.getAge() >= 0) {
             return false;
         } else if (this.a.bc().nextInt(400) != 0) {
@@ -51,11 +52,13 @@ public class PathfinderGoalPlay extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.d > 0;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         if (this.b != null) {
             this.a.m(true);
         }
@@ -63,16 +66,18 @@ public class PathfinderGoalPlay extends PathfinderGoal {
         this.d = 1000;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.a.m(false);
         this.b = null;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         --this.d;
         if (this.b != null) {
             if (this.a.h(this.b) > 4.0D) {
-                this.a.getNavigation().a((Entity) this.b, this.c);
+                this.a.getNavigation().a(this.b, this.c);
             }
         } else if (this.a.getNavigation().m()) {
             Vec3D vec3d = RandomPositionGenerator.a(this.a, 16, 3);

@@ -37,7 +37,8 @@ public class MapIcon {
         return this.rotation;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof MapIcon)) {
@@ -49,7 +50,8 @@ public class MapIcon {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         byte b0 = this.type;
         int i = 31 * b0 + this.x;
 

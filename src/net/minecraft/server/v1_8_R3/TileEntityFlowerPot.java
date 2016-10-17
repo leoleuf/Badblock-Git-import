@@ -12,15 +12,17 @@ public class TileEntityFlowerPot extends TileEntity {
         this.f = i;
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
-        MinecraftKey minecraftkey = (MinecraftKey) Item.REGISTRY.c(this.a);
+        MinecraftKey minecraftkey = Item.REGISTRY.c(this.a);
 
         nbttagcompound.setString("Item", minecraftkey == null ? "" : minecraftkey.toString());
         nbttagcompound.setInt("Data", this.f);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("Item", 8)) {
             this.a = Item.d(nbttagcompound.getString("Item"));
@@ -31,7 +33,8 @@ public class TileEntityFlowerPot extends TileEntity {
         this.f = nbttagcompound.getInt("Data");
     }
 
-    public Packet getUpdatePacket() {
+    @Override
+	public Packet getUpdatePacket() {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         this.b(nbttagcompound);

@@ -119,7 +119,7 @@ public class CraftStatistic {
     }
 
     public static net.minecraft.server.v1_8_R3.Statistic getEntityStatistic(org.bukkit.Statistic stat, EntityType entity) {
-        MonsterEggInfo monsteregginfo = (MonsterEggInfo) EntityTypes.eggInfo.get(Integer.valueOf(entity.getTypeId()));
+        MonsterEggInfo monsteregginfo = EntityTypes.eggInfo.get(Integer.valueOf(entity.getTypeId()));
 
         if (monsteregginfo != null) {
             return monsteregginfo.killEntityStatistic;
@@ -135,11 +135,11 @@ public class CraftStatistic {
     public static Material getMaterialFromStatistic(net.minecraft.server.v1_8_R3.Statistic statistic) {
         String statisticString = statistic.name;
         String val = statisticString.substring(statisticString.lastIndexOf(".") + 1);
-        Item item = (Item) Item.REGISTRY.get(new MinecraftKey(val));
+        Item item = Item.REGISTRY.get(new MinecraftKey(val));
         if (item != null) {
             return Material.getMaterial(Item.getId(item));
         }
-        Block block = (Block) Block.REGISTRY.get(new MinecraftKey(val));
+        Block block = Block.REGISTRY.get(new MinecraftKey(val));
         if (block != null) {
             return Material.getMaterial(Block.getId(block));
         }

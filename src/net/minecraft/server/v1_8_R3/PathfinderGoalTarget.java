@@ -21,7 +21,8 @@ public abstract class PathfinderGoalTarget extends PathfinderGoal {
         this.a = flag1;
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         EntityLiving entityliving = this.e.getGoalTarget();
 
         if (entityliving == null) {
@@ -60,13 +61,15 @@ public abstract class PathfinderGoalTarget extends PathfinderGoal {
         return attributeinstance == null ? 16.0D : attributeinstance.getValue();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.b = 0;
         this.c = 0;
         this.d = 0;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.e.setGoalTarget((EntityLiving) null);
     }
 
@@ -129,7 +132,7 @@ public abstract class PathfinderGoalTarget extends PathfinderGoal {
 
     private boolean a(EntityLiving entityliving) {
         this.c = 10 + this.e.bc().nextInt(5);
-        PathEntity pathentity = this.e.getNavigation().a((Entity) entityliving);
+        PathEntity pathentity = this.e.getNavigation().a(entityliving);
 
         if (pathentity == null) {
             return false;
@@ -142,7 +145,7 @@ public abstract class PathfinderGoalTarget extends PathfinderGoal {
                 int i = pathpoint.a - MathHelper.floor(entityliving.locX);
                 int j = pathpoint.c - MathHelper.floor(entityliving.locZ);
 
-                return (double) (i * i + j * j) <= 2.25D;
+                return i * i + j * j <= 2.25D;
             }
         }
     }

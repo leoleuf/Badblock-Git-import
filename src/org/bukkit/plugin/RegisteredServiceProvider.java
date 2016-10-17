@@ -36,7 +36,8 @@ public class RegisteredServiceProvider<T> implements Comparable<RegisteredServic
         return priority;
     }
 
-    public int compareTo(RegisteredServiceProvider<?> other) {
+    @Override
+	public int compareTo(RegisteredServiceProvider<?> other) {
         if (priority.ordinal() == other.getPriority().ordinal()) {
             return 0;
         } else {

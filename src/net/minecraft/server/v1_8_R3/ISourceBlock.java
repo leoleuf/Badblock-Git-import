@@ -2,11 +2,14 @@ package net.minecraft.server.v1_8_R3;
 
 public interface ISourceBlock extends ILocationSource {
 
-    double getX();
+    @Override
+	double getX();
 
-    double getY();
+    @Override
+	double getY();
 
-    double getZ();
+    @Override
+	double getZ();
 
     BlockPosition getBlockPosition();
 

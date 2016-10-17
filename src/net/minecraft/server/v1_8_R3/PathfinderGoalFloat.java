@@ -11,11 +11,13 @@ public class PathfinderGoalFloat extends PathfinderGoal {
         ((Navigation) entityinsentient.getNavigation()).d(true);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         return this.a.V() || this.a.ab();
     }
 
-    public void e() {
+    @Override
+	public void e() {
         if (this.a.bc().nextFloat() < 0.8F) {
             this.a.getControllerJump().a();
         }

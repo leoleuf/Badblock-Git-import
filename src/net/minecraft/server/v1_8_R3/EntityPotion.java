@@ -31,15 +31,18 @@ public class EntityPotion extends EntityProjectile {
         this.item = itemstack;
     }
 
-    protected float m() {
+    @Override
+	protected float m() {
         return 0.05F;
     }
 
-    protected float j() {
+    @Override
+	protected float j() {
         return 0.5F;
     }
 
-    protected float l() {
+    @Override
+	protected float l() {
         return -20.0F;
     }
 
@@ -59,7 +62,8 @@ public class EntityPotion extends EntityProjectile {
         return this.item.getData();
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (!this.world.isClientSide) {
             List list = Items.POTION.h(this.item);
 
@@ -116,7 +120,7 @@ public class EntityPotion extends EntityProjectile {
                                 if (MobEffectList.byId[i].isInstant()) {
                                     MobEffectList.byId[i].applyInstantEffect(this, this.getShooter(), entityliving, mobeffect.getAmplifier(), d1);
                                 } else {
-                                    int j = (int) (d1 * (double) mobeffect.getDuration() + 0.5D);
+                                    int j = (int) (d1 * mobeffect.getDuration() + 0.5D);
 
                                     if (j > 20) {
                                         entityliving.addEffect(new MobEffect(i, j, mobeffect.getAmplifier()));
@@ -134,7 +138,8 @@ public class EntityPotion extends EntityProjectile {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("Potion", 10)) {
             this.item = ItemStack.createStack(nbttagcompound.getCompound("Potion"));
@@ -148,7 +153,8 @@ public class EntityPotion extends EntityProjectile {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         if (this.item != null) {
             nbttagcompound.set("Potion", this.item.save(new NBTTagCompound()));

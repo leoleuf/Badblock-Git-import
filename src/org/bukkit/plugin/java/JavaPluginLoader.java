@@ -61,7 +61,8 @@ public final class JavaPluginLoader implements PluginLoader {
         server = instance;
     }
 
-    public Plugin loadPlugin(final File file) throws InvalidPluginException {
+    @Override
+	public Plugin loadPlugin(final File file) throws InvalidPluginException {
         Validate.notNull(file, "File cannot be null");
 
         if (!file.exists()) {
@@ -138,7 +139,8 @@ public final class JavaPluginLoader implements PluginLoader {
         return loader.plugin;
     }
 
-    public PluginDescriptionFile getPluginDescription(File file) throws InvalidDescriptionException {
+    @Override
+	public PluginDescriptionFile getPluginDescription(File file) throws InvalidDescriptionException {
         Validate.notNull(file, "File cannot be null");
 
         JarFile jar = null;
@@ -176,7 +178,8 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    public Pattern[] getPluginFileFilters() {
+    @Override
+	public Pattern[] getPluginFileFilters() {
         return fileFilters.clone();
     }
 
@@ -225,7 +228,8 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    public Map<Class<? extends Event>, Set<RegisteredListener>> createRegisteredListeners(Listener listener, final Plugin plugin) {
+    @Override
+	public Map<Class<? extends Event>, Set<RegisteredListener>> createRegisteredListeners(Listener listener, final Plugin plugin) {
         Validate.notNull(plugin, "Plugin can not be null");
         Validate.notNull(listener, "Listener can not be null");
 
@@ -292,7 +296,8 @@ public final class JavaPluginLoader implements PluginLoader {
             }
 
             EventExecutor executor = new co.aikar.timings.TimedEventExecutor(new EventExecutor() { // Spigot
-                public void execute(Listener listener, Event event) throws EventException {
+                @Override
+				public void execute(Listener listener, Event event) throws EventException {
                     try {
                         if (!eventClass.isAssignableFrom(event.getClass())) {
                             return;
@@ -314,7 +319,8 @@ public final class JavaPluginLoader implements PluginLoader {
         return ret;
     }
 
-    public void enablePlugin(final Plugin plugin) {
+    @Override
+	public void enablePlugin(final Plugin plugin) {
         Validate.isTrue(plugin instanceof JavaPlugin, "Plugin is not associated with this PluginLoader");
 
         if (!plugin.isEnabled()) {
@@ -344,7 +350,8 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    public void disablePlugin(Plugin plugin) {
+    @Override
+	public void disablePlugin(Plugin plugin) {
         Validate.isTrue(plugin instanceof JavaPlugin, "Plugin is not associated with this PluginLoader");
 
         if (plugin.isEnabled()) {

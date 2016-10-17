@@ -17,19 +17,23 @@ public class CommandDebug extends CommandAbstract {
 
     public CommandDebug() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "debug";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 3;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.debug.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.debug.usage", new Object[0]);
         } else {
@@ -62,7 +66,7 @@ public class CommandDebug extends CommandAbstract {
 
                 this.a(k, l);
                 MinecraftServer.getServer().methodProfiler.a = false;
-                a(icommandlistener, this, "commands.debug.stop", new Object[] { Float.valueOf((float) k / 1000.0F), Integer.valueOf(l)});
+                a(icommandlistener, this, "commands.debug.stop", new Object[] { Float.valueOf(k / 1000.0F), Integer.valueOf(l)});
             }
 
         }
@@ -93,7 +97,7 @@ public class CommandDebug extends CommandAbstract {
         stringbuilder.append("\n\n");
         stringbuilder.append("Time span: ").append(i).append(" ms\n");
         stringbuilder.append("Tick span: ").append(j).append(" ticks\n");
-        stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[] { Float.valueOf((float) j / ((float) i / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
+        stringbuilder.append("// This is approximately ").append(String.format("%.2f", new Object[] { Float.valueOf(j / (i / 1000.0F))})).append(" ticks per second. It should be ").append(20).append(" ticks per second\n\n");
         stringbuilder.append("--- BEGIN PROFILE DUMP ---\n\n");
         this.a(0, "root", stringbuilder);
         stringbuilder.append("--- END PROFILE DUMP ---\n\n");
@@ -130,13 +134,14 @@ public class CommandDebug extends CommandAbstract {
         String[] astring = new String[] { "Shiny numbers!", "Am I not running fast enough? :(", "I\'m working as hard as I can!", "Will I ever be good enough for you? :(", "Speedy. Zoooooom!", "Hello world", "40% better than a crash report.", "Now with extra numbers", "Now with less numbers", "Now with the same numbers", "You should add flames to things, it makes them go faster!", "Do you feel the need for... optimization?", "*cracks redstone whip*", "Maybe if you treated it better then it\'ll have more motivation to work faster! Poor server."};
 
         try {
-            return astring[(int) (System.nanoTime() % (long) astring.length)];
+            return astring[(int) (System.nanoTime() % astring.length)];
         } catch (Throwable throwable) {
             return "Witty comment unavailable :(";
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, new String[] { "start", "stop"}) : null;
     }
 }

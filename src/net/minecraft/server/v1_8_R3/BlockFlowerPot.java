@@ -13,30 +13,36 @@ public class BlockFlowerPot extends BlockContainer {
         this.j();
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get("item.flowerPot.name");
     }
 
-    public void j() {
+    @Override
+	public void j() {
         float f = 0.375F;
         float f1 = f / 2.0F;
 
         this.a(0.5F - f1, 0.0F, 0.5F - f1, 0.5F + f1, f, 0.5F + f1);
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() instanceof ItemBlock) {
@@ -72,25 +78,29 @@ public class BlockFlowerPot extends BlockContainer {
         return block != Blocks.YELLOW_FLOWER && block != Blocks.RED_FLOWER && block != Blocks.CACTUS && block != Blocks.BROWN_MUSHROOM && block != Blocks.RED_MUSHROOM && block != Blocks.SAPLING && block != Blocks.DEADBUSH ? block == Blocks.TALLGRASS && i == BlockLongGrass.EnumTallGrassType.FERN.a() : true;
     }
 
-    public int getDropData(World world, BlockPosition blockposition) {
+    @Override
+	public int getDropData(World world, BlockPosition blockposition) {
         TileEntityFlowerPot tileentityflowerpot = this.f(world, blockposition);
 
         return tileentityflowerpot != null && tileentityflowerpot.b() != null ? tileentityflowerpot.c() : 0;
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
-        return super.canPlace(world, blockposition) && World.a((IBlockAccess) world, blockposition.down());
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
+        return super.canPlace(world, blockposition) && World.a(world, blockposition.down());
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        if (!World.a((IBlockAccess) world, blockposition.down())) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        if (!World.a(world, blockposition.down())) {
             this.b(world, blockposition, iblockdata, 0);
             world.setAir(blockposition);
         }
 
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         TileEntityFlowerPot tileentityflowerpot = this.f(world, blockposition);
 
         if (tileentityflowerpot != null && tileentityflowerpot.b() != null) {
@@ -101,7 +111,8 @@ public class BlockFlowerPot extends BlockContainer {
         super.remove(world, blockposition, iblockdata);
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman) {
         super.a(world, blockposition, iblockdata, entityhuman);
         if (entityhuman.abilities.canInstantlyBuild) {
             TileEntityFlowerPot tileentityflowerpot = this.f(world, blockposition);
@@ -113,7 +124,8 @@ public class BlockFlowerPot extends BlockContainer {
 
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.FLOWER_POT;
     }
 
@@ -123,7 +135,8 @@ public class BlockFlowerPot extends BlockContainer {
         return tileentity instanceof TileEntityFlowerPot ? (TileEntityFlowerPot) tileentity : null;
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         Object object = null;
         int j = 0;
 
@@ -191,15 +204,18 @@ public class BlockFlowerPot extends BlockContainer {
         return new TileEntityFlowerPot(Item.getItemOf((Block) object), j);
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockFlowerPot.CONTENTS, BlockFlowerPot.LEGACY_DATA});
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockFlowerPot.LEGACY_DATA)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockFlowerPot.LEGACY_DATA).intValue();
     }
 
-    public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
         BlockFlowerPot.EnumFlowerPotContents blockflowerpot_enumflowerpotcontents = BlockFlowerPot.EnumFlowerPotContents.EMPTY;
         TileEntity tileentity = iblockaccess.getTileEntity(blockposition);
 
@@ -422,11 +438,13 @@ public class BlockFlowerPot extends BlockContainer {
             this.w = s;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.w;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.w;
         }
     }

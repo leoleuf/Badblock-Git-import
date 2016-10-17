@@ -85,7 +85,7 @@ public class LongHashMap<V> {
             this.a(alonghashmap_longhashmapentry1);
             this.entries = alonghashmap_longhashmapentry1;
             this.c = this.entries.length - 1;
-            this.d = (int) ((float) i * this.e);
+            this.d = (int) (i * this.e);
         }
     }
 
@@ -180,7 +180,8 @@ public class LongHashMap<V> {
             return this.b;
         }
 
-        public final boolean equals(Object object) {
+        @Override
+		public final boolean equals(Object object) {
             if (!(object instanceof LongHashMap.LongHashMapEntry)) {
                 return false;
             } else {
@@ -201,11 +202,13 @@ public class LongHashMap<V> {
             }
         }
 
-        public final int hashCode() {
+        @Override
+		public final int hashCode() {
             return LongHashMap.g(this.a);
         }
 
-        public final String toString() {
+        @Override
+		public final String toString() {
             return this.a() + "=" + this.b();
         }
     }

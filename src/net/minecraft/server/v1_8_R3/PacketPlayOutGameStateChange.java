@@ -15,17 +15,20 @@ public class PacketPlayOutGameStateChange implements Packet<PacketListenerPlayOu
         this.c = f;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.b = packetdataserializer.readUnsignedByte();
         this.c = packetdataserializer.readFloat();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.b);
         packetdataserializer.writeFloat(this.c);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

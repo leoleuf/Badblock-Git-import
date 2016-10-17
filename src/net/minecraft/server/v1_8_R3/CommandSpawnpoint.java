@@ -6,19 +6,23 @@ public class CommandSpawnpoint extends CommandAbstract {
 
     public CommandSpawnpoint() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "spawnpoint";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.spawnpoint.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length > 1 && astring.length < 4) {
             throw new ExceptionUsage("commands.spawnpoint.usage", new Object[0]);
         } else {
@@ -33,11 +37,13 @@ public class CommandSpawnpoint extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, MinecraftServer.getServer().getPlayers()) : (astring.length > 1 && astring.length <= 4 ? a(astring, 1, blockposition) : null);
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 }

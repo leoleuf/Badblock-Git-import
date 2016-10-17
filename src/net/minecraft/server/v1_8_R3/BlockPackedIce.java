@@ -10,7 +10,8 @@ public class BlockPackedIce extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 }

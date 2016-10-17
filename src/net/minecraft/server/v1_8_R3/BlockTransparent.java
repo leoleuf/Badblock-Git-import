@@ -9,7 +9,8 @@ public class BlockTransparent extends Block {
         this.R = flag;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 }

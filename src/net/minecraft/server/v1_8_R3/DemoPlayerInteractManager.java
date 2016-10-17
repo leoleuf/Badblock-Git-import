@@ -11,7 +11,8 @@ public class DemoPlayerInteractManager extends PlayerInteractManager {
         super(world);
     }
 
-    public void a() {
+    @Override
+	public void a() {
         super.a();
         ++this.f;
         long i = this.world.getTime();
@@ -53,7 +54,8 @@ public class DemoPlayerInteractManager extends PlayerInteractManager {
 
     }
 
-    public void a(BlockPosition blockposition, EnumDirection enumdirection) {
+    @Override
+	public void a(BlockPosition blockposition, EnumDirection enumdirection) {
         if (this.d) {
             this.f();
         } else {
@@ -61,17 +63,20 @@ public class DemoPlayerInteractManager extends PlayerInteractManager {
         }
     }
 
-    public void a(BlockPosition blockposition) {
+    @Override
+	public void a(BlockPosition blockposition) {
         if (!this.d) {
             super.a(blockposition);
         }
     }
 
-    public boolean breakBlock(BlockPosition blockposition) {
+    @Override
+	public boolean breakBlock(BlockPosition blockposition) {
         return this.d ? false : super.breakBlock(blockposition);
     }
 
-    public boolean useItem(EntityHuman entityhuman, World world, ItemStack itemstack) {
+    @Override
+	public boolean useItem(EntityHuman entityhuman, World world, ItemStack itemstack) {
         if (this.d) {
             this.f();
             return false;
@@ -80,7 +85,8 @@ public class DemoPlayerInteractManager extends PlayerInteractManager {
         }
     }
 
-    public boolean interact(EntityHuman entityhuman, World world, ItemStack itemstack, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(EntityHuman entityhuman, World world, ItemStack itemstack, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (this.d) {
             this.f();
             return false;

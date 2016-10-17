@@ -61,35 +61,43 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         enderChest = new CraftInventory(entity.getEnderChest());
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return getHandle().getName();
     }
 
-    public PlayerInventory getInventory() {
+    @Override
+	public PlayerInventory getInventory() {
         return inventory;
     }
 
-    public EntityEquipment getEquipment() {
+    @Override
+	public EntityEquipment getEquipment() {
         return inventory;
     }
 
-    public Inventory getEnderChest() {
+    @Override
+	public Inventory getEnderChest() {
         return enderChest;
     }
 
-    public ItemStack getItemInHand() {
+    @Override
+	public ItemStack getItemInHand() {
         return getInventory().getItemInHand();
     }
 
-    public void setItemInHand(ItemStack item) {
+    @Override
+	public void setItemInHand(ItemStack item) {
         getInventory().setItemInHand(item);
     }
 
-    public ItemStack getItemOnCursor() {
+    @Override
+	public ItemStack getItemOnCursor() {
         return CraftItemStack.asCraftMirror(getHandle().inventory.getCarried());
     }
 
-    public void setItemOnCursor(ItemStack item) {
+    @Override
+	public void setItemOnCursor(ItemStack item) {
         net.minecraft.server.v1_8_R3.ItemStack stack = CraftItemStack.asNMSCopy(item);
         getHandle().inventory.setCarried(stack);
         if (this instanceof CraftPlayer) {
@@ -97,72 +105,89 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         }
     }
 
-    public boolean isSleeping() {
+    @Override
+	public boolean isSleeping() {
         return getHandle().sleeping;
     }
 
-    public int getSleepTicks() {
+    @Override
+	public int getSleepTicks() {
         return getHandle().sleepTicks;
     }
 
-    public boolean isOp() {
+    @Override
+	public boolean isOp() {
         return op;
     }
 
-    public boolean isPermissionSet(String name) {
+    @Override
+	public boolean isPermissionSet(String name) {
         return perm.isPermissionSet(name);
     }
 
-    public boolean isPermissionSet(Permission perm) {
+    @Override
+	public boolean isPermissionSet(Permission perm) {
         return this.perm.isPermissionSet(perm);
     }
 
-    public boolean hasPermission(String name) {
+    @Override
+	public boolean hasPermission(String name) {
         return perm.hasPermission(name);
     }
 
-    public boolean hasPermission(Permission perm) {
+    @Override
+	public boolean hasPermission(Permission perm) {
         return this.perm.hasPermission(perm);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         return perm.addAttachment(plugin, name, value);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin) {
         return perm.addAttachment(plugin);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         return perm.addAttachment(plugin, name, value, ticks);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         return perm.addAttachment(plugin, ticks);
     }
 
-    public void removeAttachment(PermissionAttachment attachment) {
+    @Override
+	public void removeAttachment(PermissionAttachment attachment) {
         perm.removeAttachment(attachment);
     }
 
-    public void recalculatePermissions() {
+    @Override
+	public void recalculatePermissions() {
         perm.recalculatePermissions();
     }
 
-    public void setOp(boolean value) {
+    @Override
+	public void setOp(boolean value) {
         this.op = value;
         perm.recalculatePermissions();
     }
 
-    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+    @Override
+	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         return perm.getEffectivePermissions();
     }
 
-    public GameMode getGameMode() {
+    @Override
+	public GameMode getGameMode() {
         return mode;
     }
 
-    public void setGameMode(GameMode mode) {
+    @Override
+	public void setGameMode(GameMode mode) {
         if (mode == null) {
             throw new IllegalArgumentException("Mode cannot be null");
         }
@@ -185,11 +210,13 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         return "CraftHumanEntity{" + "id=" + getEntityId() + "name=" + getName() + '}';
     }
 
-    public InventoryView getOpenInventory() {
+    @Override
+	public InventoryView getOpenInventory() {
         return getHandle().activeContainer.getBukkitView();
     }
 
-    public InventoryView openInventory(Inventory inventory) {
+    @Override
+	public InventoryView openInventory(Inventory inventory) {
         if(!(getHandle() instanceof EntityPlayer)) return null;
         EntityPlayer player = (EntityPlayer) getHandle();
         InventoryType type = inventory.getType();
@@ -205,21 +232,21 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
                 break;
             case DISPENSER:
                 if (iinventory instanceof TileEntityDispenser) {
-                    getHandle().openContainer((TileEntityDispenser) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:dispenser");
                 }
                 break;
             case DROPPER:
                 if (iinventory instanceof TileEntityDropper) {
-                    getHandle().openContainer((TileEntityDropper) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:dropper");
                 }
                 break;
             case FURNACE:
                 if (iinventory instanceof TileEntityFurnace) {
-                    getHandle().openContainer((TileEntityFurnace) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:furnace");
                 }
@@ -229,7 +256,7 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
                 break;
             case BREWING:
                 if (iinventory instanceof TileEntityBrewingStand) {
-                    getHandle().openContainer((TileEntityBrewingStand) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:brewing_stand");
                 }
@@ -239,16 +266,16 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
                 break;
             case HOPPER:
                 if (iinventory instanceof TileEntityHopper) {
-                    getHandle().openContainer((TileEntityHopper) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else if (iinventory instanceof EntityMinecartHopper) {
-                    getHandle().openContainer((EntityMinecartHopper) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:hopper");
                 }
                 break;
             case BEACON:
                 if (iinventory instanceof TileEntityBeacon) {
-                    getHandle().openContainer((TileEntityBeacon) iinventory);
+                    getHandle().openContainer(iinventory);
                 } else {
                     openCustomInventory(inventory, player, "minecraft:beacon");
                 }
@@ -294,7 +321,8 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         getHandle().activeContainer.addSlotListener(player);
     }
 
-    public InventoryView openWorkbench(Location location, boolean force) {
+    @Override
+	public InventoryView openWorkbench(Location location, boolean force) {
         if (!force) {
             Block block = location.getBlock();
             if (block.getType() != Material.WORKBENCH) {
@@ -311,7 +339,8 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         return getHandle().activeContainer.getBukkitView();
     }
 
-    public InventoryView openEnchanting(Location location, boolean force) {
+    @Override
+	public InventoryView openEnchanting(Location location, boolean force) {
         if (!force) {
             Block block = location.getBlock();
             if (block.getType() != Material.ENCHANTMENT_TABLE) {
@@ -335,7 +364,8 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         return getHandle().activeContainer.getBukkitView();
     }
 
-    public void openInventory(InventoryView inventory) {
+    @Override
+	public void openInventory(InventoryView inventory) {
         if (!(getHandle() instanceof EntityPlayer)) return; // TODO: NPC support?
         if (((EntityPlayer) getHandle()).playerConnection == null) return;
         if (getHandle().activeContainer != getHandle().defaultContainer) {
@@ -366,19 +396,23 @@ public class CraftHumanEntity extends CraftLivingEntity implements HumanEntity {
         player.activeContainer.addSlotListener(player);
     }
 
-    public void closeInventory() {
+    @Override
+	public void closeInventory() {
         getHandle().closeInventory();
     }
 
-    public boolean isBlocking() {
+    @Override
+	public boolean isBlocking() {
         return getHandle().isBlocking();
     }
 
-    public boolean setWindowProperty(InventoryView.Property prop, int value) {
+    @Override
+	public boolean setWindowProperty(InventoryView.Property prop, int value) {
         return false;
     }
 
-    public int getExpToLevel() {
+    @Override
+	public int getExpToLevel() {
         return getHandle().getExpToLevel();
     }
 }

@@ -9,16 +9,19 @@ public class PacketPlayInEnchantItem implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInEnchantItem() {}
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readByte();
         this.b = packetdataserializer.readByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.a);
         packetdataserializer.writeByte(this.b);
     }

@@ -26,18 +26,18 @@ public class WorldGenFactory {
     }
 
     public static String a(StructureStart structurestart) {
-        return (String) WorldGenFactory.c.get(structurestart.getClass());
+        return WorldGenFactory.c.get(structurestart.getClass());
     }
 
     public static String a(StructurePiece structurepiece) {
-        return (String) WorldGenFactory.e.get(structurepiece.getClass());
+        return WorldGenFactory.e.get(structurepiece.getClass());
     }
 
     public static StructureStart a(NBTTagCompound nbttagcompound, World world) {
         StructureStart structurestart = null;
 
         try {
-            Class oclass = (Class) WorldGenFactory.b.get(nbttagcompound.getString("id"));
+            Class oclass = WorldGenFactory.b.get(nbttagcompound.getString("id"));
 
             if (oclass != null) {
                 structurestart = (StructureStart) oclass.newInstance();
@@ -60,7 +60,7 @@ public class WorldGenFactory {
         StructurePiece structurepiece = null;
 
         try {
-            Class oclass = (Class) WorldGenFactory.d.get(nbttagcompound.getString("id"));
+            Class oclass = WorldGenFactory.d.get(nbttagcompound.getString("id"));
 
             if (oclass != null) {
                 structurepiece = (StructurePiece) oclass.newInstance();

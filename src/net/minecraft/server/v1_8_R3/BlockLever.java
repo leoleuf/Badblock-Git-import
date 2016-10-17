@@ -15,23 +15,28 @@ public class BlockLever extends Block {
         this.a(CreativeModeTab.d);
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition, EnumDirection enumdirection) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition, EnumDirection enumdirection) {
         return a(world, blockposition, enumdirection.opposite());
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         EnumDirection[] aenumdirection = EnumDirection.values();
         int i = aenumdirection.length;
 
@@ -50,7 +55,8 @@ public class BlockLever extends Block {
         return BlockButtonAbstract.a(world, blockposition, enumdirection);
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         IBlockData iblockdata = this.getBlockData().set(BlockLever.POWERED, Boolean.valueOf(false));
 
         if (a(world, blockposition, enumdirection.opposite())) {
@@ -62,7 +68,7 @@ public class BlockLever extends Block {
 
             do {
                 if (!iterator.hasNext()) {
-                    if (World.a((IBlockAccess) world, blockposition.down())) {
+                    if (World.a(world, blockposition.down())) {
                         return iblockdata.set(BlockLever.FACING, BlockLever.EnumLeverPosition.a(EnumDirection.UP, entityliving.getDirection()));
                     }
 
@@ -101,8 +107,9 @@ public class BlockLever extends Block {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        if (this.e(world, blockposition, iblockdata) && !a(world, blockposition, ((BlockLever.EnumLeverPosition) iblockdata.get(BlockLever.FACING)).c().opposite())) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        if (this.e(world, blockposition, iblockdata) && !a(world, blockposition, iblockdata.get(BlockLever.FACING).c().opposite())) {
             this.b(world, blockposition, iblockdata, 0);
             world.setAir(blockposition);
         }
@@ -119,10 +126,11 @@ public class BlockLever extends Block {
         }
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         float f = 0.1875F;
 
-        switch (BlockLever.SyntheticClass_1.b[((BlockLever.EnumLeverPosition) iblockaccess.getType(blockposition).get(BlockLever.FACING)).ordinal()]) {
+        switch (BlockLever.SyntheticClass_1.b[iblockaccess.getType(blockposition).get(BlockLever.FACING).ordinal()]) {
         case 1:
             this.a(0.0F, 0.2F, 0.5F - f, f * 2.0F, 0.8F, 0.5F + f);
             break;
@@ -153,7 +161,8 @@ public class BlockLever extends Block {
 
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -173,19 +182,20 @@ public class BlockLever extends Block {
             
             iblockdata = iblockdata.a(BlockLever.POWERED);
             world.setTypeAndData(blockposition, iblockdata, 3);
-            world.makeSound((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D, "random.click", 0.3F, ((Boolean) iblockdata.get(BlockLever.POWERED)).booleanValue() ? 0.6F : 0.5F);
+            world.makeSound(blockposition.getX() + 0.5D, blockposition.getY() + 0.5D, blockposition.getZ() + 0.5D, "random.click", 0.3F, iblockdata.get(BlockLever.POWERED).booleanValue() ? 0.6F : 0.5F);
             world.applyPhysics(blockposition, this);
-            EnumDirection enumdirection1 = ((BlockLever.EnumLeverPosition) iblockdata.get(BlockLever.FACING)).c();
+            EnumDirection enumdirection1 = iblockdata.get(BlockLever.FACING).c();
 
             world.applyPhysics(blockposition.shift(enumdirection1.opposite()), this);
             return true;
         }
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        if (((Boolean) iblockdata.get(BlockLever.POWERED)).booleanValue()) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+        if (iblockdata.get(BlockLever.POWERED).booleanValue()) {
             world.applyPhysics(blockposition, this);
-            EnumDirection enumdirection = ((BlockLever.EnumLeverPosition) iblockdata.get(BlockLever.FACING)).c();
+            EnumDirection enumdirection = iblockdata.get(BlockLever.FACING).c();
 
             world.applyPhysics(blockposition.shift(enumdirection.opposite()), this);
         }
@@ -193,34 +203,40 @@ public class BlockLever extends Block {
         super.remove(world, blockposition, iblockdata);
     }
 
-    public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        return ((Boolean) iblockdata.get(BlockLever.POWERED)).booleanValue() ? 15 : 0;
+    @Override
+	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+        return iblockdata.get(BlockLever.POWERED).booleanValue() ? 15 : 0;
     }
 
-    public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        return !((Boolean) iblockdata.get(BlockLever.POWERED)).booleanValue() ? 0 : (((BlockLever.EnumLeverPosition) iblockdata.get(BlockLever.FACING)).c() == enumdirection ? 15 : 0);
+    @Override
+	public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+        return !iblockdata.get(BlockLever.POWERED).booleanValue() ? 0 : (iblockdata.get(BlockLever.FACING).c() == enumdirection ? 15 : 0);
     }
 
-    public boolean isPowerSource() {
+    @Override
+	public boolean isPowerSource() {
         return true;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockLever.FACING, BlockLever.EnumLeverPosition.a(i & 7)).set(BlockLever.POWERED, Boolean.valueOf((i & 8) > 0));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((BlockLever.EnumLeverPosition) iblockdata.get(BlockLever.FACING)).a();
+        int i = b0 | iblockdata.get(BlockLever.FACING).a();
 
-        if (((Boolean) iblockdata.get(BlockLever.POWERED)).booleanValue()) {
+        if (iblockdata.get(BlockLever.POWERED).booleanValue()) {
             i |= 8;
         }
 
         return i;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockLever.FACING, BlockLever.POWERED});
     }
 
@@ -357,7 +373,8 @@ public class BlockLever extends Block {
             return this.l;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.k;
         }
 
@@ -412,7 +429,8 @@ public class BlockLever extends Block {
             }
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.k;
         }
 

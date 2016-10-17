@@ -14,47 +14,56 @@ public class BlockLongGrass extends BlockPlant implements IBlockFragilePlantElem
         this.a(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.8F, 0.5F + f);
     }
 
-    public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return this.c(world.getType(blockposition.down()).getBlock());
     }
 
-    public boolean a(World world, BlockPosition blockposition) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition) {
         return true;
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return random.nextInt(8) == 0 ? Items.WHEAT_SEEDS : null;
     }
 
-    public int getDropCount(int i, Random random) {
+    @Override
+	public int getDropCount(int i, Random random) {
         return 1 + random.nextInt(i * 2 + 1);
     }
 
-    public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
+    @Override
+	public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
         if (!world.isClientSide && entityhuman.bZ() != null && entityhuman.bZ().getItem() == Items.SHEARS) {
             entityhuman.b(StatisticList.MINE_BLOCK_COUNT[Block.getId(this)]);
-            a(world, blockposition, new ItemStack(Blocks.TALLGRASS, 1, ((BlockLongGrass.EnumTallGrassType) iblockdata.get(BlockLongGrass.TYPE)).a()));
+            a(world, blockposition, new ItemStack(Blocks.TALLGRASS, 1, iblockdata.get(BlockLongGrass.TYPE).a()));
         } else {
             super.a(world, entityhuman, blockposition, iblockdata, tileentity);
         }
 
     }
 
-    public int getDropData(World world, BlockPosition blockposition) {
+    @Override
+	public int getDropData(World world, BlockPosition blockposition) {
         IBlockData iblockdata = world.getType(blockposition);
 
         return iblockdata.getBlock().toLegacyData(iblockdata);
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
         return iblockdata.get(BlockLongGrass.TYPE) != BlockLongGrass.EnumTallGrassType.DEAD_BUSH;
     }
 
-    public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         return true;
     }
 
-    public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         BlockTallPlant.EnumTallFlowerVariants blocktallplant_enumtallflowervariants = BlockTallPlant.EnumTallFlowerVariants.GRASS;
 
         if (iblockdata.get(BlockLongGrass.TYPE) == BlockLongGrass.EnumTallGrassType.FERN) {
@@ -67,15 +76,18 @@ public class BlockLongGrass extends BlockPlant implements IBlockFragilePlantElem
 
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockLongGrass.TYPE, BlockLongGrass.EnumTallGrassType.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockLongGrass.EnumTallGrassType) iblockdata.get(BlockLongGrass.TYPE)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockLongGrass.TYPE).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockLongGrass.TYPE});
     }
 
@@ -96,7 +108,8 @@ public class BlockLongGrass extends BlockPlant implements IBlockFragilePlantElem
             return this.e;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.f;
         }
 
@@ -108,7 +121,8 @@ public class BlockLongGrass extends BlockPlant implements IBlockFragilePlantElem
             return BlockLongGrass.EnumTallGrassType.d[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.f;
         }
 

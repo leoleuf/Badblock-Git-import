@@ -10,8 +10,8 @@ public class WorldGenCanyon extends WorldGenBase {
 
     protected void a(long i, int j, int k, ChunkSnapshot chunksnapshot, double d0, double d1, double d2, float f, float f1, float f2, int l, int i1, double d3) {
         Random random = new Random(i);
-        double d4 = (double) (j * 16 + 8);
-        double d5 = (double) (k * 16 + 8);
+        double d4 = j * 16 + 8;
+        double d5 = k * 16 + 8;
         float f3 = 0.0F;
         float f4 = 0.0F;
 
@@ -39,17 +39,17 @@ public class WorldGenCanyon extends WorldGenBase {
         }
 
         for (; l < i1; ++l) {
-            double d6 = 1.5D + (double) (MathHelper.sin((float) l * 3.1415927F / (float) i1) * f * 1.0F);
+            double d6 = 1.5D + MathHelper.sin(l * 3.1415927F / i1) * f * 1.0F;
             double d7 = d6 * d3;
 
-            d6 *= (double) random.nextFloat() * 0.25D + 0.75D;
-            d7 *= (double) random.nextFloat() * 0.25D + 0.75D;
+            d6 *= random.nextFloat() * 0.25D + 0.75D;
+            d7 *= random.nextFloat() * 0.25D + 0.75D;
             float f6 = MathHelper.cos(f2);
             float f7 = MathHelper.sin(f2);
 
-            d0 += (double) (MathHelper.cos(f1) * f6);
-            d1 += (double) f7;
-            d2 += (double) (MathHelper.sin(f1) * f6);
+            d0 += MathHelper.cos(f1) * f6;
+            d1 += f7;
+            d2 += MathHelper.sin(f1) * f6;
             f2 *= 0.7F;
             f2 += f4 * 0.05F;
             f1 += f3 * 0.05F;
@@ -60,8 +60,8 @@ public class WorldGenCanyon extends WorldGenBase {
             if (flag || random.nextInt(4) != 0) {
                 double d8 = d0 - d4;
                 double d9 = d2 - d5;
-                double d10 = (double) (i1 - l);
-                double d11 = (double) (f + 2.0F + 16.0F);
+                double d10 = i1 - l;
+                double d11 = f + 2.0F + 16.0F;
 
                 if (d8 * d8 + d9 * d9 - d10 * d10 > d11 * d11) {
                     return;
@@ -125,17 +125,17 @@ public class WorldGenCanyon extends WorldGenBase {
                         BlockPosition.MutableBlockPosition blockposition_mutableblockposition = new BlockPosition.MutableBlockPosition();
 
                         for (j3 = l1; j3 < i2; ++j3) {
-                            double d12 = ((double) (j3 + j * 16) + 0.5D - d0) / d6;
+                            double d12 = (j3 + j * 16 + 0.5D - d0) / d6;
 
                             for (int i4 = l2; i4 < i3; ++i4) {
-                                double d13 = ((double) (i4 + k * 16) + 0.5D - d2) / d6;
+                                double d13 = (i4 + k * 16 + 0.5D - d2) / d6;
                                 boolean flag2 = false;
 
                                 if (d12 * d12 + d13 * d13 < 1.0D) {
                                     for (int j4 = k2; j4 > j2; --j4) {
-                                        double d14 = ((double) (j4 - 1) + 0.5D - d1) / d7;
+                                        double d14 = (j4 - 1 + 0.5D - d1) / d7;
 
-                                        if ((d12 * d12 + d13 * d13) * (double) this.d[j4 - 1] + d14 * d14 / 6.0D < 1.0D) {
+                                        if ((d12 * d12 + d13 * d13) * this.d[j4 - 1] + d14 * d14 / 6.0D < 1.0D) {
                                             IBlockData iblockdata1 = chunksnapshot.a(j3, j4, i4);
 
                                             if (iblockdata1.getBlock() == Blocks.GRASS) {
@@ -169,11 +169,12 @@ public class WorldGenCanyon extends WorldGenBase {
 
     }
 
-    protected void a(World world, int i, int j, int k, int l, ChunkSnapshot chunksnapshot) {
+    @Override
+	protected void a(World world, int i, int j, int k, int l, ChunkSnapshot chunksnapshot) {
         if (this.b.nextInt(50) == 0) {
-            double d0 = (double) (i * 16 + this.b.nextInt(16));
-            double d1 = (double) (this.b.nextInt(this.b.nextInt(40) + 8) + 20);
-            double d2 = (double) (j * 16 + this.b.nextInt(16));
+            double d0 = i * 16 + this.b.nextInt(16);
+            double d1 = this.b.nextInt(this.b.nextInt(40) + 8) + 20;
+            double d2 = j * 16 + this.b.nextInt(16);
             byte b0 = 1;
 
             for (int i1 = 0; i1 < b0; ++i1) {

@@ -6,7 +6,8 @@ public class TileEntityEnchantTable extends TileEntity implements ITileEntityCon
 
     public TileEntityEnchantTable() {}
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         if (this.hasCustomName()) {
             nbttagcompound.setString("CustomName", this.p);
@@ -14,7 +15,8 @@ public class TileEntityEnchantTable extends TileEntity implements ITileEntityCon
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("CustomName", 8)) {
             this.p = nbttagcompound.getString("CustomName");
@@ -22,11 +24,13 @@ public class TileEntityEnchantTable extends TileEntity implements ITileEntityCon
 
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.hasCustomName() ? this.p : "container.enchant";
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return this.p != null && this.p.length() > 0;
     }
 
@@ -34,15 +38,18 @@ public class TileEntityEnchantTable extends TileEntity implements ITileEntityCon
         this.p = s;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
-        return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]);
     }
 
-    public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+    @Override
+	public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
         return new ContainerEnchantTable(playerinventory, this.world, this.position);
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:enchanting_table";
     }
 }

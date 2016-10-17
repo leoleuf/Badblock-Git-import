@@ -19,11 +19,13 @@ public class EntityDamageSource extends DamageSource {
         return this.r;
     }
 
-    public Entity getEntity() {
+    @Override
+	public Entity getEntity() {
         return this.q;
     }
 
-    public IChatBaseComponent getLocalizedDeathMessage(EntityLiving entityliving) {
+    @Override
+	public IChatBaseComponent getLocalizedDeathMessage(EntityLiving entityliving) {
         ItemStack itemstack = this.q instanceof EntityLiving ? ((EntityLiving) this.q).bA() : null;
         String s = "death.attack." + this.translationIndex;
         String s1 = s + ".item";
@@ -31,7 +33,8 @@ public class EntityDamageSource extends DamageSource {
         return itemstack != null && itemstack.hasName() && LocaleI18n.c(s1) ? new ChatMessage(s1, new Object[] { entityliving.getScoreboardDisplayName(), this.q.getScoreboardDisplayName(), itemstack.C()}) : new ChatMessage(s, new Object[] { entityliving.getScoreboardDisplayName(), this.q.getScoreboardDisplayName()});
     }
 
-    public boolean r() {
+    @Override
+	public boolean r() {
         return this.q != null && this.q instanceof EntityLiving && !(this.q instanceof EntityHuman);
     }
 }

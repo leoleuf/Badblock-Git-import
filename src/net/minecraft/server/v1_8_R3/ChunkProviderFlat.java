@@ -91,7 +91,8 @@ public class ChunkProviderFlat implements IChunkProvider {
         this.f = flag1 ? false : this.d.b().containsKey("decoration");
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
         ChunkSnapshot chunksnapshot = new ChunkSnapshot();
 
         int k;
@@ -128,11 +129,13 @@ public class ChunkProviderFlat implements IChunkProvider {
         return chunk;
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return true;
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
         int k = i * 16;
         int l = j * 16;
         BlockPosition blockposition = new BlockPosition(k, 0, l);
@@ -143,7 +146,7 @@ public class ChunkProviderFlat implements IChunkProvider {
         long i1 = this.b.nextLong() / 2L * 2L + 1L;
         long j1 = this.b.nextLong() / 2L * 2L + 1L;
 
-        this.b.setSeed((long) i * i1 + (long) j * j1 ^ this.a.getSeed());
+        this.b.setSeed(i * i1 + j * j1 ^ this.a.getSeed());
         ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);
         Iterator iterator = this.e.iterator();
 
@@ -180,35 +183,43 @@ public class ChunkProviderFlat implements IChunkProvider {
 
     }
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         return false;
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         return true;
     }
 
-    public void c() {}
+    @Override
+	public void c() {}
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         return false;
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "FlatLevelSource";
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         BiomeBase biomebase = this.a.getBiome(blockposition);
 
         return biomebase.getMobs(enumcreaturetype);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         if ("Stronghold".equals(s)) {
             Iterator iterator = this.e.iterator();
 
@@ -224,11 +235,13 @@ public class ChunkProviderFlat implements IChunkProvider {
         return null;
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         return 0;
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {
         Iterator iterator = this.e.iterator();
 
         while (iterator.hasNext()) {
@@ -239,7 +252,8 @@ public class ChunkProviderFlat implements IChunkProvider {
 
     }
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 }

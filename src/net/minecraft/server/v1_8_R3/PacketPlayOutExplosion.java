@@ -33,10 +33,11 @@ public class PacketPlayOutExplosion implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.a = (double) packetdataserializer.readFloat();
-        this.b = (double) packetdataserializer.readFloat();
-        this.c = (double) packetdataserializer.readFloat();
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.a = packetdataserializer.readFloat();
+        this.b = packetdataserializer.readFloat();
+        this.c = packetdataserializer.readFloat();
         this.d = packetdataserializer.readFloat();
         int i = packetdataserializer.readInt();
 
@@ -58,7 +59,8 @@ public class PacketPlayOutExplosion implements Packet<PacketListenerPlayOut> {
         this.h = packetdataserializer.readFloat();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeFloat((float) this.a);
         packetdataserializer.writeFloat((float) this.b);
         packetdataserializer.writeFloat((float) this.c);
@@ -85,7 +87,8 @@ public class PacketPlayOutExplosion implements Packet<PacketListenerPlayOut> {
         packetdataserializer.writeFloat(this.h);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

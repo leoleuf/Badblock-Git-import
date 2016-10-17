@@ -9,11 +9,13 @@ public class BlockClay extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.CLAY_BALL;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 4;
     }
 }

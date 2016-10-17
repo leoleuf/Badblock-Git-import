@@ -16,20 +16,22 @@ public abstract class BlockDataAbstract implements IBlockData {
             if (entry == null) {
                 return "<NULL>";
             } else {
-                IBlockState iblockstate = (IBlockState) entry.getKey();
+                IBlockState iblockstate = entry.getKey();
 
-                return iblockstate.a() + "=" + iblockstate.a((Comparable) entry.getValue());
+                return iblockstate.a() + "=" + iblockstate.a(entry.getValue());
             }
         }
 
-        public Object apply(Object object) {
+        @Override
+		public Object apply(Object object) {
             return this.a((Entry) object);
         }
     };
 
     public BlockDataAbstract() {}
 
-    public <T extends Comparable<T>> IBlockData a(IBlockState<T> iblockstate) {
+    @Override
+	public <T extends Comparable<T>> IBlockData a(IBlockState<T> iblockstate) {
         return this.set(iblockstate, (Comparable<T>) a(iblockstate.c(), this.get(iblockstate)));
     }
 
@@ -49,7 +51,8 @@ public abstract class BlockDataAbstract implements IBlockData {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         StringBuilder stringbuilder = new StringBuilder();
 
         stringbuilder.append(Block.REGISTRY.c(this.getBlock()));

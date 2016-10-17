@@ -7,23 +7,27 @@ public class CommandEffect extends CommandAbstract {
 
     public CommandEffect() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "effect";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.effect.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 2) {
             throw new ExceptionUsage("commands.effect.usage", new Object[0]);
         } else {
-            EntityLiving entityliving = (EntityLiving) a(icommandlistener, astring[0], EntityLiving.class);
+            EntityLiving entityliving = a(icommandlistener, astring[0], EntityLiving.class);
 
             if (astring[1].equals("clear")) {
                 if (entityliving.getEffects().isEmpty()) {
@@ -93,15 +97,17 @@ public class CommandEffect extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, this.d()) : (astring.length == 2 ? a(astring, (Collection) MobEffectList.c()) : (astring.length == 5 ? a(astring, new String[] { "true", "false"}) : null));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, this.d()) : (astring.length == 2 ? a(astring, MobEffectList.c()) : (astring.length == 5 ? a(astring, new String[] { "true", "false"}) : null));
     }
 
     protected String[] d() {
         return MinecraftServer.getServer().getPlayers();
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 }

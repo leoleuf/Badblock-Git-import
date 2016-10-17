@@ -21,5 +21,6 @@ public interface DoubleChestInventory extends Inventory {
      */
     Inventory getRightSide();
 
-    DoubleChest getHolder();
+    @Override
+	DoubleChest getHolder();
 }

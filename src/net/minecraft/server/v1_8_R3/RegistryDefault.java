@@ -8,7 +8,8 @@ public class RegistryDefault<K, V> extends RegistrySimple<K, V> {
         this.a = v0;
     }
 
-    public V get(K k0) {
+    @Override
+	public V get(K k0) {
     	V object = super.get(k0);
 
         return object == null ? this.a : object;

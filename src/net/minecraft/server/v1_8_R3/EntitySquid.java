@@ -20,45 +20,54 @@ public class EntitySquid extends EntityWaterAnimal {
     public EntitySquid(World world) {
         super(world);
         this.setSize(0.95F, 0.95F);
-        this.random.setSeed((long) (1 + this.getId()));
+        this.random.setSeed(1 + this.getId());
         this.bq = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
         this.goalSelector.a(0, new EntitySquid.PathfinderGoalSquid(this));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(10.0D);
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length * 0.5F;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return null;
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return null;
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return null;
     }
 
-    protected float bB() {
+    @Override
+	protected float bB() {
         return 0.4F;
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return null;
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3 + i) + 1;
 
         for (int k = 0; k < j; ++k) {
@@ -73,18 +82,19 @@ public class EntitySquid extends EntityWaterAnimal {
     }
     // CraftBukkit end */
 
-    public void m() {
+    @Override
+	public void m() {
         super.m();
         this.b = this.a;
         this.bk = this.c;
         this.bm = this.bl;
         this.bo = this.bn;
         this.bl += this.bq;
-        if ((double) this.bl > 6.283185307179586D) {
+        if (this.bl > 6.283185307179586D) {
             if (this.world.isClientSide) {
                 this.bl = 6.2831855F;
             } else {
-                this.bl = (float) ((double) this.bl - 6.283185307179586D);
+                this.bl = (float) (this.bl - 6.283185307179586D);
                 if (this.random.nextInt(10) == 0) {
                     this.bq = 1.0F / (this.random.nextFloat() + 1.0F) * 0.2F;
                 }
@@ -99,7 +109,7 @@ public class EntitySquid extends EntityWaterAnimal {
             if (this.bl < 3.1415927F) {
                 f = this.bl / 3.1415927F;
                 this.bn = MathHelper.sin(f * f * 3.1415927F) * 3.1415927F * 0.25F;
-                if ((double) f > 0.75D) {
+                if (f > 0.75D) {
                     this.bp = 1.0F;
                     this.br = 1.0F;
                 } else {
@@ -112,16 +122,16 @@ public class EntitySquid extends EntityWaterAnimal {
             }
 
             if (!this.world.isClientSide) {
-                this.motX = (double) (this.bs * this.bp);
-                this.motY = (double) (this.bt * this.bp);
-                this.motZ = (double) (this.bu * this.bp);
+                this.motX = this.bs * this.bp;
+                this.motY = this.bt * this.bp;
+                this.motZ = this.bu * this.bp;
             }
 
             f = MathHelper.sqrt(this.motX * this.motX + this.motZ * this.motZ);
             this.aI += (-((float) MathHelper.b(this.motX, this.motZ)) * 180.0F / 3.1415927F - this.aI) * 0.1F;
             this.yaw = this.aI;
-            this.c = (float) ((double) this.c + 3.141592653589793D * (double) this.br * 1.5D);
-            this.a += (-((float) MathHelper.b((double) f, this.motY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
+            this.c = (float) (this.c + 3.141592653589793D * this.br * 1.5D);
+            this.a += (-((float) MathHelper.b(f, this.motY)) * 180.0F / 3.1415927F - this.a) * 0.1F;
         } else {
             this.bn = MathHelper.e(MathHelper.sin(this.bl)) * 3.1415927F * 0.25F;
             if (!this.world.isClientSide) {
@@ -131,18 +141,20 @@ public class EntitySquid extends EntityWaterAnimal {
                 this.motZ = 0.0D;
             }
 
-            this.a = (float) ((double) this.a + (double) (-90.0F - this.a) * 0.02D);
+            this.a = (float) (this.a + (-90.0F - this.a) * 0.02D);
         }
 
     }
 
-    public void g(float f, float f1) {
+    @Override
+	public void g(float f, float f1) {
         this.move(this.motX, this.motY, this.motZ);
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         // PaperSpigot - Configurable squid spawn range
-        return this.locY > this.world.paperSpigotConfig.squidMinSpawnHeight && this.locY < (double) this.world.paperSpigotConfig.squidMaxSpawnHeight && super.bR();
+        return this.locY > this.world.paperSpigotConfig.squidMinSpawnHeight && this.locY < this.world.paperSpigotConfig.squidMaxSpawnHeight && super.bR();
     }
 
     public void b(float f, float f1, float f2) {
@@ -163,11 +175,13 @@ public class EntitySquid extends EntityWaterAnimal {
             this.a = entitysquid;
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             return true;
         }
 
-        public void e() {
+        @Override
+		public void e() {
             int i = this.a.bh();
 
             if (i > 100) {

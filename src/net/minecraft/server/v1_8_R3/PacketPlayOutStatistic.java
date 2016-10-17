@@ -17,11 +17,13 @@ public class PacketPlayOutStatistic implements Packet<PacketListenerPlayOut> {
         this.a = map;
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         int i = packetdataserializer.e();
 
         this.a = Maps.newHashMap();
@@ -37,7 +39,8 @@ public class PacketPlayOutStatistic implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a.size());
         Iterator iterator = this.a.entrySet().iterator();
 

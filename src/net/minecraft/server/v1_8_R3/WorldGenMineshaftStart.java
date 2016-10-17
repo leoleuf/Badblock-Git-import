@@ -12,7 +12,7 @@ public class WorldGenMineshaftStart extends StructureStart {
         WorldGenMineshaftPieces.WorldGenMineshaftRoom worldgenmineshaftpieces_worldgenmineshaftroom = new WorldGenMineshaftPieces.WorldGenMineshaftRoom(0, random, (i << 4) + 2, (j << 4) + 2);
 
         this.a.add(worldgenmineshaftpieces_worldgenmineshaftroom);
-        worldgenmineshaftpieces_worldgenmineshaftroom.a((StructurePiece) worldgenmineshaftpieces_worldgenmineshaftroom, (List) this.a, random);
+        worldgenmineshaftpieces_worldgenmineshaftroom.a(worldgenmineshaftpieces_worldgenmineshaftroom, this.a, random);
         this.c();
         this.a(world, random, 10);
     }

@@ -15,20 +15,24 @@ public class PathfinderGoalPassengerCarrotStick extends PathfinderGoal {
         this.a(7);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.c = 0.0F;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.d = false;
         this.c = 0.0F;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         return this.a.isAlive() && this.a.passenger != null && this.a.passenger instanceof EntityHuman && (this.d || this.a.bW());
     }
 
-    public void e() {
+    @Override
+	public void e() {
         EntityHuman entityhuman = (EntityHuman) this.a.passenger;
         EntityCreature entitycreature = (EntityCreature) this.a;
         float f = MathHelper.g(entityhuman.yaw - this.a.yaw) * 0.5F;
@@ -66,7 +70,7 @@ public class PathfinderGoalPassengerCarrotStick extends PathfinderGoal {
         float f2 = 0.91F;
 
         if (this.a.onGround) {
-            f2 = this.a.world.getType(new BlockPosition(MathHelper.d((float) i), MathHelper.d((float) j) - 1, MathHelper.d((float) k))).getBlock().frictionFactor * 0.91F;
+            f2 = this.a.world.getType(new BlockPosition(MathHelper.d(i), MathHelper.d(j) - 1, MathHelper.d(k))).getBlock().frictionFactor * 0.91F;
         }
 
         float f3 = 0.16277136F / (f2 * f2 * f2);
@@ -101,8 +105,8 @@ public class PathfinderGoalPassengerCarrotStick extends PathfinderGoal {
             }
         }
 
-        int l = MathHelper.floor(this.a.locX + (double) f9);
-        int i1 = MathHelper.floor(this.a.locZ + (double) f10);
+        int l = MathHelper.floor(this.a.locX + f9);
+        int i1 = MathHelper.floor(this.a.locZ + f10);
         int j1 = MathHelper.d(this.a.width + 1.0F);
         int k1 = MathHelper.d(this.a.length + entityhuman.length + 1.0F);
         int l1 = MathHelper.d(this.a.width + 1.0F);

@@ -41,14 +41,15 @@ public class WorldMap extends PersistentBase {
 
     public void a(double d0, double d1, int i) {
         int j = 128 * (1 << i);
-        int k = MathHelper.floor((d0 + 64.0D) / (double) j);
-        int l = MathHelper.floor((d1 + 64.0D) / (double) j);
+        int k = MathHelper.floor((d0 + 64.0D) / j);
+        int l = MathHelper.floor((d1 + 64.0D) / j);
 
         this.centerX = k * j + j / 2 - 64;
         this.centerZ = l * j + j / 2 - 64;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         // CraftBukkit start
         byte dimension = nbttagcompound.getByte("dimension");
 
@@ -106,7 +107,8 @@ public class WorldMap extends PersistentBase {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         // CraftBukkit start
         if (this.map >= 10) {
             if (this.uniqueId == null) {
@@ -148,11 +150,11 @@ public class WorldMap extends PersistentBase {
         }
 
         for (int i = 0; i < this.g.size(); ++i) {
-            WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker1 = (WorldMap.WorldMapHumanTracker) this.g.get(i);
+            WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker1 = this.g.get(i);
 
             if (!worldmap_worldmaphumantracker1.trackee.dead && (worldmap_worldmaphumantracker1.trackee.inventory.c(itemstack) || itemstack.y())) {
                 if (!itemstack.y() && worldmap_worldmaphumantracker1.trackee.dimension == this.map) {
-                    this.a(0, worldmap_worldmaphumantracker1.trackee.world, worldmap_worldmaphumantracker1.trackee.getUniqueID(), worldmap_worldmaphumantracker1.trackee.locX, worldmap_worldmaphumantracker1.trackee.locZ, (double) worldmap_worldmaphumantracker1.trackee.yaw); // Spigot
+                    this.a(0, worldmap_worldmaphumantracker1.trackee.world, worldmap_worldmaphumantracker1.trackee.getUniqueID(), worldmap_worldmaphumantracker1.trackee.locX, worldmap_worldmaphumantracker1.trackee.locZ, worldmap_worldmaphumantracker1.trackee.yaw); // Spigot
                 }
             } else {
                 this.i.remove(worldmap_worldmaphumantracker1.trackee);
@@ -164,7 +166,7 @@ public class WorldMap extends PersistentBase {
             EntityItemFrame entityitemframe = itemstack.z();
             BlockPosition blockposition = entityitemframe.getBlockPosition();
 
-            this.a(1, entityhuman.world, UUID.nameUUIDFromBytes(("frame-" + entityitemframe.getId()).getBytes(Charsets.US_ASCII)), (double) blockposition.getX(), (double) blockposition.getZ(), (double) (entityitemframe.direction.b() * 90)); // Spigot
+            this.a(1, entityhuman.world, UUID.nameUUIDFromBytes(("frame-" + entityitemframe.getId()).getBytes(Charsets.US_ASCII)), blockposition.getX(), blockposition.getZ(), entityitemframe.direction.b() * 90); // Spigot
         }
 
         if (itemstack.hasTag() && itemstack.getTag().hasKeyOfType("Decorations", 9)) {
@@ -186,14 +188,14 @@ public class WorldMap extends PersistentBase {
 
     private void a(int i, World world, UUID s, double d0, double d1, double d2) {
         int j = 1 << this.scale;
-        float f = (float) (d0 - (double) this.centerX) / (float) j;
-        float f1 = (float) (d1 - (double) this.centerZ) / (float) j;
-        byte b0 = (byte) ((int) ((double) (f * 2.0F) + 0.5D));
-        byte b1 = (byte) ((int) ((double) (f1 * 2.0F) + 0.5D));
+        float f = (float) (d0 - this.centerX) / j;
+        float f1 = (float) (d1 - this.centerZ) / j;
+        byte b0 = (byte) ((int) (f * 2.0F + 0.5D));
+        byte b1 = (byte) ((int) (f1 * 2.0F + 0.5D));
         byte b2 = 63;
         byte b3;
 
-        if (f >= (float) (-b2) && f1 >= (float) (-b2) && f <= (float) b2 && f1 <= (float) b2) {
+        if (f >= (-b2) && f1 >= (-b2) && f <= b2 && f1 <= b2) {
             d2 += d2 < 0.0D ? -8.0D : 8.0D;
             b3 = (byte) ((int) (d2 * 16.0D / 360.0D));
             if (this.map < 0) {
@@ -209,19 +211,19 @@ public class WorldMap extends PersistentBase {
 
             i = 6;
             b3 = 0;
-            if (f <= (float) (-b2)) {
-                b0 = (byte) ((int) ((double) (b2 * 2) + 2.5D));
+            if (f <= (-b2)) {
+                b0 = (byte) ((int) (b2 * 2 + 2.5D));
             }
 
-            if (f1 <= (float) (-b2)) {
-                b1 = (byte) ((int) ((double) (b2 * 2) + 2.5D));
+            if (f1 <= (-b2)) {
+                b1 = (byte) ((int) (b2 * 2 + 2.5D));
             }
 
-            if (f >= (float) b2) {
+            if (f >= b2) {
                 b0 = (byte) (b2 * 2 + 1);
             }
 
-            if (f1 >= (float) b2) {
+            if (f1 >= b2) {
                 b1 = (byte) (b2 * 2 + 1);
             }
         }
@@ -230,7 +232,7 @@ public class WorldMap extends PersistentBase {
     }
 
     public Packet a(ItemStack itemstack, World world, EntityHuman entityhuman) {
-        WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker = (WorldMap.WorldMapHumanTracker) this.i.get(entityhuman);
+        WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker = this.i.get(entityhuman);
 
         return worldmap_worldmaphumantracker == null ? null : worldmap_worldmaphumantracker.a(itemstack);
     }
@@ -248,7 +250,7 @@ public class WorldMap extends PersistentBase {
     }
 
     public WorldMap.WorldMapHumanTracker a(EntityHuman entityhuman) {
-        WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker = (WorldMap.WorldMapHumanTracker) this.i.get(entityhuman);
+        WorldMap.WorldMapHumanTracker worldmap_worldmaphumantracker = this.i.get(entityhuman);
 
         if (worldmap_worldmaphumantracker == null) {
             worldmap_worldmaphumantracker = new WorldMap.WorldMapHumanTracker(entityhuman);

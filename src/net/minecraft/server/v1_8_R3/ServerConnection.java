@@ -38,7 +38,8 @@ public class ServerConnection {
             return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Server IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -47,7 +48,8 @@ public class ServerConnection {
             return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Server IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -56,7 +58,8 @@ public class ServerConnection {
             return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Server IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -87,8 +90,9 @@ public class ServerConnection {
                 ServerConnection.e.info("Using default channel type");
             }
 
-            this.g.add(((ServerBootstrap) ((ServerBootstrap) (new ServerBootstrap()).channel(oclass)).childHandler(new ChannelInitializer() {
-                protected void initChannel(Channel channel) throws Exception {
+            this.g.add((new ServerBootstrap()).channel(oclass).childHandler(new ChannelInitializer() {
+                @Override
+				protected void initChannel(Channel channel) throws Exception {
                     try {
                         channel.config().setOption(ChannelOption.TCP_NODELAY, Boolean.valueOf(true));
                     } catch (ChannelException channelexception) {
@@ -100,9 +104,9 @@ public class ServerConnection {
 
                     ServerConnection.this.h.add(networkmanager);
                     channel.pipeline().addLast("packet_handler", networkmanager);
-                    networkmanager.a((PacketListener) (new HandshakeListener(ServerConnection.this.f, networkmanager)));
+                    networkmanager.a((new HandshakeListener(ServerConnection.this.f, networkmanager)));
                 }
-            }).group((EventLoopGroup) lazyinitvar.c()).localAddress(inetaddress, i)).bind().syncUninterruptibly());
+            }).group((EventLoopGroup) lazyinitvar.c()).localAddress(inetaddress, i).bind().syncUninterruptibly());
         }
     }
 
@@ -159,7 +163,8 @@ public class ServerConnection {
                                         return networkmanager.toString();
                                     }
 
-                                    public Object call() throws Exception {
+                                    @Override
+									public Object call() throws Exception {
                                         return this.a();
                                     }
                                 });
@@ -170,7 +175,8 @@ public class ServerConnection {
                             final ChatComponentText chatcomponenttext = new ChatComponentText("Internal server error");
 
                             networkmanager.a(new PacketPlayOutKickDisconnect(chatcomponenttext), new GenericFutureListener() {
-                                public void operationComplete(Future future) throws Exception {
+                                @Override
+								public void operationComplete(Future future) throws Exception {
                                     networkmanager.close(chatcomponenttext);
                                 }
                             }, new GenericFutureListener[0]);

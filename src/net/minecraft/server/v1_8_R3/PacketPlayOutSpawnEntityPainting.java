@@ -18,21 +18,24 @@ public class PacketPlayOutSpawnEntityPainting implements Packet<PacketListenerPl
         this.d = entitypainting.art.B;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.d = packetdataserializer.c(EntityPainting.EnumArt.A);
         this.b = packetdataserializer.c();
         this.c = EnumDirection.fromType2(packetdataserializer.readUnsignedByte());
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.a(this.d);
         packetdataserializer.a(this.b);
         packetdataserializer.writeByte(this.c.b());
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

@@ -8,19 +8,23 @@ public class CommandWhitelist extends CommandAbstract {
 
     public CommandWhitelist() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "whitelist";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 3;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.whitelist.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.whitelist.usage", new Object[0]);
         } else {
@@ -36,7 +40,7 @@ public class CommandWhitelist extends CommandAbstract {
                 icommandlistener.sendMessage(new ChatMessage("commands.whitelist.list", new Object[] { Integer.valueOf(minecraftserver.getPlayerList().getWhitelisted().length), Integer.valueOf(minecraftserver.getPlayerList().getSeenPlayers().length)}));
                 String[] astring1 = minecraftserver.getPlayerList().getWhitelisted();
 
-                icommandlistener.sendMessage(new ChatComponentText(a((Object[]) astring1)));
+                icommandlistener.sendMessage(new ChatComponentText(a(astring1)));
             } else {
                 GameProfile gameprofile;
 
@@ -73,7 +77,8 @@ public class CommandWhitelist extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             return a(astring, new String[] { "on", "off", "list", "add", "remove", "reload"});
         } else {

@@ -14,7 +14,8 @@ public class ItemSkull extends Item {
         this.a(true);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (enumdirection == EnumDirection.DOWN) {
             return false;
         } else {
@@ -46,7 +47,7 @@ public class ItemSkull extends Item {
                     int i = 0;
 
                     if (enumdirection == EnumDirection.UP) {
-                        i = MathHelper.floor((double) (entityhuman.yaw * 16.0F / 360.0F) + 0.5D) & 15;
+                        i = MathHelper.floor(entityhuman.yaw * 16.0F / 360.0F + 0.5D) & 15;
                     }
 
                     TileEntity tileentity = world.getTileEntity(blockposition);
@@ -84,11 +85,13 @@ public class ItemSkull extends Item {
         }
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i;
     }
 
-    public String e_(ItemStack itemstack) {
+    @Override
+	public String e_(ItemStack itemstack) {
         int i = itemstack.getData();
 
         if (i < 0 || i >= ItemSkull.a.length) {
@@ -98,7 +101,8 @@ public class ItemSkull extends Item {
         return super.getName() + "." + ItemSkull.a[i];
     }
 
-    public String a(ItemStack itemstack) {
+    @Override
+	public String a(ItemStack itemstack) {
         if (itemstack.getData() == 3 && itemstack.hasTag()) {
             if (itemstack.getTag().hasKeyOfType("SkullOwner", 8)) {
                 return LocaleI18n.a("item.skull.player.name", new Object[] { itemstack.getTag().getString("SkullOwner")});
@@ -116,7 +120,8 @@ public class ItemSkull extends Item {
         return super.a(itemstack);
     }
 
-    public boolean a(final NBTTagCompound nbttagcompound) { // Spigot - make final
+    @Override
+	public boolean a(final NBTTagCompound nbttagcompound) { // Spigot - make final
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("SkullOwner", 8) && nbttagcompound.getString("SkullOwner").length() > 0) {
             GameProfile gameprofile = new GameProfile((UUID) null, nbttagcompound.getString("SkullOwner"));

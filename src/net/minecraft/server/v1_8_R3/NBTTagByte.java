@@ -14,28 +14,34 @@ public class NBTTagByte extends NBTBase.NBTNumber {
         this.data = b0;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeByte(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(72L);
         this.data = datainput.readByte();
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 1;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "" + this.data + "b";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagByte(this.data);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (super.equals(object)) {
             NBTTagByte nbttagbyte = (NBTTagByte) object;
 
@@ -45,31 +51,38 @@ public class NBTTagByte extends NBTBase.NBTNumber {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ this.data;
     }
 
-    public long c() {
-        return (long) this.data;
-    }
-
-    public int d() {
+    @Override
+	public long c() {
         return this.data;
     }
 
-    public short e() {
-        return (short) this.data;
-    }
-
-    public byte f() {
+    @Override
+	public int d() {
         return this.data;
     }
 
-    public double g() {
-        return (double) this.data;
+    @Override
+	public short e() {
+        return this.data;
     }
 
-    public float h() {
-        return (float) this.data;
+    @Override
+	public byte f() {
+        return this.data;
+    }
+
+    @Override
+	public double g() {
+        return this.data;
+    }
+
+    @Override
+	public float h() {
+        return this.data;
     }
 }

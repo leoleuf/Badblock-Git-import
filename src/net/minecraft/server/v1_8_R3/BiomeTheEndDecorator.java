@@ -8,7 +8,8 @@ public class BiomeTheEndDecorator extends BiomeDecorator {
         this.M = new WorldGenEnder(Blocks.END_STONE);
     }
 
-    protected void a(BiomeBase biomebase) {
+    @Override
+	protected void a(BiomeBase biomebase) {
         this.a();
         if (this.b.nextInt(5) == 0) {
             int i = this.b.nextInt(16) + 8;

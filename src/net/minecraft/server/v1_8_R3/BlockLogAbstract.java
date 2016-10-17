@@ -10,10 +10,11 @@ public abstract class BlockLogAbstract extends BlockRotatable {
         super(Material.WOOD);
         this.a(CreativeModeTab.b);
         this.c(2.0F);
-        this.a(BlockLogAbstract.f);
+        this.a(Block.f);
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         byte b0 = 4;
         int i = b0 + 1;
 
@@ -24,7 +25,7 @@ public abstract class BlockLogAbstract extends BlockRotatable {
                 BlockPosition blockposition1 = (BlockPosition) iterator.next();
                 IBlockData iblockdata1 = world.getType(blockposition1);
 
-                if (iblockdata1.getBlock().getMaterial() == Material.LEAVES && !((Boolean) iblockdata1.get(BlockLeaves.CHECK_DECAY)).booleanValue()) {
+                if (iblockdata1.getBlock().getMaterial() == Material.LEAVES && !iblockdata1.get(BlockLeaves.CHECK_DECAY).booleanValue()) {
                     world.setTypeAndData(blockposition1, iblockdata1.set(BlockLeaves.CHECK_DECAY, Boolean.valueOf(true)), 4);
                 }
             }
@@ -32,7 +33,8 @@ public abstract class BlockLogAbstract extends BlockRotatable {
         }
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         return super.getPlacedState(world, blockposition, enumdirection, f, f1, f2, i, entityliving).set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.a(enumdirection.k()));
     }
 
@@ -72,7 +74,8 @@ public abstract class BlockLogAbstract extends BlockRotatable {
             this.e = s;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.e;
         }
 
@@ -92,7 +95,8 @@ public abstract class BlockLogAbstract extends BlockRotatable {
             }
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.e;
         }
     }

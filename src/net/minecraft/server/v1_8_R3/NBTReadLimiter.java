@@ -3,7 +3,8 @@ package net.minecraft.server.v1_8_R3;
 public class NBTReadLimiter {
 
     public static final NBTReadLimiter a = new NBTReadLimiter(0L) {
-        public void a(long i) {}
+        @Override
+		public void a(long i) {}
     };
     private final long b;
     private long c;

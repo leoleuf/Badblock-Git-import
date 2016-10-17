@@ -17,7 +17,8 @@ public abstract class PathfinderGoalDoorInteract extends PathfinderGoal {
         }
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (!this.a.positionChanged) {
             return false;
         } else {
@@ -29,7 +30,7 @@ public abstract class PathfinderGoalDoorInteract extends PathfinderGoal {
                     PathPoint pathpoint = pathentity.a(i);
 
                     this.b = new BlockPosition(pathpoint.a, pathpoint.b + 1, pathpoint.c);
-                    if (this.a.e((double) this.b.getX(), this.a.locY, (double) this.b.getZ()) <= 2.25D) {
+                    if (this.a.e(this.b.getX(), this.a.locY, this.b.getZ()) <= 2.25D) {
                         this.c = this.a(this.b);
                         if (this.c != null) {
                             return true;
@@ -46,19 +47,22 @@ public abstract class PathfinderGoalDoorInteract extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return !this.d;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.d = false;
-        this.e = (float) ((double) ((float) this.b.getX() + 0.5F) - this.a.locX);
-        this.f = (float) ((double) ((float) this.b.getZ() + 0.5F) - this.a.locZ);
+        this.e = (float) (this.b.getX() + 0.5F - this.a.locX);
+        this.f = (float) (this.b.getZ() + 0.5F - this.a.locZ);
     }
 
-    public void e() {
-        float f = (float) ((double) ((float) this.b.getX() + 0.5F) - this.a.locX);
-        float f1 = (float) ((double) ((float) this.b.getZ() + 0.5F) - this.a.locZ);
+    @Override
+	public void e() {
+        float f = (float) (this.b.getX() + 0.5F - this.a.locX);
+        float f1 = (float) (this.b.getZ() + 0.5F - this.a.locZ);
         float f2 = this.e * f + this.f * f1;
 
         if (f2 < 0.0F) {

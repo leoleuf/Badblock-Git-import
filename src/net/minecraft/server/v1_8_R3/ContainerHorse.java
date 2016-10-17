@@ -35,12 +35,14 @@ public class ContainerHorse extends Container {
         int i = (b0 - 4) * 18;
 
         this.a(new Slot(iinventory1, 0, 8, 18) {
-            public boolean isAllowed(ItemStack itemstack) {
+            @Override
+			public boolean isAllowed(ItemStack itemstack) {
                 return super.isAllowed(itemstack) && itemstack.getItem() == Items.SADDLE && !this.hasItem();
             }
         });
         this.a(new Slot(iinventory1, 1, 8, 36) {
-            public boolean isAllowed(ItemStack itemstack) {
+            @Override
+			public boolean isAllowed(ItemStack itemstack) {
                 return super.isAllowed(itemstack) && entityhorse.cO() && EntityHorse.a(itemstack.getItem());
             }
         });
@@ -67,13 +69,15 @@ public class ContainerHorse extends Container {
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return this.a.a(entityhuman) && this.f.isAlive() && this.f.g((Entity) entityhuman) < 8.0F;
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
@@ -105,7 +109,8 @@ public class ContainerHorse extends Container {
         return itemstack;
     }
 
-    public void b(EntityHuman entityhuman) {
+    @Override
+	public void b(EntityHuman entityhuman) {
         super.b(entityhuman);
         this.a.closeContainer(entityhuman);
     }

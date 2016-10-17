@@ -12,7 +12,8 @@ public class WorldGenSand extends WorldGenerator {
         this.b = i;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         if (world.getType(blockposition).getBlock().getMaterial() != Material.WATER) {
             return false;
         } else {

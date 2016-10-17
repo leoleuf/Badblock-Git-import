@@ -64,7 +64,8 @@ public class EntityLightning extends EntityWeather {
     }
     // Spigot end
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (!isSilent && this.lifeTicks == 2) { // Spigot
             // CraftBukkit start - Use relative location for far away sounds
@@ -126,9 +127,12 @@ public class EntityLightning extends EntityWeather {
 
     }
 
-    protected void h() {}
+    @Override
+	protected void h() {}
 
-    protected void a(NBTTagCompound nbttagcompound) {}
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {}
 
-    protected void b(NBTTagCompound nbttagcompound) {}
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {}
 }

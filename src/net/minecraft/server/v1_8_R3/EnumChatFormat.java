@@ -56,7 +56,8 @@ public enum EnumChatFormat {
         return this.name().toLowerCase();
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.B;
     }
 

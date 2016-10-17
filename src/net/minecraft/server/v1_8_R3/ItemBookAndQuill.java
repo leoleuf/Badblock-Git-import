@@ -6,7 +6,8 @@ public class ItemBookAndQuill extends Item {
         this.c(1);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         entityhuman.openBook(itemstack);
         entityhuman.b(StatisticList.USE_ITEM_COUNT[Item.getId(this)]);
         return itemstack;

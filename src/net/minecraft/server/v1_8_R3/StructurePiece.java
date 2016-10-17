@@ -413,7 +413,7 @@ public abstract class StructurePiece {
     protected void a(World world, IBlockData iblockdata, int i, int j, int k, StructureBoundingBox structureboundingbox) {
         BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-        if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+        if (structureboundingbox.b(blockposition)) {
             world.setTypeAndData(blockposition, iblockdata, 2);
         }
     }
@@ -424,7 +424,7 @@ public abstract class StructurePiece {
         int j1 = this.b(i, k);
         BlockPosition blockposition = new BlockPosition(l, i1, j1);
 
-        return !structureboundingbox.b((BaseBlockPosition) blockposition) ? Blocks.AIR.getBlockData() : world.getType(blockposition);
+        return !structureboundingbox.b(blockposition) ? Blocks.AIR.getBlockData() : world.getType(blockposition);
     }
 
     protected void a(World world, StructureBoundingBox structureboundingbox, int i, int j, int k, int l, int i1, int j1) {
@@ -494,20 +494,20 @@ public abstract class StructurePiece {
     }
 
     protected void a(World world, StructureBoundingBox structureboundingbox, int i, int j, int k, int l, int i1, int j1, IBlockData iblockdata, boolean flag) {
-        float f = (float) (l - i + 1);
-        float f1 = (float) (i1 - j + 1);
-        float f2 = (float) (j1 - k + 1);
-        float f3 = (float) i + f / 2.0F;
-        float f4 = (float) k + f2 / 2.0F;
+        float f = l - i + 1;
+        float f1 = i1 - j + 1;
+        float f2 = j1 - k + 1;
+        float f3 = i + f / 2.0F;
+        float f4 = k + f2 / 2.0F;
 
         for (int k1 = j; k1 <= i1; ++k1) {
-            float f5 = (float) (k1 - j) / f1;
+            float f5 = (k1 - j) / f1;
 
             for (int l1 = i; l1 <= l; ++l1) {
-                float f6 = ((float) l1 - f3) / (f * 0.5F);
+                float f6 = (l1 - f3) / (f * 0.5F);
 
                 for (int i2 = k; i2 <= j1; ++i2) {
-                    float f7 = ((float) i2 - f4) / (f2 * 0.5F);
+                    float f7 = (i2 - f4) / (f2 * 0.5F);
 
                     if (!flag || this.a(world, l1, k1, i2, structureboundingbox).getBlock().getMaterial() != Material.AIR) {
                         float f8 = f6 * f6 + f5 * f5 + f7 * f7;
@@ -525,7 +525,7 @@ public abstract class StructurePiece {
     protected void b(World world, int i, int j, int k, StructureBoundingBox structureboundingbox) {
         BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-        if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+        if (structureboundingbox.b(blockposition)) {
             while (!world.isEmpty(blockposition) && blockposition.getY() < 255) {
                 world.setTypeAndData(blockposition, Blocks.AIR.getBlockData(), 2);
                 blockposition = blockposition.up();
@@ -539,7 +539,7 @@ public abstract class StructurePiece {
         int i1 = this.d(j);
         int j1 = this.b(i, k);
 
-        if (structureboundingbox.b((BaseBlockPosition) (new BlockPosition(l, i1, j1)))) {
+        if (structureboundingbox.b((new BlockPosition(l, i1, j1)))) {
             while ((world.isEmpty(new BlockPosition(l, i1, j1)) || world.getType(new BlockPosition(l, i1, j1)).getBlock().getMaterial().isLiquid()) && i1 > 1) {
                 world.setTypeAndData(new BlockPosition(l, i1, j1), iblockdata, 2);
                 --i1;
@@ -551,14 +551,14 @@ public abstract class StructurePiece {
     protected boolean a(World world, StructureBoundingBox structureboundingbox, Random random, int i, int j, int k, List<StructurePieceTreasure> list, int l) {
         BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-        if (structureboundingbox.b((BaseBlockPosition) blockposition) && world.getType(blockposition).getBlock() != Blocks.CHEST) {
+        if (structureboundingbox.b(blockposition) && world.getType(blockposition).getBlock() != Blocks.CHEST) {
             IBlockData iblockdata = Blocks.CHEST.getBlockData();
 
             world.setTypeAndData(blockposition, Blocks.CHEST.f(world, blockposition, iblockdata), 2);
             TileEntity tileentity = world.getTileEntity(blockposition);
 
             if (tileentity instanceof TileEntityChest) {
-                StructurePieceTreasure.a(random, list, (IInventory) ((TileEntityChest) tileentity), l);
+                StructurePieceTreasure.a(random, list, ((TileEntityChest) tileentity), l);
             }
 
             return true;
@@ -570,7 +570,7 @@ public abstract class StructurePiece {
     protected boolean a(World world, StructureBoundingBox structureboundingbox, Random random, int i, int j, int k, int l, List<StructurePieceTreasure> list, int i1) {
         BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-        if (structureboundingbox.b((BaseBlockPosition) blockposition) && world.getType(blockposition).getBlock() != Blocks.DISPENSER) {
+        if (structureboundingbox.b(blockposition) && world.getType(blockposition).getBlock() != Blocks.DISPENSER) {
             world.setTypeAndData(blockposition, Blocks.DISPENSER.fromLegacyData(this.a(Blocks.DISPENSER, l)), 2);
             TileEntity tileentity = world.getTileEntity(blockposition);
 
@@ -587,7 +587,7 @@ public abstract class StructurePiece {
     protected void a(World world, StructureBoundingBox structureboundingbox, Random random, int i, int j, int k, EnumDirection enumdirection) {
         BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-        if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+        if (structureboundingbox.b(blockposition)) {
             ItemDoor.a(world, blockposition, enumdirection.f(), Blocks.WOODEN_DOOR);
         }
 

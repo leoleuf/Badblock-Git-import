@@ -12,7 +12,8 @@ public class RecipeRepair extends ShapelessRecipes implements IRecipe { // Craft
     }
     // CraftBukkit end
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         ArrayList arraylist = Lists.newArrayList();
 
         for (int i = 0; i < inventorycrafting.getSize(); ++i) {
@@ -33,7 +34,8 @@ public class RecipeRepair extends ShapelessRecipes implements IRecipe { // Craft
         return arraylist.size() == 2;
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         ArrayList arraylist = Lists.newArrayList();
 
         ItemStack itemstack;
@@ -84,15 +86,18 @@ public class RecipeRepair extends ShapelessRecipes implements IRecipe { // Craft
         return null;
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 4;
     }
 
-    public ItemStack b() {
+    @Override
+	public ItemStack b() {
         return null;
     }
 
-    public ItemStack[] b(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack[] b(InventoryCrafting inventorycrafting) {
         ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
         for (int i = 0; i < aitemstack.length; ++i) {

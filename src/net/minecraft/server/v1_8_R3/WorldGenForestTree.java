@@ -11,7 +11,8 @@ public class WorldGenForestTree extends WorldGenTreeAbstract {
         super(flag);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = random.nextInt(3) + random.nextInt(2) + 6;
         int j = blockposition.getX();
         int k = blockposition.getY();

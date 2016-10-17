@@ -17,7 +17,8 @@ public class ChatTypeAdapterFactory implements TypeAdapterFactory {
 
     public ChatTypeAdapterFactory() {}
 
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typetoken) {
+    @Override
+	public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typetoken) {
         Class oclass = typetoken.getRawType();
 
         if (!oclass.isEnum()) {
@@ -34,7 +35,8 @@ public class ChatTypeAdapterFactory implements TypeAdapterFactory {
             }
 
             return new TypeAdapter() {
-                public void write(JsonWriter jsonwriter, Object t0) throws IOException {
+                @Override
+				public void write(JsonWriter jsonwriter, Object t0) throws IOException {
                     if (t0 == null) {
                         jsonwriter.nullValue();
                     } else {
@@ -43,7 +45,8 @@ public class ChatTypeAdapterFactory implements TypeAdapterFactory {
 
                 }
 
-                public Object read(JsonReader jsonreader) throws IOException {
+                @Override
+				public Object read(JsonReader jsonreader) throws IOException {
                     if (jsonreader.peek() == JsonToken.NULL) {
                         jsonreader.nextNull();
                         return null;

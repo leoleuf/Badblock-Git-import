@@ -24,27 +24,33 @@ public class CraftFallingSand extends CraftEntity implements FallingSand {
         return "CraftFallingSand";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.FALLING_BLOCK;
     }
 
-    public Material getMaterial() {
+    @Override
+	public Material getMaterial() {
         return Material.getMaterial(getBlockId());
     }
 
-    public int getBlockId() {
+    @Override
+	public int getBlockId() {
         return CraftMagicNumbers.getId(getHandle().getBlock().getBlock());
     }
 
-    public byte getBlockData() {
+    @Override
+	public byte getBlockData() {
         return (byte) getHandle().getBlock().getBlock().toLegacyData(getHandle().getBlock());
     }
 
-    public boolean getDropItem() {
+    @Override
+	public boolean getDropItem() {
         return getHandle().dropItem;
     }
 
-    public void setDropItem(boolean drop) {
+    @Override
+	public void setDropItem(boolean drop) {
         getHandle().dropItem = drop;
     }
 

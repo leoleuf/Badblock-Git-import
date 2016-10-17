@@ -14,11 +14,13 @@ public class SlotMerchantResult extends Slot {
         this.a = inventorymerchant;
     }
 
-    public boolean isAllowed(ItemStack itemstack) {
+    @Override
+	public boolean isAllowed(ItemStack itemstack) {
         return false;
     }
 
-    public ItemStack a(int i) {
+    @Override
+	public ItemStack a(int i) {
         if (this.hasItem()) {
             this.c += Math.min(i, this.getItem().count);
         }
@@ -26,17 +28,20 @@ public class SlotMerchantResult extends Slot {
         return super.a(i);
     }
 
-    protected void a(ItemStack itemstack, int i) {
+    @Override
+	protected void a(ItemStack itemstack, int i) {
         this.c += i;
         this.c(itemstack);
     }
 
-    protected void c(ItemStack itemstack) {
+    @Override
+	protected void c(ItemStack itemstack) {
         itemstack.a(this.b.world, this.b, this.c);
         this.c = 0;
     }
 
-    public void a(EntityHuman entityhuman, ItemStack itemstack) {
+    @Override
+	public void a(EntityHuman entityhuman, ItemStack itemstack) {
         this.c(itemstack);
         MerchantRecipe merchantrecipe = this.a.getRecipe();
 

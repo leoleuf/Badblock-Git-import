@@ -36,7 +36,8 @@ public class EntityGuardian extends EntityMonster {
         this.b = this.a = this.random.nextFloat();
     }
 
-    public void initAttributes() {
+    @Override
+	public void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(6.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.5D);
@@ -44,21 +45,25 @@ public class EntityGuardian extends EntityMonster {
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(30.0D);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setElder(nbttagcompound.getBoolean("Elder"));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("Elder", this.isElder());
     }
 
-    protected NavigationAbstract b(World world) {
+    @Override
+	protected NavigationAbstract b(World world) {
         return new NavigationGuardian(this, world);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Integer.valueOf(0));
         this.datawatcher.a(17, Integer.valueOf(0));
@@ -137,7 +142,8 @@ public class EntityGuardian extends EntityMonster {
         }
     }
 
-    public void i(int i) {
+    @Override
+	public void i(int i) {
         super.i(i);
         if (i == 16) {
             if (this.isElder() && this.width < 1.0F) {
@@ -150,35 +156,43 @@ public class EntityGuardian extends EntityMonster {
 
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 160;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return !this.V() ? "mob.guardian.land.idle" : (this.isElder() ? "mob.guardian.elder.idle" : "mob.guardian.idle");
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return !this.V() ? "mob.guardian.land.hit" : (this.isElder() ? "mob.guardian.elder.hit" : "mob.guardian.hit");
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return !this.V() ? "mob.guardian.land.death" : (this.isElder() ? "mob.guardian.elder.death" : "mob.guardian.death");
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length * 0.5F;
     }
 
-    public float a(BlockPosition blockposition) {
+    @Override
+	public float a(BlockPosition blockposition) {
         return this.world.getType(blockposition).getBlock().getMaterial() == Material.WATER ? 10.0F + this.world.o(blockposition) - 0.5F : super.a(blockposition);
     }
 
-    public void m() {
+    @Override
+	public void m() {
         if (this.world.isClientSide) {
             this.b = this.a;
             if (!this.V()) {
@@ -212,7 +226,7 @@ public class EntityGuardian extends EntityMonster {
                 Vec3D vec3d = this.d(0.0F);
 
                 for (int i = 0; i < 2; ++i) {
-                    this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX + (this.random.nextDouble() - 0.5D) * (double) this.width - vec3d.a * 1.5D, this.locY + this.random.nextDouble() * (double) this.length - vec3d.b * 1.5D, this.locZ + (this.random.nextDouble() - 0.5D) * (double) this.width - vec3d.c * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
+                    this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX + (this.random.nextDouble() - 0.5D) * this.width - vec3d.a * 1.5D, this.locY + this.random.nextDouble() * this.length - vec3d.b * 1.5D, this.locZ + (this.random.nextDouble() - 0.5D) * this.width - vec3d.c * 1.5D, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
             }
 
@@ -226,9 +240,9 @@ public class EntityGuardian extends EntityMonster {
                 if (entityliving != null) {
                     this.getControllerLook().a(entityliving, 90.0F, 90.0F);
                     this.getControllerLook().a();
-                    double d0 = (double) this.q(0.0F);
+                    double d0 = this.q(0.0F);
                     double d1 = entityliving.locX - this.locX;
-                    double d2 = entityliving.locY + (double) (entityliving.length * 0.5F) - (this.locY + (double) this.getHeadHeight());
+                    double d2 = entityliving.locY + entityliving.length * 0.5F - (this.locY + this.getHeadHeight());
                     double d3 = entityliving.locZ - this.locZ;
                     double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
 
@@ -239,7 +253,7 @@ public class EntityGuardian extends EntityMonster {
 
                     while (d5 < d4) {
                         d5 += 1.8D - d0 + this.random.nextDouble() * (1.7D - d0);
-                        this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX + d1 * d5, this.locY + d2 * d5 + (double) this.getHeadHeight(), this.locZ + d3 * d5, 0.0D, 0.0D, 0.0D, new int[0]);
+                        this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX + d1 * d5, this.locY + d2 * d5 + this.getHeadHeight(), this.locZ + d3 * d5, 0.0D, 0.0D, 0.0D, new int[0]);
                     }
                 }
             }
@@ -249,8 +263,8 @@ public class EntityGuardian extends EntityMonster {
             this.setAirTicks(300);
         } else if (this.onGround) {
             this.motY += 0.5D;
-            this.motX += (double) ((this.random.nextFloat() * 2.0F - 1.0F) * 0.4F);
-            this.motZ += (double) ((this.random.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motX += (this.random.nextFloat() * 2.0F - 1.0F) * 0.4F;
+            this.motZ += (this.random.nextFloat() * 2.0F - 1.0F) * 0.4F;
             this.yaw = this.random.nextFloat() * 360.0F;
             this.onGround = false;
             this.ai = true;
@@ -264,10 +278,11 @@ public class EntityGuardian extends EntityMonster {
     }
 
     public float q(float f) {
-        return ((float) this.bp + f) / (float) this.cm();
+        return (this.bp + f) / this.cm();
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         super.E();
         if (this.isElder()) {
             boolean flag = true;
@@ -282,7 +297,8 @@ public class EntityGuardian extends EntityMonster {
                         return EntityGuardian.this.h(entityplayer) < 2500.0D && entityplayer.playerInteractManager.c();
                     }
 
-                    public boolean apply(Object object) {
+                    @Override
+					public boolean apply(Object object) {
                         return this.a((EntityPlayer) object);
                     }
                 });
@@ -305,7 +321,8 @@ public class EntityGuardian extends EntityMonster {
 
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3) + this.random.nextInt(i + 1);
 
         if (j > 0) {
@@ -324,25 +341,30 @@ public class EntityGuardian extends EntityMonster {
 
     }
 
-    protected void getRareDrop() {
-        ItemStack itemstack = ((PossibleFishingResult) WeightedRandom.a(this.random, EntityFishingHook.j())).a(this.random);
+    @Override
+	protected void getRareDrop() {
+        ItemStack itemstack = WeightedRandom.a(this.random, EntityFishingHook.j()).a(this.random);
 
         this.a(itemstack, 1.0F);
     }
 
-    protected boolean n_() {
+    @Override
+	protected boolean n_() {
         return true;
     }
 
-    public boolean canSpawn() {
-        return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes(this, this.getBoundingBox()).isEmpty();
+    @Override
+	public boolean canSpawn() {
+        return this.world.a(this.getBoundingBox(), this) && this.world.getCubes(this, this.getBoundingBox()).isEmpty();
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         return (this.random.nextInt(20) == 0 || !this.world.j(new BlockPosition(this))) && super.bR();
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (!this.n() && !damagesource.isMagic() && damagesource.i() instanceof EntityLiving) {
             EntityLiving entityliving = (EntityLiving) damagesource.i();
 
@@ -356,11 +378,13 @@ public class EntityGuardian extends EntityMonster {
         return super.damageEntity(damagesource, f);
     }
 
-    public int bQ() {
+    @Override
+	public int bQ() {
         return 180;
     }
 
-    public void g(float f, float f1) {
+    @Override
+	public void g(float f, float f1) {
         if (this.bM()) {
             if (this.V()) {
                 this.a(f, f1, 0.1F);
@@ -389,14 +413,15 @@ public class EntityGuardian extends EntityMonster {
             this.g = entityguardian;
         }
 
-        public void c() {
+        @Override
+		public void c() {
             if (this.f && !this.g.getNavigation().m()) {
                 double d0 = this.b - this.g.locX;
                 double d1 = this.c - this.g.locY;
                 double d2 = this.d - this.g.locZ;
                 double d3 = d0 * d0 + d1 * d1 + d2 * d2;
 
-                d3 = (double) MathHelper.sqrt(d3);
+                d3 = MathHelper.sqrt(d3);
                 d1 /= d3;
                 float f = (float) (MathHelper.b(d2, d0) * 180.0D / 3.1415927410125732D) - 90.0F;
 
@@ -405,18 +430,18 @@ public class EntityGuardian extends EntityMonster {
                 float f1 = (float) (this.e * this.g.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).getValue());
 
                 this.g.k(this.g.bI() + (f1 - this.g.bI()) * 0.125F);
-                double d4 = Math.sin((double) (this.g.ticksLived + this.g.getId()) * 0.5D) * 0.05D;
-                double d5 = Math.cos((double) (this.g.yaw * 3.1415927F / 180.0F));
-                double d6 = Math.sin((double) (this.g.yaw * 3.1415927F / 180.0F));
+                double d4 = Math.sin((this.g.ticksLived + this.g.getId()) * 0.5D) * 0.05D;
+                double d5 = Math.cos(this.g.yaw * 3.1415927F / 180.0F);
+                double d6 = Math.sin(this.g.yaw * 3.1415927F / 180.0F);
 
                 this.g.motX += d4 * d5;
                 this.g.motZ += d4 * d6;
-                d4 = Math.sin((double) (this.g.ticksLived + this.g.getId()) * 0.75D) * 0.05D;
+                d4 = Math.sin((this.g.ticksLived + this.g.getId()) * 0.75D) * 0.05D;
                 this.g.motY += d4 * (d6 + d5) * 0.25D;
-                this.g.motY += (double) this.g.bI() * d1 * 0.1D;
+                this.g.motY += this.g.bI() * d1 * 0.1D;
                 ControllerLook controllerlook = this.g.getControllerLook();
                 double d7 = this.g.locX + d0 / d3 * 2.0D;
-                double d8 = (double) this.g.getHeadHeight() + this.g.locY + d1 / d3 * 1.0D;
+                double d8 = this.g.getHeadHeight() + this.g.locY + d1 / d3 * 1.0D;
                 double d9 = this.g.locZ + d2 / d3 * 2.0D;
                 double d10 = controllerlook.e();
                 double d11 = controllerlook.f();
@@ -447,30 +472,35 @@ public class EntityGuardian extends EntityMonster {
             this.a(3);
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             EntityLiving entityliving = this.a.getGoalTarget();
 
             return entityliving != null && entityliving.isAlive();
         }
 
-        public boolean b() {
+        @Override
+		public boolean b() {
             return super.b() && (this.a.isElder() || this.a.h(this.a.getGoalTarget()) > 9.0D);
         }
 
-        public void c() {
+        @Override
+		public void c() {
             this.b = -10;
             this.a.getNavigation().n();
             this.a.getControllerLook().a(this.a.getGoalTarget(), 90.0F, 90.0F);
             this.a.ai = true;
         }
 
-        public void d() {
+        @Override
+		public void d() {
             this.a.b(0);
             this.a.setGoalTarget((EntityLiving) null);
             this.a.goalRandomStroll.f();
         }
 
-        public void e() {
+        @Override
+		public void e() {
             EntityLiving entityliving = this.a.getGoalTarget();
 
             this.a.getNavigation().n();
@@ -517,8 +547,9 @@ public class EntityGuardian extends EntityMonster {
             return (entityliving instanceof EntityHuman || entityliving instanceof EntitySquid) && entityliving.h(this.a) > 9.0D;
         }
 
-        public boolean apply(EntityLiving object) {
-            return this.a((EntityLiving) object);
+        @Override
+		public boolean apply(EntityLiving object) {
+            return this.a(object);
         }
     }
 }

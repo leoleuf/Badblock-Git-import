@@ -12,7 +12,8 @@ public class BlockStateBoolean extends BlockState<Boolean> {
         super(s, Boolean.class);
     }
 
-    public Collection<Boolean> c() {
+    @Override
+	public Collection<Boolean> c() {
         return this.a;
     }
 
@@ -20,7 +21,8 @@ public class BlockStateBoolean extends BlockState<Boolean> {
         return new BlockStateBoolean(s);
     }
 
-    public String a(Boolean obool) {
+    @Override
+	public String a(Boolean obool) {
         return obool.toString();
     }
 }

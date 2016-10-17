@@ -14,7 +14,8 @@ public class EntitySnowball extends EntityProjectile {
         super(world, d0, d1, d2);
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (movingobjectposition.entity != null) {
             byte b0 = 0;
 
@@ -22,7 +23,7 @@ public class EntitySnowball extends EntityProjectile {
                 b0 = 3;
             }
 
-            movingobjectposition.entity.damageEntity(DamageSource.projectile(this, this.getShooter()), (float) b0);
+            movingobjectposition.entity.damageEntity(DamageSource.projectile(this, this.getShooter()), b0);
         }
 
         for (int i = 0; i < 8; ++i) {

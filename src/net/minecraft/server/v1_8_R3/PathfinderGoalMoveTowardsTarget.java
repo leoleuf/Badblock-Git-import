@@ -17,11 +17,12 @@ public class PathfinderGoalMoveTowardsTarget extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         this.b = this.a.getGoalTarget();
         if (this.b == null) {
             return false;
-        } else if (this.b.h(this.a) > (double) (this.g * this.g)) {
+        } else if (this.b.h(this.a) > this.g * this.g) {
             return false;
         } else {
             Vec3D vec3d = RandomPositionGenerator.a(this.a, 16, 7, new Vec3D(this.b.locX, this.b.locY, this.b.locZ));
@@ -37,15 +38,18 @@ public class PathfinderGoalMoveTowardsTarget extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
-        return !this.a.getNavigation().m() && this.b.isAlive() && this.b.h(this.a) < (double) (this.g * this.g);
+    @Override
+	public boolean b() {
+        return !this.a.getNavigation().m() && this.b.isAlive() && this.b.h(this.a) < this.g * this.g;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b = null;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a.getNavigation().a(this.c, this.d, this.e, this.f);
     }
 }

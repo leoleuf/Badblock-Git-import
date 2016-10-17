@@ -25,7 +25,7 @@ public class VillageDoor {
     }
 
     public int b(int i, int j, int k) {
-        return (int) this.a.c((double) i, (double) j, (double) k);
+        return (int) this.a.c(i, j, k);
     }
 
     public int a(BlockPosition blockposition) {

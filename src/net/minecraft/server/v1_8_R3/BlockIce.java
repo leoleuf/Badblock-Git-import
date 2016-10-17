@@ -11,7 +11,8 @@ public class BlockIce extends BlockHalfTransparent {
         this.a(CreativeModeTab.b);
     }
 
-    public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
+    @Override
+	public void a(World world, EntityHuman entityhuman, BlockPosition blockposition, IBlockData iblockdata, TileEntity tileentity) {
         entityhuman.b(StatisticList.MINE_BLOCK_COUNT[Block.getId(this)]);
         entityhuman.applyExhaustion(0.025F);
         if (this.I() && EnchantmentManager.hasSilkTouchEnchantment(entityhuman)) {
@@ -38,11 +39,13 @@ public class BlockIce extends BlockHalfTransparent {
 
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (world.b(EnumSkyBlock.BLOCK, blockposition) > 11 - this.p()) {
             // CraftBukkit start
             if (org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callBlockFadeEvent(world.getWorld().getBlockAt(blockposition.getX(), blockposition.getY(), blockposition.getZ()), world.worldProvider.n() ? Blocks.AIR : Blocks.WATER).isCancelled()) {
@@ -59,7 +62,8 @@ public class BlockIce extends BlockHalfTransparent {
         }
     }
 
-    public int k() {
+    @Override
+	public int k() {
         return 0;
     }
 }

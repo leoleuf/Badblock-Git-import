@@ -19,11 +19,13 @@ public class RemoteControlCommandListener implements ICommandListener {
         return this.b.toString();
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "Rcon";
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
         return new ChatComponentText(this.getName());
     }
 
@@ -33,33 +35,41 @@ public class RemoteControlCommandListener implements ICommandListener {
     }
     // CraftBukkit end
 
-    public void sendMessage(IChatBaseComponent ichatbasecomponent) {
+    @Override
+	public void sendMessage(IChatBaseComponent ichatbasecomponent) {
         this.b.append(ichatbasecomponent.c());
     }
 
-    public boolean a(int i, String s) {
+    @Override
+	public boolean a(int i, String s) {
         return true;
     }
 
-    public BlockPosition getChunkCoordinates() {
+    @Override
+	public BlockPosition getChunkCoordinates() {
         return new BlockPosition(0, 0, 0);
     }
 
-    public Vec3D d() {
+    @Override
+	public Vec3D d() {
         return new Vec3D(0.0D, 0.0D, 0.0D);
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return MinecraftServer.getServer().getWorld();
     }
 
-    public Entity f() {
+    @Override
+	public Entity f() {
         return null;
     }
 
-    public boolean getSendCommandFeedback() {
+    @Override
+	public boolean getSendCommandFeedback() {
         return true;
     }
 
-    public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {}
+    @Override
+	public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {}
 }

@@ -8,15 +8,18 @@ public class MaterialLiquid extends Material {
         this.n();
     }
 
-    public boolean isLiquid() {
+    @Override
+	public boolean isLiquid() {
         return true;
     }
 
-    public boolean isSolid() {
+    @Override
+	public boolean isSolid() {
         return false;
     }
 
-    public boolean isBuildable() {
+    @Override
+	public boolean isBuildable() {
         return false;
     }
 }

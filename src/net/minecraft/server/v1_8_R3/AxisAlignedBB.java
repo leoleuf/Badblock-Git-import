@@ -19,12 +19,12 @@ public class AxisAlignedBB {
     }
 
     public AxisAlignedBB(BlockPosition blockposition, BlockPosition blockposition1) {
-        this.a = (double) blockposition.getX();
-        this.b = (double) blockposition.getY();
-        this.c = (double) blockposition.getZ();
-        this.d = (double) blockposition1.getX();
-        this.e = (double) blockposition1.getY();
-        this.f = (double) blockposition1.getZ();
+        this.a = blockposition.getX();
+        this.b = blockposition.getY();
+        this.c = blockposition.getZ();
+        this.d = blockposition1.getX();
+        this.e = blockposition1.getY();
+        this.f = blockposition1.getZ();
     }
 
     public AxisAlignedBB a(double d0, double d1, double d2) {
@@ -279,7 +279,8 @@ public class AxisAlignedBB {
         return vec3d == null ? false : vec3d.a >= this.a && vec3d.a <= this.d && vec3d.b >= this.b && vec3d.b <= this.e;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "box[" + this.a + ", " + this.b + ", " + this.c + " -> " + this.d + ", " + this.e + ", " + this.f + "]";
     }
 }

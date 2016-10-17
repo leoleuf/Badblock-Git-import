@@ -20,11 +20,13 @@ public class RegistryMaterials<K, V> extends RegistrySimple<K, V> implements Reg
         this.a(k0, v0);
     }
 
-    protected Map<K, V> b() {
+    @Override
+	protected Map<K, V> b() {
         return HashBiMap.create();
     }
 
-    public V get(K k0) {
+    @Override
+	public V get(K k0) {
         return super.get(k0);
     }
 
@@ -32,7 +34,8 @@ public class RegistryMaterials<K, V> extends RegistrySimple<K, V> implements Reg
         return this.b.get(v0);
     }
 
-    public boolean d(K k0) {
+    @Override
+	public boolean d(K k0) {
         return super.d(k0);
     }
 
@@ -44,7 +47,8 @@ public class RegistryMaterials<K, V> extends RegistrySimple<K, V> implements Reg
         return this.a.a(i);
     }
 
-    public Iterator<V> iterator() {
+    @Override
+	public Iterator<V> iterator() {
         return this.a.iterator();
     }
 }

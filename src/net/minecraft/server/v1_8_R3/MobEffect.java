@@ -105,11 +105,13 @@ public class MobEffect {
         return MobEffectList.byId[this.effectId].a();
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.effectId;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         String s = "";
 
         if (this.getAmplifier() > 0) {
@@ -129,7 +131,8 @@ public class MobEffect {
         return MobEffectList.byId[this.effectId].j() ? "(" + s + ")" : s;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof MobEffect)) {
             return false;
         } else {

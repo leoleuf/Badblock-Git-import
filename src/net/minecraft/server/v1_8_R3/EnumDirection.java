@@ -123,11 +123,13 @@ public enum EnumDirection implements INamable {
         return values()[random.nextInt(values().length)];
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.j;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.j;
     }
 
@@ -272,12 +274,14 @@ public enum EnumDirection implements INamable {
             return enumdirection != null && enumdirection.k().d() == this;
         }
 
-        public Iterator<EnumDirection> iterator() {
+        @Override
+		public Iterator<EnumDirection> iterator() {
             return Iterators.forArray(this.a());
         }
 
-        public boolean apply(EnumDirection object) {
-            return this.a((EnumDirection) object);
+        @Override
+		public boolean apply(EnumDirection object) {
+            return this.a(object);
         }
     }
 
@@ -297,7 +301,8 @@ public enum EnumDirection implements INamable {
             return this.c;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.d;
         }
     }
@@ -327,7 +332,8 @@ public enum EnumDirection implements INamable {
             return this.f == EnumDirection.EnumDirectionLimit.HORIZONTAL;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.e;
         }
 
@@ -339,12 +345,14 @@ public enum EnumDirection implements INamable {
             return this.f;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.e;
         }
 
-        public boolean apply(EnumDirection object) {
-            return this.a((EnumDirection) object);
+        @Override
+		public boolean apply(EnumDirection object) {
+            return this.a(object);
         }
 
         static {

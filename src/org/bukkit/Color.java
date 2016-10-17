@@ -309,7 +309,8 @@ public final class Color implements ConfigurationSerializable {
         return asRGB() ^ Color.class.hashCode();
     }
 
-    public Map<String, Object> serialize() {
+    @Override
+	public Map<String, Object> serialize() {
         return ImmutableMap.<String, Object>of(
             "RED", getRed(),
             "BLUE", getBlue(),

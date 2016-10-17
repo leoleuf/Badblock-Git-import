@@ -16,7 +16,8 @@ import net.minecraft.server.v1_8_R3.MobEffect;
 public class CraftPotionBrewer implements PotionBrewer {
     private static final Map<Integer, Collection<PotionEffect>> cache = Maps.newHashMap();
 
-    public Collection<PotionEffect> getEffectsFromDamage(int damage) {
+    @Override
+	public Collection<PotionEffect> getEffectsFromDamage(int damage) {
         if (cache.containsKey(damage))
             return cache.get(damage);
 
@@ -40,7 +41,8 @@ public class CraftPotionBrewer implements PotionBrewer {
         return effects;
     }
 
-    public PotionEffect createEffect(PotionEffectType potion, int duration, int amplifier) {
+    @Override
+	public PotionEffect createEffect(PotionEffectType potion, int duration, int amplifier) {
         return new PotionEffect(potion, potion.isInstant() ? 1 : (int) (duration * potion.getDurationModifier()),
                 amplifier);
     }

@@ -7,15 +7,18 @@ public class EnchantmentOxygen extends Enchantment {
         this.c("oxygen");
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return 10 * i;
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return this.a(i) + 30;
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 3;
     }
 }

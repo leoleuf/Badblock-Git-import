@@ -33,11 +33,13 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
         return this.blocks;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancel;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 

@@ -4,19 +4,23 @@ public class CommandList extends CommandAbstract {
 
     public CommandList() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "list";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 0;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.players.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         int i = MinecraftServer.getServer().I();
 
         icommandlistener.sendMessage(new ChatMessage("commands.players.list", new Object[] { Integer.valueOf(i), Integer.valueOf(MinecraftServer.getServer().J())}));

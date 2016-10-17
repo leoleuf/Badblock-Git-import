@@ -7,19 +7,23 @@ public class CommandTp extends CommandAbstract {
 
     public CommandTp() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "tp";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.tp.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.tp.usage", new Object[0]);
         } else {
@@ -41,8 +45,8 @@ public class CommandTp extends CommandAbstract {
                     CommandAbstract.CommandNumber commandabstract_commandnumber = a(((Entity) object).locX, astring[b0], true);
                     CommandAbstract.CommandNumber commandabstract_commandnumber1 = a(((Entity) object).locY, astring[i++], 0, 0, false);
                     CommandAbstract.CommandNumber commandabstract_commandnumber2 = a(((Entity) object).locZ, astring[i++], true);
-                    CommandAbstract.CommandNumber commandabstract_commandnumber3 = a((double) ((Entity) object).yaw, astring.length > i ? astring[i++] : "~", false);
-                    CommandAbstract.CommandNumber commandabstract_commandnumber4 = a((double) ((Entity) object).pitch, astring.length > i ? astring[i] : "~", false);
+                    CommandAbstract.CommandNumber commandabstract_commandnumber3 = a(((Entity) object).yaw, astring.length > i ? astring[i++] : "~", false);
+                    CommandAbstract.CommandNumber commandabstract_commandnumber4 = a(((Entity) object).pitch, astring.length > i ? astring[i] : "~", false);
                     float f;
 
                     if (object instanceof EntityPlayer) {
@@ -115,18 +119,20 @@ public class CommandTp extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length != 1 && astring.length != 2 ? null : a(astring, MinecraftServer.getServer().getPlayers());
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 
     // CraftBukkit start - fix decompile error
     @Override
     public int compareTo(ICommand o) {
-        return a((ICommand) o);
+        return a(o);
     }
     // CraftBukkit end
 }

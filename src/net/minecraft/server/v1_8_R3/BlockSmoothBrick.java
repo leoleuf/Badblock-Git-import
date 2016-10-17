@@ -14,19 +14,23 @@ public class BlockSmoothBrick extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockSmoothBrick.EnumStonebrickType) iblockdata.get(BlockSmoothBrick.VARIANT)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSmoothBrick.VARIANT).a();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockSmoothBrick.VARIANT, BlockSmoothBrick.EnumStonebrickType.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockSmoothBrick.EnumStonebrickType) iblockdata.get(BlockSmoothBrick.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSmoothBrick.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockSmoothBrick.VARIANT});
     }
 
@@ -49,7 +53,8 @@ public class BlockSmoothBrick extends Block {
             return this.f;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.g;
         }
 
@@ -61,7 +66,8 @@ public class BlockSmoothBrick extends Block {
             return BlockSmoothBrick.EnumStonebrickType.e[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.g;
         }
 

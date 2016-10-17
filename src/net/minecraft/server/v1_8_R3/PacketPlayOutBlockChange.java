@@ -14,17 +14,20 @@ public class PacketPlayOutBlockChange implements Packet<PacketListenerPlayOut> {
         this.block = world.getType(blockposition);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c();
-        this.block = (IBlockData) Block.d.a(packetdataserializer.e());
+        this.block = Block.d.a(packetdataserializer.e());
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.b(Block.d.b(this.block));
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

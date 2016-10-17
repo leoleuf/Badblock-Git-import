@@ -6,11 +6,13 @@ public class SlotFurnaceFuel extends Slot {
         super(iinventory, i, j, k);
     }
 
-    public boolean isAllowed(ItemStack itemstack) {
+    @Override
+	public boolean isAllowed(ItemStack itemstack) {
         return TileEntityFurnace.isFuel(itemstack) || c_(itemstack);
     }
 
-    public int getMaxStackSize(ItemStack itemstack) {
+    @Override
+	public int getMaxStackSize(ItemStack itemstack) {
         return c_(itemstack) ? 1 : super.getMaxStackSize(itemstack);
     }
 

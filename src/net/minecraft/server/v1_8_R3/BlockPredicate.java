@@ -18,7 +18,8 @@ public class BlockPredicate implements Predicate<IBlockData> {
         return iblockdata != null && iblockdata.getBlock() == this.a;
     }
 
-    public boolean apply(IBlockData object) {
-        return this.a((IBlockData) object);
+    @Override
+	public boolean apply(IBlockData object) {
+        return this.a(object);
     }
 }

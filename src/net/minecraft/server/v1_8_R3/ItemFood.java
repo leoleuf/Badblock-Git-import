@@ -24,7 +24,8 @@ public class ItemFood extends Item {
         this(i, 0.6F, flag);
     }
 
-    public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
         --itemstack.count;
         entityhuman.getFoodData().a(this, itemstack);
         world.makeSound(entityhuman, "random.burp", 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
@@ -40,15 +41,18 @@ public class ItemFood extends Item {
 
     }
 
-    public int d(ItemStack itemstack) {
+    @Override
+	public int d(ItemStack itemstack) {
         return 32;
     }
 
-    public EnumAnimation e(ItemStack itemstack) {
+    @Override
+	public EnumAnimation e(ItemStack itemstack) {
         return EnumAnimation.EAT;
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (entityhuman.j(this.k)) {
             entityhuman.a(itemstack, this.d(itemstack));
         }

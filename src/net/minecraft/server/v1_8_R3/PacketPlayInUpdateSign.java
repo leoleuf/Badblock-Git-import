@@ -9,7 +9,8 @@ public class PacketPlayInUpdateSign implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInUpdateSign() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c();
         this.b = new IChatBaseComponent[4];
 
@@ -22,7 +23,8 @@ public class PacketPlayInUpdateSign implements Packet<PacketListenerPlayIn> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
 
         for (int i = 0; i < 4; ++i) {
@@ -34,7 +36,8 @@ public class PacketPlayInUpdateSign implements Packet<PacketListenerPlayIn> {
 
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

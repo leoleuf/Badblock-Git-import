@@ -14,11 +14,13 @@ public abstract class BlockFlowers extends BlockPlant {
         this.j(this.blockStateList.getBlockData().set(this.n(), this.l() == BlockFlowers.EnumFlowerType.RED ? BlockFlowers.EnumFlowerVarient.POPPY : BlockFlowers.EnumFlowerVarient.DANDELION));
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockFlowers.EnumFlowerVarient) iblockdata.get(this.n())).b();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(this.n()).b();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(this.n(), BlockFlowers.EnumFlowerVarient.a(this.l(), i));
     }
 
@@ -31,7 +33,8 @@ public abstract class BlockFlowers extends BlockPlant {
                     return blockflowers_enumflowervarient.a() == BlockFlowers.this.l();
                 }
 
-                public boolean apply(Object object) {
+                @Override
+				public boolean apply(Object object) {
                     return this.a((BlockFlowers.EnumFlowerVarient) object);
                 }
             });
@@ -40,11 +43,13 @@ public abstract class BlockFlowers extends BlockPlant {
         return this.TYPE;
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockFlowers.EnumFlowerVarient) iblockdata.get(this.n())).b();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(this.n()).b();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { this.n()});
     }
 
@@ -87,11 +92,13 @@ public abstract class BlockFlowers extends BlockPlant {
             return ablockflowers_enumflowervarient[i];
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.n;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.n;
         }
 
@@ -110,7 +117,8 @@ public abstract class BlockFlowers extends BlockPlant {
                         return blockflowers_enumflowervarient.a() == blockflowers_enumflowertype;
                     }
 
-                    public boolean apply(Object object) {
+                    @Override
+					public boolean apply(Object object) {
                         return this.a((BlockFlowers.EnumFlowerVarient) object);
                     }
                 });

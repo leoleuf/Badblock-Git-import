@@ -18,23 +18,28 @@ public class BlockThin extends Block {
         this.a(CreativeModeTab.c);
     }
 
-    public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
         return iblockdata.set(BlockThin.NORTH, Boolean.valueOf(this.c(iblockaccess.getType(blockposition.north()).getBlock()))).set(BlockThin.SOUTH, Boolean.valueOf(this.c(iblockaccess.getType(blockposition.south()).getBlock()))).set(BlockThin.WEST, Boolean.valueOf(this.c(iblockaccess.getType(blockposition.west()).getBlock()))).set(BlockThin.EAST, Boolean.valueOf(this.c(iblockaccess.getType(blockposition.east()).getBlock())));
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return !this.a ? null : super.getDropType(iblockdata, random, i);
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
         boolean flag = this.c(world.getType(blockposition.north()).getBlock());
         boolean flag1 = this.c(world.getType(blockposition.south()).getBlock());
         boolean flag2 = this.c(world.getType(blockposition.west()).getBlock());
@@ -68,11 +73,13 @@ public class BlockThin extends Block {
 
     }
 
-    public void j() {
+    @Override
+	public void j() {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         float f = 0.4375F;
         float f1 = 0.5625F;
         float f2 = 0.4375F;
@@ -111,15 +118,18 @@ public class BlockThin extends Block {
         return block.o() || block == this || block == Blocks.GLASS || block == Blocks.STAINED_GLASS || block == Blocks.STAINED_GLASS_PANE || block instanceof BlockThin;
     }
 
-    protected boolean I() {
+    @Override
+	protected boolean I() {
         return true;
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         return 0;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockThin.NORTH, BlockThin.EAST, BlockThin.WEST, BlockThin.SOUTH});
     }
 }

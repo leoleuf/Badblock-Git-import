@@ -143,10 +143,11 @@ public class ShapeDetector {
         }
 
         public ShapeDetectorBlock a(int i, int j, int k) {
-            return (ShapeDetectorBlock) this.d.getUnchecked(ShapeDetector.a(this.a, this.b(), this.c(), i, j, k));
+            return this.d.getUnchecked(ShapeDetector.a(this.a, this.b(), this.c(), i, j, k));
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return Objects.toStringHelper(this).add("up", this.c).add("forwards", this.b).add("frontTopLeft", this.a).toString();
         }
     }
@@ -165,8 +166,9 @@ public class ShapeDetector {
             return new ShapeDetectorBlock(this.a, blockposition, this.b);
         }
 
-        public ShapeDetectorBlock load(BlockPosition object) throws Exception {
-            return this.a((BlockPosition) object);
+        @Override
+		public ShapeDetectorBlock load(BlockPosition object) throws Exception {
+            return this.a(object);
         }
     }
 }

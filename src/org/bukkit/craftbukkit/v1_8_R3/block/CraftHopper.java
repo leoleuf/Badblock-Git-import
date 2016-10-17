@@ -24,7 +24,8 @@ public class CraftHopper extends CraftBlockState implements Hopper {
         hopper = te;
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return new CraftInventory(hopper);
     }
 

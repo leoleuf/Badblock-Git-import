@@ -20,7 +20,8 @@ public class WorldLoader implements Convertable {
         this.a = file;
     }
 
-    public void d() {}
+    @Override
+	public void d() {}
 
     public WorldData c(String s) {
         File file = new File(this.a, s);
@@ -34,7 +35,7 @@ public class WorldLoader implements Convertable {
 
             if (file1.exists()) {
                 try {
-                    nbttagcompound = NBTCompressedStreamTools.a((InputStream) (new FileInputStream(file1)));
+                    nbttagcompound = NBTCompressedStreamTools.a((new FileInputStream(file1)));
                     nbttagcompound1 = nbttagcompound.getCompound("Data");
                     return new WorldData(nbttagcompound1);
                 } catch (Exception exception) {
@@ -45,7 +46,7 @@ public class WorldLoader implements Convertable {
             file1 = new File(file, "level.dat_old");
             if (file1.exists()) {
                 try {
-                    nbttagcompound = NBTCompressedStreamTools.a((InputStream) (new FileInputStream(file1)));
+                    nbttagcompound = NBTCompressedStreamTools.a((new FileInputStream(file1)));
                     nbttagcompound1 = nbttagcompound.getCompound("Data");
                     return new WorldData(nbttagcompound1);
                 } catch (Exception exception1) {
@@ -57,7 +58,8 @@ public class WorldLoader implements Convertable {
         }
     }
 
-    public boolean e(String s) {
+    @Override
+	public boolean e(String s) {
         File file = new File(this.a, s);
 
         if (!file.exists()) {
@@ -104,15 +106,18 @@ public class WorldLoader implements Convertable {
         return true;
     }
 
-    public IDataManager a(String s, boolean flag) {
+    @Override
+	public IDataManager a(String s, boolean flag) {
         return new WorldNBTStorage(this.a, s, flag);
     }
 
-    public boolean isConvertable(String s) {
+    @Override
+	public boolean isConvertable(String s) {
         return false;
     }
 
-    public boolean convert(String s, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean convert(String s, IProgressUpdate iprogressupdate) {
         return false;
     }
 }

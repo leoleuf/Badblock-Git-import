@@ -10,7 +10,8 @@ public class ItemBanner extends ItemBlock {
         this.setMaxDurability(0);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (enumdirection == EnumDirection.DOWN) {
             return false;
         } else if (!world.getType(blockposition).getBlock().getMaterial().isBuildable()) {
@@ -25,7 +26,7 @@ public class ItemBanner extends ItemBlock {
                 return true;
             } else {
                 if (enumdirection == EnumDirection.UP) {
-                    int i = MathHelper.floor((double) ((entityhuman.yaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
+                    int i = MathHelper.floor((entityhuman.yaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
 
                     world.setTypeAndData(blockposition, Blocks.STANDING_BANNER.getBlockData().set(BlockFloorSign.ROTATION, Integer.valueOf(i)), 3);
                 } else {
@@ -44,7 +45,8 @@ public class ItemBanner extends ItemBlock {
         }
     }
 
-    public String a(ItemStack itemstack) {
+    @Override
+	public String a(ItemStack itemstack) {
         String s = "item.banner.";
         EnumColor enumcolor = this.h(itemstack);
 

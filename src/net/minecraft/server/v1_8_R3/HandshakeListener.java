@@ -21,7 +21,8 @@ public class HandshakeListener implements PacketHandshakingInListener {
         this.b = networkmanager;
     }
 
-    public void a(PacketHandshakingInSetProtocol packethandshakinginsetprotocol) {
+    @Override
+	public void a(PacketHandshakingInSetProtocol packethandshakinginsetprotocol) {
         switch (HandshakeListener.SyntheticClass_1.a[packethandshakinginsetprotocol.a().ordinal()]) {
         case 1:
             this.b.a(EnumProtocol.LOGIN);
@@ -71,7 +72,7 @@ public class HandshakeListener implements PacketHandshakingInListener {
                 this.b.handle(new PacketLoginOutDisconnect(chatcomponenttext));
                 this.b.close(chatcomponenttext);
             } else {
-                this.b.a((PacketListener) (new LoginListener(this.a, this.b)));
+                this.b.a((new LoginListener(this.a, this.b)));
                 // Spigot Start
                 if (org.spigotmc.SpigotConfig.bungee) {
                     String[] split = packethandshakinginsetprotocol.hostname.split("\00");
@@ -98,7 +99,7 @@ public class HandshakeListener implements PacketHandshakingInListener {
 
         case 2:
             this.b.a(EnumProtocol.STATUS);
-            this.b.a((PacketListener) (new PacketStatusListener(this.a, this.b)));
+            this.b.a((new PacketStatusListener(this.a, this.b)));
             break;
 
         default:
@@ -107,7 +108,8 @@ public class HandshakeListener implements PacketHandshakingInListener {
 
     }
 
-    public void a(IChatBaseComponent ichatbasecomponent) {}
+    @Override
+	public void a(IChatBaseComponent ichatbasecomponent) {}
 
     static class SyntheticClass_1 {
 

@@ -25,15 +25,18 @@ public class CraftVillager extends CraftAgeable implements Villager, InventoryHo
         return "CraftVillager";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.VILLAGER;
     }
 
-    public Profession getProfession() {
+    @Override
+	public Profession getProfession() {
         return Profession.getProfession(getHandle().getProfession());
     }
 
-    public void setProfession(Profession profession) {
+    @Override
+	public void setProfession(Profession profession) {
         Validate.notNull(profession);
         getHandle().setProfession(profession.getId());
     }

@@ -7,19 +7,23 @@ public class CommandSummon extends CommandAbstract {
 
     public CommandSummon() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "summon";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.summon.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.summon.usage", new Object[0]);
         } else {
@@ -98,7 +102,8 @@ public class CommandSummon extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, (Collection) EntityTypes.b()) : (astring.length > 1 && astring.length <= 4 ? a(astring, 1, blockposition) : null);
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, EntityTypes.b()) : (astring.length > 1 && astring.length <= 4 ? a(astring, 1, blockposition) : null);
     }
 }

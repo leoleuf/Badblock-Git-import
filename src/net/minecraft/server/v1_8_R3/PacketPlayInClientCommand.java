@@ -12,15 +12,18 @@ public class PacketPlayInClientCommand implements Packet<PacketListenerPlayIn> {
         this.a = packetplayinclientcommand_enumclientcommand;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.a = (PacketPlayInClientCommand.EnumClientCommand) packetdataserializer.a(PacketPlayInClientCommand.EnumClientCommand.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.a = packetdataserializer.a(PacketPlayInClientCommand.EnumClientCommand.class);
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-        packetdataserializer.a((Enum) this.a);
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        packetdataserializer.a(this.a);
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

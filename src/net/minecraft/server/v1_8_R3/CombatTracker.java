@@ -58,7 +58,7 @@ public class CombatTracker {
             return new ChatMessage("death.attack.generic", new Object[] { this.b.getScoreboardDisplayName()});
         } else {
             CombatEntry combatentry = this.i();
-            CombatEntry combatentry1 = (CombatEntry) this.a.get(this.a.size() - 1);
+            CombatEntry combatentry1 = this.a.get(this.a.size() - 1);
             IChatBaseComponent ichatbasecomponent = combatentry1.h();
             Entity entity = combatentry1.a().getEntity();
             Object object;
@@ -133,7 +133,7 @@ public class CombatTracker {
         float f = 0.0F;
 
         for (int i = 0; i < this.a.size(); ++i) {
-            CombatEntry combatentry2 = (CombatEntry) this.a.get(i);
+            CombatEntry combatentry2 = this.a.get(i);
             CombatEntry combatentry3 = i > 0 ? (CombatEntry) this.a.get(i - 1) : null;
 
             if ((combatentry2.a() == DamageSource.FALL || combatentry2.a() == DamageSource.OUT_OF_WORLD) && combatentry2.i() > 0.0F && (combatentry == null || combatentry2.i() > f)) {
@@ -146,7 +146,7 @@ public class CombatTracker {
                 f = combatentry2.i();
             }
 
-            if (combatentry2.g() != null && (combatentry1 == null || combatentry2.c() > (float) b0)) {
+            if (combatentry2.g() != null && (combatentry1 == null || combatentry2.c() > b0)) {
                 combatentry1 = combatentry2;
             }
         }

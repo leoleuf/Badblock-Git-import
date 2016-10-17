@@ -36,15 +36,18 @@ public class CraftSign extends CraftBlockState implements Sign {
         System.arraycopy(revertComponents(sign.lines), 0, lines, 0, lines.length);
     }
 
-    public String[] getLines() {
+    @Override
+	public String[] getLines() {
         return lines;
     }
 
-    public String getLine(int index) throws IndexOutOfBoundsException {
+    @Override
+	public String getLine(int index) throws IndexOutOfBoundsException {
         return lines[index];
     }
 
-    public void setLine(int index, String line) throws IndexOutOfBoundsException {
+    @Override
+	public void setLine(int index, String line) throws IndexOutOfBoundsException {
         lines[index] = line;
     }
 

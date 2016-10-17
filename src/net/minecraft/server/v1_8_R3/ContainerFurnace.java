@@ -30,8 +30,8 @@ public class ContainerFurnace extends Container {
     public ContainerFurnace(PlayerInventory playerinventory, IInventory iinventory) {
         this.furnace = iinventory;
         this.a(new Slot(iinventory, 0, 56, 17));
-        this.a((Slot) (new SlotFurnaceFuel(iinventory, 1, 56, 53)));
-        this.a((Slot) (new SlotFurnaceResult(playerinventory.player, iinventory, 2, 116, 35)));
+        this.a((new SlotFurnaceFuel(iinventory, 1, 56, 53)));
+        this.a((new SlotFurnaceResult(playerinventory.player, iinventory, 2, 116, 35)));
         this.player = playerinventory; // CraftBukkit - save player
 
         int i;
@@ -48,16 +48,18 @@ public class ContainerFurnace extends Container {
 
     }
 
-    public void addSlotListener(ICrafting icrafting) {
+    @Override
+	public void addSlotListener(ICrafting icrafting) {
         super.addSlotListener(icrafting);
         icrafting.setContainerData(this, this.furnace);
     }
 
-    public void b() {
+    @Override
+	public void b() {
         super.b();
 
         for (int i = 0; i < this.listeners.size(); ++i) {
-            ICrafting icrafting = (ICrafting) this.listeners.get(i);
+            ICrafting icrafting = this.listeners.get(i);
 
             if (this.f != this.furnace.getProperty(2)) {
                 icrafting.setContainerData(this, 2, this.furnace.getProperty(2));
@@ -82,14 +84,16 @@ public class ContainerFurnace extends Container {
         this.g = this.furnace.getProperty(3);
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         if (!this.checkReachable) return true; // CraftBukkit
         return this.furnace.a(entityhuman);
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();

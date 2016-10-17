@@ -4,7 +4,8 @@ public class BlockRedFlowers extends BlockFlowers {
 
     public BlockRedFlowers() {}
 
-    public BlockFlowers.EnumFlowerType l() {
+    @Override
+	public BlockFlowers.EnumFlowerType l() {
         return BlockFlowers.EnumFlowerType.RED;
     }
 }

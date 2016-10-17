@@ -17,19 +17,22 @@ public class PacketLoginOutEncryptionBegin implements Packet<PacketLoginOutListe
         this.c = abyte;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(20);
         this.b = MinecraftEncryption.a(packetdataserializer.a());
         this.c = packetdataserializer.a();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.a(this.b.getEncoded());
         packetdataserializer.a(this.c);
     }
 
-    public void a(PacketLoginOutListener packetloginoutlistener) {
+    @Override
+	public void a(PacketLoginOutListener packetloginoutlistener) {
         packetloginoutlistener.a(this);
     }
 

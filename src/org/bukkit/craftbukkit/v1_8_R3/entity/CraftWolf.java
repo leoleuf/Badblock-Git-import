@@ -13,11 +13,13 @@ public class CraftWolf extends CraftTameableAnimal implements Wolf {
         super(server, wolf);
     }
 
-    public boolean isAngry() {
+    @Override
+	public boolean isAngry() {
         return getHandle().isAngry();
     }
 
-    public void setAngry(boolean angry) {
+    @Override
+	public void setAngry(boolean angry) {
         getHandle().setAngry(angry);
     }
 
@@ -31,11 +33,13 @@ public class CraftWolf extends CraftTameableAnimal implements Wolf {
         return EntityType.WOLF;
     }
 
-    public DyeColor getCollarColor() {
+    @Override
+	public DyeColor getCollarColor() {
         return DyeColor.getByWoolData((byte) getHandle().getCollarColor().getColorIndex());
     }
 
-    public void setCollarColor(DyeColor color) {
+    @Override
+	public void setCollarColor(DyeColor color) {
         getHandle().setCollarColor(EnumColor.fromColorIndex(color.getWoolData()));
     }
 }

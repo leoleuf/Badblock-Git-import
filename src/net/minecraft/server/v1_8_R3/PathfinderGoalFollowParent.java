@@ -15,7 +15,8 @@ public class PathfinderGoalFollowParent extends PathfinderGoal {
         this.c = d0;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.getAge() >= 0) {
             return false;
         } else {
@@ -48,7 +49,8 @@ public class PathfinderGoalFollowParent extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         if (this.a.getAge() >= 0) {
             return false;
         } else if (!this.b.isAlive()) {
@@ -60,18 +62,21 @@ public class PathfinderGoalFollowParent extends PathfinderGoal {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.d = 0;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b = null;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         if (--this.d <= 0) {
             this.d = 10;
-            this.a.getNavigation().a((Entity) this.b, this.c);
+            this.a.getNavigation().a(this.b, this.c);
         }
     }
 }

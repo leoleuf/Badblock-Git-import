@@ -14,19 +14,23 @@ public class CommandTitle extends CommandAbstract {
 
     public CommandTitle() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "title";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.title.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 2) {
             throw new ExceptionUsage("commands.title.usage", new Object[0]);
         } else {
@@ -87,11 +91,13 @@ public class CommandTitle extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, MinecraftServer.getServer().getPlayers()) : (astring.length == 2 ? a(astring, PacketPlayOutTitle.EnumTitleAction.a()) : null);
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 }

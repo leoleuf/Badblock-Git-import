@@ -14,19 +14,23 @@ public class EnchantmentLootBonus extends Enchantment {
 
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return 15 + (i - 1) * 9;
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return super.a(i) + 50;
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 3;
     }
 
-    public boolean a(Enchantment enchantment) {
-        return super.a(enchantment) && enchantment.id != EnchantmentLootBonus.SILK_TOUCH.id;
+    @Override
+	public boolean a(Enchantment enchantment) {
+        return super.a(enchantment) && enchantment.id != Enchantment.SILK_TOUCH.id;
     }
 }

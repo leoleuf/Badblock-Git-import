@@ -12,31 +12,38 @@ public class BlockStone extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get(this.a() + "." + BlockStone.EnumStoneVariant.STONE.d() + ".name");
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((BlockStone.EnumStoneVariant) iblockdata.get(BlockStone.VARIANT)).c();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockStone.VARIANT).c();
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return iblockdata.get(BlockStone.VARIANT) == BlockStone.EnumStoneVariant.STONE ? Item.getItemOf(Blocks.COBBLESTONE) : Item.getItemOf(Blocks.STONE);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockStone.EnumStoneVariant) iblockdata.get(BlockStone.VARIANT)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockStone.VARIANT).a();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockStone.VARIANT, BlockStone.EnumStoneVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockStone.EnumStoneVariant) iblockdata.get(BlockStone.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockStone.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockStone.VARIANT});
     }
 
@@ -69,7 +76,8 @@ public class BlockStone extends Block {
             return this.l;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.j;
         }
 
@@ -81,7 +89,8 @@ public class BlockStone extends Block {
             return BlockStone.EnumStoneVariant.h[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.j;
         }
 

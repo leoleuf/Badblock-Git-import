@@ -4,11 +4,13 @@ public class TileEntityDropper extends TileEntityDispenser {
 
     public TileEntityDropper() {}
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.hasCustomName() ? this.a : "container.dropper";
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:dropper";
     }
 }

@@ -4,11 +4,12 @@ public class BlockHay extends BlockRotatable {
 
     public BlockHay() {
         super(Material.GRASS, MaterialMapColor.t);
-        this.j(this.blockStateList.getBlockData().set(BlockHay.AXIS, EnumDirection.EnumAxis.Y));
+        this.j(this.blockStateList.getBlockData().set(BlockRotatable.AXIS, EnumDirection.EnumAxis.Y));
         this.a(CreativeModeTab.b);
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         EnumDirection.EnumAxis enumdirection_enumaxis = EnumDirection.EnumAxis.Y;
         int j = i & 12;
 
@@ -18,12 +19,13 @@ public class BlockHay extends BlockRotatable {
             enumdirection_enumaxis = EnumDirection.EnumAxis.Z;
         }
 
-        return this.getBlockData().set(BlockHay.AXIS, enumdirection_enumaxis);
+        return this.getBlockData().set(BlockRotatable.AXIS, enumdirection_enumaxis);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         int i = 0;
-        EnumDirection.EnumAxis enumdirection_enumaxis = (EnumDirection.EnumAxis) iblockdata.get(BlockHay.AXIS);
+        EnumDirection.EnumAxis enumdirection_enumaxis = iblockdata.get(BlockRotatable.AXIS);
 
         if (enumdirection_enumaxis == EnumDirection.EnumAxis.X) {
             i |= 4;
@@ -34,15 +36,18 @@ public class BlockHay extends BlockRotatable {
         return i;
     }
 
-    protected BlockStateList getStateList() {
-        return new BlockStateList(this, new IBlockState[] { BlockHay.AXIS});
+    @Override
+	protected BlockStateList getStateList() {
+        return new BlockStateList(this, new IBlockState[] { BlockRotatable.AXIS});
     }
 
-    protected ItemStack i(IBlockData iblockdata) {
+    @Override
+	protected ItemStack i(IBlockData iblockdata) {
         return new ItemStack(Item.getItemOf(this), 1, 0);
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
-        return super.getPlacedState(world, blockposition, enumdirection, f, f1, f2, i, entityliving).set(BlockHay.AXIS, enumdirection.k());
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+        return super.getPlacedState(world, blockposition, enumdirection, f, f1, f2, i, entityliving).set(BlockRotatable.AXIS, enumdirection.k());
     }
 }

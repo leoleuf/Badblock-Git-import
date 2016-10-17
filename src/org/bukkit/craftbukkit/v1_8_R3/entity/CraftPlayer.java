@@ -149,11 +149,13 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         perm.recalculatePermissions();
     }
 
-    public boolean isOnline() {
+    @Override
+	public boolean isOnline() {
         return server.getPlayer(getUniqueId()) != null;
     }
 
-    public InetSocketAddress getAddress() {
+    @Override
+	public InetSocketAddress getAddress() {
         if (getHandle().playerConnection == null) return null;
 
         SocketAddress addr = getHandle().playerConnection.networkManager.getSocketAddress();
@@ -319,7 +321,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
             name = getName();
         }
         getHandle().listName = name.equals(getName()) ? null : CraftChatMessage.fromString(name)[0];
-        for (EntityPlayer player : (List<EntityPlayer>)server.getHandle().players) {
+        for (EntityPlayer player : server.getHandle().players) {
             if (player.getBukkitEntity().canSee(this)) {
                 player.playerConnection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_DISPLAY_NAME, getHandle()));
             }
@@ -1015,7 +1017,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         //remove this player from the hidden player's EntityTrackerEntry
         EntityTracker tracker = ((WorldServer) entity.world).tracker;
         EntityPlayer other = ((CraftPlayer) player).getHandle();
-        EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(other.getId());
+        EntityTrackerEntry entry = tracker.trackedEntities.get(other.getId());
         if (entry != null) {
             entry.clear(getHandle());
         }
@@ -1037,7 +1039,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
 
         getHandle().playerConnection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, other));
 
-        EntityTrackerEntry entry = (EntityTrackerEntry) tracker.trackedEntities.get(other.getId());
+        EntityTrackerEntry entry = tracker.trackedEntities.get(other.getId());
         if (entry != null && !entry.trackedPlayers.contains(getHandle())) {
             entry.updatePlayer(getHandle());
         }
@@ -1426,7 +1428,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
 
         injectScaledMaxHealth(set, true);
 
-        getHandle().getDataWatcher().watch(6, (float) getScaledHealth());
+        getHandle().getDataWatcher().watch(6, getScaledHealth());
         getHandle().playerConnection.sendPacket(new PacketPlayOutUpdateHealth(getScaledHealth(), getHandle().getFoodData().getFoodLevel(), getHandle().getFoodData().getSaturationLevel()));
         getHandle().playerConnection.sendPacket(new PacketPlayOutUpdateAttributes(getHandle().getId(), set));
 
@@ -1639,7 +1641,8 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
         }
     };
 
-    public Player.Spigot spigot()
+    @Override
+	public Player.Spigot spigot()
     {
         return spigot;
     }

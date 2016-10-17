@@ -60,7 +60,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
         for (int j = -2; j <= 2; ++j) {
             for (int k = -2; k <= 2; ++k) {
-                float f = 10.0F / MathHelper.c((float) (j * j + k * k) + 0.2F);
+                float f = 10.0F / MathHelper.c(j * j + k * k + 0.2F);
 
                 this.q[j + 2 + (k + 2) * 5] = f;
             }
@@ -137,7 +137,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
     public void a(int i, int j, ChunkSnapshot chunksnapshot, BiomeBase[] abiomebase) {
         double d0 = 0.03125D;
 
-        this.t = this.l.a(this.t, (double) (i * 16), (double) (j * 16), 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        this.t = this.l.a(this.t, i * 16, j * 16, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
@@ -149,8 +149,9 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
-        this.h.setSeed((long) i * 341873128712L + (long) j * 132897987541L);
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
+        this.h.setSeed(i * 341873128712L + j * 132897987541L);
         ChunkSnapshot chunksnapshot = new ChunkSnapshot();
 
         this.a(i, j, chunksnapshot);
@@ -196,13 +197,13 @@ public class ChunkProviderGenerate implements IChunkProvider {
     }
 
     private void a(int i, int j, int k) {
-        this.g = this.b.a(this.g, i, k, 5, 5, (double) this.r.e, (double) this.r.f, (double) this.r.g);
+        this.g = this.b.a(this.g, i, k, 5, 5, this.r.e, this.r.f, this.r.g);
         float f = this.r.a;
         float f1 = this.r.b;
 
-        this.d = this.k.a(this.d, i, j, k, 5, 33, 5, (double) (f / this.r.h), (double) (f1 / this.r.i), (double) (f / this.r.j));
-        this.e = this.i.a(this.e, i, j, k, 5, 33, 5, (double) f, (double) f1, (double) f);
-        this.f = this.j.a(this.f, i, j, k, 5, 33, 5, (double) f, (double) f1, (double) f);
+        this.d = this.k.a(this.d, i, j, k, 5, 33, 5, f / this.r.h, f1 / this.r.i, f / this.r.j);
+        this.e = this.i.a(this.e, i, j, k, 5, 33, 5, f, f1, f);
+        this.f = this.j.a(this.f, i, j, k, 5, 33, 5, f, f1, f);
         boolean flag = false;
         boolean flag1 = false;
         int l = 0;
@@ -267,27 +268,27 @@ public class ChunkProviderGenerate implements IChunkProvider {
                 }
 
                 ++i1;
-                double d1 = (double) f3;
-                double d2 = (double) f2;
+                double d1 = f3;
+                double d2 = f2;
 
                 d1 += d0 * 0.2D;
-                d1 = d1 * (double) this.r.k / 8.0D;
-                double d3 = (double) this.r.k + d1 * 4.0D;
+                d1 = d1 * this.r.k / 8.0D;
+                double d3 = this.r.k + d1 * 4.0D;
 
                 for (int j2 = 0; j2 < 33; ++j2) {
-                    double d4 = ((double) j2 - d3) * (double) this.r.l * 128.0D / 256.0D / d2;
+                    double d4 = (j2 - d3) * this.r.l * 128.0D / 256.0D / d2;
 
                     if (d4 < 0.0D) {
                         d4 *= 4.0D;
                     }
 
-                    double d5 = this.e[l] / (double) this.r.d;
-                    double d6 = this.f[l] / (double) this.r.c;
+                    double d5 = this.e[l] / this.r.d;
+                    double d6 = this.f[l] / this.r.c;
                     double d7 = (this.d[l] / 10.0D + 1.0D) / 2.0D;
                     double d8 = MathHelper.b(d5, d6, d7) - d4;
 
                     if (j2 > 29) {
-                        double d9 = (double) ((float) (j2 - 29) / 3.0F);
+                        double d9 = (j2 - 29) / 3.0F;
 
                         d8 = d8 * (1.0D - d9) + -10.0D * d9;
                     }
@@ -300,11 +301,13 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return true;
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
         BlockFalling.instaFall = true;
         int k = i * 16;
         int l = j * 16;
@@ -315,7 +318,7 @@ public class ChunkProviderGenerate implements IChunkProvider {
         long i1 = this.h.nextLong() / 2L * 2L + 1L;
         long j1 = this.h.nextLong() / 2L * 2L + 1L;
 
-        this.h.setSeed((long) i * i1 + (long) j * j1 ^ this.m.getSeed());
+        this.h.setSeed(i * i1 + j * j1 ^ this.m.getSeed());
         boolean flag = false;
         ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);
 
@@ -391,7 +394,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
         BlockFalling.instaFall = false;
     }
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         boolean flag = false;
 
         if (this.r.y && this.n && chunk.w() < 3600L) {
@@ -401,25 +405,31 @@ public class ChunkProviderGenerate implements IChunkProvider {
         return flag;
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         return true;
     }
 
-    public void c() {}
+    @Override
+	public void c() {}
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         return false;
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "RandomLevelSource";
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         BiomeBase biomebase = this.m.getBiome(blockposition);
 
         if (this.n) {
@@ -435,15 +445,18 @@ public class ChunkProviderGenerate implements IChunkProvider {
         return biomebase.getMobs(enumcreaturetype);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         return "Stronghold".equals(s) && this.v != null ? this.v.getNearestGeneratedFeature(world, blockposition) : null;
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         return 0;
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {
         if (this.r.w && this.n && this.m.paperSpigotConfig.generateMineshaft) { // PaperSpigot
             this.x.a(this, this.m, i, j, (ChunkSnapshot) null);
         }
@@ -466,7 +479,8 @@ public class ChunkProviderGenerate implements IChunkProvider {
 
     }
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 }

@@ -12,7 +12,8 @@ public class WorldGenHellLava extends WorldGenerator {
         this.b = flag;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         if (world.getType(blockposition.up()).getBlock() != Blocks.NETHERRACK) {
             return false;
         } else if (world.getType(blockposition).getBlock().getMaterial() != Material.AIR && world.getType(blockposition).getBlock() != Blocks.NETHERRACK) {

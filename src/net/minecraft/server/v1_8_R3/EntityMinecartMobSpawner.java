@@ -3,15 +3,18 @@ package net.minecraft.server.v1_8_R3;
 public class EntityMinecartMobSpawner extends EntityMinecartAbstract {
 
     private final MobSpawnerAbstract a = new MobSpawnerAbstract() {
-        public void a(int i) {
+        @Override
+		public void a(int i) {
             EntityMinecartMobSpawner.this.world.broadcastEntityEffect(EntityMinecartMobSpawner.this, (byte) i);
         }
 
-        public World a() {
+        @Override
+		public World a() {
             return EntityMinecartMobSpawner.this.world;
         }
 
-        public BlockPosition b() {
+        @Override
+		public BlockPosition b() {
             return new BlockPosition(EntityMinecartMobSpawner.this);
         }
     };
@@ -24,25 +27,30 @@ public class EntityMinecartMobSpawner extends EntityMinecartAbstract {
         super(world, d0, d1, d2);
     }
 
-    public EntityMinecartAbstract.EnumMinecartType s() {
+    @Override
+	public EntityMinecartAbstract.EnumMinecartType s() {
         return EntityMinecartAbstract.EnumMinecartType.SPAWNER;
     }
 
-    public IBlockData u() {
+    @Override
+	public IBlockData u() {
         return Blocks.MOB_SPAWNER.getBlockData();
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a.a(nbttagcompound);
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         this.a.b(nbttagcompound);
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         this.a.c();
     }

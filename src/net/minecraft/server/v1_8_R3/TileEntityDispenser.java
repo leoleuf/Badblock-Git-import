@@ -18,38 +18,46 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
     public List<HumanEntity> transaction = new java.util.ArrayList<HumanEntity>();
     private int maxStack = MAX_STACK;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public void setMaxStackSize(int size) {
+    @Override
+	public void setMaxStackSize(int size) {
         maxStack = size;
     }
     // CraftBukkit end
 
     public TileEntityDispenser() {}
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return 9;
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         return this.items[i];
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         if (this.items[i] != null) {
             ItemStack itemstack;
 
@@ -72,7 +80,8 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
         }
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         if (this.items[i] != null) {
             ItemStack itemstack = this.items[i];
 
@@ -97,7 +106,8 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
         return i;
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         this.items[i] = itemstack;
         if (itemstack != null && itemstack.count > this.getMaxStackSize()) {
             itemstack.count = this.getMaxStackSize();
@@ -117,7 +127,8 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
         return -1;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.hasCustomName() ? this.a : "container.dispenser";
     }
 
@@ -125,11 +136,13 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
         this.a = s;
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return this.a != null;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         NBTTagList nbttaglist = nbttagcompound.getList("Items", 10);
 
@@ -150,7 +163,8 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         NBTTagList nbttaglist = new NBTTagList();
 
@@ -171,41 +185,52 @@ public class TileEntityDispenser extends TileEntityContainer implements IInvento
 
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return maxStack; // CraftBukkit
     }
 
-    public boolean a(EntityHuman entityhuman) {
-        return this.world.getTileEntity(this.position) != this ? false : entityhuman.e((double) this.position.getX() + 0.5D, (double) this.position.getY() + 0.5D, (double) this.position.getZ() + 0.5D) <= 64.0D;
+    @Override
+	public boolean a(EntityHuman entityhuman) {
+        return this.world.getTileEntity(this.position) != this ? false : entityhuman.e(this.position.getX() + 0.5D, this.position.getY() + 0.5D, this.position.getZ() + 0.5D) <= 64.0D;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return true;
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:dispenser";
     }
 
-    public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+    @Override
+	public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
         return new ContainerDispenser(playerinventory, this);
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         return 0;
     }
 
-    public void b(int i, int j) {}
+    @Override
+	public void b(int i, int j) {}
 
-    public int g() {
+    @Override
+	public int g() {
         return 0;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         for (int i = 0; i < this.items.length; ++i) {
             this.items[i] = null;
         }

@@ -19,7 +19,8 @@ public class EntitySmallFireball extends EntityFireball {
         this.setSize(0.3125F, 0.3125F);
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (!this.world.isClientSide) {
             boolean flag;
 
@@ -29,7 +30,7 @@ public class EntitySmallFireball extends EntityFireball {
                     this.a(this.shooter, movingobjectposition.entity);
                     if (!movingobjectposition.entity.isFireProof()) {
                         // CraftBukkit start - Entity damage by entity event + combust event
-                        EntityCombustByEntityEvent event = new EntityCombustByEntityEvent((org.bukkit.entity.Projectile) this.getBukkitEntity(), movingobjectposition.entity.getBukkitEntity(), 5);
+                        EntityCombustByEntityEvent event = new EntityCombustByEntityEvent(this.getBukkitEntity(), movingobjectposition.entity.getBukkitEntity(), 5);
                         movingobjectposition.entity.world.getServer().getPluginManager().callEvent(event);
 
                         if (!event.isCancelled()) {
@@ -62,11 +63,13 @@ public class EntitySmallFireball extends EntityFireball {
 
     }
 
-    public boolean ad() {
+    @Override
+	public boolean ad() {
         return false;
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         return false;
     }
 }

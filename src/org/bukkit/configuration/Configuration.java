@@ -20,7 +20,8 @@ public interface Configuration extends ConfigurationSection {
      * @param value Value to set the default to.
      * @throws IllegalArgumentException Thrown if path is null.
      */
-    public void addDefault(String path, Object value);
+    @Override
+	public void addDefault(String path, Object value);
 
     /**
      * Sets the default values of the given paths as provided.

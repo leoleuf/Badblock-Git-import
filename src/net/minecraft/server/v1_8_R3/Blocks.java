@@ -202,7 +202,7 @@ public class Blocks {
     public static final BlockStepAbstract STONE_SLAB2;
 
     private static Block get(String s) {
-        return (Block) Block.REGISTRY.get(new MinecraftKey(s));
+        return Block.REGISTRY.get(new MinecraftKey(s));
     }
 
     static {

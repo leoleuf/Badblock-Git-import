@@ -12,12 +12,12 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
 
     public MerchantRecipe a(ItemStack itemstack, ItemStack itemstack1, int i) {
         if (i > 0 && i < this.size()) {
-            MerchantRecipe merchantrecipe = (MerchantRecipe) this.get(i);
+            MerchantRecipe merchantrecipe = this.get(i);
 
             return this.a(itemstack, merchantrecipe.getBuyItem1()) && (itemstack1 == null && !merchantrecipe.hasSecondItem() || merchantrecipe.hasSecondItem() && this.a(itemstack1, merchantrecipe.getBuyItem2())) && itemstack.count >= merchantrecipe.getBuyItem1().count && (!merchantrecipe.hasSecondItem() || itemstack1.count >= merchantrecipe.getBuyItem2().count) ? merchantrecipe : null;
         } else {
             for (int j = 0; j < this.size(); ++j) {
-                MerchantRecipe merchantrecipe1 = (MerchantRecipe) this.get(j);
+                MerchantRecipe merchantrecipe1 = this.get(j);
 
                 if (this.a(itemstack, merchantrecipe1.getBuyItem1()) && itemstack.count >= merchantrecipe1.getBuyItem1().count && (!merchantrecipe1.hasSecondItem() && itemstack1 == null || merchantrecipe1.hasSecondItem() && this.a(itemstack1, merchantrecipe1.getBuyItem2()) && itemstack1.count >= merchantrecipe1.getBuyItem2().count)) {
                     return merchantrecipe1;
@@ -36,7 +36,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
         packetdataserializer.writeByte((byte) (this.size() & 255));
 
         for (int i = 0; i < this.size(); ++i) {
-            MerchantRecipe merchantrecipe = (MerchantRecipe) this.get(i);
+            MerchantRecipe merchantrecipe = this.get(i);
 
             packetdataserializer.a(merchantrecipe.getBuyItem1());
             packetdataserializer.a(merchantrecipe.getBuyItem3());
@@ -70,7 +70,7 @@ public class MerchantRecipeList extends ArrayList<MerchantRecipe> {
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.size(); ++i) {
-            MerchantRecipe merchantrecipe = (MerchantRecipe) this.get(i);
+            MerchantRecipe merchantrecipe = this.get(i);
 
             nbttaglist.add(merchantrecipe.k());
         }

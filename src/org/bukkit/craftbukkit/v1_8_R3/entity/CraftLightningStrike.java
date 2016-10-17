@@ -11,7 +11,8 @@ public class CraftLightningStrike extends CraftEntity implements LightningStrike
         super(server, entity);
     }
 
-    public boolean isEffect() {
+    @Override
+	public boolean isEffect() {
         return ((EntityLightning) super.getHandle()).isEffect;
     }
 
@@ -25,7 +26,8 @@ public class CraftLightningStrike extends CraftEntity implements LightningStrike
         return "CraftLightningStrike";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.LIGHTNING;
     }
 

@@ -16,7 +16,8 @@ public class ChunkProviderDebug implements IChunkProvider {
         this.d = world;
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
         ChunkSnapshot chunksnapshot = new ChunkSnapshot();
 
         int k;
@@ -59,7 +60,7 @@ public class ChunkProviderDebug implements IChunkProvider {
                 int k = MathHelper.a(i * ChunkProviderDebug.b + j);
 
                 if (k < ChunkProviderDebug.a.size()) {
-                    iblockdata = (IBlockData) ChunkProviderDebug.a.get(k);
+                    iblockdata = ChunkProviderDebug.a.get(k);
                 }
             }
         }
@@ -67,51 +68,64 @@ public class ChunkProviderDebug implements IChunkProvider {
         return iblockdata;
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return true;
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {}
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {}
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         return false;
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         return true;
     }
 
-    public void c() {}
+    @Override
+	public void c() {}
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         return false;
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "DebugLevelSource";
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         BiomeBase biomebase = this.d.getBiome(blockposition);
 
         return biomebase.getMobs(enumcreaturetype);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         return null;
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         return 0;
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {}
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {}
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 

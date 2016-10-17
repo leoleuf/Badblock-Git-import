@@ -23,19 +23,22 @@ final class CraftObjective extends CraftScoreboardComponent implements Objective
         return objective;
     }
 
-    public String getName() throws IllegalStateException {
+    @Override
+	public String getName() throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
 
         return objective.getName();
     }
 
-    public String getDisplayName() throws IllegalStateException {
+    @Override
+	public String getDisplayName() throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
 
         return objective.getDisplayName();
     }
 
-    public void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException {
+    @Override
+	public void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException {
         Validate.notNull(displayName, "Display name cannot be null");
         Validate.isTrue(displayName.length() <= 32, "Display name '" + displayName + "' is longer than the limit of 32 characters");
         CraftScoreboard scoreboard = checkState();
@@ -43,19 +46,22 @@ final class CraftObjective extends CraftScoreboardComponent implements Objective
         objective.setDisplayName(displayName);
     }
 
-    public String getCriteria() throws IllegalStateException {
+    @Override
+	public String getCriteria() throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
 
         return criteria.bukkitName;
     }
 
-    public boolean isModifiable() throws IllegalStateException {
+    @Override
+	public boolean isModifiable() throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
 
         return !criteria.criteria.isReadOnly();
     }
 
-    public void setDisplaySlot(DisplaySlot slot) throws IllegalStateException {
+    @Override
+	public void setDisplaySlot(DisplaySlot slot) throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
         Scoreboard board = scoreboard.board;
         ScoreboardObjective objective = this.objective;
@@ -71,7 +77,8 @@ final class CraftObjective extends CraftScoreboardComponent implements Objective
         }
     }
 
-    public DisplaySlot getDisplaySlot() throws IllegalStateException {
+    @Override
+	public DisplaySlot getDisplaySlot() throws IllegalStateException {
         CraftScoreboard scoreboard = checkState();
         Scoreboard board = scoreboard.board;
         ScoreboardObjective objective = this.objective;
@@ -84,14 +91,16 @@ final class CraftObjective extends CraftScoreboardComponent implements Objective
         return null;
     }
 
-    public Score getScore(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException {
+    @Override
+	public Score getScore(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException {
         Validate.notNull(player, "Player cannot be null");
         CraftScoreboard scoreboard = checkState();
 
         return new CraftScore(this, player.getName());
     }
 
-    public Score getScore(String entry) throws IllegalArgumentException, IllegalStateException {
+    @Override
+	public Score getScore(String entry) throws IllegalArgumentException, IllegalStateException {
         Validate.notNull(entry, "Entry cannot be null");
         if (entry.length() > 40) throw new IllegalArgumentException("Entry cannot be longer than 40 characters!"); // Spigot
         CraftScoreboard scoreboard = checkState();

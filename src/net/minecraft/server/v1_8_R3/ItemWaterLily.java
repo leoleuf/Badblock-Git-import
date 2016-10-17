@@ -6,7 +6,8 @@ public class ItemWaterLily extends ItemWithAuxData {
         super(block, false);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         MovingObjectPosition movingobjectposition = this.a(world, entityhuman, true);
 
         if (movingobjectposition == null) {
@@ -26,7 +27,7 @@ public class ItemWaterLily extends ItemWithAuxData {
                 BlockPosition blockposition1 = blockposition.up();
                 IBlockData iblockdata = world.getType(blockposition);
 
-                if (iblockdata.getBlock().getMaterial() == Material.WATER && ((Integer) iblockdata.get(BlockFluids.LEVEL)).intValue() == 0 && world.isEmpty(blockposition1)) {
+                if (iblockdata.getBlock().getMaterial() == Material.WATER && iblockdata.get(BlockFluids.LEVEL).intValue() == 0 && world.isEmpty(blockposition1)) {
                     // CraftBukkit start - special case for handling block placement with water lilies
                     org.bukkit.block.BlockState blockstate = org.bukkit.craftbukkit.v1_8_R3.block.CraftBlockState.getBlockState(world, blockposition1.getX(), blockposition1.getY(), blockposition1.getZ());
                     world.setTypeUpdate(blockposition1, Blocks.WATERLILY.getBlockData());

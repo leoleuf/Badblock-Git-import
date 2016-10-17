@@ -28,11 +28,13 @@ public class CraftChest extends CraftBlockState implements Chest {
         world = null;
     }
 
-    public Inventory getBlockInventory() {
+    @Override
+	public Inventory getBlockInventory() {
         return new CraftInventory(chest);
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         int x = getX();
         int y = getY();
         int z = getZ();

@@ -6,7 +6,7 @@ import com.google.common.base.Predicate;
 
 public class BlockLadder extends Block {
 
-    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", (Predicate) EnumDirection.EnumDirectionLimit.HORIZONTAL);
+    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirection.EnumDirectionLimit.HORIZONTAL);
 
     protected BlockLadder() {
         super(Material.ORIENTABLE);
@@ -14,18 +14,20 @@ public class BlockLadder extends Block {
         this.a(CreativeModeTab.c);
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         this.updateShape(world, blockposition);
         return super.a(world, blockposition, iblockdata);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         IBlockData iblockdata = iblockaccess.getType(blockposition);
 
         if (iblockdata.getBlock() == this) {
             float f = 0.125F;
 
-            switch (BlockLadder.SyntheticClass_1.a[((EnumDirection) iblockdata.get(BlockLadder.FACING)).ordinal()]) {
+            switch (BlockLadder.SyntheticClass_1.a[iblockdata.get(BlockLadder.FACING).ordinal()]) {
             case 1:
                 this.a(0.0F, 0.0F, 1.0F - f, 1.0F, 1.0F, 1.0F);
                 break;
@@ -46,19 +48,23 @@ public class BlockLadder extends Block {
         }
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return world.getType(blockposition.west()).getBlock().isOccluding() ? true : (world.getType(blockposition.east()).getBlock().isOccluding() ? true : (world.getType(blockposition.north()).getBlock().isOccluding() ? true : world.getType(blockposition.south()).getBlock().isOccluding()));
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         if (enumdirection.k().c() && this.a(world, blockposition, enumdirection)) {
             return this.getBlockData().set(BlockLadder.FACING, enumdirection);
         } else {
@@ -78,8 +84,9 @@ public class BlockLadder extends Block {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockLadder.FACING);
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        EnumDirection enumdirection = iblockdata.get(BlockLadder.FACING);
 
         if (!this.a(world, blockposition, enumdirection)) {
             this.b(world, blockposition, iblockdata, 0);
@@ -93,7 +100,8 @@ public class BlockLadder extends Block {
         return world.getType(blockposition.shift(enumdirection.opposite())).getBlock().isOccluding();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         EnumDirection enumdirection = EnumDirection.fromType1(i);
 
         if (enumdirection.k() == EnumDirection.EnumAxis.Y) {
@@ -103,11 +111,13 @@ public class BlockLadder extends Block {
         return this.getBlockData().set(BlockLadder.FACING, enumdirection);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((EnumDirection) iblockdata.get(BlockLadder.FACING)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockLadder.FACING).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockLadder.FACING});
     }
 

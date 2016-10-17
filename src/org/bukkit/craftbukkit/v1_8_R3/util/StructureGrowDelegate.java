@@ -20,11 +20,13 @@ public class StructureGrowDelegate implements BlockChangeDelegate {
         this.world = world.getWorld();
     }
 
-    public boolean setRawTypeId(int x, int y, int z, int type) {
+    @Override
+	public boolean setRawTypeId(int x, int y, int z, int type) {
         return setRawTypeIdAndData(x, y, z, type, 0);
     }
 
-    public boolean setRawTypeIdAndData(int x, int y, int z, int type, int data) {
+    @Override
+	public boolean setRawTypeIdAndData(int x, int y, int z, int type, int data) {
         BlockState state = world.getBlockAt(x, y, z).getState();
         state.setTypeId(type);
         state.setData(new MaterialData(type, (byte) data));
@@ -32,15 +34,18 @@ public class StructureGrowDelegate implements BlockChangeDelegate {
         return true;
     }
 
-    public boolean setTypeId(int x, int y, int z, int typeId) {
+    @Override
+	public boolean setTypeId(int x, int y, int z, int typeId) {
         return setRawTypeId(x, y, z, typeId);
     }
 
-    public boolean setTypeIdAndData(int x, int y, int z, int typeId, int data) {
+    @Override
+	public boolean setTypeIdAndData(int x, int y, int z, int typeId, int data) {
         return setRawTypeIdAndData(x, y, z, typeId, data);
     }
 
-    public int getTypeId(int x, int y, int z) {
+    @Override
+	public int getTypeId(int x, int y, int z) {
         for (BlockState state : blocks) {
             if (state.getX() == x && state.getY() == y && state.getZ() == z) {
                 return state.getTypeId();
@@ -50,7 +55,8 @@ public class StructureGrowDelegate implements BlockChangeDelegate {
         return world.getBlockTypeIdAt(x, y, z);
     }
 
-    public int getHeight() {
+    @Override
+	public int getHeight() {
         return world.getMaxHeight();
     }
 
@@ -58,7 +64,8 @@ public class StructureGrowDelegate implements BlockChangeDelegate {
         return blocks;
     }
 
-    public boolean isEmpty(int x, int y, int z) {
+    @Override
+	public boolean isEmpty(int x, int y, int z) {
         for (BlockState state : blocks) {
             if (state.getX() == x && state.getY() == y && state.getZ() == z) {
                 return Block.getById(state.getTypeId()) == Blocks.AIR;

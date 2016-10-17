@@ -21,7 +21,8 @@ public class CraftBlaze extends CraftMonster implements Blaze {
         return "CraftBlaze";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.BLAZE;
     }
 }

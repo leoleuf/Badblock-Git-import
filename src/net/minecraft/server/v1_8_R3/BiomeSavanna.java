@@ -14,11 +14,13 @@ public class BiomeSavanna extends BiomeBase {
         this.as.C = 20;
     }
 
-    public WorldGenTreeAbstract a(Random random) {
-        return (WorldGenTreeAbstract) (random.nextInt(5) > 0 ? BiomeSavanna.aD : this.aA);
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
+        return random.nextInt(5) > 0 ? BiomeSavanna.aD : this.aA;
     }
 
-    protected BiomeBase d(int i) {
+    @Override
+	protected BiomeBase d(int i) {
         BiomeSavanna.BiomeSavannaSub biomesavanna_biomesavannasub = new BiomeSavanna.BiomeSavannaSub(i, this);
 
         biomesavanna_biomesavannasub.temperature = (this.temperature + 1.0F) * 0.5F;
@@ -27,15 +29,16 @@ public class BiomeSavanna extends BiomeBase {
         return biomesavanna_biomesavannasub;
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
-        BiomeSavanna.ag.a(BlockTallPlant.EnumTallFlowerVariants.GRASS);
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
+        BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.GRASS);
 
         for (int i = 0; i < 7; ++i) {
             int j = random.nextInt(16) + 8;
             int k = random.nextInt(16) + 8;
             int l = random.nextInt(world.getHighestBlockYAt(blockposition.a(j, 0, k)).getY() + 32);
 
-            BiomeSavanna.ag.generate(world, random, blockposition.a(j, l, k));
+            BiomeBase.ag.generate(world, random, blockposition.a(j, l, k));
         }
 
         super.a(world, random, blockposition);
@@ -50,7 +53,8 @@ public class BiomeSavanna extends BiomeBase {
             this.as.C = 5;
         }
 
-        public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
+        @Override
+		public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
             this.ak = Blocks.GRASS.getBlockData();
             this.al = Blocks.DIRT.getBlockData();
             if (d0 > 1.75D) {
@@ -63,7 +67,8 @@ public class BiomeSavanna extends BiomeBase {
             this.b(world, random, chunksnapshot, i, j, d0);
         }
 
-        public void a(World world, Random random, BlockPosition blockposition) {
+        @Override
+		public void a(World world, Random random, BlockPosition blockposition) {
             this.as.a(world, random, this, blockposition);
         }
     }

@@ -18,7 +18,8 @@ public class PathfinderGoalFleeSun extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (!this.f.w()) {
             return false;
         } else if (!this.a.isBurning()) {
@@ -39,11 +40,13 @@ public class PathfinderGoalFleeSun extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return !this.a.getNavigation().m();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a.getNavigation().a(this.b, this.c, this.d, this.e);
     }
 
@@ -55,7 +58,7 @@ public class PathfinderGoalFleeSun extends PathfinderGoal {
             BlockPosition blockposition1 = blockposition.a(random.nextInt(20) - 10, random.nextInt(6) - 3, random.nextInt(20) - 10);
 
             if (!this.f.i(blockposition1) && this.a.a(blockposition1) < 0.0F) {
-                return new Vec3D((double) blockposition1.getX(), (double) blockposition1.getY(), (double) blockposition1.getZ());
+                return new Vec3D(blockposition1.getX(), blockposition1.getY(), blockposition1.getZ());
             }
         }
 

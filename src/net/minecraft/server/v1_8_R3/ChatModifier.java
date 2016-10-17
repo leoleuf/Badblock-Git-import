@@ -24,87 +24,108 @@ public class ChatModifier {
     private ChatHoverable i;
     private String j;
     private static final ChatModifier k = new ChatModifier() {
-        public EnumChatFormat getColor() {
+        @Override
+		public EnumChatFormat getColor() {
             return null;
         }
 
-        public boolean isBold() {
+        @Override
+		public boolean isBold() {
             return false;
         }
 
-        public boolean isItalic() {
+        @Override
+		public boolean isItalic() {
             return false;
         }
 
-        public boolean isStrikethrough() {
+        @Override
+		public boolean isStrikethrough() {
             return false;
         }
 
-        public boolean isUnderlined() {
+        @Override
+		public boolean isUnderlined() {
             return false;
         }
 
-        public boolean isRandom() {
+        @Override
+		public boolean isRandom() {
             return false;
         }
 
-        public ChatClickable h() {
+        @Override
+		public ChatClickable h() {
             return null;
         }
 
-        public ChatHoverable i() {
+        @Override
+		public ChatHoverable i() {
             return null;
         }
 
-        public String j() {
+        @Override
+		public String j() {
             return null;
         }
 
-        public ChatModifier setColor(EnumChatFormat enumchatformat) {
+        @Override
+		public ChatModifier setColor(EnumChatFormat enumchatformat) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setBold(Boolean obool) {
+        @Override
+		public ChatModifier setBold(Boolean obool) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setItalic(Boolean obool) {
+        @Override
+		public ChatModifier setItalic(Boolean obool) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setStrikethrough(Boolean obool) {
+        @Override
+		public ChatModifier setStrikethrough(Boolean obool) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setUnderline(Boolean obool) {
+        @Override
+		public ChatModifier setUnderline(Boolean obool) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setRandom(Boolean obool) {
+        @Override
+		public ChatModifier setRandom(Boolean obool) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setChatClickable(ChatClickable chatclickable) {
+        @Override
+		public ChatModifier setChatClickable(ChatClickable chatclickable) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setChatHoverable(ChatHoverable chathoverable) {
+        @Override
+		public ChatModifier setChatHoverable(ChatHoverable chathoverable) {
             throw new UnsupportedOperationException();
         }
 
-        public ChatModifier setChatModifier(ChatModifier chatmodifier) {
+        @Override
+		public ChatModifier setChatModifier(ChatModifier chatmodifier) {
             throw new UnsupportedOperationException();
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return "Style.ROOT";
         }
 
-        public ChatModifier clone() {
+        @Override
+		public ChatModifier clone() {
             return this;
         }
 
-        public ChatModifier n() {
+        @Override
+		public ChatModifier n() {
             return this;
         }
     };
@@ -205,11 +226,13 @@ public class ChatModifier {
         return this.a == null ? ChatModifier.k : this.a;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "Style{hasParent=" + (this.a != null) + ", color=" + this.b + ", bold=" + this.c + ", italic=" + this.d + ", underlined=" + this.e + ", obfuscated=" + this.g + ", clickEvent=" + this.h() + ", hoverEvent=" + this.i() + ", insertion=" + this.j() + '}';
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof ChatModifier)) {
@@ -254,7 +277,8 @@ public class ChatModifier {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         // CraftBukkit start - fix npe
         int i = b == null ? 0 : this.b.hashCode();
 
@@ -270,7 +294,8 @@ public class ChatModifier {
         return i;
     }
 
-    public ChatModifier clone() {
+    @Override
+	public ChatModifier clone() {
         ChatModifier chatmodifier = new ChatModifier();
 
         chatmodifier.c = this.c;
@@ -432,11 +457,13 @@ public class ChatModifier {
             }
         }
 
-        public JsonElement serialize(ChatModifier object, Type type, JsonSerializationContext jsonserializationcontext) { // CraftBukkit - fix decompile error
-            return this.a((ChatModifier) object, type, jsonserializationcontext);
+        @Override
+		public JsonElement serialize(ChatModifier object, Type type, JsonSerializationContext jsonserializationcontext) { // CraftBukkit - fix decompile error
+            return this.a(object, type, jsonserializationcontext);
         }
 
-        public ChatModifier deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException { // CraftBukkit - fix decompile error
+        @Override
+		public ChatModifier deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException { // CraftBukkit - fix decompile error
             return this.a(jsonelement, type, jsondeserializationcontext);
         }
     }

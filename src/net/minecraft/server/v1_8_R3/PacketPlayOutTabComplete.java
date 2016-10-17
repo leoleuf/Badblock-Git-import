@@ -12,7 +12,8 @@ public class PacketPlayOutTabComplete implements Packet<PacketListenerPlayOut> {
         this.a = astring;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = new String[packetdataserializer.e()];
 
         for (int i = 0; i < this.a.length; ++i) {
@@ -21,7 +22,8 @@ public class PacketPlayOutTabComplete implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a.length);
         String[] astring = this.a;
         int i = astring.length;
@@ -34,7 +36,8 @@ public class PacketPlayOutTabComplete implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

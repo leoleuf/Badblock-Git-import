@@ -17,7 +17,8 @@ public class WorldGenDungeons extends WorldGenerator {
 
     public WorldGenDungeons() {}
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         boolean flag = true;
         int i = random.nextInt(2) + 2;
         int j = -i - 1;
@@ -109,7 +110,7 @@ public class WorldGenDungeons extends WorldGenerator {
                                     TileEntity tileentity = world.getTileEntity(blockposition2);
 
                                     if (tileentity instanceof TileEntityChest) {
-                                        StructurePieceTreasure.a(random, list, (IInventory) ((TileEntityChest) tileentity), 8);
+                                        StructurePieceTreasure.a(random, list, ((TileEntityChest) tileentity), 8);
                                     }
                                     break label197;
                                 }

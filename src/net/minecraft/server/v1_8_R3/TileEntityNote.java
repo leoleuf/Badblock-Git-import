@@ -7,12 +7,14 @@ public class TileEntityNote extends TileEntity {
 
     public TileEntityNote() {}
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setByte("note", this.note);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.note = nbttagcompound.getByte("note");
         this.note = (byte) MathHelper.clamp(this.note, 0, 24);

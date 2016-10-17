@@ -170,7 +170,8 @@ public interface Entity extends Metadatable, CommandSender {
      *
      * @return Server instance running this Entity
      */
-    public Server getServer();
+    @Override
+	public Server getServer();
 
     /**
      * Gets the primary passenger of a vehicle. For vehicles that could have

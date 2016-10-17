@@ -43,7 +43,8 @@ public class MojangStatisticsGenerator {
             this.i = true;
             this.h();
             this.f.schedule(new TimerTask() {
-                public void run() {
+                @Override
+				public void run() {
                     if (MojangStatisticsGenerator.this.e.getSnooperEnabled()) {
                         HashMap hashmap;
 
@@ -57,7 +58,7 @@ public class MojangStatisticsGenerator {
                             hashmap.put("snooper_token", MojangStatisticsGenerator.this.c);
                         }
 
-                        HttpUtilities.a(MojangStatisticsGenerator.this.d, (Map) hashmap, true);
+                        HttpUtilities.a(MojangStatisticsGenerator.this.d, hashmap, true);
                     }
                 }
             }, 0L, 900000L);

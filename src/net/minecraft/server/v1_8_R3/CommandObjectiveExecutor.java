@@ -17,43 +17,53 @@ public class CommandObjectiveExecutor {
 
         if (s != null) {
             ICommandListener icommandlistener1 = new ICommandListener() {
-                public String getName() {
+                @Override
+				public String getName() {
                     return icommandlistener.getName();
                 }
 
-                public IChatBaseComponent getScoreboardDisplayName() {
+                @Override
+				public IChatBaseComponent getScoreboardDisplayName() {
                     return icommandlistener.getScoreboardDisplayName();
                 }
 
-                public void sendMessage(IChatBaseComponent ichatbasecomponent) {
+                @Override
+				public void sendMessage(IChatBaseComponent ichatbasecomponent) {
                     icommandlistener.sendMessage(ichatbasecomponent);
                 }
 
-                public boolean a(int i, String s) {
+                @Override
+				public boolean a(int i, String s) {
                     return true;
                 }
 
-                public BlockPosition getChunkCoordinates() {
+                @Override
+				public BlockPosition getChunkCoordinates() {
                     return icommandlistener.getChunkCoordinates();
                 }
 
-                public Vec3D d() {
+                @Override
+				public Vec3D d() {
                     return icommandlistener.d();
                 }
 
-                public World getWorld() {
+                @Override
+				public World getWorld() {
                     return icommandlistener.getWorld();
                 }
 
-                public Entity f() {
+                @Override
+				public Entity f() {
                     return icommandlistener.f();
                 }
 
-                public boolean getSendCommandFeedback() {
+                @Override
+				public boolean getSendCommandFeedback() {
                     return icommandlistener.getSendCommandFeedback();
                 }
 
-                public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
+                @Override
+				public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
                     icommandlistener.a(commandobjectiveexecutor_enumcommandresult, i);
                 }
             };

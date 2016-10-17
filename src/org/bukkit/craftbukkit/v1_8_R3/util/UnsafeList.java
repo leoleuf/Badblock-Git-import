@@ -43,7 +43,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         this(32);
     }
 
-    public E get(int index) {
+    @Override
+	public E get(int index) {
         rangeCheck(index);
 
         return (E) data[index];
@@ -53,7 +54,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return (E) data[index];
     }
 
-    public E set(int index, E element) {
+    @Override
+	public E set(int index, E element) {
         rangeCheck(index);
 
         E old = (E) data[index];
@@ -61,20 +63,23 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return old;
     }
 
-    public boolean add(E element) {
+    @Override
+	public boolean add(E element) {
         growIfNeeded();
         data[size++] = element;
         return true;
     }
 
-    public void add(int index, E element) {
+    @Override
+	public void add(int index, E element) {
         growIfNeeded();
         System.arraycopy(data, index, data, index + 1, size - index);
         data[index] = element;
         size++;
     }
 
-    public E remove(int index) {
+    @Override
+	public E remove(int index) {
         rangeCheck(index);
 
         E old = (E) data[index];
@@ -87,7 +92,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return old;
     }
 
-    public boolean remove(Object o) {
+    @Override
+	public boolean remove(Object o) {
         int index = indexOf(o);
         if (index >= 0) {
             remove(index);
@@ -97,7 +103,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return false;
     }
 
-    public int indexOf(Object o) {
+    @Override
+	public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
             if (o == data[i] || o.equals(data[i])) {
                 return i;
@@ -107,11 +114,13 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return -1;
     }
 
-    public boolean contains(Object o) {
+    @Override
+	public boolean contains(Object o) {
         return indexOf(o) >= 0;
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
         // Create new array to reset memory usage to initial capacity
         size = 0;
 
@@ -134,15 +143,18 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         }
     }
 
-    public int size() {
+    @Override
+	public int size() {
         return size;
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return size == 0;
     }
 
-    public Object clone() throws CloneNotSupportedException {
+    @Override
+	public Object clone() throws CloneNotSupportedException {
         UnsafeList<E> copy = (UnsafeList<E>) super.clone();
         copy.data = Arrays.copyOf(data, size);
         copy.size = size;
@@ -154,7 +166,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
         return copy;
     }
 
-    public Iterator<E> iterator() {
+    @Override
+	public Iterator<E> iterator() {
         // Try to find an iterator that isn't in use
         for (Iterator iter : iterPool) {
             if (!((Itr) iter).valid) {
@@ -233,12 +246,14 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
             valid = true;
         }
 
-        public boolean hasNext() {
+        @Override
+		public boolean hasNext() {
             valid = index != size;
             return valid;
         }
 
-        public E next() {
+        @Override
+		public E next() {
             if (modCount != expectedModCount) {
                 throw new ConcurrentModificationException();
             }
@@ -256,7 +271,8 @@ public class UnsafeList<E> extends AbstractList<E> implements List<E>, RandomAcc
             return (E) data[lastRet = i];
         }
 
-        public void remove() {
+        @Override
+		public void remove() {
             if (lastRet < 0) {
                 throw new IllegalStateException();
             }

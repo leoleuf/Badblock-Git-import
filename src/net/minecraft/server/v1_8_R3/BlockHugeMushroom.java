@@ -13,12 +13,14 @@ public class BlockHugeMushroom extends Block {
         this.b = block;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return Math.max(0, random.nextInt(10) - 7);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        switch (BlockHugeMushroom.SyntheticClass_1.a[((BlockHugeMushroom.EnumHugeMushroomVariant) iblockdata.get(BlockHugeMushroom.VARIANT)).ordinal()]) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        switch (BlockHugeMushroom.SyntheticClass_1.a[iblockdata.get(BlockHugeMushroom.VARIANT).ordinal()]) {
         case 1:
             return MaterialMapColor.e;
 
@@ -33,23 +35,28 @@ public class BlockHugeMushroom extends Block {
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Item.getItemOf(this.b);
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         return this.getBlockData();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockHugeMushroom.VARIANT, BlockHugeMushroom.EnumHugeMushroomVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockHugeMushroom.EnumHugeMushroomVariant) iblockdata.get(BlockHugeMushroom.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockHugeMushroom.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockHugeMushroom.VARIANT});
     }
 
@@ -96,7 +103,8 @@ public class BlockHugeMushroom extends Block {
             return this.o;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.p;
         }
 
@@ -110,7 +118,8 @@ public class BlockHugeMushroom extends Block {
             return blockhugemushroom_enumhugemushroomvariant == null ? BlockHugeMushroom.EnumHugeMushroomVariant.n[0] : blockhugemushroom_enumhugemushroomvariant;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.p;
         }
 

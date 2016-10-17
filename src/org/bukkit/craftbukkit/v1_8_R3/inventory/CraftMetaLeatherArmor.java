@@ -82,11 +82,13 @@ class CraftMetaLeatherArmor extends CraftMetaItem implements LeatherArmorMeta {
         return (CraftMetaLeatherArmor) super.clone();
     }
 
-    public Color getColor() {
+    @Override
+	public Color getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    @Override
+	public void setColor(Color color) {
         this.color = color == null ? DEFAULT_LEATHER_COLOR : color;
     }
 

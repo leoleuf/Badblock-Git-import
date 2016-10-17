@@ -19,7 +19,8 @@ public class ShapedRecipes implements IRecipe {
     }
 
     // CraftBukkit start
-    public org.bukkit.inventory.ShapedRecipe toBukkitRecipe() {
+    @Override
+	public org.bukkit.inventory.ShapedRecipe toBukkitRecipe() {
         CraftItemStack result = CraftItemStack.asCraftMirror(this.result);
         CraftShapedRecipe recipe = new CraftShapedRecipe(result, this);
         switch (this.height) {
@@ -74,11 +75,13 @@ public class ShapedRecipes implements IRecipe {
     }
     // CraftBukkit end
 
-    public ItemStack b() {
+    @Override
+	public ItemStack b() {
         return this.result;
     }
 
-    public ItemStack[] b(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack[] b(InventoryCrafting inventorycrafting) {
         ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
         for (int i = 0; i < aitemstack.length; ++i) {
@@ -92,7 +95,8 @@ public class ShapedRecipes implements IRecipe {
         return aitemstack;
     }
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         for (int i = 0; i <= 3 - this.width; ++i) {
             for (int j = 0; j <= 3 - this.height; ++j) {
                 if (this.a(inventorycrafting, i, j, true)) {
@@ -144,7 +148,8 @@ public class ShapedRecipes implements IRecipe {
         return true;
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         ItemStack itemstack = this.b().cloneItemStack();
 
         if (this.e) {
@@ -160,12 +165,14 @@ public class ShapedRecipes implements IRecipe {
         return itemstack;
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return this.width * this.height;
     }
 
     // Spigot start
-    public java.util.List<ItemStack> getIngredients()
+    @Override
+	public java.util.List<ItemStack> getIngredients()
     {
         return java.util.Arrays.asList( items );
     }

@@ -29,11 +29,13 @@ public class CraftDropper extends CraftBlockState implements Dropper {
         dropper = te;
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return new CraftInventory(dropper);
     }
 
-    public void drop() {
+    @Override
+	public void drop() {
         Block block = getBlock();
 
         if (block.getType() == Material.DROPPER) {

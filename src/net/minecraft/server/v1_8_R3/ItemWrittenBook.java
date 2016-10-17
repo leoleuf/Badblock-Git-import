@@ -22,7 +22,8 @@ public class ItemWrittenBook extends Item {
         return itemstack.getTag().getInt("generation");
     }
 
-    public String a(ItemStack itemstack) {
+    @Override
+	public String a(ItemStack itemstack) {
         if (itemstack.hasTag()) {
             NBTTagCompound nbttagcompound = itemstack.getTag();
             String s = nbttagcompound.getString("title");
@@ -35,7 +36,8 @@ public class ItemWrittenBook extends Item {
         return super.a(itemstack);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (!world.isClientSide) {
             this.a(itemstack, entityhuman);
         }

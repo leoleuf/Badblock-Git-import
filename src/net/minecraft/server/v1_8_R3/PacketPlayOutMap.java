@@ -19,7 +19,7 @@ public class PacketPlayOutMap implements Packet<PacketListenerPlayOut> {
     public PacketPlayOutMap(int i, byte b0, Collection<MapIcon> collection, byte[] abyte, int j, int k, int l, int i1) {
         this.a = i;
         this.b = b0;
-        this.c = (MapIcon[]) collection.toArray(new MapIcon[collection.size()]);
+        this.c = collection.toArray(new MapIcon[collection.size()]);
         this.d = j;
         this.e = k;
         this.f = l;
@@ -34,13 +34,14 @@ public class PacketPlayOutMap implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.b = packetdataserializer.readByte();
         this.c = new MapIcon[packetdataserializer.e()];
 
         for (int i = 0; i < this.c.length; ++i) {
-            short short0 = (short) packetdataserializer.readByte();
+            short short0 = packetdataserializer.readByte();
 
             this.c[i] = new MapIcon((byte) (short0 >> 4 & 15), packetdataserializer.readByte(), packetdataserializer.readByte(), (byte) (short0 & 15));
         }
@@ -55,7 +56,8 @@ public class PacketPlayOutMap implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeByte(this.b);
         packetdataserializer.b(this.c.length);
@@ -80,7 +82,8 @@ public class PacketPlayOutMap implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

@@ -57,7 +57,8 @@ public class SimpleHelpMap implements HelpMap {
         registerHelpTopicFactory(MultipleCommandAlias.class, new MultipleCommandAliasHelpTopicFactory());
     }
 
-    public synchronized HelpTopic getHelpTopic(String topicName) {
+    @Override
+	public synchronized HelpTopic getHelpTopic(String topicName) {
         if (topicName.equals("")) {
             return defaultTopic;
         }
@@ -69,22 +70,26 @@ public class SimpleHelpMap implements HelpMap {
         return null;
     }
 
-    public Collection<HelpTopic> getHelpTopics() {
+    @Override
+	public Collection<HelpTopic> getHelpTopics() {
         return helpTopics.values();
     }
 
-    public synchronized void addTopic(HelpTopic topic) {
+    @Override
+	public synchronized void addTopic(HelpTopic topic) {
         // Existing topics take priority
         if (!helpTopics.containsKey(topic.getName())) {
             helpTopics.put(topic.getName(), topic);
         }
     }
 
-    public synchronized void clear() {
+    @Override
+	public synchronized void clear() {
         helpTopics.clear();
     }
 
-    public List<String> getIgnoredPlugins() {
+    @Override
+	public List<String> getIgnoredPlugins() {
         return yaml.getIgnoredPlugins();
     }
 
@@ -219,7 +224,8 @@ public class SimpleHelpMap implements HelpMap {
         return false;
     }
 
-    public void registerHelpTopicFactory(Class commandClass, HelpTopicFactory factory) {
+    @Override
+	public void registerHelpTopicFactory(Class commandClass, HelpTopicFactory factory) {
         if (!Command.class.isAssignableFrom(commandClass) && !CommandExecutor.class.isAssignableFrom(commandClass)) {
             throw new IllegalArgumentException("commandClass must implement either Command or CommandExecutor!");
         }
@@ -228,7 +234,8 @@ public class SimpleHelpMap implements HelpMap {
 
     private class IsCommandTopicPredicate implements Predicate<HelpTopic> {
 
-        public boolean apply(HelpTopic topic) {
+        @Override
+		public boolean apply(HelpTopic topic) {
             return topic.getName().charAt(0) == '/';
         }
     }

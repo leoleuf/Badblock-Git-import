@@ -305,7 +305,8 @@ public class MojangsonParser {
             this.b = s1;
         }
 
-        public NBTBase a() throws MojangsonParseException {
+        @Override
+		public NBTBase a() throws MojangsonParseException {
             try {
                 if (MojangsonParser.MojangsonPrimitiveParser.c.matcher(this.b).matches()) {
                     return new NBTTagDouble(Double.parseDouble(this.b.substring(0, this.b.length() - 1)));
@@ -345,7 +346,7 @@ public class MojangsonParser {
 
             if (this.b.startsWith("[") && this.b.endsWith("]")) {
                 String s = this.b.substring(1, this.b.length() - 1);
-                String[] astring = (String[]) Iterables.toArray(MojangsonParser.MojangsonPrimitiveParser.j.split(s), String.class);
+                String[] astring = Iterables.toArray(MojangsonParser.MojangsonPrimitiveParser.j.split(s), String.class);
 
                 try {
                     int[] aint = new int[astring.length];
@@ -388,7 +389,8 @@ public class MojangsonParser {
             this.a = s;
         }
 
-        public NBTBase a() throws MojangsonParseException {
+        @Override
+		public NBTBase a() throws MojangsonParseException {
             NBTTagList nbttaglist = new NBTTagList();
             Iterator iterator = this.b.iterator();
 
@@ -410,7 +412,8 @@ public class MojangsonParser {
             this.a = s;
         }
 
-        public NBTBase a() throws MojangsonParseException {
+        @Override
+		public NBTBase a() throws MojangsonParseException {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
             Iterator iterator = this.b.iterator();
 

@@ -16,7 +16,8 @@ public class PacketPlayOutUpdateSign implements Packet<PacketListenerPlayOut> {
         this.c = new IChatBaseComponent[] { aichatbasecomponent[0], aichatbasecomponent[1], aichatbasecomponent[2], aichatbasecomponent[3]};
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.b = packetdataserializer.c();
         this.c = new IChatBaseComponent[4];
 
@@ -26,7 +27,8 @@ public class PacketPlayOutUpdateSign implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.b);
 
         for (int i = 0; i < 4; ++i) {
@@ -35,7 +37,8 @@ public class PacketPlayOutUpdateSign implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

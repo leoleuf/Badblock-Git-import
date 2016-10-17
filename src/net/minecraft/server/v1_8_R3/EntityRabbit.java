@@ -42,7 +42,8 @@ public class EntityRabbit extends EntityAnimal {
     }
     // CraftBukkit end
 
-    protected float bE() {
+    @Override
+	protected float bE() {
         return this.moveController.a() && this.moveController.e() > this.locY + 0.5D ? 0.5F : this.bt.b();
     }
 
@@ -62,7 +63,7 @@ public class EntityRabbit extends EntityAnimal {
                 this.bt = EntityRabbit.EnumRabbitState.HOP;
             }
         } else {
-            this.b(1.5D * (double) entityrabbit_enumrabbitstate.a());
+            this.b(1.5D * entityrabbit_enumrabbitstate.a());
             this.makeSound(this.cm(), this.bB(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
         }
 
@@ -79,12 +80,14 @@ public class EntityRabbit extends EntityAnimal {
         return this.bq;
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(18, Byte.valueOf((byte) 0));
     }
 
-    public void E() {
+    @Override
+	public void E() {
         if (this.moveController.b() > 0.8D) {
             this.a(EntityRabbit.EnumRabbitState.SPRINT);
         } else if (this.bt != EntityRabbit.EnumRabbitState.ATTACK) {
@@ -127,7 +130,7 @@ public class EntityRabbit extends EntityAnimal {
                     Vec3D vec3d = new Vec3D(this.moveController.d(), this.moveController.e(), this.moveController.f());
 
                     if (pathentity != null && pathentity.e() < pathentity.d()) {
-                        vec3d = pathentity.a((Entity) this);
+                        vec3d = pathentity.a(this);
                     }
 
                     this.a(vec3d.a, vec3d.c);
@@ -141,7 +144,8 @@ public class EntityRabbit extends EntityAnimal {
         this.br = this.onGround;
     }
 
-    public void Y() {}
+    @Override
+	public void Y() {}
 
     private void a(double d0, double d1) {
         this.yaw = (float) (MathHelper.b(d1 - this.locZ, d0 - this.locX) * 180.0D / 3.1415927410125732D) - 90.0F;
@@ -164,7 +168,8 @@ public class EntityRabbit extends EntityAnimal {
         this.cu();
     }
 
-    public void m() {
+    @Override
+	public void m() {
         super.m();
         if (this.bo != this.bp) {
             if (this.bo == 0 && !this.world.isClientSide) {
@@ -179,19 +184,22 @@ public class EntityRabbit extends EntityAnimal {
 
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(10.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.30000001192092896D);
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("RabbitType", this.getRabbitType());
         nbttagcompound.setInt("MoreCarrotTicks", this.bu);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setRabbitType(nbttagcompound.getInt("RabbitType"));
         this.bu = nbttagcompound.getInt("MoreCarrotTicks");
@@ -201,19 +209,23 @@ public class EntityRabbit extends EntityAnimal {
         return "mob.rabbit.hop";
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.rabbit.idle";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.rabbit.hurt";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.rabbit.death";
     }
 
-    public boolean r(Entity entity) {
+    @Override
+	public boolean r(Entity entity) {
         if (this.getRabbitType() == 99) {
             this.makeSound("mob.attack", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             return entity.damageEntity(DamageSource.mobAttack(this), 8.0F);
@@ -222,19 +234,23 @@ public class EntityRabbit extends EntityAnimal {
         }
     }
 
-    public int br() {
+    @Override
+	public int br() {
         return this.getRabbitType() == 99 ? 8 : super.br();
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         return this.isInvulnerable(damagesource) ? false : super.damageEntity(damagesource, f);
     }
 
-    protected void getRareDrop() {
+    @Override
+	protected void getRareDrop() {
         this.a(new ItemStack(Items.RABBIT_FOOT, 1), 0.0F);
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(2) + this.random.nextInt(1 + i);
 
         int k;
@@ -269,7 +285,8 @@ public class EntityRabbit extends EntityAnimal {
         return entityrabbit;
     }
 
-    public boolean d(ItemStack itemstack) {
+    @Override
+	public boolean d(ItemStack itemstack) {
         return itemstack != null && this.a(itemstack.getItem());
     }
 
@@ -279,7 +296,7 @@ public class EntityRabbit extends EntityAnimal {
 
     public void setRabbitType(int i) {
         if (i == 99) {
-            this.goalSelector.a((PathfinderGoal) this.bm);
+            this.goalSelector.a(this.bm);
             this.goalSelector.a(4, new EntityRabbit.PathfinderGoalKillerRabbitMeleeAttack(this));
             this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, false, new Class[0]));
             this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
@@ -292,7 +309,8 @@ public class EntityRabbit extends EntityAnimal {
         this.datawatcher.watch(18, Byte.valueOf((byte) i));
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         Object object = super.prepare(difficultydamagescaler, groupdataentity);
         int i = this.random.nextInt(6);
         boolean flag = false;
@@ -321,11 +339,12 @@ public class EntityRabbit extends EntityAnimal {
     }
 
     protected void cp() {
-        this.world.addParticle(EnumParticle.BLOCK_DUST, this.locX + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, this.locY + 0.5D + (double) (this.random.nextFloat() * this.length), this.locZ + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D, new int[] { Block.getCombinedId(Blocks.CARROTS.fromLegacyData(7))});
+        this.world.addParticle(EnumParticle.BLOCK_DUST, this.locX + this.random.nextFloat() * this.width * 2.0F - this.width, this.locY + 0.5D + this.random.nextFloat() * this.length, this.locZ + this.random.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D, new int[] { Block.getCombinedId(Blocks.CARROTS.fromLegacyData(7))});
         this.bu = 100;
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 
@@ -368,8 +387,9 @@ public class EntityRabbit extends EntityAnimal {
             super(entityrabbit, EntityLiving.class, 1.4D, true);
         }
 
-        protected double a(EntityLiving entityliving) {
-            return (double) (4.0F + entityliving.width);
+        @Override
+		protected double a(EntityLiving entityliving) {
+            return 4.0F + entityliving.width;
         }
     }
 
@@ -382,7 +402,8 @@ public class EntityRabbit extends EntityAnimal {
             this.b = entityrabbit;
         }
 
-        public void e() {
+        @Override
+		public void e() {
             super.e();
             this.b.b(this.a);
         }
@@ -399,7 +420,8 @@ public class EntityRabbit extends EntityAnimal {
             this.c = entityrabbit;
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             if (this.a <= 0) {
                 if (!this.c.world.getGameRules().getBoolean("mobGriefing")) {
                     return false;
@@ -412,28 +434,32 @@ public class EntityRabbit extends EntityAnimal {
             return super.a();
         }
 
-        public boolean b() {
+        @Override
+		public boolean b() {
             return this.e && super.b();
         }
 
-        public void c() {
+        @Override
+		public void c() {
             super.c();
         }
 
-        public void d() {
+        @Override
+		public void d() {
             super.d();
         }
 
-        public void e() {
+        @Override
+		public void e() {
             super.e();
-            this.c.getControllerLook().a((double) this.b.getX() + 0.5D, (double) (this.b.getY() + 1), (double) this.b.getZ() + 0.5D, 10.0F, (float) this.c.bQ());
+            this.c.getControllerLook().a(this.b.getX() + 0.5D, this.b.getY() + 1, this.b.getZ() + 0.5D, 10.0F, this.c.bQ());
             if (this.f()) {
                 World world = this.c.world;
                 BlockPosition blockposition = this.b.up();
                 IBlockData iblockdata = world.getType(blockposition);
                 Block block = iblockdata.getBlock();
 
-                if (this.e && block instanceof BlockCarrots && ((Integer) iblockdata.get(BlockCarrots.AGE)).intValue() == 7) {
+                if (this.e && block instanceof BlockCarrots && iblockdata.get(BlockCrops.AGE).intValue() == 7) {
                     world.setTypeAndData(blockposition, Blocks.AIR.getBlockData(), 2);
                     world.setAir(blockposition, true);
                     this.c.cp();
@@ -445,7 +471,8 @@ public class EntityRabbit extends EntityAnimal {
 
         }
 
-        protected boolean a(World world, BlockPosition blockposition) {
+        @Override
+		protected boolean a(World world, BlockPosition blockposition) {
             Block block = world.getType(blockposition).getBlock();
 
             if (block == Blocks.FARMLAND) {
@@ -453,7 +480,7 @@ public class EntityRabbit extends EntityAnimal {
                 IBlockData iblockdata = world.getType(blockposition);
 
                 block = iblockdata.getBlock();
-                if (block instanceof BlockCarrots && ((Integer) iblockdata.get(BlockCarrots.AGE)).intValue() == 7 && this.d && !this.e) {
+                if (block instanceof BlockCarrots && iblockdata.get(BlockCrops.AGE).intValue() == 7 && this.d && !this.e) {
                     this.e = true;
                     return true;
                 }
@@ -472,7 +499,8 @@ public class EntityRabbit extends EntityAnimal {
             this.c = entityrabbit;
         }
 
-        public void e() {
+        @Override
+		public void e() {
             super.e();
         }
     }
@@ -486,7 +514,8 @@ public class EntityRabbit extends EntityAnimal {
             this.g = entityrabbit;
         }
 
-        public void c() {
+        @Override
+		public void c() {
             if (this.g.onGround && !this.g.cl()) {
                 this.g.b(0.0D);
             }
@@ -517,7 +546,8 @@ public class EntityRabbit extends EntityAnimal {
             this.d = flag;
         }
 
-        public void b() {
+        @Override
+		public void b() {
             if (this.a) {
                 this.c.b(EntityRabbit.EnumRabbitState.STEP);
                 this.a = false;

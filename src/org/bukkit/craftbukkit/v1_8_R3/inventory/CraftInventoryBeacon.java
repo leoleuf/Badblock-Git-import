@@ -10,11 +10,13 @@ public class CraftInventoryBeacon extends CraftInventory implements BeaconInvent
         super(beacon);
     }
 
-    public void setItem(ItemStack item) {
+    @Override
+	public void setItem(ItemStack item) {
         setItem(0, item);
     }
 
-    public ItemStack getItem() {
+    @Override
+	public ItemStack getItem() {
         return getItem(0);
     }
 }

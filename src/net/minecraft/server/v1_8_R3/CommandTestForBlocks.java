@@ -6,19 +6,23 @@ public class CommandTestForBlocks extends CommandAbstract {
 
     public CommandTestForBlocks() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "testforblocks";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.compare.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 9) {
             throw new ExceptionUsage("commands.compare.usage", new Object[0]);
         } else {
@@ -103,7 +107,8 @@ public class CommandTestForBlocks extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length > 0 && astring.length <= 3 ? a(astring, 0, blockposition) : (astring.length > 3 && astring.length <= 6 ? a(astring, 3, blockposition) : (astring.length > 6 && astring.length <= 9 ? a(astring, 6, blockposition) : (astring.length == 10 ? a(astring, new String[] { "masked", "all"}) : null)));
     }
 }

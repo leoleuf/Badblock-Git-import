@@ -150,5 +150,6 @@ public interface PlayerInventory extends Inventory {
     @Deprecated
     public int clear(int id, int data);
 
-    public HumanEntity getHolder();
+    @Override
+	public HumanEntity getHolder();
 }

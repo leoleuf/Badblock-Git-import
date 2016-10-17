@@ -26,7 +26,7 @@ public class RegistryID<T> implements Registry<T> {
     }
 
     public int b(T t0) {
-        Integer integer = (Integer) this.a.get(t0);
+        Integer integer = this.a.get(t0);
 
         return integer == null ? -1 : integer.intValue();
     }
@@ -35,7 +35,8 @@ public class RegistryID<T> implements Registry<T> {
         return i >= 0 && i < this.b.size() ? this.b.get(i) : null;
     }
 
-    public Iterator<T> iterator() {
+    @Override
+	public Iterator<T> iterator() {
         return Iterators.filter(this.b.iterator(), Predicates.notNull());
     }
 }

@@ -7,19 +7,23 @@ public class CommandSetBlock extends CommandAbstract {
 
     public CommandSetBlock() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "setblock";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.setblock.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 4) {
             throw new ExceptionUsage("commands.setblock.usage", new Object[0]);
         } else {
@@ -97,7 +101,8 @@ public class CommandSetBlock extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length > 0 && astring.length <= 3 ? a(astring, 0, blockposition) : (astring.length == 4 ? a(astring, (Collection) Block.REGISTRY.keySet()) : (astring.length == 6 ? a(astring, new String[] { "replace", "destroy", "keep"}) : null));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length > 0 && astring.length <= 3 ? a(astring, 0, blockposition) : (astring.length == 4 ? a(astring, Block.REGISTRY.keySet()) : (astring.length == 6 ? a(astring, new String[] { "replace", "destroy", "keep"}) : null));
     }
 }

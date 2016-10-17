@@ -9,27 +9,33 @@ public class BlockWeb extends Block {
         this.a(CreativeModeTab.c);
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
         entity.aA();
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.STRING;
     }
 
-    protected boolean I() {
+    @Override
+	protected boolean I() {
         return true;
     }
 }

@@ -4,11 +4,13 @@ public class WorldProviderNormal extends WorldProvider {
 
     public WorldProviderNormal() {}
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "Overworld";
     }
 
-    public String getSuffix() {
+    @Override
+	public String getSuffix() {
         return "";
     }
 }

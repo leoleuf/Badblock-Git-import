@@ -8,19 +8,23 @@ public class BlockMobSpawner extends BlockContainer {
         super(Material.STONE);
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityMobSpawner();
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return null;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         super.dropNaturally(world, blockposition, iblockdata, f, i);
         /* CraftBukkit start - Delegate to getExpDrop
         int j = 15 + world.random.nextInt(15) + world.random.nextInt(15);
@@ -37,11 +41,13 @@ public class BlockMobSpawner extends BlockContainer {
         // CraftBukkit end
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 }

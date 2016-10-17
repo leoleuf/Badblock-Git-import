@@ -58,15 +58,18 @@ public class CraftBlock implements Block {
         return CraftMagicNumbers.getBlock(type);
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return chunk.getWorld();
     }
 
-    public Location getLocation() {
+    @Override
+	public Location getLocation() {
         return new Location(getWorld(), x, y, z);
     }
 
-    public Location getLocation(Location loc) {
+    @Override
+	public Location getLocation(Location loc) {
         if (loc != null) {
             loc.setWorld(getWorld());
             loc.setX(x);
@@ -83,27 +86,33 @@ public class CraftBlock implements Block {
         return new BlockVector(x, y, z);
     }
 
-    public int getX() {
+    @Override
+	public int getX() {
         return x;
     }
 
-    public int getY() {
+    @Override
+	public int getY() {
         return y;
     }
 
-    public int getZ() {
+    @Override
+	public int getZ() {
         return z;
     }
 
-    public Chunk getChunk() {
+    @Override
+	public Chunk getChunk() {
         return chunk;
     }
 
-    public void setData(final byte data) {
+    @Override
+	public void setData(final byte data) {
         setData(data, 3);
     }
 
-    public void setData(final byte data, boolean applyPhysics) {
+    @Override
+	public void setData(final byte data, boolean applyPhysics) {
         if (applyPhysics) {
             setData(data, 3);
         } else {
@@ -118,12 +127,14 @@ public class CraftBlock implements Block {
         world.setTypeAndData(position, blockData.getBlock().fromLegacyData(data), flag);
     }
 
-    public byte getData() {
+    @Override
+	public byte getData() {
         IBlockData blockData = chunk.getHandle().getBlockData(new BlockPosition(x, y, z));
         return (byte) blockData.getBlock().toLegacyData(blockData);
     }
 
-    public void setType(final Material type) {
+    @Override
+	public void setType(final Material type) {
         setType(type, true);
     }
 
@@ -132,16 +143,19 @@ public class CraftBlock implements Block {
         setTypeId(type.getId(), applyPhysics);
     }
 
-    public boolean setTypeId(final int type) {
+    @Override
+	public boolean setTypeId(final int type) {
         return setTypeId(type, true);
     }
 
-    public boolean setTypeId(final int type, final boolean applyPhysics) {
+    @Override
+	public boolean setTypeId(final int type, final boolean applyPhysics) {
         net.minecraft.server.v1_8_R3.Block block = getNMSBlock(type);
         return setTypeIdAndData(type, (byte) block.toLegacyData(block.getBlockData()), applyPhysics);
     }
 
-    public boolean setTypeIdAndData(final int type, final byte data, final boolean applyPhysics) {
+    @Override
+	public boolean setTypeIdAndData(final int type, final byte data, final boolean applyPhysics) {
         IBlockData blockData = getNMSBlock(type).fromLegacyData(data);
         BlockPosition position = new BlockPosition(x, y, z);
         if (applyPhysics) {
@@ -155,7 +169,8 @@ public class CraftBlock implements Block {
         }
     }
 
-    public Material getType() {
+    @Override
+	public Material getType() {
         return Material.getMaterial(getTypeId());
     }
 
@@ -165,15 +180,18 @@ public class CraftBlock implements Block {
         return CraftMagicNumbers.getId(chunk.getHandle().getType(new BlockPosition(this.x, this.y, this.z)));
     }
 
-    public byte getLightLevel() {
+    @Override
+	public byte getLightLevel() {
         return (byte) chunk.getHandle().getWorld().getLightLevel(new BlockPosition(this.x, this.y, this.z));
     }
 
-    public byte getLightFromSky() {
+    @Override
+	public byte getLightFromSky() {
         return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.SKY, new BlockPosition(this.x, this.y, this.z));
     }
 
-    public byte getLightFromBlocks() {
+    @Override
+	public byte getLightFromBlocks() {
         return (byte) chunk.getHandle().getBrightness(EnumSkyBlock.BLOCK, new BlockPosition(this.x, this.y, this.z));
     }
 
@@ -186,19 +204,23 @@ public class CraftBlock implements Block {
         return getRelative(face, distance);
     }
 
-    public Block getRelative(final int modX, final int modY, final int modZ) {
+    @Override
+	public Block getRelative(final int modX, final int modY, final int modZ) {
         return getWorld().getBlockAt(getX() + modX, getY() + modY, getZ() + modZ);
     }
 
-    public Block getRelative(BlockFace face) {
+    @Override
+	public Block getRelative(BlockFace face) {
         return getRelative(face, 1);
     }
 
-    public Block getRelative(BlockFace face, int distance) {
+    @Override
+	public Block getRelative(BlockFace face, int distance) {
         return getRelative(face.getModX() * distance, face.getModY() * distance, face.getModZ() * distance);
     }
 
-    public BlockFace getFace(final Block block) {
+    @Override
+	public BlockFace getFace(final Block block) {
         BlockFace[] values = BlockFace.values();
 
         for (BlockFace face : values) {
@@ -257,7 +279,8 @@ public class CraftBlock implements Block {
         }
     }
 
-    public BlockState getState() {
+    @Override
+	public BlockState getState() {
         Material material = getType();
 
         switch (material) {
@@ -300,11 +323,13 @@ public class CraftBlock implements Block {
         }
     }
 
-    public Biome getBiome() {
+    @Override
+	public Biome getBiome() {
         return getWorld().getBiome(x, z);
     }
 
-    public void setBiome(Biome bio) {
+    @Override
+	public void setBiome(Biome bio) {
         getWorld().setBiome(x, z, bio);
     }
 
@@ -323,19 +348,23 @@ public class CraftBlock implements Block {
         return BIOMEBASE_MAPPING[bio.ordinal()];
     }
 
-    public double getTemperature() {
+    @Override
+	public double getTemperature() {
         return getWorld().getTemperature(x, z);
     }
 
-    public double getHumidity() {
+    @Override
+	public double getHumidity() {
         return getWorld().getHumidity(x, z);
     }
 
-    public boolean isBlockPowered() {
+    @Override
+	public boolean isBlockPowered() {
         return chunk.getHandle().getWorld().getBlockPower(new BlockPosition(x, y, z)) > 0;
     }
 
-    public boolean isBlockIndirectlyPowered() {
+    @Override
+	public boolean isBlockIndirectlyPowered() {
         return chunk.getHandle().getWorld().isBlockIndirectlyPowered(new BlockPosition(x, y, z));
     }
 
@@ -353,11 +382,13 @@ public class CraftBlock implements Block {
         return this.y << 24 ^ this.x ^ this.z ^ this.getWorld().hashCode();
     }
 
-    public boolean isBlockFacePowered(BlockFace face) {
+    @Override
+	public boolean isBlockFacePowered(BlockFace face) {
         return chunk.getHandle().getWorld().isBlockFacePowered(new BlockPosition(x, y, z), blockFaceToNotch(face));
     }
 
-    public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
+    @Override
+	public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
         int power = chunk.getHandle().getWorld().getBlockFacePower(new BlockPosition(x, y, z), blockFaceToNotch(face));
 
         Block relative = getRelative(face);
@@ -368,7 +399,8 @@ public class CraftBlock implements Block {
         return power > 0;
     }
 
-    public int getBlockPower(BlockFace face) {
+    @Override
+	public int getBlockPower(BlockFace face) {
         int power = 0;
         BlockRedstoneWire wire = Blocks.REDSTONE_WIRE;
         net.minecraft.server.v1_8_R3.World world = chunk.getHandle().getWorld();
@@ -381,19 +413,23 @@ public class CraftBlock implements Block {
         return power > 0 ? power : (face == BlockFace.SELF ? isBlockIndirectlyPowered() : isBlockFaceIndirectlyPowered(face)) ? 15 : 0;
     }
 
-    public int getBlockPower() {
+    @Override
+	public int getBlockPower() {
         return getBlockPower(BlockFace.SELF);
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return getType() == Material.AIR;
     }
 
-    public boolean isLiquid() {
+    @Override
+	public boolean isLiquid() {
         return (getType() == Material.WATER) || (getType() == Material.STATIONARY_WATER) || (getType() == Material.LAVA) || (getType() == Material.STATIONARY_LAVA);
     }
 
-    public PistonMoveReaction getPistonMoveReaction() {
+    @Override
+	public PistonMoveReaction getPistonMoveReaction() {
         return PistonMoveReaction.getById(getNMSBlock().getMaterial().getPushReaction());
     }
 
@@ -403,7 +439,8 @@ public class CraftBlock implements Block {
         return block != null && (block.getMaterial().isAlwaysDestroyable() || (itemType != null && itemType.canDestroySpecialBlock(block)));
     }
 
-    public boolean breakNaturally() {
+    @Override
+	public boolean breakNaturally() {
         // Order matters here, need to drop before setting to air so skulls can get their data
         net.minecraft.server.v1_8_R3.Block block = this.getNMSBlock();
         byte data = getData();
@@ -418,7 +455,8 @@ public class CraftBlock implements Block {
         return result;
     }
 
-    public boolean breakNaturally(ItemStack item) {
+    @Override
+	public boolean breakNaturally(ItemStack item) {
         if (itemCausesDrops(item)) {
             return breakNaturally();
         } else {
@@ -426,7 +464,8 @@ public class CraftBlock implements Block {
         }
     }
 
-    public Collection<ItemStack> getDrops() {
+    @Override
+	public Collection<ItemStack> getDrops() {
         List<ItemStack> drops = new ArrayList<ItemStack>();
 
         net.minecraft.server.v1_8_R3.Block block = this.getNMSBlock();
@@ -453,7 +492,7 @@ public class CraftBlock implements Block {
                         drops.add(CraftItemStack.asBukkitCopy(nmsStack));
                         // We don't want to drop cocoa blocks, we want to drop cocoa beans.
                     } else if (Blocks.COCOA == block) {
-                        int age = (Integer) block.fromLegacyData(data).get(BlockCocoa.AGE);
+                        int age = block.fromLegacyData(data).get(BlockCocoa.AGE);
                         int dropAmount = (age >= 2 ? 3 : 1);
                         for (int j = 0; j < dropAmount; ++j) {
                             drops.add(new ItemStack(Material.INK_SACK, 1, (short) 3));
@@ -467,7 +506,8 @@ public class CraftBlock implements Block {
         return drops;
     }
 
-    public Collection<ItemStack> getDrops(ItemStack item) {
+    @Override
+	public Collection<ItemStack> getDrops(ItemStack item) {
         if (itemCausesDrops(item)) {
             return getDrops();
         } else {
@@ -555,19 +595,23 @@ public class CraftBlock implements Block {
         }
     }
 
-    public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
+    @Override
+	public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
         chunk.getCraftWorld().getBlockMetadata().setMetadata(this, metadataKey, newMetadataValue);
     }
 
-    public List<MetadataValue> getMetadata(String metadataKey) {
+    @Override
+	public List<MetadataValue> getMetadata(String metadataKey) {
         return chunk.getCraftWorld().getBlockMetadata().getMetadata(this, metadataKey);
     }
 
-    public boolean hasMetadata(String metadataKey) {
+    @Override
+	public boolean hasMetadata(String metadataKey) {
         return chunk.getCraftWorld().getBlockMetadata().hasMetadata(this, metadataKey);
     }
 
-    public void removeMetadata(String metadataKey, Plugin owningPlugin) {
+    @Override
+	public void removeMetadata(String metadataKey, Plugin owningPlugin) {
         chunk.getCraftWorld().getBlockMetadata().removeMetadata(this, metadataKey, owningPlugin);
     }
 }

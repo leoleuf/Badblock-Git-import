@@ -27,15 +27,18 @@ public class BiomeJungle extends BiomeBase {
         this.au.add(new BiomeBase.BiomeMeta(EntityChicken.class, 10, 4, 4));
     }
 
-    public WorldGenTreeAbstract a(Random random) {
-        return (WorldGenTreeAbstract) (random.nextInt(10) == 0 ? this.aB : (random.nextInt(2) == 0 ? new WorldGenGroundBush(BiomeJungle.aE, BiomeJungle.aG) : (!this.aD && random.nextInt(3) == 0 ? new WorldGenJungleTree(false, 10, 20, BiomeJungle.aE, BiomeJungle.aF) : new WorldGenTrees(false, 4 + random.nextInt(7), BiomeJungle.aE, BiomeJungle.aF, true))));
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
+        return random.nextInt(10) == 0 ? this.aB : (random.nextInt(2) == 0 ? new WorldGenGroundBush(BiomeJungle.aE, BiomeJungle.aG) : (!this.aD && random.nextInt(3) == 0 ? new WorldGenJungleTree(false, 10, 20, BiomeJungle.aE, BiomeJungle.aF) : new WorldGenTrees(false, 4 + random.nextInt(7), BiomeJungle.aE, BiomeJungle.aF, true)));
     }
 
-    public WorldGenerator b(Random random) {
+    @Override
+	public WorldGenerator b(Random random) {
         return random.nextInt(4) == 0 ? new WorldGenGrass(BlockLongGrass.EnumTallGrassType.FERN) : new WorldGenGrass(BlockLongGrass.EnumTallGrassType.GRASS);
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         super.a(world, random, blockposition);
         int i = random.nextInt(16) + 8;
         int j = random.nextInt(16) + 8;

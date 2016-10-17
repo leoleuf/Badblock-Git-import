@@ -56,7 +56,7 @@ public abstract class TileEntity {
     }
 
     public void b(NBTTagCompound nbttagcompound) {
-        String s = (String) TileEntity.g.get(this.getClass());
+        String s = TileEntity.g.get(this.getClass());
 
         if (s == null) {
             throw new RuntimeException(this.getClass() + " is missing a mapping! This is a bug!");
@@ -72,7 +72,7 @@ public abstract class TileEntity {
         TileEntity tileentity = null;
 
         try {
-            Class oclass = (Class) TileEntity.f.get(nbttagcompound.getString("id"));
+            Class oclass = TileEntity.f.get(nbttagcompound.getString("id"));
 
             if (oclass != null) {
                 tileentity = (TileEntity) oclass.newInstance();
@@ -154,10 +154,11 @@ public abstract class TileEntity {
     public void a(CrashReportSystemDetails crashreportsystemdetails) {
         crashreportsystemdetails.a("Name", new Callable() {
             public String a() throws Exception {
-                return (String) TileEntity.g.get(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
+                return TileEntity.g.get(TileEntity.this.getClass()) + " // " + TileEntity.this.getClass().getCanonicalName();
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -179,7 +180,8 @@ public abstract class TileEntity {
                     }
                 }
 
-                public Object call() throws Exception {
+                @Override
+				public Object call() throws Exception {
                     return this.a();
                 }
             });
@@ -197,7 +199,8 @@ public abstract class TileEntity {
                     }
                 }
 
-                public Object call() throws Exception {
+                @Override
+				public Object call() throws Exception {
                     return this.a();
                 }
             });

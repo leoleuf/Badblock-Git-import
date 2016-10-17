@@ -55,11 +55,13 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
         }
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return this.isCancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.isCancelled = cancel;
     }
 

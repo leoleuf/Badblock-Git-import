@@ -8,7 +8,8 @@ public final class CancelledPacketHandleException extends RuntimeException {
         this.setStackTrace(new StackTraceElement[0]);
     }
 
-    public synchronized Throwable fillInStackTrace() {
+    @Override
+	public synchronized Throwable fillInStackTrace() {
         this.setStackTrace(new StackTraceElement[0]);
         return this;
     }

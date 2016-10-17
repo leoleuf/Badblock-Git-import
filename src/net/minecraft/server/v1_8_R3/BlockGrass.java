@@ -21,13 +21,15 @@ public class BlockGrass extends Block implements IBlockFragilePlantElement {
         this.a(CreativeModeTab.b);
     }
 
-    public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
         Block block = iblockaccess.getType(blockposition.up()).getBlock();
 
         return iblockdata.set(BlockGrass.SNOWY, Boolean.valueOf(block == Blocks.SNOW || block == Blocks.SNOW_LAYER));
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (!world.isClientSide) {
             if (world.getLightLevel(blockposition.up()) < 4 && world.getType(blockposition.up()).getBlock().p() > 2) {
                 // CraftBukkit start
@@ -72,19 +74,23 @@ public class BlockGrass extends Block implements IBlockFragilePlantElement {
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Blocks.DIRT.getDropType(Blocks.DIRT.getBlockData().set(BlockDirt.VARIANT, BlockDirt.EnumDirtVariant.DIRT), random, i);
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
         return true;
     }
 
-    public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         return true;
     }
 
-    public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         BlockPosition blockposition1 = blockposition.up();
         int i = 0;
 
@@ -126,11 +132,13 @@ public class BlockGrass extends Block implements IBlockFragilePlantElement {
 
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         return 0;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockGrass.SNOWY});
     }
 }

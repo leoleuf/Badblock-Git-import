@@ -26,32 +26,37 @@ public class EntityCreeper extends EntityMonster {
         this.targetSelector.a(2, new PathfinderGoalHurtByTarget(this, false, new Class[0]));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
     }
 
-    public int aE() {
+    @Override
+	public int aE() {
         return this.getGoalTarget() == null ? 3 : 3 + (int) (this.getHealth() - 1.0F);
     }
 
-    public void e(float f, float f1) {
+    @Override
+	public void e(float f, float f1) {
         super.e(f, f1);
-        this.fuseTicks = (int) ((float) this.fuseTicks + f * 1.5F);
+        this.fuseTicks = (int) (this.fuseTicks + f * 1.5F);
         if (this.fuseTicks > this.maxFuseTicks - 5) {
             this.fuseTicks = this.maxFuseTicks - 5;
         }
 
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Byte.valueOf((byte) -1));
         this.datawatcher.a(17, Byte.valueOf((byte) 0));
         this.datawatcher.a(18, Byte.valueOf((byte) 0));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         if (this.datawatcher.getByte(17) == 1) {
             nbttagcompound.setBoolean("powered", true);
@@ -62,7 +67,8 @@ public class EntityCreeper extends EntityMonster {
         nbttagcompound.setBoolean("ignited", this.cn());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.datawatcher.watch(17, Byte.valueOf((byte) (nbttagcompound.getBoolean("powered") ? 1 : 0)));
         if (nbttagcompound.hasKeyOfType("Fuse", 99)) {
@@ -79,7 +85,8 @@ public class EntityCreeper extends EntityMonster {
 
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         if (this.isAlive()) {
             this.a = this.fuseTicks;
             if (this.cn()) {
@@ -106,15 +113,18 @@ public class EntityCreeper extends EntityMonster {
         super.t_();
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.creeper.say";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.creeper.death";
     }
 
-    public void die(DamageSource damagesource) {
+    @Override
+	public void die(DamageSource damagesource) {
         // super.die(damagesource); // CraftBukkit - Moved to end
         if (damagesource.getEntity() instanceof EntitySkeleton) {
             int i = Item.getId(Items.RECORD_13);
@@ -149,7 +159,8 @@ public class EntityCreeper extends EntityMonster {
     }
     // CraftBukkit end
 
-    public boolean r(Entity entity) {
+    @Override
+	public boolean r(Entity entity) {
         return true;
     }
 
@@ -157,7 +168,8 @@ public class EntityCreeper extends EntityMonster {
         return this.datawatcher.getByte(17) == 1;
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Items.GUNPOWDER;
     }
 
@@ -169,7 +181,8 @@ public class EntityCreeper extends EntityMonster {
         this.datawatcher.watch(16, Byte.valueOf((byte) i));
     }
 
-    public void onLightningStrike(EntityLightning entitylightning) {
+    @Override
+	public void onLightningStrike(EntityLightning entitylightning) {
         super.onLightningStrike(entitylightning);
         // CraftBukkit start
         if (CraftEventFactory.callCreeperPowerEvent(this, entitylightning, org.bukkit.event.entity.CreeperPowerEvent.PowerCause.LIGHTNING).isCancelled()) {
@@ -188,7 +201,8 @@ public class EntityCreeper extends EntityMonster {
         // CraftBukkit end
     }
 
-    protected boolean a(EntityHuman entityhuman) {
+    @Override
+	protected boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.FLINT_AND_STEEL) {

@@ -11,7 +11,8 @@ public class WorldGenAcaciaTree extends WorldGenTreeAbstract {
         super(flag);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = random.nextInt(3) + random.nextInt(3) + 5;
         boolean flag = true;
 

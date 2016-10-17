@@ -35,7 +35,8 @@ public class Material {
     public static final Material PORTAL = (new MaterialPortal(MaterialMapColor.b)).o();
     public static final Material CAKE = (new Material(MaterialMapColor.b)).n();
     public static final Material WEB = (new Material(MaterialMapColor.e) {
-        public boolean isSolid() {
+        @Override
+		public boolean isSolid() {
             return false;
         }
     }).f().n();

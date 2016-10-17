@@ -15,7 +15,8 @@ public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
             return enumdirection != EnumDirection.DOWN;
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((EnumDirection) object);
         }
     });
@@ -31,7 +32,8 @@ public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
         this.a((CreativeModeTab) null);
     }
 
-    public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
         iblockdata = iblockdata.set(BlockStem.FACING, EnumDirection.UP);
         Iterator iterator = EnumDirection.EnumDirectionLimit.HORIZONTAL.iterator();
 
@@ -47,17 +49,19 @@ public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
         return iblockdata;
     }
 
-    protected boolean c(Block block) {
+    @Override
+	protected boolean c(Block block) {
         return block == Blocks.FARMLAND;
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         super.b(world, blockposition, iblockdata, random);
         if (world.getLightLevel(blockposition.up()) >= 9) {
-            float f = BlockCrops.a((Block) this, world, blockposition);
+            float f = BlockCrops.a(this, world, blockposition);
 
             if (random.nextInt((int) (world.growthOdds / (this == Blocks.PUMPKIN_STEM? world.spigotConfig.pumpkinModifier : world.spigotConfig.melonModifier) * (25.0F / f)) + 1) == 0) { // Spigot
-                int i = ((Integer) iblockdata.get(BlockStem.AGE)).intValue();
+                int i = iblockdata.get(BlockStem.AGE).intValue();
 
                 if (i < 7) {
                     iblockdata = iblockdata.set(BlockStem.AGE, Integer.valueOf(i + 1));
@@ -88,32 +92,35 @@ public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
     }
 
     public void g(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        int i = ((Integer) iblockdata.get(BlockStem.AGE)).intValue() + MathHelper.nextInt(world.random, 2, 5);
+        int i = iblockdata.get(BlockStem.AGE).intValue() + MathHelper.nextInt(world.random, 2, 5);
 
         // world.setTypeAndData(blockposition, iblockdata.set(BlockStem.AGE, Integer.valueOf(Math.min(7, i))), 2);
         CraftEventFactory.handleBlockGrowEvent(world, blockposition.getX(), blockposition.getY(), blockposition.getZ(), this, Math.min(7, i)); // CraftBukkit
     }
 
-    public void j() {
+    @Override
+	public void j() {
         float f = 0.125F;
 
         this.a(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
-        this.maxY = (double) ((float) (((Integer) iblockaccess.getType(blockposition).get(BlockStem.AGE)).intValue() * 2 + 2) / 16.0F);
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+        this.maxY = (iblockaccess.getType(blockposition).get(BlockStem.AGE).intValue() * 2 + 2) / 16.0F;
         float f = 0.125F;
 
         this.a(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, (float) this.maxY, 0.5F + f);
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         super.dropNaturally(world, blockposition, iblockdata, f, i);
         if (!world.isClientSide) {
             Item item = this.l();
 
             if (item != null) {
-                int j = ((Integer) iblockdata.get(BlockStem.AGE)).intValue();
+                int j = iblockdata.get(BlockStem.AGE).intValue();
 
                 for (int k = 0; k < 3; ++k) {
                     if (world.random.nextInt(15) <= j) {
@@ -129,31 +136,38 @@ public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
         return this.blockFruit == Blocks.PUMPKIN ? Items.PUMPKIN_SEEDS : (this.blockFruit == Blocks.MELON_BLOCK ? Items.MELON_SEEDS : null);
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return null;
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
-        return ((Integer) iblockdata.get(BlockStem.AGE)).intValue() != 7;
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
+        return iblockdata.get(BlockStem.AGE).intValue() != 7;
     }
 
-    public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         return true;
     }
 
-    public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         this.g(world, blockposition, iblockdata);
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockStem.AGE, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockStem.AGE)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockStem.AGE).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockStem.AGE, BlockStem.FACING});
     }
 }

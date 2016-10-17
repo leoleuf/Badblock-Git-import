@@ -9,19 +9,21 @@ public class BlockLog2 extends BlockLogAbstract {
             return blockwood_enumlogvariant.a() >= 4;
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((BlockWood.EnumLogVariant) object);
         }
     });
 
     public BlockLog2() {
-        this.j(this.blockStateList.getBlockData().set(BlockLog2.VARIANT, BlockWood.EnumLogVariant.ACACIA).set(BlockLog2.AXIS, BlockLogAbstract.EnumLogRotation.Y));
+        this.j(this.blockStateList.getBlockData().set(BlockLog2.VARIANT, BlockWood.EnumLogVariant.ACACIA).set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.Y));
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        BlockWood.EnumLogVariant blockwood_enumlogvariant = (BlockWood.EnumLogVariant) iblockdata.get(BlockLog2.VARIANT);
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        BlockWood.EnumLogVariant blockwood_enumlogvariant = iblockdata.get(BlockLog2.VARIANT);
 
-        switch (BlockLog2.SyntheticClass_1.b[((BlockLogAbstract.EnumLogRotation) iblockdata.get(BlockLog2.AXIS)).ordinal()]) {
+        switch (BlockLog2.SyntheticClass_1.b[iblockdata.get(BlockLogAbstract.AXIS).ordinal()]) {
         case 1:
         case 2:
         case 3:
@@ -40,34 +42,36 @@ public class BlockLog2 extends BlockLogAbstract {
         }
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         IBlockData iblockdata = this.getBlockData().set(BlockLog2.VARIANT, BlockWood.EnumLogVariant.a((i & 3) + 4));
 
         switch (i & 12) {
         case 0:
-            iblockdata = iblockdata.set(BlockLog2.AXIS, BlockLogAbstract.EnumLogRotation.Y);
+            iblockdata = iblockdata.set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.Y);
             break;
 
         case 4:
-            iblockdata = iblockdata.set(BlockLog2.AXIS, BlockLogAbstract.EnumLogRotation.X);
+            iblockdata = iblockdata.set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.X);
             break;
 
         case 8:
-            iblockdata = iblockdata.set(BlockLog2.AXIS, BlockLogAbstract.EnumLogRotation.Z);
+            iblockdata = iblockdata.set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.Z);
             break;
 
         default:
-            iblockdata = iblockdata.set(BlockLog2.AXIS, BlockLogAbstract.EnumLogRotation.NONE);
+            iblockdata = iblockdata.set(BlockLogAbstract.AXIS, BlockLogAbstract.EnumLogRotation.NONE);
         }
 
         return iblockdata;
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((BlockWood.EnumLogVariant) iblockdata.get(BlockLog2.VARIANT)).a() - 4;
+        int i = b0 | iblockdata.get(BlockLog2.VARIANT).a() - 4;
 
-        switch (BlockLog2.SyntheticClass_1.b[((BlockLogAbstract.EnumLogRotation) iblockdata.get(BlockLog2.AXIS)).ordinal()]) {
+        switch (BlockLog2.SyntheticClass_1.b[iblockdata.get(BlockLogAbstract.AXIS).ordinal()]) {
         case 1:
             i |= 4;
             break;
@@ -83,16 +87,19 @@ public class BlockLog2 extends BlockLogAbstract {
         return i;
     }
 
-    protected BlockStateList getStateList() {
-        return new BlockStateList(this, new IBlockState[] { BlockLog2.VARIANT, BlockLog2.AXIS});
+    @Override
+	protected BlockStateList getStateList() {
+        return new BlockStateList(this, new IBlockState[] { BlockLog2.VARIANT, BlockLogAbstract.AXIS});
     }
 
-    protected ItemStack i(IBlockData iblockdata) {
-        return new ItemStack(Item.getItemOf(this), 1, ((BlockWood.EnumLogVariant) iblockdata.get(BlockLog2.VARIANT)).a() - 4);
+    @Override
+	protected ItemStack i(IBlockData iblockdata) {
+        return new ItemStack(Item.getItemOf(this), 1, iblockdata.get(BlockLog2.VARIANT).a() - 4);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockWood.EnumLogVariant) iblockdata.get(BlockLog2.VARIANT)).a() - 4;
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockLog2.VARIANT).a() - 4;
     }
 
     static class SyntheticClass_1 {

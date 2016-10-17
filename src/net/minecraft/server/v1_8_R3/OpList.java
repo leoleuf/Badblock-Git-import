@@ -12,17 +12,19 @@ public class OpList extends JsonList<GameProfile, OpListEntry> {
         super(file);
     }
 
-    protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
+    @Override
+	protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
         return new OpListEntry(jsonobject);
     }
 
-    public String[] getEntries() {
+    @Override
+	public String[] getEntries() {
         String[] astring = new String[this.e().size()];
         int i = 0;
 
         OpListEntry oplistentry;
 
-        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = ((GameProfile) oplistentry.getKey()).getName()) {
+        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = oplistentry.getKey().getName()) {
             oplistentry = (OpListEntry) iterator.next();
         }
 
@@ -30,7 +32,7 @@ public class OpList extends JsonList<GameProfile, OpListEntry> {
     }
 
     public boolean b(GameProfile gameprofile) {
-        OpListEntry oplistentry = (OpListEntry) this.get(gameprofile);
+        OpListEntry oplistentry = this.get(gameprofile);
 
         return oplistentry != null ? oplistentry.b() : false;
     }
@@ -50,12 +52,13 @@ public class OpList extends JsonList<GameProfile, OpListEntry> {
             }
 
             oplistentry = (OpListEntry) iterator.next();
-        } while (!s.equalsIgnoreCase(((GameProfile) oplistentry.getKey()).getName()));
+        } while (!s.equalsIgnoreCase(oplistentry.getKey().getName()));
 
-        return (GameProfile) oplistentry.getKey();
+        return oplistentry.getKey();
     }
 
-    protected String a(GameProfile object) {
-        return this.c((GameProfile) object);
+    @Override
+	protected String a(GameProfile object) {
+        return this.c(object);
     }
 }

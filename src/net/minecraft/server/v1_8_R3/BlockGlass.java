@@ -9,15 +9,18 @@ public class BlockGlass extends BlockHalfTransparent {
         this.a(CreativeModeTab.b);
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    protected boolean I() {
+    @Override
+	protected boolean I() {
         return true;
     }
 }

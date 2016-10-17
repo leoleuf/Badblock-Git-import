@@ -116,7 +116,7 @@ public class EntityTracker {
             CrashReport crashreport = CrashReport.a(throwable, "Adding entity to track");
             CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Entity To Track");
 
-            crashreportsystemdetails.a("Tracking range", (Object) (i + " blocks"));
+            crashreportsystemdetails.a("Tracking range", i + " blocks");
             final int finalI = i; // CraftBukkit - fix decompile error
             crashreportsystemdetails.a("Update interval", new Callable() {
                 public String a() throws Exception {
@@ -129,14 +129,15 @@ public class EntityTracker {
                     return s;
                 }
 
-                public Object call() throws Exception {
+                @Override
+				public Object call() throws Exception {
                     return this.a();
                 }
             });
             entity.appendEntityCrashDetails(crashreportsystemdetails);
             CrashReportSystemDetails crashreportsystemdetails1 = crashreport.a("Entity That Is Already Tracked");
 
-            ((EntityTrackerEntry) this.trackedEntities.get(entity.getId())).tracker.appendEntityCrashDetails(crashreportsystemdetails1);
+            this.trackedEntities.get(entity.getId()).tracker.appendEntityCrashDetails(crashreportsystemdetails1);
 
             try {
                 throw new ReportedException(crashreport);
@@ -160,7 +161,7 @@ public class EntityTracker {
             }
         }
 
-        EntityTrackerEntry entitytrackerentry1 = (EntityTrackerEntry) this.trackedEntities.d(entity.getId());
+        EntityTrackerEntry entitytrackerentry1 = this.trackedEntities.d(entity.getId());
 
         if (entitytrackerentry1 != null) {
             this.c.remove(entitytrackerentry1);
@@ -178,7 +179,7 @@ public class EntityTracker {
 
             entitytrackerentry.track(this.world.players);
             if (entitytrackerentry.n && entitytrackerentry.tracker instanceof EntityPlayer) {
-                arraylist.add((EntityPlayer) entitytrackerentry.tracker);
+                arraylist.add(entitytrackerentry.tracker);
             }
         }
 
@@ -213,7 +214,7 @@ public class EntityTracker {
     }
 
     public void a(Entity entity, Packet packet) {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry) this.trackedEntities.get(entity.getId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntities.get(entity.getId());
 
         if (entitytrackerentry != null) {
             entitytrackerentry.broadcast(packet);
@@ -222,7 +223,7 @@ public class EntityTracker {
     }
 
     public void sendPacketToEntity(Entity entity, Packet packet) {
-        EntityTrackerEntry entitytrackerentry = (EntityTrackerEntry) this.trackedEntities.get(entity.getId());
+        EntityTrackerEntry entitytrackerentry = this.trackedEntities.get(entity.getId());
 
         if (entitytrackerentry != null) {
             entitytrackerentry.broadcastIncludingSelf(packet);

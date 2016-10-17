@@ -8,7 +8,8 @@ public class ItemCarrotStick extends Item {
         this.setMaxDurability(25);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (entityhuman.au() && entityhuman.vehicle instanceof EntityPig) {
             EntityPig entitypig = (EntityPig) entityhuman.vehicle;
 

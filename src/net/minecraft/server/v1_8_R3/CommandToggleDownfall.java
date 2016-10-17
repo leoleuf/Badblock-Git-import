@@ -4,19 +4,23 @@ public class CommandToggleDownfall extends CommandAbstract {
 
     public CommandToggleDownfall() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "toggledownfall";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.downfall.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         this.d();
         a(icommandlistener, this, "commands.downfall.success", new Object[0]);
     }

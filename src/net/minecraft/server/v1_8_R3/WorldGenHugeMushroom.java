@@ -15,7 +15,8 @@ public class WorldGenHugeMushroom extends WorldGenerator {
         super(false);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         if (this.a == null) {
             this.a = random.nextBoolean() ? Blocks.BROWN_MUSHROOM_BLOCK : Blocks.RED_MUSHROOM_BLOCK;
         }

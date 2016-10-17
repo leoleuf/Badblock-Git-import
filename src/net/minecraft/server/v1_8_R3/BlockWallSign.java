@@ -4,14 +4,15 @@ import com.google.common.base.Predicate;
 
 public class BlockWallSign extends BlockSign {
 
-    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", (Predicate) EnumDirection.EnumDirectionLimit.HORIZONTAL);
+    public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirection.EnumDirectionLimit.HORIZONTAL);
 
     public BlockWallSign() {
         this.j(this.blockStateList.getBlockData().set(BlockWallSign.FACING, EnumDirection.NORTH));
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
-        EnumDirection enumdirection = (EnumDirection) iblockaccess.getType(blockposition).get(BlockWallSign.FACING);
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+        EnumDirection enumdirection = iblockaccess.getType(blockposition).get(BlockWallSign.FACING);
         float f = 0.28125F;
         float f1 = 0.78125F;
         float f2 = 0.0F;
@@ -38,8 +39,9 @@ public class BlockWallSign extends BlockSign {
 
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockWallSign.FACING);
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        EnumDirection enumdirection = iblockdata.get(BlockWallSign.FACING);
 
         if (!world.getType(blockposition.shift(enumdirection.opposite())).getBlock().getMaterial().isBuildable()) {
             this.b(world, blockposition, iblockdata, 0);
@@ -49,7 +51,8 @@ public class BlockWallSign extends BlockSign {
         super.doPhysics(world, blockposition, iblockdata, block);
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         EnumDirection enumdirection = EnumDirection.fromType1(i);
 
         if (enumdirection.k() == EnumDirection.EnumAxis.Y) {
@@ -59,11 +62,13 @@ public class BlockWallSign extends BlockSign {
         return this.getBlockData().set(BlockWallSign.FACING, enumdirection);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((EnumDirection) iblockdata.get(BlockWallSign.FACING)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockWallSign.FACING).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockWallSign.FACING});
     }
 

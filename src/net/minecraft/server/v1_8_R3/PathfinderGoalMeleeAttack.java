@@ -27,7 +27,8 @@ public class PathfinderGoalMeleeAttack extends PathfinderGoal {
         this.a(3);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         EntityLiving entityliving = this.b.getGoalTarget();
 
         if (entityliving == null) {
@@ -37,27 +38,31 @@ public class PathfinderGoalMeleeAttack extends PathfinderGoal {
         } else if (this.g != null && !this.g.isAssignableFrom(entityliving.getClass())) {
             return false;
         } else {
-            this.f = this.b.getNavigation().a((Entity) entityliving);
+            this.f = this.b.getNavigation().a(entityliving);
             return this.f != null;
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         EntityLiving entityliving = this.b.getGoalTarget();
 
         return entityliving == null ? false : (!entityliving.isAlive() ? false : (!this.e ? !this.b.getNavigation().m() : this.b.e(new BlockPosition(entityliving))));
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.b.getNavigation().a(this.f, this.d);
         this.h = 0;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b.getNavigation().n();
     }
 
-    public void e() {
+    @Override
+	public void e() {
         EntityLiving entityliving = this.b.getGoalTarget();
 
         this.b.getControllerLook().a(entityliving, 30.0F, 30.0F);
@@ -76,7 +81,7 @@ public class PathfinderGoalMeleeAttack extends PathfinderGoal {
                 this.h += 5;
             }
 
-            if (!this.b.getNavigation().a((Entity) entityliving, this.d)) {
+            if (!this.b.getNavigation().a(entityliving, this.d)) {
                 this.h += 15;
             }
         }
@@ -94,6 +99,6 @@ public class PathfinderGoalMeleeAttack extends PathfinderGoal {
     }
 
     protected double a(EntityLiving entityliving) {
-        return (double) (this.b.width * 2.0F * this.b.width * 2.0F + entityliving.width);
+        return this.b.width * 2.0F * this.b.width * 2.0F + entityliving.width;
     }
 }

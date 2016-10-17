@@ -11,8 +11,8 @@ public class WorldGenCavesHell extends WorldGenBase {
     }
 
     protected void a(long i, int j, int k, ChunkSnapshot chunksnapshot, double d0, double d1, double d2, float f, float f1, float f2, int l, int i1, double d3) {
-        double d4 = (double) (j * 16 + 8);
-        double d5 = (double) (k * 16 + 8);
+        double d4 = j * 16 + 8;
+        double d5 = k * 16 + 8;
         float f3 = 0.0F;
         float f4 = 0.0F;
         Random random = new Random(i);
@@ -33,14 +33,14 @@ public class WorldGenCavesHell extends WorldGenBase {
         int k1 = random.nextInt(i1 / 2) + i1 / 4;
 
         for (boolean flag1 = random.nextInt(6) == 0; l < i1; ++l) {
-            double d6 = 1.5D + (double) (MathHelper.sin((float) l * 3.1415927F / (float) i1) * f * 1.0F);
+            double d6 = 1.5D + MathHelper.sin(l * 3.1415927F / i1) * f * 1.0F;
             double d7 = d6 * d3;
             float f5 = MathHelper.cos(f2);
             float f6 = MathHelper.sin(f2);
 
-            d0 += (double) (MathHelper.cos(f1) * f5);
-            d1 += (double) f6;
-            d2 += (double) (MathHelper.sin(f1) * f5);
+            d0 += MathHelper.cos(f1) * f5;
+            d1 += f6;
+            d2 += MathHelper.sin(f1) * f5;
             if (flag1) {
                 f2 *= 0.92F;
             } else {
@@ -62,8 +62,8 @@ public class WorldGenCavesHell extends WorldGenBase {
             if (flag || random.nextInt(4) != 0) {
                 double d8 = d0 - d4;
                 double d9 = d2 - d5;
-                double d10 = (double) (i1 - l);
-                double d11 = (double) (f + 2.0F + 16.0F);
+                double d10 = i1 - l;
+                double d11 = f + 2.0F + 16.0F;
 
                 if (d8 * d8 + d9 * d9 - d10 * d10 > d11 * d11) {
                     return;
@@ -125,13 +125,13 @@ public class WorldGenCavesHell extends WorldGenBase {
 
                     if (!flag2) {
                         for (j3 = l1; j3 < i2; ++j3) {
-                            double d12 = ((double) (j3 + j * 16) + 0.5D - d0) / d6;
+                            double d12 = (j3 + j * 16 + 0.5D - d0) / d6;
 
                             for (int i4 = l2; i4 < i3; ++i4) {
-                                double d13 = ((double) (i4 + k * 16) + 0.5D - d2) / d6;
+                                double d13 = (i4 + k * 16 + 0.5D - d2) / d6;
 
                                 for (int j4 = k2; j4 > j2; --j4) {
-                                    double d14 = ((double) (j4 - 1) + 0.5D - d1) / d7;
+                                    double d14 = (j4 - 1 + 0.5D - d1) / d7;
 
                                     if (d14 > -0.7D && d12 * d12 + d14 * d14 + d13 * d13 < 1.0D) {
                                         IBlockData iblockdata1 = chunksnapshot.a(j3, j4, i4);
@@ -154,7 +154,8 @@ public class WorldGenCavesHell extends WorldGenBase {
 
     }
 
-    protected void a(World world, int i, int j, int k, int l, ChunkSnapshot chunksnapshot) {
+    @Override
+	protected void a(World world, int i, int j, int k, int l, ChunkSnapshot chunksnapshot) {
         int i1 = this.b.nextInt(this.b.nextInt(this.b.nextInt(10) + 1) + 1);
 
         if (this.b.nextInt(5) != 0) {
@@ -162,9 +163,9 @@ public class WorldGenCavesHell extends WorldGenBase {
         }
 
         for (int j1 = 0; j1 < i1; ++j1) {
-            double d0 = (double) (i * 16 + this.b.nextInt(16));
-            double d1 = (double) this.b.nextInt(128);
-            double d2 = (double) (j * 16 + this.b.nextInt(16));
+            double d0 = i * 16 + this.b.nextInt(16);
+            double d1 = this.b.nextInt(128);
+            double d2 = j * 16 + this.b.nextInt(16);
             int k1 = 1;
 
             if (this.b.nextInt(4) == 0) {

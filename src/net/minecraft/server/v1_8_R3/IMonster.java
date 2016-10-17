@@ -9,7 +9,8 @@ public interface IMonster extends IAnimal {
             return entity instanceof IMonster;
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -18,7 +19,8 @@ public interface IMonster extends IAnimal {
             return entity instanceof IMonster && !entity.isInvisible();
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };

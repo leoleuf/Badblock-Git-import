@@ -25,7 +25,8 @@ public class ChatComponentScore extends ChatBaseComponent {
         this.d = s;
     }
 
-    public String getText() {
+    @Override
+	public String getText() {
         MinecraftServer minecraftserver = MinecraftServer.getServer();
 
         if (minecraftserver != null && minecraftserver.O() && UtilColor.b(this.d)) {
@@ -60,7 +61,8 @@ public class ChatComponentScore extends ChatBaseComponent {
         return chatcomponentscore;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof ChatComponentScore)) {
@@ -72,11 +74,13 @@ public class ChatComponentScore extends ChatBaseComponent {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "ScoreComponent{name=\'" + this.b + '\'' + "objective=\'" + this.c + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
     }
 
-    public IChatBaseComponent f() {
+    @Override
+	public IChatBaseComponent f() {
         return this.i();
     }
 }

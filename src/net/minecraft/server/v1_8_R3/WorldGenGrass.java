@@ -10,7 +10,8 @@ public class WorldGenGrass extends WorldGenerator {
         this.a = Blocks.TALLGRASS.getBlockData().set(BlockLongGrass.TYPE, blocklonggrass_enumtallgrasstype);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         Block block;
 
         while (((block = world.getType(blockposition).getBlock()).getMaterial() == Material.AIR || block.getMaterial() == Material.LEAVES) && blockposition.getY() > 0) {

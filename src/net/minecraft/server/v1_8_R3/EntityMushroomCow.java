@@ -10,7 +10,8 @@ public class EntityMushroomCow extends EntityCow {
         this.bn = Blocks.MYCELIUM;
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.BOWL && this.getAge() >= 0) {
@@ -35,7 +36,7 @@ public class EntityMushroomCow extends EntityCow {
             }
             // CraftBukkit end
             this.die();
-            this.world.addParticle(EnumParticle.EXPLOSION_LARGE, this.locX, this.locY + (double) (this.length / 2.0F), this.locZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            this.world.addParticle(EnumParticle.EXPLOSION_LARGE, this.locX, this.locY + this.length / 2.0F, this.locZ, 0.0D, 0.0D, 0.0D, new int[0]);
             if (!this.world.isClientSide) {
                 EntityCow entitycow = new EntityCow(this.world);
 
@@ -49,7 +50,7 @@ public class EntityMushroomCow extends EntityCow {
                 this.world.addEntity(entitycow);
 
                 for (int i = 0; i < 5; ++i) {
-                    this.world.addEntity(new EntityItem(this.world, this.locX, this.locY + (double) this.length, this.locZ, new ItemStack(Blocks.RED_MUSHROOM)));
+                    this.world.addEntity(new EntityItem(this.world, this.locX, this.locY + this.length, this.locZ, new ItemStack(Blocks.RED_MUSHROOM)));
                 }
 
                 itemstack.damage(1, entityhuman);
@@ -66,11 +67,13 @@ public class EntityMushroomCow extends EntityCow {
         return new EntityMushroomCow(this.world);
     }
 
-    public EntityCow b(EntityAgeable entityageable) {
+    @Override
+	public EntityCow b(EntityAgeable entityageable) {
         return this.c(entityageable);
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.c(entityageable);
     }
 }

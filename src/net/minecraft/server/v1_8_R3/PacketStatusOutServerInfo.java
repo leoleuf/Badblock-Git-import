@@ -16,15 +16,18 @@ public class PacketStatusOutServerInfo implements Packet<PacketStatusOutListener
         this.b = serverping;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.b = (ServerPing) PacketStatusOutServerInfo.a.fromJson(packetdataserializer.c(32767), ServerPing.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.b = PacketStatusOutServerInfo.a.fromJson(packetdataserializer.c(32767), ServerPing.class);
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(PacketStatusOutServerInfo.a.toJson(this.b));
     }
 
-    public void a(PacketStatusOutListener packetstatusoutlistener) {
+    @Override
+	public void a(PacketStatusOutListener packetstatusoutlistener) {
         packetstatusoutlistener.a(this);
     }
 

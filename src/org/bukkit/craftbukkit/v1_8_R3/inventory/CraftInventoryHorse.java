@@ -11,19 +11,23 @@ public class CraftInventoryHorse extends CraftInventory implements HorseInventor
         super(inventory);
     }
 
-    public ItemStack getSaddle() {
+    @Override
+	public ItemStack getSaddle() {
         return getItem(0);
     }
 
-    public ItemStack getArmor() {
+    @Override
+	public ItemStack getArmor() {
        return getItem(1);
     }
 
-    public void setSaddle(ItemStack stack) {
+    @Override
+	public void setSaddle(ItemStack stack) {
         setItem(0, stack);
     }
 
-    public void setArmor(ItemStack stack) {
+    @Override
+	public void setArmor(ItemStack stack) {
         setItem(1, stack);
     }
 }

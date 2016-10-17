@@ -8,11 +8,13 @@ public class ItemCloth extends ItemBlock {
         this.a(true);
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i;
     }
 
-    public String e_(ItemStack itemstack) {
+    @Override
+	public String e_(ItemStack itemstack) {
         return super.getName() + "." + EnumColor.fromColorIndex(itemstack.getData()).d();
     }
 }

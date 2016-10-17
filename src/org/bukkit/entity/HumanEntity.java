@@ -19,7 +19,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      *
      * @return Player name
      */
-    public String getName();
+    @Override
+	public String getName();
 
     /**
      * Get the player's inventory.
@@ -27,7 +28,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * @return The inventory of the player, this also contains the armor
      *     slots.
      */
-    public PlayerInventory getInventory();
+    @Override
+	public PlayerInventory getInventory();
 
     /**
      * Get the player's EnderChest inventory

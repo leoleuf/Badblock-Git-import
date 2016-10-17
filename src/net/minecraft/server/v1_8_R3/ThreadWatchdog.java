@@ -23,14 +23,15 @@ public class ThreadWatchdog implements Runnable {
         this.c = dedicatedserver.aS();
     }
 
-    public void run() {
+    @Override
+	public void run() {
         while (this.b.isRunning()) {
             long i = this.b.aL();
             long j = MinecraftServer.az();
             long k = j - i;
 
             if (k > this.c) {
-                ThreadWatchdog.a.fatal("A single server tick took " + String.format("%.2f", new Object[] { Float.valueOf((float) k / 1000.0F)}) + " seconds (should be max " + String.format("%.2f", new Object[] { Float.valueOf(0.05F)}) + ")");
+                ThreadWatchdog.a.fatal("A single server tick took " + String.format("%.2f", new Object[] { Float.valueOf(k / 1000.0F)}) + " seconds (should be max " + String.format("%.2f", new Object[] { Float.valueOf(0.05F)}) + ")");
                 ThreadWatchdog.a.fatal("Considering it to be crashed, server will forcibly shutdown.");
                 ThreadMXBean threadmxbean = ManagementFactory.getThreadMXBean();
                 ThreadInfo[] athreadinfo = threadmxbean.dumpAllThreads(true, true);
@@ -55,7 +56,7 @@ public class ThreadWatchdog implements Runnable {
                 this.b.b(crashreport);
                 CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Thread Dump");
 
-                crashreportsystemdetails.a("Threads", (Object) stringbuilder);
+                crashreportsystemdetails.a("Threads", stringbuilder);
                 File file = new File(new File(this.b.y(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
 
                 if (crashreport.a(file)) {
@@ -81,7 +82,8 @@ public class ThreadWatchdog implements Runnable {
             Timer timer = new Timer();
 
             timer.schedule(new TimerTask() {
-                public void run() {
+                @Override
+				public void run() {
                     Runtime.getRuntime().halt(1);
                 }
             }, 10000L);

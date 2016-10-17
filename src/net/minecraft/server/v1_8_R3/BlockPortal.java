@@ -17,20 +17,21 @@ public class BlockPortal extends BlockHalfTransparent {
         this.a(true);
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         super.b(world, blockposition, iblockdata, random);
         if (world.spigotConfig.enableZombiePigmenPortalSpawns && world.worldProvider.d() && world.getGameRules().getBoolean("doMobSpawning") && random.nextInt(2000) < world.getDifficulty().a()) { // Spigot
             int i = blockposition.getY();
 
             BlockPosition blockposition1;
 
-            for (blockposition1 = blockposition; !World.a((IBlockAccess) world, blockposition1) && blockposition1.getY() > 0; blockposition1 = blockposition1.down()) {
+            for (blockposition1 = blockposition; !World.a(world, blockposition1) && blockposition1.getY() > 0; blockposition1 = blockposition1.down()) {
                 ;
             }
 
             if (i > 0 && !world.getType(blockposition1.up()).getBlock().isOccluding()) {
                 // CraftBukkit - set spawn reason to NETHER_PORTAL
-                Entity entity = ItemMonsterEgg.spawnCreature(world, 57, (double) blockposition1.getX() + 0.5D, (double) blockposition1.getY() + 1.1D, (double) blockposition1.getZ() + 0.5D, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.NETHER_PORTAL);
+                Entity entity = ItemMonsterEgg.spawnCreature(world, 57, blockposition1.getX() + 0.5D, blockposition1.getY() + 1.1D, blockposition1.getZ() + 0.5D, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.NETHER_PORTAL);
 
                 if (entity != null) {
                     entity.portalCooldown = entity.aq();
@@ -40,12 +41,14 @@ public class BlockPortal extends BlockHalfTransparent {
 
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
-        EnumDirection.EnumAxis enumdirection_enumaxis = (EnumDirection.EnumAxis) iblockaccess.getType(blockposition).get(BlockPortal.AXIS);
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+        EnumDirection.EnumAxis enumdirection_enumaxis = iblockaccess.getType(blockposition).get(BlockPortal.AXIS);
         float f = 0.125F;
         float f1 = 0.125F;
 
@@ -64,7 +67,8 @@ public class BlockPortal extends BlockHalfTransparent {
         return enumdirection_enumaxis == EnumDirection.EnumAxis.X ? 1 : (enumdirection_enumaxis == EnumDirection.EnumAxis.Z ? 2 : 0);
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
@@ -88,8 +92,9 @@ public class BlockPortal extends BlockHalfTransparent {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        EnumDirection.EnumAxis enumdirection_enumaxis = (EnumDirection.EnumAxis) iblockdata.get(BlockPortal.AXIS);
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+        EnumDirection.EnumAxis enumdirection_enumaxis = iblockdata.get(BlockPortal.AXIS);
         BlockPortal.Shape blockportal_shape;
 
         if (enumdirection_enumaxis == EnumDirection.EnumAxis.X) {
@@ -106,11 +111,13 @@ public class BlockPortal extends BlockHalfTransparent {
 
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
         if (entity.vehicle == null && entity.passenger == null) {
             // CraftBukkit start - Entity in portal
             EntityPortalEnterEvent event = new EntityPortalEnterEvent(entity.getBukkitEntity(), new org.bukkit.Location(world.getWorld(), blockposition.getX(), blockposition.getY(), blockposition.getZ()));
@@ -121,15 +128,18 @@ public class BlockPortal extends BlockHalfTransparent {
 
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockPortal.AXIS, (i & 3) == 2 ? EnumDirection.EnumAxis.Z : EnumDirection.EnumAxis.X);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return a((EnumDirection.EnumAxis) iblockdata.get(BlockPortal.AXIS));
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return a(iblockdata.get(BlockPortal.AXIS));
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockPortal.AXIS});
     }
 

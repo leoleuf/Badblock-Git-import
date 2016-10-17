@@ -26,7 +26,8 @@ public class PacketPlayOutLogin implements Packet<PacketListenerPlayOut> {
         this.h = flag1;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readInt();
         short short0 = packetdataserializer.readUnsignedByte();
 
@@ -45,7 +46,8 @@ public class PacketPlayOutLogin implements Packet<PacketListenerPlayOut> {
         this.h = packetdataserializer.readBoolean();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.a);
         int i = this.c.getId();
 
@@ -61,7 +63,8 @@ public class PacketPlayOutLogin implements Packet<PacketListenerPlayOut> {
         packetdataserializer.writeBoolean(this.h);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

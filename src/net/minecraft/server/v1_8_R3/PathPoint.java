@@ -25,22 +25,23 @@ public class PathPoint {
     }
 
     public float a(PathPoint pathpoint) {
-        float f = (float) (pathpoint.a - this.a);
-        float f1 = (float) (pathpoint.b - this.b);
-        float f2 = (float) (pathpoint.c - this.c);
+        float f = pathpoint.a - this.a;
+        float f1 = pathpoint.b - this.b;
+        float f2 = pathpoint.c - this.c;
 
         return MathHelper.c(f * f + f1 * f1 + f2 * f2);
     }
 
     public float b(PathPoint pathpoint) {
-        float f = (float) (pathpoint.a - this.a);
-        float f1 = (float) (pathpoint.b - this.b);
-        float f2 = (float) (pathpoint.c - this.c);
+        float f = pathpoint.a - this.a;
+        float f1 = pathpoint.b - this.b;
+        float f2 = pathpoint.c - this.c;
 
         return f * f + f1 * f1 + f2 * f2;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof PathPoint)) {
             return false;
         } else {
@@ -50,7 +51,8 @@ public class PathPoint {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.j;
     }
 
@@ -58,7 +60,8 @@ public class PathPoint {
         return this.d >= 0;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.a + ", " + this.b + ", " + this.c;
     }
 }

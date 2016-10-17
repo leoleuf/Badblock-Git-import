@@ -22,7 +22,8 @@ public class CommandHandler implements ICommandHandler {
 
     public CommandHandler() {}
 
-    public int a(ICommandListener icommandlistener, String s) {
+    @Override
+	public int a(ICommandListener icommandlistener, String s) {
         s = s.trim();
         if (s.startsWith("/")) {
             s = s.substring(1);
@@ -32,7 +33,7 @@ public class CommandHandler implements ICommandHandler {
         String s1 = astring[0];
 
         astring = a(astring);
-        ICommand icommand = (ICommand) this.b.get(s1);
+        ICommand icommand = this.b.get(s1);
         int i = this.a(icommand, astring);
         int j = 0;
         ChatMessage chatmessage;
@@ -106,7 +107,7 @@ public class CommandHandler implements ICommandHandler {
 
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            ICommand icommand1 = (ICommand) this.b.get(s);
+            ICommand icommand1 = this.b.get(s);
 
             if (icommand1 == null || !icommand1.getCommand().equals(s)) {
                 this.b.put(s, icommand);
@@ -123,7 +124,8 @@ public class CommandHandler implements ICommandHandler {
         return astring1;
     }
 
-    public List<String> a(ICommandListener icommandlistener, String s, BlockPosition blockposition) {
+    @Override
+	public List<String> a(ICommandListener icommandlistener, String s, BlockPosition blockposition) {
         String[] astring = s.split(" ", -1);
         String s1 = astring[0];
 
@@ -142,7 +144,7 @@ public class CommandHandler implements ICommandHandler {
             return arraylist;
         } else {
             if (astring.length > 1) {
-                ICommand icommand = (ICommand) this.b.get(s1);
+                ICommand icommand = this.b.get(s1);
 
                 if (icommand != null && icommand.canUse(icommandlistener)) {
                     return icommand.tabComplete(icommandlistener, a(astring), blockposition);
@@ -153,7 +155,8 @@ public class CommandHandler implements ICommandHandler {
         }
     }
 
-    public List<ICommand> a(ICommandListener icommandlistener) {
+    @Override
+	public List<ICommand> a(ICommandListener icommandlistener) {
         ArrayList arraylist = Lists.newArrayList();
         Iterator iterator = this.c.iterator();
 
@@ -168,7 +171,8 @@ public class CommandHandler implements ICommandHandler {
         return arraylist;
     }
 
-    public Map<String, ICommand> getCommands() {
+    @Override
+	public Map<String, ICommand> getCommands() {
         return this.b;
     }
 

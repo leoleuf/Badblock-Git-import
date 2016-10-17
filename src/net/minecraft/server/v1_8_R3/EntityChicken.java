@@ -24,17 +24,20 @@ public class EntityChicken extends EntityAnimal {
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length;
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(4.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
     }
 
-    public void m() {
+    @Override
+	public void m() {
         // CraftBukkit start
         if (this.isChickenJockey()) {
             this.persistent = !this.isTypeNotPersistent();
@@ -43,13 +46,13 @@ public class EntityChicken extends EntityAnimal {
         super.m();
         this.bq = this.bm;
         this.bp = this.bo;
-        this.bo = (float) ((double) this.bo + (double) (this.onGround ? -1 : 4) * 0.3D);
+        this.bo = (float) (this.bo + (this.onGround ? -1 : 4) * 0.3D);
         this.bo = MathHelper.a(this.bo, 0.0F, 1.0F);
         if (!this.onGround && this.br < 1.0F) {
             this.br = 1.0F;
         }
 
-        this.br = (float) ((double) this.br * 0.9D);
+        this.br = (float) (this.br * 0.9D);
         if (!this.onGround && this.motY < 0.0D) {
             this.motY *= 0.6D;
         }
@@ -63,29 +66,36 @@ public class EntityChicken extends EntityAnimal {
 
     }
 
-    public void e(float f, float f1) {}
+    @Override
+	public void e(float f, float f1) {}
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.chicken.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.chicken.hurt";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.chicken.hurt";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.chicken.step", 0.15F, 1.0F);
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Items.FEATHER;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3) + this.random.nextInt(1 + i);
 
         for (int k = 0; k < j; ++k) {
@@ -104,11 +114,13 @@ public class EntityChicken extends EntityAnimal {
         return new EntityChicken(this.world);
     }
 
-    public boolean d(ItemStack itemstack) {
+    @Override
+	public boolean d(ItemStack itemstack) {
         return itemstack != null && itemstack.getItem() == Items.WHEAT_SEEDS;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.bt = nbttagcompound.getBoolean("IsChickenJockey");
         if (nbttagcompound.hasKey("EggLayTime")) {
@@ -117,28 +129,32 @@ public class EntityChicken extends EntityAnimal {
 
     }
 
-    protected int getExpValue(EntityHuman entityhuman) {
+    @Override
+	protected int getExpValue(EntityHuman entityhuman) {
         return this.isChickenJockey() ? 10 : super.getExpValue(entityhuman);
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("IsChickenJockey", this.bt);
         nbttagcompound.setInt("EggLayTime", this.bs);
     }
 
-    protected boolean isTypeNotPersistent() {
+    @Override
+	protected boolean isTypeNotPersistent() {
         return this.isChickenJockey() && this.passenger == null;
     }
 
-    public void al() {
+    @Override
+	public void al() {
         super.al();
         float f = MathHelper.sin(this.aI * 3.1415927F / 180.0F);
         float f1 = MathHelper.cos(this.aI * 3.1415927F / 180.0F);
         float f2 = 0.1F;
         float f3 = 0.0F;
 
-        this.passenger.setPosition(this.locX + (double) (f2 * f), this.locY + (double) (this.length * 0.5F) + this.passenger.am() + (double) f3, this.locZ - (double) (f2 * f1));
+        this.passenger.setPosition(this.locX + f2 * f, this.locY + this.length * 0.5F + this.passenger.am() + f3, this.locZ - f2 * f1);
         if (this.passenger instanceof EntityLiving) {
             ((EntityLiving) this.passenger).aI = this.aI;
         }
@@ -153,7 +169,8 @@ public class EntityChicken extends EntityAnimal {
         this.bt = flag;
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 }

@@ -23,7 +23,8 @@ public class PacketPlayOutSpawnEntityWeather implements Packet<PacketListenerPla
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.e = packetdataserializer.readByte();
         this.b = packetdataserializer.readInt();
@@ -31,7 +32,8 @@ public class PacketPlayOutSpawnEntityWeather implements Packet<PacketListenerPla
         this.d = packetdataserializer.readInt();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeByte(this.e);
         packetdataserializer.writeInt(this.b);
@@ -39,7 +41,8 @@ public class PacketPlayOutSpawnEntityWeather implements Packet<PacketListenerPla
         packetdataserializer.writeInt(this.d);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

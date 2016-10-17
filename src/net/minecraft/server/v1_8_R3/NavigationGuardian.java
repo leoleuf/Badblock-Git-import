@@ -6,24 +6,28 @@ public class NavigationGuardian extends NavigationAbstract {
         super(entityinsentient, world);
     }
 
-    protected Pathfinder a() {
+    @Override
+	protected Pathfinder a() {
         return new Pathfinder(new PathfinderWater());
     }
 
-    protected boolean b() {
+    @Override
+	protected boolean b() {
         return this.o();
     }
 
-    protected Vec3D c() {
-        return new Vec3D(this.b.locX, this.b.locY + (double) this.b.length * 0.5D, this.b.locZ);
+    @Override
+	protected Vec3D c() {
+        return new Vec3D(this.b.locX, this.b.locY + this.b.length * 0.5D, this.b.locZ);
     }
 
-    protected void l() {
+    @Override
+	protected void l() {
         Vec3D vec3d = this.c();
         float f = this.b.width * this.b.width;
         byte b0 = 6;
 
-        if (vec3d.distanceSquared(this.d.a(this.b, this.d.e())) < (double) f) {
+        if (vec3d.distanceSquared(this.d.a(this.b, this.d.e())) < f) {
             this.d.a();
         }
 
@@ -39,12 +43,14 @@ public class NavigationGuardian extends NavigationAbstract {
         this.a(vec3d);
     }
 
-    protected void d() {
+    @Override
+	protected void d() {
         super.d();
     }
 
-    protected boolean a(Vec3D vec3d, Vec3D vec3d1, int i, int j, int k) {
-        MovingObjectPosition movingobjectposition = this.c.rayTrace(vec3d, new Vec3D(vec3d1.a, vec3d1.b + (double) this.b.length * 0.5D, vec3d1.c), false, true, false);
+    @Override
+	protected boolean a(Vec3D vec3d, Vec3D vec3d1, int i, int j, int k) {
+        MovingObjectPosition movingobjectposition = this.c.rayTrace(vec3d, new Vec3D(vec3d1.a, vec3d1.b + this.b.length * 0.5D, vec3d1.c), false, true, false);
 
         return movingobjectposition == null || movingobjectposition.type == MovingObjectPosition.EnumMovingObjectType.MISS;
     }

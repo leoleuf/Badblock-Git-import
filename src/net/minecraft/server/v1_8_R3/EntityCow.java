@@ -19,37 +19,45 @@ public class EntityCow extends EntityAnimal {
         this.goalSelector.a(7, new PathfinderGoalRandomLookaround(this));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(10.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.20000000298023224D);
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.cow.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.cow.hurt";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.cow.hurt";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.cow.step", 0.15F, 1.0F);
     }
 
-    protected float bB() {
+    @Override
+	protected float bB() {
         return 0.4F;
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Items.LEATHER;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3) + this.random.nextInt(1 + i);
 
         int k;
@@ -70,7 +78,8 @@ public class EntityCow extends EntityAnimal {
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.BUCKET && !entityhuman.abilities.canInstantlyBuild && !this.isBaby()) {
@@ -100,11 +109,13 @@ public class EntityCow extends EntityAnimal {
         return new EntityCow(this.world);
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length;
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 }

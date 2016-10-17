@@ -34,33 +34,39 @@ public class DedicatedPlayerList extends PlayerList {
 
     }
 
-    public void setHasWhitelist(boolean flag) {
+    @Override
+	public void setHasWhitelist(boolean flag) {
         super.setHasWhitelist(flag);
-        this.getServer().a("white-list", (Object) Boolean.valueOf(flag));
+        this.getServer().a("white-list", Boolean.valueOf(flag));
         this.getServer().a();
     }
 
-    public void addOp(GameProfile gameprofile) {
+    @Override
+	public void addOp(GameProfile gameprofile) {
         super.addOp(gameprofile);
         this.B();
     }
 
-    public void removeOp(GameProfile gameprofile) {
+    @Override
+	public void removeOp(GameProfile gameprofile) {
         super.removeOp(gameprofile);
         this.B();
     }
 
-    public void removeWhitelist(GameProfile gameprofile) {
+    @Override
+	public void removeWhitelist(GameProfile gameprofile) {
         super.removeWhitelist(gameprofile);
         this.D();
     }
 
-    public void addWhitelist(GameProfile gameprofile) {
+    @Override
+	public void addWhitelist(GameProfile gameprofile) {
         super.addWhitelist(gameprofile);
         this.D();
     }
 
-    public void reloadWhitelist() {
+    @Override
+	public void reloadWhitelist() {
         this.C();
     }
 
@@ -136,15 +142,18 @@ public class DedicatedPlayerList extends PlayerList {
 
     }
 
-    public boolean isWhitelisted(GameProfile gameprofile) {
+    @Override
+	public boolean isWhitelisted(GameProfile gameprofile) {
         return !this.getHasWhitelist() || this.isOp(gameprofile) || this.getWhitelist().isWhitelisted(gameprofile);
     }
 
-    public DedicatedServer getServer() {
+    @Override
+	public DedicatedServer getServer() {
         return (DedicatedServer) super.getServer();
     }
 
-    public boolean f(GameProfile gameprofile) {
+    @Override
+	public boolean f(GameProfile gameprofile) {
         return this.getOPs().b(gameprofile);
     }
 }

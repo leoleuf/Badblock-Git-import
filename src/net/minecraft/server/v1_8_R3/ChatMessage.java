@@ -125,7 +125,7 @@ public class ChatMessage extends ChatBaseComponent {
             Object object1;
 
             if (object instanceof IChatBaseComponent) {
-                object1 = (IChatBaseComponent) object;
+                object1 = object;
             } else {
                 object1 = new ChatComponentText(object == null ? "null" : object.toString());
                 ((IChatBaseComponent) object1).getChatModifier().setChatModifier(this.getChatModifier());
@@ -135,7 +135,8 @@ public class ChatMessage extends ChatBaseComponent {
         }
     }
 
-    public IChatBaseComponent setChatModifier(ChatModifier chatmodifier) {
+    @Override
+	public IChatBaseComponent setChatModifier(ChatModifier chatmodifier) {
         super.setChatModifier(chatmodifier);
         Object[] aobject = this.e;
         int i = aobject.length;
@@ -161,12 +162,14 @@ public class ChatMessage extends ChatBaseComponent {
         return this;
     }
 
-    public Iterator<IChatBaseComponent> iterator() {
+    @Override
+	public Iterator<IChatBaseComponent> iterator() {
         this.g();
-        return Iterators.concat(a((Iterable) this.b), a((Iterable) this.a));
+        return Iterators.concat(a(this.b), a(this.a));
     }
 
-    public String getText() {
+    @Override
+	public String getText() {
         this.g();
         StringBuilder stringbuilder = new StringBuilder();
         Iterator iterator = this.b.iterator();
@@ -205,7 +208,8 @@ public class ChatMessage extends ChatBaseComponent {
         return chatmessage;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof ChatMessage)) {
@@ -217,7 +221,8 @@ public class ChatMessage extends ChatBaseComponent {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         int i = super.hashCode();
 
         i = 31 * i + this.d.hashCode();
@@ -225,7 +230,8 @@ public class ChatMessage extends ChatBaseComponent {
         return i;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "TranslatableComponent{key=\'" + this.d + '\'' + ", args=" + Arrays.toString(this.e) + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
     }
 
@@ -237,7 +243,8 @@ public class ChatMessage extends ChatBaseComponent {
         return this.e;
     }
 
-    public IChatBaseComponent f() {
+    @Override
+	public IChatBaseComponent f() {
         return this.h();
     }
 }

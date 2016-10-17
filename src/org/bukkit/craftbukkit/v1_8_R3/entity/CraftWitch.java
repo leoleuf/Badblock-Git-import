@@ -21,7 +21,8 @@ public class CraftWitch extends CraftMonster implements Witch {
         return "CraftWitch";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.WITCH;
     }
 }

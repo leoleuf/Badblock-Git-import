@@ -10,15 +10,18 @@ public class BlockDropper extends BlockDispenser {
 
     public BlockDropper() {}
 
-    protected IDispenseBehavior a(ItemStack itemstack) {
+    @Override
+	protected IDispenseBehavior a(ItemStack itemstack) {
         return this.P;
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityDropper();
     }
 
-    public void dispense(World world, BlockPosition blockposition) {
+    @Override
+	public void dispense(World world, BlockPosition blockposition) {
         SourceBlock sourceblock = new SourceBlock(world, blockposition);
         TileEntityDispenser tileentitydispenser = (TileEntityDispenser) sourceblock.getTileEntity();
 
@@ -31,9 +34,9 @@ public class BlockDropper extends BlockDispenser {
                 ItemStack itemstack = tileentitydispenser.getItem(i);
 
                 if (itemstack != null) {
-                    EnumDirection enumdirection = (EnumDirection) world.getType(blockposition).get(BlockDropper.FACING);
+                    EnumDirection enumdirection = world.getType(blockposition).get(BlockDispenser.FACING);
                     BlockPosition blockposition1 = blockposition.shift(enumdirection);
-                    IInventory iinventory = TileEntityHopper.b(world, (double) blockposition1.getX(), (double) blockposition1.getY(), (double) blockposition1.getZ());
+                    IInventory iinventory = TileEntityHopper.b(world, blockposition1.getX(), blockposition1.getY(), blockposition1.getZ());
                     ItemStack itemstack1;
 
                     if (iinventory == null) {

@@ -9,15 +9,18 @@ public class EntityDamageSourceIndirect extends EntityDamageSource {
         this.owner = entity1;
     }
 
-    public Entity i() {
+    @Override
+	public Entity i() {
         return this.q;
     }
 
-    public Entity getEntity() {
+    @Override
+	public Entity getEntity() {
         return this.owner;
     }
 
-    public IChatBaseComponent getLocalizedDeathMessage(EntityLiving entityliving) {
+    @Override
+	public IChatBaseComponent getLocalizedDeathMessage(EntityLiving entityliving) {
         IChatBaseComponent ichatbasecomponent = this.owner == null ? this.q.getScoreboardDisplayName() : this.owner.getScoreboardDisplayName();
         ItemStack itemstack = this.owner instanceof EntityLiving ? ((EntityLiving) this.owner).bA() : null;
         String s = "death.attack." + this.translationIndex;

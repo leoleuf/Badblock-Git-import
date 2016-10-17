@@ -18,7 +18,8 @@ public class BlockMushroom extends BlockPlant implements IBlockFragilePlantEleme
         this.a(true);
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         final int sourceX = blockposition.getX(), sourceY = blockposition.getY(), sourceZ = blockposition.getZ(); // CraftBukkit
         if (random.nextInt(Math.max(1, (int) world.growthOdds / world.spigotConfig.mushroomModifier * 25)) == 0) { // Spigot            int i = 5;
             int i = 5;
@@ -65,15 +66,18 @@ public class BlockMushroom extends BlockPlant implements IBlockFragilePlantEleme
 
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return super.canPlace(world, blockposition) && this.f(world, blockposition, this.getBlockData());
     }
 
-    protected boolean c(Block block) {
+    @Override
+	protected boolean c(Block block) {
         return block.o();
     }
 
-    public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
         if (blockposition.getY() >= 0 && blockposition.getY() < 256) {
             IBlockData iblockdata1 = world.getType(blockposition.down());
 
@@ -103,15 +107,18 @@ public class BlockMushroom extends BlockPlant implements IBlockFragilePlantEleme
         }
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
         return true;
     }
 
-    public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
-        return (double) random.nextFloat() < 0.4D;
+    @Override
+	public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+        return random.nextFloat() < 0.4D;
     }
 
-    public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         this.d(world, blockposition, iblockdata, random);
     }
 }

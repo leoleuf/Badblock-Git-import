@@ -19,7 +19,8 @@ public abstract class PathfinderGoalGotoTarget extends PathfinderGoal {
         this.a(5);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a > 0) {
             --this.a;
             return false;
@@ -29,24 +30,28 @@ public abstract class PathfinderGoalGotoTarget extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.e >= -this.f && this.e <= 1200 && this.a(this.c.world, this.b);
     }
 
-    public void c() {
-        this.c.getNavigation().a((double) ((float) this.b.getX()) + 0.5D, (double) (this.b.getY() + 1), (double) ((float) this.b.getZ()) + 0.5D, this.d);
+    @Override
+	public void c() {
+        this.c.getNavigation().a((this.b.getX()) + 0.5D, this.b.getY() + 1, (this.b.getZ()) + 0.5D, this.d);
         this.e = 0;
         this.f = this.c.bc().nextInt(this.c.bc().nextInt(1200) + 1200) + 1200;
     }
 
-    public void d() {}
+    @Override
+	public void d() {}
 
-    public void e() {
+    @Override
+	public void e() {
         if (this.c.c(this.b.up()) > 1.0D) {
             this.g = false;
             ++this.e;
             if (this.e % 40 == 0) {
-                this.c.getNavigation().a((double) ((float) this.b.getX()) + 0.5D, (double) (this.b.getY() + 1), (double) ((float) this.b.getZ()) + 0.5D, this.d);
+                this.c.getNavigation().a((this.b.getX()) + 0.5D, this.b.getY() + 1, (this.b.getZ()) + 0.5D, this.d);
             }
         } else {
             this.g = true;

@@ -7,26 +7,30 @@ public class CommandGamerule extends CommandAbstract {
 
     public CommandGamerule() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "gamerule";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.gamerule.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         GameRules gamerules = icommandlistener.getWorld().getGameRules(); // CraftBukkit - Use current world
         String s = astring.length > 0 ? astring[0] : "";
         String s1 = astring.length > 1 ? a(astring, 1) : "";
 
         switch (astring.length) {
         case 0:
-            icommandlistener.sendMessage(new ChatComponentText(a((Object[]) gamerules.getGameRules())));
+            icommandlistener.sendMessage(new ChatComponentText(a(gamerules.getGameRules())));
             break;
 
         case 1:
@@ -66,7 +70,8 @@ public class CommandGamerule extends CommandAbstract {
 
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             return a(astring, this.d().getGameRules());
         } else {
@@ -89,7 +94,7 @@ public class CommandGamerule extends CommandAbstract {
     // CraftBukkit start - fix decompile error
     @Override
     public int compareTo(ICommand o) {
-        return a((ICommand) o);
+        return a(o);
     }
     // CraftBukkit end
 }

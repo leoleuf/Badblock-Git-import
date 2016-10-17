@@ -23,13 +23,14 @@ public class AttributeMapServer extends AttributeMapBase {
         AttributeInstance attributeinstance = super.a(s);
 
         if (attributeinstance == null) {
-            attributeinstance = (AttributeInstance) this.d.get(s);
+            attributeinstance = this.d.get(s);
         }
 
         return (AttributeModifiable) attributeinstance;
     }
 
-    public AttributeInstance b(IAttribute iattribute) {
+    @Override
+	public AttributeInstance b(IAttribute iattribute) {
         AttributeInstance attributeinstance = super.b(iattribute);
 
         if (iattribute instanceof AttributeRanged && ((AttributeRanged) iattribute).g() != null) {
@@ -39,11 +40,13 @@ public class AttributeMapServer extends AttributeMapBase {
         return attributeinstance;
     }
 
-    protected AttributeInstance c(IAttribute iattribute) {
+    @Override
+	protected AttributeInstance c(IAttribute iattribute) {
         return new AttributeModifiable(this, iattribute);
     }
 
-    public void a(AttributeInstance attributeinstance) {
+    @Override
+	public void a(AttributeInstance attributeinstance) {
         if (attributeinstance.getAttribute().c()) {
             this.e.add(attributeinstance);
         }
@@ -80,11 +83,13 @@ public class AttributeMapServer extends AttributeMapBase {
         return hashset;
     }
 
-    public AttributeInstance a(String s) {
+    @Override
+	public AttributeInstance a(String s) {
         return this.b(s);
     }
 
-    public AttributeInstance a(IAttribute iattribute) {
+    @Override
+	public AttributeInstance a(IAttribute iattribute) {
         return this.e(iattribute);
     }
 }

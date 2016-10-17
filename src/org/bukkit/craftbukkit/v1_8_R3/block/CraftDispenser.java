@@ -31,11 +31,13 @@ public class CraftDispenser extends CraftBlockState implements Dispenser {
         dispenser = te;
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return new CraftInventory(dispenser);
     }
 
-    public BlockProjectileSource getBlockProjectileSource() {
+    @Override
+	public BlockProjectileSource getBlockProjectileSource() {
         Block block = getBlock();
 
         if (block.getType() != Material.DISPENSER) {
@@ -45,7 +47,8 @@ public class CraftDispenser extends CraftBlockState implements Dispenser {
         return new CraftBlockProjectileSource(dispenser);
     }
 
-    public boolean dispense() {
+    @Override
+	public boolean dispense() {
         Block block = getBlock();
 
         if (block.getType() == Material.DISPENSER) {

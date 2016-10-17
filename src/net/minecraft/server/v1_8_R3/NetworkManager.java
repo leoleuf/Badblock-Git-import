@@ -42,7 +42,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
             return new NioEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Client IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -51,7 +52,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
             return new EpollEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Epoll Client IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -60,7 +62,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
             return new LocalEventLoopGroup(0, (new ThreadFactoryBuilder()).setNameFormat("Netty Local Client IO #%d").setDaemon(true).build());
         }
 
-        protected Object init() {
+        @Override
+		protected Object init() {
             return this.a();
         }
     };
@@ -83,7 +86,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
         this.h = enumprotocoldirection;
     }
 
-    public void channelActive(ChannelHandlerContext channelhandlercontext) throws Exception {
+    @Override
+	public void channelActive(ChannelHandlerContext channelhandlercontext) throws Exception {
         super.channelActive(channelhandlercontext);
         this.channel = channelhandlercontext.channel();
         this.l = this.channel.remoteAddress();
@@ -105,11 +109,13 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
         NetworkManager.g.debug("Enabled auto read");
     }
 
-    public void channelInactive(ChannelHandlerContext channelhandlercontext) throws Exception {
+    @Override
+	public void channelInactive(ChannelHandlerContext channelhandlercontext) throws Exception {
         this.close(new ChatMessage("disconnect.endOfStream", new Object[0]));
     }
 
-    public void exceptionCaught(ChannelHandlerContext channelhandlercontext, Throwable throwable) throws Exception {
+    @Override
+	public void exceptionCaught(ChannelHandlerContext channelhandlercontext, Throwable throwable) throws Exception {
         ChatMessage chatmessage;
 
         if (throwable instanceof TimeoutException) {
@@ -158,12 +164,12 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
     public void a(Packet packet, GenericFutureListener<? extends Future<? super Void>> genericfuturelistener, GenericFutureListener<? extends Future<? super Void>>... agenericfuturelistener) {
         if (this.g()) {
             this.m();
-            this.a(packet, (GenericFutureListener[]) ArrayUtils.add(agenericfuturelistener, 0, genericfuturelistener));
+            this.a(packet, ArrayUtils.add(agenericfuturelistener, 0, genericfuturelistener));
         } else {
             this.j.writeLock().lock();
 
             try {
-                this.i.add(new NetworkManager.QueuedPacket(packet, (GenericFutureListener[]) ArrayUtils.add(agenericfuturelistener, 0, genericfuturelistener)));
+                this.i.add(new NetworkManager.QueuedPacket(packet, ArrayUtils.add(agenericfuturelistener, 0, genericfuturelistener)));
             } finally {
                 this.j.writeLock().unlock();
             }
@@ -173,7 +179,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
 
     private void a(final Packet packet, final GenericFutureListener<? extends Future<? super Void>>[] agenericfuturelistener) {
         final EnumProtocol enumprotocol = EnumProtocol.a(packet);
-        final EnumProtocol enumprotocol1 = (EnumProtocol) this.channel.attr(NetworkManager.c).get();
+        final EnumProtocol enumprotocol1 = this.channel.attr(NetworkManager.c).get();
 
         if (enumprotocol1 != enumprotocol) {
             NetworkManager.g.debug("Disabled auto read");
@@ -194,7 +200,8 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
             channelfuture.addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
         } else {
             this.channel.eventLoop().execute(new Runnable() {
-                public void run() {
+                @Override
+				public void run() {
                     if (enumprotocol != enumprotocol1) {
                         NetworkManager.this.a(enumprotocol);
                     }
@@ -218,7 +225,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
 
             try {
                 while (!this.i.isEmpty()) {
-                    NetworkManager.QueuedPacket networkmanager_queuedpacket = (NetworkManager.QueuedPacket) this.i.poll();
+                    NetworkManager.QueuedPacket networkmanager_queuedpacket = this.i.poll();
 
                     this.a(networkmanager_queuedpacket.a, networkmanager_queuedpacket.b);
                 }
@@ -325,8 +332,9 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet> {
         }
     }
 
-    protected void channelRead0(ChannelHandlerContext channelhandlercontext, Packet object) throws Exception { // CraftBukkit - fix decompile error
-        this.a(channelhandlercontext, (Packet) object);
+    @Override
+	protected void channelRead0(ChannelHandlerContext channelhandlercontext, Packet object) throws Exception { // CraftBukkit - fix decompile error
+        this.a(channelhandlercontext, object);
     }
 
     static class QueuedPacket {

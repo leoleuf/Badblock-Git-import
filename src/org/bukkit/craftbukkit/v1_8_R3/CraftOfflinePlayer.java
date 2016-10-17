@@ -39,11 +39,13 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return profile;
     }
 
-    public boolean isOnline() {
+    @Override
+	public boolean isOnline() {
         return getPlayer() != null;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         Player player = getPlayer();
         if (player != null) {
             return player.getName();
@@ -65,7 +67,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return null;
     }
 
-    public UUID getUniqueId() {
+    @Override
+	public UUID getUniqueId() {
         return profile.getId();
     }
 
@@ -73,11 +76,13 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return server;
     }
 
-    public boolean isOp() {
+    @Override
+	public boolean isOp() {
         return server.getHandle().isOp(profile);
     }
 
-    public void setOp(boolean value) {
+    @Override
+	public void setOp(boolean value) {
         if (value == isOp()) {
             return;
         }
@@ -89,7 +94,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         }
     }
 
-    public boolean isBanned() {
+    @Override
+	public boolean isBanned() {
         if (getName() == null) {
             return false;
         }
@@ -97,7 +103,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return server.getBanList(BanList.Type.NAME).isBanned(getName());
     }
 
-    public void setBanned(boolean value) {
+    @Override
+	public void setBanned(boolean value) {
         if (getName() == null) {
             return;
         }
@@ -109,11 +116,13 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         }
     }
 
-    public boolean isWhitelisted() {
+    @Override
+	public boolean isWhitelisted() {
         return server.getHandle().getWhitelist().isWhitelisted(profile);
     }
 
-    public void setWhitelisted(boolean value) {
+    @Override
+	public void setWhitelisted(boolean value) {
         if (value) {
             server.getHandle().addWhitelist(profile);
         } else {
@@ -121,7 +130,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         }
     }
 
-    public Map<String, Object> serialize() {
+    @Override
+	public Map<String, Object> serialize() {
         Map<String, Object> result = new LinkedHashMap<String, Object>();
 
         result.put("UUID", profile.getId().toString());
@@ -143,7 +153,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return getClass().getSimpleName() + "[UUID=" + profile.getId() + "]";
     }
 
-    public Player getPlayer() {
+    @Override
+	public Player getPlayer() {
         return server.getPlayer(getUniqueId());
     }
 
@@ -189,7 +200,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         return new File(storage.getPlayerDir(), getUniqueId() + ".dat");
     }
 
-    public long getFirstPlayed() {
+    @Override
+	public long getFirstPlayed() {
         Player player = getPlayer();
         if (player != null) return player.getFirstPlayed();
 
@@ -207,7 +219,8 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         }
     }
 
-    public long getLastPlayed() {
+    @Override
+	public long getLastPlayed() {
         Player player = getPlayer();
         if (player != null) return player.getLastPlayed();
 
@@ -225,11 +238,13 @@ public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializa
         }
     }
 
-    public boolean hasPlayedBefore() {
+    @Override
+	public boolean hasPlayedBefore() {
         return getData() != null;
     }
 
-    public Location getBedSpawnLocation() {
+    @Override
+	public Location getBedSpawnLocation() {
         NBTTagCompound data = getData();
         if (data == null) return null;
 

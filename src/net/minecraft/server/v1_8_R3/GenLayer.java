@@ -117,7 +117,7 @@ public abstract class GenLayer {
     }
 
     protected int a(int i) {
-        int j = (int) ((this.d >> 24) % (long) i);
+        int j = (int) ((this.d >> 24) % i);
 
         if (j < 0) {
             j += i;
@@ -143,14 +143,15 @@ public abstract class GenLayer {
                 CrashReport crashreport = CrashReport.a(throwable, "Comparing biomes");
                 CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Biomes being compared");
 
-                crashreportsystemdetails.a("Biome A ID", (Object) Integer.valueOf(i));
-                crashreportsystemdetails.a("Biome B ID", (Object) Integer.valueOf(j));
+                crashreportsystemdetails.a("Biome A ID", Integer.valueOf(i));
+                crashreportsystemdetails.a("Biome B ID", Integer.valueOf(j));
                 crashreportsystemdetails.a("Biome A", new Callable() {
                     public String a() throws Exception {
                         return String.valueOf(biomebase);
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });
@@ -159,7 +160,8 @@ public abstract class GenLayer {
                         return String.valueOf(biomebase);
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });

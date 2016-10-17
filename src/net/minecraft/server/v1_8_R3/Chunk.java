@@ -136,7 +136,7 @@ public class Chunk {
         this.tileEntities = Maps.newHashMap();
         this.v = 4096;
         this.w = Queues.newConcurrentLinkedQueue();
-        this.entitySlices = (List[]) (new List[16]); // Spigot
+        this.entitySlices = (new List[16]); // Spigot
         this.world = world;
         this.locX = i;
         this.locZ = j;
@@ -469,7 +469,8 @@ public class Chunk {
                     return CrashReportSystemDetails.a(new BlockPosition(Chunk.this.locX * 16 + i, j, Chunk.this.locZ * 16 + k));
                 }
 
-                public Object call() throws Exception {
+                @Override
+				public Object call() throws Exception {
                     return this.a();
                 }
             });
@@ -488,7 +489,8 @@ public class Chunk {
                     return CrashReportSystemDetails.a(blockposition);
                 }
 
-                public Object call() throws Exception {
+                @Override
+				public Object call() throws Exception {
                     return this.a();
                 }
             });
@@ -544,7 +546,8 @@ public class Chunk {
                         return CrashReportSystemDetails.a(blockposition);
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });
@@ -827,7 +830,7 @@ public class Chunk {
             tileentity = world.capturedTileEntities.get(blockposition);
         }
         if (tileentity == null) {
-            tileentity = (TileEntity) this.tileEntities.get(blockposition);
+            tileentity = this.tileEntities.get(blockposition);
         }
         // CraftBukkit end
 
@@ -859,7 +862,7 @@ public class Chunk {
         tileentity.a(blockposition);
         if (this.getType(blockposition) instanceof IContainer) {
             if (this.tileEntities.containsKey(blockposition)) {
-                ((TileEntity) this.tileEntities.get(blockposition)).y();
+                this.tileEntities.get(blockposition).y();
             }
 
             tileentity.D();
@@ -886,7 +889,7 @@ public class Chunk {
 
     public void e(BlockPosition blockposition) {
         if (this.h) {
-            TileEntity tileentity = (TileEntity) this.tileEntities.remove(blockposition);
+            TileEntity tileentity = this.tileEntities.remove(blockposition);
 
             if (tileentity != null) {
                 tileentity.y();
@@ -908,7 +911,7 @@ public class Chunk {
                 entity.ah();
             }
 
-            this.world.b((Collection) this.entitySlices[i]);
+            this.world.b(this.entitySlices[i]);
         }
 
     }
@@ -922,7 +925,7 @@ public class Chunk {
             // Spigot Start
             if ( tileentity instanceof IInventory )
             {
-                for ( org.bukkit.entity.HumanEntity h : Lists.<org.bukkit.entity.HumanEntity>newArrayList((List<org.bukkit.entity.HumanEntity>) ( (IInventory) tileentity ).getViewers() ) )
+                for ( org.bukkit.entity.HumanEntity h : Lists.<org.bukkit.entity.HumanEntity>newArrayList(( (IInventory) tileentity ).getViewers() ) )
                 {
                     if ( h instanceof org.bukkit.craftbukkit.v1_8_R3.entity.CraftHumanEntity )
                     {
@@ -944,7 +947,7 @@ public class Chunk {
                 // Spigot Start
                 if ( entity instanceof IInventory )
                 {
-                    for ( org.bukkit.entity.HumanEntity h : Lists.<org.bukkit.entity.HumanEntity>newArrayList( (List<org.bukkit.entity.HumanEntity>) ( (IInventory) entity ).getViewers() ) )
+                    for ( org.bukkit.entity.HumanEntity h : Lists.<org.bukkit.entity.HumanEntity>newArrayList( ( (IInventory) entity ).getViewers() ) )
                     {
                         if ( h instanceof org.bukkit.craftbukkit.v1_8_R3.entity.CraftHumanEntity )
                         {
@@ -961,7 +964,7 @@ public class Chunk {
                 }
             }
 
-            this.world.c((Collection) newList);
+            this.world.c(newList);
             // CraftBukkit end
         }
 
@@ -1060,7 +1063,7 @@ public class Chunk {
     }
 
     public Random a(long i) {
-        return new Random(this.world.getSeed() + (long) (this.locX * this.locX * 4987142) + (long) (this.locX * 5947611) + (long) (this.locZ * this.locZ) * 4392871L + (long) (this.locZ * 389711) ^ i);
+        return new Random(this.world.getSeed() + this.locX * this.locX * 4987142 + this.locX * 5947611 + this.locZ * this.locZ * 4392871L + this.locZ * 389711 ^ i);
     }
 
     public boolean isEmpty() {
@@ -1158,7 +1161,7 @@ public class Chunk {
         }
 
         while (!this.w.isEmpty()) {
-            BlockPosition blockposition = (BlockPosition) this.w.poll();
+            BlockPosition blockposition = this.w.poll();
 
             if (this.a(blockposition, Chunk.EnumTileEntityState.CHECK) == null && this.getType(blockposition).isTileEntity()) {
                 TileEntity tileentity = this.i(blockposition);
@@ -1386,7 +1389,7 @@ public class Chunk {
 
         for (l = k + 16 - 1; l > this.world.F() || l > 0 && !flag1; --l) {
             blockposition_mutableblockposition.c(blockposition_mutableblockposition.getX(), l, blockposition_mutableblockposition.getZ());
-            int i1 = this.b((BlockPosition) blockposition_mutableblockposition);
+            int i1 = this.b(blockposition_mutableblockposition);
 
             if (i1 == 255 && blockposition_mutableblockposition.getY() < this.world.F()) {
                 flag1 = true;

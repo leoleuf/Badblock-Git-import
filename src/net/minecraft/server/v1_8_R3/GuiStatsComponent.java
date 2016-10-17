@@ -24,7 +24,8 @@ public class GuiStatsComponent extends JComponent {
         this.setMinimumSize(new Dimension(456, 246));
         this.setMaximumSize(new Dimension(456, 246));
         (new Timer(500, new ActionListener() {
-            public void actionPerformed(ActionEvent actionevent) {
+            @Override
+			public void actionPerformed(ActionEvent actionevent) {
                 GuiStatsComponent.this.a();
             }
         })).start();
@@ -50,7 +51,8 @@ public class GuiStatsComponent extends JComponent {
         return (double) i / (double) along.length;
     }
 
-    public void paint(Graphics graphics) {
+    @Override
+	public void paint(Graphics graphics) {
         graphics.setColor(new Color(16777215));
         graphics.fillRect(0, 0, 456, 246);
 

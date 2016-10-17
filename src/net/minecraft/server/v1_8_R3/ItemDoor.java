@@ -9,7 +9,8 @@ public class ItemDoor extends Item {
         this.a(CreativeModeTab.d);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (enumdirection != EnumDirection.UP) {
             return false;
         } else {
@@ -25,7 +26,7 @@ public class ItemDoor extends Item {
             } else if (!this.a.canPlace(world, blockposition)) {
                 return false;
             } else {
-                a(world, blockposition, EnumDirection.fromAngle((double) entityhuman.yaw), this.a);
+                a(world, blockposition, EnumDirection.fromAngle(entityhuman.yaw), this.a);
                 --itemstack.count;
                 return true;
             }

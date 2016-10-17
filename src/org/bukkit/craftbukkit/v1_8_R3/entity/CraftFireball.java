@@ -16,27 +16,33 @@ public class CraftFireball extends AbstractProjectile implements Fireball {
         super(server, entity);
     }
 
-    public float getYield() {
+    @Override
+	public float getYield() {
         return getHandle().bukkitYield;
     }
 
-    public boolean isIncendiary() {
+    @Override
+	public boolean isIncendiary() {
         return getHandle().isIncendiary;
     }
 
-    public void setIsIncendiary(boolean isIncendiary) {
+    @Override
+	public void setIsIncendiary(boolean isIncendiary) {
         getHandle().isIncendiary = isIncendiary;
     }
 
-    public void setYield(float yield) {
+    @Override
+	public void setYield(float yield) {
         getHandle().bukkitYield = yield;
     }
 
-    public ProjectileSource getShooter() {
+    @Override
+	public ProjectileSource getShooter() {
         return getHandle().projectileSource;
     }
 
-    public void setShooter(ProjectileSource shooter) {
+    @Override
+	public void setShooter(ProjectileSource shooter) {
         if (shooter instanceof CraftLivingEntity) {
             getHandle().shooter = ((CraftLivingEntity) shooter).getHandle();
         } else {
@@ -45,16 +51,18 @@ public class CraftFireball extends AbstractProjectile implements Fireball {
         getHandle().projectileSource = shooter;
     }
 
-    public Vector getDirection() {
+    @Override
+	public Vector getDirection() {
         return new Vector(getHandle().dirX, getHandle().dirY, getHandle().dirZ);
     }
 
-    public void setDirection(Vector direction) {
+    @Override
+	public void setDirection(Vector direction) {
         Validate.notNull(direction, "Direction can not be null");
         double x = direction.getX();
         double y = direction.getY();
         double z = direction.getZ();
-        double magnitude = (double) MathHelper.sqrt(x * x + y * y + z * z);
+        double magnitude = MathHelper.sqrt(x * x + y * y + z * z);
         getHandle().dirX = x / magnitude;
         getHandle().dirY = y / magnitude;
         getHandle().dirZ = z / magnitude;
@@ -70,16 +78,19 @@ public class CraftFireball extends AbstractProjectile implements Fireball {
         return "CraftFireball";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.UNKNOWN;
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setShooter(LivingEntity shooter) {
         setShooter(shooter);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public LivingEntity _INVALID_getShooter() {
         if (getHandle().shooter != null) {
             return (LivingEntity) getHandle().shooter.getBukkitEntity();

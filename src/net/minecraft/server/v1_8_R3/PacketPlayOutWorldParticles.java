@@ -32,7 +32,8 @@ public class PacketPlayOutWorldParticles implements Packet<PacketListenerPlayOut
         this.k = aint;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = EnumParticle.a(packetdataserializer.readInt());
         if (this.a == null) {
             this.a = EnumParticle.BARRIER;
@@ -57,7 +58,8 @@ public class PacketPlayOutWorldParticles implements Packet<PacketListenerPlayOut
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.a.c());
         packetdataserializer.writeBoolean(this.j);
         packetdataserializer.writeFloat(this.b);
@@ -76,7 +78,8 @@ public class PacketPlayOutWorldParticles implements Packet<PacketListenerPlayOut
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

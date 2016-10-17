@@ -18,11 +18,11 @@ public abstract class AttributeMapBase {
     public AttributeMapBase() {}
 
     public AttributeInstance a(IAttribute iattribute) {
-        return (AttributeInstance) this.a.get(iattribute);
+        return this.a.get(iattribute);
     }
 
     public AttributeInstance a(String s) {
-        return (AttributeInstance) this.b.get(s);
+        return this.b.get(s);
     }
 
     public AttributeInstance b(IAttribute iattribute) {

@@ -9,7 +9,8 @@ public class BlockBloodStone extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.K;
     }
 

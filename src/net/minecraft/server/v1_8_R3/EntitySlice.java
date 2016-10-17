@@ -60,7 +60,8 @@ public class EntitySlice<T> extends AbstractSet<T> {
         }
     }
 
-    public boolean add(T t0) {
+    @Override
+	public boolean add(T t0) {
         Iterator iterator = this.c.iterator();
 
         while (iterator.hasNext()) {
@@ -75,7 +76,7 @@ public class EntitySlice<T> extends AbstractSet<T> {
     }
 
     private void a(T t0, Class<?> oclass) {
-        List list = (List) this.b.get(oclass);
+        List list = this.b.get(oclass);
 
         if (list == null) {
             this.b.put(oclass, Lists.newArrayList(t0));
@@ -85,7 +86,8 @@ public class EntitySlice<T> extends AbstractSet<T> {
 
     }
 
-    public boolean remove(Object object) {
+    @Override
+	public boolean remove(Object object) {
         Object object1 = object;
         boolean flag = false;
         Iterator iterator = this.c.iterator();
@@ -94,7 +96,7 @@ public class EntitySlice<T> extends AbstractSet<T> {
             Class oclass = (Class) iterator.next();
 
             if (oclass.isAssignableFrom(object1.getClass())) {
-                List list = (List) this.b.get(oclass);
+                List list = this.b.get(oclass);
 
                 if (list != null && list.remove(object1)) {
                     flag = true;
@@ -105,14 +107,16 @@ public class EntitySlice<T> extends AbstractSet<T> {
         return flag;
     }
 
-    public boolean contains(Object object) {
+    @Override
+	public boolean contains(Object object) {
         return Iterators.contains(this.c(object.getClass()).iterator(), object);
     }
 
     public <S> Iterable<S> c(final Class<S> oclass) {
         return new Iterable() {
-            public Iterator<S> iterator() {
-                List list = (List) EntitySlice.this.b.get(EntitySlice.this.b(oclass));
+            @Override
+			public Iterator<S> iterator() {
+                List list = EntitySlice.this.b.get(EntitySlice.this.b(oclass));
 
                 if (list == null) {
                     return Iterators.emptyIterator();
@@ -125,11 +129,13 @@ public class EntitySlice<T> extends AbstractSet<T> {
         };
     }
 
-    public Iterator<T> iterator() {
+    @Override
+	public Iterator<T> iterator() {
         return this.e.isEmpty() ? Iterators.<T>emptyIterator() : Iterators.unmodifiableIterator(this.e.iterator());
     }
 
-    public int size() {
+    @Override
+	public int size() {
         return this.e.size();
     }
 }

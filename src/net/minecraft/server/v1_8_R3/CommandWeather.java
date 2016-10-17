@@ -7,19 +7,23 @@ public class CommandWeather extends CommandAbstract {
 
     public CommandWeather() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "weather";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.weather.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length >= 1 && astring.length <= 2) {
             int i = (300 + (new Random()).nextInt(600)) * 20;
 
@@ -62,7 +66,8 @@ public class CommandWeather extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, new String[] { "clear", "rain", "thunder"}) : null;
     }
 }

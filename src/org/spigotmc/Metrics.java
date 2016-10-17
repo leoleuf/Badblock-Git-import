@@ -217,7 +217,8 @@ public class Metrics {
             task.scheduleAtFixedRate(new TimerTask() {
                 private boolean firstPost = true;
 
-                public void run() {
+                @Override
+				public void run() {
                     try {
                         // This has to be synchronized or it can collide with the disable method.
                         synchronized (optOutLock) {

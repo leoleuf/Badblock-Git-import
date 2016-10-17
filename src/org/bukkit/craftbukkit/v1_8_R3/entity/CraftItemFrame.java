@@ -20,7 +20,8 @@ public class CraftItemFrame extends CraftHanging implements ItemFrame {
         super(server, entity);
     }
 
-    public boolean setFacingDirection(BlockFace face, boolean force) {
+    @Override
+	public boolean setFacingDirection(BlockFace face, boolean force) {
         if (!super.setFacingDirection(face, force)) {
             return false;
         }
@@ -47,7 +48,8 @@ public class CraftItemFrame extends CraftHanging implements ItemFrame {
     }
 
 
-    public void setItem(org.bukkit.inventory.ItemStack item) {
+    @Override
+	public void setItem(org.bukkit.inventory.ItemStack item) {
         if (item == null || item.getTypeId() == 0) {
             getHandle().setItem(null);
         } else {
@@ -55,11 +57,13 @@ public class CraftItemFrame extends CraftHanging implements ItemFrame {
         }
     }
 
-    public org.bukkit.inventory.ItemStack getItem() {
+    @Override
+	public org.bukkit.inventory.ItemStack getItem() {
         return CraftItemStack.asBukkitCopy(getHandle().getItem());
     }
 
-    public Rotation getRotation() {
+    @Override
+	public Rotation getRotation() {
         return toBukkitRotation(getHandle().getRotation());
     }
 
@@ -87,7 +91,8 @@ public class CraftItemFrame extends CraftHanging implements ItemFrame {
         }
     }
 
-    public void setRotation(Rotation rotation) {
+    @Override
+	public void setRotation(Rotation rotation) {
         Validate.notNull(rotation, "Rotation cannot be null");
         getHandle().setRotation(toInteger(rotation));
     }
@@ -126,7 +131,8 @@ public class CraftItemFrame extends CraftHanging implements ItemFrame {
         return "CraftItemFrame{item=" + getItem() + ", rotation=" + getRotation() + "}";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.ITEM_FRAME;
     }
 }

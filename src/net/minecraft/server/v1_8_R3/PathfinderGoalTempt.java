@@ -27,7 +27,8 @@ public class PathfinderGoalTempt extends PathfinderGoal {
         }
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.i > 0) {
             --this.i;
             return false;
@@ -43,14 +44,15 @@ public class PathfinderGoalTempt extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         if (this.l) {
             if (this.a.h(this.h) < 36.0D) {
                 if (this.h.e(this.c, this.d, this.e) > 0.010000000000000002D) {
                     return false;
                 }
 
-                if (Math.abs((double) this.h.pitch - this.f) > 5.0D || Math.abs((double) this.h.yaw - this.g) > 5.0D) {
+                if (Math.abs(this.h.pitch - this.f) > 5.0D || Math.abs(this.h.yaw - this.g) > 5.0D) {
                     return false;
                 }
             } else {
@@ -59,14 +61,15 @@ public class PathfinderGoalTempt extends PathfinderGoal {
                 this.e = this.h.locZ;
             }
 
-            this.f = (double) this.h.pitch;
-            this.g = (double) this.h.yaw;
+            this.f = this.h.pitch;
+            this.g = this.h.yaw;
         }
 
         return this.a();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.c = this.h.locX;
         this.d = this.h.locY;
         this.e = this.h.locZ;
@@ -75,7 +78,8 @@ public class PathfinderGoalTempt extends PathfinderGoal {
         ((Navigation) this.a.getNavigation()).a(false);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.h = null;
         this.a.getNavigation().n();
         this.i = 100;
@@ -83,12 +87,13 @@ public class PathfinderGoalTempt extends PathfinderGoal {
         ((Navigation) this.a.getNavigation()).a(this.m);
     }
 
-    public void e() {
-        this.a.getControllerLook().a(this.h, 30.0F, (float) this.a.bQ());
+    @Override
+	public void e() {
+        this.a.getControllerLook().a(this.h, 30.0F, this.a.bQ());
         if (this.a.h(this.h) < 6.25D) {
             this.a.getNavigation().n();
         } else {
-            this.a.getNavigation().a((Entity) this.h, this.b);
+            this.a.getNavigation().a(this.h, this.b);
         }
 
     }

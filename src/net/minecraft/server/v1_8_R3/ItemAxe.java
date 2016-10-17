@@ -12,7 +12,8 @@ public class ItemAxe extends ItemTool {
         super(3.0F, item_enumtoolmaterial, ItemAxe.c);
     }
 
-    public float getDestroySpeed(ItemStack itemstack, Block block) {
+    @Override
+	public float getDestroySpeed(ItemStack itemstack, Block block) {
         return block.getMaterial() != Material.WOOD && block.getMaterial() != Material.PLANT && block.getMaterial() != Material.REPLACEABLE_PLANT ? super.getDestroySpeed(itemstack, block) : this.a;
     }
 }

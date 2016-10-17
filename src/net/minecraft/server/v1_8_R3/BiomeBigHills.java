@@ -26,11 +26,13 @@ public class BiomeBigHills extends BiomeBase {
 
     }
 
-    public WorldGenTreeAbstract a(Random random) {
-        return (WorldGenTreeAbstract) (random.nextInt(3) > 0 ? this.aE : super.a(random));
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
+        return random.nextInt(3) > 0 ? this.aE : super.a(random);
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         super.a(world, random, blockposition);
         int i = 3 + random.nextInt(6);
 
@@ -58,7 +60,8 @@ public class BiomeBigHills extends BiomeBase {
 
     }
 
-    public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
+    @Override
+	public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
         this.ak = Blocks.GRASS.getBlockData();
         this.al = Blocks.DIRT.getBlockData();
         if ((d0 < -1.0D || d0 > 2.0D) && this.aI == this.aH) {
@@ -81,7 +84,8 @@ public class BiomeBigHills extends BiomeBase {
         return this;
     }
 
-    protected BiomeBase d(int i) {
-        return (new BiomeBigHills(i, false)).b((BiomeBase) this);
+    @Override
+	protected BiomeBase d(int i) {
+        return (new BiomeBigHills(i, false)).b(this);
     }
 }

@@ -18,21 +18,24 @@ public class PacketPlayOutWorldEvent implements Packet<PacketListenerPlayOut> {
         this.d = flag;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readInt();
         this.b = packetdataserializer.c();
         this.c = packetdataserializer.readInt();
         this.d = packetdataserializer.readBoolean();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.a);
         packetdataserializer.a(this.b);
         packetdataserializer.writeInt(this.c);
         packetdataserializer.writeBoolean(this.d);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

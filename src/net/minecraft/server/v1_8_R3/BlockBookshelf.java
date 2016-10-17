@@ -9,11 +9,13 @@ public class BlockBookshelf extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 3;
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.BOOK;
     }
 }

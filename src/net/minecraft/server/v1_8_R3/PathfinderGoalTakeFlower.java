@@ -15,7 +15,8 @@ public class PathfinderGoalTakeFlower extends PathfinderGoal {
         this.a(3);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.getAge() >= 0) {
             return false;
         } else if (!this.a.world.w()) {
@@ -42,25 +43,29 @@ public class PathfinderGoalTakeFlower extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.b.cm() > 0;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.c = this.a.bc().nextInt(320);
         this.d = false;
         this.b.getNavigation().n();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b = null;
         this.a.getNavigation().n();
     }
 
-    public void e() {
+    @Override
+	public void e() {
         this.a.getControllerLook().a(this.b, 30.0F, 30.0F);
         if (this.b.cm() == this.c) {
-            this.a.getNavigation().a((Entity) this.b, 0.5D);
+            this.a.getNavigation().a(this.b, 0.5D);
             this.d = true;
         }
 

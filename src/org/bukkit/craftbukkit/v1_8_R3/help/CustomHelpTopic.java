@@ -17,7 +17,8 @@ public class CustomHelpTopic extends HelpTopic {
         this.fullText = shortText + "\n" + fullText;
     }
 
-    public boolean canSee(CommandSender sender) {
+    @Override
+	public boolean canSee(CommandSender sender) {
         if (sender instanceof ConsoleCommandSender) {
             return true;
         }

@@ -90,5 +90,6 @@ public interface FireworkMeta extends ItemMeta {
      */
     void setPower(int power) throws IllegalArgumentException;
 
-    FireworkMeta clone();
+    @Override
+	FireworkMeta clone();
 }

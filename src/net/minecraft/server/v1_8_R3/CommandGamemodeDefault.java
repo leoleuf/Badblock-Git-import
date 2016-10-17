@@ -6,15 +6,18 @@ public class CommandGamemodeDefault extends CommandGamemode {
 
     public CommandGamemodeDefault() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "defaultgamemode";
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.defaultgamemode.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length <= 0) {
             throw new ExceptionUsage("commands.defaultgamemode.usage", new Object[0]);
         } else {

@@ -26,47 +26,58 @@ public abstract class ServerCommandSender implements CommandSender {
         }
     }
 
-    public boolean isPermissionSet(String name) {
+    @Override
+	public boolean isPermissionSet(String name) {
         return perm.isPermissionSet(name);
     }
 
-    public boolean isPermissionSet(Permission perm) {
+    @Override
+	public boolean isPermissionSet(Permission perm) {
         return this.perm.isPermissionSet(perm);
     }
 
-    public boolean hasPermission(String name) {
+    @Override
+	public boolean hasPermission(String name) {
         return perm.hasPermission(name);
     }
 
-    public boolean hasPermission(Permission perm) {
+    @Override
+	public boolean hasPermission(Permission perm) {
         return this.perm.hasPermission(perm);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         return perm.addAttachment(plugin, name, value);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin) {
         return perm.addAttachment(plugin);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         return perm.addAttachment(plugin, name, value, ticks);
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+    @Override
+	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         return perm.addAttachment(plugin, ticks);
     }
 
-    public void removeAttachment(PermissionAttachment attachment) {
+    @Override
+	public void removeAttachment(PermissionAttachment attachment) {
         perm.removeAttachment(attachment);
     }
 
-    public void recalculatePermissions() {
+    @Override
+	public void recalculatePermissions() {
         perm.recalculatePermissions();
     }
 
-    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+    @Override
+	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         return perm.getEffectivePermissions();
     }
 
@@ -74,7 +85,8 @@ public abstract class ServerCommandSender implements CommandSender {
         return false;
     }
 
-    public Server getServer() {
+    @Override
+	public Server getServer() {
         return Bukkit.getServer();
     }
 }

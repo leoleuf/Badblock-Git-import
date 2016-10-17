@@ -53,11 +53,13 @@ public class WorldGenStronghold extends StructureGenerator {
 
     }
 
-    public String a() {
+    @Override
+	public String a() {
         return "Stronghold";
     }
 
-    protected boolean a(int i, int j) {
+    @Override
+	protected boolean a(int i, int j) {
         if (!this.f) {
             Random random = new Random();
 
@@ -66,7 +68,7 @@ public class WorldGenStronghold extends StructureGenerator {
             int k = 1;
 
             for (int l = 0; l < this.g.length; ++l) {
-                double d1 = (1.25D * (double) k + random.nextDouble()) * this.h * (double) k;
+                double d1 = (1.25D * k + random.nextDouble()) * this.h * k;
                 int i1 = (int) Math.round(Math.cos(d0) * d1);
                 int j1 = (int) Math.round(Math.sin(d0) * d1);
                 BlockPosition blockposition = this.c.getWorldChunkManager().a((i1 << 4) + 8, (j1 << 4) + 8, 112, this.d, random);
@@ -77,7 +79,7 @@ public class WorldGenStronghold extends StructureGenerator {
                 }
 
                 this.g[l] = new ChunkCoordIntPair(i1, j1);
-                d0 += 6.283185307179586D * (double) k / (double) this.i;
+                d0 += 6.283185307179586D * k / this.i;
                 if (l == this.i) {
                     k += 2 + random.nextInt(5);
                     this.i += 1 + random.nextInt(2);
@@ -101,7 +103,8 @@ public class WorldGenStronghold extends StructureGenerator {
         return false;
     }
 
-    protected List<BlockPosition> z_() {
+    @Override
+	protected List<BlockPosition> z_() {
         ArrayList arraylist = Lists.newArrayList();
         ChunkCoordIntPair[] achunkcoordintpair = this.g;
         int i = achunkcoordintpair.length;
@@ -117,7 +120,8 @@ public class WorldGenStronghold extends StructureGenerator {
         return arraylist;
     }
 
-    protected StructureStart b(int i, int j) {
+    @Override
+	protected StructureStart b(int i, int j) {
         WorldGenStronghold.WorldGenStronghold2Start worldgenstronghold_worldgenstronghold2start;
 
         for (worldgenstronghold_worldgenstronghold2start = new WorldGenStronghold.WorldGenStronghold2Start(this.c, this.b, i, j); worldgenstronghold_worldgenstronghold2start.b().isEmpty() || ((WorldGenStrongholdPieces.WorldGenStrongholdStart) worldgenstronghold_worldgenstronghold2start.b().get(0)).b == null; worldgenstronghold_worldgenstronghold2start = new WorldGenStronghold.WorldGenStronghold2Start(this.c, this.b, i, j)) {
@@ -137,14 +141,14 @@ public class WorldGenStronghold extends StructureGenerator {
             WorldGenStrongholdPieces.WorldGenStrongholdStart worldgenstrongholdpieces_worldgenstrongholdstart = new WorldGenStrongholdPieces.WorldGenStrongholdStart(0, random, (i << 4) + 2, (j << 4) + 2);
 
             this.a.add(worldgenstrongholdpieces_worldgenstrongholdstart);
-            worldgenstrongholdpieces_worldgenstrongholdstart.a((StructurePiece) worldgenstrongholdpieces_worldgenstrongholdstart, (List) this.a, random);
+            worldgenstrongholdpieces_worldgenstrongholdstart.a(worldgenstrongholdpieces_worldgenstrongholdstart, this.a, random);
             List list = worldgenstrongholdpieces_worldgenstrongholdstart.c;
 
             while (!list.isEmpty()) {
                 int k = random.nextInt(list.size());
                 StructurePiece structurepiece = (StructurePiece) list.remove(k);
 
-                structurepiece.a((StructurePiece) worldgenstrongholdpieces_worldgenstrongholdstart, (List) this.a, random);
+                structurepiece.a(worldgenstrongholdpieces_worldgenstrongholdstart, this.a, random);
             }
 
             this.c();

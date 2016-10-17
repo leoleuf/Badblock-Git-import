@@ -97,7 +97,8 @@ class TimingHandler implements Timing {
         }
     }
 
-    public void startTiming() {
+    @Override
+	public void startTiming() {
         if (enabled && ++timingDepth == 1) {
             start = System.nanoTime();
             parent = TimingsManager.CURRENT;
@@ -105,7 +106,8 @@ class TimingHandler implements Timing {
         }
     }
 
-    public void stopTiming() {
+    @Override
+	public void stopTiming() {
         if (enabled && --timingDepth == 0 && start != 0) {
             if (!Bukkit.isPrimaryThread()) {
                 Bukkit.getLogger().log(Level.SEVERE, "stopTiming called async for " + name);

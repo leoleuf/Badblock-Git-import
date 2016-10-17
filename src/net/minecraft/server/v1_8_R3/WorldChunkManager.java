@@ -61,7 +61,7 @@ public class WorldChunkManager {
 
         for (int i1 = 0; i1 < k * l; ++i1) {
             try {
-                float f = (float) BiomeBase.getBiome(aint[i1], BiomeBase.ad).h() / 65536.0F;
+                float f = BiomeBase.getBiome(aint[i1], BiomeBase.ad).h() / 65536.0F;
 
                 if (f > 1.0F) {
                     f = 1.0F;
@@ -72,12 +72,12 @@ public class WorldChunkManager {
                 CrashReport crashreport = CrashReport.a(throwable, "Invalid Biome id");
                 CrashReportSystemDetails crashreportsystemdetails = crashreport.a("DownfallBlock");
 
-                crashreportsystemdetails.a("biome id", (Object) Integer.valueOf(i1));
-                crashreportsystemdetails.a("downfalls[] size", (Object) Integer.valueOf(afloat.length));
-                crashreportsystemdetails.a("x", (Object) Integer.valueOf(i));
-                crashreportsystemdetails.a("z", (Object) Integer.valueOf(j));
-                crashreportsystemdetails.a("w", (Object) Integer.valueOf(k));
-                crashreportsystemdetails.a("h", (Object) Integer.valueOf(l));
+                crashreportsystemdetails.a("biome id", Integer.valueOf(i1));
+                crashreportsystemdetails.a("downfalls[] size", Integer.valueOf(afloat.length));
+                crashreportsystemdetails.a("x", Integer.valueOf(i));
+                crashreportsystemdetails.a("z", Integer.valueOf(j));
+                crashreportsystemdetails.a("w", Integer.valueOf(k));
+                crashreportsystemdetails.a("h", Integer.valueOf(l));
                 throw new ReportedException(crashreport);
             }
         }
@@ -103,11 +103,11 @@ public class WorldChunkManager {
             CrashReport crashreport = CrashReport.a(throwable, "Invalid Biome id");
             CrashReportSystemDetails crashreportsystemdetails = crashreport.a("RawBiomeBlock");
 
-            crashreportsystemdetails.a("biomes[] size", (Object) Integer.valueOf(abiomebase.length));
-            crashreportsystemdetails.a("x", (Object) Integer.valueOf(i));
-            crashreportsystemdetails.a("z", (Object) Integer.valueOf(j));
-            crashreportsystemdetails.a("w", (Object) Integer.valueOf(k));
-            crashreportsystemdetails.a("h", (Object) Integer.valueOf(l));
+            crashreportsystemdetails.a("biomes[] size", Integer.valueOf(abiomebase.length));
+            crashreportsystemdetails.a("x", Integer.valueOf(i));
+            crashreportsystemdetails.a("z", Integer.valueOf(j));
+            crashreportsystemdetails.a("w", Integer.valueOf(k));
+            crashreportsystemdetails.a("h", Integer.valueOf(l));
             throw new ReportedException(crashreport);
         }
     }
@@ -162,11 +162,11 @@ public class WorldChunkManager {
             CrashReport crashreport = CrashReport.a(throwable, "Invalid Biome id");
             CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Layer");
 
-            crashreportsystemdetails.a("Layer", (Object) this.b.toString());
-            crashreportsystemdetails.a("x", (Object) Integer.valueOf(i));
-            crashreportsystemdetails.a("z", (Object) Integer.valueOf(j));
-            crashreportsystemdetails.a("radius", (Object) Integer.valueOf(k));
-            crashreportsystemdetails.a("allowed", (Object) list);
+            crashreportsystemdetails.a("Layer", this.b.toString());
+            crashreportsystemdetails.a("x", Integer.valueOf(i));
+            crashreportsystemdetails.a("z", Integer.valueOf(j));
+            crashreportsystemdetails.a("radius", Integer.valueOf(k));
+            crashreportsystemdetails.a("allowed", list);
             throw new ReportedException(crashreport);
         }
     }

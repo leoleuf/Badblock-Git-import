@@ -51,7 +51,8 @@ public class BlockStatePredicate implements Predicate<IBlockData> {
         }
     }
 
-    public boolean apply(IBlockData object) {
-        return this.a((IBlockData) object);
+    @Override
+	public boolean apply(IBlockData object) {
+        return this.a(object);
     }
 }

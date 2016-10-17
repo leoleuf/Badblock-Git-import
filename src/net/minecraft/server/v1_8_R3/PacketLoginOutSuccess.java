@@ -15,7 +15,8 @@ public class PacketLoginOutSuccess implements Packet<PacketLoginOutListener> {
         this.a = gameprofile;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         String s = packetdataserializer.c(36);
         String s1 = packetdataserializer.c(16);
         UUID uuid = UUID.fromString(s);
@@ -23,14 +24,16 @@ public class PacketLoginOutSuccess implements Packet<PacketLoginOutListener> {
         this.a = new GameProfile(uuid, s1);
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         UUID uuid = this.a.getId();
 
         packetdataserializer.a(uuid == null ? "" : uuid.toString());
         packetdataserializer.a(this.a.getName());
     }
 
-    public void a(PacketLoginOutListener packetloginoutlistener) {
+    @Override
+	public void a(PacketLoginOutListener packetloginoutlistener) {
         packetloginoutlistener.a(this);
     }
 

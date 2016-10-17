@@ -42,7 +42,8 @@ public class TileEntityBanner extends TileEntity {
         this.g = true;
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         a(nbttagcompound, this.color, this.patterns);
     }
@@ -55,7 +56,8 @@ public class TileEntityBanner extends TileEntity {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.color = nbttagcompound.getInt("Base");
         this.patterns = nbttagcompound.getList("Patterns", 10);
@@ -70,7 +72,8 @@ public class TileEntityBanner extends TileEntity {
         this.g = true;
     }
 
-    public Packet getUpdatePacket() {
+    @Override
+	public Packet getUpdatePacket() {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         this.b(nbttagcompound);

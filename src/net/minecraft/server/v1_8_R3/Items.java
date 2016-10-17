@@ -191,7 +191,7 @@ public class Items {
     public static final Item BANNER;
 
     private static Item get(String s) {
-        return (Item) Item.REGISTRY.get(new MinecraftKey(s));
+        return Item.REGISTRY.get(new MinecraftKey(s));
     }
 
     static {

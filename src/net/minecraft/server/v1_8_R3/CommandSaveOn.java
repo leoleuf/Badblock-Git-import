@@ -4,15 +4,18 @@ public class CommandSaveOn extends CommandAbstract {
 
     public CommandSaveOn() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "save-on";
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.save-on.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         MinecraftServer minecraftserver = MinecraftServer.getServer();
         boolean flag = false;
 

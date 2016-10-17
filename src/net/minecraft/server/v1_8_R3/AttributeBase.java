@@ -16,15 +16,18 @@ public abstract class AttributeBase implements IAttribute {
         }
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.b;
     }
 
-    public double b() {
+    @Override
+	public double b() {
         return this.c;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return this.d;
     }
 
@@ -33,15 +36,18 @@ public abstract class AttributeBase implements IAttribute {
         return this;
     }
 
-    public IAttribute d() {
+    @Override
+	public IAttribute d() {
         return this.a;
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.b.hashCode();
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         return object instanceof IAttribute && this.b.equals(((IAttribute) object).getName());
     }
 }

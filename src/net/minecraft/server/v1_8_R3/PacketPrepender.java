@@ -23,7 +23,8 @@ public class PacketPrepender extends MessageToByteEncoder<ByteBuf> {
         }
     }
 
-    protected void encode(ChannelHandlerContext channelhandlercontext, ByteBuf object, ByteBuf bytebuf) throws Exception {
-        this.a(channelhandlercontext, (ByteBuf) object, bytebuf);
+    @Override
+	protected void encode(ChannelHandlerContext channelhandlercontext, ByteBuf object, ByteBuf bytebuf) throws Exception {
+        this.a(channelhandlercontext, object, bytebuf);
     }
 }

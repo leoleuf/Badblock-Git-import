@@ -25,11 +25,11 @@ public class Vec3D {
     }
 
     public Vec3D(BaseBlockPosition baseblockposition) {
-        this((double) baseblockposition.getX(), (double) baseblockposition.getY(), (double) baseblockposition.getZ());
+        this(baseblockposition.getX(), baseblockposition.getY(), baseblockposition.getZ());
     }
 
     public Vec3D a() {
-        double d0 = (double) MathHelper.sqrt(this.a * this.a + this.b * this.b + this.c * this.c);
+        double d0 = MathHelper.sqrt(this.a * this.a + this.b * this.b + this.c * this.c);
 
         return d0 < 1.0E-4D ? new Vec3D(0.0D, 0.0D, 0.0D) : new Vec3D(this.a / d0, this.b / d0, this.c / d0);
     }
@@ -63,7 +63,7 @@ public class Vec3D {
     }
 
     public double b() {
-        return (double) MathHelper.sqrt(this.a * this.a + this.b * this.b + this.c * this.c);
+        return MathHelper.sqrt(this.a * this.a + this.b * this.b + this.c * this.c);
     }
 
     public Vec3D a(Vec3D vec3d, double d0) {
@@ -108,7 +108,8 @@ public class Vec3D {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "(" + this.a + ", " + this.b + ", " + this.c + ")";
     }
 
@@ -116,8 +117,8 @@ public class Vec3D {
         float f1 = MathHelper.cos(f);
         float f2 = MathHelper.sin(f);
         double d0 = this.a;
-        double d1 = this.b * (double) f1 + this.c * (double) f2;
-        double d2 = this.c * (double) f1 - this.b * (double) f2;
+        double d1 = this.b * f1 + this.c * f2;
+        double d2 = this.c * f1 - this.b * f2;
 
         return new Vec3D(d0, d1, d2);
     }
@@ -125,9 +126,9 @@ public class Vec3D {
     public Vec3D b(float f) {
         float f1 = MathHelper.cos(f);
         float f2 = MathHelper.sin(f);
-        double d0 = this.a * (double) f1 + this.c * (double) f2;
+        double d0 = this.a * f1 + this.c * f2;
         double d1 = this.b;
-        double d2 = this.c * (double) f1 - this.a * (double) f2;
+        double d2 = this.c * f1 - this.a * f2;
 
         return new Vec3D(d0, d1, d2);
     }

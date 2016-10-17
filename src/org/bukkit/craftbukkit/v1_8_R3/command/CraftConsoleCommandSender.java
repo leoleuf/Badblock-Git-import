@@ -18,49 +18,60 @@ public class CraftConsoleCommandSender extends ServerCommandSender implements Co
         super();
     }
 
-    public void sendMessage(String message) {
+    @Override
+	public void sendMessage(String message) {
         sendRawMessage(message);
     }
 
-    public void sendRawMessage(String message) {
+    @Override
+	public void sendRawMessage(String message) {
         System.out.println(ChatColor.stripColor(message));
     }
 
-    public void sendMessage(String[] messages) {
+    @Override
+	public void sendMessage(String[] messages) {
         for (String message : messages) {
             sendMessage(message);
         }
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "CONSOLE";
     }
 
-    public boolean isOp() {
+    @Override
+	public boolean isOp() {
         return true;
     }
 
-    public void setOp(boolean value) {
+    @Override
+	public void setOp(boolean value) {
         throw new UnsupportedOperationException("Cannot change operator status of server console");
     }
 
-    public boolean beginConversation(Conversation conversation) {
+    @Override
+	public boolean beginConversation(Conversation conversation) {
         return conversationTracker.beginConversation(conversation);
     }
 
-    public void abandonConversation(Conversation conversation) {
+    @Override
+	public void abandonConversation(Conversation conversation) {
         conversationTracker.abandonConversation(conversation, new ConversationAbandonedEvent(conversation, new ManuallyAbandonedConversationCanceller()));
     }
 
-    public void abandonConversation(Conversation conversation, ConversationAbandonedEvent details) {
+    @Override
+	public void abandonConversation(Conversation conversation, ConversationAbandonedEvent details) {
         conversationTracker.abandonConversation(conversation, details);
     }
 
-    public void acceptConversationInput(String input) {
+    @Override
+	public void acceptConversationInput(String input) {
         conversationTracker.acceptConversationInput(input);
     }
 
-    public boolean isConversing() {
+    @Override
+	public boolean isConversing() {
         return conversationTracker.isConversing();
     }
 }

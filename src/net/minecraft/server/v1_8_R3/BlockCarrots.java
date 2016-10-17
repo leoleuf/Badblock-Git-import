@@ -4,11 +4,13 @@ public class BlockCarrots extends BlockCrops {
 
     public BlockCarrots() {}
 
-    protected Item l() {
+    @Override
+	protected Item l() {
         return Items.CARROT;
     }
 
-    protected Item n() {
+    @Override
+	protected Item n() {
         return Items.CARROT;
     }
 }

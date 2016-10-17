@@ -18,7 +18,8 @@ public class PacketPlayOutScoreboardObjective implements Packet<PacketListenerPl
         this.d = i;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(16);
         this.d = packetdataserializer.readByte();
         if (this.d == 0 || this.d == 2) {
@@ -28,7 +29,8 @@ public class PacketPlayOutScoreboardObjective implements Packet<PacketListenerPl
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.writeByte(this.d);
         if (this.d == 0 || this.d == 2) {
@@ -38,7 +40,8 @@ public class PacketPlayOutScoreboardObjective implements Packet<PacketListenerPl
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

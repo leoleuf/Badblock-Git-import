@@ -100,9 +100,11 @@ public class WorldGenMineshaftPieces {
             this.l = structureboundingbox;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {}
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {}
 
-        protected void b(NBTTagCompound nbttagcompound) {}
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {}
 
         public static StructureBoundingBox a(List<StructurePiece> list, Random random, int i, int j, int k, EnumDirection enumdirection) {
             StructureBoundingBox structureboundingbox = new StructureBoundingBox(i, j - 5, k, i, j + 2, k);
@@ -131,7 +133,8 @@ public class WorldGenMineshaftPieces {
             return StructurePiece.a(list, structureboundingbox) != null ? null : structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             int i = this.d();
 
             if (this.m != null) {
@@ -155,7 +158,8 @@ public class WorldGenMineshaftPieces {
 
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -178,12 +182,14 @@ public class WorldGenMineshaftPieces {
 
         public WorldGenMineshaftCross() {}
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             nbttagcompound.setBoolean("tf", this.b);
             nbttagcompound.setInt("D", this.a.b());
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             this.b = nbttagcompound.getBoolean("tf");
             this.a = EnumDirection.fromType2(nbttagcompound.getInt("D"));
         }
@@ -230,7 +236,8 @@ public class WorldGenMineshaftPieces {
             return StructurePiece.a(list, structureboundingbox) != null ? null : structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             int i = this.d();
 
             switch (WorldGenMineshaftPieces.SyntheticClass_1.a[this.a.ordinal()]) {
@@ -278,7 +285,8 @@ public class WorldGenMineshaftPieces {
 
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -320,14 +328,16 @@ public class WorldGenMineshaftPieces {
 
         public WorldGenMineshaftCorridor() {}
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             nbttagcompound.setBoolean("hr", this.a);
             nbttagcompound.setBoolean("sc", this.b);
             nbttagcompound.setBoolean("hps", this.c);
             nbttagcompound.setInt("Num", this.d);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             this.a = nbttagcompound.getBoolean("hr");
             this.b = nbttagcompound.getBoolean("sc");
             this.c = nbttagcompound.getBoolean("hps");
@@ -385,7 +395,8 @@ public class WorldGenMineshaftPieces {
             return l > 0 ? structureboundingbox : null;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             int i = this.d();
             int j = random.nextInt(4);
 
@@ -459,16 +470,17 @@ public class WorldGenMineshaftPieces {
 
         }
 
-        protected boolean a(World world, StructureBoundingBox structureboundingbox, Random random, int i, int j, int k, List<StructurePieceTreasure> list, int l) {
+        @Override
+		protected boolean a(World world, StructureBoundingBox structureboundingbox, Random random, int i, int j, int k, List<StructurePieceTreasure> list, int l) {
             BlockPosition blockposition = new BlockPosition(this.a(i, k), this.d(j), this.b(i, k));
 
-            if (structureboundingbox.b((BaseBlockPosition) blockposition) && world.getType(blockposition).getBlock().getMaterial() == Material.AIR) {
+            if (structureboundingbox.b(blockposition) && world.getType(blockposition).getBlock().getMaterial() == Material.AIR) {
                 int i1 = random.nextBoolean() ? 1 : 0;
 
                 world.setTypeAndData(blockposition, Blocks.RAIL.fromLegacyData(this.a(Blocks.RAIL, i1)), 2);
-                EntityMinecartChest entityminecartchest = new EntityMinecartChest(world, (double) ((float) blockposition.getX() + 0.5F), (double) ((float) blockposition.getY() + 0.5F), (double) ((float) blockposition.getZ() + 0.5F));
+                EntityMinecartChest entityminecartchest = new EntityMinecartChest(world, blockposition.getX() + 0.5F, blockposition.getY() + 0.5F, blockposition.getZ() + 0.5F);
 
-                StructurePieceTreasure.a(random, list, (IInventory) entityminecartchest, l);
+                StructurePieceTreasure.a(random, list, entityminecartchest, l);
                 world.addEntity(entityminecartchest);
                 return true;
             } else {
@@ -476,7 +488,8 @@ public class WorldGenMineshaftPieces {
             }
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -532,7 +545,7 @@ public class WorldGenMineshaftPieces {
                         i1 = this.b(1, i1);
                         BlockPosition blockposition = new BlockPosition(j1, l, i1);
 
-                        if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+                        if (structureboundingbox.b(blockposition)) {
                             this.c = true;
                             world.setTypeAndData(blockposition, Blocks.MOB_SPAWNER.getBlockData(), 2);
                             TileEntity tileentity = world.getTileEntity(blockposition);
@@ -583,7 +596,8 @@ public class WorldGenMineshaftPieces {
             this.l = new StructureBoundingBox(j, 50, k, j + 7 + random.nextInt(6), 54 + random.nextInt(6), k + 7 + random.nextInt(6));
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             int i = this.d();
             int j = this.l.d() - 3 - 1;
 
@@ -649,7 +663,8 @@ public class WorldGenMineshaftPieces {
 
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -668,7 +683,8 @@ public class WorldGenMineshaftPieces {
             }
         }
 
-        public void a(int i, int j, int k) {
+        @Override
+		public void a(int i, int j, int k) {
             super.a(i, j, k);
             Iterator iterator = this.a.iterator();
 
@@ -680,7 +696,8 @@ public class WorldGenMineshaftPieces {
 
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             NBTTagList nbttaglist = new NBTTagList();
             Iterator iterator = this.a.iterator();
 
@@ -693,7 +710,8 @@ public class WorldGenMineshaftPieces {
             nbttagcompound.set("Entrances", nbttaglist);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             NBTTagList nbttaglist = nbttagcompound.getList("Entrances", 11);
 
             for (int i = 0; i < nbttaglist.size(); ++i) {

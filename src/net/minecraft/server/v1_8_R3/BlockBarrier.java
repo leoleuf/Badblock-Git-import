@@ -10,13 +10,16 @@ public class BlockBarrier extends Block {
         this.t = true;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return -1;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {}
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {}
 }

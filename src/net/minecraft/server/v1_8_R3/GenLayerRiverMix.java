@@ -11,13 +11,15 @@ public class GenLayerRiverMix extends GenLayer {
         this.d = genlayer1;
     }
 
-    public void a(long i) {
+    @Override
+	public void a(long i) {
         this.c.a(i);
         this.d.a(i);
         super.a(i);
     }
 
-    public int[] a(int i, int j, int k, int l) {
+    @Override
+	public int[] a(int i, int j, int k, int l) {
         int[] aint = this.c.a(i, j, k, l);
         int[] aint1 = this.d.a(i, j, k, l);
         int[] aint2 = IntCache.a(k * l);

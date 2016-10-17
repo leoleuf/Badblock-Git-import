@@ -30,7 +30,8 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
         return this.a;
     }
 
-    public int u() {
+    @Override
+	public int u() {
         return 0;
     }
 
@@ -72,18 +73,18 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
                     if (this.a.getBlock() == Blocks.SLIME && this.g) {
                         switch (TileEntityPiston.SyntheticClass_1.a[this.f.k().ordinal()]) {
                         case 1:
-                            entity.motX = (double) this.f.getAdjacentX();
+                            entity.motX = this.f.getAdjacentX();
                             break;
 
                         case 2:
-                            entity.motY = (double) this.f.getAdjacentY();
+                            entity.motY = this.f.getAdjacentY();
                             break;
 
                         case 3:
-                            entity.motZ = (double) this.f.getAdjacentZ();
+                            entity.motZ = this.f.getAdjacentZ();
                         }
                     } else {
-                        entity.move((double) (f1 * (float) this.f.getAdjacentX()), (double) (f1 * (float) this.f.getAdjacentY()), (double) (f1 * (float) this.f.getAdjacentZ()));
+                        entity.move(f1 * this.f.getAdjacentX(), f1 * this.f.getAdjacentY(), f1 * this.f.getAdjacentZ());
                     }
                 }
 
@@ -106,7 +107,8 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
 
     }
 
-    public void c() {
+    @Override
+	public void c() {
         if (this.world == null) return; // CraftBukkit
         this.j = this.i;
         if (this.j >= 1.0F) {
@@ -136,7 +138,8 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
     	return BadblockConfig.config.tileEntities.tickPiston;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a = Block.getById(nbttagcompound.getInt("blockId")).fromLegacyData(nbttagcompound.getInt("blockData"));
         this.f = EnumDirection.fromType1(nbttagcompound.getInt("facing"));
@@ -144,7 +147,8 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
         this.g = nbttagcompound.getBoolean("extending");
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("blockId", Block.getId(this.a.getBlock()));
         nbttagcompound.setInt("blockData", this.a.getBlock().toLegacyData(this.a));

@@ -17,7 +17,8 @@ public class CraftMinecartChest extends CraftMinecart implements StorageMinecart
         inventory = new CraftInventory(entity);
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return inventory;
     }
 
@@ -26,7 +27,8 @@ public class CraftMinecartChest extends CraftMinecart implements StorageMinecart
         return "CraftMinecartChest{" + "inventory=" + inventory + '}';
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.MINECART_CHEST;
     }
 }

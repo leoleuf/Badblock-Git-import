@@ -26,7 +26,8 @@ public class PacketPlayOutNamedSoundEffect implements Packet<PacketListenerPlayO
         f1 = MathHelper.a(f1, 0.0F, 255.0F);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(256);
         this.b = packetdataserializer.readInt();
         this.c = packetdataserializer.readInt();
@@ -35,7 +36,8 @@ public class PacketPlayOutNamedSoundEffect implements Packet<PacketListenerPlayO
         this.f = packetdataserializer.readUnsignedByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.writeInt(this.b);
         packetdataserializer.writeInt(this.c);
@@ -44,7 +46,8 @@ public class PacketPlayOutNamedSoundEffect implements Packet<PacketListenerPlayO
         packetdataserializer.writeByte(this.f);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

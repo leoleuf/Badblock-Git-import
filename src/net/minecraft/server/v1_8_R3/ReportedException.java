@@ -12,11 +12,13 @@ public class ReportedException extends RuntimeException {
         return this.a;
     }
 
-    public Throwable getCause() {
+    @Override
+	public Throwable getCause() {
         return this.a.b();
     }
 
-    public String getMessage() {
+    @Override
+	public String getMessage() {
         return this.a.a();
     }
 }

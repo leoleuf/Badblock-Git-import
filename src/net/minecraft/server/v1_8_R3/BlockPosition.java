@@ -37,7 +37,7 @@ public class BlockPosition extends BaseBlockPosition {
     }
 
     public BlockPosition a(double d0, double d1, double d2) {
-        return d0 == 0.0D && d1 == 0.0D && d2 == 0.0D ? this : new BlockPosition((double) this.getX() + d0, (double) this.getY() + d1, (double) this.getZ() + d2);
+        return d0 == 0.0D && d1 == 0.0D && d2 == 0.0D ? this : new BlockPosition(this.getX() + d0, this.getY() + d1, this.getZ() + d2);
     }
 
     public BlockPosition a(int i, int j, int k) {
@@ -113,7 +113,7 @@ public class BlockPosition extends BaseBlockPosition {
     }
 
     public long asLong() {
-        return ((long) this.getX() & BlockPosition.h) << BlockPosition.g | ((long) this.getY() & BlockPosition.i) << BlockPosition.f | ((long) this.getZ() & BlockPosition.j) << 0;
+        return (this.getX() & BlockPosition.h) << BlockPosition.g | (this.getY() & BlockPosition.i) << BlockPosition.f | (this.getZ() & BlockPosition.j) << 0;
     }
 
     public static BlockPosition fromLong(long i) {
@@ -129,7 +129,8 @@ public class BlockPosition extends BaseBlockPosition {
         final BlockPosition blockposition3 = new BlockPosition(Math.max(blockposition.getX(), blockposition1.getX()), Math.max(blockposition.getY(), blockposition1.getY()), Math.max(blockposition.getZ(), blockposition1.getZ()));
 
         return new Iterable() {
-            public Iterator<BlockPosition> iterator() {
+            @Override
+			public Iterator<BlockPosition> iterator() {
                 return new AbstractIterator() {
                     private BlockPosition b = null;
 
@@ -160,7 +161,8 @@ public class BlockPosition extends BaseBlockPosition {
                         }
                     }
 
-                    protected Object computeNext() {
+                    @Override
+					protected Object computeNext() {
                         return this.a();
                     }
                 };
@@ -173,7 +175,8 @@ public class BlockPosition extends BaseBlockPosition {
         final BlockPosition blockposition3 = new BlockPosition(Math.max(blockposition.getX(), blockposition1.getX()), Math.max(blockposition.getY(), blockposition1.getY()), Math.max(blockposition.getZ(), blockposition1.getZ()));
 
         return new Iterable() {
-            public Iterator<BlockPosition.MutableBlockPosition> iterator() {
+            @Override
+			public Iterator<BlockPosition.MutableBlockPosition> iterator() {
                 return new AbstractIterator() {
                     private BlockPosition.MutableBlockPosition b = null;
 
@@ -208,7 +211,8 @@ public class BlockPosition extends BaseBlockPosition {
                         }
                     }
 
-                    protected Object computeNext() {
+                    @Override
+					protected Object computeNext() {
                         return this.a();
                     }
                 };
@@ -216,7 +220,8 @@ public class BlockPosition extends BaseBlockPosition {
         };
     }
 
-    public BaseBlockPosition d(BaseBlockPosition baseblockposition) {
+    @Override
+	public BaseBlockPosition d(BaseBlockPosition baseblockposition) {
         return this.c(baseblockposition);
     }
 
@@ -276,7 +281,8 @@ public class BlockPosition extends BaseBlockPosition {
             return this;
         }
 
-        public BaseBlockPosition d(BaseBlockPosition baseblockposition) {
+        @Override
+		public BaseBlockPosition d(BaseBlockPosition baseblockposition) {
             return super.c(baseblockposition);
         }
     }

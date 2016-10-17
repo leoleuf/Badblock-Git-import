@@ -71,7 +71,7 @@ public class IntHashMap<V> {
 
             this.a(ainthashmap_inthashmapentry1);
             this.a = ainthashmap_inthashmapentry1;
-            this.c = (int) ((float) i * this.d);
+            this.c = (int) (i * this.d);
         }
     }
 
@@ -175,7 +175,8 @@ public class IntHashMap<V> {
             return this.b;
         }
 
-        public final boolean equals(Object object) {
+        @Override
+		public final boolean equals(Object object) {
             if (!(object instanceof IntHashMap.IntHashMapEntry)) {
                 return false;
             } else {
@@ -196,11 +197,13 @@ public class IntHashMap<V> {
             }
         }
 
-        public final int hashCode() {
+        @Override
+		public final int hashCode() {
             return IntHashMap.g(this.a);
         }
 
-        public final String toString() {
+        @Override
+		public final String toString() {
             return this.a() + "=" + this.b();
         }
     }

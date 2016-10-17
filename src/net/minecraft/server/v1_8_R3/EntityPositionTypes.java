@@ -9,7 +9,7 @@ public class EntityPositionTypes {
     private static final HashMap<Class, EntityInsentient.EnumEntityPositionType> a = Maps.newHashMap();
 
     public static EntityInsentient.EnumEntityPositionType a(Class oclass) {
-        return (EntityInsentient.EnumEntityPositionType) EntityPositionTypes.a.get(oclass);
+        return EntityPositionTypes.a.get(oclass);
     }
 
     static {

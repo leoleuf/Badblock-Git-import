@@ -41,7 +41,7 @@ public interface IScoreboardCriteria {
         }
 
         public static IScoreboardCriteria.EnumScoreboardHealthDisplay a(String s) {
-            IScoreboardCriteria.EnumScoreboardHealthDisplay iscoreboardcriteria_enumscoreboardhealthdisplay = (IScoreboardCriteria.EnumScoreboardHealthDisplay) IScoreboardCriteria.EnumScoreboardHealthDisplay.c.get(s);
+            IScoreboardCriteria.EnumScoreboardHealthDisplay iscoreboardcriteria_enumscoreboardhealthdisplay = IScoreboardCriteria.EnumScoreboardHealthDisplay.c.get(s);
 
             return iscoreboardcriteria_enumscoreboardhealthdisplay == null ? IScoreboardCriteria.EnumScoreboardHealthDisplay.INTEGER : iscoreboardcriteria_enumscoreboardhealthdisplay;
         }

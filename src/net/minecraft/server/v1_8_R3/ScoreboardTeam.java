@@ -28,7 +28,8 @@ public class ScoreboardTeam extends ScoreboardTeamBase {
         this.d = s;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.b;
     }
 
@@ -45,7 +46,8 @@ public class ScoreboardTeam extends ScoreboardTeamBase {
         }
     }
 
-    public Collection<String> getPlayerNameSet() {
+    @Override
+	public Collection<String> getPlayerNameSet() {
         return this.c;
     }
 
@@ -71,7 +73,8 @@ public class ScoreboardTeam extends ScoreboardTeamBase {
         this.a.handleTeamChanged(this);
     }
 
-    public String getFormattedName(String s) {
+    @Override
+	public String getFormattedName(String s) {
         return this.getPrefix() + s + this.getSuffix();
     }
 
@@ -79,7 +82,8 @@ public class ScoreboardTeam extends ScoreboardTeamBase {
         return scoreboardteambase == null ? s : scoreboardteambase.getFormattedName(s);
     }
 
-    public boolean allowFriendlyFire() {
+    @Override
+	public boolean allowFriendlyFire() {
         return this.g;
     }
 
@@ -101,7 +105,8 @@ public class ScoreboardTeam extends ScoreboardTeamBase {
         return this.i;
     }
 
-    public ScoreboardTeamBase.EnumNameTagVisibility j() {
+    @Override
+	public ScoreboardTeamBase.EnumNameTagVisibility j() {
         return this.j;
     }
 

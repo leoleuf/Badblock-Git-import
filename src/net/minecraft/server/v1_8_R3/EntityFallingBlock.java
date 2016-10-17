@@ -51,17 +51,21 @@ public class EntityFallingBlock extends Entity {
         this.loadChunks = world.paperSpigotConfig.loadUnloadedFallingBlocks; // PaperSpigot
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    protected void h() {}
+    @Override
+	protected void h() {}
 
-    public boolean ad() {
+    @Override
+	public boolean ad() {
         return !this.dead;
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         Block block = this.block.getBlock();
 
         if (block.getMaterial() == Material.AIR) {
@@ -164,7 +168,8 @@ public class EntityFallingBlock extends Entity {
         }
     }
 
-    public void e(float f, float f1) {
+    @Override
+	public void e(float f, float f1) {
         Block block = this.block.getBlock();
 
         if (this.hurtEntities) {
@@ -180,12 +185,12 @@ public class EntityFallingBlock extends Entity {
                     Entity entity = (Entity) iterator.next();
 
                     CraftEventFactory.entityDamage = this; // CraftBukkit
-                    entity.damageEntity(damagesource, (float) Math.min(MathHelper.d((float) i * this.fallHurtAmount), this.fallHurtMax));
+                    entity.damageEntity(damagesource, Math.min(MathHelper.d(i * this.fallHurtAmount), this.fallHurtMax));
                     CraftEventFactory.entityDamage = null; // CraftBukkit
                 }
 
-                if (flag && (double) this.random.nextFloat() < 0.05000000074505806D + (double) i * 0.05D) {
-                    int j = ((Integer) this.block.get(BlockAnvil.DAMAGE)).intValue();
+                if (flag && this.random.nextFloat() < 0.05000000074505806D + i * 0.05D) {
+                    int j = this.block.get(BlockAnvil.DAMAGE).intValue();
 
                     ++j;
                     if (j > 2) {
@@ -199,9 +204,10 @@ public class EntityFallingBlock extends Entity {
 
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         Block block = this.block != null ? this.block.getBlock() : Blocks.AIR;
-        MinecraftKey minecraftkey = (MinecraftKey) Block.REGISTRY.c(block);
+        MinecraftKey minecraftkey = Block.REGISTRY.c(block);
 
         nbttagcompound.setString("Block", minecraftkey == null ? "" : minecraftkey.toString());
         nbttagcompound.setByte("Data", (byte) block.toLegacyData(this.block));
@@ -222,7 +228,8 @@ public class EntityFallingBlock extends Entity {
         // PaperSpigot end
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         int i = nbttagcompound.getByte("Data") & 255;
 
         if (nbttagcompound.hasKeyOfType("Block", 8)) {
@@ -269,13 +276,14 @@ public class EntityFallingBlock extends Entity {
         this.hurtEntities = flag;
     }
 
-    public void appendEntityCrashDetails(CrashReportSystemDetails crashreportsystemdetails) {
+    @Override
+	public void appendEntityCrashDetails(CrashReportSystemDetails crashreportsystemdetails) {
         super.appendEntityCrashDetails(crashreportsystemdetails);
         if (this.block != null) {
             Block block = this.block.getBlock();
 
-            crashreportsystemdetails.a("Immitating block ID", (Object) Integer.valueOf(Block.getId(block)));
-            crashreportsystemdetails.a("Immitating block data", (Object) Integer.valueOf(block.toLegacyData(this.block)));
+            crashreportsystemdetails.a("Immitating block ID", Integer.valueOf(Block.getId(block)));
+            crashreportsystemdetails.a("Immitating block data", Integer.valueOf(block.toLegacyData(this.block)));
         }
 
     }
@@ -293,7 +301,7 @@ public class EntityFallingBlock extends Entity {
         double d4 = this.locY + this.getHeadHeight() - d1;
         double d5 = this.locZ - d2;
 
-        return (double) MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
+        return MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
     }
 
     @Override

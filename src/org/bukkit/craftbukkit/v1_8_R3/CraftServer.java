@@ -911,9 +911,11 @@ public final class CraftServer implements Server {
             converter.convert(name, new IProgressUpdate() {
                 private long b = System.currentTimeMillis();
 
-                public void a(String s) {}
+                @Override
+				public void a(String s) {}
 
-                public void a(int i) {
+                @Override
+				public void a(int i) {
                     if (System.currentTimeMillis() - this.b >= 1000L) {
                         this.b = System.currentTimeMillis();
                         MinecraftServer.LOGGER.info("Converting... " + i + "%");
@@ -921,7 +923,8 @@ public final class CraftServer implements Server {
 
                 }
 
-                public void c(String s) {}
+                @Override
+				public void c(String s) {}
             });
         }
 
@@ -1859,7 +1862,8 @@ public final class CraftServer implements Server {
         }
     };
 
-    public Spigot spigot()
+    @Override
+	public Spigot spigot()
     {
         return spigot;
     }

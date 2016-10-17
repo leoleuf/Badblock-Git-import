@@ -17,7 +17,8 @@ public class BlockPressurePlateWeighted extends BlockPressurePlateAbstract {
         this.weight = i;
     }
 
-    protected int f(World world, BlockPosition blockposition) {
+    @Override
+	protected int f(World world, BlockPosition blockposition) {
         // CraftBukkit start
         //int i = Math.min(world.a(Entity.class, this.a(blockposition)).size(), this.b);
         int i = 0;
@@ -53,27 +54,33 @@ public class BlockPressurePlateWeighted extends BlockPressurePlateAbstract {
         }
     }
 
-    protected int e(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockPressurePlateWeighted.POWER)).intValue();
+    @Override
+	protected int e(IBlockData iblockdata) {
+        return iblockdata.get(BlockPressurePlateWeighted.POWER).intValue();
     }
 
-    protected IBlockData a(IBlockData iblockdata, int i) {
+    @Override
+	protected IBlockData a(IBlockData iblockdata, int i) {
         return iblockdata.set(BlockPressurePlateWeighted.POWER, Integer.valueOf(i));
     }
 
-    public int a(World world) {
+    @Override
+	public int a(World world) {
         return 10;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockPressurePlateWeighted.POWER, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockPressurePlateWeighted.POWER)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockPressurePlateWeighted.POWER).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockPressurePlateWeighted.POWER});
     }
 }

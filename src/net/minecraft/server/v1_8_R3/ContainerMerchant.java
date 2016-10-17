@@ -15,7 +15,7 @@ public class ContainerMerchant extends Container {
     @Override
     public CraftInventoryView getBukkitView() {
         if (bukkitEntity == null) {
-            bukkitEntity = new CraftInventoryView(this.player.player.getBukkitEntity(), new org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventoryMerchant((InventoryMerchant) f), this);
+            bukkitEntity = new CraftInventoryView(this.player.player.getBukkitEntity(), new org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventoryMerchant(f), this);
         }
         return bukkitEntity;
     }
@@ -27,7 +27,7 @@ public class ContainerMerchant extends Container {
         this.f = new InventoryMerchant(playerinventory.player, imerchant);
         this.a(new Slot(this.f, 0, 36, 53));
         this.a(new Slot(this.f, 1, 62, 53));
-        this.a((Slot) (new SlotMerchantResult(playerinventory.player, imerchant, this.f, 2, 120, 53)));
+        this.a((new SlotMerchantResult(playerinventory.player, imerchant, this.f, 2, 120, 53)));
         this.player = playerinventory; // CraftBukkit - save player
 
         int i;
@@ -48,15 +48,18 @@ public class ContainerMerchant extends Container {
         return this.f;
     }
 
-    public void addSlotListener(ICrafting icrafting) {
+    @Override
+	public void addSlotListener(ICrafting icrafting) {
         super.addSlotListener(icrafting);
     }
 
-    public void b() {
+    @Override
+	public void b() {
         super.b();
     }
 
-    public void a(IInventory iinventory) {
+    @Override
+	public void a(IInventory iinventory) {
         this.f.h();
         super.a(iinventory);
     }
@@ -65,13 +68,15 @@ public class ContainerMerchant extends Container {
         this.f.d(i);
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return this.merchant.v_() == entityhuman;
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
@@ -111,7 +116,8 @@ public class ContainerMerchant extends Container {
         return itemstack;
     }
 
-    public void b(EntityHuman entityhuman) {
+    @Override
+	public void b(EntityHuman entityhuman) {
         super.b(entityhuman);
         this.merchant.a_((EntityHuman) null);
         super.b(entityhuman);

@@ -16,7 +16,8 @@ public abstract class BlockPressurePlateAbstract extends Block {
         this.a(true);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         this.d(iblockaccess.getType(blockposition));
     }
 
@@ -32,35 +33,43 @@ public abstract class BlockPressurePlateAbstract extends Block {
 
     }
 
-    public int a(World world) {
+    @Override
+	public int a(World world) {
         return 20;
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
         return true;
     }
 
-    public boolean g() {
+    @Override
+	public boolean g() {
         return true;
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return this.m(world, blockposition.down());
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         if (!this.m(world, blockposition.down())) {
             this.b(world, blockposition, iblockdata, 0);
             world.setAir(blockposition);
@@ -69,12 +78,14 @@ public abstract class BlockPressurePlateAbstract extends Block {
     }
 
     private boolean m(World world, BlockPosition blockposition) {
-        return World.a((IBlockAccess) world, blockposition) || world.getType(blockposition).getBlock() instanceof BlockFence;
+        return World.a(world, blockposition) || world.getType(blockposition).getBlock() instanceof BlockFence;
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {}
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {}
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (!world.isClientSide) {
             int i = this.e(iblockdata);
 
@@ -85,7 +96,8 @@ public abstract class BlockPressurePlateAbstract extends Block {
         }
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
         if (!world.isClientSide) {
             int i = this.e(iblockdata);
 
@@ -122,13 +134,13 @@ public abstract class BlockPressurePlateAbstract extends Block {
         }
 
         if (!flag1 && flag) {
-            world.makeSound((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.1D, (double) blockposition.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
+            world.makeSound(blockposition.getX() + 0.5D, blockposition.getY() + 0.1D, blockposition.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
         } else if (flag1 && !flag) {
-            world.makeSound((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.1D, (double) blockposition.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
+            world.makeSound(blockposition.getX() + 0.5D, blockposition.getY() + 0.1D, blockposition.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
         }
 
         if (flag1) {
-            world.a(blockposition, (Block) this, this.a(world));
+            world.a(blockposition, this, this.a(world));
         }
 
     }
@@ -136,10 +148,11 @@ public abstract class BlockPressurePlateAbstract extends Block {
     protected AxisAlignedBB getBoundingBox(BlockPosition blockposition) {
         float f = 0.125F;
 
-        return new AxisAlignedBB((double) ((float) blockposition.getX() + 0.125F), (double) blockposition.getY(), (double) ((float) blockposition.getZ() + 0.125F), (double) ((float) (blockposition.getX() + 1) - 0.125F), (double) blockposition.getY() + 0.25D, (double) ((float) (blockposition.getZ() + 1) - 0.125F));
+        return new AxisAlignedBB(blockposition.getX() + 0.125F, blockposition.getY(), blockposition.getZ() + 0.125F, blockposition.getX() + 1 - 0.125F, blockposition.getY() + 0.25D, blockposition.getZ() + 1 - 0.125F);
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         if (this.e(iblockdata) > 0) {
             this.e(world, blockposition);
         }
@@ -152,19 +165,23 @@ public abstract class BlockPressurePlateAbstract extends Block {
         world.applyPhysics(blockposition.down(), this);
     }
 
-    public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    @Override
+	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
         return this.e(iblockdata);
     }
 
-    public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    @Override
+	public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
         return enumdirection == EnumDirection.UP ? this.e(iblockdata) : 0;
     }
 
-    public boolean isPowerSource() {
+    @Override
+	public boolean isPowerSource() {
         return true;
     }
 
-    public void j() {
+    @Override
+	public void j() {
         float f = 0.5F;
         float f1 = 0.125F;
         float f2 = 0.5F;
@@ -172,7 +189,8 @@ public abstract class BlockPressurePlateAbstract extends Block {
         this.a(0.0F, 0.375F, 0.0F, 1.0F, 0.625F, 1.0F);
     }
 
-    public int k() {
+    @Override
+	public int k() {
         return 1;
     }
 

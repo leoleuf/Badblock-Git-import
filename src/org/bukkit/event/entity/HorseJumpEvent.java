@@ -17,11 +17,13 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
         this.power = power;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 

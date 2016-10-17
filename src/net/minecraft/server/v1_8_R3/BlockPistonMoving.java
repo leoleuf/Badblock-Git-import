@@ -13,7 +13,8 @@ public class BlockPistonMoving extends BlockContainer {
         this.c(-1.0F);
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return null;
     }
 
@@ -21,7 +22,8 @@ public class BlockPistonMoving extends BlockContainer {
         return new TileEntityPiston(iblockdata, enumdirection, flag, flag1);
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityPiston) {
@@ -32,33 +34,39 @@ public class BlockPistonMoving extends BlockContainer {
 
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return false;
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition, EnumDirection enumdirection) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition, EnumDirection enumdirection) {
         return false;
     }
 
-    public void postBreak(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        BlockPosition blockposition1 = blockposition.shift(((EnumDirection) iblockdata.get(BlockPistonMoving.FACING)).opposite());
+    @Override
+	public void postBreak(World world, BlockPosition blockposition, IBlockData iblockdata) {
+        BlockPosition blockposition1 = blockposition.shift(iblockdata.get(BlockPistonMoving.FACING).opposite());
         IBlockData iblockdata1 = world.getType(blockposition1);
 
-        if (iblockdata1.getBlock() instanceof BlockPiston && ((Boolean) iblockdata1.get(BlockPiston.EXTENDED)).booleanValue()) {
+        if (iblockdata1.getBlock() instanceof BlockPiston && iblockdata1.get(BlockPiston.EXTENDED).booleanValue()) {
             world.setAir(blockposition1);
         }
 
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (!world.isClientSide && world.getTileEntity(blockposition) == null) {
             world.setAir(blockposition);
             return true;
@@ -67,11 +75,13 @@ public class BlockPistonMoving extends BlockContainer {
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return null;
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         if (!world.isClientSide) {
             TileEntityPiston tileentitypiston = this.e((IBlockAccess) world, blockposition);
 
@@ -83,18 +93,21 @@ public class BlockPistonMoving extends BlockContainer {
         }
     }
 
-    public MovingObjectPosition a(World world, BlockPosition blockposition, Vec3D vec3d, Vec3D vec3d1) {
+    @Override
+	public MovingObjectPosition a(World world, BlockPosition blockposition, Vec3D vec3d, Vec3D vec3d1) {
         return null;
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         if (!world.isClientSide) {
             world.getTileEntity(blockposition);
         }
 
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         TileEntityPiston tileentitypiston = this.e((IBlockAccess) world, blockposition);
 
         if (tileentitypiston == null) {
@@ -110,7 +123,8 @@ public class BlockPistonMoving extends BlockContainer {
         }
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         TileEntityPiston tileentitypiston = this.e(iblockaccess, blockposition);
 
         if (tileentitypiston != null) {
@@ -134,12 +148,12 @@ public class BlockPistonMoving extends BlockContainer {
 
             EnumDirection enumdirection = tileentitypiston.e();
 
-            this.minX = block.B() - (double) ((float) enumdirection.getAdjacentX() * f);
-            this.minY = block.D() - (double) ((float) enumdirection.getAdjacentY() * f);
-            this.minZ = block.F() - (double) ((float) enumdirection.getAdjacentZ() * f);
-            this.maxX = block.C() - (double) ((float) enumdirection.getAdjacentX() * f);
-            this.maxY = block.E() - (double) ((float) enumdirection.getAdjacentY() * f);
-            this.maxZ = block.G() - (double) ((float) enumdirection.getAdjacentZ() * f);
+            this.minX = block.B() - enumdirection.getAdjacentX() * f;
+            this.minY = block.D() - enumdirection.getAdjacentY() * f;
+            this.minZ = block.F() - enumdirection.getAdjacentZ() * f;
+            this.maxX = block.C() - enumdirection.getAdjacentX() * f;
+            this.maxY = block.E() - enumdirection.getAdjacentY() * f;
+            this.maxZ = block.G() - enumdirection.getAdjacentZ() * f;
         }
 
     }
@@ -159,21 +173,21 @@ public class BlockPistonMoving extends BlockContainer {
                 double d5 = axisalignedbb.f;
 
                 if (enumdirection.getAdjacentX() < 0) {
-                    d0 -= (double) ((float) enumdirection.getAdjacentX() * f);
+                    d0 -= enumdirection.getAdjacentX() * f;
                 } else {
-                    d3 -= (double) ((float) enumdirection.getAdjacentX() * f);
+                    d3 -= enumdirection.getAdjacentX() * f;
                 }
 
                 if (enumdirection.getAdjacentY() < 0) {
-                    d1 -= (double) ((float) enumdirection.getAdjacentY() * f);
+                    d1 -= enumdirection.getAdjacentY() * f;
                 } else {
-                    d4 -= (double) ((float) enumdirection.getAdjacentY() * f);
+                    d4 -= enumdirection.getAdjacentY() * f;
                 }
 
                 if (enumdirection.getAdjacentZ() < 0) {
-                    d2 -= (double) ((float) enumdirection.getAdjacentZ() * f);
+                    d2 -= enumdirection.getAdjacentZ() * f;
                 } else {
-                    d5 -= (double) ((float) enumdirection.getAdjacentZ() * f);
+                    d5 -= enumdirection.getAdjacentZ() * f;
                 }
 
                 return new AxisAlignedBB(d0, d1, d2, d3, d4, d5);
@@ -189,13 +203,15 @@ public class BlockPistonMoving extends BlockContainer {
         return tileentity instanceof TileEntityPiston ? (TileEntityPiston) tileentity : null;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockPistonMoving.FACING, BlockPistonExtension.b(i)).set(BlockPistonMoving.TYPE, (i & 8) > 0 ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((EnumDirection) iblockdata.get(BlockPistonMoving.FACING)).a();
+        int i = b0 | iblockdata.get(BlockPistonMoving.FACING).a();
 
         if (iblockdata.get(BlockPistonMoving.TYPE) == BlockPistonExtension.EnumPistonType.STICKY) {
             i |= 8;
@@ -204,7 +220,8 @@ public class BlockPistonMoving extends BlockContainer {
         return i;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockPistonMoving.FACING, BlockPistonMoving.TYPE});
     }
 }

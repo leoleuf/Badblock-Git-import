@@ -13,7 +13,8 @@ public class EntityEnderSignal extends Entity {
         this.setSize(0.25F, 0.25F);
     }
 
-    protected void h() {}
+    @Override
+	protected void h() {}
 
     public EntityEnderSignal(World world, double d0, double d1, double d2) {
         super(world);
@@ -23,20 +24,20 @@ public class EntityEnderSignal extends Entity {
     }
 
     public void a(BlockPosition blockposition) {
-        double d0 = (double) blockposition.getX();
+        double d0 = blockposition.getX();
         int i = blockposition.getY();
-        double d1 = (double) blockposition.getZ();
+        double d1 = blockposition.getZ();
         double d2 = d0 - this.locX;
         double d3 = d1 - this.locZ;
         float f = MathHelper.sqrt(d2 * d2 + d3 * d3);
 
         if (f > 12.0F) {
-            this.a = this.locX + d2 / (double) f * 12.0D;
-            this.c = this.locZ + d3 / (double) f * 12.0D;
+            this.a = this.locX + d2 / f * 12.0D;
+            this.c = this.locZ + d3 / f * 12.0D;
             this.b = this.locY + 8.0D;
         } else {
             this.a = d0;
-            this.b = (double) i;
+            this.b = i;
             this.c = d1;
         }
 
@@ -44,7 +45,8 @@ public class EntityEnderSignal extends Entity {
         this.e = this.random.nextInt(5) > 0;
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         this.P = this.locX;
         this.Q = this.locY;
         this.R = this.locZ;
@@ -56,7 +58,7 @@ public class EntityEnderSignal extends Entity {
 
         this.yaw = (float) (MathHelper.b(this.motX, this.motZ) * 180.0D / 3.1415927410125732D);
 
-        for (this.pitch = (float) (MathHelper.b(this.motY, (double) f) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
+        for (this.pitch = (float) (MathHelper.b(this.motY, f) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
             ;
         }
 
@@ -79,15 +81,15 @@ public class EntityEnderSignal extends Entity {
             double d1 = this.c - this.locZ;
             float f1 = (float) Math.sqrt(d0 * d0 + d1 * d1);
             float f2 = (float) MathHelper.b(d1, d0);
-            double d2 = (double) f + (double) (f1 - f) * 0.0025D;
+            double d2 = f + (f1 - f) * 0.0025D;
 
             if (f1 < 1.0F) {
                 d2 *= 0.8D;
                 this.motY *= 0.8D;
             }
 
-            this.motX = Math.cos((double) f2) * d2;
-            this.motZ = Math.sin((double) f2) * d2;
+            this.motX = Math.cos(f2) * d2;
+            this.motZ = Math.sin(f2) * d2;
             if (this.locY < this.b) {
                 this.motY += (1.0D - this.motY) * 0.014999999664723873D;
             } else {
@@ -99,10 +101,10 @@ public class EntityEnderSignal extends Entity {
 
         if (this.V()) {
             for (int i = 0; i < 4; ++i) {
-                this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX - this.motX * (double) f3, this.locY - this.motY * (double) f3, this.locZ - this.motZ * (double) f3, this.motX, this.motY, this.motZ, new int[0]);
+                this.world.addParticle(EnumParticle.WATER_BUBBLE, this.locX - this.motX * f3, this.locY - this.motY * f3, this.locZ - this.motZ * f3, this.motX, this.motY, this.motZ, new int[0]);
             }
         } else {
-            this.world.addParticle(EnumParticle.PORTAL, this.locX - this.motX * (double) f3 + this.random.nextDouble() * 0.6D - 0.3D, this.locY - this.motY * (double) f3 - 0.5D, this.locZ - this.motZ * (double) f3 + this.random.nextDouble() * 0.6D - 0.3D, this.motX, this.motY, this.motZ, new int[0]);
+            this.world.addParticle(EnumParticle.PORTAL, this.locX - this.motX * f3 + this.random.nextDouble() * 0.6D - 0.3D, this.locY - this.motY * f3 - 0.5D, this.locZ - this.motZ * f3 + this.random.nextDouble() * 0.6D - 0.3D, this.motX, this.motY, this.motZ, new int[0]);
         }
 
         if (!this.world.isClientSide) {
@@ -120,15 +122,19 @@ public class EntityEnderSignal extends Entity {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {}
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {}
 
-    public void a(NBTTagCompound nbttagcompound) {}
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {}
 
-    public float c(float f) {
+    @Override
+	public float c(float f) {
         return 1.0F;
     }
 
-    public boolean aD() {
+    @Override
+	public boolean aD() {
         return false;
     }
 }

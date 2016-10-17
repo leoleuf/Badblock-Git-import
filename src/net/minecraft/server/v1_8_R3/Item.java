@@ -31,15 +31,15 @@ public class Item {
     }
 
     public static Item getById(int i) {
-        return (Item) Item.REGISTRY.a(i);
+        return Item.REGISTRY.a(i);
     }
 
     public static Item getItemOf(Block block) {
-        return (Item) Item.a.get(block);
+        return Item.a.get(block);
     }
 
     public static Item d(String s) {
-        Item item = (Item) Item.REGISTRY.get(new MinecraftKey(s));
+        Item item = Item.REGISTRY.get(new MinecraftKey(s));
 
         if (item == null) {
             try {
@@ -211,7 +211,7 @@ public class Item {
         float f = entityhuman.pitch;
         float f1 = entityhuman.yaw;
         double d0 = entityhuman.locX;
-        double d1 = entityhuman.locY + (double) entityhuman.getHeadHeight();
+        double d1 = entityhuman.locY + entityhuman.getHeadHeight();
         double d2 = entityhuman.locZ;
         Vec3D vec3d = new Vec3D(d0, d1, d2);
         float f2 = MathHelper.cos(-f1 * 0.017453292F - 3.1415927F);
@@ -221,7 +221,7 @@ public class Item {
         float f6 = f3 * f4;
         float f7 = f2 * f4;
         double d3 = 5.0D;
-        Vec3D vec3d1 = vec3d.add((double) f6 * d3, (double) f5 * d3, (double) f7 * d3);
+        Vec3D vec3d1 = vec3d.add(f6 * d3, f5 * d3, f7 * d3);
 
         return world.rayTrace(vec3d, vec3d1, flag, !flag, false);
     }
@@ -248,51 +248,56 @@ public class Item {
     }
 
     public static void t() {
-        a(Blocks.STONE, (Item) (new ItemMultiTexture(Blocks.STONE, Blocks.STONE, new Function() {
+        a(Blocks.STONE, (new ItemMultiTexture(Blocks.STONE, Blocks.STONE, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockStone.EnumStoneVariant.a(itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("stone"));
-        a((Block) Blocks.GRASS, (Item) (new ItemWithAuxData(Blocks.GRASS, false)));
-        a(Blocks.DIRT, (Item) (new ItemMultiTexture(Blocks.DIRT, Blocks.DIRT, new Function() {
+        a(Blocks.GRASS, (new ItemWithAuxData(Blocks.GRASS, false)));
+        a(Blocks.DIRT, (new ItemMultiTexture(Blocks.DIRT, Blocks.DIRT, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockDirt.EnumDirtVariant.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("dirt"));
         c(Blocks.COBBLESTONE);
-        a(Blocks.PLANKS, (Item) (new ItemMultiTexture(Blocks.PLANKS, Blocks.PLANKS, new Function() {
+        a(Blocks.PLANKS, (new ItemMultiTexture(Blocks.PLANKS, Blocks.PLANKS, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockWood.EnumLogVariant.a(itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("wood"));
-        a(Blocks.SAPLING, (Item) (new ItemMultiTexture(Blocks.SAPLING, Blocks.SAPLING, new Function() {
+        a(Blocks.SAPLING, (new ItemMultiTexture(Blocks.SAPLING, Blocks.SAPLING, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockWood.EnumLogVariant.a(itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("sapling"));
         c(Blocks.BEDROCK);
-        a((Block) Blocks.SAND, (Item) (new ItemMultiTexture(Blocks.SAND, Blocks.SAND, new Function() {
+        a(Blocks.SAND, (new ItemMultiTexture(Blocks.SAND, Blocks.SAND, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockSand.EnumSandVariant.a(itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("sand"));
@@ -300,32 +305,35 @@ public class Item {
         c(Blocks.GOLD_ORE);
         c(Blocks.IRON_ORE);
         c(Blocks.COAL_ORE);
-        a(Blocks.LOG, (Item) (new ItemMultiTexture(Blocks.LOG, Blocks.LOG, new Function() {
+        a(Blocks.LOG, (new ItemMultiTexture(Blocks.LOG, Blocks.LOG, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockWood.EnumLogVariant.a(itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("log"));
-        a(Blocks.LOG2, (Item) (new ItemMultiTexture(Blocks.LOG2, Blocks.LOG2, new Function() {
+        a(Blocks.LOG2, (new ItemMultiTexture(Blocks.LOG2, Blocks.LOG2, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockWood.EnumLogVariant.a(itemstack.getData() + 4).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("log"));
-        a((Block) Blocks.LEAVES, (Item) (new ItemLeaves(Blocks.LEAVES)).b("leaves"));
-        a((Block) Blocks.LEAVES2, (Item) (new ItemLeaves(Blocks.LEAVES2)).b("leaves"));
-        a(Blocks.SPONGE, (Item) (new ItemMultiTexture(Blocks.SPONGE, Blocks.SPONGE, new Function() {
+        a(Blocks.LEAVES, (new ItemLeaves(Blocks.LEAVES)).b("leaves"));
+        a(Blocks.LEAVES2, (new ItemLeaves(Blocks.LEAVES2)).b("leaves"));
+        a(Blocks.SPONGE, (new ItemMultiTexture(Blocks.SPONGE, Blocks.SPONGE, new Function() {
             public String a(ItemStack itemstack) {
                 return (itemstack.getData() & 1) == 1 ? "wet" : "dry";
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("sponge"));
@@ -333,47 +341,50 @@ public class Item {
         c(Blocks.LAPIS_ORE);
         c(Blocks.LAPIS_BLOCK);
         c(Blocks.DISPENSER);
-        a(Blocks.SANDSTONE, (Item) (new ItemMultiTexture(Blocks.SANDSTONE, Blocks.SANDSTONE, new Function() {
+        a(Blocks.SANDSTONE, (new ItemMultiTexture(Blocks.SANDSTONE, Blocks.SANDSTONE, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockSandStone.EnumSandstoneVariant.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("sandStone"));
         c(Blocks.NOTEBLOCK);
         c(Blocks.GOLDEN_RAIL);
         c(Blocks.DETECTOR_RAIL);
-        a((Block) Blocks.STICKY_PISTON, (Item) (new ItemPiston(Blocks.STICKY_PISTON)));
+        a(Blocks.STICKY_PISTON, (new ItemPiston(Blocks.STICKY_PISTON)));
         c(Blocks.WEB);
-        a((Block) Blocks.TALLGRASS, (Item) (new ItemWithAuxData(Blocks.TALLGRASS, true)).a(new String[] { "shrub", "grass", "fern"}));
-        c((Block) Blocks.DEADBUSH);
-        a((Block) Blocks.PISTON, (Item) (new ItemPiston(Blocks.PISTON)));
-        a(Blocks.WOOL, (Item) (new ItemCloth(Blocks.WOOL)).b("cloth"));
-        a((Block) Blocks.YELLOW_FLOWER, (Item) (new ItemMultiTexture(Blocks.YELLOW_FLOWER, Blocks.YELLOW_FLOWER, new Function() {
+        a(Blocks.TALLGRASS, (new ItemWithAuxData(Blocks.TALLGRASS, true)).a(new String[] { "shrub", "grass", "fern"}));
+        c(Blocks.DEADBUSH);
+        a(Blocks.PISTON, (new ItemPiston(Blocks.PISTON)));
+        a(Blocks.WOOL, (new ItemCloth(Blocks.WOOL)).b("cloth"));
+        a(Blocks.YELLOW_FLOWER, (new ItemMultiTexture(Blocks.YELLOW_FLOWER, Blocks.YELLOW_FLOWER, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockFlowers.EnumFlowerVarient.a(BlockFlowers.EnumFlowerType.YELLOW, itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("flower"));
-        a((Block) Blocks.RED_FLOWER, (Item) (new ItemMultiTexture(Blocks.RED_FLOWER, Blocks.RED_FLOWER, new Function() {
+        a(Blocks.RED_FLOWER, (new ItemMultiTexture(Blocks.RED_FLOWER, Blocks.RED_FLOWER, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockFlowers.EnumFlowerVarient.a(BlockFlowers.EnumFlowerType.RED, itemstack.getData()).d();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("rose"));
-        c((Block) Blocks.BROWN_MUSHROOM);
-        c((Block) Blocks.RED_MUSHROOM);
+        c(Blocks.BROWN_MUSHROOM);
+        c(Blocks.RED_MUSHROOM);
         c(Blocks.GOLD_BLOCK);
         c(Blocks.IRON_BLOCK);
-        a((Block) Blocks.STONE_SLAB, (Item) (new ItemStep(Blocks.STONE_SLAB, Blocks.STONE_SLAB, Blocks.DOUBLE_STONE_SLAB)).b("stoneSlab"));
+        a(Blocks.STONE_SLAB, (new ItemStep(Blocks.STONE_SLAB, Blocks.STONE_SLAB, Blocks.DOUBLE_STONE_SLAB)).b("stoneSlab"));
         c(Blocks.BRICK_BLOCK);
         c(Blocks.TNT);
         c(Blocks.BOOKSHELF);
@@ -382,7 +393,7 @@ public class Item {
         c(Blocks.TORCH);
         c(Blocks.MOB_SPAWNER);
         c(Blocks.OAK_STAIRS);
-        c((Block) Blocks.CHEST);
+        c(Blocks.CHEST);
         c(Blocks.DIAMOND_ORE);
         c(Blocks.DIAMOND_BLOCK);
         c(Blocks.CRAFTING_TABLE);
@@ -398,10 +409,10 @@ public class Item {
         c(Blocks.REDSTONE_ORE);
         c(Blocks.REDSTONE_TORCH);
         c(Blocks.STONE_BUTTON);
-        a(Blocks.SNOW_LAYER, (Item) (new ItemSnow(Blocks.SNOW_LAYER)));
+        a(Blocks.SNOW_LAYER, (new ItemSnow(Blocks.SNOW_LAYER)));
         c(Blocks.ICE);
         c(Blocks.SNOW);
-        c((Block) Blocks.CACTUS);
+        c(Blocks.CACTUS);
         c(Blocks.CLAY);
         c(Blocks.JUKEBOX);
         c(Blocks.FENCE);
@@ -416,21 +427,23 @@ public class Item {
         c(Blocks.GLOWSTONE);
         c(Blocks.LIT_PUMPKIN);
         c(Blocks.TRAPDOOR);
-        a(Blocks.MONSTER_EGG, (Item) (new ItemMultiTexture(Blocks.MONSTER_EGG, Blocks.MONSTER_EGG, new Function() {
+        a(Blocks.MONSTER_EGG, (new ItemMultiTexture(Blocks.MONSTER_EGG, Blocks.MONSTER_EGG, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockMonsterEggs.EnumMonsterEggVarient.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("monsterStoneEgg"));
-        a(Blocks.STONEBRICK, (Item) (new ItemMultiTexture(Blocks.STONEBRICK, Blocks.STONEBRICK, new Function() {
+        a(Blocks.STONEBRICK, (new ItemMultiTexture(Blocks.STONEBRICK, Blocks.STONEBRICK, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockSmoothBrick.EnumStonebrickType.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("stonebricksmooth"));
@@ -439,7 +452,7 @@ public class Item {
         c(Blocks.IRON_BARS);
         c(Blocks.GLASS_PANE);
         c(Blocks.MELON_BLOCK);
-        a(Blocks.VINE, (Item) (new ItemWithAuxData(Blocks.VINE, false)));
+        a(Blocks.VINE, (new ItemWithAuxData(Blocks.VINE, false)));
         c(Blocks.FENCE_GATE);
         c(Blocks.SPRUCE_FENCE_GATE);
         c(Blocks.BIRCH_FENCE_GATE);
@@ -448,8 +461,8 @@ public class Item {
         c(Blocks.ACACIA_FENCE_GATE);
         c(Blocks.BRICK_STAIRS);
         c(Blocks.STONE_BRICK_STAIRS);
-        c((Block) Blocks.MYCELIUM);
-        a(Blocks.WATERLILY, (Item) (new ItemWaterLily(Blocks.WATERLILY)));
+        c(Blocks.MYCELIUM);
+        a(Blocks.WATERLILY, (new ItemWaterLily(Blocks.WATERLILY)));
         c(Blocks.NETHER_BRICK);
         c(Blocks.NETHER_BRICK_FENCE);
         c(Blocks.NETHER_BRICK_STAIRS);
@@ -458,82 +471,86 @@ public class Item {
         c(Blocks.END_STONE);
         c(Blocks.DRAGON_EGG);
         c(Blocks.REDSTONE_LAMP);
-        a((Block) Blocks.WOODEN_SLAB, (Item) (new ItemStep(Blocks.WOODEN_SLAB, Blocks.WOODEN_SLAB, Blocks.DOUBLE_WOODEN_SLAB)).b("woodSlab"));
+        a(Blocks.WOODEN_SLAB, (new ItemStep(Blocks.WOODEN_SLAB, Blocks.WOODEN_SLAB, Blocks.DOUBLE_WOODEN_SLAB)).b("woodSlab"));
         c(Blocks.SANDSTONE_STAIRS);
         c(Blocks.EMERALD_ORE);
         c(Blocks.ENDER_CHEST);
-        c((Block) Blocks.TRIPWIRE_HOOK);
+        c(Blocks.TRIPWIRE_HOOK);
         c(Blocks.EMERALD_BLOCK);
         c(Blocks.SPRUCE_STAIRS);
         c(Blocks.BIRCH_STAIRS);
         c(Blocks.JUNGLE_STAIRS);
         c(Blocks.COMMAND_BLOCK);
-        c((Block) Blocks.BEACON);
-        a(Blocks.COBBLESTONE_WALL, (Item) (new ItemMultiTexture(Blocks.COBBLESTONE_WALL, Blocks.COBBLESTONE_WALL, new Function() {
+        c(Blocks.BEACON);
+        a(Blocks.COBBLESTONE_WALL, (new ItemMultiTexture(Blocks.COBBLESTONE_WALL, Blocks.COBBLESTONE_WALL, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockCobbleWall.EnumCobbleVariant.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("cobbleWall"));
         c(Blocks.WOODEN_BUTTON);
-        a(Blocks.ANVIL, (Item) (new ItemAnvil(Blocks.ANVIL)).b("anvil"));
+        a(Blocks.ANVIL, (new ItemAnvil(Blocks.ANVIL)).b("anvil"));
         c(Blocks.TRAPPED_CHEST);
         c(Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE);
         c(Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE);
-        c((Block) Blocks.DAYLIGHT_DETECTOR);
+        c(Blocks.DAYLIGHT_DETECTOR);
         c(Blocks.REDSTONE_BLOCK);
         c(Blocks.QUARTZ_ORE);
-        c((Block) Blocks.HOPPER);
-        a(Blocks.QUARTZ_BLOCK, (Item) (new ItemMultiTexture(Blocks.QUARTZ_BLOCK, Blocks.QUARTZ_BLOCK, new String[] { "default", "chiseled", "lines"})).b("quartzBlock"));
+        c(Blocks.HOPPER);
+        a(Blocks.QUARTZ_BLOCK, (new ItemMultiTexture(Blocks.QUARTZ_BLOCK, Blocks.QUARTZ_BLOCK, new String[] { "default", "chiseled", "lines"})).b("quartzBlock"));
         c(Blocks.QUARTZ_STAIRS);
         c(Blocks.ACTIVATOR_RAIL);
         c(Blocks.DROPPER);
-        a(Blocks.STAINED_HARDENED_CLAY, (Item) (new ItemCloth(Blocks.STAINED_HARDENED_CLAY)).b("clayHardenedStained"));
+        a(Blocks.STAINED_HARDENED_CLAY, (new ItemCloth(Blocks.STAINED_HARDENED_CLAY)).b("clayHardenedStained"));
         c(Blocks.BARRIER);
         c(Blocks.IRON_TRAPDOOR);
         c(Blocks.HAY_BLOCK);
-        a(Blocks.CARPET, (Item) (new ItemCloth(Blocks.CARPET)).b("woolCarpet"));
+        a(Blocks.CARPET, (new ItemCloth(Blocks.CARPET)).b("woolCarpet"));
         c(Blocks.HARDENED_CLAY);
         c(Blocks.COAL_BLOCK);
         c(Blocks.PACKED_ICE);
         c(Blocks.ACACIA_STAIRS);
         c(Blocks.DARK_OAK_STAIRS);
         c(Blocks.SLIME);
-        a((Block) Blocks.DOUBLE_PLANT, (Item) (new ItemTallPlant(Blocks.DOUBLE_PLANT, Blocks.DOUBLE_PLANT, new Function() {
+        a(Blocks.DOUBLE_PLANT, (new ItemTallPlant(Blocks.DOUBLE_PLANT, Blocks.DOUBLE_PLANT, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockTallPlant.EnumTallFlowerVariants.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("doublePlant"));
-        a((Block) Blocks.STAINED_GLASS, (Item) (new ItemCloth(Blocks.STAINED_GLASS)).b("stainedGlass"));
-        a((Block) Blocks.STAINED_GLASS_PANE, (Item) (new ItemCloth(Blocks.STAINED_GLASS_PANE)).b("stainedGlassPane"));
-        a(Blocks.PRISMARINE, (Item) (new ItemMultiTexture(Blocks.PRISMARINE, Blocks.PRISMARINE, new Function() {
+        a(Blocks.STAINED_GLASS, (new ItemCloth(Blocks.STAINED_GLASS)).b("stainedGlass"));
+        a(Blocks.STAINED_GLASS_PANE, (new ItemCloth(Blocks.STAINED_GLASS_PANE)).b("stainedGlassPane"));
+        a(Blocks.PRISMARINE, (new ItemMultiTexture(Blocks.PRISMARINE, Blocks.PRISMARINE, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockPrismarine.EnumPrismarineVariant.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("prismarine"));
         c(Blocks.SEA_LANTERN);
-        a(Blocks.RED_SANDSTONE, (Item) (new ItemMultiTexture(Blocks.RED_SANDSTONE, Blocks.RED_SANDSTONE, new Function() {
+        a(Blocks.RED_SANDSTONE, (new ItemMultiTexture(Blocks.RED_SANDSTONE, Blocks.RED_SANDSTONE, new Function() {
             public String a(ItemStack itemstack) {
                 return BlockRedSandstone.EnumRedSandstoneVariant.a(itemstack.getData()).c();
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         })).b("redSandStone"));
         c(Blocks.RED_SANDSTONE_STAIRS);
-        a((Block) Blocks.STONE_SLAB2, (Item) (new ItemStep(Blocks.STONE_SLAB2, Blocks.STONE_SLAB2, Blocks.DOUBLE_STONE_SLAB2)).b("stoneSlab2"));
+        a(Blocks.STONE_SLAB2, (new ItemStep(Blocks.STONE_SLAB2, Blocks.STONE_SLAB2, Blocks.DOUBLE_STONE_SLAB2)).b("stoneSlab2"));
         a(256, "iron_shovel", (new ItemSpade(Item.EnumToolMaterial.IRON)).c("shovelIron"));
         a(257, "iron_pickaxe", (new ItemPickaxe(Item.EnumToolMaterial.IRON)).c("pickaxeIron"));
         a(258, "iron_axe", (new ItemAxe(Item.EnumToolMaterial.IRON)).c("hatchetIron"));
@@ -726,11 +743,11 @@ public class Item {
     }
 
     private static void c(Block block) {
-        a(block, (Item) (new ItemBlock(block)));
+        a(block, (new ItemBlock(block)));
     }
 
     protected static void a(Block block, Item item) {
-        a(Block.getId(block), (MinecraftKey) Block.REGISTRY.c(block), item);
+        a(Block.getId(block), Block.REGISTRY.c(block), item);
         Item.a.put(block, item);
     }
 

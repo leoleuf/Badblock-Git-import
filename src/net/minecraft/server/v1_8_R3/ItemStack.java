@@ -240,7 +240,7 @@ public final class ItemStack {
     }
 
     public NBTTagCompound save(NBTTagCompound nbttagcompound) {
-        MinecraftKey minecraftkey = (MinecraftKey) Item.REGISTRY.c(this.item);
+        MinecraftKey minecraftkey = Item.REGISTRY.c(this.item);
 
         nbttagcompound.setString("id", minecraftkey == null ? "minecraft:air" : minecraftkey.toString());
         nbttagcompound.setByte("Count", (byte) this.count);
@@ -421,7 +421,7 @@ public final class ItemStack {
     }
 
     public void a(EntityLiving entityliving, EntityHuman entityhuman) {
-        boolean flag = this.item.a(this, entityliving, (EntityLiving) entityhuman);
+        boolean flag = this.item.a(this, entityliving, entityhuman);
 
         if (flag) {
             entityhuman.b(StatisticList.USE_ITEM_COUNT[Item.getId(this.item)]);
@@ -496,7 +496,8 @@ public final class ItemStack {
         return itemstack == null ? null : itemstack.cloneItemStack();
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.count + "x" + this.item.getName() + "@" + this.damage;
     }
 
@@ -539,7 +540,7 @@ public final class ItemStack {
         } else if (flag) {
             NBTTagCompound nbttagcompound = new NBTTagCompound();
 
-            this.a(s, (NBTBase) nbttagcompound);
+            this.a(s, nbttagcompound);
             return nbttagcompound;
         } else {
             return null;
@@ -623,7 +624,7 @@ public final class ItemStack {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         nbttagcompound.setShort("id", (short) enchantment.id);
-        nbttagcompound.setShort("lvl", (short) ((byte) i));
+        nbttagcompound.setShort("lvl", ((byte) i));
         nbttaglist.add(nbttagcompound);
     }
 

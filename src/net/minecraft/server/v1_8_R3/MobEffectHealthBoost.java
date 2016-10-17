@@ -6,7 +6,8 @@ public class MobEffectHealthBoost extends MobEffectList {
         super(i, minecraftkey, flag, j);
     }
 
-    public void a(EntityLiving entityliving, AttributeMapBase attributemapbase, int i) {
+    @Override
+	public void a(EntityLiving entityliving, AttributeMapBase attributemapbase, int i) {
         super.a(entityliving, attributemapbase, i);
         if (entityliving.getHealth() > entityliving.getMaxHealth()) {
             entityliving.setHealth(entityliving.getMaxHealth());

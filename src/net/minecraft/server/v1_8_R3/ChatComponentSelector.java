@@ -14,7 +14,8 @@ public class ChatComponentSelector extends ChatBaseComponent {
         return this.b;
     }
 
-    public String getText() {
+    @Override
+	public String getText() {
         return this.b;
     }
 
@@ -33,7 +34,8 @@ public class ChatComponentSelector extends ChatBaseComponent {
         return chatcomponentselector;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof ChatComponentSelector)) {
@@ -45,11 +47,13 @@ public class ChatComponentSelector extends ChatBaseComponent {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "SelectorComponent{pattern=\'" + this.b + '\'' + ", siblings=" + this.a + ", style=" + this.getChatModifier() + '}';
     }
 
-    public IChatBaseComponent f() {
+    @Override
+	public IChatBaseComponent f() {
         return this.h();
     }
 }

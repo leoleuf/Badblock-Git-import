@@ -9,11 +9,13 @@ import com.google.common.collect.Lists;
 public class WorldGenStrongholdPieces {
 
     private static final WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight[] b = new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight[] { new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdStairs.class, 40, 0), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdPrison.class, 5, 5), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdLeftTurn.class, 20, 0), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdRightTurn.class, 20, 0), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdRoomCrossing.class, 10, 6), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdStairsStraight.class, 5, 5), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdStairs2.class, 5, 5), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdCrossing.class, 5, 4), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdChestCorridor.class, 5, 4), new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdLibrary.class, 10, 2) {
-        public boolean a(int i) {
+        @Override
+		public boolean a(int i) {
             return super.a(i) && i > 4;
         }
     }, new WorldGenStrongholdPieces.WorldGenStrongholdPieceWeight(WorldGenStrongholdPieces.WorldGenStrongholdPortalRoom.class, 20, 1) {
-        public boolean a(int i) {
+        @Override
+		public boolean a(int i) {
             return super.a(i) && i > 5;
         }
     }};
@@ -80,7 +82,7 @@ public class WorldGenStrongholdPieces {
         } else if (oclass == WorldGenStrongholdPieces.WorldGenStrongholdLeftTurn.class) {
             object = WorldGenStrongholdPieces.WorldGenStrongholdLeftTurn.a(list, random, i, j, k, enumdirection, l);
         } else if (oclass == WorldGenStrongholdPieces.WorldGenStrongholdRightTurn.class) {
-            object = WorldGenStrongholdPieces.WorldGenStrongholdRightTurn.a(list, random, i, j, k, enumdirection, l);
+            object = WorldGenStrongholdLeftTurn.a(list, random, i, j, k, enumdirection, l);
         } else if (oclass == WorldGenStrongholdPieces.WorldGenStrongholdRoomCrossing.class) {
             object = WorldGenStrongholdPieces.WorldGenStrongholdRoomCrossing.a(list, random, i, j, k, enumdirection, l);
         } else if (oclass == WorldGenStrongholdPieces.WorldGenStrongholdStairsStraight.class) {
@@ -234,7 +236,8 @@ public class WorldGenStrongholdPieces {
 
         private WorldGenStrongholdStones() {}
 
-        public void a(Random random, int i, int j, int k, boolean flag) {
+        @Override
+		public void a(Random random, int i, int j, int k, boolean flag) {
             if (flag) {
                 float f = random.nextFloat();
 
@@ -270,17 +273,20 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Mob", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getBoolean("Mob");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             if (structurepiece != null) {
                 ((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece).b = this;
             }
@@ -293,7 +299,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdPortalRoom(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             this.a(world, structureboundingbox, 0, 0, 0, 10, 7, 15, false, random, WorldGenStrongholdPieces.e);
             this.a(world, random, structureboundingbox, WorldGenStrongholdPieces.WorldGenStrongholdPiece.WorldGenStrongholdPiece$WorldGenStrongholdDoorType.GRATES, 4, 1, 0);
             byte b0 = 6;
@@ -376,7 +383,7 @@ public class WorldGenStrongholdPieces {
                 int j1 = this.d(3);
                 BlockPosition blockposition = new BlockPosition(this.a(5, 6), j1, this.b(5, 6));
 
-                if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+                if (structureboundingbox.b(blockposition)) {
                     this.a = true;
                     world.setTypeAndData(blockposition, Blocks.MOB_SPAWNER.getBlockData(), 2);
                     TileEntity tileentity = world.getTileEntity(blockposition);
@@ -411,7 +418,8 @@ public class WorldGenStrongholdPieces {
             this.e = random.nextInt(3) > 0;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("leftLow", this.a);
             nbttagcompound.setBoolean("leftHigh", this.b);
@@ -419,7 +427,8 @@ public class WorldGenStrongholdPieces {
             nbttagcompound.setBoolean("rightHigh", this.e);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getBoolean("leftLow");
             this.b = nbttagcompound.getBoolean("leftHigh");
@@ -427,7 +436,8 @@ public class WorldGenStrongholdPieces {
             this.e = nbttagcompound.getBoolean("rightHigh");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             int i = 3;
             int j = 5;
 
@@ -461,7 +471,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdCrossing(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -518,12 +529,14 @@ public class WorldGenStrongholdPieces {
             this.b = structureboundingbox.d() > 6;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Tall", this.b);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Tall");
         }
@@ -541,7 +554,8 @@ public class WorldGenStrongholdPieces {
             return new WorldGenStrongholdPieces.WorldGenStrongholdLibrary(l, random, structureboundingbox, enumdirection);
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -653,7 +667,8 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
         }
 
@@ -663,7 +678,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdPrison(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -702,17 +718,20 @@ public class WorldGenStrongholdPieces {
             this.a = random.nextInt(5);
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("Type", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getInt("Type");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 4, 1);
             this.b((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 4);
             this.c((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 4);
@@ -724,7 +743,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdRoomCrossing(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -825,7 +845,8 @@ public class WorldGenStrongholdPieces {
 
         public WorldGenStrongholdRightTurn() {}
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             if (this.m != EnumDirection.NORTH && this.m != EnumDirection.EAST) {
                 this.b((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
             } else {
@@ -834,7 +855,8 @@ public class WorldGenStrongholdPieces {
 
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -862,7 +884,8 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             if (this.m != EnumDirection.NORTH && this.m != EnumDirection.EAST) {
                 this.c((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
             } else {
@@ -877,7 +900,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdLeftTurn(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -905,7 +929,8 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
         }
 
@@ -915,7 +940,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdStairsStraight(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -954,17 +980,20 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Chest", this.b);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Chest");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
         }
 
@@ -974,7 +1003,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdChestCorridor(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -991,7 +1021,7 @@ public class WorldGenStrongholdPieces {
                     this.a(world, Blocks.STONE_SLAB.fromLegacyData(BlockDoubleStepAbstract.EnumStoneSlabVariant.SMOOTHBRICK.a()), 2, 1, i, structureboundingbox);
                 }
 
-                if (!this.b && structureboundingbox.b((BaseBlockPosition) (new BlockPosition(this.a(3, 3), this.d(2), this.b(3, 3))))) {
+                if (!this.b && structureboundingbox.b((new BlockPosition(this.a(3, 3), this.d(2), this.b(3, 3))))) {
                     this.b = true;
                     this.a(world, structureboundingbox, random, 3, 2, 3, StructurePieceTreasure.a(WorldGenStrongholdPieces.WorldGenStrongholdChestCorridor.a, new StructurePieceTreasure[] { Items.ENCHANTED_BOOK.b(random)}), 2 + random.nextInt(2));
                 }
@@ -1017,19 +1047,22 @@ public class WorldGenStrongholdPieces {
             this.b = random.nextInt(2) == 0;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Left", this.a);
             nbttagcompound.setBoolean("Right", this.b);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getBoolean("Left");
             this.b = nbttagcompound.getBoolean("Right");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             this.a((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 1);
             if (this.a) {
                 this.b((WorldGenStrongholdPieces.WorldGenStrongholdStart) structurepiece, list, random, 1, 2);
@@ -1047,7 +1080,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdStairs(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -1083,7 +1117,8 @@ public class WorldGenStrongholdPieces {
             super(0, random, j, k);
         }
 
-        public BlockPosition a() {
+        @Override
+		public BlockPosition a() {
             return this.b != null ? this.b.a() : super.a();
         }
     }
@@ -1119,17 +1154,20 @@ public class WorldGenStrongholdPieces {
             this.l = structureboundingbox;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Source", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getBoolean("Source");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             if (this.a) {
                 WorldGenStrongholdPieces.d = WorldGenStrongholdPieces.WorldGenStrongholdCrossing.class;
             }
@@ -1143,7 +1181,8 @@ public class WorldGenStrongholdPieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenStrongholdPieces.WorldGenStrongholdStairs2(l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -1185,12 +1224,14 @@ public class WorldGenStrongholdPieces {
             this.a = enumdirection != EnumDirection.NORTH && enumdirection != EnumDirection.SOUTH ? structureboundingbox.c() : structureboundingbox.e();
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("Steps", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getInt("Steps");
         }
@@ -1216,7 +1257,8 @@ public class WorldGenStrongholdPieces {
             }
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.a(world, structureboundingbox)) {
                 return false;
             } else {
@@ -1260,11 +1302,13 @@ public class WorldGenStrongholdPieces {
             this.d = WorldGenStrongholdPieces.WorldGenStrongholdPiece.WorldGenStrongholdPiece$WorldGenStrongholdDoorType.OPENING;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             nbttagcompound.setString("EntryDoor", this.d.name());
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             this.d = WorldGenStrongholdPieces.WorldGenStrongholdPiece.WorldGenStrongholdPiece$WorldGenStrongholdDoorType.valueOf(nbttagcompound.getString("EntryDoor"));
         }
 

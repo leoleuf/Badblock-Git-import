@@ -12,19 +12,23 @@ public class CommandReplaceItem extends CommandAbstract {
 
     public CommandReplaceItem() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "replaceitem";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.replaceitem.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.replaceitem.usage", new Object[0]);
         } else {
@@ -131,19 +135,21 @@ public class CommandReplaceItem extends CommandAbstract {
         if (!CommandReplaceItem.a.containsKey(s)) {
             throw new CommandException("commands.generic.parameter.invalid", new Object[] { s});
         } else {
-            return ((Integer) CommandReplaceItem.a.get(s)).intValue();
+            return CommandReplaceItem.a.get(s).intValue();
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, new String[] { "entity", "block"}) : (astring.length == 2 && astring[0].equals("entity") ? a(astring, this.d()) : (astring.length >= 2 && astring.length <= 4 && astring[0].equals("block") ? a(astring, 1, blockposition) : ((astring.length != 3 || !astring[0].equals("entity")) && (astring.length != 5 || !astring[0].equals("block")) ? ((astring.length != 4 || !astring[0].equals("entity")) && (astring.length != 6 || !astring[0].equals("block")) ? null : a(astring, (Collection) Item.REGISTRY.keySet())) : a(astring, (Collection) CommandReplaceItem.a.keySet()))));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, new String[] { "entity", "block"}) : (astring.length == 2 && astring[0].equals("entity") ? a(astring, this.d()) : (astring.length >= 2 && astring.length <= 4 && astring[0].equals("block") ? a(astring, 1, blockposition) : ((astring.length != 3 || !astring[0].equals("entity")) && (astring.length != 5 || !astring[0].equals("block")) ? ((astring.length != 4 || !astring[0].equals("entity")) && (astring.length != 6 || !astring[0].equals("block")) ? null : a(astring, Item.REGISTRY.keySet())) : a(astring, CommandReplaceItem.a.keySet()))));
     }
 
     protected String[] d() {
         return MinecraftServer.getServer().getPlayers();
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return astring.length > 0 && astring[0].equals("entity") && i == 1;
     }
 

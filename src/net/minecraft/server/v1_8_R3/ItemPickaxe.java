@@ -12,11 +12,13 @@ public class ItemPickaxe extends ItemTool {
         super(2.0F, item_enumtoolmaterial, ItemPickaxe.c);
     }
 
-    public boolean canDestroySpecialBlock(Block block) {
+    @Override
+	public boolean canDestroySpecialBlock(Block block) {
         return block == Blocks.OBSIDIAN ? this.b.d() == 3 : (block != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ? (block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ? (block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ? (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ? (block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ? (block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ? (block.getMaterial() == Material.STONE ? true : (block.getMaterial() == Material.ORE ? true : block.getMaterial() == Material.HEAVY)) : this.b.d() >= 2) : this.b.d() >= 1) : this.b.d() >= 1) : this.b.d() >= 2) : this.b.d() >= 2) : this.b.d() >= 2);
     }
 
-    public float getDestroySpeed(ItemStack itemstack, Block block) {
+    @Override
+	public float getDestroySpeed(ItemStack itemstack, Block block) {
         return block.getMaterial() != Material.ORE && block.getMaterial() != Material.HEAVY && block.getMaterial() != Material.STONE ? super.getDestroySpeed(itemstack, block) : this.a;
     }
 }

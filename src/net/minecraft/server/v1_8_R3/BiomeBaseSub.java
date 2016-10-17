@@ -33,31 +33,38 @@ public class BiomeBaseSub extends BiomeBase {
         this.ao = biomebase.ao + 0.2F;
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         this.aE.as.a(world, random, this, blockposition);
     }
 
-    public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
+    @Override
+	public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
         this.aE.a(world, random, chunksnapshot, i, j, d0);
     }
 
-    public float g() {
+    @Override
+	public float g() {
         return this.aE.g();
     }
 
-    public WorldGenTreeAbstract a(Random random) {
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
         return this.aE.a(random);
     }
 
-    public Class<? extends BiomeBase> l() {
+    @Override
+	public Class<? extends BiomeBase> l() {
         return this.aE.l();
     }
 
-    public boolean a(BiomeBase biomebase) {
+    @Override
+	public boolean a(BiomeBase biomebase) {
         return this.aE.a(biomebase);
     }
 
-    public BiomeBase.EnumTemperature m() {
+    @Override
+	public BiomeBase.EnumTemperature m() {
         return this.aE.m();
     }
 }

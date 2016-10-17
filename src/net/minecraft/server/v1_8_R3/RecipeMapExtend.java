@@ -6,7 +6,8 @@ public class RecipeMapExtend extends ShapedRecipes {
         super(3, 3, new ItemStack[] { new ItemStack(Items.PAPER), new ItemStack(Items.PAPER), new ItemStack(Items.PAPER), new ItemStack(Items.PAPER), new ItemStack(Items.FILLED_MAP, 0, 32767), new ItemStack(Items.PAPER), new ItemStack(Items.PAPER), new ItemStack(Items.PAPER), new ItemStack(Items.PAPER)}, new ItemStack(Items.MAP, 0, 0));
     }
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         if (!super.a(inventorycrafting, world)) {
             return false;
         } else {
@@ -30,7 +31,8 @@ public class RecipeMapExtend extends ShapedRecipes {
         }
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         ItemStack itemstack = null;
 
         for (int i = 0; i < inventorycrafting.getSize() && itemstack == null; ++i) {

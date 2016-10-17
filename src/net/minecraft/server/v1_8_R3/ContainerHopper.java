@@ -47,14 +47,16 @@ public class ContainerHopper extends Container {
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         if (!this.checkReachable) return true; // CraftBukkit
         return this.hopper.a(entityhuman);
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
@@ -78,7 +80,8 @@ public class ContainerHopper extends Container {
         return itemstack;
     }
 
-    public void b(EntityHuman entityhuman) {
+    @Override
+	public void b(EntityHuman entityhuman) {
         super.b(entityhuman);
         this.hopper.closeContainer(entityhuman);
     }

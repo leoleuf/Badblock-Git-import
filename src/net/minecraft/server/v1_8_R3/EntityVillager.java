@@ -65,7 +65,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         }
     }
 
-    protected void n() {
+    @Override
+	protected void n() {
         if (this.getProfession() == 0) {
             this.goalSelector.a(8, new PathfinderGoalVillagerFarm(this, 0.6D));
         }
@@ -73,12 +74,14 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         super.n();
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.5D);
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         if (--this.profession <= 0) {
             BlockPosition blockposition = new BlockPosition(this);
 
@@ -90,7 +93,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
             } else {
                 BlockPosition blockposition1 = this.village.a();
 
-                this.a(blockposition1, (int) ((float) this.village.b() * 1.0F));
+                this.a(blockposition1, (int) (this.village.b() * 1.0F));
                 if (this.bz) {
                     this.bz = false;
                     this.village.b(5);
@@ -127,7 +130,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         super.E();
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
         boolean flag = itemstack != null && itemstack.getItem() == Items.SPAWN_EGG;
 
@@ -144,12 +148,14 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         }
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Integer.valueOf(0));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("Profession", this.getProfession());
         nbttagcompound.setInt("Riches", this.riches);
@@ -173,7 +179,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         nbttagcompound.set("Inventory", nbttaglist);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setProfession(nbttagcompound.getInt("Profession"));
         this.riches = nbttagcompound.getInt("Riches");
@@ -200,19 +207,23 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         this.cv();
     }
 
-    protected boolean isTypeNotPersistent() {
+    @Override
+	protected boolean isTypeNotPersistent() {
         return false;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return this.co() ? "mob.villager.haggle" : "mob.villager.idle";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.villager.hit";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.villager.death";
     }
 
@@ -240,7 +251,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         return this.bp;
     }
 
-    public void b(EntityLiving entityliving) {
+    @Override
+	public void b(EntityLiving entityliving) {
         super.b(entityliving);
         if (this.village != null && entityliving != null) {
             this.village.a(entityliving);
@@ -260,7 +272,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
 
     }
 
-    public void die(DamageSource damagesource) {
+    @Override
+	public void die(DamageSource damagesource) {
         if (this.village != null) {
             Entity entity = damagesource.getEntity();
 
@@ -282,11 +295,13 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         super.die(damagesource);
     }
 
-    public void a_(EntityHuman entityhuman) {
+    @Override
+	public void a_(EntityHuman entityhuman) {
         this.tradingPlayer = entityhuman;
     }
 
-    public EntityHuman v_() {
+    @Override
+	public EntityHuman v_() {
         return this.tradingPlayer;
     }
 
@@ -326,7 +341,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         this.bu = flag;
     }
 
-    public void a(MerchantRecipe merchantrecipe) {
+    @Override
+	public void a(MerchantRecipe merchantrecipe) {
         merchantrecipe.g();
         this.a_ = -this.w();
         this.makeSound("mob.villager.yes", this.bB(), this.bC());
@@ -355,7 +371,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
 
     }
 
-    public void a_(ItemStack itemstack) {
+    @Override
+	public void a_(ItemStack itemstack) {
         if (!this.world.isClientSide && this.a_ > -this.w() + 20) {
             this.a_ = -this.w();
             if (itemstack != null) {
@@ -367,7 +384,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
 
     }
 
-    public MerchantRecipeList getOffers(EntityHuman entityhuman) {
+    @Override
+	public MerchantRecipeList getOffers(EntityHuman entityhuman) {
         if (this.br == null) {
             this.cw();
         }
@@ -407,7 +425,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
 
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
         String s = this.getCustomName();
 
         if (s != null && s.length() > 0) {
@@ -474,17 +493,19 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         }
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         float f = 1.62F;
 
         if (this.isBaby()) {
-            f = (float) ((double) f - 0.81D);
+            f = (float) (f - 0.81D);
         }
 
         return f;
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         groupdataentity = super.prepare(difficultydamagescaler, groupdataentity);
         this.setProfession(this.world.random.nextInt(5));
         this.cv();
@@ -502,11 +523,13 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         return entityvillager;
     }
 
-    public boolean cb() {
+    @Override
+	public boolean cb() {
         return false;
     }
 
-    public void onLightningStrike(EntityLightning entitylightning) {
+    @Override
+	public void onLightningStrike(EntityLightning entitylightning) {
         if (!this.world.isClientSide && !this.dead) {
             EntityWitch entitywitch = new EntityWitch(this.world);
 
@@ -527,7 +550,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         return this.inventory;
     }
 
-    protected void a(EntityItem entityitem) {
+    @Override
+	protected void a(EntityItem entityitem) {
         ItemStack itemstack = entityitem.getItemStack();
         Item item = itemstack.getItem();
 
@@ -593,7 +617,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         return false;
     }
 
-    public boolean d(int i, ItemStack itemstack) {
+    @Override
+	public boolean d(int i, ItemStack itemstack) {
         if (super.d(i, itemstack)) {
             return true;
         } else {
@@ -608,7 +633,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         }
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 
@@ -626,7 +652,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
             this.d = entityvillager_merchantoptionrandomrange1;
         }
 
-        public void a(MerchantRecipeList merchantrecipelist, Random random) {
+        @Override
+		public void a(MerchantRecipeList merchantrecipelist, Random random) {
             int i = 1;
 
             if (this.b != null) {
@@ -647,7 +674,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
 
         public MerchantRecipeOptionBook() {}
 
-        public void a(MerchantRecipeList merchantrecipelist, Random random) {
+        @Override
+		public void a(MerchantRecipeList merchantrecipelist, Random random) {
             Enchantment enchantment = Enchantment.b[random.nextInt(Enchantment.b.length)];
             int i = MathHelper.nextInt(random, enchantment.getStartLevel(), enchantment.getMaxLevel());
             ItemStack itemstack = Items.ENCHANTED_BOOK.a(new WeightedRandomEnchant(enchantment, i));
@@ -671,7 +699,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
             this.b = entityvillager_merchantoptionrandomrange;
         }
 
-        public void a(MerchantRecipeList merchantrecipelist, Random random) {
+        @Override
+		public void a(MerchantRecipeList merchantrecipelist, Random random) {
             int i = 1;
 
             if (this.b != null) {
@@ -701,7 +730,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
             this.b = entityvillager_merchantoptionrandomrange;
         }
 
-        public void a(MerchantRecipeList merchantrecipelist, Random random) {
+        @Override
+		public void a(MerchantRecipeList merchantrecipelist, Random random) {
             int i = 1;
 
             if (this.b != null) {
@@ -733,7 +763,8 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
             this.b = entityvillager_merchantoptionrandomrange;
         }
 
-        public void a(MerchantRecipeList merchantrecipelist, Random random) {
+        @Override
+		public void a(MerchantRecipeList merchantrecipelist, Random random) {
             int i = 1;
 
             if (this.b != null) {
@@ -756,7 +787,7 @@ public class EntityVillager extends EntityAgeable implements IMerchant, NPC {
         }
 
         public int a(Random random) {
-            return ((Integer) this.a()).intValue() >= ((Integer) this.b()).intValue() ? ((Integer) this.a()).intValue() : ((Integer) this.a()).intValue() + random.nextInt(((Integer) this.b()).intValue() - ((Integer) this.a()).intValue() + 1);
+            return this.a().intValue() >= this.b().intValue() ? this.a().intValue() : this.a().intValue() + random.nextInt(this.b().intValue() - this.a().intValue() + 1);
         }
     }
 }

@@ -20,27 +20,33 @@ public class InventoryMerchant implements IInventory {
     public List<HumanEntity> transaction = new java.util.ArrayList<HumanEntity>();
     private int maxStack = MAX_STACK;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.itemsInSlots;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public void setMaxStackSize(int i) {
+    @Override
+	public void setMaxStackSize(int i) {
         maxStack = i;
     }
 
-    public org.bukkit.inventory.InventoryHolder getOwner() {
+    @Override
+	public org.bukkit.inventory.InventoryHolder getOwner() {
         return (CraftVillager) ((EntityVillager) this.merchant).getBukkitEntity();
     }
     // CraftBukkit end
@@ -50,15 +56,18 @@ public class InventoryMerchant implements IInventory {
         this.merchant = imerchant;
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return this.itemsInSlots.length;
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         return this.itemsInSlots[i];
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         if (this.itemsInSlots[i] != null) {
             ItemStack itemstack;
 
@@ -95,7 +104,8 @@ public class InventoryMerchant implements IInventory {
         return i == 0 || i == 1;
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         if (this.itemsInSlots[i] != null) {
             ItemStack itemstack = this.itemsInSlots[i];
 
@@ -106,7 +116,8 @@ public class InventoryMerchant implements IInventory {
         }
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         this.itemsInSlots[i] = itemstack;
         if (itemstack != null && itemstack.count > this.getMaxStackSize()) {
             itemstack.count = this.getMaxStackSize();
@@ -118,35 +129,44 @@ public class InventoryMerchant implements IInventory {
 
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "mob.villager";
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return false;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
-        return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]);
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return maxStack; // CraftBukkit
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return this.merchant.v_() == entityhuman;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return true;
     }
 
-    public void update() {
+    @Override
+	public void update() {
         this.h();
     }
 
@@ -197,17 +217,21 @@ public class InventoryMerchant implements IInventory {
         this.h();
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         return 0;
     }
 
-    public void b(int i, int j) {}
+    @Override
+	public void b(int i, int j) {}
 
-    public int g() {
+    @Override
+	public int g() {
         return 0;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         for (int i = 0; i < this.itemsInSlots.length; ++i) {
             this.itemsInSlots[i] = null;
         }

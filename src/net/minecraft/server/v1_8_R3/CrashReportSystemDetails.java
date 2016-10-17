@@ -185,7 +185,8 @@ public class CrashReportSystemDetails {
                 }
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -200,7 +201,8 @@ public class CrashReportSystemDetails {
                 }
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -209,7 +211,8 @@ public class CrashReportSystemDetails {
                 return CrashReportSystemDetails.a(blockposition);
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -221,7 +224,8 @@ public class CrashReportSystemDetails {
                 return iblockdata.toString();
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -230,7 +234,8 @@ public class CrashReportSystemDetails {
                 return CrashReportSystemDetails.a(blockposition);
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });

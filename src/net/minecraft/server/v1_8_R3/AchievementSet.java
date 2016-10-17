@@ -15,7 +15,8 @@ public class AchievementSet extends ForwardingSet<String> implements IJsonStatis
 
     public AchievementSet() {}
 
-    public void a(JsonElement jsonelement) {
+    @Override
+	public void a(JsonElement jsonelement) {
         if (jsonelement.isJsonArray()) {
             Iterator iterator = jsonelement.getAsJsonArray().iterator();
 
@@ -28,7 +29,8 @@ public class AchievementSet extends ForwardingSet<String> implements IJsonStatis
 
     }
 
-    public JsonElement a() {
+    @Override
+	public JsonElement a() {
         JsonArray jsonarray = new JsonArray();
         Iterator iterator = this.iterator();
 
@@ -41,7 +43,8 @@ public class AchievementSet extends ForwardingSet<String> implements IJsonStatis
         return jsonarray;
     }
 
-    protected Set<String> delegate() {
+    @Override
+	protected Set<String> delegate() {
         return this.a;
     }
 }

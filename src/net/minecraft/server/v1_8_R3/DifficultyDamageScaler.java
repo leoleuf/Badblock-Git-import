@@ -20,19 +20,19 @@ public class DifficultyDamageScaler {
         } else {
             boolean flag = enumdifficulty == EnumDifficulty.HARD;
             float f1 = 0.75F;
-            float f2 = MathHelper.a(((float) i + -72000.0F) / 1440000.0F, 0.0F, 1.0F) * 0.25F;
+            float f2 = MathHelper.a((i + -72000.0F) / 1440000.0F, 0.0F, 1.0F) * 0.25F;
 
             f1 += f2;
             float f3 = 0.0F;
 
-            f3 += MathHelper.a((float) j / 3600000.0F, 0.0F, 1.0F) * (flag ? 1.0F : 0.75F);
+            f3 += MathHelper.a(j / 3600000.0F, 0.0F, 1.0F) * (flag ? 1.0F : 0.75F);
             f3 += MathHelper.a(f * 0.25F, 0.0F, f2);
             if (enumdifficulty == EnumDifficulty.EASY) {
                 f3 *= 0.5F;
             }
 
             f1 += f3;
-            return (float) enumdifficulty.a() * f1;
+            return enumdifficulty.a() * f1;
         }
     }
 }

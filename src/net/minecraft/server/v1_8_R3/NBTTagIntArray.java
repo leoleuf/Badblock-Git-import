@@ -15,7 +15,8 @@ public class NBTTagIntArray extends NBTBase {
         this.data = aint;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeInt(this.data.length);
 
         for (int i = 0; i < this.data.length; ++i) {
@@ -24,12 +25,13 @@ public class NBTTagIntArray extends NBTBase {
 
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(192L);
         int j = datainput.readInt();
        com.google.common.base.Preconditions.checkArgument( j < 1 << 24);
 
-        nbtreadlimiter.a((long) (32 * j));
+        nbtreadlimiter.a(32 * j);
         this.data = new int[j];
 
         for (int k = 0; k < j; ++k) {
@@ -38,11 +40,13 @@ public class NBTTagIntArray extends NBTBase {
 
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 11;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         String s = "[";
         int[] aint = this.data;
         int i = aint.length;
@@ -56,18 +60,21 @@ public class NBTTagIntArray extends NBTBase {
         return s + "]";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         int[] aint = new int[this.data.length];
 
         System.arraycopy(this.data, 0, aint, 0, this.data.length);
         return new NBTTagIntArray(aint);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         return super.equals(object) ? Arrays.equals(this.data, ((NBTTagIntArray) object).data) : false;
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ Arrays.hashCode(this.data);
     }
 

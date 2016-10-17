@@ -44,7 +44,8 @@ public class RegistrySimple<K, V> implements IRegistry<K, V> {
         return this.c.containsKey(k0);
     }
 
-    public Iterator<V> iterator() {
+    @Override
+	public Iterator<V> iterator() {
         return this.c.values().iterator();
     }
 }

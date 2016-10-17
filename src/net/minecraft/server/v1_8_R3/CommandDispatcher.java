@@ -54,10 +54,11 @@ public class CommandDispatcher extends CommandHandler implements ICommandDispatc
             this.a((new CommandPublish()));
         }
 
-        CommandAbstract.a((ICommandDispatcher) this);
+        CommandAbstract.a(this);
     }
 
-    public void a(ICommandListener icommandlistener, ICommand icommand, int i, String s, Object... aobject) {
+    @Override
+	public void a(ICommandListener icommandlistener, ICommand icommand, int i, String s, Object... aobject) {
         boolean flag = true;
         MinecraftServer minecraftserver = MinecraftServer.getServer();
 

@@ -16,17 +16,20 @@ public class PacketPlayOutSetSlot implements Packet<PacketListenerPlayOut> {
         this.c = itemstack == null ? null : itemstack.cloneItemStack();
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readByte();
         this.b = packetdataserializer.readShort();
         this.c = packetdataserializer.i();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.a);
         packetdataserializer.writeShort(this.b);
         packetdataserializer.a(this.c);

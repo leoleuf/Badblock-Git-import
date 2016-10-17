@@ -19,12 +19,14 @@ public class PacketPlayOutChat implements Packet<PacketListenerPlayOut> {
         this.b = b0;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.d();
         this.b = packetdataserializer.readByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         // Spigot start
         if (components != null) {
             packetdataserializer.a(net.md_5.bungee.chat.ComponentSerializer.toString(components));
@@ -35,7 +37,8 @@ public class PacketPlayOutChat implements Packet<PacketListenerPlayOut> {
         packetdataserializer.writeByte(this.b);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

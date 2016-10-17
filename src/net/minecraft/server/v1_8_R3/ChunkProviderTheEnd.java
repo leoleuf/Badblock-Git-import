@@ -130,8 +130,9 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 
     }
 
-    public Chunk getOrCreateChunk(int i, int j) {
-        this.h.setSeed((long) i * 341873128712L + (long) j * 132897987541L);
+    @Override
+	public Chunk getOrCreateChunk(int i, int j) {
+        this.h.setSeed(i * 341873128712L + j * 132897987541L);
         ChunkSnapshot chunksnapshot = new ChunkSnapshot();
 
         this.n = this.l.getWorldChunkManager().getBiomeBlock(this.n, i * 16, j * 16, 16, 16);
@@ -166,8 +167,8 @@ public class ChunkProviderTheEnd implements IChunkProvider {
 
         for (int l1 = 0; l1 < l; ++l1) {
             for (int i2 = 0; i2 < j1; ++i2) {
-                float f = (float) (l1 + i) / 1.0F;
-                float f1 = (float) (i2 + k) / 1.0F;
+                float f = (l1 + i) / 1.0F;
+                float f1 = (i2 + k) / 1.0F;
                 float f2 = 100.0F - MathHelper.c(f * f + f1 * f1) * 8.0F;
 
                 if (f2 > 80.0F) {
@@ -193,19 +194,19 @@ public class ChunkProviderTheEnd implements IChunkProvider {
                     }
 
                     d2 -= 8.0D;
-                    d2 += (double) f2;
+                    d2 += f2;
                     byte b0 = 2;
                     double d6;
 
                     if (j2 > i1 / 2 - b0) {
-                        d6 = (double) ((float) (j2 - (i1 / 2 - b0)) / 64.0F);
+                        d6 = (j2 - (i1 / 2 - b0)) / 64.0F;
                         d6 = MathHelper.a(d6, 0.0D, 1.0D);
                         d2 = d2 * (1.0D - d6) + -3000.0D * d6;
                     }
 
                     b0 = 8;
                     if (j2 < b0) {
-                        d6 = (double) ((float) (b0 - j2) / ((float) b0 - 1.0F));
+                        d6 = (b0 - j2) / (b0 - 1.0F);
                         d2 = d2 * (1.0D - d6) + -30.0D * d6;
                     }
 
@@ -218,11 +219,13 @@ public class ChunkProviderTheEnd implements IChunkProvider {
         return adouble;
     }
 
-    public boolean isChunkLoaded(int i, int j) {
+    @Override
+	public boolean isChunkLoaded(int i, int j) {
         return true;
     }
 
-    public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
+    @Override
+	public void getChunkAt(IChunkProvider ichunkprovider, int i, int j) {
         BlockFalling.instaFall = true;
         BlockPosition blockposition = new BlockPosition(i * 16, 0, j * 16);
 
@@ -230,43 +233,54 @@ public class ChunkProviderTheEnd implements IChunkProvider {
         BlockFalling.instaFall = false;
     }
 
-    public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
+    @Override
+	public boolean a(IChunkProvider ichunkprovider, Chunk chunk, int i, int j) {
         return false;
     }
 
-    public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
+    @Override
+	public boolean saveChunks(boolean flag, IProgressUpdate iprogressupdate) {
         return true;
     }
 
-    public void c() {}
+    @Override
+	public void c() {}
 
-    public boolean unloadChunks() {
+    @Override
+	public boolean unloadChunks() {
         return false;
     }
 
-    public boolean canSave() {
+    @Override
+	public boolean canSave() {
         return true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "RandomLevelSource";
     }
 
-    public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
+    @Override
+	public List<BiomeBase.BiomeMeta> getMobsFor(EnumCreatureType enumcreaturetype, BlockPosition blockposition) {
         return this.l.getBiome(blockposition).getMobs(enumcreaturetype);
     }
 
-    public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
+    @Override
+	public BlockPosition findNearestMapFeature(World world, String s, BlockPosition blockposition) {
         return null;
     }
 
-    public int getLoadedChunks() {
+    @Override
+	public int getLoadedChunks() {
         return 0;
     }
 
-    public void recreateStructures(Chunk chunk, int i, int j) {}
+    @Override
+	public void recreateStructures(Chunk chunk, int i, int j) {}
 
-    public Chunk getChunkAt(BlockPosition blockposition) {
+    @Override
+	public Chunk getChunkAt(BlockPosition blockposition) {
         return this.getOrCreateChunk(blockposition.getX() >> 4, blockposition.getZ() >> 4);
     }
 }

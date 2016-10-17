@@ -18,11 +18,13 @@ public class PlayerInteractEntityEvent extends PlayerEvent implements Cancellabl
         this.clickedEntity = clickedEntity;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 

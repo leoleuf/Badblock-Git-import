@@ -10,7 +10,8 @@ public class WorldGenMushrooms extends WorldGenerator {
         this.a = blockplant;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         for (int i = 0; i < 64; ++i) {
             BlockPosition blockposition1 = blockposition.a(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 

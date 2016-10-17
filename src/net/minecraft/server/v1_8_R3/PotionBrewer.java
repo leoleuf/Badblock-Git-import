@@ -63,9 +63,9 @@ public class PotionBrewer {
                     int j = MobEffectList.byId[mobeffect.getEffectId()].k();
 
                     for (int k = 0; k <= mobeffect.getAmplifier(); ++k) {
-                        f += (float) (j >> 16 & 255) / 255.0F;
-                        f1 += (float) (j >> 8 & 255) / 255.0F;
-                        f2 += (float) (j >> 0 & 255) / 255.0F;
+                        f += (j >> 16 & 255) / 255.0F;
+                        f1 += (j >> 8 & 255) / 255.0F;
+                        f2 += (j >> 0 & 255) / 255.0F;
                         ++f3;
                     }
                 }
@@ -278,14 +278,14 @@ public class PotionBrewer {
             MobEffectList mobeffectlist = amobeffectlist[k];
 
             if (mobeffectlist != null && (!mobeffectlist.j() || flag)) {
-                String s = (String) PotionBrewer.effectDurations.get(Integer.valueOf(mobeffectlist.getId()));
+                String s = PotionBrewer.effectDurations.get(Integer.valueOf(mobeffectlist.getId()));
 
                 if (s != null) {
                     int l = a(s, 0, s.length(), i);
 
                     if (l > 0) {
                         int i1 = 0;
-                        String s1 = (String) PotionBrewer.effectAmplifiers.get(Integer.valueOf(mobeffectlist.getId()));
+                        String s1 = PotionBrewer.effectAmplifiers.get(Integer.valueOf(mobeffectlist.getId()));
 
                         if (s1 != null) {
                             i1 = a(s1, 0, s1.length(), i);
@@ -299,9 +299,9 @@ public class PotionBrewer {
                         } else {
                             l = 1200 * (l * 3 + (l - 1) * 2);
                             l >>= i1;
-                            l = (int) Math.round((double) l * mobeffectlist.getDurationModifier());
+                            l = (int) Math.round(l * mobeffectlist.getDurationModifier());
                             if ((i & 16384) != 0) {
-                                l = (int) Math.round((double) l * 0.75D + 0.5D);
+                                l = (int) Math.round(l * 0.75D + 0.5D);
                             }
                         }
 

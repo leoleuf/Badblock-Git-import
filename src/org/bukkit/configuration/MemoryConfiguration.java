@@ -40,7 +40,8 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
         defaults.set(path, value);
     }
 
-    public void addDefaults(Map<String, Object> defaults) {
+    @Override
+	public void addDefaults(Map<String, Object> defaults) {
         Validate.notNull(defaults, "Defaults may not be null");
 
         for (Map.Entry<String, Object> entry : defaults.entrySet()) {
@@ -48,19 +49,22 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
         }
     }
 
-    public void addDefaults(Configuration defaults) {
+    @Override
+	public void addDefaults(Configuration defaults) {
         Validate.notNull(defaults, "Defaults may not be null");
 
         addDefaults(defaults.getValues(true));
     }
 
-    public void setDefaults(Configuration defaults) {
+    @Override
+	public void setDefaults(Configuration defaults) {
         Validate.notNull(defaults, "Defaults may not be null");
 
         this.defaults = defaults;
     }
 
-    public Configuration getDefaults() {
+    @Override
+	public Configuration getDefaults() {
         return defaults;
     }
 
@@ -69,7 +73,8 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
         return null;
     }
 
-    public MemoryConfigurationOptions options() {
+    @Override
+	public MemoryConfigurationOptions options() {
         if (options == null) {
             options = new MemoryConfigurationOptions(this);
         }

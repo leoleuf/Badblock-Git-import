@@ -12,15 +12,18 @@ public class Position implements IPosition {
         this.c = d2;
     }
 
-    public double getX() {
+    @Override
+	public double getX() {
         return this.a;
     }
 
-    public double getY() {
+    @Override
+	public double getY() {
         return this.b;
     }
 
-    public double getZ() {
+    @Override
+	public double getZ() {
         return this.c;
     }
 }

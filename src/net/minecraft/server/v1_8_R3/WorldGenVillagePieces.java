@@ -239,7 +239,8 @@ public class WorldGenVillagePieces {
             return StructurePiece.a(list, structureboundingbox) != null ? null : structureboundingbox;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -283,7 +284,8 @@ public class WorldGenVillagePieces {
             this.d = this.a(random);
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("CA", Block.REGISTRY.b(this.a));
             nbttagcompound.setInt("CB", Block.REGISTRY.b(this.b));
@@ -291,7 +293,8 @@ public class WorldGenVillagePieces {
             nbttagcompound.setInt("CD", Block.REGISTRY.b(this.d));
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = Block.getById(nbttagcompound.getInt("CA"));
             this.b = Block.getById(nbttagcompound.getInt("CB"));
@@ -318,7 +321,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageFarm2(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -380,13 +384,15 @@ public class WorldGenVillagePieces {
             this.b = this.a(random);
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("CA", Block.REGISTRY.b(this.a));
             nbttagcompound.setInt("CB", Block.REGISTRY.b(this.b));
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = Block.getById(nbttagcompound.getInt("CA"));
             this.b = Block.getById(nbttagcompound.getInt("CB"));
@@ -411,7 +417,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageFarm(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -469,17 +476,20 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageBlacksmith(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Chest", this.b);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getBoolean("Chest");
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -524,7 +534,7 @@ public class WorldGenVillagePieces {
             this.a(world, Blocks.PLANKS.getBlockData(), 1, 1, 5, structureboundingbox);
             this.a(world, Blocks.OAK_STAIRS.fromLegacyData(this.a(Blocks.OAK_STAIRS, 3)), 2, 1, 5, structureboundingbox);
             this.a(world, Blocks.OAK_STAIRS.fromLegacyData(this.a(Blocks.OAK_STAIRS, 1)), 1, 1, 4, structureboundingbox);
-            if (!this.b && structureboundingbox.b((BaseBlockPosition) (new BlockPosition(this.a(5, 5), this.d(1), this.b(5, 5))))) {
+            if (!this.b && structureboundingbox.b((new BlockPosition(this.a(5, 5), this.d(1), this.b(5, 5))))) {
                 this.b = true;
                 this.a(world, structureboundingbox, random, 5, 1, 5, WorldGenVillagePieces.WorldGenVillageBlacksmith.a, 3 + random.nextInt(6));
             }
@@ -548,7 +558,8 @@ public class WorldGenVillagePieces {
             return true;
         }
 
-        protected int c(int i, int j) {
+        @Override
+		protected int c(int i, int j) {
             return 3;
         }
     }
@@ -569,7 +580,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageHouse2(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -712,7 +724,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageButcher(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -800,7 +813,8 @@ public class WorldGenVillagePieces {
             return true;
         }
 
-        protected int c(int i, int j) {
+        @Override
+		protected int c(int i, int j) {
             return i == 0 ? 4 : super.c(i, j);
         }
     }
@@ -820,13 +834,15 @@ public class WorldGenVillagePieces {
             this.b = random.nextInt(3);
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("T", this.b);
             nbttagcompound.setBoolean("C", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.b = nbttagcompound.getInt("T");
             this.a = nbttagcompound.getBoolean("C");
@@ -838,7 +854,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageHut(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -917,7 +934,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageLibrary(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -1008,7 +1026,8 @@ public class WorldGenVillagePieces {
             return true;
         }
 
-        protected int c(int i, int j) {
+        @Override
+		protected int c(int i, int j) {
             return 1;
         }
     }
@@ -1029,7 +1048,8 @@ public class WorldGenVillagePieces {
             return a(structureboundingbox) && StructurePiece.a(list, structureboundingbox) == null ? new WorldGenVillagePieces.WorldGenVillageTemple(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection) : null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -1111,7 +1131,8 @@ public class WorldGenVillagePieces {
             return true;
         }
 
-        protected int c(int i, int j) {
+        @Override
+		protected int c(int i, int j) {
             return 2;
         }
     }
@@ -1129,12 +1150,14 @@ public class WorldGenVillagePieces {
             this.a = random.nextBoolean();
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setBoolean("Terrace", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getBoolean("Terrace");
         }
@@ -1145,7 +1168,8 @@ public class WorldGenVillagePieces {
             return StructurePiece.a(list, structureboundingbox) != null ? null : new WorldGenVillagePieces.WorldGenVillageHouse(worldgenvillagepieces_worldgenvillagestartpiece, l, random, structureboundingbox, enumdirection);
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -1244,17 +1268,20 @@ public class WorldGenVillagePieces {
             this.a = Math.max(structureboundingbox.c(), structureboundingbox.e());
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             super.a(nbttagcompound);
             nbttagcompound.setInt("Length", this.a);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             super.b(nbttagcompound);
             this.a = nbttagcompound.getInt("Length");
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             boolean flag = false;
 
             int i;
@@ -1328,7 +1355,8 @@ public class WorldGenVillagePieces {
             return null;
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             IBlockData iblockdata = this.a(Blocks.GRAVEL.getBlockData());
             IBlockData iblockdata1 = this.a(Blocks.COBBLESTONE.getBlockData());
 
@@ -1336,7 +1364,7 @@ public class WorldGenVillagePieces {
                 for (int j = this.l.c; j <= this.l.f; ++j) {
                     BlockPosition blockposition = new BlockPosition(i, 64, j);
 
-                    if (structureboundingbox.b((BaseBlockPosition) blockposition)) {
+                    if (structureboundingbox.b(blockposition)) {
                         blockposition = world.r(blockposition).down();
                         world.setTypeAndData(blockposition, iblockdata, 2);
                         world.setTypeAndData(blockposition.down(), iblockdata1, 2);
@@ -1404,14 +1432,16 @@ public class WorldGenVillagePieces {
 
         }
 
-        public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
+        @Override
+		public void a(StructurePiece structurepiece, List<StructurePiece> list, Random random) {
             WorldGenVillagePieces.e((WorldGenVillagePieces.WorldGenVillageStartPiece) structurepiece, list, random, this.l.a - 1, this.l.e - 4, this.l.c + 1, EnumDirection.WEST, this.d());
             WorldGenVillagePieces.e((WorldGenVillagePieces.WorldGenVillageStartPiece) structurepiece, list, random, this.l.d + 1, this.l.e - 4, this.l.c + 1, EnumDirection.EAST, this.d());
             WorldGenVillagePieces.e((WorldGenVillagePieces.WorldGenVillageStartPiece) structurepiece, list, random, this.l.a + 1, this.l.e - 4, this.l.c - 1, EnumDirection.NORTH, this.d());
             WorldGenVillagePieces.e((WorldGenVillagePieces.WorldGenVillageStartPiece) structurepiece, list, random, this.l.a + 1, this.l.e - 4, this.l.f + 1, EnumDirection.SOUTH, this.d());
         }
 
-        public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
+        @Override
+		public boolean a(World world, Random random, StructureBoundingBox structureboundingbox) {
             if (this.h < 0) {
                 this.h = this.b(world, structureboundingbox);
                 if (this.h < 0) {
@@ -1465,13 +1495,15 @@ public class WorldGenVillagePieces {
 
         }
 
-        protected void a(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void a(NBTTagCompound nbttagcompound) {
             nbttagcompound.setInt("HPos", this.h);
             nbttagcompound.setInt("VCount", this.a);
             nbttagcompound.setBoolean("Desert", this.b);
         }
 
-        protected void b(NBTTagCompound nbttagcompound) {
+        @Override
+		protected void b(NBTTagCompound nbttagcompound) {
             this.h = nbttagcompound.getInt("HPos");
             this.a = nbttagcompound.getInt("VCount");
             this.b = nbttagcompound.getBoolean("Desert");
@@ -1525,7 +1557,7 @@ public class WorldGenVillagePieces {
             for (int k = this.l.c; k <= this.l.f; ++k) {
                 for (int l = this.l.a; l <= this.l.d; ++l) {
                     blockposition_mutableblockposition.c(l, 64, k);
-                    if (structureboundingbox.b((BaseBlockPosition) blockposition_mutableblockposition)) {
+                    if (structureboundingbox.b(blockposition_mutableblockposition)) {
                         i += Math.max(world.r(blockposition_mutableblockposition).getY(), world.worldProvider.getSeaLevel());
                         ++j;
                     }
@@ -1550,14 +1582,14 @@ public class WorldGenVillagePieces {
                     int k1 = this.d(j);
                     int l1 = this.b(i + i1, k);
 
-                    if (!structureboundingbox.b((BaseBlockPosition) (new BlockPosition(j1, k1, l1)))) {
+                    if (!structureboundingbox.b((new BlockPosition(j1, k1, l1)))) {
                         break;
                     }
 
                     ++this.a;
                     EntityVillager entityvillager = new EntityVillager(world);
 
-                    entityvillager.setPositionRotation((double) j1 + 0.5D, (double) k1, (double) l1 + 0.5D, 0.0F, 0.0F);
+                    entityvillager.setPositionRotation(j1 + 0.5D, k1, l1 + 0.5D, 0.0F, 0.0F);
                     entityvillager.prepare(world.E(new BlockPosition(entityvillager)), (GroupDataEntity) null);
                     entityvillager.setProfession(this.c(i1, entityvillager.getProfession()));
                     world.addEntity(entityvillager, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.CHUNK_GEN); // CraftBukkit - add SpawnReason
@@ -1600,20 +1632,23 @@ public class WorldGenVillagePieces {
             return iblockdata;
         }
 
-        protected void a(World world, IBlockData iblockdata, int i, int j, int k, StructureBoundingBox structureboundingbox) {
+        @Override
+		protected void a(World world, IBlockData iblockdata, int i, int j, int k, StructureBoundingBox structureboundingbox) {
             IBlockData iblockdata1 = this.a(iblockdata);
 
             super.a(world, iblockdata1, i, j, k, structureboundingbox);
         }
 
-        protected void a(World world, StructureBoundingBox structureboundingbox, int i, int j, int k, int l, int i1, int j1, IBlockData iblockdata, IBlockData iblockdata1, boolean flag) {
+        @Override
+		protected void a(World world, StructureBoundingBox structureboundingbox, int i, int j, int k, int l, int i1, int j1, IBlockData iblockdata, IBlockData iblockdata1, boolean flag) {
             IBlockData iblockdata2 = this.a(iblockdata);
             IBlockData iblockdata3 = this.a(iblockdata1);
 
             super.a(world, structureboundingbox, i, j, k, l, i1, j1, iblockdata2, iblockdata3, flag);
         }
 
-        protected void b(World world, IBlockData iblockdata, int i, int j, int k, StructureBoundingBox structureboundingbox) {
+        @Override
+		protected void b(World world, IBlockData iblockdata, int i, int j, int k, StructureBoundingBox structureboundingbox) {
             IBlockData iblockdata1 = this.a(iblockdata);
 
             super.b(world, iblockdata1, i, j, k, structureboundingbox);

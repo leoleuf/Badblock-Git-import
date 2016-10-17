@@ -6,25 +6,31 @@ public abstract class EntityGolem extends EntityCreature implements IAnimal {
         super(world);
     }
 
-    public void e(float f, float f1) {}
+    @Override
+	public void e(float f, float f1) {}
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "none";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "none";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "none";
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 120;
     }
 
-    protected boolean isTypeNotPersistent() {
+    @Override
+	protected boolean isTypeNotPersistent() {
         return false;
     }
 }

@@ -14,7 +14,8 @@ import com.google.common.collect.Maps;
 public class EntitySheep extends EntityAnimal {
 
     private final InventoryCrafting bm = new InventoryCrafting(new Container() {
-        public boolean a(EntityHuman entityhuman) {
+        @Override
+		public boolean a(EntityHuman entityhuman) {
             return false;
         }
 
@@ -30,7 +31,7 @@ public class EntitySheep extends EntityAnimal {
     private PathfinderGoalEatTile bq = new PathfinderGoalEatTile(this);
 
     public static float[] a(EnumColor enumcolor) {
-        return (float[]) EntitySheep.bo.get(enumcolor);
+        return EntitySheep.bo.get(enumcolor);
     }
 
     public EntitySheep(World world) {
@@ -51,12 +52,14 @@ public class EntitySheep extends EntityAnimal {
         this.bm.resultInventory = new InventoryCraftResult(); // CraftBukkit - add result slot for event
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         this.bp = this.bq.f();
         super.E();
     }
 
-    public void m() {
+    @Override
+	public void m() {
         if (this.world.isClientSide) {
             this.bp = Math.max(0, this.bp - 1);
         }
@@ -64,18 +67,21 @@ public class EntitySheep extends EntityAnimal {
         super.m();
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(8.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.23000000417232513D);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, new Byte((byte) 0));
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         if (!this.isSheared()) {
             this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.getColor().getColorIndex()), 0.0F);
         }
@@ -92,11 +98,13 @@ public class EntitySheep extends EntityAnimal {
 
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Item.getItemOf(Blocks.WOOL);
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.SHEARS && !this.isSheared() && !this.isBaby()) {
@@ -116,9 +124,9 @@ public class EntitySheep extends EntityAnimal {
                 for (int j = 0; j < i; ++j) {
                     EntityItem entityitem = this.a(new ItemStack(Item.getItemOf(Blocks.WOOL), 1, this.getColor().getColorIndex()), 1.0F);
 
-                    entityitem.motY += (double) (this.random.nextFloat() * 0.05F);
-                    entityitem.motX += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
-                    entityitem.motZ += (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.1F);
+                    entityitem.motY += this.random.nextFloat() * 0.05F;
+                    entityitem.motX += (this.random.nextFloat() - this.random.nextFloat()) * 0.1F;
+                    entityitem.motZ += (this.random.nextFloat() - this.random.nextFloat()) * 0.1F;
                 }
             }
 
@@ -129,31 +137,37 @@ public class EntitySheep extends EntityAnimal {
         return super.a(entityhuman);
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("Sheared", this.isSheared());
         nbttagcompound.setByte("Color", (byte) this.getColor().getColorIndex());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setSheared(nbttagcompound.getBoolean("Sheared"));
         this.setColor(EnumColor.fromColorIndex(nbttagcompound.getByte("Color")));
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.sheep.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.sheep.say";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.sheep.say";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.sheep.step", 0.15F, 1.0F);
     }
 
@@ -192,11 +206,12 @@ public class EntitySheep extends EntityAnimal {
         EntitySheep entitysheep = (EntitySheep) entityageable;
         EntitySheep entitysheep1 = new EntitySheep(this.world);
 
-        entitysheep1.setColor(this.a((EntityAnimal) this, (EntityAnimal) entitysheep));
+        entitysheep1.setColor(this.a(this, entitysheep));
         return entitysheep1;
     }
 
-    public void v() {
+    @Override
+	public void v() {
         // CraftBukkit start
         SheepRegrowWoolEvent event = new SheepRegrowWoolEvent((org.bukkit.entity.Sheep) this.getBukkitEntity());
         this.world.getServer().getPluginManager().callEvent(event);
@@ -211,7 +226,8 @@ public class EntitySheep extends EntityAnimal {
 
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         groupdataentity = super.prepare(difficultydamagescaler, groupdataentity);
         this.setColor(a(this.world.random));
         return groupdataentity;
@@ -235,11 +251,13 @@ public class EntitySheep extends EntityAnimal {
         return EnumColor.fromInvColorIndex(k);
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 0.95F * this.length;
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 

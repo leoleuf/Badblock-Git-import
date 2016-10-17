@@ -18,23 +18,28 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         this.c = BlockPosition.ZERO;
     }
 
-    public EntityMinecartAbstract.EnumMinecartType s() {
+    @Override
+	public EntityMinecartAbstract.EnumMinecartType s() {
         return EntityMinecartAbstract.EnumMinecartType.HOPPER;
     }
 
-    public IBlockData u() {
+    @Override
+	public IBlockData u() {
         return Blocks.HOPPER.getBlockData();
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 1;
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return 5;
     }
 
-    public boolean e(EntityHuman entityhuman) {
+    @Override
+	public boolean e(EntityHuman entityhuman) {
         if (!this.world.isClientSide) {
             entityhuman.openContainer(this);
         }
@@ -42,7 +47,8 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         return true;
     }
 
-    public void a(int i, int j, int k, boolean flag) {
+    @Override
+	public void a(int i, int j, int k, boolean flag) {
         boolean flag1 = !flag;
 
         if (flag1 != this.y()) {
@@ -59,23 +65,28 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         this.a = flag;
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return this.world;
     }
 
-    public double A() {
+    @Override
+	public double A() {
         return this.locX;
     }
 
-    public double B() {
+    @Override
+	public double B() {
         return this.locY + 0.5D;
     }
 
-    public double C() {
+    @Override
+	public double C() {
         return this.locZ;
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (!this.world.isClientSide && this.isAlive() && this.y()) {
             BlockPosition blockposition = new BlockPosition(this);
@@ -98,7 +109,7 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
     }
 
     public boolean D() {
-        if (TileEntityHopper.a((IHopper) this)) {
+        if (TileEntityHopper.a(this)) {
             return true;
         } else {
             List list = this.world.a(EntityItem.class, this.getBoundingBox().grow(0.25D, 0.0D, 0.25D), IEntitySelector.a);
@@ -111,7 +122,8 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         }
     }
 
-    public void a(DamageSource damagesource) {
+    @Override
+	public void a(DamageSource damagesource) {
         super.a(damagesource);
         if (this.world.getGameRules().getBoolean("doEntityDrops")) {
             this.a(Item.getItemOf(Blocks.HOPPER), 1, 0.0F);
@@ -119,12 +131,14 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
 
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("TransferCooldown", this.b);
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.b = nbttagcompound.getInt("TransferCooldown");
     }
@@ -137,11 +151,13 @@ public class EntityMinecartHopper extends EntityMinecartContainer implements IHo
         return this.b > 0;
     }
 
-    public String getContainerName() {
+    @Override
+	public String getContainerName() {
         return "minecraft:hopper";
     }
 
-    public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+    @Override
+	public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
         return new ContainerHopper(playerinventory, this, entityhuman);
     }
 }

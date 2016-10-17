@@ -16,7 +16,8 @@ public class CraftMinecartRideable extends CraftMinecart implements RideableMine
         return "CraftMinecartRideable";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.MINECART;
     }
 }

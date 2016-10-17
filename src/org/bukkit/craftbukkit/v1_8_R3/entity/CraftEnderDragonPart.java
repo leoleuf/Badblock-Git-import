@@ -28,60 +28,73 @@ public class CraftEnderDragonPart extends CraftComplexPart implements EnderDrago
         return "CraftEnderDragonPart";
     }
 
-    public void damage(double amount) {
+    @Override
+	public void damage(double amount) {
         getParent().damage(amount);
     }
 
-    public void damage(double amount, Entity source) {
+    @Override
+	public void damage(double amount, Entity source) {
         getParent().damage(amount, source);
     }
 
-    public double getHealth() {
+    @Override
+	public double getHealth() {
         return getParent().getHealth();
     }
 
-    public void setHealth(double health) {
+    @Override
+	public void setHealth(double health) {
         getParent().setHealth(health);
     }
 
-    public double getMaxHealth() {
+    @Override
+	public double getMaxHealth() {
         return getParent().getMaxHealth();
     }
 
-    public void setMaxHealth(double health) {
+    @Override
+	public void setMaxHealth(double health) {
         getParent().setMaxHealth(health);
     }
 
-    public void resetMaxHealth() {
+    @Override
+	public void resetMaxHealth() {
         getParent().resetMaxHealth();
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_damage(int amount) {
         damage(amount);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_damage(int amount, Entity source) {
         damage(amount, source);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int _INVALID_getHealth() {
         return NumberConversions.ceil(getHealth());
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setHealth(int health) {
         setHealth(health);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int _INVALID_getMaxHealth() {
         return NumberConversions.ceil(getMaxHealth());
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setMaxHealth(int health) {
         setMaxHealth(health);
     }

@@ -16,19 +16,23 @@ public class CommandScoreboard extends CommandAbstract {
 
     public CommandScoreboard() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "scoreboard";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.scoreboard.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (!this.b(icommandlistener, astring)) {
             if (astring.length < 1) {
                 throw new ExceptionUsage("commands.scoreboard.usage", new Object[0]);
@@ -262,7 +266,7 @@ public class CommandScoreboard extends CommandAbstract {
         String s = astring[i++];
         String s1 = astring[i++];
         Scoreboard scoreboard = this.d();
-        IScoreboardCriteria iscoreboardcriteria = (IScoreboardCriteria) IScoreboardCriteria.criteria.get(s1);
+        IScoreboardCriteria iscoreboardcriteria = IScoreboardCriteria.criteria.get(s1);
 
         if (iscoreboardcriteria == null) {
             throw new ExceptionUsage("commands.scoreboard.objectives.add.wrongType", new Object[] { s1});
@@ -339,10 +343,10 @@ public class CommandScoreboard extends CommandAbstract {
                     if (!s.equalsIgnoreCase("nametagVisibility") && !s.equalsIgnoreCase("deathMessageVisibility")) {
                         throw new ExceptionUsage("commands.scoreboard.teams.option.usage", new Object[0]);
                     } else {
-                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Object[]) ScoreboardTeamBase.EnumNameTagVisibility.a())});
+                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(ScoreboardTeamBase.EnumNameTagVisibility.a())});
                     }
                 } else {
-                    throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Collection) Arrays.asList(new String[] { "true", "false"}))});
+                    throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(Arrays.asList(new String[] { "true", "false"}))});
                 }
             } else {
                 String s1 = astring[i];
@@ -359,13 +363,13 @@ public class CommandScoreboard extends CommandAbstract {
                     scoreboardteam.setSuffix(EnumChatFormat.RESET.toString());
                 } else if (s.equalsIgnoreCase("friendlyfire")) {
                     if (!s1.equalsIgnoreCase("true") && !s1.equalsIgnoreCase("false")) {
-                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Collection) Arrays.asList(new String[] { "true", "false"}))});
+                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(Arrays.asList(new String[] { "true", "false"}))});
                     }
 
                     scoreboardteam.setAllowFriendlyFire(s1.equalsIgnoreCase("true"));
                 } else if (s.equalsIgnoreCase("seeFriendlyInvisibles")) {
                     if (!s1.equalsIgnoreCase("true") && !s1.equalsIgnoreCase("false")) {
-                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Collection) Arrays.asList(new String[] { "true", "false"}))});
+                        throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(Arrays.asList(new String[] { "true", "false"}))});
                     }
 
                     scoreboardteam.setCanSeeFriendlyInvisibles(s1.equalsIgnoreCase("true"));
@@ -375,14 +379,14 @@ public class CommandScoreboard extends CommandAbstract {
                     if (s.equalsIgnoreCase("nametagVisibility")) {
                         scoreboardteambase_enumnametagvisibility = ScoreboardTeamBase.EnumNameTagVisibility.a(s1);
                         if (scoreboardteambase_enumnametagvisibility == null) {
-                            throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Object[]) ScoreboardTeamBase.EnumNameTagVisibility.a())});
+                            throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(ScoreboardTeamBase.EnumNameTagVisibility.a())});
                         }
 
                         scoreboardteam.setNameTagVisibility(scoreboardteambase_enumnametagvisibility);
                     } else if (s.equalsIgnoreCase("deathMessageVisibility")) {
                         scoreboardteambase_enumnametagvisibility = ScoreboardTeamBase.EnumNameTagVisibility.a(s1);
                         if (scoreboardteambase_enumnametagvisibility == null) {
-                            throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a((Object[]) ScoreboardTeamBase.EnumNameTagVisibility.a())});
+                            throw new ExceptionUsage("commands.scoreboard.teams.option.noValue", new Object[] { s, a(ScoreboardTeamBase.EnumNameTagVisibility.a())});
                         }
 
                         scoreboardteam.b(scoreboardteambase_enumnametagvisibility);
@@ -832,7 +836,8 @@ public class CommandScoreboard extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             return a(astring, new String[] { "objectives", "players", "teams"});
         } else {
@@ -845,11 +850,11 @@ public class CommandScoreboard extends CommandAbstract {
                     if (astring.length == 4) {
                         Set set = IScoreboardCriteria.criteria.keySet();
 
-                        return a(astring, (Collection) set);
+                        return a(astring, set);
                     }
                 } else if (astring[1].equalsIgnoreCase("remove")) {
                     if (astring.length == 3) {
-                        return a(astring, (Collection) this.a(false));
+                        return a(astring, this.a(false));
                     }
                 } else if (astring[1].equalsIgnoreCase("setdisplay")) {
                     if (astring.length == 3) {
@@ -857,7 +862,7 @@ public class CommandScoreboard extends CommandAbstract {
                     }
 
                     if (astring.length == 4) {
-                        return a(astring, (Collection) this.a(false));
+                        return a(astring, this.a(false));
                     }
                 }
             } else if (astring[0].equalsIgnoreCase("players")) {
@@ -872,7 +877,7 @@ public class CommandScoreboard extends CommandAbstract {
                         }
 
                         if (astring.length == 4) {
-                            return a(astring, (Collection) this.e());
+                            return a(astring, this.e());
                         }
                     } else if (!astring[1].equalsIgnoreCase("list") && !astring[1].equalsIgnoreCase("test")) {
                         if (astring[1].equalsIgnoreCase("operation")) {
@@ -881,7 +886,7 @@ public class CommandScoreboard extends CommandAbstract {
                             }
 
                             if (astring.length == 4) {
-                                return a(astring, (Collection) this.a(true));
+                                return a(astring, this.a(true));
                             }
 
                             if (astring.length == 5) {
@@ -893,7 +898,7 @@ public class CommandScoreboard extends CommandAbstract {
                             }
 
                             if (astring.length == 7) {
-                                return a(astring, (Collection) this.a(false));
+                                return a(astring, this.a(false));
                             }
                         }
                     } else {
@@ -902,7 +907,7 @@ public class CommandScoreboard extends CommandAbstract {
                         }
 
                         if (astring.length == 4 && astring[1].equalsIgnoreCase("test")) {
-                            return a(astring, (Collection) this.a(false));
+                            return a(astring, this.a(false));
                         }
                     }
                 } else {
@@ -911,7 +916,7 @@ public class CommandScoreboard extends CommandAbstract {
                     }
 
                     if (astring.length == 4) {
-                        return a(astring, (Collection) this.a(true));
+                        return a(astring, this.a(true));
                     }
                 }
             } else if (astring[0].equalsIgnoreCase("teams")) {
@@ -998,7 +1003,8 @@ public class CommandScoreboard extends CommandAbstract {
         return arraylist;
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return !astring[0].equalsIgnoreCase("players") ? (astring[0].equalsIgnoreCase("teams") ? i == 2 : false) : (astring.length > 1 && astring[1].equalsIgnoreCase("operation") ? i == 2 || i == 5 : i == 2);
     }
 }

@@ -12,7 +12,8 @@ public class WorldGenTallPlant extends WorldGenerator {
         this.a = blocktallplant_enumtallflowervariants;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         boolean flag = false;
 
         for (int i = 0; i < 64; ++i) {

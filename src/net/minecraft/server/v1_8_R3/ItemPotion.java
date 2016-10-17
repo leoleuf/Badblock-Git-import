@@ -36,7 +36,7 @@ public class ItemPotion extends Item {
 
             return arraylist;
         } else {
-            List list = (List) this.a.get(Integer.valueOf(itemstack.getData()));
+            List list = this.a.get(Integer.valueOf(itemstack.getData()));
 
             if (list == null) {
                 list = PotionBrewer.getEffects(itemstack.getData(), false);
@@ -48,7 +48,7 @@ public class ItemPotion extends Item {
     }
 
     public List<MobEffect> e(int i) {
-        List list = (List) this.a.get(Integer.valueOf(i));
+        List list = this.a.get(Integer.valueOf(i));
 
         if (list == null) {
             list = PotionBrewer.getEffects(i, false);
@@ -58,7 +58,8 @@ public class ItemPotion extends Item {
         return list;
     }
 
-    public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (!entityhuman.abilities.canInstantlyBuild) {
             --itemstack.count;
         }
@@ -89,21 +90,24 @@ public class ItemPotion extends Item {
         return itemstack;
     }
 
-    public int d(ItemStack itemstack) {
+    @Override
+	public int d(ItemStack itemstack) {
         return 32;
     }
 
-    public EnumAnimation e(ItemStack itemstack) {
+    @Override
+	public EnumAnimation e(ItemStack itemstack) {
         return EnumAnimation.DRINK;
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (f(itemstack.getData())) {
             if (!entityhuman.abilities.canInstantlyBuild) {
                 --itemstack.count;
             }
 
-            world.makeSound(entityhuman, "random.bow", 0.5F, 0.4F / (ItemPotion.g.nextFloat() * 0.4F + 0.8F));
+            world.makeSound(entityhuman, "random.bow", 0.5F, 0.4F / (Item.g.nextFloat() * 0.4F + 0.8F));
             if (!world.isClientSide) {
                 world.addEntity(new EntityPotion(world, entityhuman, itemstack));
             }
@@ -120,7 +124,8 @@ public class ItemPotion extends Item {
         return (i & 16384) != 0;
     }
 
-    public String a(ItemStack itemstack) {
+    @Override
+	public String a(ItemStack itemstack) {
         if (itemstack.getData() == 0) {
             return LocaleI18n.get("item.emptyPotion.name").trim();
         } else {

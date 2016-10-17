@@ -18,8 +18,8 @@ public class BiomeCache {
     public BiomeCache.BiomeCacheBlock a(int i, int j) {
         i >>= 4;
         j >>= 4;
-        long k = (long) i & 4294967295L | ((long) j & 4294967295L) << 32;
-        BiomeCache.BiomeCacheBlock biomecache_biomecacheblock = (BiomeCache.BiomeCacheBlock) this.c.getEntry(k);
+        long k = i & 4294967295L | (j & 4294967295L) << 32;
+        BiomeCache.BiomeCacheBlock biomecache_biomecacheblock = this.c.getEntry(k);
 
         if (biomecache_biomecacheblock == null) {
             biomecache_biomecacheblock = new BiomeCache.BiomeCacheBlock(i, j);
@@ -45,12 +45,12 @@ public class BiomeCache {
             this.b = i;
 
             for (int k = 0; k < this.d.size(); ++k) {
-                BiomeCache.BiomeCacheBlock biomecache_biomecacheblock = (BiomeCache.BiomeCacheBlock) this.d.get(k);
+                BiomeCache.BiomeCacheBlock biomecache_biomecacheblock = this.d.get(k);
                 long l = i - biomecache_biomecacheblock.e;
 
                 if (l > 30000L || l < 0L) {
                     this.d.remove(k--);
-                    long i1 = (long) biomecache_biomecacheblock.c & 4294967295L | ((long) biomecache_biomecacheblock.d & 4294967295L) << 32;
+                    long i1 = biomecache_biomecacheblock.c & 4294967295L | (biomecache_biomecacheblock.d & 4294967295L) << 32;
 
                     this.c.remove(i1);
                 }

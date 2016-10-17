@@ -11,7 +11,8 @@ public class ItemSeeds extends Item {
         this.a(CreativeModeTab.l);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (enumdirection != EnumDirection.UP) {
             return false;
         } else if (!entityhuman.a(blockposition.shift(enumdirection), enumdirection, itemstack)) {

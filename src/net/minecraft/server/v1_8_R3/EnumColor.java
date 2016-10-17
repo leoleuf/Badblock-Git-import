@@ -54,11 +54,13 @@ public enum EnumColor implements INamable {
         return EnumColor.q[i];
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.v;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.u;
     }
 

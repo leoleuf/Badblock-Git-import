@@ -22,7 +22,8 @@ public class CraftCow extends CraftAnimals implements Cow {
         return "CraftCow";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.COW;
     }
 }

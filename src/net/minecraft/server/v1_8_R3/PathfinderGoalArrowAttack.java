@@ -33,7 +33,8 @@ public class PathfinderGoalArrowAttack extends PathfinderGoal {
         }
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         EntityLiving entityliving = this.a.getGoalTarget();
 
         if (entityliving == null) {
@@ -44,17 +45,20 @@ public class PathfinderGoalArrowAttack extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.a() || !this.a.getNavigation().m();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.c = null;
         this.f = 0;
         this.d = -1;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         double d0 = this.a.e(this.c.locX, this.c.getBoundingBox().b, this.c.locZ);
         boolean flag = this.a.getEntitySenses().a(this.c);
 
@@ -64,17 +68,17 @@ public class PathfinderGoalArrowAttack extends PathfinderGoal {
             this.f = 0;
         }
 
-        if (d0 <= (double) this.j && this.f >= 20) {
+        if (d0 <= this.j && this.f >= 20) {
             this.a.getNavigation().n();
         } else {
-            this.a.getNavigation().a((Entity) this.c, this.e);
+            this.a.getNavigation().a(this.c, this.e);
         }
 
         this.a.getControllerLook().a(this.c, 30.0F, 30.0F);
         float f;
 
         if (--this.d == 0) {
-            if (d0 > (double) this.j || !flag) {
+            if (d0 > this.j || !flag) {
                 return;
             }
 
@@ -82,10 +86,10 @@ public class PathfinderGoalArrowAttack extends PathfinderGoal {
             float f1 = MathHelper.a(f, 0.1F, 1.0F);
 
             this.b.a(this.c, f1);
-            this.d = MathHelper.d(f * (float) (this.h - this.g) + (float) this.g);
+            this.d = MathHelper.d(f * (this.h - this.g) + this.g);
         } else if (this.d < 0) {
             f = MathHelper.sqrt(d0) / this.i;
-            this.d = MathHelper.d(f * (float) (this.h - this.g) + (float) this.g);
+            this.d = MathHelper.d(f * (this.h - this.g) + this.g);
         }
 
     }

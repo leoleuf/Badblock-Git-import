@@ -20,13 +20,14 @@ public class EntityExperienceOrb extends Entity {
         this.setSize(0.5F, 0.5F);
         this.setPosition(d0, d1, d2);
         this.yaw = (float) (Math.random() * 360.0D);
-        this.motX = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
-        this.motY = (double) ((float) (Math.random() * 0.2D) * 2.0F);
-        this.motZ = (double) ((float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F);
+        this.motX = (float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F;
+        this.motY = (float) (Math.random() * 0.2D) * 2.0F;
+        this.motZ = (float) (Math.random() * 0.20000000298023224D - 0.10000000149011612D) * 2.0F;
         this.value = i;
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
@@ -35,9 +36,11 @@ public class EntityExperienceOrb extends Entity {
         this.setSize(0.25F, 0.25F);
     }
 
-    protected void h() {}
+    @Override
+	protected void h() {}
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         EntityHuman prevTarget = this.targetPlayer;// CraftBukkit - store old target
         if (this.c > 0) {
@@ -50,8 +53,8 @@ public class EntityExperienceOrb extends Entity {
         this.motY -= 0.029999999329447746D;
         if (this.world.getType(new BlockPosition(this)).getBlock().getMaterial() == Material.LAVA) {
             this.motY = 0.20000000298023224D;
-            this.motX = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
-            this.motZ = (double) ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+            this.motX = (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
+            this.motZ = (this.random.nextFloat() - this.random.nextFloat()) * 0.2F;
             this.makeSound("random.fizz", 0.4F, 2.0F + this.random.nextFloat() * 0.4F);
         }
 
@@ -82,7 +85,7 @@ public class EntityExperienceOrb extends Entity {
 
             if (!cancelled && targetPlayer != null) {
             double d1 = (this.targetPlayer.locX - this.locX) / d0;
-            double d2 = (this.targetPlayer.locY + (double) this.targetPlayer.getHeadHeight() - this.locY) / d0;
+            double d2 = (this.targetPlayer.locY + this.targetPlayer.getHeadHeight() - this.locY) / d0;
             double d3 = (this.targetPlayer.locZ - this.locZ) / d0;
             double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
             double d5 = 1.0D - d4;
@@ -104,9 +107,9 @@ public class EntityExperienceOrb extends Entity {
             f = this.world.getType(new BlockPosition(MathHelper.floor(this.locX), MathHelper.floor(this.getBoundingBox().b) - 1, MathHelper.floor(this.locZ))).getBlock().frictionFactor * 0.98F;
         }
 
-        this.motX *= (double) f;
+        this.motX *= f;
         this.motY *= 0.9800000190734863D;
-        this.motZ *= (double) f;
+        this.motZ *= f;
         if (this.onGround) {
             this.motY *= -0.8999999761581421D;
         }
@@ -119,20 +122,22 @@ public class EntityExperienceOrb extends Entity {
 
     }
 
-    public boolean W() {
-        return this.world.a(this.getBoundingBox(), Material.WATER, (Entity) this);
+    @Override
+	public boolean W() {
+        return this.world.a(this.getBoundingBox(), Material.WATER, this);
     }
 
     protected void burn(int i) {
-        this.damageEntity(DamageSource.FIRE, (float) i);
+        this.damageEntity(DamageSource.FIRE, i);
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
             this.ac();
-            this.d = (int) ((float) this.d - f);
+            this.d = (int) (this.d - f);
             if (this.d <= 0) {
                 this.die();
             }
@@ -141,19 +146,22 @@ public class EntityExperienceOrb extends Entity {
         }
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
-        nbttagcompound.setShort("Health", (short) ((byte) this.d));
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
+        nbttagcompound.setShort("Health", ((byte) this.d));
         nbttagcompound.setShort("Age", (short) this.b);
         nbttagcompound.setShort("Value", (short) this.value);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         this.d = nbttagcompound.getShort("Health") & 255;
         this.b = nbttagcompound.getShort("Age");
         this.value = nbttagcompound.getShort("Value");
     }
 
-    public void d(EntityHuman entityhuman) {
+    @Override
+	public void d(EntityHuman entityhuman) {
         if (!this.world.isClientSide) {
             if (this.c == 0 && entityhuman.bp == 0) {
                 entityhuman.bp = 2;
@@ -192,7 +200,8 @@ public class EntityExperienceOrb extends Entity {
         return i >= 2477 ? 2477 : (i >= 1237 ? 1237 : (i >= 617 ? 617 : (i >= 307 ? 307 : (i >= 149 ? 149 : (i >= 73 ? 73 : (i >= 37 ? 37 : (i >= 17 ? 17 : (i >= 7 ? 7 : (i >= 3 ? 3 : 1)))))))));
     }
 
-    public boolean aD() {
+    @Override
+	public boolean aD() {
         return false;
     }
 }

@@ -15,15 +15,18 @@ public class PacketPlayInFlying implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInFlying() {}
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.f = packetdataserializer.readUnsignedByte() != 0;
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.f ? 1 : 0);
     }
 
@@ -70,13 +73,15 @@ public class PacketPlayInFlying implements Packet<PacketListenerPlayIn> {
             this.hasLook = true;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             this.yaw = packetdataserializer.readFloat();
             this.pitch = packetdataserializer.readFloat();
             super.a(packetdataserializer);
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             packetdataserializer.writeFloat(this.yaw);
             packetdataserializer.writeFloat(this.pitch);
             super.b(packetdataserializer);
@@ -89,14 +94,16 @@ public class PacketPlayInFlying implements Packet<PacketListenerPlayIn> {
             this.hasPos = true;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             this.x = packetdataserializer.readDouble();
             this.y = packetdataserializer.readDouble();
             this.z = packetdataserializer.readDouble();
             super.a(packetdataserializer);
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             packetdataserializer.writeDouble(this.x);
             packetdataserializer.writeDouble(this.y);
             packetdataserializer.writeDouble(this.z);
@@ -111,7 +118,8 @@ public class PacketPlayInFlying implements Packet<PacketListenerPlayIn> {
             this.hasLook = true;
         }
 
-        public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void a(PacketDataSerializer packetdataserializer) throws IOException {
             this.x = packetdataserializer.readDouble();
             this.y = packetdataserializer.readDouble();
             this.z = packetdataserializer.readDouble();
@@ -120,7 +128,8 @@ public class PacketPlayInFlying implements Packet<PacketListenerPlayIn> {
             super.a(packetdataserializer);
         }
 
-        public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        @Override
+		public void b(PacketDataSerializer packetdataserializer) throws IOException {
             packetdataserializer.writeDouble(this.x);
             packetdataserializer.writeDouble(this.y);
             packetdataserializer.writeDouble(this.z);

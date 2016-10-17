@@ -16,7 +16,7 @@ public class AttributeModifier {
     private boolean e;
 
     public AttributeModifier(String s, double d0, int i) {
-        this(MathHelper.a((Random) ThreadLocalRandom.current()), s, d0, i);
+        this(MathHelper.a(ThreadLocalRandom.current()), s, d0, i);
     }
 
     public AttributeModifier(UUID uuid, String s, double d0, int i) {
@@ -26,7 +26,7 @@ public class AttributeModifier {
         this.a = d0;
         this.b = i;
         Validate.notEmpty(s, "Modifier name cannot be empty", new Object[0]);
-        Validate.inclusiveBetween(0L, 2L, (long) i, "Invalid operation");
+        Validate.inclusiveBetween(0L, 2L, i, "Invalid operation");
     }
 
     public UUID a() {
@@ -54,7 +54,8 @@ public class AttributeModifier {
         return this;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (object != null && this.getClass() == object.getClass()) {
@@ -74,11 +75,13 @@ public class AttributeModifier {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.d != null ? this.d.hashCode() : 0;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "AttributeModifier{amount=" + this.a + ", operation=" + this.b + ", name=\'" + this.c + '\'' + ", id=" + this.d + ", serialize=" + this.e + '}';
     }
 }

@@ -12,7 +12,8 @@ public class PacketPlayInSettings implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInSettings() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(7);
         this.b = packetdataserializer.readByte();
         this.c = EntityHuman.EnumChatVisibility.a(packetdataserializer.readByte());
@@ -20,7 +21,8 @@ public class PacketPlayInSettings implements Packet<PacketListenerPlayIn> {
         this.e = packetdataserializer.readUnsignedByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.writeByte(this.b);
         packetdataserializer.writeByte(this.c.a());
@@ -28,7 +30,8 @@ public class PacketPlayInSettings implements Packet<PacketListenerPlayIn> {
         packetdataserializer.writeByte(this.e);
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

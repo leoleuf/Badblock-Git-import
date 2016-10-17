@@ -20,7 +20,8 @@ class CraftFuture<T> extends CraftTask implements Future<T> {
         this.callable = callable;
     }
 
-    public synchronized boolean cancel(final boolean mayInterruptIfRunning) {
+    @Override
+	public synchronized boolean cancel(final boolean mayInterruptIfRunning) {
         if (getPeriod() != -1l) {
             return false;
         }
@@ -28,16 +29,19 @@ class CraftFuture<T> extends CraftTask implements Future<T> {
         return true;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return getPeriod() == -2l;
     }
 
-    public boolean isDone() {
+    @Override
+	public boolean isDone() {
         final long period = this.getPeriod();
         return period != -1l && period != -3l;
     }
 
-    public T get() throws CancellationException, InterruptedException, ExecutionException {
+    @Override
+	public T get() throws CancellationException, InterruptedException, ExecutionException {
         try {
             return get(0, TimeUnit.MILLISECONDS);
         } catch (final TimeoutException e) {
@@ -45,7 +49,8 @@ class CraftFuture<T> extends CraftTask implements Future<T> {
         }
     }
 
-    public synchronized T get(long timeout, final TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
+    @Override
+	public synchronized T get(long timeout, final TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException {
         timeout = unit.toMillis(timeout);
         long period = this.getPeriod();
         long timestamp = timeout > 0 ? System.currentTimeMillis() : 0l;
@@ -97,7 +102,8 @@ class CraftFuture<T> extends CraftTask implements Future<T> {
         }
     }
 
-    synchronized boolean cancel0() {
+    @Override
+	synchronized boolean cancel0() {
         if (getPeriod() != -1l) {
             return false;
         }

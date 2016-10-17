@@ -9,11 +9,13 @@ public class BlockObsidian extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Item.getItemOf(Blocks.OBSIDIAN);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.E;
     }
 }

@@ -84,11 +84,13 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
         setData((byte) dat);
     }
 
-    public BlockFace getAttachedFace() {
+    @Override
+	public BlockFace getAttachedFace() {
         return getFacing().getOppositeFace();
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         int dat = getData() & 0xC;
         switch (face) {
             default:
@@ -107,7 +109,8 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
         setData((byte) dat);
     }
 
-    public BlockFace getFacing() {
+    @Override
+	public BlockFace getFacing() {
         switch (getData() & 0x3) {
             case 0:
                 return BlockFace.SOUTH;

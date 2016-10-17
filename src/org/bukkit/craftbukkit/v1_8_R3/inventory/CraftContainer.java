@@ -299,7 +299,8 @@ public class CraftContainer extends Container {
         // End copy from ContainerHopper
     }
 
-    public boolean a(EntityHuman entity) {
+    @Override
+	public boolean a(EntityHuman entity) {
         return true;
     }
 }

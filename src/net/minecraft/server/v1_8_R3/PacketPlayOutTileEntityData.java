@@ -16,19 +16,22 @@ public class PacketPlayOutTileEntityData implements Packet<PacketListenerPlayOut
         this.c = nbttagcompound;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c();
         this.b = packetdataserializer.readUnsignedByte();
         this.c = packetdataserializer.h();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.writeByte((byte) this.b);
         packetdataserializer.a(this.c);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

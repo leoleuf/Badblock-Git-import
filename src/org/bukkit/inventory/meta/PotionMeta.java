@@ -73,5 +73,6 @@ public interface PotionMeta extends ItemMeta {
      */
     boolean clearCustomEffects();
 
-    PotionMeta clone();
+    @Override
+	PotionMeta clone();
 }

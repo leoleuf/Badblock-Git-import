@@ -11,27 +11,33 @@ public class CraftInventoryFurnace extends CraftInventory implements FurnaceInve
         super(inventory);
     }
 
-    public ItemStack getResult() {
+    @Override
+	public ItemStack getResult() {
         return getItem(2);
     }
 
-    public ItemStack getFuel() {
+    @Override
+	public ItemStack getFuel() {
         return getItem(1);
     }
 
-    public ItemStack getSmelting() {
+    @Override
+	public ItemStack getSmelting() {
         return getItem(0);
     }
 
-    public void setFuel(ItemStack stack) {
+    @Override
+	public void setFuel(ItemStack stack) {
         setItem(1,stack);
     }
 
-    public void setResult(ItemStack stack) {
+    @Override
+	public void setResult(ItemStack stack) {
         setItem(2,stack);
     }
 
-    public void setSmelting(ItemStack stack) {
+    @Override
+	public void setSmelting(ItemStack stack) {
         setItem(0,stack);
     }
 

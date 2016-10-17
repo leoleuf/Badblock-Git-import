@@ -16,11 +16,13 @@ public class RedirectStream extends PrintStream {
         this.b = s;
     }
 
-    public void println(String s) {
+    @Override
+	public void println(String s) {
         this.a(s);
     }
 
-    public void println(Object object) {
+    @Override
+	public void println(Object object) {
         this.a(String.valueOf(object));
     }
 

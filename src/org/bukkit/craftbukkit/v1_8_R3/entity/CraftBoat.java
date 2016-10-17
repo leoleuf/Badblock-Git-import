@@ -12,39 +12,47 @@ public class CraftBoat extends CraftVehicle implements Boat {
         super(server, entity);
     }
 
-    public double getMaxSpeed() {
+    @Override
+	public double getMaxSpeed() {
         return getHandle().maxSpeed;
     }
 
-    public void setMaxSpeed(double speed) {
+    @Override
+	public void setMaxSpeed(double speed) {
         if (speed >= 0D) {
             getHandle().maxSpeed = speed;
         }
     }
 
-    public double getOccupiedDeceleration() {
+    @Override
+	public double getOccupiedDeceleration() {
         return getHandle().occupiedDeceleration;
     }
 
-    public void setOccupiedDeceleration(double speed) {
+    @Override
+	public void setOccupiedDeceleration(double speed) {
         if (speed >= 0D) {
             getHandle().occupiedDeceleration = speed;
         }
     }
 
-    public double getUnoccupiedDeceleration() {
+    @Override
+	public double getUnoccupiedDeceleration() {
         return getHandle().unoccupiedDeceleration;
     }
 
-    public void setUnoccupiedDeceleration(double speed) {
+    @Override
+	public void setUnoccupiedDeceleration(double speed) {
         getHandle().unoccupiedDeceleration = speed;
     }
 
-    public boolean getWorkOnLand() {
+    @Override
+	public boolean getWorkOnLand() {
         return getHandle().landBoats;
     }
 
-    public void setWorkOnLand(boolean workOnLand) {
+    @Override
+	public void setWorkOnLand(boolean workOnLand) {
         getHandle().landBoats = workOnLand;
     }
 
@@ -58,7 +66,8 @@ public class CraftBoat extends CraftVehicle implements Boat {
         return "CraftBoat";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.BOAT;
     }
 }

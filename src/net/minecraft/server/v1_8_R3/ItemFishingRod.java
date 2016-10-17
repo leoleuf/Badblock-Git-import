@@ -10,7 +10,8 @@ public class ItemFishingRod extends Item {
         this.a(CreativeModeTab.i);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (entityhuman.hookedFish != null) {
             int i = entityhuman.hookedFish.l();
 
@@ -27,7 +28,7 @@ public class ItemFishingRod extends Item {
                 return itemstack;
             }
             // CraftBukkit end
-            world.makeSound(entityhuman, "random.bow", 0.5F, 0.4F / (ItemFishingRod.g.nextFloat() * 0.4F + 0.8F));
+            world.makeSound(entityhuman, "random.bow", 0.5F, 0.4F / (Item.g.nextFloat() * 0.4F + 0.8F));
             if (!world.isClientSide) {
                 world.addEntity(hook); // CraftBukkit - moved creation up
             }
@@ -39,11 +40,13 @@ public class ItemFishingRod extends Item {
         return itemstack;
     }
 
-    public boolean f_(ItemStack itemstack) {
+    @Override
+	public boolean f_(ItemStack itemstack) {
         return super.f_(itemstack);
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 1;
     }
 }

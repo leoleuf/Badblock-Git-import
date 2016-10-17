@@ -13,27 +13,33 @@ public class BlockPrismarine extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get(this.a() + "." + BlockPrismarine.EnumPrismarineVariant.ROUGH.c() + ".name");
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return iblockdata.get(BlockPrismarine.VARIANT) == BlockPrismarine.EnumPrismarineVariant.ROUGH ? MaterialMapColor.y : MaterialMapColor.G;
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockPrismarine.EnumPrismarineVariant) iblockdata.get(BlockPrismarine.VARIANT)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockPrismarine.VARIANT).a();
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockPrismarine.EnumPrismarineVariant) iblockdata.get(BlockPrismarine.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockPrismarine.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockPrismarine.VARIANT});
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockPrismarine.VARIANT, BlockPrismarine.EnumPrismarineVariant.a(i));
     }
 
@@ -56,7 +62,8 @@ public class BlockPrismarine extends Block {
             return this.e;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.f;
         }
 
@@ -68,7 +75,8 @@ public class BlockPrismarine extends Block {
             return BlockPrismarine.EnumPrismarineVariant.d[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.f;
         }
 

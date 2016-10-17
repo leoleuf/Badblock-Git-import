@@ -20,7 +20,8 @@ public class TerminalConsoleWriterThread implements Runnable {
         this.reader = reader;
     }
 
-    public void run() {
+    @Override
+	public void run() {
         String message;
 
         // Using name from log4j config in vanilla jar

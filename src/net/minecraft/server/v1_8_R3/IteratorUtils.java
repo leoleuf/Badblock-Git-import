@@ -16,7 +16,7 @@ import com.google.common.collect.UnmodifiableIterator;
 public class IteratorUtils {
 
     public static <T> Iterable<T[]> a(Class<T> oclass, Iterable<? extends Iterable<? extends T>> iterable) {
-        return new IteratorUtils.ClassIterable(oclass, (Iterable[]) b(Iterable.class, iterable), (IteratorUtils.SyntheticClass_1) null);
+        return new IteratorUtils.ClassIterable(oclass, b(Iterable.class, iterable), (IteratorUtils.SyntheticClass_1) null);
     }
 
     public static <T> Iterable<List<T>> a(Iterable<? extends Iterable<? extends T>> iterable) {
@@ -41,7 +41,7 @@ public class IteratorUtils {
     }
 
     private static <T> T[] b(Class<? super T> oclass, int i) {
-        return (T[]) ((T[]) Array.newInstance(oclass, i));
+        return ((T[]) Array.newInstance(oclass, i));
     }
 
     static class SyntheticClass_1 {    }
@@ -56,8 +56,9 @@ public class IteratorUtils {
             this.b = aiterable;
         }
 
-        public Iterator<T[]> iterator() {
-            return (Iterator) (this.b.length <= 0 ? Collections.singletonList((Object[]) IteratorUtils.b(this.a, 0)).iterator() : new IteratorUtils.ClassIterable.ClassIterable$ClassIterator(this.a, this.b, (IteratorUtils.SyntheticClass_1) null));
+        @Override
+		public Iterator<T[]> iterator() {
+            return this.b.length <= 0 ? Collections.singletonList((Object[]) IteratorUtils.b(this.a, 0)).iterator() : new IteratorUtils.ClassIterable.ClassIterable$ClassIterator(this.a, this.b, (IteratorUtils.SyntheticClass_1) null);
         }
 
         ClassIterable(Class oclass, Iterable[] aiterable, IteratorUtils.SyntheticClass_1 iteratorutils_syntheticclass_1) {
@@ -74,7 +75,7 @@ public class IteratorUtils {
             private ClassIterable$ClassIterator(Class<T> oclass, Iterable<? extends T>[] aiterable) {
                 this.a = -2;
                 this.b = aiterable;
-                this.c = (Iterator[]) IteratorUtils.b(Iterator.class, this.b.length);
+                this.c = IteratorUtils.b(Iterator.class, this.b.length);
 
                 for (int i = 0; i < this.b.length; ++i) {
                     this.c[i] = aiterable[i].iterator();
@@ -89,7 +90,8 @@ public class IteratorUtils {
                 Arrays.fill(this.d, (Object) null);
             }
 
-            public boolean hasNext() {
+            @Override
+			public boolean hasNext() {
                 if (this.a == -2) {
                     this.a = 0;
                     Iterator[] aiterator = this.c;
@@ -141,11 +143,12 @@ public class IteratorUtils {
                         ++this.a;
                     }
 
-                    return (T[]) this.d.clone();
+                    return this.d.clone();
                 }
             }
 
-            public T[] next() {
+            @Override
+			public T[] next() {
                 return this.a();
             }
 
@@ -163,7 +166,8 @@ public class IteratorUtils {
             return Arrays.asList((T[]) aobject);
         }
 
-        public List<T> apply(Object[] object) {
+        @Override
+		public List<T> apply(Object[] object) {
             return this.a(object);
         }
 

@@ -22,50 +22,60 @@ public class EntityPig extends EntityAnimal {
         this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(10.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
     }
 
-    public boolean bW() {
+    @Override
+	public boolean bW() {
         ItemStack itemstack = ((EntityHuman) this.passenger).bA();
 
         return itemstack != null && itemstack.getItem() == Items.CARROT_ON_A_STICK;
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Byte.valueOf((byte) 0));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("Saddle", this.hasSaddle());
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setSaddle(nbttagcompound.getBoolean("Saddle"));
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.pig.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.pig.say";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.pig.death";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.pig.step", 0.15F, 1.0F);
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         if (super.a(entityhuman)) {
             return true;
         } else if (this.hasSaddle() && !this.world.isClientSide && (this.passenger == null || this.passenger == entityhuman)) {
@@ -76,11 +86,13 @@ public class EntityPig extends EntityAnimal {
         }
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return this.isBurning() ? Items.COOKED_PORKCHOP : Items.PORKCHOP;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3) + 1 + this.random.nextInt(1 + i);
 
         for (int k = 0; k < j; ++k) {
@@ -110,7 +122,8 @@ public class EntityPig extends EntityAnimal {
 
     }
 
-    public void onLightningStrike(EntityLightning entitylightning) {
+    @Override
+	public void onLightningStrike(EntityLightning entitylightning) {
         if (!this.world.isClientSide && !this.dead) {
             EntityPigZombie entitypigzombie = new EntityPigZombie(this.world);
 
@@ -134,10 +147,11 @@ public class EntityPig extends EntityAnimal {
         }
     }
 
-    public void e(float f, float f1) {
+    @Override
+	public void e(float f, float f1) {
         super.e(f, f1);
         if (f > 5.0F && this.passenger instanceof EntityHuman) {
-            ((EntityHuman) this.passenger).b((Statistic) AchievementList.u);
+            ((EntityHuman) this.passenger).b(AchievementList.u);
         }
 
     }
@@ -146,7 +160,8 @@ public class EntityPig extends EntityAnimal {
         return new EntityPig(this.world);
     }
 
-    public boolean d(ItemStack itemstack) {
+    @Override
+	public boolean d(ItemStack itemstack) {
         return itemstack != null && itemstack.getItem() == Items.CARROT;
     }
 
@@ -154,7 +169,8 @@ public class EntityPig extends EntityAnimal {
         return this.bm;
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         return this.b(entityageable);
     }
 }

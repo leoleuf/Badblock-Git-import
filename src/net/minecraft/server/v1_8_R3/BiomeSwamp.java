@@ -20,16 +20,19 @@ public class BiomeSwamp extends BiomeBase {
         this.at.add(new BiomeBase.BiomeMeta(EntitySlime.class, 1, 1, 1));
     }
 
-    public WorldGenTreeAbstract a(Random random) {
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
         return this.aC;
     }
 
-    public BlockFlowers.EnumFlowerVarient a(Random random, BlockPosition blockposition) {
+    @Override
+	public BlockFlowers.EnumFlowerVarient a(Random random, BlockPosition blockposition) {
         return BlockFlowers.EnumFlowerVarient.BLUE_ORCHID;
     }
 
-    public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
-        double d1 = BiomeSwamp.af.a((double) i * 0.25D, (double) j * 0.25D);
+    @Override
+	public void a(World world, Random random, ChunkSnapshot chunksnapshot, int i, int j, double d0) {
+        double d1 = BiomeBase.af.a(i * 0.25D, j * 0.25D);
 
         if (d1 > 0.0D) {
             int k = i & 15;

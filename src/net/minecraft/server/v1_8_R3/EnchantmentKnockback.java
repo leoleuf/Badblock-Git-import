@@ -7,15 +7,18 @@ public class EnchantmentKnockback extends Enchantment {
         this.c("knockback");
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return 5 + 20 * (i - 1);
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return super.a(i) + 50;
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 2;
     }
 }

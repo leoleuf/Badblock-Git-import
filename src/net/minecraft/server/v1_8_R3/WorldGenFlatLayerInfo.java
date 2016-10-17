@@ -47,11 +47,12 @@ public class WorldGenFlatLayerInfo {
         this.d = i;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         String s;
 
         if (this.a >= 3) {
-            MinecraftKey minecraftkey = (MinecraftKey) Block.REGISTRY.c(this.e());
+            MinecraftKey minecraftkey = Block.REGISTRY.c(this.e());
 
             s = minecraftkey == null ? "null" : minecraftkey.toString();
             if (this.c > 1) {

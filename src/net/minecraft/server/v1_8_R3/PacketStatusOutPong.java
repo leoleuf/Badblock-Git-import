@@ -12,15 +12,18 @@ public class PacketStatusOutPong implements Packet<PacketStatusOutListener> {
         this.a = i;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readLong();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeLong(this.a);
     }
 
-    public void a(PacketStatusOutListener packetstatusoutlistener) {
+    @Override
+	public void a(PacketStatusOutListener packetstatusoutlistener) {
         packetstatusoutlistener.a(this);
     }
 

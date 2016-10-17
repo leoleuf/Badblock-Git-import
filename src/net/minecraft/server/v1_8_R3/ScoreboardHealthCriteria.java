@@ -9,7 +9,8 @@ public class ScoreboardHealthCriteria extends ScoreboardBaseCriteria {
         super(s);
     }
 
-    public int getScoreModifier(List<EntityHuman> list) {
+    @Override
+	public int getScoreModifier(List<EntityHuman> list) {
         float f = 0.0F;
 
         EntityHuman entityhuman;
@@ -19,17 +20,19 @@ public class ScoreboardHealthCriteria extends ScoreboardBaseCriteria {
         }
 
         if (list.size() > 0) {
-            f /= (float) list.size();
+            f /= list.size();
         }
 
         return MathHelper.f(f);
     }
 
-    public boolean isReadOnly() {
+    @Override
+	public boolean isReadOnly() {
         return true;
     }
 
-    public IScoreboardCriteria.EnumScoreboardHealthDisplay c() {
+    @Override
+	public IScoreboardCriteria.EnumScoreboardHealthDisplay c() {
         return IScoreboardCriteria.EnumScoreboardHealthDisplay.HEARTS;
     }
 }

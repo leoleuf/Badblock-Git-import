@@ -32,11 +32,13 @@ public class CraftInventoryDoubleChest extends CraftInventory implements DoubleC
         }
     }
 
-    public Inventory getLeftSide() {
+    @Override
+	public Inventory getLeftSide() {
         return left;
     }
 
-    public Inventory getRightSide() {
+    @Override
+	public Inventory getRightSide() {
         return right;
     }
 

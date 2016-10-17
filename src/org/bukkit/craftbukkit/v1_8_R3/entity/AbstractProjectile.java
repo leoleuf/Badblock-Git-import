@@ -12,11 +12,13 @@ public abstract class AbstractProjectile extends CraftEntity implements Projecti
         doesBounce = false;
     }
 
-    public boolean doesBounce() {
+    @Override
+	public boolean doesBounce() {
         return doesBounce;
     }
 
-    public void setBounce(boolean doesBounce) {
+    @Override
+	public void setBounce(boolean doesBounce) {
         this.doesBounce = doesBounce;
     }
 

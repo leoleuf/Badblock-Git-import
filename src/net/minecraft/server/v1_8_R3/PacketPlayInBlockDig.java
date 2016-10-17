@@ -10,19 +10,22 @@ public class PacketPlayInBlockDig implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInBlockDig() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.c = (PacketPlayInBlockDig.EnumPlayerDigType) packetdataserializer.a(PacketPlayInBlockDig.EnumPlayerDigType.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.c = packetdataserializer.a(PacketPlayInBlockDig.EnumPlayerDigType.class);
         this.a = packetdataserializer.c();
         this.b = EnumDirection.fromType1(packetdataserializer.readUnsignedByte());
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-        packetdataserializer.a((Enum) this.c);
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        packetdataserializer.a(this.c);
         packetdataserializer.a(this.a);
         packetdataserializer.writeByte(this.b.a());
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

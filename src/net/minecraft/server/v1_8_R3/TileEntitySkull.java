@@ -79,7 +79,8 @@ public class TileEntitySkull extends TileEntity {
 
     public TileEntitySkull() {}
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setByte("SkullType", (byte) (this.a & 255));
         nbttagcompound.setByte("Rot", (byte) (this.rotation & 255));
@@ -92,7 +93,8 @@ public class TileEntitySkull extends TileEntity {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a = nbttagcompound.getByte("SkullType");
         this.rotation = nbttagcompound.getByte("Rot");
@@ -115,7 +117,8 @@ public class TileEntitySkull extends TileEntity {
         return this.g;
     }
 
-    public Packet getUpdatePacket() {
+    @Override
+	public Packet getUpdatePacket() {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         this.b(nbttagcompound);

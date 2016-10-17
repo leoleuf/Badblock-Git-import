@@ -39,7 +39,7 @@ public class ControllerMove {
             int i = MathHelper.floor(this.a.getBoundingBox().b + 0.5D);
             double d0 = this.b - this.a.locX;
             double d1 = this.d - this.a.locZ;
-            double d2 = this.c - (double) i;
+            double d2 = this.c - i;
             double d3 = d0 * d0 + d2 * d2 + d1 * d1;
 
             if (d3 >= 2.500000277905201E-7D) {

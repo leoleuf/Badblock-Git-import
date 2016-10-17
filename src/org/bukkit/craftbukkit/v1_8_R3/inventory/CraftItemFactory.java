@@ -34,14 +34,16 @@ public final class CraftItemFactory implements ItemFactory {
     private CraftItemFactory() {
     }
 
-    public boolean isApplicable(ItemMeta meta, ItemStack itemstack) {
+    @Override
+	public boolean isApplicable(ItemMeta meta, ItemStack itemstack) {
         if (itemstack == null) {
             return false;
         }
         return isApplicable(meta, itemstack.getType());
     }
 
-    public boolean isApplicable(ItemMeta meta, Material type) {
+    @Override
+	public boolean isApplicable(ItemMeta meta, Material type) {
         if (type == null || meta == null) {
             return false;
         }
@@ -52,7 +54,8 @@ public final class CraftItemFactory implements ItemFactory {
         return ((CraftMetaItem) meta).applicableTo(type);
     }
 
-    public ItemMeta getItemMeta(Material material) {
+    @Override
+	public ItemMeta getItemMeta(Material material) {
         Validate.notNull(material, "Material cannot be null");
         return getItemMeta(material, null);
     }
@@ -109,7 +112,8 @@ public final class CraftItemFactory implements ItemFactory {
         }
     }
 
-    public boolean equals(ItemMeta meta1, ItemMeta meta2) {
+    @Override
+	public boolean equals(ItemMeta meta1, ItemMeta meta2) {
         if (meta1 == meta2) {
             return true;
         }
@@ -146,12 +150,14 @@ public final class CraftItemFactory implements ItemFactory {
         return instance;
     }
 
-    public ItemMeta asMetaFor(ItemMeta meta, ItemStack stack) {
+    @Override
+	public ItemMeta asMetaFor(ItemMeta meta, ItemStack stack) {
         Validate.notNull(stack, "Stack cannot be null");
         return asMetaFor(meta, stack.getType());
     }
 
-    public ItemMeta asMetaFor(ItemMeta meta, Material material) {
+    @Override
+	public ItemMeta asMetaFor(ItemMeta meta, Material material) {
         Validate.notNull(material, "Material cannot be null");
         if (!(meta instanceof CraftMetaItem)) {
             throw new IllegalArgumentException("Meta of " + (meta != null ? meta.getClass().toString() : "null") + " not created by " + CraftItemFactory.class.getName());
@@ -159,7 +165,8 @@ public final class CraftItemFactory implements ItemFactory {
         return getItemMeta(material, (CraftMetaItem) meta);
     }
 
-    public Color getDefaultLeatherColor() {
+    @Override
+	public Color getDefaultLeatherColor() {
         return DEFAULT_LEATHER_COLOR;
     }
 }

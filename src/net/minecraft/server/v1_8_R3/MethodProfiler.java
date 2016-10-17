@@ -44,8 +44,9 @@ public class MethodProfiler {
             return methodprofiler_profilerinfo.a < this.a ? -1 : (methodprofiler_profilerinfo.a > this.a ? 1 : methodprofiler_profilerinfo.c.compareTo(this.c));
         }
 
-        public int compareTo(MethodProfiler.ProfilerInfo object) {
-            return this.a((MethodProfiler.ProfilerInfo) object);
+        @Override
+		public int compareTo(MethodProfiler.ProfilerInfo object) {
+            return this.a(object);
         }
     }
 }

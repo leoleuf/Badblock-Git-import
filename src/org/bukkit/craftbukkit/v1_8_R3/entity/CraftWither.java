@@ -21,7 +21,8 @@ public class CraftWither extends CraftMonster implements Wither {
         return "CraftWither";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.WITHER;
     }
 }

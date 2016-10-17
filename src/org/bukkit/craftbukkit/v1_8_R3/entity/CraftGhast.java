@@ -22,7 +22,8 @@ public class CraftGhast extends CraftFlying implements Ghast {
         return "CraftGhast";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.GHAST;
     }
 }

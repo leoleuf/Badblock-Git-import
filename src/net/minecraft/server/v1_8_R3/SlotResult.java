@@ -12,11 +12,13 @@ public class SlotResult extends Slot {
         this.a = inventorycrafting;
     }
 
-    public boolean isAllowed(ItemStack itemstack) {
+    @Override
+	public boolean isAllowed(ItemStack itemstack) {
         return false;
     }
 
-    public ItemStack a(int i) {
+    @Override
+	public ItemStack a(int i) {
         if (this.hasItem()) {
             this.c += Math.min(i, this.getItem().count);
         }
@@ -24,64 +26,67 @@ public class SlotResult extends Slot {
         return super.a(i);
     }
 
-    protected void a(ItemStack itemstack, int i) {
+    @Override
+	protected void a(ItemStack itemstack, int i) {
         this.c += i;
         this.c(itemstack);
     }
 
-    protected void c(ItemStack itemstack) {
+    @Override
+	protected void c(ItemStack itemstack) {
         if (this.c > 0) {
             itemstack.a(this.b.world, this.b, this.c);
         }
 
         this.c = 0;
         if (itemstack.getItem() == Item.getItemOf(Blocks.CRAFTING_TABLE)) {
-            this.b.b((Statistic) AchievementList.h);
+            this.b.b(AchievementList.h);
         }
 
         if (itemstack.getItem() instanceof ItemPickaxe) {
-            this.b.b((Statistic) AchievementList.i);
+            this.b.b(AchievementList.i);
         }
 
         if (itemstack.getItem() == Item.getItemOf(Blocks.FURNACE)) {
-            this.b.b((Statistic) AchievementList.j);
+            this.b.b(AchievementList.j);
         }
 
         if (itemstack.getItem() instanceof ItemHoe) {
-            this.b.b((Statistic) AchievementList.l);
+            this.b.b(AchievementList.l);
         }
 
         if (itemstack.getItem() == Items.BREAD) {
-            this.b.b((Statistic) AchievementList.m);
+            this.b.b(AchievementList.m);
         }
 
         if (itemstack.getItem() == Items.CAKE) {
-            this.b.b((Statistic) AchievementList.n);
+            this.b.b(AchievementList.n);
         }
 
         if (itemstack.getItem() instanceof ItemPickaxe && ((ItemPickaxe) itemstack.getItem()).g() != Item.EnumToolMaterial.WOOD) {
-            this.b.b((Statistic) AchievementList.o);
+            this.b.b(AchievementList.o);
         }
 
         if (itemstack.getItem() instanceof ItemSword) {
-            this.b.b((Statistic) AchievementList.r);
+            this.b.b(AchievementList.r);
         }
 
         if (itemstack.getItem() == Item.getItemOf(Blocks.ENCHANTING_TABLE)) {
-            this.b.b((Statistic) AchievementList.E);
+            this.b.b(AchievementList.E);
         }
 
         if (itemstack.getItem() == Item.getItemOf(Blocks.BOOKSHELF)) {
-            this.b.b((Statistic) AchievementList.G);
+            this.b.b(AchievementList.G);
         }
 
         if (itemstack.getItem() == Items.GOLDEN_APPLE && itemstack.getData() == 1) {
-            this.b.b((Statistic) AchievementList.M);
+            this.b.b(AchievementList.M);
         }
 
     }
 
-    public void a(EntityHuman entityhuman, ItemStack itemstack) {
+    @Override
+	public void a(EntityHuman entityhuman, ItemStack itemstack) {
         this.c(itemstack);
         ItemStack[] aitemstack = CraftingManager.getInstance().b(this.a, entityhuman.world);
 

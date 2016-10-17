@@ -7,7 +7,8 @@ public class BlockWorkbench extends Block {
         this.a(CreativeModeTab.c);
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -27,23 +28,28 @@ public class BlockWorkbench extends Block {
             this.b = blockposition;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return null;
         }
 
-        public boolean hasCustomName() {
+        @Override
+		public boolean hasCustomName() {
             return false;
         }
 
-        public IChatBaseComponent getScoreboardDisplayName() {
+        @Override
+		public IChatBaseComponent getScoreboardDisplayName() {
             return new ChatMessage(Blocks.CRAFTING_TABLE.a() + ".name", new Object[0]);
         }
 
-        public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
+        @Override
+		public Container createContainer(PlayerInventory playerinventory, EntityHuman entityhuman) {
             return new ContainerWorkbench(playerinventory, this.a, this.b);
         }
 
-        public String getContainerName() {
+        @Override
+		public String getContainerName() {
             return "minecraft:crafting_table";
         }
     }

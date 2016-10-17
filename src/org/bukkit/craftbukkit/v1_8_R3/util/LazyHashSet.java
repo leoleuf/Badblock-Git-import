@@ -8,55 +8,68 @@ import java.util.Set;
 public abstract class LazyHashSet<E> implements Set<E> {
     Set<E> reference = null;
 
-    public int size() {
+    @Override
+	public int size() {
         return getReference().size();
     }
 
-    public boolean isEmpty() {
+    @Override
+	public boolean isEmpty() {
         return getReference().isEmpty();
     }
 
-    public boolean contains(Object o) {
+    @Override
+	public boolean contains(Object o) {
         return getReference().contains(o);
     }
 
-    public Iterator<E> iterator() {
+    @Override
+	public Iterator<E> iterator() {
         return getReference().iterator();
     }
 
-    public Object[] toArray() {
+    @Override
+	public Object[] toArray() {
         return getReference().toArray();
     }
 
-    public <T> T[] toArray(T[] a) {
+    @Override
+	public <T> T[] toArray(T[] a) {
         return getReference().toArray(a);
     }
 
-    public boolean add(E o) {
+    @Override
+	public boolean add(E o) {
         return getReference().add(o);
     }
 
-    public boolean remove(Object o) {
+    @Override
+	public boolean remove(Object o) {
         return getReference().remove(o);
     }
 
-    public boolean containsAll(Collection<?> c) {
+    @Override
+	public boolean containsAll(Collection<?> c) {
         return getReference().containsAll(c);
     }
 
-    public boolean addAll(Collection<? extends E> c) {
+    @Override
+	public boolean addAll(Collection<? extends E> c) {
         return getReference().addAll(c);
     }
 
-    public boolean retainAll(Collection<?> c) {
+    @Override
+	public boolean retainAll(Collection<?> c) {
         return getReference().retainAll(c);
     }
 
-    public boolean removeAll(Collection<?> c) {
+    @Override
+	public boolean removeAll(Collection<?> c) {
         return getReference().removeAll(c);
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
         getReference().clear();
     }
 

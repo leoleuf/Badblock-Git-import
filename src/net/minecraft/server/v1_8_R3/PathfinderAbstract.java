@@ -22,7 +22,7 @@ public abstract class PathfinderAbstract {
 
     protected PathPoint a(int i, int j, int k) {
         int l = PathPoint.a(i, j, k);
-        PathPoint pathpoint = (PathPoint) this.b.get(l);
+        PathPoint pathpoint = this.b.get(l);
 
         if (pathpoint == null) {
             pathpoint = new PathPoint(i, j, k);

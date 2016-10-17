@@ -14,28 +14,34 @@ public class NBTTagDouble extends NBTBase.NBTNumber {
         this.data = d0;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeDouble(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(128L);
         this.data = datainput.readDouble();
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 6;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "" + this.data + "d";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagDouble(this.data);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (super.equals(object)) {
             NBTTagDouble nbttagdouble = (NBTTagDouble) object;
 
@@ -45,33 +51,40 @@ public class NBTTagDouble extends NBTBase.NBTNumber {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         long i = Double.doubleToLongBits(this.data);
 
         return super.hashCode() ^ (int) (i ^ i >>> 32);
     }
 
-    public long c() {
+    @Override
+	public long c() {
         return (long) Math.floor(this.data);
     }
 
-    public int d() {
+    @Override
+	public int d() {
         return MathHelper.floor(this.data);
     }
 
-    public short e() {
+    @Override
+	public short e() {
         return (short) (MathHelper.floor(this.data) & '\uffff');
     }
 
-    public byte f() {
+    @Override
+	public byte f() {
         return (byte) (MathHelper.floor(this.data) & 255);
     }
 
-    public double g() {
+    @Override
+	public double g() {
         return this.data;
     }
 
-    public float h() {
+    @Override
+	public float h() {
         return (float) this.data;
     }
 }

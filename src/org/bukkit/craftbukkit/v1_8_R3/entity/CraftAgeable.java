@@ -10,44 +10,53 @@ public class CraftAgeable extends CraftCreature implements Ageable {
         super(server, entity);
     }
 
-    public int getAge() {
+    @Override
+	public int getAge() {
         return getHandle().getAge();
     }
 
-    public void setAge(int age) {
+    @Override
+	public void setAge(int age) {
         getHandle().setAgeRaw(age);
     }
 
-    public void setAgeLock(boolean lock) {
+    @Override
+	public void setAgeLock(boolean lock) {
         getHandle().ageLocked = lock;
     }
 
-    public boolean getAgeLock() {
+    @Override
+	public boolean getAgeLock() {
         return getHandle().ageLocked;
     }
 
-    public void setBaby() {
+    @Override
+	public void setBaby() {
         if (isAdult()) {
             setAge(-24000);
         }
     }
 
-    public void setAdult() {
+    @Override
+	public void setAdult() {
         if (!isAdult()) {
             setAge(0);
         }
     }
 
-    public boolean isAdult() {
+    @Override
+	public boolean isAdult() {
         return getAge() >= 0;
     }
 
 
-    public boolean canBreed() {
+    @Override
+	public boolean canBreed() {
         return getAge() == 0;
     }
 
-    public void setBreed(boolean breed) {
+    @Override
+	public void setBreed(boolean breed) {
         if (breed) {
             setAge(0);
         } else if (isAdult()) {

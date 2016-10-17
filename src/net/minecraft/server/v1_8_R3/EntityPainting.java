@@ -36,12 +36,14 @@ public class EntityPainting extends EntityHanging {
         this.setDirection(enumdirection);
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         nbttagcompound.setString("Motive", this.art.B);
         super.b(nbttagcompound);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         String s = nbttagcompound.getString("Motive");
         EntityPainting.EnumArt[] aentitypainting_enumart = EntityPainting.EnumArt.values();
         int i = aentitypainting_enumart.length;
@@ -61,15 +63,18 @@ public class EntityPainting extends EntityHanging {
         super.a(nbttagcompound);
     }
 
-    public int l() {
+    @Override
+	public int l() {
         return this.art.C;
     }
 
-    public int m() {
+    @Override
+	public int m() {
         return this.art.D;
     }
 
-    public void b(Entity entity) {
+    @Override
+	public void b(Entity entity) {
         if (this.world.getGameRules().getBoolean("doEntityDrops")) {
             if (entity instanceof EntityHuman) {
                 EntityHuman entityhuman = (EntityHuman) entity;
@@ -83,10 +88,11 @@ public class EntityPainting extends EntityHanging {
         }
     }
 
-    public void setPositionRotation(double d0, double d1, double d2, float f, float f1) {
+    @Override
+	public void setPositionRotation(double d0, double d1, double d2, float f, float f1) {
         BlockPosition blockposition = this.blockPosition.a(d0 - this.locX, d1 - this.locY, d2 - this.locZ);
 
-        this.setPosition((double) blockposition.getX(), (double) blockposition.getY(), (double) blockposition.getZ());
+        this.setPosition(blockposition.getX(), blockposition.getY(), blockposition.getZ());
     }
 
     public static enum EnumArt {

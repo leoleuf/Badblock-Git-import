@@ -22,11 +22,13 @@ public class InventoryCrafting implements IInventory {
     private EntityHuman owner;
     private int maxStack = MAX_STACK;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
@@ -34,19 +36,23 @@ public class InventoryCrafting implements IInventory {
         return items.length == 4 ? InventoryType.CRAFTING : InventoryType.WORKBENCH;
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public org.bukkit.inventory.InventoryHolder getOwner() {
+    @Override
+	public org.bukkit.inventory.InventoryHolder getOwner() {
         return (owner == null) ? null : owner.getBukkitEntity();
     }
 
-    public void setMaxStackSize(int size) {
+    @Override
+	public void setMaxStackSize(int size) {
         maxStack = size;
         resultInventory.setMaxStackSize(size);
     }
@@ -66,11 +72,13 @@ public class InventoryCrafting implements IInventory {
         this.c = j;
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return this.items.length;
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         return i >= this.getSize() ? null : this.items[i];
     }
 
@@ -78,19 +86,23 @@ public class InventoryCrafting implements IInventory {
         return i >= 0 && i < this.b && j >= 0 && j <= this.c ? this.getItem(i + j * this.b) : null;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "container.crafting";
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return false;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
-        return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]);
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         if (this.items[i] != null) {
             ItemStack itemstack = this.items[i];
 
@@ -101,14 +113,15 @@ public class InventoryCrafting implements IInventory {
         }
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         if (this.items[i] != null) {
             ItemStack itemstack;
 
             if (this.items[i].count <= j) {
                 itemstack = this.items[i];
                 this.items[i] = null;
-                this.d.a((IInventory) this);
+                this.d.a(this);
                 return itemstack;
             } else {
                 itemstack = this.items[i].cloneAndSubtract(j);
@@ -116,7 +129,7 @@ public class InventoryCrafting implements IInventory {
                     this.items[i] = null;
                 }
 
-                this.d.a((IInventory) this);
+                this.d.a(this);
                 return itemstack;
             }
         } else {
@@ -124,40 +137,51 @@ public class InventoryCrafting implements IInventory {
         }
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         this.items[i] = itemstack;
-        this.d.a((IInventory) this);
+        this.d.a(this);
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return 64;
     }
 
-    public void update() {}
+    @Override
+	public void update() {}
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return true;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return true;
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         return 0;
     }
 
-    public void b(int i, int j) {}
+    @Override
+	public void b(int i, int j) {}
 
-    public int g() {
+    @Override
+	public int g() {
         return 0;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         for (int i = 0; i < this.items.length; ++i) {
             this.items[i] = null;
         }

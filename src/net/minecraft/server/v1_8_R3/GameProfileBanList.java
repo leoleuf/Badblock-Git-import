@@ -12,7 +12,8 @@ public class GameProfileBanList extends JsonList<GameProfile, GameProfileBanEntr
         super(file);
     }
 
-    protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
+    @Override
+	protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
         return new GameProfileBanEntry(jsonobject);
     }
 
@@ -20,13 +21,14 @@ public class GameProfileBanList extends JsonList<GameProfile, GameProfileBanEntr
         return this.d(gameprofile);
     }
 
-    public String[] getEntries() {
+    @Override
+	public String[] getEntries() {
         String[] astring = new String[this.e().size()];
         int i = 0;
 
         GameProfileBanEntry gameprofilebanentry;
 
-        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = ((GameProfile) gameprofilebanentry.getKey()).getName()) {
+        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = gameprofilebanentry.getKey().getName()) {
             gameprofilebanentry = (GameProfileBanEntry) iterator.next();
         }
 
@@ -48,12 +50,13 @@ public class GameProfileBanList extends JsonList<GameProfile, GameProfileBanEntr
             }
 
             gameprofilebanentry = (GameProfileBanEntry) iterator.next();
-        } while (!s.equalsIgnoreCase(((GameProfile) gameprofilebanentry.getKey()).getName()));
+        } while (!s.equalsIgnoreCase(gameprofilebanentry.getKey().getName()));
 
-        return (GameProfile) gameprofilebanentry.getKey();
+        return gameprofilebanentry.getKey();
     }
 
-    protected String a(GameProfile object) {
-        return this.b((GameProfile) object);
+    @Override
+	protected String a(GameProfile object) {
+        return this.b(object);
     }
 }

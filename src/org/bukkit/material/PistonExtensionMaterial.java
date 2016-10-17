@@ -40,7 +40,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
         super(type, data);
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x8);
 
         switch (face) {
@@ -63,7 +64,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
         setData(data);
     }
 
-    public BlockFace getFacing() {
+    @Override
+	public BlockFace getFacing() {
         byte dir = (byte) (getData() & 7);
 
         switch (dir) {
@@ -102,7 +104,8 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
         setData((byte) (sticky ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
-    public BlockFace getAttachedFace() {
+    @Override
+	public BlockFace getAttachedFace() {
         return getFacing().getOppositeFace();
     }
 

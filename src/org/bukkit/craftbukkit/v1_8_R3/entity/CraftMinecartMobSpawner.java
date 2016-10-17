@@ -16,7 +16,8 @@ final class CraftMinecartMobSpawner extends CraftMinecart implements SpawnerMine
         return "CraftMinecartMobSpawner";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.MINECART_MOB_SPAWNER;
     }
 }

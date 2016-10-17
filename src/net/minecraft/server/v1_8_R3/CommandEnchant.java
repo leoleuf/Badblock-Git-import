@@ -7,19 +7,23 @@ public class CommandEnchant extends CommandAbstract {
 
     public CommandEnchant() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "enchant";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.enchant.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 2) {
             throw new ExceptionUsage("commands.enchant.usage", new Object[0]);
         } else {
@@ -84,15 +88,17 @@ public class CommandEnchant extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, this.d()) : (astring.length == 2 ? a(astring, (Collection) Enchantment.getEffects()) : null);
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, this.d()) : (astring.length == 2 ? a(astring, Enchantment.getEffects()) : null);
     }
 
     protected String[] d() {
         return MinecraftServer.getServer().getPlayers();
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 }

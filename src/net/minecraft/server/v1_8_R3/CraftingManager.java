@@ -184,7 +184,8 @@ public class CraftingManager {
                 return irecipe instanceof ShapelessRecipes && irecipe1 instanceof ShapedRecipes ? 1 : (irecipe1 instanceof ShapelessRecipes && irecipe instanceof ShapedRecipes ? -1 : (irecipe1.a() < irecipe.a() ? -1 : (irecipe1.a() > irecipe.a() ? 1 : 0)));
             }
 
-            public int compare(Object object, Object object1) {
+            @Override
+			public int compare(Object object, Object object1) {
                 return this.a((IRecipe) object, (IRecipe) object1);
             }
         });
@@ -197,7 +198,7 @@ public class CraftingManager {
         int k = 0;
 
         if (aobject[i] instanceof String[]) {
-            String[] astring = (String[]) ((String[]) aobject[i++]);
+            String[] astring = ((String[]) aobject[i++]);
 
             for (int l = 0; l < astring.length; ++l) {
                 String s1 = astring[l];

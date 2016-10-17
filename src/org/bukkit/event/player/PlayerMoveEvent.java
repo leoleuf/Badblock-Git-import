@@ -32,7 +32,8 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
      *
      * @return true if this event is cancelled
      */
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancel;
     }
 
@@ -46,7 +47,8 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
      *
      * @param cancel true if you wish to cancel this event
      */
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 

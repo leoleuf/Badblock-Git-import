@@ -29,17 +29,19 @@ public class PacketPlayInBlockPlace implements Packet<PacketListenerPlayIn> {
         this.g = f2;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         timestamp = System.currentTimeMillis(); // CraftBukkit
         this.b = packetdataserializer.c();
         this.c = packetdataserializer.readUnsignedByte();
         this.d = packetdataserializer.i();
-        this.e = (float) packetdataserializer.readUnsignedByte() / 16.0F;
-        this.f = (float) packetdataserializer.readUnsignedByte() / 16.0F;
-        this.g = (float) packetdataserializer.readUnsignedByte() / 16.0F;
+        this.e = packetdataserializer.readUnsignedByte() / 16.0F;
+        this.f = packetdataserializer.readUnsignedByte() / 16.0F;
+        this.g = packetdataserializer.readUnsignedByte() / 16.0F;
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.b);
         packetdataserializer.writeByte(this.c);
         packetdataserializer.a(this.d);
@@ -48,7 +50,8 @@ public class PacketPlayInBlockPlace implements Packet<PacketListenerPlayIn> {
         packetdataserializer.writeByte((int) (this.g * 16.0F));
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

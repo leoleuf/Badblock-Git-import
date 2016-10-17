@@ -13,9 +13,10 @@ public class ContainerAnvil extends Container {
     private static final Logger f = LogManager.getLogger();
     private IInventory g = new InventoryCraftResult();
     private IInventory h = new InventorySubcontainer("Repair", true, 2) {
-        public void update() {
+        @Override
+		public void update() {
             super.update();
-            ContainerAnvil.this.a((IInventory) this);
+            ContainerAnvil.this.a(this);
         }
     };
     private World i;
@@ -37,15 +38,18 @@ public class ContainerAnvil extends Container {
         this.a(new Slot(this.h, 0, 27, 47));
         this.a(new Slot(this.h, 1, 76, 47));
         this.a(new Slot(this.g, 2, 134, 47) {
-            public boolean isAllowed(ItemStack itemstack) {
+            @Override
+			public boolean isAllowed(ItemStack itemstack) {
                 return false;
             }
 
-            public boolean isAllowed(EntityHuman entityhuman) {
+            @Override
+			public boolean isAllowed(EntityHuman entityhuman) {
                 return (entityhuman.abilities.canInstantlyBuild || entityhuman.expLevel >= ContainerAnvil.this.a) && ContainerAnvil.this.a > 0 && this.hasItem();
             }
 
-            public void a(EntityHuman entityhuman, ItemStack itemstack) {
+            @Override
+			public void a(EntityHuman entityhuman, ItemStack itemstack) {
                 if (!entityhuman.abilities.canInstantlyBuild) {
                     entityhuman.levelDown(-ContainerAnvil.this.a);
                 }
@@ -68,7 +72,7 @@ public class ContainerAnvil extends Container {
                 IBlockData iblockdata = world.getType(blockposition);
 
                 if (!entityhuman.abilities.canInstantlyBuild && !world.isClientSide && iblockdata.getBlock() == Blocks.ANVIL && entityhuman.bc().nextFloat() < 0.12F) {
-                    int i = ((Integer) iblockdata.get(BlockAnvil.DAMAGE)).intValue();
+                    int i = iblockdata.get(BlockAnvil.DAMAGE).intValue();
 
                     ++i;
                     if (i > 2) {
@@ -99,7 +103,8 @@ public class ContainerAnvil extends Container {
 
     }
 
-    public void a(IInventory iinventory) {
+    @Override
+	public void a(IInventory iinventory) {
         super.a(iinventory);
         if (iinventory == this.h) {
             this.e();
@@ -304,12 +309,14 @@ public class ContainerAnvil extends Container {
         }
     }
 
-    public void addSlotListener(ICrafting icrafting) {
+    @Override
+	public void addSlotListener(ICrafting icrafting) {
         super.addSlotListener(icrafting);
         icrafting.setContainerData(this, 0, this.a);
     }
 
-    public void b(EntityHuman entityhuman) {
+    @Override
+	public void b(EntityHuman entityhuman) {
         super.b(entityhuman);
         if (!this.i.isClientSide) {
             for (int i = 0; i < this.h.getSize(); ++i) {
@@ -323,14 +330,16 @@ public class ContainerAnvil extends Container {
         }
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         if (!this.checkReachable) return true; // CraftBukkit
-        return this.i.getType(this.j).getBlock() != Blocks.ANVIL ? false : entityhuman.e((double) this.j.getX() + 0.5D, (double) this.j.getY() + 0.5D, (double) this.j.getZ() + 0.5D) <= 64.0D;
+        return this.i.getType(this.j).getBlock() != Blocks.ANVIL ? false : entityhuman.e(this.j.getX() + 0.5D, this.j.getY() + 0.5D, this.j.getZ() + 0.5D) <= 64.0D;
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();

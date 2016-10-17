@@ -14,15 +14,18 @@ public class EntityWitherSkull extends EntityFireball {
         this.setSize(0.3125F, 0.3125F);
     }
 
-    protected float j() {
+    @Override
+	protected float j() {
         return this.isCharged() ? 0.73F : super.j();
     }
 
-    public boolean isBurning() {
+    @Override
+	public boolean isBurning() {
         return false;
     }
 
-    public float a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public float a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata) {
         float f = super.a(explosion, world, blockposition, iblockdata);
         Block block = iblockdata.getBlock();
 
@@ -33,7 +36,8 @@ public class EntityWitherSkull extends EntityFireball {
         return f;
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (!this.world.isClientSide) {
             if (movingobjectposition.entity != null) {
                 // Spigot start
@@ -81,15 +85,18 @@ public class EntityWitherSkull extends EntityFireball {
 
     }
 
-    public boolean ad() {
+    @Override
+	public boolean ad() {
         return false;
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         return false;
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         this.datawatcher.a(10, Byte.valueOf((byte) 0));
     }
 

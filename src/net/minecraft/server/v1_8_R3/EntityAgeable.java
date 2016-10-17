@@ -40,7 +40,8 @@ public abstract class EntityAgeable extends EntityCreature {
 
     public abstract EntityAgeable createChild(EntityAgeable entityageable);
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.SPAWN_EGG) {
@@ -74,7 +75,8 @@ public abstract class EntityAgeable extends EntityCreature {
         }
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(12, Byte.valueOf((byte) 0));
     }
@@ -121,26 +123,29 @@ public abstract class EntityAgeable extends EntityCreature {
         this.a(this.isBaby());
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("Age", this.getAge());
         nbttagcompound.setInt("ForcedAge", this.b);
         nbttagcompound.setBoolean("AgeLocked", this.ageLocked); // CraftBukkit
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.setAgeRaw(nbttagcompound.getInt("Age"));
         this.b = nbttagcompound.getInt("ForcedAge");
         this.ageLocked = nbttagcompound.getBoolean("AgeLocked"); // CraftBukkit
     }
 
-    public void m() {
+    @Override
+	public void m() {
         super.m();
         if (this.world.isClientSide || ageLocked) { // CraftBukkit
             if (this.c > 0) {
                 if (this.c % 4 == 0) {
-                    this.world.addParticle(EnumParticle.VILLAGER_HAPPY, this.locX + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, this.locY + 0.5D + (double) (this.random.nextFloat() * this.length), this.locZ + (double) (this.random.nextFloat() * this.width * 2.0F) - (double) this.width, 0.0D, 0.0D, 0.0D, new int[0]);
+                    this.world.addParticle(EnumParticle.VILLAGER_HAPPY, this.locX + this.random.nextFloat() * this.width * 2.0F - this.width, this.locY + 0.5D + this.random.nextFloat() * this.length, this.locZ + this.random.nextFloat() * this.width * 2.0F - this.width, 0.0D, 0.0D, 0.0D, new int[0]);
                 }
 
                 --this.c;
@@ -166,7 +171,8 @@ public abstract class EntityAgeable extends EntityCreature {
 
     protected void n() {}
 
-    public boolean isBaby() {
+    @Override
+	public boolean isBaby() {
         return this.getAge() < 0;
     }
 
@@ -174,7 +180,8 @@ public abstract class EntityAgeable extends EntityCreature {
         this.a(flag ? 0.5F : 1.0F);
     }
 
-    public final void setSize(float f, float f1) { // CraftBukkit - protected to public
+    @Override
+	public final void setSize(float f, float f1) { // CraftBukkit - protected to public
         boolean flag = this.bm > 0.0F;
 
         this.bm = f;

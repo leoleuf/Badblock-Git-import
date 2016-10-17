@@ -23,21 +23,25 @@ public class CraftCreatureSpawner extends CraftBlockState implements CreatureSpa
         spawner = te;
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public CreatureType getCreatureType() {
         return CreatureType.fromName(spawner.getSpawner().getMobName());
     }
 
-    public EntityType getSpawnedType() {
+    @Override
+	public EntityType getSpawnedType() {
         return EntityType.fromName(spawner.getSpawner().getMobName());
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void setCreatureType(CreatureType creatureType) {
         spawner.getSpawner().setMobName(creatureType.getName());
     }
 
-    public void setSpawnedType(EntityType entityType) {
+    @Override
+	public void setSpawnedType(EntityType entityType) {
         if (entityType == null || entityType.getName() == null) {
             throw new IllegalArgumentException("Can't spawn EntityType " + entityType + " from mobspawners!");
         }
@@ -45,21 +49,25 @@ public class CraftCreatureSpawner extends CraftBlockState implements CreatureSpa
         spawner.getSpawner().setMobName(entityType.getName());
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public String getCreatureTypeId() {
         return spawner.getSpawner().getMobName();
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void setCreatureTypeId(String creatureName) {
         setCreatureTypeByName(creatureName);
     }
 
-    public String getCreatureTypeName() {
+    @Override
+	public String getCreatureTypeName() {
         return spawner.getSpawner().getMobName();
     }
 
-    public void setCreatureTypeByName(String creatureType) {
+    @Override
+	public void setCreatureTypeByName(String creatureType) {
         // Verify input
         EntityType type = EntityType.fromName(creatureType);
         if (type == null) {
@@ -68,11 +76,13 @@ public class CraftCreatureSpawner extends CraftBlockState implements CreatureSpa
         setSpawnedType(type);
     }
 
-    public int getDelay() {
+    @Override
+	public int getDelay() {
         return spawner.getSpawner().spawnDelay;
     }
 
-    public void setDelay(int delay) {
+    @Override
+	public void setDelay(int delay) {
         spawner.getSpawner().spawnDelay = delay;
     }
 

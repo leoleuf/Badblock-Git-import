@@ -13,19 +13,23 @@ public class CommandAchievement extends CommandAbstract {
 
     public CommandAchievement() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "achievement";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.achievement.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 2) {
             throw new ExceptionUsage("commands.achievement.usage", new Object[0]);
         } else {
@@ -48,7 +52,7 @@ public class CommandAchievement extends CommandAbstract {
 
                             while (iterator.hasNext()) {
                                 achievement = (Achievement) iterator.next();
-                                entityplayer.b((Statistic) achievement);
+                                entityplayer.b(achievement);
                             }
 
                             a(icommandlistener, this, "commands.achievement.give.success.all", new Object[] { entityplayer.getName()});
@@ -57,7 +61,7 @@ public class CommandAchievement extends CommandAbstract {
 
                             while (iterator.hasNext()) {
                                 achievement = (Achievement) iterator.next();
-                                entityplayer.a((Statistic) achievement);
+                                entityplayer.a(achievement);
                             }
 
                             a(icommandlistener, this, "commands.achievement.take.success.all", new Object[] { entityplayer.getName()});
@@ -82,7 +86,7 @@ public class CommandAchievement extends CommandAbstract {
                                 while (iterator1.hasNext()) {
                                     Achievement achievement2 = (Achievement) iterator1.next();
 
-                                    entityplayer.b((Statistic) achievement2);
+                                    entityplayer.b(achievement2);
                                 }
                             } else if (flag1) {
                                 if (!entityplayer.getStatisticManager().hasAchievement(achievement1)) {
@@ -94,7 +98,8 @@ public class CommandAchievement extends CommandAbstract {
                                         return entityplayer.getStatisticManager().hasAchievement(achievement) && achievement != statistic;
                                     }
 
-                                    public boolean apply(Object object) {
+                                    @Override
+									public boolean apply(Object object) {
                                         return this.a((Achievement) object);
                                     }
                                 }));
@@ -126,7 +131,7 @@ public class CommandAchievement extends CommandAbstract {
 
                                 while (iterator2.hasNext()) {
                                     achievement3 = (Achievement) iterator2.next();
-                                    entityplayer.a((Statistic) achievement3);
+                                    entityplayer.a(achievement3);
                                 }
                             }
                         }
@@ -145,7 +150,8 @@ public class CommandAchievement extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         if (astring.length == 1) {
             return a(astring, new String[] { "give", "take"});
         } else if (astring.length != 2) {
@@ -160,11 +166,12 @@ public class CommandAchievement extends CommandAbstract {
                 arraylist.add(statistic.name);
             }
 
-            return a(astring, (Collection) arraylist);
+            return a(astring, arraylist);
         }
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 2;
     }
 }

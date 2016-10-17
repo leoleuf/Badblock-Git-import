@@ -21,7 +21,8 @@ public class EntityEnderPearl extends EntityProjectile {
         this.loadChunks = world.paperSpigotConfig.loadUnloadedEnderPearls; // PaperSpigot
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         EntityLiving entityliving = this.getShooter();
 
         if (movingobjectposition.entity != null) {
@@ -87,7 +88,8 @@ public class EntityEnderPearl extends EntityProjectile {
 
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         EntityLiving entityliving = this.getShooter();
 
         if (entityliving != null && entityliving instanceof EntityHuman && !entityliving.isAlive()) {

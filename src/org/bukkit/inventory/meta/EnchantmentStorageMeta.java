@@ -75,5 +75,6 @@ public interface EnchantmentStorageMeta extends ItemMeta {
      */
     boolean hasConflictingStoredEnchant(Enchantment ench);
 
-    EnchantmentStorageMeta clone();
+    @Override
+	EnchantmentStorageMeta clone();
 }

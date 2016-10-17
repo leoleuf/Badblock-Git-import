@@ -12,19 +12,23 @@ public abstract class BlockState<T extends Comparable<T>> implements IBlockState
         this.b = s;
     }
 
-    public String a() {
+    @Override
+	public String a() {
         return this.b;
     }
 
-    public Class<T> b() {
+    @Override
+	public Class<T> b() {
         return this.a;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return Objects.toStringHelper(this).add("name", this.b).add("clazz", this.a).add("values", this.c()).toString();
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (object != null && this.getClass() == object.getClass()) {
@@ -36,7 +40,8 @@ public abstract class BlockState<T extends Comparable<T>> implements IBlockState
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return 31 * this.a.hashCode() + this.b.hashCode();
     }
 }

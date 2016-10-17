@@ -53,7 +53,7 @@ public abstract class MobSpawnerAbstract {
     private boolean g() {
         BlockPosition blockposition = this.b();
 
-        return this.a().isPlayerNearbyWhoAffectsSpawning((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D, (double) this.requiredPlayerRange); // PaperSpigot - Affects Spawning API
+        return this.a().isPlayerNearbyWhoAffectsSpawning(blockposition.getX() + 0.5D, blockposition.getY() + 0.5D, blockposition.getZ() + 0.5D, this.requiredPlayerRange); // PaperSpigot - Affects Spawning API
     }
 
     public void c() {
@@ -66,10 +66,10 @@ public abstract class MobSpawnerAbstract {
             double d0;
 
             if (this.a().isClientSide) {
-                double d1 = (double) ((float) blockposition.getX() + this.a().random.nextFloat());
-                double d2 = (double) ((float) blockposition.getY() + this.a().random.nextFloat());
+                double d1 = blockposition.getX() + this.a().random.nextFloat();
+                double d2 = blockposition.getY() + this.a().random.nextFloat();
 
-                d0 = (double) ((float) blockposition.getZ() + this.a().random.nextFloat());
+                d0 = blockposition.getZ() + this.a().random.nextFloat();
                 this.a().addParticle(EnumParticle.SMOKE_NORMAL, d1, d2, d0, 0.0D, 0.0D, 0.0D, new int[0]);
                 this.a().addParticle(EnumParticle.FLAME, d1, d2, d0, 0.0D, 0.0D, 0.0D, new int[0]);
                 if (this.spawnDelay > 0) {
@@ -77,7 +77,7 @@ public abstract class MobSpawnerAbstract {
                 }
 
                 this.f = this.e;
-                this.e = (this.e + (double) (1000.0F / ((float) this.spawnDelay + 200.0F))) % 360.0D;
+                this.e = (this.e + 1000.0F / (this.spawnDelay + 200.0F)) % 360.0D;
             } else {
                 if (this.spawnDelay < -tickDelay) { // PaperSpigot
                     this.h();
@@ -97,16 +97,16 @@ public abstract class MobSpawnerAbstract {
                         return;
                     }
 
-                    int j = this.a().a(entity.getClass(), (new AxisAlignedBB((double) blockposition.getX(), (double) blockposition.getY(), (double) blockposition.getZ(), (double) (blockposition.getX() + 1), (double) (blockposition.getY() + 1), (double) (blockposition.getZ() + 1))).grow((double) this.spawnRange, (double) this.spawnRange, (double) this.spawnRange)).size();
+                    int j = this.a().a(entity.getClass(), (new AxisAlignedBB(blockposition.getX(), blockposition.getY(), blockposition.getZ(), blockposition.getX() + 1, blockposition.getY() + 1, blockposition.getZ() + 1)).grow(this.spawnRange, this.spawnRange, this.spawnRange)).size();
 
                     if (j >= this.maxNearbyEntities) {
                         this.h();
                         return;
                     }
 
-                    d0 = (double) blockposition.getX() + (this.a().random.nextDouble() - this.a().random.nextDouble()) * (double) this.spawnRange + 0.5D;
-                    double d3 = (double) (blockposition.getY() + this.a().random.nextInt(3) - 1);
-                    double d4 = (double) blockposition.getZ() + (this.a().random.nextDouble() - this.a().random.nextDouble()) * (double) this.spawnRange + 0.5D;
+                    d0 = blockposition.getX() + (this.a().random.nextDouble() - this.a().random.nextDouble()) * this.spawnRange + 0.5D;
+                    double d3 = blockposition.getY() + this.a().random.nextInt(3) - 1;
+                    double d4 = blockposition.getZ() + (this.a().random.nextDouble() - this.a().random.nextDouble()) * this.spawnRange + 0.5D;
                     EntityInsentient entityinsentient = entity instanceof EntityInsentient ? (EntityInsentient) entity : null;
 
                     entity.setPositionRotation(d0, d3, d4, this.a().random.nextFloat() * 360.0F, 0.0F);
@@ -225,7 +225,7 @@ public abstract class MobSpawnerAbstract {
         }
 
         if (this.mobs.size() > 0) {
-            this.a((MobSpawnerAbstract.a) WeightedRandom.a(this.a().random, this.mobs));
+            this.a(WeightedRandom.a(this.a().random, this.mobs));
         }
 
         this.a(1);

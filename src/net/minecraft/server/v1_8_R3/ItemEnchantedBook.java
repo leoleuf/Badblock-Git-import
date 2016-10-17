@@ -6,11 +6,13 @@ public class ItemEnchantedBook extends Item {
 
     public ItemEnchantedBook() {}
 
-    public boolean f_(ItemStack itemstack) {
+    @Override
+	public boolean f_(ItemStack itemstack) {
         return false;
     }
 
-    public EnumItemRarity g(ItemStack itemstack) {
+    @Override
+	public EnumItemRarity g(ItemStack itemstack) {
         return this.h(itemstack).size() > 0 ? EnumItemRarity.UNCOMMON : super.g(itemstack);
     }
 

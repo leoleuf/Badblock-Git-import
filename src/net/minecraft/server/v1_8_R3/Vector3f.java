@@ -27,7 +27,8 @@ public class Vector3f {
         return nbttaglist;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof Vector3f)) {
             return false;
         } else {

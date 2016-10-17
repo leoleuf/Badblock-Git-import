@@ -28,11 +28,13 @@ public class PacketPlayOutOpenWindow implements Packet<PacketListenerPlayOut> {
         this.e = k;
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readUnsignedByte();
         this.b = packetdataserializer.c(32);
         this.c = packetdataserializer.d();
@@ -43,7 +45,8 @@ public class PacketPlayOutOpenWindow implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeByte(this.a);
         packetdataserializer.a(this.b);
         packetdataserializer.a(this.c);

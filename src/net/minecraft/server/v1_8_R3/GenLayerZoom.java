@@ -7,7 +7,8 @@ public class GenLayerZoom extends GenLayer {
         super.a = genlayer;
     }
 
-    public int[] a(int i, int j, int k, int l) {
+    @Override
+	public int[] a(int i, int j, int k, int l) {
         int i1 = i >> 1;
         int j1 = j >> 1;
         int k1 = (k >> 1) + 2;
@@ -51,7 +52,7 @@ public class GenLayerZoom extends GenLayer {
         Object object = genlayer;
 
         for (int k = 0; k < j; ++k) {
-            object = new GenLayerZoom(i + (long) k, (GenLayer) object);
+            object = new GenLayerZoom(i + k, (GenLayer) object);
         }
 
         return (GenLayer) object;

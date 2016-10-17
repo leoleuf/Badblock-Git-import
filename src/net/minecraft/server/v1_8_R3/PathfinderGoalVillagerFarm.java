@@ -12,7 +12,8 @@ public class PathfinderGoalVillagerFarm extends PathfinderGoalGotoTarget {
         this.c = entityvillager;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a <= 0) {
             if (!this.c.world.getGameRules().getBoolean("mobGriefing")) {
                 return false;
@@ -26,28 +27,32 @@ public class PathfinderGoalVillagerFarm extends PathfinderGoalGotoTarget {
         return super.a();
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.f >= 0 && super.b();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         super.c();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         super.d();
     }
 
-    public void e() {
+    @Override
+	public void e() {
         super.e();
-        this.c.getControllerLook().a((double) this.b.getX() + 0.5D, (double) (this.b.getY() + 1), (double) this.b.getZ() + 0.5D, 10.0F, (float) this.c.bQ());
+        this.c.getControllerLook().a(this.b.getX() + 0.5D, this.b.getY() + 1, this.b.getZ() + 0.5D, 10.0F, this.c.bQ());
         if (this.f()) {
             World world = this.c.world;
             BlockPosition blockposition = this.b.up();
             IBlockData iblockdata = world.getType(blockposition);
             Block block = iblockdata.getBlock();
 
-            if (this.f == 0 && block instanceof BlockCrops && ((Integer) iblockdata.get(BlockCrops.AGE)).intValue() == 7) {
+            if (this.f == 0 && block instanceof BlockCrops && iblockdata.get(BlockCrops.AGE).intValue() == 7) {
                 world.setAir(blockposition, true);
             } else if (this.f == 1 && block == Blocks.AIR) {
                 InventorySubcontainer inventorysubcontainer = this.c.cq();
@@ -85,7 +90,8 @@ public class PathfinderGoalVillagerFarm extends PathfinderGoalGotoTarget {
 
     }
 
-    protected boolean a(World world, BlockPosition blockposition) {
+    @Override
+	protected boolean a(World world, BlockPosition blockposition) {
         Block block = world.getType(blockposition).getBlock();
 
         if (block == Blocks.FARMLAND) {
@@ -93,7 +99,7 @@ public class PathfinderGoalVillagerFarm extends PathfinderGoalGotoTarget {
             IBlockData iblockdata = world.getType(blockposition);
 
             block = iblockdata.getBlock();
-            if (block instanceof BlockCrops && ((Integer) iblockdata.get(BlockCrops.AGE)).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
+            if (block instanceof BlockCrops && iblockdata.get(BlockCrops.AGE).intValue() == 7 && this.e && (this.f == 0 || this.f < 0)) {
                 this.f = 0;
                 return true;
             }

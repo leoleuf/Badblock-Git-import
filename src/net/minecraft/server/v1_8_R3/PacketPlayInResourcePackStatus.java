@@ -9,17 +9,20 @@ public class PacketPlayInResourcePackStatus implements Packet<PacketListenerPlay
 
     public PacketPlayInResourcePackStatus() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(40);
-        this.b = (PacketPlayInResourcePackStatus.EnumResourcePackStatus) packetdataserializer.a(PacketPlayInResourcePackStatus.EnumResourcePackStatus.class);
+        this.b = packetdataserializer.a(PacketPlayInResourcePackStatus.EnumResourcePackStatus.class);
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
-        packetdataserializer.a((Enum) this.b);
+        packetdataserializer.a(this.b);
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

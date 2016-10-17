@@ -14,7 +14,8 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 public class CraftCrashReport implements Callable<Object> {
 
-    public Object call() throws Exception {
+    @Override
+	public Object call() throws Exception {
         StringWriter value = new StringWriter();
         try {
             value.append("\n   Running: ").append(Bukkit.getName()).append(" version ").append(Bukkit.getVersion()).append(" (Implementing API version ").append(Bukkit.getBukkitVersion()).append(") ").append(String.valueOf(MinecraftServer.getServer().getOnlineMode()));

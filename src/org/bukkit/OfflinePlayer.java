@@ -25,14 +25,16 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      *
      * @return Player name or null if we have not seen a name for this player yet
      */
-    public String getName();
+    @Override
+	public String getName();
 
     /**
      * Returns the UUID of this player
      *
      * @return Player UUID
      */
-    public UUID getUniqueId();
+    @Override
+	public UUID getUniqueId();
 
     /**
      * Checks if this player is banned or not

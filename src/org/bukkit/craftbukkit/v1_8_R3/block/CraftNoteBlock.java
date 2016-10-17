@@ -28,23 +28,28 @@ public class CraftNoteBlock extends CraftBlockState implements NoteBlock {
         note = te;
     }
 
-    public Note getNote() {
+    @Override
+	public Note getNote() {
         return new Note(note.note);
     }
 
-    public byte getRawNote() {
+    @Override
+	public byte getRawNote() {
         return note.note;
     }
 
-    public void setNote(Note n) {
+    @Override
+	public void setNote(Note n) {
         note.note = n.getId();
     }
 
-    public void setRawNote(byte n) {
+    @Override
+	public void setRawNote(byte n) {
         note.note = n;
     }
 
-    public boolean play() {
+    @Override
+	public boolean play() {
         Block block = getBlock();
 
         if (block.getType() == Material.NOTE_BLOCK) {

@@ -50,11 +50,13 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
         this.modifierFunctions = modifierFunctions;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 

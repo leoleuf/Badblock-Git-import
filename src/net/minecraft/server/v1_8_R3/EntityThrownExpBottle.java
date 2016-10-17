@@ -14,19 +14,23 @@ public class EntityThrownExpBottle extends EntityProjectile {
         super(world, d0, d1, d2);
     }
 
-    protected float m() {
+    @Override
+	protected float m() {
         return 0.07F;
     }
 
-    protected float j() {
+    @Override
+	protected float j() {
         return 0.7F;
     }
 
-    protected float l() {
+    @Override
+	protected float l() {
         return -20.0F;
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (!this.world.isClientSide) {
             // CraftBukkit - moved to after event
             // this.world.triggerEffect(2002, new BlockPosition(this), 0);

@@ -12,19 +12,22 @@ public class PacketLoginInEncryptionBegin implements Packet<PacketLoginInListene
 
     public PacketLoginInEncryptionBegin() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         // Paper start
         this.a = packetdataserializer.readByteArray(256);
         this.b = packetdataserializer.readByteArray(256);
         // Paper end
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
         packetdataserializer.a(this.b);
     }
 
-    public void a(PacketLoginInListener packetlogininlistener) {
+    @Override
+	public void a(PacketLoginInListener packetlogininlistener) {
         packetlogininlistener.a(this);
     }
 

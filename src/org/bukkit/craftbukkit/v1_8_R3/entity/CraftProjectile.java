@@ -13,11 +13,13 @@ public abstract class CraftProjectile extends AbstractProjectile implements Proj
         super(server, entity);
     }
 
-    public ProjectileSource getShooter() {
+    @Override
+	public ProjectileSource getShooter() {
         return getHandle().projectileSource;
     }
 
-    public void setShooter(ProjectileSource shooter) {
+    @Override
+	public void setShooter(ProjectileSource shooter) {
         if (shooter instanceof CraftLivingEntity) {
             getHandle().shooter = (EntityLiving) ((CraftLivingEntity) shooter).entity;
             if (shooter instanceof CraftHumanEntity) {
@@ -41,7 +43,8 @@ public abstract class CraftProjectile extends AbstractProjectile implements Proj
     }
 
 
-    @Deprecated
+    @Override
+	@Deprecated
     public LivingEntity _INVALID_getShooter() {
         if (getHandle().shooter == null) {
             return null;
@@ -49,7 +52,8 @@ public abstract class CraftProjectile extends AbstractProjectile implements Proj
         return (LivingEntity) getHandle().shooter.getBukkitEntity();
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setShooter(LivingEntity shooter) {
         if (shooter == null) {
             return;

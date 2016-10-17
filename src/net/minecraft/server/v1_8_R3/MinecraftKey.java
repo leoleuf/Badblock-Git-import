@@ -36,11 +36,13 @@ public class MinecraftKey {
         return this.b;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return this.a + ':' + this.b;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof MinecraftKey)) {
@@ -52,7 +54,8 @@ public class MinecraftKey {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return 31 * this.a.hashCode() + this.b.hashCode();
     }
 }

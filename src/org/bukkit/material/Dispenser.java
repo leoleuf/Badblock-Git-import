@@ -50,7 +50,8 @@ public class Dispenser extends FurnaceAndDispenser {
         super(type, data);
     }
 
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         byte data;
 
         switch (face) {
@@ -82,7 +83,8 @@ public class Dispenser extends FurnaceAndDispenser {
         setData(data);
     }
 
-    public BlockFace getFacing() {
+    @Override
+	public BlockFace getFacing() {
         int data = getData() & 0x7;
 
         switch (data) {

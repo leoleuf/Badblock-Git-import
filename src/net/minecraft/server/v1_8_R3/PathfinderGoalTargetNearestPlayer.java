@@ -42,21 +42,23 @@ public class PathfinderGoalTargetNearestPlayer extends PathfinderGoal {
                             f = 0.1F;
                         }
 
-                        d0 *= (double) (0.7F * f);
+                        d0 *= 0.7F * f;
                     }
 
-                    return (double) entity.g(PathfinderGoalTargetNearestPlayer.this.b) > d0 ? false : PathfinderGoalTarget.a(PathfinderGoalTargetNearestPlayer.this.b, (EntityLiving) entity, false, true);
+                    return entity.g(PathfinderGoalTargetNearestPlayer.this.b) > d0 ? false : PathfinderGoalTarget.a(PathfinderGoalTargetNearestPlayer.this.b, (EntityLiving) entity, false, true);
                 }
             }
 
-            public boolean apply(Object object) {
+            @Override
+			public boolean apply(Object object) {
                 return this.a((Entity) object);
             }
         };
         this.d = new PathfinderGoalNearestAttackableTarget.DistanceComparator(entityinsentient);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         double d0 = this.f();
         List list = this.b.world.a(EntityHuman.class, this.b.getBoundingBox().grow(d0, 4.0D, d0), this.c);
 
@@ -69,7 +71,8 @@ public class PathfinderGoalTargetNearestPlayer extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         EntityLiving entityliving = this.b.getGoalTarget();
 
         if (entityliving == null) {
@@ -92,12 +95,14 @@ public class PathfinderGoalTargetNearestPlayer extends PathfinderGoal {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.b.setGoalTarget(this.e, org.bukkit.event.entity.EntityTargetEvent.TargetReason.CLOSEST_PLAYER, true); // CraftBukkit - added reason
         super.c();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b.setGoalTarget((EntityLiving) null);
         super.c();
     }

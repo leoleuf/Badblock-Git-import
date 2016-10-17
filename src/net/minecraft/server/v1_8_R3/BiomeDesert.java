@@ -16,7 +16,8 @@ public class BiomeDesert extends BiomeBase {
         this.au.clear();
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         super.a(world, random, blockposition);
         if (random.nextInt(1000) == 0) {
             int i = random.nextInt(16) + 8;

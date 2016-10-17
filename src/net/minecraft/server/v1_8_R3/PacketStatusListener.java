@@ -23,9 +23,11 @@ public class PacketStatusListener implements PacketStatusInListener {
         this.networkManager = networkmanager;
     }
 
-    public void a(IChatBaseComponent ichatbasecomponent) {}
+    @Override
+	public void a(IChatBaseComponent ichatbasecomponent) {}
 
-    public void a(PacketStatusInStart packetstatusinstart) {
+    @Override
+	public void a(PacketStatusInStart packetstatusinstart) {
         if (this.d) {
             this.networkManager.close(PacketStatusListener.a);
             // CraftBukkit start - fire ping event
@@ -127,7 +129,8 @@ public class PacketStatusListener implements PacketStatusInListener {
         // CraftBukkit end
     }
 
-    public void a(PacketStatusInPing packetstatusinping) {
+    @Override
+	public void a(PacketStatusInPing packetstatusinping) {
         this.networkManager.handle(new PacketStatusOutPong(packetstatusinping.a()));
         this.networkManager.close(PacketStatusListener.a);
     }

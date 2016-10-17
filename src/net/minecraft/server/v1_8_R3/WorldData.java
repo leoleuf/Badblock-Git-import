@@ -317,8 +317,8 @@ public class WorldData {
         nbttagcompound.setDouble("BorderSafeZone", this.G);
         nbttagcompound.setDouble("BorderDamagePerBlock", this.H);
         nbttagcompound.setDouble("BorderSizeLerpTarget", this.F);
-        nbttagcompound.setDouble("BorderWarningBlocks", (double) this.I);
-        nbttagcompound.setDouble("BorderWarningTime", (double) this.J);
+        nbttagcompound.setDouble("BorderWarningBlocks", this.I);
+        nbttagcompound.setDouble("BorderWarningTime", this.J);
         if (this.z != null) {
             nbttagcompound.setByte("Difficulty", (byte) this.z.a());
         }
@@ -609,7 +609,8 @@ public class WorldData {
                 return String.valueOf(WorldData.this.getSeed());
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -618,7 +619,8 @@ public class WorldData {
                 return String.format("ID %02d - %s, ver %d. Features enabled: %b", new Object[] { Integer.valueOf(WorldData.this.c.g()), WorldData.this.c.name(), Integer.valueOf(WorldData.this.c.getVersion()), Boolean.valueOf(WorldData.this.v)});
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -627,16 +629,18 @@ public class WorldData {
                 return WorldData.this.d;
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
         crashreportsystemdetails.a("Level spawn location", new Callable() {
             public String a() throws Exception {
-                return CrashReportSystemDetails.a((double) WorldData.this.e, (double) WorldData.this.f, (double) WorldData.this.g);
+                return CrashReportSystemDetails.a(WorldData.this.e, WorldData.this.f, WorldData.this.g);
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -645,7 +649,8 @@ public class WorldData {
                 return String.format("%d game time, %d day time", new Object[] { Long.valueOf(WorldData.this.h), Long.valueOf(WorldData.this.i)});
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -654,7 +659,8 @@ public class WorldData {
                 return String.valueOf(WorldData.this.m);
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -678,7 +684,8 @@ public class WorldData {
                 return String.format("0x%05X - %s", new Object[] { Integer.valueOf(WorldData.this.o), s});
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -687,7 +694,8 @@ public class WorldData {
                 return String.format("Rain time: %d (now: %b), thunder time: %d (now: %b)", new Object[] { Integer.valueOf(WorldData.this.r), Boolean.valueOf(WorldData.this.q), Integer.valueOf(WorldData.this.t), Boolean.valueOf(WorldData.this.s)});
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });
@@ -696,7 +704,8 @@ public class WorldData {
                 return String.format("Game mode: %s (ID %d). Hardcore: %b. Cheats: %b", new Object[] { WorldData.this.u.b(), Integer.valueOf(WorldData.this.u.getId()), Boolean.valueOf(WorldData.this.w), Boolean.valueOf(WorldData.this.x)});
             }
 
-            public Object call() throws Exception {
+            @Override
+			public Object call() throws Exception {
                 return this.a();
             }
         });

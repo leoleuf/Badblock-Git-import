@@ -6,11 +6,14 @@ public abstract class EntityFlying extends EntityInsentient {
         super(world);
     }
 
-    public void e(float f, float f1) {}
+    @Override
+	public void e(float f, float f1) {}
 
-    protected void a(double d0, boolean flag, Block block, BlockPosition blockposition) {}
+    @Override
+	protected void a(double d0, boolean flag, Block block, BlockPosition blockposition) {}
 
-    public void g(float f, float f1) {
+    @Override
+	public void g(float f, float f1) {
         if (this.V()) {
             this.a(f, f1, 0.02F);
             this.move(this.motX, this.motY, this.motZ);
@@ -39,9 +42,9 @@ public abstract class EntityFlying extends EntityInsentient {
             }
 
             this.move(this.motX, this.motY, this.motZ);
-            this.motX *= (double) f2;
-            this.motY *= (double) f2;
-            this.motZ *= (double) f2;
+            this.motX *= f2;
+            this.motY *= f2;
+            this.motZ *= f2;
         }
 
         this.aA = this.aB;
@@ -57,7 +60,8 @@ public abstract class EntityFlying extends EntityInsentient {
         this.aC += this.aB;
     }
 
-    public boolean k_() {
+    @Override
+	public boolean k_() {
         return false;
     }
 }

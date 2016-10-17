@@ -19,7 +19,8 @@ public class PacketPlayOutCustomPayload implements Packet<PacketListenerPlayOut>
         }
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.c(20);
         int i = packetdataserializer.readableBytes();
 
@@ -30,12 +31,14 @@ public class PacketPlayOutCustomPayload implements Packet<PacketListenerPlayOut>
         }
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.a(this.a);
-        packetdataserializer.writeBytes((ByteBuf) this.b);
+        packetdataserializer.writeBytes(this.b);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

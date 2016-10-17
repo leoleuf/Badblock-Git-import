@@ -9,23 +9,28 @@ public class BlockEnchantmentTable extends BlockContainer {
         this.a(CreativeModeTab.c);
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityEnchantTable();
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -39,7 +44,8 @@ public class BlockEnchantmentTable extends BlockContainer {
         }
     }
 
-    public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
+    @Override
+	public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
         super.postPlace(world, blockposition, iblockdata, entityliving, itemstack);
         if (itemstack.hasName()) {
             TileEntity tileentity = world.getTileEntity(blockposition);

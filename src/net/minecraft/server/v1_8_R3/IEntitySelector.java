@@ -9,7 +9,8 @@ public final class IEntitySelector {
             return entity.isAlive();
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -18,7 +19,8 @@ public final class IEntitySelector {
             return entity.isAlive() && entity.passenger == null && entity.vehicle == null;
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -27,7 +29,8 @@ public final class IEntitySelector {
             return entity instanceof IInventory && entity.isAlive();
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -36,7 +39,8 @@ public final class IEntitySelector {
             return !(entity instanceof EntityHuman) || !((EntityHuman) entity).isSpectator();
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -61,8 +65,9 @@ public final class IEntitySelector {
             }
         }
 
-        public boolean apply(Entity object) {
-            return this.a((Entity) object);
+        @Override
+		public boolean apply(Entity object) {
+            return this.a(object);
         }
     }
 }

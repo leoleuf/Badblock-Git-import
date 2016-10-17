@@ -167,23 +167,28 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
         }
     }
 
-    public boolean hasAuthor() {
+    @Override
+	public boolean hasAuthor() {
         return !Strings.isNullOrEmpty(author);
     }
 
-    public boolean hasTitle() {
+    @Override
+	public boolean hasTitle() {
         return !Strings.isNullOrEmpty(title);
     }
 
-    public boolean hasPages() {
+    @Override
+	public boolean hasPages() {
         return !pages.isEmpty();
     }
 
-    public String getTitle() {
+    @Override
+	public String getTitle() {
         return this.title;
     }
 
-    public boolean setTitle(final String title) {
+    @Override
+	public boolean setTitle(final String title) {
         if (title == null) {
             this.title = null;
             return true;
@@ -195,20 +200,24 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
         return true;
     }
 
-    public String getAuthor() {
+    @Override
+	public String getAuthor() {
         return this.author;
     }
 
-    public void setAuthor(final String author) {
+    @Override
+	public void setAuthor(final String author) {
         this.author = author;
     }
 
-    public String getPage(final int page) {
+    @Override
+	public String getPage(final int page) {
         Validate.isTrue(isValidPage(page), "Invalid page number");
         return CraftChatMessage.fromComponent(pages.get(page - 1));
     }
 
-    public void setPage(final int page, final String text) {
+    @Override
+	public void setPage(final int page, final String text) {
         if (!isValidPage(page)) {
             throw new IllegalArgumentException("Invalid page number " + page + "/" + pages.size());
         }
@@ -217,13 +226,15 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
         pages.set(page - 1, CraftChatMessage.fromString(newText, true)[0]);
     }
 
-    public void setPages(final String... pages) {
+    @Override
+	public void setPages(final String... pages) {
         this.pages.clear();
 
         addPage(pages);
     }
 
-    public void addPage(final String... pages) {
+    @Override
+	public void addPage(final String... pages) {
         for (String page : pages) {
             if (page == null) {
                 page = "";
@@ -235,11 +246,13 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
         }
     }
 
-    public int getPageCount() {
+    @Override
+	public int getPageCount() {
         return pages.size();
     }
 
-    public List<String> getPages() {
+    @Override
+	public List<String> getPages() {
         final List<IChatBaseComponent> copy = ImmutableList.copyOf(pages);
         return new AbstractList<String>() {
 
@@ -255,7 +268,8 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
         };
     }
 
-    public void setPages(List<String> pages) {
+    @Override
+	public void setPages(List<String> pages) {
         this.pages.clear();
         for (String page : pages) {
             addPage(page);

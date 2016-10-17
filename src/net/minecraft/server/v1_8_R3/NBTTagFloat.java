@@ -14,28 +14,34 @@ public class NBTTagFloat extends NBTBase.NBTNumber {
         this.data = f;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeFloat(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(96L);
         this.data = datainput.readFloat();
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 5;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "" + this.data + "f";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagFloat(this.data);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (super.equals(object)) {
             NBTTagFloat nbttagfloat = (NBTTagFloat) object;
 
@@ -45,31 +51,38 @@ public class NBTTagFloat extends NBTBase.NBTNumber {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ Float.floatToIntBits(this.data);
     }
 
-    public long c() {
+    @Override
+	public long c() {
         return (long) this.data;
     }
 
-    public int d() {
+    @Override
+	public int d() {
         return MathHelper.d(this.data);
     }
 
-    public short e() {
+    @Override
+	public short e() {
         return (short) (MathHelper.d(this.data) & '\uffff');
     }
 
-    public byte f() {
+    @Override
+	public byte f() {
         return (byte) (MathHelper.d(this.data) & 255);
     }
 
-    public double g() {
-        return (double) this.data;
+    @Override
+	public double g() {
+        return this.data;
     }
 
-    public float h() {
+    @Override
+	public float h() {
         return this.data;
     }
 }

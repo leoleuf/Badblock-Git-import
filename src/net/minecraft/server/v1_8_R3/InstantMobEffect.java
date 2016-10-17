@@ -6,11 +6,13 @@ public class InstantMobEffect extends MobEffectList {
         super(i, minecraftkey, flag, j);
     }
 
-    public boolean isInstant() {
+    @Override
+	public boolean isInstant() {
         return true;
     }
 
-    public boolean a(int i, int j) {
+    @Override
+	public boolean a(int i, int j) {
         return i >= 1;
     }
 }

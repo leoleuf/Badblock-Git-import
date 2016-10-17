@@ -12,40 +12,50 @@ public class EntityBat extends EntityAmbient {
         this.setAsleep(true);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, new Byte((byte) 0));
     }
 
-    protected float bB() {
+    @Override
+	protected float bB() {
         return 0.1F;
     }
 
-    protected float bC() {
+    @Override
+	protected float bC() {
         return super.bC() * 0.95F;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return this.isAsleep() && this.random.nextInt(4) != 0 ? null : "mob.bat.idle";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.bat.hurt";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.bat.death";
     }
 
-    public boolean ae() {
+    @Override
+	public boolean ae() {
         return false;
     }
 
-    protected void s(Entity entity) {}
+    @Override
+	protected void s(Entity entity) {}
 
-    protected void bL() {}
+    @Override
+	protected void bL() {}
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(6.0D);
     }
@@ -65,18 +75,20 @@ public class EntityBat extends EntityAmbient {
 
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (this.isAsleep()) {
             this.motX = this.motY = this.motZ = 0.0D;
-            this.locY = (double) MathHelper.floor(this.locY) + 1.0D - (double) this.length;
+            this.locY = MathHelper.floor(this.locY) + 1.0D - this.length;
         } else {
             this.motY *= 0.6000000238418579D;
         }
 
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         super.E();
         BlockPosition blockposition = new BlockPosition(this);
         BlockPosition blockposition1 = blockposition.up();
@@ -87,7 +99,7 @@ public class EntityBat extends EntityAmbient {
                 this.world.a((EntityHuman) null, 1015, blockposition, 0);
             } else {
                 if (this.random.nextInt(200) == 0) {
-                    this.aK = (float) this.random.nextInt(360);
+                    this.aK = this.random.nextInt(360);
                 }
 
                 if (this.world.findNearbyPlayer(this, 4.0D) != null) {
@@ -100,13 +112,13 @@ public class EntityBat extends EntityAmbient {
                 this.a = null;
             }
 
-            if (this.a == null || this.random.nextInt(30) == 0 || this.a.c((double) ((int) this.locX), (double) ((int) this.locY), (double) ((int) this.locZ)) < 4.0D) {
+            if (this.a == null || this.random.nextInt(30) == 0 || this.a.c(((int) this.locX), ((int) this.locY), ((int) this.locZ)) < 4.0D) {
                 this.a = new BlockPosition((int) this.locX + this.random.nextInt(7) - this.random.nextInt(7), (int) this.locY + this.random.nextInt(6) - 2, (int) this.locZ + this.random.nextInt(7) - this.random.nextInt(7));
             }
 
-            double d0 = (double) this.a.getX() + 0.5D - this.locX;
-            double d1 = (double) this.a.getY() + 0.1D - this.locY;
-            double d2 = (double) this.a.getZ() + 0.5D - this.locZ;
+            double d0 = this.a.getX() + 0.5D - this.locX;
+            double d1 = this.a.getY() + 0.1D - this.locY;
+            double d2 = this.a.getZ() + 0.5D - this.locZ;
 
             this.motX += (Math.signum(d0) * 0.5D - this.motX) * 0.10000000149011612D;
             this.motY += (Math.signum(d1) * 0.699999988079071D - this.motY) * 0.10000000149011612D;
@@ -123,19 +135,24 @@ public class EntityBat extends EntityAmbient {
 
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    public void e(float f, float f1) {}
+    @Override
+	public void e(float f, float f1) {}
 
-    protected void a(double d0, boolean flag, Block block, BlockPosition blockposition) {}
+    @Override
+	protected void a(double d0, boolean flag, Block block, BlockPosition blockposition) {}
 
-    public boolean aI() {
+    @Override
+	public boolean aI() {
         return true;
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
@@ -147,17 +164,20 @@ public class EntityBat extends EntityAmbient {
         }
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.datawatcher.watch(16, Byte.valueOf(nbttagcompound.getByte("BatFlags")));
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setByte("BatFlags", this.datawatcher.getByte(16));
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         BlockPosition blockposition = new BlockPosition(this.locX, this.getBoundingBox().b, this.locZ);
 
         if (blockposition.getY() >= this.world.F()) {
@@ -180,7 +200,8 @@ public class EntityBat extends EntityAmbient {
         return calendar.get(2) + 1 == 10 && calendar.get(5) >= 20 || calendar.get(2) + 1 == 11 && calendar.get(5) <= 3;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length / 2.0F;
     }
 }

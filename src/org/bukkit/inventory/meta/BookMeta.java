@@ -126,5 +126,6 @@ public interface BookMeta extends ItemMeta {
      */
     int getPageCount();
 
-    BookMeta clone();
+    @Override
+	BookMeta clone();
 }

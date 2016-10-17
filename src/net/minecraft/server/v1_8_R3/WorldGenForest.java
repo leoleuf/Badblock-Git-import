@@ -13,7 +13,8 @@ public class WorldGenForest extends WorldGenTreeAbstract {
         this.c = flag1;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = random.nextInt(3) + 5;
 
         if (this.c) {

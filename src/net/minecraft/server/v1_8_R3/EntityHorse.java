@@ -14,7 +14,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             return entity instanceof EntityHorse && ((EntityHorse) entity).cA();
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((Entity) object);
         }
     };
@@ -66,7 +67,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         this.loadChest();
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, Integer.valueOf(0));
         this.datawatcher.a(19, Byte.valueOf((byte) 0));
@@ -93,7 +95,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.datawatcher.getInt(20);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         if (this.hasCustomName()) {
             return this.getCustomName();
         } else {
@@ -158,7 +161,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return 0.5F;
     }
 
-    public void a(boolean flag) {
+    @Override
+	public void a(boolean flag) {
         if (flag) {
             this.a(this.cu());
         } else {
@@ -179,7 +183,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         this.bp = flag;
     }
 
-    public boolean cb() {
+    @Override
+	public boolean cb() {
         // PaperSpigot start - Configurable undead horse leashing
         if (this.world.paperSpigotConfig.allowUndeadHorseLeashing) {
             return super.cb();
@@ -188,7 +193,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return !this.cR() && super.cb();
     }
 
-    protected void o(float f) {
+    @Override
+	protected void o(float f) {
         if (f > 6.0F && this.cy()) {
             this.r(false);
         }
@@ -265,17 +271,20 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return j;
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         Entity entity = damagesource.getEntity();
 
         return this.passenger != null && this.passenger.equals(entity) ? false : super.damageEntity(damagesource, f);
     }
 
-    public int br() {
+    @Override
+	public int br() {
         return EntityHorse.bw[this.cx()];
     }
 
-    public boolean ae() {
+    @Override
+	public boolean ae() {
         return this.passenger == null;
     }
 
@@ -302,7 +311,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public void e(float f, float f1) {
+    @Override
+	public void e(float f, float f1) {
         if (f > 1.0F) {
             this.makeSound("mob.horse.land", 0.4F, 1.0F);
         }
@@ -310,12 +320,12 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         int i = MathHelper.f((f * 0.5F - 3.0F) * f1);
 
         if (i > 0) {
-            this.damageEntity(DamageSource.FALL, (float) i);
+            this.damageEntity(DamageSource.FALL, i);
             if (this.passenger != null) {
-                this.passenger.damageEntity(DamageSource.FALL, (float) i);
+                this.passenger.damageEntity(DamageSource.FALL, i);
             }
 
-            Block block = this.world.getType(new BlockPosition(this.locX, this.locY - 0.2D - (double) this.lastYaw, this.locZ)).getBlock();
+            Block block = this.world.getType(new BlockPosition(this.locX, this.locY - 0.2D - this.lastYaw, this.locZ)).getBlock();
 
             if (block.getMaterial() != Material.AIR && !this.R()) {
                 Block.StepSound block_stepsound = block.stepSound;
@@ -350,7 +360,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             }
         }
 
-        this.inventoryChest.a((IInventoryListener) this);
+        this.inventoryChest.a(this);
         this.db();
     }
 
@@ -364,7 +374,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public void a(InventorySubcontainer inventorysubcontainer) {
+    @Override
+	public void a(InventorySubcontainer inventorysubcontainer) {
         int i = this.cx();
         boolean flag = this.cG();
 
@@ -383,7 +394,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         this.cD();
         return super.bR();
     }
@@ -411,21 +423,24 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.getAttributeInstance(EntityHorse.attributeJumpStrength).getValue();
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         this.df();
         int i = this.getType();
 
         return i == 3 ? "mob.horse.zombie.death" : (i == 4 ? "mob.horse.skeleton.death" : (i != 1 && i != 2 ? "mob.horse.death" : "mob.horse.donkey.death"));
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         boolean flag = this.random.nextInt(4) == 0;
         int i = this.getType();
 
         return i == 4 ? Items.BONE : (i == 3 ? (flag ? null : Items.ROTTEN_FLESH) : Items.LEATHER);
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         this.df();
         if (this.random.nextInt(3) == 0) {
             this.dh();
@@ -440,7 +455,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.w(4);
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         this.df();
         if (this.random.nextInt(10) == 0 && !this.bD()) {
             this.dh();
@@ -459,7 +475,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return i != 3 && i != 4 ? (i != 1 && i != 2 ? "mob.horse.angry" : "mob.horse.donkey.angry") : null;
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         Block.StepSound block_stepsound = block.stepSound;
 
         if (this.world.getType(blockposition.up()).getBlock() == Blocks.SNOW_LAYER) {
@@ -488,14 +505,16 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeMap().b(EntityHorse.attributeJumpStrength);
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(53.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.22499999403953552D);
     }
 
-    public int bV() {
+    @Override
+	public int bV() {
         return 6;
     }
 
@@ -503,11 +522,13 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.maxDomestication; // CraftBukkit - return stored max domestication instead of 100
     }
 
-    protected float bB() {
+    @Override
+	protected float bB() {
         return 0.8F;
     }
 
-    public int w() {
+    @Override
+	public int w() {
         return 400;
     }
 
@@ -523,7 +544,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.SPAWN_EGG) {
@@ -620,7 +642,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
                 }
 
                 if (!this.isTame() && !flag) {
-                    if (itemstack != null && itemstack.a(entityhuman, (EntityLiving) this)) {
+                    if (itemstack != null && itemstack.a(entityhuman, this)) {
                         return true;
                     }
 
@@ -650,7 +672,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             }
 
             if (this.cp() && this.passenger == null) {
-                if (itemstack != null && itemstack.a(entityhuman, (EntityLiving) this)) {
+                if (itemstack != null && itemstack.a(entityhuman, this)) {
                     return true;
                 } else {
                     this.i(entityhuman);
@@ -683,7 +705,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return i == 2 || i == 1;
     }
 
-    protected boolean bD() {
+    @Override
+	protected boolean bD() {
         return this.passenger != null && this.cG() ? true : this.cy() || this.cz();
     }
 
@@ -697,7 +720,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.cR() || this.getType() == 2;
     }
 
-    public boolean d(ItemStack itemstack) {
+    @Override
+	public boolean d(ItemStack itemstack) {
         return false;
     }
 
@@ -705,7 +729,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         this.bm = 1;
     }
 
-    public void die(DamageSource damagesource) {
+    @Override
+	public void die(DamageSource damagesource) {
         super.die(damagesource);
         /* CraftBukkit start - Handle chest dropping in dropDeathLoot below
         if (!this.world.isClientSide) {
@@ -726,7 +751,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
     }
     // CraftBukkit end
 
-    public void m() {
+    @Override
+	public void m() {
         if (this.random.nextInt(200) == 0) {
             this.de();
         }
@@ -749,15 +775,16 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             if (this.cA() && !this.cn() && !this.cy()) {
                 EntityHorse entityhorse = this.a(this, 16.0D);
 
-                if (entityhorse != null && this.h((Entity) entityhorse) > 4.0D) {
-                    this.navigation.a((Entity) entityhorse);
+                if (entityhorse != null && this.h(entityhorse) > 4.0D) {
+                    this.navigation.a(entityhorse);
                 }
             }
         }
 
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (this.world.isClientSide && this.datawatcher.a()) {
             this.datawatcher.e();
@@ -840,7 +867,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return this.passenger == null && this.vehicle == null && this.isTame() && this.cn() && !this.cS() && this.getHealth() >= this.getMaxHealth() && this.isInLove();
     }
 
-    public void f(boolean flag) {
+    @Override
+	public void f(boolean flag) {
         this.c(32, flag);
     }
 
@@ -875,7 +903,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
     }
 
     public void dropChest() {
-        this.a((Entity) this, this.inventoryChest);
+        this.a(this, this.inventoryChest);
         this.cE();
     }
 
@@ -898,7 +926,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return true;
     }
 
-    public void g(float f, float f1) {
+    @Override
+	public void g(float f, float f1) {
         if (this.passenger != null && this.passenger instanceof EntityLiving && this.cG()) {
             this.lastYaw = this.yaw = this.passenger.yaw;
             this.pitch = this.passenger.pitch * 0.5F;
@@ -917,9 +946,9 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             }
 
             if (this.br > 0.0F && !this.cv() && this.onGround) {
-                this.motY = this.getJumpStrength() * (double) this.br;
+                this.motY = this.getJumpStrength() * this.br;
                 if (this.hasEffect(MobEffectList.JUMP)) {
-                    this.motY += (double) ((float) (this.getEffect(MobEffectList.JUMP).getAmplifier() + 1) * 0.1F);
+                    this.motY += (this.getEffect(MobEffectList.JUMP).getAmplifier() + 1) * 0.1F;
                 }
 
                 this.m(true);
@@ -928,8 +957,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
                     float f2 = MathHelper.sin(this.yaw * 3.1415927F / 180.0F);
                     float f3 = MathHelper.cos(this.yaw * 3.1415927F / 180.0F);
 
-                    this.motX += (double) (-0.4F * f2 * this.br);
-                    this.motZ += (double) (0.4F * f3 * this.br);
+                    this.motX += -0.4F * f2 * this.br;
+                    this.motZ += 0.4F * f3 * this.br;
                     this.makeSound("mob.horse.jump", 0.4F, 1.0F);
                 }
 
@@ -966,7 +995,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         }
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setBoolean("EatingHaystack", this.cy());
         nbttagcompound.setBoolean("ChestedHorse", this.hasChest());
@@ -1006,7 +1036,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.r(nbttagcompound.getBoolean("EatingHaystack"));
         this.n(nbttagcompound.getBoolean("Bred"));
@@ -1089,7 +1120,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         this.db();
     }
 
-    public boolean mate(EntityAnimal entityanimal) {
+    @Override
+	public boolean mate(EntityAnimal entityanimal) {
         if (entityanimal == this) {
             return false;
         } else if (entityanimal.getClass() != this.getClass()) {
@@ -1108,7 +1140,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         }
     }
 
-    public EntityAgeable createChild(EntityAgeable entityageable) {
+    @Override
+	public EntityAgeable createChild(EntityAgeable entityageable) {
         EntityHorse entityhorse = (EntityHorse) entityageable;
         EntityHorse entityhorse1 = new EntityHorse(this.world);
         int i = this.getType();
@@ -1147,7 +1180,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         }
 
         entityhorse1.setType(k);
-        double d0 = this.getAttributeInstance(GenericAttributes.maxHealth).b() + entityageable.getAttributeInstance(GenericAttributes.maxHealth).b() + (double) this.di();
+        double d0 = this.getAttributeInstance(GenericAttributes.maxHealth).b() + entityageable.getAttributeInstance(GenericAttributes.maxHealth).b() + this.di();
 
         entityhorse1.getAttributeInstance(GenericAttributes.maxHealth).setValue(d0 / 3.0D);
         double d1 = this.getAttributeInstance(EntityHorse.attributeJumpStrength).b() + entityageable.getAttributeInstance(EntityHorse.attributeJumpStrength).b() + this.dj();
@@ -1159,7 +1192,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return entityhorse1;
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         Object object = super.prepare(difficultydamagescaler, groupdataentity);
         boolean flag = false;
         int i = 0;
@@ -1189,7 +1223,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         }
 
         if (j != 4 && j != 3) {
-            this.getAttributeInstance(GenericAttributes.maxHealth).setValue((double) this.di());
+            this.getAttributeInstance(GenericAttributes.maxHealth).setValue(this.di());
             if (j == 0) {
                 this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(this.dk());
             } else {
@@ -1221,7 +1255,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             if (i >= 90) {
                 power = 1.0F;
             } else {
-                power = 0.4F + 0.4F * (float) i / 90.0F;
+                power = 0.4F + 0.4F * i / 90.0F;
             }
 
             org.bukkit.event.entity.HorseJumpEvent event = org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callHorseJumpEvent(this, power);
@@ -1235,7 +1269,8 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
 
     }
 
-    public void al() {
+    @Override
+	public void al() {
         super.al();
         if (this.bK > 0.0F) {
             float f = MathHelper.sin(this.aI * 3.1415927F / 180.0F);
@@ -1243,7 +1278,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
             float f2 = 0.7F * this.bK;
             float f3 = 0.15F * this.bK;
 
-            this.passenger.setPosition(this.locX + (double) (f2 * f), this.locY + this.an() + this.passenger.am() + (double) f3, this.locZ - (double) (f2 * f1));
+            this.passenger.setPosition(this.locX + f2 * f, this.locY + this.an() + this.passenger.am() + f3, this.locZ - f2 * f1);
             if (this.passenger instanceof EntityLiving) {
                 ((EntityLiving) this.passenger).aI = this.aI;
             }
@@ -1252,7 +1287,7 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
     }
 
     private float di() {
-        return 15.0F + (float) this.random.nextInt(8) + (float) this.random.nextInt(9);
+        return 15.0F + this.random.nextInt(8) + this.random.nextInt(9);
     }
 
     private double dj() {
@@ -1267,15 +1302,18 @@ public class EntityHorse extends EntityAnimal implements IInventoryListener {
         return item == Items.IRON_HORSE_ARMOR || item == Items.GOLDEN_HORSE_ARMOR || item == Items.DIAMOND_HORSE_ARMOR;
     }
 
-    public boolean k_() {
+    @Override
+	public boolean k_() {
         return false;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return this.length;
     }
 
-    public boolean d(int i, ItemStack itemstack) {
+    @Override
+	public boolean d(int i, ItemStack itemstack) {
         if (i == 499 && this.cP()) {
             if (itemstack == null && this.hasChest()) {
                 this.setHasChest(false);

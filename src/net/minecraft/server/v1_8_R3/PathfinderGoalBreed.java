@@ -19,7 +19,8 @@ public class PathfinderGoalBreed extends PathfinderGoal {
         this.a(3);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (!this.d.isInLove()) {
             return false;
         } else {
@@ -28,18 +29,21 @@ public class PathfinderGoalBreed extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.e.isAlive() && this.e.isInLove() && this.b < 60;
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.e = null;
         this.b = 0;
     }
 
-    public void e() {
-        this.d.getControllerLook().a(this.e, 10.0F, (float) this.d.bQ());
-        this.d.getNavigation().a((Entity) this.e, this.c);
+    @Override
+	public void e() {
+        this.d.getControllerLook().a(this.e, 10.0F, this.d.bQ());
+        this.d.getNavigation().a(this.e, this.c);
         ++this.b;
         if (this.b >= 60 && this.d.h(this.e) < 9.0D) {
             this.g();
@@ -49,7 +53,7 @@ public class PathfinderGoalBreed extends PathfinderGoal {
 
     private EntityAnimal f() {
         float f = 8.0F;
-        List list = this.a.a(this.d.getClass(), this.d.getBoundingBox().grow((double) f, (double) f, (double) f));
+        List list = this.a.a(this.d.getClass(), this.d.getBoundingBox().grow(f, f, f));
         double d0 = Double.MAX_VALUE;
         EntityAnimal entityanimal = null;
         Iterator iterator = list.iterator();
@@ -84,7 +88,7 @@ public class PathfinderGoalBreed extends PathfinderGoal {
             if (entityhuman != null) {
                 entityhuman.b(StatisticList.A);
                 if (this.d instanceof EntityCow) {
-                    entityhuman.b((Statistic) AchievementList.H);
+                    entityhuman.b(AchievementList.H);
                 }
             }
 
@@ -101,9 +105,9 @@ public class PathfinderGoalBreed extends PathfinderGoal {
                 double d0 = random.nextGaussian() * 0.02D;
                 double d1 = random.nextGaussian() * 0.02D;
                 double d2 = random.nextGaussian() * 0.02D;
-                double d3 = random.nextDouble() * (double) this.d.width * 2.0D - (double) this.d.width;
-                double d4 = 0.5D + random.nextDouble() * (double) this.d.length;
-                double d5 = random.nextDouble() * (double) this.d.width * 2.0D - (double) this.d.width;
+                double d3 = random.nextDouble() * this.d.width * 2.0D - this.d.width;
+                double d4 = 0.5D + random.nextDouble() * this.d.length;
+                double d5 = random.nextDouble() * this.d.width * 2.0D - this.d.width;
 
                 this.a.addParticle(EnumParticle.HEART, this.d.locX + d3, this.d.locY + d4, this.d.locZ + d5, d0, d1, d2, new int[0]);
             }

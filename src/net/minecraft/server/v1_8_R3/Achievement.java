@@ -58,11 +58,13 @@ public class Achievement extends Statistic {
         return this;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return true;
     }
 
-    public IChatBaseComponent e() {
+    @Override
+	public IChatBaseComponent e() {
         IChatBaseComponent ichatbasecomponent = super.e();
 
         ichatbasecomponent.getChatModifier().setColor(this.g() ? EnumChatFormat.DARK_PURPLE : EnumChatFormat.GREEN);
@@ -77,15 +79,18 @@ public class Achievement extends Statistic {
         return this.m;
     }
 
-    public Statistic b(Class oclass) {
+    @Override
+	public Statistic b(Class oclass) {
         return this.a(oclass);
     }
 
-    public Statistic h() {
+    @Override
+	public Statistic h() {
         return this.c();
     }
 
-    public Statistic i() {
+    @Override
+	public Statistic i() {
         return this.a();
     }
 }

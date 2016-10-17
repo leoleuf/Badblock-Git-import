@@ -13,15 +13,18 @@ public class ItemStep extends ItemBlock {
         this.a(true);
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i;
     }
 
-    public String e_(ItemStack itemstack) {
+    @Override
+	public String e_(ItemStack itemstack) {
         return this.b.b(itemstack.getData());
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (itemstack.count == 0) {
             return false;
         } else if (!entityhuman.a(blockposition.shift(enumdirection), enumdirection, itemstack)) {
@@ -33,13 +36,13 @@ public class ItemStep extends ItemBlock {
             if (iblockdata.getBlock() == this.b) {
                 IBlockState iblockstate = this.b.n();
                 Comparable comparable = iblockdata.get(iblockstate);
-                BlockStepAbstract.EnumSlabHalf blockstepabstract_enumslabhalf = (BlockStepAbstract.EnumSlabHalf) iblockdata.get(BlockStepAbstract.HALF);
+                BlockStepAbstract.EnumSlabHalf blockstepabstract_enumslabhalf = iblockdata.get(BlockStepAbstract.HALF);
 
                 if ((enumdirection == EnumDirection.UP && blockstepabstract_enumslabhalf == BlockStepAbstract.EnumSlabHalf.BOTTOM || enumdirection == EnumDirection.DOWN && blockstepabstract_enumslabhalf == BlockStepAbstract.EnumSlabHalf.TOP) && comparable == object) {
                     IBlockData iblockdata1 = this.c.getBlockData().set(iblockstate, comparable);
 
                     if (world.b(this.c.a(world, blockposition, iblockdata1)) && world.setTypeAndData(blockposition, iblockdata1, 3)) {
-                        world.makeSound((double) ((float) blockposition.getX() + 0.5F), (double) ((float) blockposition.getY() + 0.5F), (double) ((float) blockposition.getZ() + 0.5F), this.c.stepSound.getPlaceSound(), (this.c.stepSound.getVolume1() + 1.0F) / 2.0F, this.c.stepSound.getVolume2() * 0.8F);
+                        world.makeSound(blockposition.getX() + 0.5F, blockposition.getY() + 0.5F, blockposition.getZ() + 0.5F, this.c.stepSound.getPlaceSound(), (this.c.stepSound.getVolume1() + 1.0F) / 2.0F, this.c.stepSound.getVolume2() * 0.8F);
                         --itemstack.count;
                     }
 
@@ -61,7 +64,7 @@ public class ItemStep extends ItemBlock {
                 IBlockData iblockdata1 = this.c.getBlockData().set(this.b.n(), comparable);
 
                 if (world.b(this.c.a(world, blockposition, iblockdata1)) && world.setTypeAndData(blockposition, iblockdata1, 3)) {
-                    world.makeSound((double) ((float) blockposition.getX() + 0.5F), (double) ((float) blockposition.getY() + 0.5F), (double) ((float) blockposition.getZ() + 0.5F), this.c.stepSound.getPlaceSound(), (this.c.stepSound.getVolume1() + 1.0F) / 2.0F, this.c.stepSound.getVolume2() * 0.8F);
+                    world.makeSound(blockposition.getX() + 0.5F, blockposition.getY() + 0.5F, blockposition.getZ() + 0.5F, this.c.stepSound.getPlaceSound(), (this.c.stepSound.getVolume1() + 1.0F) / 2.0F, this.c.stepSound.getVolume2() * 0.8F);
                     --itemstack.count;
                 }
 

@@ -21,47 +21,58 @@ public class CraftEntityEquipment implements EntityEquipment {
         this.entity = entity;
     }
 
-    public ItemStack getItemInHand() {
+    @Override
+	public ItemStack getItemInHand() {
         return getEquipment(WEAPON_SLOT);
     }
 
-    public void setItemInHand(ItemStack stack) {
+    @Override
+	public void setItemInHand(ItemStack stack) {
         setEquipment(WEAPON_SLOT, stack);
     }
 
-    public ItemStack getHelmet() {
+    @Override
+	public ItemStack getHelmet() {
         return getEquipment(HELMET_SLOT);
     }
 
-    public void setHelmet(ItemStack helmet) {
+    @Override
+	public void setHelmet(ItemStack helmet) {
         setEquipment(HELMET_SLOT, helmet);
     }
 
-    public ItemStack getChestplate() {
+    @Override
+	public ItemStack getChestplate() {
         return getEquipment(CHEST_SLOT);
     }
 
-    public void setChestplate(ItemStack chestplate) {
+    @Override
+	public void setChestplate(ItemStack chestplate) {
         setEquipment(CHEST_SLOT, chestplate);
     }
 
-    public ItemStack getLeggings() {
+    @Override
+	public ItemStack getLeggings() {
         return getEquipment(LEG_SLOT);
     }
 
-    public void setLeggings(ItemStack leggings) {
+    @Override
+	public void setLeggings(ItemStack leggings) {
         setEquipment(LEG_SLOT, leggings);
     }
 
-    public ItemStack getBoots() {
+    @Override
+	public ItemStack getBoots() {
         return getEquipment(BOOT_SLOT);
     }
 
-    public void setBoots(ItemStack boots) {
+    @Override
+	public void setBoots(ItemStack boots) {
         setEquipment(BOOT_SLOT, boots);
     }
 
-    public ItemStack[] getArmorContents() {
+    @Override
+	public ItemStack[] getArmorContents() {
         ItemStack[] armor = new ItemStack[INVENTORY_SLOTS - 1];
         for(int slot = WEAPON_SLOT + 1; slot < INVENTORY_SLOTS; slot++) {
             armor[slot - 1] = getEquipment(slot);
@@ -69,7 +80,8 @@ public class CraftEntityEquipment implements EntityEquipment {
         return armor;
     }
 
-    public void setArmorContents(ItemStack[] items) {
+    @Override
+	public void setArmorContents(ItemStack[] items) {
         for(int slot = WEAPON_SLOT + 1; slot < INVENTORY_SLOTS; slot++) {
             ItemStack equipment = items != null && slot <= items.length ? items[slot - 1] : null;
             setEquipment(slot, equipment);
@@ -84,53 +96,65 @@ public class CraftEntityEquipment implements EntityEquipment {
         entity.getHandle().setEquipment(slot, CraftItemStack.asNMSCopy(stack));
     }
 
-    public void clear() {
+    @Override
+	public void clear() {
         for(int i = 0; i < INVENTORY_SLOTS; i++) {
             setEquipment(i, null);
         }
     }
 
-    public Entity getHolder() {
+    @Override
+	public Entity getHolder() {
         return entity;
     }
 
-    public float getItemInHandDropChance() {
+    @Override
+	public float getItemInHandDropChance() {
        return getDropChance(WEAPON_SLOT);
     }
 
-    public void setItemInHandDropChance(float chance) {
+    @Override
+	public void setItemInHandDropChance(float chance) {
         setDropChance(WEAPON_SLOT, chance);
     }
 
-    public float getHelmetDropChance() {
+    @Override
+	public float getHelmetDropChance() {
         return getDropChance(HELMET_SLOT);
     }
 
-    public void setHelmetDropChance(float chance) {
+    @Override
+	public void setHelmetDropChance(float chance) {
         setDropChance(HELMET_SLOT, chance);
     }
 
-    public float getChestplateDropChance() {
+    @Override
+	public float getChestplateDropChance() {
         return getDropChance(CHEST_SLOT);
     }
 
-    public void setChestplateDropChance(float chance) {
+    @Override
+	public void setChestplateDropChance(float chance) {
         setDropChance(CHEST_SLOT, chance);
     }
 
-    public float getLeggingsDropChance() {
+    @Override
+	public float getLeggingsDropChance() {
         return getDropChance(LEG_SLOT);
     }
 
-    public void setLeggingsDropChance(float chance) {
+    @Override
+	public void setLeggingsDropChance(float chance) {
         setDropChance(LEG_SLOT, chance);
     }
 
-    public float getBootsDropChance() {
+    @Override
+	public float getBootsDropChance() {
         return getDropChance(BOOT_SLOT);
     }
 
-    public void setBootsDropChance(float chance) {
+    @Override
+	public void setBootsDropChance(float chance) {
         setDropChance(BOOT_SLOT, chance);
     }
 

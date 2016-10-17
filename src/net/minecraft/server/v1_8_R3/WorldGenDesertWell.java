@@ -7,7 +7,7 @@ import com.google.common.base.Predicates;
 
 public class WorldGenDesertWell extends WorldGenerator {
 
-    private static final BlockStatePredicate a = BlockStatePredicate.a((Block) Blocks.SAND).a(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumSandVariant.SAND));
+    private static final BlockStatePredicate a = BlockStatePredicate.a(Blocks.SAND).a(BlockSand.VARIANT, Predicates.equalTo(BlockSand.EnumSandVariant.SAND));
     private final IBlockData b;
     private final IBlockData c;
     private final IBlockData d;
@@ -18,7 +18,8 @@ public class WorldGenDesertWell extends WorldGenerator {
         this.d = Blocks.FLOWING_WATER.getBlockData();
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         while (world.isEmpty(blockposition) && blockposition.getY() > 2) {
             blockposition = blockposition.down();
         }

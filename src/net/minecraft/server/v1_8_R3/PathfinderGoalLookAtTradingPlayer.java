@@ -9,7 +9,8 @@ public class PathfinderGoalLookAtTradingPlayer extends PathfinderGoalLookAtPlaye
         this.e = entityvillager;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.e.co()) {
             this.b = this.e.v_();
             return true;

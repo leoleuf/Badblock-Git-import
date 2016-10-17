@@ -19,7 +19,8 @@ public class CraftFish extends AbstractProjectile implements Fish {
         super(server, entity);
     }
 
-    public ProjectileSource getShooter() {
+    @Override
+	public ProjectileSource getShooter() {
         if (getHandle().owner != null) {
             return getHandle().owner.getBukkitEntity();
         }
@@ -27,7 +28,8 @@ public class CraftFish extends AbstractProjectile implements Fish {
         return null;
     }
 
-    public void setShooter(ProjectileSource shooter) {
+    @Override
+	public void setShooter(ProjectileSource shooter) {
         if (shooter instanceof CraftHumanEntity) {
             getHandle().owner = (EntityHuman) ((CraftHumanEntity) shooter).entity;
         }
@@ -43,11 +45,13 @@ public class CraftFish extends AbstractProjectile implements Fish {
         return "CraftFish";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.FISHING_HOOK;
     }
 
-    public double getBiteChance() {
+    @Override
+	public double getBiteChance() {
         EntityFishingHook hook = getHandle();
 
         if (this.biteChance == -1) {
@@ -59,17 +63,20 @@ public class CraftFish extends AbstractProjectile implements Fish {
         return this.biteChance;
     }
 
-    public void setBiteChance(double chance) {
+    @Override
+	public void setBiteChance(double chance) {
         Validate.isTrue(chance >= 0 && chance <= 1, "The bite chance must be between 0 and 1.");
         this.biteChance = chance;
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public LivingEntity _INVALID_getShooter() {
         return (LivingEntity) getShooter();
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public void _INVALID_setShooter(LivingEntity shooter) {
         setShooter(shooter);
     }

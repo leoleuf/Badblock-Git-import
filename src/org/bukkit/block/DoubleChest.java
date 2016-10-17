@@ -16,7 +16,8 @@ public class DoubleChest implements InventoryHolder {
         inventory = chest;
     }
 
-    public Inventory getInventory() {
+    @Override
+	public Inventory getInventory() {
         return inventory;
     }
 

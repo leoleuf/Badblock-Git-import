@@ -11,11 +11,13 @@ public class BlockDirt extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((BlockDirt.EnumDirtVariant) iblockdata.get(BlockDirt.VARIANT)).d();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockDirt.VARIANT).d();
     }
 
-    public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public IBlockData updateState(IBlockData iblockdata, IBlockAccess iblockaccess, BlockPosition blockposition) {
         if (iblockdata.get(BlockDirt.VARIANT) == BlockDirt.EnumDirtVariant.PODZOL) {
             Block block = iblockaccess.getType(blockposition.up()).getBlock();
 
@@ -25,26 +27,31 @@ public class BlockDirt extends Block {
         return iblockdata;
     }
 
-    public int getDropData(World world, BlockPosition blockposition) {
+    @Override
+	public int getDropData(World world, BlockPosition blockposition) {
         IBlockData iblockdata = world.getType(blockposition);
 
-        return iblockdata.getBlock() != this ? 0 : ((BlockDirt.EnumDirtVariant) iblockdata.get(BlockDirt.VARIANT)).a();
+        return iblockdata.getBlock() != this ? 0 : iblockdata.get(BlockDirt.VARIANT).a();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockDirt.VARIANT, BlockDirt.EnumDirtVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockDirt.EnumDirtVariant) iblockdata.get(BlockDirt.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockDirt.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockDirt.VARIANT, BlockDirt.SNOWY});
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        BlockDirt.EnumDirtVariant blockdirt_enumdirtvariant = (BlockDirt.EnumDirtVariant) iblockdata.get(BlockDirt.VARIANT);
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        BlockDirt.EnumDirtVariant blockdirt_enumdirtvariant = iblockdata.get(BlockDirt.VARIANT);
 
         if (blockdirt_enumdirtvariant == BlockDirt.EnumDirtVariant.PODZOL) {
             blockdirt_enumdirtvariant = BlockDirt.EnumDirtVariant.DIRT;
@@ -86,7 +93,8 @@ public class BlockDirt extends Block {
             return this.h;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.f;
         }
 
@@ -98,7 +106,8 @@ public class BlockDirt extends Block {
             return BlockDirt.EnumDirtVariant.d[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.f;
         }
 

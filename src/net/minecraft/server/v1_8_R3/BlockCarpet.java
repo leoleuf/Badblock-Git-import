@@ -13,38 +13,45 @@ public class BlockCarpet extends Block {
         this.b(0);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCarpet.COLOR)).e();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockCarpet.COLOR).e();
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public void j() {
+    @Override
+	public void j() {
         this.b(0);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         this.b(0);
     }
 
     protected void b(int i) {
         byte b0 = 0;
-        float f = (float) (1 * (1 + b0)) / 16.0F;
+        float f = 1 * (1 + b0) / 16.0F;
 
         this.a(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
     }
 
-    public boolean canPlace(World world, BlockPosition blockposition) {
+    @Override
+	public boolean canPlace(World world, BlockPosition blockposition) {
         return super.canPlace(world, blockposition) && this.e(world, blockposition);
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         this.e(world, blockposition, iblockdata);
     }
 
@@ -62,19 +69,23 @@ public class BlockCarpet extends Block {
         return !world.isEmpty(blockposition.down());
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCarpet.COLOR)).getColorIndex();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockCarpet.COLOR).getColorIndex();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockCarpet.COLOR, EnumColor.fromColorIndex(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCarpet.COLOR)).getColorIndex();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockCarpet.COLOR).getColorIndex();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockCarpet.COLOR});
     }
 }

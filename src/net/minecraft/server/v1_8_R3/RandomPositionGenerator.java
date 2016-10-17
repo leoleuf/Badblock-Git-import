@@ -30,8 +30,8 @@ public class RandomPositionGenerator {
         boolean flag1;
 
         if (entitycreature.ck()) {
-            double d0 = entitycreature.ch().c((double) MathHelper.floor(entitycreature.locX), (double) MathHelper.floor(entitycreature.locY), (double) MathHelper.floor(entitycreature.locZ)) + 4.0D;
-            double d1 = (double) (entitycreature.ci() + (float) i);
+            double d0 = entitycreature.ch().c(MathHelper.floor(entitycreature.locX), MathHelper.floor(entitycreature.locY), MathHelper.floor(entitycreature.locZ)) + 4.0D;
+            double d1 = entitycreature.ci() + i;
 
             flag1 = d0 < d1 * d1;
         } else {
@@ -43,18 +43,18 @@ public class RandomPositionGenerator {
             int l1 = random.nextInt(2 * j + 1) - j;
             int i2 = random.nextInt(2 * i + 1) - i;
 
-            if (vec3d == null || (double) k1 * vec3d.a + (double) i2 * vec3d.c >= 0.0D) {
+            if (vec3d == null || k1 * vec3d.a + i2 * vec3d.c >= 0.0D) {
                 BlockPosition blockposition;
 
                 if (entitycreature.ck() && i > 1) {
                     blockposition = entitycreature.ch();
-                    if (entitycreature.locX > (double) blockposition.getX()) {
+                    if (entitycreature.locX > blockposition.getX()) {
                         k1 -= random.nextInt(i / 2);
                     } else {
                         k1 += random.nextInt(i / 2);
                     }
 
-                    if (entitycreature.locZ > (double) blockposition.getZ()) {
+                    if (entitycreature.locZ > blockposition.getZ()) {
                         i2 -= random.nextInt(i / 2);
                     } else {
                         i2 += random.nextInt(i / 2);
@@ -80,7 +80,7 @@ public class RandomPositionGenerator {
         }
 
         if (flag) {
-            return new Vec3D((double) k, (double) l, (double) i1);
+            return new Vec3D(k, l, i1);
         } else {
             return null;
         }

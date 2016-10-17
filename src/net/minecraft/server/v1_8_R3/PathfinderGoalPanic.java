@@ -14,7 +14,8 @@ public class PathfinderGoalPanic extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.b.getLastDamager() == null && !this.b.isBurning()) {
             return false;
         } else {
@@ -31,11 +32,13 @@ public class PathfinderGoalPanic extends PathfinderGoal {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.b.getNavigation().a(this.c, this.d, this.e, this.a);
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         // CraftBukkit start - introduce a temporary timeout hack until this is fixed properly
         if ((this.b.ticksLived - this.b.hurtTimestamp) > 100) {
             this.b.b((EntityLiving) null);

@@ -30,7 +30,7 @@ public class PersistentCollection {
     }
 
     public PersistentBase get(Class<? extends PersistentBase> oclass, String s) {
-        PersistentBase persistentbase = (PersistentBase) this.a.get(s);
+        PersistentBase persistentbase = this.a.get(s);
 
         if (persistentbase != null) {
             return persistentbase;
@@ -41,13 +41,13 @@ public class PersistentCollection {
 
                     if (file != null && file.exists()) {
                         try {
-                            persistentbase = (PersistentBase) oclass.getConstructor(new Class[] { String.class}).newInstance(new Object[] { s});
+                            persistentbase = oclass.getConstructor(new Class[] { String.class}).newInstance(new Object[] { s});
                         } catch (Exception exception) {
                             throw new RuntimeException("Failed to instantiate " + oclass.toString(), exception);
                         }
 
                         FileInputStream fileinputstream = new FileInputStream(file);
-                        NBTTagCompound nbttagcompound = NBTCompressedStreamTools.a((InputStream) fileinputstream);
+                        NBTTagCompound nbttagcompound = NBTCompressedStreamTools.a(fileinputstream);
 
                         fileinputstream.close();
                         persistentbase.a(nbttagcompound.getCompound("data"));
@@ -77,7 +77,7 @@ public class PersistentCollection {
 
     public void a() {
         for (int i = 0; i < this.c.size(); ++i) {
-            PersistentBase persistentbase = (PersistentBase) this.c.get(i);
+            PersistentBase persistentbase = this.c.get(i);
 
             if (persistentbase.d()) {
                 this.a(persistentbase);
@@ -101,7 +101,7 @@ public class PersistentCollection {
                     nbttagcompound1.set("data", nbttagcompound);
                     FileOutputStream fileoutputstream = new FileOutputStream(file);
 
-                    NBTCompressedStreamTools.a(nbttagcompound1, (OutputStream) fileoutputstream);
+                    NBTCompressedStreamTools.a(nbttagcompound1, fileoutputstream);
                     fileoutputstream.close();
                 }
             } catch (Exception exception) {
@@ -147,7 +147,7 @@ public class PersistentCollection {
     }
 
     public int a(String s) {
-        Short oshort = (Short) this.d.get(s);
+        Short oshort = this.d.get(s);
 
         if (oshort == null) {
             oshort = Short.valueOf((short) 0);
@@ -168,7 +168,7 @@ public class PersistentCollection {
 
                     while (iterator.hasNext()) {
                         String s1 = (String) iterator.next();
-                        short short0 = ((Short) this.d.get(s1)).shortValue();
+                        short short0 = this.d.get(s1).shortValue();
 
                         nbttagcompound.setShort(s1, short0);
                     }

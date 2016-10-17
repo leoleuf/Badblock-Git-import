@@ -6,7 +6,8 @@ public class ItemAnvil extends ItemMultiTexture {
         super(block, block, new String[] { "intact", "slightlyDamaged", "veryDamaged"});
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i << 2;
     }
 }

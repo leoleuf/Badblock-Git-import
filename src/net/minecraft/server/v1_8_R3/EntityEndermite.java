@@ -18,54 +18,65 @@ public class EntityEndermite extends EntityMonster {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 0.1F;
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(8.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(2.0D);
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.silverfish.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.silverfish.hit";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.silverfish.kill";
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.silverfish.step", 0.15F, 1.0F);
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return null;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a = nbttagcompound.getInt("Lifetime");
         this.b = nbttagcompound.getBoolean("PlayerSpawned");
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("Lifetime", this.a);
         nbttagcompound.setBoolean("PlayerSpawned", this.b);
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         this.aI = this.yaw;
         super.t_();
     }
@@ -78,11 +89,12 @@ public class EntityEndermite extends EntityMonster {
         this.b = flag;
     }
 
-    public void m() {
+    @Override
+	public void m() {
         super.m();
         if (this.world.isClientSide) {
             for (int i = 0; i < 2; ++i) {
-                this.world.addParticle(EnumParticle.PORTAL, this.locX + (this.random.nextDouble() - 0.5D) * (double) this.width, this.locY + this.random.nextDouble() * (double) this.length, this.locZ + (this.random.nextDouble() - 0.5D) * (double) this.width, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
+                this.world.addParticle(EnumParticle.PORTAL, this.locX + (this.random.nextDouble() - 0.5D) * this.width, this.locY + this.random.nextDouble() * this.length, this.locZ + (this.random.nextDouble() - 0.5D) * this.width, (this.random.nextDouble() - 0.5D) * 2.0D, -this.random.nextDouble(), (this.random.nextDouble() - 0.5D) * 2.0D, new int[0]);
             }
         } else {
             if (!this.isPersistent()) {
@@ -96,11 +108,13 @@ public class EntityEndermite extends EntityMonster {
 
     }
 
-    protected boolean n_() {
+    @Override
+	protected boolean n_() {
         return true;
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         if (super.bR()) {
             EntityHuman entityhuman = this.world.findNearbyPlayer(this, 5.0D);
 
@@ -110,7 +124,8 @@ public class EntityEndermite extends EntityMonster {
         }
     }
 
-    public EnumMonsterType getMonsterType() {
+    @Override
+	public EnumMonsterType getMonsterType() {
         return EnumMonsterType.ARTHROPOD;
     }
 }

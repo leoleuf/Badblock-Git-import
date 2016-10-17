@@ -17,10 +17,10 @@ public class ContainerBrewingStand extends Container {
     public ContainerBrewingStand(PlayerInventory playerinventory, IInventory iinventory) {
         player = playerinventory; // CraftBukkit
         this.brewingStand = iinventory;
-        this.a((Slot) (new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 0, 56, 46)));
-        this.a((Slot) (new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 1, 79, 53)));
-        this.a((Slot) (new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 2, 102, 46)));
-        this.f = this.a((Slot) (new ContainerBrewingStand.SlotBrewing(iinventory, 3, 79, 17)));
+        this.a((new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 0, 56, 46)));
+        this.a((new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 1, 79, 53)));
+        this.a((new ContainerBrewingStand.SlotPotionBottle(playerinventory.player, iinventory, 2, 102, 46)));
+        this.f = this.a((new ContainerBrewingStand.SlotBrewing(iinventory, 3, 79, 17)));
 
         int i;
 
@@ -36,16 +36,18 @@ public class ContainerBrewingStand extends Container {
 
     }
 
-    public void addSlotListener(ICrafting icrafting) {
+    @Override
+	public void addSlotListener(ICrafting icrafting) {
         super.addSlotListener(icrafting);
         icrafting.setContainerData(this, this.brewingStand);
     }
 
-    public void b() {
+    @Override
+	public void b() {
         super.b();
 
         for (int i = 0; i < this.listeners.size(); ++i) {
-            ICrafting icrafting = (ICrafting) this.listeners.get(i);
+            ICrafting icrafting = this.listeners.get(i);
 
             if (this.g != this.brewingStand.getProperty(0)) {
                 icrafting.setContainerData(this, 0, this.brewingStand.getProperty(0));
@@ -55,14 +57,16 @@ public class ContainerBrewingStand extends Container {
         this.g = this.brewingStand.getProperty(0);
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         if (!this.checkReachable) return true; // CraftBukkit
         return this.brewingStand.a(entityhuman);
     }
 
-    public ItemStack b(EntityHuman entityhuman, int i) {
+    @Override
+	public ItemStack b(EntityHuman entityhuman, int i) {
         ItemStack itemstack = null;
-        Slot slot = (Slot) this.c.get(i);
+        Slot slot = this.c.get(i);
 
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
@@ -118,11 +122,13 @@ public class ContainerBrewingStand extends Container {
             super(iinventory, i, j, k);
         }
 
-        public boolean isAllowed(ItemStack itemstack) {
+        @Override
+		public boolean isAllowed(ItemStack itemstack) {
             return itemstack != null ? itemstack.getItem().l(itemstack) : false;
         }
 
-        public int getMaxStackSize() {
+        @Override
+		public int getMaxStackSize() {
             return 64;
         }
     }
@@ -136,17 +142,20 @@ public class ContainerBrewingStand extends Container {
             this.a = entityhuman;
         }
 
-        public boolean isAllowed(ItemStack itemstack) {
+        @Override
+		public boolean isAllowed(ItemStack itemstack) {
             return b_(itemstack);
         }
 
-        public int getMaxStackSize() {
+        @Override
+		public int getMaxStackSize() {
             return 1;
         }
 
-        public void a(EntityHuman entityhuman, ItemStack itemstack) {
+        @Override
+		public void a(EntityHuman entityhuman, ItemStack itemstack) {
             if (itemstack.getItem() == Items.POTION && itemstack.getData() > 0) {
-                this.a.b((Statistic) AchievementList.B);
+                this.a.b(AchievementList.B);
             }
 
             super.a(entityhuman, itemstack);

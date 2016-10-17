@@ -9,19 +9,23 @@ public class EnchantmentDurability extends Enchantment {
         this.c("durability");
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return 5 + (i - 1) * 8;
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return super.a(i) + 50;
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 3;
     }
 
-    public boolean canEnchant(ItemStack itemstack) {
+    @Override
+	public boolean canEnchant(ItemStack itemstack) {
         return itemstack.e() ? true : super.canEnchant(itemstack);
     }
 

@@ -10,17 +10,20 @@ public class PathfinderNormal extends PathfinderAbstract {
 
     public PathfinderNormal() {}
 
-    public void a(IBlockAccess iblockaccess, Entity entity) {
+    @Override
+	public void a(IBlockAccess iblockaccess, Entity entity) {
         super.a(iblockaccess, entity);
         this.j = this.h;
     }
 
-    public void a() {
+    @Override
+	public void a() {
         super.a();
         this.h = this.j;
     }
 
-    public PathPoint a(Entity entity) {
+    @Override
+	public PathPoint a(Entity entity) {
         int i;
 
         if (this.i && entity.V()) {
@@ -40,11 +43,13 @@ public class PathfinderNormal extends PathfinderAbstract {
         return this.a(MathHelper.floor(entity.getBoundingBox().a), i, MathHelper.floor(entity.getBoundingBox().c));
     }
 
-    public PathPoint a(Entity entity, double d0, double d1, double d2) {
-        return this.a(MathHelper.floor(d0 - (double) (entity.width / 2.0F)), MathHelper.floor(d1), MathHelper.floor(d2 - (double) (entity.width / 2.0F)));
+    @Override
+	public PathPoint a(Entity entity, double d0, double d1, double d2) {
+        return this.a(MathHelper.floor(d0 - entity.width / 2.0F), MathHelper.floor(d1), MathHelper.floor(d2 - entity.width / 2.0F));
     }
 
-    public int a(PathPoint[] apathpoint, Entity entity, PathPoint pathpoint, PathPoint pathpoint1, float f) {
+    @Override
+	public int a(PathPoint[] apathpoint, Entity entity, PathPoint pathpoint, PathPoint pathpoint1, float f) {
         int i = 0;
         byte b0 = 0;
 

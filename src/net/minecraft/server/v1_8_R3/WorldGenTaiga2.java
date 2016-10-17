@@ -11,7 +11,8 @@ public class WorldGenTaiga2 extends WorldGenTreeAbstract {
         super(flag);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = random.nextInt(4) + 6;
         int j = 1 + random.nextInt(2);
         int k = i - j;

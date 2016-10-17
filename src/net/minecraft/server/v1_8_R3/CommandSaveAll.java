@@ -4,15 +4,18 @@ public class CommandSaveAll extends CommandAbstract {
 
     public CommandSaveAll() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "save-all";
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.save.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         MinecraftServer minecraftserver = MinecraftServer.getServer();
 
         icommandlistener.sendMessage(new ChatMessage("commands.save.start", new Object[0]));

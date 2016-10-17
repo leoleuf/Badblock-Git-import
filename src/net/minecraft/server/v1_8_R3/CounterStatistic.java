@@ -10,7 +10,8 @@ public class CounterStatistic extends Statistic {
         super(s, ichatbasecomponent);
     }
 
-    public Statistic h() {
+    @Override
+	public Statistic h() {
         super.h();
         StatisticList.c.add(this);
         return this;

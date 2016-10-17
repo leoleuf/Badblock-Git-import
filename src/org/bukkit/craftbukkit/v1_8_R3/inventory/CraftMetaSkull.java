@@ -118,15 +118,18 @@ class CraftMetaSkull extends CraftMetaItem implements SkullMeta {
         return (CraftMetaSkull) super.clone();
     }
 
-    public boolean hasOwner() {
+    @Override
+	public boolean hasOwner() {
         return profile != null && profile.getName() != null;
     }
 
-    public String getOwner() {
+    @Override
+	public String getOwner() {
         return hasOwner() ? profile.getName() : null;
     }
 
-    public boolean setOwner(String name) {
+    @Override
+	public boolean setOwner(String name) {
         if (name != null && name.length() > MAX_OWNER_LENGTH) {
             return false;
         }

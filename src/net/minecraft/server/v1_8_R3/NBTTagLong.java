@@ -14,28 +14,34 @@ public class NBTTagLong extends NBTBase.NBTNumber {
         this.data = i;
     }
 
-    void write(DataOutput dataoutput) throws IOException {
+    @Override
+	void write(DataOutput dataoutput) throws IOException {
         dataoutput.writeLong(this.data);
     }
 
-    void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
+    @Override
+	void load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
         nbtreadlimiter.a(128L);
         this.data = datainput.readLong();
     }
 
-    public byte getTypeId() {
+    @Override
+	public byte getTypeId() {
         return (byte) 4;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "" + this.data + "L";
     }
 
-    public NBTBase clone() {
+    @Override
+	public NBTBase clone() {
         return new NBTTagLong(this.data);
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (super.equals(object)) {
             NBTTagLong nbttaglong = (NBTTagLong) object;
 
@@ -45,31 +51,38 @@ public class NBTTagLong extends NBTBase.NBTNumber {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return super.hashCode() ^ (int) (this.data ^ this.data >>> 32);
     }
 
-    public long c() {
+    @Override
+	public long c() {
         return this.data;
     }
 
-    public int d() {
+    @Override
+	public int d() {
         return (int) (this.data & -1L);
     }
 
-    public short e() {
+    @Override
+	public short e() {
         return (short) ((int) (this.data & 65535L));
     }
 
-    public byte f() {
+    @Override
+	public byte f() {
         return (byte) ((int) (this.data & 255L));
     }
 
-    public double g() {
-        return (double) this.data;
+    @Override
+	public double g() {
+        return this.data;
     }
 
-    public float h() {
-        return (float) this.data;
+    @Override
+	public float h() {
+        return this.data;
     }
 }

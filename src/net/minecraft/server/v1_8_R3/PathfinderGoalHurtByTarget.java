@@ -16,13 +16,15 @@ public class PathfinderGoalHurtByTarget extends PathfinderGoalTarget {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         int i = this.e.be();
 
         return i != this.b && this.a(this.e.getLastDamager(), false);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.e.setGoalTarget(this.e.getLastDamager(), org.bukkit.event.entity.EntityTargetEvent.TargetReason.TARGET_ATTACKED_ENTITY, true); // CraftBukkit - reason
         this.b = this.e.be();
         if (this.a) {

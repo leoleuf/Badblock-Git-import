@@ -5,19 +5,23 @@ import fr.badblock.minecraftserver.BadblockConfig;
 public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerListBox {
 
     private final MobSpawnerAbstract a = new MobSpawnerAbstract() {
-        public void a(int i) {
+        @Override
+		public void a(int i) {
             TileEntityMobSpawner.this.world.playBlockAction(TileEntityMobSpawner.this.position, Blocks.MOB_SPAWNER, i, 0);
         }
 
-        public World a() {
+        @Override
+		public World a() {
             return TileEntityMobSpawner.this.world;
         }
 
-        public BlockPosition b() {
+        @Override
+		public BlockPosition b() {
             return TileEntityMobSpawner.this.position;
         }
 
-        public void a(MobSpawnerAbstract.a mobspawnerabstract_a) {
+        @Override
+		public void a(MobSpawnerAbstract.a mobspawnerabstract_a) {
             super.a(mobspawnerabstract_a);
             if (this.a() != null) {
                 this.a().notify(TileEntityMobSpawner.this.position);
@@ -28,17 +32,20 @@ public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerLis
 
     public TileEntityMobSpawner() {}
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a.a(nbttagcompound);
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         this.a.b(nbttagcompound);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a.c();
     }
     
@@ -47,7 +54,8 @@ public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerLis
     	return BadblockConfig.config.tileEntities.tickMobSpawner;
     }
 
-    public Packet getUpdatePacket() {
+    @Override
+	public Packet getUpdatePacket() {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
 
         this.b(nbttagcompound);
@@ -55,11 +63,13 @@ public class TileEntityMobSpawner extends TileEntity implements IUpdatePlayerLis
         return new PacketPlayOutTileEntityData(this.position, 1, nbttagcompound);
     }
 
-    public boolean c(int i, int j) {
+    @Override
+	public boolean c(int i, int j) {
         return this.a.b(i) ? true : super.c(i, j);
     }
 
-    public boolean F() {
+    @Override
+	public boolean F() {
         return true;
     }
 

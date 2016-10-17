@@ -13,23 +13,27 @@ public class ItemFish extends ItemFood {
         this.b = flag;
     }
 
-    public int getNutrition(ItemStack itemstack) {
+    @Override
+	public int getNutrition(ItemStack itemstack) {
         ItemFish.EnumFish itemfish_enumfish = ItemFish.EnumFish.a(itemstack);
 
         return this.b && itemfish_enumfish.g() ? itemfish_enumfish.e() : itemfish_enumfish.c();
     }
 
-    public float getSaturationModifier(ItemStack itemstack) {
+    @Override
+	public float getSaturationModifier(ItemStack itemstack) {
         ItemFish.EnumFish itemfish_enumfish = ItemFish.EnumFish.a(itemstack);
 
         return this.b && itemfish_enumfish.g() ? itemfish_enumfish.f() : itemfish_enumfish.d();
     }
 
-    public String j(ItemStack itemstack) {
+    @Override
+	public String j(ItemStack itemstack) {
         return ItemFish.EnumFish.a(itemstack) == ItemFish.EnumFish.PUFFERFISH ? PotionBrewer.m : null;
     }
 
-    protected void c(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	protected void c(ItemStack itemstack, World world, EntityHuman entityhuman) {
         ItemFish.EnumFish itemfish_enumfish = ItemFish.EnumFish.a(itemstack);
 
         if (itemfish_enumfish == ItemFish.EnumFish.PUFFERFISH) {
@@ -41,7 +45,8 @@ public class ItemFish extends ItemFood {
         super.c(itemstack, world, entityhuman);
     }
 
-    public String e_(ItemStack itemstack) {
+    @Override
+	public String e_(ItemStack itemstack) {
         ItemFish.EnumFish itemfish_enumfish = ItemFish.EnumFish.a(itemstack);
 
         return this.getName() + "." + itemfish_enumfish.b() + "." + (this.b && itemfish_enumfish.g() ? "cooked" : "raw");
@@ -109,7 +114,7 @@ public class ItemFish extends ItemFood {
         }
 
         public static ItemFish.EnumFish a(int i) {
-            ItemFish.EnumFish itemfish_enumfish = (ItemFish.EnumFish) ItemFish.EnumFish.e.get(Integer.valueOf(i));
+            ItemFish.EnumFish itemfish_enumfish = ItemFish.EnumFish.e.get(Integer.valueOf(i));
 
             return itemfish_enumfish == null ? ItemFish.EnumFish.COD : itemfish_enumfish;
         }

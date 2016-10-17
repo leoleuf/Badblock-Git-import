@@ -45,11 +45,13 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
         return Material.getMaterial(changed);
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancel;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 

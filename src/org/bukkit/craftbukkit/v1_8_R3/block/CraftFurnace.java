@@ -23,7 +23,8 @@ public class CraftFurnace extends CraftBlockState implements Furnace {
         furnace = te;
     }
 
-    public FurnaceInventory getInventory() {
+    @Override
+	public FurnaceInventory getInventory() {
         return new CraftInventoryFurnace(furnace);
     }
 
@@ -38,19 +39,23 @@ public class CraftFurnace extends CraftBlockState implements Furnace {
         return result;
     }
 
-    public short getBurnTime() {
+    @Override
+	public short getBurnTime() {
         return (short) furnace.burnTime;
     }
 
-    public void setBurnTime(short burnTime) {
+    @Override
+	public void setBurnTime(short burnTime) {
         furnace.burnTime = burnTime;
     }
 
-    public short getCookTime() {
+    @Override
+	public short getCookTime() {
         return (short) furnace.cookTime;
     }
 
-    public void setCookTime(short cookTime) {
+    @Override
+	public void setCookTime(short cookTime) {
         furnace.cookTime = cookTime;
     }
 

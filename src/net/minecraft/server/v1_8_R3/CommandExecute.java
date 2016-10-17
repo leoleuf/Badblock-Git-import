@@ -10,19 +10,23 @@ public class CommandExecute extends CommandAbstract {
 
     public CommandExecute() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "execute";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.execute.usage";
     }
 
-    public void execute(final ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(final ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 5) {
             throw new ExceptionUsage("commands.execute.usage", new Object[0]);
         } else {
@@ -52,45 +56,55 @@ public class CommandExecute extends CommandAbstract {
 
             String s = a(astring, b0);
             ICommandListener icommandlistener1 = new ICommandListener() {
-                public String getName() {
+                @Override
+				public String getName() {
                     return entity.getName();
                 }
 
-                public IChatBaseComponent getScoreboardDisplayName() {
+                @Override
+				public IChatBaseComponent getScoreboardDisplayName() {
                     return entity.getScoreboardDisplayName();
                 }
 
-                public void sendMessage(IChatBaseComponent ichatbasecomponent) {
+                @Override
+				public void sendMessage(IChatBaseComponent ichatbasecomponent) {
                     icommandlistener.sendMessage(ichatbasecomponent);
                 }
 
-                public boolean a(int i, String s) {
+                @Override
+				public boolean a(int i, String s) {
                     return icommandlistener.a(i, s);
                 }
 
-                public BlockPosition getChunkCoordinates() {
+                @Override
+				public BlockPosition getChunkCoordinates() {
                     return blockposition;
                 }
 
-                public Vec3D d() {
+                @Override
+				public Vec3D d() {
                     return new Vec3D(d0, d1, d2);
                 }
 
-                public World getWorld() {
+                @Override
+				public World getWorld() {
                     return entity.world;
                 }
 
-                public Entity f() {
+                @Override
+				public Entity f() {
                     return entity;
                 }
 
-                public boolean getSendCommandFeedback() {
+                @Override
+				public boolean getSendCommandFeedback() {
                     MinecraftServer minecraftserver = MinecraftServer.getServer();
 
                     return minecraftserver == null || minecraftserver.worldServer[0].getGameRules().getBoolean("commandBlockOutput");
                 }
 
-                public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
+                @Override
+				public void a(CommandObjectiveExecutor.EnumCommandResult commandobjectiveexecutor_enumcommandresult, int i) {
                     entity.a(commandobjectiveexecutor_enumcommandresult, i);
                 }
             };
@@ -127,18 +141,20 @@ public class CommandExecute extends CommandAbstract {
         }
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
-        return astring.length == 1 ? a(astring, MinecraftServer.getServer().getPlayers()) : (astring.length > 1 && astring.length <= 4 ? a(astring, 1, blockposition) : (astring.length > 5 && astring.length <= 8 && "detect".equals(astring[4]) ? a(astring, 5, blockposition) : (astring.length == 9 && "detect".equals(astring[4]) ? a(astring, (Collection) Block.REGISTRY.keySet()) : null)));
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+        return astring.length == 1 ? a(astring, MinecraftServer.getServer().getPlayers()) : (astring.length > 1 && astring.length <= 4 ? a(astring, 1, blockposition) : (astring.length > 5 && astring.length <= 8 && "detect".equals(astring[4]) ? a(astring, 5, blockposition) : (astring.length == 9 && "detect".equals(astring[4]) ? a(astring, Block.REGISTRY.keySet()) : null)));
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 
     // CraftBukkit start - fix decompiler error
     @Override
     public int compareTo(ICommand o) {
-        return a((ICommand) o);
+        return a(o);
     }
     // CraftBukkit end
 }

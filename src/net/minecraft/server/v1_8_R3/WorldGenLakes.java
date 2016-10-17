@@ -10,7 +10,8 @@ public class WorldGenLakes extends WorldGenerator {
         this.a = block;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         for (blockposition = blockposition.a(-8, 0, -8); blockposition.getY() > 5 && world.isEmpty(blockposition); blockposition = blockposition.down()) {
             ;
         }
@@ -35,9 +36,9 @@ public class WorldGenLakes extends WorldGenerator {
                 for (int k = 1; k < 15; ++k) {
                     for (int l = 1; l < 15; ++l) {
                         for (int i1 = 1; i1 < 7; ++i1) {
-                            double d6 = ((double) k - d3) / (d0 / 2.0D);
-                            double d7 = ((double) i1 - d4) / (d1 / 2.0D);
-                            double d8 = ((double) l - d5) / (d2 / 2.0D);
+                            double d6 = (k - d3) / (d0 / 2.0D);
+                            double d7 = (i1 - d4) / (d1 / 2.0D);
+                            double d8 = (l - d5) / (d2 / 2.0D);
                             double d9 = d6 * d6 + d7 * d7 + d8 * d8;
 
                             if (d9 < 1.0D) {

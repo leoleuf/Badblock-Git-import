@@ -29,9 +29,9 @@ public class EntityTNTPrimed extends Entity {
         this.setPosition(d0, d1, d2);
         float f = (float) (Math.random() * 3.1415927410125732D * 2.0D);
 
-        this.motX = (double) (-((float) Math.sin((double) f)) * 0.02F);
+        this.motX = -((float) Math.sin(f)) * 0.02F;
         this.motY = 0.20000000298023224D;
-        this.motZ = (double) (-((float) Math.cos((double) f)) * 0.02F);
+        this.motZ = -((float) Math.cos(f)) * 0.02F;
         this.fuseTicks = 80;
         this.lastX = d0;
         this.lastY = d1;
@@ -40,17 +40,21 @@ public class EntityTNTPrimed extends Entity {
         if (world.paperSpigotConfig.fixCannons) this.motX = this.motZ = 0.0F; // PaperSpigot - Fix cannons
     }
 
-    protected void h() {}
+    @Override
+	protected void h() {}
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    public boolean ad() {
+    @Override
+	public boolean ad() {
         return !this.dead;
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         if (world.spigotConfig.currentPrimedTnt++ > world.spigotConfig.maxTntTicksPerTick) { return; } // Spigot
         this.lastX = this.locX;
         this.lastY = this.locY;
@@ -113,7 +117,7 @@ public class EntityTNTPrimed extends Entity {
         server.getPluginManager().callEvent(event);
 
         if (!event.isCancelled()) {
-            this.world.createExplosion(this, this.locX, this.locY + (double) (this.length / 2.0F), this.locZ, event.getRadius(), event.getFire(), true);
+            this.world.createExplosion(this, this.locX, this.locY + this.length / 2.0F, this.locZ, event.getRadius(), event.getFire(), true);
         }
         // CraftBukkit end
 
@@ -124,7 +128,8 @@ public class EntityTNTPrimed extends Entity {
         // PaperSpigot end
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         nbttagcompound.setByte("Fuse", (byte) this.fuseTicks);
         // PaperSpigot start - TNT source location API
         if (sourceLoc != null) {
@@ -135,7 +140,8 @@ public class EntityTNTPrimed extends Entity {
         // PaperSpigot end
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         this.fuseTicks = nbttagcompound.getByte("Fuse");
         // PaperSpigot start - TNT source location API
         if (nbttagcompound.hasKey("SourceLoc_x")) {
@@ -160,7 +166,7 @@ public class EntityTNTPrimed extends Entity {
         double d4 = this.locY + this.getHeadHeight() - d1;
         double d5 = this.locZ - d2;
 
-        return (double) MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
+        return MathHelper.sqrt(d3 * d3 + d4 * d4 + d5 * d5);
     }
 
     @Override

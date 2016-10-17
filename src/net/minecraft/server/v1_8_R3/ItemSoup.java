@@ -7,7 +7,8 @@ public class ItemSoup extends ItemFood {
         this.c(1);
     }
 
-    public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack b(ItemStack itemstack, World world, EntityHuman entityhuman) {
         super.b(itemstack, world, entityhuman);
         return new ItemStack(Items.BOWL);
     }

@@ -13,14 +13,16 @@ public class BlockCommand extends BlockContainer {
         this.j(this.blockStateList.getBlockData().set(BlockCommand.TRIGGERED, Boolean.valueOf(false)));
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityCommand();
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         if (!world.isClientSide) {
             boolean flag = world.isBlockIndirectlyPowered(blockposition);
-            boolean flag1 = ((Boolean) iblockdata.get(BlockCommand.TRIGGERED)).booleanValue();
+            boolean flag1 = iblockdata.get(BlockCommand.TRIGGERED).booleanValue();
 
             // CraftBukkit start
             org.bukkit.block.Block bukkitBlock = world.getWorld().getBlockAt(blockposition.getX(), blockposition.getY(), blockposition.getZ());
@@ -33,7 +35,7 @@ public class BlockCommand extends BlockContainer {
 
             if (eventRedstone.getNewCurrent() > 0 && !(eventRedstone.getOldCurrent() > 0)) { // CraftBukkit
                 world.setTypeAndData(blockposition, iblockdata.set(BlockCommand.TRIGGERED, Boolean.valueOf(true)), 4);
-                world.a(blockposition, (Block) this, this.a(world));
+                world.a(blockposition, this, this.a(world));
             } else if (!(eventRedstone.getNewCurrent() > 0) && eventRedstone.getOldCurrent() > 0) { // CraftBukkit
                 world.setTypeAndData(blockposition, iblockdata.set(BlockCommand.TRIGGERED, Boolean.valueOf(false)), 4);
             }
@@ -41,7 +43,8 @@ public class BlockCommand extends BlockContainer {
 
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityCommand) {
@@ -51,27 +54,32 @@ public class BlockCommand extends BlockContainer {
 
     }
 
-    public int a(World world) {
+    @Override
+	public int a(World world) {
         return 1;
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         return tileentity instanceof TileEntityCommand ? ((TileEntityCommand) tileentity).getCommandBlock().a(entityhuman) : false;
     }
 
-    public boolean isComplexRedstone() {
+    @Override
+	public boolean isComplexRedstone() {
         return true;
     }
 
-    public int l(World world, BlockPosition blockposition) {
+    @Override
+	public int l(World world, BlockPosition blockposition) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         return tileentity instanceof TileEntityCommand ? ((TileEntityCommand) tileentity).getCommandBlock().j() : 0;
     }
 
-    public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
+    @Override
+	public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityCommand) {
@@ -88,33 +96,39 @@ public class BlockCommand extends BlockContainer {
         }
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockCommand.TRIGGERED, Boolean.valueOf((i & 1) > 0));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         int i = 0;
 
-        if (((Boolean) iblockdata.get(BlockCommand.TRIGGERED)).booleanValue()) {
+        if (iblockdata.get(BlockCommand.TRIGGERED).booleanValue()) {
             i |= 1;
         }
 
         return i;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockCommand.TRIGGERED});
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         return this.getBlockData().set(BlockCommand.TRIGGERED, Boolean.valueOf(false));
     }
 }

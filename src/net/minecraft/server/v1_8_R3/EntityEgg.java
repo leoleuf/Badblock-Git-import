@@ -21,7 +21,8 @@ public class EntityEgg extends EntityProjectile {
         super(world, d0, d1, d2);
     }
 
-    protected void a(MovingObjectPosition movingobjectposition) {
+    @Override
+	protected void a(MovingObjectPosition movingobjectposition) {
         if (movingobjectposition.entity != null) {
             movingobjectposition.entity.damageEntity(DamageSource.projectile(this, this.getShooter()), 0.0F);
         }
@@ -61,7 +62,7 @@ public class EntityEgg extends EntityProjectile {
         double d0 = 0.08D;
 
         for (int j = 0; j < 8; ++j) {
-            this.world.addParticle(EnumParticle.ITEM_CRACK, this.locX, this.locY, this.locZ, ((double) this.random.nextFloat() - 0.5D) * 0.08D, ((double) this.random.nextFloat() - 0.5D) * 0.08D, ((double) this.random.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(Items.EGG)});
+            this.world.addParticle(EnumParticle.ITEM_CRACK, this.locX, this.locY, this.locZ, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, (this.random.nextFloat() - 0.5D) * 0.08D, new int[] { Item.getId(Items.EGG)});
         }
 
         if (!this.world.isClientSide) {

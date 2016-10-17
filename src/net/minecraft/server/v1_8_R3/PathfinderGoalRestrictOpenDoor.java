@@ -12,7 +12,8 @@ public class PathfinderGoalRestrictOpenDoor extends PathfinderGoal {
         }
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.world.w()) {
             return false;
         } else {
@@ -23,27 +24,31 @@ public class PathfinderGoalRestrictOpenDoor extends PathfinderGoal {
                 return false;
             } else {
                 this.b = village.b(blockposition);
-                return this.b == null ? false : (double) this.b.b(blockposition) < 2.25D;
+                return this.b == null ? false : this.b.b(blockposition) < 2.25D;
             }
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return this.a.world.w() ? false : !this.b.i() && this.b.c(new BlockPosition(this.a));
     }
 
-    public void c() {
+    @Override
+	public void c() {
         ((Navigation) this.a.getNavigation()).b(false);
         ((Navigation) this.a.getNavigation()).c(false);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         ((Navigation) this.a.getNavigation()).b(true);
         ((Navigation) this.a.getNavigation()).c(true);
         this.b = null;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         this.b.b();
     }
 }

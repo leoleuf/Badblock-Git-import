@@ -22,7 +22,8 @@ public class PacketPlayOutAbilities implements Packet<PacketListenerPlayOut> {
         this.b(playerabilities.b());
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         byte b0 = packetdataserializer.readByte();
 
         this.a((b0 & 1) > 0);
@@ -33,7 +34,8 @@ public class PacketPlayOutAbilities implements Packet<PacketListenerPlayOut> {
         this.b(packetdataserializer.readFloat());
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         byte b0 = 0;
 
         if (this.a()) {
@@ -57,7 +59,8 @@ public class PacketPlayOutAbilities implements Packet<PacketListenerPlayOut> {
         packetdataserializer.writeFloat(this.f);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

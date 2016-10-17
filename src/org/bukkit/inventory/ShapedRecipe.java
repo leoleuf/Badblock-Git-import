@@ -141,7 +141,8 @@ public class ShapedRecipe implements Recipe {
      *
      * @return The result stack.
      */
-    public ItemStack getResult() {
+    @Override
+	public ItemStack getResult() {
         return output.clone();
     }
 }

@@ -53,7 +53,7 @@ public enum EnumParticle {
     }
 
     public static EnumParticle a(int i) {
-        return (EnumParticle) EnumParticle.U.get(Integer.valueOf(i));
+        return EnumParticle.U.get(Integer.valueOf(i));
     }
 
     static {

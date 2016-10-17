@@ -6,7 +6,8 @@ public class ItemGlassBottle extends Item {
         this.a(CreativeModeTab.k);
     }
 
-    public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	public ItemStack a(ItemStack itemstack, World world, EntityHuman entityhuman) {
         MovingObjectPosition movingobjectposition = this.a(world, entityhuman, true);
 
         if (movingobjectposition == null) {

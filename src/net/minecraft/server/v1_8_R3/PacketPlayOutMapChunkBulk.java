@@ -19,10 +19,10 @@ public class PacketPlayOutMapChunkBulk implements Packet<PacketListenerPlayOut> 
         this.a = new int[i];
         this.b = new int[i];
         this.c = new PacketPlayOutMapChunk.ChunkMap[i];
-        this.d = !((Chunk) list.get(0)).getWorld().worldProvider.o();
+        this.d = !list.get(0).getWorld().worldProvider.o();
 
         for (int j = 0; j < i; ++j) {
-            Chunk chunk = (Chunk) list.get(j);
+            Chunk chunk = list.get(j);
             PacketPlayOutMapChunk.ChunkMap packetplayoutmapchunk_chunkmap = chunk.getChunkMap(true, '\uffff'); // PaperSpigot
 
             this.a[j] = chunk.locX;
@@ -30,10 +30,11 @@ public class PacketPlayOutMapChunkBulk implements Packet<PacketListenerPlayOut> 
             this.c[j] = packetplayoutmapchunk_chunkmap;
         }
         
-        world = ((Chunk) list.get(0)).getWorld(); // Spigot
+        world = list.get(0).getWorld(); // Spigot
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.d = packetdataserializer.readBoolean();
         int i = packetdataserializer.e();
 
@@ -57,7 +58,8 @@ public class PacketPlayOutMapChunkBulk implements Packet<PacketListenerPlayOut> 
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeBoolean(this.d);
         packetdataserializer.b(this.c.length);
 
@@ -76,7 +78,8 @@ public class PacketPlayOutMapChunkBulk implements Packet<PacketListenerPlayOut> 
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 }

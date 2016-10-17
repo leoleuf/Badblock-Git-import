@@ -14,7 +14,8 @@ public abstract class BlockFluids extends Block {
         this.a(true);
     }
 
-    public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition) {
         return this.material != Material.LAVA;
     }
 
@@ -23,11 +24,11 @@ public abstract class BlockFluids extends Block {
             i = 0;
         }
 
-        return (float) (i + 1) / 9.0F;
+        return (i + 1) / 9.0F;
     }
 
     protected int e(IBlockAccess iblockaccess, BlockPosition blockposition) {
-        return iblockaccess.getType(blockposition).getBlock().getMaterial() == this.material ? ((Integer) iblockaccess.getType(blockposition).get(BlockFluids.LEVEL)).intValue() : -1;
+        return iblockaccess.getType(blockposition).getBlock().getMaterial() == this.material ? iblockaccess.getType(blockposition).get(BlockFluids.LEVEL).intValue() : -1;
     }
 
     protected int f(IBlockAccess iblockaccess, BlockPosition blockposition) {
@@ -36,37 +37,45 @@ public abstract class BlockFluids extends Block {
         return i >= 8 ? 0 : i;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean a(IBlockData iblockdata, boolean flag) {
-        return flag && ((Integer) iblockdata.get(BlockFluids.LEVEL)).intValue() == 0;
+    @Override
+	public boolean a(IBlockData iblockdata, boolean flag) {
+        return flag && iblockdata.get(BlockFluids.LEVEL).intValue() == 0;
     }
 
-    public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition, EnumDirection enumdirection) {
+    @Override
+	public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition, EnumDirection enumdirection) {
         Material material = iblockaccess.getType(blockposition).getBlock().getMaterial();
 
         return material == this.material ? false : (enumdirection == EnumDirection.UP ? true : (material == Material.ICE ? false : super.b(iblockaccess, blockposition, enumdirection)));
     }
 
-    public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public AxisAlignedBB a(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return null;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 1;
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return null;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
@@ -89,16 +98,16 @@ public abstract class BlockFluids extends Block {
                     j = this.f(iblockaccess, blockposition1.down());
                     if (j >= 0) {
                         k = j - (i - 8);
-                        vec3d = vec3d.add((double) ((blockposition1.getX() - blockposition.getX()) * k), (double) ((blockposition1.getY() - blockposition.getY()) * k), (double) ((blockposition1.getZ() - blockposition.getZ()) * k));
+                        vec3d = vec3d.add((blockposition1.getX() - blockposition.getX()) * k, (blockposition1.getY() - blockposition.getY()) * k, (blockposition1.getZ() - blockposition.getZ()) * k);
                     }
                 }
             } else if (j >= 0) {
                 k = j - i;
-                vec3d = vec3d.add((double) ((blockposition1.getX() - blockposition.getX()) * k), (double) ((blockposition1.getY() - blockposition.getY()) * k), (double) ((blockposition1.getZ() - blockposition.getZ()) * k));
+                vec3d = vec3d.add((blockposition1.getX() - blockposition.getX()) * k, (blockposition1.getY() - blockposition.getY()) * k, (blockposition1.getZ() - blockposition.getZ()) * k);
             }
         }
 
-        if (((Integer) iblockaccess.getType(blockposition).get(BlockFluids.LEVEL)).intValue() >= 8) {
+        if (iblockaccess.getType(blockposition).get(BlockFluids.LEVEL).intValue() >= 8) {
             iterator = EnumDirection.EnumDirectionLimit.HORIZONTAL.iterator();
 
             while (iterator.hasNext()) {
@@ -114,19 +123,23 @@ public abstract class BlockFluids extends Block {
         return vec3d.a();
     }
 
-    public Vec3D a(World world, BlockPosition blockposition, Entity entity, Vec3D vec3d) {
+    @Override
+	public Vec3D a(World world, BlockPosition blockposition, Entity entity, Vec3D vec3d) {
         return vec3d.e(this.h(world, blockposition));
     }
 
-    public int a(World world) {
+    @Override
+	public int a(World world) {
         return this.material == Material.WATER ? 5 : (this.material == Material.LAVA ? (world.worldProvider.o() ? 10 : 30) : 0);
     }
 
-    public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         this.e(world, blockposition, iblockdata);
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         this.e(world, blockposition, iblockdata);
     }
 
@@ -146,7 +159,7 @@ public abstract class BlockFluids extends Block {
             }
 
             if (flag) {
-                Integer integer = (Integer) iblockdata.get(BlockFluids.LEVEL);
+                Integer integer = iblockdata.get(BlockFluids.LEVEL);
 
                 if (integer.intValue() == 0) {
                     world.setTypeUpdate(blockposition, Blocks.OBSIDIAN.getBlockData());
@@ -166,9 +179,9 @@ public abstract class BlockFluids extends Block {
     }
 
     protected void fizz(World world, BlockPosition blockposition) {
-        double d0 = (double) blockposition.getX();
-        double d1 = (double) blockposition.getY();
-        double d2 = (double) blockposition.getZ();
+        double d0 = blockposition.getX();
+        double d1 = blockposition.getY();
+        double d2 = blockposition.getZ();
 
         world.makeSound(d0 + 0.5D, d1 + 0.5D, d2 + 0.5D, "random.fizz", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
 
@@ -178,15 +191,18 @@ public abstract class BlockFluids extends Block {
 
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockFluids.LEVEL, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockFluids.LEVEL)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockFluids.LEVEL).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockFluids.LEVEL});
     }
 

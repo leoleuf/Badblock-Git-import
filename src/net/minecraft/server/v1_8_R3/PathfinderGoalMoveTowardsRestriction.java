@@ -14,12 +14,13 @@ public class PathfinderGoalMoveTowardsRestriction extends PathfinderGoal {
         this.a(1);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.cg()) {
             return false;
         } else {
             BlockPosition blockposition = this.a.ch();
-            Vec3D vec3d = RandomPositionGenerator.a(this.a, 16, 7, new Vec3D((double) blockposition.getX(), (double) blockposition.getY(), (double) blockposition.getZ()));
+            Vec3D vec3d = RandomPositionGenerator.a(this.a, 16, 7, new Vec3D(blockposition.getX(), blockposition.getY(), blockposition.getZ()));
 
             if (vec3d == null) {
                 return false;
@@ -32,11 +33,13 @@ public class PathfinderGoalMoveTowardsRestriction extends PathfinderGoal {
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return !this.a.getNavigation().m();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a.getNavigation().a(this.b, this.c, this.d, this.e);
     }
 }

@@ -23,20 +23,24 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.getDataWatcher().a(21, Byte.valueOf((byte) 0));
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return null;
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return null;
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return null;
     }
 
@@ -48,13 +52,15 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
         return this.getDataWatcher().getByte(21) == 1;
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(26.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
     }
 
-    public void m() {
+    @Override
+	public void m() {
         if (!this.world.isClientSide) {
             if (this.n()) {
                 if (this.bm-- <= 0) {
@@ -112,20 +118,22 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
         super.m();
     }
 
-    protected float applyMagicModifier(DamageSource damagesource, float f) {
+    @Override
+	protected float applyMagicModifier(DamageSource damagesource, float f) {
         f = super.applyMagicModifier(damagesource, f);
         if (damagesource.getEntity() == this) {
             f = 0.0F;
         }
 
         if (damagesource.isMagic()) {
-            f = (float) ((double) f * 0.15D);
+            f = (float) (f * 0.15D);
         }
 
         return f;
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(3) + 1;
 
         for (int k = 0; k < j; ++k) {
@@ -143,10 +151,11 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
 
     }
 
-    public void a(EntityLiving entityliving, float f) {
+    @Override
+	public void a(EntityLiving entityliving, float f) {
         if (!this.n()) {
             EntityPotion entitypotion = new EntityPotion(this.world, this, 32732);
-            double d0 = entityliving.locY + (double) entityliving.getHeadHeight() - 1.100000023841858D;
+            double d0 = entityliving.locY + entityliving.getHeadHeight() - 1.100000023841858D;
 
             entitypotion.pitch -= -20.0F;
             double d1 = entityliving.locX + entityliving.motX - this.locX;
@@ -162,12 +171,13 @@ public class EntityWitch extends EntityMonster implements IRangedEntity {
                 entitypotion.setPotionValue(32696);
             }
 
-            entitypotion.shoot(d1, d2 + (double) (f1 * 0.2F), d3, 0.75F, 8.0F);
+            entitypotion.shoot(d1, d2 + f1 * 0.2F, d3, 0.75F, 8.0F);
             this.world.addEntity(entitypotion);
         }
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 1.62F;
     }
 }

@@ -25,7 +25,8 @@ public class PathfinderGoalLookAtPlayer extends PathfinderGoal {
         this.a(2);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (this.a.bc().nextFloat() >= this.f) {
             return false;
         } else {
@@ -34,29 +35,33 @@ public class PathfinderGoalLookAtPlayer extends PathfinderGoal {
             }
 
             if (this.d == EntityHuman.class) {
-                this.b = this.a.world.findNearbyPlayer(this.a, (double) this.c);
+                this.b = this.a.world.findNearbyPlayer(this.a, this.c);
             } else {
-                this.b = this.a.world.a(this.d, this.a.getBoundingBox().grow((double) this.c, 3.0D, (double) this.c), (Entity) this.a);
+                this.b = this.a.world.a(this.d, this.a.getBoundingBox().grow(this.c, 3.0D, this.c), (Entity) this.a);
             }
 
             return this.b != null;
         }
     }
 
-    public boolean b() {
-        return !this.b.isAlive() ? false : (this.a.h(this.b) > (double) (this.c * this.c) ? false : this.e > 0);
+    @Override
+	public boolean b() {
+        return !this.b.isAlive() ? false : (this.a.h(this.b) > this.c * this.c ? false : this.e > 0);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.e = 40 + this.a.bc().nextInt(40);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b = null;
     }
 
-    public void e() {
-        this.a.getControllerLook().a(this.b.locX, this.b.locY + (double) this.b.getHeadHeight(), this.b.locZ, 10.0F, (float) this.a.bQ());
+    @Override
+	public void e() {
+        this.a.getControllerLook().a(this.b.locX, this.b.locY + this.b.getHeadHeight(), this.b.locZ, 10.0F, this.a.bQ());
         --this.e;
     }
 }

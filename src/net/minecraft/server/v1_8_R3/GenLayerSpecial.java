@@ -10,7 +10,8 @@ public class GenLayerSpecial extends GenLayer {
         this.c = genlayerspecial_enumgenlayerspecial;
     }
 
-    public int[] a(int i, int j, int k, int l) {
+    @Override
+	public int[] a(int i, int j, int k, int l) {
         switch (GenLayerSpecial.SyntheticClass_1.a[this.c.ordinal()]) {
         case 1:
         default:

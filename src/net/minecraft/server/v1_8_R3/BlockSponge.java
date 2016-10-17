@@ -16,25 +16,29 @@ public class BlockSponge extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get(this.a() + ".dry.name");
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((Boolean) iblockdata.get(BlockSponge.WET)).booleanValue() ? 1 : 0;
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSponge.WET).booleanValue() ? 1 : 0;
     }
 
-    public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         this.e(world, blockposition, iblockdata);
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         this.e(world, blockposition, iblockdata);
         super.doPhysics(world, blockposition, iblockdata, block);
     }
 
     protected void e(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        if (!((Boolean) iblockdata.get(BlockSponge.WET)).booleanValue() && this.e(world, blockposition)) {
+        if (!iblockdata.get(BlockSponge.WET).booleanValue() && this.e(world, blockposition)) {
             world.setTypeAndData(blockposition, iblockdata.set(BlockSponge.WET, Boolean.valueOf(true)), 2);
             world.triggerEffect(2001, blockposition, Block.getId(Blocks.WATER));
         }
@@ -87,15 +91,18 @@ public class BlockSponge extends Block {
         return i > 0;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockSponge.WET, Boolean.valueOf((i & 1) == 1));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Boolean) iblockdata.get(BlockSponge.WET)).booleanValue() ? 1 : 0;
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSponge.WET).booleanValue() ? 1 : 0;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockSponge.WET});
     }
 }

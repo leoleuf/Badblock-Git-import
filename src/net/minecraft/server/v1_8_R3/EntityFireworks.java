@@ -19,7 +19,8 @@ public class EntityFireworks extends Entity {
         this.setSize(0.25F, 0.25F);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         this.datawatcher.add(8, 5);
     }
 
@@ -46,7 +47,8 @@ public class EntityFireworks extends Entity {
         this.expectedLifespan = 10 * i + this.random.nextInt(6) + this.random.nextInt(7);
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         this.P = this.locX;
         this.Q = this.locY;
         this.R = this.locZ;
@@ -59,7 +61,7 @@ public class EntityFireworks extends Entity {
 
         this.yaw = (float) (MathHelper.b(this.motX, this.motZ) * 180.0D / 3.1415927410125732D);
 
-        for (this.pitch = (float) (MathHelper.b(this.motY, (double) f) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
+        for (this.pitch = (float) (MathHelper.b(this.motY, f) * 180.0D / 3.1415927410125732D); this.pitch - this.lastPitch < -180.0F; this.lastPitch -= 360.0F) {
             ;
         }
 
@@ -93,7 +95,8 @@ public class EntityFireworks extends Entity {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         nbttagcompound.setInt("Life", this.ticksFlown);
         nbttagcompound.setInt("LifeTime", this.expectedLifespan);
         ItemStack itemstack = this.datawatcher.getItemStack(8);
@@ -107,7 +110,8 @@ public class EntityFireworks extends Entity {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         this.ticksFlown = nbttagcompound.getInt("Life");
         this.expectedLifespan = nbttagcompound.getInt("LifeTime");
         NBTTagCompound nbttagcompound1 = nbttagcompound.getCompound("FireworksItem");
@@ -122,11 +126,13 @@ public class EntityFireworks extends Entity {
 
     }
 
-    public float c(float f) {
+    @Override
+	public float c(float f) {
         return super.c(f);
     }
 
-    public boolean aD() {
+    @Override
+	public boolean aD() {
         return false;
     }
 }

@@ -21,27 +21,33 @@ public class InventorySubcontainer implements IInventory {
     private int maxStack = MAX_STACK;
     protected org.bukkit.inventory.InventoryHolder bukkitOwner;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public void setMaxStackSize(int i) {
+    @Override
+	public void setMaxStackSize(int i) {
         maxStack = i;
     }
 
-    public org.bukkit.inventory.InventoryHolder getOwner() {
+    @Override
+	public org.bukkit.inventory.InventoryHolder getOwner() {
         return bukkitOwner;
     }
 
@@ -70,11 +76,13 @@ public class InventorySubcontainer implements IInventory {
         this.d.remove(iinventorylistener);
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         return i >= 0 && i < this.items.length ? this.items[i] : null;
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         if (this.items[i] != null) {
             ItemStack itemstack;
 
@@ -131,7 +139,8 @@ public class InventorySubcontainer implements IInventory {
         return itemstack1;
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         if (this.items[i] != null) {
             ItemStack itemstack = this.items[i];
 
@@ -142,7 +151,8 @@ public class InventorySubcontainer implements IInventory {
         }
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         this.items[i] = itemstack;
         if (itemstack != null && itemstack.count > this.getMaxStackSize()) {
             itemstack.count = this.getMaxStackSize();
@@ -151,15 +161,18 @@ public class InventorySubcontainer implements IInventory {
         this.update();
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return this.b;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.a;
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return this.e;
     }
 
@@ -168,46 +181,57 @@ public class InventorySubcontainer implements IInventory {
         this.a = s;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
-        return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]);
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return 64;
     }
 
-    public void update() {
+    @Override
+	public void update() {
         if (this.d != null) {
             for (int i = 0; i < this.d.size(); ++i) {
-                ((IInventoryListener) this.d.get(i)).a(this);
+                this.d.get(i).a(this);
             }
         }
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return true;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return true;
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         return 0;
     }
 
-    public void b(int i, int j) {}
+    @Override
+	public void b(int i, int j) {}
 
-    public int g() {
+    @Override
+	public int g() {
         return 0;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         for (int i = 0; i < this.items.length; ++i) {
             this.items[i] = null;
         }

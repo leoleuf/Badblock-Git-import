@@ -11,7 +11,8 @@ public class BlockHopper extends BlockContainer {
             return enumdirection != EnumDirection.UP;
         }
 
-        public boolean apply(Object object) {
+        @Override
+		public boolean apply(Object object) {
             return this.a((EnumDirection) object);
         }
     });
@@ -24,11 +25,13 @@ public class BlockHopper extends BlockContainer {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    @Override
+	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
+    @Override
+	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, AxisAlignedBB axisalignedbb, List<AxisAlignedBB> list, Entity entity) {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
         super.a(world, blockposition, iblockdata, axisalignedbb, list, entity);
         float f = 0.125F;
@@ -44,7 +47,8 @@ public class BlockHopper extends BlockContainer {
         this.a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         EnumDirection enumdirection1 = enumdirection.opposite();
 
         if (enumdirection1 == EnumDirection.UP) {
@@ -54,11 +58,13 @@ public class BlockHopper extends BlockContainer {
         return this.getBlockData().set(BlockHopper.FACING, enumdirection1).set(BlockHopper.ENABLED, Boolean.valueOf(true));
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityHopper();
     }
 
-    public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
+    @Override
+	public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
         super.postPlace(world, blockposition, iblockdata, entityliving, itemstack);
         if (itemstack.hasName()) {
             TileEntity tileentity = world.getTileEntity(blockposition);
@@ -70,11 +76,13 @@ public class BlockHopper extends BlockContainer {
 
     }
 
-    public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         this.e(world, blockposition, iblockdata);
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -89,20 +97,22 @@ public class BlockHopper extends BlockContainer {
         }
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         this.e(world, blockposition, iblockdata);
     }
 
     private void e(World world, BlockPosition blockposition, IBlockData iblockdata) {
         boolean flag = !world.isBlockIndirectlyPowered(blockposition);
 
-        if (flag != ((Boolean) iblockdata.get(BlockHopper.ENABLED)).booleanValue()) {
+        if (flag != iblockdata.get(BlockHopper.ENABLED).booleanValue()) {
             world.setTypeAndData(blockposition, iblockdata.set(BlockHopper.ENABLED, Boolean.valueOf(flag)), 4);
         }
 
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityHopper) {
@@ -113,15 +123,18 @@ public class BlockHopper extends BlockContainer {
         super.remove(world, blockposition, iblockdata);
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
@@ -133,30 +146,35 @@ public class BlockHopper extends BlockContainer {
         return (i & 8) != 8;
     }
 
-    public boolean isComplexRedstone() {
+    @Override
+	public boolean isComplexRedstone() {
         return true;
     }
 
-    public int l(World world, BlockPosition blockposition) {
+    @Override
+	public int l(World world, BlockPosition blockposition) {
         return Container.a(world.getTileEntity(blockposition));
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockHopper.FACING, b(i)).set(BlockHopper.ENABLED, Boolean.valueOf(f(i)));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((EnumDirection) iblockdata.get(BlockHopper.FACING)).a();
+        int i = b0 | iblockdata.get(BlockHopper.FACING).a();
 
-        if (!((Boolean) iblockdata.get(BlockHopper.ENABLED)).booleanValue()) {
+        if (!iblockdata.get(BlockHopper.ENABLED).booleanValue()) {
             i |= 8;
         }
 
         return i;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockHopper.FACING, BlockHopper.ENABLED});
     }
 }

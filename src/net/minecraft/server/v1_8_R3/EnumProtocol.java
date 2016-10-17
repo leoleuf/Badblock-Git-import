@@ -156,13 +156,13 @@ public enum EnumProtocol {
             this.j.put(enumprotocoldirection, object);
         }
 
-        if (((BiMap) object).containsValue(oclass)) {
-            String s = enumprotocoldirection + " packet " + oclass + " is already known to ID " + ((BiMap) object).inverse().get(oclass);
+        if (object.containsValue(oclass)) {
+            String s = enumprotocoldirection + " packet " + oclass + " is already known to ID " + object.inverse().get(oclass);
 
             LogManager.getLogger().fatal(s);
             throw new IllegalArgumentException(s);
         } else {
-            ((BiMap) object).put(Integer.valueOf(((BiMap) object).size()), oclass);
+            object.put(Integer.valueOf(object.size()), oclass);
             return this;
         }
     }
@@ -186,7 +186,7 @@ public enum EnumProtocol {
     }
 
     public static EnumProtocol a(Packet packet) {
-        return (EnumProtocol) EnumProtocol.h.get(packet.getClass());
+        return EnumProtocol.h.get(packet.getClass());
     }
 
     EnumProtocol(int i, Object object) {

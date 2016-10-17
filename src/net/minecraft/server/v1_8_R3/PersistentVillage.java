@@ -91,9 +91,9 @@ public class PersistentVillage extends PersistentBase {
             double d1 = village1.a().i(blockposition);
 
             if (d1 < d0) {
-                float f = (float) (i + village1.b());
+                float f = i + village1.b();
 
-                if (d1 <= (double) (f * f)) {
+                if (d1 <= f * f) {
                     village = village1;
                     d0 = d1;
                 }
@@ -105,13 +105,13 @@ public class PersistentVillage extends PersistentBase {
 
     private void f() {
         if (!this.c.isEmpty()) {
-            this.b((BlockPosition) this.c.remove(0));
+            this.b(this.c.remove(0));
         }
     }
 
     private void g() {
         for (int i = 0; i < this.d.size(); ++i) {
-            VillageDoor villagedoor = (VillageDoor) this.d.get(i);
+            VillageDoor villagedoor = this.d.get(i);
             Village village = this.getClosestVillage(villagedoor.d(), 32);
 
             if (village == null) {
@@ -230,7 +230,8 @@ public class PersistentVillage extends PersistentBase {
         return block instanceof BlockDoor ? block.getMaterial() == Material.WOOD : false;
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         this.time = nbttagcompound.getInt("Tick");
         NBTTagList nbttaglist = nbttagcompound.getList("Villages", 10);
 
@@ -244,7 +245,8 @@ public class PersistentVillage extends PersistentBase {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         nbttagcompound.setInt("Tick", this.time);
         NBTTagList nbttaglist = new NBTTagList();
         Iterator iterator = this.villages.iterator();

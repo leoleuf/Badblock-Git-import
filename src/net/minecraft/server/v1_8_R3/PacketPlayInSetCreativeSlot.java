@@ -9,16 +9,19 @@ public class PacketPlayInSetCreativeSlot implements Packet<PacketListenerPlayIn>
 
     public PacketPlayInSetCreativeSlot() {}
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.slot = packetdataserializer.readShort();
         this.b = packetdataserializer.i();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeShort(this.slot);
         packetdataserializer.a(this.b);
     }

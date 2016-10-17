@@ -27,7 +27,8 @@ public final class CraftMapView implements MapView {
         addRenderer(new CraftMapRenderer(this, worldMap));
     }
 
-    public short getId() {
+    @Override
+	public short getId() {
         String text = worldMap.id;
         if (text.startsWith("map_")) {
             try {
@@ -41,19 +42,23 @@ public final class CraftMapView implements MapView {
         }
     }
 
-    public boolean isVirtual() {
+    @Override
+	public boolean isVirtual() {
         return renderers.size() > 0 && !(renderers.get(0) instanceof CraftMapRenderer);
     }
 
-    public Scale getScale() {
+    @Override
+	public Scale getScale() {
         return Scale.valueOf(worldMap.scale);
     }
 
-    public void setScale(Scale scale) {
+    @Override
+	public void setScale(Scale scale) {
         worldMap.scale = scale.getValue();
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         byte dimension = worldMap.map;
         for (World world : Bukkit.getServer().getWorlds()) {
             if (((CraftWorld) world).getHandle().dimension == dimension) {
@@ -63,31 +68,38 @@ public final class CraftMapView implements MapView {
         return null;
     }
 
-    public void setWorld(World world) {
+    @Override
+	public void setWorld(World world) {
         worldMap.map = (byte) ((CraftWorld) world).getHandle().dimension;
     }
 
-    public int getCenterX() {
+    @Override
+	public int getCenterX() {
         return worldMap.centerX;
     }
 
-    public int getCenterZ() {
+    @Override
+	public int getCenterZ() {
         return worldMap.centerZ;
     }
 
-    public void setCenterX(int x) {
+    @Override
+	public void setCenterX(int x) {
         worldMap.centerX = x;
     }
 
-    public void setCenterZ(int z) {
+    @Override
+	public void setCenterZ(int z) {
         worldMap.centerZ = z;
     }
 
-    public List<MapRenderer> getRenderers() {
+    @Override
+	public List<MapRenderer> getRenderers() {
         return new ArrayList<MapRenderer>(renderers);
     }
 
-    public void addRenderer(MapRenderer renderer) {
+    @Override
+	public void addRenderer(MapRenderer renderer) {
         if (!renderers.contains(renderer)) {
             renderers.add(renderer);
             canvases.put(renderer, new HashMap<CraftPlayer, CraftMapCanvas>());
@@ -95,7 +107,8 @@ public final class CraftMapView implements MapView {
         }
     }
 
-    public boolean removeRenderer(MapRenderer renderer) {
+    @Override
+	public boolean removeRenderer(MapRenderer renderer) {
         if (renderers.contains(renderer)) {
             renderers.remove(renderer);
             for (Map.Entry<CraftPlayer, CraftMapCanvas> entry : canvases.get(renderer).entrySet()) {

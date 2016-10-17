@@ -52,7 +52,7 @@ public interface IChatBaseComponent extends Iterable<IChatBaseComponent> {
 
                     while (iterator.hasNext()) {
                         JsonElement jsonelement1 = (JsonElement) iterator.next();
-                        IChatBaseComponent ichatbasecomponent1 = this.a(jsonelement1, (Type) jsonelement1.getClass(), jsondeserializationcontext);
+                        IChatBaseComponent ichatbasecomponent1 = this.a(jsonelement1, jsonelement1.getClass(), jsondeserializationcontext);
 
                         if (ichatbasecomponent == null) {
                             ichatbasecomponent = ichatbasecomponent1;
@@ -162,7 +162,7 @@ public interface IChatBaseComponent extends Iterable<IChatBaseComponent> {
                     while (iterator.hasNext()) {
                         IChatBaseComponent ichatbasecomponent1 = (IChatBaseComponent) iterator.next();
 
-                        jsonarray.add(this.a(ichatbasecomponent1, (Type) ichatbasecomponent1.getClass(), jsonserializationcontext));
+                        jsonarray.add(this.a(ichatbasecomponent1, ichatbasecomponent1.getClass(), jsonserializationcontext));
                     }
 
                     jsonobject.add("extra", jsonarray);
@@ -218,14 +218,16 @@ public interface IChatBaseComponent extends Iterable<IChatBaseComponent> {
         }
 
         public static IChatBaseComponent a(String s) {
-            return (IChatBaseComponent) IChatBaseComponent.ChatSerializer.a.fromJson(s, IChatBaseComponent.class);
+            return IChatBaseComponent.ChatSerializer.a.fromJson(s, IChatBaseComponent.class);
         }
 
-        public JsonElement serialize(IChatBaseComponent object, Type type, JsonSerializationContext jsonserializationcontext) {
-            return this.a((IChatBaseComponent) object, type, jsonserializationcontext);
+        @Override
+		public JsonElement serialize(IChatBaseComponent object, Type type, JsonSerializationContext jsonserializationcontext) {
+            return this.a(object, type, jsonserializationcontext);
         }
 
-        public IChatBaseComponent deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
+        @Override
+		public IChatBaseComponent deserialize(JsonElement jsonelement, Type type, JsonDeserializationContext jsondeserializationcontext) throws JsonParseException {
             return this.a(jsonelement, type, jsondeserializationcontext);
         }
 

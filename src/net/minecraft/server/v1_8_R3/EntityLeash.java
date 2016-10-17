@@ -13,7 +13,7 @@ public class EntityLeash extends EntityHanging {
 
     public EntityLeash(World world, BlockPosition blockposition) {
         super(world, blockposition);
-        this.setPosition((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D);
+        this.setPosition(blockposition.getX() + 0.5D, blockposition.getY() + 0.5D, blockposition.getZ() + 0.5D);
         float f = 0.125F;
         float f1 = 0.1875F;
         float f2 = 0.25F;
@@ -21,35 +21,45 @@ public class EntityLeash extends EntityHanging {
         this.a(new AxisAlignedBB(this.locX - 0.1875D, this.locY - 0.25D + 0.125D, this.locZ - 0.1875D, this.locX + 0.1875D, this.locY + 0.25D + 0.125D, this.locZ + 0.1875D));
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
     }
 
-    public void setDirection(EnumDirection enumdirection) {}
+    @Override
+	public void setDirection(EnumDirection enumdirection) {}
 
-    public int l() {
+    @Override
+	public int l() {
         return 9;
     }
 
-    public int m() {
+    @Override
+	public int m() {
         return 9;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return -0.0625F;
     }
 
-    public void b(Entity entity) {}
+    @Override
+	public void b(Entity entity) {}
 
-    public boolean d(NBTTagCompound nbttagcompound) {
+    @Override
+	public boolean d(NBTTagCompound nbttagcompound) {
         return false;
     }
 
-    public void b(NBTTagCompound nbttagcompound) {}
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {}
 
-    public void a(NBTTagCompound nbttagcompound) {}
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {}
 
-    public boolean e(EntityHuman entityhuman) {
+    @Override
+	public boolean e(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.bA();
         boolean flag = false;
         double d0;
@@ -110,7 +120,8 @@ public class EntityLeash extends EntityHanging {
         return true;
     }
 
-    public boolean survives() {
+    @Override
+	public boolean survives() {
         return this.world.getType(this.blockPosition).getBlock() instanceof BlockFence;
     }
 
@@ -126,7 +137,7 @@ public class EntityLeash extends EntityHanging {
         int i = blockposition.getX();
         int j = blockposition.getY();
         int k = blockposition.getZ();
-        List list = world.a(EntityLeash.class, new AxisAlignedBB((double) i - 1.0D, (double) j - 1.0D, (double) k - 1.0D, (double) i + 1.0D, (double) j + 1.0D, (double) k + 1.0D));
+        List list = world.a(EntityLeash.class, new AxisAlignedBB(i - 1.0D, j - 1.0D, k - 1.0D, i + 1.0D, j + 1.0D, k + 1.0D));
         Iterator iterator = list.iterator();
 
         EntityLeash entityleash;

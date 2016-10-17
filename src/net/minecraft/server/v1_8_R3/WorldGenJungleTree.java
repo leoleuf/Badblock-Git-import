@@ -8,7 +8,8 @@ public class WorldGenJungleTree extends WorldGenMegaTreeAbstract {
         super(flag, i, j, iblockdata, iblockdata1);
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         int i = this.a(random);
 
         if (!this.a(world, random, blockposition, i)) {
@@ -24,8 +25,8 @@ public class WorldGenJungleTree extends WorldGenMegaTreeAbstract {
                 int i1;
 
                 for (i1 = 0; i1 < 5; ++i1) {
-                    k = blockposition.getX() + (int) (1.5F + MathHelper.cos(f) * (float) i1);
-                    l = blockposition.getZ() + (int) (1.5F + MathHelper.sin(f) * (float) i1);
+                    k = blockposition.getX() + (int) (1.5F + MathHelper.cos(f) * i1);
+                    l = blockposition.getZ() + (int) (1.5F + MathHelper.sin(f) * i1);
                     this.a(world, new BlockPosition(k, j - 3 + i1 / 2, l), this.b);
                 }
 

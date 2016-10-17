@@ -26,11 +26,13 @@ public class CreeperPowerEvent extends EntityEvent implements Cancellable {
         this.cause = cause;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return canceled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         canceled = cancel;
     }
 

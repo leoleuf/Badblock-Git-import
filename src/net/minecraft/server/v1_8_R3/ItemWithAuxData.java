@@ -15,7 +15,8 @@ public class ItemWithAuxData extends ItemBlock {
 
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i;
     }
 
@@ -24,7 +25,8 @@ public class ItemWithAuxData extends ItemBlock {
         return this;
     }
 
-    public String e_(ItemStack itemstack) {
+    @Override
+	public String e_(ItemStack itemstack) {
         if (this.c == null) {
             return super.e_(itemstack);
         } else {

@@ -6,19 +6,23 @@ public class CommandGamemode extends CommandAbstract {
 
     public CommandGamemode() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "gamemode";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.gamemode.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length <= 0) {
             throw new ExceptionUsage("commands.gamemode.usage", new Object[0]);
         } else {
@@ -53,7 +57,8 @@ public class CommandGamemode extends CommandAbstract {
         return !s.equalsIgnoreCase(WorldSettings.EnumGamemode.SURVIVAL.b()) && !s.equalsIgnoreCase("s") ? (!s.equalsIgnoreCase(WorldSettings.EnumGamemode.CREATIVE.b()) && !s.equalsIgnoreCase("c") ? (!s.equalsIgnoreCase(WorldSettings.EnumGamemode.ADVENTURE.b()) && !s.equalsIgnoreCase("a") ? (!s.equalsIgnoreCase(WorldSettings.EnumGamemode.SPECTATOR.b()) && !s.equalsIgnoreCase("sp") ? WorldSettings.a(a(s, 0, WorldSettings.EnumGamemode.values().length - 2)) : WorldSettings.EnumGamemode.SPECTATOR) : WorldSettings.EnumGamemode.ADVENTURE) : WorldSettings.EnumGamemode.CREATIVE) : WorldSettings.EnumGamemode.SURVIVAL;
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, new String[] { "survival", "creative", "adventure", "spectator"}) : (astring.length == 2 ? a(astring, this.d()) : null);
     }
 
@@ -61,14 +66,15 @@ public class CommandGamemode extends CommandAbstract {
         return MinecraftServer.getServer().getPlayers();
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 1;
     }
 
     // CraftBukkit start - fix decompiler error
     @Override
     public int compareTo(ICommand o) {
-        return a((ICommand) o);
+        return a(o);
     }
     // CraftBukkit end
 }

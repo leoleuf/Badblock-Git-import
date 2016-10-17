@@ -10,7 +10,8 @@ public class WorldGenEnder extends WorldGenerator {
         this.a = block;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         if (world.isEmpty(blockposition) && world.getType(blockposition.down()).getBlock() == this.a) {
             int i = random.nextInt(32) + 6;
             int j = random.nextInt(4) + 1;
@@ -46,7 +47,7 @@ public class WorldGenEnder extends WorldGenerator {
 
             EntityEnderCrystal entityendercrystal = new EntityEnderCrystal(world);
 
-            entityendercrystal.setPositionRotation((double) ((float) blockposition.getX() + 0.5F), (double) (blockposition.getY() + i), (double) ((float) blockposition.getZ() + 0.5F), random.nextFloat() * 360.0F, 0.0F);
+            entityendercrystal.setPositionRotation(blockposition.getX() + 0.5F, blockposition.getY() + i, blockposition.getZ() + 0.5F, random.nextFloat() * 360.0F, 0.0F);
             world.addEntity(entityendercrystal);
             world.setTypeAndData(blockposition.up(i), Blocks.BEDROCK.getBlockData(), 2);
             return true;

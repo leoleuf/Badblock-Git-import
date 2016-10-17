@@ -20,11 +20,12 @@ public class ShapelessRecipes implements IRecipe {
     }
 
     // CraftBukkit start
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public org.bukkit.inventory.ShapelessRecipe toBukkitRecipe() {
         CraftItemStack result = CraftItemStack.asCraftMirror(this.result);
         CraftShapelessRecipe recipe = new CraftShapelessRecipe(result, this);
-        for (ItemStack stack : (List<ItemStack>) this.ingredients) {
+        for (ItemStack stack : this.ingredients) {
             if (stack != null) {
                 recipe.addIngredient(org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers.getMaterial(stack.getItem()), stack.getData());
             }
@@ -33,11 +34,13 @@ public class ShapelessRecipes implements IRecipe {
     }
     // CraftBukkit end
 
-    public ItemStack b() {
+    @Override
+	public ItemStack b() {
         return this.result;
     }
 
-    public ItemStack[] b(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack[] b(InventoryCrafting inventorycrafting) {
         ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
         for (int i = 0; i < aitemstack.length; ++i) {
@@ -51,7 +54,8 @@ public class ShapelessRecipes implements IRecipe {
         return aitemstack;
     }
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         ArrayList arraylist = Lists.newArrayList(this.ingredients);
 
         for (int i = 0; i < inventorycrafting.h(); ++i) {
@@ -82,16 +86,19 @@ public class ShapelessRecipes implements IRecipe {
         return arraylist.isEmpty();
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         return this.result.cloneItemStack();
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return this.ingredients.size();
     }
 
     // Spigot start
-    public java.util.List<ItemStack> getIngredients()
+    @Override
+	public java.util.List<ItemStack> getIngredients()
     {
         return java.util.Collections.unmodifiableList( ingredients );
     }

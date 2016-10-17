@@ -4,15 +4,18 @@ public class CommandPublish extends CommandAbstract {
 
     public CommandPublish() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "publish";
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.publish.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         String s = MinecraftServer.getServer().a(WorldSettings.EnumGamemode.SURVIVAL, false);
 
         if (s != null) {

@@ -12,7 +12,8 @@ public class PacketSplitter extends ByteToMessageDecoder {
 
     public PacketSplitter() {}
 
-    protected void decode(ChannelHandlerContext channelhandlercontext, ByteBuf bytebuf, List<Object> list) throws Exception {
+    @Override
+	protected void decode(ChannelHandlerContext channelhandlercontext, ByteBuf bytebuf, List<Object> list) throws Exception {
         bytebuf.markReaderIndex();
         byte[] abyte = new byte[3];
 

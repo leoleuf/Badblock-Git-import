@@ -18,11 +18,13 @@ public class PacketPlayOutRespawn implements Packet<PacketListenerPlayOut> {
         this.d = worldtype;
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readInt();
         this.b = EnumDifficulty.getById(packetdataserializer.readUnsignedByte());
         this.c = WorldSettings.EnumGamemode.getById(packetdataserializer.readUnsignedByte());
@@ -33,7 +35,8 @@ public class PacketPlayOutRespawn implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeInt(this.a);
         packetdataserializer.writeByte(this.b.a());
         packetdataserializer.writeByte(this.c.getId());

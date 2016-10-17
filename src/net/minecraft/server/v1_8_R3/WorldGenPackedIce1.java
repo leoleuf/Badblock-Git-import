@@ -12,7 +12,8 @@ public class WorldGenPackedIce1 extends WorldGenerator {
         this.b = i;
     }
 
-    public boolean generate(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public boolean generate(World world, Random random, BlockPosition blockposition) {
         while (world.isEmpty(blockposition) && blockposition.getY() > 2) {
             blockposition = blockposition.down();
         }

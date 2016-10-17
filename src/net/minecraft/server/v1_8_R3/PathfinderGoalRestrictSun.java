@@ -8,15 +8,18 @@ public class PathfinderGoalRestrictSun extends PathfinderGoal {
         this.a = entitycreature;
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         return this.a.world.w();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         ((Navigation) this.a.getNavigation()).e(true);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         ((Navigation) this.a.getNavigation()).e(false);
     }
 }

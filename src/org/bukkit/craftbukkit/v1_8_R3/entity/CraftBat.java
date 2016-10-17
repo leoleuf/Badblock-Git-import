@@ -21,7 +21,8 @@ public class CraftBat extends CraftAmbient implements Bat {
         return "CraftBat";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.BAT;
     }
 

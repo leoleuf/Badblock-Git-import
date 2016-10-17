@@ -15,7 +15,7 @@ public class Pathfinder {
     }
 
     public PathEntity a(IBlockAccess iblockaccess, Entity entity, BlockPosition blockposition, float f) {
-        return this.a(iblockaccess, entity, (double) ((float) blockposition.getX() + 0.5F), (double) ((float) blockposition.getY() + 0.5F), (double) ((float) blockposition.getZ() + 0.5F), f);
+        return this.a(iblockaccess, entity, blockposition.getX() + 0.5F, blockposition.getY() + 0.5F, blockposition.getZ() + 0.5F, f);
     }
 
     private PathEntity a(IBlockAccess iblockaccess, Entity entity, double d0, double d1, double d2, float f) {

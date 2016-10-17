@@ -17,38 +17,46 @@ public class EntitySilverfish extends EntityMonster {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
     }
 
-    public double am() {
+    @Override
+	public double am() {
         return 0.2D;
     }
 
-    public float getHeadHeight() {
+    @Override
+	public float getHeadHeight() {
         return 0.1F;
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.maxHealth).setValue(8.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.25D);
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(1.0D);
     }
 
-    protected boolean s_() {
+    @Override
+	protected boolean s_() {
         return false;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.silverfish.say";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.silverfish.hit";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.silverfish.kill";
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
@@ -60,28 +68,34 @@ public class EntitySilverfish extends EntityMonster {
         }
     }
 
-    protected void a(BlockPosition blockposition, Block block) {
+    @Override
+	protected void a(BlockPosition blockposition, Block block) {
         this.makeSound("mob.silverfish.step", 0.15F, 1.0F);
     }
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return null;
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         this.aI = this.yaw;
         super.t_();
     }
 
-    public float a(BlockPosition blockposition) {
+    @Override
+	public float a(BlockPosition blockposition) {
         return this.world.getType(blockposition.down()).getBlock() == Blocks.STONE ? 10.0F : super.a(blockposition);
     }
 
-    protected boolean n_() {
+    @Override
+	protected boolean n_() {
         return true;
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         if (super.bR()) {
             EntityHuman entityhuman = this.world.findNearbyPlayer(this, 5.0D);
 
@@ -91,7 +105,8 @@ public class EntitySilverfish extends EntityMonster {
         }
     }
 
-    public EnumMonsterType getMonsterType() {
+    @Override
+	public EnumMonsterType getMonsterType() {
         return EnumMonsterType.ARTHROPOD;
     }
 
@@ -107,7 +122,8 @@ public class EntitySilverfish extends EntityMonster {
             this.a(1);
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             if (this.silverfish.getGoalTarget() != null) {
                 return false;
             } else if (!this.silverfish.getNavigation().m()) {
@@ -131,11 +147,13 @@ public class EntitySilverfish extends EntityMonster {
             }
         }
 
-        public boolean b() {
+        @Override
+		public boolean b() {
             return this.c ? false : super.b();
         }
 
-        public void c() {
+        @Override
+		public void c() {
             if (!this.c) {
                 super.c();
             } else {
@@ -145,7 +163,7 @@ public class EntitySilverfish extends EntityMonster {
 
                 if (BlockMonsterEggs.d(iblockdata)) {
                     // CraftBukkit start
-                    if (org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callEntityChangeBlockEvent(this.silverfish, blockposition.getX(), blockposition.getY(), blockposition.getZ(), Blocks.MONSTER_EGG, Block.getId(BlockMonsterEggs.getById(iblockdata.getBlock().toLegacyData(iblockdata)))).isCancelled()) {
+                    if (org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory.callEntityChangeBlockEvent(this.silverfish, blockposition.getX(), blockposition.getY(), blockposition.getZ(), Blocks.MONSTER_EGG, Block.getId(Block.getById(iblockdata.getBlock().toLegacyData(iblockdata)))).isCancelled()) {
                         return;
                     }
                     // CraftBukkit end
@@ -174,11 +192,13 @@ public class EntitySilverfish extends EntityMonster {
 
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             return this.b > 0;
         }
 
-        public void e() {
+        @Override
+		public void e() {
             --this.b;
             if (this.b <= 0) {
                 World world = this.silverfish.world;
@@ -200,7 +220,7 @@ public class EntitySilverfish extends EntityMonster {
                                 if (world.getGameRules().getBoolean("mobGriefing")) {
                                     world.setAir(blockposition1, true);
                                 } else {
-                                    world.setTypeAndData(blockposition1, ((BlockMonsterEggs.EnumMonsterEggVarient) iblockdata.get(BlockMonsterEggs.VARIANT)).d(), 3);
+                                    world.setTypeAndData(blockposition1, iblockdata.get(BlockMonsterEggs.VARIANT).d(), 3);
                                 }
 
                                 if (random.nextBoolean()) {

@@ -6,19 +6,23 @@ public class CommandTestFor extends CommandAbstract {
 
     public CommandTestFor() {}
 
-    public String getCommand() {
+    @Override
+	public String getCommand() {
         return "testfor";
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 2;
     }
 
-    public String getUsage(ICommandListener icommandlistener) {
+    @Override
+	public String getUsage(ICommandListener icommandlistener) {
         return "commands.testfor.usage";
     }
 
-    public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
+    @Override
+	public void execute(ICommandListener icommandlistener, String[] astring) throws CommandException {
         if (astring.length < 1) {
             throw new ExceptionUsage("commands.testfor.usage", new Object[0]);
         } else {
@@ -46,11 +50,13 @@ public class CommandTestFor extends CommandAbstract {
         }
     }
 
-    public boolean isListStart(String[] astring, int i) {
+    @Override
+	public boolean isListStart(String[] astring, int i) {
         return i == 0;
     }
 
-    public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
+    @Override
+	public List<String> tabComplete(ICommandListener icommandlistener, String[] astring, BlockPosition blockposition) {
         return astring.length == 1 ? a(astring, MinecraftServer.getServer().getPlayers()) : null;
     }
 }

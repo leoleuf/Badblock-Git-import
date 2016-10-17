@@ -11,7 +11,8 @@ public class ItemHoe extends Item {
         this.a(CreativeModeTab.i);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (!entityhuman.a(blockposition.shift(enumdirection), enumdirection, itemstack)) {
             return false;
         } else {
@@ -24,7 +25,7 @@ public class ItemHoe extends Item {
                 }
 
                 if (block == Blocks.DIRT) {
-                    switch (ItemHoe.SyntheticClass_1.a[((BlockDirt.EnumDirtVariant) iblockdata.get(BlockDirt.VARIANT)).ordinal()]) {
+                    switch (ItemHoe.SyntheticClass_1.a[iblockdata.get(BlockDirt.VARIANT).ordinal()]) {
                     case 1:
                         return this.a(itemstack, entityhuman, world, blockposition, Blocks.FARMLAND.getBlockData());
 
@@ -39,7 +40,7 @@ public class ItemHoe extends Item {
     }
 
     protected boolean a(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, IBlockData iblockdata) {
-        world.makeSound((double) ((float) blockposition.getX() + 0.5F), (double) ((float) blockposition.getY() + 0.5F), (double) ((float) blockposition.getZ() + 0.5F), iblockdata.getBlock().stepSound.getStepSound(), (iblockdata.getBlock().stepSound.getVolume1() + 1.0F) / 2.0F, iblockdata.getBlock().stepSound.getVolume2() * 0.8F);
+        world.makeSound(blockposition.getX() + 0.5F, blockposition.getY() + 0.5F, blockposition.getZ() + 0.5F, iblockdata.getBlock().stepSound.getStepSound(), (iblockdata.getBlock().stepSound.getVolume1() + 1.0F) / 2.0F, iblockdata.getBlock().stepSound.getVolume2() * 0.8F);
         if (world.isClientSide) {
             return true;
         } else {

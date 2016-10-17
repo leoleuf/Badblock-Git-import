@@ -17,11 +17,13 @@ public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
         this.to = to;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return canceled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         canceled = cancel;
     }
 

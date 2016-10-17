@@ -7,7 +7,8 @@ public class BlockHardenedClay extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.q;
     }
 }

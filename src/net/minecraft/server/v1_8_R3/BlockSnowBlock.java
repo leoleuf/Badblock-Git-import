@@ -10,15 +10,18 @@ public class BlockSnowBlock extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.SNOWBALL;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 4;
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (world.b(EnumSkyBlock.BLOCK, blockposition) > 11) {
             this.b(world, blockposition, world.getType(blockposition), 0);
             world.setAir(blockposition);

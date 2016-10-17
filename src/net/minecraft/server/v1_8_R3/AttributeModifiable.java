@@ -32,26 +32,31 @@ public class AttributeModifiable implements AttributeInstance {
 
     }
 
-    public IAttribute getAttribute() {
+    @Override
+	public IAttribute getAttribute() {
         return this.b;
     }
 
-    public double b() {
+    @Override
+	public double b() {
         return this.f;
     }
 
-    public void setValue(double d0) {
+    @Override
+	public void setValue(double d0) {
         if (d0 != this.b()) {
             this.f = d0;
             this.f();
         }
     }
 
-    public Collection<AttributeModifier> a(int i) {
-        return (Collection) this.c.get(Integer.valueOf(i));
+    @Override
+	public Collection<AttributeModifier> a(int i) {
+        return this.c.get(Integer.valueOf(i));
     }
 
-    public Collection<AttributeModifier> c() {
+    @Override
+	public Collection<AttributeModifier> c() {
         HashSet hashset = Sets.newHashSet();
 
         for (int i = 0; i < 3; ++i) {
@@ -61,19 +66,22 @@ public class AttributeModifiable implements AttributeInstance {
         return hashset;
     }
 
-    public AttributeModifier a(UUID uuid) {
-        return (AttributeModifier) this.e.get(uuid);
+    @Override
+	public AttributeModifier a(UUID uuid) {
+        return this.e.get(uuid);
     }
 
-    public boolean a(AttributeModifier attributemodifier) {
+    @Override
+	public boolean a(AttributeModifier attributemodifier) {
         return this.e.get(attributemodifier.a()) != null;
     }
 
-    public void b(AttributeModifier attributemodifier) {
+    @Override
+	public void b(AttributeModifier attributemodifier) {
         if (this.a(attributemodifier.a()) != null) {
             throw new IllegalArgumentException("Modifier is already applied on this attribute!");
         } else {
-        	Set object = (Set) this.d.get(attributemodifier.b());
+        	Set object = this.d.get(attributemodifier.b());
 
             if (object == null) {
                 object = Sets.newHashSet();
@@ -81,7 +89,7 @@ public class AttributeModifiable implements AttributeInstance {
             }
 
             ((Set) this.c.get(Integer.valueOf(attributemodifier.c()))).add(attributemodifier);
-            ((Set) object).add(attributemodifier);
+            object.add(attributemodifier);
             this.e.put(attributemodifier.a(), attributemodifier);
             this.f();
         }
@@ -89,17 +97,18 @@ public class AttributeModifiable implements AttributeInstance {
 
     protected void f() {
         this.g = true;
-        this.a.a((AttributeInstance) this);
+        this.a.a(this);
     }
 
-    public void c(AttributeModifier attributemodifier) {
+    @Override
+	public void c(AttributeModifier attributemodifier) {
         for (int i = 0; i < 3; ++i) {
-            Set set = (Set) this.c.get(Integer.valueOf(i));
+            Set set = this.c.get(Integer.valueOf(i));
 
             set.remove(attributemodifier);
         }
 
-        Set set1 = (Set) this.d.get(attributemodifier.b());
+        Set set1 = this.d.get(attributemodifier.b());
 
         if (set1 != null) {
             set1.remove(attributemodifier);
@@ -112,7 +121,8 @@ public class AttributeModifiable implements AttributeInstance {
         this.f();
     }
 
-    public double getValue() {
+    @Override
+	public double getValue() {
         if (this.g) {
             this.h = this.g();
             this.g = false;

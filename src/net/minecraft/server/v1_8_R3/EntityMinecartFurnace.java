@@ -14,16 +14,19 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
         super(world, d0, d1, d2);
     }
 
-    public EnumMinecartType s() {
+    @Override
+	public EnumMinecartType s() {
         return EnumMinecartType.FURNACE;
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, new Byte((byte) 0));
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (this.c > 0) {
             --this.c;
@@ -40,11 +43,13 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
 
     }
 
-    protected double m() {
+    @Override
+	protected double m() {
         return 0.2D;
     }
 
-    public void a(DamageSource damagesource) {
+    @Override
+	public void a(DamageSource damagesource) {
         super.a(damagesource);
         if (!damagesource.isExplosion() && this.world.getGameRules().getBoolean("doEntityDrops")) {
             this.a(new ItemStack(Blocks.FURNACE, 1), 0.0F);
@@ -52,15 +57,16 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
 
     }
 
-    protected void a(BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	protected void a(BlockPosition blockposition, IBlockData iblockdata) {
         super.a(blockposition, iblockdata);
         double d0 = this.a * this.a + this.b * this.b;
 
         if (d0 > 1.0E-4D && this.motX * this.motX + this.motZ * this.motZ > 0.001D) {
-            d0 = (double) MathHelper.sqrt(d0);
+            d0 = MathHelper.sqrt(d0);
             // PaperSpigot - Don't lose all your velocity on corners
             // https://bugs.mojang.com/browse/MC-51053?focusedCommentId=223854
-            double d1 = (double) MathHelper.sqrt(this.motX * this.motX + this.motZ * this.motZ);
+            double d1 = MathHelper.sqrt(this.motX * this.motX + this.motZ * this.motZ);
             this.a = (motX / d1) * d0;
             this.b = (motZ / d1) * d0;
             // PaperSpigot end
@@ -68,11 +74,12 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
 
     }
 
-    protected void o() {
+    @Override
+	protected void o() {
         double d0 = this.a * this.a + this.b * this.b;
 
         if (d0 > 1.0E-4D) {
-            d0 = (double) MathHelper.sqrt(d0);
+            d0 = MathHelper.sqrt(d0);
             this.a /= d0;
             this.b /= d0;
             double d1 = 1.0D;
@@ -91,7 +98,8 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
         super.o();
     }
 
-    public boolean e(EntityHuman entityhuman) {
+    @Override
+	public boolean e(EntityHuman entityhuman) {
         ItemStack itemstack = entityhuman.inventory.getItemInHand();
 
         if (itemstack != null && itemstack.getItem() == Items.COAL) {
@@ -107,14 +115,16 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
         return true;
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setDouble("PushX", this.a);
         nbttagcompound.setDouble("PushZ", this.b);
         nbttagcompound.setShort("Fuel", (short) this.c);
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.a = nbttagcompound.getDouble("PushX");
         this.b = nbttagcompound.getDouble("PushZ");
@@ -134,7 +144,8 @@ public class EntityMinecartFurnace extends EntityMinecartAbstract {
 
     }
 
-    public IBlockData u() {
+    @Override
+	public IBlockData u() {
         return (this.j() ? Blocks.LIT_FURNACE : Blocks.FURNACE).getBlockData().set(BlockFurnace.FACING, EnumDirection.NORTH);
     }
 }

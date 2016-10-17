@@ -31,7 +31,7 @@ public class GameRules {
     }
 
     public void set(String s, String s1) {
-        GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+        GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
         if (gamerules_gamerulevalue != null) {
             gamerules_gamerulevalue.a(s1);
@@ -42,19 +42,19 @@ public class GameRules {
     }
 
     public String get(String s) {
-        GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+        GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
         return gamerules_gamerulevalue != null ? gamerules_gamerulevalue.a() : "";
     }
 
     public boolean getBoolean(String s) {
-        GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+        GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
         return gamerules_gamerulevalue != null ? gamerules_gamerulevalue.b() : false;
     }
 
     public int c(String s) {
-        GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+        GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
         return gamerules_gamerulevalue != null ? gamerules_gamerulevalue.c() : 0;
     }
@@ -65,7 +65,7 @@ public class GameRules {
 
         while (iterator.hasNext()) {
             String s = (String) iterator.next();
-            GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+            GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
             nbttagcompound.setString(s, gamerules_gamerulevalue.a());
         }
@@ -97,7 +97,7 @@ public class GameRules {
     }
 
     public boolean a(String s, GameRules.EnumGameRuleType gamerules_enumgameruletype) {
-        GameRules.GameRuleValue gamerules_gamerulevalue = (GameRules.GameRuleValue) this.a.get(s);
+        GameRules.GameRuleValue gamerules_gamerulevalue = this.a.get(s);
 
         return gamerules_gamerulevalue != null && (gamerules_gamerulevalue.e() == gamerules_enumgameruletype || gamerules_enumgameruletype == GameRules.EnumGameRuleType.ANY_VALUE);
     }

@@ -28,7 +28,8 @@ public class RecipesBanner {
         }
         // CraftBukkit end
 
-        public boolean a(InventoryCrafting inventorycrafting, World world) {
+        @Override
+		public boolean a(InventoryCrafting inventorycrafting, World world) {
             boolean flag = false;
 
             for (int i = 0; i < inventorycrafting.getSize(); ++i) {
@@ -54,7 +55,8 @@ public class RecipesBanner {
             }
         }
 
-        public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+        @Override
+		public ItemStack craftItem(InventoryCrafting inventorycrafting) {
             ItemStack itemstack = null;
 
             for (int i = 0; i < inventorycrafting.getSize(); ++i) {
@@ -104,15 +106,18 @@ public class RecipesBanner {
             return itemstack;
         }
 
-        public int a() {
+        @Override
+		public int a() {
             return 10;
         }
 
-        public ItemStack b() {
+        @Override
+		public ItemStack b() {
             return null;
         }
 
-        public ItemStack[] b(InventoryCrafting inventorycrafting) {
+        @Override
+		public ItemStack[] b(InventoryCrafting inventorycrafting) {
             ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
             for (int i = 0; i < aitemstack.length; ++i) {
@@ -222,7 +227,8 @@ public class RecipesBanner {
         }
         // CraftBukkit end
 
-        public boolean a(InventoryCrafting inventorycrafting, World world) {
+        @Override
+		public boolean a(InventoryCrafting inventorycrafting, World world) {
             ItemStack itemstack = null;
             ItemStack itemstack1 = null;
 
@@ -272,7 +278,8 @@ public class RecipesBanner {
             return itemstack != null && itemstack1 != null;
         }
 
-        public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+        @Override
+		public ItemStack craftItem(InventoryCrafting inventorycrafting) {
             for (int i = 0; i < inventorycrafting.getSize(); ++i) {
                 ItemStack itemstack = inventorycrafting.getItem(i);
 
@@ -287,15 +294,18 @@ public class RecipesBanner {
             return null;
         }
 
-        public int a() {
+        @Override
+		public int a() {
             return 2;
         }
 
-        public ItemStack b() {
+        @Override
+		public ItemStack b() {
             return null;
         }
 
-        public ItemStack[] b(InventoryCrafting inventorycrafting) {
+        @Override
+		public ItemStack[] b(InventoryCrafting inventorycrafting) {
             ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
             for (int i = 0; i < aitemstack.length; ++i) {

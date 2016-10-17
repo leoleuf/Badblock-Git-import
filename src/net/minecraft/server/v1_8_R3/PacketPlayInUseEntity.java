@@ -10,18 +10,20 @@ public class PacketPlayInUseEntity implements Packet<PacketListenerPlayIn> {
 
     public PacketPlayInUseEntity() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
-        this.action = (PacketPlayInUseEntity.EnumEntityUseAction) packetdataserializer.a(PacketPlayInUseEntity.EnumEntityUseAction.class);
+        this.action = packetdataserializer.a(PacketPlayInUseEntity.EnumEntityUseAction.class);
         if (this.action == PacketPlayInUseEntity.EnumEntityUseAction.INTERACT_AT) {
-            this.c = new Vec3D((double) packetdataserializer.readFloat(), (double) packetdataserializer.readFloat(), (double) packetdataserializer.readFloat());
+            this.c = new Vec3D(packetdataserializer.readFloat(), packetdataserializer.readFloat(), packetdataserializer.readFloat());
         }
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
-        packetdataserializer.a((Enum) this.action);
+        packetdataserializer.a(this.action);
         if (this.action == PacketPlayInUseEntity.EnumEntityUseAction.INTERACT_AT) {
             packetdataserializer.writeFloat((float) this.c.a);
             packetdataserializer.writeFloat((float) this.c.b);
@@ -30,7 +32,8 @@ public class PacketPlayInUseEntity implements Packet<PacketListenerPlayIn> {
 
     }
 
-    public void a(PacketListenerPlayIn packetlistenerplayin) {
+    @Override
+	public void a(PacketListenerPlayIn packetlistenerplayin) {
         packetlistenerplayin.a(this);
     }
 

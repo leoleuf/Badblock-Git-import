@@ -13,35 +13,43 @@ public class EnchantmentWeaponDamage extends Enchantment {
         this.a = k;
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return EnchantmentWeaponDamage.F[this.a] + (i - 1) * EnchantmentWeaponDamage.G[this.a];
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return this.a(i) + EnchantmentWeaponDamage.H[this.a];
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 5;
     }
 
-    public float a(int i, EnumMonsterType enummonstertype) {
-        return this.a == 0 ? (float) i * 1.25F : (this.a == 1 && enummonstertype == EnumMonsterType.UNDEAD ? (float) i * 2.5F : (this.a == 2 && enummonstertype == EnumMonsterType.ARTHROPOD ? (float) i * 2.5F : 0.0F));
+    @Override
+	public float a(int i, EnumMonsterType enummonstertype) {
+        return this.a == 0 ? i * 1.25F : (this.a == 1 && enummonstertype == EnumMonsterType.UNDEAD ? i * 2.5F : (this.a == 2 && enummonstertype == EnumMonsterType.ARTHROPOD ? i * 2.5F : 0.0F));
     }
 
-    public String a() {
+    @Override
+	public String a() {
         return "enchantment.damage." + EnchantmentWeaponDamage.E[this.a];
     }
 
-    public boolean a(Enchantment enchantment) {
+    @Override
+	public boolean a(Enchantment enchantment) {
         return !(enchantment instanceof EnchantmentWeaponDamage);
     }
 
-    public boolean canEnchant(ItemStack itemstack) {
+    @Override
+	public boolean canEnchant(ItemStack itemstack) {
         return itemstack.getItem() instanceof ItemAxe ? true : super.canEnchant(itemstack);
     }
 
-    public void a(EntityLiving entityliving, Entity entity, int i) {
+    @Override
+	public void a(EntityLiving entityliving, Entity entity, int i) {
         if (entity instanceof EntityLiving) {
             EntityLiving entityliving1 = (EntityLiving) entity;
 

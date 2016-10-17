@@ -23,7 +23,8 @@ public class CraftBrewingStand extends CraftBlockState implements BrewingStand {
         brewingStand = te;
     }
 
-    public BrewerInventory getInventory() {
+    @Override
+	public BrewerInventory getInventory() {
         return new CraftInventoryBrewer(brewingStand);
     }
 
@@ -38,11 +39,13 @@ public class CraftBrewingStand extends CraftBlockState implements BrewingStand {
         return result;
     }
 
-    public int getBrewingTime() {
+    @Override
+	public int getBrewingTime() {
         return brewingStand.brewTime;
     }
 
-    public void setBrewingTime(int brewTime) {
+    @Override
+	public void setBrewingTime(int brewTime) {
         brewingStand.brewTime = brewTime;
     }
 

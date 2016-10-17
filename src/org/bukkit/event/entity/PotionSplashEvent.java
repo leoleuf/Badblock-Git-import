@@ -35,7 +35,7 @@ public class PotionSplashEvent extends ProjectileHitEvent implements Cancellable
      * @return The thrown potion entity
      */
     public ThrownPotion getPotion() {
-        return (ThrownPotion) getEntity();
+        return getEntity();
     }
 
     /**
@@ -75,11 +75,13 @@ public class PotionSplashEvent extends ProjectileHitEvent implements Cancellable
         }
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 

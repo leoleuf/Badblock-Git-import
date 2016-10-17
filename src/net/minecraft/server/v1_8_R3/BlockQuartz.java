@@ -10,7 +10,8 @@ public class BlockQuartz extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         if (i == BlockQuartz.EnumQuartzVariant.LINES_Y.a()) {
             switch (BlockQuartz.SyntheticClass_1.a[enumdirection.k().ordinal()]) {
             case 1:
@@ -28,31 +29,37 @@ public class BlockQuartz extends Block {
         }
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        BlockQuartz.EnumQuartzVariant blockquartz_enumquartzvariant = (BlockQuartz.EnumQuartzVariant) iblockdata.get(BlockQuartz.VARIANT);
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        BlockQuartz.EnumQuartzVariant blockquartz_enumquartzvariant = iblockdata.get(BlockQuartz.VARIANT);
 
         return blockquartz_enumquartzvariant != BlockQuartz.EnumQuartzVariant.LINES_X && blockquartz_enumquartzvariant != BlockQuartz.EnumQuartzVariant.LINES_Z ? blockquartz_enumquartzvariant.a() : BlockQuartz.EnumQuartzVariant.LINES_Y.a();
     }
 
-    protected ItemStack i(IBlockData iblockdata) {
-        BlockQuartz.EnumQuartzVariant blockquartz_enumquartzvariant = (BlockQuartz.EnumQuartzVariant) iblockdata.get(BlockQuartz.VARIANT);
+    @Override
+	protected ItemStack i(IBlockData iblockdata) {
+        BlockQuartz.EnumQuartzVariant blockquartz_enumquartzvariant = iblockdata.get(BlockQuartz.VARIANT);
 
         return blockquartz_enumquartzvariant != BlockQuartz.EnumQuartzVariant.LINES_X && blockquartz_enumquartzvariant != BlockQuartz.EnumQuartzVariant.LINES_Z ? super.i(iblockdata) : new ItemStack(Item.getItemOf(this), 1, BlockQuartz.EnumQuartzVariant.LINES_Y.a());
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
         return MaterialMapColor.p;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockQuartz.VARIANT, BlockQuartz.EnumQuartzVariant.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockQuartz.EnumQuartzVariant) iblockdata.get(BlockQuartz.VARIANT)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockQuartz.VARIANT).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockQuartz.VARIANT});
     }
 
@@ -101,7 +108,8 @@ public class BlockQuartz extends Block {
             return this.g;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.i;
         }
 
@@ -113,7 +121,8 @@ public class BlockQuartz extends Block {
             return BlockQuartz.EnumQuartzVariant.f[i];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.h;
         }
 

@@ -81,7 +81,8 @@ public class Bed extends MaterialData implements Directional {
      * Set which direction the head of the bed is facing. Note that this will
      * only affect one of the two blocks the bed is made of.
      */
-    public void setFacingDirection(BlockFace face) {
+    @Override
+	public void setFacingDirection(BlockFace face) {
         byte data;
 
         switch (face) {
@@ -114,7 +115,8 @@ public class Bed extends MaterialData implements Directional {
      *
      * @return the direction the head of the bed is facing
      */
-    public BlockFace getFacing() {
+    @Override
+	public BlockFace getFacing() {
         byte data = (byte) (getData() & 0x7);
 
         switch (data) {

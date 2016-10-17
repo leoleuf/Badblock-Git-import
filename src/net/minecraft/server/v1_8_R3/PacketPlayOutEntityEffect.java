@@ -25,7 +25,8 @@ public class PacketPlayOutEntityEffect implements Packet<PacketListenerPlayOut> 
         this.e = (byte) (mobeffect.isShowParticles() ? 1 : 0);
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.b = packetdataserializer.readByte();
         this.c = packetdataserializer.readByte();
@@ -33,7 +34,8 @@ public class PacketPlayOutEntityEffect implements Packet<PacketListenerPlayOut> 
         this.e = packetdataserializer.readByte();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeByte(this.b);
         packetdataserializer.writeByte(this.c);
@@ -41,7 +43,8 @@ public class PacketPlayOutEntityEffect implements Packet<PacketListenerPlayOut> 
         packetdataserializer.writeByte(this.e);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

@@ -49,7 +49,8 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public void registerAll(String fallbackPrefix, List<Command> commands) {
+    @Override
+	public void registerAll(String fallbackPrefix, List<Command> commands) {
         if (commands != null) {
             for (Command c : commands) {
                 register(fallbackPrefix, c);
@@ -60,14 +61,16 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public boolean register(String fallbackPrefix, Command command) {
+    @Override
+	public boolean register(String fallbackPrefix, Command command) {
         return register(command.getName(), fallbackPrefix, command);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean register(String label, String fallbackPrefix, Command command) {
+    @Override
+	public boolean register(String label, String fallbackPrefix, Command command) {
         command.timings = co.aikar.timings.TimingsManager.getCommandTiming(fallbackPrefix, command); // Spigot
         label = label.toLowerCase().trim();
         fallbackPrefix = fallbackPrefix.toLowerCase().trim();
@@ -130,7 +133,8 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public boolean dispatch(CommandSender sender, String commandLine) throws CommandException {
+    @Override
+	public boolean dispatch(CommandSender sender, String commandLine) throws CommandException {
         String[] args = PATTERN_ON_SPACE.split(commandLine);
 
         if (args.length == 0) {
@@ -163,7 +167,8 @@ public class SimpleCommandMap implements CommandMap {
         return true;
     }
 
-    public synchronized void clearCommands() {
+    @Override
+	public synchronized void clearCommands() {
         for (Map.Entry<String, Command> entry : knownCommands.entrySet()) {
             entry.getValue().unregister(this);
         }
@@ -171,12 +176,14 @@ public class SimpleCommandMap implements CommandMap {
         setDefaultCommands();
     }
 
-    public Command getCommand(String name) {
+    @Override
+	public Command getCommand(String name) {
         Command target = knownCommands.get(name.toLowerCase());
         return target;
     }
 
-    public List<String> tabComplete(CommandSender sender, String cmdLine) {
+    @Override
+	public List<String> tabComplete(CommandSender sender, String cmdLine) {
         return tabComplete(sender, cmdLine, null); // PaperSpigot - location tab-completes, code moved below
     }
 

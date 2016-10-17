@@ -10,7 +10,8 @@ public class WorldGenMineshaft extends StructureGenerator {
 
     public WorldGenMineshaft() {}
 
-    public String a() {
+    @Override
+	public String a() {
         return "Mineshaft";
     }
 
@@ -27,11 +28,13 @@ public class WorldGenMineshaft extends StructureGenerator {
 
     }
 
-    protected boolean a(int i, int j) {
+    @Override
+	protected boolean a(int i, int j) {
         return this.b.nextDouble() < this.d && this.b.nextInt(80) < Math.max(Math.abs(i), Math.abs(j));
     }
 
-    protected StructureStart b(int i, int j) {
+    @Override
+	protected StructureStart b(int i, int j) {
         return new WorldGenMineshaftStart(this.c, this.b, i, j);
     }
 }

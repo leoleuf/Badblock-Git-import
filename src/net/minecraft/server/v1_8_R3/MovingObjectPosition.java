@@ -37,7 +37,8 @@ public class MovingObjectPosition {
         return this.e;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "HitResult{type=" + this.type + ", blockpos=" + this.e + ", f=" + this.direction + ", pos=" + this.pos + ", entity=" + this.entity + '}';
     }
 

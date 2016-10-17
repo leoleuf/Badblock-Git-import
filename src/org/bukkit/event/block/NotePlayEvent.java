@@ -23,11 +23,13 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
         this.note = note;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 

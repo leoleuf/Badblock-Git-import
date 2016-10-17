@@ -11,7 +11,8 @@ public class RegistryBlocks<K, V> extends RegistryMaterials<K, V> {
         this.d = k0;
     }
 
-    public void a(int i, K k0, V v0) {
+    @Override
+	public void a(int i, K k0, V v0) {
         if (this.d.equals(k0)) {
             this.e = v0;
         }
@@ -23,13 +24,15 @@ public class RegistryBlocks<K, V> extends RegistryMaterials<K, V> {
         Validate.notNull(this.d);
     }
 
-    public V get(K k0) {
+    @Override
+	public V get(K k0) {
         V object = super.get(k0);
 
         return object == null ? this.e : object;
     }
 
-    public V a(int i) {
+    @Override
+	public V a(int i) {
         V object = super.a(i);
 
         return object == null ? this.e : object;

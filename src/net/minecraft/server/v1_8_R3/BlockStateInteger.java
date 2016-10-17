@@ -27,11 +27,13 @@ public class BlockStateInteger extends BlockState<Integer> {
         }
     }
 
-    public Collection<Integer> c() {
+    @Override
+	public Collection<Integer> c() {
         return this.a;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (object != null && this.getClass() == object.getClass()) {
@@ -47,7 +49,8 @@ public class BlockStateInteger extends BlockState<Integer> {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         int i = super.hashCode();
 
         i = 31 * i + this.a.hashCode();
@@ -58,7 +61,8 @@ public class BlockStateInteger extends BlockState<Integer> {
         return new BlockStateInteger(s, i, j);
     }
 
-    public String a(Integer integer) {
+    @Override
+	public String a(Integer integer) {
         return integer.toString();
     }
 }

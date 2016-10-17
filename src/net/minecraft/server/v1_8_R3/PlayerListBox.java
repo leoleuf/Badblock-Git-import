@@ -11,15 +11,16 @@ public class PlayerListBox extends JList implements IUpdatePlayerListBox {
 
     public PlayerListBox(MinecraftServer minecraftserver) {
         this.a = minecraftserver;
-        minecraftserver.a((IUpdatePlayerListBox) this);
+        minecraftserver.a(this);
     }
 
-    public void c() {
+    @Override
+	public void c() {
         if (this.b++ % 20 == 0) {
             Vector vector = new Vector();
 
             for (int i = 0; i < this.a.getPlayerList().v().size(); ++i) {
-                vector.add(((EntityPlayer) this.a.getPlayerList().v().get(i)).getName());
+                vector.add(this.a.getPlayerList().v().get(i).getName());
             }
 
             this.setListData(vector);

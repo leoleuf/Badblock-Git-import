@@ -21,7 +21,8 @@ public class CraftEnderSignal extends CraftEntity implements EnderSignal {
         return "CraftEnderSignal";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.ENDER_SIGNAL;
     }
 }

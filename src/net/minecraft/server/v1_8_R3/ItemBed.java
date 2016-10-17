@@ -6,7 +6,8 @@ public class ItemBed extends Item {
         this.a(CreativeModeTab.c);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else if (enumdirection != EnumDirection.UP) {
@@ -20,7 +21,7 @@ public class ItemBed extends Item {
                 blockposition = blockposition.up();
             }
 
-            int i = MathHelper.floor((double) (entityhuman.yaw * 4.0F / 360.0F) + 0.5D) & 3;
+            int i = MathHelper.floor(entityhuman.yaw * 4.0F / 360.0F + 0.5D) & 3;
             EnumDirection enumdirection1 = EnumDirection.fromType2(i);
             BlockPosition blockposition1 = blockposition.shift(enumdirection1);
 
@@ -29,8 +30,8 @@ public class ItemBed extends Item {
                 boolean flag2 = flag || world.isEmpty(blockposition);
                 boolean flag3 = flag1 || world.isEmpty(blockposition1);
 
-                if (flag2 && flag3 && World.a((IBlockAccess) world, blockposition.down()) && World.a((IBlockAccess) world, blockposition1.down())) {
-                    IBlockData iblockdata1 = Blocks.BED.getBlockData().set(BlockBed.OCCUPIED, Boolean.valueOf(false)).set(BlockBed.FACING, enumdirection1).set(BlockBed.PART, BlockBed.EnumBedPart.FOOT);
+                if (flag2 && flag3 && World.a(world, blockposition.down()) && World.a(world, blockposition1.down())) {
+                    IBlockData iblockdata1 = Blocks.BED.getBlockData().set(BlockBed.OCCUPIED, Boolean.valueOf(false)).set(BlockDirectional.FACING, enumdirection1).set(BlockBed.PART, BlockBed.EnumBedPart.FOOT);
 
                     if (world.setTypeAndData(blockposition, iblockdata1, 3)) {
                         IBlockData iblockdata2 = iblockdata1.set(BlockBed.PART, BlockBed.EnumBedPart.HEAD);

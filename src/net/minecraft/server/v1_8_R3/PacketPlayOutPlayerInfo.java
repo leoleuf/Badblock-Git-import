@@ -41,8 +41,9 @@ public class PacketPlayOutPlayerInfo implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.a = (PacketPlayOutPlayerInfo.EnumPlayerInfoAction) packetdataserializer.a(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.a = packetdataserializer.a(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.class);
         int i = packetdataserializer.e();
 
         for (int j = 0; j < i; ++j) {
@@ -100,8 +101,9 @@ public class PacketPlayOutPlayerInfo implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-        packetdataserializer.a((Enum) this.a);
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        packetdataserializer.a(this.a);
         packetdataserializer.b(this.b.size());
         Iterator iterator = this.b.iterator();
 
@@ -165,11 +167,13 @@ public class PacketPlayOutPlayerInfo implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return Objects.toStringHelper(this).add("action", this.a).add("entries", this.b).toString();
     }
 
@@ -242,7 +246,8 @@ public class PacketPlayOutPlayerInfo implements Packet<PacketListenerPlayOut> {
             return this.e;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return Objects.toStringHelper(this).add("latency", this.b).add("gameMode", this.c).add("profile", this.d).add("displayName", this.e == null ? null : IChatBaseComponent.ChatSerializer.a(this.e)).toString();
         }
     }

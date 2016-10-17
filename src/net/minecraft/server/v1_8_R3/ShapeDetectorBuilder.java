@@ -83,12 +83,12 @@ public class ShapeDetectorBuilder {
 
     private Predicate<ShapeDetectorBlock>[][][] c() {
         this.d();
-        Predicate[][][] apredicate = (Predicate[][][]) ((Predicate[][][]) Array.newInstance(Predicate.class, new int[] { this.b.size(), this.d, this.e}));
+        Predicate[][][] apredicate = ((Predicate[][][]) Array.newInstance(Predicate.class, new int[] { this.b.size(), this.d, this.e}));
 
         for (int i = 0; i < this.b.size(); ++i) {
             for (int j = 0; j < this.d; ++j) {
                 for (int k = 0; k < this.e; ++k) {
-                    apredicate[i][j][k] = (Predicate) this.c.get(Character.valueOf(((String[]) this.b.get(i))[j].charAt(k)));
+                    apredicate[i][j][k] = this.c.get(Character.valueOf(this.b.get(i)[j].charAt(k)));
                 }
             }
         }

@@ -30,7 +30,8 @@ public class BlockActionData {
         return this.b;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof BlockActionData)) {
             return false;
         } else {
@@ -40,7 +41,8 @@ public class BlockActionData {
         }
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "TE(" + this.a + ")," + this.c + "," + this.d + "," + this.b;
     }
 }

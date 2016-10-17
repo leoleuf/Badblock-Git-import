@@ -20,8 +20,8 @@ public class WorldGenBase {
 
         for (int j1 = i - k; j1 <= i + k; ++j1) {
             for (int k1 = j - k; k1 <= j + k; ++k1) {
-                long l1 = (long) j1 * l;
-                long i2 = (long) k1 * i1;
+                long l1 = j1 * l;
+                long i2 = k1 * i1;
 
                 this.b.setSeed(l1 ^ i2 ^ world.getSeed());
                 this.a(world, j1, k1, i, j, chunksnapshot);

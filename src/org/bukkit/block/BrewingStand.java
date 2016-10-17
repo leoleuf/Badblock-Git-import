@@ -21,5 +21,6 @@ public interface BrewingStand extends BlockState, ContainerBlock {
      */
     void setBrewingTime(int brewTime);
 
-    public BrewerInventory getInventory();
+    @Override
+	public BrewerInventory getInventory();
 }

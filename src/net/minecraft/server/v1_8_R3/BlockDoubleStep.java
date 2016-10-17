@@ -4,7 +4,8 @@ public class BlockDoubleStep extends BlockDoubleStepAbstract {
 
     public BlockDoubleStep() {}
 
-    public boolean l() {
+    @Override
+	public boolean l() {
         return true;
     }
 }

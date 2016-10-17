@@ -28,5 +28,6 @@ public interface LightningStrike extends Weather {
 
     }
 
-    Spigot spigot();
+    @Override
+	Spigot spigot();
 }

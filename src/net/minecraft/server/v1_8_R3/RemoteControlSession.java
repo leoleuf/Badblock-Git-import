@@ -32,7 +32,8 @@ public class RemoteControlSession extends RemoteConnectionThread {
         this.b("Rcon connection from: " + socket.getInetAddress());
     }
 
-    public void run() {
+    @Override
+	public void run() {
         while (true) {
             try {
                 if (!this.a) {

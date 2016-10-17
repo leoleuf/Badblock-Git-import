@@ -24,11 +24,13 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
         this.a(CreativeModeTab.c);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get(this.a() + "." + BlockWood.EnumLogVariant.OAK.d() + ".name");
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (!world.isClientSide) {
             super.b(world, blockposition, iblockdata, random);
             if (world.getLightLevel(blockposition.up()) >= 9 && (random.nextInt(Math.max(2, (int) ((world.growthOdds / world.spigotConfig.saplingModifier * 7) + 0.5F))) == 0)) { // Spigot) {
@@ -62,7 +64,7 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
     }
 
     public void grow(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
-        if (((Integer) iblockdata.get(BlockSapling.STAGE)).intValue() == 0) {
+        if (iblockdata.get(BlockSapling.STAGE).intValue() == 0) {
             world.setTypeAndData(blockposition, iblockdata.a(BlockSapling.STAGE), 4);
         } else {
             this.e(world, blockposition, iblockdata, random);
@@ -87,7 +89,7 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
         boolean flag = false;
         IBlockData iblockdata1;
 
-        switch (BlockSapling.SyntheticClass_1.a[((BlockWood.EnumLogVariant) iblockdata.get(BlockSapling.TYPE)).ordinal()]) {
+        switch (BlockSapling.SyntheticClass_1.a[iblockdata.get(BlockSapling.TYPE).ordinal()]) {
         case 1:
             label66:
             for (i = 0; i >= -1; --i) {
@@ -196,35 +198,42 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
         return iblockdata.getBlock() == this && iblockdata.get(BlockSapling.TYPE) == blockwood_enumlogvariant;
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((BlockWood.EnumLogVariant) iblockdata.get(BlockSapling.TYPE)).a();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockSapling.TYPE).a();
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, boolean flag) {
         return true;
     }
 
-    public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
-        return (double) world.random.nextFloat() < 0.45D;
+    @Override
+	public boolean a(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+        return world.random.nextFloat() < 0.45D;
     }
 
-    public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void b(World world, Random random, BlockPosition blockposition, IBlockData iblockdata) {
         this.grow(world, blockposition, iblockdata, random);
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockSapling.TYPE, BlockWood.EnumLogVariant.a(i & 7)).set(BlockSapling.STAGE, Integer.valueOf((i & 8) >> 3));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((BlockWood.EnumLogVariant) iblockdata.get(BlockSapling.TYPE)).a();
+        int i = b0 | iblockdata.get(BlockSapling.TYPE).a();
 
-        i |= ((Integer) iblockdata.get(BlockSapling.STAGE)).intValue() << 3;
+        i |= iblockdata.get(BlockSapling.STAGE).intValue() << 3;
         return i;
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockSapling.TYPE, BlockSapling.STAGE});
     }
 

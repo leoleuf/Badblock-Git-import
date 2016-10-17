@@ -94,7 +94,8 @@ public class FurnaceRecipe implements Recipe {
      *
      * @return The resulting stack.
      */
-    public ItemStack getResult() {
+    @Override
+	public ItemStack getResult() {
         return output.clone();
     }
 }

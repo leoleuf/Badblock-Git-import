@@ -179,7 +179,7 @@ public class StatisticList {
     }
 
     private static String a(Item item) {
-        MinecraftKey minecraftkey = (MinecraftKey) Item.REGISTRY.c(item);
+        MinecraftKey minecraftkey = Item.REGISTRY.c(item);
 
         return minecraftkey != null ? minecraftkey.toString().replace(':', '.') : null;
     }
@@ -228,6 +228,6 @@ public class StatisticList {
     }
 
     public static Statistic getStatistic(String s) {
-        return (Statistic) StatisticList.a.get(s);
+        return StatisticList.a.get(s);
     }
 }

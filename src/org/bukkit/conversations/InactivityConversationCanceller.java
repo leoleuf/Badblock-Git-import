@@ -23,19 +23,22 @@ public class InactivityConversationCanceller implements ConversationCanceller {
         this.timeoutSeconds = timeoutSeconds;
     }
 
-    public void setConversation(Conversation conversation) {
+    @Override
+	public void setConversation(Conversation conversation) {
         this.conversation = conversation;
         startTimer();
     }
 
-    public boolean cancelBasedOnInput(ConversationContext context, String input) {
+    @Override
+	public boolean cancelBasedOnInput(ConversationContext context, String input) {
         // Reset the inactivity timer
         stopTimer();
         startTimer();
         return false;
     }
 
-    public ConversationCanceller clone() {
+    @Override
+	public ConversationCanceller clone() {
         return new InactivityConversationCanceller(plugin, timeoutSeconds);
     }
 
@@ -44,7 +47,8 @@ public class InactivityConversationCanceller implements ConversationCanceller {
      */
     private void startTimer() {
         taskId = plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 if (conversation.getState() == Conversation.ConversationState.UNSTARTED) {
                     startTimer();
                 } else if (conversation.getState() ==  Conversation.ConversationState.STARTED) {

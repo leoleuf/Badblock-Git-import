@@ -8,15 +8,18 @@ public class PacketStatusInPing implements Packet<PacketStatusInListener> {
 
     public PacketStatusInPing() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readLong();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeLong(this.a);
     }
 
-    public void a(PacketStatusInListener packetstatusinlistener) {
+    @Override
+	public void a(PacketStatusInListener packetstatusinlistener) {
         packetstatusinlistener.a(this);
     }
 

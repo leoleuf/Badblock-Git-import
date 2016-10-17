@@ -13,7 +13,8 @@ public class BlockHalfTransparent extends Block {
         this.a = flag;
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 }

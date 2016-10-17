@@ -8,11 +8,13 @@ public class BlockBeacon extends BlockContainer {
         this.a(CreativeModeTab.f);
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityBeacon();
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -27,19 +29,23 @@ public class BlockBeacon extends BlockContainer {
         }
     }
 
-    public boolean c() {
+    @Override
+	public boolean c() {
         return false;
     }
 
-    public boolean d() {
+    @Override
+	public boolean d() {
         return false;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 
-    public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
+    @Override
+	public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
         super.postPlace(world, blockposition, iblockdata, entityliving, itemstack);
         if (itemstack.hasName()) {
             TileEntity tileentity = world.getTileEntity(blockposition);
@@ -51,7 +57,8 @@ public class BlockBeacon extends BlockContainer {
 
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         if (tileentity instanceof TileEntityBeacon) {
@@ -63,7 +70,8 @@ public class BlockBeacon extends BlockContainer {
 
     public static void f(final World world, final BlockPosition blockposition) {
         HttpUtilities.a.submit(new Runnable() {
-            public void run() {
+            @Override
+			public void run() {
                 Chunk chunk = world.getChunkAtWorldCoords(blockposition);
 
                 for (int i = blockposition.getY() - 1; i >= 0; --i) {
@@ -77,7 +85,8 @@ public class BlockBeacon extends BlockContainer {
 
                     if (iblockdata.getBlock() == Blocks.BEACON) {
                         ((WorldServer) world).postToMainThread(new Runnable() {
-                            public void run() {
+                            @Override
+							public void run() {
                                 TileEntity tileentity = world.getTileEntity(blockposition);
 
                                 if (tileentity instanceof TileEntityBeacon) {

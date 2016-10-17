@@ -22,7 +22,7 @@ public class BlockStateEnum<T extends Enum<T> & INamable> extends BlockState<T> 
         Iterator<T> iterator = collection.iterator();
 
         while (iterator.hasNext()) {
-            T oenum = (T) iterator.next();
+            T oenum = iterator.next();
             String s1 = ((INamable) oenum).getName();
 
             if (this.b.containsKey(s1)) {
@@ -34,11 +34,13 @@ public class BlockStateEnum<T extends Enum<T> & INamable> extends BlockState<T> 
 
     }
 
-    public Collection<T> c() {
+    @Override
+	public Collection<T> c() {
         return this.a;
     }
 
-    public String a(T t0) {
+    @Override
+	public String a(T t0) {
         return ((INamable) t0).getName();
     }
 

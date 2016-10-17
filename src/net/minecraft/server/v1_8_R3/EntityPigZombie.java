@@ -15,7 +15,8 @@ public class EntityPigZombie extends EntityZombie {
         this.fireProof = true;
     }
 
-    public void b(EntityLiving entityliving) {
+    @Override
+	public void b(EntityLiving entityliving) {
         super.b(entityliving);
         if (entityliving != null) {
             this.hurtBy = entityliving.getUniqueID();
@@ -23,23 +24,27 @@ public class EntityPigZombie extends EntityZombie {
 
     }
 
-    protected void n() {
+    @Override
+	protected void n() {
         this.targetSelector.a(1, new EntityPigZombie.PathfinderGoalAngerOther(this));
         this.targetSelector.a(2, new EntityPigZombie.PathfinderGoalAnger(this));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
-        this.getAttributeInstance(EntityPigZombie.a).setValue(0.0D);
+        this.getAttributeInstance(EntityZombie.a).setValue(0.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.23000000417232513D);
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(5.0D);
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         AttributeInstance attributeinstance = this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED);
 
         if (this.cm()) {
@@ -59,7 +64,7 @@ public class EntityPigZombie extends EntityZombie {
         if (this.angerLevel > 0 && this.hurtBy != null && this.getLastDamager() == null) {
             EntityHuman entityhuman = this.world.b(this.hurtBy);
 
-            this.b((EntityLiving) entityhuman);
+            this.b(entityhuman);
             this.killer = entityhuman;
             this.lastDamageByPlayerTime = this.be();
         }
@@ -67,15 +72,18 @@ public class EntityPigZombie extends EntityZombie {
         super.E();
     }
 
-    public boolean bR() {
+    @Override
+	public boolean bR() {
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL;
     }
 
-    public boolean canSpawn() {
-        return this.world.a(this.getBoundingBox(), (Entity) this) && this.world.getCubes(this, this.getBoundingBox()).isEmpty() && !this.world.containsLiquid(this.getBoundingBox());
+    @Override
+	public boolean canSpawn() {
+        return this.world.a(this.getBoundingBox(), this) && this.world.getCubes(this, this.getBoundingBox()).isEmpty() && !this.world.containsLiquid(this.getBoundingBox());
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setShort("Anger", (short) this.angerLevel);
         if (this.hurtBy != null) {
@@ -86,7 +94,8 @@ public class EntityPigZombie extends EntityZombie {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         this.angerLevel = nbttagcompound.getShort("Anger");
         String s = nbttagcompound.getString("HurtBy");
@@ -95,7 +104,7 @@ public class EntityPigZombie extends EntityZombie {
             this.hurtBy = UUID.fromString(s);
             EntityHuman entityhuman = this.world.b(this.hurtBy);
 
-            this.b((EntityLiving) entityhuman);
+            this.b(entityhuman);
             if (entityhuman != null) {
                 this.killer = entityhuman;
                 this.lastDamageByPlayerTime = this.be();
@@ -104,7 +113,8 @@ public class EntityPigZombie extends EntityZombie {
 
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else {
@@ -131,19 +141,23 @@ public class EntityPigZombie extends EntityZombie {
         return this.angerLevel > 0;
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.zombiepig.zpig";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.zombiepig.zpighurt";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.zombiepig.zpigdeath";
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         int j = this.random.nextInt(2 + i);
 
         int k;
@@ -160,19 +174,23 @@ public class EntityPigZombie extends EntityZombie {
 
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return false;
     }
 
-    protected void getRareDrop() {
+    @Override
+	protected void getRareDrop() {
         this.a(Items.GOLD_INGOT, 1);
     }
 
-    protected void a(DifficultyDamageScaler difficultydamagescaler) {
+    @Override
+	protected void a(DifficultyDamageScaler difficultydamagescaler) {
         this.setEquipment(0, new ItemStack(Items.GOLDEN_SWORD));
     }
 
-    public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
+    @Override
+	public GroupDataEntity prepare(DifficultyDamageScaler difficultydamagescaler, GroupDataEntity groupdataentity) {
         super.prepare(difficultydamagescaler, groupdataentity);
         this.setVillager(false);
         return groupdataentity;
@@ -184,7 +202,8 @@ public class EntityPigZombie extends EntityZombie {
             super(entitypigzombie, EntityHuman.class, true);
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             return ((EntityPigZombie) this.e).cm() && super.a();
         }
     }
@@ -195,7 +214,8 @@ public class EntityPigZombie extends EntityZombie {
             super(entitypigzombie, true, new Class[0]);
         }
 
-        protected void a(EntityCreature entitycreature, EntityLiving entityliving) {
+        @Override
+		protected void a(EntityCreature entitycreature, EntityLiving entityliving) {
             super.a(entitycreature, entityliving);
             if (entitycreature instanceof EntityPigZombie) {
                 ((EntityPigZombie) entitycreature).b((Entity) entityliving);

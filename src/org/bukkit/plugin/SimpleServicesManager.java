@@ -35,7 +35,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param plugin plugin with the provider
      * @param priority priority of the provider
      */
-    public <T> void register(Class<T> service, T provider, Plugin plugin, ServicePriority priority) {
+    @Override
+	public <T> void register(Class<T> service, T provider, Plugin plugin, ServicePriority priority) {
         RegisteredServiceProvider<T> registeredProvider = null;
         synchronized (providers) {
             List<RegisteredServiceProvider<?>> registered = providers.get(service);
@@ -63,7 +64,8 @@ public class SimpleServicesManager implements ServicesManager {
      *
      * @param plugin The plugin
      */
-    public void unregisterAll(Plugin plugin) {
+    @Override
+	public void unregisterAll(Plugin plugin) {
         ArrayList<ServiceUnregisterEvent> unregisteredEvents = new ArrayList<ServiceUnregisterEvent>();
         synchronized (providers) {
             Iterator<Map.Entry<Class<?>, List<RegisteredServiceProvider<?>>>> it = providers.entrySet().iterator();
@@ -105,7 +107,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param service The service interface
      * @param provider The service provider implementation
      */
-    public void unregister(Class<?> service, Object provider) {
+    @Override
+	public void unregister(Class<?> service, Object provider) {
         ArrayList<ServiceUnregisterEvent> unregisteredEvents = new ArrayList<ServiceUnregisterEvent>();
         synchronized (providers) {
             Iterator<Map.Entry<Class<?>, List<RegisteredServiceProvider<?>>>> it = providers.entrySet().iterator();
@@ -152,7 +155,8 @@ public class SimpleServicesManager implements ServicesManager {
      *
      * @param provider The service provider implementation
      */
-    public void unregister(Object provider) {
+    @Override
+	public void unregister(Object provider) {
         ArrayList<ServiceUnregisterEvent> unregisteredEvents = new ArrayList<ServiceUnregisterEvent>();
         synchronized (providers) {
             Iterator<Map.Entry<Class<?>, List<RegisteredServiceProvider<?>>>> it = providers.entrySet().iterator();
@@ -196,7 +200,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param service The service interface
      * @return provider or null
      */
-    public <T> T load(Class<T> service) {
+    @Override
+	public <T> T load(Class<T> service) {
         synchronized (providers) {
             List<RegisteredServiceProvider<?>> registered = providers.get(service);
 
@@ -217,7 +222,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param service The service interface
      * @return provider registration or null
      */
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public <T> RegisteredServiceProvider<T> getRegistration(Class<T> service) {
         synchronized (providers) {
             List<RegisteredServiceProvider<?>> registered = providers.get(service);
@@ -237,7 +243,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param plugin The plugin
      * @return provider registration or null
      */
-    public List<RegisteredServiceProvider<?>> getRegistrations(Plugin plugin) {
+    @Override
+	public List<RegisteredServiceProvider<?>> getRegistrations(Plugin plugin) {
         ImmutableList.Builder<RegisteredServiceProvider<?>> ret = ImmutableList.<RegisteredServiceProvider<?>>builder();
         synchronized (providers) {
             for (List<RegisteredServiceProvider<?>> registered : providers.values()) {
@@ -259,7 +266,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param service The service interface
      * @return a copy of the list of registrations
      */
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
     public <T> List<RegisteredServiceProvider<T>> getRegistrations(Class<T> service) {
         ImmutableList.Builder<RegisteredServiceProvider<T>> ret;
         synchronized (providers) {
@@ -285,7 +293,8 @@ public class SimpleServicesManager implements ServicesManager {
      *
      * @return a copy of the set of known services
      */
-    public Set<Class<?>> getKnownServices() {
+    @Override
+	public Set<Class<?>> getKnownServices() {
         synchronized (providers) {
             return ImmutableSet.<Class<?>>copyOf(providers.keySet());
         }
@@ -298,7 +307,8 @@ public class SimpleServicesManager implements ServicesManager {
      * @param service service to check
      * @return true if and only if there are registered providers
      */
-    public <T> boolean isProvidedFor(Class<T> service) {
+    @Override
+	public <T> boolean isProvidedFor(Class<T> service) {
         synchronized (providers) {
             return providers.containsKey(service);
         }

@@ -27,17 +27,20 @@ public class ItemMultiTexture extends ItemBlock {
                 return astring[i];
             }
 
-            public Object apply(Object object) {
+            @Override
+			public Object apply(Object object) {
                 return this.a((ItemStack) object);
             }
         });
     }
 
-    public int filterData(int i) {
+    @Override
+	public int filterData(int i) {
         return i;
     }
 
-    public String e_(ItemStack itemstack) {
-        return super.getName() + "." + (String) this.c.apply(itemstack);
+    @Override
+	public String e_(ItemStack itemstack) {
+        return super.getName() + "." + this.c.apply(itemstack);
     }
 }

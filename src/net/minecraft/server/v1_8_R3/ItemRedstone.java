@@ -6,7 +6,8 @@ public class ItemRedstone extends Item {
         this.a(CreativeModeTab.d);
     }
 
-    public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interactWith(ItemStack itemstack, EntityHuman entityhuman, World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2) {
         boolean flag = world.getType(blockposition).getBlock().a(world, blockposition);
         BlockPosition blockposition1 = flag ? blockposition : blockposition.shift(enumdirection);
 

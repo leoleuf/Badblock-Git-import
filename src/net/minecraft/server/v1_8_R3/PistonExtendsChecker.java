@@ -43,7 +43,7 @@ public class PistonExtendsChecker {
             return false;
         } else {
             for (int i = 0; i < this.e.size(); ++i) {
-                BlockPosition blockposition = (BlockPosition) this.e.get(i);
+                BlockPosition blockposition = this.e.get(i);
 
                 if (this.a.getType(blockposition).getBlock() == Blocks.SLIME && !this.b(blockposition)) {
                     return false;
@@ -104,7 +104,7 @@ public class PistonExtendsChecker {
                         this.a(j, l);
 
                         for (int i1 = 0; i1 <= l + j; ++i1) {
-                            BlockPosition blockposition3 = (BlockPosition) this.e.get(i1);
+                            BlockPosition blockposition3 = this.e.get(i1);
 
                             if (this.a.getType(blockposition3).getBlock() == Blocks.SLIME && !this.b(blockposition3)) {
                                 return false;

@@ -11,17 +11,19 @@ public class ChunkCoordIntPair {
     }
 
     public static long a(int i, int j) {
-        return (long) i & 4294967295L | ((long) j & 4294967295L) << 32;
+        return i & 4294967295L | (j & 4294967295L) << 32;
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         int i = 1664525 * this.x + 1013904223;
         int j = 1664525 * (this.z ^ -559038737) + 1013904223;
 
         return i ^ j;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (this == object) {
             return true;
         } else if (!(object instanceof ChunkCoordIntPair)) {
@@ -65,7 +67,8 @@ public class ChunkCoordIntPair {
         return new BlockPosition(this.a(), i, this.b());
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return "[" + this.x + ", " + this.z + "]";
     }
 }

@@ -28,7 +28,8 @@ public class PathfinderGoalAvoidTarget<T extends Entity> extends PathfinderGoal 
                 return entity.isAlive() && PathfinderGoalAvoidTarget.this.a.getEntitySenses().a(entity);
             }
 
-            public boolean apply(Object object) {
+            @Override
+			public boolean apply(Object object) {
                 return this.a((Entity) object);
             }
         };
@@ -42,8 +43,9 @@ public class PathfinderGoalAvoidTarget<T extends Entity> extends PathfinderGoal 
         this.a(1);
     }
 
-    public boolean a() {
-        List list = this.a.world.a(this.i, this.a.getBoundingBox().grow((double) this.f, 3.0D, (double) this.f), Predicates.and(new Predicate[] { IEntitySelector.d, this.c, this.j}));
+    @Override
+	public boolean a() {
+        List list = this.a.world.a(this.i, this.a.getBoundingBox().grow(this.f, 3.0D, this.f), Predicates.and(new Predicate[] { IEntitySelector.d, this.c, this.j}));
 
         if (list.isEmpty()) {
             return false;
@@ -62,19 +64,23 @@ public class PathfinderGoalAvoidTarget<T extends Entity> extends PathfinderGoal 
         }
     }
 
-    public boolean b() {
+    @Override
+	public boolean b() {
         return !this.h.m();
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.h.a(this.g, this.d);
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.b = null;
     }
 
-    public void e() {
+    @Override
+	public void e() {
         if (this.a.h(this.b) < 49.0D) {
             this.a.getNavigation().a(this.e);
         } else {

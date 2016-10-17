@@ -16,7 +16,8 @@ public class ConsoleCommandCompleter implements Completer {
         this.server = server;
     }
 
-    public int complete(final String buffer, final int cursor, final List<CharSequence> candidates) {
+    @Override
+	public int complete(final String buffer, final int cursor, final List<CharSequence> candidates) {
         Waitable<List<String>> waitable = new Waitable<List<String>>() {
             @Override
             protected List<String> evaluate() {

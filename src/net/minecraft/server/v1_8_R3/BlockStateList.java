@@ -30,7 +30,8 @@ public class BlockStateList {
             return iblockstate == null ? "<NULL>" : iblockstate.a();
         }
 
-        public Object apply(Object object) {
+        @Override
+		public Object apply(Object object) {
             return this.a((IBlockState) object);
         }
     };
@@ -45,7 +46,8 @@ public class BlockStateList {
                 return iblockstate.a().compareTo(iblockstate1.a());
             }
 
-            public int compare(Object object, Object object1) {
+            @Override
+			public int compare(Object object, Object object1) {
                 return this.a((IBlockState) object, (IBlockState) object1);
             }
         });
@@ -69,7 +71,7 @@ public class BlockStateList {
         while (iterator.hasNext()) {
             BlockStateList.BlockData blockstatelist_blockdata1 = (BlockStateList.BlockData) iterator.next();
 
-            blockstatelist_blockdata1.a((Map) linkedhashmap);
+            blockstatelist_blockdata1.a(linkedhashmap);
         }
 
         this.e = ImmutableList.copyOf(arraylist);
@@ -83,14 +85,14 @@ public class BlockStateList {
         ArrayList arraylist = Lists.newArrayList();
 
         for (int i = 0; i < this.d.size(); ++i) {
-            arraylist.add(((IBlockState) this.d.get(i)).c());
+            arraylist.add(this.d.get(i).c());
         }
 
         return arraylist;
     }
 
     public IBlockData getBlockData() {
-        return (IBlockData) this.e.get(0);
+        return this.e.get(0);
     }
 
     public Block getBlock() {
@@ -101,7 +103,8 @@ public class BlockStateList {
         return this.d;
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return Objects.toStringHelper(this).add("block", Block.REGISTRY.c(this.c)).add("properties", Iterables.transform(this.d, BlockStateList.b)).toString();
     }
 
@@ -116,41 +119,48 @@ public class BlockStateList {
             this.b = immutablemap;
         }
 
-        public Collection<IBlockState> a() {
+        @Override
+		public Collection<IBlockState> a() {
             return Collections.unmodifiableCollection(this.b.keySet());
         }
 
-        public <T extends Comparable<T>> T get(IBlockState<T> iblockstate) {
+        @Override
+		public <T extends Comparable<T>> T get(IBlockState<T> iblockstate) {
             if (!this.b.containsKey(iblockstate)) {
                 throw new IllegalArgumentException("Cannot get property " + iblockstate + " as it does not exist in " + this.a.P());
             } else {
-                return (T) iblockstate.b().cast(this.b.get(iblockstate));
+                return iblockstate.b().cast(this.b.get(iblockstate));
             }
         }
 
-        public <T extends Comparable<T>, V extends T> IBlockData set(IBlockState<T> iblockstate, Comparable<?> v0) {
+        @Override
+		public <T extends Comparable<T>, V extends T> IBlockData set(IBlockState<T> iblockstate, Comparable<?> v0) {
             if (!this.b.containsKey(iblockstate)) {
                 throw new IllegalArgumentException("Cannot set property " + iblockstate + " as it does not exist in " + this.a.P());
             } else if (!iblockstate.c().contains(v0)) {
                 throw new IllegalArgumentException("Cannot set property " + iblockstate + " to " + v0 + " on block " + Block.REGISTRY.c(this.a) + ", it is not an allowed value");
             } else {
-                return (IBlockData) (this.b.get(iblockstate) == v0 ? this : (IBlockData) this.c.get(iblockstate, v0));
+                return this.b.get(iblockstate) == v0 ? this : (IBlockData) this.c.get(iblockstate, v0);
             }
         }
 
-        public ImmutableMap<IBlockState, Comparable> b() {
+        @Override
+		public ImmutableMap<IBlockState, Comparable> b() {
             return this.b;
         }
 
-        public Block getBlock() {
+        @Override
+		public Block getBlock() {
             return this.a;
         }
 
-        public boolean equals(Object object) {
+        @Override
+		public boolean equals(Object object) {
             return this == object;
         }
 
-        public int hashCode() {
+        @Override
+		public int hashCode() {
             return this.b.hashCode();
         }
 

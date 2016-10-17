@@ -13,7 +13,8 @@ public class BlockNote extends BlockContainer {
         this.a(CreativeModeTab.d);
     }
 
-    public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         boolean flag = world.isBlockIndirectlyPowered(blockposition);
         TileEntity tileentity = world.getTileEntity(blockposition);
 
@@ -31,7 +32,8 @@ public class BlockNote extends BlockContainer {
 
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (world.isClientSide) {
             return true;
         } else {
@@ -49,7 +51,8 @@ public class BlockNote extends BlockContainer {
         }
     }
 
-    public void attack(World world, BlockPosition blockposition, EntityHuman entityhuman) {
+    @Override
+	public void attack(World world, BlockPosition blockposition, EntityHuman entityhuman) {
         if (!world.isClientSide) {
             TileEntity tileentity = world.getTileEntity(blockposition);
 
@@ -61,7 +64,8 @@ public class BlockNote extends BlockContainer {
         }
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityNote();
     }
 
@@ -70,18 +74,20 @@ public class BlockNote extends BlockContainer {
             i = 0;
         }
 
-        return (String) BlockNote.a.get(i);
+        return BlockNote.a.get(i);
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
-        float f = (float) Math.pow(2.0D, (double) (j - 12) / 12.0D);
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
+        float f = (float) Math.pow(2.0D, (j - 12) / 12.0D);
 
-        world.makeSound((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D, "note." + this.b(i), 3.0F, f);
-        world.addParticle(EnumParticle.NOTE, (double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 1.2D, (double) blockposition.getZ() + 0.5D, (double) j / 24.0D, 0.0D, 0.0D, new int[0]);
+        world.makeSound(blockposition.getX() + 0.5D, blockposition.getY() + 0.5D, blockposition.getZ() + 0.5D, "note." + this.b(i), 3.0F, f);
+        world.addParticle(EnumParticle.NOTE, blockposition.getX() + 0.5D, blockposition.getY() + 1.2D, blockposition.getZ() + 0.5D, j / 24.0D, 0.0D, 0.0D, new int[0]);
         return true;
     }
 
-    public int b() {
+    @Override
+	public int b() {
         return 3;
     }
 }

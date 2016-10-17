@@ -21,7 +21,7 @@ public class MathHelper {
     }
 
     public static float c(float f) {
-        return (float) Math.sqrt((double) f);
+        return (float) Math.sqrt(f);
     }
 
     public static float sqrt(double d0) {
@@ -31,19 +31,19 @@ public class MathHelper {
     public static int d(float f) {
         int i = (int) f;
 
-        return f < (float) i ? i - 1 : i;
+        return f < i ? i - 1 : i;
     }
 
     public static int floor(double d0) {
         int i = (int) d0;
 
-        return d0 < (double) i ? i - 1 : i;
+        return d0 < i ? i - 1 : i;
     }
 
     public static long d(double d0) {
         long i = (long) d0;
 
-        return d0 < (double) i ? i - 1L : i;
+        return d0 < i ? i - 1L : i;
     }
 
     public static float e(float f) {
@@ -57,13 +57,13 @@ public class MathHelper {
     public static int f(float f) {
         int i = (int) f;
 
-        return f > (float) i ? i + 1 : i;
+        return f > i ? i + 1 : i;
     }
 
     public static int f(double d0) {
         int i = (int) d0;
 
-        return d0 > (double) i ? i + 1 : i;
+        return d0 > i ? i + 1 : i;
     }
 
     public static int clamp(int i, int j, int k) {
@@ -187,7 +187,7 @@ public class MathHelper {
 
     private static int e(int i) {
         i = d(i) ? i : b(i);
-        return MathHelper.c[(int) ((long) i * 125613361L >> 27) & 31];
+        return MathHelper.c[(int) (i * 125613361L >> 27) & 31];
     }
 
     public static int c(int i) {
@@ -290,7 +290,7 @@ public class MathHelper {
         int i;
 
         for (i = 0; i < 65536; ++i) {
-            MathHelper.b[i] = (float) Math.sin((double) i * 3.141592653589793D * 2.0D / 65536.0D);
+            MathHelper.b[i] = (float) Math.sin(i * 3.141592653589793D * 2.0D / 65536.0D);
         }
 
         c = new int[] { 0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8, 31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9};
@@ -299,7 +299,7 @@ public class MathHelper {
         f = new double[257];
 
         for (i = 0; i < 257; ++i) {
-            double d0 = (double) i / 256.0D;
+            double d0 = i / 256.0D;
             double d1 = Math.asin(d0);
 
             MathHelper.f[i] = Math.cos(d1);

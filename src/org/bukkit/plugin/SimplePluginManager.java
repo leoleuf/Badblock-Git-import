@@ -68,7 +68,8 @@ public final class SimplePluginManager implements PluginManager {
      * @throws IllegalArgumentException Thrown when the given Class is not a
      *     valid PluginLoader
      */
-    public void registerInterface(Class<? extends PluginLoader> loader) throws IllegalArgumentException {
+    @Override
+	public void registerInterface(Class<? extends PluginLoader> loader) throws IllegalArgumentException {
         PluginLoader instance;
 
         if (PluginLoader.class.isAssignableFrom(loader)) {
@@ -103,7 +104,8 @@ public final class SimplePluginManager implements PluginManager {
      * @param directory Directory to check for plugins
      * @return A list of all plugins loaded
      */
-    public Plugin[] loadPlugins(File directory) {
+    @Override
+	public Plugin[] loadPlugins(File directory) {
         Validate.notNull(directory, "Directory cannot be null");
         Validate.isTrue(directory.isDirectory(), "Directory must be a directory");
 
@@ -313,7 +315,8 @@ public final class SimplePluginManager implements PluginManager {
      * @throws UnknownDependencyException If a required dependency could not
      *     be found
      */
-    public synchronized Plugin loadPlugin(File file) throws InvalidPluginException, UnknownDependencyException {
+    @Override
+	public synchronized Plugin loadPlugin(File file) throws InvalidPluginException, UnknownDependencyException {
         Validate.notNull(file, "File cannot be null");
 
         checkUpdate(file);
@@ -359,11 +362,13 @@ public final class SimplePluginManager implements PluginManager {
      * @param name Name of the plugin to check
      * @return Plugin if it exists, otherwise null
      */
-    public synchronized Plugin getPlugin(String name) {
+    @Override
+	public synchronized Plugin getPlugin(String name) {
         return lookupNames.get(name.replace(' ', '_').toLowerCase()); // Spigot
     }
 
-    public synchronized Plugin[] getPlugins() {
+    @Override
+	public synchronized Plugin[] getPlugins() {
         return plugins.toArray(new Plugin[0]);
     }
 
@@ -375,7 +380,8 @@ public final class SimplePluginManager implements PluginManager {
      * @param name Name of the plugin to check
      * @return true if the plugin is enabled, otherwise false
      */
-    public boolean isPluginEnabled(String name) {
+    @Override
+	public boolean isPluginEnabled(String name) {
         Plugin plugin = getPlugin(name);
 
         return isPluginEnabled(plugin);
@@ -387,7 +393,8 @@ public final class SimplePluginManager implements PluginManager {
      * @param plugin Plugin to check
      * @return true if the plugin is enabled, otherwise false
      */
-    public boolean isPluginEnabled(Plugin plugin) {
+    @Override
+	public boolean isPluginEnabled(Plugin plugin) {
         if ((plugin != null) && (plugins.contains(plugin))) {
             return plugin.isEnabled();
         } else {
@@ -395,7 +402,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public void enablePlugin(final Plugin plugin) {
+    @Override
+	public void enablePlugin(final Plugin plugin) {
         if (!plugin.isEnabled()) {
             List<Command> pluginCommands = PluginCommandYamlParser.parse(plugin);
 
@@ -414,14 +422,16 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public void disablePlugins() {
+    @Override
+	public void disablePlugins() {
         Plugin[] plugins = getPlugins();
         for (int i = plugins.length - 1; i >= 0; i--) {
             disablePlugin(plugins[i]);
         }
     }
 
-    public void disablePlugin(final Plugin plugin) {
+    @Override
+	public void disablePlugin(final Plugin plugin) {
         if (plugin.isEnabled()) {
             try {
                 plugin.getPluginLoader().disablePlugin(plugin);
@@ -468,7 +478,8 @@ public final class SimplePluginManager implements PluginManager {
     }
     // Paper end
 
-    public void clearPlugins() {
+    @Override
+	public void clearPlugins() {
         synchronized (this) {
             disablePlugins();
             plugins.clear();
@@ -488,7 +499,8 @@ public final class SimplePluginManager implements PluginManager {
      *
      * @param event Event details
      */
-    public void callEvent(Event event) {
+    @Override
+	public void callEvent(Event event) {
         if (event.isAsynchronous()) {
             if (Thread.holdsLock(this)) {
                 throw new IllegalStateException(event.getEventName() + " cannot be triggered asynchronously from inside synchronized code.");
@@ -540,7 +552,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public void registerEvents(Listener listener, Plugin plugin) {
+    @Override
+	public void registerEvents(Listener listener, Plugin plugin) {
         if (!plugin.isEnabled()) {
             throw new IllegalPluginAccessException("Plugin attempted to register " + listener + " while not enabled");
         }
@@ -551,7 +564,8 @@ public final class SimplePluginManager implements PluginManager {
 
     }
 
-    public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin) {
+    @Override
+	public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin) {
         registerEvent(event, listener, priority, executor, plugin, false);
     }
 
@@ -567,7 +581,8 @@ public final class SimplePluginManager implements PluginManager {
      * @param ignoreCancelled Do not call executor if event was already
      *     cancelled
      */
-    public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled) {
+    @Override
+	public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled) {
         Validate.notNull(listener, "Listener cannot be null");
         Validate.notNull(priority, "Priority cannot be null");
         Validate.notNull(executor, "Executor cannot be null");
@@ -610,11 +625,13 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public Permission getPermission(String name) {
+    @Override
+	public Permission getPermission(String name) {
         return permissions.get(name.toLowerCase());
     }
 
-    public void addPermission(Permission perm) {
+    @Override
+	public void addPermission(Permission perm) {
         String name = perm.getName().toLowerCase();
 
         if (permissions.containsKey(name)) {
@@ -625,19 +642,23 @@ public final class SimplePluginManager implements PluginManager {
         calculatePermissionDefault(perm);
     }
 
-    public Set<Permission> getDefaultPermissions(boolean op) {
+    @Override
+	public Set<Permission> getDefaultPermissions(boolean op) {
         return ImmutableSet.copyOf(defaultPerms.get(op));
     }
 
-    public void removePermission(Permission perm) {
+    @Override
+	public void removePermission(Permission perm) {
         removePermission(perm.getName());
     }
 
-    public void removePermission(String name) {
+    @Override
+	public void removePermission(String name) {
         permissions.remove(name.toLowerCase());
     }
 
-    public void recalculatePermissionDefaults(Permission perm) {
+    @Override
+	public void recalculatePermissionDefaults(Permission perm) {
         if (perm != null && permissions.containsKey(perm.getName().toLowerCase())) {
             defaultPerms.get(true).remove(perm);
             defaultPerms.get(false).remove(perm);
@@ -665,7 +686,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public void subscribeToPermission(String permission, Permissible permissible) {
+    @Override
+	public void subscribeToPermission(String permission, Permissible permissible) {
         String name = permission.toLowerCase();
         Map<Permissible, Boolean> map = permSubs.get(name);
 
@@ -677,7 +699,8 @@ public final class SimplePluginManager implements PluginManager {
         map.put(permissible, true);
     }
 
-    public void unsubscribeFromPermission(String permission, Permissible permissible) {
+    @Override
+	public void unsubscribeFromPermission(String permission, Permissible permissible) {
         String name = permission.toLowerCase();
         Map<Permissible, Boolean> map = permSubs.get(name);
 
@@ -690,7 +713,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public Set<Permissible> getPermissionSubscriptions(String permission) {
+    @Override
+	public Set<Permissible> getPermissionSubscriptions(String permission) {
         String name = permission.toLowerCase();
         Map<Permissible, Boolean> map = permSubs.get(name);
 
@@ -701,7 +725,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public void subscribeToDefaultPerms(boolean op, Permissible permissible) {
+    @Override
+	public void subscribeToDefaultPerms(boolean op, Permissible permissible) {
         Map<Permissible, Boolean> map = defSubs.get(op);
 
         if (map == null) {
@@ -712,7 +737,8 @@ public final class SimplePluginManager implements PluginManager {
         map.put(permissible, true);
     }
 
-    public void unsubscribeFromDefaultPerms(boolean op, Permissible permissible) {
+    @Override
+	public void unsubscribeFromDefaultPerms(boolean op, Permissible permissible) {
         Map<Permissible, Boolean> map = defSubs.get(op);
 
         if (map != null) {
@@ -724,7 +750,8 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public Set<Permissible> getDefaultPermSubscriptions(boolean op) {
+    @Override
+	public Set<Permissible> getDefaultPermSubscriptions(boolean op) {
         Map<Permissible, Boolean> map = defSubs.get(op);
 
         if (map == null) {
@@ -734,11 +761,13 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    public Set<Permission> getPermissions() {
+    @Override
+	public Set<Permission> getPermissions() {
         return new HashSet<Permission>(permissions.values());
     }
 
-    public boolean useTimings() {
+    @Override
+	public boolean useTimings() {
         return co.aikar.timings.Timings.isTimingsEnabled(); // Spigot
     }
 

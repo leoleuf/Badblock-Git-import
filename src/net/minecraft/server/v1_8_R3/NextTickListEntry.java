@@ -10,12 +10,13 @@ public class NextTickListEntry implements Comparable<NextTickListEntry> {
     private long f;
 
     public NextTickListEntry(BlockPosition blockposition, Block block) {
-        this.f = (long) (NextTickListEntry.d++);
+        this.f = (NextTickListEntry.d++);
         this.a = blockposition;
         this.e = block;
     }
 
-    public boolean equals(Object object) {
+    @Override
+	public boolean equals(Object object) {
         if (!(object instanceof NextTickListEntry)) {
             return false;
         } else {
@@ -25,7 +26,8 @@ public class NextTickListEntry implements Comparable<NextTickListEntry> {
         }
     }
 
-    public int hashCode() {
+    @Override
+	public int hashCode() {
         return this.a.hashCode();
     }
 
@@ -42,7 +44,8 @@ public class NextTickListEntry implements Comparable<NextTickListEntry> {
         return this.b < nextticklistentry.b ? -1 : (this.b > nextticklistentry.b ? 1 : (this.c != nextticklistentry.c ? this.c - nextticklistentry.c : (this.f < nextticklistentry.f ? -1 : (this.f > nextticklistentry.f ? 1 : 0))));
     }
 
-    public String toString() {
+    @Override
+	public String toString() {
         return Block.getId(this.e) + ": " + this.a + ", " + this.b + ", " + this.c + ", " + this.f;
     }
 
@@ -50,7 +53,8 @@ public class NextTickListEntry implements Comparable<NextTickListEntry> {
         return this.e;
     }
 
-    public int compareTo(NextTickListEntry object) {
-        return this.a((NextTickListEntry) object);
+    @Override
+	public int compareTo(NextTickListEntry object) {
+        return this.a(object);
     }
 }

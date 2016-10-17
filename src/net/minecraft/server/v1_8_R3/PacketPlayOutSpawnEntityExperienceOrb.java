@@ -20,7 +20,8 @@ public class PacketPlayOutSpawnEntityExperienceOrb implements Packet<PacketListe
         this.e = entityexperienceorb.j();
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.e();
         this.b = packetdataserializer.readInt();
         this.c = packetdataserializer.readInt();
@@ -28,7 +29,8 @@ public class PacketPlayOutSpawnEntityExperienceOrb implements Packet<PacketListe
         this.e = packetdataserializer.readShort();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.b(this.a);
         packetdataserializer.writeInt(this.b);
         packetdataserializer.writeInt(this.c);
@@ -36,7 +38,8 @@ public class PacketPlayOutSpawnEntityExperienceOrb implements Packet<PacketListe
         packetdataserializer.writeShort(this.e);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

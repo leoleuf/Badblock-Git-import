@@ -38,7 +38,8 @@ public class BiomeForest extends BiomeBase {
 
     }
 
-    protected BiomeBase a(int i, boolean flag) {
+    @Override
+	protected BiomeBase a(int i, boolean flag) {
         if (this.aG == 2) {
             this.aj = 353825;
             this.ai = i;
@@ -52,14 +53,16 @@ public class BiomeForest extends BiomeBase {
         }
     }
 
-    public WorldGenTreeAbstract a(Random random) {
-        return (WorldGenTreeAbstract) (this.aG == 3 && random.nextInt(3) > 0 ? BiomeForest.aF : (this.aG != 2 && random.nextInt(5) != 0 ? this.aA : BiomeForest.aE));
+    @Override
+	public WorldGenTreeAbstract a(Random random) {
+        return this.aG == 3 && random.nextInt(3) > 0 ? BiomeForest.aF : (this.aG != 2 && random.nextInt(5) != 0 ? this.aA : BiomeForest.aE);
     }
 
-    public BlockFlowers.EnumFlowerVarient a(Random random, BlockPosition blockposition) {
+    @Override
+	public BlockFlowers.EnumFlowerVarient a(Random random, BlockPosition blockposition) {
         if (this.aG == 1) {
-            double d0 = MathHelper.a((1.0D + BiomeForest.af.a((double) blockposition.getX() / 48.0D, (double) blockposition.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
-            BlockFlowers.EnumFlowerVarient blockflowers_enumflowervarient = BlockFlowers.EnumFlowerVarient.values()[(int) (d0 * (double) BlockFlowers.EnumFlowerVarient.values().length)];
+            double d0 = MathHelper.a((1.0D + BiomeBase.af.a(blockposition.getX() / 48.0D, blockposition.getZ() / 48.0D)) / 2.0D, 0.0D, 0.9999D);
+            BlockFlowers.EnumFlowerVarient blockflowers_enumflowervarient = BlockFlowers.EnumFlowerVarient.values()[(int) (d0 * BlockFlowers.EnumFlowerVarient.values().length)];
 
             return blockflowers_enumflowervarient == BlockFlowers.EnumFlowerVarient.BLUE_ORCHID ? BlockFlowers.EnumFlowerVarient.POPPY : blockflowers_enumflowervarient;
         } else {
@@ -67,7 +70,8 @@ public class BiomeForest extends BiomeBase {
         }
     }
 
-    public void a(World world, Random random, BlockPosition blockposition) {
+    @Override
+	public void a(World world, Random random, BlockPosition blockposition) {
         int i;
         int j;
         int k;
@@ -106,11 +110,11 @@ public class BiomeForest extends BiomeBase {
         while (j < i) {
             k = random.nextInt(3);
             if (k == 0) {
-                BiomeForest.ag.a(BlockTallPlant.EnumTallFlowerVariants.SYRINGA);
+                BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.SYRINGA);
             } else if (k == 1) {
-                BiomeForest.ag.a(BlockTallPlant.EnumTallFlowerVariants.ROSE);
+                BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.ROSE);
             } else if (k == 2) {
-                BiomeForest.ag.a(BlockTallPlant.EnumTallFlowerVariants.PAEONIA);
+                BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.PAEONIA);
             }
 
             l = 0;
@@ -121,7 +125,7 @@ public class BiomeForest extends BiomeBase {
                     int j1 = random.nextInt(16) + 8;
                     int k1 = random.nextInt(world.getHighestBlockYAt(blockposition.a(i1, 0, j1)).getY() + 32);
 
-                    if (!BiomeForest.ag.generate(world, random, new BlockPosition(blockposition.getX() + i1, k1, blockposition.getZ() + j1))) {
+                    if (!BiomeBase.ag.generate(world, random, new BlockPosition(blockposition.getX() + i1, k1, blockposition.getZ() + j1))) {
                         ++l;
                         continue;
                     }
@@ -135,7 +139,8 @@ public class BiomeForest extends BiomeBase {
         super.a(world, random, blockposition);
     }
 
-    protected BiomeBase d(final int i) {
+    @Override
+	protected BiomeBase d(final int i) {
         if (this.id == BiomeBase.FOREST.id) {
             BiomeForest biomeforest = new BiomeForest(i, 1);
 
@@ -146,11 +151,13 @@ public class BiomeForest extends BiomeBase {
             return biomeforest;
         } else {
             return this.id != BiomeBase.BIRCH_FOREST.id && this.id != BiomeBase.BIRCH_FOREST_HILLS.id ? new BiomeBaseSub(i, this) {
-                public void a(World world, Random random, BlockPosition blockposition) {
+                @Override
+				public void a(World world, Random random, BlockPosition blockposition) {
                     this.aE.a(world, random, blockposition);
                 }
             } : new BiomeBaseSub(i, this) {
-                public WorldGenTreeAbstract a(Random random) {
+                @Override
+				public WorldGenTreeAbstract a(Random random) {
                     return random.nextBoolean() ? BiomeForest.aD : BiomeForest.aE;
                 }
             };

@@ -11,7 +11,8 @@ public class IpBanList extends JsonList<String, IpBanEntry> {
         super(file);
     }
 
-    protected JsonListEntry<String> a(JsonObject jsonobject) {
+    @Override
+	protected JsonListEntry<String> a(JsonObject jsonobject) {
         return new IpBanEntry(jsonobject);
     }
 
@@ -24,7 +25,7 @@ public class IpBanList extends JsonList<String, IpBanEntry> {
     public IpBanEntry get(SocketAddress socketaddress) {
         String s = this.c(socketaddress);
 
-        return (IpBanEntry) this.get(s);
+        return this.get(s);
     }
 
     private String c(SocketAddress socketaddress) {

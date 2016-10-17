@@ -17,16 +17,19 @@ public class EntityItemFrame extends EntityHanging {
         this.setDirection(enumdirection);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         this.getDataWatcher().add(8, 5);
         this.getDataWatcher().a(9, Byte.valueOf((byte) 0));
     }
 
-    public float ao() {
+    @Override
+	public float ao() {
         return 0.0F;
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         if (this.isInvulnerable(damagesource)) {
             return false;
         } else if (!damagesource.isExplosion() && this.getItem() != null) {
@@ -46,15 +49,18 @@ public class EntityItemFrame extends EntityHanging {
         }
     }
 
-    public int l() {
+    @Override
+	public int l() {
         return 12;
     }
 
-    public int m() {
+    @Override
+	public int m() {
         return 12;
     }
 
-    public void b(Entity entity) {
+    @Override
+	public void b(Entity entity) {
         this.a(entity, true);
     }
 
@@ -135,7 +141,8 @@ public class EntityItemFrame extends EntityHanging {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         if (this.getItem() != null) {
             nbttagcompound.set("Item", this.getItem().save(new NBTTagCompound()));
             nbttagcompound.setByte("ItemRotation", (byte) this.getRotation());
@@ -145,7 +152,8 @@ public class EntityItemFrame extends EntityHanging {
         super.b(nbttagcompound);
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         NBTTagCompound nbttagcompound1 = nbttagcompound.getCompound("Item");
 
         if (nbttagcompound1 != null && !nbttagcompound1.isEmpty()) {
@@ -163,7 +171,8 @@ public class EntityItemFrame extends EntityHanging {
         super.a(nbttagcompound);
     }
 
-    public boolean e(EntityHuman entityhuman) {
+    @Override
+	public boolean e(EntityHuman entityhuman) {
         if (this.getItem() == null) {
             ItemStack itemstack = entityhuman.bA();
 

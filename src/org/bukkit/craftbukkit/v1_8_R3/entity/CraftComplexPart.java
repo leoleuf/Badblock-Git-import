@@ -14,7 +14,8 @@ public class CraftComplexPart extends CraftEntity implements ComplexEntityPart {
         super(server, entity);
     }
 
-    public ComplexLivingEntity getParent() {
+    @Override
+	public ComplexLivingEntity getParent() {
         return (ComplexLivingEntity) ((EntityEnderDragon) getHandle().owner).getBukkitEntity();
     }
 
@@ -38,7 +39,8 @@ public class CraftComplexPart extends CraftEntity implements ComplexEntityPart {
         return "CraftComplexPart";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.COMPLEX_PART;
     }
 }

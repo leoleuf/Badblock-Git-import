@@ -9,7 +9,8 @@ public class PathfinderGoalTradeWithPlayer extends PathfinderGoal {
         this.a(5);
     }
 
-    public boolean a() {
+    @Override
+	public boolean a() {
         if (!this.a.isAlive()) {
             return false;
         } else if (this.a.V()) {
@@ -25,11 +26,13 @@ public class PathfinderGoalTradeWithPlayer extends PathfinderGoal {
         }
     }
 
-    public void c() {
+    @Override
+	public void c() {
         this.a.getNavigation().n();
     }
 
-    public void d() {
+    @Override
+	public void d() {
         this.a.a_((EntityHuman) null);
     }
 }

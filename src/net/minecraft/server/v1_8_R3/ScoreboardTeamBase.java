@@ -32,11 +32,11 @@ public abstract class ScoreboardTeamBase {
         public final int f;
 
         public static String[] a() {
-            return (String[]) ScoreboardTeamBase.EnumNameTagVisibility.g.keySet().toArray(new String[ScoreboardTeamBase.EnumNameTagVisibility.g.size()]);
+            return ScoreboardTeamBase.EnumNameTagVisibility.g.keySet().toArray(new String[ScoreboardTeamBase.EnumNameTagVisibility.g.size()]);
         }
 
         public static ScoreboardTeamBase.EnumNameTagVisibility a(String s) {
-            return (ScoreboardTeamBase.EnumNameTagVisibility) ScoreboardTeamBase.EnumNameTagVisibility.g.get(s);
+            return ScoreboardTeamBase.EnumNameTagVisibility.g.get(s);
         }
 
         private EnumNameTagVisibility(String s, int i) {

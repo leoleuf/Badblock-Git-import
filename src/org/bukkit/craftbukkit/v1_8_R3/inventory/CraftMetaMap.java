@@ -80,11 +80,13 @@ class CraftMetaMap extends CraftMetaItem implements MapMeta {
         return scaling != SCALING_EMPTY;
     }
 
-    public boolean isScaling() {
+    @Override
+	public boolean isScaling() {
         return scaling == SCALING_TRUE;
     }
 
-    public void setScaling(boolean scaling) {
+    @Override
+	public void setScaling(boolean scaling) {
         this.scaling = scaling ? SCALING_TRUE : SCALING_FALSE;
     }
 
@@ -118,7 +120,8 @@ class CraftMetaMap extends CraftMetaItem implements MapMeta {
         return original != hash ? CraftMetaMap.class.hashCode() ^ hash : hash;
     }
 
-    public CraftMetaMap clone() {
+    @Override
+	public CraftMetaMap clone() {
         return (CraftMetaMap) super.clone();
     }
 

@@ -12,43 +12,50 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
 
     public BlockRedstoneComparator(boolean flag) {
         super(flag);
-        this.j(this.blockStateList.getBlockData().set(BlockRedstoneComparator.FACING, EnumDirection.NORTH).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(false)).set(BlockRedstoneComparator.MODE, BlockRedstoneComparator.EnumComparatorMode.COMPARE));
+        this.j(this.blockStateList.getBlockData().set(BlockDirectional.FACING, EnumDirection.NORTH).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(false)).set(BlockRedstoneComparator.MODE, BlockRedstoneComparator.EnumComparatorMode.COMPARE));
         this.isTileEntity = true;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return LocaleI18n.get("item.comparator.name");
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return Items.COMPARATOR;
     }
 
-    protected int d(IBlockData iblockdata) {
+    @Override
+	protected int d(IBlockData iblockdata) {
         return 2;
     }
 
-    protected IBlockData e(IBlockData iblockdata) {
-        Boolean obool = (Boolean) iblockdata.get(BlockRedstoneComparator.POWERED);
-        BlockRedstoneComparator.EnumComparatorMode blockredstonecomparator_enumcomparatormode = (BlockRedstoneComparator.EnumComparatorMode) iblockdata.get(BlockRedstoneComparator.MODE);
-        EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockRedstoneComparator.FACING);
+    @Override
+	protected IBlockData e(IBlockData iblockdata) {
+        Boolean obool = iblockdata.get(BlockRedstoneComparator.POWERED);
+        BlockRedstoneComparator.EnumComparatorMode blockredstonecomparator_enumcomparatormode = iblockdata.get(BlockRedstoneComparator.MODE);
+        EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
 
-        return Blocks.POWERED_COMPARATOR.getBlockData().set(BlockRedstoneComparator.FACING, enumdirection).set(BlockRedstoneComparator.POWERED, obool).set(BlockRedstoneComparator.MODE, blockredstonecomparator_enumcomparatormode);
+        return Blocks.POWERED_COMPARATOR.getBlockData().set(BlockDirectional.FACING, enumdirection).set(BlockRedstoneComparator.POWERED, obool).set(BlockRedstoneComparator.MODE, blockredstonecomparator_enumcomparatormode);
     }
 
-    protected IBlockData k(IBlockData iblockdata) {
-        Boolean obool = (Boolean) iblockdata.get(BlockRedstoneComparator.POWERED);
-        BlockRedstoneComparator.EnumComparatorMode blockredstonecomparator_enumcomparatormode = (BlockRedstoneComparator.EnumComparatorMode) iblockdata.get(BlockRedstoneComparator.MODE);
-        EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockRedstoneComparator.FACING);
+    @Override
+	protected IBlockData k(IBlockData iblockdata) {
+        Boolean obool = iblockdata.get(BlockRedstoneComparator.POWERED);
+        BlockRedstoneComparator.EnumComparatorMode blockredstonecomparator_enumcomparatormode = iblockdata.get(BlockRedstoneComparator.MODE);
+        EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
 
-        return Blocks.UNPOWERED_COMPARATOR.getBlockData().set(BlockRedstoneComparator.FACING, enumdirection).set(BlockRedstoneComparator.POWERED, obool).set(BlockRedstoneComparator.MODE, blockredstonecomparator_enumcomparatormode);
+        return Blocks.UNPOWERED_COMPARATOR.getBlockData().set(BlockDirectional.FACING, enumdirection).set(BlockRedstoneComparator.POWERED, obool).set(BlockRedstoneComparator.MODE, blockredstonecomparator_enumcomparatormode);
     }
 
-    protected boolean l(IBlockData iblockdata) {
-        return this.N || ((Boolean) iblockdata.get(BlockRedstoneComparator.POWERED)).booleanValue();
+    @Override
+	protected boolean l(IBlockData iblockdata) {
+        return this.N || iblockdata.get(BlockRedstoneComparator.POWERED).booleanValue();
     }
 
-    protected int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	protected int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata) {
         TileEntity tileentity = iblockaccess.getTileEntity(blockposition);
 
         return tileentity instanceof TileEntityComparator ? ((TileEntityComparator) tileentity).b() : 0;
@@ -58,7 +65,8 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
         return iblockdata.get(BlockRedstoneComparator.MODE) == BlockRedstoneComparator.EnumComparatorMode.SUBTRACT ? Math.max(this.f(world, blockposition, iblockdata) - this.c(world, blockposition, iblockdata), 0) : this.f(world, blockposition, iblockdata);
     }
 
-    protected boolean e(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	protected boolean e(World world, BlockPosition blockposition, IBlockData iblockdata) {
         int i = this.f(world, blockposition, iblockdata);
 
         if (i >= 15) {
@@ -72,9 +80,10 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
         }
     }
 
-    protected int f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	protected int f(World world, BlockPosition blockposition, IBlockData iblockdata) {
         int i = super.f(world, blockposition, iblockdata);
-        EnumDirection enumdirection = (EnumDirection) iblockdata.get(BlockRedstoneComparator.FACING);
+        EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
         BlockPosition blockposition1 = blockposition.shift(enumdirection);
         Block block = world.getType(blockposition1).getBlock();
 
@@ -98,12 +107,13 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
     }
 
     private EntityItemFrame a(World world, final EnumDirection enumdirection, BlockPosition blockposition) {
-        List list = world.a(EntityItemFrame.class, new AxisAlignedBB((double) blockposition.getX(), (double) blockposition.getY(), (double) blockposition.getZ(), (double) (blockposition.getX() + 1), (double) (blockposition.getY() + 1), (double) (blockposition.getZ() + 1)), new Predicate() {
+        List list = world.a(EntityItemFrame.class, new AxisAlignedBB(blockposition.getX(), blockposition.getY(), blockposition.getZ(), blockposition.getX() + 1, blockposition.getY() + 1, blockposition.getZ() + 1), new Predicate() {
             public boolean a(Entity entity) {
                 return entity != null && entity.getDirection() == enumdirection;
             }
 
-            public boolean apply(Object object) {
+            @Override
+			public boolean apply(Object object) {
                 return this.a((Entity) object);
             }
         });
@@ -111,20 +121,22 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
         return list.size() == 1 ? (EntityItemFrame) list.get(0) : null;
     }
 
-    public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
+    @Override
+	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
         if (!entityhuman.abilities.mayBuild) {
             return false;
         } else {
             iblockdata = iblockdata.a(BlockRedstoneComparator.MODE);
-            world.makeSound((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D, "random.click", 0.3F, iblockdata.get(BlockRedstoneComparator.MODE) == BlockRedstoneComparator.EnumComparatorMode.SUBTRACT ? 0.55F : 0.5F);
+            world.makeSound(blockposition.getX() + 0.5D, blockposition.getY() + 0.5D, blockposition.getZ() + 0.5D, "random.click", 0.3F, iblockdata.get(BlockRedstoneComparator.MODE) == BlockRedstoneComparator.EnumComparatorMode.SUBTRACT ? 0.55F : 0.5F);
             world.setTypeAndData(blockposition, iblockdata, 2);
             this.k(world, blockposition, iblockdata);
             return true;
         }
     }
 
-    protected void g(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        if (!world.a(blockposition, (Block) this)) {
+    @Override
+	protected void g(World world, BlockPosition blockposition, IBlockData iblockdata) {
+        if (!world.a(blockposition, this)) {
             int i = this.j(world, blockposition, iblockdata);
             TileEntity tileentity = world.getTileEntity(blockposition);
             int j = tileentity instanceof TileEntityComparator ? ((TileEntityComparator) tileentity).b() : 0;
@@ -167,7 +179,8 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
 
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
         if (this.N) {
             world.setTypeAndData(blockposition, this.k(iblockdata).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(true)), 4);
         }
@@ -175,37 +188,43 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
         this.k(world, blockposition, iblockdata);
     }
 
-    public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.onPlace(world, blockposition, iblockdata);
         world.setTileEntity(blockposition, this.a(world, 0));
     }
 
-    public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.remove(world, blockposition, iblockdata);
         world.t(blockposition);
         this.h(world, blockposition, iblockdata);
     }
 
-    public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
+    @Override
+	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
         super.a(world, blockposition, iblockdata, i, j);
         TileEntity tileentity = world.getTileEntity(blockposition);
 
         return tileentity == null ? false : tileentity.c(i, j);
     }
 
-    public TileEntity a(World world, int i) {
+    @Override
+	public TileEntity a(World world, int i) {
         return new TileEntityComparator();
     }
 
-    public IBlockData fromLegacyData(int i) {
-        return this.getBlockData().set(BlockRedstoneComparator.FACING, EnumDirection.fromType2(i)).set(BlockRedstoneComparator.POWERED, Boolean.valueOf((i & 8) > 0)).set(BlockRedstoneComparator.MODE, (i & 4) > 0 ? BlockRedstoneComparator.EnumComparatorMode.SUBTRACT : BlockRedstoneComparator.EnumComparatorMode.COMPARE);
+    @Override
+	public IBlockData fromLegacyData(int i) {
+        return this.getBlockData().set(BlockDirectional.FACING, EnumDirection.fromType2(i)).set(BlockRedstoneComparator.POWERED, Boolean.valueOf((i & 8) > 0)).set(BlockRedstoneComparator.MODE, (i & 4) > 0 ? BlockRedstoneComparator.EnumComparatorMode.SUBTRACT : BlockRedstoneComparator.EnumComparatorMode.COMPARE);
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
         byte b0 = 0;
-        int i = b0 | ((EnumDirection) iblockdata.get(BlockRedstoneComparator.FACING)).b();
+        int i = b0 | iblockdata.get(BlockDirectional.FACING).b();
 
-        if (((Boolean) iblockdata.get(BlockRedstoneComparator.POWERED)).booleanValue()) {
+        if (iblockdata.get(BlockRedstoneComparator.POWERED).booleanValue()) {
             i |= 8;
         }
 
@@ -216,12 +235,14 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
         return i;
     }
 
-    protected BlockStateList getStateList() {
-        return new BlockStateList(this, new IBlockState[] { BlockRedstoneComparator.FACING, BlockRedstoneComparator.MODE, BlockRedstoneComparator.POWERED});
+    @Override
+	protected BlockStateList getStateList() {
+        return new BlockStateList(this, new IBlockState[] { BlockDirectional.FACING, BlockRedstoneComparator.MODE, BlockRedstoneComparator.POWERED});
     }
 
-    public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
-        return this.getBlockData().set(BlockRedstoneComparator.FACING, entityliving.getDirection().opposite()).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(false)).set(BlockRedstoneComparator.MODE, BlockRedstoneComparator.EnumComparatorMode.COMPARE);
+    @Override
+	public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
+        return this.getBlockData().set(BlockDirectional.FACING, entityliving.getDirection().opposite()).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(false)).set(BlockRedstoneComparator.MODE, BlockRedstoneComparator.EnumComparatorMode.COMPARE);
     }
 
     public static enum EnumComparatorMode implements INamable {
@@ -234,11 +255,13 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
             this.c = s;
         }
 
-        public String toString() {
+        @Override
+		public String toString() {
             return this.c;
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.c;
         }
     }

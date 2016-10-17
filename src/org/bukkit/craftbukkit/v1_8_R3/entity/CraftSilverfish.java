@@ -21,7 +21,8 @@ public class CraftSilverfish extends CraftMonster implements Silverfish {
         return "CraftSilverfish";
     }
 
-    public EntityType getType() {
+    @Override
+	public EntityType getType() {
         return EntityType.SILVERFISH;
     }
 }

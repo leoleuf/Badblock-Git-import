@@ -62,7 +62,8 @@ public class CraftScheduler implements BukkitScheduler {
      */
     private final PriorityQueue<CraftTask> pending = new PriorityQueue<CraftTask>(10,
             new Comparator<CraftTask>() {
-                public int compare(final CraftTask o1, final CraftTask o2) {
+                @Override
+				public int compare(final CraftTask o1, final CraftTask o2) {
                     return (int) (o1.getNextRun() - o2.getNextRun());
                 }
             });
@@ -84,45 +85,55 @@ public class CraftScheduler implements BukkitScheduler {
         RECENT_TICKS = 30;
     }
 
-    public int scheduleSyncDelayedTask(final Plugin plugin, final Runnable task) {
+    @Override
+	public int scheduleSyncDelayedTask(final Plugin plugin, final Runnable task) {
         return this.scheduleSyncDelayedTask(plugin, task, 0l);
     }
 
-    public BukkitTask runTask(Plugin plugin, Runnable runnable) {
+    @Override
+	public BukkitTask runTask(Plugin plugin, Runnable runnable) {
         return runTaskLater(plugin, runnable, 0l);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int scheduleAsyncDelayedTask(final Plugin plugin, final Runnable task) {
         return this.scheduleAsyncDelayedTask(plugin, task, 0l);
     }
 
-    public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable runnable) {
+    @Override
+	public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable runnable) {
         return runTaskLaterAsynchronously(plugin, runnable, 0l);
     }
 
-    public int scheduleSyncDelayedTask(final Plugin plugin, final Runnable task, final long delay) {
+    @Override
+	public int scheduleSyncDelayedTask(final Plugin plugin, final Runnable task, final long delay) {
         return this.scheduleSyncRepeatingTask(plugin, task, delay, -1l);
     }
 
-    public BukkitTask runTaskLater(Plugin plugin, Runnable runnable, long delay) {
+    @Override
+	public BukkitTask runTaskLater(Plugin plugin, Runnable runnable, long delay) {
         return runTaskTimer(plugin, runnable, delay, -1l);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int scheduleAsyncDelayedTask(final Plugin plugin, final Runnable task, final long delay) {
         return this.scheduleAsyncRepeatingTask(plugin, task, delay, -1l);
     }
 
-    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable runnable, long delay) {
+    @Override
+	public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable runnable, long delay) {
         return runTaskTimerAsynchronously(plugin, runnable, delay, -1l);
     }
 
-    public int scheduleSyncRepeatingTask(final Plugin plugin, final Runnable runnable, long delay, long period) {
+    @Override
+	public int scheduleSyncRepeatingTask(final Plugin plugin, final Runnable runnable, long delay, long period) {
         return runTaskTimer(plugin, runnable, delay, period).getTaskId();
     }
 
-    public BukkitTask runTaskTimer(Plugin plugin, Runnable runnable, long delay, long period) {
+    @Override
+	public BukkitTask runTaskTimer(Plugin plugin, Runnable runnable, long delay, long period) {
         validate(plugin, runnable);
         if (delay < 0l) {
             delay = 0;
@@ -135,12 +146,14 @@ public class CraftScheduler implements BukkitScheduler {
         return handle(new CraftTask(plugin, runnable, nextId(), period), delay);
     }
 
-    @Deprecated
+    @Override
+	@Deprecated
     public int scheduleAsyncRepeatingTask(final Plugin plugin, final Runnable runnable, long delay, long period) {
         return runTaskTimerAsynchronously(plugin, runnable, delay, period).getTaskId();
     }
 
-    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable runnable, long delay, long period) {
+    @Override
+	public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable runnable, long delay, long period) {
         validate(plugin, runnable);
         if (delay < 0l) {
             delay = 0;
@@ -153,14 +166,16 @@ public class CraftScheduler implements BukkitScheduler {
         return handle(new CraftAsyncTask(runners, plugin, runnable, nextId(), period), delay);
     }
 
-    public <T> Future<T> callSyncMethod(final Plugin plugin, final Callable<T> task) {
+    @Override
+	public <T> Future<T> callSyncMethod(final Plugin plugin, final Callable<T> task) {
         validate(plugin, task);
         final CraftFuture<T> future = new CraftFuture<T>(task, plugin, nextId());
         handle(future, 0l);
         return future;
     }
 
-    public void cancelTask(final int taskId) {
+    @Override
+	public void cancelTask(final int taskId) {
         if (taskId <= 0) {
             return;
         }
@@ -170,7 +185,8 @@ public class CraftScheduler implements BukkitScheduler {
         }
         task = new CraftTask(
                 new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         if (!check(CraftScheduler.this.temp)) {
                             check(CraftScheduler.this.pending);
                         }
@@ -201,11 +217,13 @@ public class CraftScheduler implements BukkitScheduler {
         }
     }
 
-    public void cancelTasks(final Plugin plugin) {
+    @Override
+	public void cancelTasks(final Plugin plugin) {
         Validate.notNull(plugin, "Cannot cancel tasks of null plugin");
         final CraftTask task = new CraftTask(
                 new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         check(CraftScheduler.this.pending);
                         check(CraftScheduler.this.temp);
                     }
@@ -239,10 +257,12 @@ public class CraftScheduler implements BukkitScheduler {
         }
     }
 
-    public void cancelAllTasks() {
+    @Override
+	public void cancelAllTasks() {
         final CraftTask task = new CraftTask(
                 new Runnable() {
-                    public void run() {
+                    @Override
+					public void run() {
                         Iterator<CraftTask> it = CraftScheduler.this.runners.values().iterator();
                         while (it.hasNext()) {
                             CraftTask task = it.next();
@@ -267,7 +287,8 @@ public class CraftScheduler implements BukkitScheduler {
         }
     }
 
-    public boolean isCurrentlyRunning(final int taskId) {
+    @Override
+	public boolean isCurrentlyRunning(final int taskId) {
         final CraftTask task = runners.get(taskId);
         if (task == null || task.isSync()) {
             return false;
@@ -278,7 +299,8 @@ public class CraftScheduler implements BukkitScheduler {
         }
     }
 
-    public boolean isQueued(final int taskId) {
+    @Override
+	public boolean isQueued(final int taskId) {
         if (taskId <= 0) {
             return false;
         }
@@ -291,7 +313,8 @@ public class CraftScheduler implements BukkitScheduler {
         return task != null && task.getPeriod() >= -1l;
     }
 
-    public List<BukkitWorker> getActiveWorkers() {
+    @Override
+	public List<BukkitWorker> getActiveWorkers() {
         final ArrayList<BukkitWorker> workers = new ArrayList<BukkitWorker>();
         for (final CraftTask taskObj : runners.values()) {
             // Iterator will be a best-effort (may fail to grab very new values) if called from an async thread
@@ -307,7 +330,8 @@ public class CraftScheduler implements BukkitScheduler {
         return workers;
     }
 
-    public List<BukkitTask> getPendingTasks() {
+    @Override
+	public List<BukkitTask> getPendingTasks() {
         final ArrayList<CraftTask> truePending = new ArrayList<CraftTask>();
         for (CraftTask task = head.getNext(); task != null; task = task.getNext()) {
             if (task.getTaskId() != -1) {

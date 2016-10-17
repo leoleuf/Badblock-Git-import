@@ -28,7 +28,8 @@ public class PersistentScoreboard extends PersistentBase {
 
     }
 
-    public void a(NBTTagCompound nbttagcompound) {
+    @Override
+	public void a(NBTTagCompound nbttagcompound) {
         if (this.c == null) {
             this.d = nbttagcompound;
         } else {
@@ -119,7 +120,7 @@ public class PersistentScoreboard extends PersistentBase {
     protected void b(NBTTagList nbttaglist) {
         for (int i = 0; i < nbttaglist.size(); ++i) {
             NBTTagCompound nbttagcompound = nbttaglist.get(i);
-            IScoreboardCriteria iscoreboardcriteria = (IScoreboardCriteria) IScoreboardCriteria.criteria.get(nbttagcompound.getString("CriteriaName"));
+            IScoreboardCriteria iscoreboardcriteria = IScoreboardCriteria.criteria.get(nbttagcompound.getString("CriteriaName"));
 
             if (iscoreboardcriteria != null) {
                 String s = nbttagcompound.getString("Name");
@@ -157,7 +158,8 @@ public class PersistentScoreboard extends PersistentBase {
 
     }
 
-    public void b(NBTTagCompound nbttagcompound) {
+    @Override
+	public void b(NBTTagCompound nbttagcompound) {
         if (this.c == null) {
             PersistentScoreboard.b.warn("Tried to save scoreboard without having a scoreboard...");
         } else {

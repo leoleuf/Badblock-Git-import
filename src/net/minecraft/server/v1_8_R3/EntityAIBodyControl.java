@@ -30,7 +30,7 @@ public class EntityAIBodyControl {
                 boolean flag = true;
 
                 if (this.b > 10) {
-                    f = Math.max(1.0F - (float) (this.b - 10) / 10.0F, 0.0F) * 75.0F;
+                    f = Math.max(1.0F - (this.b - 10) / 10.0F, 0.0F) * 75.0F;
                 }
             }
 

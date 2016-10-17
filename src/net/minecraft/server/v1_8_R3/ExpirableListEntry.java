@@ -56,11 +56,13 @@ public abstract class ExpirableListEntry<T> extends JsonListEntry<T> {
         return this.e;
     }
 
-    boolean hasExpired() {
+    @Override
+	boolean hasExpired() {
         return this.d == null ? false : this.d.before(new Date());
     }
 
-    protected void a(JsonObject jsonobject) {
+    @Override
+	protected void a(JsonObject jsonobject) {
         jsonobject.addProperty("created", ExpirableListEntry.a.format(this.b));
         jsonobject.addProperty("source", this.c);
         jsonobject.addProperty("expires", this.d == null ? "forever" : ExpirableListEntry.a.format(this.d));

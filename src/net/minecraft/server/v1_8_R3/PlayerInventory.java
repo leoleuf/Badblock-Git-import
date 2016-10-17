@@ -21,7 +21,8 @@ public class PlayerInventory implements IInventory {
     public List<HumanEntity> transaction = new java.util.ArrayList<HumanEntity>();
     private int maxStack = MAX_STACK;
 
-    public ItemStack[] getContents() {
+    @Override
+	public ItemStack[] getContents() {
         return this.items;
     }
 
@@ -29,23 +30,28 @@ public class PlayerInventory implements IInventory {
         return this.armor;
     }
 
-    public void onOpen(CraftHumanEntity who) {
+    @Override
+	public void onOpen(CraftHumanEntity who) {
         transaction.add(who);
     }
 
-    public void onClose(CraftHumanEntity who) {
+    @Override
+	public void onClose(CraftHumanEntity who) {
         transaction.remove(who);
     }
 
-    public List<HumanEntity> getViewers() {
+    @Override
+	public List<HumanEntity> getViewers() {
         return transaction;
     }
 
-    public org.bukkit.inventory.InventoryHolder getOwner() {
+    @Override
+	public org.bukkit.inventory.InventoryHolder getOwner() {
         return this.player.getBukkitEntity();
     }
 
-    public void setMaxStackSize(int size) {
+    @Override
+	public void setMaxStackSize(int size) {
         maxStack = size;
     }
     // CraftBukkit end
@@ -285,14 +291,15 @@ public class PlayerInventory implements IInventory {
                 CrashReport crashreport = CrashReport.a(throwable, "Adding item to inventory");
                 CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Item being added");
 
-                crashreportsystemdetails.a("Item ID", (Object) Integer.valueOf(Item.getId(itemstack.getItem())));
-                crashreportsystemdetails.a("Item data", (Object) Integer.valueOf(itemstack.getData()));
+                crashreportsystemdetails.a("Item ID", Integer.valueOf(Item.getId(itemstack.getItem())));
+                crashreportsystemdetails.a("Item data", Integer.valueOf(itemstack.getData()));
                 crashreportsystemdetails.a("Item name", new Callable() {
                     public String a() throws Exception {
                         return itemstack.getName();
                     }
 
-                    public Object call() throws Exception {
+                    @Override
+					public Object call() throws Exception {
                         return this.a();
                     }
                 });
@@ -303,7 +310,8 @@ public class PlayerInventory implements IInventory {
         }
     }
 
-    public ItemStack splitStack(int i, int j) {
+    @Override
+	public ItemStack splitStack(int i, int j) {
         ItemStack[] aitemstack = this.items;
 
         if (i >= this.items.length) {
@@ -331,7 +339,8 @@ public class PlayerInventory implements IInventory {
         }
     }
 
-    public ItemStack splitWithoutUpdate(int i) {
+    @Override
+	public ItemStack splitWithoutUpdate(int i) {
         ItemStack[] aitemstack = this.items;
 
         if (i >= this.items.length) {
@@ -349,7 +358,8 @@ public class PlayerInventory implements IInventory {
         }
     }
 
-    public void setItem(int i, ItemStack itemstack) {
+    @Override
+	public void setItem(int i, ItemStack itemstack) {
         ItemStack[] aitemstack = this.items;
 
         if (i >= aitemstack.length) {
@@ -417,11 +427,13 @@ public class PlayerInventory implements IInventory {
 
     }
 
-    public int getSize() {
+    @Override
+	public int getSize() {
         return this.items.length + 4;
     }
 
-    public ItemStack getItem(int i) {
+    @Override
+	public ItemStack getItem(int i) {
         ItemStack[] aitemstack = this.items;
 
         if (i >= aitemstack.length) {
@@ -432,19 +444,23 @@ public class PlayerInventory implements IInventory {
         return aitemstack[i];
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return "container.inventory";
     }
 
-    public boolean hasCustomName() {
+    @Override
+	public boolean hasCustomName() {
         return false;
     }
 
-    public IChatBaseComponent getScoreboardDisplayName() {
-        return (IChatBaseComponent) (this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]));
+    @Override
+	public IChatBaseComponent getScoreboardDisplayName() {
+        return this.hasCustomName() ? new ChatComponentText(this.getName()) : new ChatMessage(this.getName(), new Object[0]);
     }
 
-    public int getMaxStackSize() {
+    @Override
+	public int getMaxStackSize() {
         return maxStack; // CraftBukkit
     }
 
@@ -512,7 +528,8 @@ public class PlayerInventory implements IInventory {
 
     }
 
-    public void update() {
+    @Override
+	public void update() {
         this.e = true;
     }
 
@@ -529,7 +546,8 @@ public class PlayerInventory implements IInventory {
         return this.f;
     }
 
-    public boolean a(EntityHuman entityhuman) {
+    @Override
+	public boolean a(EntityHuman entityhuman) {
         return this.player.dead ? false : entityhuman.h(this.player) <= 64.0D;
     }
 
@@ -551,11 +569,14 @@ public class PlayerInventory implements IInventory {
         return false;
     }
 
-    public void startOpen(EntityHuman entityhuman) {}
+    @Override
+	public void startOpen(EntityHuman entityhuman) {}
 
-    public void closeContainer(EntityHuman entityhuman) {}
+    @Override
+	public void closeContainer(EntityHuman entityhuman) {}
 
-    public boolean b(int i, ItemStack itemstack) {
+    @Override
+	public boolean b(int i, ItemStack itemstack) {
         return true;
     }
 
@@ -573,17 +594,21 @@ public class PlayerInventory implements IInventory {
         this.itemInHandIndex = playerinventory.itemInHandIndex;
     }
 
-    public int getProperty(int i) {
+    @Override
+	public int getProperty(int i) {
         return 0;
     }
 
-    public void b(int i, int j) {}
+    @Override
+	public void b(int i, int j) {}
 
-    public int g() {
+    @Override
+	public int g() {
         return 0;
     }
 
-    public void l() {
+    @Override
+	public void l() {
         int i;
 
         for (i = 0; i < this.items.length; ++i) {

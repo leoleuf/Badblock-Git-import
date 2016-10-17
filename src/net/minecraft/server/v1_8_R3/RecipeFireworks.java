@@ -14,7 +14,8 @@ public class RecipeFireworks extends ShapelessRecipes implements IRecipe { // Cr
     }
     // CraftBukkit end
 
-    public boolean a(InventoryCrafting inventorycrafting, World world) {
+    @Override
+	public boolean a(InventoryCrafting inventorycrafting, World world) {
         this.a = null;
         int i = 0;
         int j = 0;
@@ -164,19 +165,23 @@ public class RecipeFireworks extends ShapelessRecipes implements IRecipe { // Cr
         }
     }
 
-    public ItemStack craftItem(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack craftItem(InventoryCrafting inventorycrafting) {
         return this.a.cloneItemStack();
     }
 
-    public int a() {
+    @Override
+	public int a() {
         return 10;
     }
 
-    public ItemStack b() {
+    @Override
+	public ItemStack b() {
         return this.a;
     }
 
-    public ItemStack[] b(InventoryCrafting inventorycrafting) {
+    @Override
+	public ItemStack[] b(InventoryCrafting inventorycrafting) {
         ItemStack[] aitemstack = new ItemStack[inventorycrafting.getSize()];
 
         for (int i = 0; i < aitemstack.length; ++i) {

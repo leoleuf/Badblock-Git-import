@@ -38,7 +38,8 @@ public class CraftChunk implements Chunk {
         z = getHandle().locZ;
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return worldServer.getWorld();
     }
 
@@ -64,11 +65,13 @@ public class CraftChunk implements Chunk {
         weakChunk.clear();
     }
 
-    public int getX() {
+    @Override
+	public int getX() {
         return x;
     }
 
-    public int getZ() {
+    @Override
+	public int getZ() {
         return z;
     }
 
@@ -77,11 +80,13 @@ public class CraftChunk implements Chunk {
         return "CraftChunk{" + "x=" + getX() + "z=" + getZ() + '}';
     }
 
-    public Block getBlock(int x, int y, int z) {
+    @Override
+	public Block getBlock(int x, int y, int z) {
         return new CraftBlock(this, (getX() << 4) | (x & 0xF), y, (getZ() << 4) | (z & 0xF));
     }
 
-    public Entity[] getEntities() {
+    @Override
+	public Entity[] getEntities() {
         int count = 0, index = 0;
         net.minecraft.server.v1_8_R3.Chunk chunk = getHandle();
 
@@ -105,7 +110,8 @@ public class CraftChunk implements Chunk {
         return entities;
     }
 
-    public BlockState[] getTileEntities() {
+    @Override
+	public BlockState[] getTileEntities() {
         int index = 0;
         net.minecraft.server.v1_8_R3.Chunk chunk = getHandle();
 
@@ -123,35 +129,43 @@ public class CraftChunk implements Chunk {
         return entities;
     }
 
-    public boolean isLoaded() {
+    @Override
+	public boolean isLoaded() {
         return getWorld().isChunkLoaded(this);
     }
 
-    public boolean load() {
+    @Override
+	public boolean load() {
         return getWorld().loadChunk(getX(), getZ(), true);
     }
 
-    public boolean load(boolean generate) {
+    @Override
+	public boolean load(boolean generate) {
         return getWorld().loadChunk(getX(), getZ(), generate);
     }
 
-    public boolean unload() {
+    @Override
+	public boolean unload() {
         return getWorld().unloadChunk(getX(), getZ());
     }
 
-    public boolean unload(boolean save) {
+    @Override
+	public boolean unload(boolean save) {
         return getWorld().unloadChunk(getX(), getZ(), save);
     }
 
-    public boolean unload(boolean save, boolean safe) {
+    @Override
+	public boolean unload(boolean save, boolean safe) {
         return getWorld().unloadChunk(getX(), getZ(), save, safe);
     }
 
-    public ChunkSnapshot getChunkSnapshot() {
+    @Override
+	public ChunkSnapshot getChunkSnapshot() {
         return getChunkSnapshot(true, false, false);
     }
 
-    public ChunkSnapshot getChunkSnapshot(boolean includeMaxBlockY, boolean includeBiome, boolean includeBiomeTempRain) {
+    @Override
+	public ChunkSnapshot getChunkSnapshot(boolean includeMaxBlockY, boolean includeBiome, boolean includeBiomeTempRain) {
         net.minecraft.server.v1_8_R3.Chunk chunk = getHandle();
 
         ChunkSection[] cs = chunk.getSections();
@@ -176,7 +190,7 @@ public class CraftChunk implements Chunk {
                 // Copy base IDs
                 for (int j = 0; j < 4096; j++) {
                     if (baseids[j] == 0) continue;
-                    IBlockData blockData = (IBlockData) net.minecraft.server.v1_8_R3.Block.d.a(baseids[j]);
+                    IBlockData blockData = net.minecraft.server.v1_8_R3.Block.d.a(baseids[j]);
                     if (blockData == null) continue;
                     blockids[j] = (short) net.minecraft.server.v1_8_R3.Block.getId(blockData.getBlock());
                     int data = blockData.getBlock().toLegacyData(blockData);

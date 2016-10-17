@@ -39,14 +39,16 @@ public class ChunkCache implements IBlockAccess {
 
     }
 
-    public TileEntity getTileEntity(BlockPosition blockposition) {
+    @Override
+	public TileEntity getTileEntity(BlockPosition blockposition) {
         int i = (blockposition.getX() >> 4) - this.a;
         int j = (blockposition.getZ() >> 4) - this.b;
 
         return this.c[i][j].a(blockposition, Chunk.EnumTileEntityState.IMMEDIATE);
     }
 
-    public IBlockData getType(BlockPosition blockposition) {
+    @Override
+	public IBlockData getType(BlockPosition blockposition) {
         if (blockposition.getY() >= 0 && blockposition.getY() < 256) {
             int i = (blockposition.getX() >> 4) - this.a;
             int j = (blockposition.getZ() >> 4) - this.b;
@@ -63,13 +65,15 @@ public class ChunkCache implements IBlockAccess {
         return Blocks.AIR.getBlockData();
     }
 
-    public boolean isEmpty(BlockPosition blockposition) {
+    @Override
+	public boolean isEmpty(BlockPosition blockposition) {
         return this.getType(blockposition).getBlock().getMaterial() == Material.AIR;
     }
 
-    public int getBlockPower(BlockPosition blockposition, EnumDirection enumdirection) {
+    @Override
+	public int getBlockPower(BlockPosition blockposition, EnumDirection enumdirection) {
         IBlockData iblockdata = this.getType(blockposition);
 
-        return iblockdata.getBlock().b((IBlockAccess) this, blockposition, iblockdata, enumdirection);
+        return iblockdata.getBlock().b(this, blockposition, iblockdata, enumdirection);
     }
 }

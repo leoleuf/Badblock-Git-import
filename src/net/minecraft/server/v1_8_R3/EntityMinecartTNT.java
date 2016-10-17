@@ -12,15 +12,18 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
         super(world, d0, d1, d2);
     }
 
-    public EntityMinecartAbstract.EnumMinecartType s() {
+    @Override
+	public EntityMinecartAbstract.EnumMinecartType s() {
         return EntityMinecartAbstract.EnumMinecartType.TNT;
     }
 
-    public IBlockData u() {
+    @Override
+	public IBlockData u() {
         return Blocks.TNT.getBlockData();
     }
 
-    public void t_() {
+    @Override
+	public void t_() {
         super.t_();
         if (this.a > 0) {
             --this.a;
@@ -39,7 +42,8 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
 
     }
 
-    public boolean damageEntity(DamageSource damagesource, float f) {
+    @Override
+	public boolean damageEntity(DamageSource damagesource, float f) {
         Entity entity = damagesource.i();
 
         if (entity instanceof EntityArrow) {
@@ -53,7 +57,8 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
         return super.damageEntity(damagesource, f);
     }
 
-    public void a(DamageSource damagesource) {
+    @Override
+	public void a(DamageSource damagesource) {
         super.a(damagesource);
         double d0 = this.motX * this.motX + this.motZ * this.motZ;
 
@@ -81,17 +86,19 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
 
     }
 
-    public void e(float f, float f1) {
+    @Override
+	public void e(float f, float f1) {
         if (f >= 3.0F) {
             float f2 = f / 10.0F;
 
-            this.b((double) (f2 * f2));
+            this.b(f2 * f2);
         }
 
         super.e(f, f1);
     }
 
-    public void a(int i, int j, int k, boolean flag) {
+    @Override
+	public void a(int i, int j, int k, boolean flag) {
         if (flag && this.a < 0) {
             this.j();
         }
@@ -113,15 +120,18 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
         return this.a > -1;
     }
 
-    public float a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public float a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata) {
         return this.y() && (BlockMinecartTrackAbstract.d(iblockdata) || BlockMinecartTrackAbstract.e(world, blockposition.up())) ? 0.0F : super.a(explosion, world, blockposition, iblockdata);
     }
 
-    public boolean a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata, float f) {
+    @Override
+	public boolean a(Explosion explosion, World world, BlockPosition blockposition, IBlockData iblockdata, float f) {
         return this.y() && (BlockMinecartTrackAbstract.d(iblockdata) || BlockMinecartTrackAbstract.e(world, blockposition.up())) ? false : super.a(explosion, world, blockposition, iblockdata, f);
     }
 
-    protected void a(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void a(NBTTagCompound nbttagcompound) {
         super.a(nbttagcompound);
         if (nbttagcompound.hasKeyOfType("TNTFuse", 99)) {
             this.a = nbttagcompound.getInt("TNTFuse");
@@ -129,7 +139,8 @@ public class EntityMinecartTNT extends EntityMinecartAbstract {
 
     }
 
-    protected void b(NBTTagCompound nbttagcompound) {
+    @Override
+	protected void b(NBTTagCompound nbttagcompound) {
         super.b(nbttagcompound);
         nbttagcompound.setInt("TNTFuse", this.a);
     }

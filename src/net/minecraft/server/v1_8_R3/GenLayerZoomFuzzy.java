@@ -6,7 +6,8 @@ public class GenLayerZoomFuzzy extends GenLayerZoom {
         super(i, genlayer);
     }
 
-    protected int b(int i, int j, int k, int l) {
+    @Override
+	protected int b(int i, int j, int k, int l) {
         return this.a(new int[] { i, j, k, l});
     }
 }

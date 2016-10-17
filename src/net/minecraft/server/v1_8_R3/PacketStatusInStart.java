@@ -6,11 +6,14 @@ public class PacketStatusInStart implements Packet<PacketStatusInListener> {
 
     public PacketStatusInStart() {}
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {}
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {}
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {}
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {}
 
-    public void a(PacketStatusInListener packetstatusinlistener) {
+    @Override
+	public void a(PacketStatusInListener packetstatusinlistener) {
         packetstatusinlistener.a(this);
     }
 

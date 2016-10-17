@@ -21,19 +21,23 @@ public class CraftMapCanvas implements MapCanvas {
         Arrays.fill(buffer, (byte) -1);
     }
 
-    public CraftMapView getMapView() {
+    @Override
+	public CraftMapView getMapView() {
         return mapView;
     }
 
-    public MapCursorCollection getCursors() {
+    @Override
+	public MapCursorCollection getCursors() {
         return cursors;
     }
 
-    public void setCursors(MapCursorCollection cursors) {
+    @Override
+	public void setCursors(MapCursorCollection cursors) {
         this.cursors = cursors;
     }
 
-    public void setPixel(int x, int y, byte color) {
+    @Override
+	public void setPixel(int x, int y, byte color) {
         if (x < 0 || y < 0 || x >= 128 || y >= 128)
             return;
         if (buffer[y * 128 + x] != color) {
@@ -42,13 +46,15 @@ public class CraftMapCanvas implements MapCanvas {
         }
     }
 
-    public byte getPixel(int x, int y) {
+    @Override
+	public byte getPixel(int x, int y) {
         if (x < 0 || y < 0 || x >= 128 || y >= 128)
             return 0;
         return buffer[y * 128 + x];
     }
 
-    public byte getBasePixel(int x, int y) {
+    @Override
+	public byte getBasePixel(int x, int y) {
         if (x < 0 || y < 0 || x >= 128 || y >= 128)
             return 0;
         return base[y * 128 + x];
@@ -62,7 +68,8 @@ public class CraftMapCanvas implements MapCanvas {
         return buffer;
     }
 
-    public void drawImage(int x, int y, Image image) {
+    @Override
+	public void drawImage(int x, int y, Image image) {
         byte[] bytes = MapPalette.imageToBytes(image);
         for (int x2 = 0; x2 < image.getWidth(null); ++x2) {
             for (int y2 = 0; y2 < image.getHeight(null); ++y2) {
@@ -71,7 +78,8 @@ public class CraftMapCanvas implements MapCanvas {
         }
     }
 
-    public void drawText(int x, int y, MapFont font, String text) {
+    @Override
+	public void drawText(int x, int y, MapFont font, String text) {
         int xStart = x;
         byte color = MapPalette.DARK_GRAY;
         if (!font.isValid(text)) {

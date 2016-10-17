@@ -6,7 +6,8 @@ public class ItemNameTag extends Item {
         this.a(CreativeModeTab.i);
     }
 
-    public boolean a(ItemStack itemstack, EntityHuman entityhuman, EntityLiving entityliving) {
+    @Override
+	public boolean a(ItemStack itemstack, EntityHuman entityhuman, EntityLiving entityliving) {
         if (!itemstack.hasName()) {
             return false;
         } else if (entityliving instanceof EntityInsentient) {

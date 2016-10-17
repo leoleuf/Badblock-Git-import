@@ -27,7 +27,7 @@ public abstract class WorldProvider {
         float f = 0.0F;
 
         for (int i = 0; i <= 15; ++i) {
-            float f1 = 1.0F - (float) i / 15.0F;
+            float f1 = 1.0F - i / 15.0F;
 
             this.f[i] = (1.0F - f1) / (f1 * 3.0F + 1.0F) * (1.0F - f) + f;
         }
@@ -50,7 +50,7 @@ public abstract class WorldProvider {
     }
 
     public IChunkProvider getChunkProvider() {
-        return (IChunkProvider) (this.type == WorldType.FLAT ? new ChunkProviderFlat(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i) : (this.type == WorldType.DEBUG_ALL_BLOCK_STATES ? new ChunkProviderDebug(this.b) : (this.type == WorldType.CUSTOMIZED ? new ChunkProviderGenerate(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i) : new ChunkProviderGenerate(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i))));
+        return this.type == WorldType.FLAT ? new ChunkProviderFlat(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i) : (this.type == WorldType.DEBUG_ALL_BLOCK_STATES ? new ChunkProviderDebug(this.b) : (this.type == WorldType.CUSTOMIZED ? new ChunkProviderGenerate(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i) : new ChunkProviderGenerate(this.b, this.b.getSeed(), this.b.getWorldData().shouldGenerateMapFeatures(), this.i)));
     }
 
     public boolean canSpawn(int i, int j) {
@@ -59,7 +59,7 @@ public abstract class WorldProvider {
 
     public float a(long i, float f) {
         int j = (int) (i % 24000L);
-        float f1 = ((float) j + f) / 24000.0F - 0.25F;
+        float f1 = (j + f) / 24000.0F - 0.25F;
 
         if (f1 < 0.0F) {
             ++f1;
@@ -71,7 +71,7 @@ public abstract class WorldProvider {
 
         float f2 = f1;
 
-        f1 = 1.0F - (float) ((Math.cos((double) f1 * 3.141592653589793D) + 1.0D) / 2.0D);
+        f1 = 1.0F - (float) ((Math.cos(f1 * 3.141592653589793D) + 1.0D) / 2.0D);
         f1 = f2 + (f1 - f2) / 3.0F;
         return f1;
     }
@@ -89,7 +89,7 @@ public abstract class WorldProvider {
     }
 
     public static WorldProvider byDimension(int i) {
-        return (WorldProvider) (i == -1 ? new WorldProviderHell() : (i == 0 ? new WorldProviderNormal() : (i == 1 ? new WorldProviderTheEnd() : null)));
+        return i == -1 ? new WorldProviderHell() : (i == 0 ? new WorldProviderNormal() : (i == 1 ? new WorldProviderTheEnd() : null));
     }
 
     public BlockPosition h() {

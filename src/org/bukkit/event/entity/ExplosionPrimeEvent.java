@@ -25,11 +25,13 @@ public class ExplosionPrimeEvent extends EntityEvent implements Cancellable {
         this(explosive, explosive.getYield(), explosive.isIncendiary());
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancel;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 

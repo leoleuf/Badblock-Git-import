@@ -41,19 +41,24 @@ public class MRUMapCache<K, V> extends AbstractMap<K, V> {
         this.backingMap = backingMap;
     }
 
-    public int size() {return backingMap.size();}
+    @Override
+	public int size() {return backingMap.size();}
 
-    public boolean isEmpty() {return backingMap.isEmpty();}
+    @Override
+	public boolean isEmpty() {return backingMap.isEmpty();}
 
-    public boolean containsKey(Object key) {
+    @Override
+	public boolean containsKey(Object key) {
         return key != null && key.equals(cacheKey) || backingMap.containsKey(key);
     }
 
-    public boolean containsValue(Object value) {
+    @Override
+	public boolean containsValue(Object value) {
         return value != null && value == cacheValue || backingMap.containsValue(value);
     }
 
-    public V get(Object key) {
+    @Override
+	public V get(Object key) {
         if (cacheKey != null && cacheKey.equals(key)) {
             return cacheValue;
         }
@@ -61,31 +66,38 @@ public class MRUMapCache<K, V> extends AbstractMap<K, V> {
         return cacheValue = backingMap.get(key);
     }
 
-    public V put(K key, V value) {
+    @Override
+	public V put(K key, V value) {
         cacheKey = key;
         return cacheValue = backingMap.put(key, value);
     }
 
-    public V remove(Object key) {
+    @Override
+	public V remove(Object key) {
         if (key != null && key.equals(cacheKey)) {
             cacheKey = null;
         }
         return backingMap.remove(key);
     }
 
-    public void putAll(Map<? extends K, ? extends V> m) {backingMap.putAll(m);}
+    @Override
+	public void putAll(Map<? extends K, ? extends V> m) {backingMap.putAll(m);}
 
-    public void clear() {
+    @Override
+	public void clear() {
         cacheKey = null;
         cacheValue = null;
         backingMap.clear();
     }
 
-    public Set<K> keySet() {return backingMap.keySet();}
+    @Override
+	public Set<K> keySet() {return backingMap.keySet();}
 
-    public Collection<V> values() {return backingMap.values();}
+    @Override
+	public Collection<V> values() {return backingMap.values();}
 
-    public Set<Map.Entry<K, V>> entrySet() {return backingMap.entrySet();}
+    @Override
+	public Set<Map.Entry<K, V>> entrySet() {return backingMap.entrySet();}
 
     /**
      * Wraps the specified map with a most recently used cache

@@ -16,16 +16,19 @@ public class BlockNetherWart extends BlockPlant {
         this.a((CreativeModeTab) null);
     }
 
-    protected boolean c(Block block) {
+    @Override
+	protected boolean c(Block block) {
         return block == Blocks.SOUL_SAND;
     }
 
-    public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    @Override
+	public boolean f(World world, BlockPosition blockposition, IBlockData iblockdata) {
         return this.c(world.getType(blockposition.down()).getBlock());
     }
 
-    public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
-        int i = ((Integer) iblockdata.get(BlockNetherWart.AGE)).intValue();
+    @Override
+	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+        int i = iblockdata.get(BlockNetherWart.AGE).intValue();
 
         if (i < 3 && random.nextInt(Math.max(1, (int) world.growthOdds / world.spigotConfig.wartModifier * 10)) == 0) { // Spigot
             iblockdata = iblockdata.set(BlockNetherWart.AGE, Integer.valueOf(i + 1));
@@ -36,11 +39,12 @@ public class BlockNetherWart extends BlockPlant {
         super.b(world, blockposition, iblockdata, random);
     }
 
-    public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
+    @Override
+	public void dropNaturally(World world, BlockPosition blockposition, IBlockData iblockdata, float f, int i) {
         if (!world.isClientSide) {
             int j = 1;
 
-            if (((Integer) iblockdata.get(BlockNetherWart.AGE)).intValue() >= 3) {
+            if (iblockdata.get(BlockNetherWart.AGE).intValue() >= 3) {
                 j = 2 + world.random.nextInt(3);
                 if (i > 0) {
                     j += world.random.nextInt(i + 1);
@@ -54,23 +58,28 @@ public class BlockNetherWart extends BlockPlant {
         }
     }
 
-    public Item getDropType(IBlockData iblockdata, Random random, int i) {
+    @Override
+	public Item getDropType(IBlockData iblockdata, Random random, int i) {
         return null;
     }
 
-    public int a(Random random) {
+    @Override
+	public int a(Random random) {
         return 0;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockNetherWart.AGE, Integer.valueOf(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((Integer) iblockdata.get(BlockNetherWart.AGE)).intValue();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockNetherWart.AGE).intValue();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockNetherWart.AGE});
     }
 }

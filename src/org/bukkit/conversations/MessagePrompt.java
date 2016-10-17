@@ -16,7 +16,8 @@ public abstract class MessagePrompt implements Prompt{
      * @param context Context information about the conversation.
      * @return Always false.
      */
-    public boolean blocksForInput(ConversationContext context) {
+    @Override
+	public boolean blocksForInput(ConversationContext context) {
         return false;
     }
 
@@ -28,7 +29,8 @@ public abstract class MessagePrompt implements Prompt{
      * @param input Ignored.
      * @return The next prompt in the prompt graph.
      */
-    public Prompt acceptInput(ConversationContext context, String input) {
+    @Override
+	public Prompt acceptInput(ConversationContext context, String input) {
         return getNextPrompt(context);
     }
 

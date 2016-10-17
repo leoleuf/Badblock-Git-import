@@ -9,26 +9,31 @@ public class BlockMinecartTrack extends BlockMinecartTrackAbstract {
         this.j(this.blockStateList.getBlockData().set(BlockMinecartTrack.SHAPE, BlockMinecartTrackAbstract.EnumTrackPosition.NORTH_SOUTH));
     }
 
-    protected void b(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    @Override
+	protected void b(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
         if (block.isPowerSource() && (new BlockMinecartTrackAbstract.MinecartTrackLogic(world, blockposition, iblockdata)).a() == 3) {
             this.a(world, blockposition, iblockdata, false);
         }
 
     }
 
-    public IBlockState<BlockMinecartTrackAbstract.EnumTrackPosition> n() {
+    @Override
+	public IBlockState<BlockMinecartTrackAbstract.EnumTrackPosition> n() {
         return BlockMinecartTrack.SHAPE;
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockMinecartTrack.SHAPE, BlockMinecartTrackAbstract.EnumTrackPosition.a(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((BlockMinecartTrackAbstract.EnumTrackPosition) iblockdata.get(BlockMinecartTrack.SHAPE)).a();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockMinecartTrack.SHAPE).a();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockMinecartTrack.SHAPE});
     }
 }

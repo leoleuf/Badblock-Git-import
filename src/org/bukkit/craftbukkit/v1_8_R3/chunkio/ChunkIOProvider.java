@@ -15,7 +15,8 @@ class ChunkIOProvider implements AsynchronousExecutor.CallBackProvider<QueuedChu
     private final AtomicInteger threadNumber = new AtomicInteger(1);
 
     // async stuff
-    public Chunk callStage1(QueuedChunk queuedChunk) throws RuntimeException {
+    @Override
+	public Chunk callStage1(QueuedChunk queuedChunk) throws RuntimeException {
         try {
             ChunkRegionLoader loader = queuedChunk.loader;
             Object[] data = loader.loadChunk(queuedChunk.world, queuedChunk.x, queuedChunk.z);
@@ -32,7 +33,8 @@ class ChunkIOProvider implements AsynchronousExecutor.CallBackProvider<QueuedChu
     }
 
     // sync stuff
-    public void callStage2(QueuedChunk queuedChunk, Chunk chunk) throws RuntimeException {
+    @Override
+	public void callStage2(QueuedChunk queuedChunk, Chunk chunk) throws RuntimeException {
         if (chunk == null) {
             // If the chunk loading failed just do it synchronously (may generate)
             queuedChunk.provider.originalGetChunkAt(queuedChunk.x, queuedChunk.z);
@@ -73,11 +75,13 @@ class ChunkIOProvider implements AsynchronousExecutor.CallBackProvider<QueuedChu
         chunk.loadNearby(queuedChunk.provider, queuedChunk.provider, queuedChunk.x, queuedChunk.z);
     }
 
-    public void callStage3(QueuedChunk queuedChunk, Chunk chunk, Runnable runnable) throws RuntimeException {
+    @Override
+	public void callStage3(QueuedChunk queuedChunk, Chunk chunk, Runnable runnable) throws RuntimeException {
         runnable.run();
     }
 
-    public Thread newThread(Runnable runnable) {
+    @Override
+	public Thread newThread(Runnable runnable) {
         Thread thread = new Thread(runnable, "Chunk I/O Executor Thread-" + threadNumber.getAndIncrement());
         thread.setDaemon(true);
         return thread;

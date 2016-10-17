@@ -29,18 +29,18 @@ public class NoiseGeneratorOctaves extends NoiseGenerator {
         double d3 = 1.0D;
 
         for (int l1 = 0; l1 < this.b; ++l1) {
-            double d4 = (double) i * d3 * d0;
-            double d5 = (double) j * d3 * d1;
-            double d6 = (double) k * d3 * d2;
+            double d4 = i * d3 * d0;
+            double d5 = j * d3 * d1;
+            double d6 = k * d3 * d2;
             long i2 = MathHelper.d(d4);
             long j2 = MathHelper.d(d6);
 
-            d4 -= (double) i2;
-            d6 -= (double) j2;
+            d4 -= i2;
+            d6 -= j2;
             i2 %= 16777216L;
             j2 %= 16777216L;
-            d4 += (double) i2;
-            d6 += (double) j2;
+            d4 += i2;
+            d6 += j2;
             this.a[l1].a(adouble, d4, d5, d6, l, i1, j1, d0 * d3, d1 * d3, d2 * d3, d3);
             d3 /= 2.0D;
         }

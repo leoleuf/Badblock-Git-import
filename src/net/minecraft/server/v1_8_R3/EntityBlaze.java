@@ -18,35 +18,42 @@ public class EntityBlaze extends EntityMonster {
         this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, true));
     }
 
-    protected void initAttributes() {
+    @Override
+	protected void initAttributes() {
         super.initAttributes();
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(6.0D);
         this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(0.23000000417232513D);
         this.getAttributeInstance(GenericAttributes.FOLLOW_RANGE).setValue(48.0D);
     }
 
-    protected void h() {
+    @Override
+	protected void h() {
         super.h();
         this.datawatcher.a(16, new Byte((byte) 0));
     }
 
-    protected String z() {
+    @Override
+	protected String z() {
         return "mob.blaze.breathe";
     }
 
-    protected String bo() {
+    @Override
+	protected String bo() {
         return "mob.blaze.hit";
     }
 
-    protected String bp() {
+    @Override
+	protected String bp() {
         return "mob.blaze.death";
     }
 
-    public float c(float f) {
+    @Override
+	public float c(float f) {
         return 1.0F;
     }
 
-    public void m() {
+    @Override
+	public void m() {
         if (!this.onGround && this.motY < 0.0D) {
             this.motY *= 0.6D;
         }
@@ -57,14 +64,15 @@ public class EntityBlaze extends EntityMonster {
             }
 
             for (int i = 0; i < 2; ++i) {
-                this.world.addParticle(EnumParticle.SMOKE_LARGE, this.locX + (this.random.nextDouble() - 0.5D) * (double) this.width, this.locY + this.random.nextDouble() * (double) this.length, this.locZ + (this.random.nextDouble() - 0.5D) * (double) this.width, 0.0D, 0.0D, 0.0D, new int[0]);
+                this.world.addParticle(EnumParticle.SMOKE_LARGE, this.locX + (this.random.nextDouble() - 0.5D) * this.width, this.locY + this.random.nextDouble() * this.length, this.locZ + (this.random.nextDouble() - 0.5D) * this.width, 0.0D, 0.0D, 0.0D, new int[0]);
             }
         }
 
         super.m();
     }
 
-    protected void E() {
+    @Override
+	protected void E() {
         if (this.U()) {
             this.damageEntity(DamageSource.DROWN, 1.0F);
         }
@@ -77,7 +85,7 @@ public class EntityBlaze extends EntityMonster {
 
         EntityLiving entityliving = this.getGoalTarget();
 
-        if (entityliving != null && entityliving.locY + (double) entityliving.getHeadHeight() > this.locY + (double) this.getHeadHeight() + (double) this.a) {
+        if (entityliving != null && entityliving.locY + entityliving.getHeadHeight() > this.locY + this.getHeadHeight() + this.a) {
             this.motY += (0.30000001192092896D - this.motY) * 0.30000001192092896D;
             this.ai = true;
         }
@@ -85,17 +93,21 @@ public class EntityBlaze extends EntityMonster {
         super.E();
     }
 
-    public void e(float f, float f1) {}
+    @Override
+	public void e(float f, float f1) {}
 
-    protected Item getLoot() {
+    @Override
+	protected Item getLoot() {
         return Items.BLAZE_ROD;
     }
 
-    public boolean isBurning() {
+    @Override
+	public boolean isBurning() {
         return this.n();
     }
 
-    protected void dropDeathLoot(boolean flag, int i) {
+    @Override
+	protected void dropDeathLoot(boolean flag, int i) {
         if (flag) {
             int j = this.random.nextInt(2 + i);
 
@@ -122,7 +134,8 @@ public class EntityBlaze extends EntityMonster {
         this.datawatcher.watch(16, Byte.valueOf(b0));
     }
 
-    protected boolean n_() {
+    @Override
+	protected boolean n_() {
         return true;
     }
 
@@ -137,21 +150,25 @@ public class EntityBlaze extends EntityMonster {
             this.a(3);
         }
 
-        public boolean a() {
+        @Override
+		public boolean a() {
             EntityLiving entityliving = this.a.getGoalTarget();
 
             return entityliving != null && entityliving.isAlive();
         }
 
-        public void c() {
+        @Override
+		public void c() {
             this.b = 0;
         }
 
-        public void d() {
+        @Override
+		public void d() {
             this.a.a(false);
         }
 
-        public void e() {
+        @Override
+		public void e() {
             --this.c;
             EntityLiving entityliving = this.a.getGoalTarget();
             double d0 = this.a.h(entityliving);
@@ -165,7 +182,7 @@ public class EntityBlaze extends EntityMonster {
                 this.a.getControllerMove().a(entityliving.locX, entityliving.locY, entityliving.locZ, 1.0D);
             } else if (d0 < 256.0D) {
                 double d1 = entityliving.locX - this.a.locX;
-                double d2 = entityliving.getBoundingBox().b + (double) (entityliving.length / 2.0F) - (this.a.locY + (double) (this.a.length / 2.0F));
+                double d2 = entityliving.getBoundingBox().b + entityliving.length / 2.0F - (this.a.locY + this.a.length / 2.0F);
                 double d3 = entityliving.locZ - this.a.locZ;
 
                 if (this.c <= 0) {
@@ -187,9 +204,9 @@ public class EntityBlaze extends EntityMonster {
                         this.a.world.a((EntityHuman) null, 1009, new BlockPosition((int) this.a.locX, (int) this.a.locY, (int) this.a.locZ), 0);
 
                         for (int i = 0; i < 1; ++i) {
-                            EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.a.world, this.a, d1 + this.a.bc().nextGaussian() * (double) f, d2, d3 + this.a.bc().nextGaussian() * (double) f);
+                            EntitySmallFireball entitysmallfireball = new EntitySmallFireball(this.a.world, this.a, d1 + this.a.bc().nextGaussian() * f, d2, d3 + this.a.bc().nextGaussian() * f);
 
-                            entitysmallfireball.locY = this.a.locY + (double) (this.a.length / 2.0F) + 0.5D;
+                            entitysmallfireball.locY = this.a.locY + this.a.length / 2.0F + 0.5D;
                             this.a.world.addEntity(entitysmallfireball);
                         }
                     }

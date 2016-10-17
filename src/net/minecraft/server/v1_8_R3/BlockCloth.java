@@ -10,23 +10,28 @@ public class BlockCloth extends Block {
         this.a(CreativeModeTab.b);
     }
 
-    public int getDropData(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCloth.COLOR)).getColorIndex();
+    @Override
+	public int getDropData(IBlockData iblockdata) {
+        return iblockdata.get(BlockCloth.COLOR).getColorIndex();
     }
 
-    public MaterialMapColor g(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCloth.COLOR)).e();
+    @Override
+	public MaterialMapColor g(IBlockData iblockdata) {
+        return iblockdata.get(BlockCloth.COLOR).e();
     }
 
-    public IBlockData fromLegacyData(int i) {
+    @Override
+	public IBlockData fromLegacyData(int i) {
         return this.getBlockData().set(BlockCloth.COLOR, EnumColor.fromColorIndex(i));
     }
 
-    public int toLegacyData(IBlockData iblockdata) {
-        return ((EnumColor) iblockdata.get(BlockCloth.COLOR)).getColorIndex();
+    @Override
+	public int toLegacyData(IBlockData iblockdata) {
+        return iblockdata.get(BlockCloth.COLOR).getColorIndex();
     }
 
-    protected BlockStateList getStateList() {
+    @Override
+	protected BlockStateList getStateList() {
         return new BlockStateList(this, new IBlockState[] { BlockCloth.COLOR});
     }
 }

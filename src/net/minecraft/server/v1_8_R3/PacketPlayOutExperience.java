@@ -16,19 +16,22 @@ public class PacketPlayOutExperience implements Packet<PacketListenerPlayOut> {
         this.c = j;
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
         this.a = packetdataserializer.readFloat();
         this.c = packetdataserializer.e();
         this.b = packetdataserializer.e();
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
         packetdataserializer.writeFloat(this.a);
         packetdataserializer.b(this.c);
         packetdataserializer.b(this.b);
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

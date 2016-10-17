@@ -7,11 +7,13 @@ public class ItemGoldenApple extends ItemFood {
         this.a(true);
     }
 
-    public EnumItemRarity g(ItemStack itemstack) {
+    @Override
+	public EnumItemRarity g(ItemStack itemstack) {
         return itemstack.getData() == 0 ? EnumItemRarity.RARE : EnumItemRarity.EPIC;
     }
 
-    protected void c(ItemStack itemstack, World world, EntityHuman entityhuman) {
+    @Override
+	protected void c(ItemStack itemstack, World world, EntityHuman entityhuman) {
         if (!world.isClientSide) {
             entityhuman.addEffect(new MobEffect(MobEffectList.ABSORBTION.id, 2400, 0));
         }

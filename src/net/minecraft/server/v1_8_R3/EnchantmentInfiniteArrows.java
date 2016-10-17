@@ -7,15 +7,18 @@ public class EnchantmentInfiniteArrows extends Enchantment {
         this.c("arrowInfinite");
     }
 
-    public int a(int i) {
+    @Override
+	public int a(int i) {
         return 20;
     }
 
-    public int b(int i) {
+    @Override
+	public int b(int i) {
         return 50;
     }
 
-    public int getMaxLevel() {
+    @Override
+	public int getMaxLevel() {
         return 1;
     }
 }

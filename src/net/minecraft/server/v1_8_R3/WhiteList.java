@@ -12,7 +12,8 @@ public class WhiteList extends JsonList<GameProfile, WhiteListEntry> {
         super(file);
     }
 
-    protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
+    @Override
+	protected JsonListEntry<GameProfile> a(JsonObject jsonobject) {
         return new WhiteListEntry(jsonobject);
     }
 
@@ -20,13 +21,14 @@ public class WhiteList extends JsonList<GameProfile, WhiteListEntry> {
         return this.d(gameprofile);
     }
 
-    public String[] getEntries() {
+    @Override
+	public String[] getEntries() {
         String[] astring = new String[this.e().size()];
         int i = 0;
 
         WhiteListEntry whitelistentry;
 
-        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = ((GameProfile) whitelistentry.getKey()).getName()) {
+        for (Iterator iterator = this.e().values().iterator(); iterator.hasNext(); astring[i++] = whitelistentry.getKey().getName()) {
             whitelistentry = (WhiteListEntry) iterator.next();
         }
 
@@ -48,12 +50,13 @@ public class WhiteList extends JsonList<GameProfile, WhiteListEntry> {
             }
 
             whitelistentry = (WhiteListEntry) iterator.next();
-        } while (!s.equalsIgnoreCase(((GameProfile) whitelistentry.getKey()).getName()));
+        } while (!s.equalsIgnoreCase(whitelistentry.getKey().getName()));
 
-        return (GameProfile) whitelistentry.getKey();
+        return whitelistentry.getKey();
     }
 
-    protected String a(GameProfile object) {
-        return this.b((GameProfile) object);
+    @Override
+	protected String a(GameProfile object) {
+        return this.b(object);
     }
 }

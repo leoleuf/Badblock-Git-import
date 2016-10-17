@@ -77,11 +77,13 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
         return bonus;
     }
 
-    public boolean isCancelled() {
+    @Override
+	public boolean isCancelled() {
         return cancelled;
     }
 
-    public void setCancelled(boolean cancel) {
+    @Override
+	public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 

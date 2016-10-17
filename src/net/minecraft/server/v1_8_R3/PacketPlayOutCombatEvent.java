@@ -30,8 +30,9 @@ public class PacketPlayOutCombatEvent implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketDataSerializer packetdataserializer) throws IOException {
-        this.a = (PacketPlayOutCombatEvent.EnumCombatEventType) packetdataserializer.a(PacketPlayOutCombatEvent.EnumCombatEventType.class);
+    @Override
+	public void a(PacketDataSerializer packetdataserializer) throws IOException {
+        this.a = packetdataserializer.a(PacketPlayOutCombatEvent.EnumCombatEventType.class);
         if (this.a == PacketPlayOutCombatEvent.EnumCombatEventType.END_COMBAT) {
             this.d = packetdataserializer.e();
             this.c = packetdataserializer.readInt();
@@ -43,8 +44,9 @@ public class PacketPlayOutCombatEvent implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void b(PacketDataSerializer packetdataserializer) throws IOException {
-        packetdataserializer.a((Enum) this.a);
+    @Override
+	public void b(PacketDataSerializer packetdataserializer) throws IOException {
+        packetdataserializer.a(this.a);
         if (this.a == PacketPlayOutCombatEvent.EnumCombatEventType.END_COMBAT) {
             packetdataserializer.b(this.d);
             packetdataserializer.writeInt(this.c);
@@ -56,7 +58,8 @@ public class PacketPlayOutCombatEvent implements Packet<PacketListenerPlayOut> {
 
     }
 
-    public void a(PacketListenerPlayOut packetlistenerplayout) {
+    @Override
+	public void a(PacketListenerPlayOut packetlistenerplayout) {
         packetlistenerplayout.a(this);
     }
 

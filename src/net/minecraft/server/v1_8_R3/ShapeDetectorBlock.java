@@ -44,7 +44,8 @@ public class ShapeDetectorBlock {
                 return shapedetectorblock != null && predicate.apply(shapedetectorblock.a());
             }
 
-            public boolean apply(Object object) {
+            @Override
+			public boolean apply(Object object) {
                 return this.a((ShapeDetectorBlock) object);
             }
         };

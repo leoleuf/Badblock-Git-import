@@ -11,19 +11,23 @@ public class ScoreboardCriteriaInteger implements IScoreboardCriteria {
         IScoreboardCriteria.criteria.put(this.j, this);
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return this.j;
     }
 
-    public int getScoreModifier(List<EntityHuman> list) {
+    @Override
+	public int getScoreModifier(List<EntityHuman> list) {
         return 0;
     }
 
-    public boolean isReadOnly() {
+    @Override
+	public boolean isReadOnly() {
         return false;
     }
 
-    public IScoreboardCriteria.EnumScoreboardHealthDisplay c() {
+    @Override
+	public IScoreboardCriteria.EnumScoreboardHealthDisplay c() {
         return IScoreboardCriteria.EnumScoreboardHealthDisplay.INTEGER;
     }
 }

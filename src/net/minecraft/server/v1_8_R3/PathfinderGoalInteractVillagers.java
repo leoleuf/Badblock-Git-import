@@ -10,7 +10,8 @@ public class PathfinderGoalInteractVillagers extends PathfinderGoalInteract {
         this.f = entityvillager;
     }
 
-    public void c() {
+    @Override
+	public void c() {
         super.c();
         if (this.f.cs() && this.b instanceof EntityVillager && ((EntityVillager) this.b).ct()) {
             this.e = 10;
@@ -20,7 +21,8 @@ public class PathfinderGoalInteractVillagers extends PathfinderGoalInteract {
 
     }
 
-    public void e() {
+    @Override
+	public void e() {
         super.e();
         if (this.e > 0) {
             --this.e;
@@ -53,15 +55,15 @@ public class PathfinderGoalInteractVillagers extends PathfinderGoalInteract {
                     }
 
                     if (itemstack1 != null) {
-                        double d0 = this.f.locY - 0.30000001192092896D + (double) this.f.getHeadHeight();
+                        double d0 = this.f.locY - 0.30000001192092896D + this.f.getHeadHeight();
                         EntityItem entityitem = new EntityItem(this.f.world, this.f.locX, d0, this.f.locZ, itemstack1);
                         float f = 0.3F;
                         float f1 = this.f.aK;
                         float f2 = this.f.pitch;
 
-                        entityitem.motX = (double) (-MathHelper.sin(f1 / 180.0F * 3.1415927F) * MathHelper.cos(f2 / 180.0F * 3.1415927F) * f);
-                        entityitem.motZ = (double) (MathHelper.cos(f1 / 180.0F * 3.1415927F) * MathHelper.cos(f2 / 180.0F * 3.1415927F) * f);
-                        entityitem.motY = (double) (-MathHelper.sin(f2 / 180.0F * 3.1415927F) * f + 0.1F);
+                        entityitem.motX = -MathHelper.sin(f1 / 180.0F * 3.1415927F) * MathHelper.cos(f2 / 180.0F * 3.1415927F) * f;
+                        entityitem.motZ = MathHelper.cos(f1 / 180.0F * 3.1415927F) * MathHelper.cos(f2 / 180.0F * 3.1415927F) * f;
+                        entityitem.motY = -MathHelper.sin(f2 / 180.0F * 3.1415927F) * f + 0.1F;
                         entityitem.p();
                         this.f.world.addEntity(entityitem);
                         break;
