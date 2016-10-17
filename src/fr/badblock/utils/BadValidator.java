@@ -9,7 +9,7 @@ public class BadValidator {
 	 * @return if this one is not null
 	 */
 	public static boolean isNotNull(Object object) {
-		return object == null;
+		return object != null;
 	}
 	
 	/**
