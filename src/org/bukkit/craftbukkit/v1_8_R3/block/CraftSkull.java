@@ -1,17 +1,16 @@
 package org.bukkit.craftbukkit.v1_8_R3.block;
 
-import com.mojang.authlib.GameProfile;
-
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-import net.minecraft.server.v1_8_R3.TileEntitySkull;
-
 import org.bukkit.Material;
-
 import org.bukkit.SkullType;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Skull;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraft.server.v1_8_R3.MinecraftServer;
+import net.minecraft.server.v1_8_R3.TileEntitySkull;
 
 public class CraftSkull extends CraftBlockState implements Skull {
     private static final int MAX_OWNER_LENGTH = 16;

@@ -1,8 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList;

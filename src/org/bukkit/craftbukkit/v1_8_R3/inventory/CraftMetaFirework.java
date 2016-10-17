@@ -11,9 +11,9 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
 import org.bukkit.configuration.serialization.DelegateDeserialization;
-import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftMetaItem.SerializableMeta;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftMetaItem.ItemMetaKey.Specific;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftMetaItem.ItemMetaKey.Specific.To;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftMetaItem.SerializableMeta;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.google.common.collect.ImmutableList;

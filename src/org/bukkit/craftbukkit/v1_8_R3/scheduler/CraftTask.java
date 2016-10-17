@@ -1,10 +1,11 @@
 package org.bukkit.craftbukkit.v1_8_R3.scheduler;
 
 import org.bukkit.Bukkit;
-import co.aikar.timings.SpigotTimings; // Spigot
-import co.aikar.timings.Timing; // Spigot
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
+
+import co.aikar.timings.SpigotTimings; // Spigot
+import co.aikar.timings.Timing; // Spigot
 
 
 public class CraftTask implements BukkitTask, Runnable { // Spigot

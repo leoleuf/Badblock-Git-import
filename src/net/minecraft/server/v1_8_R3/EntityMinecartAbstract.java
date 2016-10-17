@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -12,6 +11,8 @@ import org.bukkit.event.vehicle.VehicleDestroyEvent;
 import org.bukkit.event.vehicle.VehicleEntityCollisionEvent;
 import org.bukkit.util.Vector;
 // CraftBukkit end
+
+import com.google.common.collect.Maps;
 
 public abstract class EntityMinecartAbstract extends Entity implements INamableTileEntity {
 

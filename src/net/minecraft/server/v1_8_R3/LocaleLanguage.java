@@ -1,16 +1,18 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.IllegalFormatException;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.regex.Pattern;
+
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
 public class LocaleLanguage {
 

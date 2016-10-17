@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.ImmutableSet;
 import java.util.Collection;
+
+import com.google.common.collect.ImmutableSet;
 
 public class BlockStateBoolean extends BlockState<Boolean> {
 

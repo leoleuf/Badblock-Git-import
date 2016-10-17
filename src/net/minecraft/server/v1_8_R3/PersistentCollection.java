@@ -1,11 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import org.bukkit.Bukkit;
-import org.github.paperspigot.event.ServerExceptionEvent;
-import org.github.paperspigot.exception.ServerInternalException;
-
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
@@ -17,6 +11,11 @@ import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.github.paperspigot.exception.ServerInternalException;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class PersistentCollection {
 

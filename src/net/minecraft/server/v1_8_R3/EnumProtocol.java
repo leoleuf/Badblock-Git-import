@@ -1,11 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
-import java.util.Iterator;
-import java.util.Map;
-import org.apache.logging.log4j.LogManager;
 
 public enum EnumProtocol {
 

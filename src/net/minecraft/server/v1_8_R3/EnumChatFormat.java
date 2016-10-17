@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public enum EnumChatFormat {
 

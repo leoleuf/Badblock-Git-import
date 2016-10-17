@@ -1,12 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
+
+import com.google.common.collect.Lists;
 
 public class BlockRedstoneTorch extends BlockTorch {
 

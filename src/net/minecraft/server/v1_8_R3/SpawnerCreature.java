@@ -1,10 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Sets;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import org.bukkit.craftbukkit.v1_8_R3.util.LongHash;
 import org.bukkit.craftbukkit.v1_8_R3.util.LongHashSet;

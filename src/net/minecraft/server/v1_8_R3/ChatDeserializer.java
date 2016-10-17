@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
-import org.apache.commons.lang3.StringUtils;
 
 public class ChatDeserializer {
 

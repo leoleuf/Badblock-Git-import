@@ -1,8 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Maps;
+// CraftBukkit start
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -10,11 +9,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-// CraftBukkit start
-import java.util.ArrayList;
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-
+// PaperSpigot start
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -22,14 +19,14 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageModifier;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.vehicle.VehicleExitEvent;
 // CraftBukkit end
-
-import co.aikar.timings.SpigotTimings; // Spigot
-
-// PaperSpigot start
-import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.spigotmc.event.entity.EntityDismountEvent;
 // PaperSpigot end
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public abstract class EntityLiving extends Entity {
 

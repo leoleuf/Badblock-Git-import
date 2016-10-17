@@ -1,9 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.event.entity.EntityTargetEvent;
 // CraftBukkit end
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
 public class EntityExperienceOrb extends Entity {
 

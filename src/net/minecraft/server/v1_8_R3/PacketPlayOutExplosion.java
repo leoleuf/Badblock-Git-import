@@ -1,9 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.collect.Lists;
 
 public class PacketPlayOutExplosion implements Packet<PacketListenerPlayOut> {
 

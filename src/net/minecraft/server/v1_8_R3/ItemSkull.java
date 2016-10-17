@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
 import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
 
 public class ItemSkull extends Item {
 

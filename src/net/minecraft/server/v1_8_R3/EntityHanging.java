@@ -2,8 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.lang3.Validate;
 
+import org.apache.commons.lang3.Validate;
 // CraftBukkit start
 import org.bukkit.entity.Hanging;
 import org.bukkit.entity.Painting;

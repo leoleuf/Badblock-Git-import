@@ -2,14 +2,14 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.List;
 
-// CraftBukkit start
-import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.craftbukkit.v1_8_R3.CraftEquipmentSlot;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 // CraftBukkit end
+// CraftBukkit start
+import org.bukkit.inventory.EquipmentSlot;
 
 public class EntityArmorStand extends EntityLiving {
 

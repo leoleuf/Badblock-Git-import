@@ -1,5 +1,10 @@
 package org.bukkit.craftbukkit.v1_8_R3.inventory;
 
+// Spigot start
+// Spigot end
+import static org.spigotmc.ValidateUtils.limit;
+
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,16 +21,10 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap.Builder;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import net.minecraft.server.v1_8_R3.NBTTagList;
 import net.minecraft.server.v1_8_R3.NBTTagString;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
-
-import java.util.AbstractList;
-
-// Spigot start
-import static org.spigotmc.ValidateUtils.*;
-// Spigot end
 
 @DelegateDeserialization(SerializableMeta.class)
 public class CraftMetaBook extends CraftMetaItem implements BookMeta {

@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
 import java.util.Iterator;
+
+import com.google.common.base.Predicate;
 
 public class BlockChest extends BlockContainer {
 

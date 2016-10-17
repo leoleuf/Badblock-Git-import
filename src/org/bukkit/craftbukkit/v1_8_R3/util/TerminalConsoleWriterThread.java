@@ -7,8 +7,9 @@ import java.util.logging.Logger;
 
 import org.bukkit.craftbukkit.v1_8_R3.Main;
 
-import jline.console.ConsoleReader;
 import com.mojang.util.QueueLogAppender;
+
+import jline.console.ConsoleReader;
 
 public class TerminalConsoleWriterThread implements Runnable {
     final private ConsoleReader reader;

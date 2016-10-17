@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
 
@@ -8,6 +7,8 @@ import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 // CraftBukkit end
+
+import com.google.common.collect.Maps;
 
 public class BlockFire extends Block {
 

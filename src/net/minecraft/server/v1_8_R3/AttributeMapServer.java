@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.common.collect.Sets;
 
 public class AttributeMapServer extends AttributeMapBase {
 

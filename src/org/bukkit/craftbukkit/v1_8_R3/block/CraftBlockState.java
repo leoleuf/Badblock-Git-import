@@ -1,10 +1,12 @@
 package org.bukkit.craftbukkit.v1_8_R3.block;
 
-import org.bukkit.Location;
-import org.bukkit.block.Block;
+import java.util.List;
+
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.CraftChunk;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -14,8 +16,6 @@ import org.bukkit.plugin.Plugin;
 
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.TileEntity;
-
-import java.util.List;
 
 public class CraftBlockState implements BlockState {
     private final CraftWorld world;

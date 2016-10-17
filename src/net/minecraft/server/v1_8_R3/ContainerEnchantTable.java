@@ -1,18 +1,17 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.util.List;
-import java.util.Random;
-
 // CraftBukkit start
 import java.util.Map;
+import java.util.Random;
 
-import org.bukkit.event.enchantment.EnchantItemEvent;
-import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventoryEnchanting;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventoryView;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 // CraftBukkit end
+import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 
 public class ContainerEnchantTable extends Container {
 

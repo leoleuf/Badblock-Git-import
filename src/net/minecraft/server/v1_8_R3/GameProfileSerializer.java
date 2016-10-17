@@ -1,9 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 import java.util.Iterator;
 import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 
 public final class GameProfileSerializer {
 

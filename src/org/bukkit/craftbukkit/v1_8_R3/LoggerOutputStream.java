@@ -2,6 +2,7 @@ package org.bukkit.craftbukkit.v1_8_R3;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
 

@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Collection;
 import java.util.Map;
+
+import com.google.common.collect.Maps;
 
 public abstract class ScoreboardTeamBase {
 

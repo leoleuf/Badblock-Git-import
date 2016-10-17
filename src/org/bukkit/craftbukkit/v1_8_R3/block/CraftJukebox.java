@@ -7,8 +7,11 @@ import org.bukkit.block.Jukebox;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.BlockJukeBox;
 import net.minecraft.server.v1_8_R3.BlockJukeBox.TileEntityRecordPlayer;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Blocks;
+import net.minecraft.server.v1_8_R3.ItemStack;
 
 public class CraftJukebox extends CraftBlockState implements Jukebox {
     private final CraftWorld world;

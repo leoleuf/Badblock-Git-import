@@ -1,14 +1,16 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
 import java.io.PrintStream;
 import java.util.Random;
 import java.util.UUID;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.event.block.BlockDispenseEvent;
 // CraftBukkit end
+
+import com.mojang.authlib.GameProfile;
 
 public class DispenserRegistry {
 

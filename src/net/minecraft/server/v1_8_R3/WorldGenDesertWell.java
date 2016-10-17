@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicates;
 import java.util.Iterator;
 import java.util.Random;
+
+import com.google.common.base.Predicates;
 
 public class WorldGenDesertWell extends WorldGenerator {
 

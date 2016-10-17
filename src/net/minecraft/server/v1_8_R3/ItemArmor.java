@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicates;
 import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.event.block.BlockDispenseEvent;
 // CraftBukkit end
+
+import com.google.common.base.Predicates;
 
 public class ItemArmor extends Item {
 

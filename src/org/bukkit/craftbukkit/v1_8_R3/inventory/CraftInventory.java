@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
@@ -22,8 +23,6 @@ import net.minecraft.server.v1_8_R3.TileEntityBrewingStand;
 import net.minecraft.server.v1_8_R3.TileEntityDispenser;
 import net.minecraft.server.v1_8_R3.TileEntityDropper;
 import net.minecraft.server.v1_8_R3.TileEntityFurnace;
-
-import org.bukkit.Material;
 
 public class CraftInventory implements Inventory {
     protected final IInventory inventory;

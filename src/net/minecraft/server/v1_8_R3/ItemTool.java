@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Multimap;
 import java.util.Set;
+
+import com.google.common.collect.Multimap;
 
 public class ItemTool extends Item {
 

@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
 import java.io.IOException;
 import java.util.UUID;
+
+import com.mojang.authlib.GameProfile;
 
 public class PacketLoginInStart implements Packet<PacketLoginInListener> {
 

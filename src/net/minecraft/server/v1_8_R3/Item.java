@@ -1,12 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
 import com.google.common.base.Function;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 public class Item {
 

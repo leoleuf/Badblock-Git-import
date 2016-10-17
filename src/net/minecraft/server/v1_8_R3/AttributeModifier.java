@@ -1,9 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import io.netty.util.internal.ThreadLocalRandom;
 import java.util.Random;
 import java.util.UUID;
+
 import org.apache.commons.lang3.Validate;
+
+import io.netty.util.internal.ThreadLocalRandom;
 
 public class AttributeModifier {
 

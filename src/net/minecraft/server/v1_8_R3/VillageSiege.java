@@ -1,9 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import org.github.paperspigot.exception.ServerInternalException;
-
 import java.util.Iterator;
 import java.util.List;
+
+import org.github.paperspigot.exception.ServerInternalException;
 
 public class VillageSiege {
 

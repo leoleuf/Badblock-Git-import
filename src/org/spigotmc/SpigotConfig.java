@@ -1,6 +1,5 @@
 package org.spigotmc;
 
-import com.google.common.base.Throwables;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -14,12 +13,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import gnu.trove.map.hash.TObjectIntHashMap;
-import net.minecraft.server.v1_8_R3.AttributeRanged;
-import net.minecraft.server.v1_8_R3.GenericAttributes;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-
-import com.google.common.collect.Lists;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
@@ -30,8 +23,16 @@ import org.bukkit.command.Command;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.google.common.base.Throwables;
+import com.google.common.collect.Lists;
+
 import co.aikar.timings.Timings;
 import co.aikar.timings.TimingsManager;
+import gnu.trove.map.hash.TObjectIntHashMap;
+import net.minecraft.server.v1_8_R3.AttributeRanged;
+import net.minecraft.server.v1_8_R3.GenericAttributes;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 public class SpigotConfig
 {

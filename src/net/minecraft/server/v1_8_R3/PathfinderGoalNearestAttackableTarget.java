@@ -1,10 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 
 public class PathfinderGoalNearestAttackableTarget<T extends EntityLiving> extends PathfinderGoalTarget {
 

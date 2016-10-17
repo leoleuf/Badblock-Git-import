@@ -2,6 +2,7 @@ package net.minecraft.server.v1_8_R3;
 
 import java.io.IOException;
 import java.security.PrivateKey;
+
 import javax.crypto.SecretKey;
 
 public class PacketLoginInEncryptionBegin implements Packet<PacketLoginInListener> {

@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 import java.net.MalformedURLException;
@@ -12,6 +11,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+
+import com.google.common.collect.Maps;
 
 public class MojangStatisticsGenerator {
 

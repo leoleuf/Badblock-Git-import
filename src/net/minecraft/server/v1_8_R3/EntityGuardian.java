@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.base.Predicate;
 
 public class EntityGuardian extends EntityMonster {
 

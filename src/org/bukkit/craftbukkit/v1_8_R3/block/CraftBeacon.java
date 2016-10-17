@@ -1,11 +1,10 @@
 package org.bukkit.craftbukkit.v1_8_R3.block;
 
 import org.bukkit.Material;
-
+import org.bukkit.block.Beacon;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftInventoryBeacon;
-import org.bukkit.block.Beacon;
 import org.bukkit.inventory.Inventory;
 
 import net.minecraft.server.v1_8_R3.TileEntityBeacon;

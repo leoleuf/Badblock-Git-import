@@ -3,14 +3,14 @@ package org.bukkit.craftbukkit.v1_8_R3.command;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.Ansi.Attribute;
-import jline.Terminal;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.fusesource.jansi.Ansi;
+import org.fusesource.jansi.Ansi.Attribute;
+
+import jline.Terminal;
 
 public class ColouredConsoleSender extends CraftConsoleCommandSender {
     private final Terminal terminal;

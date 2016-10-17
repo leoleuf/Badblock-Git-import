@@ -1,7 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 import org.apache.commons.lang3.ObjectUtils;
+
+import com.google.common.collect.Lists;
 
 public class DataWatcher {
 

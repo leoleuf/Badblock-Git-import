@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.UUID;
+
 import com.google.gson.JsonObject;
 import com.mojang.authlib.GameProfile;
-import java.util.UUID;
 
 public class WhiteListEntry extends JsonListEntry<GameProfile> {
 

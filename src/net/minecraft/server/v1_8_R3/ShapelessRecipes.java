@@ -1,12 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftShapelessRecipe;
+
+import com.google.common.collect.Lists;
 
 public class ShapelessRecipes implements IRecipe {
 

@@ -1,7 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Iterator;
@@ -9,6 +7,9 @@ import java.util.Random;
 import java.util.Set;
 
 import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 public class BlockRedstoneWire extends Block {
 

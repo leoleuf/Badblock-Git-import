@@ -1,9 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.gson.JsonObject;
-import com.mojang.authlib.GameProfile;
 import java.io.File;
 import java.util.Iterator;
+
+import com.google.gson.JsonObject;
+import com.mojang.authlib.GameProfile;
 
 public class OpList extends JsonList<GameProfile, OpListEntry> {
 

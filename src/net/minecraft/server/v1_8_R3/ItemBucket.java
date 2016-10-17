@@ -5,7 +5,6 @@ import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 // CraftBukkit end
-
 import org.github.paperspigot.PaperSpigotConfig; // PaperSpigot
 
 public class ItemBucket extends Item {

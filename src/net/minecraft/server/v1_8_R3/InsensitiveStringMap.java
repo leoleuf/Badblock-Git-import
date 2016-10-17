@@ -1,11 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
+
+import com.google.common.collect.Maps;
 
 public class InsensitiveStringMap<V> implements Map<String, V> {
 

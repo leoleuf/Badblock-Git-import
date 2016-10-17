@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.Random;
 
@@ -9,6 +8,8 @@ import org.bukkit.event.entity.SheepRegrowWoolEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
 import org.bukkit.inventory.InventoryView;
 // CraftBukkit end
+
+import com.google.common.collect.Maps;
 
 public class EntitySheep extends EntityAnimal {
 

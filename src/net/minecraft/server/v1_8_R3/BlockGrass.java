@@ -6,9 +6,9 @@ import java.util.Random;
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
-import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 // CraftBukkit end
+import org.bukkit.event.block.BlockSpreadEvent;
 
 public class BlockGrass extends Block implements IBlockFragilePlantElement {
 

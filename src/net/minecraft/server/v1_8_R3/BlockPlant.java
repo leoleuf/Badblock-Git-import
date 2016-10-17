@@ -2,7 +2,6 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
-import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
 import org.bukkit.event.block.BlockPhysicsEvent;
 // CraftBukkit end
 

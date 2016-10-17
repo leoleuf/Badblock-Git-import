@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.List;
+
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-import java.util.List;
 
 public class PathfinderGoalAvoidTarget<T extends Entity> extends PathfinderGoal {
 

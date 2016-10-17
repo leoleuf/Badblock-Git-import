@@ -1,11 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-
 import org.bukkit.Material;
 // CraftBukkit end
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
+
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 
 public class PathfinderGoalEatTile extends PathfinderGoal {
 

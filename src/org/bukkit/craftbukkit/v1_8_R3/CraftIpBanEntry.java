@@ -3,11 +3,11 @@ package org.bukkit.craftbukkit.v1_8_R3;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 
 import net.minecraft.server.v1_8_R3.IpBanEntry;
 import net.minecraft.server.v1_8_R3.IpBanList;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 public final class CraftIpBanEntry implements org.bukkit.BanEntry {
     private final IpBanList list;

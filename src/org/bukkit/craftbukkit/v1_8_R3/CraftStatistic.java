@@ -1,8 +1,8 @@
 package org.bukkit.craftbukkit.v1_8_R3;
 
 import org.bukkit.Achievement;
-import org.bukkit.Statistic;
 import org.bukkit.Material;
+import org.bukkit.Statistic;
 import org.bukkit.entity.EntityType;
 
 import com.google.common.base.CaseFormat;
@@ -12,10 +12,10 @@ import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.EntityTypes;
+import net.minecraft.server.v1_8_R3.EntityTypes.MonsterEggInfo;
 import net.minecraft.server.v1_8_R3.Item;
 import net.minecraft.server.v1_8_R3.MinecraftKey;
 import net.minecraft.server.v1_8_R3.StatisticList;
-import net.minecraft.server.v1_8_R3.EntityTypes.MonsterEggInfo;
 
 public class CraftStatistic {
     private static final BiMap<String, org.bukkit.Statistic> statistics;

@@ -1,8 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.gson.JsonParseException;
 import java.util.List;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
+
+import com.google.gson.JsonParseException;
 
 public class CommandTellRaw extends CommandAbstract {
 

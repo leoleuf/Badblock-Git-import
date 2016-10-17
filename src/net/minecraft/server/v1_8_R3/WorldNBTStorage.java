@@ -8,13 +8,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
-
 // CraftBukkit start
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.github.paperspigot.exception.ServerInternalException;
 // CraftBukkit end
 

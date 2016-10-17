@@ -1,9 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.HashSet;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 public class BlockStateInteger extends BlockState<Integer> {
 

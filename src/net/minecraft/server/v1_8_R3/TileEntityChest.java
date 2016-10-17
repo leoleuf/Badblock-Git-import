@@ -1,6 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftHumanEntity;

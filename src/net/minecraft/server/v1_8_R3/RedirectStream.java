@@ -2,6 +2,7 @@ package net.minecraft.server.v1_8_R3;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,7 +1,6 @@
 package org.bukkit.craftbukkit.v1_8_R3.block;
 
 import org.bukkit.Material;
-
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;

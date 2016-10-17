@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.List;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import io.netty.handler.codec.CorruptedFrameException;
-import java.util.List;
 
 public class PacketSplitter extends ByteToMessageDecoder {
 

@@ -9,8 +9,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;
 
 import net.minecraft.server.v1_8_R3.EntityPainting;
-import net.minecraft.server.v1_8_R3.WorldServer;
 import net.minecraft.server.v1_8_R3.EntityPainting.EnumArt;
+import net.minecraft.server.v1_8_R3.WorldServer;
 
 public class CraftPainting extends CraftHanging implements Painting {
 

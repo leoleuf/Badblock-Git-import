@@ -1,19 +1,19 @@
 package org.spigotmc;
 
-import gnu.trove.set.TByteSet;
-import gnu.trove.set.hash.TByteHashSet;
-import net.minecraft.server.v1_8_R3.Block;
-import net.minecraft.server.v1_8_R3.BlockPosition;
-import net.minecraft.server.v1_8_R3.Blocks;
-import net.minecraft.server.v1_8_R3.World;
-import co.aikar.timings.SpigotTimings;
-
 // PaperSpigot start
 import java.util.HashSet;
 import java.util.Set;
 // PaperSpigot end
 
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
+
+import co.aikar.timings.SpigotTimings;
+import gnu.trove.set.TByteSet;
+import gnu.trove.set.hash.TByteHashSet;
+import net.minecraft.server.v1_8_R3.Block;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Blocks;
+import net.minecraft.server.v1_8_R3.World;
 
 public class AntiXray
 {

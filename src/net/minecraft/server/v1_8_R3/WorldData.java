@@ -1,6 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.util.concurrent.Callable;
+
 // CraftBukkit start
 import org.bukkit.Bukkit;
 import org.bukkit.event.weather.ThunderChangeEvent;

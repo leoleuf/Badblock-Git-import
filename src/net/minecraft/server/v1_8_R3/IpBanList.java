@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.gson.JsonObject;
 import java.io.File;
 import java.net.SocketAddress;
+
+import com.google.gson.JsonObject;
 
 public class IpBanList extends JsonList<String, IpBanEntry> {
 

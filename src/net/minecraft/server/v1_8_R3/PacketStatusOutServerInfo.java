@@ -1,8 +1,9 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.io.IOException;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.IOException;
 
 public class PacketStatusOutServerInfo implements Packet<PacketStatusOutListener> {
 

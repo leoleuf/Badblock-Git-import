@@ -11,14 +11,28 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.ProxiedCommandSender;
 import org.bukkit.command.RemoteConsoleCommandSender;
-import org.bukkit.command.defaults.*;
+import org.bukkit.command.defaults.VanillaCommand;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftMinecartCommand;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.ChatMessage;
+import net.minecraft.server.v1_8_R3.CommandAbstract;
+import net.minecraft.server.v1_8_R3.CommandBlockListenerAbstract;
+import net.minecraft.server.v1_8_R3.CommandException;
+import net.minecraft.server.v1_8_R3.CommandObjectiveExecutor;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.EntityMinecartCommandBlock;
+import net.minecraft.server.v1_8_R3.EnumChatFormat;
+import net.minecraft.server.v1_8_R3.ExceptionUsage;
+import net.minecraft.server.v1_8_R3.ICommandListener;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
+import net.minecraft.server.v1_8_R3.PlayerSelector;
+import net.minecraft.server.v1_8_R3.RemoteControlCommandListener;
+import net.minecraft.server.v1_8_R3.WorldServer;
 
 public final class VanillaCommandWrapper extends VanillaCommand {
     protected final CommandAbstract vanillaCommand;

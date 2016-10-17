@@ -1,13 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Multisets;
-
 // CraftBukkit start
 import org.bukkit.Bukkit;
 import org.bukkit.event.server.MapInitializeEvent;
 // CraftBukkit end
+
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Multisets;
 
 public class ItemWorldMap extends ItemWorldMapBase {
 

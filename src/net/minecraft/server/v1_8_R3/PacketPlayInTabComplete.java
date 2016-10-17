@@ -1,6 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class PacketPlayInTabComplete implements Packet<PacketListenerPlayIn> {

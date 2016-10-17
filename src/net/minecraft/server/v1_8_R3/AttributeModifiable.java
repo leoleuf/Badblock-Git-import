@@ -1,13 +1,14 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 public class AttributeModifiable implements AttributeInstance {
 

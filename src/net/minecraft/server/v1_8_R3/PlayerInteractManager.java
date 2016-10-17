@@ -1,10 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-// CraftBukkit start
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
+// CraftBukkit start
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 // CraftBukkit end
 

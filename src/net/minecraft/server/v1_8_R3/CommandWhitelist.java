@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
 import java.util.List;
+
+import com.mojang.authlib.GameProfile;
 
 public class CommandWhitelist extends CommandAbstract {
 

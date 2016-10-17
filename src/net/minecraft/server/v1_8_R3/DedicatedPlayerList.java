@@ -1,9 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
 import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.mojang.authlib.GameProfile;
 
 public class DedicatedPlayerList extends PlayerList {
 

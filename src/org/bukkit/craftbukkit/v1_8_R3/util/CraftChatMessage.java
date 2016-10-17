@@ -10,12 +10,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 
 import net.minecraft.server.v1_8_R3.ChatClickable;
+import net.minecraft.server.v1_8_R3.ChatClickable.EnumClickAction;
 import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.ChatMessage;
 import net.minecraft.server.v1_8_R3.ChatModifier;
 import net.minecraft.server.v1_8_R3.EnumChatFormat;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
-import net.minecraft.server.v1_8_R3.ChatClickable.EnumClickAction;
 
 public final class CraftChatMessage {
     

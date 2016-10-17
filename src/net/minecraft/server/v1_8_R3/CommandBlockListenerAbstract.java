@@ -1,17 +1,16 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.Callable;
-
 // CraftBukkit start
 import java.util.ArrayList;
-
-import com.google.common.base.Joiner;
+import java.util.Date;
+import java.util.concurrent.Callable;
 import java.util.logging.Level;
 // CraftBukkit end
 
 import org.bukkit.craftbukkit.v1_8_R3.command.VanillaCommandWrapper;
+
+import com.google.common.base.Joiner;
 
 public abstract class CommandBlockListenerAbstract implements ICommandListener {
 

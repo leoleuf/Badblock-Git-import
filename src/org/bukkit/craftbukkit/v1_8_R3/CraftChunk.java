@@ -4,15 +4,20 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 
 import org.bukkit.Chunk;
+import org.bukkit.ChunkSnapshot;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.block.CraftBlock;
 import org.bukkit.entity.Entity;
 
-import net.minecraft.server.v1_8_R3.*;
-
-import org.bukkit.ChunkSnapshot;
+import net.minecraft.server.v1_8_R3.BiomeBase;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.ChunkSection;
+import net.minecraft.server.v1_8_R3.EmptyChunk;
+import net.minecraft.server.v1_8_R3.IBlockData;
+import net.minecraft.server.v1_8_R3.WorldChunkManager;
+import net.minecraft.server.v1_8_R3.WorldServer;
 
 public class CraftChunk implements Chunk {
     private WeakReference<net.minecraft.server.v1_8_R3.Chunk> weakChunk;

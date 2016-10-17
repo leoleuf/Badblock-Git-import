@@ -1,8 +1,6 @@
 package org.spigotmc;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import co.aikar.timings.SpigotTimings;
 import net.minecraft.server.v1_8_R3.AxisAlignedBB;
@@ -24,7 +22,6 @@ import net.minecraft.server.v1_8_R3.EntityLiving;
 import net.minecraft.server.v1_8_R3.EntityMonster;
 import net.minecraft.server.v1_8_R3.EntityProjectile;
 import net.minecraft.server.v1_8_R3.EntitySheep;
-import net.minecraft.server.v1_8_R3.EntitySlice;
 import net.minecraft.server.v1_8_R3.EntitySlime;
 import net.minecraft.server.v1_8_R3.EntityTNTPrimed;
 import net.minecraft.server.v1_8_R3.EntityVillager;

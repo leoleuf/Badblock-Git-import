@@ -1,13 +1,13 @@
 package org.bukkit.craftbukkit.v1_8_R3.entity;
 
+import java.util.UUID;
+
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Tameable;
 
 import net.minecraft.server.v1_8_R3.EntityTameableAnimal;
-
-import java.util.UUID;
 
 public class CraftTameableAnimal extends CraftAnimals implements Tameable, Creature {
     public CraftTameableAnimal(CraftServer server, EntityTameableAnimal entity) {

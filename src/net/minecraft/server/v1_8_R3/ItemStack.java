@@ -1,13 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import java.text.DecimalFormat;
-import java.util.Random;
-
 // CraftBukkit start
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.bukkit.Location;
 import org.bukkit.TreeType;
@@ -17,8 +14,10 @@ import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
 import org.bukkit.entity.Player;
 import org.bukkit.event.world.StructureGrowEvent;
 // CraftBukkit end
-
 import org.github.paperspigot.PaperSpigotConfig; // PaperSpigot
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 public final class ItemStack {
 

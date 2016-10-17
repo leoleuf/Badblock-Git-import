@@ -1,11 +1,5 @@
 package org.bukkit.craftbukkit.v1_8_R3;
 
-import com.mojang.authlib.GameProfile;
-
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.WorldNBTStorage;
-
 import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +16,11 @@ import org.bukkit.configuration.serialization.SerializableAs;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.WorldNBTStorage;
 
 @SerializableAs("Player")
 public class CraftOfflinePlayer implements OfflinePlayer, ConfigurationSerializable {

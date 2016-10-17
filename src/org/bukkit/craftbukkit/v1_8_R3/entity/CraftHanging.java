@@ -1,12 +1,10 @@
 package org.bukkit.craftbukkit.v1_8_R3.entity;
 
-import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Hanging;
 
-import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.EntityHanging;
 import net.minecraft.server.v1_8_R3.EnumDirection;
 

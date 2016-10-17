@@ -1,7 +1,6 @@
 package org.bukkit.craftbukkit.v1_8_R3.entity;
 
 import org.apache.commons.lang.Validate;
-
 import org.bukkit.Rotation;
 import org.bukkit.block.BlockFace;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;

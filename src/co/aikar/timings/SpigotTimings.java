@@ -4,7 +4,9 @@ import org.bukkit.craftbukkit.v1_8_R3.scheduler.CraftTask;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.Block;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.TileEntity;
 
 public final class SpigotTimings {
 

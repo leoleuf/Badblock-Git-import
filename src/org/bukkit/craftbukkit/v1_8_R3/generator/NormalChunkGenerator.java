@@ -7,7 +7,13 @@ import java.util.Random;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.generator.BlockPopulator;
 
-import net.minecraft.server.v1_8_R3.*;
+import net.minecraft.server.v1_8_R3.BiomeBase;
+import net.minecraft.server.v1_8_R3.BlockPosition;
+import net.minecraft.server.v1_8_R3.Chunk;
+import net.minecraft.server.v1_8_R3.EnumCreatureType;
+import net.minecraft.server.v1_8_R3.IChunkProvider;
+import net.minecraft.server.v1_8_R3.IProgressUpdate;
+import net.minecraft.server.v1_8_R3.World;
 
 public class NormalChunkGenerator extends InternalChunkGenerator {
     private final IChunkProvider provider;

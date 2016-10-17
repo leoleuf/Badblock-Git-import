@@ -1,18 +1,17 @@
 package org.github.paperspigot;
 
-import com.google.common.base.Throwables;
-
-import net.minecraft.server.v1_8_R3.Item;
-import net.minecraft.server.v1_8_R3.Items;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 
 import org.apache.commons.lang.StringUtils;
@@ -21,6 +20,11 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import com.google.common.base.Throwables;
+
+import net.minecraft.server.v1_8_R3.Items;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 public class PaperSpigotConfig
 {

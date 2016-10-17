@@ -1,10 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.bukkit.Bukkit;
+// CraftBukkit end
 // CraftBukkit start
 import org.bukkit.block.BlockState;
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
@@ -13,8 +14,8 @@ import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
-import org.bukkit.Bukkit;
-// CraftBukkit end
+
+import com.google.common.collect.Lists;
 
 public class EntityEnderDragon extends EntityInsentient implements IComplex, IMonster {
 

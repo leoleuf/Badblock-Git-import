@@ -1,7 +1,5 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,6 +8,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class CraftingManager {
 

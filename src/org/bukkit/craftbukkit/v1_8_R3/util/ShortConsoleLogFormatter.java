@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
+
 import joptsimple.OptionException;
 import joptsimple.OptionSet;
 import net.minecraft.server.v1_8_R3.MinecraftServer;

@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.gson.JsonObject;
 import java.util.Date;
+
+import com.google.gson.JsonObject;
 
 public class IpBanEntry extends ExpirableListEntry<String> {
 

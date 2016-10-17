@@ -1,14 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Lists;
-import java.util.List;
-
-// CraftBukkit start
 import java.util.List;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftHumanEntity;
 import org.bukkit.entity.HumanEntity;
 // CraftBukkit end
+
+import com.google.common.collect.Lists;
 
 public class InventorySubcontainer implements IInventory {
 

@@ -1,10 +1,11 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
 import java.util.Iterator;
 import java.util.Random;
 
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
+
+import com.google.common.base.Predicate;
 
 public class BlockStem extends BlockPlant implements IBlockFragilePlantElement {
 

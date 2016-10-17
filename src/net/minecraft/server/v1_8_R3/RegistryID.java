@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.base.Predicates;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
 
 public class RegistryID<T> implements Registry<T> {
 

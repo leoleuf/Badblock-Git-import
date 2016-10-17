@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.ImmutableMap;
 import java.util.Collection;
+
+import com.google.common.collect.ImmutableMap;
 
 public interface IBlockData {
 

@@ -7,11 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.fusesource.jansi.AnsiConsole;
+
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
-
-import org.fusesource.jansi.AnsiConsole;
 
 public class Main {
     public static boolean useJline = true;

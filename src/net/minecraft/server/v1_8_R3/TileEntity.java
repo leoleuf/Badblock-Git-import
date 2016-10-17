@@ -1,15 +1,17 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bukkit.inventory.InventoryHolder; // CraftBukkit
+import org.github.paperspigot.exception.ServerInternalException;
+
+import com.google.common.collect.Maps;
 
 import co.aikar.timings.SpigotTimings; // Spigot
 import co.aikar.timings.Timing; // Spigot
-import org.bukkit.inventory.InventoryHolder; // CraftBukkit
-import org.github.paperspigot.exception.ServerInternalException;
 
 public abstract class TileEntity {
 

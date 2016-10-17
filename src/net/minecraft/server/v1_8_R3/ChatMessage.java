@@ -1,13 +1,14 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.collect.Iterators;
-import com.google.common.collect.Lists;
 import java.util.Arrays;
 import java.util.IllegalFormatException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
 
 public class ChatMessage extends ChatBaseComponent {
 

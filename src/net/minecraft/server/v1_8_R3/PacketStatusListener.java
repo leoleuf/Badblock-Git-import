@@ -1,13 +1,13 @@
 package net.minecraft.server.v1_8_R3;
 
-// CraftBukkit start
-import com.mojang.authlib.GameProfile;
-import io.netty.channel.ChannelFutureListener;
 import java.net.InetSocketAddress;
 import java.util.Iterator;
 
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftIconCache;
 import org.bukkit.entity.Player;
+
+// CraftBukkit start
+import com.mojang.authlib.GameProfile;
 
 // CraftBukkit end
 

@@ -1,11 +1,12 @@
 package net.minecraft.server.v1_8_R3;
 
+import java.util.Iterator;
+
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import java.util.Iterator;
 
 public class ShapeDetector {
 

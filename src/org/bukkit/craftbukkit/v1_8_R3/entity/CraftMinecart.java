@@ -1,6 +1,5 @@
 package org.bukkit.craftbukkit.v1_8_R3.entity;
 
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.util.CraftMagicNumbers;
 import org.bukkit.entity.Minecart;

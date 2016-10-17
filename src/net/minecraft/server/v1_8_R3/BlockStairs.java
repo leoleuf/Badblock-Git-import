@@ -1,9 +1,10 @@
 package net.minecraft.server.v1_8_R3;
 
-import com.google.common.base.Predicate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import com.google.common.base.Predicate;
 
 public class BlockStairs extends Block {
 

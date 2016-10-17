@@ -1,7 +1,8 @@
 package net.minecraft.server.v1_8_R3;
 
-import io.netty.buffer.ByteBuf;
 import java.io.IOException;
+
+import io.netty.buffer.ByteBuf;
 
 public class PacketPlayInCustomPayload implements Packet<PacketListenerPlayIn> {
 
