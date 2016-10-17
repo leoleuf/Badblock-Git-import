@@ -3,6 +3,7 @@ package org.github.paperspigot.exception;
 /**
  * Wrapper exception for all exceptions that are thrown by the server.
  */
+@SuppressWarnings("serial")
 public class ServerException extends Exception {
 
     public ServerException(String message) {

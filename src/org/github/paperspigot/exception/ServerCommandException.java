@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 /**
  * Thrown when a command throws an exception
  */
+@SuppressWarnings("serial")
 public class ServerCommandException extends ServerException {
 
     private final Command command;
