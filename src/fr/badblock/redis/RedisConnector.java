@@ -22,7 +22,7 @@ import lombok.Setter;
 	@Getter@Setter private static 	RedisConnector 								instance		= new RedisConnector();
 
 	// Private fields
-	private							Gson											gson			= new Gson(); // A Gson object, who serve an header of these messages
+	private							Gson										gson			= new Gson(); // A Gson object, who serve an header of these messages
 	private 					   	ConcurrentMap<String, RedisService>			services		= new ConcurrentHashMap<>(); // Services list
 	private							ConcurrentMap<String, RedisCredentials>		credentials		= new ConcurrentHashMap<>(); // Credentials list
 	

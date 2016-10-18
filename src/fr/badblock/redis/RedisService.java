@@ -17,19 +17,26 @@ import lombok.Setter;
 	}
 
 	public void setAsync(String key, String value) {
-		set(key, value);
-	}
-	
-	public void setAsync(String key, Object value) {
-		set(key, value);
+		setAsync(key, (Object) value);
 	}
 
+
 	public void set(String key, String value) {
+		set(key, (Object) value);
+	}
+
+	public void setAsync(String key, Object value) {
+		new Thread() {
+			@Override
+			public void run() {
+				set(key, value);
+			}
+		}.start();
 	}
 	
 	public void set(String key, Object value) {
 	}
-	
+
 	public void remove() {
 		System.out.println("[RedisConnector] Unregistered service! (" + this.getName() + ")");
 		try {
