@@ -31,13 +31,11 @@ import lombok.Setter;
 	 * @param name 		  > the name of credentials instance
 	 * @param hostname    > hostname, we higly recommend DNS
 	 * @param port 		  > Redis Cluster port, 65525 by default
-	 * @param username    > username of that account
 	 * @param password	  > the password of that account
-	 * @param virtualHost > virtual host where the account will be connected to
 	 * @return a RedisCredentials object
 	 */
-	public RedisCredentials newCredentials(String name, String hostname, int port, String username, String password, String virtualHost) {
-		return new RedisCredentials(name, hostname, port, username, password, virtualHost);
+	public RedisCredentials newCredentials(String name, String hostname, int port, String password) {
+		return new RedisCredentials(name, hostname, port, password);
 	}
 	
 	/**
@@ -45,13 +43,11 @@ import lombok.Setter;
 	 * @param name 		  > the name of the service instance
 	 * @param hostname    > hostname, we higly recommend DNS
 	 * @param port 		  > Redis Cluster port, 65525 by default
-	 * @param username    > username of that account
 	 * @param password	  > the password of that account
-	 * @param virtualHost > virtual host where the account will be connected to
 	 * @return a RedisService ready to work
 	 */
-	public RedisService newService(String name, String hostname, int port, String username, String password, String virtualHost) {
-		return newService(name, newCredentials(name, hostname, port, username, password, virtualHost));
+	public RedisService newService(String name, String hostname, int port, String password) {
+		return newService(name, newCredentials(name, hostname, port, password));
 	}
 	
 	/**

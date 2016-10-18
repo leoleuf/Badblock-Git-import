@@ -13,17 +13,13 @@ import lombok.Setter;
 	private String					name;
 	private	String					hostname;
 	private	int						port;
-	private	String					username;
 	private	String					password;
-	private	String					virtualHost;
 	
-	public RedisCredentials(String name, String hostname, int port, String username, String password, String virtualHost) {
+	public RedisCredentials(String name, String hostname, int port, String password) {
 		this.setName(name);
 		this.setHostname(hostname);
 		this.setPort(port);
-		this.setUsername(username);
 		this.setPassword(password);
-		this.setVirtualHost(virtualHost);
 		RedisConnector.getInstance().getCredentials().put(this.getName(), this);
 		System.out.println("[RedisConnector] Registered new credentials! (" + name + ")");
 	}
