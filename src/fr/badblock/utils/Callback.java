@@ -1,5 +1,14 @@
 package fr.badblock.utils;
 
-public interface Callback<T> {
-	public void done(T result, Throwable error);
+import java.lang.reflect.ParameterizedType;
+
+public abstract class Callback<T> {
+	
+	public abstract void done(T result, Throwable error);
+
+	@SuppressWarnings("unchecked")
+	public Class<T> getGenericPacketClass() {
+		return (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
+
 }
