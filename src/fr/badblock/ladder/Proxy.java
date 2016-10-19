@@ -72,8 +72,10 @@ import fr.badblock.protocol.packets.PacketPlayerData;
 import fr.badblock.protocol.packets.PacketPlayerData.DataAction;
 import fr.badblock.protocol.packets.PacketPlayerData.DataType;
 import fr.badblock.protocol.socket.SocketHost;
+import fr.badblock.rabbitconnector.RabbitService;
 import jline.console.ConsoleReader;
 import lombok.Getter;
+import lombok.Setter;
 
 public class Proxy extends Ladder {
 	@Getter protected static Proxy instance;
@@ -109,6 +111,9 @@ public class Proxy extends Ladder {
 	private final SocketHost  		host;
 
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
+	
+	@Getter@Setter
+	private transient RabbitService  	rabbitService;
 
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
