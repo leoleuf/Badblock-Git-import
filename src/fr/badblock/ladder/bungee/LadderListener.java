@@ -152,7 +152,6 @@ public class LadderListener implements Listener {
 		for(int i=0;i<sample.length;i++){
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
-		System.out.println(motd + " / " + motd.getMaxPlayers() + " / " + motd.getPlayers() + " / " + motd.getMotd() + " / " + motd.getVersion());
 
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), 0, sample));
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));

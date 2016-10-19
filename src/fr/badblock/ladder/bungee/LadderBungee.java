@@ -45,8 +45,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.utils.StringUtils;
 import fr.badblock.skins.SkinFactoryBungee;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.Callback;
@@ -66,7 +64,6 @@ import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.protocol.packet.Title;
 import net.md_5.bungee.protocol.packet.Title.Action;
 
-@Data @EqualsAndHashCode(callSuper=false)
 @SuppressWarnings("deprecation")
 public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private static LadderBungee instance;
@@ -76,7 +73,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<UUID, Player>   		players;
-	protected int						ladderPlayers = 0;
+	public int						ladderPlayers = 0;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 	public    RabbitService				rabbitService;
