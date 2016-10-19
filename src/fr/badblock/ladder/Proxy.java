@@ -113,7 +113,7 @@ public class Proxy extends Ladder {
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
 	
 	@Getter
-	private RabbitService			rabbitService;
+    public static transient RabbitService			rabbitService;
 	
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
