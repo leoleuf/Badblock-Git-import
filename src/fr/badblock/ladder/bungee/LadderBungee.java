@@ -41,6 +41,7 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.utils.StringUtils;
+import fr.badblock.rabbitconnector.RabbitConnector;
 import fr.badblock.skins.SkinFactoryBungee;
 import lombok.Getter;
 import net.md_5.bungee.BungeeCord;
@@ -98,7 +99,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void onEnable(){
 		instance = this;
 		new SkinFactoryBungee();
-		
 		cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
 		try {
@@ -123,6 +123,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			if(config.get("socketThreads") == null){
 				config.set("socketThreads", 4);
 			}
+
+			RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
+					config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
