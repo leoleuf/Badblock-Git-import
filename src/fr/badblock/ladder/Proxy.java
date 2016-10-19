@@ -133,8 +133,7 @@ public class Proxy extends Ladder {
 		IPS_FOLDER.mkdir();
 
 		host = new LadderSocketHost(InetAddress.getByName(ip), port);
-		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
-				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
+		rabbitService = RabbitConnector.getInstance().getService("default");
 		logger.log(Level.INFO, "Listening on " + host.getServer().getInetAddress() + ":" + host.getServer().getLocalPort() + "!");
 
 		broadcastPacket(new PacketHelloworld());
