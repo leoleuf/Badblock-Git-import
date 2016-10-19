@@ -70,6 +70,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void sendPacket(Packet packet) {
+		System.out.println(Proxy.getInstance().getHost());
 		Proxy.getInstance().getHost().sendPacket(address, packet);
 	}
 
