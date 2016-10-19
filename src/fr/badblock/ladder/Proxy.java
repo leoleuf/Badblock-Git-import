@@ -113,7 +113,7 @@ public class Proxy extends Ladder {
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
 
 	@Getter
-	public static transient RabbitService			rabbitService;
+	public transient RabbitService			rabbitService;
 
 	@Getter
 	private Configuration configuration;
