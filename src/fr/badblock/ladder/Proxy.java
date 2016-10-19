@@ -79,90 +79,95 @@ import lombok.Getter;
 
 public class Proxy extends Ladder {
 	@Getter protected static Proxy instance;
-	
+
 	public static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 	public static final String LADDER_VERSION = "Ladder BêtaV0.1";
-	
+
 	public final static File DATA_FOLDER		  = new File("data");
 	public final static File PLAYER_FOLDER        = new File(DATA_FOLDER, "players");
 	public final static File IPS_FOLDER       	  = new File(DATA_FOLDER, "ips");
 	public final static File PLUGINS_FOLDER       = new File("plugins");
 	public final static File SERVERS_FOLDER       = new File("servers");
 	public final static File LOG_FOLDER	          = new File("logs");
-	
+
 	public final static File PERMISSIONS_FILE     = new File("permissions.json");
 	public final static File MOTD_FILE		      = new File("motd.json");
 	public final static File SERVERS_BUNGEE_FILE  = new File("bungeecords.yml");
 	public final static File CONFIG_FILE	      = new File("ladder.yml");
-	
+
 	@Getter
 	private Map<String, Bukkit>		reconnectionInvitations = Maps.newConcurrentMap();
-	
+
 	@Getter
 	private LadderPermissionManager permissions;
 	@Getter private Motd	  		motd;
-	
+
 	@Getter private String	  		ip;
 	@Getter private int		  		port;
-	
+
 	@Getter private String	  		alertPrefix;
-	
+
 	@Getter
 	private final SocketHost  		host;
-	
+
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
-	
+
 	@Getter
-    public static transient RabbitService			rabbitService;
+	public static transient RabbitService			rabbitService;
+
+	@Getter
+	private Configuration configuration;
 	
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
 				new LadderLogger(reader, LOG_FOLDER), 
 				new ConsoleCommandSender(),
 				ConfigurationProvider.getProvider(YamlConfiguration.class));
-	
+
 		instance = this;
-		
+
 		ipData   = new HashMap<>();
-		
+
 		DATA_FOLDER.mkdir();
 		PLAYER_FOLDER.mkdir();
 		IPS_FOLDER.mkdir();
-		
+
 		host = new LadderSocketHost(InetAddress.getByName(ip), port);
+		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
+				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
 		logger.log(Level.INFO, "Listening on " + host.getServer().getInetAddress() + ":" + host.getServer().getLocalPort() + "!");
-	
+
 		broadcastPacket(new PacketHelloworld());
 		broadcastPacket(new PacketPlayerData(DataType.PLAYERS, DataAction.REQUEST, "*", "*"));
 	}
 
 	public void removeReconnectionInvitation(OfflinePlayer player, boolean punish){
 		String name = player.getName().toLowerCase();
-		
+
 		if(reconnectionInvitations.containsKey(name)){
 			reconnectionInvitations.remove(name);
-			
+
 			if(punish){
 				//TODO LeaverBuster :o
 			}
 		}
 	}
-	
+
 	public Bukkit getReconnectionInvitation(OfflinePlayer player){
 		return reconnectionInvitations.get( player.getName().toLowerCase() );
 	}
-	
+
 	public void invite(OfflinePlayer player, Bukkit bukkit){
 		reconnectionInvitations.put(player.getName().toLowerCase(), bukkit);
 	}
-	
+
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
 		OfflinePlayer result = getPlayer(name);
-		
+
 		if(result == null)
 			result = new LadderOfflinePlayer(name, null);
-		
+
 		return result;
 	}
 
@@ -173,12 +178,12 @@ public class Proxy extends Ladder {
 		broadcastPacket(new PacketLadderStop());
 		host.end();
 		logger.log(Level.INFO, "Not listening anymore ... saving players");
-		
+
 		for(Player player : getOnlinePlayers()){
 			((LadderDataHandler) player).saveSync();
 			((LadderDataHandler) player.getIpData()).saveSync();
 		}
-		
+
 		logger.log(Level.INFO, "Players saved! Good bye!");
 		System.exit(0);
 	}
@@ -186,16 +191,16 @@ public class Proxy extends Ladder {
 	@Override
 	protected void readConfiguration() throws IOException {
 		SERVERS_FOLDER.mkdir();
-		
+
 		System.setErr(new PrintStream(new LoggerOutputStream(logger, Level.SEVERE), true));
 		System.setOut(new PrintStream(new LoggerOutputStream(logger, Level.INFO), true));
-		
+
 		logger.log(Level.INFO, "Reading configuration ...");
-		
+
 		loadPermissions(false);
 		loadMotd(false);
-		
-		Configuration configuration = getConfigurationProvider().load(CONFIG_FILE);
+
+		configuration = getConfigurationProvider().load(CONFIG_FILE);
 		if(!configuration.contains("ip"))
 			configuration.set("ip", "127.0.0.1");
 		if(!configuration.contains("port"))
@@ -218,33 +223,31 @@ public class Proxy extends Ladder {
 			configuration.set("dbDatabase", "root");
 		BadblockDatabase.getInstance().connect(configuration.getString("dbHostname"), configuration.getInt("dbPort"), configuration.getString("dbUsername"), configuration.getString("dbPassword"), configuration.getString("dbDatabase"));
 
-		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
-				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
 		ip   		= configuration.getString("ip");
 		port 		= configuration.getInt("port");
 		alertPrefix = configuration.getString("alert");
 		maxPlayers  = configuration.getInt("maxplayers");
 		new LadderHttpHandler(configuration.getInt("portHttp"));
-		
+
 		getConfigurationProvider().save(configuration, CONFIG_FILE);
-		
+
 		Configuration bungeeCords = getConfigurationProvider().load(SERVERS_BUNGEE_FILE);
 		if(!bungeeCords.contains("servers")){
 			bungeeCords.set("servers.proxy1.host", "127.0.0.1");
 			bungeeCords.set("servers.proxy1.port", 27050);
 		}
-		
+
 		for(String key : bungeeCords.getSection("servers").getKeys()){
 			InetSocketAddress address = new InetSocketAddress(bungeeCords.getString("servers." + key + ".host"),
 					bungeeCords.getInt("servers." + key + ".port"));
 			super.bungeeCords.put(key.toLowerCase(), new LadderBungee(key, address));
 			super.bungeesAddress.put(address, key.toLowerCase());
 		}
-		
+
 		getConfigurationProvider().save(bungeeCords, SERVERS_BUNGEE_FILE);
 		loadServers();
 	}
-	
+
 	private void loadServers(){
 		ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
@@ -252,7 +255,7 @@ public class Proxy extends Ladder {
 			try {
 				Configuration config = cp.load(f);
 				List<Bukkit> servers = getServerInfos(cp.load(f));
-				
+
 				for(Bukkit server : servers){
 					if(!bukkits.containsKey(server.getName().toLowerCase()) && !bukkitsAddress.containsKey(server.getAddress())){
 						bukkits.put(server.getName().toLowerCase(), server);
@@ -266,7 +269,7 @@ public class Proxy extends Ladder {
 			}
 		}
 	}
-	
+
 	private List<Bukkit> getServerInfos(Configuration config){
 		List<Bukkit> ret = new ArrayList<Bukkit>();
 
@@ -297,27 +300,27 @@ public class Proxy extends Ladder {
 
 		return result;
 	}
-	
+
 	@Override
 	public Gson getGson(){
 		return gson;
 	}
-	
+
 	public void loadPermissions(boolean send){
 		System.out.println("Loaded permissions.json");
 		this.permissions     = new LadderPermissionManager(new File("permissions.json"));
 		this.permissions.save();
 		if(!send) return;
-		
+
 		for(BungeeCord bungee : getServers()){
 			bungee.sendPermissions();
 		}
-		
+
 		for(Bukkit bukkit : getBukkitServers()){
 			bukkit.sendPermissions();
 		}
 	}
-	
+
 	public void loadMotd(boolean send){
 		Motd def = new Motd(new String[]{"&cA Ladder server", "With a cool MOTD"}, getVersion(), new String[]{""}, 1000);
 		if(MOTD_FILE.exists()){
@@ -327,22 +330,22 @@ public class Proxy extends Ladder {
 		} else {
 			motd = def;
 		}
-		
+
 		FileUtils.save(MOTD_FILE, motd, true);
-		
+
 		if(!send) return;
 		for(BungeeCord bungee : getServers()){
 			bungee.sendMotd(motd);
 		}
 	}
-	
+
 	@Override
 	protected void enablePlugins() {
 		PLUGINS_FOLDER.mkdir();
 		logger.log(Level.INFO, "Loading plugins ...");
-		
+
 		pluginsManager.detectPlugins(PLUGINS_FOLDER);
-		
+
 		pluginsManager.registerCommand(null, new CommandAlert());
 		pluginsManager.registerCommand(null, new CommandEnd());
 		pluginsManager.registerCommand(null, new CommandFind());
@@ -367,22 +370,22 @@ public class Proxy extends Ladder {
 
 		logger.log(Level.INFO, "Plugins loaded!");
 	}
-	
+
 	@Override
 	public boolean addBukkitServer(InetSocketAddress address, String name){
 		if(bukkits.containsKey(name.toLowerCase()) || bukkitsAddress.containsKey(address))
 			return false;
-		
+
 		Bukkit bukkit = new LadderBukkit(address, name);
 		name = name.toLowerCase();
-		
+
 		bukkits.put(name, bukkit);
 		bukkitsAddress.put(address, name);
-		
+
 		for(BungeeCord bungee : getServers()){
 			bungee.addBukkitServer(bukkit);
 		}
-		
+
 		return true;
 	}
 
@@ -414,14 +417,14 @@ public class Proxy extends Ladder {
 	public RawMessage createRawMessage(String base) {
 		return new LadderRawMessage(base);
 	}
-	
+
 	public void playerConnect(Player player) {
 		if(!players.containsKey(player.getUniqueId())) {
 			players.put(player.getUniqueId(), player);
 			names.put(player.getName().toLowerCase(), player.getUniqueId());
 		}
 	}
-	
+
 	public void playerDisconnect(Player player) {
 		if(players.containsKey(player.getUniqueId())){
 			players.remove(player.getUniqueId());
@@ -432,13 +435,13 @@ public class Proxy extends Ladder {
 	@Override
 	public PlayerIp getIpData(InetAddress address) {
 		if(address == null) return null;
-		
+
 		if(ipData.containsKey(address))
 			return ipData.get(address);
-		
+
 		LadderIpDataHandler player = new LadderIpDataHandler(address);
 		ipData.put(address, player);
-		
+
 		return player;
 	}
 }
