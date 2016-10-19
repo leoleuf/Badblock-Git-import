@@ -53,8 +53,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
-import fr.badblock.rabbitconnector.RabbitPacketType;
-import fr.badblock.utils.Encodage;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -70,7 +68,6 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void sendPacket(Packet packet) {
-		System.out.println(Proxy.getInstance().getHost());
 		Proxy.getInstance().getHost().sendPacket(address, packet);
 	}
 
