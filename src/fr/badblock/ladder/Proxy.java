@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 
 import com.google.common.collect.Maps;
@@ -72,7 +74,9 @@ import fr.badblock.protocol.packets.PacketPlayerData;
 import fr.badblock.protocol.packets.PacketPlayerData.DataAction;
 import fr.badblock.protocol.packets.PacketPlayerData.DataType;
 import fr.badblock.protocol.socket.SocketHost;
+import fr.badblock.rabbitconnector.RabbitPacketType;
 import fr.badblock.rabbitconnector.RabbitService;
+import fr.badblock.utils.Encodage;
 import jline.console.ConsoleReader;
 import lombok.Getter;
 import lombok.Setter;
@@ -134,6 +138,13 @@ public class Proxy extends Ladder {
 
 		broadcastPacket(new PacketHelloworld());
 		broadcastPacket(new PacketPlayerData(DataType.PLAYERS, DataAction.REQUEST, "*", "*"));
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				if (Proxy.getInstance().getRabbitService() != null)
+					Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, true);
+			}
+		}, 1000, 1000);
 	}
 
 	public void removeReconnectionInvitation(OfflinePlayer player, boolean punish){
