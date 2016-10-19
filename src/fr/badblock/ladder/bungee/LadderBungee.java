@@ -15,9 +15,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import fr.badblock.bungee.rabbitconnector.RabbitService;
 import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
-import fr.badblock.ladder.bungee.listeners.PlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.FileUtils;
 import fr.badblock.ladder.bungee.utils.IOUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -42,8 +42,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.utils.StringUtils;
-import fr.badblock.rabbitconnector.RabbitConnector;
-import fr.badblock.rabbitconnector.RabbitService;
 import fr.badblock.skins.SkinFactoryBungee;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -130,9 +128,14 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				config.set("socketThreads", 4);
 			}
 
-			rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
+			/*try {
+					rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 					config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
-			new PlayersUpdateListener();
+				new PlayersUpdateListener();
+			}catch(Exception error) {
+				Thread.sleep(Long.MAX_VALUE);
+				error.printStackTrace();
+			}*/
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
 					config.getString("localHost.ip"), config.getInt("localHost.port"));
@@ -188,7 +191,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			getProxy().getPluginManager().registerCommand(this, new CommandDispatcher(
 					object.get("name").getAsString(),
 					object.get("bypass").getAsBoolean()
-			));
+					));
 		}
 	}
 
@@ -242,10 +245,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		if(packet.getType() == DataType.PLAYER){
 			if(packet.getAction() == DataAction.SEND){
 				Player player = getPlayer(packet.getKey());
-				
+
 				if(player == null)
 					player = playersTemp.get(packet.getKey().toLowerCase());
-				
+
 				if(player != null) player.receiveData(packet.getData());
 			} else if(packet.getAction() == DataAction.MODIFICATION){
 				Player player = getPlayer(packet.getKey());
@@ -270,8 +273,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				if(player.getServer() != null)
 					getClient().sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getServer().getInfo().getName()));
 			}
-		} else if(packet.getType() == DataType.PLAYER_NUMBER && packet.getAction() == DataAction.SEND){
-			ladderPlayers = Integer.parseInt(packet.getData());
 		} else if(packet.getType() == DataType.SERVERS){
 			if(packet.getAction() == DataAction.SEND){
 				List<String> servers 				  = new ArrayList<>();
@@ -374,24 +375,24 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerJoin packet) {
 		handle(packet, false);
 	}
-	
+
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
 		if(players.containsKey(packet.getUniqueId()))
 			return;
-		
+
 		Player player = null;
-		
+
 		if(falsePacket && playersTemp.containsKey(packet.getPlayerName().toLowerCase())){
 			player = playersTemp.remove(packet.getPlayerName().toLowerCase());
 			player.update(packet);
 		} else player = new Player(packet);
-		
+
 		players.put(player.getUniqueId(), player);
 		byName.put(player.getName().toLowerCase(), player.getUniqueId());
 	}
-	
+
 	private Map<String, Player> playersTemp = Maps.newConcurrentMap();
-	
+
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
 		if(byName.containsKey(packet.getPlayerName()))
 			return;
@@ -403,7 +404,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerQuit packet) {
 		handle(packet, false);
 	}
-	
+
 	public void handle(PacketPlayerQuit packet, boolean kick) {
 		if(!byName.containsKey(packet.getUserName().toLowerCase()) && !playersTemp.containsKey(packet.getUserName().toLowerCase()))
 			return;
@@ -413,13 +414,13 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		if(lPlayer == null){
 			lPlayer = playersTemp.get(packet.getUserName().toLowerCase());
 		}
-		
+
 		if(lPlayer.getDone() != null){
 			Callback<Result> res = lPlayer.getDone();
 			lPlayer.setDone(null);
 			res.done(new Result(null, packet.getReason() == null ? "" : StringUtils.join(packet.getReason(), "\\n")), null);
 		}
-		
+
 		if(bPlayer != null && !kick){
 			players.remove(bPlayer.getUniqueId());
 
@@ -483,5 +484,5 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Override public void handle(PacketPlayerLogin packet){}
 	@Override public void handle(PacketReconnectionInvitation packet){}
 	@Override public void handle(PacketSimpleCommand packet){}
-	
+
 }
