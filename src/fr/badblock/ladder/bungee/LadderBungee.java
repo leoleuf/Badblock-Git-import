@@ -17,6 +17,7 @@ import com.google.gson.JsonParser;
 
 import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
+import fr.badblock.ladder.bungee.listeners.PlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.FileUtils;
 import fr.badblock.ladder.bungee.utils.IOUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -42,7 +43,10 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.utils.StringUtils;
 import fr.badblock.rabbitconnector.RabbitConnector;
+import fr.badblock.rabbitconnector.RabbitService;
 import fr.badblock.skins.SkinFactoryBungee;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.Callback;
@@ -62,6 +66,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.protocol.packet.Title;
 import net.md_5.bungee.protocol.packet.Title.Action;
 
+@Data @EqualsAndHashCode(callSuper=false)
 @SuppressWarnings("deprecation")
 public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private static LadderBungee instance;
@@ -74,6 +79,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	protected int						ladderPlayers;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
+	public    RabbitService				rabbitService;
 
 	private ConfigurationProvider cp;
 	private Configuration config;
@@ -124,9 +130,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				config.set("socketThreads", 4);
 			}
 
-			RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
+			rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 					config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
-
+			new PlayersUpdateListener();
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
 					config.getString("localHost.ip"), config.getInt("localHost.port"));
