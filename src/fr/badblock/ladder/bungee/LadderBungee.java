@@ -76,7 +76,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<UUID, Player>   		players;
-	protected int						ladderPlayers;
+	protected int						ladderPlayers = 0;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 	public    RabbitService				rabbitService;
