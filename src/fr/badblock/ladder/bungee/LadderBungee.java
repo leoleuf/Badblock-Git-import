@@ -15,9 +15,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import fr.badblock.bungee.rabbitconnector.RabbitConnector;
 import fr.badblock.bungee.rabbitconnector.RabbitService;
 import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
+import fr.badblock.ladder.bungee.listeners.PlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.FileUtils;
 import fr.badblock.ladder.bungee.utils.IOUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -128,14 +130,15 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				config.set("socketThreads", 4);
 			}
 
-			/*try {
-					rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
-					config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
+			try {
+				rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
+						config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 				new PlayersUpdateListener();
 			}catch(Exception error) {
 				Thread.sleep(Long.MAX_VALUE);
 				error.printStackTrace();
-			}*/
+			}
+			new PlayersUpdateListener();
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
 					config.getString("localHost.ip"), config.getInt("localHost.port"));
