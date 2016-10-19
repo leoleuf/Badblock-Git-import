@@ -20,6 +20,7 @@ import redis.clients.jedis.Jedis;
 		RedisConnector.getInstance().getServices().put(this.getName(), this);
 		this.setJedis(new Jedis(credentials.getHostname(), credentials.getPort()));
 		this.getJedis().auth(credentials.getPassword());
+		this.getJedis().select(5);
 		System.out.println("[RedisConnector] Registered new service (" + name + ")");
 	}
 
