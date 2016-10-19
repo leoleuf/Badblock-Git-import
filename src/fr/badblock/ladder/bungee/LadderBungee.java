@@ -130,9 +130,14 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				config.set("socketThreads", 4);
 			}
 
+			try {
 			rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 					config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 			new PlayersUpdateListener();
+			}catch(Exception error) {
+				Thread.sleep(Long.MAX_VALUE);
+				error.printStackTrace();
+			}
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
 					config.getString("localHost.ip"), config.getInt("localHost.port"));
@@ -270,8 +275,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				if(player.getServer() != null)
 					getClient().sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getServer().getInfo().getName()));
 			}
-		} else if(packet.getType() == DataType.PLAYER_NUMBER && packet.getAction() == DataAction.SEND){
-			ladderPlayers = Integer.parseInt(packet.getData());
 		} else if(packet.getType() == DataType.SERVERS){
 			if(packet.getAction() == DataAction.SEND){
 				List<String> servers 				  = new ArrayList<>();
