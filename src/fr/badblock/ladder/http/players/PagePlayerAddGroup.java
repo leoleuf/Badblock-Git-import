@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
+import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.http.LadderPage;
 import fr.badblock.permissions.PermissibleGroup;
 import fr.badblock.permissions.PermissiblePlayer;
@@ -50,6 +51,11 @@ public class PagePlayerAddGroup extends LadderPage {
 				p.addParent(Long.parseLong(input.get("duration")), group);
 				player.saveData();
 				object.addProperty("success", "ok");
+			}
+			Player playerr = Ladder.getInstance().getPlayer(player.getName());
+			if (playerr != null) {
+				playerr.sendToBukkit("permissions");
+				playerr.sendToBungee("permissions");
 			}
 		}
 		return object;
