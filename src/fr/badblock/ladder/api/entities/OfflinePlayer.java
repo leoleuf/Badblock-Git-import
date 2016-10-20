@@ -30,6 +30,8 @@ public interface OfflinePlayer extends DataHandler {
 	 */
 	public Permissible getAsPermissible();
 	
+	public <T> T getPermissionValue(String key, Class<T> clazz);
+	
 	/**
 	 * Renvoit le joueur comme une entité pouvant être punnie (ban & mute)
 	 * @return Le joueur comme pouvant être punni
