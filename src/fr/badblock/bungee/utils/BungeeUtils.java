@@ -58,8 +58,8 @@ public class BungeeUtils extends Plugin implements Listener{
 			e.printStackTrace();
 			return;
 		}
-		hubMaxPlayers = config.getInt("hubMaxPlayers", 200);
-		loginMaxPlayers = config.getInt("loginMaxPlayers", 200);
+		hubMaxPlayers = config.getInt("hubMaxPlayers", 100);
+		loginMaxPlayers = config.getInt("loginMaxPlayers", 100);
 	}
 
 	@EventHandler
@@ -98,7 +98,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
-			if (serverInfo.getPlayers().size() > hubMaxPlayers) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() < serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
@@ -110,7 +110,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
-			if (serverInfo.getPlayers().size() > loginMaxPlayers) continue;
+			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() < serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
