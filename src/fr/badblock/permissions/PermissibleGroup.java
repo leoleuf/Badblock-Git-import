@@ -129,7 +129,16 @@ import lombok.Data;
 	}
 	
 	public JsonElement getValue(String key){
-		return values.get(key);
+		JsonElement el = values.get(key);
+		
+		if(el == null && superGroup != null && !superGroup.equalsIgnoreCase("default")){
+			PermissibleGroup group = PermissionManager.getInstance().getGroup(superGroup);
+		
+			if(group != null)
+				return group.getValue(key);
+		}
+		
+		return el;
 	}
 
 	@Override

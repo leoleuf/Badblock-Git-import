@@ -103,6 +103,26 @@ import lombok.Data;
 		return hasPermission(new Permission(permission));
 	}
 
+	public JsonElement getValue(String key){
+		if(getParent() != null){
+			JsonElement answer = ((PermissibleGroup) getParent()).getValue(key);
+			
+			if(answer != null)
+				return answer;
+		}
+		
+		for(String alternate : alternateGroups.keySet()){
+			PermissibleGroup group = PermissionManager.getInstance().getGroup(alternate);
+			
+			JsonElement answer = group == null ? null : group.getValue(key);
+			
+			if(answer != null)
+				return answer;
+		}
+		
+		return null;
+	}
+	
 	@Override
 	public Reponse getPermissionReponse(Permission permission) {
 		Reponse reponse = Reponse.UNKNOW;
