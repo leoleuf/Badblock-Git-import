@@ -188,6 +188,13 @@ import lombok.Data;
 	}
 	
 	public void addParent(long end, Permissible group){
+		PermissibleGroup permissibleGroup = (PermissibleGroup) group;
+		PermissibleGroup parentGroup = (PermissibleGroup) getParent();
+		if (permissibleGroup.getPower() > parentGroup.getPower()) {
+			alternateGroups.put(parentGroup.getName().toLowerCase(), this.groupEnd);
+			setParent(end, permissibleGroup);
+			return;
+		}
 		alternateGroups.put(group.getName().toLowerCase(), end);
 	}
 	
