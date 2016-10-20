@@ -24,6 +24,7 @@ import fr.badblock.ladder.http.players.PagePlayerExists;
 import fr.badblock.ladder.http.players.PagePlayerGetData;
 import fr.badblock.ladder.http.players.PagePlayerIsConnected;
 import fr.badblock.ladder.http.players.PagePlayerSendMessage;
+import fr.badblock.ladder.http.players.PagePlayerSendServerMessage;
 import fr.badblock.ladder.http.players.PagePlayerUpdateData;
 import fr.badblock.ladder.http.players.PagePlayerUpdateShopPoints;
 import fr.badblock.ladder.http.players.PageServerBroadcast;
@@ -56,6 +57,7 @@ public class LadderHttpHandler extends AbstractHandler {
 		addHandler(new PagePlayerGetData());
 		addHandler(new PagePlayerIsConnected());
 		addHandler(new PagePlayerSendMessage());
+		addHandler(new PagePlayerSendServerMessage());
 		addHandler(new PageServerBroadcast());
 		addHandler(new PagePlayerExists());
 	}

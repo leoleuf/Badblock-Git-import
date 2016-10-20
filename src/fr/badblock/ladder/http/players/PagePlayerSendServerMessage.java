@@ -9,9 +9,9 @@ import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.http.LadderPage;
 
-public class PagePlayerSendMessage extends LadderPage {
-	public PagePlayerSendMessage() {
-		super("/players/sendMessage/");
+public class PagePlayerSendServerMessage extends LadderPage {
+	public PagePlayerSendServerMessage() {
+		super("/players/sendServerMessage/");
 	}
 
 	@Override
@@ -23,8 +23,8 @@ public class PagePlayerSendMessage extends LadderPage {
 			object.addProperty("error", "Aucun message!");
 		} else {
 			Player player = Ladder.getInstance().getPlayer(input.get("name"));
-			if (player == null) return object;
-			player.sendMessage(ChatColor.replaceColor(input.get("message")));
+			if (player == null || player.getBukkitServer() == null) return object;
+			player.getBukkitServer().broadcast(ChatColor.replaceColor(input.get("message")));
 		}
 		
 		return object;
