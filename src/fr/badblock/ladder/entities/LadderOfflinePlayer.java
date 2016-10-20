@@ -4,7 +4,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
 
+import com.google.gson.JsonElement;
+
 import fr.badblock.ladder.Proxy;
+import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.entities.PlayerIp;
@@ -95,6 +98,13 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	@Override
 	public Permissible getAsPermissible() {
 		return permissions;
+	}
+	
+	@Override
+	public <T> T getPermissionValue(String key, Class<T> clazz) {
+		JsonElement el = permissions.getValue(key);
+		
+		return el == null ? null : Ladder.getInstance().getGson().fromJson(permissions.getValue(key), clazz);
 	}
 
 	@Override
