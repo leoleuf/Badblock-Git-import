@@ -3,8 +3,6 @@ package fr.badblock.ladder.entities;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,9 +29,6 @@ import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
 import fr.badblock.ladder.data.LadderIpDataHandler;
-import fr.badblock.ladder.sql.BadblockDatabase;
-import fr.badblock.ladder.sql.Request;
-import fr.badblock.ladder.sql.Request.RequestType;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
@@ -53,8 +48,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
-import fr.badblock.rabbitconnector.RabbitPacketType;
-import fr.badblock.utils.Encodage;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -159,8 +152,8 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	@Override
 	public void handle(PacketPlayerData packet) {
 		if(packet.getType() == DataType.PLAYER){
-			if (Proxy.getInstance().getRabbitService() != null)
-				Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			//if (Proxy.getInstance().getRabbitService() != null)
+			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(packet.getKey());
 
 			if(player == null) return;
@@ -178,8 +171,8 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
 			}
 		} else if(packet.getType() == DataType.IP){
-			if (Proxy.getInstance().getRabbitService() != null)
-				Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			//if (Proxy.getInstance().getRabbitService() != null)
+			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			PlayerIp player = null;
 			try {
 				player = Ladder.getInstance().getIpData(InetAddress.getByName(packet.getKey()));
@@ -216,16 +209,16 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			}
 		} else if(packet.getType() == DataType.MOTD){
 			sendMotd(Proxy.getInstance().getMotd());
-			if (Proxy.getInstance().getRabbitService() != null)
-				Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			//if (Proxy.getInstance().getRabbitService() != null)
+			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		} else if(packet.getType() == DataType.PLAYERS){
 			for(Player player : Ladder.getInstance().getOnlinePlayers()){
 				sendPacket(new PacketPlayerJoin(player.getName(), player.getUniqueId(), player.getAddress()));
 				if(player.getBukkitServer() != null)
 					sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getBukkitServer().getName()));
 			}
-			if (Proxy.getInstance().getRabbitService() != null)
-				Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		//if (Proxy.getInstance().getRabbitService() != null)
+			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		}
 	}
 
@@ -246,7 +239,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 		// Récupération des points boutique
 
-		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT ptsboutique FROM joueurs WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "'", RequestType.GETTER) {
+		/*BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT ptsboutique FROM joueurs WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "'", RequestType.GETTER) {
 			@Override
 			public void done(ResultSet resultSet) {
 				try {
@@ -259,7 +252,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
+				}*/
 				Ladder.getInstance().getPluginsManager().dispatchEvent(event);
 
 				player.getPunished().checkEnd();
@@ -278,11 +271,11 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 					sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
 					sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
-					if (Proxy.getInstance().getRabbitService() != null)
-						Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					//if (Proxy.getInstance().getRabbitService() != null)
+					//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
-			}
-		});
+			//}
+	//	});
 
 
 	}
@@ -301,8 +294,6 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 		Proxy.getInstance().playerConnect(player);
 		((LadderIpDataHandler) player.getIpData()).getPlayers().add(player.getUniqueId());
-		if (Proxy.getInstance().getRabbitService() != null)
-			Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
 
 	@Override
@@ -330,8 +321,8 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			Proxy.getInstance().playerDisconnect(player);
 
 			getPlayers().remove(player.getUniqueId());
-			if (Proxy.getInstance().getRabbitService() != null)
-				Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			//if (Proxy.getInstance().getRabbitService() != null)
+			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		}
 	}
 
