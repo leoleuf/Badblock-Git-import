@@ -252,9 +252,9 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
-				}
+				}*/
 				Ladder.getInstance().getPluginsManager().dispatchEvent(event);
-*/
+
 				player.getPunished().checkEnd();
 				player.getIpAsPunished().checkEnd();
 
