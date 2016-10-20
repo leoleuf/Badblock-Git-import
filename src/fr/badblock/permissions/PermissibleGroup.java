@@ -113,7 +113,7 @@ import lombok.Data;
 	}
 
 	@Override
-	public void setParent(long end, Permissible group) {
+	public void setParent(long end, PermissibleGroup group) {
 		this.superGroup = group.getName().toLowerCase();
 	}
 	

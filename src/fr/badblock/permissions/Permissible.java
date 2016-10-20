@@ -12,7 +12,7 @@ public interface Permissible {
 	public Reponse		 getPermissionReponse(Permission permission);
 	
 	public Permissible 	 getParent();
-	public void          setParent(long end, Permissible group);
+	public void          setParent(long end, PermissibleGroup group);
 	
 	
 	public String		 getName();

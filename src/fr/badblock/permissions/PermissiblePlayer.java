@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.gson.JsonArray;
@@ -178,17 +179,48 @@ import lombok.Data;
 	}
 
 	@Override
-	public void setParent(long end, Permissible group) {
+	public void setParent(long end, PermissibleGroup group) {
 		if(alternateGroups.containsKey(group.getName().toLowerCase())) {
 			alternateGroups.remove(group.getName().toLowerCase());
 		}
 		
 		this.superGroup = group.getName().toLowerCase();
 		this.groupEnd   = end;
+		sort();
 	}
 	
-	public void addParent(long end, Permissible group){
+	public void addParent(long end, PermissibleGroup group){
+		if(superGroup == null || superGroup.equalsIgnoreCase("default")){
+			setParent(end, group);
+			return;
+		}
+		
 		alternateGroups.put(group.getName().toLowerCase(), end);
+		sort();
+	}
+	
+	private void sort(){
+		List<String> groups = new ArrayList<>(alternateGroups.keySet());
+		
+		groups.add(superGroup);
+		Optional<String> first = groups.stream().sorted((a, b) -> Integer.compare(PermissionManager.getInstance().getGroup(b).getPower(), PermissionManager.getInstance().getGroup(a).getPower())).findFirst();
+	
+		if(!first.isPresent())
+			return;
+		
+		String get = first.get();
+		
+		if(get == null || get.equalsIgnoreCase("default") || get.equalsIgnoreCase(superGroup))
+			return;
+		
+		long previousEnd = groupEnd;
+		String previous = superGroup;
+		
+		groupEnd = alternateGroups.get(get);
+		superGroup = get;
+		
+		alternateGroups.remove(get);
+		alternateGroups.put(previous, previousEnd);
 	}
 	
 	public void removeParent(Permissible group){
