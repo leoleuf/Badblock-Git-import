@@ -99,7 +99,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
-			if (result == null || (result != null && result.getPlayers().size() < serverInfo.getPlayers().size()))
+			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
 		return result;
@@ -111,7 +111,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
 			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
-			if (result == null || (result != null && result.getPlayers().size() < serverInfo.getPlayers().size()))
+			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
 		return result;
