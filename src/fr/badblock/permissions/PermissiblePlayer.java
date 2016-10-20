@@ -104,6 +104,8 @@ import lombok.Data;
 	}
 
 	public JsonElement getValue(String key){
+		key = key.toLowerCase();
+		
 		if(getParent() != null){
 			JsonElement answer = ((PermissibleGroup) getParent()).getValue(key);
 			

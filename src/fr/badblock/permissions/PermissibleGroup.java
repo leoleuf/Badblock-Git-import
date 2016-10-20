@@ -36,7 +36,7 @@ import lombok.Data;
 		
 		if(from.has("values")){
 			JsonObject vals = from.get("values").getAsJsonObject();
-			vals.entrySet().forEach(o -> values.put(o.getKey(), o.getValue()));
+			vals.entrySet().forEach(o -> values.put(o.getKey().toLowerCase(), o.getValue()));
 		}
 		
 		
@@ -129,6 +129,8 @@ import lombok.Data;
 	}
 	
 	public JsonElement getValue(String key){
+		key = key.toLowerCase();
+		
 		JsonElement el = values.get(key);
 		
 		if(el == null && superGroup != null && !superGroup.equalsIgnoreCase("default")){
