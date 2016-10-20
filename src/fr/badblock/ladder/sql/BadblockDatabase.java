@@ -2,14 +2,12 @@ package fr.badblock.ladder.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.badblock.ladder.api.Ladder;
-import fr.badblock.ladder.sql.Request.RequestType;
 
 public class BadblockDatabase {
 
@@ -25,25 +23,6 @@ public class BadblockDatabase {
 
 	public BadblockDatabase() {
 		threads = new ArrayList<>();
-		/*
-		 * requests = Queues.newLinkedBlockingDeque(); for (int i = 0; i < 16;
-		 * i++) { thread = new Thread("database_" + new
-		 * Random().nextInt(99999999)) {
-		 * 
-		 * @Override public void run() { synchronized (thread) { while (true) {
-		 * boolean isEmpty = true; synchronized (requests) { isEmpty =
-		 * requests.isEmpty(); } if (!isEmpty) { Request request = null;
-		 * synchronized (requests) { request = requests.poll(); } if (request !=
-		 * null) { try { Statement statement = createStatement(); if
-		 * (request.getRequestType().equals(RequestType.SETTER)) {
-		 * statement.executeUpdate(request.getRequest()); }else{ ResultSet
-		 * resultSet = statement.executeQuery(request.getRequest());
-		 * request.done(resultSet); resultSet.close(); } statement.close();
-		 * }catch(Exception error) { error.printStackTrace(); } } } try {
-		 * thread.wait(); } catch (InterruptedException e) {
-		 * e.printStackTrace(); } } } } }; threads.add(thread); thread.start();
-		 * }
-		 */
 	}
 
 	public String mysql_real_escape_string(String str) {
@@ -82,16 +61,16 @@ public class BadblockDatabase {
 		}
 	}
 
-	public void addRequest(Request request) {
+	/*public void addRequest(Request request) {
 		new Thread() {
 			@Override
 			public void run() {
 				addSyncRequest(request);
 			}
 		}.start();
-	}
+	}*/
 
-	public void addSyncRequest(Request request) {
+	/*public void addSyncRequest(Request request) {
 		try {
 			Statement statement = createStatement();
 			if (request.getRequestType().equals(RequestType.SETTER)) {
@@ -106,7 +85,7 @@ public class BadblockDatabase {
 		} catch (Exception error) {
 			error.printStackTrace();
 		}
-	}
+	}*/
 
 	public static BadblockDatabase getInstance() {
 		if (instance == null)

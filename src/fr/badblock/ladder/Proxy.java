@@ -117,7 +117,7 @@ public class Proxy extends Ladder {
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
 	
 	@Getter@Setter
-	private transient RabbitService  	rabbitService;
+	private transient RabbitService  	rabbitServiced;
 
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
@@ -141,8 +141,8 @@ public class Proxy extends Ladder {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				if (Proxy.getInstance().getRabbitService() != null)
-					Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, true);
+				if (Proxy.getInstance().getRabbitServiced() != null)
+					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, true);
 			}
 		}, 1000, 1000);
 	}
