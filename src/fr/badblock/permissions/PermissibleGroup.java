@@ -1,7 +1,9 @@
 package fr.badblock.permissions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -12,11 +14,12 @@ import fr.badblock.permissions.Permission.Reponse;
 import lombok.Data;
 
 @Data public class PermissibleGroup implements Permissible {
-	private final List<Permission> permissions;
-	private       String		   superGroup;
-	private	final String		   name;
-	private		  String		   displayName;
- 	private 	  int			   power;
+	private final List<Permission>         permissions;
+	private final Map<String, JsonElement> values;
+	private       String		           superGroup;
+	private	final String		           name;
+	private		  String		           displayName;
+ 	private 	  int			           power;
 	
 	public PermissibleGroup(JsonObject from){
 		this.name 		 = from.get("name").getAsString();
@@ -28,6 +31,14 @@ import lombok.Data;
 		if(from.get("superGroup") == null){
 			from.addProperty("superGroup", "default");
 		}
+		
+		values = new HashMap<>();
+		
+		if(from.has("values")){
+			JsonObject vals = from.get("values").getAsJsonObject();
+			vals.entrySet().forEach(o -> values.put(o.getKey(), o.getValue()));
+		}
+		
 		
 		if(!from.get("superGroup").isJsonNull())
 			this.superGroup  = from.get("superGroup").getAsString();
@@ -107,9 +118,18 @@ import lombok.Data;
 		for(Permission permission : permissions){
 			array.add(new JsonPrimitive(permission.toString()));
 		}
+		
+		JsonObject obj   = new JsonObject();
+		
+		values.forEach((key, val) -> obj.add(key, val));
+		
 		object.add("permissions", array);
 		
 		return object;
+	}
+	
+	public JsonElement getValue(String key){
+		return values.get(key);
 	}
 
 	@Override
