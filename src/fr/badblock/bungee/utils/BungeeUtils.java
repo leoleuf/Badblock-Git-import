@@ -54,7 +54,6 @@ public class BungeeUtils extends Plugin implements Listener{
 				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 					if (serverInfo == null) continue;
 					if (!serverInfo.getName().startsWith("hub")) continue;
-					System.out.println("Sending ping to " + serverInfo.getName());
 					serverInfo.ping(new Callback<ServerPing>() {
 						@Override
 						public void done(ServerPing arg0, Throwable arg1) {
@@ -66,7 +65,6 @@ public class BungeeUtils extends Plugin implements Listener{
 				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 					if (serverInfo == null) continue;
 					if (!serverInfo.getName().startsWith("login")) continue;
-					System.out.println("Sending ping to " + serverInfo.getName());
 					serverInfo.ping(new Callback<ServerPing>() {
 						@Override
 						public void done(ServerPing arg0, Throwable arg1) {
