@@ -3,11 +3,15 @@ package fr.badblock.bungee.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import fr.badblock.bungee.utils.commands.HubCommand;
+import io.netty.util.internal.ConcurrentSet;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ServerPing;
@@ -16,6 +20,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.ProxyReloadEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -35,6 +40,9 @@ public class BungeeUtils extends Plugin implements Listener{
 	private ConcurrentHashMap<ServerInfo, Long> lobbies = new ConcurrentHashMap<>();
 	private ConcurrentHashMap<ServerInfo, Long> logins = new ConcurrentHashMap<>();
 
+	private Set<String> 		  blacklisted    = new ConcurrentSet<>();
+	private Map<UUID, ServerInfo> waitingForfail = new ConcurrentHashMap<>();
+
 	@Override
 	public void onEnable(){
 		instance = this;
@@ -43,7 +51,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
 		ServerInfo lobbySkeleton = BungeeCord.getInstance().constructServerInfo("lobby", new InetSocketAddress("127.0.0.1", 8890), "lobbySkeleton", false);
 		BungeeCord.getInstance().getServers().put("lobby", lobbySkeleton);
-		
+
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
 		loadConfig();
@@ -111,24 +119,43 @@ public class BungeeUtils extends Plugin implements Listener{
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onServerConnect(ServerConnectEvent e) {
 		if (e.getTarget() != null && e.getTarget().getName().equalsIgnoreCase( skeleton.getName() )) {
-			ServerInfo serverInfo = this.roundrobinLogin();
+			ServerInfo serverInfo = this.roundrobinLogin(e.getPlayer());
+
 			if (serverInfo != null) {
 				e.setTarget(serverInfo);
 			}
 		} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
-			ServerInfo serverInfo = this.roundrobinHub();
+			ServerInfo serverInfo = this.roundrobinHub(e.getPlayer());
+
 			if (serverInfo != null) {
 				e.setTarget(serverInfo);
 			}
 		}
 	}
 
-	public ServerInfo roundrobinHub() {
-		ServerInfo result = null;
+	@EventHandler
+	public void onServerConnectionFail(ServerConnectionFailEvent e){
+		ServerInfo info = waitingForfail.get(e.getPlayer().getUniqueId());
+
+		if(info != null){
+			waitingForfail.remove(e.getPlayer().getUniqueId());
+			blacklisted.add(info.getName());
+			// blacklist server for 30 second when fail
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					blacklisted.remove(info.getName());
+				}
+			}, 30_000L);
+		}
+	}
+
+	public ServerInfo roundrobinHub(ProxiedPlayer player) {
+		/*ServerInfo result = null;
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
@@ -138,11 +165,13 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
-		return result;
+		return result;*/
+		
+		return roundrobin(player, "hub", lobbies, hubMaxPlayers);
 	}
 
-	private ServerInfo roundrobinLogin() {
-		ServerInfo result = null;
+	private ServerInfo roundrobinLogin(ProxiedPlayer player) {
+		/*ServerInfo result = null;
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
@@ -152,7 +181,38 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}
-		return result;
+		return result;*/
+		return roundrobin(player, "login", logins, loginMaxPlayers);
 	}
 
+	public ServerInfo roundrobin(ProxiedPlayer player, String type, Map<ServerInfo, Long> servers, int maxPlayers){
+		ServerInfo result = null;
+
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null || serverInfo.getName().startsWith(type)) continue;
+			if (!servers.containsKey(serverInfo) || servers.get(serverInfo) < System.currentTimeMillis()) continue;
+
+			if (serverInfo.getPlayers().size() >= maxPlayers) continue;
+
+			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
+				result = serverInfo;
+		}
+
+		if(result != null){
+			waitingForfail.put(player.getUniqueId(), result);
+			
+			ServerInfo fresult = result;
+			
+			// Met le joueur deux secondes dans la liste, ne va pas couvrir les timed out :(
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					if(waitingForfail.get(player.getUniqueId()) == fresult)
+						waitingForfail.remove(player.getUniqueId());
+				}
+			}, 2_000L);
+		}
+		
+		return result;
+	}
 }

@@ -12,7 +12,6 @@ public class HubCommand extends Command{
 		super("hub", "randomhub.use", "lobby");
 	}
 
-	@SuppressWarnings("deprecation")
 	public void execute(CommandSender sender, String[] args) {
 		if(sender instanceof ProxiedPlayer){} else return;
 		ProxiedPlayer player = (ProxiedPlayer) sender;
@@ -20,7 +19,7 @@ public class HubCommand extends Command{
 		if(player.getServer().getInfo().getName().startsWith("hub")){
 			player.sendMessage(ChatColor.RED + "Vous êtes déjà au hub.");
 		} else {
-			ServerInfo lobby = BungeeUtils.instance.roundrobinHub();
+			ServerInfo lobby = BungeeUtils.instance.roundrobinHub(player);
 			if (lobby != null)
 				player.connect(lobby);
 		}
