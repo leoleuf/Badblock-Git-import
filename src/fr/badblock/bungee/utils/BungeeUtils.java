@@ -3,9 +3,14 @@ package fr.badblock.bungee.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 
 import fr.badblock.bungee.utils.commands.HubCommand;
 import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.Callback;
+import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -27,6 +32,8 @@ public class BungeeUtils extends Plugin implements Listener{
 	private int 		hubMaxPlayers;
 	private int 		loginMaxPlayers;
 	private ServerInfo	skeleton;
+	private ConcurrentHashMap<ServerInfo, Long> lobbies = new ConcurrentHashMap<>();
+	private ConcurrentHashMap<ServerInfo, Long> logins = new ConcurrentHashMap<>();
 
 	@Override
 	public void onEnable(){
@@ -40,6 +47,33 @@ public class BungeeUtils extends Plugin implements Listener{
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
 		loadConfig();
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				// hub check
+				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+					if (serverInfo == null) continue;
+					if (!serverInfo.getName().startsWith("hub")) continue;
+					serverInfo.ping(new Callback<ServerPing>() {
+						@Override
+						public void done(ServerPing arg0, Throwable arg1) {
+							if (arg0 != null) lobbies.put(serverInfo, System.currentTimeMillis() + 5_000L);
+						}
+					});
+				}
+				// hub check
+				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+					if (serverInfo == null) continue;
+					if (!serverInfo.getName().startsWith("login")) continue;
+					serverInfo.ping(new Callback<ServerPing>() {
+						@Override
+						public void done(ServerPing arg0, Throwable arg1) {
+							if (arg0 != null) logins.put(serverInfo, System.currentTimeMillis() + 5_000L);
+						}
+					});
+				}
+			}
+		}, 1000, 1000);
 	}
 
 	public void loadConfig(){
@@ -98,6 +132,8 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
+			if (!lobbies.contains(serverInfo)) continue;
+			if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
@@ -110,6 +146,8 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
+			if (!logins.contains(serverInfo)) continue;
+			if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
