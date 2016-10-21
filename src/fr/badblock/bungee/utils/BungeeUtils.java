@@ -192,7 +192,9 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (!servers.containsKey(serverInfo) || servers.get(serverInfo) < System.currentTimeMillis()) continue;
 
 			if (serverInfo.getPlayers().size() >= maxPlayers) continue;
-
+			if (blacklisted.contains( serverInfo.getName() )) continue;
+			
+			
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
 		}

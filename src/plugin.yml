@@ -1,0 +1,4 @@
+name: BungeeUtils
+main: fr.badblock.bungee.utils.BungeeUtils
+version: 1.0
+authors: ['xMalware', 'LelanN']
