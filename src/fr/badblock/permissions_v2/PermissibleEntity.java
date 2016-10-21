@@ -15,9 +15,9 @@ public abstract class PermissibleEntity {
 	public abstract JsonElement getPermissionValue(String[] locations, String permission, boolean allowInheritance, JsonElement def);
 	
 	public <T> T getPermissionValue(String[] locations, String permission, Class<T> as, boolean allowInheritance, T def){
-		JsonElement result = getPermissionValue(locations, permission, allowInheritance, new Gson().toJsonTree(def));
+		JsonElement result = getPermissionValue(locations, permission, allowInheritance, null);
 		
-		return result == null ? null : new Gson().fromJson(result, as);
+		return result == null ? def : new Gson().fromJson(result, as);
 	}
 	
 	public <T> T getPermissionValue(String[] locations, String permission, Class<T> as, boolean allowInheritance){
