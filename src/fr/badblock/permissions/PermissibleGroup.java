@@ -120,8 +120,8 @@ import lombok.Data;
 		}
 		
 		JsonObject obj   = new JsonObject();
-		
 		values.forEach((key, val) -> obj.add(key, val));
+ 		object.add("values",  	  obj);
 		
 		object.add("permissions", array);
 		
