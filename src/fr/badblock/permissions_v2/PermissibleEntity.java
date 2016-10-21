@@ -114,7 +114,12 @@ public abstract class PermissibleEntity {
 		return getPermissionValue(permission, as, false, null);
 	}
 
-	
+	/**
+	 * Récupère une permission sous forme booléenne (équivalent à un système de permission style PEX)
+	 * <br>La location prend la valeur du manager de permission
+	 * @param permission La permission
+	 * @return La valeur de la permission (par défaut, null)
+	 */
 	public boolean hasPermission(String permission){
 		return getPermissionValue(permission, Boolean.class, true, false);
 	}
