@@ -3,6 +3,9 @@ package fr.badblock.bungee.utils;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
@@ -128,31 +131,29 @@ public class BungeeUtils extends Plugin implements Listener{
 	}
 
 	public ServerInfo roundrobinHub() {
-		ServerInfo result = null;
+		List<ServerInfo> servers = new ArrayList<>();
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
-			if (!lobbies.containsKey(serverInfo)) continue;
-			if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
+			//if (!lobbies.containsKey(serverInfo)) continue;
+			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
-			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
-				result = serverInfo;
+			servers.add(serverInfo);
 		}
-		return result;
+		return servers.get(new SecureRandom().nextInt(servers.size()));
 	}
 
 	private ServerInfo roundrobinLogin() {
-		ServerInfo result = null;
+		List<ServerInfo> servers = new ArrayList<>();
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
-			if (!logins.containsKey(serverInfo)) continue;
-			if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
+			//if (!logins.containsKey(serverInfo)) continue;
+			//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
-			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
-				result = serverInfo;
+			servers.add(serverInfo);
 		}
-		return result;
+		return servers.get(new SecureRandom().nextInt(servers.size()));
 	}
 
 }
