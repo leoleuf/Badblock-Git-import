@@ -1,6 +1,5 @@
-package fr.badblock.bungee.utils.commands;
+package fr.badblock.bungee.utils;
 
-import fr.badblock.bungee.utils.BungeeUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -19,6 +18,7 @@ public class HubCommand extends Command{
 
 		if(player.getServer().getInfo().getName().startsWith("hub")){
 			player.sendMessage(ChatColor.RED + "Vous êtes déjà au hub.");
+			return;
 		} else {
 			ServerInfo lobby = BungeeUtils.instance.roundrobinHub();
 			if (lobby != null)
