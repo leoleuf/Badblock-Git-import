@@ -54,9 +54,11 @@ public class BungeeUtils extends Plugin implements Listener{
 				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 					if (serverInfo == null) continue;
 					if (!serverInfo.getName().startsWith("hub")) continue;
+					System.out.println("Sending ping to " + serverInfo.getName());
 					serverInfo.ping(new Callback<ServerPing>() {
 						@Override
 						public void done(ServerPing arg0, Throwable arg1) {
+							System.out.println("----------------- Received ping from " + serverInfo.getName());
 							if (arg0 != null) lobbies.put(serverInfo, System.currentTimeMillis() + 5_000L);
 						}
 					});
@@ -65,9 +67,11 @@ public class BungeeUtils extends Plugin implements Listener{
 				for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 					if (serverInfo == null) continue;
 					if (!serverInfo.getName().startsWith("login")) continue;
+					System.out.println("Sending ping to " + serverInfo.getName());
 					serverInfo.ping(new Callback<ServerPing>() {
 						@Override
 						public void done(ServerPing arg0, Throwable arg1) {
+							System.out.println("----------------- Received ping from " + serverInfo.getName());
 							if (arg0 != null) logins.put(serverInfo, System.currentTimeMillis() + 5_000L);
 						}
 					});
@@ -132,8 +136,11 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("hub")) continue;
+			System.out.println("A");
 			if (!lobbies.contains(serverInfo)) continue;
+			System.out.println("B");
 			if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
+			System.out.println("C");
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
@@ -146,8 +153,11 @@ public class BungeeUtils extends Plugin implements Listener{
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
 			if (!serverInfo.getName().startsWith("login")) continue;
+			System.out.println("A");
 			if (!logins.contains(serverInfo)) continue;
+			System.out.println("B");
 			if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
+			System.out.println("C");
 			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
 			if (result == null || (result != null && result.getPlayers().size() > serverInfo.getPlayers().size()))
 				result = serverInfo;
