@@ -10,7 +10,6 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-import fr.badblock.bungee.utils.commands.HubCommand;
 import io.netty.util.internal.ConcurrentSet;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.Callback;
