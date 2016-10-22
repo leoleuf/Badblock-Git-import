@@ -142,9 +142,9 @@ public class Proxy extends Ladder {
 			@Override
 			public void run() {
 				if (Proxy.getInstance().getRabbitServiced() != null)
-					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, true);
+					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
-		}, 1000, 1000);
+		}, 500, 500);
 	}
 
 	public void removeReconnectionInvitation(OfflinePlayer player, boolean punish){

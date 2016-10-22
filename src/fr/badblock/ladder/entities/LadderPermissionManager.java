@@ -52,15 +52,15 @@ public class LadderPermissionManager extends PermissionManager {
 		JsonObject permissions = new JsonObject();
 
 		if (object.get("permissions") != null) {
-			System.out.println("Fetch permissions in DataHandler json object (createPlayer() - " + name + ") > " + object.get("permissions").getAsJsonObject());
+			//System.out.println("Fetch permissions in DataHandler json object (createPlayer() - " + name + ") > " + object.get("permissions").getAsJsonObject());
 			permissions = object.get("permissions").getAsJsonObject();
 		} else {
-			System.out.println("Added 'permissions' in data json object (createPlayer() - " + name + ")");
+			//System.out.println("Added 'permissions' in data json object (createPlayer() - " + name + ")");
 			object.add("permissions", permissions);
 		}
 
 		if (permissions.entrySet().isEmpty()) {
-			System.out.println("Entry set empty 'permissions', set to default group (createPlayer() - " + name + ")");
+			//System.out.println("Entry set empty 'permissions', set to default group (createPlayer() - " + name + ")");
 			permissions.addProperty("group", "default");
 			permissions.addProperty("end", Integer.valueOf(-1));
 			permissions.add("permissions", new JsonArray());
