@@ -3,7 +3,7 @@ package fr.badblock.commons.data;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import fr.badblock.commons.data.i18n.Locale;
+import fr.badblock.commons.i18n.Locale;
 
 public class PlayerGameData {
 	public Locale								  		  locale	       = Locale.FRENCH_FRANCE;

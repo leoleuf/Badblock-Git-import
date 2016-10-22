@@ -1,4 +1,4 @@
-package fr.badblock.commons.data.i18n;
+package fr.badblock.commons.i18n;
 
 import lombok.Getter;
 
