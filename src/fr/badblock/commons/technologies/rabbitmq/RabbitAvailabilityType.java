@@ -1,4 +1,4 @@
-package fr.badblock.commons.rabbitconnector;
+package fr.badblock.commons.technologies.rabbitmq;
 
 /**
  * An enumeration for set a custom time to live in Rabbit messages

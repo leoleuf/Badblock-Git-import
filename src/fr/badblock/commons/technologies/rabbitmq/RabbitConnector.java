@@ -1,4 +1,4 @@
-package fr.badblock.commons.rabbitconnector;
+package fr.badblock.commons.technologies.rabbitmq;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
