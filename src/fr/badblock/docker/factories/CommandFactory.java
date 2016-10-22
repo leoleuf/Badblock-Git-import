@@ -1,4 +1,4 @@
-package fr.badblock.actions;
+package fr.badblock.docker.factories;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
