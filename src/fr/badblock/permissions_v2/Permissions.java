@@ -3,6 +3,7 @@ package fr.badblock.permissions_v2;
 import java.util.Map;
 
 import fr.badblock.permissions_v2.entities.PermissibleGroup;
+import fr.badblock.utils.Callback;
 import lombok.Getter;
 
 public class Permissions {
@@ -19,7 +20,18 @@ public class Permissions {
 	 */
 	public void chagnePermissionProvider(PermissionProvider provider){
 		this.permissionProvider = provider;
-		this.groups				= provider.loadGroups();
+		
+		provider.loadGroups(new Callback<Map<String,PermissibleGroup>>() {
+			@Override
+			public void done(Map<String, PermissibleGroup> result, Throwable error) {
+				if(error != null){
+					error.printStackTrace();
+					return;
+				}
+				
+				groups = result;
+			}
+		});
 	}
 	
 	/**

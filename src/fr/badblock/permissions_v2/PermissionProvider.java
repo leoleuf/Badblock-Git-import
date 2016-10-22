@@ -4,6 +4,7 @@ import java.util.Map;
 
 import fr.badblock.permissions_v2.entities.PermissibleGroup;
 import fr.badblock.permissions_v2.entities.PermissiblePlayer;
+import fr.badblock.utils.Callback;
 
 /**
  * Représente un outil permettant de load les permissions
@@ -18,15 +19,14 @@ public interface PermissionProvider {
 	
 	/**
 	 * Load l'ensemble des groupes
-	 * @return Les groupes
+	 * @param callback Le callback pour récupérer
 	 */
-	public Map<String, PermissibleGroup> loadGroups();
+	public void loadGroups(Callback<Map<String, PermissibleGroup>> callback);
 	
 	/**
 	 * Load un joueur
 	 * @param name Le nom du joueur
-	 * @return Le joueur
+	 * @param callback Le callback pour récupérer
 	 */
-	public PermissiblePlayer loadPlayer(String name);
-	
+	public void loadPlayer(String name, Callback<PermissiblePlayer> callback);
 }
