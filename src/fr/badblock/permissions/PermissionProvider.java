@@ -1,9 +1,9 @@
-package fr.badblock.permissions_v2;
+package fr.badblock.permissions;
 
 import java.util.Map;
 
-import fr.badblock.permissions_v2.entities.PermissibleGroup;
-import fr.badblock.permissions_v2.entities.PermissiblePlayer;
+import fr.badblock.permissions.entities.PermissibleGroup;
+import fr.badblock.permissions.entities.PermissiblePlayer;
 import fr.badblock.utils.Callback;
 
 /**

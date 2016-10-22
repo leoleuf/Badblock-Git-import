@@ -1,11 +1,11 @@
-package fr.badblock.permissions_v2.entities;
+package fr.badblock.permissions.entities;
 
 import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
-import fr.badblock.permissions_v2.Permissions;
+import fr.badblock.permissions.Permissions;
 
 /**
  * Représente une entité ayant des permissions

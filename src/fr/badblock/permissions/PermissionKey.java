@@ -1,4 +1,4 @@
-package fr.badblock.permissions_v2;
+package fr.badblock.permissions;
 
 import java.util.Comparator;
 import java.util.Map;
