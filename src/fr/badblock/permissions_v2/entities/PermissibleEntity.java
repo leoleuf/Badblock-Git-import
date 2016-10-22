@@ -1,18 +1,25 @@
-package fr.badblock.permissions_v2;
+package fr.badblock.permissions_v2.entities;
+
+import java.util.Optional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
+import fr.badblock.permissions_v2.Permissions;
+
+/**
+ * Représente une entité ayant des permissions
+ * @author LeLanN
+ */
 public abstract class PermissibleEntity {
 	/**
 	 * Récupère la valeur d'une permission pour l'entité
 	 * @param locations Les locations où l'on accepte de récupérer la permission
 	 * @param permission La permission
 	 * @param allowInheritance Si (par exemple) pour la clé badblock.example, la clé badblock.* peut être utilisée
-	 * @param def La valeur de retour par défaut (si l'entité n'a pas la permission)
 	 * @return La valeur de la permission
 	 */
-	public abstract JsonElement getPermissionValue(String[] locations, String permission, boolean allowInheritance, JsonElement def);
+	public abstract Optional<JsonElement> getPermissionValue(String[] locations, String permission, boolean allowInheritancef);
 	
 	/**
 	 * Récupère la valeur d'une permission pour l'entité, convertit en un certain type
@@ -23,9 +30,9 @@ public abstract class PermissibleEntity {
 	 * @return La valeur de la permission
 	 */
 	public <T> T getPermissionValue(String[] locations, String permission, Class<T> as, boolean allowInheritance, T def){
-		JsonElement result = getPermissionValue(locations, permission, allowInheritance, null);
+		Optional<JsonElement> result = getPermissionValue(locations, permission, allowInheritance);
 		
-		return result == null ? def : new Gson().fromJson(result, as);
+		return !result.isPresent() ? def : new Gson().fromJson(result.get(), as);
 	}
 	
 	/**
@@ -79,7 +86,7 @@ public abstract class PermissibleEntity {
 	 * @return La valeur de la permission
 	 */
 	public <T> T getPermissionValue(String permission, Class<T> as, boolean allowInheritance, T def){
-		return getPermissionValue(null, permission, as, allowInheritance, def);
+		return getPermissionValue(Permissions.permissions.getPermissionProvider().getLocations(), permission, as, allowInheritance, def);
 	}
 	
 	/**
