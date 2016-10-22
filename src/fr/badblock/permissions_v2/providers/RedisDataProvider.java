@@ -32,5 +32,4 @@ public class RedisDataProvider implements PermissionProvider {
 	public void loadPlayer(String name, Callback<PermissiblePlayer> callback) {
 		service.getAsyncObject("badblock_player_" + name.toLowerCase(), callback);
 	}
-
 }
