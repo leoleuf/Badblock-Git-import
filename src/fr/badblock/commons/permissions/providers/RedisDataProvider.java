@@ -13,7 +13,7 @@ import fr.badblock.commons.permissions.PermissionProvider;
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
 import fr.badblock.commons.redis.RedisConnector;
 import fr.badblock.commons.redis.RedisService;
-import fr.badblock.utils.Callback;
+import fr.badblock.commons.utils.Callback;
 
 public class RedisDataProvider implements PermissionProvider {
 	private String[]	 locations;

@@ -3,7 +3,7 @@ package fr.badblock.commons.permissions;
 import java.util.Map;
 
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
-import fr.badblock.utils.Callback;
+import fr.badblock.commons.utils.Callback;
 
 /**
  * Représente un outil permettant de load les permissions

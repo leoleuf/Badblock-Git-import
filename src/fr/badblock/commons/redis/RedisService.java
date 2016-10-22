@@ -2,7 +2,7 @@ package fr.badblock.commons.redis;
 
 import java.lang.reflect.ParameterizedType;
 
-import fr.badblock.utils.Callback;
+import fr.badblock.commons.utils.Callback;
 import lombok.Getter;
 import lombok.Setter;
 import redis.clients.jedis.Jedis;

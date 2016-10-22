@@ -1,4 +1,4 @@
-package fr.badblock.utils;
+package fr.badblock.commons.utils;
 
 import java.lang.reflect.ParameterizedType;
 
