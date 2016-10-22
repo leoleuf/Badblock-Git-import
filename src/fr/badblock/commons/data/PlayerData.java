@@ -9,4 +9,6 @@ public class PlayerData {
 	
 	public UUID   uniqueId;
 	public long   lastLogin;
+	
+	public PlayerGameData game;
 }
