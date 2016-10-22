@@ -1,10 +1,10 @@
-package fr.badblock.permissions.providers;
+package fr.badblock.commons.permissions.providers;
 
 import java.util.Map;
 
-import fr.badblock.permissions.PermissionProvider;
-import fr.badblock.permissions.entities.PermissibleGroup;
-import fr.badblock.permissions.entities.PermissiblePlayer;
+import fr.badblock.commons.permissions.PermissionProvider;
+import fr.badblock.commons.permissions.entities.PermissibleGroup;
+import fr.badblock.commons.permissions.entities.PermissiblePlayer;
 import fr.badblock.redis.RedisConnector;
 import fr.badblock.redis.RedisService;
 import fr.badblock.utils.Callback;

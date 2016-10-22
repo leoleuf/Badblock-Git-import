@@ -1,8 +1,8 @@
-package fr.badblock.permissions;
+package fr.badblock.commons.permissions;
 
 import java.util.Map;
 
-import fr.badblock.permissions.entities.PermissibleGroup;
+import fr.badblock.commons.permissions.entities.PermissibleGroup;
 import fr.badblock.utils.Callback;
 import lombok.Getter;
 

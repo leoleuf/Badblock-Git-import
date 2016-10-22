@@ -1,4 +1,4 @@
-package fr.badblock.permissions.entities;
+package fr.badblock.commons.permissions.entities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import com.google.gson.JsonElement;
 
-import fr.badblock.permissions.PermissionKey;
-import fr.badblock.permissions.Permissions;
+import fr.badblock.commons.permissions.PermissionKey;
+import fr.badblock.commons.permissions.Permissions;
 import lombok.NoArgsConstructor;
 
 /**
