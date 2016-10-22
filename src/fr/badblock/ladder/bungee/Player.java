@@ -87,7 +87,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		JsonObject object = new JsonParser().parse(result).getAsJsonObject();
 		addObjectInObject(readOnlyData, object);
 
-		System.out.println("Creating PermissiblePlayer of the current entity " + name + " (" + readOnlyData + " - updateData(String))");
+		//System.out.println("Creating PermissiblePlayer of the current entity " + name + " (" + readOnlyData + " - updateData(String))");
 		permissions  = LadderBungee.getInstance().getPermissions().createPlayer(name, readOnlyData);
 		punished	 = Punished.fromJson(readOnlyData);
 	}
@@ -103,7 +103,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		if(object.has("uniqueId"))
 			uniqueId = UUID.fromString(object.get("uniqueId").getAsString());
 
-		System.out.println("Creating PermissiblePlayer of the current entity " + name + " (" + readOnlyData + " - receiveData(String))");
+		//System.out.println("Creating PermissiblePlayer of the current entity " + name + " (" + readOnlyData + " - receiveData(String))");
 		this.permissions  = LadderBungee.getInstance().getPermissions().createPlayer(name, object);
 		this.punished	  = Punished.fromJson(object);
 		this.readOnlyData = object;

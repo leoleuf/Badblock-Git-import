@@ -7,7 +7,7 @@ import fr.badblock.ladder.bungee.LadderBungee;
 public class PlayersUpdateListener extends RabbitListener {
 
 	public PlayersUpdateListener() {
-		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdate", true, RabbitListenerType.SUBSCRIBER);
+		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdate", false, RabbitListenerType.SUBSCRIBER);
 	}
 
 	@Override
