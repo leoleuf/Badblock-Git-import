@@ -3,7 +3,6 @@ package fr.badblock.commons.permissions;
 import java.util.Map;
 
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
-import fr.badblock.commons.permissions.entities.PermissiblePlayer;
 import fr.badblock.utils.Callback;
 
 /**
@@ -22,11 +21,4 @@ public interface PermissionProvider {
 	 * @param callback Le callback pour récupérer
 	 */
 	public void loadGroups(Callback<Map<String, PermissibleGroup>> callback);
-	
-	/**
-	 * Load un joueur
-	 * @param name Le nom du joueur
-	 * @param callback Le callback pour récupérer
-	 */
-	public void loadPlayer(String name, Callback<PermissiblePlayer> callback);
 }

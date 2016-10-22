@@ -2,10 +2,11 @@ package fr.badblock.commons.permissions.providers;
 
 import java.util.Map;
 
+import com.google.gson.JsonObject;
+
 import fr.badblock.commons.data.PlayerData;
 import fr.badblock.commons.permissions.PermissionProvider;
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
-import fr.badblock.commons.permissions.entities.PermissiblePlayer;
 import fr.badblock.commons.redis.RedisConnector;
 import fr.badblock.commons.redis.RedisService;
 import fr.badblock.utils.Callback;
@@ -29,12 +30,11 @@ public class RedisDataProvider implements PermissionProvider {
 		service.getAsyncObject("badblock_permissions", callback);
 	}
 
-	@Override
-	public void loadPlayer(String name, Callback<PermissiblePlayer> callback) {
+	public void loadPlayer(String name, Callback<JsonObject> callback) {
 		service.getAsyncObject("badblock_player_" + name.toLowerCase(), callback);
 	}
 	
-	public void loadFullPlayer(String name, Callback<PlayerData> callback) {
-		service.getAsyncObject("badblock_player_" + name.toLowerCase(), callback);
+	public void sendPlayer(String name, PlayerData data){
+		
 	}
 }
