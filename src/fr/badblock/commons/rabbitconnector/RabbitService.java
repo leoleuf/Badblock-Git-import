@@ -1,4 +1,4 @@
-package fr.badblock.rabbitconnector;
+package fr.badblock.commons.rabbitconnector;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

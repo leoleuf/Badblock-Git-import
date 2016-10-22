@@ -1,4 +1,4 @@
-package fr.badblock.rabbitconnector;
+package fr.badblock.commons.rabbitconnector;
 
 public class TTLSetWithoutTemporaryPersistentMessageTypeException extends Exception {
 

@@ -1,4 +1,4 @@
-package fr.badblock.redis;
+package fr.badblock.commons.redis;
 
 import lombok.Getter;
 import lombok.Setter;

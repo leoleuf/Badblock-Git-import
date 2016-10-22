@@ -5,8 +5,8 @@ import java.util.Map;
 import fr.badblock.commons.permissions.PermissionProvider;
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
 import fr.badblock.commons.permissions.entities.PermissiblePlayer;
-import fr.badblock.redis.RedisConnector;
-import fr.badblock.redis.RedisService;
+import fr.badblock.commons.redis.RedisConnector;
+import fr.badblock.commons.redis.RedisService;
 import fr.badblock.utils.Callback;
 
 public class RedisDataProvider implements PermissionProvider {

@@ -1,4 +1,4 @@
-package fr.badblock.redis;
+package fr.badblock.commons.redis;
 
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
