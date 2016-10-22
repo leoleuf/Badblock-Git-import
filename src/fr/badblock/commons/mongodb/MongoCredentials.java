@@ -5,7 +5,7 @@ import lombok.Setter;
 
 /**
  * A MongoCredentials object who will allow 
- * @author root
+ * @author xMalware
  *
  */
 @Getter @Setter public class MongoCredentials {
