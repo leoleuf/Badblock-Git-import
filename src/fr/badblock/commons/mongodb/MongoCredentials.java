@@ -1,5 +1,8 @@
 package fr.badblock.commons.mongodb;
 
+import java.util.Arrays;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,15 +14,19 @@ import lombok.Setter;
 @Getter @Setter public class MongoCredentials {
 	
 	private String					name;
-	private	String					hostname;
+	private String					username;
+	private	List<String>			hostnames;
 	private	int						port;
 	private	String					password;
+	private String					database;
 	
-	public MongoCredentials(String name, String hostname, int port, String password) {
+	public MongoCredentials(String name, int port, String username, String password, String database, String... hostnames) {
 		this.setName(name);
-		this.setHostname(hostname);
+		this.setUsername(username);
+		this.setHostnames(Arrays.asList(hostnames));
 		this.setPort(port);
 		this.setPassword(password);
+		this.setDatabase(database);
 		MongoConnector.getInstance().getCredentials().put(this.getName(), this);
 		System.out.println("[MongoConnector] Registered new credentials! (" + name + ")");
 	}
