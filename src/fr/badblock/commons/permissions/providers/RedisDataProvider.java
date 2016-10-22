@@ -11,8 +11,8 @@ import com.google.gson.JsonObject;
 import fr.badblock.commons.data.PlayerData;
 import fr.badblock.commons.permissions.PermissionProvider;
 import fr.badblock.commons.permissions.entities.PermissibleGroup;
-import fr.badblock.commons.redis.RedisConnector;
-import fr.badblock.commons.redis.RedisService;
+import fr.badblock.commons.technologies.redis.RedisConnector;
+import fr.badblock.commons.technologies.redis.RedisService;
 import fr.badblock.commons.utils.Callback;
 
 public class RedisDataProvider implements PermissionProvider {

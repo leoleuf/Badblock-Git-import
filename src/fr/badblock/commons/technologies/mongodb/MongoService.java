@@ -1,4 +1,4 @@
-package fr.badblock.commons.mongodb;
+package fr.badblock.commons.technologies.mongodb;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
