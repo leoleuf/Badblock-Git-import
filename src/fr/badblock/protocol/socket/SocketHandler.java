@@ -57,7 +57,7 @@ public class SocketHandler extends Thread implements PacketSender {
 					while(running){
 						try {
 							if(packets.size() > 200){
-								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
+								//System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
 							}
 							while (!packets.isEmpty()) {
 								Iterator<Packet> iterator = packets.iterator();
@@ -73,7 +73,7 @@ public class SocketHandler extends Thread implements PacketSender {
 										}
 										protocolOut.writePacket(out, packet);
 									} catch(Throwable e){
-										System.out.println("Méchant packet (" + packet + ") :");
+										//System.out.println("Méchant packet (" + packet + ") :");
 										e.printStackTrace();
 									}
 								}
@@ -96,7 +96,7 @@ public class SocketHandler extends Thread implements PacketSender {
 					int id = in.readInt();
 
 					if(receiveId != id){
-						System.out.println("packet lost ? :0" + " waited = " + receiveId +  ", received = " + id);
+						//System.out.println("packet lost ? :0" + " waited = " + receiveId +  ", received = " + id);
 						receiveId = id;
 					}
 
