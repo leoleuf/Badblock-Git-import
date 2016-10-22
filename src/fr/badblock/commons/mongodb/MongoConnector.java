@@ -34,8 +34,8 @@ import lombok.Setter;
 	 * @param password	  > the password of that account
 	 * @return a MongoCredentials object
 	 */
-	public MongoCredentials newCredentials(String name, String hostname, int port, String password) {
-		return new MongoCredentials(name, hostname, port, password);
+	public MongoCredentials newCredentials(String name, int port, String username, String password, String database, String... hostnames) {
+		return new MongoCredentials(name, port, username, password, database, hostnames);
 	}
 	
 	/**
@@ -46,8 +46,8 @@ import lombok.Setter;
 	 * @param password	  > the password of that account
 	 * @return a MongoService ready to work
 	 */
-	public MongoService newService(String name, String hostname, int port, String password) {
-		return newService(name, newCredentials(name, hostname, port, password));
+	public MongoService newService(String name, int port, String username, String password, String database, String... hostnames) {
+		return newService(name, newCredentials(name, port, username, password, database, hostnames));
 	}
 	
 	/**
