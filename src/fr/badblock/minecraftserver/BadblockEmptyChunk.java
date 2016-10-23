@@ -18,7 +18,7 @@ import net.minecraft.server.v1_8_R3.World;
 
 public class BadblockEmptyChunk extends Chunk {
 	public static BiPredicate<Integer, Integer> empty = ((i, j) -> false);
-	public static BiPredicate<Integer, Integer> light = ((i, j) -> true);
+	public static BiPredicate<Integer, Integer> light = ((i, j) -> false);
 	
 	public BadblockEmptyChunk(World world, int i, int j) {
 		super(world, i, j);
