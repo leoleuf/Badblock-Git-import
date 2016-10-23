@@ -17,6 +17,8 @@ import org.bukkit.craftbukkit.v1_8_R3.util.LongObjectHashMap;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.github.paperspigot.event.ServerExceptionEvent;
 import org.github.paperspigot.exception.ServerInternalException;
+
+import fr.badblock.minecraftserver.BadblockEmptyChunk;
 // CraftBukkit end
 
 public class ChunkProviderServer implements IChunkProvider {
@@ -39,7 +41,21 @@ public class ChunkProviderServer implements IChunkProvider {
 
     @Override
 	public boolean isChunkLoaded(int i, int j) {
-        return this.chunks.containsKey(LongHash.toLong(i, j)); // CraftBukkit
+    	if(BadblockEmptyChunk.empty.test(i, j)){
+    		generateEmptyChunk(i, j);
+    		return true;
+    	}
+    	
+    	return this.chunks.containsKey(LongHash.toLong(i, j)); // CraftBukkit
+    }
+    
+    private Chunk generateEmptyChunk(int i, int j){
+    	if(!this.chunks.containsKey(LongHash.toLong(i, j))){
+    		Chunk chunk = new BadblockEmptyChunk(world, i, j);
+    		
+    		this.chunks.put(LongHash.toLong(i, j), chunk);
+    		return chunk;
+    	} else return this.chunks.get( LongHash.toLong(i, j) );
     }
 
     // CraftBukkit start - Change return type to Collection and return the values of our chunk map
@@ -112,6 +128,10 @@ public class ChunkProviderServer implements IChunkProvider {
     }
 
     public Chunk getChunkAt(int i, int j, Runnable runnable) {
+    	if(BadblockEmptyChunk.empty.test(i, j)){
+    		return generateEmptyChunk(i, j);
+    	}
+    	
         unloadQueue.remove(i, j);
         Chunk chunk = chunks.get(LongHash.toLong(i, j));
         ChunkRegionLoader loader = null;
@@ -140,6 +160,10 @@ public class ChunkProviderServer implements IChunkProvider {
         return chunk;
     }
     public Chunk originalGetChunkAt(int i, int j) {
+    	if(BadblockEmptyChunk.empty.test(i, j)){
+    		return generateEmptyChunk(i, j);
+    	}
+    	
         this.unloadQueue.remove(i, j);
         Chunk chunk = this.chunks.get(LongHash.toLong(i, j));
         boolean newChunk = false;
@@ -206,6 +230,10 @@ public class ChunkProviderServer implements IChunkProvider {
 
     @Override
 	public Chunk getOrCreateChunk(int i, int j) {
+    	if(BadblockEmptyChunk.empty.test(i, j)){
+    		return generateEmptyChunk(i, j);
+    	}
+    	
         // CraftBukkit start
         Chunk chunk = this.chunks.get(LongHash.toLong(i, j));
 

@@ -1,7 +1,6 @@
 package net.minecraft.server.v1_8_R3;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +19,8 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Lists; // CraftBukkit
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
+
+import fr.badblock.minecraftserver.BadblockEmptyChunk;
 
 public class Chunk {
 
@@ -102,7 +103,8 @@ public class Chunk {
 
     // CraftBukkit start - Neighbor loaded cache for chunk lighting and entity ticking
     private int neighbors = 0x1 << 12;
-
+    private boolean isLightChunk = false;
+    
     public boolean areNeighborsLoaded(final int radius) {
         switch (radius) {
             case 2:
@@ -142,6 +144,8 @@ public class Chunk {
         this.locZ = j;
         this.heightMap = new int[256];
 
+        this.isLightChunk = BadblockEmptyChunk.empty.test(locX, locZ);
+        
         for (int k = 0; k < this.entitySlices.length; ++k) {
             this.entitySlices[k] = new org.bukkit.craftbukkit.v1_8_R3.util.UnsafeList(); // Spigot
         }
@@ -664,6 +668,10 @@ public class Chunk {
     }
 
     public int getBrightness(EnumSkyBlock enumskyblock, BlockPosition blockposition) {
+    	if(isLightChunk){
+    		return 15;
+    	}
+    	
         int i = blockposition.getX() & 15;
         int j = blockposition.getY();
         int k = blockposition.getZ() & 15;
@@ -717,6 +725,9 @@ public class Chunk {
     }
 
     public void a(Entity entity) {
+    	if(isLightChunk)
+    		return;
+    	
         this.r = true;
         int i = MathHelper.floor(entity.locX / 16.0D);
         int j = MathHelper.floor(entity.locZ / 16.0D);
@@ -775,6 +786,9 @@ public class Chunk {
     }
 
     public void a(Entity entity, int i) {
+    	if(isLightChunk)
+    		return;
+    	
         if (i < 0) {
             i = 0;
         }
@@ -899,6 +913,9 @@ public class Chunk {
     }
 
     public void addEntities() {
+    	if(isLightChunk)
+    		return;
+    	
         this.h = true;
         this.world.a(this.tileEntities.values());
 
@@ -975,6 +992,9 @@ public class Chunk {
     }
 
     public void a(Entity entity, AxisAlignedBB axisalignedbb, List<Entity> list, Predicate<? super Entity> predicate) {
+    	if(isLightChunk)
+    		return;
+    	
         int i = MathHelper.floor((axisalignedbb.b - 2.0D) / 16.0D);
         int j = MathHelper.floor((axisalignedbb.e + 2.0D) / 16.0D);
 
@@ -1019,6 +1039,9 @@ public class Chunk {
     }
 
     public <T extends Entity> void a(Class<? extends T> oclass, AxisAlignedBB axisalignedbb, List<T> list, Predicate<? super T> predicate) {
+    	if(isLightChunk)
+    		return;
+    	
         int i = MathHelper.floor((axisalignedbb.b - 2.0D) / 16.0D);
         int j = MathHelper.floor((axisalignedbb.e + 2.0D) / 16.0D);
 
@@ -1051,6 +1074,9 @@ public class Chunk {
     }
 
     public boolean a(boolean flag) {
+    	if(isLightChunk)
+    		return false;
+    	
         if (flag) {
             if (this.r && this.world.getTime() != this.lastSaved || this.q) {
                 return true;
@@ -1151,6 +1177,9 @@ public class Chunk {
     }
 
     public void b(boolean flag) {
+    	if(isLightChunk)
+    		return;
+    	
         if (this.k && !this.world.worldProvider.o() && !flag) {
             this.recheckGaps(this.world.isClientSide); // PaperSpigot - Asynchronous lighting updates
         }
