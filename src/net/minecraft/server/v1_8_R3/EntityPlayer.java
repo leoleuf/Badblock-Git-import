@@ -222,7 +222,7 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
         }
 
         while (!this.removeQueue.isEmpty()) {
-            int i = Math.min(this.removeQueue.size(), Integer.MAX_VALUE);
+            int i = this.removeQueue.size();
             int[] aint = new int[i];
             Iterator iterator = this.removeQueue.iterator();
             int j = 0;
