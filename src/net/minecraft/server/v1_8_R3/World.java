@@ -1392,6 +1392,7 @@ public abstract class World implements IBlockAccess {
             entity = this.k.get(i);
             // CraftBukkit start - Fixed an NPE
             if (entity == null) {
+            	this.k.remove(i--); // bah oui, ça vaut tellement le coup de garder un pointeur null jusqu'à ce qu'on ferme le serv :D
                 continue;
             }
             // CraftBukkit end
