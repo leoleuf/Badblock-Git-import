@@ -5,6 +5,8 @@ import org.bukkit.event.entity.EntityTargetEvent;
 // CraftBukkit end
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class EntityExperienceOrb extends Entity {
 
     public int a;
@@ -120,6 +122,11 @@ public class EntityExperienceOrb extends Entity {
             this.die();
         }
 
+    }
+    
+    @Override
+    public boolean tickable(){
+    	return BadblockConfig.config.entities.tickExperienceOrb;
     }
 
     @Override

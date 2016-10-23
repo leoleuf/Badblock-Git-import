@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class EntityEnderSignal extends Entity {
 
     private double a;
@@ -120,6 +122,11 @@ public class EntityEnderSignal extends Entity {
             }
         }
 
+    }
+    
+    @Override
+    public boolean tickable(){
+    	return BadblockConfig.config.entities.tickEnderSignal;
     }
 
     @Override

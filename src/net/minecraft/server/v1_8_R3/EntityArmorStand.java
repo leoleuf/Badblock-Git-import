@@ -11,6 +11,8 @@ import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 // CraftBukkit start
 import org.bukkit.inventory.EquipmentSlot;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class EntityArmorStand extends EntityLiving {
 
     private static final Vector3f a = new Vector3f(0.0F, 0.0F, 0.0F);
@@ -502,7 +504,6 @@ public class EntityArmorStand extends EntityLiving {
     @Override
 	public void t_() {
         super.t_();
-        //TODO optimize t_()
         boolean flag = this.s();
 
         if (!this.bj && flag) {
@@ -516,6 +517,11 @@ public class EntityArmorStand extends EntityLiving {
         }
 
         this.bj = flag;
+    }
+    
+    @Override
+    public boolean tickable(){
+    	return BadblockConfig.config.entities.tickArmorStand;
     }
 
     private void a(boolean flag) {

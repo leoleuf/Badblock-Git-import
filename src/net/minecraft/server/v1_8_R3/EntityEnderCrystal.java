@@ -4,6 +4,8 @@ import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 // CraftBukkit end
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class EntityEnderCrystal extends Entity {
 
     public int a;
@@ -46,6 +48,11 @@ public class EntityEnderCrystal extends Entity {
             // CraftBukkit end
         }
 
+    }
+    
+    @Override
+    public boolean tickable(){
+    	return BadblockConfig.config.entities.tickEnderCrystal;
     }
 
     @Override

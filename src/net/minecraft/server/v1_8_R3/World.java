@@ -1395,6 +1395,9 @@ public abstract class World implements IBlockAccess {
             	this.k.remove(i--); // bah oui, ça vaut tellement le coup de garder un pointeur null jusqu'à ce qu'on ferme le serv :D
                 continue;
             }
+            
+            if(!entity.tickable())
+            	continue;
             // CraftBukkit end
 
             try {
@@ -1645,12 +1648,15 @@ public abstract class World implements IBlockAccess {
     }
 
     public void entityJoinedWorld(Entity entity, boolean flag) {
-        int i = MathHelper.floor(entity.locX);
+    	if(!entity.tickable())
+    		return;
+    	
+    	int i = MathHelper.floor(entity.locX);
         int j = MathHelper.floor(entity.locZ);
         byte b0 = 32;
 
         // Spigot start
-        if (!org.spigotmc.ActivationRange.checkIfActive(entity)) {
+        if (BadblockConfig.config.severTick.checkEntityInactives && !org.spigotmc.ActivationRange.checkIfActive(entity)) {
             entity.ticksLived++;
             entity.inactiveTick();
             // PaperSpigot start - Remove entities in unloaded chunks

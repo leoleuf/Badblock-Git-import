@@ -11,6 +11,8 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.painting.PaintingBreakEvent;
 // CraftBukkit end
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public abstract class EntityHanging extends Entity {
 
     private int c;
@@ -132,6 +134,11 @@ public abstract class EntityHanging extends Entity {
             }
         }
 
+    }
+    
+    @Override
+    public boolean tickable(){
+    	return BadblockConfig.config.entities.tickHanging;
     }
 
     public boolean survives() {

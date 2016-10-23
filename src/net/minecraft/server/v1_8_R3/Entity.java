@@ -190,7 +190,7 @@ public abstract class Entity implements ICommandListener {
     public DataWatcher getDataWatcher() {
         return this.datawatcher;
     }
-
+    
     @Override
 	public boolean equals(Object object) {
         return object instanceof Entity ? ((Entity) object).id == this.id : false;
