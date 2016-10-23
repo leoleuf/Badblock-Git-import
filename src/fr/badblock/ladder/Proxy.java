@@ -141,8 +141,8 @@ public class Proxy extends Ladder {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				if (Proxy.getInstance().getRabbitServiced() != null)
-					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				if (Proxy.getInstance().getRabbitServiced() != null) // en cas de désynchro
+					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString((int)(Ladder.getInstance().getOnlinePlayers().size()*1.2)), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		}, 500, 500);
 	}
