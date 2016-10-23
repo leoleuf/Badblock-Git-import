@@ -55,7 +55,9 @@ public abstract class Ladder {
 	@Getter@Setter
 	protected int maxPlayers;
 	@Getter
-	protected int onlinePlayer;
+	protected int ladderOnlineCount;
+	@Getter
+	protected int bungeeOnlineCount;
 	
 	
 	public Ladder(String version, Logger logger, CommandSender consoleCommandSender, ConfigurationProvider configurationProvider) throws IOException {
