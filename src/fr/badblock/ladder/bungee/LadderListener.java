@@ -36,8 +36,6 @@ import net.md_5.bungee.event.EventPriority;
 
 public class LadderListener implements Listener {
 	
-	public static boolean maintenanceMode = false;
-	
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
 		if(e.getPlayer().contains("/")){
@@ -156,7 +154,7 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), (!maintenanceMode ? LadderBungee.getInstance().ladderPlayers : (int) (LadderBungee.getInstance().ladderPlayers / 1.2)), sample));
+		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));
 
 		reply.setFavicon(old.getFaviconObject());
