@@ -118,7 +118,7 @@ public class Proxy extends Ladder {
 	
 	@Getter@Setter
 	private transient RabbitService  	rabbitServiced;
-
+	
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
 				new LadderLogger(reader, LOG_FOLDER), 
@@ -141,8 +141,9 @@ public class Proxy extends Ladder {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				if (Proxy.getInstance().getRabbitServiced() != null) // en cas de désynchro
-					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString((int)(Ladder.getInstance().getOnlinePlayers().size()*1.2)), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				if (Proxy.getInstance().getRabbitServiced() != null) {// en cas de désynchro
+					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(getOnlinePlayer()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				}
 			}
 		}, 500, 500);
 	}
@@ -175,6 +176,11 @@ public class Proxy extends Ladder {
 			result = new LadderOfflinePlayer(name, null);
 
 		return result;
+	}
+	
+	@Override
+	public int getOnlinePlayer() {
+		return (int)(Ladder.getInstance().getOnlinePlayers().size());
 	}
 
 	@Override

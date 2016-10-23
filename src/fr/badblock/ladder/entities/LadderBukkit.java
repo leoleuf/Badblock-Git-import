@@ -182,7 +182,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 	
 	private int countPlayers(String server){
 		if(server.equals("*")){
-			return Ladder.getInstance().getOnlinePlayers().size();
+			return Ladder.getInstance().getOnlinePlayer();
 		} else {
 			int result = 0;
 			
