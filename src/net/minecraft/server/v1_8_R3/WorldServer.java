@@ -207,15 +207,6 @@ public class WorldServer extends World implements IAsyncTaskHandler {
         }
 
         this.worldProvider.m().b();
-        if (this.everyoneDeeplySleeping()) {
-            if (this.getGameRules().getBoolean("doDaylightCycle")) {
-                long i = this.worldData.getDayTime() + 24000L;
-
-                this.worldData.setDayTime(i - i % 24000L);
-            }
-
-            this.e();
-        }
 
         // CraftBukkit start - Only call spawner if we have players online and the world allows for mobs or animals
         long time = this.worldData.getTime();
