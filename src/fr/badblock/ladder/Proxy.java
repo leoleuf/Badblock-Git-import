@@ -191,6 +191,11 @@ public class Proxy extends Ladder {
 	}
 
 	@Override
+	public int getLadderOnlineCount() {
+		return this.getOnlinePlayers().size();
+	}
+	
+	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
 		OfflinePlayer result = getPlayer(name);
 
