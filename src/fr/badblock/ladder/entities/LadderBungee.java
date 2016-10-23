@@ -233,7 +233,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			player.disconnect(ChatColor.RED + "Vous êtes déjà connecté sur BadBlock !"); return;
 		}
 
-		if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getOnlinePlayer() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
+		if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getBungeeOnlineCount() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
 			player.disconnect("&cLe serveur est plein, veuillez réessayer dans quelques instants !");
 		}
 

@@ -74,6 +74,8 @@ import fr.badblock.protocol.packets.PacketPlayerData;
 import fr.badblock.protocol.packets.PacketPlayerData.DataAction;
 import fr.badblock.protocol.packets.PacketPlayerData.DataType;
 import fr.badblock.protocol.socket.SocketHost;
+import fr.badblock.rabbitconnector.RabbitListener;
+import fr.badblock.rabbitconnector.RabbitListenerType;
 import fr.badblock.rabbitconnector.RabbitPacketType;
 import fr.badblock.rabbitconnector.RabbitService;
 import fr.badblock.utils.Encodage;
@@ -115,10 +117,10 @@ public class Proxy extends Ladder {
 	private final SocketHost  		host;
 
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
-	
+
 	@Getter@Setter
 	private transient RabbitService  	rabbitServiced;
-	
+
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
 				new LadderLogger(reader, LOG_FOLDER), 
@@ -142,10 +144,30 @@ public class Proxy extends Ladder {
 			@Override
 			public void run() {
 				if (Proxy.getInstance().getRabbitServiced() != null) {// en cas de désynchro
-					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(getOnlinePlayer()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					Proxy.getInstance().getRabbitServiced().sendPacket("ladder.playersupdate", Integer.toString(getLadderOnlineCount()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
 			}
 		}, 500, 500);
+		new Thread() {
+			@Override
+			public void run() {
+				while (Proxy.getInstance().getRabbitServiced() == null) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}					
+				new RabbitListener(Proxy.getInstance().getRabbitServiced(), "ladder.playersupdater", false, RabbitListenerType.SUBSCRIBER) {
+
+					@Override
+					public void onPacketReceiving(String body) {
+						setBungeeOnlineCount(Integer.parseInt(body));
+					}
+
+				};
+			}
+		}.start();
 	}
 
 	public void removeReconnectionInvitation(OfflinePlayer player, boolean punish){
@@ -178,11 +200,6 @@ public class Proxy extends Ladder {
 		return result;
 	}
 	
-	@Override
-	public int getOnlinePlayer() {
-		return (int)(Ladder.getInstance().getOnlinePlayers().size());
-	}
-
 	@Override
 	public void stopLadder(){
 		logger.log(Level.INFO, "Closing Ladder ....");
