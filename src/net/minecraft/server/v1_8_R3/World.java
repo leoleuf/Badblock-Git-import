@@ -33,6 +33,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import fr.badblock.minecraftserver.BadblockConfig;
 // PaperSpigot end
 
 // CraftBukkit start
@@ -2131,7 +2133,8 @@ public abstract class World implements IBlockAccess {
     }
 
     public void doTick() {
-        this.p();
+    	if(BadblockConfig.config.severTick.tickWeather)
+    		this.p();
     }
 
     protected void C() {

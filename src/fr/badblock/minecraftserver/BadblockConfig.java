@@ -4,6 +4,7 @@ public class BadblockConfig {
 	public static BadblockConfig config = null;
 	
 	public BadblockConfigTileEntities tileEntities = new BadblockConfigTileEntities();
+	public BadblockConfigServerTick   severTick    = new BadblockConfigServerTick();
 	public BadblockConfigShutdown     shutdown	   = new BadblockConfigShutdown();
 	
 	public static class BadblockConfigTileEntities {
@@ -14,6 +15,10 @@ public class BadblockConfig {
 		public boolean tickLightDetector = true;
 		public boolean tickMobSpawner 	 = true;
 		public boolean tickPiston 	     = true;
+	}
+	
+	public static class BadblockConfigServerTick {
+		public boolean tickWeather       = true;
 	}
 	
 	public static class BadblockConfigShutdown {
