@@ -25,6 +25,12 @@ public class DataSavers extends Thread {
 					handler.saveSync();
 				} catch(Throwable t){}
 			}
+			
+			try {
+				Thread.sleep(50L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
