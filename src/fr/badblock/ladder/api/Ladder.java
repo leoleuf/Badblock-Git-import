@@ -56,7 +56,7 @@ public abstract class Ladder {
 	protected int maxPlayers;
 	@Getter
 	protected int ladderOnlineCount;
-	@Getter
+	@Getter@Setter
 	protected int bungeeOnlineCount;
 	
 	
