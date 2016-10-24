@@ -13,10 +13,9 @@ public class CommandList extends Command {
 
 	@Override
 	public void executeCommand(CommandSender sender, String[] args) {
-		sender.sendMessage("§7Ladder > §b" + Ladder.getInstance().getOnlinePlayers().size() + " §9joueurs");
+		sender.sendMessage("§7Ladder > §b" + Ladder.getInstance().getBungeeOnlineCount() + " §9joueurs");
 		if(sender instanceof Player) {
 			Player player = (Player) sender;
-			sender.sendMessage("§7BungeeCord > §b" + player.getBungeeServer().getPlayers().size() + " §9joueurs");
 			if (player.getBukkitServer() != null)
 				sender.sendMessage("§7Serveur > §b" + player.getBukkitServer().getPlayers().size() + " §9joueurs");
 			else sender.sendMessage("§aVous n'êtes sur aucun serveur Bukkit.");
