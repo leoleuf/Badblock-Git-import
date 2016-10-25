@@ -28,6 +28,7 @@ import fr.badblock.ladder.api.entities.PlayerIp;
 import fr.badblock.ladder.api.plugins.PluginsManager;
 import fr.badblock.permissions.PermissionManager;
 import fr.badblock.protocol.packets.Packet;
+import fr.badblock.utils.CommonFilter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -91,6 +92,7 @@ public abstract class Ladder {
 
 	public Player getPlayer(String name){
 		name = name.toLowerCase();
+		name = CommonFilter.reverseFilterNames(name);
 		
 		if(names.containsKey(name))
 			 return getPlayer(names.get(name));
