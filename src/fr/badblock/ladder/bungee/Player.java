@@ -57,6 +57,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.readOnlyData = new JsonObject();
 		this.address      = e.getAddress();
 		this.name         = e.getPlayerName();
+		this.nickName	  = e.getPlayerName();
 		this.server       = null;
 		
 		this.done = done;
