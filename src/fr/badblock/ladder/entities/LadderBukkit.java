@@ -114,6 +114,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 					if (!player.getName().equalsIgnoreCase(player.getNickName())) {
 						permissiblePlayer = LadderPermissionManager.getInstance().createPlayer(player.getNickName(), player.getData());
 						if (((PermissibleGroup) permissiblePlayer.getParent()).isStaff()) {
+							permissiblePlayer.addPermission(((PermissibleGroup) permissiblePlayer.getParent()).getPermissions());
 							permissiblePlayer.removeParent(permissiblePlayer.getParent());
 						}
 						final PermissiblePlayer permPlayer = permissiblePlayer;
