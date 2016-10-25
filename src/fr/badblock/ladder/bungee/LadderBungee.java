@@ -266,6 +266,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		} else if(packet.getType() == DataType.PLAYERS && packet.getAction() == DataAction.REQUEST){
 			for(ProxiedPlayer player : getProxy().getPlayers()){
 				Player ployer = getPlayer(player.getName());
+				if (ployer == null) ployer = LadderBungee.getInstance().playersTemp.get(player.getName().toLowerCase());
 				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickName(), player.getUniqueId(), player.getAddress());
 
 				handle(join);
@@ -490,7 +491,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Override
 	public void handle(PacketPlayerNickSet packet) {
 		Player player = getPlayer(packet.getPlayerName());
-		System.out.println("OK");
+		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
+		System.out.println("OK ; " + packet.getPlayerName());
 		if (player == null) return;
 		System.out.println("OKA " + packet.getNickName());
 		player.setNickName(packet.getNickName());
