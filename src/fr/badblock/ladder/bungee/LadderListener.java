@@ -31,6 +31,7 @@ import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
@@ -60,7 +61,7 @@ public class LadderListener implements Listener {
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 		
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName().toLowerCase());
-
+		
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -90,6 +91,11 @@ public class LadderListener implements Listener {
 
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
+		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
+		if (player != null) {
+			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
+			handler.getLoginRequest().setData(player.getNickName());
+		}
 		if(e.getPlayer().getServer() == null){
 			UUID uniqueId = e.getPlayer().getUniqueId();
 			String server = e.getTarget().getName();
