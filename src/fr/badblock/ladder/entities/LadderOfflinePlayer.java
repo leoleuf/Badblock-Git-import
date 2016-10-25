@@ -40,7 +40,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	
 	public LadderOfflinePlayer(String name, InetAddress address) {
 		super(Proxy.PLAYER_FOLDER, name);
-		
 		if(address == null && getData().has("lastIp"))
 			try {
 				address = InetAddress.getByName(getData().get("lastIp").getAsString());
@@ -50,7 +49,8 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		UUID uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 		if (!getData().has("uniqueId"))
 			getData().addProperty("uniqueId", uniqueId.toString());
-		
+
+		Proxy.getInstance().getOfflineCachePlayers().put(this.getNickName(), this);
 		if (!getData().has("loginPassword"))
 			getData().addProperty("loginPassword", "");
 	

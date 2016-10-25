@@ -115,6 +115,9 @@ public class Proxy extends Ladder {
 
 	@Getter
 	private final SocketHost  		host;
+	
+	@Getter
+	private final Map<String, OfflinePlayer> offlineCachePlayers	= new HashMap<>();
 
 	private final Map<InetAddress, LadderIpDataHandler> ipData;
 
@@ -197,6 +200,10 @@ public class Proxy extends Ladder {
 	
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
+		if (offlineCachePlayers.containsKey(name)) {
+			if (offlineCachePlayers.get(name).getNickName() != null && 
+					offlineCachePlayers.get(name).getNickName().equalsIgnoreCase(name)) return offlineCachePlayers.get(name);
+		}
 		OfflinePlayer result = getPlayer(name);
 
 		if(result == null)
