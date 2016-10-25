@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -52,6 +53,8 @@ public abstract class Ladder {
 	protected final	CommandSender				   consoleCommandSender;
 	@Getter
 	protected final ConfigurationProvider   	   configurationProvider;
+	@Getter
+	private final Map<String, OfflinePlayer> offlineCachePlayers	= new HashMap<>();
 	@Getter@Setter
 	protected int maxPlayers;
 	@Getter
@@ -91,6 +94,8 @@ public abstract class Ladder {
 		
 		if(names.containsKey(name))
 			 return getPlayer(names.get(name));
+		else if(offlineCachePlayers.containsKey(name) && names.containsKey(offlineCachePlayers.get(name).getName()))
+			 return getPlayer(names.get(offlineCachePlayers.get(name).getName()));
 		else return null;
 	}
 	
