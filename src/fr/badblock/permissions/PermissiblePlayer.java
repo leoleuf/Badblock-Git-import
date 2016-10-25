@@ -17,7 +17,7 @@ import fr.badblock.permissions.Permission.Reponse;
 import lombok.Data;
 
 @Data public class PermissiblePlayer implements Permissible {
-	private final List<Permission>  permissions;
+	public final List<Permission>  permissions;
 
 	private       String		    superGroup;
 	private		  Map<String, Long>	alternateGroups;
