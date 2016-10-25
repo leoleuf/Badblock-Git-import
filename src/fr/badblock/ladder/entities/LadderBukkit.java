@@ -144,7 +144,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 					if(player != null){
 						ret = player.getData();
 					}
-
+					
 					sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getKey(), ret.toString()));
 				}
 

@@ -29,6 +29,8 @@ import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
 import fr.badblock.ladder.data.LadderIpDataHandler;
+import fr.badblock.permissions.PermissibleGroup;
+import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
@@ -165,11 +167,27 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			} else if(packet.getAction() == DataAction.SEND && player != null){
 				player.setData(new JsonParser().parse(packet.getData()).getAsJsonObject());
 			} else if(packet.getAction() == DataAction.REQUEST){
-				JsonElement ret = new JsonObject();
+				JsonObject ret = new JsonObject();
 				if(player != null){
 					ret = player.getData();
+					PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
+					if (!player.getName().equalsIgnoreCase(player.getNickName())) {
+						permissiblePlayer = LadderPermissionManager.getInstance().createPlayer(player.getNickName(), player.getData());
+						final PermissiblePlayer permPlayer = permissiblePlayer;
+						PermissibleGroup permissibleGroup = (PermissibleGroup) permissiblePlayer.getParent();
+						if (permissibleGroup.isStaff()) {
+							permissibleGroup.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
+							permissiblePlayer.removeParent(permissiblePlayer.getParent());
+						}
+						permPlayer.getAlternateGroups().entrySet().stream().filter(group -> LadderPermissionManager.getInstance().getGroup(group.getKey()) != null && LadderPermissionManager.getInstance().getGroup(group.getKey()).isStaff()).forEach(group -> {
+							PermissibleGroup groupe = LadderPermissionManager.getInstance().getGroup(group.getKey());
+							if (groupe == null) return;
+							groupe.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
+							permPlayer.removeParent(group.getKey());
+						});
+					}
+					ret.add("permissions", permissiblePlayer.saveAsJson());
 				}
-
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
 			}
 		} else if(packet.getType() == DataType.IP){
