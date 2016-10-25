@@ -39,7 +39,8 @@ public abstract class Ladder {
 	protected final String						   version;
 	
 	protected final Map<UUID, Player> 	    	   players;
-	protected final Map<String, UUID>			   names;
+	@Getter
+	public final Map<String, UUID>			   names;
 	protected final Map<String, BungeeCord> 	   bungeeCords;
 	protected final Map<String, Bukkit>			   bukkits;
 	protected final Map<InetSocketAddress, String> bukkitsAddress;
