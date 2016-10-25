@@ -20,24 +20,24 @@ import lombok.Getter;
 
 public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePlayer {
 	@Getter protected final String				name;
-	
+
 	@Getter protected final PermissiblePlayer 	permissions;
 	protected final 		Punished			punished;
 
 	@Getter protected final InetAddress			lastAddress;
-	
+
 	@Getter private 		String				loginPassword;
-	
+
 	public Punished getPunished(){
 		punished.checkEnd();
 		return punished;
 	}
-	
+
 	@Override
 	public boolean hasPlayed() {
 		return (this instanceof Player) || lastAddress != null || !permissions.getSuperGroup().equalsIgnoreCase("default") || getData().has("game");
 	}
-	
+
 	public LadderOfflinePlayer(String name, InetAddress address) {
 		super(Proxy.PLAYER_FOLDER, name);
 		this.name 		  = name;
@@ -45,36 +45,36 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 			try {
 				address = InetAddress.getByName(getData().get("lastIp").getAsString());
 			} catch (UnknownHostException unused){}
-		
+
 
 		UUID uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 		if (!getData().has("uniqueId"))
 			getData().addProperty("uniqueId", uniqueId.toString());
-
-		Proxy.getInstance().getOfflineCachePlayers().put(this.getNickName(), this);
+		if (!this.name.equals(this.getNickName()))
+			Proxy.getInstance().getOfflineCachePlayers().put(this.getNickName(), this);
 		if (!getData().has("loginPassword"))
 			getData().addProperty("loginPassword", "");
-	
+
 		this.lastAddress  = address;
 		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, getData());
 		this.punished     = Punished.fromJson(getData());
-		
+
 		Proxy.getInstance().getIpData(address);
-		
+
 		savePunishions();
 	}
-	
+
 	@Override
 	public void saveData(){
 		punished.save(getData());
 		//System.out.println("Save permissions in file (saveData()) > " + this.name + " > " + permissions.saveAsJson());
-		
+
 		getData().add("permissions", permissions.saveAsJson());
-		
+
 		if(lastAddress != null) {
 			getData().addProperty("lastIp", lastAddress.getHostAddress());
 		}
-		
+
 		super.saveData();
 	}
 
@@ -93,7 +93,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		if (player != null) player.sendToBungee("nickName");
 		saveData();
 	}
-	
+
 	@Override
 	public boolean hasPermission(String permission) {
 		return permissions.hasPermission(new Permission(permission));
@@ -103,11 +103,11 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	public Permissible getAsPermissible() {
 		return permissions;
 	}
-	
+
 	@Override
 	public <T> T getPermissionValue(String key, Class<T> clazz) {
 		JsonElement el = permissions.getValue(key);
-		
+
 		return el == null ? null : Ladder.getInstance().getGson().fromJson(permissions.getValue(key), clazz);
 	}
 
