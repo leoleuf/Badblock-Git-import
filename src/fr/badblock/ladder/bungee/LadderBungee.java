@@ -264,7 +264,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			motd = BungeeCord.getInstance().gson.fromJson(packet.getData(), Motd.class);
 		} else if(packet.getType() == DataType.PLAYERS && packet.getAction() == DataAction.REQUEST){
 			for(ProxiedPlayer player : getProxy().getPlayers()){
-				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), "", player.getUniqueId(), player.getAddress());
+				Player ployer = getPlayer(player.getName());
+				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickName(), player.getUniqueId(), player.getAddress());
 
 				handle(join);
 
