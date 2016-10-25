@@ -26,6 +26,12 @@ public interface OfflinePlayer extends DataHandler {
 	public void		   setNickName(String nickName);
 	
 	/**
+	 * Set l'UUID
+	 * @param nickName
+	 */
+	public void		   setUniqueId(String uniqueId);
+	
+	/**
 	 * Vérifie si le joueur à une permission
 	 * @param permission La permission
 	 * @return Si le joueur a la permission ou non
