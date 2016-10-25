@@ -14,12 +14,14 @@ import lombok.NoArgsConstructor;
 @Data@NoArgsConstructor@AllArgsConstructor
 public class PacketPlayerJoin implements Packet {
 	private String 			  playerName;
+	private String 			  nickName;
 	private UUID   			  uniqueId;
 	private InetSocketAddress address;
 	
 	@Override
 	public void read(ByteInputStream input) throws IOException {
 		playerName = input.readUTF();
+		nickName   = input.readUTF();
 		uniqueId   = input.readUUID();
 		address    = new InetSocketAddress(input.readUTF(), input.readInt());
 	}
@@ -27,6 +29,7 @@ public class PacketPlayerJoin implements Packet {
 	@Override
 	public void write(ByteOutputStream output) throws IOException {
 		output.writeUTF(playerName);
+		output.writeUTF(nickName);
 		output.writeUUID(uniqueId);
 		output.writeUTF(address.getAddress().getHostAddress());
 		output.writeInt(address.getPort());
