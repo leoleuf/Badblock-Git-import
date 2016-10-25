@@ -22,22 +22,22 @@ import lombok.Data;
 	private		  Map<String, Long>	alternateGroups;
 	private		  long			    groupEnd;
 	private	final String		    name;
-	
+
 	public PermissiblePlayer(String name, JsonObject from){
 		this.name 		 = name;
 		this.permissions = new ArrayList<>();
 
 		reload(from);
 	}
-	
+
 	public PermissiblePlayer(String name){
 		this.name 		 = name;
 		this.permissions = new ArrayList<>();
-		
+
 		this.groupEnd    = -1;
 		this.superGroup  = "default";
 	}
-	
+
 	public void reload(JsonObject from){
 		if(!from.has("group"))
 			from.addProperty("group", "default");
@@ -45,34 +45,34 @@ import lombok.Data;
 			from.addProperty("end", -1);
 		if(!from.has("alternateGroups"))
 			from.add("alternateGroups", new JsonObject());
-		
+
 		this.superGroup  	 = from.get("group").getAsString();
 		this.groupEnd    	 = from.get("end").getAsLong();
 		this.alternateGroups = new ConcurrentHashMap<>();
-		
+
 		for(Entry<String, JsonElement> entry : from.get("alternateGroups").getAsJsonObject().entrySet()){
 			long end = entry.getValue().getAsLong();
-			
+
 			if(end > 0 && System.currentTimeMillis() >= end){
 				continue;
 			} else {
 				alternateGroups.put(entry.getKey(), end);
 			}
 		}
-		
+
 		checkTimedout();
-		
+
 		permissions.clear();
-		
+
 		if(!from.has("permissions")) return;
-		
+
 		JsonArray perms  = from.get("permissions").getAsJsonArray();
 		for(JsonElement element : perms){
 			permissions.add(new Permission(element.getAsString()));
 		}
-	//	System.out.println("Foreach as json permissions (" + name + " - " + perms.toString() + " - reload(JsonObject))");
+		//	System.out.println("Foreach as json permissions (" + name + " - " + perms.toString() + " - reload(JsonObject))");
 	}
-	
+
 	@Override
 	public void addPermission(Permission permission) {
 		permissions.add(permission);
@@ -82,13 +82,13 @@ import lombok.Data;
 	public void removePermission(Permission permission) {
 		permissions.remove(permission);
 	}
-	
+
 	public boolean permissionExist(Permission permission){
 		for(final Permission perm : permissions){
 			if(perm.equals(permission))
 				return true;
 		}
-		
+
 		return false;
 	}
 
@@ -96,39 +96,39 @@ import lombok.Data;
 	public boolean hasPermission(Permission permission) {
 		return getPermissionReponse(permission) == Reponse.YES;
 	}
-	
+
 	public boolean hasPermission(String permission){
 		if(permission == null)
- 			return true;
+			return true;
 		return hasPermission(new Permission(permission));
 	}
 
 	public JsonElement getValue(String key){
 		key = key.toLowerCase();
-		
+
 		if(getParent() != null){
 			JsonElement answer = ((PermissibleGroup) getParent()).getValue(key);
-			
+
 			if(answer != null)
 				return answer;
 		}
-		
+
 		for(String alternate : alternateGroups.keySet()){
 			PermissibleGroup group = PermissionManager.getInstance().getGroup(alternate);
-			
+
 			JsonElement answer = group == null ? null : group.getValue(key);
-			
+
 			if(answer != null)
 				return answer;
 		}
-		
+
 		return null;
 	}
-	
+
 	@Override
 	public Reponse getPermissionReponse(Permission permission) {
 		Reponse reponse = Reponse.UNKNOW;
-		
+
 		for(final Permission perm : permissions){
 			Reponse result = perm.has(permission);
 			if(result == Reponse.NO){
@@ -137,24 +137,24 @@ import lombok.Data;
 				reponse = Reponse.YES;
 			}
 		}
-		
+
 		if(reponse == Reponse.UNKNOW){
 			reponse = getParent().getPermissionReponse(permission);
-			
+
 			for(String group : alternateGroups.keySet()){
 				if(reponse != Reponse.UNKNOW) break;
-				
+
 				reponse = PermissionManager.getInstance().getGroup(group).getPermissionReponse(permission);
 			}
 		}
-		
+
 		return reponse;
 	}
-	
+
 	public Reponse getPermissionReponse(String permission){
 		return getPermissionReponse(new Permission(permission));
 	}
-	
+
 	@Override
 	public Permissible getParent() {
 		checkTimedout();
@@ -165,7 +165,7 @@ import lombok.Data;
 	public String getDisplayName() {
 		return getParent().getDisplayName() + name;
 	}
-	
+
 	public void checkTimedout(){
 		if(groupEnd > 0 && System.currentTimeMillis() >= groupEnd){
 			groupEnd   = -1;
@@ -179,24 +179,24 @@ import lombok.Data;
 		JsonObject object = new JsonObject();
 		object.addProperty("group", superGroup);
 		object.addProperty("end",   groupEnd);
-		
+
 		JsonArray array   = new JsonArray();
 
 		for(Permission permission : permissions){
 			array.add(new JsonPrimitive(permission.toString()));
 		}
 		//System.out.println("Save as json permissions (" + name + " - " + array.toString() + " - saveAsJson())");
-		
+
 		object.add("permissions", array);
-	
+
 		JsonObject others = new JsonObject();
-		
+
 		for(Entry<String, Long> entry : alternateGroups.entrySet()){
 			others.addProperty(entry.getKey(), entry.getValue());
 		}
-		
+
 		object.add("alternateGroups", others);
-		
+
 		return object;
 	}
 
@@ -205,61 +205,75 @@ import lombok.Data;
 		if(alternateGroups.containsKey(group.getName().toLowerCase())) {
 			alternateGroups.remove(group.getName().toLowerCase());
 		}
-		
+
 		this.superGroup = group.getName().toLowerCase();
 		this.groupEnd   = end;
 		sort();
 	}
-	
+
 	public void addParent(long end, PermissibleGroup group){
 		if(superGroup == null || superGroup.equalsIgnoreCase("default")){
 			setParent(end, group);
 			return;
 		}
-		
+
 		alternateGroups.put(group.getName().toLowerCase(), end);
 		sort();
 	}
-	
+
 	private void sort(){
 		List<String> groups = new ArrayList<>(alternateGroups.keySet());
-		
+
 		groups.add(superGroup);
 		Optional<String> first = groups.stream().sorted((a, b) -> Integer.compare(PermissionManager.getInstance().getGroup(b).getPower(), PermissionManager.getInstance().getGroup(a).getPower())).findFirst();
-	
+
 		if(!first.isPresent())
 			return;
-		
+
 		String get = first.get();
-		
+
 		if(get == null || get.equalsIgnoreCase("default") || get.equalsIgnoreCase(superGroup))
 			return;
-		
+
 		long previousEnd = groupEnd;
 		String previous = superGroup;
-		
+
 		groupEnd = alternateGroups.get(get);
 		superGroup = get;
-		
+
 		alternateGroups.remove(get);
 		alternateGroups.put(previous, previousEnd);
 	}
+
+	public void removeParent(Permissible group) {
+		removeParent(group.getName());
+	}
 	
-	public void removeParent(Permissible group){
-		String n = group.getName().toLowerCase();
-		
+
+
+	public void removeParent(String name) {
+		String n = name.toLowerCase();
+
 		if(superGroup.equals(n)){
-			superGroup = "default"; groupEnd = -1;
+			List<String> groups = new ArrayList<>(alternateGroups.keySet());
+			Optional<String> first = groups.stream().sorted((a, b) -> Integer.compare(PermissionManager.getInstance().getGroup(b).getPower(), PermissionManager.getInstance().getGroup(a).getPower())).findFirst();
+			if(first.isPresent()) {
+				String get = first.get();
+				superGroup = get;
+				groupEnd = alternateGroups.get(get);
+				alternateGroups.remove(get);
+			}
 		}
-		
+
 		if(alternateGroups.containsKey(n))
 			alternateGroups.remove(n);
 	}
 	
+
 	public void removeAll(){
 		alternateGroups.clear();
 		permissions.clear();
-		
+
 		setParent(-1, PermissionManager.getInstance().getGroup("default"));
 		//System.out.println("Remove all permissions ? " + name);
 	}
