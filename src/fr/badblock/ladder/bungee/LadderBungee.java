@@ -35,6 +35,7 @@ import fr.badblock.protocol.packets.PacketPlayerData.DataAction;
 import fr.badblock.protocol.packets.PacketPlayerData.DataType;
 import fr.badblock.protocol.packets.PacketPlayerJoin;
 import fr.badblock.protocol.packets.PacketPlayerLogin;
+import fr.badblock.protocol.packets.PacketPlayerNickSet;
 import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
 import fr.badblock.protocol.packets.PacketReconnectionInvitation;
@@ -485,5 +486,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Override public void handle(PacketPlayerLogin packet){}
 	@Override public void handle(PacketReconnectionInvitation packet){}
 	@Override public void handle(PacketSimpleCommand packet){}
+
+	@Override
+	public void handle(PacketPlayerNickSet packet) {
+		Player player = getPlayer(packet.getPlayerName());
+		if (player == null) return;
+		player.setNickName(packet.getNickName());
+	}
 
 }
