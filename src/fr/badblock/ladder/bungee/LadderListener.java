@@ -92,9 +92,11 @@ public class LadderListener implements Listener {
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
+		System.out.println(e.getTarget().getName());
 		if (player != null) {
 			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
 			handler.getLoginRequest().setData(player.getNickName());
+			System.out.println("ok : " + player.getNickName());
 		}
 		if(e.getPlayer().getServer() == null){
 			UUID uniqueId = e.getPlayer().getUniqueId();
