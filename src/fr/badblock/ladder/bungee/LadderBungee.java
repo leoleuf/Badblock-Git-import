@@ -257,7 +257,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 		} else if(packet.getType() == DataType.PERMISSION && packet.getAction() == DataAction.SEND){
 			try {
-				System.out.println("Unknown permissionsManager? set it from packet data > " + packet.getData());
+				//System.out.println("Unknown permissionsManager? set it from packet data > " + packet.getData());
 				IOUtils.save(packet.getData(), new File("permissions.json"));
 				permissions = new PermissionManager(FileUtils.loadArray(new File("permissions.json")));
 			} catch (IOException e){}
