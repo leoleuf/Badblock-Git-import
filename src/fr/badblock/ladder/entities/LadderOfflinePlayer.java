@@ -93,6 +93,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		getData().addProperty("nickName", nickName);
 		Player player = Ladder.getInstance().getPlayer(this.name);
 		if (player != null) player.sendToBungee("nickName");
+		saveData();
 	}
 	
 	@Override
