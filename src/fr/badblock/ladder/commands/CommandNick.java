@@ -52,7 +52,7 @@ public class CommandNick extends Command {
 		player.sendToBungee("nickName");
 		player.saveData();
 		player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
-		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + args[0] + " " + ChatColor.GREEN + " !");
+		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + args[0] + ChatColor.GREEN + " !");
 		sender.sendMessage(ChatColor.GREEN + "Changez de serveur afin de voir un changement.");
 	}
 }
