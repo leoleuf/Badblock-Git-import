@@ -84,7 +84,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		if(getData().has("nickName"))
 			return getData().get("nickName").getAsString();
 		getData().addProperty("nickName", getName());
-		this.saveData();
 		return getName();
 	}
 
