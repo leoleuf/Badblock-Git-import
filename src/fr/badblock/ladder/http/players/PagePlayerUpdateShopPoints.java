@@ -11,7 +11,7 @@ import fr.badblock.ladder.http.LadderPage;
 
 public class PagePlayerUpdateShopPoints extends LadderPage {
 	public PagePlayerUpdateShopPoints() {
-		super("/players/updateData/");
+		super("/players/updateShopPointsData/");
 	}
 
 	@Override
