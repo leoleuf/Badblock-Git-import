@@ -77,7 +77,7 @@ public class LadderUtils extends Plugin implements Listener {
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
-		int players = getLadder().getOnlinePlayers().size();
+		int players = getLadder().getBungeeOnlineCount();
 		
 		if(picBestToday - 100 > players && !picSaved){
 			picSaved = true;
