@@ -47,6 +47,9 @@ public class CommandNick extends Command {
 			sender.sendMessage(ChatColor.RED + "Ce surnom est déjà utilisé !");
 			return;
 		}
+		if (!player.getNickName().equalsIgnoreCase(player.getName())) {
+			Proxy.getInstance().getOfflineCachePlayers().remove(player.getNickName());
+		}
 		Proxy.getInstance().getOfflineCachePlayers().put(player.getNickName(), player);
 		player.setNickName(args[0]);
 		player.sendToBungee("nickName");
