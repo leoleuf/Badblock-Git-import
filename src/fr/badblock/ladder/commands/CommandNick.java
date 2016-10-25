@@ -30,6 +30,7 @@ public class CommandNick extends Command {
 		if (player.getName().equals(args[0])) {
 			Proxy.getInstance().getOfflineCachePlayers().remove(player.getNickName());
 			player.setNickName(player.getName());
+			player.sendToBungee("nickName");
 			player.saveData();
 			sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé votre surnom !");
 			sender.sendMessage(ChatColor.GREEN + "Changez de serveur afin de voir un changement.");
@@ -45,8 +46,9 @@ public class CommandNick extends Command {
 		}
 		Proxy.getInstance().getOfflineCachePlayers().put(player.getNickName(), player);
 		player.setNickName(args[0]);
+		player.sendToBungee("nickName");
 		player.saveData();
-		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + " " + ChatColor.GREEN + " !");
+		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + args[0] + " " + ChatColor.GREEN + " !");
 		sender.sendMessage(ChatColor.GREEN + "Changez de serveur afin de voir un changement.");
 	}
 }
