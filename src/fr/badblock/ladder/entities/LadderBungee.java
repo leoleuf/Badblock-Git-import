@@ -333,6 +333,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 					broadcastOthers(packet);
 
+					Proxy.getInstance().getOfflineCachePlayers().remove(packet.getUserName());
 					((LadderIpDataHandler) player.getIpData()).getPlayers().remove(player.getUniqueId());
 
 					Proxy.getInstance().playerDisconnect(player);
