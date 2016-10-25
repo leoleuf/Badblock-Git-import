@@ -13,6 +13,7 @@ import fr.badblock.protocol.packets.PacketPlayerChat;
 import fr.badblock.protocol.packets.PacketPlayerData;
 import fr.badblock.protocol.packets.PacketPlayerJoin;
 import fr.badblock.protocol.packets.PacketPlayerLogin;
+import fr.badblock.protocol.packets.PacketPlayerNickSet;
 import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
 import fr.badblock.protocol.packets.PacketReconnectionInvitation;
@@ -34,6 +35,7 @@ public abstract class Protocol {
 			addPacket(5, PacketPlayerJoin.class);
 			addPacket(6, PacketPlayerQuit.class);
 			addPacket(7, PacketLadderStop.class);
+			addPacket(8, PacketPlayerNickSet.class);
 		}
 	};
 	
@@ -46,6 +48,7 @@ public abstract class Protocol {
 			addPacket(4, PacketPlayerLogin.class);
 			addPacket(5, PacketPlayerJoin.class);
 			addPacket(6, PacketPlayerQuit.class);
+			addPacket(8, PacketPlayerNickSet.class);
 		}
 	};
 	
@@ -60,6 +63,7 @@ public abstract class Protocol {
 			addPacket(5, PacketPlayerData.class);
 			
 			addPacket(10, PacketSimpleCommand.class);
+			addPacket(8, PacketPlayerNickSet.class);
 		}
 	};
 	
@@ -69,6 +73,7 @@ public abstract class Protocol {
 		
 			addPacket(5, PacketPlayerData.class);
 			addPacket(6, PacketLadderStop.class);
+			addPacket(8, PacketPlayerNickSet.class);
 		}
 	};
 	
