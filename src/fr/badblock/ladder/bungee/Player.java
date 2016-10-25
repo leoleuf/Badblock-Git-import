@@ -47,7 +47,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
-		this.nickName     = e.getNickName();
+		this.nickName     = e.getNickName().isEmpty() ? e.getPlayerName() : e.getNickName();
 		this.server       = null;
 		
 		punished          = new Punished();
@@ -84,7 +84,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
-		this.nickName	  = e.getNickName();
+		this.nickName     = e.getNickName().isEmpty() ? e.getPlayerName() : e.getNickName();
 	}
 	
 	protected void updateData(String result){
