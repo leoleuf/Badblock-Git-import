@@ -29,6 +29,8 @@ import fr.badblock.ladder.api.plugins.PluginsManager;
 import fr.badblock.ladder.commands.CommandAlert;
 import fr.badblock.ladder.commands.CommandEnd;
 import fr.badblock.ladder.commands.CommandPermissions;
+import fr.badblock.permissions.PermissibleGroup;
+import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
 import fr.badblock.protocol.packets.PacketHelloworld;
@@ -104,9 +106,19 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 			} else if(packet.getAction() == DataAction.SEND && player != null){
 				player.setData(new JsonParser().parse(packet.getData()).getAsJsonObject());
 			} else if(packet.getAction() == DataAction.REQUEST){
-				JsonElement ret = new JsonObject();
+				JsonObject ret = new JsonObject();
 				if(player != null){
 					ret = player.getData();
+					PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
+					if (!player.getName().equalsIgnoreCase(player.getNickName())) {
+						permissiblePlayer = LadderPermissionManager.getInstance().createPlayer(player.getNickName(), player.getData());
+						if (((PermissibleGroup) permissiblePlayer.getParent()).isStaff()) {
+							permissiblePlayer.removeParent(permissiblePlayer.getParent());
+						}
+						final PermissiblePlayer permPlayer = permissiblePlayer;
+						permPlayer.getAlternateGroups().entrySet().stream().filter(group -> LadderPermissionManager.getInstance().getGroup(group.getKey()) != null && LadderPermissionManager.getInstance().getGroup(group.getKey()).isStaff()).forEach(group -> permPlayer.removeParent(group.getKey()));
+					}
+					ret.add("permissions", permissiblePlayer.saveAsJson());
 				}
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
 			}

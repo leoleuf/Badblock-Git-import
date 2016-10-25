@@ -53,7 +53,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		
 		if (!getData().has("loginPassword"))
 			getData().addProperty("loginPassword", "");
-		
+	
 		this.name 		  = name;
 		
 		this.lastAddress  = address;
@@ -72,8 +72,9 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		
 		getData().add("permissions", permissions.saveAsJson());
 		
-		if(lastAddress != null)
+		if(lastAddress != null) {
 			getData().addProperty("lastIp", lastAddress.getHostAddress());
+		}
 		
 		super.saveData();
 	}
@@ -82,12 +83,16 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	public String getNickName() {
 		if(getData().has("nickName"))
 			return getData().get("nickName").getAsString();
+		getData().addProperty("nickName", getName());
+		this.saveData();
 		return getName();
 	}
 
 	@Override
-	public void setNickname(String nickName) {
+	public void setNickName(String nickName) {
 		getData().addProperty("nickName", nickName);
+		Player player = Ladder.getInstance().getPlayer(this.name);
+		if (player != null) player.sendToBungee("nickName");
 	}
 	
 	@Override

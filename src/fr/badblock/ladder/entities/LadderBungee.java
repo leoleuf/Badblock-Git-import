@@ -48,6 +48,7 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
+import fr.badblock.utils.CommonFilter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -213,7 +214,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		} else if(packet.getType() == DataType.PLAYERS){
 			for(Player player : Ladder.getInstance().getOnlinePlayers()){
-				sendPacket(new PacketPlayerJoin(player.getName(), player.getUniqueId(), player.getAddress()));
+				sendPacket(new PacketPlayerJoin(player.getName(), CommonFilter.filterNames(player.getNickName()), player.getUniqueId(), player.getAddress()));
 				if(player.getBukkitServer() != null)
 					sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getBukkitServer().getName()));
 			}
