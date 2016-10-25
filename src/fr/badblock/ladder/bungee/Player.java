@@ -33,7 +33,8 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 @Getter@Setter(value=AccessLevel.PACKAGE) public class Player {
 	private InetSocketAddress   address;
 	private       UUID			      uniqueId;
-	private  String			  name;
+	private  	  String			  name;
+	private  	  String			  nickName;
 	private 	  ServerInfo		  server;
 	private 	  JsonObject		  readOnlyData;
 	private		  PermissiblePlayer	  permissions;
@@ -46,6 +47,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
+		this.nickName     = e.getNickName();
 		this.server       = null;
 		
 		punished          = new Punished();
@@ -81,6 +83,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
+		this.nickName	  = e.getNickName();
 	}
 	
 	protected void updateData(String result){

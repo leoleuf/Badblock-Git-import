@@ -73,7 +73,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<UUID, Player>   		players;
-	public int						ladderPlayers = 0;
+	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 	public    RabbitService				rabbitService;
@@ -264,7 +264,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			motd = BungeeCord.getInstance().gson.fromJson(packet.getData(), Motd.class);
 		} else if(packet.getType() == DataType.PLAYERS && packet.getAction() == DataAction.REQUEST){
 			for(ProxiedPlayer player : getProxy().getPlayers()){
-				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), player.getUniqueId(), player.getAddress());
+				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), "", player.getUniqueId(), player.getAddress());
 
 				handle(join);
 
