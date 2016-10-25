@@ -1,6 +1,7 @@
 package fr.badblock.permissions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -74,8 +75,13 @@ import lombok.Data;
 	}
 
 	@Override
-	public void addPermission(Permission permission) {
-		permissions.add(permission);
+	public void addPermission(Permission... permission) {
+		addPermission(Arrays.asList(permission));
+	}
+	
+	@Override
+	public void addPermission(List<Permission> permission) {
+		permission.forEach(perm -> permission.add(perm));
 	}
 
 	@Override

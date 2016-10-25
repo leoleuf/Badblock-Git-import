@@ -1,11 +1,14 @@
 package fr.badblock.permissions;
 
+import java.util.List;
+
 import com.google.gson.JsonObject;
 
 import fr.badblock.permissions.Permission.Reponse;
 
 public interface Permissible {
-	public void    		 addPermission       (Permission permission);
+	public void    		 addPermission       (Permission... permission);
+	public void    		 addPermission       (List<Permission> permission);
 	public void    		 removePermission    (Permission permission);
 	
 	public boolean 		 hasPermission       (Permission permission);
