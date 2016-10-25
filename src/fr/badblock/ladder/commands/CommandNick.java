@@ -36,7 +36,7 @@ public class CommandNick extends Command {
 			player.saveData();
 			player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
 			sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé votre surnom !");
-			sender.sendMessage(ChatColor.GREEN + "Changez de serveur afin de voir un changement.");
+			sender.sendMessage(ChatColor.GREEN + "Reconnectez-vous afin de voir un changement.");
 			return;
 		}
 		if (Proxy.getInstance().getOfflinePlayer(args[0]).hasPlayed()) {
@@ -53,6 +53,6 @@ public class CommandNick extends Command {
 		player.saveData();
 		player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
 		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + args[0] + ChatColor.GREEN + " !");
-		sender.sendMessage(ChatColor.GREEN + "Changez de serveur afin de voir un changement.");
+		sender.sendMessage(ChatColor.GREEN + "Reconnectez-vous afin de voir un changement.");
 	}
 }
