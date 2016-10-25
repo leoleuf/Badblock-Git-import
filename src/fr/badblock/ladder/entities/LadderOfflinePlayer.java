@@ -40,6 +40,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	
 	public LadderOfflinePlayer(String name, InetAddress address) {
 		super(Proxy.PLAYER_FOLDER, name);
+		this.name 		  = name;
 		if(address == null && getData().has("lastIp"))
 			try {
 				address = InetAddress.getByName(getData().get("lastIp").getAsString());
@@ -54,8 +55,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		if (!getData().has("loginPassword"))
 			getData().addProperty("loginPassword", "");
 	
-		this.name 		  = name;
-		
 		this.lastAddress  = address;
 		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, getData());
 		this.punished     = Punished.fromJson(getData());
@@ -81,10 +80,10 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Override
 	public String getNickName() {
-		if(getData().has("nickName"))
+		if(getData().has("nickName") && getData().get("nickName") != null && getData().get("nickName") != null)
 			return getData().get("nickName").getAsString();
-		getData().addProperty("nickName", getName());
-		return getName();
+		getData().addProperty("nickName", this.name);
+		return this.name;
 	}
 
 	@Override
