@@ -47,7 +47,6 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
-		System.out.println("1: " + e.getNickName());
 		this.nickName     = e.getNickName().isEmpty() ? e.getPlayerName() : e.getNickName();
 		this.server       = null;
 		
@@ -59,7 +58,6 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.name         = e.getPlayerName();
 		this.nickName	  = e.getPlayerName();
-		System.out.println("2: " + e.getPlayerName());
 		this.server       = null;
 		
 		this.done = done;

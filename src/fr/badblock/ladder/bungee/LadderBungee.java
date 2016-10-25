@@ -492,9 +492,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerNickSet packet) {
 		Player player = getPlayer(packet.getPlayerName());
 		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
-		System.out.println("OK ; " + packet.getPlayerName());
 		if (player == null) return;
-		System.out.println("OKA " + packet.getNickName());
 		player.setNickName(packet.getNickName());
 	}
 
