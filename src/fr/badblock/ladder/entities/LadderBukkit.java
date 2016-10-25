@@ -116,13 +116,13 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 						final PermissiblePlayer permPlayer = permissiblePlayer;
 						PermissibleGroup permissibleGroup = (PermissibleGroup) permissiblePlayer.getParent();
 						if (permissibleGroup.isStaff()) {
-							permissiblePlayer.getPermissions().forEach(permission -> permPlayer.addPermission(permission));
+							permissiblePlayer.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
 							permissiblePlayer.removeParent(permissiblePlayer.getParent());
 						}
 						permPlayer.getAlternateGroups().entrySet().stream().filter(group -> LadderPermissionManager.getInstance().getGroup(group.getKey()) != null && LadderPermissionManager.getInstance().getGroup(group.getKey()).isStaff()).forEach(group -> {
 							PermissibleGroup groupe = LadderPermissionManager.getInstance().getGroup(group.getKey());
 							if (groupe == null) return;
-							groupe.getPermissions().forEach(permission -> permPlayer.addPermission(permission));
+							groupe.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
 							permPlayer.removeParent(group.getKey());
 						});
 					}
