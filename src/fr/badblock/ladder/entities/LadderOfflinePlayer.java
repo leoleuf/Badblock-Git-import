@@ -132,4 +132,10 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	public Punished getIpAsPunished() {
 		return getIpData().getAsPunished();
 	}
+
+	@Override
+	public void setUniqueId(String uniqueId) {
+		getData().addProperty("uniqueId", uniqueId);
+		saveData();
+	}
 }
