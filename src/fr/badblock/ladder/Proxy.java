@@ -79,6 +79,7 @@ import fr.badblock.rabbitconnector.RabbitListener;
 import fr.badblock.rabbitconnector.RabbitListenerType;
 import fr.badblock.rabbitconnector.RabbitPacketType;
 import fr.badblock.rabbitconnector.RabbitService;
+import fr.badblock.utils.CommonFilter;
 import fr.badblock.utils.Encodage;
 import jline.console.ConsoleReader;
 import lombok.Getter;
@@ -198,6 +199,7 @@ public class Proxy extends Ladder {
 	
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
+		name = CommonFilter.reverseFilterNames(name);
 		if (getOfflineCachePlayers().containsKey(name)) {
 			if (getOfflineCachePlayers().get(name).getNickName() != null && 
 					getOfflineCachePlayers().get(name).getNickName().equalsIgnoreCase(name)) return getOfflineCachePlayers().get(name);
