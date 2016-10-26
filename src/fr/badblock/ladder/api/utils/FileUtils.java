@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonReader;
 
 import fr.badblock.ladder.api.Ladder;
 
@@ -84,8 +85,10 @@ public class FileUtils {
 				 IOUtils.getContent(file);
 				json = tryRepairJson(json, "{", "}");
 
+				JsonReader jsonReader = new JsonReader(new FileReader(file));
+				jsonReader.setLenient(true);
 				JsonParser parser = new JsonParser();
-				JsonElement jsonElement = parser.parse(new FileReader(file));
+				JsonElement jsonElement = parser.parse(jsonReader);
 
 				return jsonElement.getAsJsonObject();
 			} catch (Exception exception){
