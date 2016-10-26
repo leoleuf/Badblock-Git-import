@@ -111,7 +111,7 @@ public abstract class Protocol {
 
 		packet.read(input);
 
-		new Thread(){
+		new Thread("BadBlockAPI/readPacket") {
 			@Override
 			public void run(){
 				try {

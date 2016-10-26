@@ -1,5 +1,10 @@
 package fr.badblock.rabbitconnector;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -15,10 +20,25 @@ import lombok.Setter;
 	private		Connection					connection;
 	private		Channel						channel;
 	private		boolean						isDead;
+	private		List<Thread>				threads;
+	private		Queue<RabbitPacket>			queue;
 
 	public RabbitService(String name, RabbitCredentials credentials) {
 		this.setCredentials(credentials);
 		this.setName(name);
+		this.setQueue(new LinkedList<>());
+		this.setThreads(new ArrayList<>());
+		for (int i = 0; i < 16; i++) {
+			this.getThreads().add(new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
+				@Override
+				public void run() {
+					while (!queue.isEmpty()) {
+						RabbitPacket rabbitPacket = queue.poll();
+						done(rabbitPacket);
+					}
+				}
+			});
+		}
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
 		try {
@@ -29,45 +49,40 @@ import lombok.Setter;
 		}
 	}
 
-	public void sendSyncPacket(String queueName, String body, Encodage encodage, RabbitPacketType type, final long ttl, boolean debug) {
-		if (this.isDead()) {
-			if (debug)
-				System.out.println("Trying to send a packet but it was dead!");
-			return;
-		}
+	public void sendSyncPacket(final String queueName, final String body, final Encodage encodage, final RabbitPacketType type, final long ttl, final boolean debug) {
+		RabbitPacket rabbitPacket = new RabbitPacket(queueName, encodage, type, debug, new RabbitMessage(ttl, body));
+		done(rabbitPacket);
+	}
+	
+	public void sendAsyncPacket(final String queueName, final String body, final Encodage encodage, final RabbitPacketType type, final long ttl, final boolean debug) {
+		RabbitPacket rabbitPacket = new RabbitPacket(queueName, encodage, type, debug, new RabbitMessage(ttl, body));
+		queue.add(rabbitPacket);
+	}
+
+	private void done(RabbitPacket rabbitPacket) {
+		RabbitCredentials credentials = this.getCredentials();
 		try {
-			RabbitCredentials credentials = this.getCredentials();
 			ConnectionFactory connectionFactory = credentials.getConnectionFactory();
 			if (this.getConnection() == null || !this.getConnection().isOpen()) this.setConnection(connectionFactory.newConnection());
 			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) this.setChannel(this.getConnection().createChannel());
 			if (this.getConnection() != null && this.getConnection().isOpen() && this.getChannel() != null && this.getChannel().isOpen()) {
-				String message = new RabbitMessage(ttl, body).toJson();
-				if (type.equals(RabbitPacketType.MESSAGE_BROKER)) {
-					this.getChannel().queueDeclare(queueName, false, false, false, null);
-					this.getChannel().basicPublish("", queueName, null, message.getBytes(encodage.getName()));
-					if (debug) System.out.println("[RabbitConnector] Packet sended to '" + queueName + "' : " + body);
+				String message = rabbitPacket.getRabbitMessage().toJson();
+				if (rabbitPacket.getType().equals(RabbitPacketType.MESSAGE_BROKER)) {
+					this.getChannel().queueDeclare(rabbitPacket.getQueueName(), false, false, false, null);
+					this.getChannel().basicPublish("", rabbitPacket.getQueueName(), null, message.getBytes(rabbitPacket.getEncodage().getName()));
+					if (rabbitPacket.isDebug()) System.out.println("[RabbitConnector] Packet sended to '" + rabbitPacket.getQueueName() + "' : " + rabbitPacket.getRabbitMessage().getMessage());
 					return;
 				}
-				if (type.equals(RabbitPacketType.PUBLISHER)) {
-					this.getChannel().exchangeDeclare(queueName, "fanout");
-					this.getChannel().basicPublish(queueName, "", null, message.getBytes(encodage.getName()));
-					if (debug) System.out.println("[RabbitConnector] Packet sended to '" + queueName + "' : " + body);
+				if (rabbitPacket.getType().equals(RabbitPacketType.PUBLISHER)) {
+					this.getChannel().exchangeDeclare(rabbitPacket.getQueueName(), "fanout");
+					this.getChannel().basicPublish(rabbitPacket.getQueueName(), "", null, message.getBytes(rabbitPacket.getEncodage().getName()));
+					if (rabbitPacket.isDebug()) System.out.println("[RabbitConnector] Packet sended to '" + rabbitPacket.getQueueName() + "' : " + rabbitPacket.getRabbitMessage().getMessage());
 					return;
 				}
 			}
-		}catch(Exception exception) {
-			System.out.println("[RabbitConnector] Error during a packet sending to '" + queueName +"' : " + body);
-			exception.printStackTrace();
+		}catch(Exception error) {
+			error.printStackTrace();
 		}
-	}
-
-	public void sendPacket(final String queueName, final String body, final Encodage encodage, final RabbitPacketType type, final long ttl, final boolean debug) {
-		new Thread() {
-			@Override
-			public void run() {
-				sendSyncPacket(queueName, body, encodage, type, ttl, debug);
-			}
-		}.start();
 	}
 
 	public void remove() {

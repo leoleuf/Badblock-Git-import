@@ -52,7 +52,7 @@ public abstract class SocketHost extends Thread {
 			try {
 				final Socket socket = server.accept();
 				
-				new Thread(){
+				new Thread("BadBlockCommon/socketHost") {
 					@SuppressWarnings("resource") @Override
 					public void run(){
 						try {

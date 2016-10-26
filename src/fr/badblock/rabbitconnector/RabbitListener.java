@@ -23,7 +23,7 @@ import lombok.Data;
 		this.setQueueName(queueName);
 		this.setDebug(debug);
 		this.setType(type);
-		new Thread() {
+		new Thread("BadBlockCommon/RabbitMQ/Listener/" + this.getClass().getSimpleName()) {
 			@Override
 			public void run() {
 				while (true) {
