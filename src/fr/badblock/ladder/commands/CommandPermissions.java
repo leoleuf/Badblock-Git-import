@@ -210,11 +210,9 @@ public class CommandPermissions extends Command {
 						sender.sendMessage("§cVous n'avez pas la permission de définir ce groupe à ce joueur.");
 						return;
 					}
-					for (String alternateGroups : p.getAlternateGroups().keySet()) {
-						if (!sender.hasPermission("ladder.commands.permission.groups.upgrade." + alternateGroups)) {
-							sender.sendMessage("§cVous n'avez pas la permission de définir ce groupe à ce joueur.");
-							return;
-						}
+					if (!p.getParent().getName().equals("default") && !sender.hasPermission("ladder.commands.permission.groups.upgrade." + p.getParent().getName())) {
+						sender.sendMessage("§cVous n'avez pas la permission de définir ce groupe à ce joueur.");
+						return;
 					}
 					p.setParent(end, group);
 					player.saveData();
@@ -234,12 +232,6 @@ public class CommandPermissions extends Command {
 					if (!sender.hasPermission("ladder.commands.permission.groups.upgrade." + args[4])) {
 						sender.sendMessage("§cVous n'avez pas la permission d'ajouter ce groupe à ce joueur.");
 						return;
-					}
-					for (String alternateGroups : p.getAlternateGroups().keySet()) {
-						if (!sender.hasPermission("ladder.commands.permission.groups.upgrade." + alternateGroups)) {
-							sender.sendMessage("§cVous n'avez pas la permission d'ajouter ce groupe à ce joueur.");
-							return;
-						}
 					}
 					if (p.getSuperGroup().equalsIgnoreCase("default")) { // pas de groupe
 						p.setParent(end, group);
@@ -263,12 +255,6 @@ public class CommandPermissions extends Command {
 					if (!sender.hasPermission("ladder.commands.permission.groups.upgrade." + args[4])) {
 						sender.sendMessage("§cVous n'avez pas la permission de supprimer ce groupe à ce joueur.");
 						return;
-					}
-					for (String alternateGroups : p.getAlternateGroups().keySet()) {
-						if (!sender.hasPermission("ladder.commands.permission.groups.upgrade." + alternateGroups)) {
-							sender.sendMessage("§cVous n'avez pas la permission de supprimer ce groupe à ce joueur.");
-							return;
-						}
 					}
 					p.removeParent(group);
 					player.saveData();
