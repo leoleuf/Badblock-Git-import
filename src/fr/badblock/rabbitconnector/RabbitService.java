@@ -30,24 +30,26 @@ import lombok.Setter;
 		this.setQueue(new LinkedList<>());
 		this.setThreads(new ArrayList<>());
 		for (int i = 0; i < 16; i++) {
-			final Thread threao = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
+			threzd = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
 				@Override
 				public void run() {
-					while (true) {
-						while (!queue.isEmpty()) {
-							RabbitPacket rabbitPacket = queue.poll();
-							done(rabbitPacket);
-						}
-						try {
-							this.wait();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
+					synchronized (threzd) {
+						while (true) {
+							while (!queue.isEmpty()) {
+								RabbitPacket rabbitPacket = queue.poll();
+								done(rabbitPacket);
+							}
+							try {
+								threzd.wait();
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
 			};
-			threao.start();
-			this.getThreads().add(threao);
+			threzd.start();
+			this.getThreads().add(threzd);
 		}
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
