@@ -1,10 +1,5 @@
 package fr.badblock.rabbitconnector;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -20,16 +15,16 @@ import lombok.Setter;
 	private		Connection					connection;
 	private		Channel						channel;
 	private		boolean						isDead;
-	private		List<Thread>				threads;
-	private		Queue<RabbitPacket>			queue;
+	//private		List<Thread>				threads;
+	//private		Queue<RabbitPacket>			queue;
 	private		Thread						threzd		= Thread.currentThread();
 
 	public RabbitService(String name, RabbitCredentials credentials) {
 		this.setCredentials(credentials);
 		this.setName(name);
-		this.setQueue(new LinkedList<>());
-		this.setThreads(new ArrayList<>());
-		for (int i = 0; i < 16; i++) {
+		//this.setQueue(new LinkedList<>());
+		//this.setThreads(new ArrayList<>());
+		/*for (int i = 0; i < 16; i++) {
 			Thread thread = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
 				@Override
 				public void run() {
@@ -53,7 +48,7 @@ import lombok.Setter;
 			};
 			thread.start();
 			this.getThreads().add(thread);
-		}
+		}*/
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
 		try {
@@ -71,12 +66,18 @@ import lombok.Setter;
 
 	public void sendAsyncPacket(final String queueName, final String body, final Encodage encodage, final RabbitPacketType type, final long ttl, final boolean debug) {
 		RabbitPacket rabbitPacket = new RabbitPacket(queueName, encodage, type, debug, new RabbitMessage(ttl, body));
-		queue.add(rabbitPacket);
-		threads.forEach(thread -> {
+		new Thread() {
+			@Override
+			public void run() {
+				done(rabbitPacket);
+			}
+		}.start();
+		//queue.add(rabbitPacket);
+		/*threads.forEach(thread -> {
 			synchronized (thread) {
 				thread.notify();
 			}
-		});
+		});*/
 	}
 
 	private void done(RabbitPacket rabbitPacket) {
