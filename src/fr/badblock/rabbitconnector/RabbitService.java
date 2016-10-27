@@ -22,6 +22,7 @@ import lombok.Setter;
 	private		boolean						isDead;
 	private		List<Thread>				threads;
 	private		Queue<RabbitPacket>			queue;
+	private		Thread						threzd		= Thread.currentThread();
 
 	public RabbitService(String name, RabbitCredentials credentials) {
 		this.setCredentials(credentials);
@@ -29,15 +30,24 @@ import lombok.Setter;
 		this.setQueue(new LinkedList<>());
 		this.setThreads(new ArrayList<>());
 		for (int i = 0; i < 16; i++) {
-			this.getThreads().add(new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
+			final Thread threao = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
 				@Override
 				public void run() {
-					while (!queue.isEmpty()) {
-						RabbitPacket rabbitPacket = queue.poll();
-						done(rabbitPacket);
+					while (true) {
+						while (!queue.isEmpty()) {
+							RabbitPacket rabbitPacket = queue.poll();
+							done(rabbitPacket);
+						}
+						try {
+							this.wait();
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
-			});
+			};
+			threao.start();
+			this.getThreads().add(threao);
 		}
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
@@ -53,10 +63,15 @@ import lombok.Setter;
 		RabbitPacket rabbitPacket = new RabbitPacket(queueName, encodage, type, debug, new RabbitMessage(ttl, body));
 		done(rabbitPacket);
 	}
-	
+
 	public void sendAsyncPacket(final String queueName, final String body, final Encodage encodage, final RabbitPacketType type, final long ttl, final boolean debug) {
 		RabbitPacket rabbitPacket = new RabbitPacket(queueName, encodage, type, debug, new RabbitMessage(ttl, body));
 		queue.add(rabbitPacket);
+		threads.forEach(thread -> {
+			synchronized (thread) {
+				thread.notify();
+			}
+		});
 	}
 
 	private void done(RabbitPacket rabbitPacket) {
