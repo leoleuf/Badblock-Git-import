@@ -30,20 +30,20 @@ import lombok.Setter;
 		this.setQueue(new LinkedList<>());
 		this.setThreads(new ArrayList<>());
 		for (int i = 0; i < 16; i++) {
-			threzd = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
+			Thread thread = new Thread("BadBlockCommon/RabbitService/" + name + "/Thread-" + i) {
 				@Override
 				public void run() {
-					synchronized (threzd) {
-						while (true) {
-							while (!queue.isEmpty()) {
-								RabbitPacket rabbitPacket = queue.poll();
-								if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) continue;
-								if (rabbitPacket.getRabbitMessage().getMessage() == null) continue;
-								if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) continue;
-								done(rabbitPacket);
-							}
+					while (true) {
+						while (!queue.isEmpty()) {
+							RabbitPacket rabbitPacket = queue.poll();
+							if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) continue;
+							if (rabbitPacket.getRabbitMessage().getMessage() == null) continue;
+							if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) continue;
+							done(rabbitPacket);
+						}
+						synchronized (this) {
 							try {
-								threzd.wait();
+								this.wait();
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
@@ -51,8 +51,8 @@ import lombok.Setter;
 					}
 				}
 			};
-			threzd.start();
-			this.getThreads().add(threzd);
+			thread.start();
+			this.getThreads().add(thread);
 		}
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
