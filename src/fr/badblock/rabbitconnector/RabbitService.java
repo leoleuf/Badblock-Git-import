@@ -37,6 +37,9 @@ import lombok.Setter;
 						while (true) {
 							while (!queue.isEmpty()) {
 								RabbitPacket rabbitPacket = queue.poll();
+								if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) continue;
+								if (rabbitPacket.getRabbitMessage().getMessage() == null) continue;
+								if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) continue;
 								done(rabbitPacket);
 							}
 							try {
@@ -77,6 +80,9 @@ import lombok.Setter;
 	}
 
 	private void done(RabbitPacket rabbitPacket) {
+		if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) return;
+		if (rabbitPacket.getRabbitMessage().getMessage() == null) return;
+		if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) return;
 		RabbitCredentials credentials = this.getCredentials();
 		try {
 			ConnectionFactory connectionFactory = credentials.getConnectionFactory();
