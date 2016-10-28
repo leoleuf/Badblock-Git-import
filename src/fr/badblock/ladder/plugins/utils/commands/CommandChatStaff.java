@@ -6,6 +6,7 @@ import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.utils.StringUtils;
+import fr.badblock.permissions.PermissiblePlayer;
 
 public class CommandChatStaff extends Command {
 	public CommandChatStaff() {
@@ -18,11 +19,13 @@ public class CommandChatStaff extends Command {
 			sender.sendMessage(ChatColor.RED + "Veuillez préciser le message !");
 			return;
 		}
-		
-		String message = ChatColor.GOLD + "[ChatStaff ~ " + sender.getName() + "] " + ChatColor.AQUA + StringUtils.join(args, " ");
-		for(Player player : Ladder.getInstance().getOnlinePlayers()){
-			if(player.hasPermission("ladder.command.chatstaff"))
-				player.sendMessage(message);
+		if (!(sender instanceof Player)) return;
+		Player player = (Player) sender;
+		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
+		String message = "§6§l[CS] " + permissiblePlayer.getDisplayName() + player.getName() + "§7 > §7" + ChatColor.AQUA + StringUtils.join(args, " ");
+		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
+			if(plo.hasPermission("ladder.command.chatstaff"))
+				plo.sendMessage(message);
 		}
 	}
 }
