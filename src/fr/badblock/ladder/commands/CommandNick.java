@@ -11,7 +11,7 @@ import fr.badblock.utils.CommonFilter;
 public class CommandNick extends Command {
 
 	public CommandNick() {
-		super("nick", "ladder.command.nick");
+		super("nickname", "ladder.command.nick");
 	}
 
 	@Override
