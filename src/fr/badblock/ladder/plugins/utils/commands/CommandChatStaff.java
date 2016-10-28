@@ -22,7 +22,7 @@ public class CommandChatStaff extends Command {
 		if (!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
-		String message = "§6§l[CS] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + ChatColor.AQUA + StringUtils.join(args, " ");
+		String message = "§6§l[CS] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + StringUtils.join(args, " ");
 		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
 			if(plo.hasPermission("ladder.command.chatstaff"))
 				plo.sendMessage(message);

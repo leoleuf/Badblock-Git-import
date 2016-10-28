@@ -22,7 +22,7 @@ public class CommandAdminChat extends Command {
 		if (!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
-		String message = "§c§l[AC] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + ChatColor.AQUA + StringUtils.join(args, " ");
+		String message = "§c§l[AC] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + StringUtils.join(args, " ");
 		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
 			if(plo.hasPermission("ladder.command.adminchat"))
 				plo.sendMessage(message);
