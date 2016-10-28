@@ -62,8 +62,9 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		this.punished     = Punished.fromJson(getData());
 
 		Proxy.getInstance().getIpData(address);
-
+		
 		savePunishions();
+		this.saveData();
 	}
 
 	@Override
@@ -72,6 +73,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		//System.out.println("Save permissions in file (saveData()) > " + this.name + " > " + permissions.saveAsJson());
 
 		getData().add("permissions", permissions.saveAsJson());
+		getData().addProperty("name", name);
 
 		if(lastAddress != null) {
 			getData().addProperty("lastIp", lastAddress.getHostAddress());
