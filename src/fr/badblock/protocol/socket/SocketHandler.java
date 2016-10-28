@@ -41,6 +41,7 @@ public class SocketHandler extends Thread implements PacketSender {
 
 	public SocketHandler(Socket socket, Protocol protocolIn, Protocol protocolOut, PacketHandler handler, boolean debug) throws IOException {
 		super("Socket Handler (" + socket.getInetAddress() + ")");
+		System.out.println("SocketHandler: " + socket.getInetAddress().getHostAddress() + " / " + socket.getPort());
 		this.socket      = socket;
 		this.in          = new ByteInputStream(socket.getInputStream());
 		this.out         = new ByteOutputStream(socket.getOutputStream());
