@@ -16,6 +16,7 @@ import fr.badblock.protocol.socket.SocketHost;
 public class LadderSocketHost extends SocketHost {
 	public LadderSocketHost(InetAddress address, int port) throws IOException {
 		super(address, port);
+		System.out.println("LadderSocketHost: " + address.getHostName() + " / " + port);
 	}
 	
 	@Override
