@@ -96,7 +96,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Override
 	public String getNickName() {
-		if(getData().has("nickName") && getData().get("nickName") != null && getData().get("nickName") != null)
+		if(getData().has("nickName") && getData().get("nickName") != null && getData().get("nickName").getAsString() != null)
 			return getData().get("nickName").getAsString();
 		getData().addProperty("nickName", this.name);
 		return this.name;
