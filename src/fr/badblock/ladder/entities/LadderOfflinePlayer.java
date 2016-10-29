@@ -1,10 +1,14 @@
 package fr.badblock.ladder.entities;
 
+import java.lang.reflect.Type;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
@@ -17,8 +21,10 @@ import fr.badblock.permissions.Permissible;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.permissions.Permission;
 import lombok.Getter;
+import lombok.Setter;
 
 public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePlayer {
+	public static final Type collectionType = new TypeToken<List<UUID>>() {}.getType();
 	@Getter protected final String				name;
 
 	@Getter protected final PermissiblePlayer 	permissions;
@@ -27,7 +33,10 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	@Getter protected final InetAddress			lastAddress;
 
 	@Getter private 		String				loginPassword;
-
+	@Getter private			UUID				uniqueId;
+	@Getter@Setter
+	private List<UUID>			    playersWithHim;
+	
 	public Punished getPunished(){
 		punished.checkEnd();
 		return punished;
@@ -47,7 +56,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 			} catch (UnknownHostException unused){}
 
 
-		UUID uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
+		uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 		if (!getData().has("uniqueId"))
 			getData().addProperty("uniqueId", uniqueId.toString());
 		if (!getData().has("name"))
@@ -60,6 +69,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		this.lastAddress  = address;
 		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, getData());
 		this.punished     = Punished.fromJson(getData());
+		this.playersWithHim = new ArrayList<>();
 
 		Proxy.getInstance().getIpData(address);
 		
@@ -74,6 +84,8 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 		getData().add("permissions", permissions.saveAsJson());
 		getData().addProperty("name", name);
+		getData().addProperty("uniqueId", uniqueId.toString());
+		getData().addProperty("playersWithHim", Ladder.getInstance().getGson().toJson(this.getPlayersWithHim()));
 
 		if(lastAddress != null) {
 			getData().addProperty("lastIp", lastAddress.getHostAddress());

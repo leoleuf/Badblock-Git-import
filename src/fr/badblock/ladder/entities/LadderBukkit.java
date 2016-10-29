@@ -127,6 +127,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 						});
 					}
 					ret.add("permissions", permissiblePlayer.saveAsJson());
+					ret.addProperty("realName", player.getName());
 				}
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
 			}

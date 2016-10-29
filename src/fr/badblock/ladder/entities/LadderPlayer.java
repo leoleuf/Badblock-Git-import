@@ -1,7 +1,6 @@
 package fr.badblock.ladder.entities;
 
 import java.net.InetSocketAddress;
-import java.util.List;
 import java.util.UUID;
 
 import com.google.gson.JsonObject;
@@ -24,6 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter public class LadderPlayer extends LadderOfflinePlayer implements Player {
+	
 	@Setter public  UUID			uniqueId;
 	private final InetSocketAddress address;
 	
@@ -33,10 +33,7 @@ import lombok.Setter;
 	
 	@Setter
 	private String					requestedGame;
-	@Setter
-	private List<UUID>			    playersWithHim;
 	private boolean				    canJoinHimself;
-	
 	
 	public LadderPlayer(BungeeCord server, PacketPlayerLogin packet){
 		super(packet.getPlayerName(), packet.getAddress().getAddress());
