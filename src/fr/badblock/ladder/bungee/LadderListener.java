@@ -57,7 +57,7 @@ public class LadderListener implements Listener {
 	@EventHandler
 	public void onJoin(PostLoginEvent e){
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
-		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), player == null ? e.getPlayer().getName() : player.getNickName(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
+		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), player == null ? e.getPlayer().getName() : player.getNickNamee(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 		
@@ -95,7 +95,7 @@ public class LadderListener implements Listener {
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
 		if (player != null) {
 			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
-			handler.getLoginRequest().setData(player.getNickName());
+			handler.getLoginRequest().setData(player.getNickNamee());
 		}
 		if(e.getPlayer().getServer() == null){
 			UUID uniqueId = e.getPlayer().getUniqueId();

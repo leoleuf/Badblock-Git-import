@@ -267,7 +267,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			for(ProxiedPlayer player : getProxy().getPlayers()){
 				Player ployer = getPlayer(player.getName());
 				if (ployer == null) ployer = LadderBungee.getInstance().playersTemp.get(player.getName().toLowerCase());
-				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickName(), player.getUniqueId(), player.getAddress());
+				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickNamee(), player.getUniqueId(), player.getAddress());
 
 				handle(join);
 
@@ -493,7 +493,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		Player player = getPlayer(packet.getPlayerName());
 		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
 		if (player == null) return;
-		player.setNickName(packet.getNickName());
+		player.setNickNamee(packet.getNickName());
 	}
 
 }
