@@ -24,7 +24,7 @@ public class CommandAdminChat extends Command {
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
 		String message = "§c§l[AC] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + StringUtils.join(args, " ");
 		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
-			if(plo.hasPermission("ladder.command.adminchat"))
+			if(CommandChatStaff.canReceiveMessage(plo, "adminchat"))
 				plo.sendMessage(message);
 		}
 	}
