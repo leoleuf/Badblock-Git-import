@@ -1,7 +1,9 @@
 package fr.badblock.ladder.data;
 
 import java.io.File;
+import java.util.ConcurrentModificationException;
 import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,12 +12,13 @@ import fr.badblock.ladder.api.data.DataHandler;
 import fr.badblock.ladder.api.utils.FileUtils;
 
 public abstract class LadderDataHandler implements DataHandler {
-	private final File   file;
-	private JsonObject   data;
+	private final File    file;
+	private JsonObject    data;
+	AtomicBoolean saving  = new AtomicBoolean(false);
+	AtomicBoolean reading = new AtomicBoolean(false);
 
 	public LadderDataHandler(File folder, String key){
 		this.file = new File(folder, key.toLowerCase() + ".dat");
-
 		reloadData();
 	}
 
@@ -26,8 +29,13 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void updateData(JsonObject object) {
-		addObjectInObject(data, object);
-		saveData();
+		if(saving.getAndSet(true) || reading.get()){
+			throw new ConcurrentModificationException("Trying to update data file while saving or reading!");
+		}
+		
+		DataSavers.save(this, object, true);
+		//addObjectInObject(data, object);
+		//saveData();
 	}
 
 	private void addObjectInObject(JsonObject base, JsonObject toAdd){
@@ -45,18 +53,32 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void setData(JsonObject object) {
-		this.data = object;
-		saveData();
+		if(saving.getAndSet(true) || reading.get()){
+			throw new ConcurrentModificationException("Trying to set data file while saving or reading!");
+		}
+		
+		DataSavers.save(this, object, false);
+		//this.data = object;
+		//saveData();
 	}
 
 	@Override
 	public void removeData() {
-		file.delete();
-		data = new JsonObject();
+		if(saving.getAndSet(true) || reading.get()){
+			throw new ConcurrentModificationException("Trying to remove data file while saving or reading!");
+		}
+		
+		//file.delete();
+		//data = new JsonObject();
+		DataSavers.save(this, new JsonObject(), false);
 	}
 
 	@Override
 	public void reloadData() {
+		if(saving.get() || reading.getAndSet(true)){
+			throw new ConcurrentModificationException("Trying to read data file while saving or reading!");
+		}
+		
 		if(!file.exists()) {
 			data = new JsonObject();
 			return;
@@ -67,16 +89,28 @@ public abstract class LadderDataHandler implements DataHandler {
 		} catch(Exception e){
 			data = new JsonObject();
 		}
+		
+		reading.set(false);
 	}
 
 	@Override
 	public void saveData() {
-		DataSavers.save(this);
+		if(saving.getAndSet(true) || reading.get()){
+			throw new ConcurrentModificationException("Trying to save data file while saving or reading!");
+		}
+		
+		DataSavers.save(this, data, false);
 	}
 	
-	public void saveSync(){
+	public void saveSync(JsonObject object, boolean update){
+		if(update)
+			addObjectInObject(data, object);
+		else data = object;
+		
 		if(!data.entrySet().isEmpty())
 			FileUtils.save(file, data, true);
 		else if(file.exists()) file.delete();
+	
+		saving.set(false);
 	}
 }

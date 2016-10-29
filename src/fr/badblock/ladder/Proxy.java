@@ -55,6 +55,7 @@ import fr.badblock.ladder.commands.punish.CommandUnban;
 import fr.badblock.ladder.commands.punish.CommandUnbanip;
 import fr.badblock.ladder.commands.punish.CommandUnmute;
 import fr.badblock.ladder.connection.LadderSocketHost;
+import fr.badblock.ladder.data.DataSavers;
 import fr.badblock.ladder.data.LadderDataHandler;
 import fr.badblock.ladder.data.LadderIpDataHandler;
 import fr.badblock.ladder.entities.ConsoleCommandSender;
@@ -220,9 +221,19 @@ public class Proxy extends Ladder {
 		host.end();
 		logger.log(Level.INFO, "Not listening anymore ... saving players");
 
+		DataSavers.allow = false;
+		
+		while(!DataSavers.toSave.isEmpty()){
+			try {
+				Thread.sleep(3L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		for(Player player : getOnlinePlayers()){
-			((LadderDataHandler) player).saveSync();
-			((LadderDataHandler) player.getIpData()).saveSync();
+			((LadderDataHandler) player).saveSync(player.getData(), false);
+			((LadderDataHandler) player.getIpData()).saveSync(player.getData(), false);
 		}
 
 		logger.log(Level.INFO, "Players saved! Good bye!");
