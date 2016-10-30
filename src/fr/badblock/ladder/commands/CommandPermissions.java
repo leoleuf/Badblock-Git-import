@@ -3,6 +3,8 @@ package fr.badblock.ladder.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonElement;
+
 import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatColor;
@@ -12,10 +14,13 @@ import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.api.utils.Time;
+import fr.badblock.ladder.http.HttpHandler;
+import fr.badblock.ladder.http.SlackMessage;
 import fr.badblock.permissions.PermissibleGroup;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.permissions.Permission;
 import fr.badblock.permissions.PermissionManager;
+import fr.badblock.utils.Callback;
 
 public class CommandPermissions extends Command {
 
@@ -214,6 +219,9 @@ public class CommandPermissions extends Command {
 						sender.sendMessage("§cVous n'avez pas la permission de définir ce groupe à ce joueur.");
 						return;
 					}
+					
+					logAddGroup(sender, p, group);
+					
 					p.setParent(end, group);
 					player.saveData();
 					Player po = Proxy.getInstance().getPlayer(player.getName());
@@ -233,6 +241,9 @@ public class CommandPermissions extends Command {
 						sender.sendMessage("§cVous n'avez pas la permission d'ajouter ce groupe à ce joueur.");
 						return;
 					}
+
+					logAddGroup(sender, p, group);
+					
 					if (p.getSuperGroup().equalsIgnoreCase("default")) { // pas de groupe
 						p.setParent(end, group);
 					} else {
@@ -279,6 +290,44 @@ public class CommandPermissions extends Command {
 		}else{
 			help(sender); return;
 		}
+	}
+
+	private void logAddGroup(CommandSender sender, PermissiblePlayer p, PermissibleGroup group) {
+		if(sender.hasPermission("ladder.commands.permission.group.logaddgroup")){
+			JsonElement value = group.getValue("store_group_offer");
+			
+			if(value != null){
+				int offer = value.getAsInt();
+				
+				new HttpHandler(new Callback<String>(){
+					@Override
+					public void done(String result, Throwable error) {
+						if(error != null){
+							error.printStackTrace();
+							return;
+						}
+						
+						try {
+							Boolean has = Boolean.parseBoolean(result);
+							
+							if(has == Boolean.FALSE){
+								post("@channel Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
+							} else {
+								
+							}
+						} catch(Exception e){
+							post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+						}
+					}
+				}, "https://badblock.fr/store/player_has_buy.php").addValues(new String[]{"user", "offer"}, new String[]{p.getName().toLowerCase(), Integer.toString(offer) }).setGet(true).start();
+			} else {
+				post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+			}
+		}
+	}
+	
+	private void post(String message){
+		new SlackMessage(message, "BottyPerms", false).run();
 	}
 
 	public void groupPermissionRemove(CommandSender sender, PermissibleGroup group, String[] args) {
