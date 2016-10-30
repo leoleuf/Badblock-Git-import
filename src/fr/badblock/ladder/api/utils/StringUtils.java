@@ -19,6 +19,12 @@ public class StringUtils {
 		return new InetSocketAddress(ip, port);
 	}
 	
+	public static String removeBOM(String result){
+		if(result.charAt(0) == 239 && result.charAt(1) == 187 && result.charAt(2) == 191)
+			return result.substring(3, result.length());
+		else return result;
+	}
+	
 	public static <T> String join(Collection<T> toJoin, String joiner){
 		boolean first = true;;
 		String result = "";
