@@ -1,10 +1,13 @@
 package fr.badblock.ladder.entities;
 
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.google.gson.JsonObject;
 
+import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatMessage;
 import fr.badblock.ladder.api.entities.Bukkit;
 import fr.badblock.ladder.api.entities.BungeeCord;
@@ -34,6 +37,8 @@ import lombok.Setter;
 	@Setter
 	private String					requestedGame;
 	private boolean				    canJoinHimself;
+	@Getter
+	private List<UUID>			    playersWithHim;
 	
 	public LadderPlayer(BungeeCord server, PacketPlayerLogin packet){
 		super(packet.getPlayerName(), packet.getAddress().getAddress());
@@ -41,6 +46,7 @@ import lombok.Setter;
 		boolean first = !getData().has("lastIp");
 		
 		this.address  	  = packet.getAddress();
+		this.playersWithHim = new ArrayList<>();
 		this.bungeeServer = server;
 		getData().addProperty("lastIp", address.getAddress().getHostAddress());
 		
@@ -131,4 +137,11 @@ import lombok.Setter;
 	public boolean canJoinHimself() {
 		return canJoinHimself;
 	}
+	
+	@Override
+	public void setPlayersWithHim(List<UUID> uuids) {
+		this.playersWithHim = uuids;
+		getData().addProperty("playersWithHim", Ladder.getInstance().getGson().toJson(this.getPlayersWithHim()));
+	}
+	
 }
