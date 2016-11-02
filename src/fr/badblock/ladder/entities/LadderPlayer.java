@@ -56,7 +56,6 @@ import lombok.Setter;
 		}
 		
 		getIpData().saveData();
-		saveData();
 	}
 
 	@Override
