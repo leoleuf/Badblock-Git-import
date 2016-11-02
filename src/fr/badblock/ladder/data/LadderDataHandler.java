@@ -30,7 +30,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Override
 	public void updateData(JsonObject object) {
 		if(saving.getAndSet(true) || reading.get()){
-			throw new ConcurrentModificationException("Trying to update data file while saving or reading!");
+			throw new ConcurrentModificationException("Trying to update data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}
 		
 		DataSavers.save(this, object, true);
@@ -54,7 +54,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Override
 	public void setData(JsonObject object) {
 		if(saving.getAndSet(true) || reading.get()){
-			throw new ConcurrentModificationException("Trying to set data file while saving or reading!");
+			throw new ConcurrentModificationException("Trying to set data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}
 		
 		DataSavers.save(this, object, false);
@@ -65,7 +65,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Override
 	public void removeData() {
 		if(saving.getAndSet(true) || reading.get()){
-			throw new ConcurrentModificationException("Trying to remove data file while saving or reading!");
+			throw new ConcurrentModificationException("Trying to remove data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}
 		
 		//file.delete();
@@ -76,7 +76,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Override
 	public void reloadData() {
 		if(saving.get() || reading.getAndSet(true)){
-			throw new ConcurrentModificationException("Trying to read data file while saving or reading!");
+			throw new ConcurrentModificationException("Trying to read data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}
 		
 		if(!file.exists()) {
@@ -96,7 +96,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Override
 	public void saveData() {
 		if(saving.getAndSet(true) || reading.get()){
-			throw new ConcurrentModificationException("Trying to save data file while saving or reading!");
+			throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}
 		
 		DataSavers.save(this, data, false);
