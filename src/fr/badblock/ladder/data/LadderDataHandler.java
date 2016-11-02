@@ -10,14 +10,18 @@ import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.data.DataHandler;
 import fr.badblock.ladder.api.utils.FileUtils;
+import lombok.Getter;
+
 
 public abstract class LadderDataHandler implements DataHandler {
+	@Getter	private final String  key;
 	private final File    file;
 	private JsonObject    data;
 	AtomicBoolean saving  = new AtomicBoolean(false);
 	AtomicBoolean reading = new AtomicBoolean(false);
 
 	public LadderDataHandler(File folder, String key){
+		this.key = key;
 		this.file = new File(folder, key.toLowerCase() + ".dat");
 		reloadData();
 	}

@@ -34,11 +34,14 @@ public class DataSavers extends Thread {
 					try {
 						Val handler = toSave.poll();
 						if(handler.handler.reading.get()){
+							System.out.println("Currently reading " + handler.handler.getKey() + ", we will not saving that yet");
 							toSave.add(handler);
 							continue;
 						}
 
+						System.out.println("Saving " + handler.handler.getKey() + "...");
 						handler.handler.saveSync(handler.object, handler.update);
+						System.out.println("Saved " + handler.handler.getKey() + "!");
 					} catch(Throwable t){}
 				}
 				try {
