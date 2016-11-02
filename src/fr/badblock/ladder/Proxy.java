@@ -226,7 +226,7 @@ public class Proxy extends Ladder {
 		
 		while(!DataSavers.toSave.isEmpty()){
 			try {
-				Thread.sleep(3L);
+				Thread.sleep(50L);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
