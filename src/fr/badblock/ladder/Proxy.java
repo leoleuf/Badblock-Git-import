@@ -42,6 +42,7 @@ import fr.badblock.ladder.commands.CommandList;
 import fr.badblock.ladder.commands.CommandNick;
 import fr.badblock.ladder.commands.CommandPermissions;
 import fr.badblock.ladder.commands.CommandPlayer;
+import fr.badblock.ladder.commands.CommandPluginsManager;
 import fr.badblock.ladder.commands.CommandReload;
 import fr.badblock.ladder.commands.CommandSend;
 import fr.badblock.ladder.commands.punish.CommandBan;
@@ -417,6 +418,7 @@ public class Proxy extends Ladder {
 		pluginsManager.registerCommand(null, new CommandUnmute());
 		pluginsManager.registerCommand(null, new CommandSanction());
 		pluginsManager.registerCommand(null, new CommandPlayer());
+		pluginsManager.registerCommand(null, new CommandPluginsManager());
 
 		pluginsManager.loadPlugins();
 		pluginsManager.enablePlugins();
