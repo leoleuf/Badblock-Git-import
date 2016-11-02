@@ -81,6 +81,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		
 		if(!file.exists()) {
 			data = new JsonObject();
+			reading.set(false);
 			return;
 		}
 
