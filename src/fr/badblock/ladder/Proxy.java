@@ -151,7 +151,7 @@ public class Proxy extends Ladder {
 					Proxy.getInstance().getRabbitServiced().sendAsyncPacket("ladder.playersupdate", Integer.toString(getLadderOnlineCount()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
 			}
-		}, 500, 500);
+		}, 100, 100);
 		new Thread() {
 			@Override
 			public void run() {
