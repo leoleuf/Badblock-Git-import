@@ -163,7 +163,12 @@ public class LadderListener implements Listener {
 
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));
-
+		String[] motdString = motd.getMotd().clone();
+		if (LadderBungee.getInstance().ladderPlayers >= motd.getMaxPlayers()) {
+			motdString[1] = LadderBungee.getInstance().fullMotd;
+		}
+		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motdString, " ")));
+		
 		reply.setFavicon(old.getFaviconObject());
 		reply.setVersion(new ServerPing.Protocol(motd.getVersion(), old.getVersion().getProtocol()));
 

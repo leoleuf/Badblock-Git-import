@@ -78,6 +78,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 	public    RabbitService				rabbitService;
+	public String 						fullMotd;
 
 	private ConfigurationProvider cp;
 	private Configuration config;
@@ -99,6 +100,20 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		return Collections.unmodifiableCollection(players.values());
 	}
 
+	public void loadConfig() {
+		try {
+			getDataFolder().mkdirs();
+			File f = new File(getDataFolder(), "config.yml");
+			if(!f.exists())
+				f.createNewFile();
+			config = cp.load(f);
+			fullMotd = config.getString("fullMotd", "");
+		} catch(Exception e){
+			e.printStackTrace();
+			return;
+		}
+	}
+
 	@Override
 	public void onEnable(){
 		instance = this;
@@ -106,12 +121,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
 		try {
-			getDataFolder().mkdirs();
-			File f = new File(getDataFolder(), "config.yml");
-			if(!f.exists())
-				f.createNewFile();
-			config = cp.load(f);
-
+			loadConfig();
 			players = Maps.newConcurrentMap();
 			byName  = Maps.newConcurrentMap();
 			ips		= Maps.newConcurrentMap();
@@ -148,8 +158,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			handle(new PacketHelloworld());
 			handle(new PacketPlayerData(DataType.PLAYERS, DataAction.REQUEST, "*", "*"));
 
-			cp.save(config, f);
+			cp.save(config, new File(getDataFolder(), "config.yml"));
 
+			getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
 
 			while(true){
