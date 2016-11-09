@@ -41,6 +41,7 @@ public class BungeeUtils extends Plugin implements Listener{
 
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
+		getProxy().getPluginManager().registerCommand(this, new BUReloadCommand());
 		loadConfig();
 	}
 
