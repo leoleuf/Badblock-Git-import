@@ -41,6 +41,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		new AdminBroadcastListener();
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
+		getProxy().getPluginManager().registerCommand(this, new AdminCommand());
 		getProxy().getPluginManager().registerCommand(this, new BUReloadCommand());
 		getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 		loadConfig();
