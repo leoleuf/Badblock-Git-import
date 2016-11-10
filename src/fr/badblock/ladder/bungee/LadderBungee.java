@@ -160,7 +160,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 			cp.save(config, new File(getDataFolder(), "config.yml"));
 
-			getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
 
 			while(true){
