@@ -25,10 +25,13 @@ public class PagePlayerUpdateData extends LadderPage {
 			object.addProperty("name", input.get("name"));
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
 			input.entrySet().stream().filter(entry -> !entry.getKey().equals("name")).forEach(entry -> {
-				if (entry.getKey().equals("uniqueId")) player.setUniqueId(entry.getValue());
+				System.out.println("Set unique " + entry.getKey());
+				if (entry.getKey().equals("uniqueId")) {
+					player.setUniqueId(entry.getValue());
+					System.out.println("Set unique " + input.get("name"));
+				}
 				else player.getData().addProperty(entry.getKey(), entry.getValue());
 			});
-			player.saveData();
 			Player plo = Ladder.getInstance().getPlayer(player.getName());
 			if (plo != null) {
 				List<String> string = new ArrayList<>();

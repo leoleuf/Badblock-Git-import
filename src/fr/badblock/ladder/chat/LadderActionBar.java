@@ -24,27 +24,19 @@ public class LadderActionBar implements ActionBar {
 	@Override
 	public void send(Player... players) {
 		for(final Player player : players){
-			player.sendPacket(new PacketPlayerChat(player.getUniqueId(), 
-					ChatAction.ACTION_BAR, new String[]{message}, 
-					fadeIn, stay, fadeOut)
-				);
+			player.sendPacket(new PacketPlayerChat(player.getName(), ChatAction.ACTION_BAR, new String[]{message}, fadeIn, stay, fadeOut));
 		}
 	}
 
 	@Override
 	public void broadcast(BungeeCord... servers) {
 		for(final BungeeCord server : servers){
-			server.sendPacket(new PacketPlayerChat(null,
-					ChatAction.ACTION_BAR, new String[]{message},
-					fadeIn, stay, fadeOut)
-				);
+			server.sendPacket(new PacketPlayerChat(null, ChatAction.ACTION_BAR, new String[]{message}, fadeIn, stay, fadeOut));
 		}
 	}
 
 	@Override
 	public void broadcastAll() {
-		Ladder.getInstance().broadcastPacket(new PacketPlayerChat(null,
-					ChatAction.ACTION_BAR, new String[]{message},
-					fadeIn, stay, fadeOut));
+		Ladder.getInstance().broadcastPacket(new PacketPlayerChat(null, ChatAction.ACTION_BAR, new String[]{message}, fadeIn, stay, fadeOut));
 	}
 }

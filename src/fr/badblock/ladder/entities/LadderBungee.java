@@ -388,7 +388,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 		((LadderPlayer) player).setBukkitServer(changed);
 
-		if((current != null && current.getName().startsWith("login")) || (current == null && !changed.getName().startsWith("login"))){
+		if((current != null && (current.getName().startsWith("login") || current.getName().equals("skeleton"))) || (current == null && !changed.getName().startsWith("login"))) {
 			Bukkit reconnect = Proxy.getInstance().getReconnectionInvitation(player);
 
 			if(reconnect != null){

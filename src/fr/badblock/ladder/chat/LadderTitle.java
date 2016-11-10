@@ -25,9 +25,7 @@ public class LadderTitle implements Title {
 	@Override
 	public void send(Player... players) {
 		for(final Player player : players){
-			player.sendPacket(new PacketPlayerChat(player.getUniqueId(), 
-					ChatAction.TITLE, new String[]{title, subTitle}, 
-					fadeIn, stay, fadeOut)
+			player.sendPacket(new PacketPlayerChat(player.getName(), ChatAction.TITLE, new String[]{title, subTitle}, fadeIn, stay, fadeOut)
 				);
 		}
 	}
@@ -35,10 +33,7 @@ public class LadderTitle implements Title {
 	@Override
 	public void broadcast(BungeeCord... servers) {
 		for(final BungeeCord server : servers){
-			server.sendPacket(new PacketPlayerChat(null,
-					ChatAction.TITLE, new String[]{title, subTitle},
-					fadeIn, stay, fadeOut)
-				);
+			server.sendPacket(new PacketPlayerChat(null, ChatAction.TITLE, new String[]{title, subTitle}, fadeIn, stay, fadeOut));
 		}
 	}
 

@@ -24,7 +24,7 @@ public class LadderRawMessage implements RawMessage {
 	@Override
 	public void send(Player... players) {
 		for(Player player : players){
-			player.sendPacket(new PacketPlayerChat(player.getUniqueId(), ChatAction.MESSAGE_JSON, asJsonObject().toString()));		
+			player.sendPacket(new PacketPlayerChat(player.getName(), ChatAction.MESSAGE_JSON, asJsonObject().toString()));		
 		}
 	}
 

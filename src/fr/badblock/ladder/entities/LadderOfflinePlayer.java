@@ -55,6 +55,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 		if (!getData().has("uniqueId"))
 			getData().addProperty("uniqueId", uniqueId.toString());
+		else uniqueId = UUID.fromString(getData().get("uniqueId").getAsString());
 		if (!getData().has("name"))
 			getData().addProperty("name", name);
 		if (!this.name.equals(this.getNickName()))
