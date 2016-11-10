@@ -9,7 +9,7 @@ import net.md_5.bungee.api.ChatColor;
 public class AdminBroadcastListener extends RabbitListener {
 
 	public AdminBroadcastListener() {
-		super(LadderBungee.getInstance().rabbitService, "admin_broadcast", false, RabbitListenerType.SUBSCRIBER);
+		super(LadderBungee.getInstance().rabbitService, "admin.broadcast", false, RabbitListenerType.SUBSCRIBER);
 	}
 
 	@Override
