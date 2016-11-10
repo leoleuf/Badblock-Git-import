@@ -1,7 +1,6 @@
 package fr.badblock.protocol.packets;
 
 import java.io.IOException;
-import java.util.UUID;
 
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.buffers.ByteInputStream;
@@ -30,7 +29,7 @@ public class PacketPlayerChat implements Packet {
 	/**
 	 * Les utilisateurs à qui envoyer le message, si * => broadcast (ou commande console)
 	 */
-	private UUID       user;
+	private String       user;
 	
 	/**
 	 * Type de message
@@ -52,14 +51,14 @@ public class PacketPlayerChat implements Packet {
 					   stay, 
 					   fadeOut;
 	
-	public PacketPlayerChat(UUID user, ChatAction type, String... messages){
+	public PacketPlayerChat(String user, ChatAction type, String... messages){
 		this(user, type, messages, 0, 0, 0);
 	}
 	
 	@Override
 	public void read(ByteInputStream input) throws IOException {
 		if(input.readBoolean())
-			user     = input.readUUID();
+			user     = input.readUTF();
 		else user    = null;
 		type  	 = ChatAction.getAction(input.readInt());
 		messages = input.readArrayUTF();
@@ -75,7 +74,7 @@ public class PacketPlayerChat implements Packet {
 	public void write(ByteOutputStream output) throws IOException {
 		output.writeBoolean(user != null);
 		if(user != null)
-			output.writeUUID(user);
+			output.writeUTF(user);
 		output.writeInt(type.getId());
 		output.writeArrayUTF(messages);
 		
