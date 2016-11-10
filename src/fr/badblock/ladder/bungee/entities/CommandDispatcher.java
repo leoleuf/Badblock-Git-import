@@ -2,7 +2,6 @@ package fr.badblock.ladder.bungee.entities;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import com.google.common.collect.ImmutableSet;
 
@@ -36,8 +35,8 @@ public class CommandDispatcher extends Command implements TabExecutor {
 		
 		Packet packet = null;
 
-		UUID uniqueId = !(sender instanceof ProxiedPlayer) ? null : ((ProxiedPlayer) sender).getUniqueId();
-		packet = new PacketPlayerChat(uniqueId, ChatAction.LADDER_COMMAND, command);
+		String name = !(sender instanceof ProxiedPlayer) ? null : ((ProxiedPlayer) sender).getName();
+		packet = new PacketPlayerChat(name, ChatAction.LADDER_COMMAND, command);
 
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 	}
