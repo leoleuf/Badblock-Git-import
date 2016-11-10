@@ -14,7 +14,7 @@ public class AdminCommand extends Command {
 
 	@Override
 	public void execute(CommandSender sender, String[] args) {
-		LadderBungee.getInstance().rabbitService.sendPacket("admin_brodacast", "§r[&6§l" + sender.getName() + "§r] &8> §b" + StringUtils.join(args, " "), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		LadderBungee.getInstance().rabbitService.sendPacket("admin_broadcast", "§r[&6§l" + sender.getName() + "§r] &8> §b" + StringUtils.join(args, " "), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
 
 }
