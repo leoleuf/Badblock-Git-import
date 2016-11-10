@@ -71,7 +71,7 @@ import lombok.Setter;
 
 	@Override
 	public void sendMessages(String... messages) {
-		sendPacket(new PacketPlayerChat(uniqueId, ChatAction.MESSAGE_FLAT, messages));
+		sendPacket(new PacketPlayerChat(getName(), ChatAction.MESSAGE_FLAT, messages));
 	}
 	
 	@Override
@@ -81,7 +81,7 @@ import lombok.Setter;
 
 	@Override
 	public void forceCommand(String... commands) {
-		sendPacket(new PacketPlayerChat(uniqueId, ChatAction.COMMAND, commands));
+		sendPacket(new PacketPlayerChat(getName(), ChatAction.COMMAND, commands));
 	}
 	
 	@Override
@@ -96,7 +96,7 @@ import lombok.Setter;
 
 	@Override
 	public void sendTab(String... tab) {
-		sendPacket(new PacketPlayerChat(uniqueId, ChatAction.TABLIST, tab));
+		sendPacket(new PacketPlayerChat(getName(), ChatAction.TABLIST, tab));
 	}
 	
 	@Override
