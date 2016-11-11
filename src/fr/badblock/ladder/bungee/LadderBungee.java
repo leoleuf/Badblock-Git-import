@@ -514,7 +514,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		Player player = getPlayer(packet.getPlayerName().toLowerCase());
 		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
 		if (player == null) return;
-		System.out.println("set custom " + packet.getUuid().toString());
 		player.setCustomUUID(packet.getUuid());
 		if (!byName.containsValue(packet.getUuid()))
 			byName.put(player.getName(), packet.getUuid());

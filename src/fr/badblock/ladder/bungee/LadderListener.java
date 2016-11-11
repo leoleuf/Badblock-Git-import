@@ -108,10 +108,8 @@ public class LadderListener implements Listener {
 				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
 				uniqueId.setAccessible(true);
 				if (player.getCustomUUID() != null) {
-					System.out.println(player.getCustomUUID().toString());
 					uniqueId.set(pendingConnection, player.getCustomUUID());
-				}else 
-					System.out.println("null");
+				} 
 			}catch(Exception error) {
 				error.printStackTrace();
 			}
