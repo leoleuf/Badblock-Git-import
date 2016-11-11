@@ -463,7 +463,16 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getPlayerName());
 		ServerInfo    server  = getProxy().getServerInfo(packet.getServerName());
 		Player        lPlayer = players.get(packet.getPlayerName());
-
+		try {
+			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(lPlayer.getName());
+			PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
+			Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
+			uniqueId.setAccessible(true);
+			System.out.println(lPlayer.getUniqueId().toString());
+			uniqueId.set(pendingConnection, lPlayer.getUniqueId());
+		}catch(Exception error) {
+			error.printStackTrace();
+		}
 		if(server == null) return;
 
 		if(bPlayer != null){

@@ -48,7 +48,7 @@ public class LadderListener implements Listener {
 		if(LadderBungee.getInstance().getPlayer(e.getPlayer()) != null){
 			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
 			if (player == null || !player.isConnected()) {
-				LadderBungee.getInstance().getPlayers().remove(LadderBungee.getInstance().getPlayer(e.getPlayer()));
+				LadderBungee.getInstance().players.remove(LadderBungee.getInstance().getPlayer(e.getPlayer()));
 				LadderBungee.getInstance().byName.remove(e.getPlayer());
 			}
 			e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock !"), null);
