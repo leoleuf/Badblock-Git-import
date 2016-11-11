@@ -107,11 +107,11 @@ public class LadderListener implements Listener {
 				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
 				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
 				uniqueId.setAccessible(true);
-				UUID uuid = LadderBungee.getInstance().byName.get(e.getPlayer().getName().toLowerCase());
-				if (uuid != null) {
-					System.out.println(uuid.toString());
-					uniqueId.set(pendingConnection, uuid);
-				}
+				if (player.getCustomUUID() != null) {
+					System.out.println(player.getCustomUUID().toString());
+					uniqueId.set(pendingConnection, player.getCustomUUID());
+				}else 
+					System.out.println("null");
 			}catch(Exception error) {
 				error.printStackTrace();
 			}

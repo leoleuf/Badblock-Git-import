@@ -206,8 +206,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Override
 	public void handle(PacketPlayerChat chat) {
 		if(chat.getUser() != null){
-			Player player = players.get(chat.getUser());
-
+			Player player = this.getPlayer(chat.getUser());
+			System.out.println(player);
 			if(player != null)
 				player.handle(chat);
 		} else if(chat.getType() == ChatAction.MESSAGE_FLAT){
@@ -512,10 +512,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void handle(PacketPlayerNickSet packet) {
-		Player player = getPlayer(packet.getPlayerName());
+		Player player = getPlayer(packet.getPlayerName().toLowerCase());
 		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
 		if (player == null) return;
-		player.setUniqueId(packet.getUuid());
+		System.out.println("set custom " + packet.getUuid().toString());
+		player.setCustomUUID(packet.getUuid());
 		if (!byName.containsValue(packet.getUuid()))
 			byName.put(player.getName(), packet.getUuid());
 		player.setNickNamee(packet.getNickName());

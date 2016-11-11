@@ -39,6 +39,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 	private 	  JsonObject		  readOnlyData;
 	private		  PermissiblePlayer	  permissions;
 	private		  Punished			  punished;
+	private 	  UUID				  customUUID;
 
 	private		  Callback<Result>	  done;
 	
@@ -114,7 +115,7 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 
 	@SuppressWarnings("deprecation")
 	protected void handle(PacketPlayerChat chat){
-		ProxiedPlayer player = BungeeCord.getInstance().getPlayer(uniqueId);
+		ProxiedPlayer player = BungeeCord.getInstance().getPlayer(name);
 		if(player == null) return;
 
 		if(chat.getType() == ChatAction.MESSAGE_FLAT){
