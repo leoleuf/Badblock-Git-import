@@ -207,7 +207,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerChat chat) {
 		if(chat.getUser() != null){
 			Player player = this.getPlayer(chat.getUser());
-			System.out.println(player);
 			if(player != null)
 				player.handle(chat);
 		} else if(chat.getType() == ChatAction.MESSAGE_FLAT){
