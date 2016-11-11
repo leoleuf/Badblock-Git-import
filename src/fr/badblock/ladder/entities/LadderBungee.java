@@ -235,7 +235,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			for(Player player : Ladder.getInstance().getOnlinePlayers()){
 				sendPacket(new PacketPlayerJoin(player.getName(), CommonFilter.filterNames(player.getNickName()), player.getUniqueId(), player.getAddress()));
 				if(player.getBukkitServer() != null)
-					sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getBukkitServer().getName()));
+					sendPacket(new PacketPlayerPlace(player.getName(), player.getBukkitServer().getName()));
 			}
 			//if (Proxy.getInstance().getRabbitService() != null)
 			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
@@ -375,7 +375,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void handle(PacketPlayerPlace packet) {
-		Player player = Ladder.getInstance().getPlayer(packet.getUniqueId());
+		Player player = Ladder.getInstance().getPlayer(packet.getPlayerName());
 		if(player == null) return;
 
 		Bukkit current = player.getBukkitServer();
