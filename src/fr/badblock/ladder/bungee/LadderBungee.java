@@ -279,7 +279,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				getClient().sendPacket(join);
 
 				if(player.getServer() != null)
-					getClient().sendPacket(new PacketPlayerPlace(player.getUniqueId(), player.getServer().getInfo().getName()));
+					getClient().sendPacket(new PacketPlayerPlace(player.getName(), player.getServer().getInfo().getName()));
 			}
 		} else if(packet.getType() == DataType.SERVERS){
 			if(packet.getAction() == DataAction.SEND){
@@ -385,7 +385,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
-		if(players.containsKey(packet.getUniqueId()))
+		if(players.containsKey(packet.getPlayerName()))
 			return;
 
 		Player player = null;
@@ -437,7 +437,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			} else {
 				bPlayer.disconnect();
 			}
-		} else if(lPlayer.getUniqueId() != null)
+		} else if(lPlayer.getName() != null)
 			players.remove(lPlayer.getName());
 
 		byName.remove(lPlayer.getName().toLowerCase());
@@ -446,12 +446,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void handle(PacketPlayerPlace packet) {
-		if(!players.containsKey(packet.getUniqueId()))
+		if(!players.containsKey(packet.getPlayerName()))
 			return;
 
-		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getUniqueId());
+		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getPlayerName());
 		ServerInfo    server  = getProxy().getServerInfo(packet.getServerName());
-		Player        lPlayer = players.get(packet.getUniqueId());
+		Player        lPlayer = players.get(packet.getPlayerName());
 
 		if(server == null) return;
 

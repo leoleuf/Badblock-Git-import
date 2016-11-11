@@ -76,7 +76,7 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onQuit(LoginFailEvent e){
-		if(e.getHandler().getUniqueId() == null) return;
+		if(e.getHandler().getName() == null) return;
 
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName(), null);
 		LadderBungee.getInstance().handle(packet, true);
@@ -98,7 +98,7 @@ public class LadderListener implements Listener {
 			handler.getLoginRequest().setData(player.getNickNamee());
 		}
 		if(e.getPlayer().getServer() == null){
-			UUID uniqueId = e.getPlayer().getUniqueId();
+			String playerName = e.getPlayer().getName();
 			String server = e.getTarget().getName();
 
 			new Thread(){
@@ -118,7 +118,7 @@ public class LadderListener implements Listener {
 					} catch (InterruptedException e){
 						return;
 					} finally {		
-						LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(uniqueId, server));
+						LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(playerName, server));
 					}
 				}
 			}.start();
@@ -126,13 +126,13 @@ public class LadderListener implements Listener {
 			return;
 		}
 
-		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getUniqueId(), e.getTarget().getName()));
+		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getTarget().getName()));
 	}
 
 	@EventHandler
 	public void onFail(ServerConnectionFailEvent e){
 		if(!e.isKick()){
-			LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getUniqueId(), e.getFallback().getName()));
+			LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getFallback().getName()));
 		}
 	}
 
