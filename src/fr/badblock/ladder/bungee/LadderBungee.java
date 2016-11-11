@@ -73,7 +73,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private PermissionManager 	permissions;
 	@Getter private Motd			  	motd;
 
-	protected Map<UUID, Player>   		players;
+	protected Map<String, Player>   		players;
 	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
@@ -87,13 +87,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		return ips.get(player.getAddress().getAddress().getHostAddress());
 	}
 
-	public Player getPlayer(UUID uniqueId){
-		return players.get(uniqueId);
-	}
-
-	public Player getPlayer(String name){
-		UUID uniqueId = byName.get(name.toLowerCase());
-		return uniqueId != null ? getPlayer(uniqueId) : null;
+	public Player getPlayer(String pseudo) {
+		return players.get(pseudo);
 	}
 
 	public Collection<Player> getPlayers(){
@@ -400,7 +395,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			player.update(packet);
 		} else player = new Player(packet);
 
-		players.put(player.getUniqueId(), player);
+		players.put(player.getName(), player);
 		byName.put(player.getName().toLowerCase(), player.getUniqueId());
 	}
 
