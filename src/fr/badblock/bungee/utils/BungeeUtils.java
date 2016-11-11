@@ -38,10 +38,8 @@ public class BungeeUtils extends Plugin implements Listener{
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
 		ServerInfo lobbySkeleton = BungeeCord.getInstance().constructServerInfo("lobby", new InetSocketAddress("127.0.0.1", 8890), "lobbySkeleton", false);
 		BungeeCord.getInstance().getServers().put("lobby", lobbySkeleton);
-		new AdminBroadcastListener();
 		getProxy().getPluginManager().registerListener(this, this);
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
-		getProxy().getPluginManager().registerCommand(this, new AdminCommand());
 		getProxy().getPluginManager().registerCommand(this, new BUReloadCommand());
 		getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 		loadConfig();
