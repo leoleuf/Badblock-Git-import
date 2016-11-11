@@ -101,7 +101,7 @@ import lombok.Setter;
 	
 	@Override
 	public void connect(Bukkit server){
-		sendPacket(new PacketPlayerPlace(uniqueId, server.getName()));
+		sendPacket(new PacketPlayerPlace(getName(), server.getName()));
 	}
 
 	@Override
