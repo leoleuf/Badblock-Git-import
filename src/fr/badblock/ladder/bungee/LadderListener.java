@@ -1,5 +1,6 @@
 package fr.badblock.ladder.bungee;
 
+import java.lang.reflect.Field;
 import java.util.UUID;
 
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -19,6 +20,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
+import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
@@ -100,6 +102,16 @@ public class LadderListener implements Listener {
 	public void onServerSwitch(ServerConnectEvent e){
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
 		if (player != null) {
+			try {
+				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
+				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
+				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
+				uniqueId.setAccessible(true);
+				System.out.println(player.getUniqueId().toString());
+				uniqueId.set(pendingConnection, player.getUniqueId());
+			}catch(Exception error) {
+				error.printStackTrace();
+			}
 			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
 			handler.getLoginRequest().setData(player.getNickNamee());
 		}
