@@ -232,7 +232,7 @@ public class LadderListener implements Listener {
 			ip.checkEnd();
 			lPlayer.getPunished().checkEnd();
 
-			if(lPlayer != null && lPlayer.getPunished().isMute()){
+			if(lPlayer != null && (lPlayer.getPunished().isMute() && lPlayer.getPunished().getMuteEnd() > System.currentTimeMillis())){
 				if(!e.isCommand()){
 					e.setCancelled(true);
 					bPlayer.sendMessage(lPlayer.getPunished().buildMuteReason());
