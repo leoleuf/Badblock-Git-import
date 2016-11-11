@@ -89,6 +89,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Proxy extends Ladder {
+	
 	@Getter protected static Proxy instance;
 
 	public static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
@@ -149,7 +150,7 @@ public class Proxy extends Ladder {
 			@Override
 			public void run() {
 				if (Proxy.getInstance().getRabbitServiced() != null) {// en cas de désynchro
-					Proxy.getInstance().getRabbitServiced().sendAsyncPacket("ladder.playersupdate", Integer.toString(getLadderOnlineCount()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					Proxy.getInstance().getRabbitServiced().sendAsyncPacket("ladder.playersupdate", Integer.toString(getLadderOnlineCount()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 				}
 			}
 		}, 100, 100);
