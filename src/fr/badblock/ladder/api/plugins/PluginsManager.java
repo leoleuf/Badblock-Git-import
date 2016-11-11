@@ -295,11 +295,11 @@ public class PluginsManager {
 		if(sender instanceof Player){
 			CommandEvent event = new CommandEvent((Player) sender, command);
 			dispatchEvent(event);
-			
+
 			if(event.isCancelled()) return false;
 			command = event.getMessage();
 		}
-		
+
 		String[] args = command.split(" ");
 		
 		if(args.length == 0)
