@@ -107,7 +107,7 @@ public class LadderListener implements Listener {
 					try {
 						int i = 0;
 
-						while(LadderBungee.getInstance().getPlayer(uniqueId) == null){
+						while(LadderBungee.getInstance().getPlayer(player.getName()) == null){
 							Thread.sleep(2L);
 							i++;
 
@@ -180,7 +180,7 @@ public class LadderListener implements Listener {
 	public void onPermissionCheck(PermissionCheckEvent e){
 		if(e.getSender() instanceof ProxiedPlayer) {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
-			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getUniqueId());
+			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName());
 
 			if(lPlayer != null && lPlayer.getPermissions() != null){
 				e.setHasPermission(lPlayer.getPermissions().hasPermission(new Permission(e.getPermission())));
@@ -200,7 +200,7 @@ public class LadderListener implements Listener {
 				bPlayer.disconnect();
 			}
 
-			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getUniqueId());
+			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName());
 
 			if(lPlayer == null){
 				e.getSender().disconnect(); return;
