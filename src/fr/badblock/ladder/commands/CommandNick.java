@@ -34,7 +34,7 @@ public class CommandNick extends Command {
 			player.setNickName(player.getName());
 			player.sendToBungee("nickName");
 			player.saveData();
-			player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
+			player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), CommonFilter.filterNames(player.getNickName())));
 			sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé votre surnom !");
 			sender.sendMessage(ChatColor.GREEN + "Reconnectez-vous afin de voir un changement.");
 			return;
@@ -54,7 +54,7 @@ public class CommandNick extends Command {
 		player.setNickName(args[0]);
 		player.sendToBungee("nickName");
 		player.saveData();
-		player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
+		player.getBungeeServer().sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), CommonFilter.filterNames(player.getNickName())));
 		sender.sendMessage(ChatColor.GREEN + "Vous avez changé votre surnom en " + ChatColor.YELLOW + args[0] + ChatColor.GREEN + " !");
 		sender.sendMessage(ChatColor.GREEN + "Reconnectez-vous afin de voir un changement.");
 	}
