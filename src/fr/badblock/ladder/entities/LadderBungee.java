@@ -290,6 +290,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 		} else {
 			loginPlayer.put(player.getName().toLowerCase(), player);
 			sendPacket(new PacketPlayerNickSet(player.getName(), CommonFilter.filterNames(player.getNickName())));
+			sendPacket(new PacketPlayerJoin(player.getName(), CommonFilter.filterNames(player.getNickName()), player.getUniqueId(), player.getAddress()));
 			sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
 			sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
 			//if (Proxy.getInstance().getRabbitService() != null)
