@@ -32,7 +32,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Getter private 		String				loginPassword;
 	@Getter private			UUID				uniqueId;
-	
+
 	public Punished getPunished(){
 		punished.checkEnd();
 		return punished;
@@ -51,26 +51,33 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 				address = InetAddress.getByName(getData().get("lastIp").getAsString());
 			} catch (UnknownHostException unused){}
 
-
+		boolean mustBeUpdated = false;
 		uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
-		if (!getData().has("uniqueId"))
+		if (!getData().has("uniqueId")) {
 			getData().addProperty("uniqueId", uniqueId.toString());
+			mustBeUpdated = true;
+		}
 		else uniqueId = UUID.fromString(getData().get("uniqueId").getAsString());
-		if (!getData().has("name"))
+		if (!getData().has("name")) {
 			getData().addProperty("name", name);
+			mustBeUpdated = true;
+		}
 		if (!this.name.equals(this.getNickName()))
 			Proxy.getInstance().getOfflineCachePlayers().put(this.getNickName(), this);
-		if (!getData().has("loginPassword"))
+		if (!getData().has("loginPassword")) {
 			getData().addProperty("loginPassword", "");
+			mustBeUpdated = true;
+		}
 
 		this.lastAddress  = address;
 		this.permissions  = Proxy.getInstance().getPermissions().createPlayer(name, getData());
 		this.punished     = Punished.fromJson(getData());
 
 		Proxy.getInstance().getIpData(address);
-		
+
 		savePunishions();
-		this.saveData();
+		if (mustBeUpdated)
+			this.saveData();
 	}
 
 	@Override
@@ -149,5 +156,5 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		getData().addProperty("uniqueId", uniqueId);
 		saveData();
 	}
-	
+
 }
