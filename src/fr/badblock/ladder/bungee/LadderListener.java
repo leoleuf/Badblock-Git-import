@@ -14,6 +14,7 @@ import fr.badblock.skins.SkinFactoryBungee;
 import fr.badblock.skins.format.SkinProfile;
 import fr.badblock.skins.storage.SkinStorage;
 import fr.badblock.skins.utils.SkinFetchUtils.SkinFetchFailedException;
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
@@ -45,6 +46,11 @@ public class LadderListener implements Listener {
 		}
 
 		if(LadderBungee.getInstance().getPlayer(e.getPlayer()) != null){
+			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
+			if (player == null || !player.isConnected()) {
+				LadderBungee.getInstance().getPlayers().remove(LadderBungee.getInstance().getPlayer(e.getPlayer()));
+				LadderBungee.getInstance().byName.remove(e.getPlayer());
+			}
 			e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock !"), null);
 			return;
 		}
