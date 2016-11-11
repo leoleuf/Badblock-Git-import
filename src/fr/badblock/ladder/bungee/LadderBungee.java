@@ -430,7 +430,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 
 		if(bPlayer != null && !kick){
-			players.remove(bPlayer.getUniqueId());
+			players.remove(bPlayer.getName());
 
 			if(packet.getReason() != null){
 				bPlayer.disconnect(StringUtils.join(packet.getReason(), "\\n"));
@@ -438,7 +438,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				bPlayer.disconnect();
 			}
 		} else if(lPlayer.getUniqueId() != null)
-			players.remove(lPlayer.getUniqueId());
+			players.remove(lPlayer.getName());
 
 		byName.remove(lPlayer.getName().toLowerCase());
 		playersTemp.remove(lPlayer.getName().toLowerCase());
