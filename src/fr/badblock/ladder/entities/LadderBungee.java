@@ -255,7 +255,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 		}
 
 		if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getBungeeOnlineCount() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
-			player.disconnect("&cLe serveur est plein, veuillez réessayer dans quelques instants !");
+			player.disconnect("§cLe serveur est plein, l'accès est réservé aux VIP.");
 		}
 
 		// Récupération des points boutique
