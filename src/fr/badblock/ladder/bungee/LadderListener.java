@@ -39,7 +39,7 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 public class LadderListener implements Listener {
-	
+
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
 		if(e.getPlayer().contains("/")){
@@ -68,9 +68,9 @@ public class LadderListener implements Listener {
 		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), player == null ? e.getPlayer().getName() : player.getNickNamee(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
-		
+
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName().toLowerCase());
-		
+
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -107,8 +107,11 @@ public class LadderListener implements Listener {
 				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
 				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
 				uniqueId.setAccessible(true);
-				System.out.println(player.getUniqueId().toString());
-				uniqueId.set(pendingConnection, player.getUniqueId());
+				UUID uuid = LadderBungee.getInstance().byName.get(e.getPlayer().getName().toLowerCase());
+				if (uuid != null) {
+					System.out.println(uuid.toString());
+					uniqueId.set(pendingConnection, uuid);
+				}
 			}catch(Exception error) {
 				error.printStackTrace();
 			}
@@ -186,7 +189,7 @@ public class LadderListener implements Listener {
 			motdString[1] = LadderBungee.getInstance().fullMotd;
 		}
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motdString, " ")));
-		
+
 		reply.setFavicon(old.getFaviconObject());
 		reply.setVersion(new ServerPing.Protocol(motd.getVersion(), old.getVersion().getProtocol()));
 

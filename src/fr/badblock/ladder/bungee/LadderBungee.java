@@ -395,16 +395,23 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		if(falsePacket && playersTemp.containsKey(packet.getPlayerName().toLowerCase())){
 			player = playersTemp.remove(packet.getPlayerName().toLowerCase());
 			player.update(packet);
+		} else player = new Player(packet);
+		if (!falsePacket) {
 			try {
 				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
-				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
-				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
-				uniqueId.setAccessible(true);
-				uniqueId.set(pendingConnection, packet.getUniqueId());
+				if (proxiedPlayer != null) {
+					PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
+					if (pendingConnection != null) {
+						Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
+						uniqueId.setAccessible(true);
+						System.out.println("ok " + packet.getUniqueId().toString());
+						uniqueId.set(pendingConnection, packet.getUniqueId());
+					}
+				}
 			}catch(Exception error) {
 				error.printStackTrace();
 			}
-		} else player = new Player(packet);
+		}
 
 		players.put(player.getName(), player);
 		byName.put(player.getName().toLowerCase(), player.getUniqueId());
