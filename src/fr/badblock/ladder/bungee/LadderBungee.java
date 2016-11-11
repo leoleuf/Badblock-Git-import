@@ -2,6 +2,7 @@ package fr.badblock.ladder.bungee;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -55,6 +56,7 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -393,6 +395,15 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		if(falsePacket && playersTemp.containsKey(packet.getPlayerName().toLowerCase())){
 			player = playersTemp.remove(packet.getPlayerName().toLowerCase());
 			player.update(packet);
+			try {
+				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
+				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
+				Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
+				uniqueId.setAccessible(true);
+				uniqueId.set(pendingConnection, packet.getUniqueId());
+			}catch(Exception error) {
+				error.printStackTrace();
+			}
 		} else player = new Player(packet);
 
 		players.put(player.getName(), player);
