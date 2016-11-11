@@ -250,7 +250,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 		PlayerJoinEvent event  = new PlayerJoinEvent(player, this);
 
 		if(Ladder.getInstance().getPlayer(player.getUniqueId()) != null || Ladder.getInstance().getPlayer(packet.getPlayerName()) != null) {
-			player.disconnect(ChatColor.RED + "Vous êtes déjà connecté sur BadBlock !");
+			player.disconnect(ChatColor.RED + "Vous êtes déjà connecté sur BadBlock.");
 			return;
 		}
 
