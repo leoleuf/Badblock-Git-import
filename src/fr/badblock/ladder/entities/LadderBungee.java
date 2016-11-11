@@ -141,6 +141,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			} else broadcastOthers(packet);
 		} else {
 			Player player = Ladder.getInstance().getPlayer(packet.getUser());
+			System.out.println(packet.getUser() + " / " + player + " / " + packet.getType());
 			if(player != null){
 				if(packet.getType() == ChatAction.LADDER_COMMAND){
 					for(String command : packet.getMessages()){
