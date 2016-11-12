@@ -24,7 +24,7 @@ public class CommandChatStaff extends Command {
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
 		String message = "§6§l[CS] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + StringUtils.join(args, " ");
 		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
-			if(plo.hasPermission("ladder.command.chatstaff"))
+			if(plo.getBukkitServer() != null && plo.getBukkitServer().getName() != null && !plo.getBukkitServer().getName().startsWith("login") && plo.hasPermission("ladder.command.chatstaff"))
 				plo.sendMessage(message);
 		}
 	}
