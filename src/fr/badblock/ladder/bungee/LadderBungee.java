@@ -254,7 +254,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				Player player = getPlayer(packet.getKey());
 
 				if(player == null)
-					player = playersTemp.get(packet.getKey().toLowerCase());
+					player = playersTemp.get(packet.getKey());
 
 				if(player != null) player.receiveData(packet.getData());
 			} else if(packet.getAction() == DataAction.MODIFICATION){
@@ -272,7 +272,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		} else if(packet.getType() == DataType.PLAYERS && packet.getAction() == DataAction.REQUEST){
 			for(ProxiedPlayer player : getProxy().getPlayers()){
 				Player ployer = getPlayer(player.getName());
-				if (ployer == null) ployer = LadderBungee.getInstance().playersTemp.get(player.getName().toLowerCase());
+				if (ployer == null) ployer = LadderBungee.getInstance().playersTemp.get(player.getName());
 				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickNamee(), player.getUniqueId(), player.getAddress());
 
 				handle(join);
@@ -391,8 +391,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 		Player player = null;
 
-		if(falsePacket && playersTemp.containsKey(packet.getPlayerName().toLowerCase())){
-			player = playersTemp.remove(packet.getPlayerName().toLowerCase());
+		if(falsePacket && playersTemp.containsKey(packet.getPlayerName())){
+			player = playersTemp.remove(packet.getPlayerName());
 			player.update(packet);
 		} else player = new Player(packet);
 		if (!falsePacket) {
@@ -403,7 +403,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 					if (pendingConnection != null) {
 						Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
 						uniqueId.setAccessible(true);
-						System.out.println("ok " + packet.getUniqueId().toString());
 						uniqueId.set(pendingConnection, packet.getUniqueId());
 					}
 				}
@@ -413,7 +412,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 
 		players.put(player.getName(), player);
-		byName.put(player.getName().toLowerCase(), player.getUniqueId());
+		byName.put(player.getName(), player.getUniqueId());
 	}
 
 	private Map<String, Player> playersTemp = Maps.newConcurrentMap();
@@ -421,8 +420,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
 		if(byName.containsKey(packet.getPlayerName()))
 			return;
-
-		playersTemp.put(packet.getPlayerName().toLowerCase(), new Player(packet, done));
+		playersTemp.put(packet.getPlayerName(), new Player(packet, done));
 	}
 
 	@Override
@@ -431,13 +429,13 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerQuit packet, boolean kick) {
-		if(!byName.containsKey(packet.getUserName().toLowerCase()) && !playersTemp.containsKey(packet.getUserName().toLowerCase()))
+		if(!byName.containsKey(packet.getUserName()) && !playersTemp.containsKey(packet.getUserName()))
 			return;
 		Player		  lPlayer = getPlayer(packet.getUserName());
 		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getUserName());
 
 		if(lPlayer == null){
-			lPlayer = playersTemp.get(packet.getUserName().toLowerCase());
+			lPlayer = playersTemp.get(packet.getUserName());
 		}
 
 		if(lPlayer.getDone() != null){
@@ -454,11 +452,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			} else {
 				bPlayer.disconnect();
 			}
-		} else if(lPlayer.getName() != null)
+		} else if(lPlayer.getName() != null) {
 			players.remove(lPlayer.getName());
+		}
 
-		byName.remove(lPlayer.getName().toLowerCase());
-		playersTemp.remove(lPlayer.getName().toLowerCase());
+		byName.remove(lPlayer.getName());
+		playersTemp.remove(lPlayer.getName());
 	}
 
 	@Override
@@ -511,8 +510,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void handle(PacketPlayerNickSet packet) {
-		Player player = getPlayer(packet.getPlayerName().toLowerCase());
-		if (player == null) player = playersTemp.get(packet.getPlayerName().toLowerCase());
+		Player player = getPlayer(packet.getPlayerName());
+		if (player == null) player = playersTemp.get(packet.getPlayerName());
 		if (player == null) return;
 		player.setCustomUUID(packet.getUuid());
 		if (!byName.containsValue(packet.getUuid()))

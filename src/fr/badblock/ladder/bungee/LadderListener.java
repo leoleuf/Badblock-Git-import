@@ -1,6 +1,5 @@
 package fr.badblock.ladder.bungee;
 
-import java.lang.reflect.Field;
 import java.util.UUID;
 
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -20,7 +19,6 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
-import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
@@ -34,7 +32,6 @@ import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
@@ -51,15 +48,12 @@ public class LadderListener implements Listener {
 			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
 			if (player == null || !player.isConnected()) {
 				LadderBungee.getInstance().players.remove(e.getPlayer());
-				LadderBungee.getInstance().players.remove(e.getPlayer().toLowerCase());
 				LadderBungee.getInstance().byName.remove(e.getPlayer());
-				LadderBungee.getInstance().byName.remove(e.getPlayer().toLowerCase());
 			}else{
 				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock!"), null);
 			}
 			return;
 		}
-		System.out.println("AsyncDataLoadRequest");
 		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
 		LadderBungee.getInstance().handle(packet, e.getDone());
 		LadderBungee.getInstance().getClient().sendPacket(packet);
@@ -67,13 +61,12 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PostLoginEvent e){
-		System.out.println("PostLoginEvent");
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
 		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), player == null ? e.getPlayer().getName() : player.getNickNamee(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
-		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName().toLowerCase());
+		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
 
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
@@ -88,8 +81,6 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onQuit(LoginFailEvent e){
-		System.out.println("LoginFailEvent");
-
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName(), null);
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
@@ -97,7 +88,6 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onQuit(PlayerDisconnectEvent e){
-		System.out.println("PlayerDisconnectEvent");
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getPlayer().getName(), null);
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
@@ -105,9 +95,8 @@ public class LadderListener implements Listener {
 
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
-		System.out.println("ServerConnectEvent");
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
-		if (player != null) {
+		/*if (player != null) {
 			try {
 				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
 				PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
@@ -121,7 +110,7 @@ public class LadderListener implements Listener {
 			}
 			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
 			handler.getLoginRequest().setData(player.getNickNamee());
-		}
+		}*/
 		if(e.getPlayer().getServer() == null){
 			String playerName = e.getPlayer().getName();
 			String server = e.getTarget().getName();
@@ -156,7 +145,6 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onFail(ServerConnectionFailEvent e){
-		System.out.println("ServerConnectionFailEvent");
 		if(!e.isKick()){
 			LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getFallback().getName()));
 		}
