@@ -19,13 +19,28 @@ public class CommandChatStaff extends Command {
 			sender.sendMessage(ChatColor.RED + "Veuillez préciser le message !");
 			return;
 		}
+		
 		if (!(sender instanceof Player)) return;
 		Player player = (Player) sender;
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
 		String message = "§6§l[CS] §r" + ChatColor.translateAlternateColorCodes('&', permissiblePlayer.getDisplayName()) + "§7 » §e" + StringUtils.join(args, " ");
+		
 		for(Player plo : Ladder.getInstance().getOnlinePlayers()){
-			if(plo.getBukkitServer() != null && plo.getBukkitServer().getName() != null && !plo.getBukkitServer().getName().startsWith("login") && plo.hasPermission("ladder.command.chatstaff"))
+			if(canReceiveMessage(plo, "chatstaff"))
 				plo.sendMessage(message);
 		}
+	}
+	
+	public static boolean canReceiveMessage(Player player, String type){
+		if(player.getBukkitServer() == null)
+			return false;
+		
+		if(player.getBukkitServer().getName() == null)
+			return false;
+		
+		if(player.getBukkitServer().getName().startsWith("login"))
+			return false;
+		
+		return player.hasPermission("ladder.command." + type);
 	}
 }
