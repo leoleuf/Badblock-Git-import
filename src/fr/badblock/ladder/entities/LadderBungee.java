@@ -246,6 +246,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void handle(PacketPlayerLogin packet) {
+		System.out.println("PacketPlayerLogin");
 		LadderPlayer    player = new LadderPlayer(this, packet);
 		PlayerJoinEvent event  = new PlayerJoinEvent(player, this);
 
