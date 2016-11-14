@@ -84,7 +84,6 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onPreLogin(PreLoginEvent event) {
-		LadderBungee.getInstance().uuids.put(event.getConnection().getName(), event.getConnection().getUniqueId());
 	}
 	
 	@EventHandler
