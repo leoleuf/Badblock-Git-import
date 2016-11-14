@@ -69,8 +69,10 @@ public class LadderListener implements Listener {
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
-		if (!LadderBungee.getInstance().uuids.containsKey(e.getPlayer().getName().toLowerCase()))
+		if (!LadderBungee.getInstance().uuids.containsKey(e.getPlayer().getName().toLowerCase())) {
+			System.out.println(e.getPlayer().getUniqueId().toString());
 			LadderBungee.getInstance().uuids.put(e.getPlayer().getName().toLowerCase(), e.getPlayer().getUniqueId());		
+		}
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {

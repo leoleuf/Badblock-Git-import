@@ -402,6 +402,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
 				if (proxiedPlayer != null) {
 					LadderBungee.getInstance().uuids.put(proxiedPlayer.getName().toLowerCase(), proxiedPlayer.getUniqueId());
+					System.out.println(proxiedPlayer.getUniqueId().toString());
 					PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
 					if (pendingConnection != null) {
 						Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
