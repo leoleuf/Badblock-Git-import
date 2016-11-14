@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.UUID;
 
 import fr.badblock.ladder.bungee.LadderBungee;
 import fr.badblock.skins.format.SkinProfile;
@@ -39,8 +40,13 @@ public class SkinFactoryBungee {
 		}
 		return null;
 	}
+	
 	//Apply the skin to the player.
-	public void applySkin(final ProxiedPlayer player){
+	public void applySkin(ProxiedPlayer player) {
+		applySkin(player, player.getUniqueId());
+	}
+	
+	public void applySkin(final ProxiedPlayer player, final UUID uuid){
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -54,7 +60,7 @@ public class SkinFactoryBungee {
 							Property textures = new Property(property.getName(), property.getValue(), property.getSignature());
 							InitialHandler handler = (InitialHandler) player.getPendingConnection();
 
-							LoginResult profile = new LoginResult(player.getUniqueId().toString(), new Property[] { textures });
+							LoginResult profile = new LoginResult(uuid.toString(), new Property[] { textures });
 							Property[] present = profile.getProperties();
 							Property[] newprops = new Property[present.length + 1];
 							System.arraycopy(present, 0, newprops, 0, present.length);
