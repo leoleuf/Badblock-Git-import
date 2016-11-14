@@ -38,6 +38,9 @@ public class CommandChatStaff extends Command {
 		if(player.getBukkitServer().getName() == null)
 			return false;
 		
+		if(player.getBukkitServer().getName().isEmpty())
+			return false;
+		
 		if(player.getBukkitServer().getName().startsWith("login"))
 			return false;
 		
