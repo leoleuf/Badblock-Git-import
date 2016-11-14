@@ -69,7 +69,8 @@ public class LadderListener implements Listener {
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
-		LadderBungee.getInstance().uuids.put(e.getPlayer().getName(), e.getPlayer().getUniqueId());
+		if (!LadderBungee.getInstance().uuids.containsKey(e.getPlayer().getName().toLowerCase()))
+			LadderBungee.getInstance().uuids.put(e.getPlayer().getName().toLowerCase(), e.getPlayer().getUniqueId());		
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -80,7 +81,7 @@ public class LadderListener implements Listener {
 			}
 		});
 	}
-	
+
 	@EventHandler
 	public void onQuit(LoginFailEvent e){
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName(), null);
