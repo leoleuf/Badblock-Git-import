@@ -75,8 +75,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private PermissionManager 	permissions;
 	@Getter private Motd			  	motd;
 
-	protected Map<String, Player>   		players;
+	protected Map<String, Player>   	players;
 	public int							ladderPlayers = 0;
+	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
 	public    RabbitService				rabbitService;
@@ -119,6 +120,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 		try {
 			loadConfig();
+			uuids	= Maps.newConcurrentMap();
 			players = Maps.newConcurrentMap();
 			byName  = Maps.newConcurrentMap();
 			ips		= Maps.newConcurrentMap();

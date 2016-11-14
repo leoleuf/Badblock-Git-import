@@ -46,8 +46,8 @@ public class LadderListener implements Listener {
 			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 			return;
 		}
-
-		if(LadderBungee.getInstance().getPlayer(e.getPlayer()) != null){
+		LadderBungee.getInstance().uuids.put(e.getPlayer().toLowerCase(), e.getHandler().getUniqueId());
+		if (LadderBungee.getInstance().getPlayer(e.getPlayer()) != null) {
 			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
 			if (player == null || !player.isConnected()) {
 				LadderBungee.getInstance().players.remove(e.getPlayer());
@@ -76,7 +76,7 @@ public class LadderListener implements Listener {
 			public void run() {
 				try {
 					skinprofile.attemptUpdateBungee();
-					SkinFactoryBungee.getFactory().applySkin(e.getPlayer());
+					SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(player.getName().toLowerCase()));
 				} catch (SkinFetchFailedException e){}
 			}
 		});
@@ -114,7 +114,7 @@ public class LadderListener implements Listener {
 					public void run() {
 						try {
 							skinprofile.attemptUpdateBungee();
-							SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), player.getCustomUUID());
+							SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(player.getName().toLowerCase()));
 						} catch (SkinFetchFailedException e){}
 					}
 				});
