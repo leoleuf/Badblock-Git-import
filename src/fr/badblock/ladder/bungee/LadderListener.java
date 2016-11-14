@@ -29,6 +29,7 @@ import net.md_5.bungee.api.event.LoginFailEvent;
 import net.md_5.bungee.api.event.PermissionCheckEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
@@ -46,7 +47,6 @@ public class LadderListener implements Listener {
 			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 			return;
 		}
-		LadderBungee.getInstance().uuids.put(e.getPlayer().toLowerCase(), e.getHandler().getUniqueId());
 		if (LadderBungee.getInstance().getPlayer(e.getPlayer()) != null) {
 			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
 			if (player == null || !player.isConnected()) {
@@ -82,6 +82,11 @@ public class LadderListener implements Listener {
 		});
 	}
 
+	@EventHandler
+	public void onPreLogin(PreLoginEvent event) {
+		LadderBungee.getInstance().uuids.put(event.getConnection().getName(), event.getConnection().getUniqueId());
+	}
+	
 	@EventHandler
 	public void onQuit(LoginFailEvent e){
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName(), null);
