@@ -29,7 +29,6 @@ import net.md_5.bungee.api.event.LoginFailEvent;
 import net.md_5.bungee.api.event.PermissionCheckEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
-import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
@@ -70,7 +69,7 @@ public class LadderListener implements Listener {
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
-
+		LadderBungee.getInstance().uuids.put(e.getPlayer().getName(), e.getPlayer().getUniqueId());
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
 			@Override
 			public void run() {
@@ -80,10 +79,6 @@ public class LadderListener implements Listener {
 				} catch (SkinFetchFailedException e){}
 			}
 		});
-	}
-
-	@EventHandler
-	public void onPreLogin(PreLoginEvent event) {
 	}
 	
 	@EventHandler
