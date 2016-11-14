@@ -78,7 +78,7 @@ public class LadderListener implements Listener {
 			public void run() {
 				try {
 					skinprofile.attemptUpdateBungee();
-					SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(player.getName().toLowerCase()));
+					SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(e.getPlayer().getName().toLowerCase()));
 				} catch (SkinFetchFailedException e){}
 			}
 		});
