@@ -421,10 +421,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 		}
 		
-		if (connectPlayers.size() < players.size()) {
-			connectPlayers.add(player.getName());
-		}
-
 		players.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
 	}
@@ -470,10 +466,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			players.remove(lPlayer.getName());
 		}
 		
-		while (connectPlayers.size() > players.size()) {
-			connectPlayers.remove(lPlayer.getName());
-		}
-
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());
 	}
