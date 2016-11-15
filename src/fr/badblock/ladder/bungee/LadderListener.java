@@ -184,14 +184,14 @@ public class LadderListener implements Listener {
 		if(motd == null)
 			return;
 
-		PlayerInfo[]   sample = new PlayerInfo[LadderBungee.getInstance().getPlayers().size()];
+		PlayerInfo[]   sample = new PlayerInfo[LadderBungee.getInstance().getConnectPlayers().size()];
 		String[] arr = new String[LadderBungee.getInstance().getConnectPlayers().size()];
 		arr = LadderBungee.getInstance().getConnectPlayers().toArray(arr);
 		for(int i=0;i<sample.length;i++){
 			if (arr[i] == null) sample[i] = new PlayerInfo(UUID.randomUUID().toString(), UUID.randomUUID());
 			else sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', arr[i]), UUID.randomUUID());
 		}
-
+		System.out.println("[LadderBungee] DEBUG: (REAL: " + sample.length + " | DISPLAY: " + LadderBungee.getInstance().ladderPlayers + ")");
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));
 		String[] motdString = motd.getMotd().clone();
