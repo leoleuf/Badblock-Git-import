@@ -76,6 +76,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	players;
+	public	  List<String>   			connectPlayers = new ArrayList<>();
 	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
@@ -96,6 +97,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	public Collection<Player> getPlayers(){
 		return Collections.unmodifiableCollection(players.values());
+	}
+	
+	public Collection<String> getConnectPlayers(){
+		return Collections.unmodifiableCollection(connectPlayers);
 	}
 
 	public void loadConfig() {

@@ -27,7 +27,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class SkinFetchUtils {
 
-	public static SkinProfile fetchSkinProfile(String name, UUID uuid) throws SkinFetchFailedException {
+	public static SkinProfile fetchSkinsProfile(String name, UUID uuid) throws SkinFetchFailedException {
 		
 		try {
 			if (uuid != null) {

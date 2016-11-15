@@ -1,7 +1,6 @@
 package fr.badblock.ladder.bungee;
 
 import java.lang.reflect.Field;
-import java.util.UUID;
 
 import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
@@ -70,7 +69,6 @@ public class LadderListener implements Listener {
 
 		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
 		if (!LadderBungee.getInstance().uuids.containsKey(e.getPlayer().getName().toLowerCase())) {
-			System.out.println(e.getPlayer().getUniqueId().toString());
 			LadderBungee.getInstance().uuids.put(e.getPlayer().getName().toLowerCase(), e.getPlayer().getUniqueId());		
 		}
 		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
@@ -116,7 +114,7 @@ public class LadderListener implements Listener {
 					public void run() {
 						try {
 							skinprofile.attemptUpdateBungee();
-							SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(player.getName().toLowerCase()));
+							SkinFactoryBungee.getFactory().applySkin(e.getPlayer());
 						} catch (SkinFetchFailedException e){}
 					}
 				});
@@ -184,13 +182,8 @@ public class LadderListener implements Listener {
 		if(motd == null)
 			return;
 
-		PlayerInfo[]   sample = new PlayerInfo[motd.getPlayers().length];
-
-		for(int i=0;i<sample.length;i++){
-			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
-		}
-
-		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
+		PlayerInfo[] string = new PlayerInfo[] {};
+		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, string));
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));
 		String[] motdString = motd.getMotd().clone();
 		if (LadderBungee.getInstance().ladderPlayers >= motd.getMaxPlayers()) {

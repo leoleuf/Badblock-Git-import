@@ -63,7 +63,7 @@ public class SkinProfile implements Cloneable {
 			return;
 		}
 				try {
-					SkinProfile newskinprofile = SkinFetchUtils.fetchSkinProfile(profile.getName(), UUIDUtil.fromDashlessString(profile.getId()));
+					SkinProfile newskinprofile = SkinFetchUtils.fetchSkinsProfile(profile.getName(), UUIDUtil.fromDashlessString(profile.getId()));
 					timestamp = System.currentTimeMillis();
 					profile = newskinprofile.profile;
 					skin = newskinprofile.skin;
@@ -83,7 +83,7 @@ public class SkinProfile implements Cloneable {
 			return;
 		}
 				try {
-					SkinProfile newskinprofile = SkinFetchUtils.fetchSkinProfile(profile.getName(), UUIDUtil.fromDashlessString(profile.getId()));
+					SkinProfile newskinprofile = SkinFetchUtils.fetchSkinsProfile(profile.getName(), UUIDUtil.fromDashlessString(profile.getId()));
 					timestamp = System.currentTimeMillis();
 					profile = newskinprofile.profile;
 					skin = newskinprofile.skin;

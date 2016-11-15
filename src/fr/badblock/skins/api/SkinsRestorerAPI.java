@@ -4,7 +4,6 @@ import fr.badblock.skins.format.SkinProfile;
 import fr.badblock.skins.storage.SkinStorage;
 import fr.badblock.skins.utils.SkinFetchUtils;
 import fr.badblock.skins.utils.SkinFetchUtils.SkinFetchFailedException;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 public class SkinsRestorerAPI {
 	/**
@@ -12,7 +11,7 @@ public class SkinsRestorerAPI {
 	 * <p>
 	 */
 	   public static void setSkin(final String playerName, final String skinName) throws SkinFetchFailedException{
-			SkinProfile skinprofile = SkinFetchUtils.fetchSkinProfile(skinName, null);
+			SkinProfile skinprofile = SkinFetchUtils.fetchSkinsProfile(skinName, null);
 			SkinStorage.getInstance().setSkinData(playerName, skinprofile);
 	   }
 	   
@@ -46,7 +45,7 @@ public class SkinsRestorerAPI {
         * This method can be used on
         * Bungeecord side only!
         */
-       public static void applySkinBungee(ProxiedPlayer player){
+       /*public static void applySkinBungee(ProxiedPlayer player){
     	   	//SkinFactoryBungee.getFactory().applySkin(player);
-       }
+       }*/
 }

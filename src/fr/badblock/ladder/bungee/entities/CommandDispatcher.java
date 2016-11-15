@@ -43,7 +43,7 @@ public class CommandDispatcher extends Command implements TabExecutor {
 
 	@Override
 	public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-		if(args.length == 0){
+		if(args.length == 0 || !sender.hasPermission("tab")){
 			return ImmutableSet.of();
 		}
 
