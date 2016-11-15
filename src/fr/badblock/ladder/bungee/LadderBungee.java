@@ -7,6 +7,7 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -76,7 +77,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	players;
-	public	  List<String>   			connectPlayers = new ArrayList<>();
+	public	  HashSet<String>   		connectPlayers = new HashSet<>();
 	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
@@ -419,6 +420,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				error.printStackTrace();
 			}
 		}
+		
+		if (connectPlayers.size() < players.size()) {
+			connectPlayers.add(player.getName());
+		}
 
 		players.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
@@ -463,6 +468,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 		} else if(lPlayer.getName() != null) {
 			players.remove(lPlayer.getName());
+		}
+		
+		while (connectPlayers.size() > players.size()) {
+			connectPlayers.remove(lPlayer.getName());
 		}
 
 		byName.remove(lPlayer.getName());
