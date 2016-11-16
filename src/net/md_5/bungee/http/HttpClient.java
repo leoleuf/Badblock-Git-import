@@ -72,7 +72,8 @@ public class HttpClient
 
         ChannelFutureListener future = new ChannelFutureListener()
         {
-            @Override
+            @SuppressWarnings("deprecation")
+			@Override
             public void operationComplete(ChannelFuture future) throws Exception
             {
                 if ( future.isSuccess() )

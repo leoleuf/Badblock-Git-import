@@ -30,13 +30,14 @@ public class HttpHandler extends SimpleChannelInboundHandler<HttpObject>
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception
     {
         if ( msg instanceof HttpResponse )
         {
             HttpResponse response = (HttpResponse) msg;
-            int responseCode = response.getStatus().code();
+			int responseCode = response.getStatus().code();
 
             if ( responseCode == HttpResponseStatus.NO_CONTENT.code() )
             {
