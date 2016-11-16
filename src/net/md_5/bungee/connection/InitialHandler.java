@@ -544,6 +544,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     @Override
     public void disconnect(final BaseComponent... reason)
     {
+    	for (StackTraceElement stackTraceElement : Thread.currentThread().getStackTrace())
+    		System.out.println(stackTraceElement.toString());
         ch.delayedClose( new Runnable()
         {
 
