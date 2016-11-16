@@ -76,7 +76,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private PermissionManager 	permissions;
 	@Getter private Motd			  	motd;
 
-	protected Map<String, Player>   	players;
+	protected Map<String, Player>   	playerList;
 	public	  HashSet<String>   		connectPlayers = new HashSet<>();
 	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		uuids;
@@ -93,11 +93,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public Player getPlayer(String pseudo) {
-		return players.get(pseudo);
+		return playerList.get(pseudo);
 	}
 
-	public Collection<Player> getPlayers(){
-		return Collections.unmodifiableCollection(players.values());
+	public Collection<Player> getPlayerList(){
+		return Collections.unmodifiableCollection(playerList.values());
 	}
 	
 	public Collection<String> getConnectPlayers(){
@@ -127,7 +127,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		try {
 			loadConfig();
 			uuids	= Maps.newConcurrentMap();
-			players = Maps.newConcurrentMap();
+			playerList = Maps.newConcurrentMap();
 			byName  = Maps.newConcurrentMap();
 			ips		= Maps.newConcurrentMap();
 
@@ -186,7 +186,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void onDisable(){
-		players.clear();
+		playerList.clear();
 		byName.clear();
 
 		try {
@@ -394,7 +394,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
-		if(players.containsKey(packet.getPlayerName()))
+		if(playerList.containsKey(packet.getPlayerName()))
 			return;
 
 		Player player = null;
@@ -420,8 +420,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				error.printStackTrace();
 			}
 		}
-		
-		players.put(player.getName(), player);
+		if (connectPlayers.size() < ladderPlayers) {
+			connectPlayers.add(player.getName());
+		}
+		playerList.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
 	}
 
@@ -455,7 +457,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 
 		if(bPlayer != null && !kick){
-			players.remove(bPlayer.getName());
+			playerList.remove(bPlayer.getName());
 
 			if(packet.getReason() != null){
 				bPlayer.disconnect(StringUtils.join(packet.getReason(), "\\n"));
@@ -463,21 +465,24 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				bPlayer.disconnect();
 			}
 		} else if(lPlayer.getName() != null) {
-			players.remove(lPlayer.getName());
+			playerList.remove(lPlayer.getName());
 		}
-		
+
+		while (connectPlayers.size() > ladderPlayers) {
+			connectPlayers.remove(bPlayer.getName());
+		}
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());
 	}
 
 	@Override
 	public void handle(PacketPlayerPlace packet) {
-		if(!players.containsKey(packet.getPlayerName()))
+		if(!playerList.containsKey(packet.getPlayerName()))
 			return;
 
 		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getPlayerName());
 		ServerInfo    server  = getProxy().getServerInfo(packet.getServerName());
-		Player        lPlayer = players.get(packet.getPlayerName());
+		Player        lPlayer = playerList.get(packet.getPlayerName());
 		if(server == null) return;
 
 		if(bPlayer != null){
@@ -489,7 +494,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void handle(PacketHelloworld packet) {
-		players.clear();
+		playerList.clear();
 
 		System.out.println("Send * permission packet data (DataAction.REQUEST - handle(PacketHelloworld)");
 		getClient().sendPacket(new PacketPlayerData(DataType.PERMISSION, DataAction.REQUEST, "*", "*"));

@@ -1,6 +1,7 @@
 package fr.badblock.ladder.bungee;
 
 import java.lang.reflect.Field;
+import java.util.UUID;
 
 import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
@@ -48,7 +49,7 @@ public class LadderListener implements Listener {
 		if (LadderBungee.getInstance().getPlayer(e.getPlayer()) != null) {
 			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
 			if (player == null || !player.isConnected()) {
-				LadderBungee.getInstance().players.remove(e.getPlayer());
+				LadderBungee.getInstance().playerList.remove(e.getPlayer());
 				LadderBungee.getInstance().byName.remove(e.getPlayer());
 			}else{
 				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock!"), null);
@@ -178,14 +179,20 @@ public class LadderListener implements Listener {
 
 		Motd 		   motd   = LadderBungee.getInstance().getMotd();
 		ServerPing     old    = e.getResponse();
+		e.setResponse(null);
 		ServerPing     reply  = new ServerPing();
 
 		if(motd == null)
 			return;
 		
-		PlayerInfo[]   sample = new PlayerInfo[] {};
+
+		PlayerInfo[]   sample = new PlayerInfo[motd.getPlayers().length];
+
+		for(int i=0;i<sample.length;i++){
+			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
+		}
+
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
-		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motd.getMotd(), " ")));
 		String[] motdString = motd.getMotd().clone();
 		if (LadderBungee.getInstance().ladderPlayers >= motd.getMaxPlayers()) {
 			motdString[1] = LadderBungee.getInstance().fullMotd;
