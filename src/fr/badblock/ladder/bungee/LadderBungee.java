@@ -422,6 +422,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 		if (connectPlayers.size() < ladderPlayers) {
 			connectPlayers.add(player.getName());
+			System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
 		}
 		playerList.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
