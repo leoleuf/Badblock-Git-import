@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import com.google.common.collect.Maps;
@@ -77,9 +78,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	playerList;
-	public	  HashSet<String>   		bungeePlayers  = new HashSet<>();
-	public	  HashSet<String>   		connectPlayers = new HashSet<>();
-	public	  HashSet<String>   		totalPlayers   = new HashSet<>();
+	public	  Set<String>   			bungeePlayers  = Collections.synchronizedSet(new HashSet<String>());
+	public	  Set<String>   			connectPlayers = Collections.synchronizedSet(new HashSet<String>());
+	public	  Set<String>   			totalPlayers   = Collections.synchronizedSet(new HashSet<String>());
 	public int							ladderPlayers 	   = 0;
 	public int							bungeePlayersCount = 0;
 	protected Map<String, UUID>   		uuids;
