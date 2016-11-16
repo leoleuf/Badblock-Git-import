@@ -51,13 +51,7 @@ public class CommandDispatcher extends Command implements TabExecutor {
 
 		Set<String> matches = new HashSet<>();
 		String search = args[args.length - 1].toLowerCase();
-		if (!sender.hasPermission("tab")) {
-			for(String player : LadderBungee.getInstance().getConnectPlayers()) {
-				if(player.toLowerCase().startsWith(search)) {
-					matches.add(player);
-				}
-			}
-		}else{
+		if (sender.hasPermission("tab")) {
 			for(Player player : LadderBungee.getInstance().getPlayerList()) {
 				if(player.getName().toLowerCase().startsWith(search)) {
 					matches.add(player.getName());
