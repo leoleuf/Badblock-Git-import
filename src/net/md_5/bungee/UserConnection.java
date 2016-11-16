@@ -1,15 +1,5 @@
 package net.md_5.bungee;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableMap;
-import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.util.internal.PlatformDependent;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +10,18 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
 import java.util.logging.Level;
+
+import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
+
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.util.internal.PlatformDependent;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -55,7 +57,6 @@ import net.md_5.bungee.protocol.packet.ClientSettings;
 import net.md_5.bungee.protocol.packet.Kick;
 import net.md_5.bungee.protocol.packet.PlayerListHeaderFooter;
 import net.md_5.bungee.protocol.packet.PluginMessage;
-import net.md_5.bungee.protocol.packet.Respawn;
 import net.md_5.bungee.protocol.packet.SetCompression;
 import net.md_5.bungee.tab.ServerUnique;
 import net.md_5.bungee.tab.TabList;
@@ -280,7 +281,8 @@ public final class UserConnection implements ProxiedPlayer
 
         pendingConnects.add( target );
 
-        ChannelInitializer initializer = new ChannelInitializer()
+        @SuppressWarnings("rawtypes")
+		ChannelInitializer initializer = new ChannelInitializer()
         {
             @Override
             protected void initChannel(Channel ch) throws Exception
@@ -294,7 +296,6 @@ public final class UserConnection implements ProxiedPlayer
         ChannelFutureListener listener = new ChannelFutureListener()
         {
             @Override
-            @SuppressWarnings("ThrowableResultIgnored")
             public void operationComplete(ChannelFuture future) throws Exception
             {
                 if ( callback != null )

@@ -46,7 +46,8 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
         buf.writeByte( 0x00 );
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "deprecation" })
+	@Override
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception
     {
         ByteBuf in = msg.content();

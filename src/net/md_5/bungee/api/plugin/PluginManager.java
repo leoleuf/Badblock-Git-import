@@ -57,7 +57,6 @@ public class PluginManager
     private final Multimap<Plugin, Command> commandsByPlugin = ArrayListMultimap.create();
     private final Multimap<Plugin, Listener> listenersByPlugin = ArrayListMultimap.create();
 
-    @SuppressWarnings("unchecked")
     public PluginManager(ProxyServer proxy)
     {
         this.proxy = proxy;
@@ -127,7 +126,8 @@ public class PluginManager
      * arguments
      * @return whether the command was handled
      */
-    public boolean dispatchCommand(CommandSender sender, String commandLine, List<String> tabResults)
+    @SuppressWarnings("deprecation")
+	public boolean dispatchCommand(CommandSender sender, String commandLine, List<String> tabResults)
     {
         String[] split = argsSplit.split( commandLine, -1 );
         // Check for chat that only contains " "
@@ -338,7 +338,8 @@ public class PluginManager
         {
             try
             {
-                URLClassLoader loader = new PluginClassloader( new URL[]
+                @SuppressWarnings("resource")
+				URLClassLoader loader = new PluginClassloader( new URL[]
                 {
                     plugin.getFile().toURI().toURL()
                 } );

@@ -2,12 +2,12 @@ package net.md_5.bungee.forge;
 
 import java.util.ArrayDeque;
 import java.util.Map;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.protocol.packet.PluginMessage;
 
@@ -34,7 +34,9 @@ public class ForgeClientHandler
     @Setter(AccessLevel.PACKAGE)
     private ForgeClientHandshakeState state = ForgeClientHandshakeState.HELLO;
 
-    private PluginMessage serverModList = null;
+    @SuppressWarnings("unused")
+	private PluginMessage serverModList = null;
+    @SuppressWarnings("unused")
     private PluginMessage serverIdList = null;
 
     /**

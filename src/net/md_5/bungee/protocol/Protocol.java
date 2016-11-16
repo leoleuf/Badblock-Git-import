@@ -226,7 +226,8 @@ public enum Protocol
     @RequiredArgsConstructor
     private static class ProtocolData {
 
-        private final int protocolVersion;
+        @SuppressWarnings("unused")
+		private final int protocolVersion;
         private final TObjectIntMap<Class<? extends DefinedPacket>> packetMap = new TObjectIntHashMap<>( MAX_PACKET_ID );
         private final TIntObjectMap<Constructor<? extends DefinedPacket>> packetConstructors = new TIntObjectHashMap<>( MAX_PACKET_ID );
     }

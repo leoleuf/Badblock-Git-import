@@ -1,6 +1,5 @@
 package net.md_5.bungee.conf;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -17,6 +16,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.Util;
 import net.md_5.bungee.api.ChatColor;
@@ -25,8 +29,6 @@ import net.md_5.bungee.api.config.ConfigurationAdapter;
 import net.md_5.bungee.api.config.ListenerInfo;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.util.CaseInsensitiveMap;
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
 
 public class YamlConfig implements ConfigurationAdapter
 {
@@ -41,7 +43,8 @@ public class YamlConfig implements ConfigurationAdapter
         GLOBAL(), GLOBAL_PING(), SERVER();
     }
     private final Yaml yaml;
-    private Map config;
+    @SuppressWarnings("rawtypes")
+	private Map config;
     private final File file = new File( "config.yml" );
 
     public YamlConfig()
@@ -51,7 +54,8 @@ public class YamlConfig implements ConfigurationAdapter
         yaml = new Yaml( options );
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public void load()
     {
         try
@@ -100,7 +104,7 @@ public class YamlConfig implements ConfigurationAdapter
         return get( path, def, config );
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private <T> T get(String path, T def, Map submap)
     {
         int index = path.indexOf( '.' );
@@ -128,7 +132,7 @@ public class YamlConfig implements ConfigurationAdapter
         }
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private void set(String path, Object val, Map submap)
     {
         int index = path.indexOf( '.' );
@@ -189,7 +193,7 @@ public class YamlConfig implements ConfigurationAdapter
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public Map<String, ServerInfo> getServers()
     {
         Map<String, Map<String, Object>> base = get( "servers", (Map) Collections.singletonMap( "lobby", new HashMap<>() ) );
@@ -211,7 +215,7 @@ public class YamlConfig implements ConfigurationAdapter
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
     public Collection<ListenerInfo> getListeners()
     {
@@ -279,7 +283,6 @@ public class YamlConfig implements ConfigurationAdapter
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Collection<String> getGroups(String player)
     {
         Collection<String> groups = get( "groups." + player, null );

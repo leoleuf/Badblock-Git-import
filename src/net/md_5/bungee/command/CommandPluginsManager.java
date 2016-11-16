@@ -17,6 +17,7 @@ public class CommandPluginsManager extends Command
 	{
 		super( "gpluginsmanager", "bungeecord.command.pluginsmanager", "gplm" );
 	}
+	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		ProxyServer.getInstance().getPluginManager().getPlugins();

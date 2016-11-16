@@ -1,8 +1,5 @@
 package net.md_5.bungee.connection;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Preconditions;
-import com.google.gson.Gson;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.URLEncoder;
@@ -11,7 +8,13 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
+
 import javax.crypto.SecretKey;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
+import com.google.gson.Gson;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.BungeeCord;
@@ -28,7 +31,6 @@ import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ListenerInfo;
 import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.Connection.Unsafe;
 import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
@@ -156,7 +158,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
         Callback<ProxyPingEvent> callback = new Callback<ProxyPingEvent>()
         {
-            @Override
+            @SuppressWarnings("deprecation")
+			@Override
             public void done(ProxyPingEvent result, Throwable error)
             {
                 if ( ch.isClosed() )
@@ -197,7 +200,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
         return pos == -1 ? str : str.substring( 0, pos );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void handle(StatusRequest statusRequest) throws Exception
     {
         Preconditions.checkState( thisState == State.STATUS, "Not expecting STATUS" );
@@ -207,7 +211,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
         Callback<ServerPing> pingBack = new Callback<ServerPing>()
         {
-            @Override
+			@Override
             public void done(ServerPing result, Throwable error)
             {
                 if ( error != null )
@@ -434,7 +438,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
         HttpClient.get( authURL, ch.getHandle().eventLoop(), handler );
     }
 
-    private void finish()
+    @SuppressWarnings("deprecation")
+	private void finish()
     {
         if ( isOnlineMode() )
         {

@@ -27,7 +27,8 @@ public class BungeeScheduler implements TaskScheduler
     private final Unsafe unsafe = new Unsafe()
     {
 
-        @Override
+        @SuppressWarnings("deprecation")
+		@Override
         public ExecutorService getExecutorService(Plugin plugin)
         {
             return plugin.getExecutorService();
@@ -85,7 +86,8 @@ public class BungeeScheduler implements TaskScheduler
         return schedule( owner, task, delay, 0, unit );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public ScheduledTask schedule(Plugin owner, Runnable task, long delay, long period, TimeUnit unit)
     {
         Preconditions.checkNotNull( owner, "owner" );

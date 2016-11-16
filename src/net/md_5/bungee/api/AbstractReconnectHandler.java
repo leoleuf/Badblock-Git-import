@@ -8,7 +8,8 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 public abstract class AbstractReconnectHandler implements ReconnectHandler
 {
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public ServerInfo getServer(ProxiedPlayer player)
     {
         ServerInfo server = getForcedHost( player.getPendingConnection() );
@@ -26,7 +27,8 @@ public abstract class AbstractReconnectHandler implements ReconnectHandler
         return server;
     }
 
-    public static ServerInfo getForcedHost(PendingConnection con)
+    @SuppressWarnings("deprecation")
+	public static ServerInfo getForcedHost(PendingConnection con)
     {
         if ( con.getVirtualHost() == null )
         {

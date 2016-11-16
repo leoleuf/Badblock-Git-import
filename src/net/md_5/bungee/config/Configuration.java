@@ -28,7 +28,8 @@ public final class Configuration
         this( new LinkedHashMap<String, Object>(), defaults );
     }
 
-    private Configuration getSectionFor(String path)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	private Configuration getSectionFor(String path)
     {
         int index = path.indexOf( SEPARATOR );
         if ( index == -1 )
@@ -103,7 +104,8 @@ public final class Configuration
     }
 
     /*------------------------------------------------------------------------*/
-    public Configuration getSection(String path)
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public Configuration getSection(String path)
     {
         Object def = getDefault( path );
         return new Configuration( (Map) ( get( path, ( def instanceof Map ) ? def : Collections.EMPTY_MAP ) ), ( defaults == null ) ? null : defaults.getSection( path ) );

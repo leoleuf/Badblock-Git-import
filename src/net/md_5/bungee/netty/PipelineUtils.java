@@ -1,5 +1,9 @@
 package net.md_5.bungee.netty;
 
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelException;
@@ -19,17 +23,13 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.util.AttributeKey;
 import io.netty.util.internal.PlatformDependent;
-import java.net.InetSocketAddress;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.BungeeServerInfo;
 import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.Util;
-import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ListenerInfo;
+import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.protocol.KickStringWriter;
 import net.md_5.bungee.protocol.LegacyDecoder;
 import net.md_5.bungee.protocol.MinecraftDecoder;
@@ -41,12 +41,16 @@ import net.md_5.bungee.protocol.Varint21LengthFieldPrepender;
 public class PipelineUtils
 {
 
-    public static final AttributeKey<ListenerInfo> LISTENER = new AttributeKey<>( "ListerInfo" );
+    @SuppressWarnings("deprecation")
+	public static final AttributeKey<ListenerInfo> LISTENER = new AttributeKey<>( "ListerInfo" );
+    @SuppressWarnings("deprecation")
     public static final AttributeKey<UserConnection> USER = new AttributeKey<>( "User" );
+    @SuppressWarnings("deprecation")
     public static final AttributeKey<BungeeServerInfo> TARGET = new AttributeKey<>( "Target" );
     public static final ChannelInitializer<Channel> SERVER_CHILD = new ChannelInitializer<Channel>()
     {
-        @Override
+        @SuppressWarnings("deprecation")
+		@Override
         protected void initChannel(Channel ch) throws Exception
         {
             BASE.initChannel( ch );

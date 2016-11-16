@@ -28,7 +28,8 @@ public class PingHandler extends PacketHandler
     private final int protocol;
     private ChannelWrapper channel;
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void connected(ChannelWrapper channel) throws Exception
     {
         this.channel = channel;

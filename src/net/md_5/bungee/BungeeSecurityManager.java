@@ -7,18 +7,22 @@ import java.security.Permission;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
+
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.scheduler.GroupedThreadFactory;
 
+@SuppressWarnings("deprecation")
 public class BungeeSecurityManager extends SecurityManager
 {
 
     private static final boolean ENFORCE = false;
     private final Set<String> seen = new HashSet<>();
 
-    private void checkRestricted(String text)
+    @SuppressWarnings("unused")
+	private void checkRestricted(String text)
     {
-        Class[] context = getClassContext();
+        @SuppressWarnings("rawtypes")
+		Class[] context = getClassContext();
         for ( int i = 2; i < context.length; i++ )
         {
             ClassLoader loader = context[i].getClassLoader();
@@ -51,7 +55,7 @@ public class BungeeSecurityManager extends SecurityManager
         checkRestricted( "Exit: Cannot close VM" );
     }
 
-    @Override
+	@Override
     public void checkAccess(ThreadGroup g)
     {
         if ( !( g instanceof GroupedThreadFactory.BungeeGroup ) )

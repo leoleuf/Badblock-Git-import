@@ -58,7 +58,8 @@ public class DownstreamBridge extends PacketHandler
             return;
         }
 
-        ServerInfo def = bungee.getServerInfo( con.getPendingConnection().getListener().getFallbackServer() );
+        @SuppressWarnings("deprecation")
+		ServerInfo def = bungee.getServerInfo( con.getPendingConnection().getListener().getFallbackServer() );
         if ( server.getInfo() != def )
         {
             server.setObsolete( true );
@@ -217,7 +218,8 @@ public class DownstreamBridge extends PacketHandler
         }
     }
 
-    @Override
+    @SuppressWarnings({ "deprecation" })
+	@Override
     public void handle(PluginMessage pluginMessage) throws Exception
     {
         DataInput in = pluginMessage.getStream();
@@ -445,7 +447,8 @@ public class DownstreamBridge extends PacketHandler
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void handle(Kick kick) throws Exception
     {
         ServerInfo def = bungee.getServerInfo( con.getPendingConnection().getListener().getFallbackServer() );

@@ -14,7 +14,8 @@ public class CommandReload extends Command
         super( "greload", "bungeecord.command.reload" );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void execute(CommandSender sender, String[] args)
     {
         BungeeCord.getInstance().config.load();

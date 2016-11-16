@@ -1,11 +1,13 @@
 package net.md_5.bungee.api.plugin;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.io.File;
 import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
+
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
 import lombok.Getter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ConfigurationAdapter;
@@ -15,6 +17,7 @@ import net.md_5.bungee.api.scheduler.GroupedThreadFactory;
  * Represents any Plugin that may be loaded at runtime to enhance existing
  * functionality.
  */
+@SuppressWarnings("deprecation")
 public class Plugin
 {
 

@@ -3,6 +3,7 @@ package net.md_5.bungee.connection;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+@SuppressWarnings("serial")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CancelSendSignal extends Error
 {

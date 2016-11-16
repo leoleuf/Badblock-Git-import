@@ -25,7 +25,8 @@ public class Title extends DefinedPacket
     private int stay;
     private int fadeOut;
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
     {
         int index = readVarInt( buf );
@@ -52,7 +53,8 @@ public class Title extends DefinedPacket
         }
     }
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
     {
         int index = action.ordinal();

@@ -2,6 +2,7 @@ package net.md_5.bungee.util;
 
 import gnu.trove.strategy.HashingStrategy;
 
+@SuppressWarnings({ "serial", "rawtypes" })
 class CaseInsensitiveHashingStrategy implements HashingStrategy
 {
 

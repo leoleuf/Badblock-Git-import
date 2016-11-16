@@ -17,7 +17,6 @@ public class BungeeLogger extends Logger
 
     @SuppressWarnings(
             {
-                "CallToPrintStackTrace", "CallToThreadStartDuringObjectConstruction"
             })
     @SuppressFBWarnings("SC_START_IN_CTOR")
     public BungeeLogger(BungeeCord bungee)

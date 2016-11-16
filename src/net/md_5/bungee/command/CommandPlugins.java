@@ -16,7 +16,8 @@ public class CommandPlugins extends Command
         super( "gplugins", "bungeecord.command.plugins", "gpl" );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void execute(CommandSender sender, String[] args) {
     	Collection<Plugin> pl = ProxyServer.getInstance().getPluginManager().getPlugins();
     	String result = ChatColor.WHITE + "Plugins (" + ChatColor.RED + pl.size() + ChatColor.WHITE + "): " ;

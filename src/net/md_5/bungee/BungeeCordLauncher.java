@@ -15,7 +15,8 @@ import net.md_5.bungee.command.ConsoleCommandSender;
 public class BungeeCordLauncher
 {
 
-    public static void main(String[] args) throws Exception
+    @SuppressWarnings("deprecation")
+	public static void main(String[] args) throws Exception
     {
         Security.setProperty( "networkaddress.cache.ttl", "30" );
         Security.setProperty( "networkaddress.cache.negative.ttl", "10" );

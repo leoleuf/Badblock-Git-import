@@ -26,7 +26,8 @@ public class HttpInitializer extends ChannelInitializer<Channel>
         ch.pipeline().addLast( "timeout", new ReadTimeoutHandler( HttpClient.TIMEOUT, TimeUnit.MILLISECONDS ) );
         if ( ssl )
         {
-            SSLEngine engine = SslContext.newClientContext().newEngine( ch.alloc(), host, port );
+            @SuppressWarnings("deprecation")
+			SSLEngine engine = SslContext.newClientContext().newEngine( ch.alloc(), host, port );
 
             ch.pipeline().addLast( "ssl", new SslHandler( engine ) );
         }

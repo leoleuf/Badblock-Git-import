@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings("serial")
 public class BoundedArrayList<E> extends ArrayList<E>
 {
 

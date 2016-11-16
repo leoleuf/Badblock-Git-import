@@ -149,7 +149,8 @@ public class ServerConnector extends PacketHandler
         ch.setCompressionThreshold( setCompression.getThreshold() );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void handle(Login login) throws Exception
     {
         Preconditions.checkState( thisState == State.LOGIN, "Not expecting LOGIN" );
@@ -270,7 +271,8 @@ public class ServerConnector extends PacketHandler
         throw new RuntimeException( "Server is online mode!" );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void handle(Kick kick) throws Exception
     {
         ServerInfo def = user.updateAndGetNextServer( target );

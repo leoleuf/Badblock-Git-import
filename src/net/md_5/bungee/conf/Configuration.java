@@ -23,6 +23,7 @@ import net.md_5.bungee.util.CaseInsensitiveSet;
 /**
  * Core configuration for the proxy.
  */
+@SuppressWarnings("deprecation")
 @Getter
 public class Configuration implements ProxyConfig
 {
@@ -58,7 +59,8 @@ public class Configuration implements ProxyConfig
     private Favicon favicon;
     private int compressionThreshold = 256;
 
-    public void load()
+    @SuppressWarnings("unchecked")
+	public void load()
     {
         ConfigurationAdapter adapter = ProxyServer.getInstance().getConfigurationAdapter();
         adapter.load();

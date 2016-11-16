@@ -31,7 +31,8 @@ public class ModuleManager
         knownSources.put( "jenkins", new JenkinsModuleSource() );
     }
 
-    @SuppressFBWarnings(
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressFBWarnings(
             {
                 "SF_SWITCH_FALLTHROUGH", "SF_SWITCH_NO_DEFAULT"
             })

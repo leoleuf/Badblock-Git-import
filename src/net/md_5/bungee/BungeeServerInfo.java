@@ -62,11 +62,11 @@ public class BungeeServerInfo implements ServerInfo
         players.remove( player );
     }
 
-    @Synchronized("players")
+	@Synchronized("players")
     @Override
     public Collection<ProxiedPlayer> getPlayers()
     {
-        return Collections.unmodifiableCollection( new HashSet( players ) );
+        return Collections.unmodifiableCollection( new HashSet<>( players ) );
     }
 
     @Override
@@ -116,7 +116,8 @@ public class BungeeServerInfo implements ServerInfo
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void ping(final Callback<ServerPing> callback)
     {
         ping( callback, ProxyServer.getInstance().getProtocolVersion() );

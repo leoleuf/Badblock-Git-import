@@ -19,7 +19,8 @@ public class PlayerListItem extends DefinedPacket
     private Action action;
     private Item[] items;
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
     {
         action = Action.values()[DefinedPacket.readVarInt( buf )];
@@ -73,7 +74,8 @@ public class PlayerListItem extends DefinedPacket
         }
     }
 
-    @Override
+    @SuppressWarnings("incomplete-switch")
+	@Override
     public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
     {
         DefinedPacket.writeVarInt( action.ordinal(), buf );

@@ -278,7 +278,8 @@ public abstract class ProxyServer
      *
      * @return the config.
      */
-    public abstract ProxyConfig getConfig();
+    @SuppressWarnings("deprecation")
+	public abstract ProxyConfig getConfig();
 
     /**
      * Attempts to match any players with the given name, and returns a list of

@@ -6,12 +6,14 @@ import java.util.Collection;
 public class CaseInsensitiveSet extends TCustomHashSet<String>
 {
 
-    public CaseInsensitiveSet()
+    @SuppressWarnings("unchecked")
+	public CaseInsensitiveSet()
     {
         super( CaseInsensitiveHashingStrategy.INSTANCE );
     }
 
-    public CaseInsensitiveSet(Collection<? extends String> collection)
+    @SuppressWarnings("unchecked")
+	public CaseInsensitiveSet(Collection<? extends String> collection)
     {
         super( CaseInsensitiveHashingStrategy.INSTANCE, collection );
     }

@@ -23,7 +23,8 @@ public class CommandServer extends Command implements TabExecutor
         super( "server", "bungeecord.command.server" );
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public void execute(CommandSender sender, String[] args)
     {
         if ( !( sender instanceof ProxiedPlayer ) )
