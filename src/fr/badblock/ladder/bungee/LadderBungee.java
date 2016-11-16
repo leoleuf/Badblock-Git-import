@@ -127,8 +127,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		instance = this;
 		new SkinFactoryBungee();
 		cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
-
-		getProxy().getPluginManager().registerCommand(this, new BTest());
 		try {
 			loadConfig();
 			uuids	= Maps.newConcurrentMap();
@@ -562,7 +560,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			byName.put(player.getName(), packet.getUuid());
 		player.setNickNamee(packet.getNickName());
 	}
-	
+
 	public int getOnlineCount() {
 		return connectPlayers.size();
 	}
