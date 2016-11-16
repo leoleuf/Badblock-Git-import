@@ -27,9 +27,6 @@ public class CommandDispatcher extends Command implements TabExecutor {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		String command = getName() + " " + StringUtils.join(args, " ");
-		if (sender instanceof ProxiedPlayer) {
-			System.out.println("Tentative de tab / " + ((ProxiedPlayer) sender).getAddress().getHostString());
-		}
 		if(bypassable && sender instanceof ProxiedPlayer && sender.hasPermission("ladder.command.bypass")){
 			((ProxiedPlayer) sender).chat("/" + command); return;
 		}

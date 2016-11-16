@@ -432,8 +432,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				for (String totalPlayer : totalPlayers)
 					if (!connectPlayers.contains(totalPlayer) && connectPlayers.size() < ladderPlayers)
 						connectPlayers.add(totalPlayer);
-				break;
 			}
+			break;
 		}
 		if (!bungeePlayers.contains(player.getName()) && bungeePlayers.size() < bungeePlayersCount) {
 			while (bungeePlayers.size() < bungeePlayersCount) {
@@ -443,8 +443,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 					for (String totalPlayer : totalPlayers)
 						if (!bungeePlayers.contains(totalPlayer) && bungeePlayers.size() < ladderPlayers)
 							bungeePlayers.add(totalPlayer);
-					break;
 				}
+				break;
 			}
 		}
 		System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
