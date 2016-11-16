@@ -17,7 +17,6 @@ import fr.badblock.skins.storage.SkinStorage;
 import fr.badblock.skins.utils.SkinFetchUtils.SkinFetchFailedException;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
@@ -222,12 +221,6 @@ public class LadderListener implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onSpeak(ChatEvent e){
-		if (!(e.getSender() instanceof CommandSender)) return;
-		if (e.getMessage().equalsIgnoreCase("/btest") && ((CommandSender)e.getSender()).hasPermission("ladder.command.btest")) {
-			CommandSender sender = ((CommandSender)e.getSender());
-			e.setCancelled(true);
-			sender.sendMessage("Count: " + LadderBungee.getInstance().bungeePlayers.parallelStream().filter(p -> p != null).mapToInt(p -> 1).sum());
-		}
 		if(e.getSender() instanceof ProxiedPlayer) {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
 

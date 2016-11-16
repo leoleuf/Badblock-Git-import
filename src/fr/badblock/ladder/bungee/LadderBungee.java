@@ -128,6 +128,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		new SkinFactoryBungee();
 		cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 
+		getProxy().getPluginManager().registerCommand(this, new BTest());
 		try {
 			loadConfig();
 			uuids	= Maps.newConcurrentMap();
