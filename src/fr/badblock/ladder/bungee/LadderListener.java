@@ -17,6 +17,7 @@ import fr.badblock.skins.storage.SkinStorage;
 import fr.badblock.skins.utils.SkinFetchUtils.SkinFetchFailedException;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
@@ -221,12 +222,14 @@ public class LadderListener implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onSpeak(ChatEvent e){
+		if (!(e.getSender() instanceof CommandSender)) return;
+		if (e.getMessage().equalsIgnoreCase("/btest") && ((CommandSender)e.getSender()).hasPermission("ladder.command.btest")) {
+			CommandSender sender = ((CommandSender)e.getSender());
+			sender.sendMessage("Count: " + LadderBungee.getInstance().bungeePlayers.parallelStream().filter(p -> p != null).mapToInt(p -> 1).sum());
+		}
 		if(e.getSender() instanceof ProxiedPlayer) {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
 
-			if (e.getMessage().equalsIgnoreCase("/btest") && bPlayer.hasPermission("ladder.command.btest")) {
-				System.out.println("Count: " + LadderBungee.getInstance().bungeePlayers.parallelStream().filter(p -> p != null).mapToInt(p -> 1).sum());
-			}
 			if(e.getMessage().equalsIgnoreCase("/register 123456789 123456789")
 					|| e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/register pass12345") || e.getMessage().equalsIgnoreCase("/login pass12345")
 					|| bPlayer.getServer() == null) {

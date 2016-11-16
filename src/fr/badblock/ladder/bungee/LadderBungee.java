@@ -7,13 +7,13 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -78,9 +78,9 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	playerList;
-	public	  Set<String>   			bungeePlayers  = Collections.synchronizedSet(new HashSet<String>());
-	public	  Set<String>   			connectPlayers = Collections.synchronizedSet(new HashSet<String>());
-	public	  Set<String>   			totalPlayers   = Collections.synchronizedSet(new HashSet<String>());
+	public	  Set<String>				bungeePlayers  =  Sets.newConcurrentHashSet();
+	public	  Set<String>				connectPlayers =  Sets.newConcurrentHashSet();
+	public	  Set<String>				totalPlayers   =  Sets.newConcurrentHashSet();
 	public int							ladderPlayers 	   = 0;
 	public int							bungeePlayersCount = 0;
 	protected Map<String, UUID>   		uuids;
