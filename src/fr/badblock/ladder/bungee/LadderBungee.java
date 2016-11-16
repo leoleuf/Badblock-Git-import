@@ -78,6 +78,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	protected Map<String, Player>   	playerList;
 	public	  HashSet<String>   		connectPlayers = new HashSet<>();
+	public	  HashSet<String>   		totalPlayers   = new HashSet<>();
 	public int							ladderPlayers = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
@@ -99,7 +100,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public Collection<Player> getPlayerList(){
 		return Collections.unmodifiableCollection(playerList.values());
 	}
-	
+
 	public Collection<String> getConnectPlayers(){
 		return Collections.unmodifiableCollection(connectPlayers);
 	}
@@ -408,7 +409,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
 				if (proxiedPlayer != null) {
 					LadderBungee.getInstance().uuids.put(proxiedPlayer.getName().toLowerCase(), proxiedPlayer.getUniqueId());
-					System.out.println(proxiedPlayer.getUniqueId().toString());
 					PendingConnection pendingConnection = proxiedPlayer.getPendingConnection();
 					if (pendingConnection != null) {
 						Field uniqueId = pendingConnection.getClass().getDeclaredField("uniqueId");
@@ -420,10 +420,18 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				error.printStackTrace();
 			}
 		}
-		if (connectPlayers.size() < ladderPlayers) {
-			connectPlayers.add(player.getName());
-			System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
+		if (!totalPlayers.contains(player.getName()))
+			totalPlayers.add(player.getName());
+		while (connectPlayers.size() < ladderPlayers) {
+			if (!connectPlayers.contains(player.getName()))
+				connectPlayers.add(player.getName());
+			if (connectPlayers.size() < ladderPlayers) {
+				for (String totalPlayer : totalPlayers)
+					if (!connectPlayers.contains(totalPlayer) && connectPlayers.size() < ladderPlayers)
+						connectPlayers.add(totalPlayer);
+			}
 		}
+		System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
 		playerList.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
 	}
@@ -533,6 +541,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		if (!byName.containsValue(packet.getUuid()))
 			byName.put(player.getName(), packet.getUuid());
 		player.setNickNamee(packet.getNickName());
+	}
+	
+	public int getOnlineCount() {
+		return connectPlayers.size();
 	}
 
 }
