@@ -225,6 +225,7 @@ public class LadderListener implements Listener {
 		if (!(e.getSender() instanceof CommandSender)) return;
 		if (e.getMessage().equalsIgnoreCase("/btest") && ((CommandSender)e.getSender()).hasPermission("ladder.command.btest")) {
 			CommandSender sender = ((CommandSender)e.getSender());
+			e.setCancelled(true);
 			sender.sendMessage("Count: " + LadderBungee.getInstance().bungeePlayers.parallelStream().filter(p -> p != null).mapToInt(p -> 1).sum());
 		}
 		if(e.getSender() instanceof ProxiedPlayer) {
