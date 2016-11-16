@@ -41,6 +41,7 @@ public abstract class Ladder {
 	protected final String						   version;
 
 	protected final Map<UUID, Player> 	    	   players;
+	@Getter
 	protected final Set<String> 	    	   	   playersCache;
 	@Getter
 	public final Map<String, UUID>			   names;
