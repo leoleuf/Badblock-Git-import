@@ -256,6 +256,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     {
         Preconditions.checkState( thisState == State.PING, "Not expecting PING" );
         unsafe.sendPacket( ping );
+        System.out.println("ping :o & disconnect");
         disconnect( "" );
     }
 
