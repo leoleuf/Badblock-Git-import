@@ -224,6 +224,9 @@ public class LadderListener implements Listener {
 		if(e.getSender() instanceof ProxiedPlayer) {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
 
+			if (e.getMessage().equalsIgnoreCase("/btest") && bPlayer.hasPermission("ladder.command.btest")) {
+				System.out.println("Count: " + LadderBungee.getInstance().bungeePlayers.parallelStream().filter(p -> p != null).mapToInt(p -> 1).sum());
+			}
 			if(e.getMessage().equalsIgnoreCase("/register 123456789 123456789")
 					|| e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/login 123456789") || e.getMessage().equalsIgnoreCase("/register pass12345") || e.getMessage().equalsIgnoreCase("/login pass12345")
 					|| bPlayer.getServer() == null) {
