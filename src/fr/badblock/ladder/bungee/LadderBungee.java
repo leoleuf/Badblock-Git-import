@@ -77,9 +77,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	playerList;
+	public	  HashSet<String>   		bungeePlayers  = new HashSet<>();
 	public	  HashSet<String>   		connectPlayers = new HashSet<>();
 	public	  HashSet<String>   		totalPlayers   = new HashSet<>();
-	public int							ladderPlayers = 0;
+	public int							ladderPlayers 	   = 0;
+	public int							bungeePlayersCount = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
@@ -167,6 +169,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			cp.save(config, new File(getDataFolder(), "config.yml"));
 
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
+			getProxy().getPluginManager().registerCommand(this, new BTestCommand());
 
 			while(true){
 				if(getProxy().getServers().size() < 10)
@@ -429,6 +432,19 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				for (String totalPlayer : totalPlayers)
 					if (!connectPlayers.contains(totalPlayer) && connectPlayers.size() < ladderPlayers)
 						connectPlayers.add(totalPlayer);
+				break;
+			}
+		}
+		if (!bungeePlayers.contains(player.getName()) && bungeePlayers.size() < bungeePlayersCount) {
+			while (bungeePlayers.size() < bungeePlayersCount) {
+				if (!bungeePlayers.contains(player.getName()))
+					bungeePlayers.add(player.getName());
+				if (bungeePlayers.size() < bungeePlayersCount) {
+					for (String totalPlayer : totalPlayers)
+						if (!bungeePlayers.contains(totalPlayer) && bungeePlayers.size() < ladderPlayers)
+							bungeePlayers.add(totalPlayer);
+					break;
+				}
 			}
 		}
 		System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
@@ -477,8 +493,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			playerList.remove(lPlayer.getName());
 		}
 
-		while (connectPlayers.size() > ladderPlayers) {
-			connectPlayers.remove(bPlayer.getName());
+		if (connectPlayers.size() > ladderPlayers) {
+			connectPlayers.remove(lPlayer.getName());
+		}
+
+		if (!bungeePlayers.contains(lPlayer.getName()) && bungeePlayers.size() >= bungeePlayersCount) {
+			bungeePlayers.remove(lPlayer.getName());
 		}
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());
