@@ -3,6 +3,7 @@ package fr.badblock.ladder.bungee.listeners;
 import fr.badblock.bungee.rabbitconnector.RabbitListener;
 import fr.badblock.bungee.rabbitconnector.RabbitListenerType;
 import fr.badblock.ladder.bungee.LadderBungee;
+import net.md_5.bungee.BungeeCord;
 
 /**
  * Cet updater permet de gérer les fluctuations de cache avec un multiplier temporaire le temps que les packets
@@ -19,7 +20,7 @@ public class PlayersUpdateListener extends RabbitListener {
 	@Override
 	public void onPacketReceiving(String body) {
 		LadderBungee.getInstance().ladderPlayers = Integer.parseInt(body);
-		LadderBungee.getInstance().bungeePlayersCount = LadderBungee.getInstance().getOnlineCount() * Integer.parseInt(body);
+		LadderBungee.getInstance().bungeePlayersCount = BungeeCord.getInstance().getPlayers().size() * Integer.parseInt(body);
 	}
 
 	
