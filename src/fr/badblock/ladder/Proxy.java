@@ -479,6 +479,9 @@ public class Proxy extends Ladder {
 	public void playerConnect(Player player) {
 		if(!players.containsKey(player.getUniqueId())) {
 			players.put(player.getUniqueId(), player);
+			if (playersCache.size() < this.getBungeeOnlineCount()) {
+				playersCache.add(player.getName());
+			}
 			names.put(player.getName().toLowerCase(), player.getUniqueId());
 		}
 	}
@@ -486,6 +489,9 @@ public class Proxy extends Ladder {
 	public void playerDisconnect(Player player) {
 		if(players.containsKey(player.getUniqueId())){
 			players.remove(player.getUniqueId());
+			if (playersCache.size() > this.getBungeeOnlineCount()) {
+				playersCache.remove(player.getName());
+			}
 			names.remove(player.getName().toLowerCase());
 		}
 	}
