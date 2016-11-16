@@ -6,7 +6,9 @@ import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -37,8 +39,9 @@ public abstract class Ladder {
 	
 	@Getter
 	protected final String						   version;
-	
+
 	protected final Map<UUID, Player> 	    	   players;
+	protected final Set<String> 	    	   	   playersCache;
 	@Getter
 	public final Map<String, UUID>			   names;
 	protected final Map<String, BungeeCord> 	   bungeeCords;
@@ -70,6 +73,7 @@ public abstract class Ladder {
 		
 		this.version        	   = version;
 		
+		this.playersCache		   = Collections.synchronizedSet(new HashSet<>());
 		this.players 	    	   = new MapMaker().makeMap();
 		this.names          	   = new MapMaker().makeMap();
 		this.bungeeCords    	   = Maps.newConcurrentMap();
