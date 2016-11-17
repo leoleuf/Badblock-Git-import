@@ -493,12 +493,21 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 
 		if (connectPlayers.size() > ladderPlayers) {
+			for (String totalPlayer : totalPlayers)
+				if (!connectPlayers.contains(totalPlayer) && connectPlayers.size() > ladderPlayers) {
+					connectPlayers.remove(totalPlayer);
+				}
 			connectPlayers.remove(lPlayer.getName());
 		}
 
-		if (!bungeePlayers.contains(lPlayer.getName()) && bungeePlayers.size() >= bungeePlayersCount) {
+		if (bungeePlayers.size() > ladderPlayers) {
+			for (String totalPlayer : totalPlayers)
+				if (!bungeePlayers.contains(totalPlayer) && bungeePlayers.size() > ladderPlayers) {
+					bungeePlayers.remove(totalPlayer);
+				}
 			bungeePlayers.remove(lPlayer.getName());
 		}
+		
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());
 	}
