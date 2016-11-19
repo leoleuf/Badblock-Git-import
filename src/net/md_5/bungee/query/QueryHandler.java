@@ -116,7 +116,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
                 data.put( "plugins", "" );
                 // End Extra Info
                 data.put( "map", "BungeeCord_Proxy" );
-                data.put( "numplayers", Integer.toString( bungee.getOnlineCount() ) );
+                data.put( "numplayers", Integer.toString( 0 ) );
                 data.put( "maxplayers", Integer.toString( listener.getMaxPlayers() ) );
                 data.put( "hostport", Integer.toString( listener.getHost().getPort() ) );
                 data.put( "hostip", listener.getHost().getHostString() );
