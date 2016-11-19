@@ -198,7 +198,7 @@ public class ServerConnector extends PacketHandler
 
             ByteBuf brand = ByteBufAllocator.DEFAULT.heapBuffer();
             DefinedPacket.writeString( bungee.getName() + " (" + bungee.getVersion() + ")", brand );
-            user.unsafe().sendPacket( new PluginMessage( "MC|Brand", DefinedPacket.toArray( brand ), handshakeHandler.isServerForge() ) );
+            user.unsafe().sendPacket( new PluginMessage( "MC|Brand", DefinedPacket.readArray( brand ), handshakeHandler.isServerForge() ) );
             brand.release();
 
             user.setDimension( login.getDimension() );
