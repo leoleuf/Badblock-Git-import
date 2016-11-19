@@ -1,12 +1,14 @@
 package net.md_5.bungee.config;
 
-import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.Sets;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
