@@ -214,7 +214,6 @@ public class BungeeCord extends ProxyServer
         consoleReader.setExpandEvents( false );
 
         logger = new BungeeLogger( "BungeeCord", "proxy.log", consoleReader );
-
         System.setErr( new PrintStream( new LoggingOutputStream( logger, Level.SEVERE ), true ) );
         System.setOut( new PrintStream( new LoggingOutputStream( logger, Level.INFO ), true ) );
 
