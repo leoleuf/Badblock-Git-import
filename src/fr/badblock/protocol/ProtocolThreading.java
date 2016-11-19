@@ -23,7 +23,7 @@ public class ProtocolThreading {
 	public ProtocolThreading() {
 		this.threads = new ArrayList<>();
 		this.packets = new LinkedList<>();
-		for (int i = 0; i < 32; i++) {
+		for (int i = 0; i < 128; i++) {
 			threads.add(new Thread() {
 				@Override
 				public void run() {
