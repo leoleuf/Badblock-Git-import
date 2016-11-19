@@ -22,7 +22,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
-import fr.badblock.protocol.utils.InvalidPacketException;
 
 public abstract class Protocol {
 	public static final Protocol LADDER_TO_BUNGEE = new Protocol(){
@@ -106,21 +105,7 @@ public abstract class Protocol {
 	}
 	
 	public void readPacket(ByteInputStream input, final PacketHandler handler) throws Exception {
-		int id = input.readByte();
-		final Packet packet = getPacketById(id);
-
-		packet.read(input);
-
-		new Thread("BadBlockAPI/readPacket") {
-			@Override
-			public void run(){
-				try {
-					packet.handle(handler);
-				} catch (Exception e) {
-					new InvalidPacketException(packet, e).printStackTrace();
-				}				
-			}
-		}.start();
+		ProtocolThreading.getInstance().readPacket(input, handler, this);
 	}
 	
 	public void writePacket(ByteOutputStream output, Packet packet) throws Exception {
