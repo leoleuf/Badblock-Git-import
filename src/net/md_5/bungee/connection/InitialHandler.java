@@ -33,6 +33,8 @@ import net.md_5.bungee.api.config.ListenerInfo;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.AsyncDataLoadRequest;
+import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PlayerHandshakeEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -79,8 +81,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     private LoginRequest loginRequest;
     private EncryptionRequest request;
     @Getter
-    private final List<PluginMessage> relayMessages = new BoundedArrayList<>( 128 );
+    private final List<PluginMessage> registerMessages = new BoundedArrayList<>( 128 );
     private State thisState = State.HANDSHAKE;
+    @Getter
+    private final List<PluginMessage> relayMessages = new BoundedArrayList<>( 128 );
     private final Unsafe unsafe = new Unsafe()
     {
         @Override
@@ -103,7 +107,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     private boolean legacy;
     @Getter
     private String extraDataInHandshake = "";
-
+    private boolean onlinePlayer;
+    
     @Override
     public boolean shouldHandle(PacketWrapper packet) throws Exception
     {
@@ -137,7 +142,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
             relayMessages.add( pluginMessage );
         }
     }
-
+    
     @Override
     public void handle(LegacyHandshake legacyHandshake) throws Exception
     {
@@ -371,13 +376,32 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                 {
                     return;
                 }
-                if ( onlineMode )
-                {
-                    unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-                } else
-                {
-                    finish();
-                }
+                
+                BungeeCord.getInstance().getPluginManager().callEvent(new AsyncDataLoadRequest(getName(), InitialHandler.this, new Callback<Result>(){
+					boolean good = false;
+					
+					@Override
+					public void done(Result result, Throwable error) {
+						if(good) return;
+						good = true;
+						
+						if(result.object == null){
+							if(result.kickReason == null)
+								disconnect();
+							else disconnect(result.kickReason);
+							
+							return;
+						}
+						
+						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
+						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
+						
+						if(onlinePlayer) {
+							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+						} else finish();
+					}
+				}));
+                
                 thisState = State.ENCRYPT;
             }
         };
@@ -422,7 +446,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                     if ( obj != null )
                     {
                         loginProfile = obj;
-                        uniqueId = Util.getUUID( obj.getId() );
+                        // uniqueId = Util.getUUID( obj.getId() );
                         finish();
                         return;
                     }
@@ -494,7 +518,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
                 ch.getHandle().eventLoop().execute( new Runnable()
                 {
-					@Override
+                    @Override
                     public void run()
                     {
                         if ( ch.getHandle().isActive() )
@@ -521,6 +545,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                                 server = bungee.getServerInfo( listener.getDefaultServer() );
                             }
 
+                            if(onlinePlayer){
+								server = bungee.getServerInfo("lobby");
+							}
+                            
                             userCon.connect( server, null, true );
 
                             thisState = State.FINISHED;
