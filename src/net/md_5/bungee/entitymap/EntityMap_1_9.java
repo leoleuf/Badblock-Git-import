@@ -35,6 +35,7 @@ class EntityMap_1_9 extends EntityMap
         addRewrite( 0x36, ProtocolConstants.Direction.TO_CLIENT, true ); // Camera : PacketPlayOutCamera
         addRewrite( 0x39, ProtocolConstants.Direction.TO_CLIENT, true ); // Entity Metadata : PacketPlayOutEntityMetadata
         addRewrite( 0x3B, ProtocolConstants.Direction.TO_CLIENT, true ); // Entity Velocity : PacketPlayOutEntityVelocity
+        addRewrite( 0x3A, ProtocolConstants.Direction.TO_CLIENT, false ); // Attach Entity : PacketPlayOutAttachEntity
         addRewrite( 0x3C, ProtocolConstants.Direction.TO_CLIENT, true ); // Entity Equipment : PacketPlayOutEntityEquipment
         addRewrite( 0x40, ProtocolConstants.Direction.TO_CLIENT, true ); // Attach Entity : PacketPlayOutMount
         addRewrite( 0x49, ProtocolConstants.Direction.TO_CLIENT, true ); // Collect Item : PacketPlayOutCollect
