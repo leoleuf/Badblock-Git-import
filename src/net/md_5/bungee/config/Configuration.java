@@ -1,16 +1,14 @@
 package net.md_5.bungee.config;
 
-import com.google.common.collect.Sets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+import com.google.common.collect.Sets;
+
 public final class Configuration
 {
 
@@ -28,8 +26,27 @@ public final class Configuration
         this( new LinkedHashMap<String, Object>(), defaults );
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	private Configuration getSectionFor(String path)
+    @SuppressWarnings("rawtypes")
+	Configuration(Map<?, ?> map, Configuration defaults)
+    {
+        this.self = new LinkedHashMap<>();
+        this.defaults = defaults;
+
+        for ( Map.Entry<?, ?> entry : map.entrySet() )
+        {
+            String key = entry.getKey().toString();
+
+            if ( entry.getValue() instanceof Map )
+            {
+                this.self.put( key, new Configuration( (Map) entry.getValue(), ( defaults == null ) ? null : defaults.getSection( key ) ) );
+            } else
+            {
+                this.self.put( key, entry.getValue() );
+            }
+        }
+    }
+
+    private Configuration getSectionFor(String path)
     {
         int index = path.indexOf( SEPARATOR );
         if ( index == -1 )
@@ -41,15 +58,11 @@ public final class Configuration
         Object section = self.get( root );
         if ( section == null )
         {
-            section = new LinkedHashMap<>();
+            section = new Configuration( ( defaults == null ) ? null : defaults.getSection( path ) );
             self.put( root, section );
         }
-        if ( section instanceof Configuration )
-        {
-            return (Configuration) section;
-        }
 
-        return new Configuration( (Map) section, ( defaults == null ) ? null : defaults.getSectionFor( path ) );
+        return (Configuration) section;
     }
 
     private String getChild(String path)
@@ -70,6 +83,11 @@ public final class Configuration
         } else
         {
             val = section.get( getChild( path ), def );
+        }
+
+        if ( val == null && def instanceof Configuration )
+        {
+            self.put( path, def );
         }
 
         return ( val != null ) ? (T) val : def;
@@ -104,11 +122,10 @@ public final class Configuration
     }
 
     /*------------------------------------------------------------------------*/
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	public Configuration getSection(String path)
+    public Configuration getSection(String path)
     {
         Object def = getDefault( path );
-        return new Configuration( (Map) ( get( path, ( def instanceof Map ) ? def : Collections.EMPTY_MAP ) ), ( defaults == null ) ? null : defaults.getSection( path ) );
+        return (Configuration) get( path, ( def instanceof Configuration ) ? def : new Configuration( ( defaults == null ) ? null : defaults.getSection( path ) ) );
     }
 
     /**
