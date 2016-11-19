@@ -1,20 +1,28 @@
 package net.md_5.bungee.connection;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Preconditions;
 import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
-import javax.crypto.SecretKey;
-import com.google.gson.Gson;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+
+import javax.crypto.SecretKey;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
+import com.google.gson.Gson;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.*;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.BungeeServerInfo;
+import net.md_5.bungee.EncryptionUtil;
+import net.md_5.bungee.UserConnection;
+import net.md_5.bungee.Util;
+import net.md_5.bungee.api.AbstractReconnectHandler;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.Favicon;
@@ -26,34 +34,33 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
+import net.md_5.bungee.api.event.PlayerHandshakeEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.chat.ComponentSerializer;
 import net.md_5.bungee.http.HttpClient;
-import net.md_5.bungee.netty.HandlerBoss;
+import net.md_5.bungee.jni.cipher.BungeeCipher;
 import net.md_5.bungee.netty.ChannelWrapper;
+import net.md_5.bungee.netty.HandlerBoss;
 import net.md_5.bungee.netty.PacketHandler;
 import net.md_5.bungee.netty.PipelineUtils;
 import net.md_5.bungee.netty.cipher.CipherDecoder;
 import net.md_5.bungee.netty.cipher.CipherEncoder;
 import net.md_5.bungee.protocol.DefinedPacket;
 import net.md_5.bungee.protocol.PacketWrapper;
-import net.md_5.bungee.protocol.ProtocolConstants;
-import net.md_5.bungee.protocol.packet.Handshake;
-import net.md_5.bungee.protocol.packet.PluginMessage;
-import net.md_5.bungee.protocol.packet.EncryptionResponse;
-import net.md_5.bungee.protocol.packet.EncryptionRequest;
-import net.md_5.bungee.protocol.packet.Kick;
-import net.md_5.bungee.api.AbstractReconnectHandler;
-import net.md_5.bungee.api.event.PlayerHandshakeEvent;
-import net.md_5.bungee.api.event.PreLoginEvent;
-import net.md_5.bungee.jni.cipher.BungeeCipher;
 import net.md_5.bungee.protocol.Protocol;
+import net.md_5.bungee.protocol.ProtocolConstants;
+import net.md_5.bungee.protocol.packet.EncryptionRequest;
+import net.md_5.bungee.protocol.packet.EncryptionResponse;
+import net.md_5.bungee.protocol.packet.Handshake;
+import net.md_5.bungee.protocol.packet.Kick;
 import net.md_5.bungee.protocol.packet.LegacyHandshake;
 import net.md_5.bungee.protocol.packet.LegacyPing;
 import net.md_5.bungee.protocol.packet.LoginRequest;
 import net.md_5.bungee.protocol.packet.LoginSuccess;
 import net.md_5.bungee.protocol.packet.PingPacket;
+import net.md_5.bungee.protocol.packet.PluginMessage;
 import net.md_5.bungee.protocol.packet.StatusRequest;
 import net.md_5.bungee.protocol.packet.StatusResponse;
 import net.md_5.bungee.util.BoundedArrayList;
@@ -96,12 +103,11 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     private boolean legacy;
     @Getter
     private String extraDataInHandshake = "";
-    private boolean disconnecting;
 
     @Override
     public boolean shouldHandle(PacketWrapper packet) throws Exception
     {
-        return !disconnecting;
+        return !ch.isClosing();
     }
 
     private enum State
@@ -170,13 +176,13 @@ public class InitialHandler extends PacketHandler implements PendingConnection
                             + "\00" + 127
                             + '\00' + legacy.getVersion().getName()
                             + '\00' + getFirstLine( legacy.getDescription() )
-                            + '\00' + legacy.getPlayers().getOnline()
+                            + '\00' + 0
                             + '\00' + legacy.getPlayers().getMax();
                 } else
                 {
                     // Clients <= 1.3 don't support colored motds because the color char is used as delimiter
                     kickMessage = ChatColor.stripColor( getFirstLine( legacy.getDescription() ) )
-                            + '\u00a7' + legacy.getPlayers().getOnline()
+                            + '\u00a7' + 0
                             + '\u00a7' + legacy.getPlayers().getMax();
                 }
 
@@ -205,7 +211,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
         Callback<ServerPing> pingBack = new Callback<ServerPing>()
         {
-			@Override
+            @Override
             public void done(ServerPing result, Throwable error)
             {
                 if ( error != null )
@@ -488,7 +494,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
                 ch.getHandle().eventLoop().execute( new Runnable()
                 {
-                    @Override
+					@Override
                     public void run()
                     {
                         if ( ch.getHandle().isActive() )
@@ -537,28 +543,18 @@ public class InitialHandler extends PacketHandler implements PendingConnection
     @Override
     public void disconnect(final BaseComponent... reason)
     {
-        if ( !disconnecting || !ch.isClosed() )
+        ch.delayedClose( new Runnable()
         {
-            disconnecting = true;
-            // Why do we have to delay this you might ask? Well the simple reason is MOJANG.
-            // Despite many a bug report posted, ever since the 1.7 protocol rewrite, the client STILL has a race condition upon switching protocols.
-            // As such, despite the protocol switch packets already having been sent, there is the possibility of a client side exception
-            // To help combat this we will wait half a second before actually sending the disconnected packet so that whoever is on the other
-            // end has a somewhat better chance of receiving the proper packet.
-            ch.getHandle().eventLoop().schedule( new Runnable()
-            {
 
-                @Override
-                public void run()
+            @Override
+            public void run()
+            {
+                if ( thisState != State.STATUS && thisState != State.PING )
                 {
-                    if ( thisState != State.STATUS && thisState != State.PING )
-                    {
-                        unsafe().sendPacket( new Kick( ComponentSerializer.toString( reason ) ) );
-                    }
-                    ch.close();
+                    unsafe().sendPacket( new Kick( ComponentSerializer.toString( reason ) ) );
                 }
-            }, 500, TimeUnit.MILLISECONDS );
-        }
+            }
+        } );
     }
 
     @Override

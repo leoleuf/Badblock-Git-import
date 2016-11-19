@@ -1,5 +1,15 @@
 package net.md_5.bungee;
 
+import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.util.internal.PlatformDependent;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,18 +20,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
 import java.util.logging.Level;
-
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.ImmutableMap;
-
-import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.util.internal.PlatformDependent;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -80,9 +78,6 @@ public final class UserConnection implements ProxiedPlayer
     @Getter
     @Setter
     private ServerConnection server;
-    @Getter
-    @Setter
-    private int dimension;
     @Getter
     @Setter
     private boolean dimensionChange = true;
@@ -215,10 +210,17 @@ public final class UserConnection implements ProxiedPlayer
         connect( target, callback, false );
     }
 
-    public void connectNow(ServerInfo target)
+    void sendDimensionSwitch()
     {
         dimensionChange = true;
-        connect(target);
+        unsafe().sendPacket( PacketConstants.DIM1_SWITCH );
+        unsafe().sendPacket( PacketConstants.DIM2_SWITCH );
+    }
+
+    public void connectNow(ServerInfo target)
+    {
+        sendDimensionSwitch();
+        connect( target );
     }
 
     public ServerInfo updateAndGetNextServer(ServerInfo currentTarget)
@@ -242,7 +244,8 @@ public final class UserConnection implements ProxiedPlayer
         return next;
     }
 
-    public void connect(ServerInfo info, final Callback<Boolean> callback, final boolean retry)
+    @SuppressWarnings("rawtypes")
+	public void connect(ServerInfo info, final Callback<Boolean> callback, final boolean retry)
     {
         Preconditions.checkNotNull( info, "info" );
 
@@ -281,8 +284,7 @@ public final class UserConnection implements ProxiedPlayer
 
         pendingConnects.add( target );
 
-        @SuppressWarnings("rawtypes")
-		ChannelInitializer initializer = new ChannelInitializer()
+        ChannelInitializer initializer = new ChannelInitializer()
         {
             @Override
             protected void initChannel(Channel ch) throws Exception
