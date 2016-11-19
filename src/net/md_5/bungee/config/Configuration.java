@@ -107,8 +107,13 @@ public final class Configuration
 		return ( defaults == null ) ? null : defaults.get( path );
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void set(String path, Object value)
 	{
+		if ( value instanceof Map )
+		{
+			value = new Configuration( (Map) value, ( defaults == null ) ? null : defaults.getSection( path ) );
+		}
 		Configuration section = getSectionFor( path );
 		if ( section == this )
 		{
