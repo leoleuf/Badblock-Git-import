@@ -434,6 +434,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 			break;
 		}
+		BungeeCord.getInstance().setCurrentCount(getOnlineCount());
 		if (!bungeePlayers.contains(player.getName()) && bungeePlayers.size() < bungeePlayersCount) {
 			while (bungeePlayers.size() < bungeePlayersCount) {
 				if (!bungeePlayers.contains(player.getName()))
@@ -499,6 +500,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				}
 			connectPlayers.remove(lPlayer.getName());
 		}
+		BungeeCord.getInstance().setCurrentCount(getOnlineCount());
 
 		if (bungeePlayers.size() > ladderPlayers) {
 			for (String totalPlayer : totalPlayers)

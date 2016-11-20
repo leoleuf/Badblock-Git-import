@@ -192,6 +192,7 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
+		BungeeCord.getInstance().setCurrentCount(LadderBungee.getInstance().getOnlineCount());
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().getOnlineCount(), sample));
 		String[] motdString = motd.getMotd().clone();
 		if (LadderBungee.getInstance().getOnlineCount() >= motd.getMaxPlayers()) {
