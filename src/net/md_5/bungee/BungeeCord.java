@@ -157,7 +157,9 @@ public class BungeeCord extends ProxyServer
     @Getter
     private ConnectionThrottle connectionThrottle;
     //private final ModuleManager moduleManager = new ModuleManager();
-
+    @Getter@Setter
+    private int currentCount;
+    
     
     {
         // TODO: Proper fallback when we interface the manager

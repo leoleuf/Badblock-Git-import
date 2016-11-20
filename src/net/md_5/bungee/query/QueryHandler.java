@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ListenerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -116,7 +117,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
                 data.put( "plugins", "" );
                 // End Extra Info
                 data.put( "map", "BungeeCord_Proxy" );
-                data.put( "numplayers", Integer.toString( 0 ) );
+                data.put( "numplayers", Integer.toString( BungeeCord.getInstance().getCurrentCount() ) );
                 data.put( "maxplayers", Integer.toString( listener.getMaxPlayers() ) );
                 data.put( "hostport", Integer.toString( listener.getHost().getPort() ) );
                 data.put( "hostip", listener.getHost().getHostString() );
