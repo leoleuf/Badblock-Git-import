@@ -55,10 +55,10 @@ public class SocketHandler extends Thread implements PacketSender {
 			@Override
 			public void run(){
 				synchronized (thread) {
-					while(running){
+					while(running&& !socket.isClosed()){
 						try {
 							if(packets.size() > 200){
-								//System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
+								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
 							}
 							while (!packets.isEmpty()) {
 								Iterator<Packet> iterator = packets.iterator();
@@ -79,7 +79,7 @@ public class SocketHandler extends Thread implements PacketSender {
 									}
 								}
 							}
-							thread.wait();
+							Thread.sleep(5);
 						} catch (Exception e) {}
 					}
 				}
@@ -133,9 +133,6 @@ public class SocketHandler extends Thread implements PacketSender {
 		if(socket.isClosed()) return;
 
 		packets.add(packet);
-		synchronized(thread) {
-			thread.notify();
-		}
 	}
 
 	protected void socketClosed(){}
