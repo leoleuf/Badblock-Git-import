@@ -1,6 +1,8 @@
 package fr.badblock.ladder.bungee;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Map;
 import java.util.UUID;
 
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -77,8 +79,17 @@ public class LadderListener implements Listener {
 			@Override
 			public void run() {
 				try {
-					skinprofile.attemptUpdateBungee();
-					SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), LadderBungee.getInstance().uuids.get(e.getPlayer().getName().toLowerCase()));
+					UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(e.getPlayer().getName()));
+					Map<String, UUID> response = null;
+					try {
+						response = fetcher.call();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					if (response != null) {
+						skinprofile.attemptUpdateBungee();
+						SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), response.get(e.getPlayer().getName()));
+					}
 				} catch (SkinFetchFailedException e){}
 			}
 		});
@@ -184,7 +195,7 @@ public class LadderListener implements Listener {
 
 		if(motd == null)
 			return;
-		
+
 
 		PlayerInfo[]   sample = new PlayerInfo[motd.getPlayers().length];
 
