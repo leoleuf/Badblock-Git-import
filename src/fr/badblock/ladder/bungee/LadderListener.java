@@ -121,16 +121,6 @@ public class LadderListener implements Listener {
 				if (player.getCustomUUID() != null) {
 					uniqueId.set(pendingConnection, player.getCustomUUID());
 				}
-				final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
-				ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
-					@Override
-					public void run() {
-						try {
-							skinprofile.attemptUpdateBungee();
-							SkinFactoryBungee.getFactory().applySkin(e.getPlayer());
-						} catch (SkinFetchFailedException e){}
-					}
-				});
 			}catch(Exception error) {
 				error.printStackTrace();
 			}
