@@ -5,13 +5,7 @@ sh install_basics.sh
 # Install Java - JRE8
 sh install_java.sh
 # Install vRack
-cd /opt/
-wget https://badblock.fr/sdata/vRack.tar.gz
-tar xvf vRack.tar.gz
-rm vRack.tar.gz
-cd vRack/
-sh boot.sh
-screen -ls
+sh install_vrack.sh
 # Install Docker
 cd /home/
 mkdir mc
