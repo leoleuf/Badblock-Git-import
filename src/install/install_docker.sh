@@ -1,16 +1,9 @@
 # Prepare installation
 sh ../upkeep/update.sh
 # Installation of basic programs
-apt-get install nload htop speedtest-cli sudo pigz
-hostname $0
-rm /etc/hostname
-echo "$0" >> /etc/hostname
+sh install_basics.sh
 # Install Java - JRE8
-echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
-echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-apt-get update
-apt-get install oracle-java8-installer
+
 # Install vRack
 cd /opt/
 wget https://badblock.fr/sdata/vRack.tar.gz
