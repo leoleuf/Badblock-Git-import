@@ -16,8 +16,7 @@ rm Docker.tar.gz
 nano /home/mc/Docker/dynamic_configuration.json
 nano /home/mc/Docker/configuration.json
 # Install Zabbix-Agent
-apt-get install zabbix-agent
-nano /etc/zabbix/zabbix_agentd.conf
+sh install_zabbixagent.sh
 # Update the kernel to 4.8.8
 cd /boot
 wget ftp://ftp.ovh.net/made-in-ovh/bzImage/4.8.8/System.map-4.8.8-xxxx-std-ipv6-64
