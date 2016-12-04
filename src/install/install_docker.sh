@@ -1,7 +1,5 @@
 # Prepare installation
-apt-get update
-apt-get upgrade
-apt-get dist-upgrade
+sh ../upkeep/update.sh
 # Installation of basic programs
 apt-get install nload htop speedtest-cli sudo pigz
 hostname $0
