@@ -3,7 +3,7 @@ sh ../upkeep/update.sh
 # Installation of basic programs
 sh install_basics.sh
 # Install Java - JRE8
-
+sh install_java.sh
 # Install vRack
 cd /opt/
 wget https://badblock.fr/sdata/vRack.tar.gz
