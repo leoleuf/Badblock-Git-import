@@ -55,7 +55,7 @@ public class SocketHandler extends Thread implements PacketSender {
 			@Override
 			public void run(){
 				synchronized (thread) {
-					while(running&& !socket.isClosed()){
+					while(running){
 						try {
 							if(packets.size() > 200){
 								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
