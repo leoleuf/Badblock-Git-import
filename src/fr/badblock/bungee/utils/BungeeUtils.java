@@ -6,7 +6,10 @@ import java.net.InetSocketAddress;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import fr.badblock.ladder.bungee.LadderBungee;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -45,6 +48,43 @@ public class BungeeUtils extends Plugin implements Listener{
 		getProxy().getPluginManager().registerCommand(this, new BUReloadCommand());
 		getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 		loadConfig();
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				LadderBungee ladderBungee = LadderBungee.getInstance();
+				while (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
+					if (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
+						for (String totalPlayer : ladderBungee.totalPlayers)
+							if (!ladderBungee.connectPlayers.contains(totalPlayer) && ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers)
+								ladderBungee.connectPlayers.add(totalPlayer);
+					}
+					break;
+				}
+				BungeeCord.getInstance().setCurrentCount(ladderBungee.getOnlineCount());
+				if (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
+					while (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
+						if (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
+							for (String totalPlayer : ladderBungee.totalPlayers)
+								if (!ladderBungee.bungeePlayers.contains(totalPlayer) && ladderBungee.bungeePlayers.size() < ladderBungee.ladderPlayers)
+									ladderBungee.bungeePlayers.add(totalPlayer);
+						}
+						break;
+					}
+				}
+				if (ladderBungee.connectPlayers.size() > ladderBungee.ladderPlayers) {
+					for (String totalPlayer : ladderBungee.totalPlayers)
+						if (ladderBungee.connectPlayers.contains(totalPlayer) && ladderBungee.connectPlayers.size() > ladderBungee.ladderPlayers) {
+							ladderBungee.connectPlayers.remove(totalPlayer);
+						}
+				}
+				if (ladderBungee.bungeePlayers.size() > ladderBungee.ladderPlayers) {
+					for (String totalPlayer : ladderBungee.totalPlayers)
+						if (ladderBungee.bungeePlayers.contains(totalPlayer) && ladderBungee.bungeePlayers.size() > ladderBungee.ladderPlayers) {
+							ladderBungee.bungeePlayers.remove(totalPlayer);
+						}
+				}
+			}
+		}, 100, 100);
 	}
 
 	public void loadConfig(){
