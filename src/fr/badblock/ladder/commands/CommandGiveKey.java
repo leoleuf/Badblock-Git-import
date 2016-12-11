@@ -51,7 +51,7 @@ public class CommandGiveKey extends Command {
 			}
 
 			try {
-				URL url = new URL("https://www.google.fr/?gws_rd=ssl");
+				URL url = new URL(args[3]);
 
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
