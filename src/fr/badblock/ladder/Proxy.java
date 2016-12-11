@@ -38,6 +38,7 @@ import fr.badblock.ladder.chat.LadderTitle;
 import fr.badblock.ladder.commands.CommandAlert;
 import fr.badblock.ladder.commands.CommandEnd;
 import fr.badblock.ladder.commands.CommandFind;
+import fr.badblock.ladder.commands.CommandGiveKey;
 import fr.badblock.ladder.commands.CommandList;
 import fr.badblock.ladder.commands.CommandNick;
 import fr.badblock.ladder.commands.CommandPermissions;
@@ -421,6 +422,7 @@ public class Proxy extends Ladder {
 		pluginsManager.registerCommand(null, new CommandUnmute());
 		pluginsManager.registerCommand(null, new CommandSanction());
 		pluginsManager.registerCommand(null, new CommandPlayer());
+		pluginsManager.registerCommand(null, new CommandGiveKey());
 		pluginsManager.registerCommand(null, new CommandPluginsManager());
 
 		pluginsManager.loadPlugins();
