@@ -18,7 +18,6 @@ import com.google.gson.JsonPrimitive;
 
 import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
-import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.chat.Motd;
 import fr.badblock.ladder.api.entities.Bukkit;
 import fr.badblock.ladder.api.entities.BungeeCord;
@@ -246,14 +245,8 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void handle(PacketPlayerLogin packet) {
-		System.out.println("PacketPlayerLogin");
 		LadderPlayer    player = new LadderPlayer(this, packet);
 		PlayerJoinEvent event  = new PlayerJoinEvent(player, this);
-
-		if(Ladder.getInstance().getPlayer(player.getUniqueId()) != null || Ladder.getInstance().getPlayer(packet.getPlayerName()) != null) {
-			player.disconnect(ChatColor.RED + "Vous êtes déjà connecté sur BadBlock.");
-			return;
-		}
 
 		if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getBungeeOnlineCount() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
 			player.disconnect("§cLe serveur est plein, l'accès est réservé aux VIP.");

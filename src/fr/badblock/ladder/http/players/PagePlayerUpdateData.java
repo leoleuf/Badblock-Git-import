@@ -3,6 +3,8 @@ package fr.badblock.ladder.http.players;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.google.gson.JsonObject;
 
@@ -39,6 +41,12 @@ public class PagePlayerUpdateData extends LadderPage {
 				plo.sendToBungee(stringS);
 			}
 			object.add("data", player.getData());
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					player.saveData();
+				}
+			}, 100);
 		}
 		return object;
 	}
