@@ -10,16 +10,26 @@ import com.google.gson.JsonObject;
 
 public class SlackMessage
 {
+	public static final String KEYS_CHANNEL = "info_given-keys";
+	
 	private final String message;
 	private final String name;
 	private final boolean useMarkdown;
 	private final String webhookUrl = "https://hooks.slack.com/services/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";
+	private String channel = "prive_perms";
 	
 	public SlackMessage(String message, String name, boolean useMarkdown)
 	{
 		this.message = message;
 		this.name = name;
 		this.useMarkdown = useMarkdown;
+	}
+	
+	public SlackMessage(String message, String name, boolean useMarkdown, String channel)
+	{
+		this(message, name, useMarkdown);
+		
+		this.channel = channel;
 	}
 	
 	public void run()
@@ -34,7 +44,9 @@ public class SlackMessage
 				json.addProperty("link_names", 1);
 				json.addProperty("parse", "full");
 				json.addProperty("icon_emoji", ":klabaconfiant:");
+				json.addProperty("channel", channel);
 				json.addProperty("mrkdwn", Boolean.valueOf(useMarkdown));
+				
 				String jsonStr = "payload=" + json.toString();
 				
 				try
