@@ -313,7 +313,7 @@ public class CommandPermissions extends Command {
 							if(has == Boolean.FALSE){
 								post("@channel Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
 							} else {
-								
+								post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
 							}
 						} catch(Exception e){
 							post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
