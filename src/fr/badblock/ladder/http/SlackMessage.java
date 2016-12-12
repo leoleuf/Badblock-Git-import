@@ -18,19 +18,13 @@ public class SlackMessage
 	private String webhookUrl = "https://hooks.slack.com/services/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";
 	private String channel = "prive_perms";
 	
-	public SlackMessage(String message, String webHookUrl, String name, boolean useMarkdown)
+	public SlackMessage(String message, String webHookUrl, String channel, String name, boolean useMarkdown)
 	{
 		this.message = message;
 		this.webhookUrl = webHookUrl;
+		this.channel = channel;
 		this.name = name;
 		this.useMarkdown = useMarkdown;
-	}
-	
-	public SlackMessage(String message, String webHookUrl, String name, boolean useMarkdown, String channel)
-	{
-		this(message, webHookUrl, name, useMarkdown);
-		
-		this.channel = channel;
 	}
 	
 	public void run()

@@ -115,7 +115,7 @@ public class CommandGiveKey extends Command {
 				}
 			});
 
-			new SlackMessage("Ajout d'une clé (" + id + ") à " + StringUtils.join(added, ", ") + " par " + sender.getName(), "https://hooks.slack.com/services/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", "BottyChest", false, SlackMessage.KEYS_CHANNEL).run();
+			new SlackMessage("Ajout d'une clé (" + id + ") à " + StringUtils.join(added, ", ") + " par " + sender.getName(), "https://hooks.slack.com/services/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", "info_given-keys", "BottyChest", false).run();
 			sender.sendMessage(ChatColor.GREEN + "Clé (n°" + id + ") ajouté à " + StringUtils.join(added, ", ") + " avec succès.");
 		}
 	}
