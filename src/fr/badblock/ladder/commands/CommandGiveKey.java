@@ -101,7 +101,7 @@ public class CommandGiveKey extends Command {
 				}
 			});
 
-			new SlackMessage("Ajout d'une chest " + id + " à " + StringUtils.join(added, ", ") + " par " + sender.getName(), "BottyChest", false, SlackMessage.KEYS_CHANNEL);
+			new SlackMessage("Ajout d'une chest " + id + " à " + StringUtils.join(added, ", ") + " par " + sender.getName(), "BottyChest", false, SlackMessage.KEYS_CHANNEL).run();;
 		}
 	}
 
