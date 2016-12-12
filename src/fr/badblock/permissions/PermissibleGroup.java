@@ -68,7 +68,7 @@ import lombok.Data;
 	
 	@Override
 	public void addPermission(List<Permission> permission) {
-		permission.forEach(perm -> permissions.add(perm));
+		permissions.forEach(perm -> permissions.add(perm));
 	}
 
 	@Override
