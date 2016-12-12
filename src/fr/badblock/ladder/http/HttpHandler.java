@@ -85,6 +85,9 @@ public class HttpHandler extends Thread {
 		if(!get){
 			if(object != null) con.setRequestProperty("content-type", "application/json");
 
+			con.setRequestProperty("User-Agent", "Mozilla/5.0");
+			con.setConnectTimeout(10000);
+			con.setReadTimeout(10000);
 			String urlParameters = getPostParameters();
 			con.setDoOutput(true);
 

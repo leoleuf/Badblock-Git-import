@@ -55,6 +55,9 @@ public class SlackMessage
 					HttpURLConnection webhookConnection = (HttpURLConnection)new URL(webhookUrl).openConnection();
 					webhookConnection.setRequestMethod("POST");
 					webhookConnection.setDoOutput(true);
+					webhookConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
+					webhookConnection.setConnectTimeout(10000);
+					webhookConnection.setReadTimeout(10000);
 					BufferedOutputStream bufOut = new BufferedOutputStream(webhookConnection.getOutputStream());Throwable localThrowable2 = null;
 					try
 					{
