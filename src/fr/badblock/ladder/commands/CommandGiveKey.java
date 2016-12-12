@@ -29,7 +29,7 @@ public class CommandGiveKey extends Command {
 
 	@Override
 	public void executeCommand(CommandSender sender, String[] args) {
-		if (args.length < 3) {
+		if (args.length < 2) {
 			help(sender);
 			return;
 		}
@@ -46,7 +46,7 @@ public class CommandGiveKey extends Command {
 		List<String> players =  new ArrayList<>();
 
 		if(args[1].equals("-l")){
-			if(args.length < 4){
+			if(args.length < 3){
 				help(sender);
 				return;
 			}
@@ -74,7 +74,7 @@ public class CommandGiveKey extends Command {
 				return;
 			}
 		} else {
-			for(int i=2;i<args.length;i++){
+			for(int i=1;i<args.length;i++){
 				if(args[i].matches(username_regex))
 					players.add(args[i]);
 			}
@@ -86,7 +86,7 @@ public class CommandGiveKey extends Command {
 			List<String> added = new ArrayList<>();
 			
 			players.stream().map(username -> Ladder.getInstance().getOfflinePlayer(username)).filter(p -> p.hasPlayed()).forEach(player -> {
-				JsonObject hub = getAndAdd(player.getData(), "game", "others", "hub");
+				JsonObject hub = getAndAdd(player.getData(), "game", "other", "hub");
 
 				JsonArray array = hub.has("chests") ? hub.get("chests").getAsJsonArray() : new JsonArray();
 				array.add( Ladder.getInstance().getGson().toJsonTree( new CustomChest(id, false) ));
