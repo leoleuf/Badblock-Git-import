@@ -319,7 +319,7 @@ public class CommandPermissions extends Command {
 							post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
 						}
 					}
-				}, "https://badblock.fr/store/player_has_buy.php").addValues(new String[]{"user", "offer"}, new String[]{p.getName().toLowerCase(), Integer.toString(offer) }).setGet(true).start();
+				}, "https://badblock.fr/store/player_has_buy.php?user=" + p.getName().toLowerCase() + "&offer=" + Integer.toString(offer)).start();
 			} else {
 				post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
 			}
