@@ -51,28 +51,36 @@ public class CommandGiveKey extends Command {
 				return;
 			}
 
-			try {
-				URL url = new URL(args[2]);
+			new Thread("theSearcherOfKeys") {
+				@Override
+				public void run() {
+					try {
+						URL url = new URL(args[2]);
 
-				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+						HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+						connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+						connection.setConnectTimeout(10000);
+						connection.setReadTimeout(10000);
 
-				if(connection.getResponseCode() != 200){
-					throw new Exception("Error code: " + connection.getResponseCode());
+						if(connection.getResponseCode() != 200){
+							throw new Exception("Error code: " + connection.getResponseCode());
+						}
+
+						BufferedReader reader = new BufferedReader( new InputStreamReader(connection.getInputStream(), "UTF-8") );
+
+						String line = null;
+
+						while((line = reader.readLine()) != null)
+							if(line.matches(username_regex))
+								players.add(line);
+					} catch(Exception e){
+						e.printStackTrace();
+						sender.sendMessage(ChatColor.RED + "Improssible de lire la page : " + e.getMessage());
+
+						return;
+					}
 				}
-
-				BufferedReader reader = new BufferedReader( new InputStreamReader(connection.getInputStream()) );
-
-				String line = null;
-
-				while((line = reader.readLine()) != null)
-					if(line.matches(username_regex))
-						players.add(line);
-			} catch(Exception e){
-				e.printStackTrace();
-				sender.sendMessage(ChatColor.RED + "Improssible de lire la page : " + e.getMessage());
-
-				return;
-			}
+			}.start();
 		} else {
 			for(int i=1;i<args.length;i++){
 				if(args[i].matches(username_regex))
@@ -84,7 +92,7 @@ public class CommandGiveKey extends Command {
 			sender.sendMessage(ChatColor.RED + "Aucun joueur trouvé pour appliquer le give !");
 		} else {
 			List<String> added = new ArrayList<>();
-			
+
 			players.stream().map(username -> Ladder.getInstance().getOfflinePlayer(username)).filter(p -> p.hasPlayed()).forEach(player -> {
 				JsonObject hub = getAndAdd(player.getData(), "game", "other", "hub");
 
@@ -94,7 +102,7 @@ public class CommandGiveKey extends Command {
 
 				added.add(player.getName());
 				player.saveData();
-				
+
 				if(player instanceof Player){
 					Player p = (Player) player;
 					p.sendToBukkit("game");
@@ -111,12 +119,12 @@ public class CommandGiveKey extends Command {
 				object = object.get(key).getAsJsonObject();
 			else{
 				JsonObject res = new JsonObject();
-			
+
 				object.add(key, res);
 				object = res;
 			}
 		}
-		
+
 		return object;
 	}
 
