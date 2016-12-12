@@ -45,14 +45,14 @@ public class CommandGiveKey extends Command {
 
 		List<String> players =  new ArrayList<>();
 
-		if(args[2].equals("-l")){
+		if(args[1].equals("-l")){
 			if(args.length < 4){
 				help(sender);
 				return;
 			}
 
 			try {
-				URL url = new URL(args[3]);
+				URL url = new URL(args[2]);
 
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
