@@ -93,6 +93,7 @@ public class CommandGiveKey extends Command {
 				hub.add("chests", array);
 
 				added.add(player.getName());
+				player.saveData();
 				
 				if(player instanceof Player){
 					Player p = (Player) player;
