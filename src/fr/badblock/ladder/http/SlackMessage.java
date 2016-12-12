@@ -15,7 +15,7 @@ public class SlackMessage
 	private final String message;
 	private final String name;
 	private final boolean useMarkdown;
-	private final String webhookUrl = "https://hooks.slack.com/services/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";
+	private final String webhookUrl = "https://hooks.slack.com/services/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";
 	private String channel = "prive_perms";
 	
 	public SlackMessage(String message, String name, boolean useMarkdown)
