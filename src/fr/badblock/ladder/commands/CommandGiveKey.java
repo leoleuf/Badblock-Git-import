@@ -31,6 +31,7 @@ public class CommandGiveKey extends Command {
 	public void executeCommand(CommandSender sender, String[] args) {
 		if (args.length < 3) {
 			help(sender);
+			return;
 		}
 
 		int id;
