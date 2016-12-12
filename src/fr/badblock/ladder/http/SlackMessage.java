@@ -10,7 +10,6 @@ import com.google.gson.JsonObject;
 
 public class SlackMessage
 {
-	public static final String KEYS_CHANNEL = "info_given-keys";
 	
 	private final String message;
 	private final String name;

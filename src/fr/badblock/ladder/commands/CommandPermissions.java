@@ -312,16 +312,20 @@ public class CommandPermissions extends Command {
 							
 							if(has == Boolean.FALSE){
 								post("@channel Ajout du groupe " + group + " א " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas achetי le groupe ! :rage:");
+								System.out.println("mיייי euh !");
 							} else {
 								post("Ajout du groupe " + group + " א " + p.getName() + " par " + sender.getName() + " !");
+								System.out.println("mיייי euh !");
 							}
 						} catch(Exception e){
 							post("Ajout du groupe " + group + " א " + p.getName() + " par " + sender.getName() + " !");
+							System.out.println("mיייי euh !");
 						}
 					}
 				}, "https://badblock.fr/store/player_has_buy.php?user=" + p.getName().toLowerCase() + "&offer=" + Integer.toString(offer)).start();
 			} else {
 				post("Ajout du groupe " + group + " א " + p.getName() + " par " + sender.getName() + " !");
+				System.out.println("mיייי euh !");
 			}
 		}
 	}
