@@ -327,7 +327,7 @@ public class CommandPermissions extends Command {
 	}
 	
 	private void post(String message){
-		new SlackMessage(message, "BottyPerms", false).run();
+		new SlackMessage(message, "https://hooks.slack.com/services/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", "BottyPerms", false).run();
 	}
 
 	public void groupPermissionRemove(CommandSender sender, PermissibleGroup group, String[] args) {
