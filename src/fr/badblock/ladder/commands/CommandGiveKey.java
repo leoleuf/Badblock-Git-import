@@ -116,6 +116,7 @@ public class CommandGiveKey extends Command {
 			});
 
 			new SlackMessage("Ajout d'une clé (" + id + ") à " + StringUtils.join(added, ", ") + " par " + sender.getName(), "BottyChest", false, SlackMessage.KEYS_CHANNEL).run();;
+			sender.sendMessage(ChatColor.GREEN + "Clé (n°" + id + ") ajouté à " + StringUtils.join(added, ", ") + " avec succès.");
 		}
 	}
 
