@@ -509,9 +509,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				}
 			bungeePlayers.remove(lPlayer.getName());
 		}
-		
+
 		byName.remove(lPlayer.getName());
+		byName.remove(lPlayer.getName().toLowerCase());
 		playersTemp.remove(lPlayer.getName());
+		playersTemp.remove(lPlayer.getName().toLowerCase());
 	}
 
 	@Override
