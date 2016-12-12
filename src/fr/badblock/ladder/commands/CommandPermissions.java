@@ -311,14 +311,14 @@ public class CommandPermissions extends Command {
 							Boolean has = Boolean.parseBoolean(result);
 							
 							if(has == Boolean.FALSE){
-								post("@channel Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
+								post("@channel Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
 								System.out.println("méééé euh !");
 							} else {
-								post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+								post("Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " !");
 								System.out.println("méééé euh !");
 							}
 						} catch(Exception e){
-							post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+							post("Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " !");
 							System.out.println("méééé euh !");
 						}
 					}
