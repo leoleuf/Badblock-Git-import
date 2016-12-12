@@ -73,6 +73,7 @@ public class CommandGiveKey extends Command {
 						while((line = reader.readLine()) != null)
 							if(line.matches(username_regex))
 								players.add(line);
+						workOnIt(sender, players, id);
 					} catch(Exception e){
 						e.printStackTrace();
 						sender.sendMessage(ChatColor.RED + "Improssible de lire la page : " + e.getMessage());
@@ -86,8 +87,13 @@ public class CommandGiveKey extends Command {
 				if(args[i].matches(username_regex))
 					players.add(args[i]);
 			}
+			workOnIt(sender, players, id);
 		}
 
+		
+	}
+	
+	private void workOnIt(CommandSender sender, List<String> players, int id) {
 		if(players.size() == 0){
 			sender.sendMessage(ChatColor.RED + "Aucun joueur trouvé pour appliquer le give !");
 		} else {
