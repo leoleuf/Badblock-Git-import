@@ -70,7 +70,7 @@ public interface OfflinePlayer extends DataHandler {
 	
 	public boolean     hasPlayed();
 
-	public boolean     canJoinWhileRunning();
-	public void		   setJoinWhileRunning(long time);
+	public boolean     onlyJoinWhileWaiting();
+	public void		   setOnlyJoinWhileWaiting(long time);
 
 }
