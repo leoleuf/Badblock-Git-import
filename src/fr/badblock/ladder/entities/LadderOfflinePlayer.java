@@ -169,7 +169,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Override
 	public void setOnlyJoinWhileWaiting(long time) {
-		getData().addProperty("canJoinWhileRunning", time);
+		getData().addProperty("onlyJoinWhileWaiting", time);
 		saveData();
 	}
 
