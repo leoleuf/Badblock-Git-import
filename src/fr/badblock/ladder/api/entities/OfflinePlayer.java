@@ -69,4 +69,8 @@ public interface OfflinePlayer extends DataHandler {
 	public InetAddress getLastAddress();
 	
 	public boolean     hasPlayed();
+
+	public boolean     canJoinWhileRunning();
+	public void		   setJoinWhileRunning(long time);
+
 }

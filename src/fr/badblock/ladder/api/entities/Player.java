@@ -25,6 +25,7 @@ public interface Player extends CommandSender, Connection, OfflinePlayer {
 	public List<UUID>  getPlayersWithHim();
 	public void		   setPlayersWithHim(List<UUID> players);
 	
+	
 	public String	   getRequestedGame();
 	public void		   setRequestedGame(String game);
 }
