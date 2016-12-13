@@ -157,4 +157,20 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 		saveData();
 	}
 
+	@Override
+	public boolean canJoinWhileRunning() {
+		if (!getData().has("canJoinWhileRunning")) {
+			getData().addProperty("canJoinWhileRunning", System.currentTimeMillis() + 604_800_000L);
+			saveData();
+			return true;
+		}
+		return getData().get("canJoinWhileRunning").getAsLong() > System.currentTimeMillis();
+	}
+
+	@Override
+	public void setJoinWhileRunning(long time) {
+		getData().addProperty("canJoinWhileRunning", time);
+		saveData();
+	}
+
 }
