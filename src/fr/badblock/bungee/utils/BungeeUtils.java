@@ -201,7 +201,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			//if (!lobbies.containsKey(serverInfo)) continue;
 			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10)) continue;
-			if (server == null || server.getPlayers().size() < serverInfo.getPlayers().size() || server.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10))
+			if (server == null || server.getPlayers().size() > serverInfo.getPlayers().size() || server.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10))
 				server = serverInfo;
 		}
 		return server;
