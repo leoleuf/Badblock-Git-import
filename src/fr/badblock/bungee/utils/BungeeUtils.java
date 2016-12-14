@@ -152,24 +152,35 @@ public class BungeeUtils extends Plugin implements Listener{
 		} */
 	}
 
-@EventHandler
-public void onServerConnect(ServerConnectEvent e) {
-	if (e.getTarget() != null && e.getTarget().getName().equalsIgnoreCase( skeleton.getName() )) {
-		ServerInfo serverInfo = this.roundrobinLogin();
+	@SuppressWarnings("deprecation")
+	@EventHandler
+	public void onServerConnect(ServerConnectEvent e) {
+		if (e.getTarget() != null && e.getTarget().getName().equalsIgnoreCase( skeleton.getName() )) {
+			ServerInfo serverInfo = this.roundrobinLogin();
 
-		if (serverInfo != null) {
-			e.setTarget(serverInfo);
-		}
-	} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
-		ServerInfo serverInfo = this.roundrobinHub();
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}else{
+				if (e.getPlayer().getServer() != null && e.getPlayer().getServer().getInfo() != null && !e.getPlayer().getServer().getInfo().getName().equals("skeleton")) {
+					e.setCancelled(true);
+					e.getPlayer().sendMessage("§cAucun serveur de connexion disponible pour vous téléporter, veuillez patienter, nous recalculons votre itinéraire...");
+				}else e.getPlayer().disconnect("§cAucun serveur de connexion disponible pour vous téléporter, veuillez réitérer.");
+			}
+		} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
+			ServerInfo serverInfo = this.roundrobinHub();
 
-		if (serverInfo != null) {
-			e.setTarget(serverInfo);
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}else{
+				if (e.getPlayer().getServer() != null && e.getPlayer().getServer().getInfo() != null && !e.getPlayer().getServer().getInfo().getName().equals("lobby")) {
+					e.setCancelled(true);
+					e.getPlayer().sendMessage("§cAucun hub disponible pour vous téléporter, veuillez patienter, nous recalculons votre itinéraire...");
+				}else e.getPlayer().disconnect("§cAucun hub disponible pour vous téléporter, veuillez réitérer.");
+			}
 		}
 	}
-}
 
-public ServerInfo roundrobinHub() {
+	/*public ServerInfo roundrobinHub() {
 	List<ServerInfo> servers = new ArrayList<>();
 	for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 		if (serverInfo == null) continue;
@@ -180,19 +191,34 @@ public ServerInfo roundrobinHub() {
 		servers.add(serverInfo);
 	}
 	return servers.get(new SecureRandom().nextInt(servers.size()));
-}
+}*/
 
-private ServerInfo roundrobinLogin() {
-	List<ServerInfo> servers = new ArrayList<>();
-	for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
-		if (serverInfo == null) continue;
-		if (!serverInfo.getName().startsWith("login")) continue;
-		//if (!logins.containsKey(serverInfo)) continue;
-		//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
-		if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
-		servers.add(serverInfo);
+	public ServerInfo roundrobinHub() {
+		ServerInfo server = null;
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null) continue;
+			if (!serverInfo.getName().startsWith("hub")) continue;
+			//if (!lobbies.containsKey(serverInfo)) continue;
+			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
+			if (server == null || server.getPlayers().size() < serverInfo.getPlayers().size())
+				serverInfo = server;
+		}
+		return server;
 	}
-	return servers.get(new SecureRandom().nextInt(servers.size()));
-}
+
+	private ServerInfo roundrobinLogin() {
+		List<ServerInfo> servers = new ArrayList<>();
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null) continue;
+			if (!serverInfo.getName().startsWith("login")) continue;
+			//if (!logins.containsKey(serverInfo)) continue;
+			//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
+			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
+			servers.add(serverInfo);
+		}
+		if (servers == null || servers.isEmpty()) return null;
+		return servers.get(new SecureRandom().nextInt(servers.size()));
+	}
 
 }
