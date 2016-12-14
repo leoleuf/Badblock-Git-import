@@ -187,7 +187,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (!serverInfo.getName().startsWith("hub")) continue;
 			//if (!lobbies.containsKey(serverInfo)) continue;
 			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
-			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10)) continue;
 			servers.add(serverInfo);
 		}
 		return servers.get(new SecureRandom().nextInt(servers.size()));
@@ -200,7 +200,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (!serverInfo.getName().startsWith("hub")) continue;
 			//if (!lobbies.containsKey(serverInfo)) continue;
 			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
-			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10)) continue;
 			if (server == null || server.getPlayers().size() < serverInfo.getPlayers().size())
 				server = serverInfo;
 		}
@@ -214,7 +214,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			if (!serverInfo.getName().startsWith("login")) continue;
 			//if (!logins.containsKey(serverInfo)) continue;
 			//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
-			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
+			if (serverInfo.getPlayers().size() >= loginMaxPlayers - (loginMaxPlayers / 10)) continue;
 			servers.add(serverInfo);
 		}
 		if (servers == null || servers.isEmpty()) return null;
