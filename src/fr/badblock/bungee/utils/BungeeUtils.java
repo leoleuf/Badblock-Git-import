@@ -167,7 +167,7 @@ public class BungeeUtils extends Plugin implements Listener{
 				}else e.getPlayer().disconnect("§cAucun serveur de connexion disponible pour vous téléporter, veuillez réitérer.");
 			}
 		} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
-			ServerInfo serverInfo = this.roundrobinHub();
+			ServerInfo serverInfo = this.roundrobinHub_();
 
 			if (serverInfo != null) {
 				e.setTarget(serverInfo);
@@ -180,20 +180,20 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 	}
 
-	/*public ServerInfo roundrobinHub() {
-	List<ServerInfo> servers = new ArrayList<>();
-	for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
-		if (serverInfo == null) continue;
-		if (!serverInfo.getName().startsWith("hub")) continue;
-		//if (!lobbies.containsKey(serverInfo)) continue;
-		//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
-		if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
-		servers.add(serverInfo);
-	}
-	return servers.get(new SecureRandom().nextInt(servers.size()));
-}*/
-
 	public ServerInfo roundrobinHub() {
+		List<ServerInfo> servers = new ArrayList<>();
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null) continue;
+			if (!serverInfo.getName().startsWith("hub")) continue;
+			//if (!lobbies.containsKey(serverInfo)) continue;
+			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
+			servers.add(serverInfo);
+		}
+		return servers.get(new SecureRandom().nextInt(servers.size()));
+	}
+
+	public ServerInfo roundrobinHub_() {
 		ServerInfo server = null;
 		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
 			if (serverInfo == null) continue;
@@ -202,7 +202,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
 			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
 			if (server == null || server.getPlayers().size() < serverInfo.getPlayers().size())
-				serverInfo = server;
+				server = serverInfo;
 		}
 		return server;
 	}
