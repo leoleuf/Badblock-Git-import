@@ -167,7 +167,7 @@ public class BungeeUtils extends Plugin implements Listener{
 				}else e.getPlayer().disconnect("§cAucun serveur de connexion disponible pour vous téléporter, veuillez réitérer.");
 			}
 		} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
-			ServerInfo serverInfo = this.roundrobinHub_();
+			ServerInfo serverInfo = this.roundrobinHub();
 
 			if (serverInfo != null) {
 				e.setTarget(serverInfo);
