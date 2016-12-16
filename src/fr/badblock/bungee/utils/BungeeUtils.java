@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Queue;
 import java.util.Timer;
@@ -36,6 +37,8 @@ public class BungeeUtils extends Plugin implements Listener{
 
 	private int 			hubMaxPlayers;
 	private int 			loginMaxPlayers;
+	private long 			timestampLimit;
+	private String			timestampReachLimit;
 	private ServerInfo		skeleton;
 	private Queue<String>	hubs;
 
@@ -112,8 +115,8 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 		hubMaxPlayers = config.getInt("hubMaxPlayers", 100);
 		loginMaxPlayers = config.getInt("loginMaxPlayers", 100);
-		//timestampLimit = config.getLong("timestampLimit", System.currentTimeMillis() / 1000L);
-		//timestampReachLimit = config.getString("timestampReachLimit", "FINISHED");
+		timestampLimit = config.getLong("timestampLimit", System.currentTimeMillis() / 1000L);
+		timestampReachLimit = config.getString("timestampReachLimit", "FINISHED");
 	}
 
 	@EventHandler
@@ -132,11 +135,11 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 	}
 
-	//private String[] lastMotd;
+	private String[] lastMotd;
 
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onProxyPing(ProxyPingEvent e){
-		/*for (String l : LadderBungee.getInstance().getMotd().getMotd())
+		for (String l : LadderBungee.getInstance().getMotd().getMotd())
 			if (l.contains("@1")) {
 				lastMotd = LadderBungee.getInstance().getMotd().getMotd().clone();
 			}
@@ -156,7 +159,7 @@ public class BungeeUtils extends Plugin implements Listener{
 				}
 			}
 			LadderBungee.getInstance().getMotd().setMotd(newMotd);
-		} */
+		}
 	}
 
 	@SuppressWarnings("deprecation")
