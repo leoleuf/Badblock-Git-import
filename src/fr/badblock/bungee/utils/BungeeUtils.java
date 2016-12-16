@@ -201,6 +201,7 @@ public class BungeeUtils extends Plugin implements Listener{
 	}
 	
 	public ServerInfo roundrobinHubQueue() {
+		System.out.println(hubs.size());
 		if (hubs.isEmpty()) return null;
 		boolean okay = false;
 		int queueSize = hubs.size();
