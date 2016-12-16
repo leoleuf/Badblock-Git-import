@@ -56,7 +56,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				BungeeCord.getInstance().getServers().keySet().stream().filter(name -> !hubs.contains(name)).forEach(name -> hubs.add(name));
+				BungeeCord.getInstance().getServers().keySet().stream().filter(name -> name.startsWith("hub_") && !hubs.contains(name)).forEach(name -> hubs.add(name));
 				hubs.stream().filter(name -> BungeeCord.getInstance().getServerInfo(name) == null).forEach(name -> hubs.remove(name));
 				LadderBungee ladderBungee = LadderBungee.getInstance();
 				while (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
