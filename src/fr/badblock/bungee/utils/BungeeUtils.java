@@ -6,8 +6,11 @@ import java.net.InetSocketAddress;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.google.common.collect.Queues;
 
 import fr.badblock.ladder.bungee.LadderBungee;
 import net.md_5.bungee.BungeeCord;
@@ -31,13 +34,15 @@ public class BungeeUtils extends Plugin implements Listener{
 
 	public static BungeeUtils instance;
 
-	private int 		hubMaxPlayers;
-	private int 		loginMaxPlayers;
-	private ServerInfo	skeleton;
+	private int 			hubMaxPlayers;
+	private int 			loginMaxPlayers;
+	private ServerInfo		skeleton;
+	private Queue<String>	hubs;
 
 	@Override
 	public void onEnable(){
 		instance = this;
+		hubs = Queues.newLinkedBlockingDeque();
 		// Création d'un serveur skeleton
 		skeleton = BungeeCord.getInstance().constructServerInfo("skeleton", new InetSocketAddress("127.0.0.1", 8889), "skeleton", false);
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
@@ -51,6 +56,8 @@ public class BungeeUtils extends Plugin implements Listener{
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
+				BungeeCord.getInstance().getServers().keySet().stream().filter(name -> !hubs.contains(name)).forEach(name -> hubs.add(name));
+				hubs.stream().filter(name -> BungeeCord.getInstance().getServerInfo(name) == null).forEach(name -> hubs.remove(name));
 				LadderBungee ladderBungee = LadderBungee.getInstance();
 				while (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
 					if (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
@@ -191,6 +198,35 @@ public class BungeeUtils extends Plugin implements Listener{
 			servers.add(serverInfo);
 		}
 		return servers.get(new SecureRandom().nextInt(servers.size()));
+	}
+	
+	public ServerInfo roundrobinHubQueue() {
+		if (hubs.isEmpty()) return null;
+		boolean okay = false;
+		int queueSize = hubs.size();
+		int i = 0;
+		while (okay) {
+			i++;
+			if (i > queueSize) return null;
+			String name = hubs.peek();
+			ServerInfo serverInfo = BungeeCord.getInstance().getServerInfo(name);
+			if (serverInfo == null) {
+				hubs.remove(name);
+				continue;
+			}
+			if (!serverInfo.getName().startsWith("hub")) {
+				hubs.remove(name);
+				continue;
+			}
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers - (hubMaxPlayers / 10)) {
+				continue;
+			}
+			hubs.remove(name);
+			hubs.add(name);
+			okay = true;
+			return serverInfo;
+		}
+		return null;
 	}
 
 	public ServerInfo roundrobinHub_() {
