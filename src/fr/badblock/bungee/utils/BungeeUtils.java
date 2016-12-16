@@ -201,14 +201,15 @@ public class BungeeUtils extends Plugin implements Listener{
 	}
 	
 	public ServerInfo roundrobinHubQueue() {
-		System.out.println(hubs.size());
 		if (hubs.isEmpty()) return null;
 		boolean okay = false;
 		int queueSize = hubs.size();
 		int i = 0;
-		while (okay) {
+		while (!okay) {
 			i++;
-			if (i > queueSize) return null;
+			if (i > queueSize) {
+				return null;
+			}
 			String name = hubs.peek();
 			ServerInfo serverInfo = BungeeCord.getInstance().getServerInfo(name);
 			if (serverInfo == null) {
