@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
@@ -17,6 +18,7 @@ import lombok.Setter;
 	private		MongoCredentials			credentials;
 	private		MongoClient					mongoClient;
 	private		boolean						isDead;
+	private     DB							db;
 
 	public MongoService(String name, MongoCredentials credentials) {
 		this.setCredentials(credentials);
@@ -39,10 +41,14 @@ import lombok.Setter;
 						)
 				);
 		mongoClient = new MongoClient(seeds, credential);
+		db = client().getDB(this.getCredentials().getDatabase());
 		MongoConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[MongoConnector] Registered new service (" + name + ")");
 	}
 
+	public DB db() {
+		return this.getDb();
+	}
 
 	public MongoClient client() {
 		return this.getMongoClient();
