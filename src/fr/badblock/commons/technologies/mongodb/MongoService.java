@@ -43,8 +43,11 @@ import lombok.Setter;
 		System.out.println("[MongoConnector] Registered new service (" + name + ")");
 	}
 
-	// TODO : rajouter des fonctions essentielles ici (get, set..)
 
+	public MongoClient client() {
+		return this.getMongoClient();
+	}
+	
 	public void remove() {
 		System.out.println("[MongoConnector] Unregistered service! (" + this.getName() + ")");
 		try {
