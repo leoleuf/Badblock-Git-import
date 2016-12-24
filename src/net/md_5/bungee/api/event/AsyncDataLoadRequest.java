@@ -34,7 +34,7 @@ public class AsyncDataLoadRequest extends Event
 	
 	@AllArgsConstructor
 	public static class Result {
-		public JsonObject object;
+		public B object;
 		public String 	  kickReason;
 	}
 }
