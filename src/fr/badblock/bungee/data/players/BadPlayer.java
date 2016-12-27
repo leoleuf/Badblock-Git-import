@@ -44,8 +44,12 @@ public class BadPlayer extends BadOfflinePlayer {
 		return jsonObject;
 	}
 	
-	public BadPlayer get(ProxiedPlayer player) {
+	public static BadPlayer get(ProxiedPlayer player) {
 		return players.get(player.getName().toLowerCase());
+	}
+	
+	public static BadPlayer get(String player) {
+		return players.get(player.toLowerCase());
 	}
 	
 	public void disconnect() {

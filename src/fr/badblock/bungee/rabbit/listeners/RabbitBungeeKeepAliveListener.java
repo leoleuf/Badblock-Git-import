@@ -9,7 +9,6 @@ import fr.badblock.commons.technologies.rabbitmq.RabbitListenerType;
 public class RabbitBungeeKeepAliveListener extends RabbitListener {
 
 	public static boolean done = false;
-	
 	public RabbitBungeeKeepAliveListener() {
 		super(BadBungee.getInstance().getRabbitService(), "bungee.worker.keepAlive", false, RabbitListenerType.SUBSCRIBER);
 	}
