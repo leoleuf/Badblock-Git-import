@@ -14,12 +14,14 @@ import lombok.Setter;
 	private	String					hostname;
 	private	int						port;
 	private	String					password;
+	private int						database;
 	
-	public RedisCredentials(String name, String hostname, int port, String password) {
+	public RedisCredentials(String name, String hostname, int port, String password, int database) {
 		this.setName(name);
 		this.setHostname(hostname);
 		this.setPort(port);
 		this.setPassword(password);
+		this.setDatabase(database);
 		RedisConnector.getInstance().getCredentials().put(this.getName(), this);
 		System.out.println("[RedisConnector] Registered new credentials! (" + name + ")");
 	}

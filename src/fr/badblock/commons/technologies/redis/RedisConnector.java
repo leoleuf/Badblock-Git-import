@@ -34,8 +34,8 @@ import lombok.Setter;
 	 * @param password	  > the password of that account
 	 * @return a RedisCredentials object
 	 */
-	public RedisCredentials newCredentials(String name, String hostname, int port, String password) {
-		return new RedisCredentials(name, hostname, port, password);
+	public RedisCredentials newCredentials(String name, String hostname, int port, String password, int database) {
+		return new RedisCredentials(name, hostname, port, password, database);
 	}
 	
 	/**
@@ -46,8 +46,8 @@ import lombok.Setter;
 	 * @param password	  > the password of that account
 	 * @return a RedisService ready to work
 	 */
-	public RedisService newService(String name, String hostname, int port, String password) {
-		return newService(name, newCredentials(name, hostname, port, password));
+	public RedisService newService(String name, String hostname, int port, String password, int database) {
+		return newService(name, newCredentials(name, hostname, port, password, database));
 	}
 	
 	/**

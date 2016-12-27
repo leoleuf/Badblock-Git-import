@@ -21,9 +21,9 @@ public class RedisDataProvider implements PermissionProvider {
 	
 	private Map<String, JsonObject> loadedPlayers = new HashMap<String, JsonObject>();
 	
-	public RedisDataProvider(String[] locations, String host, int port, String password) {
+	public RedisDataProvider(String[] locations, String host, int port, String password, int database) {
 		this.locations = locations;
-		this.service   = RedisConnector.getInstance().newService("permissions_fetcher", host, port, password);
+		this.service   = RedisConnector.getInstance().newService("permissions_fetcher", host, port, password, database);
 	}
 	
 	@Override
