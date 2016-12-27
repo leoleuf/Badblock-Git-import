@@ -122,18 +122,18 @@ import net.md_5.bungee.config.YamlConfiguration;
 	
 	public void reloadMotd() {
 		System.out.println("A");
-		redisService.getAsyncObject("motd.default", new Callback<Motd>() {
+		redisService.getAsyncObject("motd.default", Motd.class, new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
-				System.out.println("B");
+				System.out.println("B " + redisService.getCredentials().getDatabase());
 				if (result == null) return;
 				System.out.println("C");
 				motd = result;
 			}
 			
 		});
-		redisService.getAsyncObject("motd.full", new Callback<Motd>() {
+		redisService.getAsyncObject("motd.full", Motd.class, new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
