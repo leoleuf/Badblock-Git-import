@@ -21,6 +21,8 @@ import fr.badblock.bungee.listeners.ProxyPingListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeExecuteCommandListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeHelloWorldListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeKeepAliveListener;
+import fr.badblock.bungee.rabbit.listeners.RabbitBungeePlayersUpdaterListener;
+import fr.badblock.bungee.rabbit.listeners.RabbitBungeeStopListener;
 import fr.badblock.bungee.utils.BungeeUtils;
 import fr.badblock.bungee.utils.Motd;
 import fr.badblock.commons.technologies.mongodb.MongoConnector;
@@ -71,6 +73,8 @@ import net.md_5.bungee.config.YamlConfiguration;
 		System.out.println("[BadBungee] Waiting for response..");
 		new RabbitBungeeHelloWorldListener();
 		new RabbitBungeeKeepAliveListener();
+		new RabbitBungeePlayersUpdaterListener();
+		new RabbitBungeeStopListener();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -119,7 +123,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	
 	@Override
 	public void onDisable() {
-		
+		getRabbitService().sendSyncPacket("bungee.worker.stop", this.getBungeeName(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
 	
 	public void keepAlive() {
