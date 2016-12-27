@@ -1,11 +1,10 @@
 package fr.badblock.commons.permissions.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
@@ -20,7 +19,7 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 public class PermissiblePlayer extends PermissibleEntity {
-	private Map<String, Long>        groups      = new HashMap<>();
+	private List<String>             groups      = new ArrayList<>();
 	private Map<String, JsonElement> permissions = new HashMap<>();
 	
 	@Override
@@ -42,27 +41,15 @@ public class PermissiblePlayer extends PermissibleEntity {
 		
 		return result == null ? Optional.ofNullable(null) : result;
 	}
-
-	/**
-	 * Vérifie si les groupes temporaires du joueur sont terminés, auquel cas ils seront enlevés
-	 */
-	public void checkEndedGroups(){
-		Set<Entry<String, Long>> toRemoveGroups = groups.entrySet().parallelStream().filter(entry -> entry.getValue() < System.currentTimeMillis() && entry.getValue() > 0).collect(Collectors.toSet());
-	
-		for(Entry<String, Long> toRemove : toRemoveGroups)
-			groups.remove(toRemove.getKey());
-	}
 	
 	/**
 	 * Récupère les groupes effectifs (indépendament des locations) du joueur, dans l'ordre de power décroissant
 	 * @return Les groupes dans l'ordre de power décroissant
 	 */
 	public List<PermissibleGroup> getPlayerGroups(){
-		checkEndedGroups();
-		
 		Permissions perms = Permissions.permissions;
 		
-		List<PermissibleGroup> res = groups.keySet().parallelStream()
+		List<PermissibleGroup> res = groups.parallelStream()
 											  .filter(group -> perms.hasGroup(group))
 											  .map(group -> Permissions.permissions.getGroupByName(group))
 											  .sorted((a, b) -> Integer.compare( b.getGroupPower(), a.getGroupPower() ))
