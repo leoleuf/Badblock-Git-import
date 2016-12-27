@@ -1,5 +1,7 @@
 package fr.badblock.commons.technologies.redis;
 
+import java.lang.reflect.Type;
+
 import fr.badblock.commons.utils.Callback;
 import lombok.Getter;
 import lombok.Setter;
@@ -53,6 +55,15 @@ import redis.clients.jedis.Jedis;
 		});
 	}
 
+	public <T> void getSyncObject(String key, Type type, Callback<T> object) {
+		getSyncString(key, new Callback<String>() {
+			@Override
+			public void done(String result, Throwable error) {
+				object.done(RedisConnector.getInstance().getGson().fromJson(result, type), null);
+			}
+		});
+	}
+
 	public void getSyncString(String key, Callback<String> object) {
 		if (!check()) return;
 		object.done(this.getJedis().get(key), null);
@@ -72,6 +83,15 @@ import redis.clients.jedis.Jedis;
 			@Override
 			public void run() {
 				getSyncObject(key, clazz, object);
+			}
+		}.start();
+	}
+	
+	public <T> void getAsyncObject(String key, Type type, Callback<T> object) {
+		new Thread() {
+			@Override
+			public void run() {
+				getSyncObject(key, type, object);
 			}
 		}.start();
 	}

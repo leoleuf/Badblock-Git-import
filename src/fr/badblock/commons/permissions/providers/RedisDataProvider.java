@@ -1,5 +1,6 @@
 package fr.badblock.commons.permissions.providers;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -7,6 +8,7 @@ import java.util.Map.Entry;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.commons.data.PlayerData;
 import fr.badblock.commons.permissions.PermissionProvider;
@@ -20,6 +22,7 @@ public class RedisDataProvider implements PermissionProvider {
 	private RedisService service;
 	
 	private Map<String, JsonObject> loadedPlayers = new HashMap<String, JsonObject>();
+	public static final Type type = new TypeToken<HashMap<String, JsonObject>>() {}.getType();
 	
 	public RedisDataProvider(String[] locations, String host, int port, String password, int database) {
 		this.locations = locations;
@@ -33,11 +36,11 @@ public class RedisDataProvider implements PermissionProvider {
 	
 	@Override
 	public void loadGroups(Callback<Map<String, PermissibleGroup>> callback) {
-		service.getAsyncObject("badblock.permissions", callback);
+		service.getAsyncObject("badblock.permissions", type, callback);
 	}
 
 	public void loadPlayer(String name, Callback<JsonObject> callback) {
-		service.getAsyncObject("badblock.player." + name.toLowerCase(), new Callback<JsonObject>() {
+		service.getAsyncObject("badblock.player." + name.toLowerCase(), JsonObject.class, new Callback<JsonObject>() {
 			@Override
 			public void done(JsonObject result, Throwable error) {
 				if(error != null){
