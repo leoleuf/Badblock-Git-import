@@ -57,6 +57,7 @@ import redis.clients.jedis.Jedis;
 
 	public void getSyncString(String key, Callback<String> object) {
 		if (!check()) return;
+		System.out.println(key);
 		object.done(this.getJedis().get(key), null);
 	}
 	
