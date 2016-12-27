@@ -88,6 +88,9 @@ import net.md_5.bungee.config.YamlConfiguration;
 			mongoHostnamesArray = mongoHostnames.toArray(mongoHostnamesArray);
 			mongoService = MongoConnector.getInstance().newService("default", mongoPort, mongoUsername, mongoPassword, mongoDatabase, mongoHostnamesArray);
 			bungeeName = config.getString("bungeeName");
+			String redisHostname = config.getString("redis.hostname");
+			int redisPort = config.getInt("redis.port");
+			String redisPassword = config.getString("redis.password");
 			redisService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword);
 		} catch(Exception e){
 			e.printStackTrace();
