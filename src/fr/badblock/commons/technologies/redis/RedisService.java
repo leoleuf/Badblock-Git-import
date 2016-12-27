@@ -1,7 +1,5 @@
 package fr.badblock.commons.technologies.redis;
 
-import java.lang.reflect.ParameterizedType;
-
 import fr.badblock.commons.utils.Callback;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,18 +44,17 @@ import redis.clients.jedis.Jedis;
 		set(key, RedisConnector.getInstance().getGson().toJson(value));
 	}
 
-	public <T> void getSyncObject(String key, Callback<T> object) {
+	public <T> void getSyncObject(String key, Class<T> clazz, Callback<T> object) {
 		getSyncString(key, new Callback<String>() {
 			@Override
 			public void done(String result, Throwable error) {
-				object.done(RedisConnector.getInstance().getGson().fromJson(result, getGenericClass(object)), null);
+				object.done(RedisConnector.getInstance().getGson().fromJson(result, clazz), null);
 			}
 		});
 	}
 
 	public void getSyncString(String key, Callback<String> object) {
 		if (!check()) return;
-		System.out.println(key);
 		object.done(this.getJedis().get(key), null);
 	}
 	
@@ -70,11 +67,11 @@ import redis.clients.jedis.Jedis;
 		}.start();
 	}
 	
-	public <T> void getAsyncObject(String key, Callback<T> object) {
+	public <T> void getAsyncObject(String key, Class<T> clazz, Callback<T> object) {
 		new Thread() {
 			@Override
 			public void run() {
-				getSyncObject(key, object);
+				getSyncObject(key, clazz, object);
 			}
 		}.start();
 	}
@@ -89,11 +86,6 @@ import redis.clients.jedis.Jedis;
 			}
 		}
 		return true;
-	}
-	
-	@SuppressWarnings("unchecked")
-	private <T> Class<T> getGenericClass(Callback<T> object) {
-		return (Class<T>) ((ParameterizedType) object.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 
 	public void remove() {
