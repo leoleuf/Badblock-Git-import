@@ -8,6 +8,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.bungee.commands.linked.SendToAllCommand;
@@ -52,6 +53,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	private MongoService  mongoService;
 	private RedisService  redisService;
 	private Gson		  gson;
+	private Gson		  exposeGson;
 	private Motd		  motd;
 	private Motd		  fullMotd;
 	private Timer		  timer;
@@ -63,6 +65,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		// Load configuration
 		loadConfig();
 		this.gson = new Gson();
+		this.exposeGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		System.out.println("[BadBungee] Waiting for response..");
 		new RabbitBungeeHelloWorldListener();
 		new RabbitBungeeKeepAliveListener();
@@ -117,7 +120,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	public void keepAlive() {
-		this.getRabbitService().sendPacket("bungee.worker.keepAlive", gson.toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
+		this.getRabbitService().sendPacket("bungee.worker.keepAlive", this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 	
 	public void reloadMotd() {

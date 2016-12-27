@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.Expose;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,8 +17,8 @@ public class BadPlayer extends BadOfflinePlayer {
 
 	public static Map<String, BadPlayer> players = new HashMap<>();
 	
-	public String bungee;
-	public String bukkitServer;
+	@Expose public String bungee;
+	@Expose public String bukkitServer;
 	
 	public BadPlayer(String name, String bungee, InetAddress address) {
 		super(name, address);

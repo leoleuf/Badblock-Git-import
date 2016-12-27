@@ -17,7 +17,7 @@ public class RabbitBungeeKeepAliveListener extends RabbitListener {
 	@Override
 	public void onPacketReceiving(String body) {
 		BadBungee instance = BadBungee.getInstance();
-		Bungee bungee = instance.getGson().fromJson(body, BadBungee.bungeeType);
+		Bungee bungee = instance.getExposeGson().fromJson(body, BadBungee.bungeeType);
 		if (bungee == null) return;
 		if (!BungeeUtils.bungees.containsKey(bungee.getBungeeName())) {
 			System.out.println("[BadBungee] Registered " + bungee.getBungeeName());

@@ -6,16 +6,18 @@ import java.util.UUID;
 
 import org.bson.BSONObject;
 
+import com.google.gson.annotations.Expose;
+
 import fr.badblock.bungee.data.threading.PlayerDataWorker;
 import lombok.Getter;
 import lombok.Setter;
 
 public class BadOfflinePlayer {
 
-	@Getter protected final InetAddress			lastAddress;
-	@Getter @Setter public BSONObject 			data;
-	@Getter public String	  					name;
-	@Getter public UUID							uniqueId;
+	@Expose @Getter protected final InetAddress			lastAddress;
+	@Getter @Setter public BSONObject 					data;
+	@Expose @Getter public String	  					name;
+	@Expose @Getter public UUID							uniqueId;
 	
 	public BadOfflinePlayer(String name, InetAddress address) {
 		this.name = name;
