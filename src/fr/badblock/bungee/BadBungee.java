@@ -9,6 +9,7 @@ import java.util.TimerTask;
 import com.google.gson.Gson;
 
 import fr.badblock.bungee.commands.linked.SendToAllCommand;
+import fr.badblock.bungee.commands.unlinked.MotdCommand;
 import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
@@ -102,6 +103,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		pluginManager.registerListener(this, new ProxyPingListener());
 		pluginManager.registerListener(this, new DisconnectListener());
 		// And the commands :D
+		pluginManager.registerCommand(this, new MotdCommand());
 		pluginManager.registerCommand(this, new SendToAllCommand());
 		System.out.println("[BadBungee] Loaded!");
 	}
