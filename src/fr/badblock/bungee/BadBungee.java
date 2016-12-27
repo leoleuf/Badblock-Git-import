@@ -71,7 +71,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	void keepAlive() {
-		this.getRabbitService().sendPacket("bungee.worker.keepAlive", gson.toJson(new Bungee(this.getBungeeName())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
+		this.getRabbitService().sendPacket("bungee.worker.keepAlive", gson.toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 	
 	void loadConfig() {
