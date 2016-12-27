@@ -55,8 +55,8 @@ import net.md_5.bungee.config.YamlConfiguration;
 		System.out.println("Waiting for response..");
 		this.getRabbitService().sendPacket("bungee.worker.helloWorld", "", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		new RabbitBungeeHelloWorldListener();
-		while (!RabbitBungeeKeepAliveListener.done);
 		new RabbitBungeeKeepAliveListener();
+		while (!RabbitBungeeKeepAliveListener.done);
 		new RabbitBungeeExecuteCommandListener();
 		
 		// At the end, we load the listeners
