@@ -17,12 +17,12 @@ public class SendToAllCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length < 1) {
-			sender.sendMessage("§cUtilisation: /sendtoall <commande>");
+			sender.sendMessage("Â§cUtilisation: /sendtoall <commande>");
 			return;
 		}
 		String command = StringUtils.join(args, " ");
 		BadBungee.getInstance().getRabbitService().sendPacket("bungee.worker.executeCommand", command, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
-		sender.sendMessage("§aCommande forcée sur tous les bungee (" + command + ")");
+		sender.sendMessage("Â§aCommande forcÃ©e sur tous les bungee (" + command + ")");
 	}
 
 }

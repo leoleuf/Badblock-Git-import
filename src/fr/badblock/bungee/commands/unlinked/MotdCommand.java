@@ -14,7 +14,7 @@ public class MotdCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		BadBungee.getInstance().reloadMotd();
-		sender.sendMessage("§aMessage du jour mis à jour!");
+		sender.sendMessage("Â§aMessage du jour mis Ã  jour!");
 	}
 
 }
