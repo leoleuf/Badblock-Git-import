@@ -1,4 +1,4 @@
-package fr.badblock.bungee.commands;
+package fr.badblock.bungee.commands.linked;
 
 import fr.badblock.bungee.BadBungee;
 import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;

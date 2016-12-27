@@ -8,10 +8,11 @@ import java.util.TimerTask;
 
 import com.google.gson.Gson;
 
-import fr.badblock.bungee.commands.SendToAllCommand;
+import fr.badblock.bungee.commands.linked.SendToAllCommand;
 import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
+import fr.badblock.bungee.listeners.ProxyPingListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeExecuteCommandListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeHelloWorldListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeKeepAliveListener;
@@ -48,7 +49,9 @@ import net.md_5.bungee.config.YamlConfiguration;
 	private RedisService  redisService;
 	private Gson		  gson;
 	private Motd		  motd;
+	private Motd		  fullMotd;
 	private Timer		  timer;
+	private int			  onlineCount;
 	
 	@Override
 	public void onEnable() {
@@ -87,9 +90,16 @@ import net.md_5.bungee.config.YamlConfiguration;
 				keepAlive();
 			}
 		}, 5000L, 5000L);
+		this.getTimer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				getRabbitService().sendPacket("bungee.worker.playersupdate", Integer.toString(getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			}
+		}, 500L, 500L);
 		// At the end, we load the listeners
 		PluginManager pluginManager = this.getProxy().getPluginManager();
 		pluginManager.registerListener(this, new LoginListener());
+		pluginManager.registerListener(this, new ProxyPingListener());
 		pluginManager.registerListener(this, new DisconnectListener());
 		// And the commands :D
 		pluginManager.registerCommand(this, new SendToAllCommand());
@@ -103,6 +113,27 @@ import net.md_5.bungee.config.YamlConfiguration;
 	
 	public void keepAlive() {
 		this.getRabbitService().sendPacket("bungee.worker.keepAlive", gson.toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
+	}
+	
+	public void reloadMotd() {
+		redisService.getAsyncObject("motd.default", new Callback<Motd>() {
+
+			@Override
+			public void done(Motd result, Throwable error) {
+				if (result == null) return;
+				motd = result;
+			}
+			
+		});
+		redisService.getAsyncObject("motd.full", new Callback<Motd>() {
+
+			@Override
+			public void done(Motd result, Throwable error) {
+				if (result == null) return;
+				fullMotd = result;
+			}
+			
+		});
 	}
 	
 	void loadConfig() {
@@ -152,15 +183,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		int redisDatabase = config.getInt("redis.database");
 		String redisPassword = config.getString("redis.password");
 		redisService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisDatabase);
-		redisService.getAsyncObject("motd", new Callback<Motd>() {
-
-			@Override
-			public void done(Motd result, Throwable error) {
-				if (result == null) return;
-				motd = result;
-			}
-			
-		});
+		reloadMotd();
 	}
 	
 	public List<BadPlayer> getOnlinePlayers() {
