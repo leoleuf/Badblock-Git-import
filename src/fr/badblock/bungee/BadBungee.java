@@ -18,6 +18,7 @@ import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
 import fr.badblock.bungee.listeners.ProxyPingListener;
+import fr.badblock.bungee.listeners.ServerSwitchListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeExecuteCommandListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeHelloWorldListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeKeepAliveListener;
@@ -113,9 +114,10 @@ import net.md_5.bungee.config.YamlConfiguration;
 		}, 500L, 500L);
 		// At the end, we load the listeners
 		PluginManager pluginManager = this.getProxy().getPluginManager();
+		pluginManager.registerListener(this, new DisconnectListener());
 		pluginManager.registerListener(this, new LoginListener());
 		pluginManager.registerListener(this, new ProxyPingListener());
-		pluginManager.registerListener(this, new DisconnectListener());
+		pluginManager.registerListener(this, new ServerSwitchListener());
 		// And the commands :D
 		pluginManager.registerCommand(this, new MotdCommand());
 		pluginManager.registerCommand(this, new SendToAllCommand());
