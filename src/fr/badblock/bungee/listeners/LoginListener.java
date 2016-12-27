@@ -12,7 +12,7 @@ public class LoginListener implements Listener {
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e) {
-		if (BadPlayer.get(e.getPlayer()) != null) {
+		if (BadBungee.getInstance().get(e.getPlayer()) != null) {
 			e.getDone().done(new Result(null, "§cVous êtes déjà connecté sur BadBlock."), null);
 			return;
 		}

@@ -4,6 +4,7 @@ import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,6 +36,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 import net.md_5.bungee.config.Configuration;
@@ -100,6 +102,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		this.getTimer().schedule(new TimerTask() {
 			@Override
 			public void run() {
+				System.out.println(getOnlinePlayers().size());
 				getRabbitService().sendPacket("bungee.worker.playersupdate", Integer.toString(getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		}, 500L, 500L);
@@ -120,18 +123,16 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	public void keepAlive() {
-		this.getRabbitService().sendPacket("bungee.worker.keepAlive", this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
+		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values()));
+		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 	
 	public void reloadMotd() {
-		System.out.println("A");
 		redisService.getAsyncObject("motd.default", Motd.class, new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
-				System.out.println("B " + redisService.getCredentials().getDatabase());
 				if (result == null) return;
-				System.out.println("C");
 				motd = result;
 			}
 			
@@ -145,6 +146,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 			}
 			
 		});
+		if (motd == null) System.out.println("[No MOTD set.");
 	}
 	
 	void loadConfig() {
@@ -155,7 +157,9 @@ import net.md_5.bungee.config.YamlConfiguration;
 				f.createNewFile();
 			config = cp.load(f);
 			// Bungee
-			bungeeName = config.getString("bungeeName");
+			String bungeeName = config.getString("bungeeName");
+			this.bungeeName = bungeeName;
+			System.out.println(this.bungeeName);
 			// RabbitMQ
 			loadRabbitMQ();
 			// MongoDB
@@ -203,6 +207,16 @@ import net.md_5.bungee.config.YamlConfiguration;
 		for (Bungee bungee : BungeeUtils.getAvailableBungees())
 			array.addAll(bungee.getPlayers());
 		return array;
+	}
+	
+	public BadPlayer get(String playerName) {
+		Optional<BadPlayer> playerZ = getOnlinePlayers().parallelStream().filter(player -> player.getName().toLowerCase().equals(playerName.toLowerCase())).findAny();
+		if (!playerZ.isPresent()) return null;
+		return playerZ.get();
+	}
+	
+	public BadPlayer get(ProxiedPlayer proxiedPlayer) {
+		return get(proxiedPlayer.getName());
 	}
 	
 }
