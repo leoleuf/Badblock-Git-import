@@ -22,9 +22,13 @@ public class ProxyPingListener implements Listener {
 		event.registerIntent(badBungee);
 
 		Motd 		   motd   = badBungee.getMotd();
+		if (motd == null) {
+			return;
+		}
 		if (badBungee.getOnlineCount() >= motd.getMaxPlayers()) {
 			motd = badBungee.getFullMotd();
 		}
+
 		ServerPing     old    = event.getResponse();
 		event.setResponse(null);
 		ServerPing     reply  = new ServerPing();
@@ -42,7 +46,7 @@ public class ProxyPingListener implements Listener {
 		BungeeCord.getInstance().setCurrentCount(badBungee.getOnlineCount());
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), badBungee.getOnlineCount(), sample));
 		String[] motdString = motd.getMotd().clone();
-		
+
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motdString, " ")));
 
 		reply.setFavicon(old.getFaviconObject());
@@ -51,5 +55,5 @@ public class ProxyPingListener implements Listener {
 		event.setResponse(reply);
 		event.completeIntent(badBungee);
 	}
-	
+
 }
