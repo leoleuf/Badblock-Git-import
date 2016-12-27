@@ -43,6 +43,10 @@ public class BadPlayer extends BadOfflinePlayer {
 		jsonObject.addProperty("onlineMode", (String) this.getData().get("onlineMode"));
 		return jsonObject;
 	}
+
+	public void updateDataFromClone(BadPlayer badPlayer) {
+		this.setData(badPlayer.getData());
+	}
 	
 	public void disconnect() {
 		players.remove(this.getName().toLowerCase());

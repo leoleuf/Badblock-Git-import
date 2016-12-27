@@ -2,6 +2,7 @@ package fr.badblock.bungee.listeners;
 
 import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.data.players.BadPlayer;
+import fr.badblock.bungee.utils.RedisUtils;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
 import net.md_5.bungee.api.event.PostLoginEvent;
@@ -17,7 +18,7 @@ public class LoginListener implements Listener {
 			return;
 		}
 		BadPlayer badPlayer = new BadPlayer(e.getPlayer(), null, e.getHandler().getAddress().getAddress());
-		BadBungee.getInstance().getRedisService().set("badblock.player." + e.getPlayer().toLowerCase(), badPlayer);
+		BadBungee.getInstance().getRedisService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer);
 		BadBungee.getInstance().keepAlive();
 		e.getDone().done(new Result(badPlayer.createResultObject(), null), null);
 		// Set data
