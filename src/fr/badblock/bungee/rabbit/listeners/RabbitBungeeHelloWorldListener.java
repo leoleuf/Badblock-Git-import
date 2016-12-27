@@ -14,7 +14,7 @@ public class RabbitBungeeHelloWorldListener extends RabbitListener {
 
 	@Override
 	public void onPacketReceiving(String body) {
-		
+		BadBungee.getInstance().keepAlive();
 	}
 	
 }

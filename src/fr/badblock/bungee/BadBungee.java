@@ -3,9 +3,12 @@ package fr.badblock.bungee;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.google.gson.Gson;
 
+import fr.badblock.bungee.commands.SendToAllCommand;
 import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
@@ -45,6 +48,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	private RedisService  redisService;
 	private Gson		  gson;
 	private Motd		  motd;
+	private Timer		  timer;
 	
 	@Override
 	public void onEnable() {
@@ -57,12 +61,27 @@ import net.md_5.bungee.config.YamlConfiguration;
 		new RabbitBungeeHelloWorldListener();
 		new RabbitBungeeKeepAliveListener();
 		while (!RabbitBungeeKeepAliveListener.done);
+		System.out.println("Waiting for proxies...");
+		try {
+			Thread.sleep(10_000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Loaded...");
 		new RabbitBungeeExecuteCommandListener();
-		
+		this.setTimer(new Timer());
+		this.getTimer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				keepAlive();
+			}
+		}, 5000L, 5000L);
 		// At the end, we load the listeners
 		PluginManager pluginManager = this.getProxy().getPluginManager();
 		pluginManager.registerListener(this, new LoginListener());
 		pluginManager.registerListener(this, new DisconnectListener());
+		// And the commands :D
+		pluginManager.registerCommand(this, new SendToAllCommand());
 	}
 	
 	@Override
@@ -70,7 +89,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		
 	}
 	
-	void keepAlive() {
+	public void keepAlive() {
 		this.getRabbitService().sendPacket("bungee.worker.keepAlive", gson.toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values())), Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 	
