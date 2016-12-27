@@ -56,18 +56,29 @@ import net.md_5.bungee.config.YamlConfiguration;
 		// Load configuration
 		loadConfig();
 		this.gson = new Gson();
-		System.out.println("Waiting for response..");
-		this.getRabbitService().sendPacket("bungee.worker.helloWorld", "", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		System.out.println("[BadBungee] Waiting for response..");
 		new RabbitBungeeHelloWorldListener();
 		new RabbitBungeeKeepAliveListener();
-		while (!RabbitBungeeKeepAliveListener.done);
-		System.out.println("Waiting for proxies...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		this.getRabbitService().sendSyncPacket("bungee.worker.helloWorld", "a", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		while (!RabbitBungeeKeepAliveListener.done) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("[BadBungee] Waiting for proxies...");
 		try {
 			Thread.sleep(10_000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Loaded...");
+		System.out.println("[BadBungee] Loading...");
 		new RabbitBungeeExecuteCommandListener();
 		this.setTimer(new Timer());
 		this.getTimer().schedule(new TimerTask() {
@@ -82,6 +93,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		pluginManager.registerListener(this, new DisconnectListener());
 		// And the commands :D
 		pluginManager.registerCommand(this, new SendToAllCommand());
+		System.out.println("[BadBungee] Loaded!");
 	}
 	
 	@Override
@@ -101,44 +113,56 @@ import net.md_5.bungee.config.YamlConfiguration;
 				f.createNewFile();
 			config = cp.load(f);
 			// Bungee
-			String bungeeName = config.getString("bungee.name");
-			this.bungeeName = bungeeName;
-			// RabbitMQ
-			String rabbitHostname = config.getString("rabbit.hostname");
-			int rabbitPort = config.getInt("rabbit.port");
-			String rabbitUsername = config.getString("rabbit.username");
-			String rabbitPassword = config.getString("rabbit.password");
-			String rabbitVirtualHost = config.getString("rabbit.virtualHost");
-			rabbitService = RabbitConnector.getInstance().newService("default", rabbitHostname, rabbitPort, rabbitUsername, rabbitPassword, rabbitVirtualHost);
-			// MongoDB
-			List<String> mongoHostnames = config.getStringList("mongo.hostnames");
-			int mongoPort = config.getInt("mongo.port");
-			String mongoUsername = config.getString("mongo.username");
-			String mongoPassword = config.getString("mongo.password");
-			String mongoDatabase = config.getString("mongo.database");
-			String[] mongoHostnamesArray = new String[mongoHostnames.size()];
-			mongoHostnamesArray = mongoHostnames.toArray(mongoHostnamesArray);
-			mongoService = MongoConnector.getInstance().newService("default", mongoPort, mongoUsername, mongoPassword, mongoDatabase, mongoHostnamesArray);
 			bungeeName = config.getString("bungeeName");
-			String redisHostname = config.getString("redis.hostname");
-			int redisPort = config.getInt("redis.port");
-			String redisPassword = config.getString("redis.password");
-			redisService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword);
-			redisService.getAsyncObject("motd", new Callback<Motd>() {
-
-				@Override
-				public void done(Motd result, Throwable error) {
-					if (result == null) return;
-					motd = result;
-				}
-				
-			});
+			// RabbitMQ
+			loadRabbitMQ();
+			// MongoDB
+			loadMongoDB();
+			// Load Redis
+			loadRedis();
 		} catch(Exception e){
 			e.printStackTrace();
 			return;
 		}
 	}
 
+	void loadRabbitMQ() {
+		String rabbitHostname = config.getString("rabbit.hostname");
+		int rabbitPort = config.getInt("rabbit.port");
+		String rabbitUsername = config.getString("rabbit.username");
+		String rabbitPassword = config.getString("rabbit.password");
+		String rabbitVirtualHost = config.getString("rabbit.virtualHost");
+		rabbitService = RabbitConnector.getInstance().newService("default", rabbitHostname, rabbitPort, rabbitUsername, rabbitPassword, rabbitVirtualHost);
+	}
+	
+	void loadMongoDB() {
+		List<String> mongoHostnames = config.getStringList("mongo.hostnames");
+		int mongoPort = config.getInt("mongo.port");
+		String mongoUsername = config.getString("mongo.username");
+		String mongoPassword = config.getString("mongo.password");
+		String mongoDatabase = config.getString("mongo.database");
+		String[] mongoHostnamesArray = new String[mongoHostnames.size()];
+		mongoHostnamesArray = mongoHostnames.toArray(mongoHostnamesArray);
+		mongoService = MongoConnector.getInstance().newService("default", mongoPort, mongoUsername, mongoPassword, mongoDatabase, mongoHostnamesArray);
+	}
+	
+	void loadRedis() {
+		String redisHostname = config.getString("redis.hostname");
+		int redisPort = config.getInt("redis.port");
+		int redisDatabase = config.getInt("redis.database");
+		String redisPassword = config.getString("redis.password");
+		redisService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisDatabase);
+		redisService.getAsyncObject("motd", new Callback<Motd>() {
+
+			@Override
+			public void done(Motd result, Throwable error) {
+				if (result == null) return;
+				motd = result;
+			}
+			
+		});
+	}
+	
 	public List<BadPlayer> getOnlinePlayers() {
 		List<BadPlayer> array = new ArrayList<>();
 		if (BungeeUtils.getAvailableBungees() == null) return array;
