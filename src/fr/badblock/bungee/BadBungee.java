@@ -1,12 +1,14 @@
 package fr.badblock.bungee;
 
 import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.bungee.commands.linked.SendToAllCommand;
 import fr.badblock.bungee.commands.unlinked.MotdCommand;
@@ -41,6 +43,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 @Data@EqualsAndHashCode(callSuper=false) public class BadBungee extends Plugin {
 
 	@Getter@Setter public static BadBungee instance;
+	public static final Type bungeeType = new TypeToken<Bungee>() {}.getType();
 	
 	private String		  bungeeName;
 	private Configuration config;
@@ -118,11 +121,14 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	public void reloadMotd() {
+		System.out.println("A");
 		redisService.getAsyncObject("motd.default", new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
+				System.out.println("B");
 				if (result == null) return;
+				System.out.println("C");
 				motd = result;
 			}
 			
