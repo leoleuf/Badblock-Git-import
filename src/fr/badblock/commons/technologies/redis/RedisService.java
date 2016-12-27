@@ -95,6 +95,10 @@ import redis.clients.jedis.Jedis;
 			}
 		}.start();
 	}
+
+	public void delete(String... keys) {
+		this.getJedis().del(keys);
+	}
 	
 	private boolean check() {
 		if (!this.getJedis().isConnected()) {
