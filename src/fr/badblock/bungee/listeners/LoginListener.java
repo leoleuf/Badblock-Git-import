@@ -17,10 +17,12 @@ public class LoginListener implements Listener {
 			return;
 		}
 		BadPlayer badPlayer = new BadPlayer(e.getPlayer(), null, e.getHandler().getAddress().getAddress());
+		BadBungee.getInstance().getRedisService().set("badblock.player." + e.getPlayer().toLowerCase(), badPlayer);
 		BadBungee.getInstance().keepAlive();
 		e.getDone().done(new Result(badPlayer.createResultObject(), null), null);
+		// Set data
 	}
-	
+
 	@EventHandler
 	public void onLogin(PostLoginEvent event) {
 		System.out.println(event.getPlayer().getName());

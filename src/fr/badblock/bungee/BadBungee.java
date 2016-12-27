@@ -49,6 +49,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 	@Getter@Setter public static BadBungee instance;
 	public static final Type bungeeType = new TypeToken<Bungee>() {}.getType();
+	public static final Type playerType = new TypeToken<BadPlayer>() {}.getType();
 	
 	private String		  bungeeName;
 	private Configuration config;
