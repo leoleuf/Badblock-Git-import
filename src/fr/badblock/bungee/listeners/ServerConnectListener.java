@@ -1,6 +1,7 @@
 package fr.badblock.bungee.listeners;
 
 import fr.badblock.bungee.BadBungee;
+import fr.badblock.bungee.data.ip.BadIpData;
 import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.utils.RedisUtils;
 import fr.badblock.commons.utils.Callback;
@@ -24,6 +25,18 @@ public class ServerConnectListener implements Listener {
 				if (event.getTarget() != null) currentPlayer.setBukkitServer(event.getTarget().getName());
 				currentPlayer.updateData();
 				BadBungee.getInstance().getRedisService().set(RedisUtils.PLAYERDATA_PATTERN + playerName, currentPlayer);
+			}
+		});
+		// Get ip data and save it
+		BadBungee.getInstance().getRedisService().getSyncObject(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), BadBungee.ipType, new Callback<BadIpData>() {
+			@Override
+			public void done(BadIpData result, Throwable error) {
+				if (result == null) return;
+				BadIpData currentIpData = BadBungee.getInstance().getIp(result.getIp());
+				if (currentIpData == null) return;
+				currentIpData.updateDataFromClone(result);
+				currentIpData.updateData();
+				BadBungee.getInstance().getRedisService().set(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), currentIpData);
 			}
 		});
 	}

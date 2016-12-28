@@ -7,6 +7,7 @@ import java.util.Map;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
 
+import fr.badblock.bungee.data.ip.BadIpData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.md_5.bungee.BungeeCord;
@@ -50,6 +51,7 @@ public class BadPlayer extends BadOfflinePlayer {
 	
 	public void disconnect() {
 		players.remove(this.getName().toLowerCase());
+		BadIpData.ips.remove(this.getLastAddress().getHostAddress());
 	}
 	
 }

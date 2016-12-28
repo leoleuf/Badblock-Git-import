@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.bungee.commands.linked.SendToAllCommand;
 import fr.badblock.bungee.commands.unlinked.MotdCommand;
+import fr.badblock.bungee.data.ip.BadIpData;
 import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
@@ -49,8 +50,11 @@ import net.md_5.bungee.config.YamlConfiguration;
 @Data@EqualsAndHashCode(callSuper=false) public class BadBungee extends Plugin {
 
 	@Getter@Setter public static BadBungee instance;
+	
+	// Reflection data
 	public static final Type bungeeType = new TypeToken<Bungee>() {}.getType();
 	public static final Type playerType = new TypeToken<BadPlayer>() {}.getType();
+	public static final Type ipType 	= new TypeToken<BadIpData>() {}.getType();
 	
 	private String		  bungeeName;
 	private Configuration config;
@@ -130,7 +134,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	public void keepAlive() {
-		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values()));
+		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values(), BadIpData.ips.values()));
 		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 	
@@ -216,10 +220,24 @@ import net.md_5.bungee.config.YamlConfiguration;
 		return array;
 	}
 	
+	public List<BadIpData> getOnlineIps() {
+		List<BadIpData> array = new ArrayList<>();
+		if (BungeeUtils.getAvailableBungees() == null) return array;
+		for (Bungee bungee : BungeeUtils.getAvailableBungees())
+			array.addAll(bungee.getIps());
+		return array;
+	}
+	
 	public BadPlayer get(String playerName) {
-		Optional<BadPlayer> playerZ = getOnlinePlayers().parallelStream().filter(player -> player.getName().toLowerCase().equals(playerName.toLowerCase())).findAny();
-		if (!playerZ.isPresent()) return null;
-		return playerZ.get();
+		Optional<BadPlayer> optionalBadPlayer = getOnlinePlayers().parallelStream().filter(player -> player.getName().toLowerCase().equals(playerName.toLowerCase())).findAny();
+		if (!optionalBadPlayer.isPresent()) return null;
+		return optionalBadPlayer.get();
+	}
+	
+	public BadIpData getIp(String ip) {
+		Optional<BadIpData> optionalBadIpData = getOnlineIps().parallelStream().filter(ipData -> ipData.getIp().toLowerCase().equals(ip.toLowerCase())).findAny();
+		if (!optionalBadIpData.isPresent()) return null;
+		return optionalBadIpData.get();
 	}
 	
 	public BadPlayer get(ProxiedPlayer proxiedPlayer) {
