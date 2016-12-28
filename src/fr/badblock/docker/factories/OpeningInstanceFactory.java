@@ -35,10 +35,11 @@ public class OpeningInstanceFactory {
 	private Process process;
 	private String rabbitHostname;
 	private Map<String, String> furtherInformations;
+	private boolean runningMatchmaking;
 
 	public OpeningInstanceFactory(long id, String ip, long port, int slots, String bungeeName, String screenName,
 			String world, String system, long ram, String command, int nettyThreads, int parallelThreads,
-			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, Map<String, String> furtherInformations) {
+			String mode, String jarServer, String logFolder, String logFile, boolean random, String toWorld, String rabbitHostname, Map<String, String> furtherInformations, boolean runningMatchmaking) {
 		setId(id);
 		setIp(ip);
 		setPort(port);
@@ -60,6 +61,7 @@ public class OpeningInstanceFactory {
 		setToWorld(toWorld);
 		setRabbitHostname(rabbitHostname);
 		setFurtherInformations(furtherInformations);
+		setRunningMatchmaking(runningMatchmaking);
 	}
 
 }

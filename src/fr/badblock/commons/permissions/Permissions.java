@@ -12,13 +12,14 @@ public class Permissions {
 	
 	@Getter
 	private PermissionProvider permissionProvider;
+	@Getter
 	private Map<String, PermissibleGroup> groups;
 	
 	/**
 	 * Change le provider de permissions
 	 * @param provider Le provider
 	 */
-	public void chagnePermissionProvider(PermissionProvider provider){
+	public void changePermissionProvider(PermissionProvider provider){
 		this.permissionProvider = provider;
 		
 		provider.loadGroups(new Callback<Map<String,PermissibleGroup>>() {

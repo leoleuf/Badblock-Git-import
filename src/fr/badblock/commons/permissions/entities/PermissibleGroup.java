@@ -18,8 +18,12 @@ import lombok.NoArgsConstructor;
 public class PermissibleGroup extends PermissibleEntity {
 	private String					 internal_name			   = "default";
 	private String 					 inherit_permissions_from  = "default";
-	private String[]			     defined_on				   = new String[] { "_" };
 	private Map<String, JsonElement> permissions			   = new HashMap<>();
+	private transient String[]		 locations;
+	
+	public PermissibleGroup(String[] locations) {
+		this.locations = locations;
+	}
 	
 	@Override
 	public Optional<JsonElement> getPermissionValue(String[] locations, String permission, boolean allowInheritance) {
@@ -60,7 +64,7 @@ public class PermissibleGroup extends PermissibleEntity {
 	 * @return Les locations
 	 */
 	public String[] getDefinitionDomain(){
-		return defined_on;
+		return this.locations;
 	}
 	
 	/**
