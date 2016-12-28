@@ -14,11 +14,13 @@ import lombok.Setter;
 
 public class BadOfflinePlayer {
 
+	private boolean loaded = false;
+
 	@Expose @Getter protected final InetAddress			lastAddress;
 	@Getter @Setter public BSONObject 					data;
 	@Expose @Getter public String	  					name;
 	@Expose @Getter public UUID							uniqueId;
-	
+
 	public BadOfflinePlayer(String name, InetAddress address) {
 		this.name = name;
 		if(address == null && getData().containsField("lastIp"))
@@ -29,16 +31,21 @@ public class BadOfflinePlayer {
 		this.lastAddress  = address;
 		loadData();
 	}
-	
+
 	public boolean hasPlayed() {
 		return (this instanceof BadPlayer) || lastAddress != null;
 	}
-	
+
 	public void updateData() {
-		getData().put("lastIp", this.lastAddress.getHostAddress());
+		if (!loaded) {
+			System.out.println("[BadBungee] Trying to updateData by using not-loaded data!");
+			return;
+		}
+		if (this.lastAddress != null)
+			getData().put("lastIp", this.lastAddress.getHostAddress());
 		PlayerDataWorker.save(this);
 	}
-	
+
 	private void loadData() {
 		PlayerDataWorker.populate(this);
 		boolean mustBeUpdated = false;
@@ -63,9 +70,10 @@ public class BadOfflinePlayer {
 			getData().put("onlineMode", "false");
 			mustBeUpdated = true;
 		}
+		loaded = true;
 		if (mustBeUpdated) {
 			this.updateData();
 		}
 	}
-	
+
 }

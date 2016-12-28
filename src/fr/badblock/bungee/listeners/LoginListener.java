@@ -21,11 +21,12 @@ public class LoginListener implements Listener {
 		BadIpData badIpData = new BadIpData(e.getHandler().getAddress().getAddress().getHostAddress());
 		badIpData.addUsername(e.getPlayer());
 		badIpData.setLastName(e.getPlayer());
+		BadIpData.ips.put(badIpData.getIp(), badIpData);
 		BadPlayer badPlayer = new BadPlayer(e.getPlayer(), null, e.getHandler().getAddress().getAddress());
 		badIpData.addUUID(badPlayer.getUniqueId());
 		badIpData.updateData();
-		BadBungee.getInstance().getRedisService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer);
-		BadBungee.getInstance().getRedisService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badPlayer);
+		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer);
+		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badIpData);
 		BadBungee.getInstance().keepAlive();
 		e.getDone().done(new Result(badPlayer.createResultObject(), null), null);
 		// Set data

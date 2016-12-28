@@ -17,7 +17,7 @@ public class DisconnectListener implements Listener {
 		BadPlayer.players.remove(playerName);
 		BadBungee.getInstance().keepAlive();
 		// Get player data and save it
-		BadBungee.getInstance().getRedisService().getSyncObject(RedisUtils.PLAYERDATA_PATTERN + playerName, BadBungee.playerType, new Callback<BadPlayer>() {
+		BadBungee.getInstance().getRedisPlayerDataService().getSyncObject(RedisUtils.PLAYERDATA_PATTERN + playerName, BadBungee.playerType, new Callback<BadPlayer>() {
 			@Override
 			public void done(BadPlayer result, Throwable error) {
 				if (result == null) return;
@@ -27,11 +27,11 @@ public class DisconnectListener implements Listener {
 				currentPlayer.setBukkitServer(null);
 				currentPlayer.setBungee(null);
 				currentPlayer.updateData();
-				BadBungee.getInstance().getRedisService().delete(RedisUtils.PLAYERDATA_PATTERN + playerName);
+				BadBungee.getInstance().getRedisPlayerDataService().delete(RedisUtils.PLAYERDATA_PATTERN + playerName);
 			}
-		});
+		}, true);
 		// Get IP data and save it
-		BadBungee.getInstance().getRedisService().getSyncObject(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), BadBungee.ipType, new Callback<BadIpData>() {
+		BadBungee.getInstance().getRedisPlayerDataService().getSyncObject(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), BadBungee.ipType, new Callback<BadIpData>() {
 			@Override
 			public void done(BadIpData result, Throwable error) {
 				if (result == null) return;
@@ -39,9 +39,9 @@ public class DisconnectListener implements Listener {
 				if (currentIpData == null) return;
 				currentIpData.updateDataFromClone(result);
 				currentIpData.updateData();
-				BadBungee.getInstance().getRedisService().delete(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress());
+				BadBungee.getInstance().getRedisPlayerDataService().delete(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress());
 			}
-		});
+		}, true);
 	}
 	
 }

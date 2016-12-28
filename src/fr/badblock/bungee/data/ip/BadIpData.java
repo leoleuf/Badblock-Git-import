@@ -10,6 +10,7 @@ import org.bson.BSONObject;
 
 import com.google.gson.annotations.Expose;
 
+import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.data.ip.threading.IpDataWorker;
 import fr.badblock.commons.data.PunishData;
 import lombok.Getter;
@@ -26,11 +27,10 @@ public class BadIpData {
 	public BadIpData(String ip) {
 		this.ip = ip;
 		loadData();
-		ips.put(ip, this);
 	}
 	
 	public void updateData() {
-		data.put("punish", punish);
+		data.put("punish", BadBungee.getInstance().getGson().toJson(punish));
 		data.put("ip", this.getIp());
 		IpDataWorker.save(this);
 	}
@@ -39,9 +39,9 @@ public class BadIpData {
 		IpDataWorker.populate(this);
 		if (!data.containsField("punish")) {
 			punish = new PunishData();
-			data.put("punish", punish);
+			data.put("punish", BadBungee.getInstance().getGson().toJson(punish));
 		}
-		else punish = (PunishData) data.get("punish");
+		else punish = BadBungee.getInstance().getGson().fromJson((String) data.get("punish"), PunishData.class);
 		data.put("ip", this.getIp());
 	}
 
@@ -54,7 +54,7 @@ public class BadIpData {
 		if (!data.containsField("lastName")) data.put("lastName", "");
 		return (String) data.get("lastName");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<String> getUsernames() {
 		if (!data.containsField("usernames")) data.put("usernames", new ArrayList<>());
@@ -68,13 +68,19 @@ public class BadIpData {
 	}
 	
 	public void addUsername(String name) {
-		if (!getUsernames().contains(name))
-			data.put("usernames", getUsernames().add(name));
+		List<String> usernames = getUsernames();
+		if (!usernames.contains(name)) {
+			usernames.add(name);
+			data.put("usernames", usernames);
+		}
 	}
 	
 	public void addUUID(UUID uuid) {
-		if (!getUuids().contains(uuid))
-			data.put("uuids", getUuids().add(uuid));
+		List<UUID> uuids = getUuids();
+		if (!uuids.contains(uuid)) {
+			uuids.add(uuid);
+			data.put("uuids", uuids);
+		}
 	}
 	
 	public void setLastName(String name) {

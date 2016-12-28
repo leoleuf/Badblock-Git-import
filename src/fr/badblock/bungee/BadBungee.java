@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,16 +53,19 @@ import net.md_5.bungee.config.YamlConfiguration;
 	@Getter@Setter public static BadBungee instance;
 	
 	// Reflection data
-	public static final Type bungeeType = new TypeToken<Bungee>() {}.getType();
-	public static final Type playerType = new TypeToken<BadPlayer>() {}.getType();
-	public static final Type ipType 	= new TypeToken<BadIpData>() {}.getType();
+	public static final Type bungeeType 		= new TypeToken<Bungee>() {}.getType();
+	public static final Type playerType 		= new TypeToken<BadPlayer>() {}.getType();
+	public static final Type ipType 			= new TypeToken<BadIpData>() {}.getType();
+	public static final Type stringListType 	= new TypeToken<List<String>>() {}.getType();
+	public static final Type uuidListType 		= new TypeToken<List<UUID>>() {}.getType();
 	
 	private String		  bungeeName;
 	private Configuration config;
 	private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 	private RabbitService rabbitService;
 	private MongoService  mongoService;
-	private RedisService  redisService;
+	private RedisService  redisDataService;
+	private RedisService  redisPlayerDataService;
 	private Gson		  gson;
 	private Gson		  exposeGson;
 	private Motd		  motd;
@@ -139,25 +143,30 @@ import net.md_5.bungee.config.YamlConfiguration;
 	}
 	
 	public void reloadMotd() {
-		redisService.getAsyncObject("motd.default", Motd.class, new Callback<Motd>() {
+		redisDataService.getSyncObject("motd.default", Motd.class, new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
-				if (result == null) return;
+				if (result == null) {
+					System.out.println("[BadBungee] No MOTD set.");
+					return;
+				}
 				motd = result;
 			}
 			
-		});
-		redisService.getAsyncObject("motd.full", Motd.class, new Callback<Motd>() {
+		}, true);
+		redisDataService.getSyncObject("motd.full", Motd.class, new Callback<Motd>() {
 
 			@Override
 			public void done(Motd result, Throwable error) {
-				if (result == null) return;
+				if (result == null) {
+					System.out.println("[BadBungee] No Full-MOTD set.");
+					return;
+				}
 				fullMotd = result;
 			}
 			
-		});
-		if (motd == null) System.out.println("[No MOTD set.");
+		}, true);
 	}
 	
 	void loadConfig() {
@@ -206,9 +215,11 @@ import net.md_5.bungee.config.YamlConfiguration;
 	void loadRedis() {
 		String redisHostname = config.getString("redis.hostname");
 		int redisPort = config.getInt("redis.port");
+		int redisPlayerDatabase = config.getInt("redis.playerDatabase");
 		int redisDatabase = config.getInt("redis.database");
 		String redisPassword = config.getString("redis.password");
-		redisService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisDatabase);
+		redisDataService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisDatabase);
+		redisPlayerDataService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisPlayerDatabase);
 		reloadMotd();
 	}
 	
