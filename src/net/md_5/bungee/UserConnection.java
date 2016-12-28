@@ -255,10 +255,6 @@ public final class UserConnection implements ProxiedPlayer
 			}
 			return;
 		}
-		if ( getServer() == null && !ch.isClosing() )
-		{
-			throw new IllegalStateException("Cancelled ServerConnectEvent with no server or disconnect.");
-		}
 		final BungeeServerInfo target = (BungeeServerInfo) event.getTarget(); // Update in case the event changed target
 
 		if ( getServer() != null && Objects.equal( getServer().getInfo(), target ) )
