@@ -1,20 +1,20 @@
-package fr.badblock.bungee.data.threading;
+package fr.badblock.bungee.data.players.threading;
 
 import java.util.ConcurrentModificationException;
 import java.util.Queue;
 
 import com.google.common.collect.Queues;
 
-import fr.badblock.bungee.data.DataUtils;
 import fr.badblock.bungee.data.players.BadOfflinePlayer;
+import fr.badblock.bungee.data.players.utils.PlayerDataUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data@EqualsAndHashCode(callSuper=false) public class DataThread extends Thread {
+@Data@EqualsAndHashCode(callSuper=false) public class PlayerDataThread extends Thread {
 
 	public Queue<BadOfflinePlayer> queue = Queues.newLinkedBlockingDeque();
 
-	public DataThread(int id) {
+	public PlayerDataThread(int id) {
 		this.setName("DataThread/" + id);
 		this.start();
 	}
@@ -26,7 +26,7 @@ import lombok.EqualsAndHashCode;
 				while (!queue.isEmpty()) {
 					BadOfflinePlayer badPlayer = queue.poll();
 					if (badPlayer != null) {
-						DataUtils.saveData(badPlayer);
+						PlayerDataUtils.saveData(badPlayer);
 					}
 				}
 				try {

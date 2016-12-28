@@ -8,7 +8,7 @@ import org.bson.BSONObject;
 
 import com.google.gson.annotations.Expose;
 
-import fr.badblock.bungee.data.threading.PlayerDataWorker;
+import fr.badblock.bungee.data.players.threading.PlayerDataWorker;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,35 +21,13 @@ public class BadOfflinePlayer {
 	
 	public BadOfflinePlayer(String name, InetAddress address) {
 		this.name = name;
-		loadData();
 		if(address == null && getData().containsField("lastIp"))
 			try {
 				address = InetAddress.getByName((String) getData().get("lastIp"));
 			} catch (UnknownHostException unused){}
-		boolean mustBeUpdated = false;
-		uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
-		if (!getData().containsField("uniqueId")) {
-			getData().put("uniqueId", uniqueId.toString());
-			mustBeUpdated = true;
-		}
-		else uniqueId = UUID.fromString((String) getData().get("uniqueId"));
-		if (!getData().containsField("name")) {
-			getData().put("name", name);
-			mustBeUpdated = true;
-		}
-		if (!getData().containsField("loginPassword")) {
-			getData().put("loginPassword", "");
-			mustBeUpdated = true;
-		}
-		if (!getData().containsField("onlineMode")) {
-			getData().put("onlineMode", "false");
-			mustBeUpdated = true;
-		}
 
 		this.lastAddress  = address;
-		if (mustBeUpdated) {
-			this.updateData();
-		}
+		loadData();
 	}
 	
 	public boolean hasPlayed() {
@@ -57,11 +35,37 @@ public class BadOfflinePlayer {
 	}
 	
 	public void updateData() {
+		getData().put("lastIp", this.lastAddress.getHostAddress());
 		PlayerDataWorker.save(this);
 	}
 	
 	private void loadData() {
 		PlayerDataWorker.populate(this);
+		boolean mustBeUpdated = false;
+		// Name
+		if (!getData().containsField("name")) {
+			getData().put("name", name);
+			mustBeUpdated = true;
+		}else this.name = (String) getData().get("name");
+		// UniqueId
+		if (!getData().containsField("uniqueId")) {
+			uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
+			getData().put("uniqueId", uniqueId);
+			mustBeUpdated = true;
+		}else this.uniqueId = UUID.fromString((String) getData().get("name"));
+		// Login password
+		if (!getData().containsField("loginPassword")) {
+			getData().put("loginPassword", "");
+			mustBeUpdated = true;
+		}
+		// Online mode
+		if (!getData().containsField("onlineMode")) {
+			getData().put("onlineMode", "false");
+			mustBeUpdated = true;
+		}
+		if (mustBeUpdated) {
+			this.updateData();
+		}
 	}
 	
 }
