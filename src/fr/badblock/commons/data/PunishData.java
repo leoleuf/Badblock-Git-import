@@ -23,4 +23,12 @@ import lombok.EqualsAndHashCode;
 	
 	@Expose private String	banner,
 					muter;
+
+	public PunishData(BasicDBObject p) {
+		super(p);
+	}
+	
+	public PunishData() {
+	}
+	
 }
