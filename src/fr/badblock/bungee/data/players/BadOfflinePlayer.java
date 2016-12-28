@@ -52,7 +52,7 @@ public class BadOfflinePlayer {
 			uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
 			getData().put("uniqueId", uniqueId);
 			mustBeUpdated = true;
-		}else this.uniqueId = UUID.fromString((String) getData().get("name"));
+		}else this.uniqueId = UUID.fromString((String) getData().get("uniqueId"));
 		// Login password
 		if (!getData().containsField("loginPassword")) {
 			getData().put("loginPassword", "");
