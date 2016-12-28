@@ -2,6 +2,7 @@ package fr.badblock.commons.data;
 
 import java.io.Serializable;
 
+import com.google.gson.annotations.Expose;
 import com.mongodb.BasicDBObject;
 
 import lombok.Data;
@@ -11,15 +12,15 @@ import lombok.EqualsAndHashCode;
 	
 	private static final long serialVersionUID = -3763404142845364760L;
 
-	private boolean ban,
+	@Expose private boolean ban,
 					mute;
 	
-	private long	banEnd,
+	@Expose private long	banEnd,
 					muteEnd;
 	
-	private String	banReason,
+	@Expose private String	banReason,
 					muteReason;
 	
-	private String	banner,
+	@Expose private String	banner,
 					muter;
 }
