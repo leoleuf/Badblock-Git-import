@@ -100,7 +100,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		}
 		System.out.println("[BadBungee] Waiting for proxies...");
 		try {
-			Thread.sleep(10_000L);
+			Thread.sleep(1_000L);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -116,7 +116,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		this.getTimer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				System.out.println(getOnlinePlayers().size());
+				//System.out.println(getOnlinePlayers().size());
 				getRabbitService().sendPacket("bungee.worker.playersupdate", Integer.toString(getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		}, 500L, 500L);

@@ -25,8 +25,8 @@ public class LoginListener implements Listener {
 		BadPlayer badPlayer = new BadPlayer(e.getPlayer(), null, e.getHandler().getAddress().getAddress());
 		badIpData.addUUID(badPlayer.getUniqueId());
 		badIpData.updateData();
-		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer);
-		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badIpData);
+		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer.getData().toString());
+		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badIpData.getData().toString());
 		BadBungee.getInstance().keepAlive();
 		e.getDone().done(new Result(badPlayer.createResultObject(), null), null);
 		// Set data

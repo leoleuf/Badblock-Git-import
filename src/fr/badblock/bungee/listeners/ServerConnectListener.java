@@ -24,7 +24,7 @@ public class ServerConnectListener implements Listener {
 				currentPlayer.updateDataFromClone(result);
 				if (event.getTarget() != null) currentPlayer.setBukkitServer(event.getTarget().getName());
 				currentPlayer.updateData();
-				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + playerName, currentPlayer);
+				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + playerName, currentPlayer.getData().toString());
 			}
 		}, true);
 		// Get ip data and save it
@@ -37,7 +37,7 @@ public class ServerConnectListener implements Listener {
 				if (currentIpData == null) return;
 				currentIpData.updateDataFromClone(result);
 				currentIpData.updateData();
-				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), currentIpData);
+				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), currentIpData.getData().toString());
 			}
 		}, true);
 	}

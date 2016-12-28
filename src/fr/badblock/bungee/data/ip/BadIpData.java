@@ -9,40 +9,44 @@ import java.util.UUID;
 import org.bson.BSONObject;
 
 import com.google.gson.annotations.Expose;
+import com.mongodb.BasicDBObject;
 
-import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.data.ip.threading.IpDataWorker;
 import fr.badblock.commons.data.PunishData;
 import lombok.Getter;
 import lombok.Setter;
 
 public class BadIpData {
-	
+
 	public static Map<String, BadIpData> ips = new HashMap<>();
 
 	@Expose @Getter	public String						ip;
 	@Expose @Getter public PunishData					punish;
 	@Getter	@Setter public BSONObject					data;
-	
+
 	public BadIpData(String ip) {
 		this.ip = ip;
 		loadData();
 	}
-	
+
 	public void updateData() {
-		data.put("punish", BadBungee.getInstance().getGson().toJson(punish));
+		if (punish != null)
+			data.put("punish", punish);
 		data.put("ip", this.getIp());
 		IpDataWorker.save(this);
 	}
-	
+
 	private void loadData() {
 		IpDataWorker.populate(this);
 		if (!data.containsField("punish")) {
 			punish = new PunishData();
-			data.put("punish", BadBungee.getInstance().getGson().toJson(punish));
+			data.put("punish", punish);
+			updateData();
+		}else punish = new PunishData((BasicDBObject) data.get("punish"));
+		if (!data.containsField(this.getIp()) || !((String)data.get("ip")).equals(this.getIp())) {
+			data.put("ip", this.getIp());
+			updateData();
 		}
-		else punish = BadBungee.getInstance().getGson().fromJson((String) data.get("punish"), PunishData.class);
-		data.put("ip", this.getIp());
 	}
 
 	public void updateDataFromClone(BadIpData badIpData) {
@@ -60,13 +64,13 @@ public class BadIpData {
 		if (!data.containsField("usernames")) data.put("usernames", new ArrayList<>());
 		return (List<String>) data.get("usernames");
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<UUID> getUuids() {
 		if (!data.containsField("uuids")) data.put("uuids", new ArrayList<>());
 		return (List<UUID>) data.get("uuids");
 	}
-	
+
 	public void addUsername(String name) {
 		List<String> usernames = getUsernames();
 		if (!usernames.contains(name)) {
@@ -74,7 +78,7 @@ public class BadIpData {
 			data.put("usernames", usernames);
 		}
 	}
-	
+
 	public void addUUID(UUID uuid) {
 		List<UUID> uuids = getUuids();
 		if (!uuids.contains(uuid)) {
@@ -82,9 +86,9 @@ public class BadIpData {
 			data.put("uuids", uuids);
 		}
 	}
-	
+
 	public void setLastName(String name) {
 		data.put("lastName", name);
 	}
-	
+
 }
