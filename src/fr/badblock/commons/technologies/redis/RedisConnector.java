@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import lombok.Data;
 import lombok.Getter;
@@ -23,6 +24,7 @@ import lombok.Setter;
 
 	// Private fields
 	private							Gson										gson			= new Gson(); // A Gson object, who serve an header of these messages
+	private							Gson										exposeGson		= new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create(); // A Gson object, who serve an header of these messages
 	private 					   	ConcurrentMap<String, RedisService>			services		= new ConcurrentHashMap<>(); // Services list
 	private							ConcurrentMap<String, RedisCredentials>		credentials		= new ConcurrentHashMap<>(); // Credentials list
 	

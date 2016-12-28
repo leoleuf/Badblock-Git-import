@@ -2,6 +2,8 @@ package fr.badblock.commons.technologies.redis;
 
 import java.lang.reflect.Type;
 
+import com.google.gson.Gson;
+
 import fr.badblock.commons.utils.Callback;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,20 +48,22 @@ import redis.clients.jedis.Jedis;
 		set(key, RedisConnector.getInstance().getGson().toJson(value));
 	}
 
-	public <T> void getSyncObject(String key, Class<T> clazz, Callback<T> object) {
+	public <T> void getSyncObject(String key, Class<T> clazz, Callback<T> object, boolean onlyExpose) {
 		getSyncString(key, new Callback<String>() {
 			@Override
 			public void done(String result, Throwable error) {
-				object.done(RedisConnector.getInstance().getGson().fromJson(result, clazz), null);
+				Gson gson = onlyExpose ? RedisConnector.getInstance().getExposeGson() : RedisConnector.getInstance().getGson();
+				object.done(gson.fromJson(result, clazz), null);
 			}
 		});
 	}
 
-	public <T> void getSyncObject(String key, Type type, Callback<T> object) {
+	public <T> void getSyncObject(String key, Type type, Callback<T> object, boolean onlyExpose) {
 		getSyncString(key, new Callback<String>() {
 			@Override
 			public void done(String result, Throwable error) {
-				object.done(RedisConnector.getInstance().getGson().fromJson(result, type), null);
+				Gson gson = onlyExpose ? RedisConnector.getInstance().getExposeGson() : RedisConnector.getInstance().getGson();
+				object.done(gson.fromJson(result, type), null);
 			}
 		});
 	}
@@ -78,20 +82,20 @@ import redis.clients.jedis.Jedis;
 		}.start();
 	}
 	
-	public <T> void getAsyncObject(String key, Class<T> clazz, Callback<T> object) {
+	public <T> void getAsyncObject(String key, Class<T> clazz, Callback<T> object, boolean onlyExpose) {
 		new Thread() {
 			@Override
 			public void run() {
-				getSyncObject(key, clazz, object);
+				getSyncObject(key, clazz, object, onlyExpose);
 			}
 		}.start();
 	}
 	
-	public <T> void getAsyncObject(String key, Type type, Callback<T> object) {
+	public <T> void getAsyncObject(String key, Type type, Callback<T> object, boolean onlyExpose) {
 		new Thread() {
 			@Override
 			public void run() {
-				getSyncObject(key, type, object);
+				getSyncObject(key, type, object, onlyExpose);
 			}
 		}.start();
 	}
