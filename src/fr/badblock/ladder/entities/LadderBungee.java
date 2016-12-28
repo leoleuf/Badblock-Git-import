@@ -90,12 +90,14 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	public void sendServers() {
 		JsonArray toSend = new JsonArray();
 		for(Bukkit bukkit : Ladder.getInstance().getBukkitServers()){
-			JsonObject server = new JsonObject();
-			server.addProperty("name", bukkit.getName());
-			server.addProperty("ip", bukkit.getAddress().getAddress().getHostAddress());
-			server.addProperty("port", bukkit.getAddress().getPort());
+			if (bukkit != null && bukkit.getName() != null && bukkit.getAddress() != null && bukkit.getAddress().getAddress() != null && bukkit.getAddress().getAddress().getHostAddress() != null && bukkit.getAddress().getPort() != null) {
+				JsonObject server = new JsonObject();
+				server.addProperty("name", bukkit.getName());
+				server.addProperty("ip", bukkit.getAddress().getAddress().getHostAddress());
+				server.addProperty("port", bukkit.getAddress().getPort());
+				toSend.add(server);
+			}
 
-			toSend.add(server);
 		}
 
 		sendPacket(new PacketPlayerData(DataType.SERVERS, DataAction.SEND, "*", toSend.toString()));
