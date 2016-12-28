@@ -58,7 +58,7 @@ public class BadIpData {
 	@SuppressWarnings("unchecked")
 	public List<String> getUsernames() {
 		if (!data.containsField("usernames")) data.put("usernames", new ArrayList<>());
-		return (List<String>) data.get("lastName");
+		return (List<String>) data.get("usernames");
 	}
 	
 	@SuppressWarnings("unchecked")
