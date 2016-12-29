@@ -14,18 +14,6 @@ public interface OfflinePlayer extends DataHandler {
 	public String 	   getName();
 	
 	/**
-	 * Récupère le nickname du joueur
-	 * @return
-	 */
-	public String      getNickName();
-	
-	/**
-	 * Set le nickname du joueur
-	 * @param nickName
-	 */
-	public void		   setNickName(String nickName);
-	
-	/**
 	 * Set l'UUID
 	 * @param nickName
 	 */
