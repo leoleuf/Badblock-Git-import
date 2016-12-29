@@ -5,7 +5,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -30,7 +29,6 @@ import fr.badblock.ladder.api.entities.PlayerIp;
 import fr.badblock.ladder.api.plugins.PluginsManager;
 import fr.badblock.permissions.PermissionManager;
 import fr.badblock.protocol.packets.Packet;
-import fr.badblock.utils.CommonFilter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -59,8 +57,6 @@ public abstract class Ladder {
 	protected final	CommandSender				   consoleCommandSender;
 	@Getter
 	protected final ConfigurationProvider   	   configurationProvider;
-	@Getter
-	private final Map<String, OfflinePlayer> offlineCachePlayers	= new HashMap<>();
 	@Getter@Setter
 	protected int maxPlayers;
 	@Getter
@@ -98,12 +94,8 @@ public abstract class Ladder {
 
 	public Player getPlayer(String name){
 		name = name.toLowerCase();
-		name = CommonFilter.reverseFilterNames(name);
-		
 		if(names.containsKey(name))
 			 return getPlayer(names.get(name));
-		else if(offlineCachePlayers.containsKey(name) && names.containsKey(offlineCachePlayers.get(name).getName()))
-			 return getPlayer(names.get(offlineCachePlayers.get(name).getName()));
 		else return null;
 	}
 	
