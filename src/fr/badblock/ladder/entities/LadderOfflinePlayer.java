@@ -95,22 +95,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	}
 
 	@Override
-	public String getNickName() {
-		if(getData().has("nickName") && getData().get("nickName") != null && getData().get("nickName").getAsString() != null)
-			return getData().get("nickName").getAsString();
-		getData().addProperty("nickName", this.name);
-		return this.name;
-	}
-
-	@Override
-	public void setNickName(String nickName) {
-		getData().addProperty("nickName", nickName);
-		Player player = Ladder.getInstance().getPlayer(this.name);
-		if (player != null) player.sendToBungee("nickName");
-		saveData();
-	}
-
-	@Override
 	public boolean hasPermission(String permission) {
 		return permissions.hasPermission(new Permission(permission));
 	}

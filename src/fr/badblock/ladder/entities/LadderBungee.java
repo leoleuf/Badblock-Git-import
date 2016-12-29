@@ -28,7 +28,6 @@ import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
 import fr.badblock.ladder.data.LadderIpDataHandler;
-import fr.badblock.permissions.PermissibleGroup;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
@@ -50,7 +49,6 @@ import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
 import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
-import fr.badblock.utils.CommonFilter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -172,7 +170,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 				if(player != null){
 					ret = player.getData();
 					PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
-					if (!player.getName().equalsIgnoreCase(player.getNickName())) {
+					/*if (!player.getName().equalsIgnoreCase(player.getNickName())) {
 						permissiblePlayer = LadderPermissionManager.getInstance().createPlayer(player.getNickName(), player.getData());
 						final PermissiblePlayer permPlayer = permissiblePlayer;
 						PermissibleGroup permissibleGroup = (PermissibleGroup) permissiblePlayer.getParent();
@@ -186,7 +184,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 							groupe.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
 							permPlayer.removeParent(group.getKey());
 						});
-					}
+					}*/
 					ret.add("permissions", permissiblePlayer.saveAsJson());
 				}
 				sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getKey(), ret.toString()));
@@ -234,7 +232,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		} else if(packet.getType() == DataType.PLAYERS){
 			for(Player player : Ladder.getInstance().getOnlinePlayers()){
-				sendPacket(new PacketPlayerJoin(player.getName(), CommonFilter.filterNames(player.getNickName()), player.getUniqueId(), player.getAddress()));
+				sendPacket(new PacketPlayerJoin(player.getName(), player.getName(), player.getUniqueId(), player.getAddress()));
 				if(player.getBukkitServer() != null)
 					sendPacket(new PacketPlayerPlace(player.getName(), player.getBukkitServer().getName()));
 			}
@@ -285,7 +283,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 			player.disconnect(event.getCancelReason()); return;
 		} else {
 			loginPlayer.put(player.getName().toLowerCase(), player);
-			sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), CommonFilter.filterNames(player.getNickName())));
+			sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), player.getName()));
 			sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
 			sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
 			//if (Proxy.getInstance().getRabbitService() != null)
