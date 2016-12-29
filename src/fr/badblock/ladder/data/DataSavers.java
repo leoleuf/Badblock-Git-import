@@ -39,11 +39,7 @@ public class DataSavers extends Thread {
 							continue;
 						}
 
-						if (handler.handler.getKey().startsWith("89.170.77.") || handler.handler.getKey().startsWith("Akise") || handler.handler.getKey().startsWith("akise"))
-							System.out.println("Saving " + handler.handler.getKey() + " (" + handler.handler.getData() + ")...");
 						handler.handler.saveSync(handler.object, handler.update);
-						if (handler.handler.getKey().startsWith("89.170.77.") || handler.handler.getKey().startsWith("Akise") || handler.handler.getKey().startsWith("akise"))
-							System.out.println("Saved " + handler.handler.getKey() + "  (" + handler.handler.getData() + ")!");
 					} catch(Throwable t){}
 				}
 				try {
