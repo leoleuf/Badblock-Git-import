@@ -311,23 +311,27 @@ public class CommandPermissions extends Command {
 							Boolean has = Boolean.parseBoolean(result);
 							
 							if(has == Boolean.FALSE){
-								post("@channel Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
+								post("@channel Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " ! Celui-ci n'a pas acheté le groupe ! :rage:");
+								System.out.println("méééé euh !");
 							} else {
-								
+								post("Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " !");
+								System.out.println("méééé euh !");
 							}
 						} catch(Exception e){
-							post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+							post("Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " !");
+							System.out.println("méééé euh !");
 						}
 					}
-				}, "https://badblock.fr/store/player_has_buy.php").addValues(new String[]{"user", "offer"}, new String[]{p.getName().toLowerCase(), Integer.toString(offer) }).setGet(true).start();
+				}, "https://badblock.fr/store/player_has_buy.php?user=" + p.getName().toLowerCase() + "&offer=" + Integer.toString(offer)).start();
 			} else {
-				post("Ajout du groupe " + group + " à " + p.getName() + " par " + sender.getName() + " !");
+				post("Ajout du groupe " + group.getName() + " à " + p.getName() + " par " + sender.getName() + " !");
+				System.out.println("méééé euh !");
 			}
 		}
 	}
 	
 	private void post(String message){
-		new SlackMessage(message, "BottyPerms", false).run();
+		new SlackMessage(message, "https://hooks.slack.com/services/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", "info_given-perms", "BottyPerms", false).run();
 	}
 
 	public void groupPermissionRemove(CommandSender sender, PermissibleGroup group, String[] args) {
