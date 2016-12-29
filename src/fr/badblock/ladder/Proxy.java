@@ -40,7 +40,6 @@ import fr.badblock.ladder.commands.CommandEnd;
 import fr.badblock.ladder.commands.CommandFind;
 import fr.badblock.ladder.commands.CommandGiveKey;
 import fr.badblock.ladder.commands.CommandList;
-import fr.badblock.ladder.commands.CommandNick;
 import fr.badblock.ladder.commands.CommandPermissions;
 import fr.badblock.ladder.commands.CommandPlayer;
 import fr.badblock.ladder.commands.CommandPluginsManager;
@@ -83,7 +82,6 @@ import fr.badblock.rabbitconnector.RabbitListener;
 import fr.badblock.rabbitconnector.RabbitListenerType;
 import fr.badblock.rabbitconnector.RabbitPacketType;
 import fr.badblock.rabbitconnector.RabbitService;
-import fr.badblock.utils.CommonFilter;
 import fr.badblock.utils.Encodage;
 import jline.console.ConsoleReader;
 import lombok.Getter;
@@ -204,11 +202,6 @@ public class Proxy extends Ladder {
 	
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
-		name = CommonFilter.reverseFilterNames(name);
-		if (getOfflineCachePlayers().containsKey(name)) {
-			if (getOfflineCachePlayers().get(name).getNickName() != null && 
-					getOfflineCachePlayers().get(name).getNickName().equalsIgnoreCase(name)) return getOfflineCachePlayers().get(name);
-		}
 		OfflinePlayer result = getPlayer(name);
 
 		if(result == null)
@@ -418,7 +411,6 @@ public class Proxy extends Ladder {
 		pluginsManager.registerCommand(null, new CommandMute());
 		pluginsManager.registerCommand(null, new CommandUnban());
 		pluginsManager.registerCommand(null, new CommandUnbanip());
-		pluginsManager.registerCommand(null, new CommandNick());
 		pluginsManager.registerCommand(null, new CommandUnmute());
 		pluginsManager.registerCommand(null, new CommandSanction());
 		pluginsManager.registerCommand(null, new CommandPlayer());

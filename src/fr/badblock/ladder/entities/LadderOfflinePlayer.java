@@ -62,8 +62,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 			getData().addProperty("name", name);
 			mustBeUpdated = true;
 		}
-		if (!this.name.equals(this.getNickName()))
-			Proxy.getInstance().getOfflineCachePlayers().put(this.getNickName(), this);
 		if (!getData().has("loginPassword")) {
 			getData().addProperty("loginPassword", "");
 			mustBeUpdated = true;

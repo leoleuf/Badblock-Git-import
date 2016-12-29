@@ -316,32 +316,6 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	@Override
 	public void handle(PacketPlayerQuit packet) {
 
-		if (Ladder.getInstance().getOfflineCachePlayers().containsKey(packet.getUserName())) {
-			Player player = Ladder.getInstance().getPlayer(Ladder.getInstance().getPlayer(packet.getUserName()).getUniqueId());
-			if(player != null) {
-				if(packet.getReason() != null){
-					player.sendPacket(packet);
-				} else {
-					PlayerQuitEvent event = new PlayerQuitEvent(player);
-					Ladder.getInstance().getPluginsManager().dispatchEvent(event);
-
-					player.saveData();
-					player.getIpData().saveData();
-
-					broadcastOthers(packet);
-
-					Proxy.getInstance().getOfflineCachePlayers().remove(packet.getUserName());
-					((LadderIpDataHandler) player.getIpData()).getPlayers().remove(player.getUniqueId());
-
-					Proxy.getInstance().playerDisconnect(player);
-
-					getPlayers().remove(player.getUniqueId());
-					//if (Proxy.getInstance().getRabbitService() != null)
-					//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-				}
-			}
-		}
-
 		if(loginPlayer.containsKey(packet.getUserName().toLowerCase()))
 			loginPlayer.remove(packet.getUserName().toLowerCase());
 
