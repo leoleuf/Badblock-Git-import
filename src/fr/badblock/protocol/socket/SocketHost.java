@@ -52,7 +52,6 @@ public abstract class SocketHost extends Thread {
 			try {
 				final Socket socket = server.accept();
 
-				System.out.println("newSocketHost: " + address.getHostName() + " / " + port);
 				new Thread("BadBlockCommon/socketHost") {
 					@SuppressWarnings("resource") @Override
 					public void run(){
