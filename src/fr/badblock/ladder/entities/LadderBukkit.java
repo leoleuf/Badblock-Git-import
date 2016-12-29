@@ -29,7 +29,6 @@ import fr.badblock.ladder.api.plugins.PluginsManager;
 import fr.badblock.ladder.commands.CommandAlert;
 import fr.badblock.ladder.commands.CommandEnd;
 import fr.badblock.ladder.commands.CommandPermissions;
-import fr.badblock.permissions.PermissibleGroup;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
@@ -111,7 +110,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 				if(player != null){
 					ret = player.getData();
 					PermissiblePlayer permissiblePlayer = (PermissiblePlayer) player.getAsPermissible();
-					if (!player.getName().equalsIgnoreCase(player.getNickName())) {
+					/*if (!player.getName().equalsIgnoreCase(player.getNickName())) {
 						permissiblePlayer = LadderPermissionManager.getInstance().createPlayer(player.getNickName(), player.getData());
 						final PermissiblePlayer permPlayer = permissiblePlayer;
 						PermissibleGroup permissibleGroup = (PermissibleGroup) permissiblePlayer.getParent();
@@ -125,7 +124,7 @@ public class LadderBukkit implements Bukkit, PacketHandler {
 							groupe.getPermissions().forEach(permission -> permPlayer.permissions.add(permission));
 							permPlayer.removeParent(group.getKey());
 						});
-					}
+					}*/
 					ret.add("permissions", permissiblePlayer.saveAsJson());
 					ret.addProperty("realName", player.getName());
 				}
