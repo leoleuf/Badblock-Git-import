@@ -32,6 +32,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Getter private 		String				loginPassword;
 	@Getter private			UUID				uniqueId;
+	private boolean 							loaded;
 
 	public Punished getPunished(){
 		punished.checkEnd();
@@ -80,18 +81,20 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Override
 	public void saveData(){
-		punished.save(getData());
-		//System.out.println("Save permissions in file (saveData()) > " + this.name + " > " + permissions.saveAsJson());
+		if (loaded) {
+			punished.save(getData());
+			//System.out.println("Save permissions in file (saveData()) > " + this.name + " > " + permissions.saveAsJson());
 
-		getData().add("permissions", permissions.saveAsJson());
-		getData().addProperty("name", name);
-		getData().addProperty("uniqueId", uniqueId.toString());
+			getData().add("permissions", permissions.saveAsJson());
+			getData().addProperty("name", name);
+			getData().addProperty("uniqueId", uniqueId.toString());
 
-		if(lastAddress != null) {
-			getData().addProperty("lastIp", lastAddress.getHostAddress());
+			if(lastAddress != null) {
+				getData().addProperty("lastIp", lastAddress.getHostAddress());
+			}
+
+			super.saveData();
 		}
-
-		super.saveData();
 	}
 
 	@Override

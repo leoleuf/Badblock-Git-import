@@ -27,6 +27,7 @@ import lombok.Setter;
 
 @Getter public class LadderPlayer extends LadderOfflinePlayer implements Player {
 	
+	
 	@Setter public  UUID			uniqueId;
 	private final InetSocketAddress address;
 	

@@ -16,6 +16,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Getter	private final String  key;
 	private final File    file;
 	private JsonObject    data;
+	private boolean		loaded;
 	AtomicBoolean saving  = new AtomicBoolean(false);
 	AtomicBoolean reading = new AtomicBoolean(false);
 
@@ -36,7 +37,8 @@ public abstract class LadderDataHandler implements DataHandler {
 			throw new ConcurrentModificationException("Trying to update data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
 		saving.set(true);
-		
+
+		if (!loaded) System.out.println("Update data (not loaded) " + file.getName());
 		DataSavers.save(this, object, true);
 		//addObjectInObject(data, object);
 		//saveData();
@@ -60,6 +62,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to set data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
+		if (!loaded) System.out.println("Set data (not loaded) " + file.getName());
 		saving.set(true);
 		DataSavers.save(this, object, false);
 		//this.data = object;
@@ -71,6 +74,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to remove data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
+		if (!loaded) System.out.println("Removed data " + file.getName());
 		saving.set(true);
 		
 		//file.delete();
@@ -87,14 +91,17 @@ public abstract class LadderDataHandler implements DataHandler {
 		
 		if(!file.exists()) {
 			data = new JsonObject();
+			System.out.println("File not found! " + file.getName());
 			reading.set(false);
 			return;
 		}
 
 		try {
 			data = FileUtils.loadObject(file);
+			loaded = true;
 		} catch(Exception e){
 			data = new JsonObject();
+			e.printStackTrace();
 		}
 		
 		reading.set(false);
@@ -105,6 +112,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
+		if (!loaded) System.out.println("Save data not loaded :-( " + file.getName());
 		saving.set(true);
 		
 		DataSavers.save(this, data, false);
@@ -114,10 +122,15 @@ public abstract class LadderDataHandler implements DataHandler {
 		if(update)
 			addObjectInObject(data, object);
 		else data = object;
+
+		if (!loaded) System.out.println("Not loaded " + file.getName());
 		
 		if(!data.entrySet().isEmpty())
 			FileUtils.save(file, data, true);
-		else if(file.exists()) file.delete();
+		else if(file.exists()) {
+			file.delete();
+			System.out.println("File empty! " + file.getName());
+		}
 	
 		saving.set(false);
 	}
