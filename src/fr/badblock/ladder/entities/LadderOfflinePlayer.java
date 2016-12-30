@@ -32,7 +32,6 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 
 	@Getter private 		String				loginPassword;
 	@Getter private			UUID				uniqueId;
-	private boolean 							loaded;
 
 	public Punished getPunished(){
 		punished.checkEnd();

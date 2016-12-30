@@ -16,7 +16,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	@Getter	private final String  key;
 	private final File    file;
 	private JsonObject    data;
-	private boolean		loaded;
+	protected boolean		loaded;
 	AtomicBoolean saving  = new AtomicBoolean(false);
 	AtomicBoolean reading = new AtomicBoolean(false);
 
