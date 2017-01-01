@@ -4,9 +4,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
 
-import org.bson.BSONObject;
-
 import com.google.gson.annotations.Expose;
+import com.mongodb.BasicDBObject;
 
 import fr.badblock.bungee.data.players.threading.PlayerDataWorker;
 import lombok.Getter;
@@ -17,7 +16,7 @@ public class BadOfflinePlayer {
 	private boolean loaded = false;
 
 	@Expose @Getter protected final InetAddress			lastAddress;
-	@Getter @Setter public BSONObject 					data;
+	@Expose @Getter @Setter public BasicDBObject 		data;
 	@Expose @Getter public String	  					name;
 	@Expose @Getter public UUID							uniqueId;
 
@@ -57,7 +56,7 @@ public class BadOfflinePlayer {
 		// UniqueId
 		if (!getData().containsField("uniqueId")) {
 			uniqueId = UUID.nameUUIDFromBytes(("OfflinePlayer:" + name).getBytes());
-			getData().put("uniqueId", uniqueId);
+			getData().put("uniqueId", uniqueId.toString());
 			mustBeUpdated = true;
 		}else this.uniqueId = UUID.fromString((String) getData().get("uniqueId"));
 		// Login password

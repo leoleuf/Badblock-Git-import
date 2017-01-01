@@ -139,7 +139,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 	
 	public void keepAlive() {
 		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values(), BadIpData.ips.values()));
-		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
+		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, true);
 	}
 	
 	public void reloadMotd() {

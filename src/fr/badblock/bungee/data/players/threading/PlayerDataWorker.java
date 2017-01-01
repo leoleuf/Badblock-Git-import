@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bson.BasicBSONObject;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -48,9 +46,9 @@ public class PlayerDataWorker {
 		searchQuery.put("name", badOfflinePlayer.getName());
 		DBCursor cursor = table.find(searchQuery);
 		if (cursor.hasNext()) {
-			badOfflinePlayer.setData(cursor.next());
+			badOfflinePlayer.setData((BasicDBObject) cursor.next());
 		}else{
-			badOfflinePlayer.setData(new BasicBSONObject());
+			badOfflinePlayer.setData(new BasicDBObject());
 		}
 	}
 

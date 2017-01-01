@@ -14,8 +14,6 @@ public class DisconnectListener implements Listener {
 	@EventHandler
 	public void onPlayerDisconnect(PlayerDisconnectEvent event) {
 		String playerName = event.getPlayer().getName().toLowerCase();
-		BadPlayer.players.remove(playerName);
-		BadBungee.getInstance().keepAlive();
 		// Get player data and save it
 		BadBungee.getInstance().getRedisPlayerDataService().getSyncObject(RedisUtils.PLAYERDATA_PATTERN + playerName, BadBungee.playerType, new Callback<BadPlayer>() {
 			@Override
@@ -42,6 +40,8 @@ public class DisconnectListener implements Listener {
 				BadBungee.getInstance().getRedisPlayerDataService().delete(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress());
 			}
 		}, true);
+		BadPlayer.players.remove(playerName);
+		BadBungee.getInstance().keepAlive();
 	}
 	
 }

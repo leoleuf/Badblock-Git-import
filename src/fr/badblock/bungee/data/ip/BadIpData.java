@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.bson.BSONObject;
-
 import com.google.gson.annotations.Expose;
 import com.mongodb.BasicDBObject;
 
@@ -22,7 +20,7 @@ public class BadIpData {
 
 	@Expose @Getter	public String						ip;
 	@Expose @Getter public PunishData					punish;
-	@Getter	@Setter public BSONObject					data;
+	@Expose @Getter	@Setter public BasicDBObject		data;
 
 	public BadIpData(String ip) {
 		this.ip = ip;
@@ -30,8 +28,8 @@ public class BadIpData {
 	}
 
 	public void updateData() {
-		if (punish != null)
-			data.put("punish", punish);
+		System.out.println(data + " / " + punish);
+		data.put("punish", punish);
 		data.put("ip", this.getIp());
 		IpDataWorker.save(this);
 	}

@@ -16,9 +16,7 @@ public class PlayerDataUtils {
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("name", player.getName());
 		table.findAndRemove(searchQuery);
-		BasicDBObject dbObject = new BasicDBObject();
-		dbObject.putAll(player.getData());
-		table.insert(dbObject);
+		table.insert(player.getData());
 	}
 	
 }

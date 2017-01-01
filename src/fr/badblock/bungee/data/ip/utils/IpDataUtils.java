@@ -16,9 +16,7 @@ public class IpDataUtils {
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("ip", ipData.getIp());
 		table.findAndRemove(searchQuery);
-		BasicDBObject dbObject = new BasicDBObject();
-		dbObject.putAll(ipData.getData());
-		table.insert(dbObject);
+		table.insert(ipData.getData());
 	}
 	
 }

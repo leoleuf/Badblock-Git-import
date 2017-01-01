@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.bson.BasicBSONObject;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -49,9 +47,9 @@ public class IpDataWorker {
 		searchQuery.put("ip", badIpData.getIp());
 		DBCursor cursor = table.find(searchQuery);
 		if (cursor.hasNext()) {
-			badIpData.setData(cursor.next());
+			badIpData.setData((BasicDBObject) cursor.next());
 		}else{
-			badIpData.setData(new BasicBSONObject());
+			badIpData.setData(new BasicDBObject());
 		}
 	}
 
