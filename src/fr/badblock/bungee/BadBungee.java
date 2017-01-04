@@ -9,6 +9,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import com.cloudflare.api.CloudflareAccess;
+import com.cloudflare.api.constants.RecordType;
+import com.cloudflare.api.requests.dns.DNSAddRecord;
+import com.cloudflare.api.utils.TimeUnit;
+import com.cloudflare.api.utils.TimeUnit.UnitType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -41,6 +46,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -51,14 +57,14 @@ import net.md_5.bungee.config.YamlConfiguration;
 @Data@EqualsAndHashCode(callSuper=false) public class BadBungee extends Plugin {
 
 	@Getter@Setter public static BadBungee instance;
-	
+
 	// Reflection data
 	public static final Type bungeeType 		= new TypeToken<Bungee>() {}.getType();
 	public static final Type playerType 		= new TypeToken<BadPlayer>() {}.getType();
 	public static final Type ipType 			= new TypeToken<BadIpData>() {}.getType();
 	public static final Type stringListType 	= new TypeToken<List<String>>() {}.getType();
 	public static final Type uuidListType 		= new TypeToken<List<UUID>>() {}.getType();
-	
+
 	private String		  bungeeName;
 	private Configuration config;
 	private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
@@ -72,10 +78,12 @@ import net.md_5.bungee.config.YamlConfiguration;
 	private Motd		  fullMotd;
 	private Timer		  timer;
 	private int			  onlineCount;
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
 		setInstance(this);
+
 		// Load configuration
 		loadConfig();
 		this.gson = new Gson();
@@ -129,19 +137,29 @@ import net.md_5.bungee.config.YamlConfiguration;
 		// And the commands :D
 		pluginManager.registerCommand(this, new MotdCommand());
 		pluginManager.registerCommand(this, new SendToAllCommand());
+		// Add DNS
+		CloudflareAccess access = new CloudflareAccess(config.getString("cloudflare.email"), config.getString("cloudflare.key"));
+		System.out.println(ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString());
+		DNSAddRecord dns = new DNSAddRecord(access, ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString(), RecordType.IPV4Address, bungeeName, bungeeName, new TimeUnit(UnitType.SECONDS, 60));
+		try {
+			dns.execute();
+			dns.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		System.out.println("[BadBungee] Loaded!");
 	}
-	
+
 	@Override
 	public void onDisable() {
 		getRabbitService().sendSyncPacket("bungee.worker.stop", this.getBungeeName(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
-	
+
 	public void keepAlive() {
 		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values(), BadIpData.ips.values()));
 		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, true);
 	}
-	
+
 	public void reloadMotd() {
 		redisDataService.getSyncObject("motd.default", Motd.class, new Callback<Motd>() {
 
@@ -153,7 +171,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 				}
 				motd = result;
 			}
-			
+
 		}, true);
 		redisDataService.getSyncObject("motd.full", Motd.class, new Callback<Motd>() {
 
@@ -165,10 +183,10 @@ import net.md_5.bungee.config.YamlConfiguration;
 				}
 				fullMotd = result;
 			}
-			
+
 		}, true);
 	}
-	
+
 	void loadConfig() {
 		try {
 			getDataFolder().mkdirs();
@@ -200,7 +218,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		String rabbitVirtualHost = config.getString("rabbit.virtualHost");
 		rabbitService = RabbitConnector.getInstance().newService("default", rabbitHostname, rabbitPort, rabbitUsername, rabbitPassword, rabbitVirtualHost);
 	}
-	
+
 	void loadMongoDB() {
 		List<String> mongoHostnames = config.getStringList("mongo.hostnames");
 		int mongoPort = config.getInt("mongo.port");
@@ -211,7 +229,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		mongoHostnamesArray = mongoHostnames.toArray(mongoHostnamesArray);
 		mongoService = MongoConnector.getInstance().newService("default", mongoPort, mongoUsername, mongoPassword, mongoDatabase, mongoHostnamesArray);
 	}
-	
+
 	void loadRedis() {
 		String redisHostname = config.getString("redis.hostname");
 		int redisPort = config.getInt("redis.port");
@@ -222,7 +240,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 		redisPlayerDataService = RedisConnector.getInstance().newService("default", redisHostname, redisPort, redisPassword, redisPlayerDatabase);
 		reloadMotd();
 	}
-	
+
 	public List<BadPlayer> getOnlinePlayers() {
 		List<BadPlayer> array = new ArrayList<>();
 		if (BungeeUtils.getAvailableBungees() == null) return array;
@@ -230,7 +248,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 			array.addAll(bungee.getPlayers());
 		return array;
 	}
-	
+
 	public List<BadIpData> getOnlineIps() {
 		List<BadIpData> array = new ArrayList<>();
 		if (BungeeUtils.getAvailableBungees() == null) return array;
@@ -238,21 +256,21 @@ import net.md_5.bungee.config.YamlConfiguration;
 			array.addAll(bungee.getIps());
 		return array;
 	}
-	
+
 	public BadPlayer get(String playerName) {
 		Optional<BadPlayer> optionalBadPlayer = getOnlinePlayers().parallelStream().filter(player -> player.getName().toLowerCase().equals(playerName.toLowerCase())).findAny();
 		if (!optionalBadPlayer.isPresent()) return null;
 		return optionalBadPlayer.get();
 	}
-	
+
 	public BadIpData getIp(String ip) {
 		Optional<BadIpData> optionalBadIpData = getOnlineIps().parallelStream().filter(ipData -> ipData.getIp().toLowerCase().equals(ip.toLowerCase())).findAny();
 		if (!optionalBadIpData.isPresent()) return null;
 		return optionalBadIpData.get();
 	}
-	
+
 	public BadPlayer get(ProxiedPlayer proxiedPlayer) {
 		return get(proxiedPlayer.getName());
 	}
-	
+
 }
