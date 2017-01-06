@@ -140,9 +140,10 @@ import net.md_5.bungee.config.YamlConfiguration;
 		// Add DNS
 		CloudflareAccess access = new CloudflareAccess(config.getString("cloudflare.email"), config.getString("cloudflare.key"));
 		System.out.println(ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString());
-		DNSAddRecord dns = new DNSAddRecord(access, ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString(), RecordType.IPV4Address, bungeeName, bungeeName, new TimeUnit(UnitType.SECONDS, 60));
+		
+		DNSAddRecord dns = new DNSAddRecord(access, "badblock.fr", RecordType.Text, "_minecraft._tcp.badblock.fr", "SRV 0 100 25565 " + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ".", new TimeUnit(UnitType.MINUTES, 2));
 		try {
-			dns.execute();
+			System.out.print(dns.executeBasic().getJSONObject("rec").getJSONObject("obj").getLong("rec_id"));
 			dns.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,7 +158,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 	public void keepAlive() {
 		String data = this.getExposeGson().toJson(new Bungee(this.getBungeeName(), BadPlayer.players.values(), BadIpData.ips.values()));
-		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, true);
+		this.getRabbitService().sendPacket("bungee.worker.keepAlive", data, Encodage.UTF8, RabbitPacketType.PUBLISHER, 10000, false);
 	}
 
 	public void reloadMotd() {
@@ -172,7 +173,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 				motd = result;
 			}
 
-		}, true);
+		}, false);
 		redisDataService.getSyncObject("motd.full", Motd.class, new Callback<Motd>() {
 
 			@Override
@@ -184,7 +185,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 				fullMotd = result;
 			}
 
-		}, true);
+		}, false);
 	}
 
 	void loadConfig() {

@@ -6,7 +6,6 @@ import fr.badblock.bungee.data.players.BadPlayer;
 import fr.badblock.bungee.utils.RedisUtils;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
-import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
@@ -26,15 +25,10 @@ public class LoginListener implements Listener {
 		badIpData.addUUID(badPlayer.getUniqueId());
 		badIpData.updateData();
 		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.PLAYERDATA_PATTERN + e.getPlayer().toLowerCase(), badPlayer.getData().toString());
-		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badIpData.getData().toString());
+		BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + badIpData.getIp().toLowerCase(), badIpData);
 		BadBungee.getInstance().keepAlive();
 		e.getDone().done(new Result(badPlayer.createResultObject(), null), null);
 		// Set data
-	}
-
-	@EventHandler
-	public void onLogin(PostLoginEvent event) {
-		System.out.println(event.getPlayer().getName());
 	}
 
 }

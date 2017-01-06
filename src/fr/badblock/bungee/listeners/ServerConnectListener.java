@@ -32,12 +32,11 @@ public class ServerConnectListener implements Listener {
 			@Override
 			public void done(BadIpData result, Throwable error) {
 				if (result == null) return;
-				System.out.println(result.getIp());
 				BadIpData currentIpData = BadBungee.getInstance().getIp(result.getIp());
 				if (currentIpData == null) return;
 				currentIpData.updateDataFromClone(result);
 				currentIpData.updateData();
-				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), currentIpData.getData().toString());
+				BadBungee.getInstance().getRedisPlayerDataService().set(RedisUtils.IPDATA_PATTERN + event.getPlayer().getAddress().getAddress().getHostAddress(), currentIpData);
 			}
 		}, true);
 	}

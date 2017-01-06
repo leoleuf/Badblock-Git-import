@@ -19,7 +19,6 @@ public class BadIpData {
 	public static Map<String, BadIpData> ips = new HashMap<>();
 
 	@Expose @Getter	public String						ip;
-	@Expose @Getter public PunishData					punish;
 	@Expose @Getter	@Setter public BasicDBObject		data;
 
 	public BadIpData(String ip) {
@@ -28,27 +27,29 @@ public class BadIpData {
 	}
 
 	public void updateData() {
-		System.out.println(data + " / " + punish);
-		data.put("punish", punish);
 		data.put("ip", this.getIp());
 		IpDataWorker.save(this);
 	}
 
-	private void loadData() {
+	public void loadData() {
 		IpDataWorker.populate(this);
 		if (!data.containsField("punish")) {
-			punish = new PunishData();
-			data.put("punish", punish);
-			updateData();
-		}else punish = new PunishData((BasicDBObject) data.get("punish"));
-		if (!data.containsField(this.getIp()) || !((String)data.get("ip")).equals(this.getIp())) {
-			data.put("ip", this.getIp());
-			updateData();
+			data.put("punish", new PunishData());
+			this.updateData();
 		}
+	}
+	
+	public PunishData getPunishData() {
+		if (!data.containsField("punish")) {
+			PunishData punishData = new PunishData();
+			data.put("punish", punishData);
+			this.updateData();
+			return punishData;
+		}
+		return new PunishData((BasicDBObject) data.get("punish"));
 	}
 
 	public void updateDataFromClone(BadIpData badIpData) {
-		this.punish = badIpData.getPunish();
 		this.setData(badIpData.getData());
 	}
 
