@@ -462,8 +462,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	private Map<String, Player> playersTemp = Maps.newConcurrentMap();
 
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
-		if(byName.containsKey(packet.getPlayerName()))
+		System.out.println("C1/ " + packet.getPlayerName());
+		if(byName.containsKey(packet.getPlayerName()) && playerList.containsKey(packet.getPlayerName()))
 			return;
+		System.out.println("C2/ " + packet.getPlayerName());
 		playersTemp.put(packet.getPlayerName(), new Player(packet, done));
 	}
 
