@@ -21,8 +21,6 @@ public class LadderSocketHost extends SocketHost {
 	
 	@Override
 	public Protocol getOutputProtocol(InetSocketAddress trueAddress, InetSocketAddress serverAddress) {
-		if(!trueAddress.getHostName().equals(serverAddress.getHostName()))
-			return null;
 		
 		BungeeCord bungeeCord = Ladder.getInstance().getServer(serverAddress);
 		if(bungeeCord != null)
@@ -38,8 +36,6 @@ public class LadderSocketHost extends SocketHost {
 
 	@Override
 	public Protocol getInputProtocol(InetSocketAddress trueAddress, InetSocketAddress serverAddress) {
-		if(!trueAddress.getHostName().equals(serverAddress.getHostName()))
-			return null;
 		
 		BungeeCord bungeeCord = Ladder.getInstance().getServer(serverAddress);
 		if(bungeeCord != null)
@@ -55,8 +51,6 @@ public class LadderSocketHost extends SocketHost {
 
 	@Override
 	public PacketHandler createHandler(InetSocketAddress trueAddress, InetSocketAddress serverAddress) {
-		if(!trueAddress.getHostName().equals(serverAddress.getHostName()))
-			return null;
 		
 		BungeeCord bungeeCord = Ladder.getInstance().getServer(serverAddress);
 		if(bungeeCord != null)
