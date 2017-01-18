@@ -120,7 +120,7 @@ public class BungeeCord extends ProxyServer
     /**
      * Server socket listener.
      */
-    private final Collection<Channel> listeners = new HashSet<>();
+    public final Collection<Channel> listeners = new HashSet<>();
     /**
      * Fully qualified connections.
      */
