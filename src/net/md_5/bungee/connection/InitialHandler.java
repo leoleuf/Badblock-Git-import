@@ -398,7 +398,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						
 						if(onlinePlayer) {
 							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-						} else finish();
+						} else {
+				            disconnect("§cVous devez être Premium pour pouvoir vous connecter.");
+							//finish();
+						}
 					}
 				}));
                 
