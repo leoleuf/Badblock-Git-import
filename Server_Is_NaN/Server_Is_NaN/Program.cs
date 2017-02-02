@@ -1,6 +1,4 @@
-﻿using Server_Is_NaN.Server;
-
-namespace Server_Is_NaN
+﻿namespace Server_Is_NaN
 {
     class Program
     {

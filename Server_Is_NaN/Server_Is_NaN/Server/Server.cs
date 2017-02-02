@@ -1,8 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using Server_Is_NaN.Server.Config;
 using Server_Is_NaN.Utils;
+using Server_Is_NaN.Server.World;
 using Server_Is_NaN.Networking.Sockets;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace Server_Is_NaN.Server
 {
@@ -15,9 +19,12 @@ namespace Server_Is_NaN.Server
 
         public string ProtocolVersion { get; } = "alpha_1";
         public int Slots {get; set; }
+        public int TimeOut { get; set; }
         public string Ip { get; }
         public int Port { get; }
 
+        public SWorld temp = new SWorld();
+        private List<SWorld> worlds = new List<SWorld>();
 
         public Server()
         {
@@ -32,11 +39,42 @@ namespace Server_Is_NaN.Server
             this.Slots = config.maxPlayers;
             this.Ip = config.ip;
             this.Port = config.port;
+            this.TimeOut = config.timeOut;
+
+            LoadWorlds();
+            StartListening();
+            new Thread(tick).Start();
+        }
+
+        private void tick()
+        {
+            while (true)
+            {
+                Thread.Sleep(50);
+                temp.tick();
+            }
+        }
+
+        private void LoadWorlds()
+        {
+            //FIXME
         }
 
         private void StartListening()
         {
+            Console.WriteLine(Port);
             new SocketListener().StartListening(Ip, Port);
         }
+
+        public SWorld GetWorld(string name)
+        {
+            return worlds.Find(w => w.Name.Equals(name));
+        }
+
+        public ICollection<SWorld> GetWorlds()
+        {
+            return worlds.AsReadOnly();
+        }
+
     }
 }

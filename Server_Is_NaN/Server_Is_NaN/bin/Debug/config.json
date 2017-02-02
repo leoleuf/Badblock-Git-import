@@ -1,5 +1,6 @@
 {
   "ip": "",
   "port": 24070,
-  "maxPlayers": 16
+  "maxPlayers": 16,
+  "timeOut": 400
 }

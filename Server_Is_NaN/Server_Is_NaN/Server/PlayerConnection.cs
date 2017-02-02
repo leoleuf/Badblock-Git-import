@@ -1,6 +1,8 @@
 ﻿using System;
 using Server_Is_NaN.Networking;
 using Server_Is_NaN.Utils;
+using Server_Is_NaN.Server.World.Entities;
+using Server_Is_NaN.Networking.Sockets;
 
 namespace Server_Is_NaN.Server
 {
@@ -13,19 +15,42 @@ namespace Server_Is_NaN.Server
 
         private string ProtocolVersion;
         private string Username;
+        private Player Handler;
 
-        public override void handleHandshake(Networking.In.Handshake packet)
+        private SocketHandler sock;
+
+        public SocketHandler Socket {
+            private get { return sock; }
+            set {
+                if (sock != null)
+                    throw new Exception("SocketHandler already defininded!");
+
+                sock = value;
+            }
+        }
+
+        public bool IsDisconnected()
         {
-            if (state != ConnectionState.HANDSHAKING)
-                BadState();
+            return Socket.IsDisconnected();
+        }
 
+        public override void HandleDisconnect(Networking.In.Disconnect packet)
+        {
+            state = ConnectionState.CLOSED;
+            Socket.Close();
+        }
+
+        public override void HandleHandshake(Networking.In.Handshake packet)
+        {
+            BadState(ConnectionState.HANDSHAKING);
+            
             this.ProtocolVersion = packet.ProtocolVersion;
             this.Username = packet.Username;
 
             if (packet.Request == 0)
             {
-                state = ConnectionState.PING; // waiting for ping request
-                SendPacket(new Networking.Out.PingAnswer(0 /*FIXME*/, 0 /*FIXME*/, server.ProtocolVersion));
+                state = ConnectionState.PING;
+                SendPacket(new Networking.Out.PingAnswer(0 /*FIXME*/, server.Slots, server.ProtocolVersion));
                 Disconnect();
             }
             else if (packet.Request == 1)
@@ -35,40 +60,43 @@ namespace Server_Is_NaN.Server
                 if (!server.ProtocolVersion.Equals(packet.ProtocolVersion))
                     throw new Exception("Server use protocol version '" + server.ProtocolVersion + "'!");
 
+                Handler = new Player(this);
+                //FIXME create player
+
                 state = ConnectionState.PLAYING;
-                SendPacket(new Networking.Out.LoginSuccess());
+                SendPacket(new Networking.Out.LoginSuccess(/*FIXME*/));
             }
             else
                 throw new Exception("Bad request: " + packet.Request);
         }
 
-        public override void handleKeepAlive(Networking.In.KeepAlive packet)
+        public override void HandleKeepAlive(Networking.In.KeepAlive packet)
         {
-            if (state != ConnectionState.PLAYING)
-                BadState();
-            
+            BadState(ConnectionState.PLAYING);
+            Handler.ReceiveKeepAlive();
         }
 
         public void SendPacket(PacketOut packet)
         {
-
+            Socket.SendPacket(packet);
         }
 
         public void Disconnect()
         {
-            // must send pending packets and close the socket
+            Disconnect("");
         }
 
-        private void BadState()
+        public void Disconnect(string message)
         {
-            throw new Exception("Bad state!");
+            state = ConnectionState.CLOSED;
+            SendPacket(new Networking.Out.Disconnect(message));
+            Socket.Close();
         }
-    }
 
-    public enum ConnectionState
-    {
-        HANDSHAKING,
-        PING,
-        PLAYING
-    }
+        private void BadState(ConnectionState needed)
+        {
+            if(state != needed)
+                throw new Exception("Bad state!");
+        }
+    }    
 }
