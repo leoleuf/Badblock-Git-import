@@ -3,8 +3,10 @@ using System;
 
 using Newtonsoft.Json;
 
-using Server_Is_NaN.Server.World.Entities;
-using Server_Is_NaN.Server.World.Blocks;
+using Server_Is_NaN.Server.Worlds.Entities;
+using Server_Is_NaN.Server.Worlds.Blocks;
+using Server_Is_NaN.Server.Worlds;
+using Server_Is_NaN.Server.Worlds.Providers;
 
 namespace Server_Is_NaN.Server.World
 {
@@ -17,8 +19,16 @@ namespace Server_Is_NaN.Server.World
         public string Name { get; private set; } = "todo"; //FIXME
         
         private List<Entity> entities = new List<Entity>();
-        private readonly IChunkProvider provider = null;
-        
+        private readonly IChunkProvider provider = new SimpleChunkProvider();
+        private readonly PlayerChunkMap chunkMap;
+
+        public SWorld(string name, Dimension dimension)
+        {
+            Name = name;
+            Dimension = dimension;
+            chunkMap = new PlayerChunkMap(this);
+        }
+
         public Chunk GetChunk(int x, int z)
         {
             return provider.GetChunk(x, z);
@@ -44,14 +54,30 @@ namespace Server_Is_NaN.Server.World
             entities.Add(e); //FIXME
         }
 
+        public void ShowChunks(Player player)
+        {
+            chunkMap.AddPlayer(player);
+        }
+
+        public void RemoveFromWorld(Player player)
+        {
+            //TODO KIIIIIIIILLLLLLLLLLL SA RACE
+            chunkMap.RemovePlayer(player);
+            entities.Remove(player);
+        }
+
+
+        public Location GetSpawnLocation()
+        {
+            return new Location(this, 0d, 0d, 0d); //FIXME
+        }
+
         public void tick()
         {
             // Tick entities
             for (int i = 0; i < entities.Count; i++)
             {
                 Entity ent = entities[i];
-
-                ent.tick();
 
                 if (ent.Removed)
                 {
@@ -61,7 +87,11 @@ namespace Server_Is_NaN.Server.World
                     entities.RemoveAt(i);
                     i--;
                 }
+
+                ent.tick();
             }
+            
+            chunkMap.Update();
         }
         /*
          * TODO:

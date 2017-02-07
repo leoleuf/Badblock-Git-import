@@ -1,26 +1,73 @@
 ﻿using System;
 using System.Text;
 using System.Net.Sockets;
+using System.IO;
+using Ionic.Zlib;
+using System.Collections.Generic;
 
 namespace Server_Is_NaN.Networking.Sockets
 {
-    public class ByteNetworkStream : NetworkStream
+    public class ByteNetworkStream
     {
-        public ByteNetworkStream(Socket socket) : base(socket) { }
+        private MemoryStream writerMemory;
+        private Stream writer;
+        private Stream reader;
+
+        private Stream stream;
+
+        private bool compressed;
+
+        public ByteNetworkStream(Socket socket, bool compressed)
+        {
+            this.compressed = compressed;
+
+            writerMemory = new MemoryStream();
+            writer = writerMemory;
+            reader = new NetworkStream(socket);
+            stream = new NetworkStream(socket);
+
+            if (compressed)
+            {
+                writer = new ZlibStream(writerMemory, CompressionMode.Compress, true);
+                //((ZlibStream)writer).FlushMode = FlushType.Finish;
+
+                reader = new ZlibStream(reader, CompressionMode.Decompress);
+            }
+        }
+
+        //private Stream writingStream, readingStream;
+
+        public int ReadByte()
+        {
+            return reader.ReadByte();
+        }
+
+        public void WriteByte(byte val)
+        {
+            writer.WriteByte(val);
+        }
 
         public int ReadUnsignedByte()
         {
             return ReadByte() & 0xFF;
         }
 
+        public byte[] ReadByteArray()
+        {
+            return ReadBytes(ReadInt());
+        }
+
         public byte[] ReadBytes(int length)
         {
-            byte[] result = new byte[length];
+            byte[] res = new byte[length];
+            int beg = 0;
 
-            for (int i = 0; i < length; i++)
-                result[i] = (byte) ReadByte();
+            while (beg < length)
+            {
+                beg += reader.Read(res, beg, length - beg);
+            }
 
-            return result;
+            return res;
         }
 
         public int ReadInt()
@@ -35,8 +82,8 @@ namespace Server_Is_NaN.Networking.Sockets
 
             do
             {
-                i = (byte) ReadByte();
-                result |= (i &0x7F) << (bytes++ * 7);
+                i = (byte)ReadByte();
+                result |= (i & 0x7F) << (bytes++ * 7);
 
                 if (bytes > maxBytes)
                     throw new Exception("VarInt too big");
@@ -53,7 +100,7 @@ namespace Server_Is_NaN.Networking.Sockets
             for (int i = 0; i < bytes.Length; i++)
             {
                 result <<= 8;
-                result |= (long) bytes[i] & 0xFF;
+                result |= (long)bytes[i] & 0xFF;
             }
 
             return result;
@@ -76,7 +123,7 @@ namespace Server_Is_NaN.Networking.Sockets
 
         public string ReadUTF()
         {
-            return System.Text.Encoding.UTF8.GetString( ReadBytes(ReadInt()) );
+            return System.Text.Encoding.UTF8.GetString(ReadByteArray());
         }
 
         public T[] ReadArray<T>(Func<T> method)
@@ -91,7 +138,7 @@ namespace Server_Is_NaN.Networking.Sockets
 
         public void WriteUnsignedByte(int value)
         {
-            WriteByte((byte) value) ;
+            WriteByte((byte)value);
         }
 
         public void WriteBytes(byte[] bytes)
@@ -136,7 +183,7 @@ namespace Server_Is_NaN.Networking.Sockets
 
         public void WriteBoolean(bool b)
         {
-            WriteByte(b ? (byte) 1 : (byte) 0);
+            WriteByte(b ? (byte)1 : (byte)0);
         }
 
         public void WriteUTF(string s)
@@ -147,7 +194,7 @@ namespace Server_Is_NaN.Networking.Sockets
         public void WriteArray<T>(Action<T> method, T[] r)
         {
             WriteInt(r.Length);
-            foreach(T e in r)
+            foreach (T e in r)
                 method.Invoke(e);
         }
 
@@ -159,6 +206,31 @@ namespace Server_Is_NaN.Networking.Sockets
                 result[bytes - i - 1] = (byte)((value >> 8 * i) & 0xFF);
 
             return result;
+        }
+
+        public void Flush()
+        {
+            if (writer is ZlibStream)
+            {
+                ZlibStream stream = (ZlibStream)writer;
+                stream.Close();
+            }
+
+            long len = writerMemory.Length;
+            byte[] res = writerMemory.GetBuffer();
+
+            writerMemory.Close();
+
+            writerMemory = new MemoryStream();
+            writer = writerMemory;
+
+            if (compressed)
+            {
+                writer = new ZlibStream(writerMemory, CompressionMode.Compress, true);
+            }
+
+            stream.Write(res, 0, (int)len);
+            stream.Flush();
         }
     }
 }

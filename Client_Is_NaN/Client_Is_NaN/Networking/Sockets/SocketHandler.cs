@@ -10,7 +10,7 @@ namespace Server_Is_NaN.Networking.Sockets
         private ConcurrentQueue<Packet> pendingPackets = new ConcurrentQueue<Packet>();
 
         private Socket socket;
-        private ByteNetworkStream stream;
+        private ByteNetworkStream stream, compressedStream;
         private PacketGroup from, to;
         private object handler;
         private bool running;
@@ -22,7 +22,8 @@ namespace Server_Is_NaN.Networking.Sockets
         public SocketHandler(Socket socket, object handler, PacketGroup from, PacketGroup to)
         {
             this.socket = socket;
-            this.stream = new ByteNetworkStream(socket);
+            this.stream = new ByteNetworkStream(socket, false);
+            this.compressedStream = new ByteNetworkStream(socket, true);
             this.from = from;
             this.to = to;
             this.handler = handler;
@@ -42,9 +43,8 @@ namespace Server_Is_NaN.Networking.Sockets
                     int id = stream.ReadInt();
                     bool compressed = stream.ReadBoolean();
 
-                    if (compressed) { } //FIXME
-
-                    from.ReadPacket(id, handler, stream);
+                    ByteNetworkStream usedStream = (compressed ? compressedStream : stream);
+                    from.ReadPacket(id, handler, usedStream);
                 }
             }
             catch (Exception e) {
@@ -72,12 +72,14 @@ namespace Server_Is_NaN.Networking.Sockets
                         else allDone.WaitOne();
                     else if (pendingPackets.TryDequeue(out packet))
                     {
-                        to.WritePacket(stream, false, packet);
+                        bool compressed = false;
+                        to.WritePacket(stream, compressedStream, compressed, packet);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception  e)
             {
+                Console.WriteLine(e);
                 //FIXME
             }
 
@@ -99,6 +101,11 @@ namespace Server_Is_NaN.Networking.Sockets
         public void Close()
         {
             closed = true;
+        }
+
+        public bool IsDisconnected()
+        {
+            return closed || !running;
         }
     }
 }

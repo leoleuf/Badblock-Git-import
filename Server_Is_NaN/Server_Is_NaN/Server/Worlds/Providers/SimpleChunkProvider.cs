@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Server_Is_NaN.Server.World.Entities;
+﻿using System.Collections.Generic;
+using Server_Is_NaN.Server.Worlds.Entities;
 
-namespace Server_Is_NaN.Server.World.Providers
+namespace Server_Is_NaN.Server.Worlds.Providers
 {
     public class SimpleChunkProvider : IChunkProvider
     {

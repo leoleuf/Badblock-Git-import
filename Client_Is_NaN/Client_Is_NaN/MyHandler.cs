@@ -1,5 +1,6 @@
 ﻿using System;
 using Server_Is_NaN.Networking;
+using Server_Is_NaN.Networking.Out;
 
 namespace Client_Is_NaN
 {
@@ -23,6 +24,8 @@ namespace Client_Is_NaN
              * - Réponse
              * - Déconnexion si aucun reçu
              */
+
+            new Server_Is_NaN.Networking.In.Handshake();
         }
 
         public override void HandleLoginSuccess(Server_Is_NaN.Networking.Out.LoginSuccess packet)
@@ -33,6 +36,11 @@ namespace Client_Is_NaN
         public override void HandleChangeDimension(Server_Is_NaN.Networking.Out.ChangeDimension packet)
         {
 
+        }
+
+        public override void HandleSendChunks(SendChunks packet)
+        {
+            Console.WriteLine("A chunky!");
         }
     }
 }

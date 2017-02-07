@@ -9,5 +9,14 @@ namespace Server_Is_NaN.Server.Config
         public int maxPlayers = 16;
 
         public int timeOut = 20 * 20;
+        public WorldConf[] worlds = new WorldConf[] { };
+
+        public int maxChunkBulk = 10;
+    }
+
+    public class WorldConf
+    {
+        public string name;
+        public Dimension dimension;
     }
 }

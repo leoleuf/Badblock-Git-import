@@ -6,3 +6,5 @@ C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\bin\Debug
 C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\obj\Debug\Server_Is_NaN.exe
 C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\obj\Debug\Server_Is_NaN.pdb
 C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\obj\Debug\Server_Is_NaN.csprojResolveAssemblyReference.cache
+C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\bin\Debug\DotNetZip.dll
+C:\Users\Audran\Documents\Info\ProjS2\Game\Server_Is_NaN\Server_Is_NaN\bin\Debug\DotNetZip.xml

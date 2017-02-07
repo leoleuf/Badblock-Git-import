@@ -11,5 +11,7 @@
         public abstract void HandlePingAnswer(Out.PingAnswer packet);
 
         public abstract void HandleChangeDimension(Out.ChangeDimension packet);
+
+        public abstract void HandleSendChunks(Out.SendChunks packet);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Server_Is_NaN.Server.World.Blocks
+﻿namespace Server_Is_NaN.Server.Worlds.Blocks
 {
     public abstract class Block
     {

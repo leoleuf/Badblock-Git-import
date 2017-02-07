@@ -34,6 +34,8 @@ namespace Server_Is_NaN.Networking
             AddPacket<KeepAlive>(0x01);
             AddPacket<PingAnswer>(0x02);
             AddPacket<LoginSuccess>(0x03);
+
+            AddPacket<SendChunks>(0x10);
         }
 
         protected override void HandlePacket(object packet, object handler)

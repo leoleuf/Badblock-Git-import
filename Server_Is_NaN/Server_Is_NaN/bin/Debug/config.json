@@ -2,5 +2,12 @@
   "ip": "",
   "port": 24070,
   "maxPlayers": 16,
-  "timeOut": 400
+  "timeOut": 400,
+  "worlds": [
+    {
+      "name": "world",
+      "dimension": 0
+    }
+  ],
+  "maxChunkBulk": 10
 }

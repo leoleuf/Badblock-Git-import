@@ -1,4 +1,4 @@
-﻿namespace Server_Is_NaN.Server.World
+﻿namespace Server_Is_NaN.Server.Worlds
 {
     public interface IChunkProvider
     {

@@ -4,7 +4,14 @@ namespace Server_Is_NaN.Networking.Out
 {
     public class LoginSuccess : PacketOutJson
     {
-        /* No content at this moment. Will appear with new features */
+        private Dimension dimension;
+
+        public LoginSuccess(Dimension dimension)
+        {
+            this.dimension = dimension;
+        }
+
+        public LoginSuccess() { }
 
         public override void Handle(OutPacketHandler handler)
         {

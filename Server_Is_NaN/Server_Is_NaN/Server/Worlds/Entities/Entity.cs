@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Server_Is_NaN.Server.Worlds;
 
-namespace Server_Is_NaN.Server.World.Entities
+namespace Server_Is_NaN.Server.Worlds.Entities
 {
     public abstract class Entity
     {

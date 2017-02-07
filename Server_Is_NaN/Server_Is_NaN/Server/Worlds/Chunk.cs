@@ -1,18 +1,31 @@
-﻿using Server_Is_NaN.Server.World.Biomes;
-using Server_Is_NaN.Server.World.Blocks;
-using Server_Is_NaN.Server.World.Entities;
+﻿using Server_Is_NaN.Networking.Out;
+using Server_Is_NaN.Server.Worlds.Biomes;
+using Server_Is_NaN.Server.Worlds.Blocks;
+using Server_Is_NaN.Server.Worlds.Entities;
 using System.Collections.Generic;
 
-namespace Server_Is_NaN.Server.World
+namespace Server_Is_NaN.Server.Worlds
 {
     public class Chunk
     {
+        public static SimpleChunk[] ToSimple(List<Chunk> chunk)
+        {
+            SimpleChunk[] res = new SimpleChunk[chunk.Count];
+
+            for (int i = 0; i < chunk.Count; i++)
+            {
+                res[i] = new SimpleChunk(chunk[i].x, chunk[i].z, chunk[i].blocks, chunk[i].biomes);
+            }
+
+            return res;
+        }
+
         /* Represent biome per column. For the column (x, z) biome is (x + z * 16) */
         private byte[] biomes;
-        /* Represent blocks. For the block (x, y, z) the value is (x + y * HEIGHT + z * 16) */
+        /* Represent blocks. For the block (x, y, z) the value is (y + x * HEIGHT + z * 16 * HEIGHT) */
         private byte[] blocks;
 
-        private List<Entity> entities;
+        private List<Entity> entities = new List<Entity>(); //FIXME
 
         public int x { get; }
         public int z { get; }

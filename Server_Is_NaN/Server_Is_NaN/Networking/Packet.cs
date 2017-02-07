@@ -52,7 +52,6 @@ namespace Server_Is_NaN.Networking
 
             if (json[id])
             {
-
                 obj = JsonConvert.DeserializeObject(stream.ReadUTF(), packets[id]);
             }
             else
@@ -64,7 +63,7 @@ namespace Server_Is_NaN.Networking
             HandlePacket(obj, handler);
         }
 
-        public void WritePacket(ByteNetworkStream stream, bool compressed, Packet packet)
+        public void WritePacket(ByteNetworkStream stream, ByteNetworkStream comp, bool compressed, Packet packet)
         {
             if (!ids.ContainsKey(packet.GetType()))
                 throw new Exception("Can't send unregistered packet " + packet.GetType().Name);
@@ -72,17 +71,20 @@ namespace Server_Is_NaN.Networking
             stream.WriteInt(ids[packet.GetType()]);
             stream.WriteBoolean(compressed);
 
-            if (compressed) { } //FIXME
+            stream.Flush();
+            stream = (compressed ? comp : stream);
 
             if (packet is JsonPacket)
             {
-                stream.WriteUTF( JsonConvert.SerializeObject(packet) );
+                stream.WriteUTF(JsonConvert.SerializeObject(packet));
             }
             else
             {
-                BytePacket p = (BytePacket) packet;
+                BytePacket p = (BytePacket)packet;
                 p.Serialize(stream);
             }
+
+            stream.Flush();
         }
 
         protected abstract void HandlePacket(object packet, object handler);

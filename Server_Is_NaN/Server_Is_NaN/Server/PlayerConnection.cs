@@ -1,7 +1,7 @@
 ﻿using System;
 using Server_Is_NaN.Networking;
 using Server_Is_NaN.Utils;
-using Server_Is_NaN.Server.World.Entities;
+using Server_Is_NaN.Server.Worlds.Entities;
 using Server_Is_NaN.Networking.Sockets;
 
 namespace Server_Is_NaN.Server
@@ -60,11 +60,10 @@ namespace Server_Is_NaN.Server
                 if (!server.ProtocolVersion.Equals(packet.ProtocolVersion))
                     throw new Exception("Server use protocol version '" + server.ProtocolVersion + "'!");
 
-                Handler = new Player(this);
-                //FIXME create player
+                Handler = new Player(packet.Username, this);
 
                 state = ConnectionState.PLAYING;
-                SendPacket(new Networking.Out.LoginSuccess(/*FIXME*/));
+                SendPacket(new Networking.Out.LoginSuccess( Handler.Position.world.Dimension ));
             }
             else
                 throw new Exception("Bad request: " + packet.Request);

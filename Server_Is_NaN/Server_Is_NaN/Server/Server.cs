@@ -1,10 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using Server_Is_NaN.Server.Config;
 using Server_Is_NaN.Utils;
 using Server_Is_NaN.Server.World;
-using Server_Is_NaN.Networking.Sockets;
 using System.Threading;
 using System.Collections.Generic;
 
@@ -22,8 +20,9 @@ namespace Server_Is_NaN.Server
         public int TimeOut { get; set; }
         public string Ip { get; }
         public int Port { get; }
+        public int MaxChunkBulk { get; }
 
-        public SWorld temp = new SWorld();
+        //public SWorld temp = new SWorld();
         private List<SWorld> worlds = new List<SWorld>();
 
         public Server()
@@ -40,9 +39,11 @@ namespace Server_Is_NaN.Server
             this.Ip = config.ip;
             this.Port = config.port;
             this.TimeOut = config.timeOut;
+            this.MaxChunkBulk = config.maxChunkBulk;
 
-            LoadWorlds();
+            LoadWorlds(config.worlds);
             StartListening();
+
             new Thread(tick).Start();
         }
 
@@ -51,13 +52,22 @@ namespace Server_Is_NaN.Server
             while (true)
             {
                 Thread.Sleep(50);
-                temp.tick();
+                foreach (SWorld world in worlds)
+                    world.tick();
             }
         }
 
-        private void LoadWorlds()
+        private void LoadWorlds(WorldConf[] worlds)
         {
-            //FIXME
+            foreach (WorldConf world in worlds)
+            {
+                if (!Directory.Exists(world.name))
+                {
+                    Directory.CreateDirectory(world.name);
+                }
+
+                this.worlds.Add(new SWorld(world.name, world.dimension));
+            }
         }
 
         private void StartListening()
@@ -76,5 +86,9 @@ namespace Server_Is_NaN.Server
             return worlds.AsReadOnly();
         }
 
+        public SWorld GetMainWorld()
+        {
+            return worlds[0]; //FIXME
+        }
     }
 }

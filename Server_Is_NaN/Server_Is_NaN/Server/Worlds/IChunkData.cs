@@ -1,7 +1,7 @@
-﻿using Server_Is_NaN.Server.World.Entities;
+﻿using Server_Is_NaN.Server.Worlds.Entities;
 using System.Collections.Generic;
 
-namespace Server_Is_NaN.Server.World
+namespace Server_Is_NaN.Server.Worlds
 {
     public interface IChunkData
     {
