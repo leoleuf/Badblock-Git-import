@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\ConnectionState.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\InPacketHandler.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\In\Disconnect.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\In\Handshake.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\In\KeepAlive.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\OutPacketHandler.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Out\Disconnect.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Out\KeepAlive.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Out\LoginSuccess.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Out\PingAnswer.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Packet.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\PacketIn.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\PacketOut.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Sockets\ByteNetworkStream.cs" />
+    <Compile Include="..\..\Common_Is_NaN\Common_Is_NaN\Networking\Sockets\SocketHandler.cs" />
+  </ItemGroup>
+</Project>
