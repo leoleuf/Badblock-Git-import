@@ -20,7 +20,7 @@ namespace Server_Is_NaN.Server.Worlds
             return res;
         }
 
-        /* Represent biome per column. For the column (x, z) biome is (x + z * 16) */
+        /* Represent biome per column. For the column (x, z) biome is ((x << 12) | (y << 8) | z) */
         private byte[] biomes;
         /* Represent blocks. For the block (x, y, z) the value is (y + x * HEIGHT + z * 16 * HEIGHT) */
         private byte[] blocks;

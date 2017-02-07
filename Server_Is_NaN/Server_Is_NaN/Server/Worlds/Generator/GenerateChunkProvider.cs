@@ -15,8 +15,8 @@ namespace Server_Is_NaN.Server.Worlds.Generator
         public Chunk GetChunk(int x, int z)
         {
             int[] biomes = genLayer.GetInts(x * 16 - 9, z * 16 - 9, 34, 34);
-
             
+            return null;
         }
 
         public bool IsChunkLoaded(int x, int z)
@@ -27,5 +27,20 @@ namespace Server_Is_NaN.Server.Worlds.Generator
         public void UnloadChunk(Chunk chunk) { }
 
         public void UnloadChunks() { }
+    }
+
+    public class ChunkGenerator
+    {
+        private byte[] values = new byte[1 << 16];
+
+        public byte GetBlockAt(int x, int y, int z)
+        {
+            return values[(x << 12) | (y << 8) | z];
+        }
+
+        public void SetBlockAt(int x, int y, int z, byte block)
+        {
+            values[(x << 12) | (y << 8) | z] = block;
+        }
     }
 }
