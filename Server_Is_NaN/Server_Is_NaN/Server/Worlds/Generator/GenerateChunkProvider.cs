@@ -40,7 +40,7 @@ namespace Server_Is_NaN.Server.Worlds.Generator
 
         public void SetBlockAt(int x, int y, int z, byte block)
         {
-            values[(x << 12) | (y << 8) | z] = block;
+            values[((x << 12) | (z << 8) | y)] = block;
         }
     }
 }
