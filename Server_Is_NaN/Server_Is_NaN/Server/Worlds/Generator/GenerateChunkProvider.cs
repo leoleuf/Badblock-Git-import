@@ -15,7 +15,17 @@ namespace Server_Is_NaN.Server.Worlds.Generator
         public Chunk GetChunk(int x, int z)
         {
             int[] biomes = genLayer.GetInts(x * 16 - 9, z * 16 - 9, 34, 34);
-            
+
+            ChunkGenerator generator = new ChunkGenerator();
+
+            for (int cz = 0; cz < 16; cz++)
+            {
+                for (int cx = 0; cx < 16; cx++)
+                {
+
+                }
+            }
+
             return null;
         }
 
