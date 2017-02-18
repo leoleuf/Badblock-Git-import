@@ -158,7 +158,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 		final boolean v1_5 = ping.isV1_5();
 
 		ServerPing legacy = new ServerPing( new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), bungee.getProtocolVersion() ),
-				new ServerPing.Players( listener.getMaxPlayers(), bungee.getCurrentCount(), null ),
+				new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),
 				new TextComponent( TextComponent.fromLegacyText( listener.getMotd() ) ), (Favicon) null );
 
 		Callback<ProxyPingEvent> callback = new Callback<ProxyPingEvent>()
@@ -181,13 +181,13 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 							+ "\00" + 127
 							+ '\00' + legacy.getVersion().getName()
 							+ '\00' + getFirstLine( legacy.getDescription() )
-							+ '\00' + bungee.getCurrentCount()
+							+ '\00' + bungee.getOnlineCount()
 							+ '\00' + legacy.getPlayers().getMax();
 				} else
 				{
 					// Clients <= 1.3 don't support colored motds because the color char is used as delimiter
 					kickMessage = ChatColor.stripColor( getFirstLine( legacy.getDescription() ) )
-							+ '\u00a7' + bungee.getCurrentCount()
+							+ '\u00a7' + bungee.getOnlineCount()
 							+ '\u00a7' + legacy.getPlayers().getMax();
 				}
 
@@ -248,7 +248,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			int protocol = ( ProtocolConstants.SUPPORTED_VERSION_IDS.contains( handshake.getProtocolVersion() ) ) ? handshake.getProtocolVersion() : bungee.getProtocolVersion();
 			pingBack.done( new ServerPing(
 					new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), protocol ),
-					new ServerPing.Players( listener.getMaxPlayers(), bungee.getCurrentCount(), null ),
+					new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),
 					motd, BungeeCord.getInstance().config.getFaviconObject() ),
 					null );
 		}

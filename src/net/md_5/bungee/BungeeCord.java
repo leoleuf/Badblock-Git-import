@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -127,6 +128,10 @@ public class BungeeCord extends ProxyServer
      * Fully qualified connections.
      */
     private final Map<String, UserConnection> connections = new CaseInsensitiveMap<>();
+    /**
+     * Fully qualified connections.
+     */
+    private Set<String> playerNames = new HashSet<>();
     // Used to help with packet rewriting
     private final Map<UUID, UserConnection> connectionsByOfflineUUID = new HashMap<>();
     private final ReadWriteLock connectionLock = new ReentrantReadWriteLock();
@@ -511,7 +516,7 @@ public class BungeeCord extends ProxyServer
     @Override
     public int getOnlineCount()
     {
-        return connections.size();
+        return currentCount;
     }
 
     @Override
@@ -680,6 +685,16 @@ public class BungeeCord extends ProxyServer
         return config.getDisabledCommands();
     }
 
+    @Override
+    public Set<String> getPlayerNames() {
+    	return playerNames;
+    }
+    
+    @Override
+    public void setPlayerNames(Set<String> playerNames) {
+    	this.playerNames = playerNames;
+    }
+    
     @Override
     public Collection<ProxiedPlayer> matchPlayer(final String partialName)
     {

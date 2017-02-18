@@ -1,24 +1,25 @@
 package net.md_5.bungee.query;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.AddressedEnvelope;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.socket.DatagramPacket;
 import java.net.InetAddress;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.AddressedEnvelope;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.socket.DatagramPacket;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ListenerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 @RequiredArgsConstructor
 public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
@@ -54,11 +55,11 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
     protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket msg) throws Exception
     {
         ByteBuf in = msg.content();
-        if ( in.readUnsignedByte() != 0xFE || in.readUnsignedByte() != 0xFD )
+       /* if ( in.readUnsignedByte() != 0xFE || in.readUnsignedByte() != 0xFD )
         {
             bungee.getLogger().log( Level.WARNING, "Query - Incorrect magic!: {0}", msg.sender() );
             return;
-        }
+        }*/
 
         ByteBuf out = ctx.alloc().buffer();
         @SuppressWarnings("rawtypes")
@@ -117,7 +118,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
                 data.put( "plugins", "" );
                 // End Extra Info
                 data.put( "map", "BungeeCord_Proxy" );
-                data.put( "numplayers", Integer.toString( BungeeCord.getInstance().getCurrentCount() ) );
+                data.put( "numplayers", Integer.toString( BungeeCord.getInstance().getOnlineCount() ) );
                 data.put( "maxplayers", Integer.toString( listener.getMaxPlayers() ) );
                 data.put( "hostport", Integer.toString( listener.getHost().getPort() ) );
                 data.put( "hostip", listener.getHost().getHostString() );
@@ -132,9 +133,9 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
                 // Padding
                 writeString( out, "\01player_\00" );
                 // Player List
-                for ( ProxiedPlayer p : bungee.getPlayers() )
+                for ( String p : bungee.getPlayerNames() )
                 {
-                    writeString( out, p.getName() );
+                    writeString( out, p );
                 }
                 out.writeByte( 0x00 ); // Null
             } else
