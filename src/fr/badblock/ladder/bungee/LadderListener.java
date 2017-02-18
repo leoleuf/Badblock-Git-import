@@ -1,10 +1,9 @@
 package fr.badblock.ladder.bungee;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.Map;
 import java.util.UUID;
 
+import fr.badblock.commons.utils.StringUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
 import fr.badblock.permissions.Permission;
@@ -12,14 +11,8 @@ import fr.badblock.protocol.packets.PacketPlayerJoin;
 import fr.badblock.protocol.packets.PacketPlayerLogin;
 import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
-import fr.badblock.protocol.utils.StringUtils;
-import fr.badblock.skins.SkinFactoryBungee;
-import fr.badblock.skins.format.SkinProfile;
-import fr.badblock.skins.storage.SkinStorage;
-import fr.badblock.skins.utils.SkinFetchUtils.SkinFetchFailedException;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.ServerPing.PlayerInfo;
 import net.md_5.bungee.api.connection.PendingConnection;
@@ -36,7 +29,6 @@ import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
@@ -65,34 +57,13 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PostLoginEvent e){
-		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
-		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), player == null ? e.getPlayer().getName() : player.getNickNamee(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
+		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), e.getPlayer().getName(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
-		final SkinProfile skinprofile = SkinStorage.getInstance().getOrCreateSkinData(e.getPlayer().getName());
 		if (!LadderBungee.getInstance().uuids.containsKey(e.getPlayer().getName().toLowerCase())) {
-			System.out.println(e.getPlayer().getUniqueId().toString());
 			LadderBungee.getInstance().uuids.put(e.getPlayer().getName().toLowerCase(), e.getPlayer().getUniqueId());		
 		}
-		ProxyServer.getInstance().getScheduler().runAsync(LadderBungee.getInstance(), new Runnable() {
-			@Override
-			public void run() {
-				try {
-					UUIDFetcher fetcher = new UUIDFetcher(Arrays.asList(e.getPlayer().getName()));
-					Map<String, UUID> response = null;
-					try {
-						response = fetcher.call();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					if (response != null) {
-						skinprofile.attemptUpdateBungee();
-						SkinFactoryBungee.getFactory().applySkin(e.getPlayer(), response.get(e.getPlayer().getName()));
-					}
-				} catch (SkinFetchFailedException e){}
-			}
-		});
 	}
 
 	@EventHandler
@@ -124,8 +95,6 @@ public class LadderListener implements Listener {
 			}catch(Exception error) {
 				error.printStackTrace();
 			}
-			InitialHandler handler = (InitialHandler) e.getPlayer().getPendingConnection();
-			handler.getLoginRequest().setData(player.getNickNamee());
 		}
 		if(e.getPlayer().getServer() == null){
 			String playerName = e.getPlayer().getName();
@@ -193,8 +162,10 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		BungeeCord.getInstance().setCurrentCount(LadderBungee.getInstance().getOnlineCount());
-		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().getOnlineCount(), sample));
+		int m = LadderBungee.getInstance().getOnlineCount() < motd.getMaxPlayers() ? LadderBungee.getInstance().getOnlineCount() + 1 : motd.getMaxPlayers();
+		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
+		BungeeCord.getInstance().setCurrentCount(LadderBungee.getInstance().bungeePlayerList.size());
+		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().getOnlineCount(), sample));
 		String[] motdString = motd.getMotd().clone();
 		if (LadderBungee.getInstance().getOnlineCount() >= motd.getMaxPlayers()) {
 			motdString[1] = LadderBungee.getInstance().fullMotd;

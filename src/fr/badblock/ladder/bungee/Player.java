@@ -34,7 +34,6 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 	private InetSocketAddress   address;
 	private       UUID			      uniqueId;
 	private  	  String			  name;
-	private  	  String			  nickNamee;
 	private 	  ServerInfo		  server;
 	private 	  JsonObject		  readOnlyData;
 	private		  PermissiblePlayer	  permissions;
@@ -48,7 +47,6 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.address      = e.getAddress();
 		this.uniqueId     = e.getUniqueId();
 		this.name         = e.getPlayerName();
-		this.nickNamee     = e.getNickName().isEmpty() ? e.getPlayerName() : e.getNickName();
 		this.server       = null;
 		
 		punished          = new Punished();
@@ -58,7 +56,6 @@ import net.md_5.bungee.protocol.packet.Title.Action;
 		this.readOnlyData = new JsonObject();
 		this.address      = e.getAddress();
 		this.name         = e.getPlayerName();
-		this.nickNamee	  = e.getPlayerName();
 		this.server       = null;
 		
 		this.done = done;

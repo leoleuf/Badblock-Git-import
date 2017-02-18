@@ -4,7 +4,7 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
-import fr.badblock.utils.Encodage;
+import fr.badblock.commons.utils.Encodage;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 import com.google.common.collect.Maps;
@@ -19,9 +21,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import fr.badblock.bungee.rabbitconnector.RabbitConnector;
+import fr.badblock.bungee.rabbitconnector.RabbitPacketType;
 import fr.badblock.bungee.rabbitconnector.RabbitService;
+import fr.badblock.commons.utils.Encodage;
 import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
+import fr.badblock.ladder.bungee.listeners.BungeePlayersUpdateListener;
 import fr.badblock.ladder.bungee.listeners.PlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.FileUtils;
 import fr.badblock.ladder.bungee.utils.IOUtils;
@@ -29,6 +34,10 @@ import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
 import fr.badblock.permissions.PermissionManager;
 import fr.badblock.protocol.PacketHandler;
+import fr.badblock.protocol.matchmaking.PacketMatchmakingJoin;
+import fr.badblock.protocol.matchmaking.PacketMatchmakingKeepalive;
+import fr.badblock.protocol.matchmaking.PacketMatchmakingPing;
+import fr.badblock.protocol.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.packets.PacketHelloworld;
 import fr.badblock.protocol.packets.PacketLadderStop;
 import fr.badblock.protocol.packets.PacketPlayerChat;
@@ -43,10 +52,6 @@ import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
 import fr.badblock.protocol.packets.PacketReconnectionInvitation;
 import fr.badblock.protocol.packets.PacketSimpleCommand;
-import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
-import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
-import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
-import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.utils.StringUtils;
 import fr.badblock.skins.SkinFactoryBungee;
 import lombok.Getter;
@@ -78,11 +83,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	@Getter private Motd			  	motd;
 
 	protected Map<String, Player>   	playerList;
-	public	  Set<String>				bungeePlayers  =  Sets.newConcurrentHashSet();
+	public	  Set<String>				bungeePlayerList  =  Sets.newConcurrentHashSet();
 	public	  Set<String>				connectPlayers =  Sets.newConcurrentHashSet();
 	public	  Set<String>				totalPlayers   =  Sets.newConcurrentHashSet();
 	public int							ladderPlayers 	   = 0;
-	public int							bungeePlayersCount = 0;
+	public int							bungeePlayerCount = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
@@ -150,6 +155,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 						config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 				new PlayersUpdateListener();
+				new BungeePlayersUpdateListener();
 			}catch(Exception error) {
 				Thread.sleep(Long.MAX_VALUE);
 				error.printStackTrace();
@@ -168,6 +174,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 			cp.save(config, new File(getDataFolder(), "config.yml"));
 
+			new Timer().schedule(new TimerTask() {
+				@Override
+				public void run() {
+					rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				}
+			}, 1000, 1000);
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
 
 			while(true){
@@ -284,7 +296,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			for(ProxiedPlayer player : getProxy().getPlayers()){
 				Player ployer = getPlayer(player.getName());
 				if (ployer == null) ployer = LadderBungee.getInstance().playersTemp.get(player.getName());
-				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), ployer == null ? player.getName() : ployer.getNickNamee(), player.getUniqueId(), player.getAddress());
+				PacketPlayerJoin  join = new PacketPlayerJoin(player.getName(), player.getName(), player.getUniqueId(), player.getAddress());
 
 				handle(join);
 
@@ -397,9 +409,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
-		System.out.println("C/ " + packet.getPlayerName());
 		if(playerList.containsKey(packet.getPlayerName())) {
-			System.out.println("OH/ " + packet.getPlayerName());
 			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(packet.getPlayerName());
 			if (proxiedPlayer != null) {
 				proxiedPlayer.sendMessage("§cVous êtes déjà connecté sur BadBlock!");
@@ -441,20 +451,20 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 			break;
 		}
-		BungeeCord.getInstance().setCurrentCount(getOnlineCount());
-		if (!bungeePlayers.contains(player.getName()) && bungeePlayers.size() < bungeePlayersCount) {
-			while (bungeePlayers.size() < bungeePlayersCount) {
-				if (!bungeePlayers.contains(player.getName()))
-					bungeePlayers.add(player.getName());
-				if (bungeePlayers.size() < bungeePlayersCount) {
-					for (String totalPlayer : totalPlayers)
-						if (!bungeePlayers.contains(totalPlayer) && bungeePlayers.size() < ladderPlayers)
-							bungeePlayers.add(totalPlayer);
-				}
-				break;
+		while (bungeePlayerList.size() < bungeePlayerCount) {
+			if (!bungeePlayerList.contains(player.getName()))
+				bungeePlayerList.add(player.getName());
+			if (bungeePlayerList.size() < bungeePlayerCount) {
+				for (String totalPlayer : totalPlayers)
+					if (!bungeePlayerList.contains(totalPlayer) && bungeePlayerList.size() < bungeePlayerCount) {
+						bungeePlayerList.add(totalPlayer);
+					}
 			}
+			break;
 		}
-		System.out.println("[LadderBungee] HASHMAP: " + connectPlayers.size() + " / CACHE: " + ladderPlayers);
+		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
+		BungeeCord.getInstance().setCurrentCount(bungeePlayerList.size());
 		playerList.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
 	}
@@ -462,10 +472,8 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	private Map<String, Player> playersTemp = Maps.newConcurrentMap();
 
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
-		System.out.println("C1/ " + packet.getPlayerName());
 		if(byName.containsKey(packet.getPlayerName()) && playerList.containsKey(packet.getPlayerName()))
 			return;
-		System.out.println("C2/ " + packet.getPlayerName());
 		playersTemp.put(packet.getPlayerName(), new Player(packet, done));
 	}
 
@@ -510,15 +518,17 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				}
 			connectPlayers.remove(lPlayer.getName());
 		}
-		BungeeCord.getInstance().setCurrentCount(getOnlineCount());
-
-		if (bungeePlayers.size() > ladderPlayers) {
+		if (bungeePlayerList.size() > bungeePlayerCount) {
 			for (String totalPlayer : totalPlayers)
-				if (bungeePlayers.contains(totalPlayer) && bungeePlayers.size() > ladderPlayers) {
-					bungeePlayers.remove(totalPlayer);
+				if (bungeePlayerList.contains(totalPlayer) && bungeePlayerList.size() > bungeePlayerCount) {
+					bungeePlayerList.remove(totalPlayer);
 				}
-			bungeePlayers.remove(lPlayer.getName());
+			bungeePlayerList.remove(lPlayer.getName());
 		}
+		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		
+		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
+		BungeeCord.getInstance().setCurrentCount(bungeePlayerList.size());
 		
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());
@@ -574,13 +584,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	@Override
 	public void handle(PacketPlayerNickSet packet) {
-		Player player = getPlayer(packet.getPlayerName());
-		if (player == null) player = playersTemp.get(packet.getPlayerName());
-		if (player == null) return;
-		player.setCustomUUID(packet.getUuid());
-		if (!byName.containsValue(packet.getUuid()))
-			byName.put(player.getName(), packet.getUuid());
-		player.setNickNamee(packet.getNickName());
 	}
 
 	public int getOnlineCount() {
