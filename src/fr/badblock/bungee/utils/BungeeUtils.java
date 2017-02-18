@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import fr.badblock.bungee.Bungee;
+import fr.badblock.bungee.bobjects.Bungee;
 
 public class BungeeUtils {
 	

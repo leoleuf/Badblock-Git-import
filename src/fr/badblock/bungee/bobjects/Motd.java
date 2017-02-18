@@ -1,4 +1,4 @@
-package fr.badblock.bungee.utils;
+package fr.badblock.bungee.bobjects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

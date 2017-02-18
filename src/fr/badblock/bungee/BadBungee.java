@@ -1,13 +1,11 @@
 package fr.badblock.bungee;
 
 import java.io.File;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.UUID;
 
 import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.constants.RecordType;
@@ -16,8 +14,9 @@ import com.cloudflare.api.utils.TimeUnit;
 import com.cloudflare.api.utils.TimeUnit.UnitType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
+import fr.badblock.bungee.bobjects.Bungee;
+import fr.badblock.bungee.bobjects.Motd;
 import fr.badblock.bungee.commands.linked.SendToAllCommand;
 import fr.badblock.bungee.commands.unlinked.MotdCommand;
 import fr.badblock.bungee.data.ip.BadIpData;
@@ -27,85 +26,30 @@ import fr.badblock.bungee.listeners.LoginListener;
 import fr.badblock.bungee.listeners.ProxyPingListener;
 import fr.badblock.bungee.listeners.ServerConnectListener;
 import fr.badblock.bungee.rabbit.listeners.RabbitBungeeExecuteCommandListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeHelloWorldListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeKeepAliveListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeePlayersUpdaterListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeStopListener;
+import fr.badblock.bungee.sync.SyncBungee;
 import fr.badblock.bungee.utils.BungeeUtils;
-import fr.badblock.bungee.utils.Motd;
 import fr.badblock.commons.technologies.mongodb.MongoConnector;
-import fr.badblock.commons.technologies.mongodb.MongoService;
 import fr.badblock.commons.technologies.rabbitmq.RabbitConnector;
 import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
-import fr.badblock.commons.technologies.rabbitmq.RabbitService;
 import fr.badblock.commons.technologies.redis.RedisConnector;
-import fr.badblock.commons.technologies.redis.RedisService;
 import fr.badblock.commons.utils.Callback;
 import fr.badblock.commons.utils.Encodage;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
 
-@Data@EqualsAndHashCode(callSuper=false) public class BadBungee extends Plugin {
+ public class BadBungee extends SyncBungee {
 
-	@Getter@Setter public static BadBungee instance;
 
-	// Reflection data
-	public static final Type bungeeType 		= new TypeToken<Bungee>() {}.getType();
-	public static final Type playerType 		= new TypeToken<BadPlayer>() {}.getType();
-	public static final Type ipType 			= new TypeToken<BadIpData>() {}.getType();
-	public static final Type stringListType 	= new TypeToken<List<String>>() {}.getType();
-	public static final Type uuidListType 		= new TypeToken<List<UUID>>() {}.getType();
-
-	private String		  bungeeName;
-	private Configuration config;
-	private ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
-	private RabbitService rabbitService;
-	private MongoService  mongoService;
-	private RedisService  redisDataService;
-	private RedisService  redisPlayerDataService;
-	private Gson		  gson;
-	private Gson		  exposeGson;
-	private Motd		  motd;
-	private Motd		  fullMotd;
-	private Timer		  timer;
-	private int			  onlineCount;
-
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
-		setInstance(this);
 
 		// Load configuration
 		loadConfig();
 		this.gson = new Gson();
 		this.exposeGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-		System.out.println("[BadBungee] Waiting for response..");
-		new RabbitBungeeHelloWorldListener();
-		new RabbitBungeeKeepAliveListener();
-		new RabbitBungeePlayersUpdaterListener();
-		new RabbitBungeeStopListener();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		this.getRabbitService().sendSyncPacket("bungee.worker.helloWorld", "a", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-		while (!RabbitBungeeKeepAliveListener.done) {
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 		System.out.println("[BadBungee] Waiting for proxies...");
 		try {
 			Thread.sleep(1_000L);

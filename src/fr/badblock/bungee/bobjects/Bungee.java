@@ -1,4 +1,4 @@
-package fr.badblock.bungee;
+package fr.badblock.bungee.bobjects;
 
 import java.util.Collection;
 

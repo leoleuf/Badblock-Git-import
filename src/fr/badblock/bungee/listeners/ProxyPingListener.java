@@ -3,7 +3,7 @@ package fr.badblock.bungee.listeners;
 import java.util.UUID;
 
 import fr.badblock.bungee.BadBungee;
-import fr.badblock.bungee.utils.Motd;
+import fr.badblock.bungee.bobjects.Motd;
 import fr.badblock.commons.utils.StringUtils;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
@@ -43,7 +43,6 @@ public class ProxyPingListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		BungeeCord.getInstance().setCurrentCount(badBungee.getOnlineCount());
 		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), badBungee.getOnlineCount(), sample));
 		String[] motdString = motd.getMotd().clone();
 
