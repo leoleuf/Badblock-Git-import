@@ -8,6 +8,7 @@ public class Request {
 	private RequestType requestType;
 	private String[] fields;
 	private boolean doNotClose;
+	public int id;
 
 	public Request(String request, RequestType requestType, String... fields) {
 		this.request = request;
