@@ -1,18 +1,19 @@
-package fr.badblock.bungee.sync;
+package fr.badblock.bungee.loaders.bungee;
 
 import java.util.Timer;
 
 import com.google.gson.Gson;
 
 import fr.badblock.bungee.bobjects.Motd;
-import fr.badblock.bungee.loaders.ConfigLoader;
+import fr.badblock.bungee.loaders.Loader;
+import fr.badblock.bungee.loaders.technologies.ConfigLoader;
 import fr.badblock.bungee.loaders.technologies.MongoDBLoader;
 import fr.badblock.bungee.loaders.technologies.RabbitMQLoader;
 import fr.badblock.bungee.loaders.technologies.RedisLoader;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeHelloWorldListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeKeepAliveListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeePlayersUpdaterListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeStopListener;
+import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeeHelloWorldListener;
+import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeeKeepAliveListener;
+import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeePlayersUpdaterListener;
+import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeeStopListener;
 import fr.badblock.bungee.utils.ConfigDefaultUtil;
 import fr.badblock.commons.technologies.mongodb.MongoService;
 import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
@@ -24,28 +25,36 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.BungeeCord;
-import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
 
-@Data@EqualsAndHashCode(callSuper=false) public class SyncBungee extends Plugin {
+/**
+ * Main object of a synchronized Bungee, it doesn't manage the synchronization but it feels like a synchronized object
+ * @author xMalware
+ */
+@Data@EqualsAndHashCode(callSuper=false) public class BungeeLoader implements Loader {
 	
-	@Getter@Setter public static SyncBungee SyncInstance;
+	@Getter@Setter public static BungeeLoader SyncInstance;
 
-	private Thread		  mainThread;
-	private String		  bungeeName;
-	private Configuration config;
-	private RabbitService rabbitService;
-	private MongoService  mongoService;
-	private RedisService  redisDataService;
-	private RedisService  redisPlayerDataService;
-	private Gson		  gson;
-	private Gson		  exposeGson;
-	private Motd		  motd;
-	private Motd		  fullMotd;
-	private Timer		  timer;
-	private int			  onlineCount;
+	// Main objects
+	protected Thread		  mainThread;
+	protected String		  bungeeName;
+	// Configuration
+	protected Configuration   config;
+	// Communication services
+	protected RabbitService   rabbitService;
+	protected MongoService    mongoService;
+	protected RedisService    redisDataService;
+	protected RedisService    redisPlayerDataService;
+	// Gson and formatting
+	protected Gson		  	  gson;
+	protected Gson		  	  exposeGson;
+	protected Motd		  	  motd;
+	protected Motd		  	  fullMotd;
+	// Threading
+	protected Timer		  	  timer;
 
-	public SyncBungee() {
+	public BungeeLoader() {
+		// Set main objects
 		setSyncInstance(this);
 		this.mainThread = Thread.currentThread();
 		// Loading configuration

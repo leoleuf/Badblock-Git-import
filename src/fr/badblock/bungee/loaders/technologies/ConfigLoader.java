@@ -1,4 +1,4 @@
-package fr.badblock.bungee.loaders;
+package fr.badblock.bungee.loaders.technologies;
 
 import java.io.File;
 

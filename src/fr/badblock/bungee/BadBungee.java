@@ -25,8 +25,8 @@ import fr.badblock.bungee.listeners.DisconnectListener;
 import fr.badblock.bungee.listeners.LoginListener;
 import fr.badblock.bungee.listeners.ProxyPingListener;
 import fr.badblock.bungee.listeners.ServerConnectListener;
-import fr.badblock.bungee.rabbit.listeners.RabbitBungeeExecuteCommandListener;
-import fr.badblock.bungee.sync.SyncBungee;
+import fr.badblock.bungee.loaders.bungee.BungeeLoader;
+import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeeExecuteCommandListener;
 import fr.badblock.bungee.utils.BungeeUtils;
 import fr.badblock.commons.technologies.mongodb.MongoConnector;
 import fr.badblock.commons.technologies.rabbitmq.RabbitConnector;
@@ -34,19 +34,19 @@ import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.commons.technologies.redis.RedisConnector;
 import fr.badblock.commons.utils.Callback;
 import fr.badblock.commons.utils.Encodage;
-import lombok.Getter;
-import lombok.Setter;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.PluginManager;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
- public class BadBungee extends SyncBungee {
+ public class BadBungee extends BungeeLoader {
 
-
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onEnable() {
-
-		// Load configuration
+		// Load Badbungee configuration
 		loadConfig();
 		this.gson = new Gson();
 		this.exposeGson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
