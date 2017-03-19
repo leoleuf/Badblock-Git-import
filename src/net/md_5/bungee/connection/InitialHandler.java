@@ -394,7 +394,16 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
-						unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+						try {
+							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+						}catch(Exception errora) {
+							if (!onlinePlayer) {
+								finish();
+							}else{
+								System.out.println("A " + getName());
+								disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
+							}
+						}
 					}
 				}));
 
@@ -407,7 +416,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	}
 
 	@Override
-	public void handle(final EncryptionResponse encryptResponse) throws Exception
+	public void handle(final EncryptionResponse encryptResponse)
 	{
 		try {
 			Preconditions.checkState( thisState == State.ENCRYPT, "Not expecting ENCRYPT" );
@@ -453,12 +462,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						if (!onlinePlayer) {
 							finish();
 						}else{
+							System.out.println("A " + getName());
 							disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
 						}
 					} else
 					{
 						if (!onlinePlayer) finish();
 						else {
+							System.out.println("A " + getName());
 							disconnect("§cUn incident de connexion aux serveurs de Mojang est actuellement déclaré. Nous ne pouvons pas vérifier la validité de votre connexion pour le moment. Nous nous excusons pour la gêne occasionnée.");
 							bungee.getLogger().log( Level.SEVERE, "[BadOnline] Incident de connexion aux serveurs de Mojang (" + getName() + ")", error );
 						}
@@ -470,6 +481,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			if (!onlinePlayer) {
 				finish();
 			}else{
+				System.out.println("A " + getName());
 				disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
 			}
 		}
