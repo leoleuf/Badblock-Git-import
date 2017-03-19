@@ -394,15 +394,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
-
-						if(onlinePlayer) {
+						if (BungeeCord.getInstance().config.isOnlineMode()) {
 							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-						} else {
-							if (BungeeCord.getInstance().config.isOnlineMode()) {
-								disconnect("§cVous devez être Premium pour pouvoir vous connecter.");
-							}else
-								finish();
-						}
+						}else
+							finish();
 					}
 				}));
 
@@ -454,11 +449,18 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						finish();
 						return;
 					}
-					disconnect( bungee.getTranslation( "offline_mode_player" ) );
+					if (!onlinePlayer) {
+						finish();
+					}else{
+						disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
+					}
 				} else
 				{
-					disconnect( bungee.getTranslation( "mojang_fail" ) );
-					bungee.getLogger().log( Level.SEVERE, "Error authenticating " + getName() + " with minecraft.net", error );
+					if (!onlinePlayer) finish();
+					else {
+						disconnect("§cUn incident de connexion aux serveurs de Mojang est actuellement déclaré. Nous ne pouvons pas vérifier la validité de votre connexion pour le moment. Nous nous excusons pour la gêne occasionnée.");
+						bungee.getLogger().log( Level.SEVERE, "[BadOnline] Incident de connexion aux serveurs de Mojang (" + getName() + ")", error );
+					}
 				}
 			}
 		};
@@ -549,7 +551,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 								server = bungee.getServerInfo( listener.getDefaultServer() );
 							}
 
-							if(onlinePlayer){
+							if(loginProfile != null){
 								server = bungee.getServerInfo("lobby");
 							}
 
