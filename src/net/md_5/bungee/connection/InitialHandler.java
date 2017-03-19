@@ -409,60 +409,70 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	@Override
 	public void handle(final EncryptionResponse encryptResponse) throws Exception
 	{
-		Preconditions.checkState( thisState == State.ENCRYPT, "Not expecting ENCRYPT" );
+		try {
+			Preconditions.checkState( thisState == State.ENCRYPT, "Not expecting ENCRYPT" );
 
-		SecretKey sharedKey = EncryptionUtil.getSecret( encryptResponse, request );
-		BungeeCipher decrypt = EncryptionUtil.getCipher( false, sharedKey );
-		ch.addBefore( PipelineUtils.FRAME_DECODER, PipelineUtils.DECRYPT_HANDLER, new CipherDecoder( decrypt ) );
-		BungeeCipher encrypt = EncryptionUtil.getCipher( true, sharedKey );
-		ch.addBefore( PipelineUtils.FRAME_PREPENDER, PipelineUtils.ENCRYPT_HANDLER, new CipherEncoder( encrypt ) );
+			SecretKey sharedKey = EncryptionUtil.getSecret( encryptResponse, request );
+			BungeeCipher decrypt = EncryptionUtil.getCipher( false, sharedKey );
+			ch.addBefore( PipelineUtils.FRAME_DECODER, PipelineUtils.DECRYPT_HANDLER, new CipherDecoder( decrypt ) );
+			BungeeCipher encrypt = EncryptionUtil.getCipher( true, sharedKey );
+			ch.addBefore( PipelineUtils.FRAME_PREPENDER, PipelineUtils.ENCRYPT_HANDLER, new CipherEncoder( encrypt ) );
 
-		String encName = URLEncoder.encode( InitialHandler.this.getName(), "UTF-8" );
+			String encName = URLEncoder.encode( InitialHandler.this.getName(), "UTF-8" );
 
-		MessageDigest sha = MessageDigest.getInstance( "SHA-1" );
-		for ( byte[] bit : new byte[][]
-				{
-			request.getServerId().getBytes( "ISO_8859_1" ), sharedKey.getEncoded(), EncryptionUtil.keys.getPublic().getEncoded()
-				} )
-		{
-			sha.update( bit );
-		}
-		String encodedHash = URLEncoder.encode( new BigInteger( sha.digest() ).toString( 16 ), "UTF-8" );
-
-		String authURL = "https://sessionserver.mojang.com/session/minecraft/hasJoined?username=" + encName + "&serverId=" + encodedHash;
-
-		Callback<String> handler = new Callback<String>()
-		{
-			@Override
-			public void done(String result, Throwable error)
-			{
-				if ( error == null )
-				{
-					LoginResult obj = BungeeCord.getInstance().gson.fromJson( result, LoginResult.class );
-					if ( obj != null )
+			MessageDigest sha = MessageDigest.getInstance( "SHA-1" );
+			for ( byte[] bit : new byte[][]
 					{
-						loginProfile = obj;
-						// uniqueId = Util.getUUID( obj.getId() );
-						finish();
-						return;
-					}
-					if (!onlinePlayer) {
-						finish();
-					}else{
-						disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
-					}
-				} else
+				request.getServerId().getBytes( "ISO_8859_1" ), sharedKey.getEncoded(), EncryptionUtil.keys.getPublic().getEncoded()
+					} )
+			{
+				sha.update( bit );
+			}
+			String encodedHash = URLEncoder.encode( new BigInteger( sha.digest() ).toString( 16 ), "UTF-8" );
+
+			String authURL = "https://sessionserver.mojang.com/session/minecraft/hasJoined?username=" + encName + "&serverId=" + encodedHash;
+
+			Callback<String> handler = new Callback<String>()
+			{
+				@Override
+				public void done(String result, Throwable error)
 				{
-					if (!onlinePlayer) finish();
-					else {
-						disconnect("§cUn incident de connexion aux serveurs de Mojang est actuellement déclaré. Nous ne pouvons pas vérifier la validité de votre connexion pour le moment. Nous nous excusons pour la gêne occasionnée.");
-						bungee.getLogger().log( Level.SEVERE, "[BadOnline] Incident de connexion aux serveurs de Mojang (" + getName() + ")", error );
+					if ( error == null )
+					{
+						try {
+							LoginResult obj = BungeeCord.getInstance().gson.fromJson( result, LoginResult.class );
+							if ( obj != null )
+							{
+								loginProfile = obj;
+								// uniqueId = Util.getUUID( obj.getId() );
+								finish();
+								return;
+							}
+						}catch(Exception errora) {
+						}
+						if (!onlinePlayer) {
+							finish();
+						}else{
+							disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
+						}
+					} else
+					{
+						if (!onlinePlayer) finish();
+						else {
+							disconnect("§cUn incident de connexion aux serveurs de Mojang est actuellement déclaré. Nous ne pouvons pas vérifier la validité de votre connexion pour le moment. Nous nous excusons pour la gêne occasionnée.");
+							bungee.getLogger().log( Level.SEVERE, "[BadOnline] Incident de connexion aux serveurs de Mojang (" + getName() + ")", error );
+						}
 					}
 				}
+			};
+			HttpClient.get( authURL, ch.getHandle().eventLoop(), handler );
+		}catch(Exception error) {
+			if (!onlinePlayer) {
+				finish();
+			}else{
+				disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
 			}
-		};
-
-		HttpClient.get( authURL, ch.getHandle().eventLoop(), handler );
+		}
 	}
 
 	@SuppressWarnings("deprecation")
