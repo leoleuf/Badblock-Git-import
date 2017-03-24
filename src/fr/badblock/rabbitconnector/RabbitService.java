@@ -1,5 +1,6 @@
 package fr.badblock.rabbitconnector;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -57,8 +58,15 @@ import lombok.Setter;
 		RabbitConnector.getInstance().getServices().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new service (" + name + ")");
 		try {
-			if (this.getConnection() == null || !this.getConnection().isOpen()) this.setConnection(this.getCredentials().getConnectionFactory().newConnection());
-			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) this.setChannel(this.getConnection().createChannel());
+			if (this.getConnection() == null || !this.getConnection().isOpen()) {
+				ConnectionFactory connectionFactory = this.getCredentials().getConnectionFactories().get(new SecureRandom().nextInt(this.getCredentials().getConnectionFactories().size()));
+				this.setConnection(connectionFactory.newConnection());
+			}
+			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) {
+				ConnectionFactory connectionFactory = this.getCredentials().getConnectionFactories().get(new SecureRandom().nextInt(this.getCredentials().getConnectionFactories().size()));
+				this.setConnection(connectionFactory.newConnection());
+				this.setChannel(this.getConnection().createChannel());
+			}
 		}catch(Exception exception) {
 			System.out.println("[RabbitConnector] Error during the connection: " + exception.getMessage() + ")");
 		}
@@ -83,11 +91,16 @@ import lombok.Setter;
 		if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) return;
 		if (rabbitPacket.getRabbitMessage().getMessage() == null) return;
 		if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) return;
-		RabbitCredentials credentials = this.getCredentials();
 		try {
-			ConnectionFactory connectionFactory = credentials.getConnectionFactory();
-			if (this.getConnection() == null || !this.getConnection().isOpen()) this.setConnection(connectionFactory.newConnection());
-			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) this.setChannel(this.getConnection().createChannel());
+			if (this.getConnection() == null || !this.getConnection().isOpen()) {
+				ConnectionFactory connectionFactory = this.getCredentials().getConnectionFactories().get(new SecureRandom().nextInt(this.getCredentials().getConnectionFactories().size()));
+				this.setConnection(connectionFactory.newConnection());
+			}
+			if (this.getConnection() != null && (this.getChannel() == null || !this.getChannel().isOpen())) {
+				ConnectionFactory connectionFactory = this.getCredentials().getConnectionFactories().get(new SecureRandom().nextInt(this.getCredentials().getConnectionFactories().size()));
+				this.setConnection(connectionFactory.newConnection());
+				this.setChannel(this.getConnection().createChannel());
+			}
 			if (this.getConnection() != null && this.getConnection().isOpen() && this.getChannel() != null && this.getChannel().isOpen()) {
 				String message = rabbitPacket.getRabbitMessage().toJson();
 				if (rabbitPacket.getType().equals(RabbitPacketType.MESSAGE_BROKER)) {
