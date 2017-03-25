@@ -6,8 +6,6 @@ import fr.badblock.bungeecord.api.plugin.Cancellable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import net.md_5.bungee.api.event.AsyncEvent;
-import net.md_5.bungee.api.event.LoginEvent;
 
 /**
  * Event called to represent a player logging in.

@@ -1,5 +1,7 @@
 package fr.badblock.bungeecord.netty;
 
+import java.util.concurrent.TimeUnit;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.compress.PacketCompressor;
@@ -13,7 +15,6 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 
 public class ChannelWrapper

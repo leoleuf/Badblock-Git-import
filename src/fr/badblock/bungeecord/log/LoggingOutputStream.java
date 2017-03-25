@@ -1,10 +1,12 @@
 package fr.badblock.bungeecord.log;
 
-import com.google.common.base.Charsets;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.google.common.base.Charsets;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

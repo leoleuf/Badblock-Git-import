@@ -12,8 +12,6 @@ import fr.badblock.bungeecord.api.ProxyServer;
 import fr.badblock.bungeecord.command.ConsoleCommandSender;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
-import net.md_5.bungee.Bootstrap;
-import net.md_5.bungee.BungeeCord;
 
 public class BungeeCordLauncher
 {

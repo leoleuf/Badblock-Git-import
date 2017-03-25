@@ -4,8 +4,6 @@ import java.net.InetSocketAddress;
 
 import fr.badblock.bungeecord.api.chat.BaseComponent;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.connection.Unsafe;
 
 /**
  * A proxy connection is defined as a connection directly connected to a socket.

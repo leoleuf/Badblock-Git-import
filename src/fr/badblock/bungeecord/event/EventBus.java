@@ -15,9 +15,6 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.md_5.bungee.event.EventHandler;
-import net.md_5.bungee.event.EventHandlerMethod;
-
 public class EventBus
 {
 

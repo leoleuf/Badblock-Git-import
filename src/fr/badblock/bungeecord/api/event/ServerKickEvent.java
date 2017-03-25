@@ -9,7 +9,6 @@ import fr.badblock.bungeecord.api.plugin.Event;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import net.md_5.bungee.api.event.State;
 
 /**
  * Represents a player getting kicked from a server.

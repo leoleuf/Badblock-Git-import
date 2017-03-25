@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord.chat;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -9,10 +12,6 @@ import fr.badblock.bungeecord.api.ChatColor;
 import fr.badblock.bungeecord.api.chat.BaseComponent;
 import fr.badblock.bungeecord.api.chat.ClickEvent;
 import fr.badblock.bungeecord.api.chat.HoverEvent;
-import net.md_5.bungee.chat.ComponentSerializer;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class BaseComponentSerializer
 {

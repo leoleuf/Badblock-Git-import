@@ -1,5 +1,9 @@
 package fr.badblock.bungeecord;
 
+import java.util.Queue;
+import java.util.Set;
+import java.util.UUID;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.api.ChatColor;
@@ -34,17 +38,8 @@ import fr.badblock.bungeecord.protocol.packet.ScoreboardObjective;
 import fr.badblock.bungeecord.protocol.packet.SetCompression;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
-import java.util.Queue;
-import java.util.Set;
-import java.util.UUID;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.BungeeCord;
-import net.md_5.bungee.BungeeServerInfo;
-import net.md_5.bungee.ServerConnection;
-import net.md_5.bungee.State;
-import net.md_5.bungee.UserConnection;
-import net.md_5.bungee.Util;
 
 @RequiredArgsConstructor
 public class ServerConnector extends PacketHandler

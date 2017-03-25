@@ -1,13 +1,13 @@
 package fr.badblock.bungeecord.module;
 
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import com.google.common.io.ByteStreams;
 import com.google.common.io.Files;
 
 import fr.badblock.bungeecord.Util;
-
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import lombok.Data;
 
 @Data

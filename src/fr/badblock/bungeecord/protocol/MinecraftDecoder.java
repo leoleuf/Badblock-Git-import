@@ -1,9 +1,10 @@
 package fr.badblock.bungeecord.protocol;
 
+import java.util.List;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 

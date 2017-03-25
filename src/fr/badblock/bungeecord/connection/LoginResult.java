@@ -2,7 +2,6 @@ package fr.badblock.bungeecord.connection;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import net.md_5.bungee.connection.Property;
 
 @Data
 @AllArgsConstructor

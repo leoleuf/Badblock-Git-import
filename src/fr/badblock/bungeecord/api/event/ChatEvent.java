@@ -5,7 +5,6 @@ import fr.badblock.bungeecord.api.plugin.Cancellable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import net.md_5.bungee.api.event.TargetedEvent;
 
 /**
  * Event called when a player sends a message to a server.

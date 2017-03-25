@@ -11,12 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import net.md_5.bungee.api.Favicon;
-import net.md_5.bungee.api.ModInfo;
-import net.md_5.bungee.api.ModItem;
-import net.md_5.bungee.api.PlayerInfo;
-import net.md_5.bungee.api.Players;
-import net.md_5.bungee.api.Protocol;
 
 /**
  * Represents the standard list data returned by opening a server in the

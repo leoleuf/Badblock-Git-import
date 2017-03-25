@@ -5,8 +5,6 @@ import java.net.URLClassLoader;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import net.md_5.bungee.api.plugin.PluginClassloader;
-
 public class PluginClassloader extends URLClassLoader
 {
 

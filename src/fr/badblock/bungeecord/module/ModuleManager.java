@@ -1,11 +1,5 @@
 package fr.badblock.bungeecord.module;
 
-import com.google.common.base.Preconditions;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import fr.badblock.bungeecord.api.ProxyServer;
-import fr.badblock.bungeecord.api.plugin.PluginDescription;
-import fr.badblock.bungeecord.util.CaseInsensitiveMap;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -22,6 +16,13 @@ import java.util.logging.Level;
 
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+
+import com.google.common.base.Preconditions;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import fr.badblock.bungeecord.api.ProxyServer;
+import fr.badblock.bungeecord.api.plugin.PluginDescription;
+import fr.badblock.bungeecord.util.CaseInsensitiveMap;
 
 public class ModuleManager
 {

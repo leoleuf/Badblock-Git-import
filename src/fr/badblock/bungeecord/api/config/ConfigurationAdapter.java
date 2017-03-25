@@ -3,9 +3,6 @@ package fr.badblock.bungeecord.api.config;
 import java.util.Collection;
 import java.util.Map;
 
-import net.md_5.bungee.api.config.ListenerInfo;
-import net.md_5.bungee.api.config.ServerInfo;
-
 /**
  * This class allows plugins to set their own configuration adapter to load
  * settings from a different place.

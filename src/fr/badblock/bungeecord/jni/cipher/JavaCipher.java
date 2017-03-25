@@ -1,12 +1,14 @@
 package fr.badblock.bungeecord.jni.cipher;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
+import java.security.GeneralSecurityException;
+
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.IvParameterSpec;
-import java.security.GeneralSecurityException;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
 
 public class JavaCipher implements BungeeCipher
 {

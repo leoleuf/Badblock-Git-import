@@ -1,7 +1,8 @@
 package fr.badblock.bungeecord.util;
 
-import gnu.trove.set.hash.TCustomHashSet;
 import java.util.Collection;
+
+import gnu.trove.set.hash.TCustomHashSet;
 
 public class CaseInsensitiveSet extends TCustomHashSet<String>
 {

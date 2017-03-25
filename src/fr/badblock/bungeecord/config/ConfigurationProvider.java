@@ -8,10 +8,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
-
 public abstract class ConfigurationProvider
 {
 

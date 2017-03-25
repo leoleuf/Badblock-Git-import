@@ -41,7 +41,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.connection.CancelSendSignal;
 
 @RequiredArgsConstructor
 public class DownstreamBridge extends PacketHandler

@@ -3,10 +3,10 @@ package fr.badblock.bungeecord.api.plugin;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.md_5.bungee.api.plugin.Plugin;
 
 /**
  * POJO representing the plugin.yml file.

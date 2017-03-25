@@ -1,12 +1,12 @@
 package fr.badblock.bungeecord.compress;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.MessageToByteEncoder;
 import java.util.zip.Deflater;
 
 import fr.badblock.bungeecord.jni.zlib.BungeeZlib;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.MessageToByteEncoder;
 import lombok.Setter;
 
 public class PacketCompressor extends MessageToByteEncoder<ByteBuf>

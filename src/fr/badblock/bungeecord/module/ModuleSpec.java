@@ -1,6 +1,7 @@
 package fr.badblock.bungeecord.module;
 
 import java.io.File;
+
 import lombok.Data;
 
 @Data

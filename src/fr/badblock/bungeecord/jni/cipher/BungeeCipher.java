@@ -1,9 +1,11 @@
 package fr.badblock.bungeecord.jni.cipher;
 
+import java.security.GeneralSecurityException;
+
+import javax.crypto.SecretKey;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import javax.crypto.SecretKey;
-import java.security.GeneralSecurityException;
 
 /**
  * Class to expose cipher methods from either native or fallback Java cipher.

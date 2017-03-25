@@ -1,9 +1,10 @@
 package fr.badblock.bungeecord;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import java.net.InetAddress;
 import java.util.concurrent.TimeUnit;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 
 public class ConnectionThrottle
 {

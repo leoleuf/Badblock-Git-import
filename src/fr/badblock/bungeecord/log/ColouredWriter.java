@@ -5,12 +5,12 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
-import jline.console.ConsoleReader;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.Ansi.Erase;
 
 import fr.badblock.bungeecord.api.ChatColor;
+import jline.console.ConsoleReader;
 
 public class ColouredWriter extends Handler
 {

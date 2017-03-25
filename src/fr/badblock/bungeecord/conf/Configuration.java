@@ -1,5 +1,15 @@
 package fr.badblock.bungeecord.conf;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.UUID;
+import java.util.logging.Level;
+
+import javax.imageio.ImageIO;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.api.Favicon;
@@ -11,14 +21,6 @@ import fr.badblock.bungeecord.api.config.ServerInfo;
 import fr.badblock.bungeecord.util.CaseInsensitiveMap;
 import fr.badblock.bungeecord.util.CaseInsensitiveSet;
 import gnu.trove.map.TMap;
-import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-import java.util.UUID;
-import java.util.logging.Level;
-import javax.imageio.ImageIO;
 import lombok.Getter;
 
 /**

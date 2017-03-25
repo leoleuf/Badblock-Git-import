@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord.http;
 
+import java.nio.charset.Charset;
+
+import fr.badblock.bungeecord.api.Callback;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.HttpContent;
@@ -7,9 +10,6 @@ import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpResponse;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.netty.handler.codec.http.LastHttpContent;
-import java.nio.charset.Charset;
-
-import fr.badblock.bungeecord.api.Callback;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

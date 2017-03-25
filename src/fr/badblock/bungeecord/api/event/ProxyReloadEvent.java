@@ -3,8 +3,8 @@ package fr.badblock.bungeecord.api.event;
 import fr.badblock.bungeecord.api.CommandSender;
 import fr.badblock.bungeecord.api.plugin.Event;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 /**
  * Called when somebody reloads BungeeCord

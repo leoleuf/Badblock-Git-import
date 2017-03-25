@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord.connection;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.BungeeCord;
@@ -23,10 +26,6 @@ import fr.badblock.bungeecord.protocol.packet.PlayerListItem;
 import fr.badblock.bungeecord.protocol.packet.PluginMessage;
 import fr.badblock.bungeecord.protocol.packet.TabCompleteRequest;
 import fr.badblock.bungeecord.protocol.packet.TabCompleteResponse;
-import net.md_5.bungee.connection.CancelSendSignal;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UpstreamBridge extends PacketHandler
 {

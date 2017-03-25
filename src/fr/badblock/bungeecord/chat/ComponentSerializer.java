@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord.chat;
 
+import java.lang.reflect.Type;
+import java.util.HashSet;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -11,12 +14,6 @@ import com.google.gson.JsonParseException;
 import fr.badblock.bungeecord.api.chat.BaseComponent;
 import fr.badblock.bungeecord.api.chat.TextComponent;
 import fr.badblock.bungeecord.api.chat.TranslatableComponent;
-import net.md_5.bungee.chat.ComponentSerializer;
-import net.md_5.bungee.chat.TextComponentSerializer;
-import net.md_5.bungee.chat.TranslatableComponentSerializer;
-
-import java.lang.reflect.Type;
-import java.util.HashSet;
 
 public class ComponentSerializer implements JsonDeserializer<BaseComponent>
 {

@@ -2,8 +2,6 @@ package fr.badblock.bungeecord.api;
 
 import fr.badblock.bungeecord.api.chat.BaseComponent;
 import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.Title;
 
 /**
  * Represents a configuration of a title. A title in Minecraft consists of a

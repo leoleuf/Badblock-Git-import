@@ -12,8 +12,6 @@ import fr.badblock.bungeecord.api.ProxyServer;
 import fr.badblock.bungeecord.api.config.ConfigurationAdapter;
 import fr.badblock.bungeecord.api.scheduler.GroupedThreadFactory;
 import lombok.Getter;
-import net.md_5.bungee.api.plugin.PluginDescription;
-import net.md_5.bungee.api.plugin.PluginLogger;
 
 /**
  * Represents any Plugin that may be loaded at runtime to enhance existing

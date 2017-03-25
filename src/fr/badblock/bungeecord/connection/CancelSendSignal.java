@@ -2,7 +2,6 @@ package fr.badblock.bungeecord.connection;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import net.md_5.bungee.connection.CancelSendSignal;
 
 @SuppressWarnings("serial")
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

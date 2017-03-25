@@ -6,7 +6,6 @@ import fr.badblock.bungeecord.api.plugin.Event;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import net.md_5.bungee.api.event.ServerConnectEvent;
 
 /**
  * Not to be confused with {@link ServerConnectEvent}, this event is called once

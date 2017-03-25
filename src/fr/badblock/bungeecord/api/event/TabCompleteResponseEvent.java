@@ -1,15 +1,12 @@
 package fr.badblock.bungeecord.api.event;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
-import net.md_5.bungee.api.event.TabCompleteEvent;
-import net.md_5.bungee.api.event.TargetedEvent;
-
 import java.util.List;
 
 import fr.badblock.bungeecord.api.connection.Connection;
 import fr.badblock.bungeecord.api.plugin.Cancellable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Event called when a backend server sends a response to a player asking to

@@ -1,7 +1,6 @@
 package fr.badblock.bungeecord.api.connection;
 
 import fr.badblock.bungeecord.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.Connection;
 
 /**
  * Represents a destination which this proxy might connect to.

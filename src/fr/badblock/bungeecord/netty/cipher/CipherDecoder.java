@@ -1,13 +1,12 @@
 package fr.badblock.bungeecord.netty.cipher;
 
+import java.util.List;
+
+import fr.badblock.bungeecord.jni.cipher.BungeeCipher;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import lombok.RequiredArgsConstructor;
-
-import java.util.List;
-
-import fr.badblock.bungeecord.jni.cipher.BungeeCipher;
 
 @RequiredArgsConstructor
 public class CipherDecoder extends MessageToMessageDecoder<ByteBuf>

@@ -1,10 +1,11 @@
 package fr.badblock.bungeecord;
 
-import com.google.common.base.Joiner;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.UUID;
+
+import com.google.common.base.Joiner;
 
 /**
  * Series of utility classes to perform various operations.

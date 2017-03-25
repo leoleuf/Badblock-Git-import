@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord.netty;
 
+import java.io.IOException;
+import java.util.logging.Level;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.api.ProxyServer;
@@ -13,8 +16,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.DecoderException;
 import io.netty.handler.timeout.ReadTimeoutException;
-import java.io.IOException;
-import java.util.logging.Level;
 
 /**
  * This class is a primitive wrapper for {@link PacketHandler} instances tied to

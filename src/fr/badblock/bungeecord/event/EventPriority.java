@@ -2,7 +2,6 @@ package fr.badblock.bungeecord.event;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import net.md_5.bungee.event.EventHandler;
 
 /**
  * Importance of the {@link EventHandler}. When executing an Event, the handlers

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import fr.badblock.bungeecord.api.config.ListenerInfo;
 import fr.badblock.bungeecord.api.config.ServerInfo;
-import net.md_5.bungee.api.Favicon;
 
 /**
  * Core configuration adaptor for the proxy api.

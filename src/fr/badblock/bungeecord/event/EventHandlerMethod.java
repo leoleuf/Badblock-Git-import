@@ -2,6 +2,7 @@ package fr.badblock.bungeecord.event;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

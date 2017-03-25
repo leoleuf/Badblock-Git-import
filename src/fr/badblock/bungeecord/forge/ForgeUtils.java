@@ -1,17 +1,17 @@
 package fr.badblock.bungeecord.forge;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+
 import com.google.common.base.Charsets;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 
 import fr.badblock.bungeecord.protocol.DefinedPacket;
 import fr.badblock.bungeecord.protocol.packet.PluginMessage;
-
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Matcher;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 
 public class ForgeUtils
 {

@@ -1,17 +1,14 @@
 package fr.badblock.bungeecord.protocol.packet;
 
-import io.netty.buffer.ByteBuf;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import net.md_5.bungee.protocol.packet.Action;
-import net.md_5.bungee.protocol.packet.Item;
-
 import java.util.UUID;
 
 import fr.badblock.bungeecord.protocol.AbstractPacketHandler;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
 import fr.badblock.bungeecord.protocol.ProtocolConstants;
+import io.netty.buffer.ByteBuf;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor

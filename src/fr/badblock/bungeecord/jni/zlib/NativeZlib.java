@@ -1,8 +1,10 @@
 package fr.badblock.bungeecord.jni.zlib;
 
-import com.google.common.base.Preconditions;
-import io.netty.buffer.ByteBuf;
 import java.util.zip.DataFormatException;
+
+import com.google.common.base.Preconditions;
+
+import io.netty.buffer.ByteBuf;
 import lombok.Getter;
 
 public class NativeZlib implements BungeeZlib

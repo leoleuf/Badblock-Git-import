@@ -3,8 +3,8 @@ package fr.badblock.bungeecord.api;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
 import lombok.Getter;
-import net.md_5.bungee.api.ChatColor;
 
 /**
  * Simplistic enumeration of all supported color values for chat.

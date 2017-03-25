@@ -1,12 +1,13 @@
 package fr.badblock.bungeecord.protocol;
 
-import com.google.common.base.Charsets;
-import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-
 import java.util.UUID;
+
+import com.google.common.base.Charsets;
+
+import io.netty.buffer.ByteBuf;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public abstract class DefinedPacket

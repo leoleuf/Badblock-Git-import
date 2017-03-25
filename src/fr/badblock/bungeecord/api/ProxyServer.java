@@ -18,11 +18,6 @@ import fr.badblock.bungeecord.api.plugin.Plugin;
 import fr.badblock.bungeecord.api.plugin.PluginManager;
 import fr.badblock.bungeecord.api.scheduler.TaskScheduler;
 import lombok.Getter;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyConfig;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.ReconnectHandler;
-import net.md_5.bungee.api.Title;
 
 public abstract class ProxyServer
 {

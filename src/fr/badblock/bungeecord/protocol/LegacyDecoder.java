@@ -1,13 +1,13 @@
 package fr.badblock.bungeecord.protocol;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.ByteToMessageDecoder;
 import java.util.List;
 
 import fr.badblock.bungeecord.protocol.packet.LegacyHandshake;
 import fr.badblock.bungeecord.protocol.packet.LegacyPing;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.handler.codec.ByteToMessageDecoder;
 
 public class LegacyDecoder extends ByteToMessageDecoder
 {

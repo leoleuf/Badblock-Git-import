@@ -1,11 +1,11 @@
 package fr.badblock.bungeecord.protocol.packet;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 import fr.badblock.bungeecord.protocol.AbstractPacketHandler;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
 import io.netty.buffer.ByteBuf;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor

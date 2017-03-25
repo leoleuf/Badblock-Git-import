@@ -1,7 +1,5 @@
 package fr.badblock.bungeecord;
 
-import net.md_5.bungee.BungeeCordLauncher;
-
 public class Bootstrap
 {
 

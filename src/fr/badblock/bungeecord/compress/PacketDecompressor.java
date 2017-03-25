@@ -1,5 +1,7 @@
 package fr.badblock.bungeecord.compress;
 
+import java.util.List;
+
 import com.google.common.base.Preconditions;
 
 import fr.badblock.bungeecord.jni.zlib.BungeeZlib;
@@ -7,7 +9,6 @@ import fr.badblock.bungeecord.protocol.DefinedPacket;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import java.util.List;
 
 public class PacketDecompressor extends MessageToMessageDecoder<ByteBuf>
 {

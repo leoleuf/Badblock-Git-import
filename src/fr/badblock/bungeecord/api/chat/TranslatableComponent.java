@@ -1,9 +1,5 @@
 package fr.badblock.bungeecord.api.chat;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -12,10 +8,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import fr.badblock.bungeecord.api.ChatColor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.TranslatableComponent;
 
 @Getter
 @Setter

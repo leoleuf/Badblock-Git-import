@@ -36,13 +36,6 @@ import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.event.EventBus;
 import fr.badblock.bungeecord.event.EventHandler;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.Event;
-import net.md_5.bungee.api.plugin.Listener;
-import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.api.plugin.PluginClassloader;
-import net.md_5.bungee.api.plugin.PluginDescription;
-import net.md_5.bungee.api.plugin.TabExecutor;
 
 /**
  * Class to manage bridging between plugin duties and implementation duties, for

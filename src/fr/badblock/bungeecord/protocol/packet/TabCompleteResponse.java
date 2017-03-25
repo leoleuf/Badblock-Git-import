@@ -1,10 +1,10 @@
 package fr.badblock.bungeecord.protocol.packet;
 
-import io.netty.buffer.ByteBuf;
 import java.util.List;
 
 import fr.badblock.bungeecord.protocol.AbstractPacketHandler;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
+import io.netty.buffer.ByteBuf;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -11,7 +11,6 @@ import com.google.common.collect.Sets;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.config.Configuration;
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public final class Configuration

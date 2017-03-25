@@ -10,10 +10,6 @@ import fr.badblock.bungeecord.api.CommandSender;
 import fr.badblock.bungeecord.api.Title;
 import fr.badblock.bungeecord.api.chat.BaseComponent;
 import fr.badblock.bungeecord.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.Connection;
-import net.md_5.bungee.api.connection.PendingConnection;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.connection.Server;
 
 /**
  * Represents a player who's connection is being connected to somewhere else,

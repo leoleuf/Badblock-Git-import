@@ -1,9 +1,10 @@
 package fr.badblock.bungeecord.jni.zlib;
 
-import io.netty.buffer.ByteBuf;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
+
+import io.netty.buffer.ByteBuf;
 
 public class JavaZlib implements BungeeZlib
 {

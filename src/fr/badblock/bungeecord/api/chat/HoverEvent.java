@@ -3,8 +3,6 @@ package fr.badblock.bungeecord.api.chat;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import net.md_5.bungee.api.chat.Action;
-import net.md_5.bungee.api.chat.BaseComponent;
 
 @Getter
 @ToString

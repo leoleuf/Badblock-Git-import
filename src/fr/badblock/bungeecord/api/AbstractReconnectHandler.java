@@ -5,8 +5,6 @@ import com.google.common.base.Preconditions;
 import fr.badblock.bungeecord.api.config.ServerInfo;
 import fr.badblock.bungeecord.api.connection.PendingConnection;
 import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.ReconnectHandler;
 
 public abstract class AbstractReconnectHandler implements ReconnectHandler
 {

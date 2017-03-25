@@ -12,8 +12,6 @@ import fr.badblock.bungeecord.protocol.packet.PluginMessage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import net.md_5.bungee.BungeeServerInfo;
-import net.md_5.bungee.api.connection.Unsafe;
 
 @RequiredArgsConstructor
 public class ServerConnection implements Server

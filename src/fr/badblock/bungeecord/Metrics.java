@@ -11,7 +11,6 @@ import java.net.URLEncoder;
 import java.util.TimerTask;
 
 import fr.badblock.bungeecord.api.ProxyServer;
-import net.md_5.bungee.BungeeCord;
 
 public class Metrics extends TimerTask
 {

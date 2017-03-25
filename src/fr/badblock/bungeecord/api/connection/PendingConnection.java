@@ -4,7 +4,6 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 import fr.badblock.bungeecord.api.config.ListenerInfo;
-import net.md_5.bungee.api.connection.Connection;
 
 /**
  * Represents a user attempting to log into the proxy.

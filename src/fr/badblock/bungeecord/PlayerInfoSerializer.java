@@ -1,5 +1,8 @@
 package fr.badblock.bungeecord;
 
+import java.lang.reflect.Type;
+import java.util.UUID;
+
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -9,9 +12,6 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import fr.badblock.bungeecord.api.ServerPing;
-
-import java.lang.reflect.Type;
-import java.util.UUID;
 
 public class PlayerInfoSerializer implements JsonSerializer<ServerPing.PlayerInfo>, JsonDeserializer<ServerPing.PlayerInfo>
 {

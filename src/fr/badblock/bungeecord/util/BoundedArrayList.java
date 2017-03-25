@@ -1,8 +1,9 @@
 package fr.badblock.bungeecord.util;
 
-import com.google.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import com.google.common.base.Preconditions;
 
 @SuppressWarnings("serial")
 public class BoundedArrayList<E> extends ArrayList<E>

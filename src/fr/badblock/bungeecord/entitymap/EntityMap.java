@@ -1,13 +1,15 @@
 package fr.badblock.bungeecord.entitymap;
 
+import java.io.IOException;
+
 import com.flowpowered.nbt.stream.NBTInputStream;
 import com.google.common.base.Throwables;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
 import fr.badblock.bungeecord.protocol.ProtocolConstants;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
-import java.io.IOException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

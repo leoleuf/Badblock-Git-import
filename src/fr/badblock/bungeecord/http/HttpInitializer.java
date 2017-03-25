@@ -1,15 +1,16 @@
 package fr.badblock.bungeecord.http;
 
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.SSLEngine;
+
+import fr.badblock.bungeecord.api.Callback;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.handler.codec.http.HttpClientCodec;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
-import java.util.concurrent.TimeUnit;
-import javax.net.ssl.SSLEngine;
-
-import fr.badblock.bungeecord.api.Callback;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

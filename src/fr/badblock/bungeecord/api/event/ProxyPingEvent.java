@@ -6,8 +6,6 @@ import fr.badblock.bungeecord.api.connection.PendingConnection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import net.md_5.bungee.api.event.AsyncEvent;
-import net.md_5.bungee.api.event.ProxyPingEvent;
 
 /**
  * Called when the proxy is pinged with packet 0xFE from the server list.

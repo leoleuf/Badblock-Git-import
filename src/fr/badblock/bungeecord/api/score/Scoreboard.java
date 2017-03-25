@@ -1,10 +1,12 @@
 package fr.badblock.bungeecord.api.score;
 
-import com.google.common.base.Preconditions;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.google.common.base.Preconditions;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

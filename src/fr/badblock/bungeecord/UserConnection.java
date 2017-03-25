@@ -61,11 +61,6 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import net.md_5.bungee.BungeeServerInfo;
-import net.md_5.bungee.ServerConnection;
-import net.md_5.bungee.ServerConnector;
-import net.md_5.bungee.UserConnection;
-import net.md_5.bungee.api.connection.Unsafe;
 
 @RequiredArgsConstructor
 public final class UserConnection implements ProxiedPlayer

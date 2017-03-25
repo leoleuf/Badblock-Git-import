@@ -1,5 +1,7 @@
 package fr.badblock.bungeecord.entitymap;
 
+import java.util.UUID;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import fr.badblock.bungeecord.BungeeCord;
 import fr.badblock.bungeecord.UserConnection;
@@ -7,8 +9,6 @@ import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.protocol.DefinedPacket;
 import fr.badblock.bungeecord.protocol.ProtocolConstants;
 import io.netty.buffer.ByteBuf;
-
-import java.util.UUID;
 
 class EntityMap_1_9 extends EntityMap
 {

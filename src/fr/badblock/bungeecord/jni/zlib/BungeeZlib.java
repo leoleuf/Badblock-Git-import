@@ -1,7 +1,8 @@
 package fr.badblock.bungeecord.jni.zlib;
 
-import io.netty.buffer.ByteBuf;
 import java.util.zip.DataFormatException;
+
+import io.netty.buffer.ByteBuf;
 
 public interface BungeeZlib
 {

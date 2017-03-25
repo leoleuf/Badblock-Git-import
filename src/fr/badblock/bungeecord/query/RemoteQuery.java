@@ -1,13 +1,13 @@
 package fr.badblock.bungeecord.query;
 
-import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.channel.EventLoopGroup;
 import java.net.InetSocketAddress;
 
 import fr.badblock.bungeecord.api.ProxyServer;
 import fr.badblock.bungeecord.api.config.ListenerInfo;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.EventLoopGroup;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,16 +1,16 @@
 package fr.badblock.bungeecord.api.event;
 
-import com.google.common.base.Preconditions;
-
-import fr.badblock.bungeecord.api.Callback;
-import fr.badblock.bungeecord.api.plugin.Event;
-import fr.badblock.bungeecord.api.plugin.Plugin;
-
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import com.google.common.base.Preconditions;
+
+import fr.badblock.bungeecord.api.Callback;
+import fr.badblock.bungeecord.api.plugin.Event;
+import fr.badblock.bungeecord.api.plugin.Plugin;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

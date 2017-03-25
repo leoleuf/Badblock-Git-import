@@ -32,12 +32,12 @@ import fr.badblock.bungeecord.api.config.ServerInfo;
 import fr.badblock.bungeecord.api.connection.PendingConnection;
 import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.api.event.AsyncDataLoadRequest;
+import fr.badblock.bungeecord.api.event.AsyncDataLoadRequest.Result;
 import fr.badblock.bungeecord.api.event.LoginEvent;
 import fr.badblock.bungeecord.api.event.PlayerHandshakeEvent;
 import fr.badblock.bungeecord.api.event.PostLoginEvent;
 import fr.badblock.bungeecord.api.event.PreLoginEvent;
 import fr.badblock.bungeecord.api.event.ProxyPingEvent;
-import fr.badblock.bungeecord.api.event.AsyncDataLoadRequest.Result;
 import fr.badblock.bungeecord.chat.ComponentSerializer;
 import fr.badblock.bungeecord.http.HttpClient;
 import fr.badblock.bungeecord.jni.cipher.BungeeCipher;
@@ -66,11 +66,6 @@ import fr.badblock.bungeecord.protocol.packet.StatusResponse;
 import fr.badblock.bungeecord.util.BoundedArrayList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.api.connection.Unsafe;
-import net.md_5.bungee.connection.InitialHandler;
-import net.md_5.bungee.connection.LoginResult;
-import net.md_5.bungee.connection.State;
-import net.md_5.bungee.connection.UpstreamBridge;
 
 @RequiredArgsConstructor
 public class InitialHandler extends PacketHandler implements PendingConnection
