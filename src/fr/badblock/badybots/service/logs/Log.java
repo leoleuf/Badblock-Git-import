@@ -1,4 +1,4 @@
-package fr.badblock.bukkit.badybots.service.logs;
+package fr.badblock.badybots.service.logs;
 
 import java.util.Calendar;
 

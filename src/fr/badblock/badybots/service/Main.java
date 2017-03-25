@@ -1,4 +1,4 @@
-package fr.badblock.bukkit.badybots.service;
+package fr.badblock.badybots.service;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import fr.badblock.bukkit.badybots.service.logs.Log;
-import fr.badblock.bukkit.badybots.service.logs.Log.LogType;
+import fr.badblock.badybots.service.logs.Log;
+import fr.badblock.badybots.service.logs.Log.LogType;
 
 public class Main {
 
