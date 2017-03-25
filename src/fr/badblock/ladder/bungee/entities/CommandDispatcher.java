@@ -5,15 +5,15 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableSet;
 
+import fr.badblock.bungeecord.api.CommandSender;
+import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
+import fr.badblock.bungeecord.api.plugin.Command;
+import fr.badblock.bungeecord.api.plugin.TabExecutor;
+import fr.badblock.common.protocol.packets.Packet;
+import fr.badblock.common.protocol.packets.PacketPlayerChat;
+import fr.badblock.common.protocol.packets.PacketPlayerChat.ChatAction;
+import fr.badblock.common.protocol.utils.StringUtils;
 import fr.badblock.ladder.bungee.LadderBungee;
-import fr.badblock.protocol.packets.Packet;
-import fr.badblock.protocol.packets.PacketPlayerChat;
-import fr.badblock.protocol.packets.PacketPlayerChat.ChatAction;
-import fr.badblock.protocol.utils.StringUtils;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.TabExecutor;
 
 public class CommandDispatcher extends Command implements TabExecutor {
 	private boolean bypassable;

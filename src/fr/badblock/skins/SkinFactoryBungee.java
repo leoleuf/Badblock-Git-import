@@ -7,16 +7,16 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.UUID;
 
+import fr.badblock.bungeecord.UserConnection;
+import fr.badblock.bungeecord.api.ProxyServer;
+import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
+import fr.badblock.bungeecord.connection.InitialHandler;
+import fr.badblock.bungeecord.connection.LoginResult;
+import fr.badblock.bungeecord.connection.LoginResult.Property;
 import fr.badblock.ladder.bungee.LadderBungee;
 import fr.badblock.skins.format.SkinProfile;
 import fr.badblock.skins.format.SkinProperty;
 import fr.badblock.skins.storage.SkinStorage;
-import net.md_5.bungee.UserConnection;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.connection.InitialHandler;
-import net.md_5.bungee.connection.LoginResult;
-import net.md_5.bungee.connection.LoginResult.Property;
 
 public class SkinFactoryBungee {
 

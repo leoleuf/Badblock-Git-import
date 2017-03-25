@@ -1,7 +1,7 @@
 package fr.badblock.ladder.bungee.listeners;
 
-import fr.badblock.bungee.rabbitconnector.RabbitListener;
-import fr.badblock.bungee.rabbitconnector.RabbitListenerType;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitListener;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitListenerType;
 import fr.badblock.ladder.bungee.LadderBungee;
 
 /**

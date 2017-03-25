@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import fr.badblock.protocol.PacketHandler;
-import fr.badblock.protocol.Protocol;
-import fr.badblock.protocol.packets.Packet;
-import fr.badblock.protocol.socket.SocketHandler;
+import fr.badblock.bungeecord.BungeeCord;
+import fr.badblock.common.protocol.PacketHandler;
+import fr.badblock.common.protocol.Protocol;
+import fr.badblock.common.protocol.packets.Packet;
+import fr.badblock.common.protocol.socket.SocketHandler;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import net.md_5.bungee.BungeeCord;
 
 @RequiredArgsConstructor(access=AccessLevel.PRIVATE)
 public class LadderHandler {
