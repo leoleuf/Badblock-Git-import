@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import fr.badblock.ladder.bungee.LadderBungee;
+import fr.badblock.ladder.bungee.listeners.ScalerPlayersUpdateListener;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -43,8 +44,15 @@ public class BungeeUtils extends Plugin implements Listener{
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
 		ServerInfo lobbySkeleton = BungeeCord.getInstance().constructServerInfo("lobby", new InetSocketAddress("127.0.0.1", 8890), "lobbySkeleton", false);
 		BungeeCord.getInstance().getServers().put("lobby", lobbySkeleton);
+		StringBuilder stringBuilder = new StringBuilder();
+		this.getProxy().getServers().values().forEach(server -> stringBuilder.append("addserver " + server.getName() + " " + server.getAddress().getHostString() + ":" + server.getAddress().getPort() + System.lineSeparator()));
+		System.out.println(stringBuilder);
 		getProxy().getPluginManager().registerListener(this, this);
+		getProxy().getPluginManager().registerCommand(this, new GSCommand());
+		getProxy().getPluginManager().registerCommand(this, new GPlayerCommand());
 		getProxy().getPluginManager().registerCommand(this, new HubCommand());
+		getProxy().getPluginManager().registerCommand(this, new AddBServerCommand());
+		getProxy().getPluginManager().registerCommand(this, new AddPlayerCommand());
 		getProxy().getPluginManager().registerCommand(this, new BUReloadCommand());
 		getProxy().getPluginManager().registerCommand(this, new LBReloadCommand());
 		loadConfig();
@@ -60,13 +68,13 @@ public class BungeeUtils extends Plugin implements Listener{
 					}
 					break;
 				}
-				BungeeCord.getInstance().setCurrentCount(ladderBungee.getOnlineCount());
-				if (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
-					while (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
-						if (ladderBungee.bungeePlayers.size() < ladderBungee.bungeePlayersCount) {
+				BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
+				if (ladderBungee.bungeePlayerList.size() < ladderBungee.bungeePlayerCount) {
+					while (ladderBungee.bungeePlayerList.size() < ladderBungee.bungeePlayerCount) {
+						if (ladderBungee.bungeePlayerList.size() < ladderBungee.bungeePlayerCount) {
 							for (String totalPlayer : ladderBungee.totalPlayers)
-								if (!ladderBungee.bungeePlayers.contains(totalPlayer) && ladderBungee.bungeePlayers.size() < ladderBungee.ladderPlayers)
-									ladderBungee.bungeePlayers.add(totalPlayer);
+								if (!ladderBungee.bungeePlayerList.contains(totalPlayer) && ladderBungee.bungeePlayerList.size() < ladderBungee.bungeePlayerCount) 
+									ladderBungee.bungeePlayerList.add(totalPlayer);
 						}
 						break;
 					}
@@ -77,10 +85,10 @@ public class BungeeUtils extends Plugin implements Listener{
 							ladderBungee.connectPlayers.remove(totalPlayer);
 						}
 				}
-				if (ladderBungee.bungeePlayers.size() > ladderBungee.ladderPlayers) {
+				if (ladderBungee.bungeePlayerList.size() > ladderBungee.bungeePlayerCount) {
 					for (String totalPlayer : ladderBungee.totalPlayers)
-						if (ladderBungee.bungeePlayers.contains(totalPlayer) && ladderBungee.bungeePlayers.size() > ladderBungee.ladderPlayers) {
-							ladderBungee.bungeePlayers.remove(totalPlayer);
+						if (ladderBungee.bungeePlayerList.contains(totalPlayer) && ladderBungee.bungeePlayerList.size() > ladderBungee.bungeePlayerCount) {
+							ladderBungee.bungeePlayerList.remove(totalPlayer);
 						}
 				}
 			}
@@ -152,47 +160,47 @@ public class BungeeUtils extends Plugin implements Listener{
 		} */
 	}
 
-@EventHandler
-public void onServerConnect(ServerConnectEvent e) {
-	if (e.getTarget() != null && e.getTarget().getName().equalsIgnoreCase( skeleton.getName() )) {
-		ServerInfo serverInfo = this.roundrobinLogin();
+	@EventHandler
+	public void onServerConnect(ServerConnectEvent e) {
+		if (e.getTarget() != null && e.getTarget().getName().equalsIgnoreCase( skeleton.getName() )) {
+			ServerInfo serverInfo = this.roundrobinLogin();
 
-		if (serverInfo != null) {
-			e.setTarget(serverInfo);
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}
+		} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
+			ServerInfo serverInfo = this.roundrobinHub();
+
+			if (serverInfo != null) {
+				e.setTarget(serverInfo);
+			}
 		}
-	} else if(e.getTarget() == null || (e.getTarget() != null && e.getTarget().getName().equals("lobby"))) {
-		ServerInfo serverInfo = this.roundrobinHub();
+	}
 
-		if (serverInfo != null) {
-			e.setTarget(serverInfo);
+	public ServerInfo roundrobinHub() {
+		List<ServerInfo> servers = new ArrayList<>();
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null) continue;
+			if (!serverInfo.getName().startsWith("hub")) continue;
+			//if (!lobbies.containsKey(serverInfo)) continue;
+			//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
+			if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
+			servers.add(serverInfo);
 		}
+		return servers.get(new SecureRandom().nextInt(servers.size()));
 	}
-}
 
-public ServerInfo roundrobinHub() {
-	List<ServerInfo> servers = new ArrayList<>();
-	for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
-		if (serverInfo == null) continue;
-		if (!serverInfo.getName().startsWith("hub")) continue;
-		//if (!lobbies.containsKey(serverInfo)) continue;
-		//if (lobbies.get(serverInfo) < System.currentTimeMillis()) continue;
-		if (serverInfo.getPlayers().size() >= hubMaxPlayers) continue;
-		servers.add(serverInfo);
+	private ServerInfo roundrobinLogin() {
+		List<ServerInfo> servers = new ArrayList<>();
+		for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
+			if (serverInfo == null) continue;
+			if (!serverInfo.getName().startsWith("login")) continue;
+			//if (!logins.containsKey(serverInfo)) continue;
+			//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
+			if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
+			servers.add(serverInfo);
+		}
+		return servers.get(new SecureRandom().nextInt(servers.size()));
 	}
-	return servers.get(new SecureRandom().nextInt(servers.size()));
-}
-
-private ServerInfo roundrobinLogin() {
-	List<ServerInfo> servers = new ArrayList<>();
-	for (ServerInfo serverInfo : BungeeCord.getInstance().getServers().values()) {
-		if (serverInfo == null) continue;
-		if (!serverInfo.getName().startsWith("login")) continue;
-		//if (!logins.containsKey(serverInfo)) continue;
-		//if (logins.get(serverInfo) < System.currentTimeMillis()) continue;
-		if (serverInfo.getPlayers().size() >= loginMaxPlayers) continue;
-		servers.add(serverInfo);
-	}
-	return servers.get(new SecureRandom().nextInt(servers.size()));
-}
 
 }
