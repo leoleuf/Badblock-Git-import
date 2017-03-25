@@ -129,7 +129,7 @@ public abstract class AbstractPacketHandler
     {
     }
 
-    public void handle(EncryptionResponse encryptionResponse) throws Exception
+    public void handle(EncryptionResponse encryptionResponse)
     {
     }
 

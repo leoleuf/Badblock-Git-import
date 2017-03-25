@@ -182,12 +182,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 							+ '\00' + getFirstLine( legacy.getDescription() )
 							+ '\00' + bungee.getOnlineCount()
 							+ '\00' + legacy.getPlayers().getMax();
+					System.out.println("LegacyPing1(" + result.getConnection().getAddress().getHostString() + ")");
 				} else
 				{
 					// Clients <= 1.3 don't support colored motds because the color char is used as delimiter
 					kickMessage = ChatColor.stripColor( getFirstLine( legacy.getDescription() ) )
 							+ '\u00a7' + bungee.getOnlineCount()
 							+ '\u00a7' + legacy.getPlayers().getMax();
+					System.out.println("LegacyPing2(" + result.getConnection().getAddress().getHostString() + ")");
 				}
 
 				ch.getHandle().writeAndFlush( kickMessage );
@@ -234,7 +236,6 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						unsafe.sendPacket( new StatusResponse( gson.toJson( pingResult.getResponse() ) ) );
 					}
 				};
-
 				bungee.getPluginManager().callEvent( new ProxyPingEvent( InitialHandler.this, result, callback ) );
 			}
 		};
@@ -250,6 +251,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 					new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),
 					motd, BungeeCord.getInstance().config.getFaviconObject() ),
 					null );
+			System.out.println("LegacyPing3(" + this.getAddress().getHostString() + ")");
+			
 		}
 
 		thisState = State.PING;
@@ -394,16 +397,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
-						try {
+						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
 							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-						}catch(Exception errora) {
-							if (!onlinePlayer) {
-								finish();
-							}else{
-								System.out.println("A " + getName());
-								disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
-							}
-						}
+						}else
+							finish();
 					}
 				}));
 
@@ -439,6 +436,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			}
 			String encodedHash = URLEncoder.encode( new BigInteger( sha.digest() ).toString( 16 ), "UTF-8" );
 
+
+
 			String authURL = "https://sessionserver.mojang.com/session/minecraft/hasJoined?username=" + encName + "&serverId=" + encodedHash;
 
 			Callback<String> handler = new Callback<String>()
@@ -448,42 +447,29 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 				{
 					if ( error == null )
 					{
-						try {
-							LoginResult obj = BungeeCord.getInstance().gson.fromJson( result, LoginResult.class );
-							if ( obj != null )
-							{
-								loginProfile = obj;
-								// uniqueId = Util.getUUID( obj.getId() );
-								finish();
-								return;
-							}
-						}catch(Exception errora) {
-						}
-						if (!onlinePlayer) {
+						LoginResult obj = BungeeCord.getInstance().gson.fromJson( result, LoginResult.class );
+						if ( obj != null )
+						{
+							loginProfile = obj;
+							// uniqueId = Util.getUUID( obj.getId() );
 							finish();
-						}else{
-							System.out.println("A " + getName());
-							disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
+							return;
 						}
+						if (!onlineMode) {
+							finish();
+						}else	
+							disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
 					} else
 					{
-						if (!onlinePlayer) finish();
-						else {
-							System.out.println("A " + getName());
-							disconnect("§cUn incident de connexion aux serveurs de Mojang est actuellement déclaré. Nous ne pouvons pas vérifier la validité de votre connexion pour le moment. Nous nous excusons pour la gêne occasionnée.");
-							bungee.getLogger().log( Level.SEVERE, "[BadOnline] Incident de connexion aux serveurs de Mojang (" + getName() + ")", error );
-						}
+						disconnect( bungee.getTranslation( "mojang_fail" ) );
+						bungee.getLogger().log( Level.SEVERE, "Error authenticating " + getName() + " with minecraft.net", error );
 					}
 				}
 			};
+
 			HttpClient.get( authURL, ch.getHandle().eventLoop(), handler );
 		}catch(Exception error) {
-			if (!onlinePlayer) {
-				finish();
-			}else{
-				System.out.println("A " + getName());
-				disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
-			}
+			error.printStackTrace();
 		}
 	}
 
@@ -570,7 +556,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 								server = bungee.getServerInfo( listener.getDefaultServer() );
 							}
 
-							if(loginProfile != null){
+							if(onlinePlayer){
 								server = bungee.getServerInfo("lobby");
 							}
 

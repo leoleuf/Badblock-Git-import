@@ -16,26 +16,30 @@ import net.md_5.bungee.protocol.ProtocolConstants;
 public class EncryptionResponse extends DefinedPacket
 {
 
-    private byte[] sharedSecret;
-    private byte[] verifyToken;
+	private byte[] sharedSecret;
+	private byte[] verifyToken;
 
-    @Override
-    public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
-    {
-        sharedSecret = readArray( buf, 128 );
-        verifyToken = readArray( buf, 128 );
-    }
+	@Override
+	public void read(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
+	{
+		sharedSecret = readArray( buf, 128 );
+		verifyToken = readArray( buf, 128 );
+	}
 
-    @Override
-    public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
-    {
-        writeArray( sharedSecret, buf );
-        writeArray( verifyToken, buf );
-    }
+	@Override
+	public void write(ByteBuf buf, ProtocolConstants.Direction direction, int protocolVersion)
+	{
+		writeArray( sharedSecret, buf );
+		writeArray( verifyToken, buf );
+	}
 
-    @Override
-    public void handle(AbstractPacketHandler handler) throws Exception
-    {
-        handler.handle( this );
-    }
+	@Override
+	public void handle(AbstractPacketHandler handler)
+	{
+		try {
+			handler.handle( this );
+		}catch(Exception error) {
+			error.printStackTrace();
+		}
+	}
 }
