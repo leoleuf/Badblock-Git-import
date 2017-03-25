@@ -1,4 +1,4 @@
-package fr.badblock.badybots.badips;
+package fr.badblock.bukkit.badybots.service;
 
 public class BadyBots {
 	

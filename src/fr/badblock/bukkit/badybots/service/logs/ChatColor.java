@@ -1,4 +1,4 @@
-package fr.badblock.badybots.badips.logs;
+package fr.badblock.bukkit.badybots.service.logs;
 
 /**
  * 
