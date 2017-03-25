@@ -1,11 +1,11 @@
 package fr.badblock.ladder.plugins.utils.commands;
 
+import fr.badblock.api.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.Player;
-import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.permissions.PermissiblePlayer;
 
 public class CommandAdminChat extends Command {

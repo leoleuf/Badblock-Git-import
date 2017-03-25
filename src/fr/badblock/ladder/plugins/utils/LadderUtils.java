@@ -2,17 +2,12 @@ package fr.badblock.ladder.plugins.utils;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import fr.badblock.ladder.api.events.EventHandler;
 import fr.badblock.ladder.api.events.Listener;
-import fr.badblock.ladder.api.events.all.MatchmakingJoinEvent;
-import fr.badblock.ladder.api.events.all.MatchmakingServerEvent;
 import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.plugins.Plugin;
-import fr.badblock.ladder.plugins.matchmaking.MatchServer;
 import fr.badblock.ladder.plugins.utils.commands.CommandAdminChat;
 import fr.badblock.ladder.plugins.utils.commands.CommandChatStaff;
 import fr.badblock.ladder.plugins.utils.commands.CommandOp;
@@ -28,7 +23,6 @@ public class LadderUtils extends Plugin implements Listener {
 	
 	private boolean				  picSaved;
 	
-	private List<MatchServer> 	  matchServers;
 	
 	@Override
 	public void onEnable(){
@@ -41,7 +35,6 @@ public class LadderUtils extends Plugin implements Listener {
 
 		picBest 	 = getConfig().getInt("pic.best");
 		picBestToday = getConfig().getInt("pic." + getDate());
-		matchServers = new ArrayList<>();
 		
 		/**if(getConfig().getSection("matchgames") == null){
 			getConfig().set("matchgames.example", 10);
@@ -59,24 +52,6 @@ public class LadderUtils extends Plugin implements Listener {
 		getLadder().getPluginsManager().registerEvents(this, this);
 	}
 
-	@EventHandler
-	public void onPlayerJoin(MatchmakingJoinEvent e){
-		for(MatchServer server : matchServers)
-			server.onPlayerJoinMatchmaking(e);
-	}
-	
-	@EventHandler
-	public void onServerKeepalive(MatchmakingServerEvent e){
-		for(MatchServer server : matchServers)
-			server.onServerKeepalive(e);
-	}
-	
-	@Override
-	public void onDisable(){
-		for(MatchServer server : matchServers)
-			server.end();
-	}
-	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
 		int players = getLadder().getBungeeOnlineCount();
