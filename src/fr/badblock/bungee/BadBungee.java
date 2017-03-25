@@ -138,8 +138,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 			File f = new File(getDataFolder(), "config.yml");
 			if(!f.exists())
 				f.createNewFile();
-			config = 
-.load(f);
+			config = .load(f);
 			// Bungee
 			String bungeeName = config.getString("bungeeName");
 			this.bungeeName = bungeeName;
