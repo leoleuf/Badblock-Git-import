@@ -10,6 +10,7 @@ import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.api.plugin.TabExecutor;
 import fr.badblock.bungeecord.ladder.LadderBungee;
+import fr.badblock.bungeecord.ladder.Player;
 import fr.badblock.common.protocol.packets.Packet;
 import fr.badblock.common.protocol.packets.PacketPlayerChat;
 import fr.badblock.common.protocol.packets.PacketPlayerChat.ChatAction;
@@ -52,6 +53,9 @@ public class CommandDispatcher extends Command implements TabExecutor {
 				if(player.toLowerCase().startsWith(search)) {
 					matches.add(player);
 				}
+			}
+			for(Player player : LadderBungee.getInstance().getPlayerList()) {
+				matches.add(player.getName());
 			}
 		}
 
