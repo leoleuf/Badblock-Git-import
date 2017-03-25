@@ -1,0 +1,41 @@
+package fr.badblock.ladder.plugins.others.guardian;
+
+import java.util.UUID;
+
+public class GuardianKick {
+
+	private UUID uuid;
+	private String message;
+	private String reason;
+	private String by;
+	private long time;
+
+	public GuardianKick(UUID uuid, String message, String reason, String by, long time) {
+		this.uuid = uuid;
+		this.message = message;
+		this.reason = reason;
+		this.by = by;
+		this.time = time;
+	}
+
+	public UUID getUniqueId() {
+		return this.uuid;
+	}
+
+	public String getMessage() {
+		return this.message;
+	}
+
+	public String getReason() {
+		return this.reason;
+	}
+	
+	public String getBy() {
+		return this.by;
+	}
+	
+	public long getTime() {
+		return this.time;
+	}
+
+}

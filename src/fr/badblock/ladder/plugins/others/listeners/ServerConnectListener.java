@@ -1,0 +1,170 @@
+package fr.badblock.ladder.plugins.others.listeners;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.UUID;
+
+import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.entities.Bukkit;
+import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.api.events.EventHandler;
+import fr.badblock.ladder.api.events.Listener;
+import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
+import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
+import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
+import fr.badblock.ladder.plugins.others.utils.I18N;
+
+public class ServerConnectListener implements Listener {
+
+	public static final String bilip = "§e§k!§b§k!§a§k!§c§k!§d§k!";
+	public static HashSet<String> ips;
+
+	static {
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				load();
+			}
+		}, 0, 30000);
+	}
+
+	public static void load() {
+		System.gc();
+		File file = new File("/home/mc/BadyBots/auto_db.dat");
+		if (!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		File file2 = new File("/home/mc/BadyBots/manual_db.dat");
+		if (!file2.exists())
+			try {
+				file2.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+		ips = new HashSet<>();
+		try {
+			try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+				for (String line; (line = br.readLine()) != null;) {
+					if (!line.equals(""))
+						return;
+					ips.add(line);
+				}
+			}
+			try (BufferedReader br = new BufferedReader(new FileReader(file2))) {
+				for (String line; (line = br.readLine()) != null;) {
+					if (!line.equals(""))
+						return;
+					ips.add(line);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+
+	@EventHandler
+	public void onJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
+		if ((BadBlockOthers.getInstance().whitelistEnabled && !BadBlockOthers.getInstance().whitelist.contains(player.getName()))) {
+			event.setCancelled(true);
+			player.disconnect(I18N.getTranslatedMessages("whitelist.disconnectMessage"));
+			event.setCancelReason(I18N.getTranslatedMessages("whitelist.disconnectMessage")[0]);
+			return;
+		}
+		if (ips != null) {
+			for (String ip : ips) {
+				if (player.getAddress().getAddress().getHostAddress().startsWith(ip)) {
+					event.setCancelled(true);
+					event.setCancelReason(I18N.getTranslatedMessage("vpn.connectionrefused"));
+					return;
+				}
+			}
+		}
+		player.canJoinHimself(true);
+		player.setPlayersWithHim(new ArrayList<>());
+		player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+		FriendPlayer.load(player);
+		FriendPlayer.get(player);
+	}
+
+	@EventHandler
+	public void onServerConnect(ServerSwitchEvent event) {
+		Player player = event.getPlayer();
+		if (event.getTo().getName().contains("anim")) {
+			if (!BadBlockOthers.getInstance().animCommand.accessible && !player.hasPermission("animation.bypass")) {
+				Bukkit bukkit = Ladder.getInstance().getBukkitServer("lobby");
+				if (bukkit != null && bukkit.getPlayers() != null)
+					player.connect(bukkit);
+				else
+					player.disconnect(I18N.getTranslatedMessage("anim.nolobby"));
+			}
+		}
+		// Reload
+		if (event.getTo().getName().startsWith("hub")) {
+			FriendPlayer friendPlayer = FriendPlayer.get(player);
+			if (friendPlayer != null) {
+				friendPlayer.send(player);
+				if (friendPlayer.party == null) {
+					player.canJoinHimself(true);
+					player.setPlayersWithHim(new ArrayList<UUID>());
+					player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+					return;
+				}
+				if (friendPlayer.party.getLeader().equalsIgnoreCase(player.getName())) {
+					if (friendPlayer.groupFollow) {
+						player.canJoinHimself(true);
+						player.setPlayersWithHim(friendPlayer.party.getFollowUUIDs(player.getName()));
+						player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+						return;
+					}
+					player.canJoinHimself(true);
+					player.setPlayersWithHim(new ArrayList<UUID>());
+					player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+				} else {
+					if (friendPlayer.groupFollow) {
+						Player lo = Ladder.getInstance().getPlayer(friendPlayer.party.getLeader());
+						boolean joinHimself = false;
+						if (lo != null) {
+							FriendPlayer lf = FriendPlayer.get(lo);
+							if (lf != null) {
+								if (!lf.groupFollow)
+									joinHimself = true;
+								else {
+									lo.setPlayersWithHim(friendPlayer.party.getFollowUUIDs(lo.getName()));
+									lo.sendToBungee("playersWithHim"); lo.sendToBukkit("playersWithHim");
+								}
+							} else {
+								joinHimself = true;
+								player.setPlayersWithHim(new ArrayList<>());
+								player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+							}
+						} else {
+							joinHimself = true;
+							player.setPlayersWithHim(new ArrayList<>());
+							player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");;
+						}
+						player.canJoinHimself(joinHimself);
+						return;
+					}
+					player.canJoinHimself(true);
+					player.setPlayersWithHim(new ArrayList<UUID>());
+					player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+				}
+			}
+		}
+	}
+
+}

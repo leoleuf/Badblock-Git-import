@@ -1,0 +1,107 @@
+package fr.badblock.ladder.plugins.others.commands;
+
+import com.google.gson.Gson;
+
+import fr.badblock.ladder.api.commands.Command;
+import fr.badblock.ladder.api.entities.CommandSender;
+import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.utils.I18N;
+
+public class LWhitelistCommand extends Command {
+
+	public LWhitelistCommand() {
+		super("lwhitelist", "ladder.command.lwhitelist");
+	}
+
+	@Override
+	public void executeCommand(CommandSender sender, String[] args) {
+		if (args.length == 0) {
+			help(sender, args);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("help") || args[0].equalsIgnoreCase("aide")) {
+			help(sender, args);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("list") || args[0].equalsIgnoreCase("liste") || args[0].equalsIgnoreCase("l")) {
+			list(sender);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("on")) {
+			on(sender);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("off")) {
+			off(sender);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("ajouter") || args[0].equalsIgnoreCase("a")) {
+			add(sender, args);
+			return;
+		}
+		if (args[0].equalsIgnoreCase("rm") || args[0].equalsIgnoreCase("remove") || args[0].equalsIgnoreCase("r")) {
+			remove(sender, args);
+			return;
+		}
+		sender.sendMessage(I18N.getTranslatedMessage("lwhitelist.unknowncommand"));
+	}
+
+	private void on(CommandSender sender) {
+		if (BadBlockOthers.getInstance().whitelistEnabled) {
+			sender.sendMessage("§cLa liste blanche est déjà activée.");
+			return;
+		}
+		BadBlockOthers.getInstance().whitelistEnabled = true;
+		BadBlockOthers.getInstance().whitelistSave();
+		sender.sendMessage("§aLa liste blanche a été activée.");
+	}
+
+	private void off(CommandSender sender) {
+		if (!BadBlockOthers.getInstance().whitelistEnabled) {
+			sender.sendMessage("§cLa liste blanche est déjà désactivée.");
+			return;
+		}
+		BadBlockOthers.getInstance().whitelistEnabled = false;
+		BadBlockOthers.getInstance().whitelistSave();
+		sender.sendMessage("§aLa liste blanche a été désactivée.");
+	}
+
+	private void help(CommandSender sender, String[] args) {
+		sender.sendMessage("§cUsage: /lwhitelist <add/remove/on/off> [name]");
+	}
+
+	public void list(CommandSender player) {
+		player.sendMessage("§bWhitelist: §7" + (new Gson().toJson(BadBlockOthers.getInstance().whitelist)));
+	}
+
+	public void add(CommandSender player, String[] args) {
+		if (args.length != 2) {
+			player.sendMessage("§cUsage: /lwhitelist add <name>");
+			return;
+		}
+		BadBlockOthers others = BadBlockOthers.getInstance();
+		if (others.whitelist.contains(args[1])) {
+			player.sendMessage("§cLe joueur '" + args[1] + "' est déjà dans la liste blanche.");
+			return;
+		}
+		others.whitelist.add(args[1]);
+		BadBlockOthers.getInstance().whitelistSave();
+		player.sendMessage("§aLe joueur '" + args[1] + "' a été ajouté dans la liste blanche.");
+	}
+
+	public void remove(CommandSender player, String[] args) {
+		if (args.length != 2) {
+			player.sendMessage("§cUsage: /lwhitelist remove <name>");
+			return;
+		}
+		BadBlockOthers others = BadBlockOthers.getInstance();
+		if (!others.whitelist.contains(args[1])) {
+			player.sendMessage("§cLe joueur '" + args[1] + "' n'est pas dans la liste blanche.");
+			return;
+		}
+		others.whitelist.remove(args[1]);
+		BadBlockOthers.getInstance().whitelistSave();
+		player.sendMessage("§aLe joueur '" + args[1] + "' a été retiré de la liste blanche.");
+	}
+
+}

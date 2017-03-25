@@ -1,0 +1,61 @@
+package fr.badblock.ladder.plugins.others.rabbit.receivers;
+
+import java.util.Date;
+
+import com.google.gson.Gson;
+
+import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.api.utils.Punished;
+import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
+import fr.badblock.ladder.plugins.others.database.Request;
+import fr.badblock.ladder.plugins.others.database.Request.RequestType;
+import fr.badblock.ladder.plugins.others.guardian.GuardianKick;
+import fr.badblock.rabbitconnector.RabbitConnector;
+import fr.badblock.rabbitconnector.RabbitListener;
+import fr.badblock.rabbitconnector.RabbitListenerType;
+
+public class GuardianReceiveBanListener extends RabbitListener {
+
+	public GuardianReceiveBanListener() {
+		super(RabbitConnector.getInstance().getService("default"), "guardian.ban", false,
+				RabbitListenerType.MESSAGE_BROKER);
+	}
+
+	@Override
+	public void onPacketReceiving(String string) {
+		GuardianKick kick = new Gson().fromJson(string, GuardianKick.class);
+		Player proxiedPlayer = Ladder.getInstance().getPlayer(kick.getUniqueId());
+		if (proxiedPlayer != null) {
+			// Add punishment
+			String ip = proxiedPlayer.getLastAddress().getHostAddress();
+			punish(proxiedPlayer.getAsPunished(), kick.getReason(), kick.getBy(), kick.getTime());
+			punish(proxiedPlayer.getIpAsPunished(), kick.getReason(), kick.getBy(), kick.getTime());
+			proxiedPlayer.savePunishions();
+			proxiedPlayer.getIpData().savePunishions();
+			proxiedPlayer.disconnect(kick.getMessage());
+			BadblockDatabase.getInstance()
+					.addRequest(new Request(
+							"INSERT INTO sanctions(pseudo, ip, type, expire, timestamp, date, reason, banner, fromIp) "
+									+ "VALUES('"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName())
+									+ "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(ip)
+									+ "', 'btempban', '" + (System.currentTimeMillis() + (86400_000 * 30L)) + "', '"
+									+ System.currentTimeMillis() + "', '"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(
+											BadBlockOthers.getInstance().simpleDateFormat.format(new Date()))
+									+ "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(kick.getReason())
+									+ "', 'Guardian', '127.0.0.1')",
+							RequestType.SETTER));
+		}
+	}
+
+	private void punish(Punished punished, String kickReason, String by, long time) {
+		punished.setBan(true);
+		punished.setBanEnd(System.currentTimeMillis() + (time * 1000L));
+		punished.setBanner(by != null && !by.isEmpty() ? by : "Guardian");
+		punished.setBanReason(kickReason);
+	}
+
+}

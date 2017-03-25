@@ -1,0 +1,41 @@
+package fr.badblock.ladder.plugins.others.commands.mod;
+
+import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.commands.Command;
+import fr.badblock.ladder.api.entities.CommandSender;
+import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
+import fr.badblock.ladder.plugins.others.utils.I18N;
+
+public class RConnectCommand extends Command {
+
+	public RConnectCommand() {
+		super("rconnect", "others.mod.connect.report");
+	}
+
+	@Override
+	public void executeCommand(CommandSender sender, String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessages(I18N.getTranslatedMessages("commands.onlyforplayers"));
+			return;
+		}
+		Player player = (Player) sender;
+		if (args.length != 2)
+			return;
+		String arg = args[0];
+		player.forceCommand("track " + arg);
+		String arg2 = args[1];
+		Player plo = Ladder.getInstance().getPlayer(arg2);
+		if (plo == null)
+			return;
+		FriendPlayer friendPlayer = FriendPlayer.get(plo);
+		if (friendPlayer == null)
+			return;
+		if (!friendPlayer.lastReported.contains(arg))
+			return;
+		friendPlayer.lastReported.remove(arg);
+		plo.sendMessages(I18N.getTranslatedMessages("commands.report.fallback", arg));
+		return;
+	}
+
+}

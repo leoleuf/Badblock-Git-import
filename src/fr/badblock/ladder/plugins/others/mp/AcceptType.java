@@ -1,0 +1,14 @@
+package fr.badblock.ladder.plugins.others.mp;
+
+public enum AcceptType {
+
+	ALL_PEOPLE, ONLY_FRIENDS, NO_ONE;
+
+	public static AcceptType get(String acceptMP) {
+		for (AcceptType value : values())
+			if (value.name().equalsIgnoreCase(acceptMP))
+				return value;
+		return ALL_PEOPLE;
+	}
+
+}

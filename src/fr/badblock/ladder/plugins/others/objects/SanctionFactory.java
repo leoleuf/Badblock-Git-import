@@ -1,0 +1,20 @@
+package fr.badblock.ladder.plugins.others.objects;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class SanctionFactory {
+
+	public String pseudo;
+	public String type;
+	public long expire;
+	public long timestamp;
+	public String reason;
+	public String banner;
+	public String fromIp;
+	public String proof;
+	public boolean auto;
+
+}

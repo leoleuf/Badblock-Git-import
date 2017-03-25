@@ -1,0 +1,31 @@
+package fr.badblock.ladder.plugins.others.friends;
+
+public class Friend {
+
+	private String demander;
+	private String receiver;
+	private FriendStatus status;
+
+	public Friend(String demander, String receiver, FriendStatus status) {
+		this.demander = demander;
+		this.receiver = receiver;
+		this.status = status;
+	}
+
+	public void setStatus(FriendStatus status) {
+		this.status = status;
+	}
+
+	public String getDemander() {
+		return this.demander;
+	}
+
+	public String getReceiver() {
+		return this.receiver;
+	}
+
+	public FriendStatus getStatus() {
+		return this.status;
+	}
+
+}

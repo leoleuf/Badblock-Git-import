@@ -1,0 +1,118 @@
+package fr.badblock.ladder.plugins.others.commands.mod;
+
+import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.commands.Command;
+import fr.badblock.ladder.api.entities.Bukkit;
+import fr.badblock.ladder.api.entities.CommandSender;
+import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.utils.I18N;
+import fr.badblock.rabbitconnector.RabbitConnector;
+import fr.badblock.rabbitconnector.RabbitPacketType;
+import fr.badblock.utils.Encodage;
+
+public class GhostConnectCommand extends Command {
+
+	public GhostConnectCommand() {
+		super("gconnect", "others.mod.ghostconnect", "ghostconnect");
+	}
+
+	@Override
+	public void executeCommand(CommandSender sender, String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessages(I18N.getTranslatedMessages("commands.onlyforplayers"));
+			return;
+		}
+		Player player = (Player) sender;
+		if (args.length != 1) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.gconnect.usage"));
+			return;
+		}
+		Ladder ladder = Ladder.getInstance();
+		String arg = args[0];
+		Bukkit server = null;
+		// Joueur
+		if (arg.startsWith("player:")) {
+			if (!sender.hasPermission("others.mod.connect.player")) {
+				player.sendMessage(I18N.getTranslatedMessage("commands.permission"));
+				return;
+			}
+			String playerName = arg.split("player:")[1];
+			if ("".equals(playerName)) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.emptyplayername"));
+				return;
+			}
+			if (playerName.equalsIgnoreCase(player.getName())) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.himself"));
+				return;
+			}
+			Player otherPlayer = ladder.getPlayer(playerName);
+			if (otherPlayer == null) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.disconnectedplayer", playerName));
+				return;
+			}
+			if (otherPlayer.getBukkitServer() == null) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.unknownserver"));
+				return;
+			}
+			RabbitConnector.getInstance().getService("default").sendAsyncPacket("vanishTeleport", player.getName() + ";" + otherPlayer.getName(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			player.connect(otherPlayer.getBukkitServer());
+			player.sendMessages(I18N.getTranslatedMessages("commands.connect.success.teleportedtoplayer", otherPlayer.getName()));
+			return;
+		} else if (arg.startsWith("server:")) {
+			if (!sender.hasPermission("others.mod.connect.server")) {
+				player.sendMessage(I18N.getTranslatedMessage("commands.permission"));
+				return;
+			}
+			String serverName = arg.split("server:")[1];
+			if ("".equals(serverName)) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.emptyservername"));
+				return;
+			}
+			server = ladder.getBukkitServer(serverName);
+		} else {
+			if (!sender.hasPermission("others.mod.connect.player")) {
+				player.sendMessage(I18N.getTranslatedMessage("commands.permission"));
+				return;
+			}
+			if ("".equals(arg)) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.emptyplayername"));
+				return;
+			}
+			if (arg.equalsIgnoreCase(player.getName())) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.himself"));
+				return;
+			}
+			Player otherPlayer = ladder.getPlayer(arg);
+			if (otherPlayer == null) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.disconnectedplayer", arg));
+				return;
+			}
+			if (otherPlayer.getBukkitServer() == null) {
+				player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.unknownserver"));
+				return;
+			}
+			RabbitConnector.getInstance().getService("default").sendAsyncPacket("vanishTeleport", player.getName() + ";" + otherPlayer.getName(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			player.connect(otherPlayer.getBukkitServer());
+			player.sendMessages(I18N.getTranslatedMessages("commands.connect.success.teleportedtoplayer", otherPlayer.getName()));
+			return;
+		}
+		if (server == null) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.unknownserver"));
+			return;
+		}
+		if (!sender.hasPermission("others.mod.connect.bypass")) {
+			for (String serverName : BadBlockOthers.getInstance().getConfig()
+					.getStringList("lang.commands.connect.blacklistedservers")) {
+				if (server.getName().equalsIgnoreCase(serverName)) {
+					player.sendMessages(I18N.getTranslatedMessages("commands.connect.errors.blacklistedserver"));
+					return;
+				}
+			}
+		}
+		RabbitConnector.getInstance().getService("default").sendAsyncPacket("vanishTeleport", player.getName() + ";", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		player.connect(server);
+		player.sendMessages(I18N.getTranslatedMessages("commands.connect.success.teleportedtoserver", server.getName()));
+	}
+
+}

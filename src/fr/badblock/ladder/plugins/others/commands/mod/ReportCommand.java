@@ -1,0 +1,195 @@
+package fr.badblock.ladder.plugins.others.commands.mod;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.api.chat.RawMessage;
+import fr.badblock.ladder.api.chat.RawMessage.ClickEventType;
+import fr.badblock.ladder.api.chat.RawMessage.HoverEventType;
+import fr.badblock.ladder.api.commands.Command;
+import fr.badblock.ladder.api.entities.CommandSender;
+import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
+import fr.badblock.ladder.plugins.others.utils.I18N;
+
+public class ReportCommand extends Command {
+
+	public Map<String, Long> lastReported = new HashMap<>();
+	
+	public ReportCommand() {
+		super("report", null, "rt");
+	}
+
+	@Override
+	public void executeCommand(CommandSender sender, String[] args) {
+		if (!(sender instanceof Player)) {
+			sender.sendMessages(I18N.getTranslatedMessages("commands.report.usage"));
+			return;
+		}
+		Player player = (Player) sender;
+		if (args.length != 1 && args.length != 2) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.help"));
+			return;
+		}
+		if (player.hasPermission("others.mod.report.receive")) {
+			if (args[0].equalsIgnoreCase("toggle")) {
+				FriendPlayer friendPlayer = FriendPlayer.get(player);
+				if (friendPlayer == null) {
+					player.sendMessages(
+							I18N.getTranslatedMessages("commands.report.disconnectedplayer", player.getName()));
+					return;
+				}
+				if (friendPlayer.reportToggle) {
+					friendPlayer.reportToggle = false;
+					player.sendMessages(I18N.getTranslatedMessages("commands.report.disabled", player.getName()));
+					return;
+				} else {
+					friendPlayer.reportToggle = true;
+					player.sendMessages(I18N.getTranslatedMessages("commands.report.enabled", player.getName()));
+					return;
+				}
+			}
+		}
+		Player plo = Ladder.getInstance().getPlayer(args[0]);
+		if (plo == null) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.disconnectedplayer", args[0]));
+			return;
+		}
+		if (plo.equals(player)) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.himself"));
+			return;
+		}
+		if (plo.getBukkitServer() == null || player.getBukkitServer() == null) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.bug"));
+			return;
+		}
+		if (!plo.getBukkitServer().equals(player.getBukkitServer())) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.notsameserver"));
+			return;
+		}
+		FriendPlayer fp = FriendPlayer.get(plo);
+		if (fp == null) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.disconnectedplayer", args[0]));
+			return;
+		}
+		if (plo.hasPermission("others.mod.report.bypass") || fp.tail) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.stafferror"));
+			return;
+		}
+		long time = System.currentTimeMillis();
+		FriendPlayer friendPlayer = FriendPlayer.get(player);
+		if (friendPlayer == null) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.disconnectedplayer", player.getName()));
+			return;
+		}
+		if (friendPlayer.lastReport > time) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.waitbetweenreport"));
+			return;
+		}
+		if (lastReported.containsKey(plo.getName().toLowerCase()) && lastReported.get(plo.getName().toLowerCase()) > System.currentTimeMillis()) {
+			player.sendMessages(I18N.getTranslatedMessages("commands.report.thisplayerhasalreadybeenreported"));
+			return;
+		}
+		long last = friendPlayer.lastReports.containsKey(plo.getUniqueId())
+				? friendPlayer.lastReports.get(plo.getUniqueId()) : 0L;
+				if (last > time) {
+					player.sendMessages(I18N.getTranslatedMessages("commands.report.waitbetweenreports"));
+					return;
+				}
+				if (args.length == 2) {
+					String o = args[1];
+					int i = 0;
+					try {
+						i = Integer.parseInt(o);
+					} catch (Exception error) {
+						player.sendMessages(I18N.getTranslatedMessages("commands.report.unknownreason"));
+						return;
+					}
+					List<String> reasons = BadBlockOthers.getInstance().getConfig()
+							.getStringList("lang.commands.report.reasons");
+					o = reasons.get(i);
+					if (o == null) {
+						player.sendMessages(I18N.getTranslatedMessages("commands.report.unknownreason"));
+						return;
+					}
+					String reason = o;
+					if (reason.toLowerCase().contains("survivalgames")) {
+						if (player.getBukkitServer() == null || player.getBukkitServer().getName() == null || (player.getBukkitServer().getName() != null && !player.getBukkitServer().getName().contains("noteam"))) {
+							player.sendMessages(I18N.getTranslatedMessages("commands.report.onlyinsgnoteam"));
+							return;
+						}
+					}
+					boolean has = false;
+					for (Player pl : Ladder.getInstance().getOnlinePlayers()) {
+						FriendPlayer pm = FriendPlayer.get(pl);
+						if (pm != null && pl != null && pl.getBukkitServer() != null && pl.getBukkitServer().getName() != null && !pl.getBukkitServer().getName().isEmpty() && !pl.getBukkitServer().getName().startsWith("login") && ((pl.hasPermission("others.mod.report.receive") || pm.tail) && pm.reportToggle)) {
+							String[] strings = I18N.getTranslatedMessages("commands.report.received", player.getName(),
+									plo.getName(), o);
+							new Thread() {
+								@Override
+								public void run() {
+									for (String string : strings) {
+										RawMessage rawMessage = Ladder.getInstance().createRawMessage(string);
+										rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
+												I18N.getTranslatedMessages("commands.report.hovertojoin", player.getName(),
+														plo.getName(), reason, plo.getBukkitServer().getName(),
+														plo.getBungeeServer().getName()));
+										rawMessage.setClickEvent(ClickEventType.RUN_COMMAND, false,
+												"/rconnect " + plo.getName() + " " + player.getName());
+										rawMessage.send(pl);
+									}
+									try {
+										Thread.sleep(100);
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+								}
+							}.start();
+							has = true;
+						}
+					}
+					if (!has) {
+						player.sendMessages(I18N.getTranslatedMessages("commands.report.nooneonline"));
+						return;
+					}
+					friendPlayer.lastReported.add(plo.getName());
+					player.sendMessages(I18N.getTranslatedMessages("commands.report.sendedreport", plo.getName(), o));
+					friendPlayer.lastReport = time + BadBlockOthers.getInstance().getConfig().getLong("lang.commands.report.times.lastreport");
+					friendPlayer.lastReports.put(plo.getUniqueId(), time + BadBlockOthers.getInstance().getConfig().getLong("lang.commands.report.times.lastreports"));
+					lastReported.put(plo.getName().toLowerCase(), time + BadBlockOthers.getInstance().getConfig().getLong("lang.commands.report.times.lastreportForOnePlayer"));
+					return;
+				}
+				String[] strings = I18N.getTranslatedMessages("commands.report.select");
+				new Thread() {
+					@Override
+					public void run() {
+						for (String string : strings) {
+							if (string.equals("@0")) {
+								int i = -1;
+								for (String reason : BadBlockOthers.getInstance().getConfig()
+										.getStringList("lang.commands.report.reasons")) {
+									i++;
+									RawMessage rawMessage = Ladder.getInstance()
+											.createRawMessage(I18N.getTranslatedMessage("commands.report.reason", reason));
+									rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
+											I18N.getTranslatedMessages("commands.report.reasonhover", reason));
+									rawMessage.setClickEvent(ClickEventType.RUN_COMMAND, false,
+											"/report " + plo.getName() + " " + i);
+									rawMessage.send(player);
+								}
+							} else
+								player.sendMessage(string);
+							try {
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}.start();
+	}
+
+}
