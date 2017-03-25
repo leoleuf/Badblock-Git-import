@@ -28,6 +28,7 @@ import fr.badblock.ladder.bungee.entities.CommandDispatcher;
 import fr.badblock.ladder.bungee.entities.LadderHandler;
 import fr.badblock.ladder.bungee.listeners.BungeePlayersUpdateListener;
 import fr.badblock.ladder.bungee.listeners.PlayersUpdateListener;
+import fr.badblock.ladder.bungee.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.FileUtils;
 import fr.badblock.ladder.bungee.utils.IOUtils;
 import fr.badblock.ladder.bungee.utils.Motd;
@@ -156,11 +157,11 @@ public class LadderBungee extends Plugin implements PacketHandler {
 						config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 				new PlayersUpdateListener();
 				new BungeePlayersUpdateListener();
+				new ScalerPlayersUpdateListener();
 			}catch(Exception error) {
 				Thread.sleep(Long.MAX_VALUE);
 				error.printStackTrace();
 			}
-			new PlayersUpdateListener();
 
 			client = new LadderHandler(StringUtils.getAddress(config.getString("ladderHost")), this,
 					config.getString("localHost.ip"), config.getInt("localHost.port"));
@@ -464,12 +465,13 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
-		BungeeCord.getInstance().setCurrentCount(bungeePlayerList.size());
+		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
 		playerList.put(player.getName(), player);
 		byName.put(player.getName(), player.getUniqueId());
 	}
 
 	private Map<String, Player> playersTemp = Maps.newConcurrentMap();
+	public int slots;
 
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
 		if(byName.containsKey(packet.getPlayerName()) && playerList.containsKey(packet.getPlayerName()))
@@ -528,7 +530,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
-		BungeeCord.getInstance().setCurrentCount(bungeePlayerList.size());
+		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
 		
 		byName.remove(lPlayer.getName());
 		playersTemp.remove(lPlayer.getName());

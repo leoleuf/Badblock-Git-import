@@ -4,8 +4,10 @@ import java.lang.reflect.Field;
 import java.util.UUID;
 
 import fr.badblock.commons.utils.StringUtils;
+import fr.badblock.ladder.bungee.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.ladder.bungee.utils.Motd;
 import fr.badblock.ladder.bungee.utils.Punished;
+import fr.badblock.ladder.bungee.utils.TimeUnit;
 import fr.badblock.permissions.Permission;
 import fr.badblock.protocol.packets.PacketPlayerJoin;
 import fr.badblock.protocol.packets.PacketPlayerLogin;
@@ -33,6 +35,9 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 public class LadderListener implements Listener {
+
+	public static long timestampMax = -1;
+	public static String finished = "-";
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
@@ -162,13 +167,18 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		int m = LadderBungee.getInstance().getOnlineCount() < motd.getMaxPlayers() ? LadderBungee.getInstance().getOnlineCount() + 1 : motd.getMaxPlayers();
+		int m = LadderBungee.getInstance().slots;
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
-		BungeeCord.getInstance().setCurrentCount(LadderBungee.getInstance().bungeePlayerList.size());
+		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
 		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().getOnlineCount(), sample));
 		String[] motdString = motd.getMotd().clone();
-		if (LadderBungee.getInstance().getOnlineCount() >= motd.getMaxPlayers()) {
-			motdString[1] = LadderBungee.getInstance().fullMotd;
+		if (motdString[1].contains("@1")) {
+			long time = timestampMax - (System.currentTimeMillis() / 1000L);
+			if (time > 0) {
+				motdString[1] = motdString[1].replace("@1", TimeUnit.SECOND.toShort(time));
+			}else {
+				motdString[1] = motdString[1].replace("@1", finished);
+			}
 		}
 		reply.setDescription(ChatColor.translateAlternateColorCodes('&', StringUtils.join(motdString, " ")));
 

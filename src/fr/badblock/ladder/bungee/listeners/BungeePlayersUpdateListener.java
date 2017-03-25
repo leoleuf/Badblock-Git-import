@@ -6,7 +6,7 @@ import fr.badblock.ladder.bungee.LadderBungee;
 import net.md_5.bungee.BungeeCord;
 
 public class BungeePlayersUpdateListener extends RabbitListener {
-
+	
 	public BungeePlayersUpdateListener() {
 		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdaterBungee", false, RabbitListenerType.SUBSCRIBER);
 	}

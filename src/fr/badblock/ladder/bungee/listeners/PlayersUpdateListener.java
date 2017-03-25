@@ -20,7 +20,5 @@ public class PlayersUpdateListener extends RabbitListener {
 	public void onPacketReceiving(String body) {
 		LadderBungee.getInstance().ladderPlayers = Integer.parseInt(body);
 	}
-
-	
 	
 }
