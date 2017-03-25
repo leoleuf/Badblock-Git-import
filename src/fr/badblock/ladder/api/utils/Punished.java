@@ -18,6 +18,9 @@ import lombok.Data;
 	
 	private String	banner,
 					muter;
+
+	private int banId;
+	private int muteId;
 	
 	public Punished(){
 		ban 	   = false;
