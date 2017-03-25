@@ -1,4 +1,4 @@
-package fr.xmalware.badblock.automessage;
+package fr.badblock.automessage;
 
 import java.io.BufferedReader;
 import java.io.File;

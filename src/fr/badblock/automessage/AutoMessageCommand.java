@@ -1,4 +1,4 @@
-package fr.xmalware.badblock.automessage;
+package fr.badblock.automessage;
 
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
