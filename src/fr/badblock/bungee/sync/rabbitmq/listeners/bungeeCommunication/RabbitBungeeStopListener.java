@@ -1,4 +1,4 @@
-package fr.badblock.bungee.sync.rabbitmq.listeners;
+package fr.badblock.bungee.sync.rabbitmq.listeners.bungeeCommunication;
 
 import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.utils.BungeeUtils;

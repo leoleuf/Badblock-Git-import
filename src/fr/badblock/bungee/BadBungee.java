@@ -26,7 +26,7 @@ import fr.badblock.bungee.listeners.LoginListener;
 import fr.badblock.bungee.listeners.ProxyPingListener;
 import fr.badblock.bungee.listeners.ServerConnectListener;
 import fr.badblock.bungee.loaders.bungee.BungeeLoader;
-import fr.badblock.bungee.sync.rabbitmq.listeners.RabbitBungeeExecuteCommandListener;
+import fr.badblock.bungee.sync.rabbitmq.listeners.bungeeCommunication.RabbitBungeeExecuteCommandListener;
 import fr.badblock.bungee.utils.BungeeUtils;
 import fr.badblock.commons.technologies.mongodb.MongoConnector;
 import fr.badblock.commons.technologies.rabbitmq.RabbitConnector;
@@ -138,7 +138,8 @@ import net.md_5.bungee.config.YamlConfiguration;
 			File f = new File(getDataFolder(), "config.yml");
 			if(!f.exists())
 				f.createNewFile();
-			config = cp.load(f);
+			config = 
+.load(f);
 			// Bungee
 			String bungeeName = config.getString("bungeeName");
 			this.bungeeName = bungeeName;
