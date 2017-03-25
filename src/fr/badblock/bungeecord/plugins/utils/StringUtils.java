@@ -1,4 +1,4 @@
-package fr.badblock.bungee.utils;
+package fr.badblock.bungeecord.plugins.utils;
 
 import java.util.Collection;
 import java.util.Map;

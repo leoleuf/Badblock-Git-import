@@ -1,4 +1,4 @@
-package fr.badblock.bungee.utils;
+package fr.badblock.bungeecord.plugins.utils;
 
 import fr.badblock.ladder.bungee.LadderBungee;
 import net.md_5.bungee.api.CommandSender;

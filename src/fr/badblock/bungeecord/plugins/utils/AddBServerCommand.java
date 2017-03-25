@@ -1,4 +1,4 @@
-package fr.badblock.bungee.utils;
+package fr.badblock.bungeecord.plugins.utils;
 
 import java.net.InetSocketAddress;
 
