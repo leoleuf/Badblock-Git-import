@@ -1,4 +1,4 @@
-package fr.badblock.bukkit.permissions;
+package fr.badblock.bukkit.ladder.permissions;
 
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissibleBase;

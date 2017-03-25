@@ -1,4 +1,4 @@
-package fr.badblock.bukkit.speak;
+package fr.badblock.bukkit.ladder.speak;
 
 import java.io.IOException;
 import java.net.Socket;
