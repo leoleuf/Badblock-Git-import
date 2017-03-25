@@ -1,4 +1,4 @@
-package fr.badblock.automessage;
+package fr.badblock.ladder.plugins.automessage;
 
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
