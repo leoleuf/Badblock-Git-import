@@ -56,7 +56,7 @@ public class RCCommand extends Command {
 			public void run() {
 				sender.sendMessage("§eRecherche d'un potentiel tricheur...");
 				Map<String, Long> bestCheaters = new HashMap<>();
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' AND lastLogin > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
