@@ -27,7 +27,6 @@ import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 
-
 public class BungeeUtils extends Plugin implements Listener{
 	public static ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);
 	public static Configuration config;
