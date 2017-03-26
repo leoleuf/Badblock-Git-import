@@ -56,7 +56,7 @@ public class CLCommand extends Command {
 								int currentPage = finalCurrentPage;
 								if (currentPage > maxPages) currentPage = maxPages;
 								int firstEntry = (int) ((currentPage - 1) * nbPerPage);
-								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC LIMIT " + firstEntry + ", " + nbPerPage + ";", RequestType.GETTER) {
+								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
 									@Override
 									public void done(ResultSet resultSet) {
 										try {
@@ -75,9 +75,10 @@ public class CLCommand extends Command {
 								sender.sendMessage("§e------- Top report cheat décroissant (Page n°" + currentPage + ") -------");
 								for (Entry<String, Long> entry : entries) {
 									id++;
-									sender.sendMessage("§b" + id + ". §7" + entry.getKey());
-									sender.sendMessage("§e-------------------------------------");
+									if (id >= firstEntry && id <= firstEntry + nbPerPage)
+										sender.sendMessage("§b" + id + ". §7" + entry.getKey());
 								}
+								sender.sendMessage("§e-------------------------------------");
 							}
 						}catch(Exception error2) {
 							error2.printStackTrace();
