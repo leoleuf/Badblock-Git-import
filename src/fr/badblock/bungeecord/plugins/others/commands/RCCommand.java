@@ -75,7 +75,7 @@ public class RCCommand extends Command {
 				for (Entry<String, Long> entry : entries) {
 					id++;
 					if (finalTopId == id) {
-						sender.sendMessage("§aJoueur trouvé (" + entry.getKey() + " avec " + entry.getValue() + " signalements)");
+						sender.sendMessage("§aJoueur trouvé (" + entry.getKey() + " avec " + entry.getValue() + " signalement" + (entry.getValue() > 1 ? "s" : "") + ")");
 						sender.sendMessage("§aTéléportation en cours en GhostConnect..");
 						Packet packet = new PacketPlayerChat(player.getName(), ChatAction.LADDER_COMMAND, "gconnect " + entry.getKey());
 						LadderBungee.getInstance().getClient().sendPacket(packet);

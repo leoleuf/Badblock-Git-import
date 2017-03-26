@@ -85,7 +85,7 @@ public class CLCommand extends Command {
 				for (Entry<String, Long> entry : entries) {
 					id++;
 					if (id >= firstEntry && id <= firstEntry + nbPerPage)
-						sender.sendMessage("§b" + id + ". §7" + entry.getKey());
+						sender.sendMessage("§b" + id + ". §7" + entry.getKey() + " (§b" + entry.getValue() + " §7signalement" + (entry.getValue() > 1 ? "s" : "") + ")");
 				}
 				sender.sendMessage("§e-------------------------------------------");
 			}
