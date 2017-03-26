@@ -12,20 +12,20 @@ import java.util.TimerTask;
 
 import com.google.common.collect.Queues;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.config.ServerInfo;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.ChatEvent;
-import fr.badblock.bungeecord.api.event.ProxyReloadEvent;
-import fr.badblock.bungeecord.api.event.ServerConnectEvent;
-import fr.badblock.bungeecord.api.plugin.Listener;
-import fr.badblock.bungeecord.api.plugin.Plugin;
-import fr.badblock.bungeecord.config.Configuration;
-import fr.badblock.bungeecord.config.ConfigurationProvider;
-import fr.badblock.bungeecord.config.YamlConfiguration;
-import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.api.event.ProxyReloadEvent;
+import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.event.EventHandler;
 
 public class BungeeUtils extends Plugin implements Listener{
 	public static ConfigurationProvider cp = ConfigurationProvider.getProvider(YamlConfiguration.class);

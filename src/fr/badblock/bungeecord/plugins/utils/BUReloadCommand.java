@@ -1,7 +1,7 @@
 package fr.badblock.bungeecord.plugins.utils;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 
 public class BUReloadCommand extends Command {
 

@@ -1,8 +1,8 @@
 package fr.badblock.bungeecord.plugins.utils;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 
 public class AddPlayerCommand extends Command {
 
