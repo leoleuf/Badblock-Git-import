@@ -13,8 +13,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
@@ -22,6 +20,8 @@ import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.tmputils.PlayerBooster;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 
 public class ThxCommand extends Command {
 

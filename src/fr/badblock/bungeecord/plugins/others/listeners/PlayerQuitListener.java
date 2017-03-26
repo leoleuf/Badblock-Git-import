@@ -1,9 +1,5 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.PlayerDisconnectEvent;
-import fr.badblock.bungeecord.api.plugin.Listener;
-import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
@@ -11,6 +7,10 @@ import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
 
 public class PlayerQuitListener implements Listener {
 	

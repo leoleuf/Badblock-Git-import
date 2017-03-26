@@ -23,15 +23,6 @@ import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.ProxyServer;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.plugin.Plugin;
-import fr.badblock.bungeecord.api.plugin.PluginManager;
-import fr.badblock.bungeecord.config.Configuration;
-import fr.badblock.bungeecord.config.ConfigurationProvider;
-import fr.badblock.bungeecord.config.YamlConfiguration;
-import fr.badblock.bungeecord.connection.InitialHandler;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.LadderListener;
 import fr.badblock.bungeecord.plugins.others.commands.BListCommand;
@@ -72,6 +63,15 @@ import fr.badblock.common.commons.technologies.redis.RedisService;
 import fr.badblock.common.commons.utils.Encodage;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.PluginManager;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.connection.InitialHandler;
 import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {

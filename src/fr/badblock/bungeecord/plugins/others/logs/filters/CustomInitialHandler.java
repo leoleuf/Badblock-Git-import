@@ -1,8 +1,8 @@
 package fr.badblock.bungeecord.plugins.others.logs.filters;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.config.ListenerInfo;
-import fr.badblock.bungeecord.connection.InitialHandler;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.config.ListenerInfo;
+import net.md_5.bungee.connection.InitialHandler;
 
 public class CustomInitialHandler extends InitialHandler {
 

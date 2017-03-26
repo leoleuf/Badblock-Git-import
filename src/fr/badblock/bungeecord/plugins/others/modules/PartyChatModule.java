@@ -1,12 +1,12 @@
 package fr.badblock.bungeecord.plugins.others.modules;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.connection.Connection;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.ChatEvent;
-import fr.badblock.bungeecord.event.EventHandler;
-import fr.badblock.bungeecord.event.EventPriority;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.connection.Connection;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 
 public class PartyChatModule extends Module {
 	

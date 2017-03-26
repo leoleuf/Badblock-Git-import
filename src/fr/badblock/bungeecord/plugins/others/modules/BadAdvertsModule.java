@@ -7,15 +7,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.ChatEvent;
-import fr.badblock.bungeecord.config.Configuration;
-import fr.badblock.bungeecord.config.ConfigurationProvider;
-import fr.badblock.bungeecord.config.YamlConfiguration;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
 public class BadAdvertsModule extends Module {
 	

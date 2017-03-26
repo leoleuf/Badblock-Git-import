@@ -5,8 +5,6 @@ import java.util.UUID;
 
 import com.google.gson.Gson;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
@@ -14,6 +12,8 @@ import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.guardian.objects.GuardianReport;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 
 public class CheatCommand extends Command {
 

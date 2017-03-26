@@ -3,7 +3,8 @@ package fr.badblock.bungeecord.plugins.others.logs.filters;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import fr.badblock.bungeecord.BungeeCord;
+import net.md_5.bungee.BungeeCord;
+
 
 /**
  * A simple log filter that cancels messages stating that a client has connected to InitialHandler. These messages are

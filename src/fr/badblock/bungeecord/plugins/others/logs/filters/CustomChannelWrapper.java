@@ -1,7 +1,7 @@
 package fr.badblock.bungeecord.plugins.others.logs.filters;
 
-import fr.badblock.bungeecord.netty.ChannelWrapper;
 import io.netty.channel.ChannelHandlerContext;
+import net.md_5.bungee.netty.ChannelWrapper;
 
 public class CustomChannelWrapper extends ChannelWrapper {
 

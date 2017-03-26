@@ -2,11 +2,11 @@ package fr.badblock.bungeecord.plugins.others.commands;
 
 import java.sql.ResultSet;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.others.database.Request;
-import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
+import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
 
 public class LinkCommand extends Command {
 

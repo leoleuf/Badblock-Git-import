@@ -3,12 +3,12 @@ package fr.badblock.bungeecord.plugins.others.commands;
 import java.io.File;
 import java.io.IOException;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.plugin.Command;
-import fr.badblock.bungeecord.config.Configuration;
-import fr.badblock.bungeecord.config.ConfigurationProvider;
-import fr.badblock.bungeecord.config.YamlConfiguration;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
 public class BOReloadCommand extends Command {
 	

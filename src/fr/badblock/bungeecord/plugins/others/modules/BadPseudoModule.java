@@ -1,12 +1,12 @@
 package fr.badblock.bungeecord.plugins.others.modules;
 
-import fr.badblock.bungeecord.api.chat.TextComponent;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.ServerConnectEvent;
-import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.event.EventHandler;
 
 public class BadPseudoModule extends Module {
 	

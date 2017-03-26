@@ -1,12 +1,12 @@
 package fr.badblock.bungeecord.plugins.others.receivers;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.ChatColor;
-import fr.badblock.bungeecord.api.config.ServerInfo;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitListener;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitListenerType;
 import fr.badblock.common.protocol.utils.StringUtils;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.config.ServerInfo;
 
 public class ServerBroadcastListener extends RabbitListener {
 	

@@ -8,24 +8,24 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.ChatColor;
-import fr.badblock.bungeecord.api.ProxyServer;
-import fr.badblock.bungeecord.api.chat.BaseComponent;
-import fr.badblock.bungeecord.api.chat.ClickEvent;
-import fr.badblock.bungeecord.api.chat.HoverEvent;
-import fr.badblock.bungeecord.api.chat.TextComponent;
-import fr.badblock.bungeecord.api.chat.HoverEvent.Action;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.connection.Server;
-import fr.badblock.bungeecord.api.event.PluginMessageEvent;
-import fr.badblock.bungeecord.api.plugin.Listener;
-import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.commands.guardian.GReportsCommand;
 import fr.badblock.bungeecord.plugins.others.guardian.objects.GuardianKick;
 import fr.badblock.bungeecord.plugins.others.guardian.objects.GuardianReport;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.HoverEvent.Action;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.connection.Server;
+import net.md_5.bungee.api.event.PluginMessageEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
 
 public class GuardianModule extends Module implements Listener {
 	

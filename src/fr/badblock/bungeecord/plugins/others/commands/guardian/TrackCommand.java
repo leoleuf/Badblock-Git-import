@@ -5,11 +5,11 @@ import java.util.concurrent.TimeUnit;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Command;
 
 public class TrackCommand extends Command {
 	

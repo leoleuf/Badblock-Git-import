@@ -3,10 +3,10 @@ package fr.badblock.bungeecord.plugins.others;
 import java.util.HashMap;
 import java.util.Map;
 
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.plugins.others.modules.BadPseudoModule;
 import lombok.Getter;
 import lombok.Setter;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 @Getter @Setter public class Player {
 

@@ -13,17 +13,17 @@ import com.cloudflare.api.results.CloudflareError;
 import com.cloudflare.api.utils.TimeUnit;
 import com.cloudflare.api.utils.TimeUnit.UnitType;
 
-import fr.badblock.bungeecord.api.ProxyServer;
-import fr.badblock.bungeecord.api.event.ProxyBoundEvent;
-import fr.badblock.bungeecord.api.event.ProxyUnableToBindEvent;
-import fr.badblock.bungeecord.api.plugin.Listener;
-import fr.badblock.bungeecord.event.EventHandler;
-import fr.badblock.bungeecord.event.EventPriority;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.event.ProxyBoundEvent;
+import net.md_5.bungee.api.event.ProxyUnableToBindEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 import net.sf.json.JSONObject;
 
 public class ProxyBoundListener implements Listener {

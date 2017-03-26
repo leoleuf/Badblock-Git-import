@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import fr.badblock.bungeecord.api.CommandSender;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.plugin.Command;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
@@ -20,6 +17,9 @@ import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.common.protocol.packets.Packet;
 import fr.badblock.common.protocol.packets.PacketPlayerChat;
 import fr.badblock.common.protocol.packets.PacketPlayerChat.ChatAction;
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.plugin.Command;
 
 public class RCCommand extends Command {
 

@@ -6,14 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.badblock.bungeecord.api.connection.Connection;
-import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
-import fr.badblock.bungeecord.api.event.ChatEvent;
-import fr.badblock.bungeecord.config.Configuration;
-import fr.badblock.bungeecord.config.ConfigurationProvider;
-import fr.badblock.bungeecord.config.YamlConfiguration;
-import fr.badblock.bungeecord.event.EventHandler;
-import fr.badblock.bungeecord.event.EventPriority;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
@@ -22,6 +14,14 @@ import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.api.connection.Connection;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.ChatEvent;
+import net.md_5.bungee.config.Configuration;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.event.EventHandler;
+import net.md_5.bungee.event.EventPriority;
 
 public class BadInsultModule extends Module {
 
