@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,45 +47,47 @@ public class CLCommand extends Command {
 			@Override
 			public void run() {
 				Map<String, Long> bestCheaters = new HashMap<>();
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT COUNT(*) AS count FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "'", RequestType.GETTER) {
+				HashSet<String> players = new HashSet<>();
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "'", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
 							while (resultSet.next()) {
-								double total = resultSet.getInt("count");
-								int maxPages = (int) Math.ceil(total / nbPerPage);
-								int currentPage = finalCurrentPage;
-								if (currentPage > maxPages) currentPage = maxPages;
-								int firstEntry = (int) ((currentPage - 1) * nbPerPage);
-								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
-									@Override
-									public void done(ResultSet resultSet) {
-										try {
-											while (resultSet.next()) {
-												String pseudo = resultSet.getString("pseudo");
-												long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
-												bestCheaters.put(pseudo, nb);
-											}
-										}catch(Exception error2) {
-											error2.printStackTrace();
-										}
-									}
-								});
-								List<Entry<String, Long>> entries = entriesSortedByValues(bestCheaters);
-								int id = 0;
-								sender.sendMessage("§e------- Top report cheat décroissant (Page n°" + currentPage + ") -------");
-								for (Entry<String, Long> entry : entries) {
-									id++;
-									if (id >= firstEntry && id <= firstEntry + nbPerPage)
-										sender.sendMessage("§b" + id + ". §7" + entry.getKey());
-								}
-								sender.sendMessage("§e-------------------------------------");
+								players.add(resultSet.getString("pseudo"));
 							}
 						}catch(Exception error2) {
 							error2.printStackTrace();
 						}
 					}
 				});
+				double total = players.size();
+				int maxPages = (int) Math.ceil(total / nbPerPage);
+				int currentPage = finalCurrentPage;
+				if (currentPage > maxPages) currentPage = maxPages;
+				int firstEntry = (int) ((currentPage - 1) * nbPerPage);
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							while (resultSet.next()) {
+								String pseudo = resultSet.getString("pseudo");
+								long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
+								bestCheaters.put(pseudo, nb);
+							}
+						}catch(Exception error2) {
+							error2.printStackTrace();
+						}
+					}
+				});
+				List<Entry<String, Long>> entries = entriesSortedByValues(bestCheaters);
+				int id = 0;
+				sender.sendMessage("§e------- Top report cheat décroissant (Page n°" + currentPage + ") -------");
+				for (Entry<String, Long> entry : entries) {
+					id++;
+					if (id >= firstEntry && id <= firstEntry + nbPerPage)
+						sender.sendMessage("§b" + id + ". §7" + entry.getKey());
+				}
+				sender.sendMessage("§e-------------------------------------------");
 			}
 		}.start();
 	}
