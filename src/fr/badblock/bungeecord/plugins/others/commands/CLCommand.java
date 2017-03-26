@@ -26,36 +26,64 @@ public class CLCommand extends Command {
 
 	@SuppressWarnings("deprecation")
 	public void execute(CommandSender sender, String[] args) {
-		if (args.length != 0) {
-			sender.sendMessage("§cUtilisation: /cl");
+		if (args.length > 1) {
+			sender.sendMessage("§cUtilisation: /cl <page>");
 			return;
 		}
+		int page = 0;
+		if (args.length == 1) {
+			try {
+				page = Integer.parseInt(args[0]);
+			}catch(Exception error) {
+				sender.sendMessage("§cLe numéro de page doit être un nombre.");
+				return;
+			}
+		}
+		if (page < 1) page = 1;
+		final int finalCurrentPage = page;
+		double nbPerPage = 10;
 		new Thread("cl_" + randomThreadId.nextInt(Integer.MAX_VALUE)) {
 			@Override
 			public void run() {
-				sender.sendMessage("§eRecherche d'un potentiel tricheur...");
 				Map<String, Long> bestCheaters = new HashMap<>();
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT COUNT(*) AS count FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "'", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
 							while (resultSet.next()) {
-								String pseudo = resultSet.getString("pseudo");
-								long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
-								bestCheaters.put(pseudo, nb);
+								double total = resultSet.getInt("count");
+								int maxPages = (int) Math.ceil(total / nbPerPage);
+								int currentPage = finalCurrentPage;
+								if (currentPage > maxPages) currentPage = maxPages;
+								int firstEntry = (int) ((currentPage - 1) * nbPerPage);
+								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC LIMIT '" + firstEntry + "', '" + nbPerPage + "';", RequestType.GETTER) {
+									@Override
+									public void done(ResultSet resultSet) {
+										try {
+											while (resultSet.next()) {
+												String pseudo = resultSet.getString("pseudo");
+												long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
+												bestCheaters.put(pseudo, nb);
+											}
+										}catch(Exception error2) {
+											error2.printStackTrace();
+										}
+									}
+								});
+								List<Entry<String, Long>> entries = entriesSortedByValues(bestCheaters);
+								int id = 0;
+								sender.sendMessage("§e------- Top report cheat décroissant (Page n°" + currentPage + ") -------");
+								for (Entry<String, Long> entry : entries) {
+									id++;
+									sender.sendMessage("§b" + id + ". §7" + entry.getKey());
+									sender.sendMessage("§e-------------------------------------");
+								}
 							}
 						}catch(Exception error2) {
 							error2.printStackTrace();
 						}
 					}
 				});
-				List<Entry<String, Long>> entries = entriesSortedByValues(bestCheaters);
-				int id = 0;
-				sender.sendMessage("§e------- Top des reports cheat décroissant -------");
-				for (Entry<String, Long> entry : entries) {
-					id++;
-					sender.sendMessage("§b" + id + ". §7" + entry.getKey());
-				}
 			}
 		}.start();
 	}
