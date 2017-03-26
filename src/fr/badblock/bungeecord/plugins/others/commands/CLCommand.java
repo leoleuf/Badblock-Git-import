@@ -56,7 +56,7 @@ public class CLCommand extends Command {
 								int currentPage = finalCurrentPage;
 								if (currentPage > maxPages) currentPage = maxPages;
 								int firstEntry = (int) ((currentPage - 1) * nbPerPage);
-								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC LIMIT '" + firstEntry + "', '" + nbPerPage + "';", RequestType.GETTER) {
+								BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' ORDER BY id DESC LIMIT " + firstEntry + ", " + nbPerPage + ";", RequestType.GETTER) {
 									@Override
 									public void done(ResultSet resultSet) {
 										try {
