@@ -43,8 +43,8 @@ public class RCCommand extends Command {
 				sender.sendMessage("§cLe topId doit être un nombre.");
 				return;
 			}
-			if (topId < 1) topId = 1;
 		}
+		if (topId < 1) topId = 1;
 		final int finalTopId = topId;
 		if (!(sender instanceof ProxiedPlayer)) {
 			sender.sendMessage("§cVous devez être sur le serveur pour pouvoir utiliser cette commande.");
