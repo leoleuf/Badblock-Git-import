@@ -1,10 +1,10 @@
 package fr.badblock.bungeecord.plugins.utils;
 
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
+import fr.badblock.bungeecord.api.ChatColor;
+import fr.badblock.bungeecord.api.CommandSender;
+import fr.badblock.bungeecord.api.config.ServerInfo;
+import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
+import fr.badblock.bungeecord.api.plugin.Command;
 
 public class HubCommand extends Command{
 	public HubCommand(){

@@ -1,4 +1,4 @@
 name: BungeeUtils
-main: fr.badblock.bungee.utils.BungeeUtils
+main: fr.badblock.bungeecord.plugins.utils.BungeeUtils
 version: 1.0
 authors: ['xMalware', 'LelanN']

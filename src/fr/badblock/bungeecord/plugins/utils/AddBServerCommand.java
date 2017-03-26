@@ -2,10 +2,11 @@ package fr.badblock.bungeecord.plugins.utils;
 
 import java.net.InetSocketAddress;
 
-import net.md_5.bungee.BungeeCord;
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.plugin.Command;
+import fr.badblock.bungeecord.BungeeCord;
+import fr.badblock.bungeecord.api.CommandSender;
+import fr.badblock.bungeecord.api.config.ServerInfo;
+import fr.badblock.bungeecord.api.plugin.Command;
+
 
 public class AddBServerCommand extends Command {
 
