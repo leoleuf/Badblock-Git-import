@@ -19,11 +19,11 @@ package fr.badblock.bungeecord.plugins.ladder.skins.utils;
 
 import java.util.UUID;
 
-import fr.badblock.bungeecord.api.ChatColor;
 import fr.badblock.bungeecord.plugins.ladder.json.parser.ParseException;
 import fr.badblock.bungeecord.plugins.ladder.skins.format.Profile;
 import fr.badblock.bungeecord.plugins.ladder.skins.format.SkinProfile;
 import fr.badblock.bungeecord.plugins.ladder.skins.storage.LocaleStorage;
+import net.md_5.bungee.api.ChatColor;
 
 public class SkinFetchUtils {
 

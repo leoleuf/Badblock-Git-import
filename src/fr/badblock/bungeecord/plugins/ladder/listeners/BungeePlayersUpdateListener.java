@@ -1,9 +1,9 @@
 package fr.badblock.bungeecord.plugins.ladder.listeners;
 
-import fr.badblock.bungeecord.BungeeCord;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitListener;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitListenerType;
+import net.md_5.bungee.BungeeCord;
 
 public class BungeePlayersUpdateListener extends RabbitListener {
 	

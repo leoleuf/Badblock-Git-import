@@ -2,9 +2,9 @@ package fr.badblock.bungeecord.plugins.ladder.utils;
 
 import com.google.gson.JsonObject;
 
-import fr.badblock.bungeecord.BungeeCord;
-import fr.badblock.bungeecord.api.ChatColor;
 import lombok.Data;
+import net.md_5.bungee.BungeeCord;
+import net.md_5.bungee.api.ChatColor;
 
 @Data public class Punished {
 	private boolean ban,
