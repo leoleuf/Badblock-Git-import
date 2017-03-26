@@ -4,9 +4,9 @@ import fr.badblock.bungeecord.BungeeCord;
 import fr.badblock.bungeecord.api.ChatColor;
 import fr.badblock.bungeecord.api.config.ServerInfo;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
-import fr.badblock.commons.technologies.rabbitmq.RabbitListener;
-import fr.badblock.commons.technologies.rabbitmq.RabbitListenerType;
-import fr.badblock.protocol.utils.StringUtils;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitListener;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitListenerType;
+import fr.badblock.common.protocol.utils.StringUtils;
 
 public class ServerBroadcastListener extends RabbitListener {
 	

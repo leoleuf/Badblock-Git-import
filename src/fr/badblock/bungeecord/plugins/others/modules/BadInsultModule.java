@@ -20,8 +20,8 @@ import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.modules.abstracts.Module;
-import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
-import fr.badblock.commons.utils.Encodage;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
+import fr.badblock.common.commons.utils.Encodage;
 
 public class BadInsultModule extends Module {
 
@@ -129,7 +129,7 @@ public class BadInsultModule extends Module {
 		ProxiedPlayer player = (ProxiedPlayer) sender;
 		if (player.getServer() == null || player.getServer().getInfo() == null || player.getServer().getInfo().getName() == null || player.getServer().getInfo().getName().startsWith("login")) return;
 		if (player.hasPermission("chat.bypass")) return;
-		fr.badblock.ladder.bungee.Player pl = fr.badblock.ladder.bungee.LadderBungee.getInstance().getPlayer(player.getName());
+		fr.badblock.bungeecord.plugins.ladder.Player pl = fr.badblock.bungeecord.plugins.ladder.LadderBungee.getInstance().getPlayer(player.getName());
 		if (pl.getPunished().isMute() || pl.getPunished().getMuteEnd() > System.currentTimeMillis()) return;
 		String message = event.getMessage();
 		if (message.startsWith("/")) {

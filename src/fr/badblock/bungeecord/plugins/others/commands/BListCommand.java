@@ -2,7 +2,7 @@ package fr.badblock.bungeecord.plugins.others.commands;
 
 import fr.badblock.bungeecord.api.CommandSender;
 import fr.badblock.bungeecord.api.plugin.Command;
-import fr.badblock.ladder.bungee.LadderBungee;
+import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 
 public class BListCommand extends Command {
     public BListCommand() {

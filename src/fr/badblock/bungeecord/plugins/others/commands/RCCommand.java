@@ -13,13 +13,13 @@ import java.util.Map.Entry;
 import fr.badblock.bungeecord.api.CommandSender;
 import fr.badblock.bungeecord.api.connection.ProxiedPlayer;
 import fr.badblock.bungeecord.api.plugin.Command;
+import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import fr.badblock.ladder.bungee.LadderBungee;
-import fr.badblock.protocol.packets.Packet;
-import fr.badblock.protocol.packets.PacketPlayerChat;
-import fr.badblock.protocol.packets.PacketPlayerChat.ChatAction;
+import fr.badblock.common.protocol.packets.Packet;
+import fr.badblock.common.protocol.packets.PacketPlayerChat;
+import fr.badblock.common.protocol.packets.PacketPlayerChat.ChatAction;
 
 public class RCCommand extends Command {
 

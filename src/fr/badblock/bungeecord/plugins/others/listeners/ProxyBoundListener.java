@@ -19,11 +19,11 @@ import fr.badblock.bungeecord.api.event.ProxyUnableToBindEvent;
 import fr.badblock.bungeecord.api.plugin.Listener;
 import fr.badblock.bungeecord.event.EventHandler;
 import fr.badblock.bungeecord.event.EventPriority;
+import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import fr.badblock.ladder.bungee.LadderBungee;
 import net.sf.json.JSONObject;
 
 public class ProxyBoundListener implements Listener {

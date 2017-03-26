@@ -9,8 +9,8 @@ import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
-import fr.badblock.commons.utils.Encodage;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
+import fr.badblock.common.commons.utils.Encodage;
 
 public class PlayerQuitListener implements Listener {
 	
