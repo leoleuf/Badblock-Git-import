@@ -317,7 +317,7 @@ import net.sf.json.JSONObject;
 					if (plo.isConnected())
 						database.addSyncRequest(new Request("UPDATE cheatReports SET lastLogin = '" + (System.currentTimeMillis() + 600000) + "' WHERE pseudo = '" + database.mysql_real_escape_string(plo.getName()) + "' AND timestamp > '" + System.currentTimeMillis() + "'", RequestType.SETTER));
 			}
-		}, 5000, 580000);
+		}, 5000, 5000);
 		if (configuration.getBoolean("dns")) {
 			timerTask = new TimerTask() {
 				@Override
