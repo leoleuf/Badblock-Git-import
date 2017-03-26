@@ -397,9 +397,9 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
-						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
-							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-						}else
+						//if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
+						//	unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+						//}else
 							finish();
 					}
 				}));
@@ -535,7 +535,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						if ( !ch.isClosing() )
 						{
 							UserConnection userCon = new UserConnection( bungee, ch, getName(), InitialHandler.this );
-							userCon.setCompressionThreshold( BungeeCord.getInstance().config.getCompressionThreshold() );
+							//userCon.setCompressionThreshold( BungeeCord.getInstance().config.getCompressionThreshold() );
 							userCon.init();
 
 							unsafe.sendPacket( new LoginSuccess( getUniqueId().toString(), getName() ) ); // With dashes in between
