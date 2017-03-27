@@ -6,11 +6,8 @@ import java.net.InetSocketAddress;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import com.google.common.collect.Queues;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
@@ -36,12 +33,10 @@ public class BungeeUtils extends Plugin implements Listener{
 	private int 			hubMaxPlayers;
 	private int 			loginMaxPlayers;
 	private ServerInfo		skeleton;
-	private Queue<String>	hubs;
-
+	
 	@Override
 	public void onEnable(){
 		instance = this;
-		hubs = Queues.newLinkedBlockingDeque();
 		// Création d'un serveur skeleton
 		skeleton = BungeeCord.getInstance().constructServerInfo("skeleton", new InetSocketAddress("127.0.0.1", 8889), "skeleton", false);
 		BungeeCord.getInstance().getServers().put("skeleton", skeleton);
@@ -62,8 +57,6 @@ public class BungeeUtils extends Plugin implements Listener{
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
-				BungeeCord.getInstance().getServers().keySet().stream().filter(name -> name.startsWith("hub_") && !hubs.contains(name)).forEach(name -> hubs.add(name));
-				hubs.stream().filter(name -> BungeeCord.getInstance().getServerInfo(name) == null).forEach(name -> hubs.remove(name));
 				LadderBungee ladderBungee = LadderBungee.getInstance();
 				while (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
 					if (ladderBungee.connectPlayers.size() < ladderBungee.ladderPlayers) {
@@ -148,7 +141,7 @@ public class BungeeUtils extends Plugin implements Listener{
 		}
 		return servers.get(new SecureRandom().nextInt(servers.size()));
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onServerConnect(ServerConnectEvent e) {
@@ -175,8 +168,8 @@ public class BungeeUtils extends Plugin implements Listener{
 			}
 		}
 	}
-	
-	public ServerInfo roundrobinHubQueue() {
+
+	/*public ServerInfo roundrobinHubQueue() {
 		if (hubs.isEmpty()) return null;
 		boolean okay = false;
 		int queueSize = hubs.size();
@@ -205,7 +198,7 @@ public class BungeeUtils extends Plugin implements Listener{
 			return serverInfo;
 		}
 		return null;
-	}
+	}*/
 
 	public ServerInfo roundrobinHub_() {
 		ServerInfo server = null;
