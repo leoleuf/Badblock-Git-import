@@ -8,6 +8,7 @@ import fr.badblock.ladder.api.chat.ChatColor;
 import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.api.utils.Punished;
 import fr.badblock.ladder.api.utils.StringUtils;
 import fr.badblock.ladder.api.utils.Time;
 import fr.badblock.ladder.entities.LadderPlayer;
@@ -60,63 +61,72 @@ public class CommandBan extends SanctionCommand {
 		}
 
 		// If it's a player (not a console, etc.)
-		if (sender instanceof Player) {
-			Player banner = (Player) sender;
-			int bannerLevel = ModUtils.getLevel(banner);
-			int bannedLevel = ModUtils.getLevel(offlinePlayer);
-			// Rank level
-			if (bannerLevel != 100 && bannerLevel <= bannedLevel) {
-				sender.sendMessage(
-						"§c➤ Ce joueur est plus haut gradé/au même grade que vous, impossible de le bannir !");
-				return;
+				if (sender instanceof Player) {
+					Player banner = (Player) sender;
+					int bannerLevel = ModUtils.getLevel(banner);
+					int bannedLevel = ModUtils.getLevel(offlinePlayer);
+					// Rank level
+					if (bannerLevel != 100 && bannerLevel <= bannedLevel) {
+						sender.sendMessage(
+								"§c➤ Ce joueur est plus haut gradé/au même grade que vous, impossible de le bannir !");
+						return;
+					}
+				}
+
+				// Already banned
+				if (offlinePlayer.getAsPunished().isBan()) {
+					sender.sendMessage("§c➤ Ce joueur est déjà banni.");
+					return;
+				}
+
+				long time = (86400 * 365) * 1000;
+
+				// Punish player name
+				this.punish(offlinePlayer.getAsPunished(), time, sender, reason);
+				String bannerIp = sender instanceof Player ? ((Player) sender).getLastAddress().getHostAddress() : "127.0.0.1";
+				Request request = new Request(
+						"INSERT INTO sanctions(pseudo, ip, type, expire, timestamp, date, reason, banner, fromIp) " + "VALUES('"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(offlinePlayer.getName()) + "', '"
+								+ BadblockDatabase.getInstance()
+										.mysql_real_escape_string(offlinePlayer.getLastAddress().getHostAddress())
+								+ "', 'tempban', '" + (time + System.currentTimeMillis()) + "', '" + System.currentTimeMillis()
+								+ "', '" + BadBlockOthers.getInstance().simpleDateFormat.format(new Date()) + "', '"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(reason) + "', '"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(sender.getName()) + "', '"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(bannerIp) + "')",
+						RequestType.SETTER);
+				BadblockDatabase.getInstance().addSyncRequest(request);
+				offlinePlayer.getAsPunished().setBanId(request.id);
+				offlinePlayer.savePunishions();
+
+				String humanTime = Time.MILLIS_SECOND.toFrench(time, Time.MINUTE, Time.DAY);
+				if (offlinePlayer instanceof LadderPlayer) {
+					LadderPlayer connected = (LadderPlayer) offlinePlayer;
+					if (connected.getBukkitServer() != null) {
+						connected.getBukkitServer().broadcast("§b➤ " + connected.getName() + " §7a été banni par §b"
+								+ sender.getName() + "§7 pendant §b" + humanTime + "§7 pour §b" + reason + "§7.");
+					}
+					connected.disconnect(buildBanReason(System.currentTimeMillis() + time, reason));
+				}
+
+				// Saving datas
+				offlinePlayer.saveData();
+				sender.sendMessage("§a➤ Bannissement appliqué envers " + offlinePlayer.getName() + " pendant " + humanTime
+						+ " (" + reason + ").");
 			}
-		}
 
-		// Already banned
-		if (offlinePlayer.getAsPunished().isBan()) {
-			sender.sendMessage("§c➤ Ce joueur est déjà banni.");
-			return;
-		}
-
-		offlinePlayer.getAsPunished().setBan(true);
-		offlinePlayer.getAsPunished().setBanEnd(-1L);
-		offlinePlayer.getAsPunished().setBanner(sender.getName());
-		offlinePlayer.getAsPunished().setBanReason(reason);
-		String bannerIp = sender instanceof Player ? ((Player) sender).getLastAddress().getHostAddress() : "127.0.0.1";
-		Request request = new Request(
-				"INSERT INTO sanctions(pseudo, ip, type, expire, timestamp, date, reason, banner, fromIp) VALUES('"
-						+ BadblockDatabase.getInstance().mysql_real_escape_string(offlinePlayer.getName()) + "', '"
-						+ BadblockDatabase.getInstance()
-								.mysql_real_escape_string(offlinePlayer.getLastAddress().getHostAddress())
-						+ "', 'ban', '-1', '" + System.currentTimeMillis() + "', '"
-						+ BadBlockOthers.getInstance().simpleDateFormat.format(new Date()) + "', '"
-						+ BadblockDatabase.getInstance().mysql_real_escape_string(reason) + "', '"
-						+ BadblockDatabase.getInstance().mysql_real_escape_string(sender.getName()) + "', '"
-						+ BadblockDatabase.getInstance().mysql_real_escape_string(bannerIp) + "')",
-				RequestType.SETTER);
-		BadblockDatabase.getInstance().addSyncRequest(request);
-		offlinePlayer.getAsPunished().setBanId(request.id);
-		System.out.println(offlinePlayer.getName() + " bansavePunishions");
-		offlinePlayer.savePunishions();
-		if (offlinePlayer instanceof LadderPlayer) {
-			LadderPlayer connected = (LadderPlayer) offlinePlayer;
-			if (connected.getBukkitServer() != null) {
-				connected.getBukkitServer().broadcast("§b➤ " + connected.getName() + " §7a été banni par §b"
-						+ sender.getName() + "§7 pour §b" + reason + "§7.");
+			public String buildBanReason(long expire, String banReason) {
+				String time = "Permanent";
+				if (expire != -1L)
+					time = Time.MILLIS_SECOND.toFrench(expire - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+				return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
 			}
-			connected.disconnect(buildBanReason(-1, reason));
-		}
 
-		sender.sendMessage("§a➤ Bannissement appliqué envers " + offlinePlayer.getName() + " (" + reason + ").");
-		System.out.println(offlinePlayer.getName() + " bansaveData");
-		offlinePlayer.saveData();
-	}
-
-	public static String buildBanReason(long expire, String banReason) {
-		String time = "Permanent";
-		if (expire != -1L)
-			time = Time.MILLIS_SECOND.toFrench(expire - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
-		return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
-	}
+			private void punish(Punished punished, long time, CommandSender sender, String reason) {
+				punished.setBan(true);
+				punished.setBanEnd(System.currentTimeMillis() + time);
+				punished.setBanner(sender.getName());
+				punished.setBanReason(reason);
+			}
 
 }
