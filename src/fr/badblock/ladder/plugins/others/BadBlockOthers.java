@@ -103,8 +103,8 @@ public class BadBlockOthers extends Plugin {
 		}
 		this.whitelist = configuration.getStringList("whitelist.list");
 		this.whitelistEnabled = configuration.getBoolean("whitelist.state");
-		RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.username"), configuration.getInt("rabbit.port"),
-				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"), configuration.getString("rabbit.hostname"));
+		RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"),
+				configuration.getString("rabbit.username"), configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
 		new GuardianReceiveBanListener();
 		new GuardianReceiveBroadcastListener();
 		new GuardianReceiveKickListener();
