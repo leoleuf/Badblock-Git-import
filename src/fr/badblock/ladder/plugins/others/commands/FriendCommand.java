@@ -1,10 +1,14 @@
 package fr.badblock.ladder.plugins.others.commands;
 
 import java.sql.ResultSet;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Stream;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.RawMessage;
@@ -12,6 +16,7 @@ import fr.badblock.ladder.api.chat.RawMessage.ClickEventType;
 import fr.badblock.ladder.api.chat.RawMessage.HoverEventType;
 import fr.badblock.ladder.api.commands.Command;
 import fr.badblock.ladder.api.entities.CommandSender;
+import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.plugins.others.BadBlockOthers;
 import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
@@ -21,6 +26,7 @@ import fr.badblock.ladder.plugins.others.friends.Friend;
 import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
 import fr.badblock.ladder.plugins.others.friends.FriendStatus;
 import fr.badblock.ladder.plugins.others.utils.I18N;
+import fr.badblock.permissions.PermissiblePlayer;
 
 public class FriendCommand extends Command {
 
@@ -58,7 +64,18 @@ public class FriendCommand extends Command {
 			return;
 		}
 		if (args[0].equalsIgnoreCase("list")) {
-			list(player);
+			int page = 1;
+
+			if(args.length > 1)
+			{
+				try
+				{
+					page = Integer.parseInt(args[1]);
+				}
+				catch(Exception e) {}
+			}
+			
+			list(player, page);
 			return;
 		}
 		player.sendMessage(I18N.getTranslatedMessage("commands.friend.unknowncommand"));
@@ -713,48 +730,140 @@ public class FriendCommand extends Command {
 		}
 	}
 
-	public void list(Player player) {
+	public void list(Player player, int page) {
 		FriendPlayer from = FriendPlayer.get(player);
+		
 		if (from == null)
 			return;
-		Stream<Entry<String, Friend>> onlineFriends = from.getFriendsMap().entrySet().parallelStream()
-				.filter(entry -> entry.getValue().getStatus().equals(FriendStatus.OK));
-		String onlinesString = "";
-		Iterator<Entry<String, Friend>> iterator = onlineFriends.iterator();
-		Ladder bungeeCord = BadBlockOthers.getInstance().getLadder();
-		while (iterator.hasNext()) {
-			Entry<String, Friend> entry = iterator.next();
-			Player pl = bungeeCord.getPlayer(entry.getKey());
-			String color = "§a";
-			if (pl == null)
-				color = "§c";
-			String spacer = ", ";
-			onlinesString += color + "[" + entry.getKey() + "]";
-			if (iterator.hasNext())
-				onlinesString += spacer;
+
+		List<RawMessage> messages = new ArrayList<RawMessage>();
+
+		Set<Entry<String, Friend>> onlineFriends = from.getFriendsMap().entrySet().parallelStream().filter(entry -> entry.getValue().getStatus().equals(FriendStatus.OK)).collect(Collectors.toSet());
+		for(Entry<String, Friend> entry : onlineFriends)
+		{
+			RawMessage message = createRawMessage(entry);
+			
+			if(message != null)
+				messages.add(message);
 		}
-		Stream<Entry<String, Friend>> waitingFriends = from.getFriendsMap().entrySet().parallelStream()
-				.filter(entry -> entry.getValue().getStatus().equals(FriendStatus.WAITING));
-		String waitingString = "";
-		iterator = waitingFriends.iterator();
-		while (iterator.hasNext()) {
-			Entry<String, Friend> entry = iterator.next();
-			Player pl = bungeeCord.getPlayer(entry.getKey());
-			String color = "§a";
-			if (pl == null)
-				color = "§c";
-			String spacer = ", ";
-			waitingString += color + "[" + entry.getKey() + "]";
-			if (iterator.hasNext())
-				waitingString += spacer;
+		
+		Set<Entry<String, Friend>> waitingFriends = from.getFriendsMap().entrySet().parallelStream().filter(entry -> entry.getValue().getStatus().equals(FriendStatus.WAITING)).collect(Collectors.toSet());
+		for(Entry<String, Friend> entry : waitingFriends)
+		{
+			RawMessage message = createRawMessageWaiting(entry);
+			
+			if(message != null)
+				messages.add(message);
 		}
-		String noOne = I18N.getTranslatedMessage("commands.friend.noone2");
-		if (waitingString.equals(""))
-			waitingString = noOne;
-		if (onlinesString.equals(""))
-			onlinesString = noOne;
-		player.sendMessages(I18N.getTranslatedMessage("commands.friend.list.accepted", onlinesString),
-				I18N.getTranslatedMessage("commands.friend.list.waiting", waitingString));
+		
+		
+		if (messages.isEmpty())
+		{
+			player.sendMessage(I18N.getTranslatedMessage("commands.friend.noone2"));
+		}
+		else
+		{
+			int indexStart = Math.max(0, (page - 1) * 10);
+			int indexStop = Math.min(messages.size(), page * 10);
+			
+			player.sendMessage(I18N.getTranslatedMessage("commands.friend.list.prefix", page, messages.size() / 10 + (messages.size() % 10 == 0 ? 0 : 1)));
+			
+			for(int i = indexStart; i < indexStop; i++)
+				messages.get(i).send(player);
+			
+			player.sendMessage(I18N.getTranslatedMessage("commands.friend.list.suffix"));
+		}
+	}
+	
+	private RawMessage createRawMessage(Entry<String, Friend> entry)
+	{
+		Ladder ladder = Ladder.getInstance();
+		String name = entry.getKey();
+		
+		OfflinePlayer other = ladder.getOfflinePlayer(name);
+		
+		if(!other.hasPlayed()) //WTF
+			return null;
+		
+		boolean connected = other instanceof Player;
+		
+		RawMessage prefix = null, sendMessage = null, invite = null, remove = null;
+		
+		if(connected)
+		{
+			prefix = ladder.createRawMessage("&7[&aC&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Ce joueur est &aconnecté &7!");
+			sendMessage = ladder.createRawMessage(" &7[&a✉&7]")
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Envoyer un message à &b" + name)
+				.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + name);
+			
+			invite = ladder.createRawMessage(" &7[&aGroupe&7]")
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Invite &b" + entry.getKey() + " &7dans votre groupe.")
+				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/groupe invite " + name);
+		}
+		else
+		{
+			prefix = ladder.createRawMessage("&7[&cD&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Ce joueur est &cdéconnecté &7!");
+			sendMessage = ladder.createRawMessage(" &7[&c✉&7]").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
+			invite = ladder.createRawMessage(" &7[&cGroupe&7]").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
+		}
+		
+		remove = ladder.createRawMessage(" &7[&c✘&7]")
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Supprime &b" + entry.getKey() + " &7de vos amis.")
+				.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/friends remove " + name);
+
+		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) other.getAsPermissible();
+		
+		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() )
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true,
+						permissiblePlayer.getDisplayName() + name,
+						"&7Badcoins: &b" + getBadcoins(other),
+						"&7Level: &b" + getLevel(other));
+		
+		return prefix.addAll(username, sendMessage, invite, remove);
+	}
+	
+	private RawMessage createRawMessageWaiting(Entry<String, Friend> entry)
+	{
+		Ladder ladder = Ladder.getInstance();
+		String name = entry.getKey();
+		
+		OfflinePlayer other = ladder.getOfflinePlayer(name);
+		
+		if(!other.hasPlayed()) //WTF
+			return null;
+		
+		RawMessage prefix = null, accept = null, remove = null;
+
+		prefix = ladder.createRawMessage("&7[?] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Pour voir le statut de ce joueur, acceptez sa demande d'ami.");
+
+		accept = ladder.createRawMessage(" &7[&c✘&7]")
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Accepter l'invitation de &b" + entry.getKey() + "&7.")
+				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/friends add " + name);
+		
+		remove = ladder.createRawMessage(" &7[&c✘&7]")
+				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Refuse l'invitation de &b" + entry.getKey() + "&7.")
+				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/friends remove " + name);
+
+		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() );
+		
+		return prefix.addAll(username, accept, remove);
 	}
 
+	private int getBadcoins(OfflinePlayer player)
+	{
+		if(!player.getData().has("game"))
+			return 0;
+		
+		JsonObject game = player.getData().get("game").getAsJsonObject();
+		return game.has("badcoins") ? game.get("badcoins").getAsInt() : 0;
+	}
+	
+	private int getLevel(OfflinePlayer player)
+	{
+		if(!player.getData().has("game"))
+			return 1;
+		
+		JsonObject game = player.getData().get("game").getAsJsonObject();
+		return game.has("level") ? game.get("level").getAsInt() : 1;
+	}
 }
