@@ -106,7 +106,7 @@ public class CommandTempban extends SanctionCommand {
 		offlinePlayer.getAsPunished().setBanId(request.id);
 		offlinePlayer.savePunishions();
 
-		String humanTime = Time.MILLIS_SECOND.toFrench(time, Time.MINUTE, Time.DAY);
+		String humanTime = Time.MILLIS_SECOND.toFrench(time, Time.MINUTE, Time.YEAR);
 		if (offlinePlayer instanceof LadderPlayer) {
 			LadderPlayer connected = (LadderPlayer) offlinePlayer;
 			if (connected.getBukkitServer() != null) {
@@ -125,7 +125,7 @@ public class CommandTempban extends SanctionCommand {
 	public String buildBanReason(long expire, String banReason) {
 		String time = "Permanent";
 		if (expire != -1L)
-			time = Time.MILLIS_SECOND.toFrench(expire - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+			time = Time.MILLIS_SECOND.toFrench(expire - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
 		return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
 	}
 
