@@ -51,26 +51,26 @@ import lombok.Data;
 
 	public String buildBanTime(){
 		if(banEnd != -1){
-			return Time.MILLIS_SECOND.toFrench(banEnd - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+			return Time.MILLIS_SECOND.toFrench(banEnd - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
 		} else return "à vie";
 	}
 	
 	public String buildMuteTime(){
 		if(muteEnd != -1){
-			return Time.MILLIS_SECOND.toFrench(muteEnd - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+			return Time.MILLIS_SECOND.toFrench(muteEnd - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
 		} else return "à vie";
 	}
 	
 	public String buildBanReason() {
 		String time = "Permanent";
-	    if (banEnd != -1L) time = Time.MILLIS_SECOND.toFrench(banEnd - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+	    if (banEnd != -1L) time = Time.MILLIS_SECOND.toFrench(banEnd - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
 	    return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
 	}
 	
 	public String buildMuteReason(){
 		String time = "";
 		if(muteEnd != -1){
-			time = " pour " + Time.MILLIS_SECOND.toFrench(muteEnd - System.currentTimeMillis(), Time.MINUTE, Time.DAY);
+			time = " pour " + Time.MILLIS_SECOND.toFrench(muteEnd - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
 		}
 		return ChatColor.RED + "Vous êtes mute (" + muteReason + ")" + time + ".";
 	}
