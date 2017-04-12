@@ -79,7 +79,7 @@ public class CommandBan extends SanctionCommand {
 					return;
 				}
 
-				long time = (86400 * 365) * 1000;
+				long time = Time.YEAR.convert(1L, Time.MILLIS_SECOND);
 
 				// Punish player name
 				this.punish(offlinePlayer.getAsPunished(), time, sender, reason);

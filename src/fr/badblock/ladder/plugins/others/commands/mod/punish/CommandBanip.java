@@ -79,7 +79,7 @@ public class CommandBanip extends SanctionCommand {
 					return;
 				}
 
-				long time = (86400 * 365) * 1000;
+				long time = Time.YEAR.convert(1L, Time.MILLIS_SECOND);
 
 				// Punish player's IP
 				String ip = offlinePlayer.getLastAddress().getHostAddress();
