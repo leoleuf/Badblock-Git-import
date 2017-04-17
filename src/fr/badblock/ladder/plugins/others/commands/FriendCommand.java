@@ -792,30 +792,30 @@ public class FriendCommand extends Command {
 		if(connected)
 		{
 			prefix = ladder.createRawMessage("&7[&aC&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Ce joueur est &aconnecté &7!");
-			sendMessage = ladder.createRawMessage(" &7[&a✉&7]")
+			sendMessage = ladder.createRawMessage("&7[&a✉&7] ")
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Envoyer un message à &b" + name)
 				.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + name);
 			
-			invite = ladder.createRawMessage(" &7[&aGroupe&7]")
+			invite = ladder.createRawMessage("&7[&aGroupe&7] ")
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Invite &b" + entry.getKey() + " &7dans votre groupe.")
 				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/groupe invite " + name);
 		}
 		else
 		{
 			prefix = ladder.createRawMessage("&7[&cD&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Ce joueur est &cdéconnecté &7!");
-			sendMessage = ladder.createRawMessage(" &7[&c✉&7]").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
-			invite = ladder.createRawMessage(" &7[&cGroupe&7]").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
+			sendMessage = ladder.createRawMessage("&7[&c✉&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
+			invite = ladder.createRawMessage("&7[&cGroupe&7] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&cCe joueur n'est pas connecté");
 		}
 		
-		remove = ladder.createRawMessage(" &7[&c✘&7]")
+		remove = ladder.createRawMessage("&7[&c✘&7]")
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Supprime &b" + entry.getKey() + " &7de vos amis.")
 				.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/friends remove " + name);
 
 		PermissiblePlayer permissiblePlayer = (PermissiblePlayer) other.getAsPermissible();
 		
-		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() )
+		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() + " " )
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true,
-						permissiblePlayer.getDisplayName() + name,
+						permissiblePlayer.getDisplayName(),
 						"&7Badcoins: &b" + getBadcoins(other),
 						"&7Level: &b" + getLevel(other));
 		
@@ -836,15 +836,15 @@ public class FriendCommand extends Command {
 
 		prefix = ladder.createRawMessage("&7[?] ").setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Pour voir le statut de ce joueur, acceptez sa demande d'ami.");
 
-		accept = ladder.createRawMessage(" &7[&c✘&7]")
+		accept = ladder.createRawMessage("&7[&a✔&7] ")
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Accepter l'invitation de &b" + entry.getKey() + "&7.")
 				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/friends add " + name);
 		
-		remove = ladder.createRawMessage(" &7[&c✘&7]")
+		remove = ladder.createRawMessage("&7[&c✘&7]")
 				.setHoverEvent(HoverEventType.SHOW_TEXT, true, "&7Refuse l'invitation de &b" + entry.getKey() + "&7.")
 				.setClickEvent(ClickEventType.RUN_COMMAND, false, "/friends remove " + name);
 
-		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() );
+		RawMessage username = ladder.createRawMessage( "&7" + entry.getKey() + " " );
 		
 		return prefix.addAll(username, accept, remove);
 	}
