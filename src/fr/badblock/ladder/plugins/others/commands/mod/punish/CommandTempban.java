@@ -83,6 +83,9 @@ public class CommandTempban extends SanctionCommand {
 		if (time > Time.DAY.convert(30L, Time.MILLIS_SECOND) && !sender.hasPermission("ladder.punish.bypass")) {
 			sender.sendMessage("§c➤ Vous ne pouvez pas bannir plus d'un mois.");
 			return;
+		}else if (time > Time.YEAR.convert(1L, Time.MILLIS_SECOND) && !sender.hasPermission("pball")) {
+			sender.sendMessage("§c➤ Vous ne pouvez pas bannir plus d'un an.");
+			return;
 		} else if (time == 0L) {
 			sender.sendMessage("§c➤ Veuillez entrer un temps valide.");
 			return;
