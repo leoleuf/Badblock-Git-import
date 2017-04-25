@@ -41,6 +41,8 @@ import org.bukkit.plugin.TimedRegisteredListener;
 import org.bukkit.plugin.UnknownDependencyException;
 import org.yaml.snakeyaml.error.YAMLException;
 
+import fr.badblock.minecraftserver.BadblockSecurityManager;
+
 /**
  * Represents a Java plugin loader, allowing plugins in the form of .jar
  */
@@ -127,7 +129,11 @@ public final class JavaPluginLoader implements PluginLoader {
 
         final PluginClassLoader loader;
         try {
-            loader = new PluginClassLoader(this, getClass().getClassLoader(), description, dataFolder, file);
+        	loader = new PluginClassLoader(this, getClass().getClassLoader(), description, dataFolder, file);
+            
+        	if(file.getAbsoluteFile().getParentFile().getName().equalsIgnoreCase("apiPlugins"))
+        		BadblockSecurityManager.addDisallowedLoader(loader);
+        	else BadblockSecurityManager.addAllowedLoader(loader);
         } catch (InvalidPluginException ex) {
             throw ex;
         } catch (Throwable ex) {

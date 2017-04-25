@@ -26,8 +26,7 @@ public class JsonUtils {
 	public static Gson	prettyGson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.STATIC)
 			 .disableHtmlEscaping()
 			 .setPrettyPrinting().create();
-
-
+	
 	public static JsonArray loadArray(File file){
 		if(!file.exists() || file.length() == 0){
 			save(file, "[]");
