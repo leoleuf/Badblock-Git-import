@@ -108,6 +108,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	@Getter
 	private String extraDataInHandshake = "";
 	private boolean onlinePlayer;
+	@Getter
+	private String authKey;
 
 	@Override
 	public boolean shouldHandle(PacketWrapper packet) throws Exception
@@ -397,10 +399,11 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
+						authKey 	 = result.object.get("authKey").getAsString();
 						//if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
 						//	unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
 						//}else
-							finish();
+						finish();
 					}
 				}));
 
@@ -556,7 +559,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 								server = bungee.getServerInfo( listener.getDefaultServer() );
 							}
 
-							if(onlinePlayer){
+							if(onlinePlayer && (authKey == null || authKey.isEmpty())) {
 								server = bungee.getServerInfo("lobby");
 							}
 
