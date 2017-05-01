@@ -401,10 +401,9 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
 						if (result.object.has("authKey"))
 							authKey 	 = result.object.get("authKey").getAsString();
-						//if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
-						//	unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
-						//}else
-						finish();
+						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
+							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+						}else finish();
 					}
 				}));
 
