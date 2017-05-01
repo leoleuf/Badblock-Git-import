@@ -55,7 +55,9 @@ public class CommandDispatcher extends Command implements TabExecutor {
 				}
 			}
 			for(Player player : LadderBungee.getInstance().getPlayerList()) {
-				matches.add(player.getName());
+				if(player.getName().toLowerCase().startsWith(search) && !matches.contains(player.getName())) {
+					matches.add(player.getName());
+				}
 			}
 		}
 
