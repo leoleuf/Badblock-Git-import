@@ -15,6 +15,10 @@ public class BadFilterListener extends RabbitListener {
 
 	@Override
 	public void onPacketReceiving(String string) {
+		work(string);
+	}
+	
+	public static void work(String string) {
 		for (Player player : Ladder.getInstance().getOnlinePlayers())
 			if (player.getBukkitServer() != null && player.getBukkitServer().getName() != null && !player.getBukkitServer().getName().startsWith("login") && player.hasPermission("others.badfilter")) {
 				FriendPlayer fPlayer = FriendPlayer.get(player);

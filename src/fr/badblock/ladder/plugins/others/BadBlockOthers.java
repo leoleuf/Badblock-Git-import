@@ -24,6 +24,7 @@ import fr.badblock.ladder.plugins.others.commands.AddServerCommand;
 import fr.badblock.ladder.plugins.others.commands.AnimCommand;
 import fr.badblock.ladder.plugins.others.commands.BadBlockOthersReloadCommand;
 import fr.badblock.ladder.plugins.others.commands.BrohoofCommand;
+import fr.badblock.ladder.plugins.others.commands.CBReportCommand;
 import fr.badblock.ladder.plugins.others.commands.FriendCommand;
 import fr.badblock.ladder.plugins.others.commands.HelpCommand;
 import fr.badblock.ladder.plugins.others.commands.LWhitelistCommand;
@@ -128,6 +129,7 @@ public class BadBlockOthers extends Plugin {
 		pluginManager.registerCommand(this, new BadFilterCommand());
 		pluginManager.registerCommand(this, new BadBlockOthersReloadCommand());
 		pluginManager.registerCommand(this, new AddServerCommand());
+		pluginManager.registerCommand(this, new CBReportCommand());
 		pluginManager.registerCommand(this, new RemoveServerCommand());
 		pluginManager.registerCommand(this, new HelpCommand());
 		pluginManager.registerCommand(this, new PartyCommand());

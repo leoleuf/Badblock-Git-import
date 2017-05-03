@@ -119,6 +119,8 @@ public class RCommand extends Command {
 			return;
 		}
 		final String finalMessage = message;
+		int uniqueId = MsgCommand.random.nextInt(Integer.MAX_VALUE);
+		MsgCommand.messages.put(uniqueId, new PrivateMessage(sender.getName(), finalMessage));
 		RawMessage rawMessage = Ladder.getInstance().createRawMessage("");
 		rawMessage.add(Ladder.getInstance()
 				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.from", toPlayer.getName(), message)));
@@ -128,11 +130,16 @@ public class RCommand extends Command {
 		rawMessage.send(player);
 
 		rawMessage = Ladder.getInstance().createRawMessage("");
-		rawMessage.add(Ladder.getInstance()
-				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.to", sender.getName(), message)));
-		rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
+		RawMessage alert = Ladder.getInstance().createRawMessage("§c§l⚠§r ");
+		alert.setClickEvent(ClickEventType.RUN_COMMAND, false, "/cbreport " + uniqueId);
+		alert.setHoverEvent(HoverEventType.SHOW_TEXT, false, "§cSignaler le message privé de " + sender.getName());
+		rawMessage.add(alert);
+		RawMessage rowMessage = Ladder.getInstance()
+				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.to", sender.getName(), message));
+		rowMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
 				I18N.getTranslatedMessage("msg.clickforrespond", player.getName()));
-		rawMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + player.getName() + " ");
+		rowMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + player.getName() + " ");
+		rawMessage.add(rowMessage);
 		rawMessage.send(toPlayer);
 
 		String date = MsgCommand.dateFormat.format(new Date());

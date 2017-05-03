@@ -1,7 +1,10 @@
 package fr.badblock.ladder.plugins.others.commands.msg;
 
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.RawMessage;
@@ -24,6 +27,9 @@ public class MsgCommand extends Command {
 
 	public final static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+	public static Map<Integer, PrivateMessage> messages = new HashMap<>();
+	public static SecureRandom				   random   = new SecureRandom();
+	
 	public MsgCommand() {
 		super("msg", null, "whisper", "m", "mp", "w", "tellraw", "tell", "minecraft:tell", "minecraft:tellraw",
 				"minecraft:whisper", "minecraft:w");
@@ -205,17 +211,25 @@ public class MsgCommand extends Command {
 			return;
 		}
 		final String finalMessage = message;
+		int uniqueId = random.nextInt(Integer.MAX_VALUE);
+		messages.put(uniqueId, new PrivateMessage(sender.getName(), finalMessage));
 		RawMessage rawMessage = Ladder.getInstance()
 				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.from", toPlayer.getName(), message));
 		rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
 				I18N.getTranslatedMessage("msg.clickforrespond", toPlayer.getName()));
 		rawMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + toPlayer.getName() + " ");
 		rawMessage.send(player);
-		rawMessage = Ladder.getInstance()
+		rawMessage = Ladder.getInstance().createRawMessage("");
+		RawMessage alert = Ladder.getInstance().createRawMessage("§c§l⚠§r ");
+		alert.setClickEvent(ClickEventType.RUN_COMMAND, false, "/cbreport " + uniqueId);
+		alert.setHoverEvent(HoverEventType.SHOW_TEXT, false, "§cSignaler le message privé de " + sender.getName());
+		rawMessage.add(alert);
+		RawMessage rowMessage = Ladder.getInstance()
 				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.to", sender.getName(), message));
-		rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
+		rowMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
 				I18N.getTranslatedMessage("msg.clickforrespond", player.getName()));
-		rawMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + player.getName() + " ");
+		rowMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + player.getName() + " ");
+		rawMessage.add(rowMessage);
 		rawMessage.send(toPlayer);
 
 		String date = MsgCommand.dateFormat.format(new Date());
