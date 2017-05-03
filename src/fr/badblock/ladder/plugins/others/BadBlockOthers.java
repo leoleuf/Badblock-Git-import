@@ -86,7 +86,7 @@ public class BadBlockOthers extends Plugin {
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
 	public List<String> whitelist = new ArrayList<>();
 	public boolean whitelistEnabled = false;
-
+	
 	@Override
 	public void onEnable() {
 		instance = this;
