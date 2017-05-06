@@ -75,7 +75,10 @@ import lombok.Data;
 											if (debug) 
 												System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + rabbitMessage.getMessage());
 											onPacketReceiving(rabbitMessage.getMessage());
-										}else if (debug) System.out.println("[RabbitConnector] Error during a receiving of a packet from " + queueName + ": EXPIRED!");
+										}else if (debug) {
+											System.out.println("[RabbitConnector] Error during a receiving of a packet from " + queueName + ": EXPIRED!");
+											System.out.println("[RabbitConnector] " + rabbitMessage.getMessage());
+										}
 									}catch(Exception error) {
 										System.out.println("[RabbitConnector] Error during the handle delivery.");
 										error.printStackTrace();

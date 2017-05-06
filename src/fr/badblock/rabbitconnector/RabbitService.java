@@ -40,6 +40,7 @@ import lombok.Setter;
 							if (rabbitPacket == null || rabbitPacket.getRabbitMessage() == null) continue;
 							if (rabbitPacket.getRabbitMessage().getMessage() == null) continue;
 							if (rabbitPacket.getRabbitMessage().getMessage().isEmpty()) continue;
+							System.out.println("[RabbitDebug] Packets send to " + rabbitPacket.getQueueName());
 							done(rabbitPacket);
 						}
 						synchronized (this) {
