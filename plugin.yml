@@ -1,0 +1,4 @@
+name: BadBlockOthers
+main: fr.badblock.ladder.plugins.others.BadBlockOthers
+version: 0.1
+author: xMalware
