@@ -2,6 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockDaylightDetector extends BlockContainer {
 
     public static final BlockStateInteger POWER = BlockStateInteger.of("power", 0, 15);
@@ -25,10 +27,13 @@ public class BlockDaylightDetector extends BlockContainer {
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        return iblockdata.get(BlockDaylightDetector.POWER).intValue();
+        return BadblockConfig.config.redstone.useLightDetector ? iblockdata.get(BlockDaylightDetector.POWER).intValue() : 0;
     }
 
     public void f(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useLightDetector)
+    		return;
+    	
         if (!world.worldProvider.o()) {
             IBlockData iblockdata = world.getType(blockposition);
             int i = world.b(EnumSkyBlock.SKY, blockposition) - world.ab();
@@ -93,7 +98,7 @@ public class BlockDaylightDetector extends BlockContainer {
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.useLightDetector;
     }
 
     @Override

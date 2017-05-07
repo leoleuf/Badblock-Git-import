@@ -2,6 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockRepeater extends BlockDiodeAbstract {
 
     public static final BlockStateBoolean LOCKED = BlockStateBoolean.of("locked");
@@ -73,6 +75,11 @@ public class BlockRepeater extends BlockDiodeAbstract {
     @Override
 	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.remove(world, blockposition, iblockdata);
+
+        if(!BadblockConfig.config.redstone.useDiodes)
+     		return;
+
+        
         this.h(world, blockposition, iblockdata);
     }
 

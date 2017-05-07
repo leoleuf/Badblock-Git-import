@@ -5,6 +5,8 @@ import java.util.Random;
 
 import com.google.common.base.Predicate;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockRedstoneComparator extends BlockDiodeAbstract implements IContainer {
 
     public static final BlockStateBoolean POWERED = BlockStateBoolean.of("powered");
@@ -51,22 +53,34 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
 
     @Override
 	protected boolean l(IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return false;
+    	
         return this.N || iblockdata.get(BlockRedstoneComparator.POWERED).booleanValue();
     }
 
     @Override
 	protected int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return 0;    	
+    	
         TileEntity tileentity = iblockaccess.getTileEntity(blockposition);
 
         return tileentity instanceof TileEntityComparator ? ((TileEntityComparator) tileentity).b() : 0;
     }
 
     private int j(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return 0;
+    	
         return iblockdata.get(BlockRedstoneComparator.MODE) == BlockRedstoneComparator.EnumComparatorMode.SUBTRACT ? Math.max(this.f(world, blockposition, iblockdata) - this.c(world, blockposition, iblockdata), 0) : this.f(world, blockposition, iblockdata);
     }
 
     @Override
 	protected boolean e(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return false;
+    	
         int i = this.f(world, blockposition, iblockdata);
 
         if (i >= 15) {
@@ -83,6 +97,10 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
     @Override
 	protected int f(World world, BlockPosition blockposition, IBlockData iblockdata) {
         int i = super.f(world, blockposition, iblockdata);
+        
+        if(!BadblockConfig.config.redstone.useDiodes)
+    		return i;
+        
         EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
         BlockPosition blockposition1 = blockposition.shift(enumdirection);
         Block block = world.getType(blockposition1).getBlock();
@@ -136,6 +154,9 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
 
     @Override
 	protected void g(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+     		return;
+    	
         if (!world.a(blockposition, this)) {
             int i = this.j(world, blockposition, iblockdata);
             TileEntity tileentity = world.getTileEntity(blockposition);
@@ -153,6 +174,9 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
     }
 
     private void k(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	 if(!BadblockConfig.config.redstone.useDiodes)
+     		return;
+    	
         int i = this.j(world, blockposition, iblockdata);
         TileEntity tileentity = world.getTileEntity(blockposition);
         int j = 0;
@@ -181,6 +205,9 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+     		return;
+    	
         if (this.N) {
             world.setTypeAndData(blockposition, this.k(iblockdata).set(BlockRedstoneComparator.POWERED, Boolean.valueOf(true)), 4);
         }
@@ -197,12 +224,20 @@ public class BlockRedstoneComparator extends BlockDiodeAbstract implements ICont
     @Override
 	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.remove(world, blockposition, iblockdata);
+
+        if(!BadblockConfig.config.redstone.useDiodes)
+     		return;
+        
         world.t(blockposition);
         this.h(world, blockposition, iblockdata);
     }
 
     @Override
 	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
+        if(!BadblockConfig.config.redstone.useDiodes)
+     		return false;
+
+    	
         super.a(world, blockposition, iblockdata, i, j);
         TileEntity tileentity = world.getTileEntity(blockposition);
 

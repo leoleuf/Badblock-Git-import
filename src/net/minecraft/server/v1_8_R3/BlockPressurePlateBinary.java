@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.bukkit.event.entity.EntityInteractEvent; // CraftBukkit
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockPressurePlateBinary extends BlockPressurePlateAbstract {
 
     public static final BlockStateBoolean POWERED = BlockStateBoolean.of("powered");
@@ -18,6 +20,9 @@ public class BlockPressurePlateBinary extends BlockPressurePlateAbstract {
 
     @Override
 	protected int e(IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return 0;    	
+    	
         return iblockdata.get(BlockPressurePlateBinary.POWERED).booleanValue() ? 15 : 0;
     }
 
@@ -28,6 +33,9 @@ public class BlockPressurePlateBinary extends BlockPressurePlateAbstract {
 
     @Override
 	protected int f(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return 0;
+    	
         AxisAlignedBB axisalignedbb = this.getBoundingBox(blockposition);
         List list;
 

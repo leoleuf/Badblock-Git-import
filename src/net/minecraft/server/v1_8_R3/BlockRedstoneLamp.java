@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockRedstoneLamp extends Block {
 
     private final boolean a;
@@ -19,6 +21,9 @@ public class BlockRedstoneLamp extends Block {
 
     @Override
 	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useRedstoneLamp)
+    		return;
+    	
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
                 world.setTypeAndData(blockposition, Blocks.REDSTONE_LAMP.getBlockData(), 2);
@@ -36,6 +41,9 @@ public class BlockRedstoneLamp extends Block {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(!BadblockConfig.config.redstone.useRedstoneLamp)
+    		return;
+    	
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
                 world.a(blockposition, this, 4);
@@ -53,6 +61,9 @@ public class BlockRedstoneLamp extends Block {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useRedstoneLamp)
+    		return;
+    	
         if (!world.isClientSide) {
             if (this.a && !world.isBlockIndirectlyPowered(blockposition)) {
                 // CraftBukkit start

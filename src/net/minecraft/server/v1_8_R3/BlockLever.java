@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockLever extends Block {
 
     public static final BlockStateEnum<BlockLever.EnumLeverPosition> FACING = BlockStateEnum.of("facing", BlockLever.EnumLeverPosition.class);
@@ -205,17 +207,23 @@ public class BlockLever extends Block {
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useLever)
+    		return 0;
+    	
         return iblockdata.get(BlockLever.POWERED).booleanValue() ? 15 : 0;
     }
 
     @Override
 	public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useLever)
+    		return 0;
+    	
         return !iblockdata.get(BlockLever.POWERED).booleanValue() ? 0 : (iblockdata.get(BlockLever.FACING).c() == enumdirection ? 15 : 0);
     }
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.useLever;
     }
 
     @Override

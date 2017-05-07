@@ -8,12 +8,17 @@ import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
 
 import com.google.common.collect.Lists;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockRedstoneTorch extends BlockTorch {
 
     private static Map<World, List<BlockRedstoneTorch.RedstoneUpdateInfo>> b = new java.util.WeakHashMap(); // Spigot
     private final boolean isOn;
 
     private boolean a(World world, BlockPosition blockposition, boolean flag) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return false;
+    	
         if (!BlockRedstoneTorch.b.containsKey(world)) {
             BlockRedstoneTorch.b.put(world, Lists.<BlockRedstoneTorch.RedstoneUpdateInfo>newArrayList()); // CraftBukkit - fix decompile error
         }
@@ -53,6 +58,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return;
+    	
         if (this.isOn) {
             // PaperSpigot start - Fix cannons
             if (world.paperSpigotConfig.fixCannons) {
@@ -79,6 +87,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return;
+    	
         if (this.isOn) {
             // PaperSpigot start - Fix cannons
             if (world.paperSpigotConfig.fixCannons) {
@@ -105,6 +116,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return 0;
+    	
         return this.isOn && iblockdata.get(BlockTorch.FACING) != enumdirection ? 15 : 0;
     }
 
@@ -119,6 +133,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return;
+    	
         boolean flag = this.g(world, blockposition, iblockdata);
         List list = BlockRedstoneTorch.b.get(world);
 
@@ -177,6 +194,9 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(!BadblockConfig.config.redstone.useRedstoneTorch)
+    		return;
+    	
         if (!this.e(world, blockposition, iblockdata)) {
             if (this.isOn == this.g(world, blockposition, iblockdata)) {
                 world.a(blockposition, this, this.a(world));
@@ -197,7 +217,7 @@ public class BlockRedstoneTorch extends BlockTorch {
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.useRedstoneTorch;
     }
 
     @Override

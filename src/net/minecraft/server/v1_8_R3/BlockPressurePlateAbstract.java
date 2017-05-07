@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public abstract class BlockPressurePlateAbstract extends Block {
 
     protected BlockPressurePlateAbstract(Material material) {
@@ -86,6 +88,9 @@ public abstract class BlockPressurePlateAbstract extends Block {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return;
+    	
         if (!world.isClientSide) {
             int i = this.e(iblockdata);
 
@@ -98,6 +103,9 @@ public abstract class BlockPressurePlateAbstract extends Block {
 
     @Override
 	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return;
+    	
         if (!world.isClientSide) {
             int i = this.e(iblockdata);
 
@@ -109,6 +117,9 @@ public abstract class BlockPressurePlateAbstract extends Block {
     }
 
     protected void a(World world, BlockPosition blockposition, IBlockData iblockdata, int i) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return;
+    	
         int j = this.f(world, blockposition);
         boolean flag = i > 0;
         boolean flag1 = j > 0;
@@ -146,8 +157,6 @@ public abstract class BlockPressurePlateAbstract extends Block {
     }
 
     protected AxisAlignedBB getBoundingBox(BlockPosition blockposition) {
-        float f = 0.125F;
-
         return new AxisAlignedBB(blockposition.getX() + 0.125F, blockposition.getY(), blockposition.getZ() + 0.125F, blockposition.getX() + 1 - 0.125F, blockposition.getY() + 0.25D, blockposition.getZ() + 1 - 0.125F);
     }
 
@@ -177,7 +186,7 @@ public abstract class BlockPressurePlateAbstract extends Block {
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.usePressurePlate;
     }
 
     @Override

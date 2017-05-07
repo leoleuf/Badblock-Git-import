@@ -4,6 +4,8 @@ import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
 // CraftBukkit end
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockDropper extends BlockDispenser {
 
     private final IDispenseBehavior P = new DispenseBehaviorItem();
@@ -22,6 +24,9 @@ public class BlockDropper extends BlockDispenser {
 
     @Override
 	public void dispense(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useDispensers)
+    		return;
+    	
         SourceBlock sourceblock = new SourceBlock(world, blockposition);
         TileEntityDispenser tileentitydispenser = (TileEntityDispenser) sourceblock.getTileEntity();
 

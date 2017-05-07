@@ -4,6 +4,8 @@ import java.util.Random;
 
 import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     protected final boolean N;
@@ -33,6 +35,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         if (!this.b(world, blockposition, iblockdata)) {
             boolean flag = this.e(world, blockposition, iblockdata);
 
@@ -74,6 +79,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         if (this.e(world, blockposition)) {
             this.g(world, blockposition, iblockdata);
         } else {
@@ -103,6 +111,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
     }
 
     protected void g(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         if (!this.b(world, blockposition, iblockdata)) {
             boolean flag = this.e(world, blockposition, iblockdata);
 
@@ -130,6 +141,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
     }
 
     protected int f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return 0;
+    	
         EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
         BlockPosition blockposition1 = blockposition.shift(enumdirection);
         int i = world.getBlockFacePower(blockposition1, enumdirection);
@@ -144,6 +158,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
     }
 
     protected int c(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return 0;
+    	
         EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
         EnumDirection enumdirection1 = enumdirection.e();
         EnumDirection enumdirection2 = enumdirection.f();
@@ -152,6 +169,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
     }
 
     protected int c(IBlockAccess iblockaccess, BlockPosition blockposition, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return 0;
+    	
         IBlockData iblockdata = iblockaccess.getType(blockposition);
         Block block = iblockdata.getBlock();
 
@@ -160,7 +180,7 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.useDiodes;
     }
 
     @Override
@@ -170,7 +190,10 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public void postPlace(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving, ItemStack itemstack) {
-        if (this.e(world, blockposition, iblockdata)) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
+    	if (this.e(world, blockposition, iblockdata)) {
             world.a(blockposition, this, 1);
         }
 
@@ -178,10 +201,16 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         this.h(world, blockposition, iblockdata);
     }
 
     protected void h(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         EnumDirection enumdirection = iblockdata.get(BlockDirectional.FACING);
         BlockPosition blockposition1 = blockposition.shift(enumdirection.opposite());
 
@@ -191,6 +220,9 @@ public abstract class BlockDiodeAbstract extends BlockDirectional {
 
     @Override
 	public void postBreak(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useDiodes)
+    		return;
+    	
         if (this.N) {
             // PaperSpigot start - Fix cannons
             if (world.paperSpigotConfig.fixCannons) {

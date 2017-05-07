@@ -11,6 +11,8 @@ import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockRedstoneWire extends Block {
 
     public static final BlockStateEnum<BlockRedstoneWire.EnumRedstoneWireConnection> NORTH = BlockStateEnum.of("north", BlockRedstoneWire.EnumRedstoneWireConnection.class);
@@ -69,8 +71,12 @@ public class BlockRedstoneWire extends Block {
         return World.a(world, blockposition.down()) || world.getType(blockposition.down()).getBlock() == Blocks.GLOWSTONE;
     }
 
-    private IBlockData e(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    private IBlockData e(World world, BlockPosition blockposition, IBlockData iblockdata) {  	
         iblockdata = this.a(world, blockposition, blockposition, iblockdata);
+        
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return iblockdata;
+        
         ArrayList arraylist = Lists.newArrayList(this.R);
 
         this.R.clear();
@@ -86,6 +92,12 @@ public class BlockRedstoneWire extends Block {
     }
 
     private IBlockData a(World world, BlockPosition blockposition, BlockPosition blockposition1, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    	{
+    		iblockdata.set(BlockRedstoneWire.POWER, 0);
+    		return iblockdata;
+    	}
+    	
         IBlockData iblockdata1 = iblockdata;
         int i = iblockdata.get(BlockRedstoneWire.POWER).intValue();
         byte b0 = 0;
@@ -173,6 +185,9 @@ public class BlockRedstoneWire extends Block {
     }
 
     private void e(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return;
+    	
         if (world.getType(blockposition).getBlock() == this) {
             world.applyPhysics(blockposition, this);
             // PaperSpigot start - Fix cannons
@@ -200,6 +215,9 @@ public class BlockRedstoneWire extends Block {
 
     @Override
 	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return;
+    	
         if (!world.isClientSide) {
             this.e(world, blockposition, iblockdata);
             Iterator iterator = EnumDirection.EnumDirectionLimit.VERTICAL.iterator();
@@ -237,6 +255,10 @@ public class BlockRedstoneWire extends Block {
     @Override
 	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.remove(world, blockposition, iblockdata);
+        
+        if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return;
+        
         if (!world.isClientSide) {
             EnumDirection[] aenumdirection = EnumDirection.values();
             int i = aenumdirection.length;
@@ -274,6 +296,9 @@ public class BlockRedstoneWire extends Block {
     }
 
     public int getPower(World world, BlockPosition blockposition, int i) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return 0;
+    	
         if (world.getType(blockposition).getBlock() != this) {
             return i;
         } else {
@@ -285,7 +310,7 @@ public class BlockRedstoneWire extends Block {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        if (!world.isClientSide) {
+    	if (!world.isClientSide) {
             if (this.canPlace(world, blockposition)) {
                 this.e(world, blockposition, iblockdata);
             } else {
@@ -308,7 +333,10 @@ public class BlockRedstoneWire extends Block {
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        if (!this.Q) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return 0;
+    	
+    	if (!this.Q) {
             return 0;
         } else {
             int i = iblockdata.get(BlockRedstoneWire.POWER).intValue();
@@ -359,6 +387,9 @@ public class BlockRedstoneWire extends Block {
     }
 
     protected static boolean a(IBlockData iblockdata, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useRedstoneWire)
+    		return false;
+    	
         Block block = iblockdata.getBlock();
 
         if (block == Blocks.REDSTONE_WIRE) {
@@ -374,7 +405,7 @@ public class BlockRedstoneWire extends Block {
 
     @Override
 	public boolean isPowerSource() {
-        return this.Q;
+        return this.Q && BadblockConfig.config.redstone.useRedstoneWire;
     }
 
     @Override

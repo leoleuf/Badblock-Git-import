@@ -2,6 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import java.util.Random;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockDispenser extends BlockContainer {
 
     public static final BlockStateDirection FACING = BlockStateDirection.of("facing");
@@ -73,6 +75,9 @@ public class BlockDispenser extends BlockContainer {
     }
 
     public void dispense(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useDispensers)
+    		return;
+    	
         SourceBlock sourceblock = new SourceBlock(world, blockposition);
         TileEntityDispenser tileentitydispenser = (TileEntityDispenser) sourceblock.getTileEntity();
 
@@ -172,7 +177,7 @@ public class BlockDispenser extends BlockContainer {
 
     @Override
 	public boolean isComplexRedstone() {
-        return true;
+        return BadblockConfig.config.redstone.useDispensers;
     }
 
     @Override

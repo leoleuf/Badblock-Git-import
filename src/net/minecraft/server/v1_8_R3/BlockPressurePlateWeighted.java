@@ -2,6 +2,8 @@ package net.minecraft.server.v1_8_R3;
 
 import org.bukkit.event.entity.EntityInteractEvent; // CraftBukkit
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockPressurePlateWeighted extends BlockPressurePlateAbstract {
 
     public static final BlockStateInteger POWER = BlockStateInteger.of("power", 0, 15);
@@ -19,6 +21,9 @@ public class BlockPressurePlateWeighted extends BlockPressurePlateAbstract {
 
     @Override
 	protected int f(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return 0;
+    	
         // CraftBukkit start
         //int i = Math.min(world.a(Entity.class, this.a(blockposition)).size(), this.b);
         int i = 0;
@@ -56,6 +61,9 @@ public class BlockPressurePlateWeighted extends BlockPressurePlateAbstract {
 
     @Override
 	protected int e(IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.usePressurePlate)
+    		return 0;
+    	
         return iblockdata.get(BlockPressurePlateWeighted.POWER).intValue();
     }
 

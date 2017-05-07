@@ -11,6 +11,8 @@ import org.bukkit.event.block.BlockPistonRetractEvent;
 
 import com.google.common.collect.ImmutableList;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockPiston extends Block {
 
     public static final BlockStateDirection FACING = BlockStateDirection.of("facing");
@@ -62,6 +64,9 @@ public class BlockPiston extends Block {
     }
 
     private void e(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         EnumDirection enumdirection = iblockdata.get(BlockPiston.FACING);
         boolean flag = this.a(world, blockposition, enumdirection);
 
@@ -88,6 +93,9 @@ public class BlockPiston extends Block {
     }
 
     private boolean a(World world, BlockPosition blockposition, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return false;
+    	
         EnumDirection[] aenumdirection = EnumDirection.values();
         int i = aenumdirection.length;
 
@@ -123,7 +131,10 @@ public class BlockPiston extends Block {
 
     @Override
 	public boolean a(World world, BlockPosition blockposition, IBlockData iblockdata, int i, int j) {
-        EnumDirection enumdirection = iblockdata.get(BlockPiston.FACING);
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return false;
+    	
+    	EnumDirection enumdirection = iblockdata.get(BlockPiston.FACING);
 
         if (!world.isClientSide) {
             boolean flag = this.a(world, blockposition, enumdirection);
@@ -187,6 +198,9 @@ public class BlockPiston extends Block {
 
     @Override
 	public void updateShape(IBlockAccess iblockaccess, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         IBlockData iblockdata = iblockaccess.getType(blockposition);
 
         if (iblockdata.getBlock() == this && iblockdata.get(BlockPiston.EXTENDED).booleanValue()) {
@@ -270,7 +284,10 @@ public class BlockPiston extends Block {
     }
 
     public static boolean a(Block block, World world, BlockPosition blockposition, EnumDirection enumdirection, boolean flag) {
-        if (block == Blocks.OBSIDIAN) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return false;
+    	
+    	if (block == Blocks.OBSIDIAN) {
             return false;
         } else if (!world.getWorldBorder().a(blockposition)) {
             return false;
@@ -306,6 +323,9 @@ public class BlockPiston extends Block {
     }
 
     private boolean a(World world, BlockPosition blockposition, EnumDirection enumdirection, boolean flag) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return false;
+    	
         if (!flag) {
             world.setAir(blockposition.shift(enumdirection));
         }

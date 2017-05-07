@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockFenceGate extends BlockDirectional {
 
     public static final BlockStateBoolean OPEN = BlockStateBoolean.of("open");
@@ -93,6 +95,9 @@ public class BlockFenceGate extends BlockDirectional {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(!BadblockConfig.config.redstone.useDoors)
+    		return;
+    	
         if (!world.isClientSide) {
             boolean flag = world.isBlockIndirectlyPowered(blockposition);
 

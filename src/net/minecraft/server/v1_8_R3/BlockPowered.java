@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockPowered extends Block {
 
     public BlockPowered(Material material, MaterialMapColor materialmapcolor) {
@@ -8,11 +10,11 @@ public class BlockPowered extends Block {
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.usePoweredBlocks;
     }
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        return 15;
+        return BadblockConfig.config.redstone.usePoweredBlocks ? 15 : 0;
     }
 }

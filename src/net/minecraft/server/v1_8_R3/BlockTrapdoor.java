@@ -4,6 +4,8 @@ import org.bukkit.event.block.BlockRedstoneEvent; // CraftBukkit
 
 import com.google.common.base.Predicate;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockTrapdoor extends Block {
 
     public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirection.EnumDirectionLimit.HORIZONTAL);
@@ -101,6 +103,9 @@ public class BlockTrapdoor extends Block {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(!BadblockConfig.config.redstone.useDoors)
+    		return;
+    	
         if (!world.isClientSide) {
             BlockPosition blockposition1 = blockposition.shift(iblockdata.get(BlockTrapdoor.FACING).opposite());
 

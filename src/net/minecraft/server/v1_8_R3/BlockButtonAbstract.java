@@ -8,6 +8,8 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.entity.EntityInteractEvent;
 // CraftBukkit end
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public abstract class BlockButtonAbstract extends Block {
 
     public static final BlockStateDirection FACING = BlockStateDirection.of("facing");
@@ -136,7 +138,10 @@ public abstract class BlockButtonAbstract extends Block {
 
     @Override
 	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
-        if (iblockdata.get(BlockButtonAbstract.POWERED).booleanValue()) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return true;
+    	
+    	if (iblockdata.get(BlockButtonAbstract.POWERED).booleanValue()) {
             return true;
         } else {
             // CraftBukkit start
@@ -163,7 +168,7 @@ public abstract class BlockButtonAbstract extends Block {
 
     @Override
 	public void remove(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        if (iblockdata.get(BlockButtonAbstract.POWERED).booleanValue()) {
+        if (iblockdata.get(BlockButtonAbstract.POWERED).booleanValue() && BadblockConfig.config.redstone.useButton) {
             this.c(world, blockposition, iblockdata.get(BlockButtonAbstract.FACING));
         }
 
@@ -172,17 +177,23 @@ public abstract class BlockButtonAbstract extends Block {
 
     @Override
 	public int a(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return 0;
+    	
         return iblockdata.get(BlockButtonAbstract.POWERED).booleanValue() ? 15 : 0;
     }
 
     @Override
 	public int b(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        return !iblockdata.get(BlockButtonAbstract.POWERED).booleanValue() ? 0 : (iblockdata.get(BlockButtonAbstract.FACING) == enumdirection ? 15 : 0);
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return 0;
+    	
+    	return !iblockdata.get(BlockButtonAbstract.POWERED).booleanValue() ? 0 : (iblockdata.get(BlockButtonAbstract.FACING) == enumdirection ? 15 : 0);
     }
 
     @Override
 	public boolean isPowerSource() {
-        return true;
+        return BadblockConfig.config.redstone.useButton;
     }
 
     @Override
@@ -190,6 +201,9 @@ public abstract class BlockButtonAbstract extends Block {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return;
+    	
         if (!world.isClientSide) {
             if (iblockdata.get(BlockButtonAbstract.POWERED).booleanValue()) {
                 if (this.N) {
@@ -226,6 +240,9 @@ public abstract class BlockButtonAbstract extends Block {
 
     @Override
 	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return;
+    	
         if (!world.isClientSide) {
             if (this.N) {
                 if (!iblockdata.get(BlockButtonAbstract.POWERED).booleanValue()) {
@@ -236,6 +253,9 @@ public abstract class BlockButtonAbstract extends Block {
     }
 
     private void f(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return;
+    	
         this.d(iblockdata);
         List list = world.a(EntityArrow.class, new AxisAlignedBB(blockposition.getX() + this.minX, blockposition.getY() + this.minY, blockposition.getZ() + this.minZ, blockposition.getX() + this.maxX, blockposition.getY() + this.maxY, blockposition.getZ() + this.maxZ));
         boolean flag = !list.isEmpty();
@@ -306,6 +326,9 @@ public abstract class BlockButtonAbstract extends Block {
     }
 
     private void c(World world, BlockPosition blockposition, EnumDirection enumdirection) {
+    	if(!BadblockConfig.config.redstone.useButton)
+    		return;
+    	
         world.applyPhysics(blockposition, this);
         world.applyPhysics(blockposition.shift(enumdirection.opposite()), this);
     }

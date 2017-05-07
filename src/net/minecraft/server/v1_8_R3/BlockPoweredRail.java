@@ -4,6 +4,8 @@ import org.bukkit.craftbukkit.v1_8_R3.event.CraftEventFactory;
 
 import com.google.common.base.Predicate;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockPoweredRail extends BlockMinecartTrackAbstract {
 
     public static final BlockStateEnum<BlockMinecartTrackAbstract.EnumTrackPosition> SHAPE = BlockStateEnum.a("shape", BlockMinecartTrackAbstract.EnumTrackPosition.class, new Predicate() {
@@ -116,6 +118,9 @@ public class BlockPoweredRail extends BlockMinecartTrackAbstract {
 
     @Override
 	protected void b(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
+    	if(BadblockConfig.config.redstone.usePoweredRails)
+    		return;
+    	
         boolean flag = iblockdata.get(BlockPoweredRail.POWERED).booleanValue();
         boolean flag1 = world.isBlockIndirectlyPowered(blockposition) || this.a(world, blockposition, iblockdata, true, 0) || this.a(world, blockposition, iblockdata, false, 0);
 

@@ -1,5 +1,7 @@
 package net.minecraft.server.v1_8_R3;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockTNT extends Block {
 
     public static final BlockStateBoolean EXPLODE = BlockStateBoolean.of("explode");
@@ -13,7 +15,7 @@ public class BlockTNT extends Block {
     @Override
 	public void onPlace(World world, BlockPosition blockposition, IBlockData iblockdata) {
         super.onPlace(world, blockposition, iblockdata);
-        if (world.isBlockIndirectlyPowered(blockposition)) {
+        if (BadblockConfig.config.tnt.explodeWithRedstone && world.isBlockIndirectlyPowered(blockposition)) {
             this.postBreak(world, blockposition, iblockdata.set(BlockTNT.EXPLODE, Boolean.valueOf(true)));
             world.setAir(blockposition);
         }
@@ -22,7 +24,7 @@ public class BlockTNT extends Block {
 
     @Override
 	public void doPhysics(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-        if (world.isBlockIndirectlyPowered(blockposition)) {
+        if (BadblockConfig.config.tnt.explodeWithRedstone && world.isBlockIndirectlyPowered(blockposition)) {
             this.postBreak(world, blockposition, iblockdata.set(BlockTNT.EXPLODE, Boolean.valueOf(true)));
             world.setAir(blockposition);
         }
@@ -31,6 +33,9 @@ public class BlockTNT extends Block {
 
     @Override
 	public void wasExploded(World world, BlockPosition blockposition, Explosion explosion) {
+    	if(!BadblockConfig.config.tnt.tntExplosionSpreed)
+    		return;
+    	
         if (!world.isClientSide) {
             org.bukkit.Location loc = explosion.source instanceof EntityTNTPrimed ? ((EntityTNTPrimed) explosion.source).sourceLoc : new org.bukkit.Location(world.getWorld(), blockposition.getX(), blockposition.getY(), blockposition.getZ()); // PaperSpigot
             // PaperSpigot start - Fix cannons
@@ -46,7 +51,10 @@ public class BlockTNT extends Block {
 
     @Override
 	public void postBreak(World world, BlockPosition blockposition, IBlockData iblockdata) {
-        this.a(world, blockposition, iblockdata, (EntityLiving) null);
+    	if(!BadblockConfig.config.tnt.explodeWithRedstone)
+    		return;
+    	
+    	this.a(world, blockposition, iblockdata, (EntityLiving) null);
     }
 
     public void a(World world, BlockPosition blockposition, IBlockData iblockdata, EntityLiving entityliving) {
@@ -68,7 +76,7 @@ public class BlockTNT extends Block {
 
     @Override
 	public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
-        if (entityhuman.bZ() != null) {
+        if (BadblockConfig.config.tnt.explodeWithFire && entityhuman.bZ() != null) {
             Item item = entityhuman.bZ().getItem();
 
             if (item == Items.FLINT_AND_STEEL || item == Items.FIRE_CHARGE) {
@@ -89,7 +97,7 @@ public class BlockTNT extends Block {
 
     @Override
 	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
-        if (!world.isClientSide && entity instanceof EntityArrow) {
+        if (BadblockConfig.config.tnt.explodeWithBurningArrow && !world.isClientSide && entity instanceof EntityArrow) {
             EntityArrow entityarrow = (EntityArrow) entity;
 
             if (entityarrow.isBurning()) {

@@ -6,6 +6,8 @@ import java.util.Random;
 
 import org.bukkit.event.entity.EntityInteractEvent; // CraftBukkit
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockTripwire extends Block {
 
     public static final BlockStateBoolean POWERED = BlockStateBoolean.of("powered");
@@ -100,6 +102,9 @@ public class BlockTripwire extends Block {
     }
 
     private void e(World world, BlockPosition blockposition, IBlockData iblockdata) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         EnumDirection[] aenumdirection = new EnumDirection[] { EnumDirection.SOUTH, EnumDirection.WEST};
         int i = aenumdirection.length;
         int j = 0;
@@ -132,6 +137,9 @@ public class BlockTripwire extends Block {
 
     @Override
 	public void a(World world, BlockPosition blockposition, IBlockData iblockdata, Entity entity) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         if (!world.isClientSide) {
             if (!iblockdata.get(BlockTripwire.POWERED).booleanValue()) {
                 this.e(world, blockposition);
@@ -144,6 +152,9 @@ public class BlockTripwire extends Block {
 
     @Override
 	public void b(World world, BlockPosition blockposition, IBlockData iblockdata, Random random) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         if (!world.isClientSide) {
             if (world.getType(blockposition).get(BlockTripwire.POWERED).booleanValue()) {
                 this.e(world, blockposition);
@@ -152,6 +163,9 @@ public class BlockTripwire extends Block {
     }
 
     private void e(World world, BlockPosition blockposition) {
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return;
+    	
         IBlockData iblockdata = world.getType(blockposition);
         boolean flag = iblockdata.get(BlockTripwire.POWERED).booleanValue();
         boolean flag1 = false;
@@ -217,7 +231,10 @@ public class BlockTripwire extends Block {
     }
 
     public static boolean c(IBlockAccess iblockaccess, BlockPosition blockposition, IBlockData iblockdata, EnumDirection enumdirection) {
-        BlockPosition blockposition1 = blockposition.shift(enumdirection);
+    	if(!BadblockConfig.config.redstone.useTripwire)
+    		return false;
+    	
+    	BlockPosition blockposition1 = blockposition.shift(enumdirection);
         IBlockData iblockdata1 = iblockaccess.getType(blockposition1);
         Block block = iblockdata1.getBlock();
 

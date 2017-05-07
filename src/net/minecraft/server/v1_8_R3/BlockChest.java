@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import com.google.common.base.Predicate;
 
+import fr.badblock.minecraftserver.BadblockConfig;
+
 public class BlockChest extends BlockContainer {
 
     public static final BlockStateDirection FACING = BlockStateDirection.of("facing", EnumDirection.EnumDirectionLimit.HORIZONTAL);
@@ -393,7 +395,7 @@ public class BlockChest extends BlockContainer {
 
     @Override
 	public boolean isPowerSource() {
-        return this.b == 1;
+        return this.b == 1 && BadblockConfig.config.redstone.useTrappedChest;
     }
 
     @Override
