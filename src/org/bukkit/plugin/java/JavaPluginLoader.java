@@ -131,7 +131,9 @@ public final class JavaPluginLoader implements PluginLoader {
         try {
         	loader = new PluginClassLoader(this, getClass().getClassLoader(), description, dataFolder, file);
             
-        	if(file.getAbsoluteFile().getParentFile().getName().equalsIgnoreCase("apiPlugins"))
+        	File plugins = new File("plugins");
+        	
+        	if(!file.getAbsoluteFile().equals(plugins.getAbsolutePath()))
         		BadblockSecurityManager.addDisallowedLoader(loader);
         	else BadblockSecurityManager.addAllowedLoader(loader);
         } catch (InvalidPluginException ex) {
