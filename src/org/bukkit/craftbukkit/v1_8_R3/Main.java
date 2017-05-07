@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import org.fusesource.jansi.AnsiConsole;
 
+import fr.badblock.minecraftserver.BadblockSecurityManager;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
@@ -19,6 +20,7 @@ public class Main {
     public static boolean useConsole = true;
 
     public static void main(String[] args) {
+    	System.setSecurityManager(new BadblockSecurityManager());
         // Todo: Installation script
         OptionParser parser = new OptionParser() {
             {
