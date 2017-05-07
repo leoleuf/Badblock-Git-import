@@ -170,7 +170,7 @@ public class LadderListener implements Listener {
 		int m = LadderBungee.getInstance().slots;
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
-		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().getOnlineCount(), sample));
+		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().ladderPlayers, sample));
 		String[] motdString = motd.getMotd().clone();
 		if (motdString[1].contains("@1")) {
 			long time = timestampMax - (System.currentTimeMillis() / 1000L);
