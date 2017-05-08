@@ -34,12 +34,12 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.PendingConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.AsyncDataLoadRequest;
+import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PlayerHandshakeEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
-import net.md_5.bungee.api.event.AsyncDataLoadRequest.Result;
 import net.md_5.bungee.chat.ComponentSerializer;
 import net.md_5.bungee.http.HttpClient;
 import net.md_5.bungee.jni.cipher.BungeeCipher;
@@ -49,6 +49,7 @@ import net.md_5.bungee.netty.PacketHandler;
 import net.md_5.bungee.netty.PipelineUtils;
 import net.md_5.bungee.netty.cipher.CipherDecoder;
 import net.md_5.bungee.netty.cipher.CipherEncoder;
+import net.md_5.bungee.online.OnlineManager;
 import net.md_5.bungee.protocol.DefinedPacket;
 import net.md_5.bungee.protocol.PacketWrapper;
 import net.md_5.bungee.protocol.Protocol;
@@ -402,7 +403,16 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						if (result.object.has("authKey"))
 							authKey 	 = result.object.get("authKey").getAsString();
 						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
-							unsafe().sendPacket( request = EncryptionUtil.encryptRequest() );
+							OnlineManager.joinBypass(InitialHandler.this, new Callback<Boolean>() {
+
+								@Override
+								public void done(Boolean result, Throwable error) {
+									boolean bool = result.booleanValue();
+									if (bool) finish();
+									else unsafe().sendPacket(request = EncryptionUtil.encryptRequest());
+								}
+								
+							});
 						}else finish();
 					}
 				}));
