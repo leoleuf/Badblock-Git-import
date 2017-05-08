@@ -3,8 +3,8 @@ package net.minecraft.server.v1_8_R3;
 public class ChunkSection {
 
     private int yPos;
-    private int nonEmptyBlockCount;
-    private int tickingBlockCount;
+    public int nonEmptyBlockCount;
+    public int tickingBlockCount;
     private char[] blockIds;
     private NibbleArray emittedLight;
     private NibbleArray skyLight;
