@@ -32,7 +32,7 @@ public class PlayerDisconnectListener implements Listener {
 		long endTime = timestamp;
 		long startTime = friendPlayer.startTime;
 		if (startTime != -1 && player.hasPermission("others.tracksessions")) {
-			long totalTime = endTime - startTime;
+			long totalTime = (endTime - startTime) / 1000;
 			long sanctions = friendPlayer.sanctions;
 			long sanctionsTime = sanctions * (60 * 5); // 5 min par sanction
 			if (sanctionsTime > totalTime) sanctionsTime = totalTime; // wtf
