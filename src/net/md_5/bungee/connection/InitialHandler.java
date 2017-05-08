@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.net.InetSocketAddress;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
+import java.sql.ResultSet;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -41,6 +42,9 @@ import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.chat.ComponentSerializer;
+import net.md_5.bungee.database.BadblockDatabase;
+import net.md_5.bungee.database.Request;
+import net.md_5.bungee.database.Request.RequestType;
 import net.md_5.bungee.http.HttpClient;
 import net.md_5.bungee.jni.cipher.BungeeCipher;
 import net.md_5.bungee.netty.ChannelWrapper;
@@ -464,6 +468,23 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						if ( obj != null )
 						{
 							loginProfile = obj;
+							InitialHandler initialHandler = InitialHandler.this;
+							String playerName = BadblockDatabase.getInstance().mysql_real_escape_string(initialHandler.getName());
+							String hostString = initialHandler.getAddress().getHostString();
+							BadblockDatabase.getInstance().addRequest(new Request("SELECT * FROM ipOnlines WHERE playerName = '" + playerName + "'", RequestType.GETTER) {
+								@Override
+								public void done(ResultSet resultSet) {
+									try {
+										if (resultSet.next()) {
+											BadblockDatabase.getInstance().addRequest(new Request("UPDATE ipOnlines SET ipAddress = '" + hostString + "' WHERE playerName = '" + playerName + "'", RequestType.SETTER));
+										}else{
+											BadblockDatabase.getInstance().addRequest(new Request("INSERT INTO ipOnlines(playerName, ipAddress) VALUES('" + playerName + "', '" + hostString + "')", RequestType.SETTER));
+										}
+									}catch(Exception error) {
+										error.printStackTrace();
+									}
+								}
+							});
 							// uniqueId = Util.getUUID( obj.getId() );
 							finish();
 							return;
