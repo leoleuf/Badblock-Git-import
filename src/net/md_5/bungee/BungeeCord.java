@@ -82,6 +82,7 @@ import net.md_5.bungee.command.ConsoleCommandSender;
 import net.md_5.bungee.compress.CompressFactory;
 import net.md_5.bungee.conf.Configuration;
 import net.md_5.bungee.conf.YamlConfig;
+import net.md_5.bungee.database.BadblockDatabase;
 import net.md_5.bungee.forge.ForgeConstants;
 import net.md_5.bungee.log.BungeeLogger;
 import net.md_5.bungee.log.LoggingOutputStream;
@@ -332,7 +333,7 @@ public class BungeeCord extends ProxyServer
 			.group( eventLoops )
 			.localAddress( info.getHost() )
 			.bind().addListener( listener );
-
+			BadblockDatabase.getInstance().connect("01-bkd.badblock-network.fr", 3306, "others", "yzkuVoasYktLLgV5YVfzRiAmxEfm2pXrO7MzmMSaWcMxjxt7iyw0HWc5rhhkx5Cc3eCfQkgDmT0wgjtoIPfgChbUpj4MewP8BhehskKF3B1aLkpk0uqsBsdQB7tFu9DV ", "others");
 			if ( info.isQueryEnabled() )
 			{
 				ChannelFutureListener bindListener = new ChannelFutureListener()
