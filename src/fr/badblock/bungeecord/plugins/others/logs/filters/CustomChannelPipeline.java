@@ -11,7 +11,6 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
-import io.netty.channel.ChannelProgressivePromise;
 import io.netty.channel.ChannelPromise;
 import io.netty.util.concurrent.EventExecutorGroup;
 
@@ -315,30 +314,6 @@ public class CustomChannelPipeline implements ChannelPipeline {
 	@Override
 	public ChannelFuture writeAndFlush(Object arg0, ChannelPromise arg1) {
 		return new CustomChannelFuture();
-	}
-
-	@Override
-	public ChannelFuture newFailedFuture(Throwable arg0) {
-		return new CustomChannelFuture();
-	}
-
-	@Override
-	public ChannelProgressivePromise newProgressivePromise() {
-		return null;
-	}
-
-	@Override
-	public ChannelPromise newPromise() {
-		return new CustomChannelPromise();
-	}
-
-	@Override
-	public ChannelFuture newSucceededFuture() {
-		return new CustomChannelFuture();
-	}
-
-	public ChannelPromise voidPromise() {
-		return new CustomChannelPromise();
 	}
 	
 }

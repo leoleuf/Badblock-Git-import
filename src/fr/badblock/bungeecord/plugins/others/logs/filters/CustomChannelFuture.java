@@ -121,9 +121,4 @@ public class CustomChannelFuture implements ChannelFuture {
 		return this;
 	}
 
-	@Override
-	public boolean isVoid() {
-		return false;
-	}
-
 }

@@ -216,9 +216,4 @@ public class CustomChannelHandlerContext implements ChannelHandlerContext {
 		return new CustomChannelFuture();
 	}
 
-	@Override
-	public <T> boolean hasAttr(AttributeKey<T> arg0) {
-		return false;
-	}
-
 }

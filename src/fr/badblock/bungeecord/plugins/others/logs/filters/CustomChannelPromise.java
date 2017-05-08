@@ -156,14 +156,4 @@ public class CustomChannelPromise implements ChannelPromise {
 		return false;
 	}
 
-	@Override
-	public boolean isVoid() {
-		return false;
-	}
-
-	@Override
-	public ChannelPromise unvoid() {
-		return new CustomChannelPromise();
-	}
-
 }
