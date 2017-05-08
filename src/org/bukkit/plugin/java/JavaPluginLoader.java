@@ -133,7 +133,7 @@ public final class JavaPluginLoader implements PluginLoader {
             
         	File plugins = new File("plugins");
         	
-        	if(!file.getAbsoluteFile().equals(plugins.getAbsolutePath()))
+        	if(!file.getAbsoluteFile().equals(plugins.getAbsoluteFile()))
         		BadblockSecurityManager.addDisallowedLoader(loader);
         	else BadblockSecurityManager.addAllowedLoader(loader);
         } catch (InvalidPluginException ex) {
