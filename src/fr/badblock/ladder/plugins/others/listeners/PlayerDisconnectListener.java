@@ -9,6 +9,9 @@ import fr.badblock.ladder.api.events.EventHandler;
 import fr.badblock.ladder.api.events.Listener;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
+import fr.badblock.ladder.plugins.others.database.Request;
+import fr.badblock.ladder.plugins.others.database.Request.RequestType;
 import fr.badblock.ladder.plugins.others.friends.Friend;
 import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
 import fr.badblock.ladder.plugins.others.friends.FriendStatus;
@@ -24,6 +27,17 @@ public class PlayerDisconnectListener implements Listener {
 		// Ladder.getInstance().broadcast("A");
 		if (friendPlayer == null)
 			return;
+		// Session
+		long timestamp = System.currentTimeMillis();
+		long endTime = timestamp;
+		long startTime = friendPlayer.startTime;
+		if (startTime != -1 && player.hasPermission("others.tracksessions")) {
+			long totalTime = endTime - startTime;
+			long sanctions = friendPlayer.sanctions;
+			long sanctionsTime = sanctions * (60 * 5); // 5 min par sanction
+			if (sanctionsTime > totalTime) sanctionsTime = totalTime; // wtf
+			BadblockDatabase.getInstance().addRequest(new Request("INSERT INTO staffSessions(playerName, timestamp, startTime, endTime, totalTime, sanctions, sanctionsTime) VALUES('" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "', '" + timestamp + "', '" + startTime + "', '" + endTime + "', '" + totalTime + "', '" + sanctions + "', '" + sanctionsTime + "')", RequestType.SETTER));
+		}
 		// Ladder.getInstance().broadcast("B");
 		if (!friendPlayer.connected)
 			return;

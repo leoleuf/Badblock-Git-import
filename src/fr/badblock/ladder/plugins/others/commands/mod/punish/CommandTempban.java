@@ -123,6 +123,13 @@ public class CommandTempban extends SanctionCommand {
 		offlinePlayer.saveData();
 		sender.sendMessage("§a➤ Bannissement appliqué envers " + offlinePlayer.getName() + " pendant " + humanTime
 				+ " (" + reason + ").");
+		if (sender instanceof Player) {
+			FriendPlayer fp = FriendPlayer.get((Player) sender);
+			if (fp.lastSanction < System.currentTimeMillis()) {
+				fp.sanctions++;
+				fp.lastSanction = System.currentTimeMillis() + 300_000;
+			}
+		}
 	}
 
 	public String buildBanReason(long expire, String banReason) {

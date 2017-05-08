@@ -127,6 +127,13 @@ public class CommandMute extends SanctionCommand {
 		
 		sender.sendMessage("§a➤ Bâillon appliqué envers " + offlinePlayer.getName() + " pendant " + humanTime + " ("
 				+ reason + ").");
+		if (sender instanceof Player) {
+			FriendPlayer fp = FriendPlayer.get((Player) sender);
+			if (fp.lastSanction < System.currentTimeMillis()) {
+				fp.sanctions++;
+				fp.lastSanction = System.currentTimeMillis() + 300_000;
+			}
+		}
 	}
 
 	private void punish(Punished punished, long time, CommandSender sender, String reason) {

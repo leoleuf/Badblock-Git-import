@@ -83,6 +83,13 @@ public class CommandKick extends SanctionCommand {
 						+ BadblockDatabase.getInstance().mysql_real_escape_string(bannerIp) + "')",
 				RequestType.SETTER));
 		sender.sendMessage("§a➤ Kick appliqué envers " + player.getName() + " (" + reason + ").");
+		if (sender instanceof Player) {
+			FriendPlayer fp = FriendPlayer.get((Player) sender);
+			if (fp.lastSanction < System.currentTimeMillis()) {
+				fp.sanctions++;
+				fp.lastSanction = System.currentTimeMillis() + 300_000;
+			}
+		}
 	}
 
 }

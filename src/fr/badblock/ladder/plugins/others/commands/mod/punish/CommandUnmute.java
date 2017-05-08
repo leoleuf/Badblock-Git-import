@@ -115,7 +115,13 @@ public class CommandUnmute extends SanctionCommand {
 			ladder.getPlayer(args[0]).sendToBungee("punish");
 		}
 		sender.sendMessage("§a➤ Débâillonnement appliqué envers " + offlinePlayer.getName() + ".");
-
+		if (sender instanceof Player) {
+			FriendPlayer fp = FriendPlayer.get((Player) sender);
+			if (fp.lastSanction < System.currentTimeMillis()) {
+				fp.sanctions++;
+				fp.lastSanction = System.currentTimeMillis() + 300_000;
+			}
+		}
 	}
 
 	private void unpunish(Punished... punisheds) {

@@ -69,6 +69,14 @@ public class FriendPlayer {
 	public HashMap<UUID, Long> lastReports;
 	public List<String> lastReported;
 	public boolean reportToggle = true;
+	
+	// Staff session
+	public long startTime = -1;
+	public long endTime;
+	public long totalTime;
+	public long sanctions;
+	public long sanctionsTime;
+	public long lastSanction;
 
 	public FriendPlayer(Player player) {
 		this.name = player.getName();
@@ -89,6 +97,7 @@ public class FriendPlayer {
 		FriendPlayer fp = this;
 		if (fp.connected)
 			return;
+		startTime = System.currentTimeMillis();
 		fp.connected = true;
 		hasNewChanges = true;
 		if (BadBlockOthers.getInstance().getConfig().getBoolean("lang.motd.enabled")) {

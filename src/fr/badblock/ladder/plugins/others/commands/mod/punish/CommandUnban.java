@@ -99,7 +99,13 @@ public class CommandUnban extends SanctionCommand {
 						+ BadblockDatabase.getInstance().mysql_real_escape_string(bannerIp) + "')",
 				RequestType.SETTER));
 		sender.sendMessage("§a➤ Débannissement appliqué envers " + offlinePlayer.getName() + ".");
-
+		if (sender instanceof Player) {
+			FriendPlayer fp = FriendPlayer.get((Player) sender);
+			if (fp.lastSanction < System.currentTimeMillis()) {
+				fp.sanctions++;
+				fp.lastSanction = System.currentTimeMillis() + 300_000;
+			}
+		}
 	}
 
 }
