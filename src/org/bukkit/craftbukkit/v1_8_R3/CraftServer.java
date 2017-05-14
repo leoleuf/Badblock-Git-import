@@ -412,7 +412,7 @@ public final class CraftServer implements Server {
 
     @Override
     public String getVersion() {
-        return serverVersion + " (MC: " + console.getVersion() + ")";
+        return "badblockPaperSpigot" + " (MC: " + console.getVersion() + ")";
     }
 
     @Override
