@@ -1,39 +1,16 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.cloudflare.api.constants.RecordType;
-import com.cloudflare.api.requests.dns.DNSAddRecord;
-import com.cloudflare.api.requests.dns.DNSDeleteRecord;
-import com.cloudflare.api.results.CloudflareError;
-import com.cloudflare.api.utils.TimeUnit;
-import com.cloudflare.api.utils.TimeUnit.UnitType;
-
-import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
-import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
-import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
-import fr.badblock.bungeecord.plugins.others.database.Request;
-import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.event.ProxyBoundEvent;
 import net.md_5.bungee.api.event.ProxyUnableToBindEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
-import net.sf.json.JSONObject;
 
 public class ProxyBoundListener implements Listener {
 
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onProxyBound(ProxyBoundEvent event) {
-		BadBlockBungeeOthers bungeeOthers = BadBlockBungeeOthers.getInstance();
-		@SuppressWarnings("deprecation")
-		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT recordId FROM absorbances WHERE ip = '" + a + "'", RequestType.GETTER) {
+		/*BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT recordId FROM absorbances WHERE ip = '" + a + "'", RequestType.GETTER) {
 			@Override
 			public void done(ResultSet resultSet) {
 				try {
@@ -94,12 +71,12 @@ public class ProxyBoundListener implements Listener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("Added RecordID: " + bungeeOthers.getRecordId());
+		System.out.println("Added RecordID: " + bungeeOthers.getRecordId());*/
 	}
 
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onProxyUnableToBind(ProxyUnableToBindEvent event) {
-		System.out.println("Unable to bind!");
+		/*System.out.println("Unable to bind!");
 		if (event.getThrowable() != null)
 			event.getThrowable().printStackTrace();
 		BadBlockBungeeOthers bungeeOthers = BadBlockBungeeOthers.getInstance();
@@ -136,7 +113,7 @@ public class ProxyBoundListener implements Listener {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 		System.exit(-1);
 	}
 
