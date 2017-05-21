@@ -3,13 +3,8 @@ package fr.badblock.bungeecord.plugins.others;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-import java.net.InetSocketAddress;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,10 +16,8 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
-import java.util.logging.Level;
 
 import com.cloudflare.api.CloudflareAccess;
-import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -44,7 +37,6 @@ import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
-import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PreLoginListener;
 import fr.badblock.bungeecord.plugins.others.listeners.ProxyBoundListener;
@@ -66,13 +58,6 @@ import fr.badblock.common.commons.technologies.rabbitmq.RabbitService;
 import fr.badblock.common.commons.technologies.redis.RedisConnector;
 import fr.badblock.common.commons.technologies.redis.RedisService;
 import fr.badblock.common.commons.utils.Encodage;
-import io.netty.channel.AbstractChannel;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
-import io.netty.handler.codec.haproxy.HAProxyMessage;
-import io.netty.handler.codec.haproxy.HAProxyMessageDecoder;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.BungeeCord;
@@ -84,8 +69,6 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
-import net.md_5.bungee.netty.PipelineUtils;
-import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
 
@@ -118,7 +101,7 @@ import net.sf.json.JSONObject;
 	@Override
 	public void onEnable() {
 		instance = this;
-		try {
+		/*try {
             Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
             remoteAddressField.setAccessible(true);
 
@@ -155,7 +138,7 @@ import net.sf.json.JSONObject;
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, e.getMessage(), e);
             getProxy().stop();
-        }
+        }*/
 		openTime = System.currentTimeMillis();
 		reengagedUUIDs = new ArrayList<>();
 		ProxyServer proxy = this.getProxy();
@@ -213,12 +196,12 @@ import net.sf.json.JSONObject;
 		lastCheck = System.currentTimeMillis() + 1800_000L;
 		lastNb = 0;
 
-		Runtime.getRuntime().addShutdownHook(new Thread() {
+		/*Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
 				deleteDNS();
 			}
-		});
+		})*/;
 
 		filters.clear();
 		filters.add(new IHConnectedFilter());
@@ -375,25 +358,21 @@ import net.sf.json.JSONObject;
 				public void run() {
 					double o = ((double) PreLoginListener.getNotLoggedPlayers() / 250.0D) * 100.0D;
 					if (done && delete == -1 && BungeeCord.getInstance().getOnlineCount() <= 0) {
-						System.out.println("/!\\ BUNGEEDNS!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;
 						String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 						if (BadblockDatabase.getInstance().isConnected())
 							BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
 						System.exit(-1);
-					}else if (done && delete > 0) {
-						System.out.println("/!\\ BUNGEEDNS<WAITING-FOR-DNS-DELETE(" + o + "%/" + delete + ")/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-					}else if (done && deleteTime > System.currentTimeMillis()) {
-						System.out.println("/!\\ BUNGEEDNS<WAITING-FOR-DELETE(" + o + "%/" + (deleteTime - System.currentTimeMillis()) + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 					}else if (done) {
-						System.out.println("/!\\ BUNGEEDNS<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 					}else{
-						System.out.println("/!\\ BUNGEEDNS<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + PreLoginListener.players.size() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + PreLoginListener.players.size() + "> /!\\");
 					}
 					if (done && delete == 0) {
 						delete = -1;
 						deleteTime = System.currentTimeMillis() + 7200_000L;
-						System.out.println("/!\\ BUNGEEDNS!<EVENT-BYEDNS!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYESERVER!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 					}else if (done && delete > 0) delete--;
 					if (done && delete == -1 && deleteTime < System.currentTimeMillis()) {
 						time--;
@@ -432,7 +411,7 @@ import net.sf.json.JSONObject;
 	@Override
 	public void onDisable() {
 		filters.forEach(filter -> filter.reset());
-		deleteDNS();
+		//deleteDNS();
 		if (timerTask != null) timerTask.cancel();
 		if (timerTask2 != null) timerTask2.cancel();
 		if (timerTask3 != null) timerTask3.cancel();
@@ -442,7 +421,7 @@ import net.sf.json.JSONObject;
 			BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
 	}
 
-	public void deleteDNS() {
+	/*public void deleteDNS() {
 		if (deleted) return;
 		if (access != null) {
 			@SuppressWarnings("deprecation")
@@ -487,7 +466,7 @@ import net.sf.json.JSONObject;
 		}else{
 			throw new UnableToDeleteDNSException();
 		}
-	}
+	}*/
 
 	public String getMessage(List<String> list) {
 		StringBuilder stringBuilder = new StringBuilder();
