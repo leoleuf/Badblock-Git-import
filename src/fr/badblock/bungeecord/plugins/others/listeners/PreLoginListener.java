@@ -3,11 +3,11 @@ package fr.badblock.bungeecord.plugins.others.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
@@ -23,10 +23,15 @@ public class PreLoginListener implements Listener {
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
 		Player.get(proxiedPlayer);
+		String playerName = proxiedPlayer.getName().toLowerCase();
+		if (event.getTarget() != null)
+			if (event.getTarget().getName() != null)
+				if (!players.contains(playerName))
+					players.add(playerName);
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
-		/*if (LadderBungee.getInstance().bungeePlayerList.size() >= 1750) {
+		if (players.size() >= 1000) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
-		}*/
+		}
 	}
 	
 	@EventHandler
@@ -37,8 +42,8 @@ public class PreLoginListener implements Listener {
 		}*/
 	}
 	
-	public static long getNotLoggedPlayers() {
-		return BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.getServer() != null && player.getServer().getInfo() != null && !player.getServer().getInfo().getName().startsWith("login")).count();
-	}
+	//public static long getNotLoggedPlayers() {
+		//return BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.getServer() != null && player.getServer().getInfo() != null && !player.getServer().getInfo().getName().startsWith("login")).count();
+//	}
 
 }

@@ -3,7 +3,11 @@ package fr.badblock.bungeecord.plugins.others;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
+import java.net.InetSocketAddress;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.logging.Level;
 
 import com.cloudflare.api.CloudflareAccess;
 import com.google.gson.Gson;
@@ -58,6 +63,13 @@ import fr.badblock.common.commons.technologies.rabbitmq.RabbitService;
 import fr.badblock.common.commons.technologies.redis.RedisConnector;
 import fr.badblock.common.commons.technologies.redis.RedisService;
 import fr.badblock.common.commons.utils.Encodage;
+import io.netty.channel.AbstractChannel;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.ChannelInitializer;
+import io.netty.handler.codec.haproxy.HAProxyMessage;
+import io.netty.handler.codec.haproxy.HAProxyMessageDecoder;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.BungeeCord;
@@ -69,6 +81,7 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
+import net.md_5.bungee.netty.PipelineUtils;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
 
@@ -89,9 +102,6 @@ import net.md_5.bungee.connection.InitialHandler;
 	private RedisService								redisConnector;
 	private boolean										finished;
 	private long										delete = 10;
-	private long 										nbTimes;
-	private long 										lastNb;
-	private long										lastCheck;
 	private long										openTime;
 	private long										time = 14400;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
@@ -101,7 +111,7 @@ import net.md_5.bungee.connection.InitialHandler;
 	@Override
 	public void onEnable() {
 		instance = this;
-		/*try {
+		try {
             Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
             remoteAddressField.setAccessible(true);
 
@@ -138,7 +148,7 @@ import net.md_5.bungee.connection.InitialHandler;
         } catch (Exception e) {
             getLogger().log(Level.SEVERE, e.getMessage(), e);
             getProxy().stop();
-        }*/
+        }
 		openTime = System.currentTimeMillis();
 		reengagedUUIDs = new ArrayList<>();
 		ProxyServer proxy = this.getProxy();
@@ -193,8 +203,6 @@ import net.md_5.bungee.connection.InitialHandler;
 		pluginManager.registerCommand(this, new LinkCommand());
 		pluginManager.registerCommand(this, new BORemoveInsultCommand());
 		proxy.getPlayers().forEach(player -> Player.get(player));
-		lastCheck = System.currentTimeMillis() + 1800_000L;
-		lastNb = 0;
 
 		/*Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
@@ -218,16 +226,6 @@ import net.md_5.bungee.connection.InitialHandler;
 			public void run() {
 				if (System.currentTimeMillis() - openTime > 900_000 && LadderBungee.getInstance().bungeePlayerList.size() == 0) {
 					setDone(true);
-				}
-				if (System.currentTimeMillis() > lastCheck) {
-					if (LadderBungee.getInstance().bungeePlayerList.size() < lastNb) {
-						if (nbTimes >= 5)
-							setDone(true);
-						nbTimes++;
-					}else nbTimes = 0;
-
-					lastNb = LadderBungee.getInstance().bungeePlayerList.size();
-					lastCheck = System.currentTimeMillis() + 1800_000L;
 				}
 				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				Map<Integer, Integer> versions = new HashMap<>();
@@ -356,7 +354,7 @@ import net.md_5.bungee.connection.InitialHandler;
 			timerTask = new TimerTask() {
 				@Override
 				public void run() {
-					double o = ((double) PreLoginListener.getNotLoggedPlayers() / 250.0D) * 100.0D;
+					double o = PreLoginListener.players.size();
 					if (done && delete == -1 && BungeeCord.getInstance().getOnlineCount() <= 0) {
 						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;
