@@ -71,7 +71,7 @@ import lombok.Data;
 									if (rabbitService.isDead()) return;
 									try {
 										RabbitMessage rabbitMessage = RabbitMessage.fromJson(message);
-										if (!rabbitMessage.isExpired()) {
+										if (/*!rabbitMessage.isExpired() || */rabbitMessage.getExpire() + 3600000 >= System.currentTimeMillis()) {
 											if (debug) 
 												System.out.println("[RabbitConnector] Packet received from " + queueName + ": " + rabbitMessage.getMessage());
 											onPacketReceiving(rabbitMessage.getMessage());
