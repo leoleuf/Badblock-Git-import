@@ -13,8 +13,18 @@ public class BigBanCommand extends Command {
 
 	@Override
 	public void executeCommand(CommandSender sender, String[] args) {
-		CommandBan.instance.executeCommand(sender, args);
-		CommandBanip.instance.executeCommand(sender, args);
+		new Thread() {
+			@Override
+			public void run() {
+				CommandBan.instance.executeCommand(sender, args);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				CommandBanip.instance.executeCommand(sender, args);
+			}
+		}.start();
 	}
 
 }

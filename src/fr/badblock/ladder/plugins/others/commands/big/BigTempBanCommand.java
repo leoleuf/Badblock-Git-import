@@ -13,8 +13,17 @@ public class BigTempBanCommand extends Command {
 
 	@Override
 	public void executeCommand(CommandSender sender, String[] args) {
-		CommandTempban.instance.executeCommand(sender, args);
-		CommandTempbanip.instance.executeCommand(sender, args);
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					CommandTempban.instance.executeCommand(sender, args);
+					CommandTempbanip.instance.executeCommand(sender, args);
+				}catch(Exception error) {
+					error.printStackTrace();
+				}
+			}
+		}.start();
 	}
 
 }

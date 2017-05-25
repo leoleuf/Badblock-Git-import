@@ -13,7 +13,17 @@ public class BigPardonCommand extends Command {
 
 	@Override
 	public void executeCommand(CommandSender sender, String[] args) {
-		CommandUnban.instance.executeCommand(sender, args);
-		CommandUnbanip.instance.executeCommand(sender, args);
+		new Thread() {
+			@Override
+			public void run() {
+				CommandUnban.instance.executeCommand(sender, args);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				CommandUnbanip.instance.executeCommand(sender, args);
+			}
+		}.start();
 	}
 }
