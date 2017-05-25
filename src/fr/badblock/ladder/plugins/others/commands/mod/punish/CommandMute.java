@@ -31,7 +31,7 @@ public class CommandMute extends SanctionCommand {
 	public void run(CommandSender sender, String[] args) {
 		boolean console = !(sender instanceof Player);
 		if (!console)
-			console = FriendPlayer.get((Player) sender).tail || sender.hasPermission("*");
+			console = (FriendPlayer.get((Player) sender) != null && FriendPlayer.get((Player) sender).tail) || sender.hasPermission("*");
 		if (args.length < 3 && !console) {
 			sender.sendMessage("§cUsage: /mute <pseudo> <temps> <raison>");
 			return;

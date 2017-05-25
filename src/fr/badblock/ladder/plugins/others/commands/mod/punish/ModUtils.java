@@ -14,7 +14,7 @@ public class ModUtils {
 	public static int getLevel(OfflinePlayer player) {
 		boolean console = false;
 		if (Ladder.getInstance().getPlayer(player.getName()) != null)
-			console = FriendPlayer.get(Ladder.getInstance().getPlayer(player.getName())).tail;
+			console = (FriendPlayer.get(Ladder.getInstance().getPlayer(player.getName())) != null && FriendPlayer.get(Ladder.getInstance().getPlayer(player.getName())).tail);
 		if (player.hasPermission("ladder.command.punish.hierarchybypass") || console)
 			return 100;
 		LadderOfflinePlayer ladderOfflinePlayer = (LadderOfflinePlayer) player;

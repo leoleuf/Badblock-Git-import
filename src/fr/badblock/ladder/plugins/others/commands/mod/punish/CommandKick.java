@@ -27,7 +27,7 @@ public class CommandKick extends SanctionCommand {
 	public void run(CommandSender sender, String[] args) {
 		boolean console = !(sender instanceof Player);
 		if (!console)
-			console = FriendPlayer.get((Player) sender).tail || sender.hasPermission("*");
+			console = (FriendPlayer.get((Player) sender) != null && FriendPlayer.get((Player) sender).tail) || sender.hasPermission("*");
 		if (args.length < 2 && !console) {
 			sender.sendMessage("§cUsage: /kick <pseudo> <raison>");
 			return;

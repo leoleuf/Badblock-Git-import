@@ -31,8 +31,7 @@ public class CommandUnmute extends SanctionCommand {
 	public void run(CommandSender sender, String[] args) {
 		boolean console = !(sender instanceof Player);
 		if (!console)
-			console = FriendPlayer.get((Player) sender).tail
-			|| sender.hasPermission("ladder.command.punish.bypassreasonpardon");
+			console = (FriendPlayer.get((Player) sender) != null && FriendPlayer.get((Player) sender).tail) || sender.hasPermission("ladder.command.punish.bypassreasonpardon");
 		if (args.length < 2 && !console) {
 			sender.sendMessage("§cUsage: /unmute <pseudo> <raison>");
 			return;
