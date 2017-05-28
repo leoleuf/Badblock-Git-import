@@ -101,7 +101,6 @@ import net.md_5.bungee.netty.PipelineUtils;
 	private long										connections = -1;
 	private RedisService								redisConnector;
 	private boolean										finished;
-	private long										delete = 10;
 	private long										openTime;
 	private long										time = 43200;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
@@ -354,8 +353,8 @@ import net.md_5.bungee.netty.PipelineUtils;
 			timerTask = new TimerTask() {
 				@Override
 				public void run() {
-					double o = PreLoginListener.players.size();
-					if (done && delete == -1 && BungeeCord.getInstance().getOnlineCount() <= 0) {
+					double o = PreLoginListener.players.size() / 500 * 100 ;
+					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
 						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;
 						String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
@@ -367,37 +366,34 @@ import net.md_5.bungee.netty.PipelineUtils;
 					}else{
 						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + PreLoginListener.players.size() + "> /!\\");
 					}
-					if (done && delete == 0) {
-						delete = -1;
-						deleteTime = System.currentTimeMillis() + 7200_000L;
-						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYESERVER!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-					}else if (done && delete > 0) delete--;
-					if (done && delete == -1 && deleteTime < System.currentTimeMillis()) {
+					if (done) {
 						time--;
-						if (time == 0) {
-							BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eDéconnexion de cette absorbance...");
-							for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
-								player.disconnect("§cDéconnexion de l'aborsbance. Vous pouvez vous reconnecter au serveur.");
-							}
-							try {
-								Thread.sleep(1000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-							finished = true;
-							String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-							if (BadblockDatabase.getInstance().isConnected())
-								BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
-							System.exit(-1);
-						}else if (time % 60 == 0 && ((time % 900 == 0 && time <= 3600) || (time % 600 == 0 && time <= 1800) || (time % 300 == 0 && time <= 900))) {
-							BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
-									(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-						}else if (time % 60 == 0 && time % 900 == 0 && time <= 3600) {
-							BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
-									(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-						}else if (time > 0 && time < 60 && time % 15 == 0) {
-							BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " + time + " seconde" + (time > 1 ? "s" : "") + ".");
-						} 
+						if (time >= 0) {
+							if (time == 0) {
+								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eDéconnexion de cette absorbance...");
+								for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
+									player.disconnect("§cDéconnexion de l'aborsbance. Vous pouvez vous reconnecter au serveur.");
+								}
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+								finished = true;
+								String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+								if (BadblockDatabase.getInstance().isConnected())
+									BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
+								System.exit(-1);
+							}else if (time % 60 == 0 && ((time % 900 == 0 && time <= 3600) || (time % 600 == 0 && time <= 1800) || (time % 300 == 0 && time <= 900))) {
+								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
+										(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
+							}else if (time % 60 == 0 && time % 900 == 0 && time <= 3600) {
+								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
+										(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
+							}else if (time > 0 && time < 60 && time % 15 == 0) {
+								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " + time + " seconde" + (time > 1 ? "s" : "") + ".");
+							} 
+						}
 					}
 				}
 			};

@@ -29,7 +29,7 @@ public class PreLoginListener implements Listener {
 				if (!players.contains(playerName))
 					players.add(playerName);
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
-		if (players.size() >= 1000) {
+		if (players.size() >= 500) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
 		}
 	}
