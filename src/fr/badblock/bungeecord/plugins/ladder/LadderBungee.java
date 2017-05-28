@@ -178,7 +178,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			new Timer().schedule(new TimerTask() {
 				@Override
 				public void run() {
-					rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
 			}, 1000, 1000);
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
@@ -463,7 +463,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 			break;
 		}
-		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
 		playerList.put(player.getName(), player);
@@ -527,7 +527,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				}
 			bungeePlayerList.remove(lPlayer.getName());
 		}
-		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + bungeePlayerCount, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + "-" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
