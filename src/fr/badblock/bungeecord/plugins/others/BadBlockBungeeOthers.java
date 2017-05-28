@@ -103,7 +103,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 	private boolean										finished;
 	private long										delete = 10;
 	private long										openTime;
-	private long										time = 14400;
+	private long										time = 43200;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
 
