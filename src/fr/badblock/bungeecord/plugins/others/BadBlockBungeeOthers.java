@@ -102,7 +102,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 	private RedisService								redisConnector;
 	private boolean										finished;
 	private long										openTime;
-	private long										time = 43200;
+	private long										time = 86400;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
 
