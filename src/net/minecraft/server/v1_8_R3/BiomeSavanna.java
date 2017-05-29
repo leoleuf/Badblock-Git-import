@@ -9,9 +9,10 @@ public class BiomeSavanna extends BiomeBase {
     protected BiomeSavanna(int i) {
         super(i);
         this.au.add(new BiomeBase.BiomeMeta(EntityHorse.class, 1, 2, 6));
-        this.as.A = 1;
-        this.as.B = 4;
-        this.as.C = 20;
+        this.decorator.A = 1;
+        this.decorator.B = 4;
+        this.decorator.C = 20;
+        this.decorator.mushroomCount = 8;
     }
 
     @Override
@@ -48,9 +49,9 @@ public class BiomeSavanna extends BiomeBase {
 
         public BiomeSavannaSub(int i, BiomeBase biomebase) {
             super(i, biomebase);
-            this.as.A = 2;
-            this.as.B = 2;
-            this.as.C = 5;
+            this.decorator.A = 2;
+            this.decorator.B = 2;
+            this.decorator.C = 5;
         }
 
         @Override
@@ -69,7 +70,7 @@ public class BiomeSavanna extends BiomeBase {
 
         @Override
 		public void a(World world, Random random, BlockPosition blockposition) {
-            this.as.a(world, random, this, blockposition);
+            this.decorator.a(world, random, this, blockposition);
         }
     }
 }

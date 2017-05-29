@@ -12,12 +12,12 @@ public class BiomeForest extends BiomeBase {
     public BiomeForest(int i, int j) {
         super(i);
         this.aG = j;
-        this.as.A = 10;
-        this.as.C = 2;
+        this.decorator.A = 10;
+        this.decorator.C = 2;
         if (this.aG == 1) {
-            this.as.A = 6;
-            this.as.B = 100;
-            this.as.C = 1;
+            this.decorator.A = 6;
+            this.decorator.B = 100;
+            this.decorator.C = 1;
         }
 
         this.a(5159473);
@@ -33,9 +33,10 @@ public class BiomeForest extends BiomeBase {
         }
 
         if (this.aG == 3) {
-            this.as.A = -999;
+            this.decorator.A = -999;
         }
-
+        
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

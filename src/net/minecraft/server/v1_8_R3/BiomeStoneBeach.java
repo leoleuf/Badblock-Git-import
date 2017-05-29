@@ -7,9 +7,9 @@ public class BiomeStoneBeach extends BiomeBase {
         this.au.clear();
         this.ak = Blocks.STONE.getBlockData();
         this.al = Blocks.STONE.getBlockData();
-        this.as.A = -999;
-        this.as.D = 0;
-        this.as.F = 0;
-        this.as.G = 0;
+        this.decorator.A = -999;
+        this.decorator.D = 0;
+        this.decorator.F = 0;
+        this.decorator.G = 0;
     }
 }

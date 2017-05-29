@@ -22,16 +22,16 @@ public class BiomeMesa extends BiomeBase {
         this.au.clear();
         this.ak = Blocks.SAND.getBlockData().set(BlockSand.VARIANT, BlockSand.EnumSandVariant.RED_SAND);
         this.al = Blocks.STAINED_HARDENED_CLAY.getBlockData();
-        this.as.A = -999;
-        this.as.D = 20;
-        this.as.F = 3;
-        this.as.G = 5;
-        this.as.B = 0;
+        this.decorator.A = -999;
+        this.decorator.D = 20;
+        this.decorator.F = 3;
+        this.decorator.G = 5;
+        this.decorator.B = 0;
         this.au.clear();
         if (flag1) {
-            this.as.A = 5;
+            this.decorator.A = 5;
         }
-
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

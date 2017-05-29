@@ -35,7 +35,7 @@ public class BiomeBaseSub extends BiomeBase {
 
     @Override
 	public void a(World world, Random random, BlockPosition blockposition) {
-        this.aE.as.a(world, random, this, blockposition);
+        this.aE.decorator.a(world, random, this, blockposition);
     }
 
     @Override

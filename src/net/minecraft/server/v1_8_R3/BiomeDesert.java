@@ -9,11 +9,12 @@ public class BiomeDesert extends BiomeBase {
         this.au.clear();
         this.ak = Blocks.SAND.getBlockData();
         this.al = Blocks.SAND.getBlockData();
-        this.as.A = -999;
-        this.as.D = 2;
-        this.as.F = 50;
-        this.as.G = 10;
+        this.decorator.A = -999;
+        this.decorator.D = 2;
+        this.decorator.F = 50;
+        this.decorator.G = 10;
         this.au.clear();
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

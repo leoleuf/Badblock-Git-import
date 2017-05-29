@@ -11,9 +11,10 @@ public class BiomePlains extends BiomeBase {
         this.a(0.8F, 0.4F);
         this.a(BiomeBase.e);
         this.au.add(new BiomeBase.BiomeMeta(EntityHorse.class, 5, 2, 6));
-        this.as.A = -999;
-        this.as.B = 4;
-        this.as.C = 10;
+        this.decorator.A = -999;
+        this.decorator.B = 4;
+        this.decorator.C = 10;
+        this.decorator.mushroomCount = 8;
     }
 
     @Override
@@ -54,11 +55,11 @@ public class BiomePlains extends BiomeBase {
         int l;
 
         if (d0 < -0.8D) {
-            this.as.B = 15;
-            this.as.C = 5;
+            this.decorator.B = 15;
+            this.decorator.C = 5;
         } else {
-            this.as.B = 4;
-            this.as.C = 10;
+            this.decorator.B = 4;
+            this.decorator.C = 10;
             BiomeBase.ag.a(BlockTallPlant.EnumTallFlowerVariants.GRASS);
 
             for (i = 0; i < 7; ++i) {
