@@ -1,5 +1,7 @@
 package fr.badblock.ladder.plugins.others.commands.mod.punish;
 
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -21,6 +23,7 @@ import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
 public class CommandTempban extends SanctionCommand {
 
 	public static CommandTempban instance;
+	 private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy à HH:mm:ss");
 
 	public CommandTempban() {
 		super("tempban", "ladder.command.tempban", "tb");
@@ -91,6 +94,7 @@ public class CommandTempban extends SanctionCommand {
 			return;
 		}
 
+		long o = time + System.currentTimeMillis();
 		// Punish player name
 		this.punish(offlinePlayer.getAsPunished(), time, sender, reason);
 		String bannerIp = sender instanceof Player ? ((Player) sender).getLastAddress().getHostAddress() : "127.0.0.1";
@@ -99,7 +103,7 @@ public class CommandTempban extends SanctionCommand {
 						+ BadblockDatabase.getInstance().mysql_real_escape_string(offlinePlayer.getName()) + "', '"
 						+ BadblockDatabase.getInstance()
 								.mysql_real_escape_string(offlinePlayer.getLastAddress().getHostAddress())
-						+ "', 'tempban', '" + (time + System.currentTimeMillis()) + "', '" + System.currentTimeMillis()
+						+ "', 'tempban', '" + o + "', '" + System.currentTimeMillis()
 						+ "', '" + BadBlockOthers.getInstance().simpleDateFormat.format(new Date()) + "', '"
 						+ BadblockDatabase.getInstance().mysql_real_escape_string(reason) + "', '"
 						+ BadblockDatabase.getInstance().mysql_real_escape_string(sender.getName()) + "', '"
@@ -116,7 +120,7 @@ public class CommandTempban extends SanctionCommand {
 				connected.getBukkitServer().broadcast("§b➤ " + connected.getName() + " §7a été banni par §b"
 						+ sender.getName() + "§7 pendant §b" + humanTime + "§7 pour §b" + reason + "§7.");
 			}
-			connected.disconnect(buildBanReason(System.currentTimeMillis() + time, reason));
+			connected.disconnect(buildBanReason(connected.getName(), o, reason));
 		}
 
 		// Saving datas
@@ -132,11 +136,24 @@ public class CommandTempban extends SanctionCommand {
 		}
 	}
 
-	public String buildBanReason(long expire, String banReason) {
-		String time = "Permanent";
-		if (expire != -1L)
-			time = Time.MILLIS_SECOND.toFrench(expire - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
-		return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
+	public String buildBanReason(String pseudo, long expire, String banReason) {
+		final StringBuilder fDate = new StringBuilder();
+		Request request = new Request("SELECT * FROM sanctions WHERE expire = '" + expire + "' AND pseudo = '" + pseudo + "'", RequestType.GETTER) {
+			String date = "";
+			@Override
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next())
+						date = sdf.format(new Date(resultSet.getLong("timestamp")));
+					fDate.append(date);
+				}catch(Exception err) {
+					err.printStackTrace();
+				}
+			}
+		};
+		BadblockDatabase.getInstance().addSyncRequest(request);
+		String muted = sdf.format(new Date(expire));
+		return "§8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b §b§lBadBlock §8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b\n\n§cCe compte a été suspendu !\n\nCe compte a enfreint le règlement de BadBlock sous le motif \"§f" + banReason + "§c\" le " + fDate.toString() + ".\n§cLa suspension se termine le " + muted + "\n§eEn cas de contestation, postez votre réclamation sur le forum (https://forum.badblock.fr/)\n\n§r§8§l«§b§l-§8§l»§m-----------------------§f§8§l«§b§l-§8§l»";
 	}
 
 	private void punish(Punished punished, long time, CommandSender sender, String reason) {
