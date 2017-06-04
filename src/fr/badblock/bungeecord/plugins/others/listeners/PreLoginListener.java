@@ -1,8 +1,6 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
@@ -17,19 +15,18 @@ import net.md_5.bungee.event.EventPriority;
 
 public class PreLoginListener implements Listener {
 
-	public static List<String> players = new ArrayList<>();
+	//public static List<String> players = new ArrayList<>();
 
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
 		Player.get(proxiedPlayer);
-		String playerName = proxiedPlayer.getName().toLowerCase();
-		if (event.getTarget() != null)
+		/*if (event.getTarget() != null)
 			if (event.getTarget().getName() != null)
 				if (!players.contains(playerName))
-					players.add(playerName);
+					players.add(playerName);*/
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
-		if (players.size() >= 1500) {
+		if (LadderBungee.getInstance().bungeePlayerList.size() >= 500) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
 		}
 	}
@@ -41,9 +38,4 @@ public class PreLoginListener implements Listener {
 			event.setCancelReason("§f[§eBadyBot§f] §cERR.. ERRE.. ERREUR! Nous n'avons pas pu vous connecter à notre plateforme de divertiseement. §6Peut-être utilisez-vous une autre adresse IP que play.badblock.fr ou badblock.fr pour vous connecter ? §3Dans le cas échéant, nous vous invitons à patienter, le serveur n'est peut-être pas préparé à vous recevoir, il sera stimulé si nécessaire pour pouvoir réaccepter sur lui des joueurs. §aVous pouvez également nous avertir depuis TeamSpeak ou sur le forum pour que notre ami BadyBot se recompose et vous redonne accès à notre plateforme de jeux.");
 		}*/
 	}
-	
-	//public static long getNotLoggedPlayers() {
-		//return BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.getServer() != null && player.getServer().getInfo() != null && !player.getServer().getInfo().getName().startsWith("login")).count();
-//	}
-
 }

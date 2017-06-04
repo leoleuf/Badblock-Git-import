@@ -355,7 +355,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 			timerTask = new TimerTask() {
 				@Override
 				public void run() {
-					double o = PreLoginListener.players.size() / 500 * 100 ;
+					double o = LadderBungee.getInstance().bungeePlayerList.size() / 500 * 100 ;
 					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
 						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;
@@ -366,7 +366,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 					}else if (done) {
 						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 					}else{
-						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + PreLoginListener.players.size() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "> /!\\");
 					}
 					if (done) {
 						time--;
