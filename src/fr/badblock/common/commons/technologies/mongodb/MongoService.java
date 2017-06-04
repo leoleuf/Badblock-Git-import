@@ -1,7 +1,5 @@
 package fr.badblock.common.commons.technologies.mongodb;
 
-import java.net.UnknownHostException;
-
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
@@ -16,6 +14,7 @@ import lombok.Setter;
 	private		boolean						isDead;
 	private     DB							db;
 
+	@SuppressWarnings("deprecation")
 	public MongoService(String name, MongoCredentials credentials) {
 		this.setCredentials(credentials);
 		this.setName(name);
@@ -38,7 +37,7 @@ import lombok.Setter;
 				);*/
 		try {
 			mongoClient = new MongoClient(credentials.getHostnames().get(0), credentials.getPort());
-		} catch (UnknownHostException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		db = client().getDB(this.getCredentials().getDatabase());
