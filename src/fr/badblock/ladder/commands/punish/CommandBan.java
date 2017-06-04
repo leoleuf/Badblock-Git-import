@@ -46,7 +46,7 @@ public class CommandBan extends Command {
 									ChatColor.BOLD + reason + ".");
 						}
 
-						connected.disconnect(player.getAsPunished().buildBanReason());
+						//connected.disconnect(player.getAsPunished().buildBanReason());
 					}
 
 					sender.sendMessage(ChatColor.GREEN + "Appliqué !");

@@ -51,7 +51,7 @@ public class CommandBanip extends Command {
 				for(UUID uniqueId : player.getIpData().getCurrentPlayers()){
 					Player connected = Ladder.getInstance().getPlayer(uniqueId);
 					if(connected != null){
-						connected.disconnect(player.getIpAsPunished().buildBanReason());
+						//connected.disconnect(player.getIpAsPunished().buildBanReason());
 					}
 				}
 				

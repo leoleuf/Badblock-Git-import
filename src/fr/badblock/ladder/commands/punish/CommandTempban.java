@@ -57,7 +57,7 @@ public class CommandTempban extends Command {
 							connected.getBukkitServer().broadcast(msg);
 						}
 						
-						connected.disconnect(player.getAsPunished().buildBanReason());
+						//connected.disconnect(player.getAsPunished().buildBanReason());
 					}
 					
 					

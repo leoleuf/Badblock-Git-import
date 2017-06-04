@@ -1,4 +1,4 @@
-package fr.badblock.ladder.commands.punish;
+4package fr.badblock.ladder.commands.punish;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatColor;
@@ -58,7 +58,7 @@ public class CommandTempbanip extends Command {
 							connected.getBukkitServer().broadcast(msg);
 						}
 						
-						connected.disconnect(player.getIpAsPunished().buildBanReason());
+						//connected.disconnect(player.getIpAsPunished().buildBanReason());
 					}
 					
 					sender.sendMessage(msg);
