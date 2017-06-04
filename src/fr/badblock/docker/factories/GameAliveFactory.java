@@ -10,6 +10,7 @@ import lombok.Setter;
 	private GameState   gameState;
 	private int			players;
 	private int			slots;
+	private long		timestamp = 0;
 	
 	public GameAliveFactory(String name, GameState gameState, boolean isJoinable, int players, int slots) {
 		this.setName(name);
