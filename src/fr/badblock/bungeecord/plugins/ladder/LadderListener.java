@@ -218,7 +218,7 @@ public class LadderListener implements Listener {
 			if(lPlayer == null){
 				e.getSender().disconnect(); return;
 			} else if(lPlayer.getPunished() == null) return;
-
+			if (bPlayer.getServer() == null || (bPlayer.getServer() != null && bPlayer.getServer().getInfo() != null && bPlayer.getServer().getInfo().getName() != null && bPlayer.getServer().getInfo().getName().startsWith("login"))) return;
 			Punished ip	= LadderBungee.getInstance().getIpPunishable(lPlayer);
 
 			if(ip == null) ip = new Punished();
