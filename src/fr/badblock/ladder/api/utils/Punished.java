@@ -61,12 +61,6 @@ import lombok.Data;
 		} else return "à vie";
 	}
 	
-	public String buildBanReason() {
-		String time = "Permanent";
-	    if (banEnd != -1L) time = Time.MILLIS_SECOND.toFrench(banEnd - System.currentTimeMillis(), Time.MINUTE, Time.YEAR);
-	    return "Vous êtes banni de ce serveur ! (Temps: " + time + "§r | Motif: " + banReason.replace("§", "&") + "§r)";
-	}
-	
 	public String buildMuteReason(){
 		String time = "";
 		if(muteEnd != -1){
