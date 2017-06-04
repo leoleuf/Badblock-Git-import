@@ -42,17 +42,29 @@ public class CheatCommand extends Command {
 							public void done(ResultSet resultSet) {
 								try {
 									if (resultSet.next()) {
-										int count = resultSet.getInt("count");
-										String broadcastMessage = "§f(§7Guardian§a3.0§f) §4[REPORT] §6[" + count + " signalement" + (count > 1 ? "s" : "") + "] §e" + playerName + " §c[[SERVER]]";
-										GuardianReport guardianReport = new GuardianReport(UUID.fromString(resultSeta.getString("uuid")), broadcastMessage);
-										BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("guardian.report", new Gson().toJson(guardianReport), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
-										if (count == 0) {
-											// Il peut report pour cheat
-											BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO cheatReports(pseudo, byPlayer, timestamp) VALUES('" + BadblockDatabase.getInstance().mysql_real_escape_string(playerName) + "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(sender.getName()) + "', '" + (System.currentTimeMillis() + 86400000) + "')", RequestType.SETTER));
-											sender.sendMessage("§aVous avez signalé ce joueur. Les modérateurs vérifieront votre signalement prochainement.");
-										}else{
-											sender.sendMessage("§cVous avez déjà signalé ce joueur ces dernières 24 heures.");
-										}
+										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT COUNT(*) AS count FROM cheatReports WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(playerName) + "' AND timestamp > '" + System.currentTimeMillis() + "'", RequestType.GETTER) {
+											@Override
+											public void done(ResultSet rSet) {
+												try {
+													if (rSet.next()) {
+														int count = resultSet.getInt("count");
+														int realCount = rSet.getInt("count");
+														String broadcastMessage = "§4§l(Signalement) §c[[SERVER]] §e" + playerName + " &7=> §6" + realCount + " signalement" + (realCount > 1 ? "s" : "");
+														GuardianReport guardianReport = new GuardianReport(UUID.fromString(resultSeta.getString("uuid")), broadcastMessage);
+														BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("guardian.report", new Gson().toJson(guardianReport), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
+														if (count == 0) {
+															// Il peut report pour cheat
+															BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO cheatReports(pseudo, byPlayer, timestamp) VALUES('" + BadblockDatabase.getInstance().mysql_real_escape_string(playerName) + "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(sender.getName()) + "', '" + (System.currentTimeMillis() + 86400000) + "')", RequestType.SETTER));
+															sender.sendMessage("§aVous avez signalé ce joueur. Les modérateurs vérifieront votre signalement prochainement.");
+														}else{
+															sender.sendMessage("§cVous avez déjà signalé ce joueur ces dernières 24 heures.");
+														}
+													}
+												}catch(Exception error2) {
+													error2.printStackTrace();
+												}
+											}
+										});
 									}else{
 										sender.sendMessage("§cErreur.");
 									}
