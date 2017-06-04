@@ -30,8 +30,8 @@ public class GuardianReceiveReportListener extends RabbitListener {
 		if (player != null)
 			server = player.getBukkitServer().getName();
 		RawMessage component = getMessage(guardianReport.getMessage().replace("[SERVER]", server),
-				"Cliquez pour vous téléporter au joueur");
-		component.setClickEvent(ClickEventType.RUN_COMMAND, false, "/track " + player.getName());
+				"§aCliquez pour vous téléporter au joueur" + (player != null ? " §c" + player.getName() : ""));
+		component.setClickEvent(ClickEventType.RUN_COMMAND, false, "/gconnect " + player.getName());
 		Ladder.getInstance().getConsoleCommandSender()
 				.sendMessage(guardianReport.getMessage().replace("[SERVER]", server));
 		Ladder.getInstance().getOnlinePlayers()
