@@ -2,12 +2,14 @@ package fr.badblock.ladder.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.badblock.ladder.api.Ladder;
+import fr.badblock.ladder.sql.Request.RequestType;
 
 public class BadblockDatabase {
 
@@ -156,6 +158,32 @@ public class BadblockDatabase {
 		return this.isConnected;
 	}
 
+	public void addRequest(Request request) {
+		new Thread() {
+			@Override
+			public void run() {
+				addSyncRequest(request);
+			}
+		}.start();
+	}
+
+	public void addSyncRequest(Request request) {
+		try {
+			Statement statement = createStatement();
+			if (request.getRequestType().equals(RequestType.SETTER)) {
+				request.id = statement.executeUpdate(request.getRequest(), Statement.RETURN_GENERATED_KEYS);
+			} else {
+				ResultSet resultSet = statement.executeQuery(request.getRequest());
+				request.done(resultSet);
+				if (!request.isDoNotClosed())
+					resultSet.close();
+			}
+			statement.close();
+		} catch (Exception error) {
+			error.printStackTrace();
+		}
+	}
+	
 	/**
 	 * V�rifier si la connexion est active.
 	 * 

@@ -3,8 +3,11 @@ package fr.badblock.ladder.entities;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -28,6 +31,9 @@ import fr.badblock.ladder.api.events.all.PlayerJoinEvent;
 import fr.badblock.ladder.api.events.all.PlayerQuitEvent;
 import fr.badblock.ladder.api.events.all.ServerSwitchEvent;
 import fr.badblock.ladder.data.LadderIpDataHandler;
+import fr.badblock.ladder.sql.BadblockDatabase;
+import fr.badblock.ladder.sql.Request;
+import fr.badblock.ladder.sql.Request.RequestType;
 import fr.badblock.permissions.PermissiblePlayer;
 import fr.badblock.protocol.PacketHandler;
 import fr.badblock.protocol.packets.Packet;
@@ -243,6 +249,28 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	private Map<String, LadderPlayer> loginPlayer = Maps.newConcurrentMap();
 
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy à HH:mm:ss");
+	 
+	public String buildBanReason(String pseudo, long expire, String banReason) {
+		final StringBuilder fDate = new StringBuilder();
+		Request request = new Request("SELECT * FROM sanctions WHERE expire = '" + expire + "' AND pseudo = '" + pseudo + "'", RequestType.GETTER) {
+			String date = "";
+			@Override
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next())
+						date = sdf.format(new Date(resultSet.getLong("timestamp")));
+					fDate.append(date);
+				}catch(Exception err) {
+					err.printStackTrace();
+				}
+			}
+		};
+		BadblockDatabase.getInstance().addSyncRequest(request);
+		String muted = sdf.format(new Date(expire));
+		return "§8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b §b§lBadBlock §8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b\n\n§cCe compte a été suspendu !\n\nCe compte a enfreint le règlement de BadBlock sous le motif \"§f" + banReason + "§c\" le " + fDate.toString() + ".\n§cLa suspension se termine le " + muted + "\n§eEn cas de contestation, postez votre réclamation sur le forum (https://forum.badblock.fr/)\n\n§r§8§l«§b§l-§8§l»§m-----------------------§f§8§l«§b§l-§8§l»";
+	}
+	
 	@Override
 	public void handle(PacketPlayerLogin packet) {
 		LadderPlayer    player = new LadderPlayer(this, packet);
@@ -274,9 +302,9 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 		player.getIpAsPunished().checkEnd();
 
 		if(player.getPunished().isBan()){
-			player.disconnect(player.getPunished().buildBanReason()); return;
+			player.disconnect(buildBanReason(player.getName(), player.getPunished().getBanEnd(), player.getPunished().getBanReason())); return;
 		} else if((player.getIpData()).getAsPunished().isBan()){
-			player.disconnect(player.getIpData().getAsPunished().buildBanReason()); return;
+			player.disconnect(buildBanReason(player.getName(), player.getIpData().getAsPunished().getBanEnd(), player.getIpData().getAsPunished().getBanReason())); return;
 		}
 
 		if(event.isCancelled()) {
