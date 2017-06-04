@@ -238,8 +238,8 @@ import net.md_5.bungee.netty.PipelineUtils;
 				data.bungeeIp = a;
 				//int bungeeId = 
 				rabbitService.sendPacket("bungee.", new Gson().toJson(data), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-				long count = BungeeCord.getInstance().getPlayers().stream().filter(player -> player.getPendingConnection().isOnlineMode()).count();
-				rabbitService.sendPacket("bungee.online", Long.toString(count), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				long count = BungeeCord.getInstance().getPlayers().stream().filter(player -> player.getPendingConnection().isOnlineInfo()).count();
+				rabbitService.sendPacket("bungee.online", a + ";" + Long.toString(count), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		};
 		new Timer().schedule(timerTask2, 1000, 1000);
