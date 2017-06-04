@@ -112,7 +112,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	private boolean legacy;
 	@Getter
 	private String extraDataInHandshake = "";
+	@Getter
 	private boolean onlinePlayer;
+	@Getter
+	private boolean onlineInfo;
 	@Getter
 	private String authKey;
 
@@ -407,6 +410,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						if (result.object.has("authKey"))
 							authKey 	 = result.object.get("authKey").getAsString();
 						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
+							onlineInfo = true;
 							OnlineManager.joinBypass(InitialHandler.this, new Callback<Boolean>() {
 
 								@Override
@@ -432,6 +436,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	@Override
 	public void handle(final EncryptionResponse encryptResponse)
 	{
+		onlineInfo = true;
 		try {
 			Preconditions.checkState( thisState == State.ENCRYPT, "Not expecting ENCRYPT" );
 

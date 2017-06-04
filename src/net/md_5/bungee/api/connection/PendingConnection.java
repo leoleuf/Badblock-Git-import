@@ -66,6 +66,9 @@ public interface PendingConnection extends Connection
      * @return the online mode
      */
     boolean isOnlineMode();
+    
+    // If player is in online mode
+    boolean isOnlineInfo();
 
     /**
      * Set this connection's online mode.
