@@ -1,4 +1,4 @@
-4package fr.badblock.ladder.commands.punish;
+package fr.badblock.ladder.commands.punish;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ChatColor;
