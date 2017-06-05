@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
@@ -25,7 +27,9 @@ public class PagePlayerUpdateData extends LadderPage {
 			object.addProperty("name", input.get("name"));
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
 			input.entrySet().stream().filter(entry -> !entry.getKey().equals("name")).forEach(entry -> {
-				player.getData().addProperty(entry.getKey(), entry.getValue());
+				JsonParser parser = new JsonParser();
+				JsonElement jsonObject = parser.parse(entry.getValue());
+				player.getData().add(entry.getKey(), jsonObject);
 			});
 			Player plo = Ladder.getInstance().getPlayer(player.getName());
 			if (plo != null) {
