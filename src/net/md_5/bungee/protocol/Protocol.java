@@ -81,24 +81,24 @@ public enum Protocol
 					Respawn.class,
 					map( ProtocolConstants.MINECRAFT_1_8, 0x07 ),
 					map( ProtocolConstants.MINECRAFT_1_9, 0x33 ),
-					map( ProtocolConstants.MINECRAFT_1_12, 0x35 )
+					map( ProtocolConstants.MINECRAFT_1_12, 0x34 )
 					);
 			TO_CLIENT.registerPacket(
 					BossBar.class,
 					map( ProtocolConstants.MINECRAFT_1_9, 0x0C ),
-					map( ProtocolConstants.MINECRAFT_1_12, 0x0D )
+					map( ProtocolConstants.MINECRAFT_1_12, 0x0C )
 					);
 			TO_CLIENT.registerPacket(
 					PlayerListItem.class, // PlayerInfo
 					map( ProtocolConstants.MINECRAFT_1_8, 0x38 ),
 					map( ProtocolConstants.MINECRAFT_1_9, 0x2D ),
-					map( ProtocolConstants.MINECRAFT_1_12, 0x2E )
+					map( ProtocolConstants.MINECRAFT_1_12, 0x2D )
 					);
 			TO_CLIENT.registerPacket(
 					TabCompleteResponse.class,
 					map( ProtocolConstants.MINECRAFT_1_8, 0x3A ),
 					map( ProtocolConstants.MINECRAFT_1_9, 0x0E ),
-					map( ProtocolConstants.MINECRAFT_1_12, 0x0F )
+					map( ProtocolConstants.MINECRAFT_1_12, 0x0E )
 					);
 			TO_CLIENT.registerPacket(
 					ScoreboardObjective.class,
