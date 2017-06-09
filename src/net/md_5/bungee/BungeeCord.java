@@ -125,6 +125,7 @@ public class BungeeCord extends ProxyServer
 	 * Server socket listener.
 	 */
 	public final Collection<Channel> listeners = new HashSet<>();
+	private final Map<UUID, UserConnection> connectionsByUUID = new HashMap<>();
 	/**
 	 * Fully qualified connections.
 	 */
@@ -558,15 +559,7 @@ public class BungeeCord extends ProxyServer
 		connectionLock.readLock().lock();
 		try
 		{
-			for ( ProxiedPlayer proxiedPlayer : connections.values() )
-			{
-				if ( proxiedPlayer.getUniqueId().equals( uuid ) )
-				{
-					return proxiedPlayer;
-				}
-			}
-
-			return null;
+			return connectionsByUUID.get( uuid );
 		} finally
 		{
 			connectionLock.readLock().unlock();
@@ -663,6 +656,7 @@ public class BungeeCord extends ProxyServer
 		try
 		{
 			connections.put( con.getName(), con );
+			connectionsByUUID.put( con.getUniqueId(), con );
 			connectionsByOfflineUUID.put( con.getPendingConnection().getOfflineId(), con );
 		} finally
 		{
@@ -679,6 +673,7 @@ public class BungeeCord extends ProxyServer
 			if ( connections.get( con.getName() ) == con )
 			{
 				connections.remove( con.getName() );
+				connectionsByUUID.remove( con.getUniqueId() );
 				connectionsByOfflineUUID.remove( con.getPendingConnection().getOfflineId() );
 			}
 		} finally
