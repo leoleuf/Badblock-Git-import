@@ -78,6 +78,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 
 	private final BungeeCord bungee;
 	private ChannelWrapper ch;
+	private String name;
 	@Getter
 	private final ListenerInfo listener;
 	@Getter
@@ -472,6 +473,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 						LoginResult obj = BungeeCord.getInstance().gson.fromJson( result, LoginResult.class );
 						if ( obj != null && obj.getId() != null )
 						{
+							name = obj.getName();
 							loginProfile = obj;
 							InitialHandler initialHandler = InitialHandler.this;
 							String playerName = BadblockDatabase.getInstance().mysql_real_escape_string(initialHandler.getName());
@@ -642,7 +644,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	@Override
 	public String getName()
 	{
-		return ( loginRequest == null ) ? null : loginRequest.getData();
+		return (name != null ) ? name : ( loginRequest == null ) ? null : loginRequest.getData();
 	}
 
 	@Override
