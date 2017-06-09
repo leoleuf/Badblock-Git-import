@@ -51,7 +51,6 @@ import net.md_5.bungee.protocol.MinecraftDecoder;
 import net.md_5.bungee.protocol.MinecraftEncoder;
 import net.md_5.bungee.protocol.PacketWrapper;
 import net.md_5.bungee.protocol.Protocol;
-import net.md_5.bungee.protocol.ProtocolConstants;
 import net.md_5.bungee.protocol.packet.Chat;
 import net.md_5.bungee.protocol.packet.ClientSettings;
 import net.md_5.bungee.protocol.packet.Kick;
@@ -415,8 +414,8 @@ public final class UserConnection implements ProxiedPlayer
 	@Override
 	public void sendMessage(ChatMessageType position, BaseComponent... message)
 	{
-		// Action bar on 1.8 doesn't display the new JSON formattings, legacy works - send it using this for now
-		if ( position == ChatMessageType.ACTION_BAR && getPendingConnection().getVersion() <= ProtocolConstants.MINECRAFT_1_8 )
+		// Action bar doesn't display the new JSON formattings, legacy works - send it using this for now
+		if ( position == ChatMessageType.ACTION_BAR )
 		{
 			sendMessage( position, ComponentSerializer.toString( new TextComponent( BaseComponent.toLegacyText( message ) ) ) );
 		} else
@@ -428,8 +427,8 @@ public final class UserConnection implements ProxiedPlayer
 	@Override
 	public void sendMessage(ChatMessageType position, BaseComponent message)
 	{
-		// Action bar on 1.8 doesn't display the new JSON formattings, legacy works - send it using this for now
-		if ( position == ChatMessageType.ACTION_BAR && getPendingConnection().getVersion() <= ProtocolConstants.MINECRAFT_1_8 )
+		// Action bar doesn't display the new JSON formattings, legacy works - send it using this for now
+		if ( position == ChatMessageType.ACTION_BAR )
 		{
 			sendMessage( position, ComponentSerializer.toString( new TextComponent( BaseComponent.toLegacyText( message ) ) ) );
 		} else
