@@ -239,9 +239,10 @@ public class FriendPlayer {
 								}
 								fp.friends.putAll(fr);
 								String p = resultSet.getString("party");
-								if (p != null && !"".equals(p)) {
+								System.out.println(name + " > '" + p + "'");
+								if (p != null && !p.isEmpty()) {
 									fp.party = BadBlockOthers.getInstance().getGson()
-											.fromJson(resultSet.getString("party"), partyType);
+											.fromJson(p, partyType);
 									if (fp.party != null) {
 										fp.party.register();
 										fp.party = Party.getAuthentic(fp.party);
