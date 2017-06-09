@@ -30,7 +30,6 @@ import java.util.logging.Logger;
 import org.fusesource.jansi.AnsiConsole;
 
 import com.google.common.base.Charsets;
-import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -613,7 +612,7 @@ public class BungeeCord extends ProxyServer
 	@Override
 	public String getGameVersion()
 	{
-		return Joiner.on( ", " ).join( ProtocolConstants.SUPPORTED_VERSIONS );
+		return ProtocolConstants.SUPPORTED_VERSIONS.get( 0 ) + "-" + ProtocolConstants.SUPPORTED_VERSIONS.get( ProtocolConstants.SUPPORTED_VERSIONS.size() - 1 );
 	}
 
 	@Override
