@@ -48,7 +48,7 @@ public class CheatCommand extends Command {
 												try {
 													if (rSet.next()) {
 														int count = resultSet.getInt("count");
-														int realCount = rSet.getInt("count");
+														int realCount = rSet.getInt("count") + 1;
 														String broadcastMessage = "§4§l(Signalement) §c[[SERVER]] §e" + playerName + " &7=> §6" + realCount + " signalement" + (realCount > 1 ? "s" : "");
 														GuardianReport guardianReport = new GuardianReport(UUID.fromString(resultSeta.getString("uuid")), broadcastMessage);
 														BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("guardian.report", new Gson().toJson(guardianReport), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
