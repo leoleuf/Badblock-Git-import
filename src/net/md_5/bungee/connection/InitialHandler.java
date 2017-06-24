@@ -26,7 +26,6 @@ import net.md_5.bungee.Util;
 import net.md_5.bungee.api.AbstractReconnectHandler;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.Favicon;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -165,7 +164,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	public void handle(LegacyPing ping) throws Exception
 	{
 		this.legacy = true;
-		final boolean v1_5 = ping.isV1_5();
+		/*final boolean v1_5 = ping.isV1_5();
 
 		ServerPing legacy = new ServerPing( new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), bungee.getProtocolVersion() ),
 				new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),
@@ -208,14 +207,14 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			}
 		};
 
-		bungee.getPluginManager().callEvent( new ProxyPingEvent( this, legacy, callback ) );
+		bungee.getPluginManager().callEvent( new ProxyPingEvent( this, legacy, callback ) );*/
 	}
 
-	private static String getFirstLine(String str)
+	/*private static String getFirstLine(String str)
 	{
 		int pos = str.indexOf( '\n' );
 		return pos == -1 ? str : str.substring( 0, pos );
-	}
+	}*/
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -259,7 +258,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			int protocol = ( ProtocolConstants.SUPPORTED_VERSION_IDS.contains( handshake.getProtocolVersion() ) ) ? handshake.getProtocolVersion() : bungee.getProtocolVersion();
 			pingBack.done( new ServerPing(
 					new ServerPing.Protocol( bungee.getName() + " " + bungee.getGameVersion(), protocol ),
-					new ServerPing.Players( listener.getMaxPlayers(), bungee.getOnlineCount(), null ),
+					new ServerPing.Players( listener.getMaxPlayers(), 0, null ),
 					motd, BungeeCord.getInstance().config.getFaviconObject() ),
 					null );
 			System.out.println("LegacyPing3(" + this.getAddress().getHostString() + ")");
