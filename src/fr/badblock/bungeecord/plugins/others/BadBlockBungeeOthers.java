@@ -261,7 +261,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 									LadderBungee.getInstance().slots = p;
 								}catch(Exception error) {
 									try {
-										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances;", RequestType.GETTER) {
+										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `timestamp` > " + System.currentTimeMillis() + ";", RequestType.GETTER) {
 											@Override
 											public void done(ResultSet result) {
 												try {
