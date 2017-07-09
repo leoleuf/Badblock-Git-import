@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-import org.json.simple.JSONObject;
+import fr.badblock.bungeecord.plugins.others.json.JSONObject;
 
 public class SlackMessage
 {
