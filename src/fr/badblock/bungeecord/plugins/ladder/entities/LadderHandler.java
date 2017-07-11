@@ -33,6 +33,7 @@ public class LadderHandler {
 	}
 	
 	public void close() throws IOException {
+		System.out.println("SOCKET > CLOSED");
 		closed = true;
 		socketHandler.close();
 	}

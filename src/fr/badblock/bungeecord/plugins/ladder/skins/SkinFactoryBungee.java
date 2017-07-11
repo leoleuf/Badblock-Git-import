@@ -60,7 +60,7 @@ public class SkinFactoryBungee {
 							Property textures = new Property(property.getName(), property.getValue(), property.getSignature());
 							InitialHandler handler = (InitialHandler) player.getPendingConnection();
 
-							LoginResult profile = new LoginResult(uuid.toString(), new Property[] { textures });
+							LoginResult profile = new LoginResult(uuid.toString(), player.getName(), new Property[] { textures });
 							Property[] present = profile.getProperties();
 							Property[] newprops = new Property[present.length + 1];
 							System.arraycopy(present, 0, newprops, 0, present.length);

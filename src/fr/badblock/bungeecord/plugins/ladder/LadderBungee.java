@@ -410,6 +410,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
+		System.out.println("Connecting " + packet.getPlayerName() + " : B");
 		if(playerList.containsKey(packet.getPlayerName())) {
 			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(packet.getPlayerName());
 			if (proxiedPlayer != null) {
@@ -463,6 +464,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}
 			break;
 		}
+		System.out.println("Connecting " + packet.getPlayerName() + " : C");
 		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
@@ -474,8 +476,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public int slots;
 
 	public void handle(PacketPlayerLogin packet, Callback<Result> done) {
+		System.out.println("Connecting " + packet.getPlayerName() + " : A-1 " + byName.containsKey(packet.getPlayerName()) + " / " + playerList.containsKey(packet.getPlayerName()));
 		if(byName.containsKey(packet.getPlayerName()) && playerList.containsKey(packet.getPlayerName()))
 			return;
+		System.out.println("Connecting " + packet.getPlayerName() + " : A-2");
 		playersTemp.put(packet.getPlayerName(), new Player(packet, done));
 	}
 
@@ -527,7 +531,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				}
 			bungeePlayerList.remove(lPlayer.getName());
 		}
-		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + "-" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getString("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());

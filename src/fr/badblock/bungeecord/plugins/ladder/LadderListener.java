@@ -55,6 +55,7 @@ public class LadderListener implements Listener {
 			}
 			return;
 		}
+		System.out.println("Connecting " + e.getPlayer() + " : A");
 		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
 		LadderBungee.getInstance().handle(packet, e.getDone());
 		LadderBungee.getInstance().getClient().sendPacket(packet);
@@ -62,6 +63,7 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PostLoginEvent e){
+		System.out.println("Connecting " + e.getPlayer() + " : D");
 		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), e.getPlayer().getName(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
