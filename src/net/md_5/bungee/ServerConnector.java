@@ -292,7 +292,7 @@ public class ServerConnector extends PacketHandler
             throw CancelSendSignal.INSTANCE;
         }
 
-        String message = bungee.getTranslation( "connect_kick", target.getName(), event.getKickReason() );
+        String message = "§cImpossible de se connecter au serveur " + target.getName() + " : " + event.getKickReason();
         if ( user.isDimensionChange() )
         {
             user.disconnect( message );

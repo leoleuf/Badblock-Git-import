@@ -313,10 +313,10 @@ public final class UserConnection implements ProxiedPlayer
 						connect( def, null, true );
 					} else if ( dimensionChange )
 					{
-						disconnect( bungee.getTranslation( "fallback_kick", future.cause().getClass().getName() ) );
+						disconnect( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
 					} else
 					{
-						sendMessage( bungee.getTranslation( "fallback_kick", future.cause().getClass().getName() ) );
+						sendMessage( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
 					}
 				}
 			}
