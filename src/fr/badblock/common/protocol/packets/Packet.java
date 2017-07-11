@@ -6,6 +6,7 @@ import fr.badblock.common.protocol.PacketHandler;
 import fr.badblock.common.protocol.buffers.ByteInputStream;
 import fr.badblock.common.protocol.buffers.ByteOutputStream;
 
+
 /**
  * Repr�sente un Packet Ladder
  * @author LeLanN

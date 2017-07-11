@@ -30,7 +30,7 @@ public abstract class SocketHost extends Thread {
 
 	public SocketHost(InetAddress address, int port) throws IOException {
 		super("TCP Listener");
-
+		System.out.println("SocketHost: HELLO!");
 		if(address == null)
 			server    = new ServerSocket(port);
 		else server   = new ServerSocket(port, BACKLOG, address);
@@ -52,10 +52,12 @@ public abstract class SocketHost extends Thread {
 			try {
 				final Socket socket = server.accept();
 
+				System.out.println("SocketHost: A");
 				new Thread("BadBlockCommon/socketHost") {
 					@SuppressWarnings("resource") @Override
 					public void run(){
 						try {
+							System.out.println("SocketHost: B");
 							ByteInputStream input = new ByteInputStream(socket.getInputStream());
 							String ip = input.readUTF();
 							int port = input.readInt();
@@ -67,14 +69,16 @@ public abstract class SocketHost extends Thread {
 							PacketHandler	  handler      = createHandler(sendAddress, servAddress);
 
 							if(protocolIn == null || protocolOut == null || handler == null){
+								System.out.println("SocketHost: C");
 								socket.close();
 							} else {
 								SocketHandler sockHandler  = new SocketHandler(socket, protocolIn, protocolOut, handler, false);
 								handlers.put(servAddress, sockHandler);
-
+								System.out.println("SocketHost: D");
 								sockHandler.start();
 							}
 						} catch(Throwable e){
+							e.printStackTrace();
 						}
 					}
 				}.start();
@@ -98,6 +102,7 @@ public abstract class SocketHost extends Thread {
 	}
 
 	public void sendPacket(InetSocketAddress address, Packet packet) {
+		System.out.println("SocketHost: SENDPACKET");
 		PacketSender socketHandler = handlers.get(address);
 		if(socketHandler != null)
 			socketHandler.sendPacket(packet);

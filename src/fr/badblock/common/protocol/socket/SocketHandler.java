@@ -60,12 +60,15 @@ public class SocketHandler extends Thread implements PacketSender {
 								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
 							}
 							while (!packets.isEmpty()) {
+								System.out.println("SOCKET > SENDPACKET-C");
 								Iterator<Packet> iterator = packets.iterator();
 								while (iterator.hasNext()) {
 									Packet packet = iterator.next();
 									iterator.remove();
+									System.out.println("SOCKET > SENDPACKET-D");
 									if(packet == null) continue;
 									try {
+										System.out.println("SOCKET > SENDPACKET-E");
 										out.writeByte((byte) 0);
 										if (debug) {
 											out.writeInt(sendId);
@@ -79,7 +82,9 @@ public class SocketHandler extends Thread implements PacketSender {
 								}
 							}
 							Thread.sleep(5);
-						} catch (Exception e) {}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}
@@ -89,11 +94,15 @@ public class SocketHandler extends Thread implements PacketSender {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void run(){
+		System.out.println("SOCKET > RECEIVEEEEEEEE-A " + (!socket.isConnected()) + " / " + socket.isClosed());
 		if (!socket.isConnected() || socket.isClosed()) stop();
+		System.out.println("SOCKET > RECEIVEEEEEEEE-B");
 		running = true;
 		thread.start();
 		try {
+			System.out.println("SOCKET > RECEIVEEEEEEEE-C");
 			while(in.readByte() != -1){
+				System.out.println("SOCKET > RECEIVEEEEEEEE-D");
 				if(debug){
 					int id = in.readInt();
 
@@ -131,7 +140,9 @@ public class SocketHandler extends Thread implements PacketSender {
 	}
 
 	public void sendPacket(Packet packet) {
+		System.out.println("SOCKET > SENDPACKET-A " + packet.toString());
 		if(socket.isClosed()) return;
+		System.out.println("SOCKET > SENDPACKET-B  " + packet.toString());
 
 		packets.add(packet);
 	}
