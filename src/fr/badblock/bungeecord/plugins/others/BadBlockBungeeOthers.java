@@ -90,6 +90,8 @@ import net.md_5.bungee.netty.PipelineUtils;
 
 	@Getter @Setter private static BadBlockBungeeOthers instance;
 
+	private static Gson gson = new Gson();
+	
 	private Configuration							    configuration;
 	private List<InjectableFilter> 						filters 			= new LinkedList<>();
 	private RabbitService								rabbitService;
@@ -97,6 +99,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 	private TimerTask									timerTask;
 	private TimerTask									timerTask2;
 	private TimerTask									timerTask3;
+	private TimerTask									timerTask4;
 	private boolean										done = false;
 	private boolean										deleted = false;
 	private int											recordId = -1;
@@ -114,43 +117,43 @@ import net.md_5.bungee.netty.PipelineUtils;
 	public void onEnable() {
 		instance = this;
 		try {
-            Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
-            remoteAddressField.setAccessible(true);
+			Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
+			remoteAddressField.setAccessible(true);
 
-            Field serverChild = PipelineUtils.class.getField("SERVER_CHILD");
-            serverChild.setAccessible(true);
+			Field serverChild = PipelineUtils.class.getField("SERVER_CHILD");
+			serverChild.setAccessible(true);
 
-            Field modifiersField = Field.class.getDeclaredField("modifiers");
-            modifiersField.setAccessible(true);
-            modifiersField.setInt(serverChild, serverChild.getModifiers() & ~Modifier.FINAL);
+			Field modifiersField = Field.class.getDeclaredField("modifiers");
+			modifiersField.setAccessible(true);
+			modifiersField.setInt(serverChild, serverChild.getModifiers() & ~Modifier.FINAL);
 
-            ChannelInitializer<Channel> bungeeChannelInitializer = PipelineUtils.SERVER_CHILD;
+			ChannelInitializer<Channel> bungeeChannelInitializer = PipelineUtils.SERVER_CHILD;
 
-            Method initChannelMethod = ChannelInitializer.class.getDeclaredMethod("initChannel", Channel.class);
-            initChannelMethod.setAccessible(true);
+			Method initChannelMethod = ChannelInitializer.class.getDeclaredMethod("initChannel", Channel.class);
+			initChannelMethod.setAccessible(true);
 
-            serverChild.set(null, new ChannelInitializer<Channel>() {
-                @Override
-                protected void initChannel(Channel channel) throws Exception {
-                    initChannelMethod.invoke(bungeeChannelInitializer, channel);
-                    channel.pipeline().addAfter(PipelineUtils.TIMEOUT_HANDLER, "haproxy-decoder", new HAProxyMessageDecoder());
-                    channel.pipeline().addAfter("haproxy-decoder", "haproxy-handler", new ChannelInboundHandlerAdapter() {
-                        @Override
-                        public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                            if (msg instanceof HAProxyMessage) {
-                                HAProxyMessage message = (HAProxyMessage) msg;
-                                remoteAddressField.set(channel, new InetSocketAddress(message.sourceAddress(), message.sourcePort()));
-                            } else {
-                                super.channelRead(ctx, msg);
-                            }
-                        }
-                    });
-                }
-            });
-        } catch (Exception e) {
-            getLogger().log(Level.SEVERE, e.getMessage(), e);
-            getProxy().stop();
-        }
+			serverChild.set(null, new ChannelInitializer<Channel>() {
+				@Override
+				protected void initChannel(Channel channel) throws Exception {
+					initChannelMethod.invoke(bungeeChannelInitializer, channel);
+					channel.pipeline().addAfter(PipelineUtils.TIMEOUT_HANDLER, "haproxy-decoder", new HAProxyMessageDecoder());
+					channel.pipeline().addAfter("haproxy-decoder", "haproxy-handler", new ChannelInboundHandlerAdapter() {
+						@Override
+						public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+							if (msg instanceof HAProxyMessage) {
+								HAProxyMessage message = (HAProxyMessage) msg;
+								remoteAddressField.set(channel, new InetSocketAddress(message.sourceAddress(), message.sourcePort()));
+							} else {
+								super.channelRead(ctx, msg);
+							}
+						}
+					});
+				}
+			});
+		} catch (Exception e) {
+			getLogger().log(Level.SEVERE, e.getMessage(), e);
+			getProxy().stop();
+		}
 		openTime = System.currentTimeMillis();
 		reengagedUUIDs = new ArrayList<>();
 		ProxyServer proxy = this.getProxy();
@@ -249,11 +252,12 @@ import net.md_5.bungee.netty.PipelineUtils;
 			}
 		};
 		new Timer().schedule(timerTask2, 1000, 1000);
+
 		timerTask3 = new TimerTask() {
 			@Override
 			public void run() {
 				boolean d = !finished ? done : false;
-				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 30000 : 0;
+				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
 				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '" + LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '" + bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
 				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'slots';", RequestType.GETTER) {
@@ -324,7 +328,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 				});
 			}
 		};
-		new Timer().schedule(timerTask3, 1000, 20000);
+		new Timer().schedule(timerTask3, 1000, 5000);
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -348,6 +352,16 @@ import net.md_5.bungee.netty.PipelineUtils;
 				});
 			}
 		}, 2500);
+		timerTask4 = new TimerTask() {
+			@Override
+			public void run() {
+				Map<String, Integer> map = new HashMap<>();
+				for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers())
+					map.put(player.getName(), player.getPing());
+				BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+			}
+		};
+		new Timer().schedule(timerTask4, 1000, 5000);
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -361,7 +375,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 			timerTask = new TimerTask() {
 				@Override
 				public void run() {
-					double o = LadderBungee.getInstance().bungeePlayerList.size() / 500 * 100 ;
+					double o = LadderBungee.getInstance().bungeePlayerList.size() / 1500 * 100 ;
 					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
 						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;
@@ -417,6 +431,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 		if (timerTask != null) timerTask.cancel();
 		if (timerTask2 != null) timerTask2.cancel();
 		if (timerTask3 != null) timerTask3.cancel();
+		if (timerTask4 != null) timerTask4.cancel();
 		finished = true;
 		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 		if (BadblockDatabase.getInstance().isConnected())

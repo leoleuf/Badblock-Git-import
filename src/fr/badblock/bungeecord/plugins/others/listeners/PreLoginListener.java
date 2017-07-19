@@ -1,11 +1,18 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
+import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
+import fr.badblock.common.commons.utils.Encodage;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
@@ -17,6 +24,8 @@ public class PreLoginListener implements Listener {
 
 	//public static List<String> players = new ArrayList<>();
 
+	private static Gson gson = new Gson();
+	
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
@@ -26,9 +35,12 @@ public class PreLoginListener implements Listener {
 				if (!players.contains(playerName))
 					players.add(playerName);*/
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
-		if (LadderBungee.getInstance().bungeePlayerList.size() >= 500) {
+		if (LadderBungee.getInstance().bungeePlayerList.size() >= 1500) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
 		}
+		Map<String, Integer> map = new HashMap<>();
+		map.put(proxiedPlayer.getName(), proxiedPlayer.getPing());
+		BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
 	
 	@EventHandler

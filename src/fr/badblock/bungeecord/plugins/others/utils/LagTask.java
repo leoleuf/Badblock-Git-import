@@ -32,7 +32,7 @@ public class LagTask implements Runnable
 			d /= 1000;
 			new SlackMessage("BungeeLag-Task: " + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + " | " + String.format("%.2f", TPS.tps) + " TPS | Durée du lag: " + String.format("%.2f", d) + " secondes", "Monitoring - BungeeCord", "http://icon-icons.com/icons2/822/PNG/512/alert_icon-icons.com_66469.png", false).run();
 		}
-		this.time = difference;
+		this.time = time;
 	}
 	
 }
