@@ -14,6 +14,7 @@ public class PlayersUpdateListener extends RabbitListener {
 
 	public PlayersUpdateListener() {
 		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdater." + LadderBungee.getInstance().countEnvironment, false, RabbitListenerType.SUBSCRIBER);
+		System.out.println("PlayersUpdateListener loaded!");
 	}
 
 	@Override
