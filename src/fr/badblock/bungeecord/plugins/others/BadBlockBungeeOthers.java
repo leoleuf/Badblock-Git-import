@@ -27,6 +27,8 @@ import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.LadderListener;
+import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayersUpdateListener;
+import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.others.commands.BListCommand;
 import fr.badblock.bungeecord.plugins.others.commands.BOAddInsultCommand;
 import fr.badblock.bungeecord.plugins.others.commands.BOReloadCommand;
@@ -177,8 +179,24 @@ import net.md_5.bungee.netty.PipelineUtils;
 		String webdb = configuration.getString("webdb.db");
 		WebDatabase.getInstance().connect(webhost, webport, webuser, webpass, webdb);
 		BadblockDatabase.getInstance().connect(host, port, user, pass, db);
+		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+		System.out.println(a);
+		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
+			@Override
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next()) {
+						System.out.println("ok " + resultSet.getInt("countEnvironment"));
+						LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
+						new BungeePlayersUpdateListener();
+						new ScalerPlayersUpdateListener();
+					}
+				}catch(Exception errora) {
+					errora.printStackTrace();
+				}
+			}
+		});
 		access = new CloudflareAccess(configuration.getString("cloudflare.email"), configuration.getString("cloudflare.key"));
-		System.out.println(ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString());
 		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
 				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
 		redisConnector = RedisConnector.getInstance().newService("default", configuration.getString("redis.hostname"), configuration.getInt("redis.port"), configuration.getString("redis.password"), configuration.getInt("redis.database"));
@@ -324,18 +342,6 @@ import net.md_5.bungee.netty.PipelineUtils;
 								}catch(Exception error) {
 									error.printStackTrace();
 								}
-							}
-						}catch(Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
 							}
 						}catch(Exception errora) {
 							errora.printStackTrace();
