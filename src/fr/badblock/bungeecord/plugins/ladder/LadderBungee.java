@@ -22,7 +22,6 @@ import com.google.gson.JsonParser;
 
 import fr.badblock.bungeecord.plugins.ladder.entities.CommandDispatcher;
 import fr.badblock.bungeecord.plugins.ladder.entities.LadderHandler;
-import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.PlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.skins.SkinFactoryBungee;
@@ -157,8 +156,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 						config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 				new PlayersUpdateListener();
-				new BungeePlayersUpdateListener();
-				new ScalerPlayersUpdateListener();
 			}catch(Exception error) {
 				Thread.sleep(Long.MAX_VALUE);
 				error.printStackTrace();
