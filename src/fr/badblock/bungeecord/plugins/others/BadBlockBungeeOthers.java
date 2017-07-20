@@ -259,7 +259,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
 				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '" + LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '" + bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT absorbances FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
