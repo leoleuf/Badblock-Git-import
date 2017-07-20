@@ -1,6 +1,5 @@
 package fr.badblock.bungeecord.plugins.others;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -260,6 +259,24 @@ import net.md_5.bungee.netty.PipelineUtils;
 				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
 				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '" + LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '" + bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT absorbances FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								String o = resultSet.getString("value");
+								try {
+									int p = Integer.parseInt(o);
+									LadderListener.timestampMax = p;
+								}catch(Exception error) {
+									error.printStackTrace();
+								}
+							}
+						}catch(Exception errora) {
+							errora.printStackTrace();
+						}
+					}
+				});
 				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'slots';", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
@@ -271,7 +288,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 									LadderBungee.getInstance().slots = p;
 								}catch(Exception error) {
 									try {
-										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `bungeeTimestamp` > " + System.currentTimeMillis() + " AND done = 'false';", RequestType.GETTER) {
+										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `bungeeTimestamp` > " + System.currentTimeMillis() + " AND environment = '" + configuration.getInt("environment") + "' AND done = 'false';", RequestType.GETTER) {
 											@Override
 											public void done(ResultSet result) {
 												try {
@@ -313,13 +330,12 @@ import net.md_5.bungee.netty.PipelineUtils;
 						}
 					}
 				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'finishedMessage';", RequestType.GETTER) {
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances `ip` = '" + a + "';", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
 							if (resultSet.next()) {
-								String o = resultSet.getString("value");
-								LadderListener.finished = o;
+								LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
 							}
 						}catch(Exception errora) {
 							errora.printStackTrace();
