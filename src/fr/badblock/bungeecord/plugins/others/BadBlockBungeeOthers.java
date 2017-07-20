@@ -110,6 +110,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 	private boolean										finished;
 	private long										openTime;
 	private long										time = 86400;
+	private long										maxPlayers = 1;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
 
@@ -180,13 +181,12 @@ import net.md_5.bungee.netty.PipelineUtils;
 		WebDatabase.getInstance().connect(webhost, webport, webuser, webpass, webdb);
 		BadblockDatabase.getInstance().connect(host, port, user, pass, db);
 		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-		System.out.println(a);
 		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
 			@Override
 			public void done(ResultSet resultSet) {
 				try {
 					if (resultSet.next()) {
-						System.out.println("ok " + resultSet.getInt("countEnvironment"));
+						maxPlayers = resultSet.getInt("slots");
 						LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
 						new PlayersUpdateListener();
 						new BungeePlayersUpdateListener();
@@ -277,6 +277,18 @@ import net.md_5.bungee.netty.PipelineUtils;
 				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
 				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '" + LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '" + bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								maxPlayers = resultSet.getInt("slots");
+							}
+						}catch(Exception errora) {
+							errora.printStackTrace();
+						}
+					}
+				});
 				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
@@ -397,7 +409,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 			timerTask = new TimerTask() {
 				@Override
 				public void run() {
-					double o = LadderBungee.getInstance().bungeePlayerList.size() / 1500 * 100 ;
+					double o = LadderBungee.getInstance().bungeePlayerList.size() / maxPlayers * 100;
 					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
 						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						finished = true;

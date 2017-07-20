@@ -35,7 +35,7 @@ public class PreLoginListener implements Listener {
 				if (!players.contains(playerName))
 					players.add(playerName);*/
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
-		if (LadderBungee.getInstance().bungeePlayerList.size() >= 1500) {
+		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
 		}
 		Map<String, Integer> map = new HashMap<>();
