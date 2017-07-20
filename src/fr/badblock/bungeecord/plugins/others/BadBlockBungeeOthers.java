@@ -306,7 +306,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 									LadderBungee.getInstance().slots = p;
 								}catch(Exception error) {
 									try {
-										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `bungeeTimestamp` > " + System.currentTimeMillis() + " AND countEnvironment = '" + configuration.getInt("environment") + "' AND done = 'false';", RequestType.GETTER) {
+										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `bungeeTimestamp` > " + System.currentTimeMillis() + " AND countEnvironment = '" + LadderBungee.getInstance().countEnvironment + "' AND done = 'false';", RequestType.GETTER) {
 											@Override
 											public void done(ResultSet result) {
 												try {
