@@ -330,7 +330,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 						}
 					}
 				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances `ip` = '" + a + "';", RequestType.GETTER) {
+				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
 					@Override
 					public void done(ResultSet resultSet) {
 						try {
