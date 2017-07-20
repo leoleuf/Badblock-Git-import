@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.LadderListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayersUpdateListener;
-import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
+import fr.badblock.bungeecord.plugins.ladder.listeners.PlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.others.commands.BListCommand;
 import fr.badblock.bungeecord.plugins.others.commands.BOAddInsultCommand;
 import fr.badblock.bungeecord.plugins.others.commands.BOReloadCommand;
@@ -188,8 +188,8 @@ import net.md_5.bungee.netty.PipelineUtils;
 					if (resultSet.next()) {
 						System.out.println("ok " + resultSet.getInt("countEnvironment"));
 						LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
+						new PlayersUpdateListener();
 						new BungeePlayersUpdateListener();
-						new ScalerPlayersUpdateListener();
 					}
 				}catch(Exception errora) {
 					errora.printStackTrace();
