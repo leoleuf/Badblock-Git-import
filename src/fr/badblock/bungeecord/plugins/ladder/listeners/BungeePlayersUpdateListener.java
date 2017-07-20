@@ -8,7 +8,7 @@ import net.md_5.bungee.BungeeCord;
 public class BungeePlayersUpdateListener extends RabbitListener {
 	
 	public BungeePlayersUpdateListener() {
-		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdaterBungee", false, RabbitListenerType.SUBSCRIBER);
+		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdaterBungee." + LadderBungee.getInstance().countEnvironment, false, RabbitListenerType.SUBSCRIBER);
 	}
 
 	@Override

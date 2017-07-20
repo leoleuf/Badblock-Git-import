@@ -13,7 +13,7 @@ import fr.badblock.common.commons.technologies.rabbitmq.RabbitListenerType;
 public class PlayersUpdateListener extends RabbitListener {
 
 	public PlayersUpdateListener() {
-		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdater", false, RabbitListenerType.SUBSCRIBER);
+		super(LadderBungee.getInstance().rabbitService, "ladder.playersupdater." + LadderBungee.getInstance().countEnvironment, false, RabbitListenerType.SUBSCRIBER);
 	}
 
 	@Override

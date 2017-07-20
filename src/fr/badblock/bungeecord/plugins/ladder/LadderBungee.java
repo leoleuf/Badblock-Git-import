@@ -89,6 +89,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public	  Set<String>				totalPlayers   =  Sets.newConcurrentHashSet();
 	public int							ladderPlayers 	   = 0;
 	public int							bungeePlayerCount = 0;
+	public int							countEnvironment = 0;
 	protected Map<String, UUID>   		uuids;
 	protected Map<String, UUID>   		byName;
 	protected Map<String, Punished> 	ips;
