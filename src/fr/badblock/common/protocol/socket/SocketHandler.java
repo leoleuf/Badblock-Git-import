@@ -81,7 +81,7 @@ public class SocketHandler extends Thread implements PacketSender {
 									}
 								}
 							}
-							Thread.sleep(5);
+							thread.wait();
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -118,6 +118,7 @@ public class SocketHandler extends Thread implements PacketSender {
 				} catch (Throwable e) {
 					new InvalidPacketException(socket, e).printStackTrace();
 				}
+				Thread.sleep(50);
 			}
 		} catch (Throwable e) {
 
@@ -145,6 +146,9 @@ public class SocketHandler extends Thread implements PacketSender {
 		System.out.println("SOCKET > SENDPACKET-B  " + packet.toString());
 
 		packets.add(packet);
+		synchronized (thread) {
+			thread.notify();
+		}
 	}
 
 	protected void socketClosed(){}
