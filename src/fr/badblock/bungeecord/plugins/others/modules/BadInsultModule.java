@@ -183,8 +183,9 @@ public class BadInsultModule extends Module {
 		}
 		message = okMessage;
 		// Test d'insultes
-		boolean t = player.hasPermission("ladder.command.sanction");
-		if (!t) {
+		boolean handle = false;
+		boolean permToBeMuted = player.hasPermission("ladder.command.sanction");
+		if (!handle) {
 			for (String insult : insultsList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
 						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
@@ -192,13 +193,13 @@ public class BadInsultModule extends Module {
 					//event.setCancelled(true);
 					BadblockDatabase.getInstance().addRequest(new Request("INSERT INTO reportMsg(byPlayer, player, message, timestamp) VALUES('', '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(message) + "', '" + System.currentTimeMillis() + "')", RequestType.SETTER));
 					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§7" + player.getName() + " (" + insult + ") §8» §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-					t = true;
+					handle = true;
 					break;
 					//player.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(this.insultError));
 				}
 			}
 		}
-		if (!t) {
+		if (!permToBeMuted && !handle) {
 			for (String insult : insultsMuteList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
 						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
