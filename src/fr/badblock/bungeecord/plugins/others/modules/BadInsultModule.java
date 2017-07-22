@@ -192,6 +192,7 @@ public class BadInsultModule extends Module {
 					//event.setCancelled(true);
 					BadblockDatabase.getInstance().addRequest(new Request("INSERT INTO reportMsg(byPlayer, player, message, timestamp) VALUES('', '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(message) + "', '" + System.currentTimeMillis() + "')", RequestType.SETTER));
 					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§7" + player.getName() + " (" + insult + ") §8» §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					t = true;
 					break;
 					//player.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(this.insultError));
 				}

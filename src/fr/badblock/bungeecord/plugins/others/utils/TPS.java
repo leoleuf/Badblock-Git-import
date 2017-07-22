@@ -31,7 +31,7 @@ public class TPS implements Runnable
 		this.time = System.currentTimeMillis() + 1_000L;
 		this.sec = System.currentTimeMillis();
 		BungeeCord.getInstance().getScheduler().schedule(BadBlockBungeeOthers.getInstance(), this, 0L, 50, TimeUnit.MILLISECONDS);
-		new Thread() {
+		new Thread("TPS check") {
 			@SuppressWarnings("deprecation")
 			public void run() {
 				while(true) {
@@ -45,6 +45,11 @@ public class TPS implements Runnable
 						if (tps <= 15) {
 							new SlackMessage("BungeeLag : " + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + " | " + String.format("%.2f", tps) + " TPS", "Monitoring - BungeeCord", "http://icon-icons.com/icons2/822/PNG/512/alert_icon-icons.com_66469.png", false).run();
 						}
+					}
+					try {
+						Thread.sleep(250);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
 				}
 			}
