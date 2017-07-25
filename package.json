@@ -1,0 +1,19 @@
+{
+  "name": "fr_badblock",
+  "version": "1.0.0",
+  "description": "mon read me à été modifié\r et je le modifie encore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/lefuturiste/fr_badblock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/lefuturiste/fr_badblock/issues"
+  },
+  "homepage": "https://gitlab.com/lefuturiste/fr_badblock#README"
+}
