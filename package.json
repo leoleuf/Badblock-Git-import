@@ -15,5 +15,19 @@
   "bugs": {
     "url": "https://gitlab.com/lefuturiste/fr_badblock/issues"
   },
-  "homepage": "https://gitlab.com/lefuturiste/fr_badblock#README"
+  "homepage": "https://gitlab.com/lefuturiste/fr_badblock#README",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-plugins": "latest",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "latest",
+    "gulp-sass-glob-import": "^0.1.0",
+    "gulp-uglify": "^2.1.2"
+  }
 }
