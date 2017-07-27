@@ -7,15 +7,9 @@
   height: 50px;
 }
 
-.header .log {
-  border: 1px solid;
-  position: relative;
-  height: 30px;
-  margin-top: 58px;
-  width: 140px;
+.header .login {
+  margin-top: 52px;
   float: right;
-  background-color: #e67e22;
-  border: none;
 }
 
 .header .reg {
@@ -47,9 +41,34 @@
 .header .menu li a {
   text-decoration: none;
 }
+<<<<<<< HEAD
 /*
 END HEADER
  */
+=======
+
+/* pub */
+
+.pub {
+  background-image: url(http://wallup.net/wp-content/uploads/2016/01/315020-video_games-Minecraft.png);
+  height: 195px;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+
+  filter: blur(1px);
+}
+
+.texte1{
+    margin-top: -169px;
+}
+
+.button-primary {
+  border-radius: 1px;
+}
+
+>>>>>>> f9b56b28a4fca5a3f27a2c76011a97be83a7a7c4
 .texte3 {
   position: relative;
   color: red;
@@ -80,4 +99,10 @@ END HEADER
 
 .newserv h1{
   font-size: 50px;
+}
+
+.img1 img {
+  height: 158px;
+  margin-top: -12px;
+  float: right;
 }
