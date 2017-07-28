@@ -1,2 +1,3 @@
-mon read me à été modifié
-et je le modifie encore 
+# Badblock web site project
+
+-> Go on trello.com
