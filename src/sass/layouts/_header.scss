@@ -14,14 +14,40 @@
 
     .header-login {
       float: right;
+
+      .button {
+        background-color: #e74c3c;
+      }
+      .button:hover {
+        background-color: #fb6d5e;
+      }
+      .button:first-of-type {
+        background-color: #3498db;
+      }
+      .button:first-of-type:hover {
+        background-color: #5ebeff;
+      }
+
     }
 
+  }
+
+  .header-logo-container {
+    display: flex;
+    align-items: center;
   }
 
   .header-logo {
     margin-top: 1em;
     margin-bottom: 1em;
-    width: 70%;
+    width: 40%;
+  }
+
+  .header-title {
+    font-size: 2em;
+    margin-left: 20px;
+    margin-bottom: 0;
+    color: white;
   }
 
   .reg {

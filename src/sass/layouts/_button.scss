@@ -1,0 +1,17 @@
+.button {
+  text-transform: uppercase;
+  border-radius: 1px;
+  transition: background .25s ease-in-out;
+  -moz-transition: background .25s ease-in-out;
+  -webkit-transition: background .25s ease-in-out;
+  font-size: 12px;
+  border: 0px;
+}
+
+.button.button-primary {
+  background-color: #3498db;
+}
+
+.button.button-primary:hover {
+  background-color: #5ebeff;
+}
