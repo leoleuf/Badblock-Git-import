@@ -2,6 +2,11 @@
   margin-top: -20px;
 }
 
-.header .login {
-  display: none;
+.header {
+  .header-logo {
+    width: 40%;
+  }
+  .header-login-container {
+    display: none;
+  }
 }
