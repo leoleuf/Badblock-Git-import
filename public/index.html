@@ -22,6 +22,25 @@
     </div>
 </div>
 </div>
+
+
+    <!------Menu------->
+
+    <div class="topnav" id="myTopnav">
+      <div class="container">
+      <a href="#">Accueil</a>
+      <a href="#">Boutique</a>
+      <a href="#">Classement</a>
+      <a href="#">Jouer</a>
+      <a href="#">Voter</a>
+      <a href="#">Forum</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+  </div>
+
+    <!------Menu fin ------->
+
+
 <div class="cover-back">
     <div class="cover">
         <div class="container">
@@ -32,5 +51,18 @@
         </div>
     </div>
 </div>
+
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
 </body>
 </html>
