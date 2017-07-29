@@ -6,16 +6,63 @@
     <link rel="stylesheet" href="dist/css/app.css">
 </head>
 <body>
-<!-- .container is main centered wrapper -->
+<!-- colonesd
 <div class="container">
     <div class="row">
-        <div class="two columns">One</div>
-        <div class="eight columns">Eleven</div>
+        <div class="one column">One</div>
+        <div class="nine columns">Eleven</div>
         <div class="two columns">Eleven</div>
     </div>
 </div>
 <style>
-    .columns {
+    .columns, .column {
+        background-color: #5ebeff;
+    }
+</style>
+<!-- Flexbox -->
+<div class="menuflexbox">
+    <div class="container">
+        <ul>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+
+            <li>
+            </li>
+            <li>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </div>
+</div>
+<style>
+    .menuflexbox ul {
+        display: flex;
+        background-color: yellow;
+    }
+    .menuflexbox ul li {
+        border: 2px solid #000000;
+        content: " ";
+        width: 30px;
+        height: 30px;
+        list-style-type: none;
         background-color: #5ebeff;
     }
 </style>
