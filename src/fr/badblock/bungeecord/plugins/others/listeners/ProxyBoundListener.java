@@ -67,7 +67,7 @@ public class ProxyBoundListener implements Listener {
 			}
 		});
 		@SuppressWarnings("deprecation")
-		DNSAddRecord dns = new DNSAddRecord(bungeeOthers.getAccess(), "badblock.fr", RecordType.IPV4Address, "roundrobin.badblock.fr", ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString(), new TimeUnit(UnitType.MINUTES, 2));
+		DNSAddRecord dns = new DNSAddRecord(bungeeOthers.getAccess(), "badblock.fr", RecordType.IPV4Address, "roundrobin." + (LadderBungee.getInstance().countEnvironment == 1 ? "eu" : "na") + ".badblock.fr", ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString(), new TimeUnit(UnitType.MINUTES, 2));
 		try {
 			JSONObject object = dns.executeBasic();
 			if (object != null) {
