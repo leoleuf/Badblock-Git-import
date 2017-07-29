@@ -1,0 +1,21 @@
+.scrollToTop{
+  width:100px;
+  padding:10px;
+  text-align:center;
+  background: #2c3e50;
+  font-weight: bold;
+  color: #FFF;
+  text-decoration: none;
+  position:fixed;
+  bottom: 75px;
+  right: 75px;
+  display:none;
+  border-radius: 10px;
+
+  .icon {
+    font-size: 2em;
+  }
+}
+.scrollToTop:hover, .scrollToTop:focus{
+  color: #F1F1F1;
+}
