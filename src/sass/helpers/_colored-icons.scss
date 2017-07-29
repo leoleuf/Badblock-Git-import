@@ -1,0 +1,19 @@
+.colored-icon {
+  display: block;
+  float: left;
+  width: 48px;
+  height: 48px;
+  background-size: 57px 57px;
+}
+
+.user-colored-icon {
+  background: url(../colored-icons/user.png) no-repeat;
+}
+
+.tchat-colored-icon {
+  background: url(../colored-icons/chat_emoticon.png) no-repeat;
+}
+
+.game-colored-icon {
+  background: url(../colored-icons/games_control.png) no-repeat;
+}
