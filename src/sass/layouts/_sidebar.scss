@@ -1,13 +1,27 @@
-.sidetexte input {
-  border-radius: 1px;
-  width: 100%;
-}
+.sidetexte {
+  input {
+    border-radius: 1px;
+    width: 100%;
+  }
 
-.test789 {
-  margin-top: -200px;
+  input:first-of-type {
+    margin-top: 1em;
+  }
+
+  .button, .button-primary {
+    margin-top: 1em;
+    width: 100%;
+  }
+  .side-item:first-of-type {
+    padding: 0;
+  }
+  .side-item {
+    padding-top: 1.5em;
+  }
 }
 
 .sidebar-social-links {
+  padding-top: 0.8em;
   display: flex;
   li {
     list-style-type: none;
