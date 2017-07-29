@@ -184,7 +184,45 @@ public class BadInsultModule extends Module {
 		message = okMessage;
 		// Test d'insultes
 		boolean handle = false;
-		boolean permToBeMuted = player.hasPermission("ladder.command.sanction");
+		boolean invincible = player.hasPermission("ladder.command.sanction");
+		if (!invincible && !handle) {
+			for (String insult : insultsMuteList) {
+				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
+						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
+					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§eVérification neuronale §9>> §b" + player.getName() + " §e(" + insult + ")", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					handle = true;
+					final String finalMessage = message;
+					new Timer().schedule(new TimerTask() {
+						@Override
+						public void run() {
+							if (pl.getPunished() != null && (pl.getPunished().isMute() && pl.getPunished().getMuteEnd() > System.currentTimeMillis())) return;
+							Sanction sanction = new Sanction(player.getName(), "mute", System.currentTimeMillis() + 1800_000L, System.currentTimeMillis(), "Message irrespectueux envers les CGU : " + finalMessage, pseudoList.get(new Random().nextInt(pseudoList.size())), "127.0.0.1", finalMessage, false);
+							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("sanction", new Gson().toJson(sanction), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
+							if (pl.getPunished() != null) {
+								pl.getPunished().setMuteEnd(System.currentTimeMillis() + 1800_000L);
+								pl.getPunished().setMute(true);
+								pl.getPunished().setMuter(sanction.getBanner());
+								pl.getPunished().setMuteReason("Message irrespectueux envers les CGU : " + finalMessage);
+							}
+							player.sendMessage("§4----------------------------------------");
+							player.sendMessage("§cVous avez été baîllonné par l'IA qui veille");
+							player.sendMessage("§csur le t'chat du jeu. Cette sanction est temporaire.");
+							player.sendMessage("§c");
+							player.sendMessage("§eLe message en question est le suivant :");
+							player.sendMessage("§c'" + finalMessage + "'");
+							player.sendMessage("§c");
+							player.sendMessage("§9En cas de faux positif, veuillez nous le signaler");
+							player.sendMessage("§9sur le forum dans la catégorie bugs.");
+							player.sendMessage("§4----------------------------------------");
+							String msg = "§c[§6Guardian§c] §b" + player.getName() + "§6 a été sanctionné pour §cMessage irrespectueux§6.";
+							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("guardian.broadcast", msg, Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
+							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§cPunish §9>> §e" + player.getName() + " §8- §9" + insult + " §8: §7" + finalMessage, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+						}
+					}, new Random().nextInt(5000) + 5000);
+					return;
+				}
+			}
+		}
 		if (!handle) {
 			for (String insult : insultsList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
@@ -196,32 +234,6 @@ public class BadInsultModule extends Module {
 					handle = true;
 					break;
 					//player.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(this.insultError));
-				}
-			}
-		}
-		if (!permToBeMuted && !handle) {
-			for (String insult : insultsMuteList) {
-				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
-						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
-					final String finalMessage = message;
-					new Timer().schedule(new TimerTask() {
-						@Override
-						public void run() {
-							if (pl.getPunished() != null && (pl.getPunished().isMute() && pl.getPunished().getMuteEnd() > System.currentTimeMillis())) return;
-							Sanction sanction = new Sanction(player.getName(), "mute", System.currentTimeMillis() + 3600_000L, System.currentTimeMillis(), "nv1_2", pseudoList.get(new Random().nextInt(pseudoList.size())), "127.0.0.1", finalMessage, true);
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("sanction", new Gson().toJson(sanction), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
-							if (pl.getPunished() != null) {
-								pl.getPunished().setMuteEnd(System.currentTimeMillis() + 3600_000L);
-								pl.getPunished().setMute(true);
-								pl.getPunished().setMuter(sanction.getBanner());
-								pl.getPunished().setMuteReason("Insultes/Provoc/Discrimination/Langage");
-							}
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("serverBroadcast", (player.getServer() != null && player.getServer().getInfo() != null ? player.getServer().getInfo().getName() : "unknown") + ";" + ("§b➤ " + player.getName() + " §7a été bâillonné par §b"
-									+ sanction.getBanner() + "§7 pour §bInsultes/Provoc/Discrimination/Langage§7."), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§c[AUTOMUTE] §7" + player.getName() + " (" + insult + ") §8» §7" + finalMessage, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-						}
-					}, new Random().nextInt(5000) + 5000);
-					return;
 				}
 			}
 		}

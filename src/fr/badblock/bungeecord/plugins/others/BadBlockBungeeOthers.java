@@ -8,6 +8,7 @@ import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.net.InetSocketAddress;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,6 +23,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 import com.cloudflare.api.CloudflareAccess;
+import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -44,6 +46,7 @@ import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
+import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PreLoginListener;
 import fr.badblock.bungeecord.plugins.others.listeners.ProxyBoundListener;
@@ -86,6 +89,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.netty.PipelineUtils;
+import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
 
@@ -229,12 +233,12 @@ import net.md_5.bungee.netty.PipelineUtils;
 		pluginManager.registerCommand(this, new BORemoveInsultCommand());
 		proxy.getPlayers().forEach(player -> Player.get(player));
 
-		/*Runtime.getRuntime().addShutdownHook(new Thread() {
+		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
 				deleteDNS();
 			}
-		})*/;
+		});
 
 		filters.clear();
 		filters.add(new IHConnectedFilter());
@@ -461,7 +465,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 	@Override
 	public void onDisable() {
 		filters.forEach(filter -> filter.reset());
-		//deleteDNS();
+		deleteDNS();
 		if (timerTask != null) timerTask.cancel();
 		if (timerTask2 != null) timerTask2.cancel();
 		if (timerTask3 != null) timerTask3.cancel();
@@ -472,7 +476,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 			BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
 	}
 
-	/*public void deleteDNS() {
+	public void deleteDNS() {
 		if (deleted) return;
 		if (access != null) {
 			@SuppressWarnings("deprecation")
@@ -517,7 +521,7 @@ import net.md_5.bungee.netty.PipelineUtils;
 		}else{
 			throw new UnableToDeleteDNSException();
 		}
-	}*/
+	}
 
 	public String getMessage(List<String> list) {
 		StringBuilder stringBuilder = new StringBuilder();
