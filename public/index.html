@@ -23,7 +23,7 @@
             </div>
             <div class="header-login-container">
                 <div class="header-login">
-                    <a class="button button-primary" href="#"><i class="icon icon-lock"></i> Login</a>
+                    <a class="button button-primary" href="#login-modal"><i class="icon icon-lock"></i> Login</a>
                     <a class="button button-primary" href="#"><i class="icon icon-pencil"></i> Register</a>
                 </div>
             </div>
@@ -36,12 +36,12 @@
 <!------Menu------->
 <div class="topnav" id="myTopnav">
     <div class="container">
-        <a href="#">Accueil</a>
-        <a href="#">Boutique</a>
-        <a href="#">Classement</a>
-        <a href="#">Jouer</a>
-        <a href="#">Voter</a>
-        <a href="#">Forum</a>
+        <a href="#" class="actived home"><i class="home-colored-icon colored-icon"></i> Accueil</a>
+        <a href="#"><i class="shopping_basket-colored-icon colored-icon"></i> Boutique</a>
+        <a href="#"><i class="stats-colored-icon colored-icon"></i> Classement</a>
+        <a href="#"><i class="game-colored-icon colored-icon"></i> Jouer</a>
+        <a href="#"><i class="edit-colored-icon colored-icon"></i> Voter</a>
+        <a href="#"><i class="forum-colored-icon colored-icon"></i> Forum</a>
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
 </div>
@@ -299,40 +299,21 @@
 <a href="#" class="scrollToTop no-link" title="Cliquer pour revenir en haut de page"><i class="icon icon-circle-arrow-up"></i> </a>
 <!-- Fin back to top -->
 
+<!-- Login Modal -->
+<div class="remodal modal-remodal" data-remodal-id="login-modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>Connectez vous</h1>
+    <p>
+        Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with declarative configuration and hash tracking.
+    </p>
+    <br>
+    <button data-remodal-action="cancel" class="button button-danger">Annuler</button>
+    <button data-remodal-action="confirm" class="button button-success">Se connecter</button>
+</div>
+<!-- Fin login modal -->
+
 <!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    function menu() {
-        var x = document.getElementById("myTopnav");
-
-        $('#myTopnav').click(function () {
-            if (x.className === "topnav") {
-                $('#myTopnav').addClass('reponsive')
-            } else {
-                $('#myTopnav').removeClass('responsive')
-            }
-        })
-    }
-
-
-    $(document).ready(function(){
-
-        //Check to see if the window is top if not then display button
-        $(window).scroll(function(){
-            if ($(this).scrollTop() > 100) {
-                $('.scrollToTop').fadeIn();
-            } else {
-                $('.scrollToTop').fadeOut();
-            }
-        });
-
-        //Click event to scroll to top
-        $('.scrollToTop').click(function(){
-            $('html, body').animate({scrollTop : 0},800);
-            return false;
-        });
-
-    });
-</script>
+<script src="dist/js/app.min.js"></script>
+<!-- Fin Js -->
 </body>
 </html>
