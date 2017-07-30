@@ -1,0 +1,11 @@
+{
+    "name": "badblock/website",
+    "type": "project",
+    "authors": [
+        {
+            "name": "BadBlock Team",
+            "email": "dev@badblock.fr"
+        }
+    ],
+    "require": {}
+}
