@@ -3,7 +3,6 @@
 
   .header-container {
     width: 100%;
-
     display: flex;
     justify-content: space-between;
   }
@@ -48,6 +47,13 @@
     margin-left: 20px;
     margin-bottom: 0;
     color: white;
+  }
+
+  .header-sub-title {
+    color: white;
+    margin-left: 20px;
+    font-size: 1.3em;
+    opacity: 0.8;
   }
 
   .reg {
