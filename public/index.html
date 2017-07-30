@@ -16,7 +16,10 @@
         <div class="header-container">
             <div class="header-logo-container">
                 <img src="https://static.badblock.fr/images/logo_small.png" class="header-logo">
-                <h3 class="header-title">BadBlock</h3>
+                <div class="">
+                    <h3 class="header-title">BadBlock</h3>
+                    <h5 class="header-sub-title">play.badblock.fr</h5>
+                </div>
             </div>
             <div class="header-login-container">
                 <div class="header-login">
@@ -39,7 +42,7 @@
         <a href="#">Jouer</a>
         <a href="#">Voter</a>
         <a href="#">Forum</a>
-        <a href="javascript:void(0);" class="icon" onclick="menu()"><i class="icon-menu"></i></a>
+        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
 </div>
 <!------Menu fin ------->
@@ -301,11 +304,14 @@
 <script>
     function menu() {
         var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
+
+        $('#myTopnav').click(function () {
+            if (x.className === "topnav") {
+                $('#myTopnav').addClass('reponsive')
+            } else {
+                $('#myTopnav').removeClass('responsive')
+            }
+        })
     }
 
 
