@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <link rel="stylesheet" href="dist/css/app.css">
+
+    <link rel="stylesheet" type="text/css" href="engine1/style.css"/>
+    <script type="text/javascript" src="engine1/jquery.js"></script>
+
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="header-container">
+            <div class="header-logo-container">
+                <img src="https://static.badblock.fr/images/logo_small.png" class="header-logo">
+                <div class="">
+                    <h3 class="header-title">BadBlock</h3>
+                    <h5 class="header-sub-title">play.badblock.fr</h5>
+                </div>
+            </div>
+            <div class="header-login-container">
+                <div class="header-login">
+                    <a class="button button-primary" href="#"><i class="icon icon-lock"></i> Login</a>
+                    <a class="button button-primary" href="#"><i class="icon icon-pencil"></i> Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!------Menu------->
+<div class="topnav" id="myTopnav">
+    <div class="container">
+        <a href="#">Accueil</a>
+        <a href="#">Boutique</a>
+        <a href="#">Classement</a>
+        <a href="#">Jouer</a>
+        <a href="#">Voter</a>
+        <a href="#">Forum</a>
+        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
+    </div>
+</div>
+<!------Menu fin ------->
+
+{% block content %}{% endblock %}
+
+
+
+
+<div class="stats-back">
+    <div class="stats">
+        <div class="container">
+            <div class="four columns">
+                <i class="colored-icon game-colored-icon"></i>
+                play.badblock.fr
+            </div>
+            <div class="four columns">
+                <i class="colored-icon user-colored-icon"></i>
+                330 Joueurs connectés
+            </div>
+            <div class="four columns">
+                <i class="colored-icon tchat-colored-icon"></i>
+                ts.badblock.fr
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="four columns">
+            <div class="footer-title-container">
+                <img src="https://static.badblock.fr/images/logo_small.png" class="footer-logo">
+                <h4 class="footer-title">BadBlock</h4>
+            </div>
+        </div>
+        <div class="four columns">
+            <div class="footer-links-title-container">
+                <h5 class="footer-links-title">
+                    <span>Liens</span>
+                </h5>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Réglement</a></li>
+                <li><a href="#">Notre Equipe</a></li>
+                <li><a href="#">Nous contacter</a></li>
+            </ul>
+        </div>
+        <div class="four columns">
+            <div class="footer-links-title-container">
+                <h5 class="footer-links-title">
+                    <span>Réseaux sociaux</span>
+                </h5>
+            </div>
+            <ul class="footer-links footer-social-links">
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-youtube"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer-footer">
+            <a href="mailto:contact@badblock.fr">contact@badblock.fr</a>
+        </div>
+    </div>
+</div>
+
+<!-- Back to top -->
+<a href="#" class="scrollToTop no-link" title="Cliquer pour revenir en haut de page"><i class="icon icon-circle-arrow-up"></i> </a>
+<!-- Fin back to top -->
+
+<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function menu() {
+        var x = document.getElementById("myTopnav");
+
+        $('#myTopnav').click(function () {
+            if (x.className === "topnav") {
+                $('#myTopnav').addClass('reponsive')
+            } else {
+                $('#myTopnav').removeClass('responsive')
+            }
+        })
+    }
+
+
+    $(document).ready(function(){
+
+        //Check to see if the window is top if not then display button
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > 100) {
+                $('.scrollToTop').fadeIn();
+            } else {
+                $('.scrollToTop').fadeOut();
+            }
+        });
+
+        //Click event to scroll to top
+        $('.scrollToTop').click(function(){
+            $('html, body').animate({scrollTop : 0},800);
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

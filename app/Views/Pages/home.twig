@@ -1,0 +1,192 @@
+{% extends "default.twig" %}
+{% block content %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover">
+            <div class="container">
+                <div class="one-half column">
+                    <h4 class="cover-heading">Lorem ipsum dolor sit amet<br>Morbi tempus quam in mi pharetra</h4>
+                    <a class="button button-primary" href="#"><i class="icon-play icon"></i> Jouer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------Cover fin------>
+<!---------slide------>
+<div class="container content">
+    <!-- Main content -->
+    <div class="eight columns">
+        <!-- Slider -->
+        <div class="slider123">
+            <div id="wowslider-container1">
+                <div class="ws_images">
+                    <ul>
+                        <li><img src="data1/images/img1.jpg" alt="Rejoinds l'aventure" title="Rejoinds l'aventure"
+                                 id="wows1_0"/></li>
+                        <li><a href=""><img src="data1/images/img2.jpg"
+                                            alt="javascript photo gallery"
+                                            title="Un serveur inédit" id="wows1_1"/></a></li>
+                        <li><img src="data1/images/img3.png" alt="Serveur minecraft " title="Serveur minecraft "
+                                 id="wows1_2"/></li>
+                    </ul>
+                </div>
+                <div class="ws_bullets">
+                    <div>
+                        <a href="#" title="Rejoinds l'aventure"><span><img src="data1/tooltips/img1.jpg"
+                                                                           alt="Rejoinds l'aventure"/>1</span></a>
+                        <a href="#" title="Un serveur inédit"><span><img src="data1/tooltips/img2.jpg"
+                                                                         alt="Un serveur inédit"/>2</span></a>
+                        <a href="#" title="Serveur minecraft "><span><img src="data1/tooltips/img3.png"
+                                                                          alt="Serveur minecraft "/>3</span></a>
+                    </div>
+                </div>
+                <div class="ws_script" style="position:absolute;left:-99%"><a href=""></a>
+                </div>
+                <div class="ws_shadow"></div>
+            </div>
+            <script type="text/javascript" src="engine1/wowslider.js"></script>
+            <script type="text/javascript" src="engine1/script.js"></script>
+        </div>
+        <!-- Slider -->
+
+        <!-- Articles -->
+        <div class="articles-home">
+            <!-- Si pas d'articles -->
+            <!--<div class="no-item-container">
+                <div class="no-item-content">
+                    <h4><i class="icon-erroralt"></i></h4>
+                    <h4>Aucun articles disponibles</h4>
+                </div>
+            </div>-->
+            <!-- Fin si pas d'articles -->
+
+            <div class="mosaic">
+                <article class="card">
+                    <header class="card-thumb">
+                        <a href="#">
+                            <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                        </a>
+                    </header>
+                    <div class="card-body">
+                        <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                        <div class="card-subtitle">
+                            <a href="#">
+                                <i class="icon icon-user"></i>
+                                John Doe
+                            </a>
+                            <a href="">
+                                <i class="icon icon-time"></i>
+                                Il y a deux heures
+                            </a>
+                        </div>
+                        <p class="card-description">
+                            Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
+                            odio
+                            eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
+                            dui
+                            vel tellus ultrices interdum quis vitae mauris.
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <header class="card-thumb">
+                        <a href="#">
+                            <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                        </a>
+                    </header>
+                    <div class="card-body">
+                        <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                        <div class="card-subtitle">
+                            <a href="#">
+                                <i class="icon icon-user"></i>
+                                John Doe
+                            </a>
+                            <a href="">
+                                <i class="icon icon-time"></i>
+                                Il y a deux heures
+                            </a>
+                        </div>
+                        <p class="card-description">
+                            Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
+                            odio
+                            eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
+                            dui
+                            vel tellus ultrices interdum quis vitae mauris.
+                        </p>
+                    </div>
+                </article>
+                <article class="card">
+                    <header class="card-thumb">
+                        <a href="#">
+                            <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                        </a>
+                    </header>
+                    <div class="card-body">
+                        <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                        <div class="card-subtitle">
+                            <a href="#">
+                                <i class="icon icon-user"></i>
+                                John Doe
+                            </a>
+                            <a href="">
+                                <i class="icon icon-time"></i>
+                                Il y a deux heures
+                            </a>
+                        </div>
+                        <p class="card-description">
+                            Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
+                            odio
+                            eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
+                            dui
+                            vel tellus ultrices interdum quis vitae mauris.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Plus card -->
+                <a class="card card-plus no-link" href="#">
+                    <div class="card-plus-text">Plus d'articles</div>
+                    <i class="icon icon-calcplus"></i>
+                </a>
+                <!-- Fin plus card-->
+            </div>
+        </div>
+        <!-- Articles Fin -->
+    </div>
+    <!-- Main content fin -->
+
+    <!---side bar--->
+    <div class="four columns">
+        <div class="side-bar sidetexte">
+            <div class="side-item">
+                <h4 class="heading-bar"><span>Lorem imsum</span></h4>
+                <input type="submit" value="submit input">
+                <br>
+                <input type="submit" value="submit input">
+                <br>
+                <input type="submit" value="submit input">
+            </div>
+            <div class="side-item">
+                <h4 class="heading-bar"><span>Teamspeak</span></h4>
+                <a class="button button-primary" value="ts.badblock.fr"><i class="icon icon-chat"></i>
+                    ts.badblock.fr</a>
+            </div>
+            <div class="side-item">
+                <h4 class="heading-bar"><span>Minecraft</span></h4>
+                <button class="button button-primary"><i class="icon icon-gameboy"></i> play.badblock.fr</button>
+            </div>
+            <div class="side-item">
+                <h4 class="heading-bar"><span>Résaux sociaux</span></h4>
+                <ul class="sidebar-social-links">
+                    <li><a href="https://twitter.com/badblockgame" target="_blank"><i class="icon-twitter"></i></a></li>
+                    <li><a href="https://fr-fr.facebook.com/BadBlockGame/" target="_blank"><i class="icon-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="icon-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!---Slide bar Fin--->
+</div>
+
+{% endblock %}
