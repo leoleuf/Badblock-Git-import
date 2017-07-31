@@ -10,8 +10,8 @@ class Config
 		$env = new \App\Environment();
 
 		//get configs
-		$commonConfig = new \Noodlehaus\Config('../App/config/common');
-		$envConfig = new \Noodlehaus\Config('../App/config/' .
+		$commonConfig = new \Noodlehaus\Config('../app/config/common');
+		$envConfig = new \Noodlehaus\Config('../app/config/' .
 			$env->getEnvironment());
 
 		//merge config
