@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width">
     <title></title>
     <link rel="stylesheet" href="dist/css/app.css">
-
-    <link rel="stylesheet" type="text/css" href="engine1/style.css"/>
-    <script type="text/javascript" src="engine1/jquery.js"></script>
-
 </head>
 <body>
 <div class="header">
@@ -94,8 +90,6 @@
                 </div>
                 <div class="ws_shadow"></div>
             </div>
-            <script type="text/javascript" src="engine1/wowslider.js"></script>
-            <script type="text/javascript" src="engine1/script.js"></script>
         </div>
         <!-- Slider -->
 
@@ -329,17 +323,27 @@
     <button data-remodal-action="close" class="remodal-close"></button>
     <h1>Connectez vous</h1>
     <p>
-        Responsive, lightweight, fast, synchronized with CSS animations, fully customizable modal window plugin with
-        declarative configuration and hash tracking.
+        <!-- Login Form -->
+        <form>
+            <label for="username">Votre nom d'utilisateur</label>
+            <input class="u-full-width" type="text" placeholder="John Doe" id="username">
+            <label for="password">Votre mot de passe</label>
+            <input class="u-full-width" type="password" placeholder="******" id="password">
+            <a href="#" class="">J'ai oublié mon mot de passe</a><br><br>
+            <a class="button button-danger" href="register.html">Inscription</a>
+            <button class="button button-success" type="submit">Se connecter</button>
+        </form>
+        <!-- Fin login form -->
     </p>
     <br>
-    <button data-remodal-action="cancel" class="button button-danger">Annuler</button>
-    <button data-remodal-action="confirm" class="button button-success">Se connecter</button>
+
 </div>
 <!-- Fin login modal -->
 
 <!-- JS -->
 <script src="dist/js/app.min.js"></script>
+<script type="text/javascript" src="slider/wowslider.js"></script>
+<script type="text/javascript" src="slider/script.js"></script>
 <!-- Fin Js -->
 </body>
 </html>
