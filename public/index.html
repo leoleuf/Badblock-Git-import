@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width">
     <title></title>
     <link rel="stylesheet" href="dist/css/app.css">
-
-    <link rel="stylesheet" type="text/css" href="engine1/style.css"/>
-    <script type="text/javascript" src="engine1/jquery.js"></script>
-
 </head>
 <body>
 <div class="header">
@@ -23,7 +19,7 @@
             </div>
             <div class="header-login-container">
                 <div class="header-login">
-                    <a class="button button-primary" href="#"><i class="icon icon-lock"></i> Login</a>
+                    <a class="button button-primary" href="#login-modal"><i class="icon icon-lock"></i> Login</a>
                     <a class="button button-primary" href="#"><i class="icon icon-pencil"></i> Register</a>
                 </div>
             </div>
@@ -36,12 +32,12 @@
 <!------Menu------->
 <div class="topnav" id="myTopnav">
     <div class="container">
-        <a href="#">Accueil</a>
-        <a href="#">Boutique</a>
-        <a href="#">Classement</a>
-        <a href="#">Jouer</a>
-        <a href="#">Voter</a>
-        <a href="#">Forum</a>
+        <a href="#" class="actived home"><i class="home-colored-icon colored-icon"></i> Accueil</a>
+        <a href="#"><i class="shopping_basket-colored-icon colored-icon"></i> Boutique</a>
+        <a href="#"><i class="stats-colored-icon colored-icon"></i> Classement</a>
+        <a href="#"><i class="game-colored-icon colored-icon"></i> Jouer</a>
+        <a href="#"><i class="edit-colored-icon colored-icon"></i> Voter</a>
+        <a href="#"><i class="forum-colored-icon colored-icon"></i> Forum</a>
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
 </div>
@@ -53,7 +49,9 @@
         <div class="container">
             <div class="one-half column">
                 <h4 class="cover-heading">Lorem ipsum dolor sit amet<br>Morbi tempus quam in mi pharetra</h4>
-                <a class="button button-primary" href="#"><i class="icon-play icon"></i> Jouer</a>
+                <div class="animated bounceInLeft">
+                    <a class="button button-primary" href="#"><i class="icon-play icon"></i> Jouer</a>
+                </div>
             </div>
         </div>
     </div>
@@ -92,8 +90,6 @@
                 </div>
                 <div class="ws_shadow"></div>
             </div>
-            <script type="text/javascript" src="engine1/wowslider.js"></script>
-            <script type="text/javascript" src="engine1/script.js"></script>
         </div>
         <!-- Slider -->
 
@@ -163,7 +159,10 @@
                         </p>
                     </div>
                 </article>
-                <article class="card">
+            </div>
+            <!-- Fin première ligne de card -->
+            <div class="mosaic">
+                <article class="card card-second">
                     <header class="card-thumb">
                         <a href="#">
                             <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
@@ -182,17 +181,36 @@
                             </a>
                         </div>
                         <p class="card-description">
-                            Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
-                            odio
-                            eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
-                            dui
-                            vel tellus ultrices interdum quis vitae mauris.
+                            <a class="button button-primary" href="#">En savoir plus</a>
+                        </p>
+                    </div>
+                </article>
+                <article class="card card-second">
+                    <header class="card-thumb">
+                        <a href="#">
+                            <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                        </a>
+                    </header>
+                    <div class="card-body">
+                        <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                        <div class="card-subtitle">
+                            <a href="#">
+                                <i class="icon icon-user"></i>
+                                John Doe
+                            </a>
+                            <a href="">
+                                <i class="icon icon-time"></i>
+                                Il y a deux heures
+                            </a>
+                        </div>
+                        <p class="card-description">
+                            <a class="button button-primary" href="#">En savoir plus</a>
                         </p>
                     </div>
                 </article>
 
                 <!-- Plus card -->
-                <a class="card card-plus no-link" href="#">
+                <a class="card card-second card-plus no-link" href="article.html">
                     <div class="card-plus-text">Plus d'articles</div>
                     <i class="icon icon-calcplus"></i>
                 </a>
@@ -221,7 +239,7 @@
             </div>
             <div class="side-item">
                 <h4 class="heading-bar"><span>Minecraft</span></h4>
-                <button class="button button-primary"><i class="icon icon-gameboy"></i> play.badblock.fr</button>
+                <button class="button-primary">Play.badblock.fr</button>
             </div>
             <div class="side-item">
                 <h4 class="heading-bar"><span>Résaux sociaux</span></h4>
@@ -234,8 +252,8 @@
             </div>
         </div>
     </div>
-    <!---Slide bar Fin--->
 </div>
+<!---Slide bar Fin--->
 
 <div class="stats-back">
     <div class="stats">
@@ -296,43 +314,36 @@
 </div>
 
 <!-- Back to top -->
-<a href="#" class="scrollToTop no-link" title="Cliquer pour revenir en haut de page"><i class="icon icon-circle-arrow-up"></i> </a>
+<a href="#" class="scrollToTop no-link" title="Cliquer pour revenir en haut de page"><i
+        class="icon icon-circle-arrow-up"></i> </a>
 <!-- Fin back to top -->
 
+<!-- Login Modal -->
+<div class="remodal modal-remodal" data-remodal-id="login-modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>Connectez vous</h1>
+    <p>
+        <!-- Login Form -->
+        <form>
+            <label for="username">Votre nom d'utilisateur</label>
+            <input class="u-full-width" type="text" placeholder="John Doe" id="username">
+            <label for="password">Votre mot de passe</label>
+            <input class="u-full-width" type="password" placeholder="******" id="password">
+            <a href="#" class="">J'ai oublié mon mot de passe</a><br><br>
+            <a class="button button-danger" href="register.html">Inscription</a>
+            <button class="button button-success" type="submit">Se connecter</button>
+        </form>
+        <!-- Fin login form -->
+    </p>
+    <br>
+
+</div>
+<!-- Fin login modal -->
+
 <!-- JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    function menu() {
-        var x = document.getElementById("myTopnav");
-
-        $('#myTopnav').click(function () {
-            if (x.className === "topnav") {
-                $('#myTopnav').addClass('reponsive')
-            } else {
-                $('#myTopnav').removeClass('responsive')
-            }
-        })
-    }
-
-
-    $(document).ready(function(){
-
-        //Check to see if the window is top if not then display button
-        $(window).scroll(function(){
-            if ($(this).scrollTop() > 100) {
-                $('.scrollToTop').fadeIn();
-            } else {
-                $('.scrollToTop').fadeOut();
-            }
-        });
-
-        //Click event to scroll to top
-        $('.scrollToTop').click(function(){
-            $('html, body').animate({scrollTop : 0},800);
-            return false;
-        });
-
-    });
-</script>
+<script src="dist/js/app.min.js"></script>
+<script type="text/javascript" src="slider/wowslider.js"></script>
+<script type="text/javascript" src="slider/script.js"></script>
+<!-- Fin Js -->
 </body>
 </html>
