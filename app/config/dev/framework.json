@@ -1,0 +1,12 @@
+{
+  "slim3": {
+    "displayErrorDetails": true,
+    "debug": true
+  },
+  "log": {
+    "log": true
+  },
+  "twig": {
+    "cache": false
+  }
+}

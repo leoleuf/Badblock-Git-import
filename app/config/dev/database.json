@@ -1,0 +1,8 @@
+{
+  "mongo": {
+    "host": "127.0.0.1",
+    "user": "root",
+    "password": "",
+    "name": "fr_badblock_website"
+  }
+}

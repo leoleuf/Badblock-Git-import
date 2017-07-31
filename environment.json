@@ -1,0 +1,17 @@
+{
+  "environments": {
+    "dev": {
+      "name": "dev",
+      "root_url": "http://localhost",
+      "host": "localhost",
+      "port": "8000"
+    },
+    "demo": {
+      "name": "demo",
+      "root_url": "https://dev-web.badblock.fr/",
+      "root_path": "/home/web/dev-web/badblock-website/public",
+      "host": "dev-web.badblock.fr",
+      "port": "80"
+    }
+  }
+}
