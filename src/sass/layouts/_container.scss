@@ -4,6 +4,7 @@
 
 @media (max-width: 1600px){
   .container {
+    width: 80% !important;
     max-width: 80% !important;
   }
 }
@@ -25,6 +26,7 @@
 
 @media (max-width: 500px){
   .container {
+    width: 100% !important;
     max-width: 100% !important;
   }
 }
