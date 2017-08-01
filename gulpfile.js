@@ -89,7 +89,7 @@ gulp.task('concat-scripts', function () {
  * gulp minify-scripts
  */
 gulp.task('minify-scripts', function () {
-    gulp.src(scripts_dest_dir + '/app.js')
+    gulp.src(scripts_dest_dir + '/App.js')
         .pipe(minify({
             ext: {
                 src: '.js',

@@ -8,7 +8,7 @@ $container['config'] = function ($container) use ($config) {
 
 $container['view'] = function ($container) {
 	$dir = dirname(__DIR__);
-	$view = new \Slim\Views\Twig($dir . '/app/views', [
+	$view = new \Slim\Views\Twig($dir . '/App/Views', [
 		'cache' => false //$dir . 'tmp/cache'
 	]);
 

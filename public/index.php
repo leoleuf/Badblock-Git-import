@@ -6,7 +6,7 @@ $config = \App\Config::get();
 
 $app = new \Slim\App(['settings' => $config['slim3']]);
 
-require '../app/container.php';
+require '../App/container.php';
 
 //Slim Whoops middleware for error (dev)
 $whoopsGuard = new \Zeuxisoo\Whoops\Provider\Slim\WhoopsGuard();

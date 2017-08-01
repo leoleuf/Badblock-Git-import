@@ -10,7 +10,7 @@ class PagesController extends Controller {
     public function home(RequestInterface $request, ResponseInterface $response){
     	var_dump($this->container->minecraft->getStatus());
     	var_dump($this->container->minecraft->getPlayers());
-        $this->container->view->render($response, 'pages/home.twig');
+        $this->container->view->render($response, 'Pages/home.twig');
     }
 
 }
