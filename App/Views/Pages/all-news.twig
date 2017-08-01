@@ -1,0 +1,57 @@
+{% extends "default.twig" %}
+{% set title = "Articles" %}
+{% set subtitle = "Toute les dernières fraiches news du serveur" %}
+{% block content %}
+    <!-- Main content -->
+    <div class="container content">
+            <!-- Articles -->
+            <div class="articles-home">
+                <!-- Si pas d'articles -->
+                <!--<div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4><i class="icon-erroralt"></i></h4>
+                        <h4>Aucun articles disponibles</h4>
+                    </div>
+                </div>-->
+                <!-- Fin si pas d'articles -->
+                <div class="mosaic">
+                    <article class="card">
+                        <header class="card-thumb">
+                            <a href="#">
+                                <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                            </a>
+                        </header>
+                        <div class="card-body">
+                            <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                            <div class="card-subtitle">
+                                <a href="#">
+                                    <i class="icon icon-user"></i>
+                                    John Doe
+                                </a>
+                                <a href="">
+                                    <i class="icon icon-time"></i>
+                                    Il y a deux heures
+                                </a>
+                            </div>
+                            <p class="card-description">
+                                Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
+                                odio
+                                eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
+                                dui
+                                vel tellus ultrices interdum quis vitae mauris.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <!-- Articles Fin -->
+            <!-- pagination -->
+            <div class="pagination-container">
+                <ul class="pagination-content">
+                    <li><button class="button button-primary"></button></li>
+                </ul>
+            </div>
+    </div>
+    <!-- Main content fin -->
+
+{% endblock %}
