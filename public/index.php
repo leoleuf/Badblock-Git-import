@@ -14,7 +14,11 @@ $whoopsGuard->setApp($app);
 $whoopsGuard->setRequest($container['request']);
 $whoopsGuard->setHandlers([]);
 $whoopsGuard->install();
+//End Slim Whoops middleware for error (dev)
 
-$app->get('/', \App\Controllers\PagesController::class . ':home');
+//Router
+$app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
+$app->get('/articles', \App\Controllers\NewsController::class . ':all')->setName('all-news');
+$app->get('/article/{slug}/{uuid}', \App\Controllers\NewsController::class . ':single')->setName('new');
 
 $app->run();

@@ -1,4 +1,5 @@
 {% extends "default.twig" %}
+{% set home = true %}
 {% set title = "Acceuil" %}
 {% block content %}
     <!------Cover------>
@@ -16,7 +17,6 @@
     </div>
     <!------Cover fin------>
 
-    <!---------slide------>
     <div class="container content">
         <!-- Main content -->
         <div class="eight columns">
@@ -49,7 +49,7 @@
                     <div class="ws_shadow"></div>
                 </div>
             </div>
-            <!-- Slider -->
+            <!-- Slider fin -->
 
             <!-- Articles -->
             <div class="articles-home">
@@ -168,7 +168,7 @@
                     </article>
 
                     <!-- Plus card -->
-                    <a class="card card-second card-plus no-link" href="article.html">
+                    <a class="card card-second card-plus no-link" href="{{ path_for('all-news') }}">
                         <div class="card-plus-text">Plus d'articles</div>
                         <i class="icon icon-calcplus"></i>
                     </a>
