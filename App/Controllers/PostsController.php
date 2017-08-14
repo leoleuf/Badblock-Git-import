@@ -5,10 +5,13 @@ namespace App\Controllers;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class NewsController extends Controller {
+class PostsController extends Controller {
 
 	public function all(RequestInterface $request, ResponseInterface $response){
-		$this->container->view->render($response, 'Pages/all-news.twig');
+		$posts = [];
+		$this->container->view->render($response, 'Pages/all-posts.twig', [
+			'posts' => $posts
+		]);
 	}
 
 	public function single(RequestInterface $request, ResponseInterface $response, $args){

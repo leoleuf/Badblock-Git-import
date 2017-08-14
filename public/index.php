@@ -18,7 +18,7 @@ $whoopsGuard->install();
 
 //Router
 $app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
-$app->get('/articles', \App\Controllers\NewsController::class . ':all')->setName('all-news');
-$app->get('/article/{slug}/{uuid}', \App\Controllers\NewsController::class . ':single')->setName('new');
+$app->get('/articles', \App\Controllers\PostsController::class . ':all')->setName('all-posts');
+$app->get('/article/{slug}/{uuid}', \App\Controllers\PostsController::class . ':single')->setName('new');
 
 $app->run();
