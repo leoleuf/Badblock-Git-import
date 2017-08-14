@@ -6,10 +6,12 @@ use Psr\Http\Message\ResponseInterface;
 
 class Controller{
 	public $container;
+	protected $xenforo;
 
 	public function __construct($container)
 	{
 		$this->container = $container;
+		$this->xenforo = $container['xenforo'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){

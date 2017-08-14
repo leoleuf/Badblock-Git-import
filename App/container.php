@@ -30,3 +30,10 @@ $container['minecraft'] = function ($container) {
 			'port' => $container->config['minecraft']['port']
 		]);
 };
+
+$container['xenforo'] = function ($container) {
+	return new App\Xenforo($container, [
+		'endpoint' => $container->config['xenforo_api']['endpoint'],
+		'hash' => $container->config['xenforo_api']['hash']
+	]);
+};

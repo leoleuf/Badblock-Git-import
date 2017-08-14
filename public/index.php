@@ -1,6 +1,11 @@
 <?php
 require '../vendor/autoload.php';
 
+function dd($value){
+	var_dump($value);
+	die('end of debug');
+}
+
 //Get config from config file
 $config = \App\Config::get();
 
@@ -18,7 +23,7 @@ $whoopsGuard->install();
 
 //Router
 $app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
-$app->get('/articles', \App\Controllers\PostsController::class . ':all')->setName('all-posts');
-$app->get('/article/{slug}/{uuid}', \App\Controllers\PostsController::class . ':single')->setName('new');
+$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
+$app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':single')->setName('single-post');
 
 $app->run();
