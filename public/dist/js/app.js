@@ -12,6 +12,256 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
  */
 
 !function(a,b){"function"==typeof define&&define.amd?define(["jquery"],function(c){return b(a,c)}):"object"==typeof exports?b(a,require("jquery")):b(a,a.jQuery||a.Zepto)}(this,function(a,b){"use strict";function c(a){if(w&&"none"===a.css("animation-name")&&"none"===a.css("-webkit-animation-name")&&"none"===a.css("-moz-animation-name")&&"none"===a.css("-o-animation-name")&&"none"===a.css("-ms-animation-name"))return 0;var b,c,d,e,f=a.css("animation-duration")||a.css("-webkit-animation-duration")||a.css("-moz-animation-duration")||a.css("-o-animation-duration")||a.css("-ms-animation-duration")||"0s",g=a.css("animation-delay")||a.css("-webkit-animation-delay")||a.css("-moz-animation-delay")||a.css("-o-animation-delay")||a.css("-ms-animation-delay")||"0s",h=a.css("animation-iteration-count")||a.css("-webkit-animation-iteration-count")||a.css("-moz-animation-iteration-count")||a.css("-o-animation-iteration-count")||a.css("-ms-animation-iteration-count")||"1";for(f=f.split(", "),g=g.split(", "),h=h.split(", "),e=0,c=f.length,b=Number.NEGATIVE_INFINITY;e<c;e++)d=parseFloat(f[e])*parseInt(h[e],10)+parseFloat(g[e]),d>b&&(b=d);return b}function d(){if(b(document).height()<=b(window).height())return 0;var a,c,d=document.createElement("div"),e=document.createElement("div");return d.style.visibility="hidden",d.style.width="100px",document.body.appendChild(d),a=d.offsetWidth,d.style.overflow="scroll",e.style.width="100%",d.appendChild(e),c=e.offsetWidth,d.parentNode.removeChild(d),a-c}function e(){if(!x){var a,c,e=b("html"),f=k("is-locked");e.hasClass(f)||(c=b(document.body),a=parseInt(c.css("padding-right"),10)+d(),c.css("padding-right",a+"px"),e.addClass(f))}}function f(){if(!x){var a,c,e=b("html"),f=k("is-locked");e.hasClass(f)&&(c=b(document.body),a=parseInt(c.css("padding-right"),10)-d(),c.css("padding-right",a+"px"),e.removeClass(f))}}function g(a,b,c,d){var e=k("is",b),f=[k("is",u.CLOSING),k("is",u.OPENING),k("is",u.CLOSED),k("is",u.OPENED)].join(" ");a.$bg.removeClass(f).addClass(e),a.$overlay.removeClass(f).addClass(e),a.$wrapper.removeClass(f).addClass(e),a.$modal.removeClass(f).addClass(e),a.state=b,!c&&a.$modal.trigger({type:b,reason:d},[{reason:d}])}function h(a,d,e){var f=0,g=function(a){a.target===this&&f++},h=function(a){a.target===this&&0===--f&&(b.each(["$bg","$overlay","$wrapper","$modal"],function(a,b){e[b].off(r+" "+s)}),d())};b.each(["$bg","$overlay","$wrapper","$modal"],function(a,b){e[b].on(r,g).on(s,h)}),a(),0===c(e.$bg)&&0===c(e.$overlay)&&0===c(e.$wrapper)&&0===c(e.$modal)&&(b.each(["$bg","$overlay","$wrapper","$modal"],function(a,b){e[b].off(r+" "+s)}),d())}function i(a){a.state!==u.CLOSED&&(b.each(["$bg","$overlay","$wrapper","$modal"],function(b,c){a[c].off(r+" "+s)}),a.$bg.removeClass(a.settings.modifier),a.$overlay.removeClass(a.settings.modifier).hide(),a.$wrapper.hide(),f(),g(a,u.CLOSED,!0))}function j(a){var b,c,d,e,f={};for(a=a.replace(/\s*:\s*/g,":").replace(/\s*,\s*/g,","),b=a.split(","),e=0,c=b.length;e<c;e++)b[e]=b[e].split(":"),d=b[e][1],("string"==typeof d||d instanceof String)&&(d="true"===d||"false"!==d&&d),("string"==typeof d||d instanceof String)&&(d=isNaN(d)?d:+d),f[b[e][0]]=d;return f}function k(){for(var a=q,b=0;b<arguments.length;++b)a+="-"+arguments[b];return a}function l(){var a,c,d=location.hash.replace("#","");if(d){try{c=b('[data-remodal-id="'+d+'"]')}catch(e){}c&&c.length&&(a=b[p].lookup[c.data(p)],a&&a.settings.hashTracking&&a.open())}else n&&n.state===u.OPENED&&n.settings.hashTracking&&n.close()}function m(a,c){var d=b(document.body),e=d,f=this;f.settings=b.extend({},t,c),f.index=b[p].lookup.push(f)-1,f.state=u.CLOSED,f.$overlay=b("."+k("overlay")),null!==f.settings.appendTo&&f.settings.appendTo.length&&(e=b(f.settings.appendTo)),f.$overlay.length||(f.$overlay=b("<div>").addClass(k("overlay")+" "+k("is",u.CLOSED)).hide(),e.append(f.$overlay)),f.$bg=b("."+k("bg")).addClass(k("is",u.CLOSED)),f.$modal=a.addClass(q+" "+k("is-initialized")+" "+f.settings.modifier+" "+k("is",u.CLOSED)).attr("tabindex","-1"),f.$wrapper=b("<div>").addClass(k("wrapper")+" "+f.settings.modifier+" "+k("is",u.CLOSED)).hide().append(f.$modal),e.append(f.$wrapper),f.$wrapper.on("click."+q,'[data-remodal-action="close"]',function(a){a.preventDefault(),f.close()}),f.$wrapper.on("click."+q,'[data-remodal-action="cancel"]',function(a){a.preventDefault(),f.$modal.trigger(v.CANCELLATION),f.settings.closeOnCancel&&f.close(v.CANCELLATION)}),f.$wrapper.on("click."+q,'[data-remodal-action="confirm"]',function(a){a.preventDefault(),f.$modal.trigger(v.CONFIRMATION),f.settings.closeOnConfirm&&f.close(v.CONFIRMATION)}),f.$wrapper.on("click."+q,function(a){var c=b(a.target);c.hasClass(k("wrapper"))&&f.settings.closeOnOutsideClick&&f.close()})}var n,o,p="remodal",q=a.REMODAL_GLOBALS&&a.REMODAL_GLOBALS.NAMESPACE||p,r=b.map(["animationstart","webkitAnimationStart","MSAnimationStart","oAnimationStart"],function(a){return a+"."+q}).join(" "),s=b.map(["animationend","webkitAnimationEnd","MSAnimationEnd","oAnimationEnd"],function(a){return a+"."+q}).join(" "),t=b.extend({hashTracking:!0,closeOnConfirm:!0,closeOnCancel:!0,closeOnEscape:!0,closeOnOutsideClick:!0,modifier:"",appendTo:null},a.REMODAL_GLOBALS&&a.REMODAL_GLOBALS.DEFAULTS),u={CLOSING:"closing",CLOSED:"closed",OPENING:"opening",OPENED:"opened"},v={CONFIRMATION:"confirmation",CANCELLATION:"cancellation"},w=function(){var a=document.createElement("div").style;return void 0!==a.animationName||void 0!==a.WebkitAnimationName||void 0!==a.MozAnimationName||void 0!==a.msAnimationName||void 0!==a.OAnimationName}(),x=/iPad|iPhone|iPod/.test(navigator.platform);m.prototype.open=function(){var a,c=this;c.state!==u.OPENING&&c.state!==u.CLOSING&&(a=c.$modal.attr("data-remodal-id"),a&&c.settings.hashTracking&&(o=b(window).scrollTop(),location.hash=a),n&&n!==c&&i(n),n=c,e(),c.$bg.addClass(c.settings.modifier),c.$overlay.addClass(c.settings.modifier).show(),c.$wrapper.show().scrollTop(0),c.$modal.focus(),h(function(){g(c,u.OPENING)},function(){g(c,u.OPENED)},c))},m.prototype.close=function(a){var c=this;c.state!==u.OPENING&&c.state!==u.CLOSING&&c.state!==u.CLOSED&&(c.settings.hashTracking&&c.$modal.attr("data-remodal-id")===location.hash.substr(1)&&(location.hash="",b(window).scrollTop(o)),h(function(){g(c,u.CLOSING,!1,a)},function(){c.$bg.removeClass(c.settings.modifier),c.$overlay.removeClass(c.settings.modifier).hide(),c.$wrapper.hide(),f(),g(c,u.CLOSED,!1,a)},c))},m.prototype.getState=function(){return this.state},m.prototype.destroy=function(){var a,c=b[p].lookup;i(this),this.$wrapper.remove(),delete c[this.index],a=b.grep(c,function(a){return!!a}).length,0===a&&(this.$overlay.remove(),this.$bg.removeClass(k("is",u.CLOSING)+" "+k("is",u.OPENING)+" "+k("is",u.CLOSED)+" "+k("is",u.OPENED)))},b[p]={lookup:[]},b.fn[p]=function(a){var c,d;return this.each(function(e,f){d=b(f),null==d.data(p)?(c=new m(d,a),d.data(p,c.index),c.settings.hashTracking&&d.attr("data-remodal-id")===location.hash.substr(1)&&c.open()):c=b[p].lookup[d.data(p)]}),c},b(document).ready(function(){b(document).on("click","[data-remodal-target]",function(a){a.preventDefault();var c=a.currentTarget,d=c.getAttribute("data-remodal-target"),e=b('[data-remodal-id="'+d+'"]');b[p].lookup[e.data(p)].open()}),b(document).find("."+q).each(function(a,c){var d=b(c),e=d.data("remodal-options");e?("string"==typeof e||e instanceof String)&&(e=j(e)):e={},d[p](e)}),b(document).on("keydown."+q,function(a){n&&n.settings.closeOnEscape&&n.state===u.OPENED&&27===a.keyCode&&n.close()}),b(window).on("hashchange."+q,l)})});
+// /**
+//  * Timeago is a jQuery plugin that makes it easy to support automatically
+//  * updating fuzzy timestamps (e.g. "4 minutes ago" or "about 1 day ago").
+//  *
+//  * @name timeago
+//  * @version 1.6.1
+//  * @requires jQuery v1.2.3+
+//  * @author Ryan McGeary
+//  * @license MIT License - http://www.opensource.org/licenses/mit-license.php
+//  *
+//  * For usage and examples, visit:
+//  * http://timeago.yarp.com/
+//  *
+//  * Copyright (c) 2008-2017, Ryan McGeary (ryan -[at]- mcgeary [*dot*] org)
+//  */
+//
+// (function (factory) {
+//     if (typeof define === 'function' && define.amd) {
+//         // AMD. Register as an anonymous module.
+//         define(['jquery'], factory);
+//     } else if (typeof module === 'object' && typeof module.exports === 'object') {
+//         factory(require('jquery'));
+//     } else {
+//         // Browser globals
+//         factory(jQuery);
+//     }
+// }(function ($) {
+//     $.timeago = function(timestamp) {
+//         if (timestamp instanceof Date) {
+//             return inWords(timestamp);
+//         } else if (typeof timestamp === "string") {
+//             return inWords($.timeago.parse(timestamp));
+//         } else if (typeof timestamp === "number") {
+//             return inWords(new Date(timestamp));
+//         } else {
+//             return inWords($.timeago.datetime(timestamp));
+//         }
+//     };
+//     var $t = $.timeago;
+//
+//     $.extend($.timeago, {
+//         settings: {
+//             refreshMillis: 60000,
+//             allowPast: true,
+//             allowFuture: false,
+//             localeTitle: false,
+//             cutoff: 0,
+//             autoDispose: true,
+//             strings: {
+//                 prefixAgo: null,
+//                 prefixFromNow: null,
+//                 suffixAgo: "ago",
+//                 suffixFromNow: "from now",
+//                 inPast: 'any moment now',
+//                 seconds: "less than a minute",
+//                 minute: "about a minute",
+//                 minutes: "%d minutes",
+//                 hour: "about an hour",
+//                 hours: "about %d hours",
+//                 day: "a day",
+//                 days: "%d days",
+//                 month: "about a month",
+//                 months: "%d months",
+//                 year: "about a year",
+//                 years: "%d years",
+//                 wordSeparator: " ",
+//                 numbers: []
+//             }
+//         },
+//
+//         inWords: function(distanceMillis) {
+//             if (!this.settings.allowPast && ! this.settings.allowFuture) {
+//                 throw 'timeago allowPast and allowFuture settings can not both be set to false.';
+//             }
+//
+//             var $l = this.settings.strings;
+//             var prefix = $l.prefixAgo;
+//             var suffix = $l.suffixAgo;
+//             if (this.settings.allowFuture) {
+//                 if (distanceMillis < 0) {
+//                     prefix = $l.prefixFromNow;
+//                     suffix = $l.suffixFromNow;
+//                 }
+//             }
+//
+//             if (!this.settings.allowPast && distanceMillis >= 0) {
+//                 return this.settings.strings.inPast;
+//             }
+//
+//             var seconds = Math.abs(distanceMillis) / 1000;
+//             var minutes = seconds / 60;
+//             var hours = minutes / 60;
+//             var days = hours / 24;
+//             var years = days / 365;
+//
+//             function substitute(stringOrFunction, number) {
+//                 var string = $.isFunction(stringOrFunction) ? stringOrFunction(number, distanceMillis) : stringOrFunction;
+//                 var value = ($l.numbers && $l.numbers[number]) || number;
+//                 return string.replace(/%d/i, value);
+//             }
+//
+//             var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
+//                 seconds < 90 && substitute($l.minute, 1) ||
+//                 minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
+//                 minutes < 90 && substitute($l.hour, 1) ||
+//                 hours < 24 && substitute($l.hours, Math.round(hours)) ||
+//                 hours < 42 && substitute($l.day, 1) ||
+//                 days < 30 && substitute($l.days, Math.round(days)) ||
+//                 days < 45 && substitute($l.month, 1) ||
+//                 days < 365 && substitute($l.months, Math.round(days / 30)) ||
+//                 years < 1.5 && substitute($l.year, 1) ||
+//                 substitute($l.years, Math.round(years));
+//
+//             var separator = $l.wordSeparator || "";
+//             if ($l.wordSeparator === undefined) { separator = " "; }
+//             return $.trim([prefix, words, suffix].join(separator));
+//         },
+//
+//         parse: function(iso8601) {
+//             var s = $.trim(iso8601);
+//             s = s.replace(/\.\d+/,""); // remove milliseconds
+//             s = s.replace(/-/,"/").replace(/-/,"/");
+//             s = s.replace(/T/," ").replace(/Z/," UTC");
+//             s = s.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // -04:00 -> -0400
+//             s = s.replace(/([\+\-]\d\d)$/," $100"); // +09 -> +0900
+//             return new Date(s);
+//         },
+//         datetime: function(elem) {
+//             var iso8601 = $t.isTime(elem) ? $(elem).attr("datetime") : $(elem).attr("title");
+//             return $t.parse(iso8601);
+//         },
+//         isTime: function(elem) {
+//             // jQuery's `is()` doesn't play well with HTML5 in IE
+//             return $(elem).get(0).tagName.toLowerCase() === "time"; // $(elem).is("time");
+//         }
+//     });
+//
+//     // functions that can be called via $(el).timeago('action')
+//     // init is default when no action is given
+//     // functions are called with context of a single element
+//     var functions = {
+//         init: function() {
+//             functions.dispose.call(this);
+//             var refresh_el = $.proxy(refresh, this);
+//             refresh_el();
+//             var $s = $t.settings;
+//             if ($s.refreshMillis > 0) {
+//                 this._timeagoInterval = setInterval(refresh_el, $s.refreshMillis);
+//             }
+//         },
+//         update: function(timestamp) {
+//             var date = (timestamp instanceof Date) ? timestamp : $t.parse(timestamp);
+//             $(this).data('timeago', { datetime: date });
+//             if ($t.settings.localeTitle) {
+//                 $(this).attr("title", date.toLocaleString());
+//             }
+//             refresh.apply(this);
+//         },
+//         updateFromDOM: function() {
+//             $(this).data('timeago', { datetime: $t.parse( $t.isTime(this) ? $(this).attr("datetime") : $(this).attr("title") ) });
+//             refresh.apply(this);
+//         },
+//         dispose: function () {
+//             if (this._timeagoInterval) {
+//                 window.clearInterval(this._timeagoInterval);
+//                 this._timeagoInterval = null;
+//             }
+//         }
+//     };
+//
+//     $.fn.timeago = function(action, options) {
+//         var fn = action ? functions[action] : functions.init;
+//         if (!fn) {
+//             throw new Error("Unknown function name '"+ action +"' for timeago");
+//         }
+//         // each over objects here and call the requested function
+//         this.each(function() {
+//             fn.call(this, options);
+//         });
+//         return this;
+//     };
+//
+//     function refresh() {
+//         var $s = $t.settings;
+//
+//         //check if it's still visible
+//         if ($s.autoDispose && !$.contains(document.documentElement,this)) {
+//             //stop if it has been removed
+//             $(this).timeago("dispose");
+//             return this;
+//         }
+//
+//         var data = prepareData(this);
+//
+//         if (!isNaN(data.datetime)) {
+//             if ( $s.cutoff === 0 || Math.abs(distance(data.datetime)) < $s.cutoff) {
+//                 $(this).text(inWords(data.datetime));
+//             } else {
+//                 if ($(this).attr('title').length > 0) {
+//                     $(this).text($(this).attr('title'));
+//                 }
+//             }
+//         }
+//         return this;
+//     }
+//
+//     function prepareData(element) {
+//         element = $(element);
+//         if (!element.data("timeago")) {
+//             element.data("timeago", { datetime: $t.datetime(element) });
+//             var text = $.trim(element.text());
+//             if ($t.settings.localeTitle) {
+//                 element.attr("title", element.data('timeago').datetime.toLocaleString());
+//             } else if (text.length > 0 && !($t.isTime(element) && element.attr("title"))) {
+//                 element.attr("title", text);
+//             }
+//         }
+//         return element.data("timeago");
+//     }
+//
+//     function inWords(date) {
+//         return $t.inWords(distance(date));
+//     }
+//
+//     function distance(date) {
+//         return (new Date().getTime() - date.getTime());
+//     }
+//
+//     // fix for IE6 suckage
+//     document.createElement("abbr");
+//     document.createElement("time");
+// }));
+//
+// jQuery.timeago.settings.strings = {
+//     // environ ~= about, it's optional
+//     prefixAgo: "Il y a",
+//     prefixFromNow: "d'ici",
+//     seconds: "moins d'une minute",
+//     minute: "environ une minute",
+//     minutes: "environ %d minutes",
+//     hour: "environ une heure",
+//     hours: "environ %d heures",
+//     day: "environ un jour",
+//     days: "environ %d jours",
+//     month: "environ un mois",
+//     months: "environ %d mois",
+//     year: "un an",
+//     years: "%d ans"
+// };
+// jQuery("time.timeago").timeago();
 function menu() {
     var x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -21,7 +271,7 @@ function menu() {
     }
 }
 
-    $(document).ready(function () {
+$(document).ready(function () {
 
     //Check to see if the window is top if not then display button
     $(window).scroll(function () {

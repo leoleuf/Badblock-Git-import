@@ -30,4 +30,10 @@ class Xenforo{
 		$req = $this->doGetRequest('action=getThreads&node_id=85&order_by=post_date');
 		return json_decode($req->getBody(), 1);
 	}
+
+	public function getNewPost($postId)
+	{
+		$req = $this->doGetRequest('?action=getPost&value=' . $postId);
+		return \GuzzleHttp\json_decode($req->getBody(), 1);
+	}
 }

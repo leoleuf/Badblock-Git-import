@@ -2,8 +2,7 @@
 require '../vendor/autoload.php';
 
 function dd($value){
-	var_dump($value);
-	die('end of debug');
+	die(var_dump($value));
 }
 
 //Get config from config file
@@ -25,5 +24,9 @@ $whoopsGuard->install();
 $app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
 $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':single')->setName('single-post');
+
+$app->group('/api', function(){
+	$this->get('/empty-cache-all-posts', \App\Controllers\BlogApiController::class . ':emptyCacheAllPosts')
+});
 
 $app->run();
