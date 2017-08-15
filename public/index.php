@@ -26,7 +26,7 @@ $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPo
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':single')->setName('single-post');
 
 $app->group('/api', function(){
-	$this->get('/empty-cache-all-posts', \App\Controllers\BlogApiController::class . ':emptyCacheAllPosts')
+	$this->get('/empty-cache-all-posts', \App\Controllers\BlogApiController::class . ':emptyCacheAllPosts');
 });
 
 $app->run();
