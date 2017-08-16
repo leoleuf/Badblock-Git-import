@@ -11,34 +11,28 @@
                     {% for infos in news %}
                         <article class="card">
                             <header class="card-thumb">
-                                <a href="#">
-                                    <img src="">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                    <img src="{{ infos.thumb_url }}">
                                 </a>
                             </header>
                             <div class="card-body">
                                 <div class="card-title">
-                                    <a href="#">
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                         {{ infos.title }}
                                     </a>
                                 </div>
                                 <div class="card-subtitle">
-                                    <a href="#">
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                         <i class="icon icon-user"></i>
-                                        John Doe
+                                        {{ infos.author.name }}
                                     </a>
-                                    <a href="#">
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                         <i class="icon icon-time"></i>
-                                        {{ timeago(infos.post_date) }}
+                                        {{ timeago(infos.created_at) }}
                                     </a>
                                 </div>
                                 <p class="card-description">
-                                    Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec
-                                    ullamcorper
-                                    odio
-                                    eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat.
-                                    Curabitur in
-                                    dui
-                                    vel tellus ultrices interdum quis vitae mauris.
+                                    {{ infos.summary }}
                                 </p>
                             </div>
                         </article>

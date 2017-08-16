@@ -7,11 +7,15 @@ use Psr\Http\Message\ResponseInterface;
 class Controller{
 	public $container;
 	protected $xenforo;
+	protected $redis;
+	protected $log;
 
 	public function __construct($container)
 	{
 		$this->container = $container;
 		$this->xenforo = $container['xenforo'];
+		$this->redis = $container['redis'];
+		$this->log = $container['log'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){

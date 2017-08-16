@@ -1,7 +1,7 @@
 {% extends "default.twig" %}
 {% set home = true %}
 {% set title = "Acceuil" %}
-{% block content %}
+{% block cover %}
     <!------Cover------>
     <div class="cover-back">
         <div class="cover">
@@ -16,8 +16,8 @@
         </div>
     </div>
     <!------Cover fin------>
-
-    <div class="container content">
+{% endblock %}
+{% block content %}
         <!-- Main content -->
         <div class="eight columns">
             <!-- Slider -->
@@ -63,109 +63,59 @@
                 <!-- Fin si pas d'articles -->
 
                 <div class="mosaic">
+                    {% for infos in first_row %}
                     <article class="card">
                         <header class="card-thumb">
-                            <a href="#">
-                                <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                <img src="{{ infos.thumb_url }}">
                             </a>
                         </header>
                         <div class="card-body">
-                            <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                            <div class="card-title"><a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a></div>
                             <div class="card-subtitle">
-                                <a href="#">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                     <i class="icon icon-user"></i>
-                                    John Doe
+                                    {{ infos.author.name }}
                                 </a>
-                                <a href="">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                     <i class="icon icon-time"></i>
-                                    Il y a deux heures
+                                    {{ timeago(infos.created_at) }}
                                 </a>
                             </div>
                             <p class="card-description">
-                                Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
-                                odio
-                                eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
-                                dui
-                                vel tellus ultrices interdum quis vitae mauris.
+                                {{ infos.summary }}
                             </p>
                         </div>
                     </article>
-                    <article class="card">
-                        <header class="card-thumb">
-                            <a href="#">
-                                <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
-                            </a>
-                        </header>
-                        <div class="card-body">
-                            <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
-                            <div class="card-subtitle">
-                                <a href="#">
-                                    <i class="icon icon-user"></i>
-                                    John Doe
-                                </a>
-                                <a href="">
-                                    <i class="icon icon-time"></i>
-                                    Il y a deux heures
-                                </a>
-                            </div>
-                            <p class="card-description">
-                                Curabitur et molestie lorem. Vivamus venenatis nisi vel rutrum convallis. Donec ullamcorper
-                                odio
-                                eu est auctor, quis bibendum felis facilisis. Phasellus tincidunt ipsum erat. Curabitur in
-                                dui
-                                vel tellus ultrices interdum quis vitae mauris.
-                            </p>
-                        </div>
-                    </article>
+                    {% endfor %}
                 </div>
                 <!-- Fin première ligne de card -->
                 <div class="mosaic">
+                    {% for infos in second_row %}
                     <article class="card card-second">
                         <header class="card-thumb">
-                            <a href="#">
-                                <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
+                            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                <img src="{{ infos.thumb_url }}">
                             </a>
                         </header>
                         <div class="card-body">
-                            <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
+                            <div class="card-title"><a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a></div>
                             <div class="card-subtitle">
-                                <a href="#">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                     <i class="icon icon-user"></i>
-                                    John Doe
+                                    {{ infos.author.name }}
                                 </a>
-                                <a href="">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
                                     <i class="icon icon-time"></i>
-                                    Il y a deux heures
+                                    {{ timeago(infos.created_at) }}
                                 </a>
                             </div>
                             <p class="card-description">
-                                <a class="button button-primary" href="#">En savoir plus</a>
+                                <a class="button button-primary" href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">En savoir plus</a>
                             </p>
                         </div>
                     </article>
-                    <article class="card card-second">
-                        <header class="card-thumb">
-                            <a href="#">
-                                <img src="https://s4.postimg.org/emgrc4uel/image.jpg">
-                            </a>
-                        </header>
-                        <div class="card-body">
-                            <div class="card-title"><a href="#">Lorem ipsum dolor sit amet.</a></div>
-                            <div class="card-subtitle">
-                                <a href="#">
-                                    <i class="icon icon-user"></i>
-                                    John Doe
-                                </a>
-                                <a href="">
-                                    <i class="icon icon-time"></i>
-                                    Il y a deux heures
-                                </a>
-                            </div>
-                            <p class="card-description">
-                                <a class="button button-primary" href="#">En savoir plus</a>
-                            </p>
-                        </div>
-                    </article>
+                    {% endfor %}
 
                     <!-- Plus card -->
                     <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">

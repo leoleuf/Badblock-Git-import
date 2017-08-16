@@ -1,0 +1,13 @@
+{% extends "default.twig" %}
+{% set title = post.title %}
+{% set subtitle = post.summary %}
+{% block content %}
+    <div class="article-thumb" style="background: url('{{ post.thumb_url }}')">
+        <div class="article-infos">
+            Hello world
+        </div>
+    </div>
+    <p class="article-content">
+        {{ post.content|raw }}
+    </p>
+{% endblock %}

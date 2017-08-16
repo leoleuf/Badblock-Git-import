@@ -20,6 +20,8 @@
         "hassankhan/config": "^0.10.0",
         "guzzlehttp/guzzle": "^6.3",
         "pagerfanta/pagerfanta": "1.0.x-dev",
-        "jimmiw/php-time-ago": "^2.0"
+        "jimmiw/php-time-ago": "^2.0",
+        "predis/predis": "^1.1",
+        "lefuturiste/logmanager": "1.3"
     }
 }

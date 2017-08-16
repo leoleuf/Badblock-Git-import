@@ -57,7 +57,7 @@ class TwigExtension extends \Twig_Extension
 
 		return ucfirst(
 			$timeAgo->inWords(
-				date("d-m-Y H:i:s", $date)
+				$date
 			)
 		);
 	}

@@ -4,5 +4,10 @@
     "user": "dev",
     "password": "dev",
     "name": "fr_badblock_website"
+  },
+  "redis": {
+    "host": "node02-dev.cluster.badblock-network.fr:6379",
+    "password": "axESWwAqaJV228HcYDPu4RWEFvAvJtXS",
+    "port": "6379"
   }
 }

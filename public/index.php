@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-function dd($value){
+function dd($value = 'die lol'){
 	die(var_dump($value));
 }
 
@@ -23,10 +23,10 @@ $whoopsGuard->install();
 //Router
 $app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
 $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
-$app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':single')->setName('single-post');
+$app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 
 $app->group('/api', function(){
-	$this->get('/empty-cache-all-posts', \App\Controllers\BlogApiController::class . ':emptyCacheAllPosts');
+	$this->get('/create-cache-all-posts', \App\Controllers\BlogApiController::class . ':createCacheAllPosts');
 });
 
 $app->run();
