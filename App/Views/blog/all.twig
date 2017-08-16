@@ -2,92 +2,88 @@
 {% set title = "Articles" %}
 {% set subtitle = "Toute les dernières fraiches news du serveur" %}
 {% block content %}
-    <!-- Main content -->
-    <div class="container content">
-        <!-- Articles -->
-        {% if nbNews > 0 %}
-            <div class="articles-home">
-                <div class="mosaic">
-                    {% for infos in news %}
-                        <article class="card">
-                            <header class="card-thumb">
+    <!-- Articles -->
+    {% if nbNews > 0 %}
+        <div class="articles-home">
+            <div class="mosaic">
+                {% for infos in news %}
+                    <article class="card">
+                        <header class="card-thumb">
+                            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                <img src="{{ infos.thumb_url }}">
+                            </a>
+                        </header>
+                        <div class="card-body">
+                            <div class="card-title">
                                 <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <img src="{{ infos.thumb_url }}">
+                                    {{ infos.title }}
                                 </a>
-                            </header>
-                            <div class="card-body">
-                                <div class="card-title">
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        {{ infos.title }}
-                                    </a>
-                                </div>
-                                <div class="card-subtitle">
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-user"></i>
-                                        {{ infos.author.name }}
-                                    </a>
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-time"></i>
-                                        {{ timeago(infos.created_at) }}
-                                    </a>
-                                </div>
-                                <p class="card-description">
-                                    {{ infos.summary }}
-                                </p>
                             </div>
-                        </article>
-                    {% endfor %}
-                </div>
+                            <div class="card-subtitle">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                    <i class="icon icon-user"></i>
+                                    {{ infos.author.name }}
+                                </a>
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                    <i class="icon icon-time"></i>
+                                    {{ timeago(infos.created_at) }}
+                                </a>
+                            </div>
+                            <p class="card-description">
+                                {{ infos.summary }}
+                            </p>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
-        {% endif %}
-        <!-- Articles Fin -->
-        <!-- Pagination -->
-        {% if haveToPaginate %}
-            <div class="pagination-container">
-                <!-- DC Pagination:A1 Start -->
-                <ul class="tsc_pagination tsc_paginationA tsc_paginationA01">
-                    {#<li><a href="#" class="first">First</a></li>#}
-                    {% if currentPage > 1 %}
-                        <li>
-                            <a href="{{ path_for('all-posts') }}/{{ currentPage - 1 }}" aria-label="Previous"
-                               class="previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% for infos in pages %}
-                        <li>
-                            <a href="{{ path_for('all-posts') }}/{{ infos }}"
-                               {% if infos == currentPage %}class="current"{% endif %}>
-                                {{ infos }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    {% if currentPage < nbPage %}
-                        <li>
-                            <a href="{{ path_for('all-posts') }}/{{ currentPage + 1 }}" aria-label="Next" class="next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {#<li><a href="#" class="last">Last</a></li>#}
-                </ul>
-                <!-- DC Pagination:A1 End -->
+        </div>
+    {% endif %}
+    <!-- Articles Fin -->
+    <!-- Pagination -->
+    {% if haveToPaginate %}
+        <div class="pagination-container">
+            <!-- DC Pagination:A1 Start -->
+            <ul class="tsc_pagination tsc_paginationA tsc_paginationA01">
+                {#<li><a href="#" class="first">First</a></li>#}
+                {% if currentPage > 1 %}
+                    <li>
+                        <a href="{{ path_for('all-posts') }}/{{ currentPage - 1 }}" aria-label="Previous"
+                           class="previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for infos in pages %}
+                    <li>
+                        <a href="{{ path_for('all-posts') }}/{{ infos }}"
+                           {% if infos == currentPage %}class="current"{% endif %}>
+                            {{ infos }}
+                        </a>
+                    </li>
+                {% endfor %}
+                {% if currentPage < nbPage %}
+                    <li>
+                        <a href="{{ path_for('all-posts') }}/{{ currentPage + 1 }}" aria-label="Next" class="next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {#<li><a href="#" class="last">Last</a></li>#}
+            </ul>
+            <!-- DC Pagination:A1 End -->
+        </div>
+    {% endif %}
+    {% if nbNews == 0 %}
+        <!-- Si pas d'articles -->
+        <div class="no-item-container">
+            <div class="no-item-content">
+                <h4><i class="icon-erroralt"></i></h4>
+                <h4>Aucun articles disponibles</h4>
             </div>
-        {% endif %}
-        {% if nbNews == 0 %}
-            <!-- Si pas d'articles -->
-            <div class="no-item-container">
-                <div class="no-item-content">
-                    <h4><i class="icon-erroralt"></i></h4>
-                    <h4>Aucun articles disponibles</h4>
-                </div>
-            </div>
-            <!-- Fin si pas d'articles -->
-        {% endif %}
-        <!-- Pagination fin -->
-    </div>
-    <!-- Main content fin -->
+        </div>
+        <!-- Fin si pas d'articles -->
+    {% endif %}
+    <!-- Pagination fin -->
 {% endblock %}
 {% block scripts %}
 {% endblock %}
