@@ -23,7 +23,6 @@
 
 .topnav a.menu-button {
   width: auto !important;
-  width: 16px;
   float: right;
   display: block;
 }
@@ -34,11 +33,22 @@
 
 .topnav a.menu-button{
   position: absolute;
+  padding-top: 13px;
   right: 0;
   top: 0;
+  i {
+    font-size: 1.4em;
+    margin-right: 0;
+    width: 35px;
+    height: 50px;
+  }
 }
 
 .topnav.responsive a {
   display: flex;
   text-align: left;
+}
+
+.topnav.responsive a.menu-button {
+  display: block;
 }

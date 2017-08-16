@@ -57,6 +57,7 @@ class BlogApiController extends Controller
 		$posts = $this->xenforo->getAllNewsPosts();
 		//2. Les traiter pour en obtenir le contenu
 		$newPosts = [];
+		$pinedRawPosts = [];
 		$i = 0;
 
 		//loggin
@@ -180,9 +181,13 @@ class BlogApiController extends Controller
 			//enregistrer sur redis un article en particulier
 			$singleNewPostJson = json_encode($singleNewPost);
 			$this->redis->set('website:post:' . $uuid, $singleNewPostJson);
+
+			//si le poste est épinglé on enregistre dans un tableau
+			array_push($pinedRawPosts, $newPosts[$i]);
 			$i++;
 		}
 
+		//4. On enregistre le tout
 		//enregistrer sur redis tout les articles
 		$newPostsJson = json_encode($newPosts);
 		$this->redis->set('website:all_posts', $newPostsJson);
@@ -200,6 +205,10 @@ class BlogApiController extends Controller
 		$secondJsonPosts = json_encode($secondRowPosts, 1);
 		$this->redis->set('website:first_row_posts', $firstJsonPosts);
 		$this->redis->set('website:second_row_posts', $secondJsonPosts);
+
+		//enregister le cache pour les articles épinglés
+		$pinedJsonPosts = json_encode($pinedRawPosts, 1);
+		$this->redis->set('website:pined_posts', $pinedJsonPosts);
 
 		//return success
 		return $response->write('Success writing cache')->withStatus(200);
