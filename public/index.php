@@ -20,13 +20,8 @@ $whoopsGuard->setHandlers([]);
 $whoopsGuard->install();
 //End Slim Whoops middleware for error (dev)
 
-//Router
-$app->get('/', \App\Controllers\PagesController::class . ':home')->setName('home');
-$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
-$app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
-
-$app->group('/api', function(){
-	$this->get('/create-cache-all-posts', \App\Controllers\BlogApiController::class . ':createCacheAllPosts');
-});
+//Includes Router
+include ("../App/routes/web.php");
+include ("../App/routes/api.php");
 
 $app->run();
