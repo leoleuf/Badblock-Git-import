@@ -20,7 +20,7 @@ class BlogController extends Controller
 			$p = 1;
 		}
 
-		$array = json_decode($this->redis->get('website:all_posts'), 1);
+		$array = $this->redis->getJson('website:all_posts');
 		if (empty($array)) {
 			$haveToPaginate = false;
 			$nbResults = 0;
@@ -58,6 +58,7 @@ class BlogController extends Controller
 
 	public function getPost(RequestInterface $request, ResponseInterface $response, $args)
 	{
+		//TODO: Gérer la 404
 		//search in redis cache for single cache
 		$post = $this->redis->getJson('website:post:' . $args['uuid']);
 		$this->render($response, 'blog/post.twig', [

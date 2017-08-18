@@ -4,18 +4,29 @@ namespace App;
 
 class Config
 {
-	public static function get()
+	/**
+	 * Get all configs keys
+	 *
+	 * @param string $dir (slash is required)
+	 * @return mixed
+	 */
+	public static function get($dir = __DIR__ . '/config/')
 	{
-		//get env
-		$env = new \App\Environment();
+		//instance of dotenv lib
+		//racine of the project we could find the .env file
+		$dotenv = new \Dotenv\Dotenv('..');
+		$dotenv->load();
 
-		//get configs
-		$commonConfig = new \Noodlehaus\Config('../App/config/common');
-		$envConfig = new \Noodlehaus\Config('../App/config/' .
-			$env->getEnvironment());
+		//find all file with .php extension in $dir
+		$allConfigFiles = include $dir . 'map.php';
 
-		//merge config
-		$config = array_merge($commonConfig->all(), $envConfig->all());
+		//include it in the config array
+		$i = 0;
+		$config = [];
+		while ($i < count($allConfigFiles)){
+			$config = array_merge($config, include $dir . $allConfigFiles[$i]);
+			$i++;
+		}
 
 		//finish and return
 		return $config;

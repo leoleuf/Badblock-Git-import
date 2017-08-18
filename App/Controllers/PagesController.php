@@ -13,7 +13,7 @@ class PagesController extends Controller {
 
 		$firstRow = $this->redis->getJson('website:first_row_posts');
 		$secondRow = $this->redis->getJson('website:second_row_posts');
-        $this->container->view->render($response, 'Pages/home.twig', [
+        $this->container->view->render($response, 'pages/home.twig', [
         	'first_row' => $firstRow,
 			'second_row' => $secondRow
 		]);

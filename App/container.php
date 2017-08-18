@@ -15,8 +15,8 @@ $container['log'] = function ($container) {
 
 $container['view'] = function ($container) {
 	$dir = dirname(__DIR__);
-	$view = new \Slim\Views\Twig($dir . '/App/Views', [
-		'cache' => false //$dir . 'tmp/cache'
+	$view = new \Slim\Views\Twig($dir . '/App/views', [
+		'cache' => false //$dir . 'tmp/cache' OR '../tmp/cache'
 	]);
 	$twig = $view->getEnvironment();
 	$twig->addExtension(new \App\TwigExtension());
