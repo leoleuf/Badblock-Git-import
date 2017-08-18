@@ -1,7 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 
-function dd($value = 'die locvbhn,l'){
+function dd($value = 'die lol'){
 	die(var_dump($value));
 }
 
