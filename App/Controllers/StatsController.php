@@ -19,8 +19,12 @@ class StatsController extends Controller
         $this->container->view->render($response, 'pages/home-stats.twig');
     }
 
-    public function game($game,$page){
-        //régulation vers fonction
+    public function game(RequestInterface $request, ResponseInterface $response,$game,$page = null){
+        //Régulation vers fonction
+        if(!isset($page)){
+          $page = 1;
+        }
+
         if($game == "tower2v2"){
             $this->tower2v2($page);
         }elseif ($game == "tower2v2"){
@@ -31,6 +35,9 @@ class StatsController extends Controller
             $this->tower2v2($page);
         }elseif ($game == "tower2v2"){
             $this->tower2v2($page);
+        }else{
+            //Erreur 404
+            return $response->withStatus(404);
         }
     }
 
