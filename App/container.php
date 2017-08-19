@@ -6,6 +6,10 @@ $container['config'] = function ($container) use ($config) {
 	return $config;
 };
 
+$container['session'] = function ($container) use ($config) {
+	return new \App\Session();
+};
+
 $container['log'] = function ($container) {
 	return new LogManager\Log([
 		'enabled' => true,
