@@ -34,6 +34,6 @@ class XenForo{
 	public function getNewPost($postId)
 	{
 		$req = $this->doGetRequest('action=getPost&value=' . $postId);
-		return \GuzzleHttp\json_decode($req->getBody(), 1);
+		return json_decode($req->getBody(), 1);
 	}
 }

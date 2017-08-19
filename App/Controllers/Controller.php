@@ -15,6 +15,8 @@ class Controller{
 
 	protected $log;
 
+	protected $session;
+
 	public function __construct($container)
 	{
 		$this->container = $container;
@@ -22,6 +24,7 @@ class Controller{
 		$this->redis = $container['redis'];
 //		$this->mysql = $container['mysql'];
 		$this->log = $container['log'];
+		$this->session = $container['session'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){
