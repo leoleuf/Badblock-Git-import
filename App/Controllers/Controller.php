@@ -6,8 +6,13 @@ use Psr\Http\Message\ResponseInterface;
 
 class Controller{
 	public $container;
+
 	protected $xenforo;
+
 	protected $redis;
+
+	protected $mysql;
+
 	protected $log;
 
 	public function __construct($container)
@@ -15,6 +20,7 @@ class Controller{
 		$this->container = $container;
 		$this->xenforo = $container['xenforo'];
 		$this->redis = $container['redis'];
+//		$this->mysql = $container['mysql'];
 		$this->log = $container['log'];
 	}
 
