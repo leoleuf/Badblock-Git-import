@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-class Xenforo{
+class XenForo{
 
 	public function __construct($container, $config)
 	{
