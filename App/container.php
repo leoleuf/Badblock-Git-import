@@ -28,6 +28,7 @@ $container['view'] = function ($container) use ($app) {
 	//global variables
 	$twig->addGlobal('forum_url', $container['config']['forum_url']);
 	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
+	$twig->addGlobal('ts3_query', $container['config']['ts3_query']);
 
 	// Instantiate and add Slim specific extension
 	$basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
@@ -87,4 +88,11 @@ $container['redis_client'] = function ($container) {
 
 $container['redis'] = function ($container) {
 	return new \App\Redis($container->redis_client);
+};
+
+$container['notFoundHandler'] = function ($container) {
+	return new \App\NotFoundHandler($container->get('view'), function ($request, $response) use ($container) {
+		return $container['response']
+			->withStatus(404);
+	});
 };
