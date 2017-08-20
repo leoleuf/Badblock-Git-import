@@ -62,7 +62,7 @@ require '../App/container.php';
 | Include all routes files
 |
 */
-include ("../App/routes/web.php");
-include ("../App/routes/api.php");
+include("../App/routes/web.php");
+include("../App/routes/api.php");
 
 $app->run();

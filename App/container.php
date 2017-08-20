@@ -17,7 +17,7 @@ $container['log'] = function ($container) {
 	]);
 };
 
-$container['view'] = function ($container) {
+$container['view'] = function ($container) use ($app) {
 	$dir = dirname(__DIR__);
 	$view = new \Slim\Views\Twig($dir . '/App/views', [
 		'cache' => false //$dir . 'tmp/cache' OR '../tmp/cache'
@@ -27,6 +27,7 @@ $container['view'] = function ($container) {
 
 	//global variables
 	$twig->addGlobal('forum_url', $container['config']['forum_url']);
+	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
 
 	// Instantiate and add Slim specific extension
 	$basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
