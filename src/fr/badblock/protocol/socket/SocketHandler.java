@@ -1,4 +1,4 @@
-package fr.badblock.common.protocol.socket;
+package fr.badblock.protocol.socket;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -11,6 +11,7 @@ import fr.badblock.common.protocol.Protocol;
 import fr.badblock.common.protocol.buffers.ByteInputStream;
 import fr.badblock.common.protocol.buffers.ByteOutputStream;
 import fr.badblock.common.protocol.packets.Packet;
+import fr.badblock.common.protocol.socket.PacketSender;
 import fr.badblock.common.protocol.utils.InvalidPacketException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -60,34 +61,29 @@ public class SocketHandler extends Thread implements PacketSender {
 								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
 							}
 							while (!packets.isEmpty()) {
-								System.out.println("SOCKET > SENDPACKET-C");
+								in          = new ByteInputStream(socket.getInputStream());
+								out         = new ByteOutputStream(socket.getOutputStream());
 								Iterator<Packet> iterator = packets.iterator();
 								while (iterator.hasNext()) {
 									Packet packet = iterator.next();
 									iterator.remove();
-									System.out.println("SOCKET > SENDPACKET-D");
 									if(packet == null) continue;
 									try {
-										System.out.println("SOCKET > SENDPACKET-E");
 										out.writeByte((byte) 0);
 										if (debug) {
 											out.writeInt(sendId);
 											sendId++;
 										}
-										out.flush();
 										protocolOut.writePacket(out, packet);
+										out.close();
 									} catch(Throwable e){
 										//System.out.println("M�chant packet (" + packet + ") :");
 										e.printStackTrace();
-										out.close();
-										out         = new ByteOutputStream(socket.getOutputStream());
 									}
 								}
 							}
-							thread.wait();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+							Thread.sleep(5);
+						} catch (Exception e) {}
 					}
 				}
 			}
@@ -97,15 +93,11 @@ public class SocketHandler extends Thread implements PacketSender {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void run(){
-		System.out.println("SOCKET > RECEIVEEEEEEEE-A " + (!socket.isConnected()) + " / " + socket.isClosed());
 		if (!socket.isConnected() || socket.isClosed()) stop();
-		System.out.println("SOCKET > RECEIVEEEEEEEE-B");
-		if (!running) thread.start();
 		running = true;
+		thread.start();
 		try {
-			System.out.println("SOCKET > RECEIVEEEEEEEE-C");
 			while(in.readByte() != -1){
-				System.out.println("SOCKET > RECEIVEEEEEEEE-D");
 				if(debug){
 					int id = in.readInt();
 
@@ -121,10 +113,9 @@ public class SocketHandler extends Thread implements PacketSender {
 				} catch (Throwable e) {
 					new InvalidPacketException(socket, e).printStackTrace();
 				}
-				Thread.sleep(50);
 			}
 		} catch (Throwable e) {
-			e.printStackTrace();
+
 		} finally {
 			running = false;
 			try {
@@ -144,14 +135,9 @@ public class SocketHandler extends Thread implements PacketSender {
 	}
 
 	public void sendPacket(Packet packet) {
-		System.out.println("SOCKET > SENDPACKET-A " + packet.toString());
 		if(socket.isClosed()) return;
-		System.out.println("SOCKET > SENDPACKET-B  " + packet.toString());
 
 		packets.add(packet);
-		synchronized (thread) {
-			thread.notify();
-		}
 	}
 
 	protected void socketClosed(){}

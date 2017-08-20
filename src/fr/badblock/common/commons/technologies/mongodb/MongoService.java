@@ -14,7 +14,6 @@ import lombok.Setter;
 	private		boolean						isDead;
 	private     DB							db;
 
-	@SuppressWarnings("deprecation")
 	public MongoService(String name, MongoCredentials credentials) {
 		this.setCredentials(credentials);
 		this.setName(name);
