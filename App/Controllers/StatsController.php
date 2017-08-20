@@ -11,7 +11,6 @@ namespace App\Controllers;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-
 class StatsController extends Controller
 {
 
@@ -65,8 +64,8 @@ class StatsController extends Controller
     }
 
 
-    public function tower2v2($page){
-
+    public function tower($page){
+        $r = $this->mongo->find( array( "name" => array( "$gte" => 42 ) ) );
     }
 
 
