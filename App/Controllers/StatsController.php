@@ -24,17 +24,40 @@ class StatsController extends Controller
         if(!isset($page)){
           $page = 1;
         }
-
-        if($game == "tower2v2"){
-            $this->tower2v2($page);
-        }elseif ($game == "tower2v2"){
-            $this->tower4v4($page);
-        }elseif($game == "tower4v4"){
-            $this->tower2v2($page);
-        }elseif ($game == "tower2v2"){
-            $this->tower2v2($page);
-        }elseif ($game == "tower2v2"){
-            $this->tower2v2($page);
+        $game = $game['game'];
+        //Tower
+        if($game == "tower"){
+            $this->tower($page);
+        //Rush
+        }elseif ($game == "rush"){
+            $this->rush($page);
+        //Capture the flags
+        }elseif($game == "cts"){
+            $this->cts($page);
+        //Survival Games Solo
+        }elseif ($game == "SurvivalGamesSolo"){
+            $this->sgs($page);
+        //Survival Games Team
+        }elseif ($game == "SurvivalGamesTeams"){
+            $this->sgt($page);
+        //Pvp-Box
+        }elseif ($game == "pvpbox"){
+            $this->pvpbox($page);
+        //Faction
+        }elseif ($game == "Faction"){
+            $this->faction($page);
+        //UHC Solo
+        }elseif ($game == "uhcsolo"){
+            $this->uhcsolo($page);
+        //UHC Team
+        }elseif ($game == "uhcteam"){
+            $this->uhcteam($page);
+        //Space Balls
+        }elseif ($game == "SpaceBalls"){
+            $this->spaceball($page);
+        //DayZ
+        }elseif ($game == "dayz"){
+            $this->dayz($page);
         }else{
             //Erreur 404
             return $response->withStatus(404);

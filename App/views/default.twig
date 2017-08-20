@@ -166,11 +166,12 @@
     <h1>Connectez vous</h1>
     <p>
         <!-- Login Form -->
-    <form>
+    <form method="POST" action="/login">
+        <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
         <label for="username">Votre nom d'utilisateur</label>
-        <input class="u-full-width" type="text" placeholder="John Doe" id="username">
+        <input name="username" class="u-full-width" type="text" placeholder="John Doe" id="username" required>
         <label for="password">Votre mot de passe</label>
-        <input class="u-full-width" type="password" placeholder="******" id="password">
+        <input name="password" class="u-full-width" type="password" placeholder="******" id="password" required>
         <a href="#" class="">J'ai oublié mon mot de passe</a><br><br>
         <a class="button button-danger" href="register.html">Inscription</a>
         <button class="button button-success" type="submit">Se connecter</button>
