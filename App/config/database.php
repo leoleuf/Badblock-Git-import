@@ -12,10 +12,10 @@ return [
 		'database' => getenv('MYSQL_DATABASE'),
 	],
 	'mongo_db' => [
-		'host' => getenv('node02-dev.cluster.badblock-network.fr'),
-		'port' => getenv('27017'),
-		'user' => getenv('dev'),
-		'password' => getenv('VAQyVRregUwde5QUP7CVv15tZ7S5OwyC'),
-		'database' => getenv('test'),
+		'host' => getenv('MONGO_HOST'),
+		'port' => getenv('MONGO_PORT'),
+		'user' => getenv('MONGO_USERNAME'),
+		'password' => getenv('MONGO_PASSWORD'),
+		'database' => getenv('MONGO_DATABASE'),
 	]
 ];

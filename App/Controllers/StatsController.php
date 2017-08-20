@@ -65,7 +65,10 @@ class StatsController extends Controller
 
 
     public function tower($page){
-        $r = $this->mongo->find( array( "name" => array( "$gte" => 42 ) ) );
+        $m = new $this->mongo;
+        $c = $m->selectCollection("phpt", "find");
+
+        $r = $c->find( array( "name" => array( "$gte" => 42 ) ) );
     }
 
 
