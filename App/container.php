@@ -55,6 +55,17 @@ $container['mysql'] = function ($container) {
 	return $dbConn;
 };
 
+$container['mongo'] = function ($container) {
+	return new \MongoDB\Client(
+		'mongodb://node02-dev.cluster.badblock-network.fr/',
+		[
+			'username' => 'dev',
+			'password' => 'VAQyVRregUwde5QUP7CVv15tZ7S5OwyC',
+			'authSource' => 'badblock-website'
+		]
+    );
+};
+
 $container['minecraft'] = function ($container) {
 	return new App\MinecraftServerQuery($container,
 		[

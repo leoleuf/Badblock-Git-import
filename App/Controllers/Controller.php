@@ -23,6 +23,7 @@ class Controller{
 		$this->xenforo = $container['xenforo'];
 		$this->redis = $container['redis'];
 //		$this->mysql = $container['mysql'];
+		$this->mongo = $container['mongo'];
 		$this->log = $container['log'];
 		$this->session = $container['session'];
 	}
