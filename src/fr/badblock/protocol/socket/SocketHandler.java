@@ -60,6 +60,8 @@ public class SocketHandler extends Thread implements PacketSender {
 								System.out.println("Too many packets (" + packets.size() + ") on SocketHandler");
 							}
 							while (!packets.isEmpty()) {
+								in          = new ByteInputStream(socket.getInputStream());
+								out         = new ByteOutputStream(socket.getOutputStream());
 								Iterator<Packet> iterator = packets.iterator();
 								while (iterator.hasNext()) {
 									Packet packet = iterator.next();
@@ -72,6 +74,7 @@ public class SocketHandler extends Thread implements PacketSender {
 											sendId++;
 										}
 										protocolOut.writePacket(out, packet);
+										out.close();
 									} catch(Throwable e){
 										//System.out.println("Méchant packet (" + packet + ") :");
 										e.printStackTrace();
