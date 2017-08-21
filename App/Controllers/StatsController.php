@@ -83,11 +83,12 @@ class StatsController extends Controller
 
 		var_dump($insertOneResult->getInsertedId());*/
 
-		$collection = $this->mongo->test->users;
+		$collection = $this->mongo->test->test;
 
-		$document = $collection->find(['_id' => '5999e7c8b6182c29a83df7c6']);
+		$cursor = $collection->findOne(['uniqueId' => 'f77952e6-1fa9-3336-a60e-1d47e340d71a']);
 
-		var_dump($document);
+
+		var_dump($cursor->game->stats->tower);
     }
 
 
