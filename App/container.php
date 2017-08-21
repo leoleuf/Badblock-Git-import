@@ -12,6 +12,7 @@ $container['session'] = function ($container) use ($config) {
 
 $container['log'] = function ($container) {
 	$log = new Monolog\Logger('badblock-website');
+
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
 
 	if ($container->config['log']['discord']){
