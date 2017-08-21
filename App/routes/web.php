@@ -10,6 +10,8 @@ $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('h
 $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 
+$app->get('/profile/{pseudo}', \App\Controllers\ProfileController::class . ':getprofile')->setName('stats-profile');
+
 $app->get('/stats/', \App\Controllers\StatsController::class . ':home')->setName('stats-home');
 $app->get('/stats/{game}/', \App\Controllers\StatsController::class . ':game')->setName('stats-game-np');
 $app->get('/stats/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');

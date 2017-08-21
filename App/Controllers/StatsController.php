@@ -14,57 +14,60 @@ use Psr\Http\Message\ResponseInterface;
 class StatsController extends Controller
 {
 
-	public function home(RequestInterface $request, ResponseInterface $response){
+	public function home(RequestInterface $request, ResponseInterface $response)
+	{
 		$this->container->view->render($response, 'pages/home-stats.twig');
 	}
 
-	public function game(RequestInterface $request, ResponseInterface $response,$game,$page = null){
+	public function game(RequestInterface $request, ResponseInterface $response, $game, $page = NULL)
+	{
 		//Régulation vers fonction
-		if(!isset($page)){
+		if (!isset($page)) {
 			$page = 1;
 		}
 		$game = $game['game'];
 		//Tower
-		if($game == "tower"){
+		if ($game == "tower") {
 			$this->tower($page);
 			//Rush
-		}elseif ($game == "rush"){
+		} elseif ($game == "rush") {
 			$this->rush($page);
 			//Capture the flags
-		}elseif($game == "cts"){
+		} elseif ($game == "cts") {
 			$this->cts($page);
 			//Survival Games Solo
-		}elseif ($game == "SurvivalGamesSolo"){
+		} elseif ($game == "SurvivalGamesSolo") {
 			$this->sgs($page);
 			//Survival Games Team
-		}elseif ($game == "SurvivalGamesTeams"){
+		} elseif ($game == "SurvivalGamesTeams") {
 			$this->sgt($page);
 			//Pvp-Box
-		}elseif ($game == "pvpbox"){
+		} elseif ($game == "pvpbox") {
 			$this->pvpbox($page);
 			//Faction
-		}elseif ($game == "Faction"){
+		} elseif ($game == "Faction") {
 			$this->faction($page);
 			//UHC Solo
-		}elseif ($game == "uhcsolo"){
+		} elseif ($game == "uhcsolo") {
 			$this->uhcsolo($page);
 			//UHC Team
-		}elseif ($game == "uhcteam"){
+		} elseif ($game == "uhcteam") {
 			$this->uhcteam($page);
 			//Space Balls
-		}elseif ($game == "SpaceBalls"){
+		} elseif ($game == "SpaceBalls") {
 			$this->spaceball($page);
 			//DayZ
-		}elseif ($game == "dayz"){
+		} elseif ($game == "dayz") {
 			$this->dayz($page);
-		}else{
+		} else {
 			//Erreur 404
 			return $response->withStatus(404);
 		}
 	}
 
 
-	public function tower($page){
+	public function tower($page)
+	{
 //        $m = new $this->mongo;
 //        $c = $m->selectCollection("phpt", "find");
 //
