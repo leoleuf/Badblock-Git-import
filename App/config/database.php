@@ -17,5 +17,6 @@ return [
 		'user' => getenv('MONGO_USERNAME'),
 		'password' => getenv('MONGO_PASSWORD'),
 		'database' => getenv('MONGO_DATABASE'),
+		'authSource' => getenv('MONGO_SOURCE'),
 	]
 ];

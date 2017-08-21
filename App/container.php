@@ -63,9 +63,9 @@ $container['mongo'] = function ($container) {
 	return new \MongoDB\Client(
 		'mongodb://node02-dev.cluster.badblock-network.fr/',
 		[
-			'username' => 'dev',
-			'password' => 'VAQyVRregUwde5QUP7CVv15tZ7S5OwyC',
-			'authSource' => 'badblock-website'
+            'username' => $container->config['mongo_db']['user'],     // user
+            'password' => $container->config['mongo_db']['password'],      // password
+            'authSource' => $container->config['mongo_db']['authSource']   // database
 		]
     );
 };
