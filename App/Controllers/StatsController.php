@@ -65,10 +65,29 @@ class StatsController extends Controller
 
 
     public function tower($page){
-        $m = new $this->mongo;
-        $c = $m->selectCollection("phpt", "find");
+//        $m = new $this->mongo;
+//        $c = $m->selectCollection("phpt", "find");
+//
+//        $r = $c->find( array( "name" => array( "$gte" => 42 ) ) );
+		/*
+		insert One document
+		$collection = $this->mongo->test->users;
 
-        $r = $c->find( array( "name" => array( "$gte" => 42 ) ) );
+		$insertOneResult = $collection->insertOne([
+			'username' => 'admin',
+			'email' => 'admin@example.com',
+			'name' => 'Admin User',
+		]);
+
+		printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
+
+		var_dump($insertOneResult->getInsertedId());*/
+
+		$collection = $this->mongo->test->users;
+
+		$document = $collection->find(['_id' => '5999e7c8b6182c29a83df7c6']);
+
+		var_dump($document);
     }
 
 

@@ -178,7 +178,7 @@ class BlogApiController extends Controller
 				'content' => $content
 			];
 
-			//enregistrer sur redis un article en particulier
+			//enregistrer sur redis un article en particul	ier
 			$singleNewPostJson = json_encode($singleNewPost);
 			$this->redis->set('website:post:' . $uuid, $singleNewPostJson);
 
