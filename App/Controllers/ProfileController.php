@@ -24,7 +24,7 @@ class ProfileController extends Controller
 
 
         if (empty($cursor)){
-            return $response->withStatus(404);
+			return $this->container['notFoundHandler']($request, $response);
         }
 
 
