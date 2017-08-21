@@ -11,10 +11,14 @@ $container['session'] = function ($container) use ($config) {
 };
 
 $container['log'] = function ($container) {
-	return new LogManager\Log([
-		'enabled' => true,
-		'folder' => '../log/'
-	]);
+	$log = new Monolog\Logger('badblock-website');
+	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
+
+	if ($container->config['log']['discord']){
+		$log->pushHandler(new App\MonologDiscordHandler($container->guzzle, $container->config['log']['level']));
+	}
+
+	return $log;
 };
 
 $container['view'] = function ($container) use ($app) {

@@ -1,6 +1,13 @@
 <?php
 return [
-	'log' => getenv('LOG_ENABLED', true),
+	'app_name' => getenv('APP_NAME'),
+	'app_debug' => getenv('APP_DEBUG'),
+	'env_name' => getenv('APP_ENV_NAME'),
+	'log' => [
+		'level' => getenv('LOG_LEVEL'),
+		'discord' => getenv('LOG_DISCORD'),
+		'path' => getenv('LOG_PATH')
+	],
 	'twig' => [
 		'cache' => getenv('TWIG_CACHE')
 	],

@@ -41,7 +41,7 @@ $config = \App\Config::get();
 | You must indicate false setting for production environment.
 |
 */
-$app = new \Slim\App(['settings' => ['displayErrorDetails' => $_ENV['SLIM_DISPLAY_ERRORS_DETAILS']]]);
+$app = new \Slim\App(['settings' => ['displayErrorDetails' => $config['app_debug']]]);
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +53,8 @@ $app = new \Slim\App(['settings' => ['displayErrorDetails' => $_ENV['SLIM_DISPLA
 |
 */
 require '../App/container.php';
+
+$container->log->error('Hello world');
 
 /*
 |--------------------------------------------------------------------------
