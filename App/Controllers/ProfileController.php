@@ -20,9 +20,16 @@ class ProfileController extends Controller
 
         $collection = $this->mongo->test->test;
 
-        $cursor = $collection->findOne(['name' => $pseudo['pseudo']]);
+        $cursor = $collection->findOne(['realName' => $pseudo['pseudo']]);
+
+
+        if (empty($cursor)){
+            return $response->withStatus(404);
+        }
+
 
         var_dump($cursor->game->stats);
+
 
     }
 
