@@ -19,6 +19,8 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_Function('short_str', [$this, 'short_str']),
 			new \Twig_Function('getHoursFromDateTime', [$this, 'getHoursFromDateTime']),
 			new \Twig_Function('timeago', [$this, 'timeago']),
+			new \Twig_Function('getLocale', [$this, 'getLocale']),
+			new \Twig_Function('ucfirst', [$this, 'ucfirst']),
 		];
 	}
 
@@ -30,6 +32,12 @@ class TwigExtension extends \Twig_Extension
 			return $string;
 		}
 	}
+
+	public function ucfirst($string)
+	{
+		return ucfirst($string);
+	}
+
 
 	public function markdown($value)
 	{
@@ -60,6 +68,18 @@ class TwigExtension extends \Twig_Extension
 				$date
 			)
 		);
+	}
+
+	public function getLocale($locale)
+	{
+		switch ($locale){
+			case 'FRENCH_FRANCE':
+				return 'Français';
+				break;
+			default:
+				return 'Inconnu';
+				break;
+		}
 	}
 
 }
