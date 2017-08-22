@@ -32,7 +32,17 @@ class Controller{
 		return $response->withStatus(302)->withHeader('Location', $location);
 	}
 
+	/**
+	 * Helper for render function
+	 * Please give file name without extension
+	 *
+	 * @param ResponseInterface $response
+	 * @param $file
+	 * @param array $params
+	 */
 	public function render(ResponseInterface $response, $file, $params = []){
+		//require file without .twig extension
+		$file = str_replace('.', '/', $file);
 		$this->container->view->render($response, $file, $params);
 	}
 

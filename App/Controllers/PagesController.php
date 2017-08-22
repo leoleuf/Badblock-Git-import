@@ -26,7 +26,7 @@ class PagesController extends Controller {
 
 		var_dump($insertOneResult->getInsertedId());*/
 
-		$this->render($response, 'pages/home.twig', [
+		$this->render($response, 'pages.home', [
         	'first_row' => $firstRow,
 			'second_row' => $secondRow
 		]);

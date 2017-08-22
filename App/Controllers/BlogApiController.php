@@ -62,6 +62,7 @@ class BlogApiController extends Controller
 
 		//loggin
 		$this->log->info('"createCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
+
 		while ($i < $posts['count']) {
 			//on fait une requete sur ce post en particulier
 			$post = $this->xenforo->getNewPost($posts['threads'][$i]['first_post_id']);
@@ -73,7 +74,6 @@ class BlogApiController extends Controller
 
 			//Chercher le post id
 			$postId = $post['post_id'];
-
 
 			//Chercher le post date
 			$postDate = $post['post_date'];
@@ -179,8 +179,7 @@ class BlogApiController extends Controller
 			];
 
 			//enregistrer sur redis un article en particul	ier
-			$singleNewPostJson = json_encode($singleNewPost);
-			$this->redis->set('website:post:' . $uuid, $singleNewPostJson);
+			$this->redis->setJson('website:post:' . $uuid, $singleNewPost);
 
 			//si le poste est épinglé on enregistre dans un tableau
 			array_push($pinedRawPosts, $newPosts[$i]);
@@ -189,8 +188,7 @@ class BlogApiController extends Controller
 
 		//4. On enregistre le tout
 		//enregistrer sur redis tout les articles
-		$newPostsJson = json_encode($newPosts);
-		$this->redis->set('website:all_posts', $newPostsJson);
+		$this->redis->setJson('website:all_posts', $newPosts);
 
 		//enregistrer le cache pour la première ligne et la seconde ligne
 		$firstRowPosts = [
@@ -201,14 +199,11 @@ class BlogApiController extends Controller
 			$newPosts[2],
 			$newPosts[3]
 		];
-		$firstJsonPosts = json_encode($firstRowPosts, 1);
-		$secondJsonPosts = json_encode($secondRowPosts, 1);
-		$this->redis->set('website:first_row_posts', $firstJsonPosts);
-		$this->redis->set('website:second_row_posts', $secondJsonPosts);
+		$this->redis->set('website:first_row_posts', $firstRowPosts);
+		$this->redis->set('website:second_row_posts', $secondRowPosts);
 
 		//enregister le cache pour les articles épinglés
-		$pinedJsonPosts = json_encode($pinedRawPosts, 1);
-		$this->redis->set('website:pined_posts', $pinedJsonPosts);
+		$this->redis->setJson('website:pined_posts', $pinedRawPosts);
 
 		//return success
 		return $response->write('Success writing cache')->withStatus(200);

@@ -43,7 +43,8 @@ $container['view'] = function ($container) use ($app) {
 };
 
 $container['guzzle'] = function ($container) {
-	return new GuzzleHttp\Client();
+	$client = new GuzzleHttp\Client();
+	return $client;
 };
 
 $container['mysql'] = function ($container) {

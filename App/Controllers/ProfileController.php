@@ -17,21 +17,19 @@ class ProfileController extends Controller
 
     public function getprofile(RequestInterface $request, ResponseInterface $response,$pseudo){
 
-
+		//sans cache
         $collection = $this->mongo->test->test;
 
-        $cursor = $collection->findOne(['realName' => $pseudo['pseudo']]);
+        $user = $collection->findOne(['realName' => $pseudo['pseudo']]);
 
-
-        if (empty($cursor)){
+        if (empty($user)){
 			return $this->container['notFoundHandler']($request, $response);
         }
 
-
-
-        var_dump($cursor->game->stats);
-
-
+        //return view
+		return $this->render($response, 'user.profile', [
+			'user' => $user
+		]);
     }
 
 
