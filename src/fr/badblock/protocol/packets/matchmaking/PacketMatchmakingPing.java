@@ -1,4 +1,4 @@
-package fr.badblock.protocol.matchmaking;
+package fr.badblock.protocol.packets.matchmaking;
 
 import java.io.IOException;
 

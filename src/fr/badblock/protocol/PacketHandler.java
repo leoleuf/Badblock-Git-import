@@ -1,9 +1,5 @@
 package fr.badblock.protocol;
 
-import fr.badblock.protocol.matchmaking.PacketMatchmakingJoin;
-import fr.badblock.protocol.matchmaking.PacketMatchmakingKeepalive;
-import fr.badblock.protocol.matchmaking.PacketMatchmakingPing;
-import fr.badblock.protocol.matchmaking.PacketMatchmakingPong;
 import fr.badblock.protocol.packets.PacketHelloworld;
 import fr.badblock.protocol.packets.PacketLadderStop;
 import fr.badblock.protocol.packets.PacketPlayerChat;
@@ -15,6 +11,10 @@ import fr.badblock.protocol.packets.PacketPlayerPlace;
 import fr.badblock.protocol.packets.PacketPlayerQuit;
 import fr.badblock.protocol.packets.PacketReconnectionInvitation;
 import fr.badblock.protocol.packets.PacketSimpleCommand;
+import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingJoin;
+import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingKeepalive;
+import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPing;
+import fr.badblock.protocol.packets.matchmaking.PacketMatchmakingPong;
 
 public interface PacketHandler {
 	public void handle(PacketPlayerChat  			packet);

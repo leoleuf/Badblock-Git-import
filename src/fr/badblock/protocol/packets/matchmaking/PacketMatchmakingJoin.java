@@ -1,4 +1,4 @@
-package fr.badblock.protocol.matchmaking;
+package fr.badblock.protocol.packets.matchmaking;
 
 import java.io.IOException;
 
@@ -11,26 +11,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * R�ponse de Ladder au ping. Renvoit le nombre de joueurs.
+ * Packet permettant � un serveur d'indiquer qu'un joueur veux jouer
  * @author LeLanN
  */
 @Data@NoArgsConstructor@AllArgsConstructor
-public class PacketMatchmakingPong implements Packet {
-	private int id;
-	private int playerCount;
-
+public class PacketMatchmakingJoin implements Packet {
+	private String serverName;
+	private String playerName;
+	
 	@Override
 	public void read(ByteInputStream input) throws IOException {
-		id 			= input.readInt();
-		playerCount = input.readInt();
+		serverName = input.readUTF();
+		playerName = input.readUTF();
 	}
-
+	
 	@Override
 	public void write(ByteOutputStream output) throws IOException {
-		output.writeInt(id);
-		output.writeInt(playerCount);
+		output.writeUTF(serverName);
+		output.writeUTF(playerName);
 	}
-
+	
 	@Override
 	public void handle(PacketHandler handler) throws Exception {
 		handler.handle(this);
