@@ -1,0 +1,43 @@
+.profile-stats {
+  h3 {
+    margin-top: 1em;
+  }
+  table {
+    tr {
+      td:first-of-type{
+        width: 100%;
+      }
+    }
+  }
+}
+
+.profile-info {
+
+  .profile-info-content {
+    color: white;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    hr {
+      width: 80%;
+      //margin: 0 auto;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .level-container {
+    background-color: #3498db;
+  }
+
+  .xp-container {
+    background-color: #2C3E50;
+  }
+
+  .locale-container {
+    background-color: #8e44ad;
+  }
+}
