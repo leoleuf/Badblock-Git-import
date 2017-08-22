@@ -1,6 +1,6 @@
 package fr.badblock.common.commons.technologies.mongodb;
 
-3import com.mongodb.DB;
+import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
 import lombok.Getter;
