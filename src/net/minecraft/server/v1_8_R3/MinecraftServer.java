@@ -623,30 +623,32 @@ public abstract class MinecraftServer implements Runnable, ICommandListener, IAs
 				this.a((CrashReport) null);
 			}
 		} catch (Throwable throwable) {
-			MinecraftServer.LOGGER.error("Encountered an unexpected exception", throwable);
-			// Spigot Start
-			if ( throwable.getCause() != null )
-			{
-				MinecraftServer.LOGGER.error( "\tCause of unexpected exception was", throwable.getCause() );
+			if (!throwable.getMessage().contains("ConcurrentModificationException")) {
+				MinecraftServer.LOGGER.error("Encountered an unexpected exception", throwable);
+				// Spigot Start
+				if ( throwable.getCause() != null )
+				{
+					MinecraftServer.LOGGER.error( "\tCause of unexpected exception was", throwable.getCause() );
+				}
+				// Spigot End
+				CrashReport crashreport = null;
+
+				if (throwable instanceof ReportedException) {
+					crashreport = this.b(((ReportedException) throwable).a());
+				} else {
+					crashreport = this.b(new CrashReport("Exception in server tick loop", throwable));
+				}
+
+				File file = new File(new File(this.y(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
+
+				if (crashreport.a(file)) {
+					MinecraftServer.LOGGER.error("This crash report has been saved to: " + file.getAbsolutePath());
+				} else {
+					MinecraftServer.LOGGER.error("We were unable to save this crash report to disk.");
+				}
+
+				this.a(crashreport);
 			}
-			// Spigot End
-			CrashReport crashreport = null;
-
-			if (throwable instanceof ReportedException) {
-				crashreport = this.b(((ReportedException) throwable).a());
-			} else {
-				crashreport = this.b(new CrashReport("Exception in server tick loop", throwable));
-			}
-
-			File file = new File(new File(this.y(), "crash-reports"), "crash-" + (new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")).format(new Date()) + "-server.txt");
-
-			if (crashreport.a(file)) {
-				MinecraftServer.LOGGER.error("This crash report has been saved to: " + file.getAbsolutePath());
-			} else {
-				MinecraftServer.LOGGER.error("We were unable to save this crash report to disk.");
-			}
-
-			this.a(crashreport);
 		} finally {
 			try {
 				org.spigotmc.WatchdogThread.doStop();
