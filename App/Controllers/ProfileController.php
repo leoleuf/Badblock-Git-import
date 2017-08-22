@@ -28,6 +28,7 @@ class ProfileController extends Controller
         }
 
 
+
         var_dump($cursor->game->stats);
 
 
