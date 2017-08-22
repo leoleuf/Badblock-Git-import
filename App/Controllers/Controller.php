@@ -42,7 +42,7 @@ class Controller{
 	 */
 	public function render(ResponseInterface $response, $file, $params = []){
 		//require file without .twig extension
-		$file = str_replace('.', '/', $file);
+		$file = str_replace('.', '/', $file) . '.twig';
 		$this->container->view->render($response, $file, $params);
 	}
 
