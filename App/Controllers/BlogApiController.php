@@ -47,7 +47,7 @@ class BlogApiController extends Controller
 	 * @param ServerRequestInterface $request
 	 * @param ResponseInterface $response
 	 */
-	public function createCacheAllPosts(ServerRequestInterface $request, ResponseInterface $response)
+	public function getCreateCacheAllPosts(ServerRequestInterface $request, ResponseInterface $response)
 	{
 		//Ici, on va créer un cache global pour tous les posts
 		//le but est d'aller chercher les infos sur l'api xenforo,
@@ -55,17 +55,20 @@ class BlogApiController extends Controller
 		//de les enregistrer sur redis
 		//1. obtenir tout les posts
 		$posts = $this->xenforo->getAllNewsPosts();
+
+		//loggin
+		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
+
 		//2. Les traiter pour en obtenir le contenu
 		$newPosts = [];
 		$pinedRawPosts = [];
 		$i = 0;
 
-		//loggin
-		$this->log->info('"createCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
-
+		//boucle
 		while ($i < $posts['count']) {
 			//on fait une requete sur ce post en particulier
 			$post = $this->xenforo->getNewPost($posts['threads'][$i]['first_post_id']);
+
 			//on va chercher les infos dont on a besoin
 			//chercher, obtenir et nettoyer les postinfo
 
@@ -116,10 +119,10 @@ class BlogApiController extends Controller
 				if (isset($postInfo['thumb_url'], $postInfo['summary'], $postInfo['pined'], $postInfo['comments'])) {
 					//valide
 					//logging
-					$this->log->success('"createCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
+					$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
 					//logging
-					$this->log->error('"createCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
+					$this->log->error('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
 
 					//stop the script
 					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
@@ -133,7 +136,7 @@ class BlogApiController extends Controller
 				];
 
 				//logging
-				$this->log->info('"createCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
+				$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
 			}
 
 			//definir le contenu
@@ -147,7 +150,6 @@ class BlogApiController extends Controller
 			$postInfoLen = strlen($postInfoRaw);
 			//on deduit la longueur
 			$content = substr($post['message_html'], 0, -$postInfoLen);
-			$this->log->info($content);
 
 			$newPosts[$i] = [
 				'uuid' => $uuid,
@@ -182,7 +184,9 @@ class BlogApiController extends Controller
 			$this->redis->setJson('website:post:' . $uuid, $singleNewPost);
 
 			//si le poste est épinglé on enregistre dans un tableau
-			array_push($pinedRawPosts, $newPosts[$i]);
+			if ($postInfo['pined']){
+				array_push($pinedRawPosts, $newPosts[$i]);
+			}
 			$i++;
 		}
 
@@ -199,11 +203,18 @@ class BlogApiController extends Controller
 			$newPosts[2],
 			$newPosts[3]
 		];
-		$this->redis->set('website:first_row_posts', $firstRowPosts);
-		$this->redis->set('website:second_row_posts', $secondRowPosts);
+		$this->redis->setJson('website:first_row_posts', $firstRowPosts);
+		$this->redis->setJson('website:second_row_posts', $secondRowPosts);
 
 		//enregister le cache pour les articles épinglés
+		//debug log
+		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
 		$this->redis->setJson('website:pined_posts', $pinedRawPosts);
+
+		//enregistrer le nb d'articles
+		$this->redis->set('website:posts_count', $posts['count']);
+
+		$this->log->info('"BlogApiController\getCreateCacheAllPosts": Success writing articles cache');
 
 		//return success
 		return $response->write('Success writing cache')->withStatus(200);
