@@ -44,6 +44,7 @@ class Redis
 	 */
 	public function setJson($key, $value)
 	{
-		return $this->client->set($key, json_encode($value));
+		$value = json_encode($value);
+		return $this->client->set($key, $value);
 	}
 }

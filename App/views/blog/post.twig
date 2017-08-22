@@ -4,7 +4,8 @@
 {% block content %}
     <div class="article-thumb" style="background: url('{{ post.thumb_url }}')">
         <div class="article-infos">
-            <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ post.created_at }}</li>
+            <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ post.created_at }}</li></li>
+            <li><i class="fa fa-user" aria-hidden="true"></i> {{ post.autor.name }}</li></li>
         </div>
     </div>
     <p class="article-content">

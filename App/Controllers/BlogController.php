@@ -46,7 +46,7 @@ class BlogController extends Controller
 			}
 		}
 
-		$this->render($response, 'blog/all.twig', [
+		$this->render($response, 'blog.all', [
 			'haveToPaginate' => $haveToPaginate,
 			'nbNews' => $nbResults,
 			'nbPage' => $nbPage,
@@ -61,7 +61,7 @@ class BlogController extends Controller
 		//TODO: Gérer la 404
 		//search in redis cache for single cache
 		$post = $this->redis->getJson('website:post:' . $args['uuid']);
-		$this->render($response, 'blog/post.twig', [
+		$this->render($response, 'blog.post', [
 			'post' => $post
 		]);
 	}

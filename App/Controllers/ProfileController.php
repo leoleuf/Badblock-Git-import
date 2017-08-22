@@ -17,16 +17,16 @@ class ProfileController extends Controller
 
     public function getprofile(RequestInterface $request, ResponseInterface $response,$pseudo){
 
-
+		//sans cache
         $collection = $this->mongo->test->test;
 
-        $cursor = $collection->findOne(['realName' => $pseudo['pseudo']]);
+        $user = $collection->findOne(['realName' => $pseudo['pseudo']]);
 
-
-        if (empty($cursor)){
+        if (empty($user)){
 			return $this->container['notFoundHandler']($request, $response);
         }
 
+<<<<<<< HEAD
 
         var_dump(ProfileController::tower($cursor->game->stats->tower));
         var_dump(ProfileController::spaceball($cursor->game->stats->spaceballs));
@@ -173,6 +173,12 @@ class ProfileController extends Controller
 
         return $c4;
 
+=======
+        //return view
+		return $this->render($response, 'user.profile', [
+			'user' => $user
+		]);
+>>>>>>> b1768688e46e5deb61495fa9aec1a03fa1435526
     }
 
 

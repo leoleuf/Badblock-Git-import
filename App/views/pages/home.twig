@@ -26,75 +26,67 @@
         <!-- Articles -->
         <div class="articles-home">
             <h4 class="heading heading-bar"><span>Les derniers articles</span></h4>
-            <!-- Si pas d'articles -->
-            <!--<div class="no-item-container">
-                <div class="no-item-content">
-                    <h4><i class="icon-erroralt"></i></h4>
-                    <h4>Aucun articles disponibles</h4>
+            {% if posts_count > 0 %}
+                <div class="mosaic">
+                    {% for infos in first_row %}
+                        <article class="card">
+                            <header class="card-thumb">
+                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                    <img src="{{ infos.thumb_url }}">
+                                </a>
+                            </header>
+                            <div class="card-body">
+                                <div class="card-title"><a
+                                            href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
+                                </div>
+                                <div class="card-subtitle">
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                        <i class="icon icon-user"></i>
+                                        {{ infos.author.name }}
+                                    </a>
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                        <i class="icon icon-time"></i>
+                                        {{ timeago(infos.created_at) }}
+                                    </a>
+                                </div>
+                                <p class="card-description">
+                                    {{ infos.summary }}
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
                 </div>
-            </div>-->
-            <!-- Fin si pas d'articles -->
-
-            <div class="mosaic">
-                {% for infos in first_row %}
-                    <article class="card">
-                        <header class="card-thumb">
-                            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                <img src="{{ infos.thumb_url }}">
-                            </a>
-                        </header>
-                        <div class="card-body">
-                            <div class="card-title"><a
-                                        href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
-                            </div>
-                            <div class="card-subtitle">
-                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <i class="icon icon-user"></i>
-                                    {{ infos.author.name }}
-                                </a>
-                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <i class="icon icon-time"></i>
-                                    {{ timeago(infos.created_at) }}
-                                </a>
-                            </div>
-                            <p class="card-description">
-                                {{ infos.summary }}
-                            </p>
-                        </div>
-                    </article>
-                {% endfor %}
-            </div>
             <!-- Fin première ligne de card -->
             <div class="mosaic">
-                {% for infos in second_row %}
-                    <article class="card card-second">
-                        <header class="card-thumb">
-                            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                <img src="{{ infos.thumb_url }}">
-                            </a>
-                        </header>
-                        <div class="card-body">
-                            <div class="card-title"><a
-                                        href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
-                            </div>
-                            <div class="card-subtitle">
+                    {% for infos in second_row %}
+                        <article class="card card-second">
+                            <header class="card-thumb">
                                 <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <i class="icon icon-user"></i>
-                                    {{ infos.author.name }}
+                                    <img src="{{ infos.thumb_url }}">
                                 </a>
-                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <i class="icon icon-time"></i>
-                                    {{ timeago(infos.created_at) }}
-                                </a>
+                            </header>
+                            <div class="card-body">
+                                <div class="card-title"><a
+                                            href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
+                                </div>
+                                <div class="card-subtitle">
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                        <i class="icon icon-user"></i>
+                                        {{ infos.author.name }}
+                                    </a>
+                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+                                        <i class="icon icon-time"></i>
+                                        {{ timeago(infos.created_at) }}
+                                    </a>
+                                </div>
+                                <p class="card-description">
+                                    <a class="button button-primary"
+                                       href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">En
+                                        savoir plus</a>
+                                </p>
                             </div>
-                            <p class="card-description">
-                                <a class="button button-primary"
-                                   href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">En
-                                    savoir plus</a>
-                            </p>
-                        </div>
-                    </article>
-                {% endfor %}
+                        </article>
+                    {% endfor %}
 
                 <!-- Plus card -->
                 <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">
@@ -103,6 +95,17 @@
                 </a>
                 <!-- Fin plus card-->
             </div>
+            {% endif %}
+            <!-- Si pas d'articles -->
+            {% if posts_count == 0 %}
+            <div class="no-item-container">
+                <div class="no-item-content">
+                    <h4><i class="icon-erroralt"></i></h4>
+                    <h4>Aucun articles disponibles</h4>
+                </div>
+            </div>
+            {% endif %}
+            <!-- Fin si pas d'articles -->
         </div>
         <!-- Articles Fin -->
     </div>
@@ -121,7 +124,8 @@
             </div>
             <div class="side-item">
                 <h4 class="heading-bar"><span>Teamspeak</span></h4>
-                <a class="button button-primary" value="ts.badblock.fr" href="{{ ts3_query }}"><i class="icon icon-chat"></i>
+                <a class="button button-primary" value="ts.badblock.fr" href="{{ ts3_query }}"><i
+                            class="icon icon-chat"></i>
                     ts.badblock.fr</a>
             </div>
             <div class="side-item">

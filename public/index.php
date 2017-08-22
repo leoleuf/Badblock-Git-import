@@ -54,7 +54,6 @@ $app = new \Slim\App(['settings' => ['displayErrorDetails' => $config['app_debug
 */
 require '../App/container.php';
 
-$container->log->error('Hello world');
 
 /*
 |--------------------------------------------------------------------------
