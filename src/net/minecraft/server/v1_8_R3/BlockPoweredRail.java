@@ -118,7 +118,7 @@ public class BlockPoweredRail extends BlockMinecartTrackAbstract {
 
     @Override
 	protected void b(World world, BlockPosition blockposition, IBlockData iblockdata, Block block) {
-    	if(BadblockConfig.config.redstone.usePoweredRails)
+    	if (!BadblockConfig.config.redstone.usePoweredRails)
     		return;
     	
         boolean flag = iblockdata.get(BlockPoweredRail.POWERED).booleanValue();
