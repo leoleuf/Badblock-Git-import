@@ -26,6 +26,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     private final Map<DamageModifier, Double> originals;
     private boolean cancelled;
     private final DamageCause cause;
+    private final Object recognizer;
 
     @Deprecated
     public EntityDamageEvent(final Entity damagee, final DamageCause cause, final int damage) {
@@ -34,10 +35,10 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
 
     @Deprecated
     public EntityDamageEvent(final Entity damagee, final DamageCause cause, final double damage) {
-        this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)));
+        this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)), null);
     }
 
-    public EntityDamageEvent(final Entity damagee, final DamageCause cause, final Map<DamageModifier, Double> modifiers, final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
+    public EntityDamageEvent(final Entity damagee, final DamageCause cause, final Map<DamageModifier, Double> modifiers, final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions, Object recognizer) {
         super(damagee);
         Validate.isTrue(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
         Validate.isTrue(!modifiers.containsKey(null), "Cannot have null DamageModifier");
@@ -48,6 +49,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
         this.cause = cause;
         this.modifiers = modifiers;
         this.modifierFunctions = modifierFunctions;
+        this.recognizer = recognizer;
     }
 
     @Override
@@ -151,6 +153,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
         return damage;
     }
 
+    public Object getRecognizer()
+    {
+    	return recognizer;
+    }
+    
     /**
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used

@@ -39,6 +39,12 @@ public class CraftEnderDragonPart extends CraftComplexPart implements EnderDrago
     }
 
     @Override
+    public void damage(double amount, org.bukkit.entity.Entity source, Object recognizer)
+    {
+    	getParent().damage(amount, source, recognizer);
+    }
+    
+    @Override
 	public double getHealth() {
         return getParent().getHealth();
     }
