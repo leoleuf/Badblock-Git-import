@@ -1,8 +1,6 @@
 package fr.badblock.rabbitconnector;
 
-import fr.badblock.commons.technologies.rabbitmq.RabbitMessage;
-import fr.badblock.commons.technologies.rabbitmq.RabbitPacketType;
-import fr.badblock.commons.utils.Encodage;
+import fr.badblock.utils.Encodage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
