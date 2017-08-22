@@ -36,7 +36,7 @@ import lombok.Setter;
 	 * @param virtualHost > virtual host where the account will be connected to
 	 * @return a RabbitCredentials object
 	 */
-	public RabbitCredentials newCredentials(String name, int port, String username, String password, String virtualHost, String... hostname) {
+	public RabbitCredentials newCredentials(String name, String hostname, int port, String username, String password, String virtualHost) {
 		return new RabbitCredentials(name, hostname, port, username, password, virtualHost);
 	}
 	
@@ -50,8 +50,8 @@ import lombok.Setter;
 	 * @param virtualHost > virtual host where the account will be connected to
 	 * @return a RabbitService ready to work
 	 */
-	public RabbitService newService(String name, int port, String username, String password, String virtualHost, String... hostname) {
-		return newService(name, newCredentials(name, port, username, password, virtualHost, hostname));
+	public RabbitService newService(String name, String hostname, int port, String username, String password, String virtualHost) {
+		return newService(name, newCredentials(name, hostname, port, username, password, virtualHost));
 	}
 	
 	/**

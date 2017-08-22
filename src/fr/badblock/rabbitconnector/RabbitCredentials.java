@@ -1,8 +1,5 @@
 package fr.badblock.rabbitconnector;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.rabbitmq.client.ConnectionFactory;
 
 import lombok.Getter;
@@ -14,18 +11,18 @@ import lombok.Setter;
  *
  */
 @Getter @Setter public class RabbitCredentials {
-
+	
 	private String					name;
-	private	String[]				hostnames;
+	private	String					hostname;
 	private	int						port;
 	private	String					username;
 	private	String					password;
 	private	String					virtualHost;
-	private List<ConnectionFactory>	connectionFactories;
-
-	public RabbitCredentials(String name, String[] hostnames, int port, String username, String password, String virtualHost) {
+	private ConnectionFactory		connectionFactory;
+	
+	public RabbitCredentials(String name, String hostname, int port, String username, String password, String virtualHost) {
 		this.setName(name);
-		this.setHostnames(hostnames);
+		this.setHostname(hostname);
 		this.setPort(port);
 		this.setUsername(username);
 		this.setPassword(password);
@@ -34,28 +31,24 @@ import lombok.Setter;
 		RabbitConnector.getInstance().getCredentials().put(this.getName(), this);
 		System.out.println("[RabbitConnector] Registered new credentials! (" + name + ")");
 	}
-
+	
 	public void flushChanges() {
-		this.setConnectionFactories(buildFactories());
+		this.setConnectionFactory(buildFactory());
 	}
-
-	private List<ConnectionFactory> buildFactories() {
-		ArrayList<ConnectionFactory> factories = new ArrayList<>();
-		for (String hostname : hostnames) {
-			ConnectionFactory connectionFactory = new ConnectionFactory();
-			connectionFactory.setUsername(getUsername());
-			connectionFactory.setPassword(getPassword());
-			connectionFactory.setVirtualHost(getVirtualHost());
-			connectionFactory.setHost(hostname);
-			connectionFactory.setPort(getPort());
-			connectionFactory.setAutomaticRecoveryEnabled(true);
-			connectionFactory.setConnectionTimeout(60000);
-			connectionFactory.setRequestedHeartbeat(60);
-			factories.add(connectionFactory);
-		}
-		return factories;
+	
+	private ConnectionFactory buildFactory() {
+		ConnectionFactory connectionFactory = new ConnectionFactory();
+		connectionFactory.setUsername(getUsername());
+		connectionFactory.setPassword(getPassword());
+		connectionFactory.setVirtualHost(getVirtualHost());
+		connectionFactory.setHost(getHostname());
+		connectionFactory.setPort(getPort());
+		connectionFactory.setAutomaticRecoveryEnabled(true);
+		connectionFactory.setConnectionTimeout(60000);
+		connectionFactory.setRequestedHeartbeat(60);
+		return connectionFactory;
 	}
-
+	
 	public void remove() {
 		System.out.println("[RabbitConnector] Unregistered credentials (" + this.getName() + ")");
 		RabbitConnector.getInstance().getCredentials().remove(this.getName());

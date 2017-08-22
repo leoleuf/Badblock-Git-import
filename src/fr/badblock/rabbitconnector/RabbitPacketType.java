@@ -1,8 +1,8 @@
 package fr.badblock.rabbitconnector;
 
-public enum RabbitListenerType {
+public enum RabbitPacketType {
 
 	MESSAGE_BROKER,
-	SUBSCRIBER;
+	PUBLISHER;
 	
 }
