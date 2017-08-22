@@ -1,7 +1,5 @@
 #!/bin/sh
 #Automatic pull webhooks
 cd /home/web/dev-web/badblock-website/
-git pull http://web_bot:kPnZSY3DW9gCCnyBxrA2Fm6eAa3tcafe@vps446463.ovh.net/Website/badblock-website.git
+git pull web_bot:tG5wJRLUzbTi3u0nVvpRRRSabP9vt36DxM6N@vps446463.ovh.net/Website/badblock-website.git
 
-#update composer dependencies
-php composer.phar update
