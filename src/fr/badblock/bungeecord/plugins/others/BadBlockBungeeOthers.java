@@ -22,6 +22,8 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import org.json.simple.JSONObject;
+
 import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
@@ -89,7 +91,6 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.netty.PipelineUtils;
-import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
 
@@ -113,7 +114,7 @@ import net.sf.json.JSONObject;
 	private RedisService								redisConnector;
 	private boolean										finished;
 	private long										openTime;
-	private long										time = 86400;
+	private long										time = 3600 * 8;
 	private long										maxPlayers = 1;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
