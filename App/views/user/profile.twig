@@ -24,9 +24,38 @@
         </div>
     </div>
     <div class="profile-stats">
+        <h3>Sanctions :</h3>
+        <table class="u-full-width">
+            <tbody>
+            <tr>
+                <td>Mute</td>
+                <td>
+                    {% if user.punish.mute == false %}
+                        Aucun Baillonement en cour
+                    {% else %}
+                        Bailloner pour "{{ user.punish.muteReason }}"
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Ban</td>
+                <td>
+                    {% if user.punish.ban == false %}
+                        Aucun Ban
+                    {% else %}
+                        Bannis pour "{{ user.punish.banReason }}"
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
         <h3>Rush</h3>
         <table class="u-full-width">
             <tbody>
+            <tr>
+                <td>Point de Classement</td>
+                <td>{{ user.game.stats.rush.kills }}</td>
+            </tr>
             <tr>
                 <td>Exécutions</td>
                 <td>{{ user.game.stats.rush.kills }}</td>
