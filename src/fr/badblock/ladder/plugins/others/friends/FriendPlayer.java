@@ -56,7 +56,7 @@ public class FriendPlayer {
 	public String lastMsg;
 	public boolean isOkay;
 	public Map<String, Long> lastFriendsManage = new HashMap<>();
-	public boolean hasNewChanges;
+	public boolean hasNewChanges = true;
 	public boolean isNew;
 	public Party party;
 	public AcceptType acceptGroups = AcceptType.ALL_PEOPLE;
