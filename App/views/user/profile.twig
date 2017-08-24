@@ -6,17 +6,17 @@
         <div class="container">
             <div class="row">
                 <div class="four columns level-container profile-info-content">
-                    Niveau
+                    <span class="profile-info-content-title">Niveau</span>
                     <hr>
                     {{ user.game.level }}
                 </div>
                 <div class="four columns xp-container profile-info-content">
-                    Xp
+                    <span class="profile-info-content-title">Xp</span>
                     <hr>
                     {{ user.game.xp }}
                 </div>
                 <div class="four columns locale-container profile-info-content">
-                    Pays
+                    <span class="profile-info-content-title">Langue</span>
                     <hr>
                     {{ getLocale(user.game.locale) }}
                 </div>
