@@ -12,9 +12,11 @@ $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':g
 
 $app->get('/profile/{pseudo}', \App\Controllers\ProfileController::class . ':getprofile')->setName('user-profile');
 
-$app->get('/user/', \App\Controllers\StatsController::class . ':home')->setName('user-home');
-$app->get('/user/{game}/', \App\Controllers\StatsController::class . ':game')->setName('user-game-np');
-$app->get('/user/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('user-game');
+$app->get('/stats/', \App\Controllers\StatsController::class . ':home')->setName('stats-home');
+$app->get('/stats/{game}/', \App\Controllers\StatsController::class . ':game')->setName('stats-game-np');
+$app->get('/stats/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');
+
+
 
 
 

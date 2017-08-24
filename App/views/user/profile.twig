@@ -33,7 +33,7 @@
                     {% if user.punish.mute == false %}
                         Aucun Baillonement en cour
                     {% else %}
-                        Bailloner pour "{{ user.punish.muteReason }}"
+                        Bailloner pour "{{ user.punish.muteReason }}" j'usqu'au "{{ user.punish.muteEnd }}"
                     {% endif %}
                 </td>
             </tr>
@@ -43,7 +43,7 @@
                     {% if user.punish.ban == false %}
                         Aucun Ban
                     {% else %}
-                        Bannis pour "{{ user.punish.banReason }}"
+                        Bannis pour "{{ user.punish.banReason }}" par "{{ user.punish.banner }}" j'usqu'au "{{ user.punish.banEnd }}"
                     {% endif %}
                 </td>
             </tr>

@@ -26,6 +26,11 @@ class ProfileController extends Controller
             return $this->container['notFoundHandler']($request, $response);
         }
 
+        //transformer en date time correct un timestamp
+        $user->punish['banEnd'] = date("d-m-Y H:i:s",$user->punish['banEnd']);
+        $user->punish['muteEnd'] = date("d-m-Y H:i:s",$user->punish['muteEnd']);
+
+
         //return view
 
         return $this->render($response, 'user.profile', [
