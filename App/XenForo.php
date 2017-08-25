@@ -1,7 +1,9 @@
 <?php
+
 namespace App;
 
-class XenForo{
+class XenForo
+{
 
 	public function __construct($container, $config)
 	{
@@ -20,6 +22,11 @@ class XenForo{
 		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->config['hash']);
 	}
 
+	public function getParsedBody($body)
+	{
+		return json_decode($body, 1);
+	}
+
 	/**
 	 * Get list of all posts associed to news
 	 *
@@ -27,13 +34,33 @@ class XenForo{
 	 */
 	public function getAllNewsPosts()
 	{
-		$req = $this->doGetRequest('action=getThreads&node_id=85&order_by=post_date');
-		return json_decode($req->getBody(), 1);
+		return $this->getParsedBody($this->doGetRequest('action=getThreads&node_id=85&order_by=post_date'));
 	}
 
+	/**
+	 * @param $postId
+	 * @return mixed
+	 */
 	public function getNewPost($postId)
 	{
-		$req = $this->doGetRequest('action=getPost&value=' . $postId);
-		return json_decode($req->getBody(), 1);
+		return $this->getParsedBody($this->doGetRequest('action=getPost&value=' . $postId));
+	}
+
+	/**
+	 * @param $username
+	 * @param $password
+	 * @param $ip
+	 * @return mixed
+	 */
+	public function getLogin($username, $password, $ip)
+	{
+		try {
+			$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
+
+			return $this->getParsedBody($rep->getBody());
+		} catch (\Exception $exception) {
+
+			return false;
+		}
 	}
 }

@@ -15,11 +15,15 @@ $container['log'] = function ($container) {
 
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
 
-	if ($container->config['log']['discord']){
+	if ($container->config['log']['discord']) {
 		$log->pushHandler(new App\MonologDiscordHandler($container->guzzle, $container->config['log']['discord_webhooks'], $container->config['log']['level']));
 	}
 
 	return $log;
+};
+
+$container['flash'] = function () {
+	return new \Slim\Flash\Messages();
 };
 
 $container['view'] = function ($container) use ($app) {
@@ -28,7 +32,7 @@ $container['view'] = function ($container) use ($app) {
 		'cache' => false //$dir . 'tmp/cache' OR '../tmp/cache'
 	]);
 	$twig = $view->getEnvironment();
-	$twig->addExtension(new \App\TwigExtension());
+	$twig->addExtension(new \App\TwigExtension($container));
 
 	//global variables
 	$twig->addGlobal('forum_url', $container['config']['forum_url']);
@@ -44,6 +48,7 @@ $container['view'] = function ($container) use ($app) {
 
 $container['guzzle'] = function ($container) {
 	$client = new GuzzleHttp\Client();
+
 	return $client;
 };
 
@@ -58,6 +63,7 @@ $container['mysql'] = function ($container) {
 	$pdoConn = $pdo->connect('utf8', []); // charset, options
 
 	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+
 	return $dbConn;
 };
 
@@ -65,11 +71,11 @@ $container['mongo'] = function ($container) {
 	return new \MongoDB\Client(
 		'mongodb://node02-dev.cluster.badblock-network.fr/',
 		[
-            'username' => $container->config['mongo_db']['user'],     // user
-            'password' => $container->config['mongo_db']['password'],      // password
-            'authSource' => $container->config['mongo_db']['authSource']   // database
+			'username' => $container->config['mongo_db']['user'],     // user
+			'password' => $container->config['mongo_db']['password'],      // password
+			'authSource' => $container->config['mongo_db']['authSource']   // database
 		]
-    );
+	);
 };
 
 $container['minecraft'] = function ($container) {
@@ -106,6 +112,7 @@ $container['redis_client'] = function ($container) {
 $container['redis'] = function ($container) {
 	return new \App\Redis($container->redis_client);
 };
+
 
 $container['notFoundHandler'] = function ($container) {
 	return new \App\NotFoundHandler($container->get('view'), function ($request, $response) use ($container) {

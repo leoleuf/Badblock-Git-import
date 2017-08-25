@@ -26,6 +26,8 @@
         "simplon/mysql": "^2.2",
         "mongodb/mongodb": "^1.1",
         "monolog/monolog": "^1.23",
-        "symfony/console": "^3.3"
+        "symfony/console": "^3.3",
+        "slim/flash": "^0.2.0",
+        "dflydev/fig-cookies": "^1.0"
     }
 }

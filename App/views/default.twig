@@ -26,6 +26,7 @@
     {% endif %}
 </head>
 <body>
+
 <!-- Header -->
 <div class="header">
     <div class="container">
@@ -164,19 +165,24 @@
 <div class="remodal modal-remodal" data-remodal-id="login-modal">
     <button data-remodal-action="close" class="remodal-close"></button>
     <h1>Connectez vous</h1>
+
+    {% if flash('login_error') %}
+        {% for flash in flash('login_error') %}
+            {{ flash }}
+        {% endfor %}
+    {% endif %}
     <p>
         <!-- Login Form -->
-    <form method="POST" action="/login">
-        <input type="hidden" name="<?= $valueKey ?>" value="<?= $value ?>">
-        <label for="username">Votre nom d'utilisateur</label>
-        <input name="username" class="u-full-width" type="text" placeholder="John Doe" id="username" required>
-        <label for="password">Votre mot de passe</label>
-        <input name="password" class="u-full-width" type="password" placeholder="******" id="password" required>
-        <a href="#" class="">J'ai oublié mon mot de passe</a><br><br>
-        <a class="button button-danger" href="register.html">Inscription</a>
-        <button class="button button-success" type="submit">Se connecter</button>
-    </form>
-    <!-- Fin login form -->
+        <form method="POST" action="{{ path_for('login') }}">
+            <label for="username">Votre nom d'utilisateur</label>
+            <input name="username" class="u-full-width" type="text" placeholder="John Doe" id="username" required>
+            <label for="password">Votre mot de passe</label>
+            <input name="password" class="u-full-width" type="password" placeholder="******" id="password" required>
+            <a href="#" class="{{ forum_url }}/lost-password/">J'ai oublié mon mot de passe</a><br><br>
+            <a class="button button-danger" href="{{ forum_url }}/inscription/">Inscription</a>
+            <button class="button button-success" type="submit">Se connecter</button>
+        </form>
+        <!-- Fin login form -->
     </p>
     <br>
 
