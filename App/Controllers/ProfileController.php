@@ -27,6 +27,7 @@ class ProfileController extends Controller
         }
 
 
+
         $user->game->stats->tower['cpoints'] = $this->tower($user->game->stats->tower);
         $user->game->stats->rush['cpoints'] = $this->rushs($user->game->stats->rush);
         $user->game->stats->survival['cpoints'] = $this->survival($user->game->stats->survival);
