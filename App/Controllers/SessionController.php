@@ -11,11 +11,12 @@ namespace App\Controllers;
 use function FastRoute\TestFixtures\empty_options_cached;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use App\XenForo;
 
 
 class SessionController extends Controller
 {
+
+
 
     public function login(RequestInterface $request, ResponseInterface $response){
         //Vérification des variables
@@ -23,8 +24,8 @@ class SessionController extends Controller
             echo("ok1");
             if (!empty($_POST['username'])&!empty($_POST['username'])){
                 echo("ok2");
-                $req = $this->doGetRequest('action=getPost&value=');
-                return json_decode($req->getBody(), 1);
+                $req = file_get_contents("https://dev-forum.badblock.fr/api.php?action=login&username=Skript&password=m1a2t3h4i5e6u7&ip_address=55.6.5.5");
+                return "sdfg";
 
             }
         }else{
