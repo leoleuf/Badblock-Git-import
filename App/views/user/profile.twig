@@ -1,83 +1,51 @@
 {% extends "default.twig" %}
+{% set show_title = false %}
 {% set title = user.name %}
 {% set subtitle = 'Ses statistiques' %}
-{% block content %}
-    <div class="profile-info">
-        <div class="container">
-            <div class="row">
-                <div class="four columns level-container profile-info-content">
-                    <span class="profile-info-content-title">Niveau</span>
-                    <hr>
-                    {{ user.game.level }}
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="one-half column animated bounceInLeft">
+                    <div class="profile-title">
+                        <div class="profile-mc-head"><img src="https://api.badblock.fr/public/badblock-heads/?name=LeLanN" title="Tête du skin"></div>
+                        <div>
+                            <h2 class="cover-heading">{{ user.name }}</h2>
+                            <span class="badge badge-{{ user.permissions.group }}">{{ ucfirst(user.permissions.group) }}</span>
+                            {% for key, permission in user.permissions.alternateGroups %}
+                                <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-                <div class="four columns xp-container profile-info-content">
-                    <span class="profile-info-content-title">Xp</span>
-                    <hr>
-                    {{ user.game.xp }}
-                </div>
-                <div class="four columns locale-container profile-info-content">
-                    <span class="profile-info-content-title">Langue</span>
-                    <hr>
-                    {{ getLocale(user.game.locale) }}
+            </div>
+            <div class="profile-info">
+                <div class="container">
+                    <ul>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
+                        <li><i class="icon icon-value-coins"></i> {{ user.game.xp }} <span>Xp</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+    {% if user.punish.mute == true %}
+        <div class="alert alert-warning" role="alert">
+            Cette personne est baillonné pour {{ user.punish.muteReason }} jusqu'au {{ timestampToTime(user.punish.muteEnd) }}
+        </div>
+    {% endif %}
+
+    {% if user.punish.ban == true %}
+        <div class="alert alert-warning" role="alert">
+            Cette personne est baillonné pour {{ user.punish.banReason }} jusqu'au {{ timestampToTime(user.punish.banEnd) }}
+        </div>
+    {% endif %}
     <div class="profile-stats">
-        <h3>Sanctions :</h3>
-        <table class="u-full-width">
-            <tbody>
-            <tr>
-                <td>Mute</td>
-                <td>
-                    {% if user.punish.mute == false %}
-                        Aucun Baillonement en cour
-                    {% else %}
-                        Bailloner pour "{{ user.punish.muteReason }}" j'usqu'au "{{ user.punish.muteEnd }}"
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <td>Ban</td>
-                <td>
-                    {% if user.punish.ban == false %}
-                        Aucun Ban
-                    {% else %}
-                        Bannis pour "{{ user.punish.banReason }}" par "{{ user.punish.banner }}" j'usqu'au "{{ user.punish.banEnd }}"
-                    {% endif %}
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <h3>Rush</h3>
-        <table class="u-full-width">
-            <tbody>
-            <tr>
-                <td>Point de Classement</td>
-                <td>{{ user.game.stats.rush.kills }}</td>
-            </tr>
-            <tr>
-                <td>Exécutions</td>
-                <td>{{ user.game.stats.rush.kills }}</td>
-            </tr>
-            <tr>
-                <td>Morts</td>
-                <td>{{ user.game.stats.rush.deaths }}</td>
-            </tr>
-            <tr>
-                <td>Lits capturés</td>
-                <td>{{ user.game.stats.rush.brokenbeds }}</td>
-            </tr>
-            <tr>
-                <td>Parties gagnés</td>
-                <td>{{ user.game.stats.rush.wins }}</td>
-            </tr>
-            <tr>
-                <td>Parties perdus</td>
-                <td>{{ user.game.stats.rush.looses }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <h2>Statistiques</h2>
 
         <h3>Spaceballs</h3>
         <table class="u-full-width">

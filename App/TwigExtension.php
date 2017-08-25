@@ -21,6 +21,7 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_Function('timeago', [$this, 'timeago']),
 			new \Twig_Function('getLocale', [$this, 'getLocale']),
 			new \Twig_Function('ucfirst', [$this, 'ucfirst']),
+			new \Twig_Function('timestampToTime', [$this, 'timestampToTime']),
 		];
 	}
 
@@ -68,6 +69,11 @@ class TwigExtension extends \Twig_Extension
 				$date
 			)
 		);
+	}
+
+	public function timestampToTime($date)
+	{
+		return date('Y-m-d H:i:s', $date);
 	}
 
 	public function getLocale($locale)
