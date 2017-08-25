@@ -1,6 +1,4 @@
 .profile-title {
-
-
   margin-left: 16px !important;
   display: flex;
 
@@ -97,4 +95,12 @@
   //.locale-container {
   //  background-color: #8e44ad;
   //}
+}
+
+.profile-stats {
+  .game-title {
+    .badge {
+      font-size: small;
+    }
+  }
 }
