@@ -97,7 +97,7 @@ public interface Server extends PluginMessageRecipient {
      */
     @Deprecated
     public Player[] _INVALID_getOnlinePlayers();
-
+    
     /**
      * Gets a view of all currently logged in players. This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused

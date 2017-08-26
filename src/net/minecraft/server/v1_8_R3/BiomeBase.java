@@ -87,7 +87,7 @@ public abstract class BiomeBase {
     public float temperature;
     public float humidity;
     public int ar;
-    public BiomeDecorator as;
+    public BiomeDecorator decorator;
     protected List<BiomeMeta> at;
     protected List<BiomeMeta> au;
     protected List<BiomeMeta> av;
@@ -118,7 +118,7 @@ public abstract class BiomeBase {
         this.aC = new WorldGenSwampTree();
         this.id = i;
         BiomeBase.biomes[i] = this;
-        this.as = this.a();
+        this.decorator = this.a();
         this.au.add(new BiomeMeta(EntitySheep.class, 12, 4, 4));
         this.au.add(new BiomeMeta(EntityRabbit.class, 10, 3, 3));
         this.au.add(new BiomeMeta(EntityPig.class, 10, 4, 4));
@@ -258,7 +258,7 @@ public abstract class BiomeBase {
     }
 
     public void a(World world, Random random, BlockPosition blockposition) {
-        this.as.a(world, random, this, blockposition);
+        this.decorator.a(world, random, this, blockposition);
     }
 
     public boolean j() {

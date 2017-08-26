@@ -25,7 +25,7 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
     }
 
     public EntityDamageByBlockEvent(final Block damager, final Entity damagee, final DamageCause cause, final Map<DamageModifier, Double> modifiers, final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
-        super(damagee, cause, modifiers, modifierFunctions);
+        super(damagee, cause, modifiers, modifierFunctions, null);
         this.damager = damager;
     }
 

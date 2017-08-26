@@ -15,16 +15,17 @@ public class BiomeTaiga extends BiomeBase {
         super(i);
         this.aI = j;
         this.au.add(new BiomeBase.BiomeMeta(EntityWolf.class, 8, 4, 4));
-        this.as.A = 10;
+        this.decorator.A = 10;
+        
         if (j != 1 && j != 2) {
-            this.as.C = 1;
-            this.as.E = 1;
+            this.decorator.C = 1;
+            this.decorator.mushroomCount = 1;
         } else {
-            this.as.C = 7;
-            this.as.D = 1;
-            this.as.E = 3;
+            this.decorator.C = 7;
+            this.decorator.D = 1;
+            this.decorator.mushroomCount = 3;
         }
-
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

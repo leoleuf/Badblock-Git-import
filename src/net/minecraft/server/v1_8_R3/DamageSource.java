@@ -17,6 +17,17 @@ public class DamageSource {
     public static DamageSource WITHER = (new DamageSource("wither")).setIgnoreArmor();
     public static DamageSource ANVIL = new DamageSource("anvil");
     public static DamageSource FALLING_BLOCK = new DamageSource("fallingBlock");
+    
+    public static DamageSource createGeneric(Object recognizer)
+    {
+    	if(recognizer == null)
+    		return GENERIC;
+    	
+    	DamageSource GENERIC = (new DamageSource("generic")).setIgnoreArmor();
+    	GENERIC.recognizer = recognizer;
+    	return GENERIC;
+    }
+    
     private boolean q;
     private boolean r;
     private boolean s;
@@ -27,6 +38,8 @@ public class DamageSource {
     private boolean x;
     private boolean y;
     public String translationIndex;
+    
+    public Object recognizer;
 
     public static DamageSource mobAttack(EntityLiving entityliving) {
         return new EntityDamageSource("mob", entityliving);

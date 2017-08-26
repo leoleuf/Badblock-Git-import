@@ -31,6 +31,7 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.entity.ThrownPotion;
 import org.bukkit.entity.WitherSkull;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
@@ -253,7 +254,13 @@ public class CraftLivingEntity extends CraftEntity implements LivingEntity {
 
     @Override
 	public void damage(double amount, org.bukkit.entity.Entity source) {
-        DamageSource reason = DamageSource.GENERIC;
+        damage(amount, source, null);
+    }
+    
+    @Override
+    public void damage(double amount, org.bukkit.entity.Entity source, Object recognizer)
+    {
+    	DamageSource reason = DamageSource.GENERIC;
 
         if (source instanceof HumanEntity) {
             reason = DamageSource.playerAttack(((CraftHumanEntity) source).getHandle());

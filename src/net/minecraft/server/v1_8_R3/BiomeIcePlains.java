@@ -16,6 +16,7 @@ public class BiomeIcePlains extends BiomeBase {
         }
 
         this.au.clear();
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

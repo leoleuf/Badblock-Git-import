@@ -23,8 +23,8 @@ public class BiomeDecorator {
     protected WorldGenerator q;
     protected WorldGenerator r;
     protected WorldGenFlowers s;
-    protected WorldGenerator t;
-    protected WorldGenerator u;
+    protected WorldGenerator brownMushrooms;
+    protected WorldGenerator redMushrooms;
     protected WorldGenerator v;
     protected WorldGenerator w;
     protected WorldGenerator x;
@@ -34,7 +34,7 @@ public class BiomeDecorator {
     protected int B;
     protected int C;
     protected int D;
-    protected int E;
+    protected int mushroomCount;
     protected int F;
     protected int G;
     protected int H;
@@ -47,8 +47,8 @@ public class BiomeDecorator {
         this.f = new WorldGenSand(Blocks.SAND, 7);
         this.g = new WorldGenSand(Blocks.GRAVEL, 6);
         this.s = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlowers.EnumFlowerVarient.DANDELION);
-        this.t = new WorldGenMushrooms(Blocks.BROWN_MUSHROOM);
-        this.u = new WorldGenMushrooms(Blocks.RED_MUSHROOM);
+        this.brownMushrooms = new WorldGenMushrooms(Blocks.BROWN_MUSHROOM);
+        this.redMushrooms = new WorldGenMushrooms(Blocks.RED_MUSHROOM);
         this.v = new WorldGenHugeMushroom();
         this.w = new WorldGenReed();
         this.x = new WorldGenCactus();
@@ -205,13 +205,13 @@ public class BiomeDecorator {
             }
         }
 
-        for (j = 0; j < this.E; ++j) {
+        for (j = 0; j < this.mushroomCount; ++j) {
             if (this.b.nextInt(4) == 0) {
                 k = this.b.nextInt(16) + 8;
                 l = this.b.nextInt(16) + 8;
                 BlockPosition blockposition3 = this.a.getHighestBlockYAt(this.c.a(k, 0, l));
 
-                this.t.generate(this.a, this.b, blockposition3);
+                this.brownMushrooms.generate(this.a, this.b, blockposition3);
             }
 
             if (this.b.nextInt(8) == 0) {
@@ -221,7 +221,7 @@ public class BiomeDecorator {
                 if (i1 > 0) {
                     j1 = this.b.nextInt(i1);
                     blockposition1 = this.c.a(k, j1, l);
-                    this.u.generate(this.a, this.b, blockposition1);
+                    this.redMushrooms.generate(this.a, this.b, blockposition1);
                 }
             }
         }
@@ -232,7 +232,7 @@ public class BiomeDecorator {
             l = this.a.getHighestBlockYAt(this.c.a(j, 0, k)).getY() * 2;
             if (l > 0) {
                 i1 = this.b.nextInt(l);
-                this.t.generate(this.a, this.b, this.c.a(j, i1, k));
+                this.brownMushrooms.generate(this.a, this.b, this.c.a(j, i1, k));
             }
         }
 
@@ -242,7 +242,7 @@ public class BiomeDecorator {
             l = this.a.getHighestBlockYAt(this.c.a(j, 0, k)).getY() * 2;
             if (l > 0) {
                 i1 = this.b.nextInt(l);
-                this.u.generate(this.a, this.b, this.c.a(j, i1, k));
+                this.redMushrooms.generate(this.a, this.b, this.c.a(j, i1, k));
             }
         }
 

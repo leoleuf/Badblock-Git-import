@@ -13,18 +13,19 @@ public class BiomeJungle extends BiomeBase {
         super(i);
         this.aD = flag;
         if (flag) {
-            this.as.A = 2;
+            this.decorator.A = 2;
         } else {
-            this.as.A = 50;
+            this.decorator.A = 50;
         }
 
-        this.as.C = 25;
-        this.as.B = 4;
+        this.decorator.C = 25;
+        this.decorator.B = 4;
         if (!flag) {
             this.at.add(new BiomeBase.BiomeMeta(EntityOcelot.class, 2, 1, 1));
         }
 
         this.au.add(new BiomeBase.BiomeMeta(EntityChicken.class, 10, 4, 4));
+        this.decorator.mushroomCount = 8;
     }
 
     @Override

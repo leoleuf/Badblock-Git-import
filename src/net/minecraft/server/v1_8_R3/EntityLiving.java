@@ -1118,6 +1118,7 @@ public abstract class EntityLiving extends Entity {
             float absorptionModifier = absorption.apply((double) f).floatValue();
 
             EntityDamageEvent event = CraftEventFactory.handleLivingEntityDamageEvent(this, damagesource, originalDamage, hardHatModifier, blockingModifier, armorModifier, resistanceModifier, magicModifier, absorptionModifier, hardHat, blocking, armor, resistance, magic, absorption);
+            System.out.println(event.getCause());
             if (event.isCancelled()) {
                 return false;
             }

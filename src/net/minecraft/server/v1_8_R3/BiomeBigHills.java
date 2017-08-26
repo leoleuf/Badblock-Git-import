@@ -19,8 +19,9 @@ public class BiomeBigHills extends BiomeBase {
         this.aG = 1;
         this.aH = 2;
         this.aI = this.aF;
+        this.decorator.mushroomCount = 8;
         if (flag) {
-            this.as.A = 3;
+            this.decorator.A = 3;
             this.aI = this.aG;
         }
 
