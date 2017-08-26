@@ -52,6 +52,7 @@ public class ChatListener implements Listener {
 		if (!(event.getSender() instanceof ProxiedPlayer)) return;
 		ProxiedPlayer player = (ProxiedPlayer) event.getSender();
 		String message = event.getMessage();
+		if (message.startsWith("/")) return;
 		boolean cheat = contains(message, cheatWords);
 		boolean lag = contains(message, lagWords);
 		boolean modo = contains(message, modoWords);
