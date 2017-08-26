@@ -22,6 +22,8 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import org.json.simple.JSONObject;
+
 import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
@@ -91,7 +93,6 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
 import net.md_5.bungee.netty.PipelineUtils;
-import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
 
