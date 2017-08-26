@@ -51,16 +51,16 @@ public class ModoCommand extends Command {
 		long expire = timestamp + time;
 		times.put(playerName, expire);
 		String message = StringUtils.join(args, " ");
-		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badfilter", "§6[/modo] &f" + playerName + " >> §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badfilter", "§fRépondez à la question en faisant /msg " + playerName, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport", "§6[/modo] &f" + playerName + " >> §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport", "§fRépondez à la question en faisant /msg " + playerName, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 		sender.sendMessage("§e--------------------------------------------------");
 		sender.sendMessage("§aVotre question a été posée à la modération :");
 		sender.sendMessage(message);
 		sender.sendMessage(" ");
 		sender.sendMessage("§eRappel: ");
-		sender.sendMessage("§cTout abus de cette commande vaudra un bannissement.");
-		sender.sendMessage("§cLes signalements ne se font pas par cette commande.");
-		sender.sendMessage("§fN'oubliez pas d'activer vos MP pour avoir une réponse.");
+		sender.sendMessage("§c > Tout abus de cette commande vaudra un bannissement.");
+		sender.sendMessage("§c > Les signalements ne se font pas par cette commande.");
+		sender.sendMessage("§f > N'oubliez pas d'activer vos MP pour avoir une réponse.");
 		sender.sendMessage("§e--------------------------------------------------");
 	}
 
