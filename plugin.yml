@@ -1,0 +1,5 @@
+name: BungeeOthers
+author: xMalware
+main: fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers
+version: 0.1
+depends: [LadderPlugin]
