@@ -35,6 +35,14 @@ public class ChatListener implements Listener {
 			"ca bug"
 	});
 
+	private static List<String> modoWords = Arrays.asList(new String[] {
+			"staff",
+			"modo",
+			"admin",
+			"help",
+			"aide"
+	});
+
 	private static Map<String, Long> lagging = new HashMap<>();
 	private static long				 laggingExpire = 300_000L;
 
@@ -46,6 +54,7 @@ public class ChatListener implements Listener {
 		String message = event.getMessage();
 		boolean cheat = contains(message, cheatWords);
 		boolean lag = contains(message, lagWords);
+		boolean modo = contains(message, modoWords);
 		if (cheat) {
 			event.setCancelled(true);
 			player.sendMessage("§6[INFO] §fVous soupçonnez quelqu'un de triche ? Tapez /cheat <pseudo>");
@@ -70,6 +79,8 @@ public class ChatListener implements Listener {
 			}else{
 				player.sendMessage("§6[INFO] §cVous avez déjà envoyé un rapport récemment.");
 			}
+		}else if (modo) {
+			player.sendMessage("§6[INFO] §fVous avez besoin d'aide/d'un staff ? Tapez /modo");
 		}
 	}
 
