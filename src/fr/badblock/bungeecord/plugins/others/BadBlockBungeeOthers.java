@@ -26,6 +26,7 @@ import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.LadderListener;
@@ -47,6 +48,7 @@ import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
+import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PreLoginListener;
 import fr.badblock.bungeecord.plugins.others.listeners.ProxyBoundListener;
@@ -113,10 +115,13 @@ import net.sf.json.JSONObject;
 	private RedisService								redisConnector;
 	private boolean										finished;
 	private long										openTime;
-	private long										time = 86400;
+	private long										time = 3600 * 8;
 	private long										maxPlayers = 1;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
+	
+	private TemmieWebhook temmie = new TemmieWebhook("https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
+
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -212,6 +217,7 @@ import net.sf.json.JSONObject;
 		PluginManager pluginManager = proxy.getPluginManager();
 		pluginManager.registerListener(this, new ProxyBoundListener());
 		pluginManager.registerListener(this, new PartyChatModule());
+		pluginManager.registerListener(this, new ChatListener());
 		pluginManager.registerListener(this, new PreLoginListener());
 		pluginManager.registerListener(this, new PlayerQuitListener());
 		pluginManager.registerListener(this, new BadInsultModule());
