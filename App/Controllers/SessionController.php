@@ -32,7 +32,8 @@ class SessionController extends Controller
 					//ajout du cookies
 //					Cookie::create($rep['cookie_name'], $rep['hash']);
 
-					setcookie($rep['cookie_name'], $rep['hash']);
+					setcookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expire'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
+
 					//redirect to home
 					return $this->redirect($response, 'home');
 				} else {
