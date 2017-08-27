@@ -17,7 +17,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class SessionController extends Controller
 {
-
 	public function login(RequestInterface $request, ResponseInterface $response)
 	{
 		//si les variables sont passés
@@ -29,13 +28,29 @@ class SessionController extends Controller
 
 				//la réponse est false si les mots de passe ou le username est correct
 				if ($rep !== false) {
-					//ajout du cookies
-//					Cookie::create($rep['cookie_name'], $rep['hash']);
+					//user
+					$user = $this->xenforo->getUser($_POST['username']);
 
+					//ajout du cookie
 					setcookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expire'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
 
+					//
+					//mise de l'utilisateur en session
+					$this->session->set('user', [
+						'id' => $user['user_id'],
+						'username' => $user['username'],
+						'email' => $user['email'],
+						'user_group_id' => $user['user_group_id'],
+						'secondary_group_ids' => $user['secondary_group_ids'],
+						'custom_title' => $user['custom_title'],
+						'is_admin' => $user['is_admin'],
+						'is_banned' => $user['is_banned'],
+						'is_staff' => $user['is_staff'],
+						'is_moderator' => $user['is_moderator']
+					]);
+
 					//redirect to home
-					return $this->redirect($response, 'home');
+					return $this->redirect($response, $this->container->router->pathFor('home'));
 				} else {
 					//Erreur: Username ou mdp invalides
 					$this->flash->addMessage('login_error', "Nom d'utilisateur ou mot de passe incorrect");
@@ -48,5 +63,4 @@ class SessionController extends Controller
 			return $response->write('Bad request')->withStatus(400);
 		}
 	}
-
 }

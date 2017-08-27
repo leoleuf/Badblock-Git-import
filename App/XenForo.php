@@ -50,6 +50,13 @@ class XenForo
 		return $this->getParsedBody($rep->getBody());
 	}
 
+	public function getUser($username)
+	{
+		$rep = $this->doGetRequest('action=getUser&value=' . $username);
+
+		return $this->getParsedBody($rep->getBody());
+	}
+
 	/**
 	 * @param $username
 	 * @param $password

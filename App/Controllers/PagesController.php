@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 class PagesController extends Controller {
 
     public function getHome(RequestInterface $request, ResponseInterface $response){
+    	var_dump($this->session->get('user'));
 
 //    	var_dump($this->container->minecraft->getStatus());
 //    	var_dump($this->container->minecraft->getPlayers());
