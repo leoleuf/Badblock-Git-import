@@ -27,83 +27,37 @@
         <div class="articles-home">
             <h4 class="heading heading-bar"><span>Les derniers articles</span></h4>
             {% if posts_count > 0 %}
+                <!-- Première ligne de card -->
                 <div class="mosaic">
                     {% for infos in first_row %}
-                        <article class="card">
-                            <header class="card-thumb">
-                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <img src="{{ infos.thumb_url }}">
-                                </a>
-                            </header>
-                            <div class="card-body">
-                                <div class="card-title"><a
-                                            href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
-                                </div>
-                                <div class="card-subtitle">
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-user"></i>
-                                        {{ infos.author.name }}
-                                    </a>
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-time"></i>
-                                        {{ timeago(infos.created_at) }}
-                                    </a>
-                                </div>
-                                <p class="card-description">
-                                    {{ infos.summary }}
-                                </p>
-                            </div>
-                        </article>
+                        {{ include('macros/card.twig') }}
                     {% endfor %}
                 </div>
-            <!-- Fin première ligne de card -->
-            <div class="mosaic">
+                <!-- Fin première ligne de card -->
+                <!-- Seconde ligne de card -->
+                <div class="mosaic">
                     {% for infos in second_row %}
-                        <article class="card card-second">
-                            <header class="card-thumb">
-                                <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                    <img src="{{ infos.thumb_url }}">
-                                </a>
-                            </header>
-                            <div class="card-body">
-                                <div class="card-title"><a
-                                            href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
-                                </div>
-                                <div class="card-subtitle">
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-user"></i>
-                                        {{ infos.author.name }}
-                                    </a>
-                                    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
-                                        <i class="icon icon-time"></i>
-                                        {{ timeago(infos.created_at) }}
-                                    </a>
-                                </div>
-                                <p class="card-description">
-                                    <a class="button button-primary"
-                                       href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">En
-                                        savoir plus</a>
-                                </p>
-                            </div>
-                        </article>
+                        {% set card_special_class = "card-second" %}
+                        {{ include('macros/card.twig') }}
                     {% endfor %}
 
-                <!-- Plus card -->
-                <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">
-                    <div class="card-plus-text">Plus d'articles</div>
-                    <i class="icon icon-calcplus"></i>
-                </a>
-                <!-- Fin plus card-->
-            </div>
+                    <!-- Plus card -->
+                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">
+                        <div class="card-plus-text">Plus d'articles</div>
+                        <i class="icon icon-calcplus"></i>
+                    </a>
+                    <!-- Fin plus card-->
+                </div>
+                <!-- Fin seconde ligne de card -->
             {% endif %}
             <!-- Si pas d'articles -->
             {% if posts_count == 0 %}
-            <div class="no-item-container">
-                <div class="no-item-content">
-                    <h4><i class="icon-erroralt"></i></h4>
-                    <h4>Aucun articles disponibles</h4>
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4><i class="icon-erroralt"></i></h4>
+                        <h4>Aucun articles disponibles</h4>
+                    </div>
                 </div>
-            </div>
             {% endif %}
             <!-- Fin si pas d'articles -->
         </div>
@@ -130,7 +84,9 @@
             </div>
             <div class="side-item">
                 <h4 class="heading-bar"><span>Minecraft</span></h4>
-                <button class="button-primary">Play.badblock.fr</button>
+                <button class="button button-primary"><i
+                            class="icon icon-minecraftalt"></i>play.badblock.fr
+                </button>
             </div>
             <div class="side-item">
                 <h4 class="heading-bar"><span>Résaux sociaux</span></h4>

@@ -37,6 +37,7 @@ Cards
 }
 
 .card.card-second:hover .card-thumb {
+
   height: 80px;
 }
 .card a {
@@ -78,6 +79,12 @@ Cards
 }*/
 
 .card-thumb {
+  .img {
+    background-color: #F1F1F1;
+    width: 100%;
+    height: 235px;
+    background-size: cover;
+  }
   height: 235px;
   overflow: hidden;
   background-color: #000;
