@@ -24,4 +24,21 @@ class PagesController extends Controller {
 		]);
     }
 
+
+
+    public function pagestaff(RequestInterface $request, ResponseInterface $response){
+
+        $array = $this->redis->getJson('staff.admin');
+        $array = $this->redis->getJson('staff.admin');
+        $admin = json_decode($array);
+        var_dump($admin);
+
+
+        $this->render($response, 'pages.staff', [
+            'admin' => $admin,
+        ]);
+
+
+    }
+
 }

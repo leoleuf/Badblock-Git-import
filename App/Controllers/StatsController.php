@@ -71,7 +71,7 @@ class StatsController extends Controller
 
 		$collection = $this->mongo->test->test;
 
-		$cursor = $collection->find()->MongoCursor::sort(array("name" => 0));
+		$cursor = $collection->find();
 
 
         foreach ($cursor as $document) {
