@@ -30,8 +30,9 @@ class SessionController extends Controller
 				//la réponse est false si les mots de passe ou le username est correct
 				if ($rep !== false) {
 					//ajout du cookies
-					Cookie::create($rep['cookie_name'], $rep['hash']);
+//					Cookie::create($rep['cookie_name'], $rep['hash']);
 
+					setcookie($rep['cookie_name'], $rep['hash']);
 					//redirect to home
 					return $this->redirect($response, 'home');
 				} else {
