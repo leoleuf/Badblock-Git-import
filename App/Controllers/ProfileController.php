@@ -60,6 +60,7 @@ class ProfileController extends Controller
         }
         $c3 = $c1*$c2;
         //pas de division par zéro
+        $var['looses'] = $var['looses']*4;
         if ($var['looses'] > 0){
             $c4 = $c3 /$var['looses'];
         }else{
