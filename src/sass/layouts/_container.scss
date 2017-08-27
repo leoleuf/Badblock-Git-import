@@ -30,3 +30,10 @@
     max-width: 90% !important;
   }
 }
+
+@media (max-width: 500px){
+  .container {
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+}

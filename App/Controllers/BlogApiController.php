@@ -118,6 +118,9 @@ class BlogApiController extends Controller
 				//on verifie le json si il conporte bien le patern par default
 				if (isset($postInfo['thumb_url'], $postInfo['summary'], $postInfo['pined'], $postInfo['comments'])) {
 					//valide
+					if(!isset($postInfo['cover_url'])){
+						$postInfo['cover_url'] = $postInfo['thumb_url'];
+					}
 					//logging
 					$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
@@ -128,8 +131,10 @@ class BlogApiController extends Controller
 					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
 				}
 			} else {
+				//valeur par default
 				$postInfo = [
-					'thumb_url' => 'https://s4.postimg.org/emgrc4uel/image.jpg',
+					'thumb_url' => 'https://i.imgur.com/2QxUzj9.png',
+					'cover_url' => 'https://i.imgur.com/2QxUzj9.png',
 					'summary' => 'Une description est requise pour cette article',
 					'pined' => false,
 					'comments' => true
@@ -173,6 +178,7 @@ class BlogApiController extends Controller
 					'name' => $author,
 				],
 				'thumb_url' => $postInfo['thumb_url'],
+				'cover_url' => $postInfo['cover_url'],
 				'summary' => $postInfo['summary'],
 				'created_at' => $postDate,
 				'pined' => $postInfo['pined'],

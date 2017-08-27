@@ -34,7 +34,9 @@ class XenForo
 	 */
 	public function getAllNewsPosts()
 	{
-		return $this->getParsedBody($this->doGetRequest('action=getThreads&node_id=85&order_by=post_date'));
+		$rep = $this->doGetRequest('action=getThreads&node_id=85&order_by=post_date');
+
+		return $this->getParsedBody($rep->getBody());
 	}
 
 	/**
@@ -43,7 +45,9 @@ class XenForo
 	 */
 	public function getNewPost($postId)
 	{
-		return $this->getParsedBody($this->doGetRequest('action=getPost&value=' . $postId));
+		$rep = $this->doGetRequest('action=getPost&value=' . $postId);
+
+		return $this->getParsedBody($rep->getBody());
 	}
 
 	/**
