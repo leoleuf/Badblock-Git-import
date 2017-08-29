@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Slim\Route;
+
 class TwigExtension extends \Twig_Extension
 {
 
@@ -35,6 +37,7 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_Function('ucfirst', [$this, 'ucfirst']),
 			new \Twig_Function('timestampToTime', [$this, 'timestampToTime']),
 			new \Twig_Function('flash', [$this, 'flash']),
+			new \Twig_Function('routeNameFor', [$this, 'routeNameFor']),
 		];
 	}
 
@@ -109,10 +112,23 @@ class TwigExtension extends \Twig_Extension
 
 	public function flash($key)
 	{
-		if ($this->container->flash->hasMessage($key)){
+		if ($this->container->flash->hasMessage($key)) {
 			return $this->container->flash->getMessage($key);
-		}else{
+		} else {
 			return false;
+		}
+	}
+
+	public function routeNameFor($url, $names)
+	{
+		$i = 0;
+		while ($i < count($names)){
+			$route = $this->container->router->getNamedRoute($names[$i]);
+			$pattern = $route->getPattern();
+			if ($pattern == $url OR $pattern){
+				return true;
+			}
+			$i++;
 		}
 	}
 

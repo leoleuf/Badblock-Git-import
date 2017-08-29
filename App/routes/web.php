@@ -13,7 +13,8 @@ $app->get('/stats/', \App\Controllers\StatsController::class . ':home')->setName
 $app->get('/stats/{game}/', \App\Controllers\StatsController::class . ':game')->setName('stats-game-np');
 $app->get('/stats/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');
 
-
+$app->get('/play/test', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
+$app->get('/test/{hello}', \App\Controllers\PagesController::class . ':getTest')->setName('test');
 
 
 

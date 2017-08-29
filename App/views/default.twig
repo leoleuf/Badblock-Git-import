@@ -55,7 +55,7 @@
         <a href="{{ path_for('home') }}" class="{% if current_url == path_for('home') %}actived{% endif %} home"><i class="home-colored-icon colored-icon"></i> Accueil</a>
         <a href="#"><i class="shopping_basket-colored-icon colored-icon"></i> Boutique</a>
         <a href="{{ path_for('stats-home') }}" class="{% if current_url == path_for('stats-home')%}actived{% endif %}"><i class="stats-colored-icon colored-icon"></i> Statistiques</a>
-        <a href="#"><i class="game-colored-icon colored-icon"></i> Jouer</a>
+        <a href="{{ path_for('play') }}" class="{% if routeNameFor(current_url, ['test', 'play']) %}actived{% endif %}"><i class="game-colored-icon colored-icon"></i> Jouer</a>
         <a href="#"><i class="edit-colored-icon colored-icon"></i> Voter</a>
         <a href="{{ forum_url }}"><i class="forum-colored-icon colored-icon"></i> Forum</a>
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
@@ -69,7 +69,7 @@
         <div class="container">
             <div class="">
                 <h1>{{ title }}</h1>
-                <h3>{{ subtitle }}</h3>
+                <h3>{{ sub_title }}</h3>
             </div>
             <div class="breadcrumb">
                 <ul>
