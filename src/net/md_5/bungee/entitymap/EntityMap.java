@@ -99,7 +99,6 @@ public abstract class EntityMap
     {
         // Need to rewrite the packet because VarInts are variable length
         int readId = DefinedPacket.readVarInt( packet );
-        int readIdLength = packet.readerIndex() - offset;
         if ( readId == oldId || readId == newId )
         {
             ByteBuf data = packet.copy();
@@ -111,7 +110,8 @@ public abstract class EntityMap
         }
     }
 
-    protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
+    @SuppressWarnings("resource")
+	protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
     {
         int readerIndex = packet.readerIndex();
 
