@@ -310,10 +310,15 @@ public final class UserConnection implements ProxiedPlayer
 					if ( retry && def != null && ( getServer() == null || def != getServer().getInfo() ) )
 					{
 						sendMessage( bungee.getTranslation( "fallback_lobby" ) );
-						connect( def, null, true );
+						ServerInfo fallback = BungeeCord.getInstance().getServerInfo("fallback");
+						connect(fallback != null && ((target != null && target.getName().equalsIgnoreCase("fallback")) || target == null) ? fallback : def, null, true );
 					} else if ( dimensionChange )
 					{
-						disconnect( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
+						ServerInfo fallback = BungeeCord.getInstance().getServerInfo("fallback");
+						if (fallback != null && ((target != null && target.getName().equalsIgnoreCase("fallback")) || target == null) )
+							connect(fallback != null ? fallback : def, null, true );
+						else
+							disconnect( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
 					} else
 					{
 						sendMessage( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
