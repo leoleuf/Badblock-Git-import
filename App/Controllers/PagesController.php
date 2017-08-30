@@ -55,6 +55,9 @@ class PagesController extends Controller {
         $anim = $this->redis->getJson('staff.anim');
         $anim = json_decode($anim);
         $staff = $this->redis->getJson('staff.staff');
+
+
+        
         $staff = json_decode($staff);
 
 
