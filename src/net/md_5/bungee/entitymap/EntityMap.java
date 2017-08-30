@@ -46,6 +46,8 @@ public abstract class EntityMap
                 return EntityMap_1_11.INSTANCE;
             case ProtocolConstants.MINECRAFT_1_12:
                 return EntityMap_1_12.INSTANCE;
+            case ProtocolConstants.MINECRAFT_1_12_1:
+                return EntityMap_1_12_1.INSTANCE;
         }
         throw new RuntimeException( "Version " + version + " has no entity map" );
     }
@@ -97,8 +99,7 @@ public abstract class EntityMap
     {
         // Need to rewrite the packet because VarInts are variable length
         int readId = DefinedPacket.readVarInt( packet );
-        @SuppressWarnings("unused")
-		int readIdLength = packet.readerIndex() - offset;
+        int readIdLength = packet.readerIndex() - offset;
         if ( readId == oldId || readId == newId )
         {
             ByteBuf data = packet.copy();
@@ -110,8 +111,7 @@ public abstract class EntityMap
         }
     }
 
-    @SuppressWarnings("resource")
-	protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
+    protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
     {
         int readerIndex = packet.readerIndex();
 
