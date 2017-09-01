@@ -16,7 +16,7 @@ class StatsController extends Controller
 
 	public function home(RequestInterface $request, ResponseInterface $response)
 	{
-		$this->container->view->render($response, 'pages/home-stats.twig');
+		$this->render($response, 'stats.home');
 	}
 
 	public function game(RequestInterface $request, ResponseInterface $response, $game, $page = NULL)
