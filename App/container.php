@@ -1,5 +1,10 @@
 <?php
 
+use Symfony\Bridge\Twig\Extension\TranslationExtension;
+use Symfony\Component\Translation\Loader\PhpFileLoader;
+use Symfony\Component\Translation\MessageSelector;
+use Symfony\Component\Translation\Translator;
+
 $container = $app->getContainer();
 
 $container['config'] = function ($container) use ($config) {
@@ -26,6 +31,20 @@ $container['flash'] = function () {
 	return new \Slim\Flash\Messages();
 };
 
+$container['translator'] = function ($container) {
+// First param is the "default language" to use.
+	$translator = new Translator("fr_FR", new MessageSelector());
+// Set a fallback language incase you don't have a translation in the default language
+	$translator->setFallbackLocales(['en_EN']);
+// Add a loader that will get the php files we are going to store our translations in
+	$translator->addLoader('php', new PhpFileLoader());
+// Add language files here
+	$translator->addResource('php', '../App/lang/fr_FR.php', 'fr_FR');
+	$translator->addResource('php', '../App/lang/en_EN.php', 'en_EN');
+
+	return $translator;
+};
+
 $container['view'] = function ($container) use ($app) {
 	$dir = dirname(__DIR__);
 	$view = new \Slim\Views\Twig($dir . '/App/views', [
@@ -42,6 +61,8 @@ $container['view'] = function ($container) use ($app) {
 	// Instantiate and add Slim specific extension
 	$basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
 	$view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));
+	//translator helper
+	$view->addExtension(new TranslationExtension($container['translator']));
 
 	return $view;
 };
