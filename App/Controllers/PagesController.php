@@ -57,7 +57,7 @@ class PagesController extends Controller {
         $staff = $this->redis->getJson('staff.staff');
 
 
-        
+
         $staff = json_decode($staff);
 
 
