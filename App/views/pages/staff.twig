@@ -1,57 +1,130 @@
 {% extends "default.twig" %}
+{% set show_title = true %}
 {% set title = "Staff" %}
+{% set sub_title = "Liste du staff" %}
 {% block content %}
     <!-- Main content -->
-    <div class="eight columns">
-        <!-- Articles pined -->
-
-        <!-- end Articles pined -->
-        <!-- Articles -->
-        <div class="articles-home">
-            <h4 class="heading heading-bar"><span>Le Staff</span></h4>
-            <div class="mosaic">
-                Fonda :
+    <div class="staff">
+        <section>
+            <h4 class="heading"><span>Fondateurs</h4>
+            <ul class="players-list">
                 {% for key in owner %}
-                    {{ key }}
+                    <li>
+                        <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                             class="players-list-avatar">
+                        <span class="players-list-username">{{ key }}</span>
+                    </li>
                 {% endfor %}
-                Admin :
-                {% for key in admin %}
-                    {{ key }}
-                {% endfor %}
-                Dev :
-                {% for key in dev %}
-                    {{ key }}
-                {% endfor %}
-                Superviseur
-                {% for key in sup %}
-                    {{ key }}
-                {% endfor %}
-                modo
-                {% for key in modo %}
-                    {{ key }}
-                {% endfor %}
-                helpeur
-                {% for key in help %}
-                    {{ key }}
-                {% endfor %}
-                modo forum
-                {% for key in modof %}
-                    {{ key }}
-                {% endfor %}
-                animateur
-                {% for key in anim %}
-                    {{ key }}
-                {% endfor %}
-                staff
-                {% for key in staff %}
-                    {{ key }}
-                {% endfor %}
+            </ul>
+        </section>
+        <section>
+            <h4 class="heading"><span>Administrateurs</h4>
+    </div>
+    <ul class="players-list">
+        {% for key in admin %}
+            <li>
+                <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                     class="players-list-avatar">
+                <span class="players-list-username">{{ key }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    </section>
+    <section>
+        <h4 class="heading"><span>Développeurs</h4></div>
+        <ul class="players-list">
+            {% for key in dev %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h4 class="heading"><span>Superviseurs</h4></div>
+        <ul class="players-list">
+            {% for key in sup %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+    <h4 class="heading"><span>Administrateurs</h4></div>
+    <ul class="players-list">
+        {% for key in admin %}
+            <li>
+                <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}" class="players-list-avatar">
+                <span class="players-list-username">{{ key }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <section>
+        <h4 class="heading"><span>Modérateurs</h4></div>
+        <ul class="players-list">
+            {% for key in modo %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h4 class="heading"><span>Helpers</h4></div>
+        <ul class="players-list">
+            {% for key in help %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h4 class="heading"><span>Modérateurs forum</h4></div>
+        <ul class="players-list">
+            {% for key in modof %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <h4 class="heading"><span>Animateurs</h4></div>
+        <ul class="players-list">
+            {% for key in anim %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 
-
-
-            </div>
-        </div>
-        <!-- Articles Fin -->
+    <section>
+        <h4 class="heading"><span>Staff</span></h4></div>
+        <ul class="players-list">
+            {% for key in staff %}
+                <li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
     </div>
     <!-- Main content fin -->
 
