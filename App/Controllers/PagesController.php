@@ -37,30 +37,19 @@ class PagesController extends Controller
 		$this->render($response, 'pages.play');
 	}
 
-    public function pagestaff(RequestInterface $request, ResponseInterface $response){
+    public function getstaff(RequestInterface $request, ResponseInterface $response){
         //récupération du cache
         $admin = $this->redis->getJson('staff.admin');
-        $admin = json_decode($admin);
-        $resp = $this->redis->getJson('staff.responsables');
-        $resp = json_decode($resp);
         $dev = $this->redis->getJson('staff.dev');
-        $dev = json_decode($dev);
+        $resp = $this->redis->getJson('staff.responsables');
         $sup = $this->redis->getJson('staff.sup');
-        $sup = json_decode($sup);
         $modo = $this->redis->getJson('staff.modo');
-        $modo = json_decode($modo);
         $help = $this->redis->getJson('staff.helper');
-        $help = json_decode($help);
         $modof = $this->redis->getJson('staff.modof');
-        $modof = json_decode($modof);
-        $anim = $this->redis->getJson('staff.anim');
-        $anim = json_decode($anim);
         $staff = $this->redis->getJson('staff.staff');
 
 
-
-        $staff = json_decode($staff);
-
+        var_dump($admin[0]);
 
 
 
@@ -72,7 +61,6 @@ class PagesController extends Controller
             'modo' => $modo,
             'help' => $help,
             'modof' => $modof,
-            'anim' => $anim,
             'staff' => $staff,
         ]);
 

@@ -6,121 +6,106 @@
     <!-- Main content -->
     <div class="staff">
         <section>
-            <h4 class="heading"><span>Fondateurs</h4>
+            <h4 class="heading"><span>Administrateurs</span></h4>
             <ul class="players-list">
-                {% for key in owner %}
+                {% for key in admin %}
                     <li>
-                        <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
-                             class="players-list-avatar">
-                        <span class="players-list-username">{{ key }}</span>
-                    </li>
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
+                         class="players-list-avatar">
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
+                </li>
                 {% endfor %}
             </ul>
-        </section>
-        <section>
-            <h4 class="heading"><span>Administrateurs</h4>
-    </div>
-    <ul class="players-list">
-        {% for key in admin %}
-            <li>
-                <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
-                     class="players-list-avatar">
-                <span class="players-list-username">{{ key }}</span>
-            </li>
-        {% endfor %}
-    </ul>
     </section>
     <section>
-        <h4 class="heading"><span>Développeurs</h4></div>
+        <h4 class="heading"><span>Développeurs</span></h4>
         <ul class="players-list">
             {% for key in dev %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
     <section>
-        <h4 class="heading"><span>Superviseurs</h4></div>
+        <h4 class="heading"><span>Superviseurs</span></h4>
         <ul class="players-list">
             {% for key in sup %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
     <section>
-    <h4 class="heading"><span>Administrateurs</h4></div>
-    <ul class="players-list">
-        {% for key in admin %}
-            <li>
-                <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}" class="players-list-avatar">
-                <span class="players-list-username">{{ key }}</span>
-            </li>
-        {% endfor %}
-    </ul>
-    <section>
-        <h4 class="heading"><span>Modérateurs</h4></div>
+        <h4 class="heading"><span>Modérateurs</span></h4>
         <ul class="players-list">
             {% for key in modo %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
     <section>
-        <h4 class="heading"><span>Helpers</h4></div>
+        <h4 class="heading"><span>Helpers</span></h4>
         <ul class="players-list">
             {% for key in help %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
     <section>
-        <h4 class="heading"><span>Modérateurs forum</h4></div>
+        <h4 class="heading"><span>Modérateurs forum</span></h4>
         <ul class="players-list">
             {% for key in modof %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
     <section>
-        <h4 class="heading"><span>Animateurs</h4></div>
+        <h4 class="heading"><span>Animateurs</span></h4>
         <ul class="players-list">
             {% for key in anim %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
     </section>
 
     <section>
-        <h4 class="heading"><span>Staff</span></h4></div>
+        <h4 class="heading"><span>Staff</span></h4>
         <ul class="players-list">
             {% for key in staff %}
                 <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key }}"
+                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                          class="players-list-avatar">
-                    <span class="players-list-username">{{ key }}</span>
+                    <span class="players-list-username">{{ key[0] }}</span>
+                    <span class="players-list-username">{{ key[1] }}</span>
                 </li>
             {% endfor %}
         </ul>
