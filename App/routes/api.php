@@ -3,6 +3,11 @@
 // Route API
 
 $app->group('/api', function(){
-    $this->get('/create-cache-all-posts', \App\Controllers\BlogApiController::class . ':getCreateCacheAllPosts');
-    $this->get('/create-cache-all-staff', \App\Controllers\StaffApiController::class . ':getCreateCacheAllStaff');
+	$this->group('/cache', function() {
+		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
+		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
+	});
+	$this->group('/minecraft', function() {
+		$this->get('/players', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
+	});
 });

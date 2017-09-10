@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class StaffApiController extends Controller
+class StaffApiController extends \App\Controllers\Controller
 {
 
 	public function getCreateCacheAllStaff()

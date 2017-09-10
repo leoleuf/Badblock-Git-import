@@ -11,14 +11,9 @@ class PagesController extends Controller
 
 	public function getHome(RequestInterface $request, ResponseInterface $response)
 	{
-//    	var_dump($this->session->get('user'));
-
-//    	var_dump($this->container->minecraft->getStatus());
-//    	var_dump($this->container->minecraft->getPlayers());
-
-//		$firstRow = $this->redis->getJson('website:first_row_posts');
-//		$secondRow = $this->redis->getJson('website:second_row_posts');
-//		$postsCount = $this->redis->get('website:posts_count');
+		$firstRow = $this->redis->getJson('first_row_posts');
+		$secondRow = $this->redis->getJson('second_row_posts');
+		$postsCount = $this->redis->get('posts_count');
 
 		$this->render($response, 'pages.home', [
 			'first_row' => $firstRow,

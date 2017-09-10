@@ -31,14 +31,25 @@ $container['flash'] = function () {
 	return new \Slim\Flash\Messages();
 };
 
+
+$container['minecraft'] = function ($container) {
+	return new App\MinecraftServerQuery($container,
+		[
+			'host' => $container->config['minecraft']['host'],
+			'port' => $container->config['minecraft']['port']
+		]);
+};
+
+
 $container['translator'] = function ($container) {
-// First param is the "default language" to use.
-	$translator = new Translator("fr_FR", new MessageSelector());
-// Set a fallback language incase you don't have a translation in the default language
-	$translator->setFallbackLocales(['en_EN']);
-// Add a loader that will get the php files we are going to store our translations in
+	// First param is the "default language" to use.
+	$translator = new Translator('fr_FR', new MessageSelector());
+	// Set a fallback language incase you don't have a translation in the default language
+	$translator->setFallbackLocales(['fr_FR']);
+	// Add a loader that will get the php files we are going to store our translations in
 	$translator->addLoader('php', new PhpFileLoader());
-// Add language files here
+
+	// Add language files here
 	$translator->addResource('php', '../App/lang/fr_FR.php', 'fr_FR');
 	$translator->addResource('php', '../App/lang/en_EN.php', 'en_EN');
 
@@ -99,14 +110,6 @@ $container['mongo'] = function ($container) {
 	);
 };
 
-$container['minecraft'] = function ($container) {
-	return new App\MinecraftServerQuery($container,
-		[
-			'host' => $container->config['minecraft']['host'],
-			'port' => $container->config['minecraft']['port']
-		]);
-};
-
 $container['xenforo'] = function ($container) {
 	return new App\XenForo($container, [
 		'endpoint' => $container->config['xenforo_api']['endpoint'],
@@ -133,7 +136,6 @@ $container['redis_client'] = function ($container) {
 $container['redis'] = function ($container) {
 	return new \App\Redis($container->redis_client);
 };
-
 
 $container['notFoundHandler'] = function ($container) {
 	return new \App\NotFoundHandler($container->get('view'), function ($request, $response) use ($container) {

@@ -8,9 +8,9 @@
         <div class="cover">
             <div class="container">
                 <div class="one-half column">
-                    <h4 class="cover-heading">Lorem ipsum dolor sit amet<br>Morbi tempus quam in mi pharetra</h4>
+                    <h4 class="cover-heading">{{ 'home.cover.title'|trans }}</h4>
                     <div class="animated bounceInLeft">
-                        <a class="button button-primary" href="#"><i class="icon-play icon"></i> Jouer</a>
+                        <a class="button button-primary" href="{{ path_for('play') }}"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <!-- end Articles pined -->
         <!-- Articles -->
         <div class="articles-home">
-            <h4 class="heading heading-bar"><span>Les derniers articles</span></h4>
+            <h4 class="heading heading-bar"><span>{{ 'home.last_posts'|trans }}</span></h4>
             {% if posts_count > 0 %}
                 <!-- Première ligne de card -->
                 <div class="mosaic">
@@ -44,7 +44,7 @@
 
                     <!-- Plus card -->
                     <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">
-                        <div class="card-plus-text">Plus d'articles</div>
+                        <div class="card-plus-text">{{ 'home.cards.more_posts'|trans }}</div>
                         <i class="icon icon-calcplus"></i>
                     </a>
                     <!-- Fin plus card-->
@@ -56,7 +56,7 @@
                 <div class="no-item-container">
                     <div class="no-item-content">
                         <h4><i class="icon-erroralt"></i></h4>
-                        <h4>Aucun articles disponibles</h4>
+                        <h4>{{ 'blog.no_posts'|trans }}</h4>
                     </div>
                 </div>
             {% endif %}
@@ -66,41 +66,6 @@
     </div>
     <!-- Main content fin -->
 
-    <!---side bar--->
-    <div class="four columns">
-        <div class="side-bar sidetexte">
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Lorem imsum</span></h4>
-                <input type="submit" value="submit input">
-                <br>
-                <input type="submit" value="submit input">
-                <br>
-                <input type="submit" value="submit input">
-            </div>
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Teamspeak</span></h4>
-                <a class="button button-primary" value="ts.badblock.fr" href="{{ ts3_query }}"><i
-                            class="icon icon-chat"></i>
-                    ts.badblock.fr</a>
-            </div>
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Minecraft</span></h4>
-                <button class="button button-primary"><i
-                            class="icon icon-minecraftalt"></i>play.badblock.fr
-                </button>
-            </div>
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Résaux sociaux</span></h4>
-                <ul class="sidebar-social-links">
-                    <li><a href="https://twitter.com/badblockgame" target="_blank"><i class="icon-twitter"></i></a></li>
-                    <li><a href="https://fr-fr.facebook.com/BadBlockGame/" target="_blank"><i class="icon-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="icon-youtube"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!---Slide bar Fin--->
+    {% include 'macros/sidebar.twig' %}
 
 {% endblock %}

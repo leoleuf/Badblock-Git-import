@@ -3,6 +3,8 @@
 namespace App;
 class Redis
 {
+	public $prefix = 'website:';
+
 	/**
 	 * Redis constructor.
 	 *
@@ -15,12 +17,12 @@ class Redis
 
 	public function get($key)
 	{
-		return $this->client->get($key);
+		return $this->client->get($this->prefix . $key);
 	}
 
 	public function set($key, $value)
 	{
-		return $this->client->set($key, $value);
+		return $this->client->set($this->prefix . $key, $value);
 	}
 
 	/**
@@ -32,7 +34,7 @@ class Redis
 	 */
 	public function getJson($key, $way = 1)
 	{
-		return json_decode($this->client->get($key), $way);
+		return json_decode($this->get($key), $way);
 	}
 
 	/**
@@ -45,6 +47,6 @@ class Redis
 	public function setJson($key, $value)
 	{
 		$value = json_encode($value);
-		return $this->client->set($key, $value);
+		return $this->set($this->prefix . $key, $value);
 	}
 }

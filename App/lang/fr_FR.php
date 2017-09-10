@@ -1,4 +1,30 @@
 <?php
 return [
-	'home' => 'Accueil'
-];
+	'home' => "Accueil",
+	'home.last_posts' => "Derniers articles",
+	'home.posts' => "Derniers articles",
+	'home.cover.title' => "Bienvenue sur ce qui est la meilleure plateforme de jeux Minecraft en ligne",
+	'sidebar.title' => "Derniers sujets",
+	'sidebar.title' => "Derniers sujets",
+	'socials_network' => "Réseaux sociaux",
+	'home.cards.more_posts' => "Plus d'articles",
+	'blog.no_posts' => "Aucun articles disponible pour l'instant",
+	'blog.title' => "Tout les articles",
+	'blog.summary' => "Toute les dernières fraiches news du serveur",
+	'play.title' => "Jouer",
+	'play.sub_title' => "Découvrez Badblock sur toute ses formes",
+	'play.how_play' => "Comment rejoindre Badblock ?",
+	'play.how_play_text' => "Dans MINECRAFT, clique sur Multijoueur puis \"Ajouter un serveur\".",
+	'stats.title' => "Statistiques",
+	'shop.title' => "Boutique",
+	'scroll_to_top' => 'Revenir en haut de la page',
+	'login.title' => 'Se connecter',
+	'login.username' => "Votre nom d'utilisateur",
+	'login.username.placeholder' => "John Doe",
+	'login.password' => "Votre mot de passe",
+	'login.password.placeholder' => '*******',
+	'login.lost_password' => "J'ai oublié mon mot de passe",
+	'no_player' => "Aucun joueurs connectés",
+	'one_player' => "joueur",
+	'many_players' => "joueurs",
+ ];

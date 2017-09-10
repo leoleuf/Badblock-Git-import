@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Api;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class BlogApiController extends Controller
+class BlogApiController extends \App\Controllers\Controller
 {
 	/**
 	 * Generate slugify from text (title)
@@ -187,7 +187,7 @@ class BlogApiController extends Controller
 			];
 
 			//enregistrer sur redis un article en particul	ier
-			$this->redis->setJson('website:post:' . $uuid, $singleNewPost);
+			$this->redis->setJson('post:' . $uuid, $singleNewPost);
 
 			//si le poste est épinglé on enregistre dans un tableau
 			if ($postInfo['pined']){
@@ -198,7 +198,7 @@ class BlogApiController extends Controller
 
 		//4. On enregistre le tout
 		//enregistrer sur redis tout les articles
-		$this->redis->setJson('website:all_posts', $newPosts);
+		$this->redis->setJson('all_posts', $newPosts);
 
 		//enregistrer le cache pour la première ligne et la seconde ligne
 		$firstRowPosts = [
@@ -209,16 +209,16 @@ class BlogApiController extends Controller
 			$newPosts[2],
 			$newPosts[3]
 		];
-		$this->redis->setJson('website:first_row_posts', $firstRowPosts);
-		$this->redis->setJson('website:second_row_posts', $secondRowPosts);
+		$this->redis->setJson('first_row_posts', $firstRowPosts);
+		$this->redis->setJson('second_row_posts', $secondRowPosts);
 
 		//enregister le cache pour les articles épinglés
 		//debug log
 		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
-		$this->redis->setJson('website:pined_posts', $pinedRawPosts);
+		$this->redis->setJson('pined_posts', $pinedRawPosts);
 
 		//enregistrer le nb d'articles
-		$this->redis->set('website:posts_count', $posts['count']);
+		$this->redis->set('posts_count', $posts['count']);
 
 		$this->log->info('"BlogApiController\getCreateCacheAllPosts": Success writing articles cache');
 

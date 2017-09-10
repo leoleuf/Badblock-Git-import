@@ -19,7 +19,12 @@
             </a>
         </div>
         <p class="card-description">
-            {{ infos.summary }}
+            {% if card_special_class == 'card-second' %}
+                <a class="button button-primary" href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">Lire plus</a>
+            {% endif %}
+            {% if card_special_class != 'card-second' %}
+                {{ infos.summary }}
+            {% endif %}
         </p>
     </div>
 </article>

@@ -22,6 +22,23 @@ $(document).ready(function () {
     $('.scrollToTop').click(function () {
         $('html, body').animate({scrollTop: 0}, 800);
         return false;
-    });
+    })
 
+    //Get players
+    // $.get(endpoint + '/api/minecraft/players', function(data, status){
+    //     alert("Players: " + data);
+    // });
+
+    $.getJSON(endpoint + '/api/minecraft/players', function(data) {
+        if (data.now == 0){
+            var message = trans.noPlayers
+        }
+        if (data.now == 1){
+            var message = data.now + ' ' + trans.onePlayer
+        }
+        if (data.now > 1){
+            var message = data.now + ' ' + trans.manyPlayers
+        }
+        $('#players').html(message);
+    });
 });

@@ -1,50 +1,22 @@
 {% extends "default.twig" %}
 {% set active_page = "play" %}
 {% set show_title = true %}
-{% set title = "Jouer" %}
-{% set sub_title = "Découvrez le serveur Badblock sous toute ses formes !" %}
+{% set title = 'play.title'|trans %}
+{% set sub_title = 'play.sub_title'|trans %}
 {% block content %}
     <!-- Main content -->
     <div class="eight columns">
-        Jouez sur play.badblock.fr
+        <section>
+            <h4 class="heading-bar"><span>{{ 'play.how_play'|trans }}</span></h4>
+            <div class="play-way-ip">
+                <p>{{ 'play.how_play_text'|trans }}</p>
+                <img src="http://i.imgur.com/lrapyDW.gif" class="how-to-gif">
+            </div>
+        </section>
+
     </div>
     <!-- Main content fin -->
 
-    <!---side bar--->
-    <div class="four columns">
-        <div class="side-bar sidetexte">
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Lorem imsum</span></h4>
-                <input type="submit" value="submit input">
-                <br>
-                <input type="submit" value="submit input">
-                <br>
-                <input type="submit" value="submit input">
-            </div>X
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Teamspeak</span></h4>
-                <a class="button button-primary" value="ts.badblock.fr" href="{{ ts3_query }}"><i
-                            class="icon icon-chat"></i>
-                    ts.badblock.fr</a>
-            </div>
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Minecraft</span></h4>
-                <button class="button button-primary"><i
-                            class="icon icon-minecraftalt"></i>play.badblock.fr
-                </button>
-            </div>
-            <div class="side-item">
-                <h4 class="heading-bar"><span>Résaux sociaux</span></h4>
-                <ul class="sidebar-social-links">
-                    <li><a href="https://twitter.com/badblockgame" target="_blank"><i class="icon-twitter"></i></a></li>
-                    <li><a href="https://fr-fr.facebook.com/BadBlockGame/" target="_blank"><i class="icon-facebook"></i></a>
-                    </li>
-                    <li><a href="#"><i class="icon-youtube"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    </div>
-    <!---Slide bar Fin--->
+    {% include 'macros/sidebar.twig' %}
 
 {% endblock %}

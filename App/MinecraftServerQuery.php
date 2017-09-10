@@ -44,9 +44,9 @@ class MinecraftServerQuery {
 	public function getPlayers(){
 		if ($this->getStatus()){
 			$data = $this->getData();
-			return [
-				'players' => $data['players']
-			];
+			return $data['players'];
+		}else{
+			return $this->getStatus();
 		}
 	}
 

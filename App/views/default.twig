@@ -52,14 +52,28 @@
 <!------Menu------->
 <div class="topnav" id="myTopnav">
     <div class="container">
-        <a href="{{ path_for('home') }}" class="{% if active_page == 'home' %}actived{% endif %} home"><i
-                    class="home-colored-icon colored-icon"></i> Accueil</a>
-        <a href="#"><i class="shopping_basket-colored-icon colored-icon"></i> Boutique</a>
-        <a href="{{ path_for('stats.home') }}" class="{% if active_page == 'stats' %}actived{% endif %}"><i
-                    class="stats-colored-icon colored-icon"></i> Statistiques</a>
-        <a href="{{ path_for('play') }}" class="{% if active_page == 'play' %}actived{% endif %}"><i
-                    class="game-colored-icon colored-icon"></i> Jouer</a>
-        <a href="#"><i class="edit-colored-icon colored-icon"></i> Voter</a>
+        <a href="{{ path_for('home') }}"
+           class="{% if active_page == 'home' %}actived{% endif %} home">
+            <i class="home-colored-icon colored-icon"></i>
+            {{ 'home'|trans }}
+        </a>
+        <a href="#">
+            <i class="shopping_basket-colored-icon colored-icon"></i>
+            {{ 'shop.title'|trans }}
+        </a>
+        <a href="{{ path_for('stats.home') }}"
+           class="{% if active_page == 'stats' %}actived{% endif %}">
+            <i class="stats-colored-icon colored-icon"></i>
+            {{ 'stats.title'|trans }}
+        </a>
+        <a href="{{ path_for('play') }}"
+           class="{% if active_page == 'play' %}actived{% endif %}">
+            <i class="game-colored-icon colored-icon"></i>
+            {{ 'play.title'|trans }}
+        </a>
+        <a href="#">
+            <i class="edit-colored-icon colored-icon"></i> Voter
+        </a>
         <a href="{{ forum_url }}"><i class="forum-colored-icon colored-icon"></i> Forum</a>
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
@@ -76,7 +90,7 @@
             </div>
             <div class="breadcrumb">
                 <ul>
-                    <li><a href="https://dev-web.badblock.fr">Acceuil</a></li>
+                    <li><a href="{{ path_for('home') }}">{{ 'home'|trans }}</a></li>
                     <li class="current-page"><a href="#">{{ title }}</a></li>
                 </ul>
             </div>
@@ -107,7 +121,7 @@
             </div>
             <div class="four columns">
                 <i class="colored-icon user-colored-icon"></i>
-                330 Joueurs connectés
+                <span id="players"></span>
             </div>
             <div class="four columns">
                 <i class="colored-icon tchat-colored-icon"></i>
@@ -160,14 +174,14 @@
 <!-- Fin footer -->
 
 <!-- Back to top -->
-<a href="#" class="scrollToTop no-link" title="Cliquer pour revenir en haut de page"><i
+<a href="#" class="scrollToTop no-link" title="{{ 'scroll_to_top'|trans }}"><i
             class="icon icon-circle-arrow-up"></i> </a>
 <!-- Fin back to top -->
 
 <!-- Login Modal -->
 <div class="remodal modal-remodal" data-remodal-id="login-modal">
     <button data-remodal-action="close" class="remodal-close"></button>
-    <h1>Connectez vous</h1>
+    <h1>{{ 'login.title'|trans }}</h1>
 
     {% if flash('login_error') %}
         {% for flash in flash('login_error') %}
@@ -177,13 +191,13 @@
     <p>
         <!-- Login Form -->
     <form method="POST" action="{{ path_for('login') }}">
-        <label for="username">Votre nom d'utilisateur</label>
-        <input name="username" class="u-full-width" type="text" placeholder="John Doe" id="username" required>
-        <label for="password">Votre mot de passe</label>
-        <input name="password" class="u-full-width" type="password" placeholder="******" id="password" required>
-        <a href="#" class="{{ forum_url }}/lost-password/">J'ai oublié mon mot de passe</a><br><br>
-        <a class="button button-danger" href="{{ forum_url }}/inscription/">Inscription</a>
-        <button class="button button-success" type="submit">Se connecter</button>
+        <label for="username">{{ 'login.username'|trans }}</label>
+        <input name="username" class="u-full-width" type="text" placeholder="{{ 'login.username.placeholder'|trans }}" id="username" required>
+        <label for="password">{{ 'login.password'|trans }}</label>
+        <input name="password" class="u-full-width" type="password" placeholder="{{ 'login.password.placeholder'|trans }}" id="password" required>
+        <a href="#" class="{{ forum_url }}/lost-password/">{{ 'login.lost_password'|trans }}</a><br><br>
+        <a class="button button-danger" href="{{ forum_url }}/inscription/">{{ 'login.register'|trans }}</a>
+        <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
     </form>
     <!-- Fin login form -->
     </p>
@@ -193,10 +207,20 @@
 <!-- Fin login modal -->
 
 <!-- JS -->
+<!-- Var js -->
+<script>
+    var endpoint = "{{ base_url() }}"
+    var trans = {
+        'noPlayers': "{{ 'no_player'|trans }}",
+        'onePlayer': "{{ 'one_player'|trans }}",
+        'manyPlayers': "{{ 'many_players'|trans }}"
+    }
+</script>
 <script src="/dist/js/app.min.js"></script>
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
 {% endif %}
 <!-- Fin Js -->
+
 </body>
 </html>

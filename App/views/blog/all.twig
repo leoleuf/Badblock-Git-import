@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
-{% set title = "Articles" %}
-{% set subtitle = "Toute les dernières fraiches news du serveur" %}
+{% set show_title = 1 %}
+{% set title = 'blog.title'|trans %}
+{% set sub_title = 'blog.summary'|trans %}
 {% block content %}
     <!-- Articles -->
     {% if nbNews > 0 %}
@@ -52,7 +53,7 @@
         <div class="no-item-container">
             <div class="no-item-content">
                 <h4><i class="icon-erroralt"></i></h4>
-                <h4>Aucun articles disponibles</h4>
+                <h4>{{ 'blog.no_posts'|trans }}</h4>
             </div>
         </div>
         <!-- Fin si pas d'articles -->

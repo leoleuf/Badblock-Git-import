@@ -26,6 +26,7 @@ class Controller{
 		$this->mongo = $container['mongo'];
 		$this->log = $container['log'];
 		$this->session = $container['session'];
+		$this->mc = $container['minecraft'];
 		$this->flash = $container['flash'];
 	}
 
