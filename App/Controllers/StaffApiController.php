@@ -49,7 +49,7 @@ class StaffApiController extends Controller
 
 		}
 
-        var_dump($staff);
+        var_dump($resp);
 
 
         $this->redis->setJson('staff.admin', $admin);

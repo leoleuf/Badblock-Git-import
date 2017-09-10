@@ -31,6 +31,19 @@
             {% endfor %}
         </ul>
     </section>
+        <section>
+            <h4 class="heading"><span>Responsables</span></h4>
+            <ul class="players-list">
+                {% for key in resp %}
+                    <li>
+                        <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
+                             class="players-list-avatar">
+                        <span class="players-list-username">{{ key[0] }}</span>
+                        <span class="players-list-username">{{ key[1] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
     <section>
         <h4 class="heading"><span>Superviseurs</span></h4>
         <ul class="players-list">
@@ -83,20 +96,6 @@
             {% endfor %}
         </ul>
     </section>
-    <section>
-        <h4 class="heading"><span>Animateurs</span></h4>
-        <ul class="players-list">
-            {% for key in anim %}
-                <li>
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
-                         class="players-list-avatar">
-                    <span class="players-list-username">{{ key[0] }}</span>
-                    <span class="players-list-username">{{ key[1] }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    </section>
-
     <section>
         <h4 class="heading"><span>Staff</span></h4>
         <ul class="players-list">

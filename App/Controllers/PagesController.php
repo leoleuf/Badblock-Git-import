@@ -41,7 +41,7 @@ class PagesController extends Controller
         //récupération du cache
         $admin = $this->redis->getJson('staff.admin');
         $dev = $this->redis->getJson('staff.dev');
-        $resp = $this->redis->getJson('staff.responsables');
+        $resp = $this->redis->getJson('staff.resp');
         $sup = $this->redis->getJson('staff.sup');
         $modo = $this->redis->getJson('staff.modo');
         $help = $this->redis->getJson('staff.helper');
