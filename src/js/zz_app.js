@@ -25,19 +25,15 @@ $(document).ready(function () {
     })
 
     //Get players
-    // $.get(endpoint + '/api/minecraft/players', function(data, status){
-    //     alert("Players: " + data);
-    // });
-
-    $.getJSON(endpoint + '/api/minecraft/players', function(data) {
-        if (data.now == 0){
+    $.getJSON('https://mcapi.us/server/status?ip=' + mcHost, function(data) {
+        if (data.players.now == 0){
             var message = trans.noPlayers
         }
-        if (data.now == 1){
-            var message = data.now + ' ' + trans.onePlayer
+        if (data.players.now == 1){
+            var message = data.players.now + ' ' + trans.onePlayer
         }
-        if (data.now > 1){
-            var message = data.now + ' ' + trans.manyPlayers
+        if (data.players.now > 1){
+            var message = data.players.now + ' ' + trans.manyPlayers
         }
         $('#players').html(message);
     });
