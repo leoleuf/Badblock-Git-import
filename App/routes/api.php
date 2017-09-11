@@ -3,7 +3,7 @@
 // Route API
 
 $app->group('/api', function(){
-    $this->get('/pays', \App\Controllers\IpController::class . ':pays');
+    $this->get('/getip', \App\Controllers\IpController::class . ':getip');
 
     $this->group('/cache', function() {
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
