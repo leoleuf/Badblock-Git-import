@@ -19,10 +19,7 @@ class IpController extends Controller
 
     public function getip(RequestInterface $request, ResponseInterface $response){
 
-        $app = \Slim\Slim::getInstance();
-        $req = $app->request()->getIp();
 
-        var_dump($req));
 
         $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
 
@@ -30,6 +27,9 @@ class IpController extends Controller
             geoip_country_name_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\n";
 
         geoip_close($gi);
+
+        var_dump($_SERVER['REMOTE_ADDR']);
+
     }
 
 
