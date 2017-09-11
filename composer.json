@@ -30,6 +30,7 @@
         "slim/flash": "^0.2.0",
         "dflydev/fig-cookies": "^1.0",
         "symfony/translation": "^3.3",
-        "symfony/twig-bridge": "^3.3"
+        "symfony/twig-bridge": "^3.3",
+        "geoip/geoip": "~1.16"
     }
 }
