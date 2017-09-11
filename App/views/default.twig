@@ -27,6 +27,7 @@
 </head>
 <body>
 
+
 <!-- Header -->
 <div class="header">
     <div class="container">
@@ -192,9 +193,11 @@
         <!-- Login Form -->
     <form method="POST" action="{{ path_for('login') }}">
         <label for="username">{{ 'login.username'|trans }}</label>
-        <input name="username" class="u-full-width" type="text" placeholder="{{ 'login.username.placeholder'|trans }}" id="username" required>
+        <input name="username" class="u-full-width" type="text" placeholder="{{ 'login.username.placeholder'|trans }}"
+               id="username" required>
         <label for="password">{{ 'login.password'|trans }}</label>
-        <input name="password" class="u-full-width" type="password" placeholder="{{ 'login.password.placeholder'|trans }}" id="password" required>
+        <input name="password" class="u-full-width" type="password"
+               placeholder="{{ 'login.password.placeholder'|trans }}" id="password" required>
         <a href="#" class="{{ forum_url }}/lost-password/">{{ 'login.lost_password'|trans }}</a><br><br>
         <a class="button button-danger" href="{{ forum_url }}/inscription/">{{ 'login.register'|trans }}</a>
         <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
@@ -210,7 +213,7 @@
 <!-- Var js -->
 <script>
     var endpoint = "{{ base_url() }}"
-    var mcHost = "play.badblock.fr"
+    var mcHost = "eu.badblock.fr"
     var trans = {
         'noPlayers': "{{ 'no_player'|trans }}",
         'onePlayer': "{{ 'one_player'|trans }}",

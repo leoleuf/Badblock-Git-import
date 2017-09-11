@@ -24,6 +24,8 @@ return [
 	'login.password' => "Votre mot de passe",
 	'login.password.placeholder' => '*******',
 	'login.lost_password' => "J'ai oublié mon mot de passe",
+	'login.login' => "Connexion",
+	'login.register' => "S'enregistrer",
 	'no_player' => "Aucun joueurs connectés",
 	'one_player' => "joueur",
 	'many_players' => "joueurs",

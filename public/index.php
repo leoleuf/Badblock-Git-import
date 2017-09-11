@@ -62,8 +62,7 @@ require '../App/container.php';
 | Add Middleware to App
 |
 */
-$app->add(new \App\Middlewares\LoginMiddleware());
-
+include("../App/bootstrap/middleware.php");
 
 /*
 |--------------------------------------------------------------------------

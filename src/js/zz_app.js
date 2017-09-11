@@ -7,7 +7,27 @@ function menu() {
     }
 }
 
+function players() {
+    console.log('players loading');
+    //Get players
+    $.getJSON('https://mcapi.us/server/status?ip=' + mcHost, function(data) {
+        if (data.players.now == 0){
+            var message = trans.noPlayers
+        }
+        if (data.players.now == 1){
+            var message = data.players.now + ' ' + trans.onePlayer
+        }
+        if (data.players.now > 1){
+            var message = data.players.now + ' ' + trans.manyPlayers
+        }
+        $('#players').html(message);
+
+        console.log('players online: ' + message);
+    });
+}
+
 $(document).ready(function () {
+    console.log('up');
 
     //Check to see if the window is top if not then display button
     $(window).scroll(function () {
@@ -24,17 +44,7 @@ $(document).ready(function () {
         return false;
     })
 
-    //Get players
-    $.getJSON('https://mcapi.us/server/status?ip=' + mcHost, function(data) {
-        if (data.players.now == 0){
-            var message = trans.noPlayers
-        }
-        if (data.players.now == 1){
-            var message = data.players.now + ' ' + trans.onePlayer
-        }
-        if (data.players.now > 1){
-            var message = data.players.now + ' ' + trans.manyPlayers
-        }
-        $('#players').html(message);
-    });
+    players();
+
+    console.log('down');
 });

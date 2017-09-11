@@ -1,7 +1,7 @@
 <?php
 return [
 	'minecraft' => [
-		'host' => 'play.badblock.fr',
+		'host' => 'eu.badblock.fr',
 		'port' => 25565
 	]
 ];
