@@ -2,10 +2,15 @@
 
 namespace App\Controllers\Api;
 
+
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
 class StaffApiController extends \App\Controllers\Controller
 {
 
-	public function getCreateCacheAllStaff()
+	public function getCreateCacheAllStaff(RequestInterface $request, ResponseInterface $response)
 	{
 
         $data = $this->mysql->fetchRowMany('SELECT username,custom_title,user_group_id FROM xf_user WHERE is_staff = 1 ORDER by user_group_id');
@@ -49,9 +54,6 @@ class StaffApiController extends \App\Controllers\Controller
 
 		}
 
-        var_dump($resp);
-
-
         $this->redis->setJson('staff.admin', $admin);
 		$this->redis->setJson('staff.dev', $dev);
 		$this->redis->setJson('staff.resp', $resp);
@@ -60,5 +62,9 @@ class StaffApiController extends \App\Controllers\Controller
 		$this->redis->setJson('staff.helper', $helper);
 		$this->redis->setJson('staff.modof', $modof);
 		$this->redis->setJson('staff.staff', $staff);
-	}
+
+        return $response->write('Skript is the best dev')->withStatus(200);
+
+
+    }
 }
