@@ -12,7 +12,7 @@ class PagesController extends Controller
 	public function getHome(RequestInterface $request, ResponseInterface $response)
 	{
 
-        var_dump($this->redis->getjson('ip_'.$request->getAttribute('ip_address')));
+        $info = $this->redis->getjson('ip_'.$request->getAttribute('ip_address'));
         $firstRow = $this->redis->getJson('first_row_posts');
 		$secondRow = $this->redis->getJson('second_row_posts');
 		$postsCount = $this->redis->get('posts_count');
@@ -20,7 +20,8 @@ class PagesController extends Controller
 		$this->render($response, 'pages.home', [
 			'first_row' => $firstRow,
 			'second_row' => $secondRow,
-			'posts_count' => $postsCount
+			'posts_count' => $postsCount,
+            'info' => $info
 		]);
 	}
 

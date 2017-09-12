@@ -22,14 +22,13 @@ class IpController extends Controller
 
 
         if (!$this->redis->exists("ip_".$ip)){
-            echo "nn";
-
             //Variables
             $result =  [];
             $eu = array("FR", "ES", "PT", "GB", "IE", "BE", "NL", "LU", "DE", "IT", "DK", "SE", "CZ", "AT", "SI", "HR", "BA", "ME", "PL", "SK", "HU", "HR", "RS", "BG", "MK", "AL", "GR", "TR", "CY", "MT", "EE", "LV", "LT", "FI");
             $na = array("US", "CA", "MX");
 
             //Geo IP
+            $code = "FR";
             $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
 
             $code = geoip_country_code_by_addr($gi, $ip);
@@ -55,7 +54,6 @@ class IpController extends Controller
             return json_encode($result);
 
         }else{
-            echo "ok";
             return json_encode($this->redis->getjson('ip_'.$request->getAttribute('ip_address')));
         }
 
