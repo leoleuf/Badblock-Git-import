@@ -57,7 +57,7 @@ class IpGeneratorMiddleware
 
 	public function __invoke($request, $response, $next)
 	{
-		$ip = $request->getAttribute('ip_address');
+		$ip = $_SERVER['REMOTE_ADDR'];
 		//if the key doesn't exist in cache
 		if (!$this->container->redis->exists("ip_" . $ip)) {
 			$result = [];
