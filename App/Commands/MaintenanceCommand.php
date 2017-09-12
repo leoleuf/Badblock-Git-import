@@ -30,7 +30,7 @@ class MaintenanceCommand extends Command
 					rename('index.php', '_index.php');
 					rename('maintenance.php', 'index.php');
 
-					$io->write('Maintenance mode is now enabled!');
+					$io->success('Maintenance mode is now enabled!');
 				}else{
 					$io->error('Maintenance mode is already enabled!');
 				}
@@ -44,14 +44,14 @@ class MaintenanceCommand extends Command
 					rename('index.php', 'maintenance.php');
 					rename('_index.php', 'index.php');
 
-					$io->write('Maintenance mode is now disabled!');
+					$io->success('Maintenance mode is now disabled!');
 				}else{
 					$io->error('Maintenance mode is already disabled!');
 				}
 				break;
 
 			default:
-				$io->write('Invalid argument! Do "open" or "close"');
+				$io->error('Invalid argument! Do "open" or "close"');
 				break;
 		}
 	}
