@@ -19,16 +19,26 @@ class IpController extends Controller
 
     public function getip(RequestInterface $request, ResponseInterface $response){
 
+        $eu = array("FR", "ES", "Irix", "Linux");
+        $na = array("Mac", "NT", "Irix", "Linux");
 
 
         $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
 
-        echo geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\t" .
-            geoip_country_name_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\n";
+
+        $code = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\t";
+        $pays = geoip_country_name_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\n";
 
         geoip_close($gi);
 
+        if (in_array($code, $eu)) {
+            echo "Go eu .babdb";
+
+        }
+
         var_dump($_SERVER['REMOTE_ADDR']);
+        var_dump($code);
+        var_dump($pays);
 
     }
 
