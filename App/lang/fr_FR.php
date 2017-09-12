@@ -15,6 +15,7 @@ return [
 	'play.sub_title' => "Découvrez Badblock sur toute ses formes",
 	'play.how_play' => "Comment rejoindre Badblock ?",
 	'play.how_play_text' => "Dans MINECRAFT, clique sur Multijoueur puis \"Ajouter un serveur\".",
+	'play.our_ip' => "Nos Ip de connexions",
 	'stats.title' => "Statistiques",
 	'shop.title' => "Boutique",
 	'scroll_to_top' => 'Revenir en haut de la page',

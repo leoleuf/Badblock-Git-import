@@ -1,0 +1,28 @@
+.players-list {
+  margin-top: 1em;
+  margin-bottom: 4em;
+
+  li {
+    list-style-type: none;
+    display: flex;
+
+    .players-list-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .players-list-avatar {
+      margin-right: 1em;
+    }
+
+    .players-list-username {
+      font-weight: normal;
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    .players-list-summary {
+      opacity: 0.9;
+    }
+  }
+}

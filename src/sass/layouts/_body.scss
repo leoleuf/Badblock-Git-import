@@ -61,3 +61,25 @@ Content
 .content {
   margin-top: 2.5em;
 }
+
+
+/**
+Play
+ */
+.play {
+  section {
+    margin-top: 2em;
+  }
+
+  section:first-of-type {
+    margin-top: 0;
+
+  }
+
+  .play-list-ip {
+    margin-top: 3em;
+    input {
+      width: 100%;
+    }
+  }
+}

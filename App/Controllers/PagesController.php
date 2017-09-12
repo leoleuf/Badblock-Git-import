@@ -11,13 +11,9 @@ class PagesController extends Controller
 
 	public function getHome(RequestInterface $request, ResponseInterface $response)
 	{
-<<<<<<< HEAD
-		$firstRow = $this->redis->getJson('first_row_posts');
-=======
-
         $info = $this->redis->getjson('ip_'.$request->getAttribute('ip_address'));
+
         $firstRow = $this->redis->getJson('first_row_posts');
->>>>>>> d0f9c757dbc68ceba183fccde6f02a326e47cc65
 		$secondRow = $this->redis->getJson('second_row_posts');
 		$postsCount = $this->redis->get('posts_count');
 
@@ -39,7 +35,7 @@ class PagesController extends Controller
 		$this->render($response, 'pages.play');
 	}
 
-	public function getstaff(RequestInterface $request, ResponseInterface $response)
+	public function getStaff(RequestInterface $request, ResponseInterface $response)
 	{
 		//récupération du cache
 		$admin = $this->redis->getJson('website:staff.admin');
@@ -50,10 +46,6 @@ class PagesController extends Controller
 		$help = $this->redis->getJson('website:staff.helper');
 		$modof = $this->redis->getJson('website:staff.modof');
 		$staff = $this->redis->getJson('website:staff.staff');
-
-
-		var_dump($admin[0]);
-
 
 		$this->render($response, 'pages.staff', [
 			'admin' => $admin,
