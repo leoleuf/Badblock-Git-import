@@ -25,6 +25,17 @@ class Redis
 		return $this->client->set($this->prefix . $key, $value);
 	}
 
+    public function expire($key, $value)
+    {
+        return $this->client->expire($this->prefix . $key, $value);
+    }
+
+    public function exists($key)
+    {
+        return $this->client->exists($this->prefix . $key);
+    }
+
+
 	/**
 	 * Get decoded json from redis key
 	 *
