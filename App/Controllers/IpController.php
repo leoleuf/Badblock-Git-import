@@ -42,7 +42,6 @@ class IpController extends Controller
 
         //Copille et envoie
         array_push($result,$iptos,$code,$pays);
-        $result = json_encode($result);
         //Mise en cache
         $this->redis->setJson('ip_'.$ip, $result);
         $this->redis->expire('ip_'.$ip, 3600);
