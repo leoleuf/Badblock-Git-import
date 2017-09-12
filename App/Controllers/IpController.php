@@ -26,6 +26,7 @@ class IpController extends Controller
 
         //Geo IP
         $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
+        
         $code = geoip_country_code_by_addr($gi, $ip);
         $pays = geoip_country_name_by_addr($gi, $ip);
         geoip_close($gi);
