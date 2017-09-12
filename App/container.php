@@ -15,6 +15,26 @@ $container['session'] = function ($container) use ($config) {
 	return new \App\Session();
 };
 
+$container['redis_client'] = function ($container) {
+	$client = new Predis\Client(
+		[
+			'scheme' => 'tcp',
+			'host' => $container->config['redis']['host'],
+			'port' => $container->config['redis']['port'],
+		], [
+			'parameters' => [
+				'password' => $container->config['redis']['password'],
+			]
+		]
+	);
+
+	return $client;
+};
+
+$container['redis'] = function ($container) {
+	return new \App\Redis($container->redis_client);
+};
+
 $container['log'] = function ($container) {
 	$log = new Monolog\Logger('badblock-website');
 
@@ -115,26 +135,6 @@ $container['xenforo'] = function ($container) {
 		'endpoint' => $container->config['xenforo_api']['endpoint'],
 		'hash' => $container->config['xenforo_api']['hash']
 	]);
-};
-
-$container['redis_client'] = function ($container) {
-	$client = new Predis\Client(
-		[
-			'scheme' => 'tcp',
-			'host' => $container->config['redis']['host'],
-			'port' => $container->config['redis']['port'],
-		], [
-			'parameters' => [
-				'password' => $container->config['redis']['password'],
-			]
-		]
-	);
-
-	return $client;
-};
-
-$container['redis'] = function ($container) {
-	return new \App\Redis($container->redis_client);
 };
 
 $container['notFoundHandler'] = function ($container) {
