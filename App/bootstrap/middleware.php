@@ -24,3 +24,10 @@ $app->add(new \App\Middlewares\LoginMiddleware());
 $checkProxyHeaders = true;
 $trustedProxies = ['10.0.0.1', '10.0.0.2'];
 $app->add(new RKA\Middleware\IpAddress($checkProxyHeaders, $trustedProxies));
+
+/*
+|--------------------------------------------------------------------------
+| Minecraft Ip generator Middleware
+|--------------------------------------------------------------------------
+*/
+$app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
