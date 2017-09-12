@@ -18,27 +18,34 @@ class IpController extends Controller
 
 
     public function getip(RequestInterface $request, ResponseInterface $response){
+        //Variables
+        $result =  [];
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $eu = array("FR", "ES", "PT", "GB", "IE", "BE", "NL", "LU", "DE", "IT", "DK", "SE", "CZ", "AT", "SI", "HR", "BA", "ME", "PL", "SK", "HU", "HR", "RS", "BG", "MK", "AL", "GR", "TR", "CY", "MT", "EE", "LV", "LT", "FI");
+        $na = array("US", "CA", "MX");
 
-        $eu = array("FR", "ES", "Irix", "Linux");
-        $na = array("Mac", "NT", "Irix", "Linux");
-
-
+        //Geo IP
         $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
-
-
-        $code = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\t";
-        $pays = geoip_country_name_by_addr($gi, $_SERVER['REMOTE_ADDR']) . "\n";
-
+        $code = geoip_country_code_by_addr($gi, $ip);
+        $pays = geoip_country_name_by_addr($gi, $ip);
         geoip_close($gi);
 
+        //Check Pays
         if (in_array($code, $eu)) {
-            echo "Go eu .babdb";
-
+            $iptos = "eu.badblock.fr";
+        }elseif (in_array($code, $na)){
+            $iptos = "na.badblock.fr";
+        }else{
+            $iptos = "play.badblock.fr";
         }
 
-        var_dump($_SERVER['REMOTE_ADDR']);
-        var_dump($code);
-        var_dump($pays);
+        //Copille et envoie
+        array_push($result,$iptos,$code,$pays);
+        $result = json_encode($result);
+        //Mise en cache
+        $this->redis->setJson('ip_'.$ip, $result);
+
+        return $result;
 
     }
 
