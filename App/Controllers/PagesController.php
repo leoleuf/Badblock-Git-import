@@ -11,8 +11,10 @@ class PagesController extends Controller
 
 	public function getHome(RequestInterface $request, ResponseInterface $response)
 	{
-		var_dump($request->getAttribute('ip_address'));
-		$firstRow = $this->redis->getJson('first_row_posts');
+
+
+            var_dump($this->redis->get('ip_'.$request->getAttribute('ip_address')));
+        $firstRow = $this->redis->getJson('first_row_posts');
 		$secondRow = $this->redis->getJson('second_row_posts');
 		$postsCount = $this->redis->get('posts_count');
 
