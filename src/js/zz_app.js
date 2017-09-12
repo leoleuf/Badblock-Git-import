@@ -27,8 +27,6 @@ function players() {
 }
 
 $(document).ready(function () {
-    console.log('up');
-
     //Check to see if the window is top if not then display button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
@@ -45,6 +43,6 @@ $(document).ready(function () {
     })
 
     players();
-
-    console.log('down');
 });
+
+//drop downu

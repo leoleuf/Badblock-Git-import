@@ -22,7 +22,7 @@ class IpController extends Controller
         $app = \Slim\Slim::getInstance();
         $req = $app->request()->getIp();
 
-        var_dump($req));
+        var_dump($req);
 
         $gi = geoip_open("C:\Users\MAT_3\PhpstormProjects\badblock\App\config\geoip.dat", GEOIP_STANDARD);
 

@@ -201,14 +201,30 @@ class BlogApiController extends \App\Controllers\Controller
 		$this->redis->setJson('all_posts', $newPosts);
 
 		//enregistrer le cache pour la première ligne et la seconde ligne
-		$firstRowPosts = [
-			$newPosts[0],
-			$newPosts[1]
-		];
-		$secondRowPosts = [
-			$newPosts[2],
-			$newPosts[3]
-		];
+
+		if (isset($newPosts[1])) {
+			$firstRowPosts = [
+				$newPosts[0],
+				$newPosts[1]
+			];
+		}else{
+			$firstRowPosts = [
+				$newPosts[0]
+			];
+		}
+
+		if (isset($newPosts[2], $newPosts[3])){
+			$secondRowPosts = [
+				$newPosts[2],
+				$newPosts[3]
+			];
+		}elseif (isset($newPosts[2])) {
+			$secondRowPosts = [
+				$newPosts[2]
+			];
+		}else{
+			$secondRowPosts = [];
+		}
 		$this->redis->setJson('first_row_posts', $firstRowPosts);
 		$this->redis->setJson('second_row_posts', $secondRowPosts);
 
