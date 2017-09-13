@@ -91,7 +91,7 @@ class IpGeneratorMiddleware
 
 			//Mise en cache
 			$this->container->redis->setJson('ip_' . $ip, $result);
-			$this->container->redis->expire('ip_' . $ip, 36);
+			$this->container->redis->expire('ip_' . $ip, 3600);
 
 			$generatedIp = $result[0];
 

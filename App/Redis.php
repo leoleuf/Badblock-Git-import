@@ -30,6 +30,12 @@ class Redis
         return $this->client->expire($this->prefix . $key, $value);
     }
 
+	/**
+	 * Check if key exist
+	 *
+	 * @param $key
+	 * @return boolean
+	 */
     public function exists($key)
     {
         return $this->client->exists($this->prefix . $key);

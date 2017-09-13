@@ -38,7 +38,7 @@ class IpController extends Controller
 
 			//Mise en cache
 			$this->redis->setJson('ip_'.$ip, $result);
-			$this->redis->expire('ip_'.$ip, 36);
+			$this->redis->expire('ip_'.$ip, 3600);
 
 			return json_encode($result);
 

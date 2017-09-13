@@ -32,6 +32,7 @@
         "symfony/translation": "^3.3",
         "symfony/twig-bridge": "^3.3",
         "akrabat/rka-ip-address-middleware": "^0.5.0",
-        "geoip/geoip": "~1.16"
+        "geoip/geoip": "~1.16",
+        "erusev/parsedown": "^1.6"
     }
 }

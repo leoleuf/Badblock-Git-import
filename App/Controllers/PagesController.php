@@ -38,14 +38,14 @@ class PagesController extends Controller
 	public function getStaff(RequestInterface $request, ResponseInterface $response)
 	{
 		//récupération du cache
-		$admin = $this->redis->getJson('website:staff.admin');
-		$dev = $this->redis->getJson('website:staff.dev');
-		$resp = $this->redis->getJson('website:staff.resp');
-		$sup = $this->redis->getJson('website:staff.sup');
-		$modo = $this->redis->getJson('website:staff.modo');
-		$help = $this->redis->getJson('website:staff.helper');
-		$modof = $this->redis->getJson('website:staff.modof');
-		$staff = $this->redis->getJson('website:staff.staff');
+		$admin = $this->redis->getJson('staff.admin');
+		$dev = $this->redis->getJson('staff.dev');
+		$resp = $this->redis->getJson('staff.resp');
+		$sup = $this->redis->getJson('staff.sup');
+		$modo = $this->redis->getJson('staff.modo');
+		$help = $this->redis->getJson('staff.helper');
+		$modof = $this->redis->getJson('staff.modof');
+		$staff = $this->redis->getJson('staff.staff');
 
 		$this->render($response, 'pages.staff', [
 			'admin' => $admin,

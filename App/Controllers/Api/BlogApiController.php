@@ -239,6 +239,6 @@ class BlogApiController extends \App\Controllers\Controller
 		$this->log->info('"BlogApiController\getCreateCacheAllPosts": Success writing articles cache');
 
 		//return success
-		return $response->write('Success writing cache')->withStatus(200);
+		return $response->write('Success writing posts cache')->withStatus(200);
 	}
 }

@@ -63,8 +63,9 @@ class StaffApiController extends \App\Controllers\Controller
 		$this->redis->setJson('staff.modof', $modof);
 		$this->redis->setJson('staff.staff', $staff);
 
-        return $response->write('Skript is the best dev')->withStatus(200);
+        return $response->write('Success writing staff cache')->withStatus(200);
 
+		$this->log->info('"StaffApiController\getCreateCacheAllStaff": Success writing staff cache');
 
     }
 }

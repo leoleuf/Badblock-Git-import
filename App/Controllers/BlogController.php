@@ -20,7 +20,7 @@ class BlogController extends Controller
 			$p = 1;
 		}
 
-		$array = $this->redis->getJson('website:all_posts');
+		$array = $this->redis->getJson('all_posts');
 		if (empty($array)) {
 			$haveToPaginate = false;
 			$nbResults = 0;
@@ -58,12 +58,15 @@ class BlogController extends Controller
 
 	public function getPost(RequestInterface $request, ResponseInterface $response, $args)
 	{
-		//TODO: Gérer la 404
 		//search in redis cache for single cache
-		$post = $this->redis->getJson('website:post:' . $args['uuid']);
-		$this->render($response, 'blog.post', [
-			'post' => $post
-		]);
+		if ($this->redis->exists('post:' . $args['uuid'])) {
+			$post = $this->redis->getJson('post:' . $args['uuid']);
+			$this->render($response, 'blog.post', [
+				'post' => $post
+			]);
+		}else{
+			return $this->container['notFoundHandler']($request, $response);
+		}
 	}
 
 }
