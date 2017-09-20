@@ -89,6 +89,10 @@ $container['view'] = function ($container) use ($app) {
 	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
 	$twig->addGlobal('ts3_query', $container['config']['ts3_query']);
 
+	if($container['session']->exist('user')){
+		$twig->addGlobal('user', $container['session']->get('user'));
+	}
+
 	// Instantiate and add Slim specific extension
 	$basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
 	$view->addExtension(new Slim\Views\TwigExtension($container['router'], $basePath));

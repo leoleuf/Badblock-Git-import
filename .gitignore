@@ -64,3 +64,11 @@ fabric.properties
 
 node_modules/*
 vendor/*
+App/Controllers/ShopController.php
+App/Controllers/UserController.php
+App/views/shop/
+App/views/user/dashboard.twig
+public/dist/images/
+src/sass/_variables.scss
+src/sass/layouts-responsive/_shop.scss
+src/sass/layouts/_shop.scss

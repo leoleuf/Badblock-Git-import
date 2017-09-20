@@ -8,16 +8,14 @@
 
 namespace App\Controllers;
 
-use App\XenForo;
-use Dflydev\FigCookies\Cookie;
-use function FastRoute\TestFixtures\empty_options_cached;
-use Psr\Http\Message\RequestInterface;
+use HansOtt\PSR7Cookies\SetCookie;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 
 class SessionController extends Controller
 {
-	public function login(RequestInterface $request, ResponseInterface $response)
+	public function login(ServerRequestInterface $request, ResponseInterface $response)
 	{
 		//si les variables sont passés
 		if (isset($_POST['username']) & isset($_POST['password'])) {
@@ -27,14 +25,15 @@ class SessionController extends Controller
 				$rep = $this->xenforo->getLogin($_POST['username'], $_POST['password'], $_SERVER['REMOTE_ADDR']);
 
 				//la réponse est false si les mots de passe ou le username est correct
+				dd($rep);
 				if ($rep !== false) {
 					//user
 					$user = $this->xenforo->getUser($_POST['username']);
 
 					//ajout du cookie
-					setcookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expire'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
+					$cookie = new SetCookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expire'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
+					$response = $cookie->addToResponse($response);
 
-					//
 					//mise de l'utilisateur en session
 					$this->session->set('user', [
 						'id' => $user['user_id'],
@@ -50,7 +49,7 @@ class SessionController extends Controller
 					]);
 
 					//redirect to home
-					return $this->redirect($response, $this->container->router->pathFor('home'));
+					return $this->redirect($response, $this->container->router->pathFor('dashboard'));
 				} else {
 					//Erreur: Username ou mdp invalides
 					$this->flash->addMessage('login_error', "Nom d'utilisateur ou mot de passe incorrect");

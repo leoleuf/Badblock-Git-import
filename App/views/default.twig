@@ -56,7 +56,7 @@
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
-        <a href="#">
+        <a href="{{ path_for('shop.home') }}" class="{% if active_page == 'shop' %}actived{% endif %}">
             <i class="shopping_basket-colored-icon colored-icon"></i>
             {{ 'shop.title'|trans }}
         </a>
