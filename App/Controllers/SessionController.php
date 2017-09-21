@@ -25,7 +25,6 @@ class SessionController extends Controller
 				$rep = $this->xenforo->getLogin($_POST['username'], $_POST['password'], $_SERVER['REMOTE_ADDR']);
 
 				//la réponse est false si les mots de passe ou le username est correct
-				dd($rep);
 				if ($rep !== false) {
 					//user
 					$user = $this->xenforo->getUser($_POST['username']);
