@@ -2,7 +2,11 @@
 
 namespace App\Middlewares\Auth;
 
+use Dflydev\FigCookies\Cookie;
+use Dflydev\FigCookies\FigRequestCookies;
 use HansOtt\PSR7Cookies\RequestCookies;
+use Psr\Http\Message\ServerRequestInterface;
+use Slim\Http\Cookies;
 
 class LoginMiddleware
 {
@@ -13,8 +17,9 @@ class LoginMiddleware
 		$this->container = $container;
 	}
 
-	public function __invoke($request, $response, $next)
+	public function __invoke(ServerRequestInterface $request, $response, $next)
 	{
+		$_COOKIE['forum_user'] = '65%2Cdc4fae9d0e0679e1ed23ade66fcaa70f5eb737f4';
 		//si le cookie existe, on ouvre une session
 		//en revanche si le cookie exsite mais une session est déjà ouverte, on ne fait rien
 		$cookies = RequestCookies::createFromRequest($request);
@@ -22,11 +27,11 @@ class LoginMiddleware
 		if ($cookies->has('forum_user') && !$this->container->session->exist('user')) {
 
 			//recupérer l'id utilisateur à partir du cookie
-			$pos = strpos('%', $cookies->get('forum_user'));
-			$userid = substr($cookies->get('forum_user'), 0, $pos);
+			$pos = strpos('%', FigRequestCookies::get($request, 'forum_user'));
+			$userid = substr(FigRequestCookies::get($request, 'forum_user'), 0, $pos);
 
 			//recipérer le profile de l'utilisateur à partir de l'api
-			$user = $this->container->xenforo->getUser($_POST['username']);
+			$user = $this->container->xenforo->getUser($userid);
 
 			//mise de l'utilisateur en session
 			$this->session->set('user', [
