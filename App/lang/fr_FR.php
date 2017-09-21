@@ -32,4 +32,6 @@ return [
 	'no_player' => "Aucun joueurs connectés",
 	'one_player' => "joueur",
 	'many_players' => "joueurs",
+	'user.dashboard_title' => 'Mon tableau de bord',
+	'user.dashboard_subtitle' => 'Compater, ratione, et particula.'
  ];

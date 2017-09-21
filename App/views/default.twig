@@ -200,7 +200,7 @@
     {% endif %}
     <p>
         <!-- Login Form -->
-    <form method="POST" action="{{ path_for('login') }}">
+    <form method="POST" action="{{ path_for('login.execute') }}">
         <label for="username">{{ 'login.username'|trans }}</label>
         <input name="username" class="u-full-width" type="text" placeholder="{{ 'login.username.placeholder'|trans }}"
                id="username" required>

@@ -44,6 +44,7 @@
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 0.5em;
     li {
       font-size: large;

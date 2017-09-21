@@ -1,5 +1,10 @@
 @import "bourbon";
 
+//blaze
+
+@import "extends/blaze/mixins/settings.global";
+@import "extends/blaze/blaze";
+
 @import "variables";
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,300,700,500,900");

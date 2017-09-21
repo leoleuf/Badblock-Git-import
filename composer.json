@@ -34,6 +34,8 @@
         "akrabat/rka-ip-address-middleware": "^0.5.0",
         "geoip/geoip": "~1.16",
         "erusev/parsedown": "^1.6",
-        "hansott/psr7-cookies": "^1.0"
+        "hansott/psr7-cookies": "^1.0",
+        "lefuturiste/config": "^0.1.0",
+        "tracy/tracy": "^2.4"
     }
 }

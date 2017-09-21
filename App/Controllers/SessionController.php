@@ -49,7 +49,7 @@ class SessionController extends Controller
 					]);
 
 					//redirect to home
-					return $this->redirect($response, $this->container->router->pathFor('dashboard'));
+					return $this->redirect($response, $this->pathFor('dashboard'));
 				} else {
 					//Erreur: Username ou mdp invalides
 					$this->flash->addMessage('login_error', "Nom d'utilisateur ou mot de passe incorrect");
