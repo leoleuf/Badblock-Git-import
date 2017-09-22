@@ -1,0 +1,7 @@
+{% extends 'default.twig' %}
+{% set title = 'user.dashboard_title'|trans %}
+{% set sub_title = 'user.dashboard_subtitle'|trans %}
+{% set show_title = true %}
+{% block content %}
+    <p>Hello {{ user.name }}</p>
+{% endblock %}

@@ -1,0 +1,23 @@
+.recharge-container {
+  .recharge-content {
+    .recharge-flex {
+      flex-direction: column;
+      justify-content: center;
+    }
+    .recharge-info {
+
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+
+
+.product-item {
+  width: 100%;
+  margin-right: 0 !important;
+  margin-bottom: 2em;
+}
