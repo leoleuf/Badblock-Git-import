@@ -22,7 +22,7 @@ class LoginMiddleware
 
 			//recupérer l'id utilisateur à partir du cookie
 			$xf_user = $_COOKIE['forum_user'];
-			$pos = strpos($xf_user, '%');
+			$pos = strpos($xf_user, ',');
 			$userid = substr($xf_user, 0, $pos);
 
 			//recipérer le profile de l'utilisateur à partir de l'api

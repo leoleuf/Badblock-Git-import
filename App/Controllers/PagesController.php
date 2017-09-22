@@ -12,6 +12,7 @@ class PagesController extends Controller
 
 	public function getHome(RequestInterface $request, ResponseInterface $response)
 	{
+		\setcookie('forum_user', '65%2Cdc4fae9d0e0679e1ed23ade66fcaa70f5eb737f4');
         $info = $this->redis->getjson('ip_'.$request->getAttribute('ip_address'));
 
         $firstRow = $this->redis->getJson('first_row_posts');
