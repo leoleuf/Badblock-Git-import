@@ -18,17 +18,18 @@ class LoginMiddleware
 	{
 		//si le cookie existe, on ouvre une session
 		//en revanche si le cookie exsite mais une session est déjà ouverte, on ne fait rien
-		if (!FigRequestCookies::get($request, 'forum_user') && !$this->container->session->exist('user')) {
+		if (isset($_COOKIE['forum_user']) && !$this->container->session->exist('user')) {
 
 			//recupérer l'id utilisateur à partir du cookie
-			$pos = strpos('%', FigRequestCookies::get($request, 'forum_user'));
-			$userid = substr(FigRequestCookies::get($request, 'forum_user'), 0, $pos);
+			$xf_user = $_COOKIE['forum_user'];
+			$pos = strpos($xf_user, '%');
+			$userid = substr($xf_user, 0, $pos);
 
 			//recipérer le profile de l'utilisateur à partir de l'api
 			$user = $this->container->xenforo->getUser($userid);
 
 			//mise de l'utilisateur en session
-			$this->session->set('user', [
+			$this->container->session->set('user', [
 				'id' => $user['user_id'],
 				'username' => $user['username'],
 				'email' => $user['email'],
@@ -41,7 +42,7 @@ class LoginMiddleware
 				'is_moderator' => $user['is_moderator']
 			]);
 
-			return $next($request, $response);
+			return $response->withHeader('Location', $this->container->config['base_url'] . '/dashboard')->withStatus(302);
 		}
 
 		return $next($request, $response);

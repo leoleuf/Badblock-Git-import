@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use HansOtt\PSR7Cookies\SetCookie;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
