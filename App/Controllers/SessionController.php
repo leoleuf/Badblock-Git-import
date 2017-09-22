@@ -30,7 +30,7 @@ class SessionController extends Controller
 					$user = $this->xenforo->getUser($_POST['username']);
 
 					//ajout du cookie
-					$cookie = new SetCookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expire'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
+					$cookie = new SetCookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expiration'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
 					$response = $cookie->addToResponse($response);
 
 					//mise de l'utilisateur en session
