@@ -28,10 +28,13 @@ return [
 	'login.password.placeholder' => '*******',
 	'login.lost_password' => "J'ai oublié mon mot de passe",
 	'login.login' => "Connexion",
-	'login.register' => "S'enregistrer",
+	'login.register' => "Inscription",
 	'no_player' => "Aucun joueurs connectés",
 	'one_player' => "joueur",
 	'many_players' => "joueurs",
 	'user.dashboard_title' => 'Mon tableau de bord',
-	'user.dashboard_subtitle' => 'Compater, ratione, et particula.'
- ];
+	'user.dashboard_subtitle' => 'Bonjour, ',
+	'user.logout' => 'Déconnexion',
+	'admin.title' => 'Administration',
+	'forum.title' => 'Forum'
+];
