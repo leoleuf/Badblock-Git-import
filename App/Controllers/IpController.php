@@ -9,9 +9,7 @@ class IpController extends Controller
 	public function getIp(RequestInterface $request, ResponseInterface $response){
 		$ip = $_SERVER['REMOTE_ADDR'];
 
-
-		if (!$this->redis->exists("ip_".$ip)){
-			//Variables
+	        //Variables
 			$result =  [];
 			$eu = array("FR", "ES", "PT", "GB", "IE", "BE", "NL", "LU", "DE", "IT", "DK", "SE", "CZ", "AT", "SI", "HR", "BA", "ME", "PL", "SK", "HU", "HR", "RS", "BG", "MK", "AL", "GR", "TR", "CY", "MT", "EE", "LV", "LT", "FI");
 			$na = array("US", "CA", "MX");
@@ -39,12 +37,11 @@ class IpController extends Controller
 			//Mise en cache
 			$this->redis->setJson('ip_'.$ip, $result);
 			$this->redis->expire('ip_'.$ip, 3600);
+			
+        var_dump($pays);
 
-			return json_encode($result);
+        return json_encode($result);
 
-		}else{
-			return json_encode($this->redis->getjson('ip_'.$request->getAttribute('ip_address')));
-		}
 
 	}
 }
