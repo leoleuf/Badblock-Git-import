@@ -18,7 +18,7 @@ class IpController extends Controller
 
 			//Geo IP
 			$code = "FR";
-			$gi = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
+			$gi = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
 
 			$code = geoip_country_code_by_addr($gi, $ip);
 			$pays = geoip_country_name_by_addr($gi, $ip);
