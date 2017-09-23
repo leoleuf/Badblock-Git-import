@@ -66,12 +66,23 @@ class IpGeneratorMiddleware
 			//Get list of countries
 
 			//open geoip file
-			$gi = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
-			$code = geoip_country_code_by_addr($gi, $ip);
-			$pays = geoip_country_name_by_addr($gi, $ip);
-			geoip_close($gi);
+            $db6 = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
+            $db4 = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
 
-			//Check Pays
+            $isIPv6 = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+            if ($isIPv6) {
+                $code = geoip_country_code_by_addr_v6($db6, $ip);
+                $pays = geoip_country_name_by_addr_v6($db6, $ip);
+            } else {
+                $code = geoip_country_code_by_addr($db4, $ip);
+                $pays = geoip_country_name_by_addr($db4, $ip);
+            }
+
+            geoip_close($db4);
+            geoip_close($db6);
+
+
+            //Check Pays
 			if (in_array($code, $this->euAllowed)) {
 
 				$iptos = $this->euServerIp;
