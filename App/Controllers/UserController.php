@@ -40,14 +40,6 @@ class UserController extends Controller
 
 	}
 
-	public function getLogout(ServerRequestInterface $request, ResponseInterface $response)
-	{
-		$this->session->destroy();
-		//redirect to home
-		return $this->redirect($response, $this->pathFor('home'));
-	}
-
-
 	public function tower($var)
 	{
 

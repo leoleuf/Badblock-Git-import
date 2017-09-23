@@ -61,4 +61,12 @@ class SessionController extends Controller
 			return $response->write('Bad request')->withStatus(400);
 		}
 	}
+
+
+	public function getLogout(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		$this->session->destroy();
+		return $response->withHeader('Location', $this->container->config['forum_url'] . '/logout')->withStatus(302);
+	}
+
 }

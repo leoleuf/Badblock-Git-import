@@ -26,6 +26,6 @@ $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setNam
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
 $app->get('/dashboard', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
-$app->get('/logout', \App\Controllers\UserController::class . ':getLogout')->setName('logout')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->get('/logout', \App\Controllers\SessionController::class . ':getLogout')->setName('logout')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 
 
