@@ -7,7 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 class IpController extends Controller
 {
 	public function getIp(RequestInterface $request, ResponseInterface $response){
-		$ip = $_SERVER['REMOTE_ADDR'];
+	    
+		    $addr = $_SERVER['REMOTE_ADDR'];
 
 	        //Variables
 			$result =  [];
