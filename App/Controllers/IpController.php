@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 class IpController extends Controller
 {
 	public function getIp(RequestInterface $request, ResponseInterface $response){
-	    
+
 		    $addr = $_SERVER['REMOTE_ADDR'];
 
 	        //Variables
@@ -26,14 +26,16 @@ class IpController extends Controller
 
             $isIPv6 = filter_var($addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
             if ($isIPv6) {
-                $location = geoip_country_code_by_addr_v6($db, $addr);
+                $code = geoip_country_code_by_addr_v6($db, $addr);
             } else {
-                $location = geoip_country_code_by_addr($db, $addr);
+                $code = geoip_country_code_by_addr($db, $addr);
             }
 
 			geoip_close($gi);
 
-			//Check Pays
+            var_dump($code);
+
+            //Check Pays
 			if (in_array($code, $eu)) {
 				$iptos = "eu.badblock.fr";
 			}elseif (in_array($code, $na)){
@@ -48,7 +50,6 @@ class IpController extends Controller
 			//Mise en cache
 
 
-        var_dump($pays);
 
         return json_encode($result);
 
