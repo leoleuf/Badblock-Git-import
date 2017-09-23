@@ -18,8 +18,18 @@ class IpController extends Controller
 			$code = "FR";
 			$gi = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
 
-			$code = geoip_country_code_by_addr($gi, $ip);
-			$pays = geoip_country_name_by_addr($gi, $ip);
+            $db = array(
+                'Geo4' => geoip_open("../App/config/geoip.dat", GEOIP_STANDARD),
+                'Geo6' => geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD),
+            );
+
+            $isIPv6 = filter_var($addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+            if ($isIPv6) {
+                $location = geoip_country_code_by_addr_v6($db, $addr);
+            } else {
+                $location = geoip_country_code_by_addr($db, $addr);
+            }
+
 			geoip_close($gi);
 
 			//Check Pays
@@ -35,9 +45,8 @@ class IpController extends Controller
 			array_push($result,$iptos,$code,$pays);
 
 			//Mise en cache
-			$this->redis->setJson('ip_'.$ip, $result);
-			$this->redis->expire('ip_'.$ip, 3600);
-			
+
+
         var_dump($pays);
 
         return json_encode($result);
