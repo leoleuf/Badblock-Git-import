@@ -57,8 +57,8 @@ public class ChatListener implements Listener {
 		boolean lag = contains(message, lagWords);
 		boolean modo = contains(message, modoWords);
 		if (cheat) {
-			event.setCancelled(true);
 			player.sendMessage("§6[INFO] §fVous soupçonnez quelqu'un de triche ? Tapez /cheat <pseudo>");
+			player.sendMessage("§6[INFO] §fNe déversez pas votre haine dans le t'chat.");
 		}else if (lag) {
 			String playerName = player.getName().toLowerCase();
 			long timestamp = System.currentTimeMillis();
