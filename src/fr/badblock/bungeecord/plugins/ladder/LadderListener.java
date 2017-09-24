@@ -7,6 +7,7 @@ import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListen
 import fr.badblock.bungeecord.plugins.ladder.utils.Motd;
 import fr.badblock.bungeecord.plugins.ladder.utils.Punished;
 import fr.badblock.bungeecord.plugins.ladder.utils.TimeUnit;
+import fr.badblock.bungeecord.plugins.utils.BungeeUtils;
 import fr.badblock.common.commons.utils.StringUtils;
 import fr.badblock.common.permissions.Permission;
 import fr.badblock.common.protocol.packets.PacketPlayerJoin;
@@ -174,6 +175,8 @@ public class LadderListener implements Listener {
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
 		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().ladderPlayers, sample));
 		String[] motdString = motd.getMotd().clone();
+		timestampMax = BungeeUtils.config.getLong("timestampLimit");
+		finished = BungeeUtils.config.getString("timestampReachLimit");
 		if (motdString[1].contains("@1")) {
 			long time = timestampMax - (System.currentTimeMillis() / 1000L);
 			if (time > 0) {
