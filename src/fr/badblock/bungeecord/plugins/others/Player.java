@@ -25,7 +25,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 	}
 
 	public void remove() {
-		players.remove(this);
+		players.remove(pseudo);
 	}
 
 	public static Player get(ProxiedPlayer proxiedPlayer) {

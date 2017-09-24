@@ -25,7 +25,8 @@ public class PreLoginListener implements Listener {
 	//public static List<String> players = new ArrayList<>();
 
 	private static Gson gson = new Gson();
-	
+	private static int  bye  = 0;
+
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
@@ -36,14 +37,25 @@ public class PreLoginListener implements Listener {
 					players.add(playerName);*/
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
-			BadBlockBungeeOthers.getInstance().setDone(true);
-			BadBlockBungeeOthers.getInstance().deleteDNS();
+			if (bye >= 15)
+			{
+				BadBlockBungeeOthers.getInstance().setDone(true);
+				BadBlockBungeeOthers.getInstance().deleteDNS();
+			}
+			else
+			{
+				bye++;
+			}
+		}
+		else
+		{
+			bye = 0;
 		}
 		Map<String, Integer> map = new HashMap<>();
 		map.put(proxiedPlayer.getName(), proxiedPlayer.getPing());
 		BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
-	
+
 	@EventHandler
 	public void onLogin(LoginEvent event) {
 		/*if (BadBlockBungeeOthers.getInstance().getDeleteTime() != -1 && BadBlockBungeeOthers.getInstance().getDelete() == -1 && BadBlockBungeeOthers.getInstance().getDeleteTime() < System.currentTimeMillis()) {
