@@ -10,7 +10,13 @@
             <h4 class="heading-bar"><span>{{ 'play.how_play'|trans }}</span></h4>
             <div class="play-way-ip">
                 <p>{{ 'play.how_play_text'|trans }}</p>
-                <img src="http://i.imgur.com/lrapyDW.gif" class="how-to-gif">
+                {% if mc_ip == "eu.badblock.fr" %}
+                    <img src="/dist/images/eu.gif" class="how-to-gif">
+                {% elseif mc_ip == "na.badblock.fr" %}
+                    <img src="/dist/images/na.gif" class="how-to-gif">
+                {% else %}
+                    <img src="/dist/images/play.gif" class="how-to-gif">
+                {% endif %}
             </div>
         </section>
         <section>

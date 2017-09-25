@@ -1,8 +1,6 @@
 {% extends "default.twig" %}
 {% set active_page = "shop" %}
-{% set show_title = true %}
-{% set title = "Boutique" %}
-{% set sub_title = "La boutique façon badblock" %}
+{% set show_title = false %}
 {% block cover %}
     <!-- Recharger -->
     <div class="recharge-back">
@@ -15,7 +13,7 @@
                         <img src="{{ base_url() }}/dist/images/paysafecard.webp">
                     </div>
                     <div class="recharge-button">
-                        <a class="button button-primary" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
                     </div>
                 </div>
             </div>
