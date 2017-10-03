@@ -8,24 +8,67 @@ class IpController extends Controller
 {
 	public function getIp(RequestInterface $request, ResponseInterface $response){
 
-        $addr = '2a01:cb19:81d2:9900:a44a:e8b4:85d:5e53';
+        $ip = $_SERVER['REMOTE_ADDR'];
+        //if the key doesn't exist in cache
+        if (!$this->container->redis->exists("ip_" . $ip)) {
+            $result = [];
+
+            //Geo IP
+            //Get list of countries
+
+            //open geoip file
+            $db6 = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
+            $db4 = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
+
+            $isIPv6 = filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
+            if ($isIPv6) {
+                $code = geoip_country_code_by_addr_v6($db6, $ip);
+                $pays = geoip_country_name_by_addr_v6($db6, $ip);
+            } else {
+                $code = geoip_country_code_by_addr($db4, $ip);
+                $pays = geoip_country_name_by_addr($db4, $ip);
+            }
+
+            geoip_close($db4);
+            geoip_close($db6);
 
 
-        $db6 = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
-        $db4 = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
+            //Check Pays
+            if (in_array($code, $this->euAllowed)) {
 
+                $iptos = $this->euServerIp;
 
-        $isIPv6 = filter_var($addr, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6);
-        if ($isIPv6) {
-            $code = geoip_country_code_by_addr_v6($db6, $addr);
+            } elseif (in_array($code, $this->naAllowed)) {
+
+                $iptos = $this->naServerIp;
+
+            } else {
+
+                $iptos = $this->defaultServerIp;
+
+            }
+
+            //compile et envoie
+            array_push($result, $iptos, $code, $pays);
+
+            //Mise en cache
+            $this->container->redis->setJson('ip_' . $ip, $result);
+            $this->container->redis->expire('ip_' . $ip, 3600);
+
+            $generatedIp = $result[0];
+
         } else {
-            $code = geoip_country_code_by_addr($db4, $addr);
+            $generatedIp = $this->container->redis->getjson('ip_' . $ip)[0];
         }
 
-        geoip_close($db4);
-        geoip_close($db6);
+        //ajout de l'ip généré aux variables globales twig
+        $twig = $this->container->view->getEnvironment();
+        $twig->addGlobal('mc_ip', $generatedIp);
 
-
+        //return next
+        return $response->withJson([
+            'ip'=>$generatedIp
+        ]);
 
 	}
 }
