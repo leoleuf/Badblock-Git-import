@@ -41,8 +41,6 @@ class LoginMiddleware
 				'is_staff' => $user['is_staff'],
 				'is_moderator' => $user['is_moderator']
 			]);
-
-			return $response->withHeader('Location', $this->container->config['base_url'] . '/dashboard')->withStatus(302);
 		}
 
 		return $next($request, $response);
