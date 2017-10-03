@@ -11,6 +11,9 @@ tmp/*
 log/*
 log
 
+.floo
+.flooignore
+
 #.env
 .env
 
