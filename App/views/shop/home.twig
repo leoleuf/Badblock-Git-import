@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
+{% set title = 'shop.title'|trans %}
 {% block cover %}
     <!-- Recharger -->
     <div class="recharge-back">
@@ -8,9 +9,9 @@
             <div class="recharge-content">
                 <div class="container recharge-flex">
                     <div class="recharge-info">
-                        <img src="{{ base_url() }}/dist/images/paypal.webp">
-                        <img src="{{ base_url() }}/dist/images/smsplus.webp">
-                        <img src="{{ base_url() }}/dist/images/paysafecard.webp">
+                        <img src="{{ base_url() }}/dist/images/paypal.png">
+                        <img src="{{ base_url() }}/dist/images/smsplus.png">
+                        <img src="{{ base_url() }}/dist/images/paysafecard.png">
                     </div>
                     <div class="recharge-button">
                         <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
@@ -51,7 +52,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -63,7 +64,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -75,7 +76,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -87,60 +88,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="shop-section">
-        <h4 class="heading heading-bar"><span>Cuillère à café</span></h4>
-        <div class="product-list">
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -157,7 +105,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -169,7 +117,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -181,7 +129,7 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">
@@ -193,7 +141,60 @@
                     <h5 class="product-title">Grade Gold</h5>
                 </div>
                 <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.webp">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
+                </div>
+                <div class="product-price">200</div>
+                <div class="product-footer">
+                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="shop-section">
+        <h4 class="heading heading-bar"><span>Cuillère à café</span></h4>
+        <div class="product-list">
+            <div class="product-item">
+                <div class="product-header">
+                    <h5 class="product-title">Grade Gold</h5>
+                </div>
+                <div class="product-image">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
+                </div>
+                <div class="product-price">200</div>
+                <div class="product-footer">
+                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-header">
+                    <h5 class="product-title">Grade Gold</h5>
+                </div>
+                <div class="product-image">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
+                </div>
+                <div class="product-price">200</div>
+                <div class="product-footer">
+                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-header">
+                    <h5 class="product-title">Grade Gold</h5>
+                </div>
+                <div class="product-image">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
+                </div>
+                <div class="product-price">200</div>
+                <div class="product-footer">
+                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                </div>
+            </div>
+            <div class="product-item">
+                <div class="product-header">
+                    <h5 class="product-title">Grade Gold</h5>
+                </div>
+                <div class="product-image">
+                    <img src="{{ base_url() }}/dist/images/gold.png">
                 </div>
                 <div class="product-price">200</div>
                 <div class="product-footer">

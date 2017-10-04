@@ -20,6 +20,8 @@ $app->group('/stats', function (){
 $app->group('/shop', function (){
 	$this->get('', \App\Controllers\ShopController::class . ':getHome')->setName('shop.home');
 	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
+	$this->get('/recharge/next', \App\Controllers\ShopController::class . ':getNextStepRecharge')->setName('shop.recharge.nextstep');
+	$this->get('/recharge/start/{amount}/{username}/{payway}', \App\Controllers\ShopController::class . ':getRechargeStart')->setName('shop.recharge.start');
 });
 
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');

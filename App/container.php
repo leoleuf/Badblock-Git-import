@@ -91,6 +91,8 @@ $container['view'] = function ($container) use ($app) {
 
 	if($container['session']->exist('user')){
 		$twig->addGlobal('user', $container['session']->get('user'));
+	}elseif($container['session']->exist('recharge')){
+		$twig->addGlobal('recharge', $container['session']->get('recharge'));
 	}
 
 	// Instantiate and add Slim specific extension

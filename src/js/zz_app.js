@@ -43,6 +43,11 @@ $(document).ready(function () {
     })
 
     players();
+
+    /*
+    Rechargez son compte
+     */
+
 });
 
 //drop downu
