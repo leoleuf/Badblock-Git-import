@@ -52,7 +52,7 @@ public class CBReportCommand extends Command {
 			}
 		}
 		PrivateMessage privateMessage = MsgCommand.messages.get(id);
-		if (privateMessage.playerName.equalsIgnoreCase(privateMessage.playerName)) {
+		if (privateMessage.playerName.equalsIgnoreCase(sender.getName())) {
 			sender.sendMessage("§cVous ne pouvez pas signaler vous-même vos propres messages.");
 			return;
 		}
