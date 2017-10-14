@@ -145,7 +145,7 @@ public class BadBlockOthers extends Plugin {
 		pluginManager.registerCommand(this, new BigTempBanCommand());
 		pluginManager.registerCommand(this, new ConnectCommand());
 		pluginManager.registerCommand(this, new GhostConnectCommand());
-		// pluginManager.registerCommand(this, new TrackCommand());
+		pluginManager.registerCommand(this, new TrackCommand());
 		pluginManager.registerCommand(this, new TrackCommand());
 		pluginManager.registerCommand(this, new ReportCommand());
 		pluginManager.registerCommand(this, new RConnectCommand());
