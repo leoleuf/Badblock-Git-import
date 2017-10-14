@@ -40,9 +40,11 @@ import fr.badblock.bungeecord.plugins.others.commands.BTPS;
 import fr.badblock.bungeecord.plugins.others.commands.CLCommand;
 import fr.badblock.bungeecord.plugins.others.commands.CheatCommand;
 import fr.badblock.bungeecord.plugins.others.commands.DoneCommand;
+import fr.badblock.bungeecord.plugins.others.commands.GNickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.LinkCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ModoCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
+import fr.badblock.bungeecord.plugins.others.commands.RNickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ThxCommand;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
@@ -51,6 +53,7 @@ import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
 import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
+import fr.badblock.bungeecord.plugins.others.listeners.PluginMessageListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PreLoginListener;
 import fr.badblock.bungeecord.plugins.others.listeners.ProxyBoundListener;
 import fr.badblock.bungeecord.plugins.others.logs.filters.IHConnectedFilter;
@@ -65,6 +68,7 @@ import fr.badblock.bungeecord.plugins.others.modules.PartyChatModule;
 import fr.badblock.bungeecord.plugins.others.receivers.PermissionMessageListener;
 import fr.badblock.bungeecord.plugins.others.receivers.PlayerMessageListener;
 import fr.badblock.bungeecord.plugins.others.receivers.ServerBroadcastListener;
+import fr.badblock.bungeecord.plugins.others.tasks.FallbackTask;
 import fr.badblock.bungeecord.plugins.others.utils.LagTask;
 import fr.badblock.bungeecord.plugins.others.utils.TPS;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitConnector;
@@ -99,7 +103,8 @@ import net.sf.json.JSONObject;
 	@Getter @Setter private static BadBlockBungeeOthers instance;
 
 	private static Gson gson = new Gson();
-	
+
+	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
 	private Configuration							    configuration;
 	private List<InjectableFilter> 						filters 			= new LinkedList<>();
 	private RabbitService								rabbitService;
@@ -118,9 +123,10 @@ import net.sf.json.JSONObject;
 	private long										openTime;
 	private long										time = 3600 * 8;
 	private long										maxPlayers = 1;
+	private int											marginDelete;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
-	
+
 	private TemmieWebhook temmie = new TemmieWebhook("https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
 
 
@@ -128,6 +134,7 @@ import net.sf.json.JSONObject;
 	@Override
 	public void onEnable() {
 		instance = this;
+		this.getProxy().registerChannel("BungeeCord");
 		try {
 			Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
 			remoteAddressField.setAccessible(true);
@@ -166,6 +173,7 @@ import net.sf.json.JSONObject;
 			getLogger().log(Level.SEVERE, e.getMessage(), e);
 			getProxy().stop();
 		}
+		new FallbackTask();
 		openTime = System.currentTimeMillis();
 		reengagedUUIDs = new ArrayList<>();
 		ProxyServer proxy = this.getProxy();
@@ -221,6 +229,7 @@ import net.sf.json.JSONObject;
 		pluginManager.registerListener(this, new ChatListener());
 		pluginManager.registerListener(this, new PreLoginListener());
 		pluginManager.registerListener(this, new PlayerQuitListener());
+		pluginManager.registerListener(this, new PluginMessageListener());
 		pluginManager.registerListener(this, new BadInsultModule());
 		pluginManager.registerListener(this, new BadCommunitySpookerModule());
 		pluginManager.registerListener(this, new BadAdvertsModule());
@@ -229,6 +238,8 @@ import net.sf.json.JSONObject;
 		pluginManager.registerCommand(this, new BOReloadCommand());
 		pluginManager.registerCommand(this, new BListCommand());
 		pluginManager.registerCommand(this, new ModoCommand());
+		pluginManager.registerCommand(this, new RNickCommand());
+		pluginManager.registerCommand(this, new GNickCommand());
 		pluginManager.registerCommand(this, new DoneCommand());
 		//pluginManager.registerCommand(this, new TrackCommand());
 		pluginManager.registerCommand(this, new BTPS());
@@ -423,15 +434,25 @@ import net.sf.json.JSONObject;
 				public void run() {
 					double o = LadderBungee.getInstance().bungeePlayerList.size() / maxPlayers * 100;
 					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
-						System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-						finished = true;
-						String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-						if (BadblockDatabase.getInstance().isConnected())
-							BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
-						System.exit(-1);
+						marginDelete++;
+						if (marginDelete >= 60)
+						{
+							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+							finished = true;
+							String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+							if (BadblockDatabase.getInstance().isConnected())
+								BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
+							System.exit(-1);
+						}
+						else
+						{
+							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-MARGINDELETE!/" + o + "%/" + marginDelete + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+						}
 					}else if (done) {
+						marginDelete = 0;
 						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 					}else{
+						marginDelete = 0;
 						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "> /!\\");
 					}
 					if (done) {

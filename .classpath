@@ -9,7 +9,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/CommonRedis"/>
 	<classpathentry kind="lib" path="C:/Users/root/Downloads/json-lib.jar/json-lib.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/BadBlockBungee"/>
-	<classpathentry kind="lib" path="C:/Users/root/Desktop/bungeed.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Downloads/netty-4.1.9.Final/netty-4.1.9.Final/jar/all-in-one/netty-all-4.1.9.Final.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

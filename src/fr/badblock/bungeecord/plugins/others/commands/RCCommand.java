@@ -51,6 +51,7 @@ public class RCCommand extends Command {
 			return;
 		}
 		ProxiedPlayer player = (ProxiedPlayer) sender;
+		player.setDisplayName("t_" + player.getName());
 		new Thread("rc_" + randomThreadId.nextInt(Integer.MAX_VALUE)) {
 			@Override
 			public void run() {

@@ -1,5 +1,6 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
@@ -25,7 +27,7 @@ public class PreLoginListener implements Listener {
 	//public static List<String> players = new ArrayList<>();
 
 	private static Gson gson = new Gson();
-	
+
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
@@ -34,7 +36,30 @@ public class PreLoginListener implements Listener {
 			if (event.getTarget().getName() != null)
 				if (!players.contains(playerName))
 					players.add(playerName);*/
-		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + proxiedPlayer.getName() + "'", RequestType.SETTER));
+		UserConnection userConnection = (UserConnection) proxiedPlayer;
+		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT nick FROM nick WHERE playerName = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName().toLowerCase()) + "'", RequestType.GETTER)
+		{
+			@Override
+			public void done(ResultSet resultSet)
+			{
+				try
+				{
+					if (resultSet.next())
+					{
+						userConnection.getPendingConnection().getLoginRequest().setData(resultSet.getString("nick"));
+					}
+					else
+					{
+						userConnection.getPendingConnection().getLoginRequest().setData(proxiedPlayer.getName());
+					}
+				}
+				catch(Exception error)
+				{
+					error.printStackTrace();
+				}
+			}
+		});
+		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName()) + "'", RequestType.SETTER));
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
 			BadBlockBungeeOthers.getInstance().setDone(true);
 			BadBlockBungeeOthers.getInstance().deleteDNS();
@@ -43,7 +68,7 @@ public class PreLoginListener implements Listener {
 		map.put(proxiedPlayer.getName(), proxiedPlayer.getPing());
 		BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
-	
+
 	@EventHandler
 	public void onLogin(LoginEvent event) {
 		/*if (BadBlockBungeeOthers.getInstance().getDeleteTime() != -1 && BadBlockBungeeOthers.getInstance().getDelete() == -1 && BadBlockBungeeOthers.getInstance().getDeleteTime() < System.currentTimeMillis()) {
