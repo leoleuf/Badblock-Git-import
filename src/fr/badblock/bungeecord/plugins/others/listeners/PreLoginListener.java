@@ -27,7 +27,8 @@ public class PreLoginListener implements Listener {
 	//public static List<String> players = new ArrayList<>();
 
 	private static Gson gson = new Gson();
-
+	private static int  bye  = 0;
+	
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onPostLogin(ServerConnectEvent event) {
 		ProxiedPlayer proxiedPlayer = event.getPlayer();
@@ -61,8 +62,19 @@ public class PreLoginListener implements Listener {
 		});
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName()) + "'", RequestType.SETTER));
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
-			BadBlockBungeeOthers.getInstance().setDone(true);
-			BadBlockBungeeOthers.getInstance().deleteDNS();
+			if (bye >= 15)
+			{
+				BadBlockBungeeOthers.getInstance().setDone(true);
+				BadBlockBungeeOthers.getInstance().deleteDNS();
+			}
+			else
+			{
+				bye++;
+			}
+		}
+		else
+		{
+			bye = 0;
 		}
 		Map<String, Integer> map = new HashMap<>();
 		map.put(proxiedPlayer.getName(), proxiedPlayer.getPing());
@@ -77,3 +89,4 @@ public class PreLoginListener implements Listener {
 		}*/
 	}
 }
+
