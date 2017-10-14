@@ -81,7 +81,7 @@ public class BadBlockOthers extends Plugin {
 	private int port;
 	private String db;
 	public long launchedTime;
-	//public AnimCommand animCommand;
+	public AnimCommand animCommand;
 	public File configFile;
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
 	public List<String> whitelist = new ArrayList<>();
@@ -124,7 +124,7 @@ public class BadBlockOthers extends Plugin {
 		PluginsManager pluginManager = this.getLadder().getPluginsManager();
 		pluginManager.registerEvents(this, new PlayerDisconnectListener());
 		pluginManager.registerEvents(this, new ServerConnectListener());
-		//pluginManager.registerCommand(this, animCommand = new AnimCommand());
+		pluginManager.registerCommand(this, animCommand = new AnimCommand());
 		pluginManager.registerCommand(this, new FriendCommand());
 		pluginManager.registerCommand(this, new BadFilterCommand());
 		pluginManager.registerCommand(this, new BadBlockOthersReloadCommand());
