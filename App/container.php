@@ -127,11 +127,12 @@ $container['mysql'] = function ($container) {
 
 $container['mongo'] = function ($container) {
 	return new \MongoDB\Client(
-		'mongodb://node02-dev.cluster.badblock-network.fr/',
+		'mongodb://127.0.0.1/',
 		[
 			'username' => $container->config['mongo_db']['user'],     // user
 			'password' => $container->config['mongo_db']['password'],      // password
-			'authSource' => $container->config['mongo_db']['authSource']   // database
+			'database' => $container->config['mongo_db']['database'],      // database
+			'authSource' => $container->config['mongo_db']['authSource']   // authsource
 		]
 	);
 };
