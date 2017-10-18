@@ -10,7 +10,12 @@ class ShopController extends Controller
 	public function getHome(ServerRequestInterface $request, ResponseInterface $response)
 	{
 		//get twig of home
-		$this->render($response, 'shop.home');
+        $serverlist = $this->redis->getJson('shop.listsrv');
+
+        var_dump($serverlist);
+
+        $this->render($response, 'shop.home',['serverlist' => $serverlist]);
+
 	}
 
 	public function getRecharge(ServerRequestInterface $request, ResponseInterface $response)

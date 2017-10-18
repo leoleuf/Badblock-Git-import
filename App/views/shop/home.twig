@@ -26,21 +26,11 @@
     <!-- Menu shop -->
     <div class="shop-menu">
         <ul class="shop-menu-menu">
-            <li class="shop-menu-active">
-                <a href="http://example.org" class="no-link">Acceuil</a>
-            </li>
-            <li>
-                <a href="http://example.org" class="no-link">SkyBlock</a>
-            </li>
-            <li>
-                <a href="http://example.org" class="no-link">Random</a>
-            </li>
-            <li>
-                <a href="http://example.org" class="no-link">Riz au lait</a>
-            </li>
-            <li>
-                <a href="http://example.org" class="no-link">Tower</a>
-            </li>
+            {% for key in serverlist %}
+                <li class="shop-menu-active">
+                    <a href="http://example.org" class="no-link">{{ key[1] }}</a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 

@@ -8,16 +8,64 @@
 
 namespace App\Controllers\Api;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
 
 class ShopApiController extends \App\Controllers\Controller
 {
 
-    public function getCreateCacheShop(RequestInterface $request, ResponseInterface $response){
+    public function getCreateCacheShopList(RequestInterface $request, ResponseInterface $response){
+
+        //Check MongoDB
+        //Server List
+        $collection = $this->mongo->badblock->server;
+        $collection1 = $this->mongo->badblock->categorie;
+        $collection2 = $this->mongo->badblock->product;
+
+
+        $cursor = $collection->find(['visibility' => true]);
+
+
+        //Array
+        $listserver = [];
+        //Lecture + push
+        foreach ($cursor as $df) {
+            $current_listc = [];
+
+            //Liste Catégorie Serveur
+            $current_cursor = $collection1->find(['visibility' => true,'server' => $df->id]);
+
+            foreach ($current_cursor as $current) {
+                array_push($current_listc,array($df->id,$df->name));
+                //Liste produits
+                $current_listp = [];
+                $current_cursor = $collection1->find(['visibility' => true,'server' => $df->id]);
+
+                foreach ($current_cursor as $current) {
+                    array_push($current_listp,array($df->id,$df->name));
+                }
+            }
+
+
+
+            array_push($listserver,array($df->id,$df->name));
+        }
+        //Mise en Cache
+
+        var_dump($listserver);
+
+        $this->redis->setJson('shop.listsrv', $listserver);
 
 
 
 
 
+        //Renvoie d'un code de succès
+
+        return $response->write('Success writing shop cache')->withStatus(200);
+        $this->log->info('"StaffApiController\ShopApiController": Success writing shop cache');
 
     }
 
