@@ -21,10 +21,12 @@ class ShopController extends Controller
 		} else {
 			$step = 1;
 		}
+		$priceUniq = 0.01;
 		//get twig of recharge
 		$this->render($response, "shop.recharge.step{$step}", [
 			'width' => 100/$nbStep * $step,
-			'step' => $step
+			'step' => $step,
+			'price' => $priceUniq
 		]);
 	}
 
@@ -73,6 +75,33 @@ class ShopController extends Controller
 
 	public function getRechargeStart(ServerRequestInterface $request, ResponseInterface $response, $args)
 	{
-		dd($this->session->get('recharge'));
+		$recharge = $this->session->get('recharge');
+		//get price of 1
+		$priceUniq = 0.01;
+		$price = $priceUniq * $recharge['amount'];
+		switch ($recharge['payway']){
+			case 'paypal':
+				//invoke paypal and generate url
+				return $this->redirect($response, $this->container->paypal->setExpressCheckout([
+					[
+						'name' => "Recharge de {$recharge['amount']}",
+						'description' => "",
+						'price' => $price,
+						'count' => 1
+					]
+				], [
+					'RETURNURL' => $this->container->config['base_url'] . $this->pathFor('shop.paypal.execute'),
+					'CANCELURL' => $this->container->config['base_url'] . $this->pathFor('shop.paypal.cancel'),
+					'PAYMENTREQUEST_0_AMT' => $price, //TTC+PORT
+					'PAYMENTREQUEST_0_CURRENCYCODE' => 'EUR',
+					'PAYMENTREQUEST_0_SHIPPINGAMT' => 0, //SHIPPING PRICE
+					'PAYMENTREQUEST_0_ITEMAMT' => $price, //TTC
+				]));
+				break;
+
+			default:
+				return $response->write('Payment way not found')->withStatus(404);
+				break;
+		}
 	}
 }

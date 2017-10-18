@@ -6,7 +6,7 @@
             200
         </div>
         <div class="recharge-real-price">
-            € 20.00
+            € {{ price * 200 }}
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
@@ -17,7 +17,7 @@
             200
         </div>
         <div class="recharge-real-price">
-            € 1.20
+            € {{ price * 200 }}
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
@@ -28,10 +28,24 @@
             200
         </div>
         <div class="recharge-real-price">
-            € 1.00
+            € {{ price * 200 }}
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
+        </div>
+    </div>
+    <div class="c-card__item">
+        <div class="recharge-price">
+            {{ 'shop.recharge_custom_amount'|trans }}
+        </div>
+        <div class="recharge-real-price">
+            <form method="get" action="{{ path_for('shop.recharge.nextstep') }}" class="recharge-chose-custom">
+                <input type="hidden" name="step" value="1">
+                <div class="c-input-group">
+                    <input class="c-field recharge-chose-field" type="number" name="amount" required>
+                    <button class="button button-primary" type="submit">{{ 'shop.chose'|trans }}</button>
+                </div>
+            </form>
         </div>
     </div>
     {#<button class="button button-danger recharge-next">Suivant</button>#}

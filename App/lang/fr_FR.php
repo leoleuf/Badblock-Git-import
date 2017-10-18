@@ -22,6 +22,7 @@ return [
 	'shop.title' => "Boutique",
 	'shop.summary' => "La boutique nous permet de payer nos serveurs afin de vous offrir la meilleure expérience de jeu possible. En faisant un achat sur notre plateforme, vous obtiendrez un certain nombre de Crystals que vous pourrez utiliser directement sur notre boutique en ligne afin de vous offrir grades, kits, ... !",
 	'shop.recharge_step_1' => "Choissisez votre montant",
+	'shop.recharge_custom_amount' => "Montant customisé",
 	'shop.recharge_step_2' => "Identifiez vous",
 	'shop.recharge_step_3' => "Votre moyen de payement",
 	'shop.your_username' => "Votre pseudo minecraft",

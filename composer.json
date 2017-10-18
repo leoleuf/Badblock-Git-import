@@ -37,6 +37,7 @@
         "hansott/psr7-cookies": "^1.0",
         "lefuturiste/config": "^0.1.0",
         "tracy/tracy": "^2.4",
-        "php-di/php-di": "^5.4"
+        "php-di/php-di": "^5.4",
+        "lefuturiste/paypal-express-checkout": "^0.0.1"
     }
 }

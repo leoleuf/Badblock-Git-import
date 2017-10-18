@@ -143,6 +143,10 @@ $container['xenforo'] = function ($container) {
 	]);
 };
 
+$container['paypal'] = function ($container) {
+	return new \lefuturiste\PaypalExpressCheckout\Paypal($container->config['paypal']['username'], $container->config['paypal']['password'], $container->config['paypal']['signature']);
+};
+
 $container['notFoundHandler'] = function ($container) {
 	return new \App\NotFoundHandler($container->get('view'), function ($request, $response) use ($container) {
 		return $container['response']

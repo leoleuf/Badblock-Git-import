@@ -41,6 +41,7 @@ include '../App/functions.php';
 | You must indicate false setting for production environment.
 |
 */
+
 $app = new \Slim\App([
 	'settings' => [
 		'debug' => $config['app_debug'],
