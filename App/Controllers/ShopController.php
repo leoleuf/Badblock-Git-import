@@ -12,7 +12,7 @@ class ShopController extends Controller
 		//get twig of home
         $serverlist = $this->redis->getJson('shop.listsrv');
 
-        var_dump($serverlist);
+        var_dump($serverlist[0]);
 
         $this->render($response, 'shop.home',['serverlist' => $serverlist]);
 
@@ -109,4 +109,18 @@ class ShopController extends Controller
 				break;
 		}
 	}
+
+
+
+	public function getachat(ServerRequestInterface $request, ResponseInterface $response, $args){
+
+        var_dump($args);
+
+
+    }
+
+
+
+
+
 }
