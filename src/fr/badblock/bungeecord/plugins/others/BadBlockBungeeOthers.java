@@ -2,11 +2,7 @@ package fr.badblock.bungeecord.plugins.others;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-import java.net.InetSocketAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -20,7 +16,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
-import java.util.logging.Level;
 
 import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.requests.dns.DNSDeleteRecord;
@@ -45,6 +40,7 @@ import fr.badblock.bungeecord.plugins.others.commands.LinkCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ModoCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RNickCommand;
+import fr.badblock.bungeecord.plugins.others.commands.ReportLagCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ThxCommand;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
@@ -77,13 +73,6 @@ import fr.badblock.common.commons.technologies.rabbitmq.RabbitService;
 import fr.badblock.common.commons.technologies.redis.RedisConnector;
 import fr.badblock.common.commons.technologies.redis.RedisService;
 import fr.badblock.common.commons.utils.Encodage;
-import io.netty.channel.AbstractChannel;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
-import io.netty.handler.codec.haproxy.HAProxyMessage;
-import io.netty.handler.codec.haproxy.HAProxyMessageDecoder;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.BungeeCord;
@@ -95,7 +84,6 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
-import net.md_5.bungee.netty.PipelineUtils;
 import net.sf.json.JSONObject;
 
 @Getter @Setter public class BadBlockBungeeOthers extends Plugin {
@@ -135,44 +123,6 @@ import net.sf.json.JSONObject;
 	public void onEnable() {
 		instance = this;
 		this.getProxy().registerChannel("BungeeCord");
-		try {
-			Field remoteAddressField = AbstractChannel.class.getDeclaredField("remoteAddress");
-			remoteAddressField.setAccessible(true);
-
-			Field serverChild = PipelineUtils.class.getField("SERVER_CHILD");
-			serverChild.setAccessible(true);
-
-			Field modifiersField = Field.class.getDeclaredField("modifiers");
-			modifiersField.setAccessible(true);
-			modifiersField.setInt(serverChild, serverChild.getModifiers() & ~Modifier.FINAL);
-
-			ChannelInitializer<Channel> bungeeChannelInitializer = PipelineUtils.SERVER_CHILD;
-
-			Method initChannelMethod = ChannelInitializer.class.getDeclaredMethod("initChannel", Channel.class);
-			initChannelMethod.setAccessible(true);
-
-			serverChild.set(null, new ChannelInitializer<Channel>() {
-				@Override
-				protected void initChannel(Channel channel) throws Exception {
-					initChannelMethod.invoke(bungeeChannelInitializer, channel);
-					channel.pipeline().addAfter(PipelineUtils.TIMEOUT_HANDLER, "haproxy-decoder", new HAProxyMessageDecoder());
-					channel.pipeline().addAfter("haproxy-decoder", "haproxy-handler", new ChannelInboundHandlerAdapter() {
-						@Override
-						public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-							if (msg instanceof HAProxyMessage) {
-								HAProxyMessage message = (HAProxyMessage) msg;
-								remoteAddressField.set(channel, new InetSocketAddress(message.sourceAddress(), message.sourcePort()));
-							} else {
-								super.channelRead(ctx, msg);
-							}
-						}
-					});
-				}
-			});
-		} catch (Exception e) {
-			getLogger().log(Level.SEVERE, e.getMessage(), e);
-			getProxy().stop();
-		}
 		new FallbackTask();
 		openTime = System.currentTimeMillis();
 		reengagedUUIDs = new ArrayList<>();
@@ -237,6 +187,7 @@ import net.sf.json.JSONObject;
 		pluginManager.registerListener(this, new BadPseudoModule());
 		pluginManager.registerCommand(this, new BOReloadCommand());
 		pluginManager.registerCommand(this, new BListCommand());
+		pluginManager.registerCommand(this, new ReportLagCommand());
 		pluginManager.registerCommand(this, new ModoCommand());
 		pluginManager.registerCommand(this, new RNickCommand());
 		pluginManager.registerCommand(this, new GNickCommand());

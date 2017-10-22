@@ -1,16 +1,10 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-import com.mrpowergamerbr.temmiewebhook.DiscordEmbed;
-import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
-import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
-
-import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
+import fr.badblock.utils.Flags;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -43,9 +37,6 @@ public class ChatListener implements Listener {
 			"aide"
 	});
 
-	private static Map<String, Long> lagging = new HashMap<>();
-	private static long				 laggingExpire = 300_000L;
-
 	@SuppressWarnings("deprecation")
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onChat(ChatEvent event) {
@@ -61,24 +52,13 @@ public class ChatListener implements Listener {
 			player.sendMessage("§6[INFO] §fNe déversez pas votre haine dans le t'chat.");
 		}else if (lag) {
 			String playerName = player.getName().toLowerCase();
-			long timestamp = System.currentTimeMillis();
-			player.sendMessage("§6[INFO] §fVous pensez que le serveur lag ?");
-			if (!lagging.containsKey(playerName) || lagging.get(playerName) < timestamp) {
-				player.sendMessage("§6[INFO] §aUn rapport vient d'être enregistré suite à votre soupçon.");
-				player.sendMessage("§6[INFO] §fIl sera étudié prochainement.");
-				long expire = timestamp + laggingExpire;
-				lagging.put(playerName, expire);
-				DiscordEmbed de = new DiscordEmbed(player.getServer().getInfo().getName(), "Signalé par " + player.getName() + " | Message: " + event.getMessage());
-				ThumbnailEmbed te = new ThumbnailEmbed();
-				te.setUrl("http://forum.curvefever.com/sites/default/files/ideas14Mar/LagIcon.jpg");
-				te.setHeight(96);
-				te.setWidth(96);
-				de.setThumbnail(te);
-				DiscordMessage dm = new DiscordMessage("Lag Report", "", "http://forum.curvefever.com/sites/default/files/ideas14Mar/LagIcon.jpg");
-				dm.getEmbeds().add(de);
-				BadBlockBungeeOthers.getInstance().getTemmie().sendMessage(dm);
-			}else{
-				player.sendMessage("§6[INFO] §cVous avez déjà envoyé un rapport récemment.");
+			String flagName = "lagmsg_" + playerName;
+			if (!Flags.has(flagName))
+			{
+				Flags.set(flagName, 60_000);
+				player.sendMessage("§6[INFO] §fVous pensez que le serveur lag ?");
+				player.sendMessage("§6[INFO] §bFaites-le nous savoir en tapant /reportlag !");
+				player.sendMessage("§6[INFO] §fSignaler les lags permettent de mieux les trouver & de les corriger.");
 			}
 		}else if (modo) {
 			player.sendMessage("§6[INFO] §fVous avez besoin d'aide/d'un staff ? Tapez /modo");

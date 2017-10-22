@@ -16,11 +16,12 @@ import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
 import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.LoginEvent;
+import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
+import net.md_5.bungee.limits.IPLimit;
 
 public class PreLoginListener implements Listener {
 
@@ -82,7 +83,7 @@ public class PreLoginListener implements Listener {
 	}
 
 	@EventHandler
-	public void onLogin(LoginEvent event) {
+	public void onLogin(PreLoginEvent event) {
 		/*if (BadBlockBungeeOthers.getInstance().getDeleteTime() != -1 && BadBlockBungeeOthers.getInstance().getDelete() == -1 && BadBlockBungeeOthers.getInstance().getDeleteTime() < System.currentTimeMillis()) {
 			event.setCancelled(true);
 			event.setCancelReason("§f[§eBadyBot§f] §cERR.. ERRE.. ERREUR! Nous n'avons pas pu vous connecter à notre plateforme de divertiseement. §6Peut-être utilisez-vous une autre adresse IP que play.badblock.fr ou badblock.fr pour vous connecter ? §3Dans le cas échéant, nous vous invitons à patienter, le serveur n'est peut-être pas préparé à vous recevoir, il sera stimulé si nécessaire pour pouvoir réaccepter sur lui des joueurs. §aVous pouvez également nous avertir depuis TeamSpeak ou sur le forum pour que notre ami BadyBot se recompose et vous redonne accès à notre plateforme de jeux.");
