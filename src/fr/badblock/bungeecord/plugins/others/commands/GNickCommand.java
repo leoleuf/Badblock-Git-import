@@ -29,6 +29,11 @@ public class GNickCommand extends Command {
 		}
 		ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 		String name = args[0];
+		if (name.length() < 3 && name.length() > 16)
+		{
+			sender.sendMessage("§cVotre surnom doit être entre 3 et 16 caractères.");
+			return;
+		}
 		String playerName = sender.getName().toLowerCase();
 		BadblockDatabase.getInstance().addRequest(new Request("SELECT * FROM nick WHERE playerName = '" + BadblockDatabase.getInstance().mysql_real_escape_string(playerName) + "'", RequestType.GETTER)
 		{
