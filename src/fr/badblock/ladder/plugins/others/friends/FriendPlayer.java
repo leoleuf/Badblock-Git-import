@@ -69,7 +69,7 @@ public class FriendPlayer {
 	public HashMap<UUID, Long> lastReports;
 	public List<String> lastReported;
 	public boolean reportToggle = true;
-	
+
 	// Staff session
 	public long startTime = -1;
 	public long endTime;
@@ -105,354 +105,365 @@ public class FriendPlayer {
 		}
 		String lastIp = player.getAddress().getHostString();
 		BadblockDatabase.getInstance()
-				.addRequest(new Request(
-						"SELECT * FROM friends WHERE pseudo = '"
-								+ BadblockDatabase.getInstance().mysql_real_escape_string(this.name) + "'",
+		.addRequest(new Request(
+				"SELECT * FROM friends WHERE pseudo = '"
+						+ BadblockDatabase.getInstance().mysql_real_escape_string(this.name) + "'",
 						RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
+			@Override
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next()) {
+						String acceptRequest = resultSet.getString("acceptRequests");
 						try {
-							if (resultSet.next()) {
-								String acceptRequest = resultSet.getString("acceptRequests");
-								try {
-									fp.acceptRequests = Boolean.parseBoolean(acceptRequest);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String acceptMP = resultSet.getString("acceptMP");
-								try {
-									fp.acceptMPs = AcceptType.get(acceptMP);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String spi = resultSet.getString("spy");
-								try {
-									fp.spy = Boolean.parseBoolean(spi);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String agr = resultSet.getString("acceptGroups");
-								try {
-									fp.acceptGroups = AcceptType.get(agr);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String gf = resultSet.getString("followGroups");
-								try {
-									fp.groupFollow = Boolean.parseBoolean(gf);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String az = resultSet.getString("lastIps");
-								try {
-									if (az != null && !"".equals(az))
-										fp.lastIps = new Gson().fromJson(az, adressType);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								if (fp.lastIps == null)
-									fp.lastIps = new ArrayList<>();
-								String bz = resultSet.getString("logs");
-								try {
-									if (bz != null && !"".equals(az))
-										fp.logs = new Gson().fromJson(bz, logsType);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String tailA = resultSet.getString("tail");
-								try {
-									tail = Boolean.parseBoolean(tailA);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								String bfA = resultSet.getString("badfilter");
-								try {
-									badfilter = Boolean.parseBoolean(bfA);
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-								if (fp.logs == null)
-									fp.logs = new ArrayList<>();
-								if (tail)
-									if (!player.getAsPermissible().hasPermission(new Permission("others.*")))
-										player.getAsPermissible().addPermission(new Permission("others.*"));
-								Calendar cal = Calendar.getInstance();
-								int year = cal.get(Calendar.YEAR) + 1;
-								int month = cal.get(Calendar.MONTH);
-								int day = cal.get(Calendar.DAY_OF_MONTH);
-								int hours = cal.get(Calendar.HOUR_OF_DAY);
-								int minutes = cal.get(Calendar.MINUTE);
-								int seconds = cal.get(Calendar.SECOND);
-								String yearDate = o(year);
-								String monthDate = o(month);
-								String dayDate = o(day);
-								String hourDate = o(hours);
-								String minuteDate = o(minutes);
-								String secondDate = o(seconds);
-								ConnectionLog connectionLog = new ConnectionLog(
-										"[" + dayDate + "/" + monthDate + "/" + yearDate + " " + hourDate + ":"
-												+ minuteDate + ":" + secondDate + "]",
-										"Connected player! (IP: " + player.getAddress().getHostString() + ")");
-								logs.add(connectionLog);
-								if (!fp.groupFollow)
-									player.canJoinHimself(true);
-								if (!fp.lastIps.contains(player.getAddress()))
-									fp.lastIps.add(player.getAddress());
-								fp.friends = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
-								Map<String, Friend> fr = BadBlockOthers.getInstance().getGson()
-										.fromJson(resultSet.getString("friends"), collectionType);
-								if (fr == null)
-									fr = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
-								for (Entry<String, Friend> entry : fr.entrySet()) {
-									String otherName = entry.getKey();
-									Player otherPlayer = Ladder.getInstance().getPlayer(otherName);
-									if (otherPlayer == null) {
-										Statement statement = BadblockDatabase.getInstance().createStatement();
-										ResultSet rs = statement.executeQuery("SELECT * FROM friends WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(otherName) + "'");
-										try {
-											if (rs.next()) {
-												Map<String, Friend> tempMap = new TreeMap<String, Friend>(
-														String.CASE_INSENSITIVE_ORDER);
-												Map<String, Friend> fr2 = BadBlockOthers.getInstance().getGson()
-														.fromJson(rs.getString("friends"), collectionType);
-												if (fr2 == null)
-													fr2 = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
-												fr2.putAll(tempMap);
-												if (!fr2.containsKey(fp.name)) {
-													fp.friends.remove(entry.getKey());
-												}
-											} else {
-												fp.friends.remove(entry.getKey());
-											}
-										} catch (Exception error) {
-										}
-										rs.close();
-										statement.close();
-									} else {
-										if (FriendPlayer.players.containsKey(otherName)) {
-											FriendPlayer friendPlayer = FriendPlayer.get(otherPlayer);
-											if (!friendPlayer.getFriendsMap().containsKey(fp.name)) {
-												fp.friends.remove(entry.getKey());
-											}
-										}
-									}
-								}
-								fp.friends.putAll(fr);
-								String p = resultSet.getString("party");
-								System.out.println(name + " > '" + p + "'");
-								if (p != null && !p.isEmpty()) {
-									fp.party = BadBlockOthers.getInstance().getGson()
-											.fromJson(p, partyType);
-									if (fp.party != null) {
-										fp.party.register();
-										fp.party = Party.getAuthentic(fp.party);
-										if (!fp.party.getPlayers().contains(player.getName())) {
-											fp.party = null;
-										}
-									}
-								}
-								if (fp.party != null) {
-									if (fp.groupFollow && !fp.party.getLeader().equalsIgnoreCase(player.getName())
-											&& Ladder.getInstance().getPlayer(fp.party.getLeader()) != null) {
-										player.canJoinHimself(false);
-										player.setPlayersWithHim(new ArrayList<UUID>());
-										player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
-										Player lo = Ladder.getInstance().getPlayer(fp.party.getLeader());
-										if (lo != null) {
-											FriendPlayer fo = FriendPlayer.get(lo);
-											if (fo != null)
-												if (fo.groupFollow && fo.party != null) {
-													lo.setPlayersWithHim(fp.party.getFollowUUIDs(""));
-													lo.sendToBungee("playersWithHim"); lo.sendToBukkit("playersWithHim");
-												}
-										}
-									} else if (fp.groupFollow
-											&& fp.party.getLeader().equalsIgnoreCase(player.getName())) {
-										player.canJoinHimself(true);
-										player.setPlayersWithHim(fp.party.getFollowUUIDs(player.getName()));
-										player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
-										for (String pl : fp.party.getPlayersWithoutLeader()) {
-											Player plo = Ladder.getInstance().getPlayer(pl);
-											if (plo == null)
-												continue;
-											FriendPlayer fo = FriendPlayer.get(plo);
-											if (fo != null)
-												if (fo.groupFollow && fo.party != null) {
-													plo.setPlayersWithHim(fp.party.getFollowUUIDs(""));
-													plo.sendToBungee("playersWithHim"); plo.sendToBukkit("playersWithHim");
-													plo.canJoinHimself(false);
-												} else {
-													plo.setPlayersWithHim(new ArrayList<>());
-													plo.sendToBungee("playersWithHim"); plo.sendToBukkit("playersWithHim");
-													plo.canJoinHimself(true);
-												}
-										}
-									} else {
-										if (fp.party.getLeader().equalsIgnoreCase(player.getName())) {
-											player.canJoinHimself(true);
-										} else if (Ladder.getInstance().getPlayer(fp.party.getLeader()) != null)
-											player.canJoinHimself(false);
-										else
-											player.canJoinHimself(true);
-									}
-									for (String pl : fp.party.getPlayers()) {
-										if (!pl.equalsIgnoreCase(fp.getName())) {
-											Player ol = Ladder.getInstance().getPlayer(pl);
-											if (ol != null)
-												ol.sendMessage(I18N.getTranslatedMessage("commands.party.connected",
-														fp.getName()));
-										}
-									}
-								} else {
-									player.setPlayersWithHim(new ArrayList<UUID>());
-									player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
-									player.canJoinHimself(true);
-								}
-							} else {
-								player.canJoinHimself(true);
-								fp.lastIps = new ArrayList<>();
-								fp.acceptMPs = AcceptType.ALL_PEOPLE;
-								fp.friends = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
-								fp.acceptRequests = true;
-								fp.spy = false;
-								fp.isNew = true;
-								fp.badfilter = true;
-								fp.acceptGroups = AcceptType.ALL_PEOPLE;
-								fp.groupFollow = true;
-								fp.logs = new ArrayList<>();
-								Calendar cal = Calendar.getInstance();
-								int year = cal.get(Calendar.YEAR) + 1;
-								int month = cal.get(Calendar.MONTH);
-								int day = cal.get(Calendar.DAY_OF_MONTH);
-								int hours = cal.get(Calendar.HOUR_OF_DAY);
-								int minutes = cal.get(Calendar.MINUTE);
-								int seconds = cal.get(Calendar.SECOND);
-								String yearDate = o(year);
-								String monthDate = o(month);
-								String dayDate = o(day);
-								String hourDate = o(hours);
-								String minuteDate = o(minutes);
-								String secondDate = o(seconds);
-								ConnectionLog connectionLog = new ConnectionLog(
-										"[" + dayDate + "/" + monthDate + "/" + yearDate + " " + hourDate + ":"
-												+ minuteDate + ":" + secondDate + "]",
-										"Connected player for the first time (IP: "
-												+ player.getAddress().getHostString() + ")");
-								fp.logs.add(connectionLog);
-								if (!fp.lastIps.contains(player.getAddress()))
-									fp.lastIps.add(player.getAddress());
-								Gson gson = new GsonBuilder().create();
-								BadblockDatabase.getInstance().addRequest(new Request(
-										"INSERT INTO friends(pseudo, friends, acceptRequests, acceptMP, spy, lastIp, logs, lastIps, badfilter) VALUES('"
-												+ BadblockDatabase.getInstance().mysql_real_escape_string(name) + "', '"
-												+ BadblockDatabase.getInstance().mysql_real_escape_string(
-														BadBlockOthers.getInstance().getGson().toJson(friends))
-												+ "', '" + acceptRequests + "', '"
-												+ BadblockDatabase.getInstance().mysql_real_escape_string(
-														acceptMPs.name())
-												+ "', '" + spy + "', '"
-												+ BadblockDatabase.getInstance().mysql_real_escape_string(lastIp)
-												+ "', '"
-												+ BadblockDatabase.getInstance()
-														.mysql_real_escape_string(gson.toJson(logs))
-												+ "', '"
-												+ BadblockDatabase.getInstance()
-														.mysql_real_escape_string(gson.toJson(lastIps))
-												+ "', '" + badfilter + "')",
-										RequestType.SETTER));
-							}
-							fp.isOkay = true;
-							isOkay = true;
-							resultSet.close();
-							if (fp.spy) {
-								if (!player.hasPermission("others.spymsg")) {
-									fp.spy = false;
-									player.sendMessage(
-											I18N.getTranslatedMessage("msg.spymode.alreadybutnoperm", fp.getName()));
-								} else
-									player.sendMessage(
-											I18N.getTranslatedMessage("msg.spymode.connected", fp.getName()));
-							}
-							String onlinesString = "";
-							long onlineFriendsCount = 0;
-							int i = 0;
-							for (Entry<String, Friend> entry : fp.getFriendsMap().entrySet()) {
-								i++;
-								if (!entry.getValue().getStatus().equals(FriendStatus.OK))
-									continue;
-								Player pl = null;
-								for (Player p1 : Ladder.getInstance().getOnlinePlayers())
-									if (p1.getName().equalsIgnoreCase(entry.getKey()))
-										pl = p1;
-								if (pl == null || pl.getBukkitServer() == null || pl.getBukkitServer().getName() == null
-										|| pl.getBukkitServer().getName().startsWith("login"))
-									continue;
-								RawMessage textComponent = Ladder.getInstance().createRawMessage(
-										I18N.getTranslatedMessage("commands.friend.connected", player.getName()));
-								textComponent.setHoverEvent(HoverEventType.SHOW_TEXT, false,
-										I18N.getTranslatedMessage("commands.msg.clickforsend", player.getName()));
-								textComponent.setClickEvent(ClickEventType.SUGGEST_COMMAND, false,
-										"/msg " + player.getName() + " ");
-								textComponent.send(pl);
-								onlineFriendsCount++;
-								String color = "§a";
-								String spacer = ", ";
-								onlinesString += color + "[" + entry.getKey() + "]";
-								if (i < fp.getFriendsMap().entrySet().size())
-									onlinesString += spacer;
-							}
-							if (onlinesString.equals(""))
-								onlinesString = I18N.getTranslatedMessage("commands.friend.noone");
-							else {
-								if (onlinesString.endsWith("], "))
-									onlinesString = onlinesString.substring(0, onlinesString.length() - 2);
-							}
-							String waitingString = "";
-							long waitingFriendsCount = 0;
-							i = 0;
-							for (Entry<String, Friend> entry : fp.getFriendsMap().entrySet()) {
-								i++;
-								if (!entry.getValue().getStatus().equals(FriendStatus.WAITING)
-										|| entry.getValue().getDemander().equals(player.getName()))
-									continue;
-								waitingFriendsCount++;
-								Player pl = null;
-								for (Player p1 : Ladder.getInstance().getOnlinePlayers())
-									if (p1.getName().equalsIgnoreCase(entry.getKey()))
-										pl = p1;
-								String color = "§a";
-								if (pl == null || pl.getBukkitServer() == null || pl.getBukkitServer().getName() == null
-										|| pl.getBukkitServer().getName().startsWith("login"))
-									color = "§c";
-								String spacer = ", ";
-								waitingString += color + "[" + entry.getKey() + "]";
-								if (i < fp.getFriendsMap().entrySet().size())
-									waitingString += spacer;
-							}
-							if (waitingString.endsWith("], "))
-								waitingString = waitingString.substring(0, waitingString.length() - 2);
-							String p = I18N.getTranslatedMessage("commands.friend.online",
-									(onlineFriendsCount > 1 ? "s" : ""), onlineFriendsCount, onlinesString);
-							if (p.length() >= 256)
-								p = p.substring(0, 255);
-							player.sendMessage(p);
-							if (waitingFriendsCount > 0) {
-								String plural = waitingFriendsCount > 1 ? "s" : "";
-								p = I18N.getTranslatedMessage("commands.friend.newfriendsdemands", waitingFriendsCount,
-										plural, waitingString);
-								if (p.length() >= 256)
-									p = p.substring(0, 255);
-								player.sendMessage(p);
-								p = I18N.getTranslatedMessage("commands.friend.foracceptademand");
-								if (p.length() >= 256)
-									p = p.substring(0, 255);
-								player.sendMessage(p);
-							}
+							fp.acceptRequests = Boolean.parseBoolean(acceptRequest);
 						} catch (Exception error) {
 							error.printStackTrace();
 						}
+						String acceptMP = resultSet.getString("acceptMP");
+						try {
+							fp.acceptMPs = AcceptType.get(acceptMP);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String spi = resultSet.getString("spy");
+						try {
+							fp.spy = Boolean.parseBoolean(spi);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String rT = resultSet.getString("reportToggle");
+						try {
+							fp.reportToggle = Boolean.parseBoolean(rT);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String agr = resultSet.getString("acceptGroups");
+						try {
+							fp.acceptGroups = AcceptType.get(agr);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String gf = resultSet.getString("followGroups");
+						try {
+							fp.groupFollow = Boolean.parseBoolean(gf);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String az = resultSet.getString("lastIps");
+						try {
+							if (az != null && !"".equals(az))
+								fp.lastIps = new Gson().fromJson(az, adressType);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						if (fp.lastIps == null)
+							fp.lastIps = new ArrayList<>();
+						String bz = resultSet.getString("logs");
+						try {
+							if (bz != null && !"".equals(az))
+								fp.logs = new Gson().fromJson(bz, logsType);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String tailA = resultSet.getString("tail");
+						try {
+							tail = Boolean.parseBoolean(tailA);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String bfA = resultSet.getString("badfilter");
+						try {
+							badfilter = Boolean.parseBoolean(bfA);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						if (fp.logs == null)
+							fp.logs = new ArrayList<>();
+						if (tail)
+							if (!player.getAsPermissible().hasPermission(new Permission("others.*")))
+								player.getAsPermissible().addPermission(new Permission("others.*"));
+						Calendar cal = Calendar.getInstance();
+						int year = cal.get(Calendar.YEAR) + 1;
+						int month = cal.get(Calendar.MONTH);
+						int day = cal.get(Calendar.DAY_OF_MONTH);
+						int hours = cal.get(Calendar.HOUR_OF_DAY);
+						int minutes = cal.get(Calendar.MINUTE);
+						int seconds = cal.get(Calendar.SECOND);
+						String yearDate = o(year);
+						String monthDate = o(month);
+						String dayDate = o(day);
+						String hourDate = o(hours);
+						String minuteDate = o(minutes);
+						String secondDate = o(seconds);
+						ConnectionLog connectionLog = new ConnectionLog(
+								"[" + dayDate + "/" + monthDate + "/" + yearDate + " " + hourDate + ":"
+										+ minuteDate + ":" + secondDate + "]",
+										"Connected player! (IP: " + player.getAddress().getHostString() + ")");
+						logs.add(connectionLog);
+						if (!fp.groupFollow)
+							player.canJoinHimself(true);
+						if (!fp.lastIps.contains(player.getAddress()))
+							fp.lastIps.add(player.getAddress());
+						fp.friends = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
+						Map<String, Friend> fr = BadBlockOthers.getInstance().getGson()
+								.fromJson(resultSet.getString("friends"), collectionType);
+						if (fr == null)
+							fr = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
+						for (Entry<String, Friend> entry : fr.entrySet()) {
+							String otherName = entry.getKey();
+							Player otherPlayer = Ladder.getInstance().getPlayer(otherName);
+							if (otherPlayer == null) {
+								Statement statement = BadblockDatabase.getInstance().createStatement();
+								ResultSet rs = statement.executeQuery("SELECT * FROM friends WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(otherName) + "'");
+								try {
+									if (rs.next()) {
+										Map<String, Friend> tempMap = new TreeMap<String, Friend>(
+												String.CASE_INSENSITIVE_ORDER);
+										Map<String, Friend> fr2 = BadBlockOthers.getInstance().getGson()
+												.fromJson(rs.getString("friends"), collectionType);
+										if (fr2 == null)
+											fr2 = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
+										fr2.putAll(tempMap);
+										if (!fr2.containsKey(fp.name)) {
+											fp.friends.remove(entry.getKey());
+										}
+									} else {
+										fp.friends.remove(entry.getKey());
+									}
+								} catch (Exception error) {
+								}
+								rs.close();
+								statement.close();
+							} else {
+								if (FriendPlayer.players.containsKey(otherName)) {
+									FriendPlayer friendPlayer = FriendPlayer.get(otherPlayer);
+									if (!friendPlayer.getFriendsMap().containsKey(fp.name)) {
+										fp.friends.remove(entry.getKey());
+									}
+								}
+							}
+						}
+						fp.friends.putAll(fr);
+						String p = resultSet.getString("party");
+						System.out.println(name + " > '" + p + "'");
+						if (p != null && !p.isEmpty()) {
+							fp.party = BadBlockOthers.getInstance().getGson()
+									.fromJson(p, partyType);
+							if (fp.party != null) {
+								fp.party.register();
+								fp.party = Party.getAuthentic(fp.party);
+								if (!fp.party.getPlayers().contains(player.getName())) {
+									fp.party = null;
+								}
+							}
+						}
+						if (fp.party != null) {
+							if (fp.groupFollow && !fp.party.getLeader().equalsIgnoreCase(player.getName())
+									&& Ladder.getInstance().getPlayer(fp.party.getLeader()) != null) {
+								player.canJoinHimself(false);
+								player.setPlayersWithHim(new ArrayList<UUID>());
+								player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+								Player lo = Ladder.getInstance().getPlayer(fp.party.getLeader());
+								if (lo != null) {
+									FriendPlayer fo = FriendPlayer.get(lo);
+									if (fo != null)
+										if (fo.groupFollow && fo.party != null) {
+											lo.setPlayersWithHim(fp.party.getFollowUUIDs(""));
+											lo.sendToBungee("playersWithHim"); lo.sendToBukkit("playersWithHim");
+										}
+								}
+							} else if (fp.groupFollow
+									&& fp.party.getLeader().equalsIgnoreCase(player.getName())) {
+								player.canJoinHimself(true);
+								player.setPlayersWithHim(fp.party.getFollowUUIDs(player.getName()));
+								player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+								for (String pl : fp.party.getPlayersWithoutLeader()) {
+									Player plo = Ladder.getInstance().getPlayer(pl);
+									if (plo == null)
+										continue;
+									FriendPlayer fo = FriendPlayer.get(plo);
+									if (fo != null)
+										if (fo.groupFollow && fo.party != null) {
+											plo.setPlayersWithHim(fp.party.getFollowUUIDs(""));
+											plo.sendToBungee("playersWithHim"); plo.sendToBukkit("playersWithHim");
+											plo.canJoinHimself(false);
+										} else {
+											plo.setPlayersWithHim(new ArrayList<>());
+											plo.sendToBungee("playersWithHim"); plo.sendToBukkit("playersWithHim");
+											plo.canJoinHimself(true);
+										}
+								}
+							} else {
+								if (fp.party.getLeader().equalsIgnoreCase(player.getName())) {
+									player.canJoinHimself(true);
+								} else if (Ladder.getInstance().getPlayer(fp.party.getLeader()) != null)
+									player.canJoinHimself(false);
+								else
+									player.canJoinHimself(true);
+							}
+							for (String pl : fp.party.getPlayers()) {
+								if (!pl.equalsIgnoreCase(fp.getName())) {
+									Player ol = Ladder.getInstance().getPlayer(pl);
+									if (ol != null)
+										ol.sendMessage(I18N.getTranslatedMessage("commands.party.connected",
+												fp.getName()));
+								}
+							}
+						} else {
+							player.setPlayersWithHim(new ArrayList<UUID>());
+							player.sendToBungee("playersWithHim"); player.sendToBukkit("playersWithHim");
+							player.canJoinHimself(true);
+						}
+					} else {
+						player.canJoinHimself(true);
+						fp.lastIps = new ArrayList<>();
+						fp.acceptMPs = AcceptType.ALL_PEOPLE;
+						fp.friends = new TreeMap<String, Friend>(String.CASE_INSENSITIVE_ORDER);
+						fp.acceptRequests = true;
+						fp.spy = false;
+						fp.reportToggle = true;
+						fp.isNew = true;
+						fp.badfilter = true;
+						fp.acceptGroups = AcceptType.ALL_PEOPLE;
+						fp.groupFollow = true;
+						fp.logs = new ArrayList<>();
+						Calendar cal = Calendar.getInstance();
+						int year = cal.get(Calendar.YEAR) + 1;
+						int month = cal.get(Calendar.MONTH);
+						int day = cal.get(Calendar.DAY_OF_MONTH);
+						int hours = cal.get(Calendar.HOUR_OF_DAY);
+						int minutes = cal.get(Calendar.MINUTE);
+						int seconds = cal.get(Calendar.SECOND);
+						String yearDate = o(year);
+						String monthDate = o(month);
+						String dayDate = o(day);
+						String hourDate = o(hours);
+						String minuteDate = o(minutes);
+						String secondDate = o(seconds);
+						ConnectionLog connectionLog = new ConnectionLog(
+								"[" + dayDate + "/" + monthDate + "/" + yearDate + " " + hourDate + ":"
+										+ minuteDate + ":" + secondDate + "]",
+										"Connected player for the first time (IP: "
+												+ player.getAddress().getHostString() + ")");
+						fp.logs.add(connectionLog);
+						if (!fp.lastIps.contains(player.getAddress()))
+							fp.lastIps.add(player.getAddress());
+						Gson gson = new GsonBuilder().create();
+						BadblockDatabase.getInstance().addRequest(new Request(
+								"INSERT INTO friends(pseudo, friends, acceptRequests, acceptMP, spy, reportToggle, lastIp, logs, lastIps, badfilter) VALUES('"
+										+ BadblockDatabase.getInstance().mysql_real_escape_string(name) + "', '"
+										+ BadblockDatabase.getInstance().mysql_real_escape_string(
+												BadBlockOthers.getInstance().getGson().toJson(friends))
+										+ "', '" + acceptRequests + "', '"
+										+ BadblockDatabase.getInstance().mysql_real_escape_string(
+												acceptMPs.name())
+										+ "', '" + spy + "', '" + reportToggle + "', '"
+										+ BadblockDatabase.getInstance().mysql_real_escape_string(lastIp)
+										+ "', '"
+										+ BadblockDatabase.getInstance()
+										.mysql_real_escape_string(gson.toJson(logs))
+										+ "', '"
+										+ BadblockDatabase.getInstance()
+										.mysql_real_escape_string(gson.toJson(lastIps))
+										+ "', '" + badfilter + "')",
+										RequestType.SETTER));
 					}
-				});
+					fp.isOkay = true;
+					isOkay = true;
+					resultSet.close();
+					if (fp.spy) {
+						if (!player.hasPermission("others.spymsg")) {
+							fp.spy = false;
+							player.sendMessage(
+									I18N.getTranslatedMessage("msg.spymode.alreadybutnoperm", fp.getName()));
+						} else
+							player.sendMessage(
+									I18N.getTranslatedMessage("msg.spymode.connected", fp.getName()));
+					}
+					if (!fp.reportToggle) {
+						player.sendMessage(
+								I18N.getTranslatedMessage("msg.report.toggleconnect", fp.getName()));
+					}
+					String onlinesString = "";
+					long onlineFriendsCount = 0;
+					int i = 0;
+					for (Entry<String, Friend> entry : fp.getFriendsMap().entrySet()) {
+						i++;
+						if (!entry.getValue().getStatus().equals(FriendStatus.OK))
+							continue;
+						Player pl = null;
+						for (Player p1 : Ladder.getInstance().getOnlinePlayers())
+							if (p1.getName().equalsIgnoreCase(entry.getKey()))
+								pl = p1;
+						if (pl == null || pl.getBukkitServer() == null || pl.getBukkitServer().getName() == null
+								|| pl.getBukkitServer().getName().startsWith("login"))
+							continue;
+						RawMessage textComponent = Ladder.getInstance().createRawMessage(
+								I18N.getTranslatedMessage("commands.friend.connected", player.getName()));
+						textComponent.setHoverEvent(HoverEventType.SHOW_TEXT, false,
+								I18N.getTranslatedMessage("commands.msg.clickforsend", player.getName()));
+						textComponent.setClickEvent(ClickEventType.SUGGEST_COMMAND, false,
+								"/msg " + player.getName() + " ");
+						textComponent.send(pl);
+						onlineFriendsCount++;
+						String color = "§a";
+						String spacer = ", ";
+						onlinesString += color + "[" + entry.getKey() + "]";
+						if (i < fp.getFriendsMap().entrySet().size())
+							onlinesString += spacer;
+					}
+					if (onlinesString.equals(""))
+						onlinesString = I18N.getTranslatedMessage("commands.friend.noone");
+					else {
+						if (onlinesString.endsWith("], "))
+							onlinesString = onlinesString.substring(0, onlinesString.length() - 2);
+					}
+					String waitingString = "";
+					long waitingFriendsCount = 0;
+					i = 0;
+					for (Entry<String, Friend> entry : fp.getFriendsMap().entrySet()) {
+						i++;
+						if (!entry.getValue().getStatus().equals(FriendStatus.WAITING)
+								|| entry.getValue().getDemander().equals(player.getName()))
+							continue;
+						waitingFriendsCount++;
+						Player pl = null;
+						for (Player p1 : Ladder.getInstance().getOnlinePlayers())
+							if (p1.getName().equalsIgnoreCase(entry.getKey()))
+								pl = p1;
+						String color = "§a";
+						if (pl == null || pl.getBukkitServer() == null || pl.getBukkitServer().getName() == null
+								|| pl.getBukkitServer().getName().startsWith("login"))
+							color = "§c";
+						String spacer = ", ";
+						waitingString += color + "[" + entry.getKey() + "]";
+						if (i < fp.getFriendsMap().entrySet().size())
+							waitingString += spacer;
+					}
+					if (waitingString.endsWith("], "))
+						waitingString = waitingString.substring(0, waitingString.length() - 2);
+					String p = I18N.getTranslatedMessage("commands.friend.online",
+							(onlineFriendsCount > 1 ? "s" : ""), onlineFriendsCount, onlinesString);
+					if (p.length() >= 256)
+						p = p.substring(0, 255);
+					player.sendMessage(p);
+					if (waitingFriendsCount > 0) {
+						String plural = waitingFriendsCount > 1 ? "s" : "";
+						p = I18N.getTranslatedMessage("commands.friend.newfriendsdemands", waitingFriendsCount,
+								plural, waitingString);
+						if (p.length() >= 256)
+							p = p.substring(0, 255);
+						player.sendMessage(p);
+						p = I18N.getTranslatedMessage("commands.friend.foracceptademand");
+						if (p.length() >= 256)
+							p = p.substring(0, 255);
+						player.sendMessage(p);
+					}
+				} catch (Exception error) {
+					error.printStackTrace();
+				}
+			}
+		});
 	}
 
 	public static String o(int value) {
@@ -541,32 +552,32 @@ public class FriendPlayer {
 		Gson gson = new GsonBuilder().create();
 		if (friendPlayer.isOkay && friendPlayer.hasNewChanges)
 			BadblockDatabase.getInstance()
-					.addRequest(
-							new Request(
-									"UPDATE friends SET friends = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(BadBlockOthers.getInstance().getGson()
-															.toJson(friendPlayer.getFriendsMap()))
-											+ "', acceptRequests = '" + friendPlayer.hasAcceptRequests()
-											+ "', acceptMP = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(friendPlayer.hasAcceptMPs().name())
-											+ "', spy = '" + friendPlayer.spy + "', party = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(new Gson().toJson(friendPlayer.party))
-											+ "', acceptGroups = '" + friendPlayer.acceptGroups + "', followGroups = '"
-											+ friendPlayer.groupFollow + "', lastIp = '"
-											+ BadblockDatabase.getInstance().mysql_real_escape_string(lastIp)
-											+ "', logs = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(gson.toJson(friendPlayer.logs))
-											+ "', lastIps = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(gson.toJson(friendPlayer.lastIps))
-											+ "', badfilter = '" + friendPlayer.badfilter + "' WHERE pseudo = '"
-											+ BadblockDatabase.getInstance()
-													.mysql_real_escape_string(friendPlayer.getName())
-											+ "'",
+			.addRequest(
+					new Request(
+							"UPDATE friends SET friends = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(BadBlockOthers.getInstance().getGson()
+											.toJson(friendPlayer.getFriendsMap()))
+									+ "', acceptRequests = '" + friendPlayer.hasAcceptRequests()
+									+ "', acceptMP = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(friendPlayer.hasAcceptMPs().name())
+									+ "', spy = '" + friendPlayer.spy + "', reportToggle = '" + friendPlayer.reportToggle + "', party = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(new Gson().toJson(friendPlayer.party))
+									+ "', acceptGroups = '" + friendPlayer.acceptGroups + "', followGroups = '"
+									+ friendPlayer.groupFollow + "', lastIp = '"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(lastIp)
+									+ "', logs = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(gson.toJson(friendPlayer.logs))
+									+ "', lastIps = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(gson.toJson(friendPlayer.lastIps))
+									+ "', badfilter = '" + friendPlayer.badfilter + "' WHERE pseudo = '"
+									+ BadblockDatabase.getInstance()
+									.mysql_real_escape_string(friendPlayer.getName())
+									+ "'",
 									RequestType.SETTER));
 		return friendPlayer;
 	}
@@ -615,7 +626,7 @@ public class FriendPlayer {
 				ConnectionLog connectionLog = new ConnectionLog(
 						"[" + dayDate + "/" + monthDate + "/" + yearDate + " " + hourDate + ":" + minuteDate + ":"
 								+ secondDate + "]",
-						"Forced disconnection by the server (IP: " + player.getAddress().getHostString() + ")");
+								"Forced disconnection by the server (IP: " + player.getAddress().getHostString() + ")");
 				friendPlayer.logs.add(connectionLog);
 			} else {
 				Calendar cal = Calendar.getInstance();
@@ -640,7 +651,7 @@ public class FriendPlayer {
 					+ BadblockDatabase.getInstance().mysql_real_escape_string(
 							BadBlockOthers.getInstance().getGson().toJson(friendPlayer.getFriendsMap()))
 					+ "', acceptRequests = '" + friendPlayer.hasAcceptRequests() + "', acceptMP = '"
-					+ friendPlayer.hasAcceptMPs().name() + "', spy = '" + friendPlayer.spy + "', party = '"
+					+ friendPlayer.hasAcceptMPs().name() + "', spy = '" + friendPlayer.spy + "', reportToggle = '" + friendPlayer.reportToggle + "', party = '"
 					+ BadblockDatabase.getInstance().mysql_real_escape_string(new Gson().toJson(friendPlayer.party))
 					+ "', acceptGroups = '" + friendPlayer.acceptGroups + "', followGroups = '"
 					+ friendPlayer.groupFollow + "', lastIp = '"

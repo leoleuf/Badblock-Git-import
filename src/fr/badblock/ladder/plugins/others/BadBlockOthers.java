@@ -36,6 +36,7 @@ import fr.badblock.ladder.plugins.others.commands.big.BigPardonCommand;
 import fr.badblock.ladder.plugins.others.commands.big.BigTempBanCommand;
 import fr.badblock.ladder.plugins.others.commands.mod.BadFilterCommand;
 import fr.badblock.ladder.plugins.others.commands.mod.ConnectCommand;
+import fr.badblock.ladder.plugins.others.commands.mod.GReportsCommand;
 import fr.badblock.ladder.plugins.others.commands.mod.GhostConnectCommand;
 import fr.badblock.ladder.plugins.others.commands.mod.OnlineStaffCommand;
 import fr.badblock.ladder.plugins.others.commands.mod.RConnectCommand;
@@ -125,6 +126,7 @@ public class BadBlockOthers extends Plugin {
 		pluginManager.registerEvents(this, new PlayerDisconnectListener());
 		pluginManager.registerEvents(this, new ServerConnectListener());
 		pluginManager.registerCommand(this, animCommand = new AnimCommand());
+		pluginManager.registerCommand(this, new GReportsCommand());
 		pluginManager.registerCommand(this, new FriendCommand());
 		pluginManager.registerCommand(this, new BadFilterCommand());
 		pluginManager.registerCommand(this, new BadBlockOthersReloadCommand());
