@@ -32,18 +32,10 @@ public class GReportsCommand extends Command {
 			if (!exclusions.contains(player.getUniqueId())) {
 				player.sendMessage("§8(§b§lGuardian§8) Reports §bdésactivés§8.");
 				exclusions.add(player.getUniqueId());
-				ByteArrayDataOutput out = ByteStreams.newDataOutput();
-				out.writeUTF("Report");
-				out.writeUTF(player.getName());
-				player.getServer().sendData("Guardian", out.toByteArray());	
 				return;
 			}else{
 				player.sendMessage("§8(§b§lGuardian§8) Reports §bactivés§8.");
 				exclusions.remove(player.getUniqueId());
-				ByteArrayDataOutput out = ByteStreams.newDataOutput();
-				out.writeUTF("Report");
-				out.writeUTF(player.getName());
-				player.getServer().sendData("Guardian", out.toByteArray());	
 				return;
 			}
 		}
