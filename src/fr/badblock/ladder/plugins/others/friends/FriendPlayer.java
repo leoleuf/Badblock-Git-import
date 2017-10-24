@@ -69,6 +69,7 @@ public class FriendPlayer {
 	public HashMap<UUID, Long> lastReports;
 	public List<String> lastReported;
 	public boolean reportToggle = true;
+	public boolean enableChat = true;
 
 	// Staff session
 	public long startTime = -1;
@@ -134,6 +135,12 @@ public class FriendPlayer {
 						String rT = resultSet.getString("reportToggle");
 						try {
 							fp.reportToggle = Boolean.parseBoolean(rT);
+						} catch (Exception error) {
+							error.printStackTrace();
+						}
+						String eC = resultSet.getString("enableChat");
+						try {
+							fp.enableChat = Boolean.parseBoolean(eC);
 						} catch (Exception error) {
 							error.printStackTrace();
 						}
@@ -322,6 +329,7 @@ public class FriendPlayer {
 						fp.acceptRequests = true;
 						fp.spy = false;
 						fp.reportToggle = true;
+						fp.enableChat = true;
 						fp.isNew = true;
 						fp.badfilter = true;
 						fp.acceptGroups = AcceptType.ALL_PEOPLE;
@@ -350,14 +358,14 @@ public class FriendPlayer {
 							fp.lastIps.add(player.getAddress());
 						Gson gson = new GsonBuilder().create();
 						BadblockDatabase.getInstance().addRequest(new Request(
-								"INSERT INTO friends(pseudo, friends, acceptRequests, acceptMP, spy, reportToggle, lastIp, logs, lastIps, badfilter) VALUES('"
+								"INSERT INTO friends(pseudo, friends, acceptRequests, acceptMP, spy, reportToggle, enableChat, lastIp, logs, lastIps, badfilter) VALUES('"
 										+ BadblockDatabase.getInstance().mysql_real_escape_string(name) + "', '"
 										+ BadblockDatabase.getInstance().mysql_real_escape_string(
 												BadBlockOthers.getInstance().getGson().toJson(friends))
 										+ "', '" + acceptRequests + "', '"
 										+ BadblockDatabase.getInstance().mysql_real_escape_string(
 												acceptMPs.name())
-										+ "', '" + spy + "', '" + reportToggle + "', '"
+										+ "', '" + spy + "', '" + reportToggle + "', '" + enableChat + "', '"
 										+ BadblockDatabase.getInstance().mysql_real_escape_string(lastIp)
 										+ "', '"
 										+ BadblockDatabase.getInstance()
@@ -383,6 +391,10 @@ public class FriendPlayer {
 					if (!fp.reportToggle) {
 						player.sendMessage(
 								I18N.getTranslatedMessage("msg.report.toggleconnect", fp.getName()));
+					}
+					if (!fp.enableChat) {
+						player.sendMessage(
+								I18N.getTranslatedMessage("msg.chat.toggleconnect", fp.getName()));
 					}
 					String onlinesString = "";
 					long onlineFriendsCount = 0;
@@ -562,7 +574,8 @@ public class FriendPlayer {
 									+ "', acceptMP = '"
 									+ BadblockDatabase.getInstance()
 									.mysql_real_escape_string(friendPlayer.hasAcceptMPs().name())
-									+ "', spy = '" + friendPlayer.spy + "', reportToggle = '" + friendPlayer.reportToggle + "', party = '"
+									+ "', spy = '" + friendPlayer.spy + "', reportToggle = '" + friendPlayer.reportToggle +
+									"', enableChat = '" + friendPlayer.enableChat + "', party = '"
 									+ BadblockDatabase.getInstance()
 									.mysql_real_escape_string(new Gson().toJson(friendPlayer.party))
 									+ "', acceptGroups = '" + friendPlayer.acceptGroups + "', followGroups = '"
@@ -651,7 +664,8 @@ public class FriendPlayer {
 					+ BadblockDatabase.getInstance().mysql_real_escape_string(
 							BadBlockOthers.getInstance().getGson().toJson(friendPlayer.getFriendsMap()))
 					+ "', acceptRequests = '" + friendPlayer.hasAcceptRequests() + "', acceptMP = '"
-					+ friendPlayer.hasAcceptMPs().name() + "', spy = '" + friendPlayer.spy + "', reportToggle = '" + friendPlayer.reportToggle + "', party = '"
+					+ friendPlayer.hasAcceptMPs().name() + "', spy = '" + friendPlayer.spy 
+					+ "', reportToggle = '" + friendPlayer.reportToggle + "', enableChat = '" + friendPlayer.enableChat + "', party = '"
 					+ BadblockDatabase.getInstance().mysql_real_escape_string(new Gson().toJson(friendPlayer.party))
 					+ "', acceptGroups = '" + friendPlayer.acceptGroups + "', followGroups = '"
 					+ friendPlayer.groupFollow + "', lastIp = '"
