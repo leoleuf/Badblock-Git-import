@@ -10,6 +10,7 @@ import fr.badblock.ladder.api.chat.RawMessage;
 import fr.badblock.ladder.api.chat.RawMessage.ClickEventType;
 import fr.badblock.ladder.api.chat.RawMessage.HoverEventType;
 import fr.badblock.ladder.api.entities.Player;
+import fr.badblock.ladder.plugins.others.friends.FriendPlayer;
 import fr.badblock.ladder.plugins.others.guardian.GuardianReport;
 import fr.badblock.rabbitconnector.RabbitConnector;
 import fr.badblock.rabbitconnector.RabbitListener;
@@ -36,7 +37,8 @@ public class GuardianReceiveReportListener extends RabbitListener {
 				.sendMessage(guardianReport.getMessage().replace("[SERVER]", server));
 		Ladder.getInstance().getOnlinePlayers()
 				.parallelStream().filter(pl -> pl.getBukkitServer() != null
-						&& !pl.getBukkitServer().getName().startsWith("login") && pl.hasPermission("guardian.modo"))
+						&& !pl.getBukkitServer().getName().startsWith("login") && pl.hasPermission("guardian.modo") && FriendPlayer.get(pl) != null
+						&& FriendPlayer.get(pl).reportToggle)
 				.forEach(pl -> component.send(pl));
 	}
 
