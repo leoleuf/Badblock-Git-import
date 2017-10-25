@@ -29,7 +29,7 @@ public class DataSavers extends Thread {
 	@Override
 	public void run(){
 		synchronized (this) {
-			while(true){
+			while(true) {
 				while(!toSave.isEmpty()){
 					try {
 						Val handler = toSave.poll();

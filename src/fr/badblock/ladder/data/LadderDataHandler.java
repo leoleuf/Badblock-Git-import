@@ -1,6 +1,7 @@
 package fr.badblock.ladder.data;
 
 import java.io.File;
+import java.util.ConcurrentModificationException;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -33,12 +34,16 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void updateData(JsonObject object) {
-		/*if(saving.get() || reading.get()){
+		if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to update data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
-		saving.set(true);
+		}
 
-		if (!loaded && file.exists()) System.out.println("Update data (not loaded) " + file.getName());
+		if (!loaded && file.exists()) 
+		{
+			saving.set(false);
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de mettre à jour un fichier (" + file.getName() + ") non chargé...");
+		}
+		saving.set(true);
 		DataSavers.save(this, object, true);
 		//addObjectInObject(data, object);
 		//saveData();
@@ -59,10 +64,12 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void setData(JsonObject object) {
-		/*if(saving.get() || reading.get()){
+		if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to set data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
-		if (!loaded && file.exists()) System.out.println("Set data (not loaded) " + file.getName());
+		}
+		if (!loaded && file.exists()) {
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de set des données dans un fichier (" + file.getName() + ") non chargé...");
+		}
 		saving.set(true);
 		DataSavers.save(this, object, false);
 		//this.data = object;
@@ -71,12 +78,15 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void removeData() {
-		/*if(saving.get() || reading.get()){
+		if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to remove data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
-		if (!loaded && file.exists()) System.out.println("Removed data " + file.getName());
+		}
+		if (!loaded && file.exists()) 
+		{
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de supprimer des données dans un fichier (" + file.getName() + ") non chargé...");
+		}
 		saving.set(true);
-		
+
 		//file.delete();
 		//data = new JsonObject();
 		DataSavers.save(this, new JsonObject(), false);
@@ -84,11 +94,11 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void reloadData() {
-		/*if(saving.get() || reading.get()){
+		if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to read data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
+		}
 		reading.set(true);
-		
+
 		if(!file.exists()) {
 			data = new JsonObject();
 			loaded = true;
@@ -96,42 +106,57 @@ public abstract class LadderDataHandler implements DataHandler {
 			return;
 		}
 
-		try {
-			data = FileUtils.loadObject(file);
-			loaded = true;
-		} catch(Exception e){
-			data = new JsonObject();
-			e.printStackTrace();
+		int retry = 0;
+		while (!loaded && retry < 10)
+		{
+			try {
+				data = FileUtils.loadObject(file);
+				loaded = true;
+			} catch(Exception e){
+				e.printStackTrace();
+				System.out.println("[DEBUG-PERTE] Impossible de charger un fichier (" + file.getName() + "). Essai numéro " + retry);
+			}
+			retry++;
 		}
-		
+
+		data = new JsonObject();
 		reading.set(false);
+		if (!loaded)
+		{
+			throw new RuntimeException("[DEBUG-PERTE] Fichier impossible à charger (" + file.getName() + "), voir erreur au dessus. On est obligé de le recréer..");
+		}
+
 	}
 
 	@Override
 	public void saveData() {
-		/*if(saving.get() || reading.get()){
+		if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
-		if (!loaded && file.exists()) System.out.println("Save data not loaded :-( " + file.getName());
+		}
+		if (!loaded && file.exists()) 
+		{
+			return;
+		}
 		saving.set(true);
-		
+
 		DataSavers.save(this, data, false);
 	}
-	
+
 	public void saveSync(JsonObject object, boolean update){
 		if(update)
 			addObjectInObject(data, object);
 		else data = object;
 
-		if (!loaded && file.exists()) System.out.println("Not loaded " + file.getName());
-		
-		if(!data.entrySet().isEmpty())
-			FileUtils.save(file, data, true);
-		else if(file.exists()) {
-			file.delete();
-			System.out.println("File empty! " + file.getName());
+		if (!loaded && file.exists()) {
+			saving.set(false);
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de sauvegarder un fichier (" + file.getName() + ") non chargé...");
 		}
-	
+
+		if(!data.entrySet().isEmpty())
+		{
+			FileUtils.save(file, data, true);
+		}
+
 		saving.set(false);
 	}
 }
