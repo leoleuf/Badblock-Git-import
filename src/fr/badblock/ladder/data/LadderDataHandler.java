@@ -1,7 +1,6 @@
 package fr.badblock.ladder.data;
 
 import java.io.File;
-import java.util.ConcurrentModificationException;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -34,9 +33,9 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void updateData(JsonObject object) {
-		if(saving.get() || reading.get()){
+		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to update data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}
+		}*/
 
 		if (!loaded && file.exists()) 
 		{
@@ -64,9 +63,9 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void setData(JsonObject object) {
-		if(saving.get() || reading.get()){
+		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to set data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}
+		}*/
 		if (!loaded && file.exists()) {
 			throw new RuntimeException("[DEBUG-PERTE] Essaye de set des données dans un fichier (" + file.getName() + ") non chargé...");
 		}
@@ -78,9 +77,9 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void removeData() {
-		if(saving.get() || reading.get()){
+		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to remove data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}
+		}*/
 		if (!loaded && file.exists()) 
 		{
 			throw new RuntimeException("[DEBUG-PERTE] Essaye de supprimer des données dans un fichier (" + file.getName() + ") non chargé...");
@@ -94,9 +93,9 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void reloadData() {
-		if(saving.get() || reading.get()){
+		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to read data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}
+		}*/
 		reading.set(true);
 
 		if(!file.exists()) {
@@ -133,9 +132,9 @@ public abstract class LadderDataHandler implements DataHandler {
 
 	@Override
 	public void saveData() {
-		if(saving.get() || reading.get()){
-			throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}
+		/*if(saving.get() || reading.get()){
+			//throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
+		}*/
 		if (!loaded && file.exists()) 
 		{
 			return;
