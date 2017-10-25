@@ -18,6 +18,11 @@ public class BigTempBanCommand extends Command {
 			public void run() {
 				try {
 					CommandTempban.instance.executeCommand(sender, args);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					CommandTempbanip.instance.executeCommand(sender, args);
 				}catch(Exception error) {
 					error.printStackTrace();
