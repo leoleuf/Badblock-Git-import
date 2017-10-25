@@ -119,7 +119,10 @@ public abstract class LadderDataHandler implements DataHandler {
 			retry++;
 		}
 
-		data = new JsonObject();
+		if (!loaded)
+		{
+			data = new JsonObject();
+		}
 		reading.set(false);
 		if (!loaded)
 		{
