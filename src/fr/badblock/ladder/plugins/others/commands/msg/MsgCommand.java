@@ -214,7 +214,7 @@ public class MsgCommand extends Command {
 		int uniqueId = random.nextInt(Integer.MAX_VALUE);
 		messages.put(uniqueId, new PrivateMessage(sender.getName(), finalMessage));
 		RawMessage rawMessage = Ladder.getInstance()
-				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.from", toPlayer.getName(), message));
+				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.from", toPlayer.getName(), message, toPlayer.getAsPermissible().getDisplayName()));
 		rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
 				I18N.getTranslatedMessage("msg.clickforrespond", toPlayer.getName()));
 		rawMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + toPlayer.getName() + " ");
@@ -225,7 +225,7 @@ public class MsgCommand extends Command {
 		alert.setHoverEvent(HoverEventType.SHOW_TEXT, false, "§cSignaler le message privé de " + sender.getName());
 		rawMessage.add(alert);
 		RawMessage rowMessage = Ladder.getInstance()
-				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.to", sender.getName(), message));
+				.createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.to", sender.getName(), message, player.getAsPermissible().getDisplayName()));
 		rowMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
 				I18N.getTranslatedMessage("msg.clickforrespond", player.getName()));
 		rowMessage.setClickEvent(ClickEventType.SUGGEST_COMMAND, false, "/msg " + player.getName() + " ");
@@ -236,8 +236,8 @@ public class MsgCommand extends Command {
 		rawMessage = Ladder.getInstance().createRawMessage(I18N.getTranslatedMessageWithoutColor("msg.fromto",
 				sender.getName(), toPlayer.getName(), finalMessage));
 		rawMessage.setHoverEvent(HoverEventType.SHOW_TEXT, false,
-				I18N.getTranslatedMessage("msg.sender", sender.getName()),
-				I18N.getTranslatedMessage("msg.sendto", toPlayer.getName()),
+				I18N.getTranslatedMessage("msg.sender", player.getAsPermissible().getDisplayName() + sender.getName()),
+				I18N.getTranslatedMessage("msg.sendto", toPlayer.getAsPermissible().getDisplayName() + toPlayer.getName()),
 				I18N.getTranslatedMessage("msg.server", player.getBukkitServer().getName()),
 				I18N.getTranslatedMessage("msg.date", date));
 		for (Player pl : BadBlockOthers.getInstance().getLadder().getOnlinePlayers()) {
