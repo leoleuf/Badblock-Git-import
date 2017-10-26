@@ -11,6 +11,7 @@ return [
 	'blog.no_posts' => "Aucun articles disponible pour l'instant",
 	'blog.title' => "Tout les articles",
 	'blog.summary' => "Toute les dernières fraiches news du serveur",
+	'blog.comments_disable' => "Commentaires désactivé sur cet article",
 	'play.title' => "Jouer",
 	'play.sub_title' => "Découvrez Badblock sur toute ses formes",
 	'play.how_play' => "Comment rejoindre Badblock ?",

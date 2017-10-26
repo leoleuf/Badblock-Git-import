@@ -66,6 +66,7 @@ class XenForo
 	public function getLogin($username, $password, $ip)
 	{
 		try {
+//			dd('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
 			$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
 
 			return $this->getParsedBody($rep->getBody());

@@ -182,7 +182,8 @@ class BlogApiController extends \App\Controllers\Controller
 				'summary' => $postInfo['summary'],
 				'created_at' => $postDate,
 				'pined' => $postInfo['pined'],
-				'comment' => $postInfo['comments'],
+				'comments' => $postInfo['comments'],
+				'xenforo_thread_id' => $threadId,
 				'content' => $content
 			];
 
