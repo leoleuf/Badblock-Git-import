@@ -1,0 +1,4 @@
+name: LadderPlugin
+main: fr.badblock.bungeecord.plugins.ladder.LadderBungee
+version: 0.1
+author: xMalware
