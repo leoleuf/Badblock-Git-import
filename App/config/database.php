@@ -18,5 +18,10 @@ return [
 		'password' => getenv('MONGO_PASSWORD'),
 		'database' => getenv('MONGO_DATABASE'),
 		'authSource' => getenv('MONGO_SOURCE'),
-	]
+	],
+    'ladder' => [
+    'ip' => getenv('LADDER_IP'),
+    'port' => getenv('LADDER_PORT'),
+    ]
+
 ];

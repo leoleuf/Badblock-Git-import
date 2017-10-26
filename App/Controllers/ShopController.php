@@ -112,9 +112,63 @@ class ShopController extends Controller
 
 
 
-	public function getachat(ServerRequestInterface $request, ResponseInterface $response, $args){
+	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
+	    //Vérification si le produit éxiste
+            if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
 
-        var_dump($args);
+                $collection = $this->mongo->badblock->dat_users;
+                $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
+                $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
+
+                //Vérification du prix
+                if ($dataprod["price"] <= $data['shop_points']){
+                    //On continue car il a les sous
+                    //vérifions si le joueur est connecté au serveur
+                    if ($this->ladder->playerOnline($this->session->getProfile('username')['username'])['connected'] == true){
+                            //vérification si il est sur le bon serveur
+                            if ($this->ladder->playerGetConnectedServer($this->session->getProfile('username')['username'])->server == $dataprod['server_name']){
+                                //Vérification si l'achat et réel ou virtuel
+                                if ($dataprod['type'] == "item"){
+                                    //Vérif anti usebug
+                                    if ($dataprod["price"] <= $data['shop_points']){
+                                        //On retire les sous
+                                        $pts = $data['shop_points'] - $dataprod["price"];
+                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                        //Real / Item
+                                        //Send alert to the serveur
+                                        $this->ladder->serverBroadcast($dataprod['server_name'],$this->session->getProfile('username')['username']." vient d'acheter ".$dataprod['qty']." ".$dataprod['name']);
+                                        return $response->write("ok")->withStatus(200);
+                                    }else{
+                                        return $response->write("Not enought")->withStatus(406);
+                                    }
+                                }else{
+                                    //Vérif anti usebug
+                                    if ($dataprod["price"] <= $data['shop_points']){
+                                        //On retire les sous
+                                        $pts = $data['shop_points'] - $dataprod["price"];
+                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+
+                                        //Virtuel grade / kitc
+                                        //Send alert to the serveur
+                                        $this->ladder->serverBroadcast($dataprod['server_name'],$this->session->getProfile('username')['username']." vient d'acheter le ".$dataprod['name']);
+                                        return $response->write("ok")->withStatus(200);
+                                    }else{
+                                        return $response->write("Not enought")->withStatus(406);
+                                    }
+                                }
+                            }else{
+                                return $response->write("Not connected")->withStatus(409);
+                            }
+                    }else{
+                        return $response->write("Not connected")->withStatus(409);
+                    }
+                }else{
+                    //C'est un clodo donc erreur
+                    return $response->write("Not enought")->withStatus(406);
+                }
+            }else{
+                return $response->write("Product not found")->withStatus(404);
+            }
 
 
     }

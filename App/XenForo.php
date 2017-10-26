@@ -65,13 +65,15 @@ class XenForo
 	 */
 	public function getLogin($username, $password, $ip)
 	{
-		try {
+
+        try {
 			$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
 
 			return $this->getParsedBody($rep->getBody());
 		} catch (\Exception $exception) {
+             return false;
 
-			return false;
+
 		}
 	}
 }

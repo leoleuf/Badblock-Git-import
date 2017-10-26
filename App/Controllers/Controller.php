@@ -28,6 +28,7 @@ class Controller{
 		$this->session = $container['session'];
 		$this->mc = $container['minecraft'];
 		$this->flash = $container['flash'];
+		$this->ladder = $container['ladder'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){

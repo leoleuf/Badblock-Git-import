@@ -154,3 +154,11 @@ $container['notFoundHandler'] = function ($container) {
 			->withStatus(404);
 	});
 };
+
+
+$container['ladder'] = function ($container) {
+    return new App\Ladder($container, [
+        'ip' => $container->config['ladder']['ip'],
+        'port' => $container->config['ladder']['port']
+    ]);
+};

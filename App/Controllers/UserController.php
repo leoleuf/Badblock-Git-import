@@ -16,15 +16,17 @@ class UserController extends Controller
 
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
 	{
+        if (empty($user)) {
+            //if user not found
+            return $this->container['notFoundHandler']($request, $response);
+        }
+
 		//sans cache
 		$collection = $this->mongo->badblock->dat_users;
 
 		$user = $collection->findOne(['realName' => $args['pseudo']]);
 
-		if (empty($user)) {
-			//if user not found
-			return $this->container['notFoundHandler']($request, $response);
-		}
+
 
 		$user->game->stats->tower['cpoints'] = $this->tower($user->game->stats->tower);
 		$user->game->stats->rush['cpoints'] = $this->rushs($user->game->stats->rush);

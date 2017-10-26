@@ -59,12 +59,18 @@ class ShopApiController extends \App\Controllers\Controller
         $this->redis->setJson('shop.listsrv', $listserver);
 
 
-
+        //Mise en cache produit seul
+        $collection = $this->mongo->badblock->product;
+        $curs = $collection->find(['visibility' => true]);
+        foreach ($curs as $cur) {
+            $this->redis->setJson('shop.prod.'.$cur["_id"], $cur);
+        }
 
 
         //Renvoie d'un code de succès
 
         return $response->write('Success writing shop cache')->withStatus(200);
+
         $this->log->info('"StaffApiController\ShopApiController": Success writing shop cache');
 
     }

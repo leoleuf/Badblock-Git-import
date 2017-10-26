@@ -19,78 +19,48 @@ class StatsController extends Controller
 		$this->render($response, 'stats.home');
 	}
 
-	public function game(RequestInterface $request, ResponseInterface $response, $game, $page = NULL)
+    public function game(RequestInterface $request, ResponseInterface $response, $game, $page = NULL)
 	{
+        // Noms des jeux & affichage
+        $list = array(
+            'towerrun' => 'Tower Run',
+            'tower' => 'Tower',
+            'rush' => 'Rush',
+            'survivalgames' => 'SurvivalGames',
+            'uhcspeed' => 'UHCSpeed',
+            'capturethesheep' => 'CaptureTheSheep',
+            'buildcontest' => 'BuildContest',
+            'spaceballs' => 'SpaceBalls',
+            'pearlswar' => 'PearlsWar'
+        );
+
 		//Régulation vers fonction
+        //pas de page renseigner
 		if (!isset($page)) {
 			$page = 1;
 		}
-		$game = $game['game'];
-		//Tower
-		if ($game == "tower") {
-			$this->tower($page);
-			//Rush
-		} elseif ($game == "rush") {
-			$this->rush($page);
-			//Capture the flags
-		} elseif ($game == "cts") {
-			$this->cts($page);
-			//Survival Games Solo
-		} elseif ($game == "SurvivalGamesSolo") {
-			$this->sgs($page);
-			//Survival Games Team
-		} elseif ($game == "SurvivalGamesTeams") {
-			$this->sgt($page);
-			//Pvp-Box
-		} elseif ($game == "pvpbox") {
-			$this->pvpbox($page);
-			//Faction
-		} elseif ($game == "Faction") {
-			$this->faction($page);
-			//UHC Solo
-		} elseif ($game == "uhcsolo") {
-			$this->uhcsolo($page);
-			//UHC Team
-		} elseif ($game == "uhcteam") {
-			$this->uhcteam($page);
-			//Space Balls
-		} elseif ($game == "SpaceBalls") {
-			$this->spaceball($page);
-			//DayZ
-		} elseif ($game == "dayz") {
-			$this->dayz($page);
-		} else {
+
+        //Vérification si le jeux écist
+        if (isset($list[$game["game"]])) {
+            $this->lecture($game["game"]);
+        }else {
 			//Erreur 404
 			return $response->withStatus(404);
 		}
 	}
 
 
-	public function tower($page)
-	{
-
-		$collection = $this->mongo->test->test;
-
-		$cursor = $collection->find();
+    public function lecture($game)
+    {
 
 
-        foreach ($cursor as $document) {
-            echo $document["name"] . "\n";
-        }
-	}
+    }
+
 
 
     public function cache()
     {
 
-        $collection = $this->mongo->test->test;
-
-        $cursor = $collection->find();
-
-
-        foreach ($cursor as $document) {
-            echo $document["name"] . "\n";
-        }
     }
 
 
