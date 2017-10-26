@@ -185,6 +185,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 					Thread.sleep(1000L);
 				else break;
 			}
+			
 		} catch(Exception e){
 			e.printStackTrace();
 

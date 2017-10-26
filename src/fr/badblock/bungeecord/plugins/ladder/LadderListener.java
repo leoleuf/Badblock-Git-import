@@ -7,6 +7,7 @@ import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListen
 import fr.badblock.bungeecord.plugins.ladder.utils.Motd;
 import fr.badblock.bungeecord.plugins.ladder.utils.Punished;
 import fr.badblock.bungeecord.plugins.ladder.utils.TimeUnit;
+import fr.badblock.bungeecord.plugins.utils.BungeeUtils;
 import fr.badblock.common.commons.utils.StringUtils;
 import fr.badblock.common.permissions.Permission;
 import fr.badblock.common.protocol.packets.PacketPlayerJoin;
@@ -46,14 +47,7 @@ public class LadderListener implements Listener {
 			return;
 		}
 		if (LadderBungee.getInstance().getPlayer(e.getPlayer()) != null) {
-			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
-			if (player == null || !player.isConnected()) {
-				LadderBungee.getInstance().playerList.remove(e.getPlayer());
-				LadderBungee.getInstance().byName.remove(e.getPlayer());
-			}else{
-				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock!"), null);
-			}
-			return;
+			e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock!"), null);
 		}
 		System.out.println("Connecting " + e.getPlayer() + " : A");
 		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
@@ -169,11 +163,12 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		int m = LadderBungee.getInstance().slots;
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
-		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().ladderPlayers, sample));
+		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
 		String[] motdString = motd.getMotd().clone();
+		timestampMax = BungeeUtils.config.getLong("timestampLimit");
+		finished = BungeeUtils.config.getString("timestampReachLimit");
 		if (motdString[1].contains("@1")) {
 			long time = timestampMax - (System.currentTimeMillis() / 1000L);
 			if (time > 0) {

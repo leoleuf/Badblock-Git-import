@@ -13,7 +13,13 @@ public class BungeePlayersUpdateListener extends RabbitListener {
 
 	@Override
 	public void onPacketReceiving(String body) {
-		LadderBungee.getInstance().bungeePlayerCount = (int) (Double.parseDouble(body) * BungeeCord.getInstance().getPlayers().stream().filter(player -> !player.getName().contains("-") && player.getServer() != null && player.getServer().getInfo() != null && !player.getServer().getInfo().getName().startsWith("login")).count());
+		int l = LadderBungee.getInstance().bungeePlayerCount;
+		int o = (int) (Double.parseDouble(body) * BungeeCord.getInstance().getPlayers().stream().filter(player -> !player.getName().contains("-") && player.getServer() != null && player.getServer().getInfo() != null && !player.getServer().getInfo().getName().startsWith("login")).count());
+		if (o - l > 100)
+		{
+			return;
+		}
+		LadderBungee.getInstance().bungeePlayerCount = o;
 	}
 	
 }
