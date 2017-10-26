@@ -17,7 +17,7 @@ class UserController extends Controller
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
 	{
 		//sans cache
-		$collection = $this->mongo->test->test;
+		$collection = $this->mongo->badblock->dat_users;
 
 		$user = $collection->findOne(['realName' => $args['pseudo']]);
 
@@ -29,9 +29,9 @@ class UserController extends Controller
 		$user->game->stats->tower['cpoints'] = $this->tower($user->game->stats->tower);
 		$user->game->stats->rush['cpoints'] = $this->rushs($user->game->stats->rush);
 		$user->game->stats->survival['cpoints'] = $this->survival($user->game->stats->survival);
-		$user->game->stats->uhcspeed['cpoints'] = $this->uhcSpeed($user->game->stats->uhcspeed);
+		//$user->game->stats->uhcspeed['cpoints'] = $this->uhcSpeed($user->game->stats->uhcspeed);
 		$user->game->stats->pearlswar['cpoints'] = $this->pearlSwar($user->game->stats->pearlswar);
-		$user->game->stats->spaceballs['cpoints'] = $this->spaceBall($user->game->stats->spaceballs);
+		//$user->game->stats->spaceballs['cpoints'] = $this->spaceBall($user->game->stats->spaceballs);
 		$user->game->stats->cts['cpoints'] = $this->cts($user->game->stats->cts);
 
 		//return view

@@ -21,6 +21,30 @@
         </div>
     </div>
     <!-- Fin recharger -->
+
+    <script>
+        function opentab(evt, serv) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(serv).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
 {% endblock %}
 {% block content %}
     <!-- Menu shop -->
@@ -28,171 +52,39 @@
         <ul class="shop-menu-menu">
             {% for key in serverlist %}
                 <li class="shop-menu-active">
-                    <a href="http://example.org" class="no-link">{{ key[1] }}</a>
+                    <a class="no-link" onclick="opentab(event, '{{ key[1] }}')">{{ key[1] }}</a>
                 </li>
             {% endfor %}
         </ul>
     </div>
 
-    <section class="shop-section">
-        <h4 class="heading heading-bar"><span>Cuillère à café</span></h4>
-        <div class="product-list">
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
+    {% for key in serverlist %}
+        <div id="{{ key[1] }}" class="tabcontent">
+            {% for key in key[2] %}
+            <section class="shop-section-{{ key[1] }}" class="tabcontent">
+                <h4 class="heading heading-bar"><span>{{  key[1] }}</span></h4>
+                {% for key in key[2] %}
+                    <div class="product-list">
+                        <div class="product-item">
+                            <div class="product-header">
+                                <h5 class="product-title">{{ key[1] }}</h5>
+                            </div>
+                            <div class="product-image">
+                                <img src="{{ base_url() }}/dist/images/shop/{{ key[2] }}.png">
+                            </div>
+                            <div class="product-price">{{ key[2] }}</div>
+                            <div class="product-footer">
+                                <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+            {% endfor %}
         </div>
-    </section>
-    <section class="shop-section">
-        <h4 class="heading heading-bar"><span>Cuillère à café</span></h4>
-        <div class="product-list">
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="shop-section">
-        <h4 class="heading heading-bar"><span>Cuillère à café</span></h4>
-        <div class="product-list">
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-            <div class="product-item">
-                <div class="product-header">
-                    <h5 class="product-title">Grade Gold</h5>
-                </div>
-                <div class="product-image">
-                    <img src="{{ base_url() }}/dist/images/gold.png">
-                </div>
-                <div class="product-price">200</div>
-                <div class="product-footer">
-                    <div class="product-action"><button class="button button-primary"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% endfor %}
+
+
     {#<h4 class="heading heading-bar"><span>Disque au chocolat</span></h4>#}
     {#<h4 class="heading heading-bar"><span>Hacker au caramel</span></h4>#}
 {% endblock %}

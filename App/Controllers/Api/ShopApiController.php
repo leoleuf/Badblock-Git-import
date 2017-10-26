@@ -38,23 +38,23 @@ class ShopApiController extends \App\Controllers\Controller
             $current_cursor = $collection1->find(['visibility' => true,'server' => $df->id]);
 
             foreach ($current_cursor as $current) {
-                array_push($current_listc,array($df->id,$df->name));
                 //Liste produits
                 $current_listp = [];
-                $current_cursor = $collection1->find(['visibility' => true,'server' => $df->id]);
+                $current_cursor2 = $collection2->find(['visibility' => true,'cat' => $current->id]);
 
-                foreach ($current_cursor as $current) {
-                    array_push($current_listp,array($df->id,$df->name));
+
+                foreach ($current_cursor2 as $current2) {
+                    array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img));
                 }
+                array_push($current_listc,array($current->id,$current->name,$current_listp));
             }
 
 
 
-            array_push($listserver,array($df->id,$df->name));
+            array_push($listserver,array($df->id,$df->name,$current_listc));
         }
         //Mise en Cache
 
-        var_dump($listserver);
 
         $this->redis->setJson('shop.listsrv', $listserver);
 
