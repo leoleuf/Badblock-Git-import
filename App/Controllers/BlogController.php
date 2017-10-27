@@ -61,6 +61,8 @@ class BlogController extends Controller
 		//search in redis cache for single cache
 		if ($this->redis->exists('post:' . $args['uuid'])) {
 			$post = $this->redis->getJson('post:' . $args['uuid']);
+//			dd($pos);
+//			dd($post);
 			$this->render($response, 'blog.post', [
 				'post' => $post
 			]);
