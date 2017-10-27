@@ -127,13 +127,7 @@ $container['mysql'] = function ($container) {
 
 $container['mongo'] = function ($container) {
 	return new \MongoDB\Client(
-		'mongodb://127.0.0.1/',
-		[
-			'username' => $container->config['mongo_db']['user'],     // user
-			'password' => $container->config['mongo_db']['password'],      // password
-			'database' => $container->config['mongo_db']['database'],      // database
-			'authSource' => $container->config['mongo_db']['authSource']   // authsource
-		]
+		'mongodb://'.$container->config['mongo_db']['user'].":".$container->config['mongo_db']['password']."@".$container->config['mongo_db']['host'].":".$container->config['mongo_db']['port']	."/".$container->config['mongo_db']['database']
 	);
 };
 

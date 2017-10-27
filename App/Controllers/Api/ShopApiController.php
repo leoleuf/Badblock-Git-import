@@ -35,7 +35,7 @@ class ShopApiController extends \App\Controllers\Controller
             $current_listc = [];
 
             //Liste Catégorie Serveur
-            $current_cursor = $collection1->find(['visibility' => true,'server' => $df->id]);
+            $current_cursor = $collection1->find(['visibility' => true,'server' => $df->_id]);
 
             foreach ($current_cursor as $current) {
                 //Liste produits
@@ -49,9 +49,7 @@ class ShopApiController extends \App\Controllers\Controller
                 array_push($current_listc,array($current->_id,$current->name,$current_listp));
             }
 
-
-
-            array_push($listserver,array($df->id,$df->name,$current_listc));
+            array_push($listserver,array($df->_id,$df->name,$current_listc));
         }
         //Mise en Cache
 
