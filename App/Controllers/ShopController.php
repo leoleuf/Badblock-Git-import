@@ -141,6 +141,20 @@ class ShopController extends Controller
                                     }else{
                                         return $response->write("Not enought")->withStatus(406);
                                     }
+                                }elseif ($dataprod['type'] == "grade"){
+                                    //Vérif anti usebug
+                                    if ($dataprod["price"] <= $data['shop_points']){
+                                        //On retire les sous
+                                        $pts = $data['shop_points'] - $dataprod["price"];
+                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                        //Real / Item
+                                        //Send alert to the serveur
+                                        $this->ladder->playerAddGroup($dataprod['server_name'],$this->session->getProfile('username')['username'],"diamant");
+                                        $this->ladder->serverBroadcast("hub_15","essaie");
+                                        return $response->write("ok")->withStatus(200);
+                                    }else{
+                                        return $response->write("Not enought")->withStatus(406);
+                                    }
                                 }else{
                                     //Vérif anti usebug
                                     if ($dataprod["price"] <= $data['shop_points']){

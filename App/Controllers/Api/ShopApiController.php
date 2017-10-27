@@ -40,13 +40,13 @@ class ShopApiController extends \App\Controllers\Controller
             foreach ($current_cursor as $current) {
                 //Liste produits
                 $current_listp = [];
-                $current_cursor2 = $collection2->find(['visibility' => true,'cat' => $current->id]);
+                $current_cursor2 = $collection2->find(['visibility' => true,'cat' => $current->_id]);
 
 
                 foreach ($current_cursor2 as $current2) {
                     array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img));
                 }
-                array_push($current_listc,array($current->id,$current->name,$current_listp));
+                array_push($current_listc,array($current->_id,$current->name,$current_listp));
             }
 
 
