@@ -40,9 +40,7 @@ $container['log'] = function ($container) {
 
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
 
-	if ($container->config['log']['discord']) {
-		$log->pushHandler(new App\MonologDiscordHandler($container->guzzle, $container->config['log']['discord_webhooks'], $container->config['log']['level']));
-	}
+    $log->pushHandler(new App\MonologDiscordHandler($container->config['log']['discord_webhooks'], $container->config['log']['level']));
 
 	return $log;
 };
