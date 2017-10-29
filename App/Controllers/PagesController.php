@@ -47,6 +47,7 @@ class PagesController extends Controller
 		$help = $this->redis->getJson('staff.helper');
 		$modof = $this->redis->getJson('staff.modof');
 		$staff = $this->redis->getJson('staff.staff');
+		$nb = $this->redis->getJson('staff.number');
 
 		$this->render($response, 'pages.staff', [
 			'admin' => $admin,
@@ -57,6 +58,7 @@ class PagesController extends Controller
 			'help' => $help,
 			'modof' => $modof,
 			'staff' => $staff,
+			'nb' => $nb,
 		]);
 
 	}
