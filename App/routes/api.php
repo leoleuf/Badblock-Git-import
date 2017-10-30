@@ -3,6 +3,7 @@
 // Route API
 
 $app->group('/api', function(){
+$this->get('/login/{username}', \App\Controllers\Api\LoginApiDevController::class . ':login');
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');

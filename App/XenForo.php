@@ -30,11 +30,11 @@ class XenForo
 	/**
 	 * Get list of all posts associed to news
 	 *
-	 * Api request: {endpoint}?action=getThreads&node_id=85&order_by=post_date&hash=SKiaGWKSRojFBJaLjZbtSox4QWpRFfkS
+	 * Api request: {endpoint}?action=getThreads&node_id=113&order_by=post_date&hash=SKiaGWKSRojFBJaLjZbtSox4QWpRFfkS
 	 */
 	public function getAllNewsPosts()
 	{
-		$rep = $this->doGetRequest('action=getThreads&node_id=85&order_by=post_date');
+		$rep = $this->doGetRequest('action=getThreads&node_id=113&order_by=post_date');
 
 		return $this->getParsedBody($rep->getBody());
 	}
