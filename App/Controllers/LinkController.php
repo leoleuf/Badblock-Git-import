@@ -70,7 +70,7 @@ class LinkController extends Controller
                 $this->xenforo->addGroup($username,17);
 
                 $collection = $this->mongo->badblock->dat_users;
-                $newdata = array('$set' => array("website.link" => true,"website.if_forum" => $this->session->get('user')['id']));
+                $newdata = array('$set' => array("website.link" => true,"website.id_forum" => $this->session->get('user')['id']));
                 $data = $collection->updateOne(['realName' => $username],$newdata);
 
                 return $this->render($response, 'user.link.step3', ["width" => 100,"step" => 3]);
