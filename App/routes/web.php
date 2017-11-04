@@ -30,7 +30,9 @@ $app->group('/shop', function (){
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
-$app->get('/dashboard', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->get('/dashboard', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
+$app->get('/link', \App\Controllers\LinkController::class . ':step1')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setName('link-post');
 $app->get('/logout', \App\Controllers\SessionController::class . ':getLogout')->setName('logout')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 
 

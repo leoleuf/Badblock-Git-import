@@ -57,6 +57,22 @@ class XenForo
 		return $this->getParsedBody($rep->getBody());
 	}
 
+
+    public function addGroup($username,$group)
+    {
+
+        try {
+            $rep = $this->doGetRequest('action=editUser&user='. $username .'&add_groups=' . $group);
+
+            return $this->getParsedBody($rep->getBody());
+        } catch (\Exception $exception) {
+            return false;
+
+
+        }
+
+    }
+
 	/**
 	 * @param $username
 	 * @param $password

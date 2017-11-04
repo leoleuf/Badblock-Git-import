@@ -5,14 +5,17 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Class ShopController
+ * @package App\Controllers
+ */
 class ShopController extends Controller
 {
 	public function getHome(ServerRequestInterface $request, ResponseInterface $response)
 	{
-		//get twig of home
-        $serverlist = $this->redis->getJson('shop.listsrv');
 
-        var_dump($serverlist[0]);
+        //get twig of home
+        $serverlist = $this->redis->getJson('shop.listsrv');
 
         $this->render($response, 'shop.home',['serverlist' => $serverlist]);
 
@@ -115,7 +118,6 @@ class ShopController extends Controller
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
 	    //Vérification si le produit éxiste
             if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
-
                 $collection = $this->mongo->badblock->dat_users;
                 $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
                 $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
@@ -133,11 +135,13 @@ class ShopController extends Controller
                                     if ($dataprod["price"] <= $data['shop_points']){
                                         //On retire les sous
                                         $pts = $data['shop_points'] - $dataprod["price"];
-                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
                                         //Real / Item
-                                        //Send alert to the serveur
-                                        $this->ladder->serverBroadcast($dataprod['server_name'],$this->session->getProfile('username')['username']." vient d'acheter ".$dataprod['qty']." ".$dataprod['name']);
-                                        return $response->write("ok")->withStatus(200);
+                                        if ($this->shopItem()){
+                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                            return $response->write("ok")->withStatus(200);
+                                        }else{
+                                            return $response->write("Achat Fail")->withStatus(500);
+                                        }
                                     }else{
                                         return $response->write("Not enought")->withStatus(406);
                                     }
@@ -146,26 +150,29 @@ class ShopController extends Controller
                                     if ($dataprod["price"] <= $data['shop_points']){
                                         //On retire les sous
                                         $pts = $data['shop_points'] - $dataprod["price"];
-                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
                                         //Real / Item
-                                        //Send alert to the serveur
-                                        $this->ladder->playerAddGroup($dataprod['server_name'],$this->session->getProfile('username')['username'],"diamant");
-                                        $this->ladder->serverBroadcast("hub_15","essaie");
-                                        return $response->write("ok")->withStatus(200);
+                                        if ($this->shopGrade()){
+                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                            return $response->write("ok")->withStatus(200);
+                                        }else{
+                                            return $response->write("Achat Fail")->withStatus(500);
+                                        }
                                     }else{
                                         return $response->write("Not enought")->withStatus(406);
                                     }
                                 }else{
+                                    //Achat via commande
                                     //Vérif anti usebug
                                     if ($dataprod["price"] <= $data['shop_points']){
                                         //On retire les sous
                                         $pts = $data['shop_points'] - $dataprod["price"];
-                                        $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
-
-                                        //Virtuel grade / kitc
-                                        //Send alert to the serveur
-                                        $this->ladder->serverBroadcast($dataprod['server_name'],$this->session->getProfile('username')['username']." vient d'acheter le ".$dataprod['name']);
-                                        return $response->write("ok")->withStatus(200);
+                                        //Real / Item
+                                        if ($this->shopCommand()){
+                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                            return $response->write("ok")->withStatus(200);
+                                        }else{
+                                            return $response->write("Achat Fail")->withStatus(500);
+                                        }
                                     }else{
                                         return $response->write("Not enought")->withStatus(406);
                                     }
@@ -185,6 +192,22 @@ class ShopController extends Controller
             }
 
 
+    }
+
+
+    //Achat d'un Item sur un serveur précis
+    private function shopItem($player,$item,$server){
+	    return true;
+    }
+
+    //Achat d'un grade sur un serveur préci ou non
+    private function shopGrade($player,$grade,$server = null){
+        return true;
+    }
+
+    //Achat via une commande sur un serveur préci
+    private function shopCommand($player,$commande,$server){
+        return true;
     }
 
 
