@@ -13,6 +13,7 @@ class LoginApiDevController extends \App\Controllers\Controller
         //user
         $user = $this->xenforo->getUser($args['username']);
 
+        $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
 
         //mise de l'utilisateur en session
         $this->session->set('user', [
