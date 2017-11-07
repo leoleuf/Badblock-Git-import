@@ -60,4 +60,9 @@ class PagesController extends Controller
 		]);
 
 	}
+
+	public function getPodium(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		return $this->render($response, 'stats.podium');
+	}
 }

@@ -18,3 +18,75 @@
     margin-right: 10px;
   }
 }
+
+.podium-cover {
+  margin-top: 2.5em;
+}
+
+.c-table__cell {
+  padding-left: 12px !important;
+}
+.podium-cover {
+  .cover {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+.podium-cover-content {
+  .avatar {
+    margin-right: 1em;
+  }
+  .first {
+    width: 100px;
+    height: 100px;
+  }
+  .second {
+    width: 75px;
+    height: 75px;
+  }
+  .third {
+    width: 50px;
+    height: 50px;
+  }
+}
+.stats-podium-table {
+  .avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 0.6em;
+  }
+  .first {
+    .avatar {
+      width: 40px;
+      height: 40px;
+    }
+    .c-table__cell {
+      padding-left: 0.4em !important;
+    }
+    font-size: 1.5em;
+  }
+  .second {
+    .avatar {
+      width: 35px;
+      height: 35px;
+    }
+    font-size: 1.4em;
+
+    .c-table__cell {
+      padding-left: 0.46em !important;
+    }
+  }
+  .third {
+    .avatar {
+      width: 30px;
+      height: 30px;
+    }
+
+    font-size: 1.2em;
+
+
+    .c-table__cell {
+      padding-left: 0.6em !important;
+    }
+  }
+}

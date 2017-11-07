@@ -19,6 +19,11 @@ class StatsController extends Controller
 		$this->render($response, 'stats.home');
 	}
 
+	public function podium(RequestInterface $request, ResponseInterface $response)
+	{
+		$this->render($response, 'stats.podium');
+	}
+
     public function game(RequestInterface $request, ResponseInterface $response, $game, $page = NULL)
 	{
         // Noms des jeux & affichage
