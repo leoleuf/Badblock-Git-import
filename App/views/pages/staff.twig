@@ -1,14 +1,14 @@
 {% extends "default.twig" %}
 {% set show_title = true %}
 {% set title = "Staff" %}
-{% set sub_title = "Liste du staff" %}
+{% set sub_title = "Liste du staff (#{ nb } membres)" %}
 {% block content %}
     <!-- Main content -->
     <div class="staff ">
         <div class="row">
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Administrateurs</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ admin|length }} - Administrations</span></h4>
                     <ul class="players-list">
                         {% for key in admin %}
                             <li>
@@ -25,7 +25,7 @@
             </div>
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Développeurs</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ dev|length }} - Développement</span></h4>
                     <ul class="players-list">
                         {% for key in dev %}
                             <li>
@@ -47,13 +47,12 @@
         <div class="row">
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Responsables</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ resp|length }} - Responsables</span></h4>
                     <ul class="players-list">
                         {% for key in resp %}
                             <li>
                                 <img src="https://api.badblock.fr/public/badblock-heads/?name={{ key[0] }}"
                                      class="players-list-avatar">
-
                                 <div class="players-list-info">
                                     <span class="players-list-username">{{ key[0] }}</span>
                                     <span class="players-list-summary">{{ key[1] }}</span>
@@ -65,7 +64,7 @@
             </div>
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Superviseurs</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ sup|length }} - Supervision</span></h4>
                     <ul class="players-list">
                         {% for key in sup %}
                             <li>
@@ -85,7 +84,7 @@
         <div class="row">
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Modérateurs</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ modo|length }} - Modération</span></h4>
                     <ul class="players-list">
                         {% for key in modo %}
                             <li>
@@ -103,7 +102,7 @@
             </div>
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Helpers</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ help|length }} - Helpers</span></h4>
                     <ul class="players-list">
                         {% for key in help %}
                             <li>
@@ -123,7 +122,7 @@
         <div class="row">
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Modérateurs forum</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ modof|length }} -  Modération forum</span></h4>
                     <ul class="players-list">
                         {% for key in modof %}
                             <li>
@@ -141,7 +140,7 @@
             </div>
             <div class="six columns">
                 <section>
-                    <h4 class="heading heading-bar"><span>Staff</span></h4>
+                    <h4 class="heading heading-bar"><span>{{ staff|length }} - Staff</span></h4>
                     <ul class="players-list">
                         {% for key in staff %}
                             <li>

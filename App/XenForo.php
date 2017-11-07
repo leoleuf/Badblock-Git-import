@@ -30,11 +30,11 @@ class XenForo
 	/**
 	 * Get list of all posts associed to news
 	 *
-	 * Api request: {endpoint}?action=getThreads&node_id=85&order_by=post_date&hash=SKiaGWKSRojFBJaLjZbtSox4QWpRFfkS
+	 * Api request: {endpoint}?action=getThreads&node_id=113&order_by=post_date&hash=SKiaGWKSRojFBJaLjZbtSox4QWpRFfkS
 	 */
 	public function getAllNewsPosts()
 	{
-		$rep = $this->doGetRequest('action=getThreads&node_id=85&order_by=post_date');
+		$rep = $this->doGetRequest('action=getThreads&node_id=113&order_by=post_date');
 
 		return $this->getParsedBody($rep->getBody());
 	}
@@ -57,6 +57,22 @@ class XenForo
 		return $this->getParsedBody($rep->getBody());
 	}
 
+
+    public function addGroup($username,$group)
+    {
+
+        try {
+            $rep = $this->doGetRequest('action=editUser&user='. $username .'&add_groups=' . $group);
+
+            return $this->getParsedBody($rep->getBody());
+        } catch (\Exception $exception) {
+            return false;
+
+
+        }
+
+    }
+
 	/**
 	 * @param $username
 	 * @param $password
@@ -65,15 +81,12 @@ class XenForo
 	 */
 	public function getLogin($username, $password, $ip)
 	{
-		try {
-//			dd('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
+        try {
 			$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
 
 			return $this->getParsedBody($rep->getBody());
 		} catch (\Exception $exception) {
              return false;
-
-
 		}
 	}
 }

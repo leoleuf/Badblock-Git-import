@@ -13,7 +13,7 @@ class StaffApiController extends \App\Controllers\Controller
 	public function getCreateCacheAllStaff(RequestInterface $request, ResponseInterface $response)
 	{
 
-        $data = $this->mysql->fetchRowMany('SELECT username,custom_title,user_group_id FROM xf_user WHERE is_staff = 1 ORDER by user_group_id');
+        $data = $this->mysql->fetchRowMany('SELECT username,custom_title,user_group_id FROM xf_user WHERE is_staff = 1 ORDER by username');
 
 		$admin = [];
 		$dev = [];
@@ -62,6 +62,7 @@ class StaffApiController extends \App\Controllers\Controller
 		$this->redis->setJson('staff.helper', $helper);
 		$this->redis->setJson('staff.modof', $modof);
 		$this->redis->setJson('staff.staff', $staff);
+		$this->redis->setJson('staff.number', count($data));
 
         return $response->write('Success writing staff cache')->withStatus(200);
 

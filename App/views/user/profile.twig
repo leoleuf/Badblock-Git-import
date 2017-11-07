@@ -43,7 +43,7 @@
 
     {% if user.punish.ban == true %}
         <div class="alert alert-warning" role="alert">
-            Cette personne est baillonné pour {{ user.punish.banReason }} jusqu'au {{ timestampToTime(user.punish.banEnd) }}
+            Cette personne est bannis pour {{ user.punish.banReason }} jusqu'au {{ timestampToTime(user.punish.banEnd) }}
         </div>
     {% endif %}
     <div class="profile-stats">

@@ -33,6 +33,9 @@ class SessionController extends Controller
 					$cookie = new SetCookie($rep['cookie_name'], $rep['cookie_id'], $rep['cookie_expiration'], $rep['cookie_path'], $rep['cookie_domain'], $rep['cookie_secure']);
 					$response = $cookie->addToResponse($response);
 
+					//String to array for secondary group
+                    $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
+
 					//mise de l'utilisateur en session
 					$this->session->set('user', [
 						'id' => $user['user_id'],

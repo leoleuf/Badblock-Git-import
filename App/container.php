@@ -40,9 +40,7 @@ $container['log'] = function ($container) {
 
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
 
-	if ($container->config['log']['discord']) {
-		$log->pushHandler(new App\MonologDiscordHandler($container->guzzle, $container->config['log']['discord_webhooks'], $container->config['log']['level']));
-	}
+    $log->pushHandler(new App\MonologDiscordHandler($container->config['log']['discord_webhooks'], $container->config['log']['level']));
 
 	return $log;
 };
@@ -127,13 +125,7 @@ $container['mysql'] = function ($container) {
 
 $container['mongo'] = function ($container) {
 	return new \MongoDB\Client(
-		'mongodb://127.0.0.1/',
-		[
-			'username' => $container->config['mongo_db']['user'],     // user
-			'password' => $container->config['mongo_db']['password'],      // password
-			'database' => $container->config['mongo_db']['database'],      // database
-			'authSource' => $container->config['mongo_db']['authSource']   // authsource
-		]
+		'mongodb://'.$container->config['mongo_db']['user'].":".$container->config['mongo_db']['password']."@".$container->config['mongo_db']['host'].":".$container->config['mongo_db']['port']	."/".$container->config['mongo_db']['database']
 	);
 };
 

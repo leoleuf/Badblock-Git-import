@@ -1,0 +1,19 @@
+{% extends 'macros/link.twig' %}
+{% block link_content %}
+    <h5>Pour linker votre compter veuillez vous connecter sur le serveur avec votre pseudo forum exact : {{ user.username }}</h5>
+    <br>
+    <br>
+    <form method="post" action="/link" class="recharge-chose-custom">
+        <input type="hidden" name="step" value="1">
+        <div class="c-input-group">
+            <button class="button button-danger" type="submit">Valider</button>
+        </div>
+    </form>
+
+    <div class="shop-summary">
+        <div class="shop-summary-icon">
+            <i class="icon-info-sign icon"></i> Si vous ne possedez pas le même pseudo sur le Forum et en jeux, veuillez ouvrir un ticket support et demander un changement de pseudo forum.
+        </div>
+    </div>
+{% endblock %}
+

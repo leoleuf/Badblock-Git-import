@@ -7,7 +7,6 @@ use Monolog\Handler\AbstractProcessingHandler;
 class MonologDiscordHandler extends AbstractProcessingHandler
 {
 	private $initialized = false;
-	private $guzzle;
 	private $webhooks;
 	private $statement;
 
@@ -18,11 +17,12 @@ class MonologDiscordHandler extends AbstractProcessingHandler
 	 * @param int $level
 	 * @param bool $bubble
 	 */
-	public function __construct(\GuzzleHttp\Client $guzzle, $webhooks, $level = Logger::DEBUG, $bubble = true)
+	public function __construct($webhooks, $level = Logger::DEBUG, $bubble = true)
 	{
-		$this->guzzle = $guzzle;
 		$this->webhooks = $webhooks;
 		parent::__construct($level, $bubble);
+
+		$this->write($webhooks);
 	}
 
 	/**
@@ -30,16 +30,21 @@ class MonologDiscordHandler extends AbstractProcessingHandler
 	 */
 	protected function write(array $record)
 	{
-		$content = '[' . $record['datetime']->format('Y-m-d H:i:s') . '] ' . getenv('APP_NAME') . '.' . getenv('APP_ENV_NAME') . '.' . $record['level_name'] . ': ' . $record['message'];
+//
+        $data = array("username" => "Logger Site","embeds" => array(0 => array(
+            "url" => "https://dev-web.badblock.fr",
+            "title" => "[Info] Logs Site",
+            "description" => "",
+            "color" => 1
+		)));
 
-		$i = 0;
-		while ($i < count($this->webhooks)){
-			$req = $this->guzzle->request('POST', $this->webhooks[$i], [
-				'form_params' => [
-					'content' => $content
-				]
-			]);
-			$i++;
-		}
-	}
+        $curl = curl_init("https://discordapp.com/api/webhooks/373808432324542464/g_ZJQXYA0yPj7LyHebSQZA14eAbLxB7w8idL50weFHX-rSGpdI-cu-fiu0gbHl9BIa8F");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+
+
+
+    }
 }
