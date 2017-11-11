@@ -574,26 +574,33 @@ public abstract class MinecraftServer implements Runnable, ICommandListener, IAs
 				// PaperSpigot start - Further improve tick loop
 				Arrays.fill( recentTps, 20 );
 				//long lastTick = System.nanoTime(), catchupTime = 0, curTime, wait, tickSection = lastTick;
-				long start = System.nanoTime(), lastTick = start - TICK_TIME, catchupTime = 0, curTime, wait, tickSection = start;
+				/*long start = System.nanoTime(), lastTick = start - TICK_TIME, catchupTime = 0, curTime, wait, tickSection = start;
 				// PaperSpigot end
 				while (this.isRunning) {
 					curTime = System.nanoTime();
-					// PaperSpigot start - Further improve tick loop
+					// PaperSpigot start - Further improve tick loo
+					System.out.println("SET WAIT: " + TICK_TIME + " | " + curTime + " | " + lastTick);
 					wait = TICK_TIME - (curTime - lastTick);
 					if (wait > 0) {
+						System.out.println("> catchupTime : " + catchupTime);
 						if (catchupTime < 2E6) {
 							wait += Math.abs(catchupTime);
-						}
-						if (wait < catchupTime) {
+						}else if (wait < catchupTime) {
 							catchupTime -= wait;
 							wait = 0;
-						} else if (catchupTime > 2E6) {
+						} else {
 							wait -= catchupTime;
-							catchupTime -= catchupTime;
+							catchupTime = 0;
 						}
 					}
+					System.out.println("Wait time: " + (wait  / 1000000) + "/" + System.currentTimeMillis());
+					System.out.println("--------");
 					if (wait > 0) {
 						Thread.sleep(wait / 1000000);
+						wait = TICK_TIME - (curTime - lastTick);
+					}
+					else {
+						curTime = System.nanoTime();
 						wait = TICK_TIME - (curTime - lastTick);
 					}
 
@@ -615,6 +622,46 @@ public abstract class MinecraftServer implements Runnable, ICommandListener, IAs
 					}
 					lastTick = curTime;
 
+					this.A();
+					this.Q = true;*/
+				final long start = System.nanoTime();
+				long lastTick = start - 50000000L;
+				long catchupTime = 0L;
+				long tickSection = start;
+				while (this.isRunning) {
+					long curTime = System.nanoTime();
+					long wait = 50000000L - (curTime - lastTick);
+					if (wait > 0L) {
+						if (catchupTime < 2000000.0) {
+							wait += Math.abs(catchupTime);
+						}
+						else if (wait < catchupTime) {
+							catchupTime -= wait;
+							wait = 0L;
+						}
+						else {
+							wait -= catchupTime;
+							catchupTime = 0L;
+						}
+					}
+					if (wait > 0L) {
+						Thread.sleep(wait / 1000000L);
+						curTime = System.nanoTime();
+						wait = 50000000L - (curTime - lastTick);
+					}
+					catchupTime = Math.min(60000000000L, catchupTime - wait);
+					if (++MinecraftServer.currentTick % 20 == 0) {
+						final long diff = curTime - tickSection;
+						final double currentTps = 1.0E9 / diff * 20.0;
+						this.tps1.add(currentTps, diff);
+						this.tps5.add(currentTps, diff);
+						this.tps15.add(currentTps, diff);
+						this.recentTps[0] = this.tps1.getAverage();
+						this.recentTps[1] = this.tps5.getAverage();
+						this.recentTps[2] = this.tps15.getAverage();
+						tickSection = curTime;
+					}
+					lastTick = curTime;
 					this.A();
 					this.Q = true;
 				}
