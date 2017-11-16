@@ -1,0 +1,49 @@
+{% extends 'default.twig' %}
+{% set show_title = true %}
+{% set title = "Podium" %}
+{% set sub_title = "Podium" %}
+{% block cover %}
+<div class="cover-back podium-cover">
+        <div class="cover">
+            <div class="container">
+                <div class="podium-cover-content">
+                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[0]['playerName'] }}" class="avatar first">
+                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[1]['playerName'] }}" class="avatar second">
+                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[2]['playerName'] }}" class="avatar third">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+{#
+On liste les différantes place en grossisant au fur et à mesure
+#}
+<table class="c-table stats-podium-table">
+  <thead class="c-table__head">
+    <tr class="c-table__row c-table__row--heading">
+      <th class="c-table__cell">Place</th>
+      <th class="c-table__cell">Username</th>
+      <th class="c-table__cell">Kills</th>
+      <th class="c-table__cell">Morts</th>
+      <th class="c-table__cell">Points</th>
+      <th class="c-table__cell">Parties Gagnées</th>
+      <th class="c-table__cell">Parties Perdues</th>
+    </tr>
+  </thead>
+  <tbody class="c-table__body">
+    {% for data,key in data %}
+    <tr class="c-table__row">
+      <td class="c-table__cell">#{{ data  }}</td>
+      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name={{ key['playerName'] }}" class="avatar"> {{ key['playerName'] }}</td>
+        <td class="c-table__cell">{{  key['kills'] }}</td>
+        <td class="c-table__cell">{{  key['deaths'] }}</td>
+        <td class="c-table__cell">{{  key['marks'] }}</td>
+        <td class="c-table__cell">{{  key['wins'] }}</td>
+        <td class="c-table__cell">{{  key['looses'] }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+
+</table>
+{% endblock %}
