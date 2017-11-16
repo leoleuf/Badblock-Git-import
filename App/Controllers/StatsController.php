@@ -79,7 +79,7 @@ class StatsController extends Controller
                 $datatop = array_slice($data,0,3,true);
                 $data = array_slice($data,3,18,true);
                 //Affichage de la page
-                $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop]);
+                $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game]);
             //page avec page > 1
             }else{
                 $nb1 = $page * 2 * 10-2;
@@ -90,7 +90,7 @@ class StatsController extends Controller
                 $data = array_slice($data,$nb2,20,true);
                 var_dump($data);
                 //Affichage de la page
-                $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2]);
+                $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2,'name' => "Statistiques ".$game]);
             }
 
         }

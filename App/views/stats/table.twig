@@ -1,15 +1,15 @@
 {% extends 'default.twig' %}
 {% set show_title = true %}
-{% set title = "Podium" %}
-{% set sub_title = "Podium" %}
+{% set active_page = "stats" %}
+{% set title = name %}
 {% block cover %}
 <div class="cover-back podium-cover">
         <div class="cover">
             <div class="container">
                 <div class="podium-cover-content">
-                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[0]['playerName'] }}" class="avatar first">
-                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[1]['playerName'] }}" class="avatar second">
-                    <img src="https://classement.badblock.fr/face.php?name={{ datatop[2]['playerName'] }}" class="avatar third">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar first">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar second">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar third">
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@ On liste les différantes place en grossisant au fur et à mesure
   <tbody class="c-table__body">
     <tr class="c-table__row first">
       <td class="c-table__cell">#1</td>
-      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name={{ datatop[0]['playerName'] }}" class="avatar">{{ datatop[0]['playerName'] }}</td><!-- Je suis le meilleur! -->
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar">{{ datatop[0]['playerName'] }}</td><!-- Je suis le meilleur! -->
       <td class="c-table__cell">{{  datatop[0]['kills'] }}</td>
       <td class="c-table__cell">{{  datatop[0]['deaths'] }}</td>
       <td class="c-table__cell">{{  datatop[0]['marks'] }}</td>
@@ -43,7 +43,7 @@ On liste les différantes place en grossisant au fur et à mesure
     </tr>
     <tr class="c-table__row second">
       <td class="c-table__cell">#2</td>
-      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name={{ datatop[1]['playerName'] }}" class="avatar"> {{ datatop[1]['playerName'] }}</td> <!-- t'est une merde -->
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar"> {{ datatop[1]['playerName'] }}</td> <!-- t'est une merde -->
         <td class="c-table__cell">{{  datatop[1]['kills'] }}</td>
         <td class="c-table__cell">{{  datatop[1]['deaths'] }}</td>
         <td class="c-table__cell">{{  datatop[1]['marks'] }}</td>
@@ -52,7 +52,7 @@ On liste les différantes place en grossisant au fur et à mesure
     </tr>
     <tr class="c-table__row third">
       <td class="c-table__cell">#3</td>
-      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name={{ datatop[2]['playerName'] }}" class="avatar"> {{ datatop[2]['playerName'] }}</td>
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar"> {{ datatop[2]['playerName'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['kills'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['deaths'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['marks'] }}</td>
@@ -62,7 +62,7 @@ On liste les différantes place en grossisant au fur et à mesure
     {% for data,key in data %}
     <tr class="c-table__row">
       <td class="c-table__cell">#{{ data }}</td>
-      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name={{ key['playerName'] }}" class="avatar"> {{ key['playerName'] }}</td>
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ key['playerName'] }}/192.png" class="avatar"> {{ key['playerName'] }}</td>
         <td class="c-table__cell">{{  key['kills'] }}</td>
         <td class="c-table__cell">{{  key['deaths'] }}</td>
         <td class="c-table__cell">{{  key['marks'] }}</td>
