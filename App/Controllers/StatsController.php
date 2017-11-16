@@ -49,7 +49,7 @@ class StatsController extends Controller
 
         //pas de page renseigner
 		if (!isset($game["page"])) {
-			$page = 1;
+			$page = "1";
 		}else{
             $page = $game["page"];
         }
