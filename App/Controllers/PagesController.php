@@ -36,6 +36,21 @@ class PagesController extends Controller
 		$this->render($response, 'pages.play');
 	}
 
+
+    public function shuffle_assoc($array) {
+        $keys = array_keys($array);
+
+        shuffle($keys);
+
+        foreach($keys as $key) {
+            $new[$key] = $array[$key];
+        }
+
+        $array = $new;
+
+        return $new;
+    }
+
 	public function getStaff(RequestInterface $request, ResponseInterface $response)
 	{
 		//récupération du cache
@@ -50,14 +65,14 @@ class PagesController extends Controller
 		$nb = $this->redis->getJson('staff.number');
 
 		$this->render($response, 'pages.staff', [
-			'admin' => $admin,
-			'resp' => $resp,
-			'dev' => $dev,
-			'sup' => $sup,
-			'modo' => $modo,
-			'help' => $help,
-			'modof' => $modof,
-			'staff' => $staff,
+			'admin' => PagesController::shuffle_assoc($admin),
+			'resp' => PagesController::shuffle_assoc($resp),
+			'dev' => PagesController::shuffle_assoc($dev),
+			'sup' => PagesController::shuffle_assoc($sup),
+			'modo' => PagesController::shuffle_assoc($modo),
+			'help' => PagesController::shuffle_assoc($help),
+			'modof' => PagesController::shuffle_assoc($modof),
+			'staff' => PagesController::shuffle_assoc($staff),
 			'nb' => $nb,
 		]);
 
@@ -67,4 +82,8 @@ class PagesController extends Controller
 	{
 		return $this->render($response, 'stats.podium');
 	}
+
+
+
+
 }
