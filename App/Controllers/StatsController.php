@@ -47,6 +47,21 @@ class StatsController extends Controller
             'PearlsWars' => 'PearlsWars'
         );
 
+        $months = array(
+            'janvier',
+            'février',
+            'mars',
+            'avril',
+            'mai',
+            'juin',
+            'juillet',
+            'août',
+            'septembre',
+            'octobre',
+            'novembre',
+            'décembre'
+        );
+
         //pas de page renseigner
 		if (!isset($game["page"])) {
 			$page = "1";
@@ -54,14 +69,30 @@ class StatsController extends Controller
             $page = $game["page"];
         }
 
-        //Vérification si le jeux écist
-        if (isset($list[$game["game"]])) {
-            //Régulation vers fonction
-            $this->lecture($game["game"],$page,$response);
-        }else {
-			//Erreur 404
-			return $response->withStatus(404);
-		}
+        if ($game["date"] === "all"){
+            //Vérification si le jeux écist
+            if (isset($list[$game["game"]])) {
+                //Régulation vers fonction
+                $this->lecture($game["game"],$page,$response);
+            }else {
+                //Erreur 404
+                return $response->withStatus(404);
+            }
+        }else{
+            $data = explode("_", $game["date"]);
+            if (in_array(strtolower($data[0]), $months)){
+                    //check if stat are invalid
+                    $sql = $this->mysql->fetchrow("SELECT count(*) FROM information_schema.TABLES WHERE (TABLE_NAME = '". $game['game'] ."_". strtolower($game['date']) ."')");
+                    if($sql["count(*)"] > 0){
+                        //ok
+                        $this->lecture($game["game"].strtolower($game['date']),$page,$response);
+                    }else{
+                        //Erreur 404
+                        return $response->withStatus(404);
+                    }
+                }
+
+            }
 	}
 
 

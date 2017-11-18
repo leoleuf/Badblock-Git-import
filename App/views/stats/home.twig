@@ -1,7 +1,30 @@
 {% extends "default.twig" %}
 {% set active_page = "stats" %}
+{% set show_title = false %}
 {% set title = "Statisques" %}
 {% set sub_title = "Linker votre compte pour accèder a toutes les fonctionnalités du site !" %}
+{% block cover %}
+    <!-- Recharger -->
+    <div class="recharge-back">
+        <div class="recharge-container">
+            <div class="recharge-content">
+                <div class="container recharge-flex">
+                    <div class="recharge-info">
+                        <h1>dd</h1>
+                    </div>
+                    <div class="recharge-button">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control ui-input" placeholder="Nom du joueur">
+                        </div>
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Rechercher</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin recharger -->
+{% endblock %}
 {% block content %}
     <!-- Main content -->
     <div class="twelve columns">

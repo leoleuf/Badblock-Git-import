@@ -18,33 +18,22 @@ class StatsApiController extends \App\Controllers\Controller
     public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
 
-        // Noms des jeux & affichage
-        $list_game = array(
-            'towerrun' => 'TowerRun',
-            'tower' => 'Tower',
-            'rush' => 'Rush',
-            'survivalgames' => 'SurvivalGames',
-            'uhcspeed' => 'UHCSpeed',
-            'capturethesheep' => 'CaptureTheSheep',
-            'buildcontest' => 'BuildContest',
-            'spaceballs' => 'SpaceBalls',
-            'pearlswar' => 'PearlsWar'
-        );
-
-        //Lecture du classement ALL
-        foreach ($list_game as $game)
+        //Lecture du classement
+        $query = "SELECT * FROM information_schema.TABLES WHERE (TABLE_SCHEMA = 'rankeds')";
+        foreach ($this->mysql->fetchRowManyCursor($query) as $game)
         {
-            $name = $game;
+            $name = $game["TABLE_NAME"];
             $game = [];
-            $query = 'SELECT * FROM ' . $name. '_all' . ' ORDER by _points DESC';
+            $query = 'SELECT * FROM '. $name .' ORDER by _points DESC';
             foreach ($this->mysql->fetchRowManyCursor($query) as $result)
             {
-                var_dump($result);
                 array_push($game,$result);
             }
             //Save Redis
             $this->redis->setJson("stats:".$name,$game);
         }
+
+
 
         return $response->write('Success writing stats cache')->withStatus(200);
 
