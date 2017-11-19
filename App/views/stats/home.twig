@@ -30,9 +30,55 @@
             </div>
         </div>
         <div class="seven columns item">
-            <div class="stats-panel-chart">
-                chart loading...
+            <div class="stats-panel-chart" id="chart1-container" style="
+            min-width: 310px;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto">
+
             </div>
         </div>
     </div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+        Highcharts.chart('chart1-container', {
+
+            title: {
+                text: 'List of players'
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Players'
+                }
+            },
+            legend: false,
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+
+            series: [{
+                name: "Nombre de joueurs",
+                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                }]
+            }
+
+        });
+    </script>
 {% endblock %}
