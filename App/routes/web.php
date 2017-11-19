@@ -15,8 +15,8 @@ $app->group('/stats', function (){
 	$this->get('', \App\Controllers\StatsController::class . ':home')->setName('stats.home');
 	$this->get('/games', \App\Controllers\StatsController::class . ':games')->setName('stats.games');
 	$this->get('/podium', \App\Controllers\StatsController::class . ':podium')->setName('podium');
-	$this->get('/{game}', \App\Controllers\StatsController::class . ':game')->setName('stats-game-np');
-	$this->get('/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');
+	$this->get('/{date}/{game}/', \App\Controllers\StatsController::class . ':game')->setName('stats-sp');
+	$this->get('/{date}/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');
 });
 
 $app->group('/shop', function (){
