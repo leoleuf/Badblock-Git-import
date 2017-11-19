@@ -3,10 +3,6 @@ package fr.badblock.bungeecord.plugins.others.commands;
 import java.io.File;
 import java.io.IOException;
 
-import com.mrpowergamerbr.temmiewebhook.DiscordEmbed;
-import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
-import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
-
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.modules.BadInsultModule;
 import net.md_5.bungee.api.CommandSender;

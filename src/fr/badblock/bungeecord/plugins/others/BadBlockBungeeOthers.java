@@ -109,7 +109,7 @@ import net.sf.json.JSONObject;
 	private RedisService								redisConnector;
 	private boolean										finished;
 	private long										openTime;
-	private long										time = 3600 * 8;
+	private long										time = 3600 * 16;
 	private long										maxPlayers = 1;
 	private int											marginDelete;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();

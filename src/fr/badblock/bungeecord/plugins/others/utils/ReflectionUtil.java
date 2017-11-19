@@ -20,12 +20,13 @@ public class ReflectionUtil
     c.setAccessible(true);
     return c;
   }
-  
+
+  @SuppressWarnings("rawtypes")
   public static Enum<?> getEnum(Class<?> clazz, String constant)
     throws Exception
   {
     Class<?> c = Class.forName(clazz.getName());
-    Enum[] econstants = (Enum[])c.getEnumConstants();
+	Enum[] econstants = (Enum[])c.getEnumConstants();
     Enum[] arrayOfEnum1;
     int j = (arrayOfEnum1 = econstants).length;
     for (int i = 0; i < j; i++)
@@ -37,7 +38,8 @@ public class ReflectionUtil
     }
     throw new Exception("Enum constant not found " + constant);
   }
-  
+
+  @SuppressWarnings("rawtypes")
   public static Enum<?> getEnum(Class<?> clazz, String enumname, String constant)
     throws Exception
   {
