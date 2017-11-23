@@ -90,9 +90,6 @@ public final class UserConnection implements ProxiedPlayer
 	/*========================================================================*/
 	@Getter
 	@Setter
-	private int sentPingId;
-	@Getter
-	@Setter
 	private long sentPingTime;
 	@Getter
 	@Setter
@@ -139,6 +136,12 @@ public final class UserConnection implements ProxiedPlayer
 	@Getter
 	@Setter
 	private ForgeServerHandler forgeServerHandler;
+	@Getter
+	@Setter
+	private String			   lastServerName;
+	@Getter
+	@Setter
+	private boolean			   logged;
 	/*========================================================================*/
 	private final Unsafe unsafe = new Unsafe()
 	{
@@ -211,7 +214,7 @@ public final class UserConnection implements ProxiedPlayer
 	@Override
 	public void connect(ServerInfo target, Callback<Boolean> callback)
 	{
-		connect( target, callback, false );
+		connect( target, callback, false, true );
 	}
 
 	public void connectNow(ServerInfo target)
@@ -241,7 +244,7 @@ public final class UserConnection implements ProxiedPlayer
 		return next;
 	}
 
-	public void connect(ServerInfo info, final Callback<Boolean> callback, final boolean retry)
+	public void connect(ServerInfo info, final Callback<Boolean> callback, final boolean retry, boolean message)
 	{
 		Preconditions.checkNotNull( info, "info" );
 
@@ -303,25 +306,32 @@ public final class UserConnection implements ProxiedPlayer
 
 				if ( !future.isSuccess() )
 				{
+					if (target != null) lastServerName = target.getName();
 					future.channel().close();
 					pendingConnects.remove( target );
 
 					ServerInfo def = updateAndGetNextServer( target );
 					if ( retry && def != null && ( getServer() == null || def != getServer().getInfo() ) )
 					{
-						sendMessage( bungee.getTranslation( "fallback_lobby" ) );
 						ServerInfo fallback = BungeeCord.getInstance().getServerInfo("fallback");
-						connect(fallback != null && ((target != null && target.getName().equalsIgnoreCase("fallback")) || target == null) ? fallback : def, null, true );
+						connect(fallback != null && ((target != null && target.getName().equalsIgnoreCase("fallback")) || target == null) ? fallback : def, null, true, true);
 					} else if ( dimensionChange )
 					{
 						ServerInfo fallback = BungeeCord.getInstance().getServerInfo("fallback");
 						if (fallback != null && ((target != null && target.getName().equalsIgnoreCase("fallback")) || target == null) )
-							connect(fallback != null ? fallback : def, null, true );
-						else
+							connect(fallback != null ? fallback : def, null, true, true);
+						else if (!message)
 							disconnect( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
-					} else
+					} else if (!message)
 					{
 						sendMessage( "§cImpossible de se connecter au serveur demandé : " + future.cause().getClass().getName() );
+					}
+				}
+				else
+				{
+					if (target.getName().equals("fallback"))
+					{
+						lastServerName = target.getName();
 					}
 				}
 			}

@@ -1,14 +1,16 @@
 package net.md_5.bungee.protocol;
 
+import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.List;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Iterables;
+
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.TObjectIntMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import gnu.trove.map.hash.TObjectIntHashMap;
-import java.lang.reflect.Constructor;
-import java.util.Arrays;
-import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import net.md_5.bungee.protocol.packet.BossBar;
@@ -338,6 +340,9 @@ public enum Protocol
             ) );
             linkedProtocols.put( ProtocolConstants.MINECRAFT_1_12, Arrays.asList(
                     ProtocolConstants.MINECRAFT_1_12_1
+            ) );
+               linkedProtocols.put( ProtocolConstants.MINECRAFT_1_12_1, Arrays.asList(
+                    ProtocolConstants.MINECRAFT_1_12_2
             ) );
         }
 

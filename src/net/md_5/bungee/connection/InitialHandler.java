@@ -600,7 +600,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 								server = bungee.getServerInfo("lobby");
 							}
 
-							userCon.connect( server, null, true );
+							userCon.connect( server, null, true, true );
 
 							thisState = State.FINISHED;
 						}

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -167,7 +168,7 @@ public class BungeeCord extends ProxyServer
 	//private final ModuleManager moduleManager = new ModuleManager();
 	@Getter@Setter
 	private int currentCount;
-
+	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
 	{
 		// TODO: Proper fallback when we interface the manager
