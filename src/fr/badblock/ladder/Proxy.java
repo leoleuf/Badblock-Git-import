@@ -83,12 +83,15 @@ import fr.badblock.rabbitconnector.RabbitListenerType;
 import fr.badblock.rabbitconnector.RabbitPacketType;
 import fr.badblock.rabbitconnector.RabbitService;
 import fr.badblock.utils.Encodage;
+import fr.toenga.common.tech.mongodb.MongoConnector;
+import fr.toenga.common.tech.mongodb.MongoService;
+import fr.toenga.common.tech.mongodb.setting.MongoSettings;
 import jline.console.ConsoleReader;
 import lombok.Getter;
 import lombok.Setter;
 
 public class Proxy extends Ladder {
-	
+
 	@Getter protected static Proxy instance;
 
 	public static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
@@ -103,6 +106,7 @@ public class Proxy extends Ladder {
 
 	public final static File PERMISSIONS_FILE     = new File("permissions.json");
 	public final static File MOTD_FILE		      = new File("motd.json");
+	public final static File MONGO_FILE		      = new File("mongo.json");
 	public final static File SERVERS_BUNGEE_FILE  = new File("bungeecords.yml");
 	public final static File CONFIG_FILE	      = new File("ladder.yml");
 
@@ -125,6 +129,13 @@ public class Proxy extends Ladder {
 
 	@Getter@Setter
 	private transient RabbitService  	rabbitServiced;
+
+	@Getter@Setter
+	private MongoSettings			    mongo;
+	
+	@Getter@Setter
+	private MongoService				mongoService;
+
 
 	public Proxy(ConsoleReader reader) throws IOException {
 		super(LADDER_VERSION, 
@@ -199,7 +210,7 @@ public class Proxy extends Ladder {
 	public int getLadderOnlineCount() {
 		return this.getOnlinePlayers().size();
 	}
-	
+
 	@Override
 	public OfflinePlayer getOfflinePlayer(String name) {
 		OfflinePlayer result = getPlayer(name);
@@ -209,7 +220,7 @@ public class Proxy extends Ladder {
 
 		return result;
 	}
-	
+
 	@Override
 	public void stopLadder(){
 		logger.log(Level.INFO, "Closing Ladder ....");
@@ -219,7 +230,7 @@ public class Proxy extends Ladder {
 		logger.log(Level.INFO, "Not listening anymore ... saving players");
 
 		DataSavers.allow = false;
-		
+
 		while(!DataSavers.toSave.isEmpty()){
 			try {
 				Thread.sleep(50L);
@@ -227,7 +238,7 @@ public class Proxy extends Ladder {
 				e.printStackTrace();
 			}
 		}
-		
+
 		for(Player player : getOnlinePlayers()){
 			((LadderDataHandler) player).saveSync(player.getData(), false);
 			((LadderDataHandler) player.getIpData()).saveSync(player.getData(), false);
@@ -368,6 +379,27 @@ public class Proxy extends Ladder {
 		for(Bukkit bukkit : getBukkitServers()){
 			bukkit.sendPermissions();
 		}
+	}
+
+	public void loadMongo()
+	{
+		MongoSettings mongoSettings = new MongoSettings();
+		if (MONGO_FILE.exists())
+		{
+			mongo = FileUtils.load(MONGO_FILE, MongoSettings.class);
+			if(mongo == null)
+			{
+				mongo = mongoSettings;
+			}
+		}
+		else
+		{
+			mongo = mongoSettings;
+		}
+
+		FileUtils.save(MONGO_FILE, mongo, true);
+
+		mongoService = MongoConnector.getInstance().registerService(new MongoService("default", mongo));
 	}
 
 	public void loadMotd(boolean send){

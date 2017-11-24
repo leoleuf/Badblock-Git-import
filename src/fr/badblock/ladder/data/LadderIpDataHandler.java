@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.api.entities.PlayerIp;
@@ -28,7 +27,7 @@ public class LadderIpDataHandler extends LadderDataHandler implements PlayerIp {
 	private List<UUID>				  players;
 	
 	public LadderIpDataHandler(InetAddress address) {
-		super(Proxy.IPS_FOLDER, address.getHostAddress());
+		super ("ips", address.getHostAddress());
 
 		this.address   = address;
 		this.punished  = Punished.fromJson(getData());

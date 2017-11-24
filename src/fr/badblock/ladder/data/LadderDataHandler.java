@@ -1,28 +1,40 @@
 package fr.badblock.ladder.data;
 
-import java.io.File;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 
+import fr.badblock.ladder.Proxy;
 import fr.badblock.ladder.api.data.DataHandler;
-import fr.badblock.ladder.api.utils.FileUtils;
+import fr.toenga.common.tech.mongodb.MongoService;
+import fr.toenga.common.utils.general.GsonUtils;
 import lombok.Getter;
 
 
 public abstract class LadderDataHandler implements DataHandler {
 	@Getter	private final String  key;
-	private final File    file;
-	private JsonObject    data;
+	@Getter	private final String  table;
+	private final String	player;
+	//private final File    file;
+	private JsonObject    	data;
 	protected boolean		loaded;
 	AtomicBoolean saving  = new AtomicBoolean(false);
 	AtomicBoolean reading = new AtomicBoolean(false);
 
-	public LadderDataHandler(File folder, String key){
+	public LadderDataHandler(String table, String key)
+	{
+		this.table = table;
 		this.key = key;
-		this.file = new File(folder, key.toLowerCase() + ".dat");
+		this.player = key.toLowerCase();
 		reloadData();
 	}
 
@@ -37,10 +49,10 @@ public abstract class LadderDataHandler implements DataHandler {
 			throw new ConcurrentModificationException("Trying to update data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
 
-		if (!loaded && file.exists()) 
+		if (!loaded)
 		{
 			saving.set(false);
-			throw new RuntimeException("[DEBUG-PERTE] Essaye de mettre à jour un fichier (" + file.getName() + ") non chargé...");
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de mettre à jour un fichier (" + player + ") non chargé...");
 		}
 		saving.set(true);
 		DataSavers.save(this, object, true);
@@ -66,8 +78,8 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to set data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
-		if (!loaded && file.exists()) {
-			throw new RuntimeException("[DEBUG-PERTE] Essaye de set des données dans un fichier (" + file.getName() + ") non chargé...");
+		if (!loaded) {
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de set des données dans un fichier (" + player + ") non chargé...");
 		}
 		saving.set(true);
 		DataSavers.save(this, object, false);
@@ -80,9 +92,9 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to remove data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
-		if (!loaded && file.exists()) 
+		if (!loaded) 
 		{
-			throw new RuntimeException("[DEBUG-PERTE] Essaye de supprimer des données dans un fichier (" + file.getName() + ") non chargé...");
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de supprimer des données dans un fichier (" + player + ") non chargé...");
 		}
 		saving.set(true);
 
@@ -98,24 +110,30 @@ public abstract class LadderDataHandler implements DataHandler {
 		}*/
 		reading.set(true);
 
-		if(!file.exists()) {
+		MongoService mongoService = Proxy.getInstance().getMongoService();
+		DB db = mongoService.getDb();
+		DBCollection collection = db.getCollection(table);
+		BasicDBObject query = new BasicDBObject();
+
+		query.put("name", this.player);
+		
+		DBCursor cursor = collection.find(query); 
+		boolean find = cursor.hasNext();
+		
+		if (!find)
+		{
+			Proxy.getInstance().getConsoleCommandSender().sendMessage("§c" + key + " doesn't exist in the player table.");
 			data = new JsonObject();
 			loaded = true;
 			reading.set(false);
+			cursor.close();
 			return;
 		}
-
-		int retry = 0;
-		while (!loaded && retry < 10)
+		else
 		{
-			try {
-				data = FileUtils.loadObject(file);
-				loaded = true;
-			} catch(Exception e){
-				e.printStackTrace();
-				System.out.println("[DEBUG-PERTE] Impossible de charger un fichier (" + file.getName() + "). Essai numéro " + retry);
-			}
-			retry++;
+			JsonParser parser = new JsonParser();
+			data = parser.parse(JSON.serialize(cursor.next())).getAsJsonObject();
+			cursor.close();
 		}
 
 		if (!loaded)
@@ -125,7 +143,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		reading.set(false);
 		if (!loaded)
 		{
-			throw new RuntimeException("[DEBUG-PERTE] Fichier impossible à charger (" + file.getName() + "), voir erreur au dessus. On est obligé de le recréer..");
+			throw new RuntimeException("[DEBUG-PERTE] Données impossibles à charger (" + key + "), voir erreur au dessus. On est obligé de le recréer..");
 		}
 
 	}
@@ -134,8 +152,18 @@ public abstract class LadderDataHandler implements DataHandler {
 	public void saveData() {
 		/*if(saving.get() || reading.get()){
 			//throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
-		}*/
-		if (!loaded && file.exists()) 
+		}*/MongoService mongoService = Proxy.getInstance().getMongoService();
+		DB db = mongoService.getDb();
+		DBCollection collection = db.getCollection(table);
+		BasicDBObject query = new BasicDBObject();
+
+		query.put("name", this.player);
+		
+		DBCursor cursor = collection.find(query); 
+		boolean find = cursor.hasNext();
+		cursor.close();
+
+		if (!loaded && find) 
 		{
 			return;
 		}
@@ -148,15 +176,26 @@ public abstract class LadderDataHandler implements DataHandler {
 		if(update)
 			addObjectInObject(data, object);
 		else data = object;
+		MongoService mongoService = Proxy.getInstance().getMongoService();
+		DB db = mongoService.getDb();
+		DBCollection collection = db.getCollection(table);
+		BasicDBObject query = new BasicDBObject();
 
-		if (!loaded && file.exists()) {
+		query.put("name", this.player);
+		
+		DBCursor cursor = collection.find(query); 
+		boolean find = cursor.hasNext();
+
+		cursor.close();
+		
+		if (!loaded && find) {
 			saving.set(false);
-			throw new RuntimeException("[DEBUG-PERTE] Essaye de sauvegarder un fichier (" + file.getName() + ") non chargé...");
+			throw new RuntimeException("[DEBUG-PERTE] Essaye de sauvegarder une donnée (" + key + ") non chargé...");
 		}
 
-		if(!data.entrySet().isEmpty())
+		if (!data.entrySet().isEmpty())
 		{
-			FileUtils.save(file, data, true);
+			collection.insert((DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
 		}
 
 		saving.set(false);
