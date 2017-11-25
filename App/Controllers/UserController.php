@@ -25,6 +25,9 @@ class UserController extends Controller
 
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
 	{
+
+	    $args["pseudo"] = strtolower($args["pseudo"]);
+
         if (empty($args['pseudo'])) {
             //if user not found
             return $this->container['notFoundHandler']($request, $response);
@@ -35,10 +38,10 @@ class UserController extends Controller
 
 		$user = $collection->findOne(['name' => $args['pseudo']]);
 
-		if($user["punish"]["ban"]){
+		if($user["punish"]["mute"]){
             $user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
         }
-        if($user["punish"]["mute"]){
+        if($user["punish"]["ban"]){
             $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
         }
 
