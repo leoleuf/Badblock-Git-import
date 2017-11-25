@@ -35,6 +35,9 @@ class UserController extends Controller
 
 		$user = $collection->findOne(['name' => $args['pseudo']]);
 
+		$user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
+		$user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
+
 
 
 		//return view

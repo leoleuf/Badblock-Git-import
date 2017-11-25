@@ -37,13 +37,13 @@
 {% block content %}
     {% if user.punish.mute == true %}
         <div class="alert alert-warning" role="alert">
-            Cette personne est baillonné pour {{ user.punish.muteReason }} jusqu'au {{ timestampToTime(user.punish.muteEnd) }}
+            Cette personne est baillonnée pour {{ user.punish.muteReason }} jusqu'au {{ user.punish.muteEnd|date("m/d/Y") }}
         </div>
     {% endif %}
 
     {% if user.punish.ban == true %}
         <div class="alert alert-warning" role="alert">
-            Cette personne est bannis pour {{ user.punish.banReason }} jusqu'au {{ timestampToTime(user.punish.banEnd) }}
+            Cette personne est suspendue pour {{ user.punish.banReason }} jusqu'au {{ user.punish.banEnd|date("m/d/Y") }}
         </div>
     {% endif %}
     <div class="profile-stats">
