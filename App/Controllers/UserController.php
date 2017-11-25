@@ -32,7 +32,7 @@ class UserController extends Controller
 	    $args["pseudo"] = strtolower($args["pseudo"]);
         //Check si la page est déjà en cache
         if ($this->redis->exists('profile:'.$args["pseudo"])){
-            $user = $this->redis->getJson(':profile:'.$args["pseudo"]);
+            $user = $this->redis->getJson('profile:'.$args["pseudo"]);
             return $this->render($response, 'user.profile', ['user' => $user]);
         }else{
             //Nouveau cache
