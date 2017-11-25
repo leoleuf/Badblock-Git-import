@@ -1,144 +1,106 @@
-{% extends "default.twig" %}
+{% extends 'default.twig' %}
 {% set active_page = "stats" %}
-{% set show_title = false %}
-{% set title = "Statisques" %}
-{% set sub_title = "Linker votre compte pour accèder a toutes les fonctionnalités du site !" %}
+{% set show_title = true %}
+{% set title = "Statistiques" %}
+{% set sub_title = "Sur le serveur" %}
 {% block cover %}
-    <!-- Recharger -->
-    <div class="recharge-back">
-        <div class="recharge-container">
-            <div class="recharge-content">
-                <div class="container recharge-flex">
-                    <div class="recharge-info">
-                        <h1>dd</h1>
-                    </div>
-                    <div class="recharge-button">
-                        <div class="input-group">
-                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                            <input type="text" class="form-control ui-input" placeholder="Nom du joueur">
-                        </div>
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Rechercher</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fin recharger -->
+    <nav class="stats-nav-container">
+        <ul class="stats-nav">
+            <li class="active">
+                <a href="#">Général</a>
+            </li>
+            <li>
+                <a href="#">Jeux</a>
+            </li>
+            <li>
+                <a href="#">Joueurs</a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}
 {% block content %}
+    {# Comme un dashboard kibana, on liste differants panel avec le système de colums #}
+    {# (metric) Un panel avec le numbre des joueurs connectés #}
+    {# (chart) Un panel avec le numbre de connectés by time #}
     <!-- Main content -->
-    <div class="twelve columns">
-        <center><h1>Statistiques Serveur :</h1></center>
-        <section class="shop-section" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Statistiques serveur</span></h4>
-            <div class="product-list">
+    <div class="stats-panel">
+        <div class="three columns item">
+            <div class="stats-panel-metric">
+                <span class="metric">160</span>
+                <span class="text">Joueurs connectés</span>
+            </div>
+        </div>
+        <div class="seven columns item">
+            <div class="stats-panel-chart" id="chart1-container" style="
+            min-width: 310px;
+            max-width: 800px;
+            height: 400px;
+            margin: 0 auto">
 
             </div>
-        </section>
-        <div class="row">
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                                <h2 class="cover-heading">2 000 000</h2>
-                                <h3 class="cover-heading">Joueurs uniques</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">1555</h2>
-                            <h3 class="cover-heading">Joueurs connectés</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">20</h2>
-                            <h3 class="cover-heading">Nouveau joueurs</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-    <div class="twelve columns">
-        <center><h1>Statistiques Forum & site :</h1></center>
-        <div class="row">
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">2000</h2>
-                            <h3 class="cover-heading">Membres</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">2000</h2>
-                            <h3 class="cover-heading">Messages</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">20</h2>
-                            <h3 class="cover-heading">Topics</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{% endblock %}
+{% block scripts %}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
-        </div>
-        <br>
-        <div class="row">
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">200</h2>
-                            <h3 class="cover-heading">Votes aujourd'hui</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">2000</h2>
-                            <h3 class="cover-heading">Achat aujourd'hui</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="cover-back" style="background-image: url({{ post.cover_url }})">
-                    <div class="cover cover-profile">
-                        <div class="container">
-                            <h2 class="cover-heading">2000</h2>
-                            <h3 class="cover-heading">Visites</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
+    <script>
+        Highcharts.chart('chart1-container', {
+            chart: {
+                type: 'area'
+            },
+            title: {
+                text: 'Les joueurs dans le temps'
+            },
+            xAxis: {
+                allowDecimals: false,
+                labels: {
+                    formatter: function () {
+                        return this.value; // clean, unformatted number for year
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                },
+                labels: {
+                    formatter: function () {
+                        return this.value / 1000 + 'k';
+                    }
+                }
+            },
+            tooltip: {
+                pointFormat: 'Ta mère produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+            },
+            plotOptions: {
+                area: {
+                    pointStart: 1940,
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: ' ',
+                data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
+                    1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
+                    27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
+                    26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+                    24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
+                    22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
+                    10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
+            }],
+            legend: false
+        });
+    </script>
 {% endblock %}
