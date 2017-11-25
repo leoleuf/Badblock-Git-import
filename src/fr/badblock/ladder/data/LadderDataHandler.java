@@ -116,16 +116,20 @@ public abstract class LadderDataHandler implements DataHandler {
 		BasicDBObject query = new BasicDBObject();
 
 		query.put("name", this.player);
-		
+
 		DBCursor cursor = collection.find(query); 
 		boolean find = cursor.hasNext();
-		
+
 		if (!find)
 		{
 			Proxy.getInstance().getConsoleCommandSender().sendMessage("§c" + key + " doesn't exist in the player table.");
 			data = new JsonObject();
 			loaded = true;
 			reading.set(false);
+			if (data.has("name"))
+			{
+				data.addProperty("name", data.get("name").getAsString().toLowerCase());
+			}
 			cursor.close();
 			return;
 		}
@@ -133,6 +137,12 @@ public abstract class LadderDataHandler implements DataHandler {
 		{
 			JsonParser parser = new JsonParser();
 			data = parser.parse(JSON.serialize(cursor.next())).getAsJsonObject();
+			loaded = true;
+			if (data.has("name"))
+			{
+				data.addProperty("name", data.get("name").getAsString().toLowerCase());
+			}
+			Proxy.getInstance().getConsoleCommandSender().sendMessage("§aReload data: " + key + " exists in the player table.");
 			cursor.close();
 		}
 
@@ -158,7 +168,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		BasicDBObject query = new BasicDBObject();
 
 		query.put("name", this.player);
-		
+
 		DBCursor cursor = collection.find(query); 
 		boolean find = cursor.hasNext();
 		cursor.close();
@@ -182,12 +192,12 @@ public abstract class LadderDataHandler implements DataHandler {
 		BasicDBObject query = new BasicDBObject();
 
 		query.put("name", this.player);
-		
+
 		DBCursor cursor = collection.find(query); 
 		boolean find = cursor.hasNext();
 
 		cursor.close();
-		
+
 		if (!loaded && find) {
 			saving.set(false);
 			throw new RuntimeException("[DEBUG-PERTE] Essaye de sauvegarder une donnée (" + key + ") non chargé...");
@@ -195,7 +205,20 @@ public abstract class LadderDataHandler implements DataHandler {
 
 		if (!data.entrySet().isEmpty())
 		{
-			collection.insert((DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
+			if (data.has("name"))
+			{
+				data.addProperty("name", data.get("name").getAsString().toLowerCase());
+			}
+			if (find)
+			{
+				Proxy.getInstance().getConsoleCommandSender().sendMessage("§eSaving data: " + key + " exists in the player table. Updated data.");
+				collection.update(query, (DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
+			}
+			else
+			{
+				Proxy.getInstance().getConsoleCommandSender().sendMessage("§eSaving data: " + key + " doesn't exist in the player table. Inserted data.");
+				collection.insert((DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
+			}
 		}
 
 		saving.set(false);

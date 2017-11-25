@@ -13,10 +13,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import ch.qos.logback.classic.LoggerContext;
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.chat.ActionBar;
 import fr.badblock.ladder.api.chat.Motd;
@@ -259,6 +262,7 @@ public class Proxy extends Ladder {
 
 		loadPermissions(false);
 		loadMotd(false);
+		loadMongo();
 
 		Configuration configuration = getConfigurationProvider().load(CONFIG_FILE);
 		if(!configuration.contains("ip"))
@@ -383,6 +387,16 @@ public class Proxy extends Ladder {
 
 	public void loadMongo()
 	{
+		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+		ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("org.mongodb.driver");
+		rootLogger.setLevel(ch.qos.logback.classic.Level.OFF);
+
+		// Enable MongoDB logging in general
+		System.setProperty("DEBUG.MONGO", "false");
+
+		// Enable DB operation tracing
+		System.setProperty("DB.TRACE", "false");
+		
 		MongoSettings mongoSettings = new MongoSettings();
 		if (MONGO_FILE.exists())
 		{
