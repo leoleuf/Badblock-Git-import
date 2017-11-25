@@ -40,15 +40,18 @@
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="#login-modal"><i class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
+                        <a class="button button-primary" href="#login-modal"><i
+                                    class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
                     {% endif %}
                     {% if user is defined %}
-                        <a class="button button-primary" href="{{ path_for('dashboard') }}"><i class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
+                        <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
+                                    class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
 
                         {% if user.is_admin %}
-                            <a class="button button-primary" href="{{ path_for('dashboard') }}"><i class="icon icon-settingsfour-gearsalt"></i> {{ 'admin.title'|trans }}</a>
+                            <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
+                                        class="icon icon-settingsfour-gearsalt"></i> {{ 'admin.title'|trans }}</a>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -84,6 +87,15 @@
             <i class="edit-colored-icon colored-icon"></i> Voter
         </a>
         <a href="{{ forum_url }}"><i class="forum-colored-icon colored-icon"></i> {{ 'forum.title'|trans }}</a>
+
+        <div class="dropdown">
+            <a href='#' class="dropdown-link"><i class="edit-colored-icon colored-icon"></i> Menu</a>
+            <ul class="dropdown-dropdown">
+                <li><a href='#'><i class="edit-colored-icon colored-icon"></i> Internet</a></li>
+                <li><a href='#'><i class="edit-colored-icon colored-icon"></i> Opalia</a></li>
+                <li><a href='#'><i class="edit-colored-icon colored-icon"></i> Badblock</a></li>
+            </ul>
+        </div>
 
         {% if user is defined %}
             <a href="{{ path_for('logout') }}" class="float-right">{{ 'user.logout'|trans }}</a>
@@ -241,6 +253,17 @@
 {% endif %}
 
 
+<script>
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
+</script>
 
 
 <!-- Tracy Debug Bar -->
