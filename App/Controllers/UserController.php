@@ -25,31 +25,40 @@ class UserController extends Controller
 
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
 	{
-
-	    $args["pseudo"] = strtolower($args["pseudo"]);
-
         if (empty($args['pseudo'])) {
             //if user not found
             return $this->container['notFoundHandler']($request, $response);
         }
+	    $args["pseudo"] = strtolower($args["pseudo"]);
+        //Check si la page est déjà en cache
+        if ($this->redis->exists('profile:'.$args["pseudo"])){
+            $user = $this->redis->getJson(':profile:'.$args["pseudo"]);
+            return $this->render($response, 'user.profile', ['user' => $user]);
+        }else{
+            //Nouveau cache
+            //sans cache
+            $collection = $this->mongo->admin->players;
 
-		//sans cache
-		$collection = $this->mongo->admin->players;
+            $user = $collection->findOne(['name' => $args['pseudo']]);
 
-		$user = $collection->findOne(['name' => $args['pseudo']]);
+            if($user["punish"]["mute"]){
+                $user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
+            }
+            if($user["punish"]["ban"]){
+                $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
+            }
 
-		if($user["punish"]["mute"]){
-            $user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
+            $this->redis->setJson('profile:'.$args["pseudo"], $user);
+            $this->redis->expire('profile:'.$args["pseudo"], 300);
+
+
+
+            //return view
+            return $this->render($response, 'user.profile', ['user' => $user]);
         }
-        if($user["punish"]["ban"]){
-            $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
-        }
 
 
 
-		//return view
-		return $this->render($response, 'user.profile', [
-			'user' => $user]);
 
 	}
 
