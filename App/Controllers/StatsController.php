@@ -85,12 +85,15 @@ class StatsController extends Controller
                     $sql = $this->mysql->fetchrow("SELECT count(*) FROM information_schema.TABLES WHERE (TABLE_NAME = '". $game['game'] ."_". strtolower($game['date']) ."')");
                     if($sql["count(*)"] > 0){
                         //ok
-                        $this->lecture($game["game"].strtolower($game['date']),$page,$response);
+                        $this->lecture($game["game"]."_".strtolower($game['date']),$page,$response);
                     }else{
                         //Erreur 404
                         return $response->withStatus(404);
                     }
-                }
+                }else{
+                //Erreur 404
+                return $response->withStatus(404);
+            }
 
             }
 	}
@@ -103,18 +106,18 @@ class StatsController extends Controller
             //page top
             if ($page === '1'){
                 $nb1 = $page * 2 * 10-2;
-                $nb2 = $nb1 - 20+3;
+                $nb2 = $nb1 - 20+2;
                 //Lecture du cache
                 $data = $this->redis->getJson("stats:".$game);
                 //Slice de l'array
                 $datatop = array_slice($data,0,3,true);
-                $data = array_slice($data,3,18,true);
+                $data = array_slice($data,3,17,true);
                 //Affichage de la page
                 $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game]);
             //page avec page > 1
             }else{
                 $nb1 = $page * 2 * 10-2;
-                $nb2 = $nb1 - 20+3;
+                $nb2 = $nb1 - 20+2;
                 //Lecture du cache
                 $data = $this->redis->getJson("stats:".$game);
                 //Slice de l'array

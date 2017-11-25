@@ -33,7 +33,7 @@ class UserController extends Controller
 		//sans cache
 		$collection = $this->mongo->admin->players;
 
-		$user = $collection->findOne(['realName' => $args['pseudo']]);
+		$user = $collection->findOne(['name' => $args['pseudo']]);
 
 
 
