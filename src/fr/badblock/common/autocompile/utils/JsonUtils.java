@@ -1,4 +1,4 @@
-package fr.badblock.autocompile.utils;
+package fr.badblock.common.autocompile.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

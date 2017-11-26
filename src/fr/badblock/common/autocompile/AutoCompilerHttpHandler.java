@@ -1,4 +1,4 @@
-package fr.badblock.autocompile;
+package fr.badblock.common.autocompile;
 
 import java.io.IOException;
 

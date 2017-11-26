@@ -1,9 +1,9 @@
-package fr.badblock.autocompile.compile;
+package fr.badblock.common.autocompile.compile;
 
 import java.util.Map;
 
-import fr.badblock.autocompile.compile.Configuration.Dependency;
-import fr.badblock.autocompile.compile.Configuration.Project;
+import fr.badblock.common.autocompile.compile.Configuration.Dependency;
+import fr.badblock.common.autocompile.compile.Configuration.Project;
 
 public class ByProject
 {

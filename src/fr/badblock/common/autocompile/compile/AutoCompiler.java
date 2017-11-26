@@ -1,4 +1,4 @@
-package fr.badblock.autocompile.compile;
+package fr.badblock.common.autocompile.compile;
 
 public class AutoCompiler {
 	

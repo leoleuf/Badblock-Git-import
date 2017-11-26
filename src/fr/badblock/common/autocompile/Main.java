@@ -1,12 +1,12 @@
-package fr.badblock.autocompile;
+package fr.badblock.common.autocompile;
 
 import java.io.File;
 
 import org.eclipse.jetty.server.Server;
 
-import fr.badblock.autocompile.compile.AutoCompiler;
-import fr.badblock.autocompile.compile.Configuration;
-import fr.badblock.autocompile.utils.JsonUtils;
+import fr.badblock.common.autocompile.compile.AutoCompiler;
+import fr.badblock.common.autocompile.compile.Configuration;
+import fr.badblock.common.autocompile.utils.JsonUtils;
 
 public class Main {
 	private static boolean working   = false;

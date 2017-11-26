@@ -1,4 +1,4 @@
-package fr.badblock.autocompile.utils;
+package fr.badblock.common.autocompile.utils;
 
 import java.net.InetSocketAddress;
 import java.util.Collection;

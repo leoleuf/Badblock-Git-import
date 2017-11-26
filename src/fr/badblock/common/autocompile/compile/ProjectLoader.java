@@ -1,4 +1,4 @@
-package fr.badblock.autocompile.compile;
+package fr.badblock.common.autocompile.compile;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,10 +6,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import fr.badblock.autocompile.compile.Configuration.Dependency;
-import fr.badblock.autocompile.compile.Configuration.Project;
-import fr.badblock.autocompile.utils.JsonUtils;
-import fr.badblock.autocompile.utils.StringUtils;
+import fr.badblock.common.autocompile.compile.Configuration.Dependency;
+import fr.badblock.common.autocompile.compile.Configuration.Project;
+import fr.badblock.common.autocompile.utils.JsonUtils;
+import fr.badblock.common.autocompile.utils.StringUtils;
 
 public class ProjectLoader
 {
