@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
+import fr.badblock.bungeecord.plugins.ladder.LadderListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.config.ServerInfo;
