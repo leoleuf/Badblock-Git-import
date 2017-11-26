@@ -1,16 +1,15 @@
-package com.mrpowergamerbr.temmiewebhook;
+package fr.badblock.bungeecord.plugins.others.discord;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mrpowergamerbr.temmiewebhook.embed.AuthorEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.FieldEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.FooterEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.ImageEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.ProviderEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.ThumbnailEmbed;
-import com.mrpowergamerbr.temmiewebhook.embed.VideoEmbed;
-
+import fr.badblock.bungeecord.plugins.others.discord.embed.AuthorEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.FieldEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.FooterEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.ImageEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.ProviderEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.ThumbnailEmbed;
+import fr.badblock.bungeecord.plugins.others.discord.embed.VideoEmbed;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -21,7 +21,6 @@ import com.cloudflare.api.CloudflareAccess;
 import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
 import fr.badblock.bungeecord.plugins.ladder.LadderListener;
@@ -45,6 +44,7 @@ import fr.badblock.bungeecord.plugins.others.commands.ThxCommand;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
+import fr.badblock.bungeecord.plugins.others.discord.TemmieWebhook;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
 import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;

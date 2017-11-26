@@ -1,4 +1,4 @@
-package com.mrpowergamerbr.temmiewebhook.exceptions;
+package fr.badblock.bungeecord.plugins.others.discord.exceptions;
 
 public class WebhookException extends RuntimeException {
 	/**

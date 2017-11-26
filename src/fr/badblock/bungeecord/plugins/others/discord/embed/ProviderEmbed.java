@@ -1,4 +1,4 @@
-package com.mrpowergamerbr.temmiewebhook.embed;
+package fr.badblock.bungeecord.plugins.others.discord.embed;
 
 import lombok.*;
 
@@ -7,9 +7,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorEmbed {
+public class ProviderEmbed {
 	String name;
 	String url;
-	String icon_url;
-	String proxy_icon_url;
 }

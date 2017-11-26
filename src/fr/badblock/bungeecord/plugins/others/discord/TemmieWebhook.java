@@ -1,7 +1,8 @@
-package com.mrpowergamerbr.temmiewebhook;
+package fr.badblock.bungeecord.plugins.others.discord;
 
 import com.google.gson.Gson;
-import com.mrpowergamerbr.temmiewebhook.exceptions.WebhookException;
+
+import fr.badblock.bungeecord.plugins.others.discord.exceptions.WebhookException;
 
 public class TemmieWebhook {
 	public static final Gson gson = new Gson();

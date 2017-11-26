@@ -1,4 +1,4 @@
-package com.mrpowergamerbr.temmiewebhook;
+package fr.badblock.bungeecord.plugins.others.discord;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package com.mrpowergamerbr.temmiewebhook.embed;
+package fr.badblock.bungeecord.plugins.others.discord.embed;
 
 import lombok.*;
 
