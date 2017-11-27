@@ -10,7 +10,7 @@ class LoginApiDevController extends \App\Controllers\Controller
 
     public function login(ServerRequestInterface $request, ResponseInterface $response,$args){
 
-        date_default_timezone_set('Europe/Paris');
+        date_default_timezone_set('Europe/London');
         $time = date('Y-m-d h:i');
             echo date_default_timezone_get();
             var_dump($time);
