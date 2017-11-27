@@ -12,10 +12,11 @@ class LoginApiDevController extends \App\Controllers\Controller
 
         date_default_timezone_set('Europe/London');
         $time = date('Y-m-d h:i');
-            echo date_default_timezone_get();
+
             var_dump($time);
             $time =  hash("gost",$time);
             $key = md5($time);
+            echo $key;
 
                 //user
         $user = $this->xenforo->getUser($args['username']);
