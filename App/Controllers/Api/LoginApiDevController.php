@@ -10,14 +10,6 @@ class LoginApiDevController extends \App\Controllers\Controller
 
     public function login(ServerRequestInterface $request, ResponseInterface $response,$args){
 
-        date_default_timezone_set('Europe/London');
-        $time = date('Y-m-d h:i');
-
-            var_dump($time);
-            $time =  hash("gost",$time);
-            $key = md5($time);
-            echo $key;
-
                 //user
         $user = $this->xenforo->getUser($args['username']);
 
