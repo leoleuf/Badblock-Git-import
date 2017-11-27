@@ -17,18 +17,20 @@ class XenForo
 		$this->config = $config;
 	}
 
-	public function doGetRequest($action)
-	{
-		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->hash());
-	}
-
-	public function hash(){
+    public function hash(){
         $time = date('Y-m-d h:i');
-        var_dump($time);
+        dd($time);
         $time =  hash("gost",$time);
         $key = md5($time);
         return $key;
     }
+
+	public function doGetRequest($action)
+	{
+		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=s' . $this->hash());
+	}
+
+
 
 	public function getParsedBody($body)
 	{
