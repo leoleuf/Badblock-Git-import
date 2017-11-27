@@ -19,8 +19,15 @@ class XenForo
 
 	public function doGetRequest($action)
 	{
-		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->config['hash']);
+		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->hash());
 	}
+
+	public function hash(){
+        $time = date('Y-m-d h:i');
+        $time =  hash("gost",$time);
+        $key = md5($time);
+        return $key;
+    }
 
 	public function getParsedBody($body)
 	{
