@@ -19,7 +19,7 @@ class XenForo
 
     public function hash(){
         $time = date('Y-m-d h:i');
-        dd($time);
+        var_dump($time);
         $time =  hash("gost",$time);
         $key = md5($time);
         return $key;
