@@ -10,8 +10,9 @@ class LoginApiDevController extends \App\Controllers\Controller
 
     public function login(ServerRequestInterface $request, ResponseInterface $response,$args){
 
-            $time = date('Y-m-d h:i');
-            echo $time;
+        date_default_timezone_set('Europe/Paris');
+        $time = date('Y-m-d h:i');
+            echo date_default_timezone_get();
             var_dump($time);
             $time =  hash("gost",$time);
             $key = md5($time);
