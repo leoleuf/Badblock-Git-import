@@ -11,9 +11,8 @@ class LoginApiDevController extends \App\Controllers\Controller
     public function login(ServerRequestInterface $request, ResponseInterface $response,$args){
 
             $time = date('Y-m-d h:i');
-        echo $time;
-
-        var_dump($time);
+            echo $time;
+            var_dump($time);
             $time =  hash("gost",$time);
             $key = md5($time);
 
