@@ -11,11 +11,13 @@ class LoginApiDevController extends \App\Controllers\Controller
     public function login(ServerRequestInterface $request, ResponseInterface $response,$args){
 
             $time = date('Y-m-d h:i');
-            var_dump($time);
+        echo $time;
+
+        var_dump($time);
             $time =  hash("gost",$time);
             $key = md5($time);
-            echo $key;
-        //user
+
+                //user
         $user = $this->xenforo->getUser($args['username']);
 
         $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
