@@ -132,7 +132,6 @@ $container['mongo'] = function ($container) {
 $container['xenforo'] = function ($container) {
 	return new App\XenForo($container, [
 		'endpoint' => $container->config['xenforo_api']['endpoint'],
-		'hash' => $container->config['xenforo_api']['hash']
 	]);
 };
 
