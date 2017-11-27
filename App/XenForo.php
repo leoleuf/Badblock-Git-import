@@ -27,7 +27,7 @@ class XenForo
 
 	public function doGetRequest($action)
 	{
-		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=s' . $this->hash());
+		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=765ea76a83a7ad459e508e913ce77fa5');
 	}
 
 
