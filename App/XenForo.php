@@ -18,6 +18,8 @@ class XenForo
 	}
 
     public function hash(){
+        date_default_timezone_set('Europe/Paris');
+
         $time = date('Y-m-d h:i');
         var_dump($time);
         $time =  hash("gost",$time);
@@ -27,7 +29,7 @@ class XenForo
 
 	public function doGetRequest($action)
 	{
-		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=2f53e29a7a27b1b07358a87b72b90c81');
+		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->hash());
 	}
 
 
