@@ -1,6 +1,8 @@
 package fr.badblock.bungeecord.plugins.ladder;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
@@ -29,6 +31,7 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -39,6 +42,7 @@ public class LadderListener implements Listener {
 
 	public static long timestampMax = -1;
 	public static String finished = "-";
+	public static Map<ProxiedPlayer, String> servers = new HashMap<>();
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
@@ -81,6 +85,13 @@ public class LadderListener implements Listener {
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 	}
 
+
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onServerConnected(ServerConnectedEvent e)
+	{
+		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getServer().getInfo().getName()));
+	}
+	
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
@@ -126,7 +137,6 @@ public class LadderListener implements Listener {
 			return;
 		}
 
-		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getTarget().getName()));
 	}
 
 	@EventHandler
