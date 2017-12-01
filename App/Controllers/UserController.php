@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use function DusanKasan\Knapsack\isEmpty;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -12,15 +13,18 @@ class UserController extends Controller
 	public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
         //sans cache
-        $collection = $this->mongo->badblock->dat_users;
+        $collection = $this->mongo->admin->players;
 
-        $user = $collection->findOne(['realName' => $this->session->getProfile('username')['username']]);
+        $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        //On affiche 0 pts boutiques si le joueur a pas sous (clochard)
+        if (empty($user["shoppoints"])){
+            $user["shoppoints"] = 0;
+        }
 
 
         //return view
-        return $this->render($response, 'user.dashboard', [
-            'user' => $user]);
+        return $this->render($response, 'user.dashboard', ['user' => $user]);
 	}
 
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
@@ -61,6 +65,66 @@ class UserController extends Controller
 
 
 	}
+
+
+	public function changepassserv(RequestInterface $request, ResponseInterface $response){
+        if (isset($_POST['newpassword'],$_POST['newpasswordverif'])){
+            if (!empty($_POST['newpassword']) && !empty($_POST['newpasswordverif']) ){
+                if ($_POST['newpassword'] == $_POST['newpasswordverif']){
+                    if (strlen($_POST['newpassword']) >= 4){
+                        $data = $this->ladder->encryptPassword($_POST['newpassword']);
+
+                        $collection = $this->mongo->admin->players;
+
+                        $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["loginPassword" => $data]]);
+
+                        $this->flash->addMessage('setting_error', "Changement effectué avec succès !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+
+                    }else{
+                        $this->flash->addMessage('setting_error', "Votre mot de passe choisi est trop court !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }
+                }else{
+                    $this->flash->addMessage('setting_error', "Les deux mot de passe ne sont pas identiques !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                }
+            }else{
+                $this->flash->addMessage('setting_error', "Merci de saisir un mot de passe !");
+                //redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            }
+        }else{
+            $this->flash->addMessage('setting_error', "Merci de saisir un mot de passe !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

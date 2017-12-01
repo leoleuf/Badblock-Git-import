@@ -137,7 +137,7 @@ class ShopController extends Controller
                                         $pts = $data['shop_points'] - $dataprod["price"];
                                         //Real / Item
                                         if ($this->shopItem()){
-                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                            $result = $collection->updateOne(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
                                             return $response->write("ok")->withStatus(200);
                                         }else{
                                             return $response->write("Achat Fail")->withStatus(500);
@@ -152,7 +152,7 @@ class ShopController extends Controller
                                         $pts = $data['shop_points'] - $dataprod["price"];
                                         //Real / Item
                                         if ($this->shopGrade()){
-                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
+                                            $result = $collection->updateOne(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
                                             return $response->write("ok")->withStatus(200);
                                         }else{
                                             return $response->write("Achat Fail")->withStatus(500);

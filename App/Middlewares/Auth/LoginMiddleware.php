@@ -28,7 +28,7 @@ class LoginMiddleware
 			//recipérer le profile de l'utilisateur à partir de l'api
 			$user = $this->container->xenforo->getUser($userid);
 
-			//Transformation string en array 
+			//Transformation string en array
             $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
 
             //mise de l'utilisateur en session
