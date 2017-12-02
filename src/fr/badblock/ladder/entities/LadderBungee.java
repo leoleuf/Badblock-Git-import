@@ -140,22 +140,29 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 	@Override
 	public void handle(PacketPlayerChat packet) {
-		if(packet.getUser() == null) {
-			if(packet.getType() == ChatAction.LADDER_COMMAND){
-				Ladder.getInstance().getConsoleCommandSender().forceCommand(packet.getMessages());
-			} else broadcastOthers(packet);
-		} else {
-			Player player = Ladder.getInstance().getPlayer(packet.getUser());
-			if(player != null){
-				if(packet.getType() == ChatAction.LADDER_COMMAND){
-					for(String command : packet.getMessages()){
-						Ladder.getInstance().getPluginsManager().executeCommand(player, command);
-					}
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				if(packet.getUser() == null) {
+					if(packet.getType() == ChatAction.LADDER_COMMAND){
+						Ladder.getInstance().getConsoleCommandSender().forceCommand(packet.getMessages());
+					} else broadcastOthers(packet);
 				} else {
-					player.sendPacket(packet);
+					Player player = Ladder.getInstance().getPlayer(packet.getUser());
+					if(player != null){
+						if(packet.getType() == ChatAction.LADDER_COMMAND){
+							for(String command : packet.getMessages()){
+								Ladder.getInstance().getPluginsManager().executeCommand(player, command);
+							}
+						} else {
+							player.sendPacket(packet);
+						}
+					}
 				}
 			}
-		}
+		}.start();
 	}
 
 	@Override
@@ -250,7 +257,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 	private Map<String, LadderPlayer> loginPlayer = Maps.newConcurrentMap();
 
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy à HH:mm:ss");
-	 
+
 	public String buildBanReason(String pseudo, long expire, String banReason) {
 		final StringBuilder fDate = new StringBuilder();
 		Request request = new Request("SELECT * FROM sanctions WHERE expire = '" + expire + "' AND pseudo = '" + pseudo + "'", RequestType.GETTER) {
@@ -270,19 +277,24 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 		String muted = sdf.format(new Date(expire));
 		return "§8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b §b§lBadBlock §8§l«§b§l-§8§l»§m----§f§8§l«§b§l-§8§l»§b\n\n§cCe compte a été suspendu !\n\nCe compte a enfreint le règlement de BadBlock sous le motif \"§f" + banReason + "§c\" le " + fDate.toString() + ".\n§cLa suspension se termine le " + muted + "\n§eEn cas de contestation, postez votre réclamation sur le forum (https://forum.badblock.fr/)\n\n§r§8§l«§b§l-§8§l»§m-----------------------§f§8§l«§b§l-§8§l»";
 	}
-	
+
 	@Override
 	public void handle(PacketPlayerLogin packet) {
-		LadderPlayer    player = new LadderPlayer(this, packet);
-		PlayerJoinEvent event  = new PlayerJoinEvent(player, this);
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				LadderPlayer    player = new LadderPlayer(LadderBungee.this, packet);
+				PlayerJoinEvent event  = new PlayerJoinEvent(player, LadderBungee.this);
 
-		if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getBungeeOnlineCount() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
-			player.disconnect("§cLe serveur est plein, l'accès est réservé aux VIP.");
-		}
+				if(Proxy.getInstance().getMaxPlayers() > 0 && Proxy.getInstance().getBungeeOnlineCount() >= Proxy.getInstance().getMaxPlayers() && !player.hasPermission("ladder.maxplayer.bypass")){
+					player.disconnect("§cLe serveur est plein, l'accès est réservé aux VIP.");
+				}
 
-		// Récupération des points boutique
+				// Récupération des points boutique
 
-		/*BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT ptsboutique FROM joueurs WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "'", RequestType.GETTER) {
+				/*BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT ptsboutique FROM joueurs WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "'", RequestType.GETTER) {
 			@Override
 			public void done(ResultSet resultSet) {
 				try {
@@ -296,27 +308,29 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}*/
-		Ladder.getInstance().getPluginsManager().dispatchEvent(event);
+				Ladder.getInstance().getPluginsManager().dispatchEvent(event);
 
-		player.getPunished().checkEnd();
-		player.getIpAsPunished().checkEnd();
+				player.getPunished().checkEnd();
+				player.getIpAsPunished().checkEnd();
 
-		if(player.getPunished().isBan()){
-			player.disconnect(buildBanReason(player.getName(), player.getPunished().getBanEnd(), player.getPunished().getBanReason())); return;
-		} else if((player.getIpData()).getAsPunished().isBan()){
-			player.disconnect(buildBanReason(player.getName(), player.getIpData().getAsPunished().getBanEnd(), player.getIpData().getAsPunished().getBanReason())); return;
-		}
+				if(player.getPunished().isBan()){
+					player.disconnect(buildBanReason(player.getName(), player.getPunished().getBanEnd(), player.getPunished().getBanReason())); return;
+				} else if((player.getIpData()).getAsPunished().isBan()){
+					player.disconnect(buildBanReason(player.getName(), player.getIpData().getAsPunished().getBanEnd(), player.getIpData().getAsPunished().getBanReason())); return;
+				}
 
-		if(event.isCancelled()) {
-			player.disconnect(event.getCancelReason()); return;
-		} else {
-			loginPlayer.put(player.getName().toLowerCase(), player);
-			sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), player.getName()));
-			sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
-			sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
-			//if (Proxy.getInstance().getRabbitService() != null)
-			//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-		}
+				if(event.isCancelled()) {
+					player.disconnect(event.getCancelReason()); return;
+				} else {
+					loginPlayer.put(player.getName().toLowerCase(), player);
+					sendPacket(new PacketPlayerNickSet(player.getName(), player.getUniqueId(), player.getName()));
+					sendPacket(new PacketPlayerData(DataType.PLAYER, DataAction.SEND, packet.getPlayerName(), player.getData().toString()));
+					sendPacket(new PacketPlayerData(DataType.IP, DataAction.SEND, packet.getPlayerName(), player.getIpData().getData().toString()));
+					//if (Proxy.getInstance().getRabbitService() != null)
+					//	Proxy.getInstance().getRabbitService().sendPacket("ladder.playersupdate", Integer.toString(Ladder.getInstance().getOnlinePlayers().size()), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				}
+			}
+		}.start();
 		//}
 		//	});
 
@@ -392,7 +406,7 @@ public class LadderBungee extends ConsoleCommandSender implements BungeeCord, Pa
 
 				Proxy.getInstance().removeReconnectionInvitation(player, false);
 			}
-			
+
 		}
 	}
 

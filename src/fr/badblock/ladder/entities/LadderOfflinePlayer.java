@@ -44,7 +44,7 @@ public class LadderOfflinePlayer extends LadderDataHandler implements OfflinePla
 	}
 
 	public LadderOfflinePlayer(String name, InetAddress address) {
-		super(Proxy.PLAYER_FOLDER, name);
+		super ("players", name);
 		this.name 		  = name;
 		if(address == null && getData().has("lastIp"))
 			try {
