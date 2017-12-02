@@ -56,6 +56,11 @@ public class DataSavers {
 	public static void save(LadderDataHandler handler, JsonObject data, boolean update){
 		if(!allow)
 			return;
+		if (!handler.loaded)
+		{
+			System.out.println("[OLAH] Tying to save but not loaded.");
+			return;
+		}
 		toSave.add(new Val(handler, data, update));
 		Optional<Thread> th = threads.parallelStream().filter(thread -> thread.isAlive() && thread.getState().equals(State.WAITING)).findAny();
 		if (th != null && th.isPresent())
