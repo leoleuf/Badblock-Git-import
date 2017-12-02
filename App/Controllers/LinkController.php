@@ -33,7 +33,7 @@ class LinkController extends Controller
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null){
                 //On vérifie si son compte est pas déjà link
-                if ($user["website"]['link'] == false){
+                if (!isset($user["website"]['link'])){
                     if ($this->ladder->playerOnline($username)['connected'] == true){
                         //Création du code random
                         $chars = "SKRIPTSKRIPT20020623#";
@@ -54,9 +54,12 @@ class LinkController extends Controller
                         return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
                     }
                 }else{
-                    $this->flash->addMessage('link_error', "Votre compte est déjà linké !");
-                    //redirect to last page
-                    return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+                    if ($user["website"]['link'] == false ){
+                    }else{
+                        $this->flash->addMessage('link_error', "Votre compte est déjà linké !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+                    }
                 }
             }else{
                 //Message erreur
