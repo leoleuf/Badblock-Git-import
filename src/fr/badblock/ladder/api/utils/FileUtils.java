@@ -158,6 +158,11 @@ public class FileUtils {
 			String toSave     = !indented ? element.toString() : gson.toJson(element);;
 
 			writer.write(toSave);
+			writer.flush();
+			if (toSave.length() < 5)
+			{
+				System.out.println("[DEBUG-PERTE] Sauvegarde du fichier " + file.getName() + " avec pour données : " + toSave);
+			}
 			writer.close();
 		} catch (IOException e) {  
 			e.printStackTrace();  

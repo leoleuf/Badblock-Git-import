@@ -71,6 +71,7 @@ public class EventDispatcher {
 			handlersByListeners.put(listener, methods);
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	protected void unregisterListener(Listener listener){
 		List<HandlerInformation> handlersInformation = handlersByListeners.get(listener);
 		if(handlersInformation != null){
