@@ -78,8 +78,7 @@ class Ladder
 	 */
 	public function playerOnline($player)
 	{
-		//return json_decode($this->sendData("players/isConnected/", ["name" => $player]), true);
-        return ['connected' => true];
+		return json_decode($this->sendData("players/isConnected/", ["name" => $player]), true);
 	}
 
 	/**
@@ -114,8 +113,7 @@ class Ladder
 	 */
 	public function playerSendMessage($player, $message)
 	{
-		//return $this->sendData("players/sendMessage/", ["name" => $player, "message" => $message]);
-        return true;
+		return $this->sendData("players/sendMessage/", ["name" => $player, "message" => $message]);
 	}
 
 	/**
