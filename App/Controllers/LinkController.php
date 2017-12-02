@@ -28,7 +28,7 @@ class LinkController extends Controller
         $username = $this->session->getProfile('username')['username'];
 
         if ($_POST['step'] == 1){
-            $collection = $this->mongo->badblock->dat_users;
+            $collection = $this->mongo->admin->players;
             $user = $collection->findOne(['realName' => $username]);
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null){
