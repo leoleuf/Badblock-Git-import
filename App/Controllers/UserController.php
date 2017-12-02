@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use function DusanKasan\Knapsack\identity;
 use function DusanKasan\Knapsack\isEmpty;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -102,14 +103,37 @@ class UserController extends Controller
             //redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
         }
+    }
 
 
 
+    public function changeconnectmode(RequestInterface $request, ResponseInterface $response){
+	    if (isset($_POST['selectmode'])){
+            if ($_POST['selectmode'] === "crack"){
+                //Connection a mongo pour update le mode de connection
+                $collection = $this->mongo->admin->players;
+                $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["onlineMode" => false]]);
+
+                $this->flash->addMessage('setting_error', "Changement de mode de connection vers crack !");
+                //redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+
+            }elseif($_POST['selectmode'] === "premium"){
+                //Connection a mongo pour update le mode de connection
+                $collection = $this->mongo->admin->players;
+                $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["onlineMode" => true]]);
 
 
+                $this->flash->addMessage('setting_error', "Changement de mode de connection vers premium !");
+                //redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
 
-
-
+            }else{
+                $this->flash->addMessage('setting_error', "Erreur !");
+                //redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            }
+        }
     }
 
 

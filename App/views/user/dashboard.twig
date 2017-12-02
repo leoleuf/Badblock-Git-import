@@ -109,14 +109,20 @@
     <div id="3" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <h4 class="heading heading-bar"><span>Mes paramètres </span></h4>
-                <div class="span9">
+                <div class="span">
                     <h4 class="top0">Changer mon mot de passe serveur</h4>
                     <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
-                        <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" /> <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe (à nouveau)" />
+                        <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" /> <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
                         <input type="submit" class="button-primary">
-                            <center>
-                                <i class="icon-thumbs-up"></i> Changer le mot de passe
-                            </center>
+                        </input>
+                    </form>
+                </div>
+                <div class="span">
+                    <h4 class="top0">Changer mon mode de connection</h4>
+                    <form action="/dashboard/changeserverconnect/" method="post" name="confirm-mdp">
+                        <input type="radio" name="selectmode" value="premium" id="rb">Connection premium
+                        <input type="radio" name="selectmode" value="crack" id="rb">Connection cracké
+                        <input type="submit" class="button-primary">
                         </input>
                     </form>
                 </div>
