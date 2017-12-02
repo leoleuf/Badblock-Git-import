@@ -76,7 +76,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		}*/
 		if (!loaded && file.exists()) System.out.println("Removed data " + file.getName());
 		saving.set(true);
-		
+
 		//file.delete();
 		//data = new JsonObject();
 		DataSavers.save(this, new JsonObject(), false);
@@ -88,7 +88,7 @@ public abstract class LadderDataHandler implements DataHandler {
 			throw new ConcurrentModificationException("Trying to read data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
 		reading.set(true);
-		
+
 		if(!file.exists()) {
 			data = new JsonObject();
 			loaded = true;
@@ -98,12 +98,14 @@ public abstract class LadderDataHandler implements DataHandler {
 
 		try {
 			data = FileUtils.loadObject(file);
+			String message = data.toString().length() > 12 ? data.toString().substring(0, 12) : data.toString().substring(0, data.toString().length() - 1);
+			System.out.println("Loading data : " + this.getKey() + " : " + message);
 			loaded = true;
 		} catch(Exception e){
 			data = new JsonObject();
 			e.printStackTrace();
 		}
-		
+
 		reading.set(false);
 	}
 
@@ -112,26 +114,39 @@ public abstract class LadderDataHandler implements DataHandler {
 		/*if(saving.get() || reading.get()){
 			throw new ConcurrentModificationException("Trying to save data file while saving or reading! [saving(" + saving.get() + ") reading(" + reading.get() + ")]");
 		}*/
-		if (!loaded && file.exists()) System.out.println("Save data not loaded :-( " + file.getName());
+		if (!loaded) {
+			System.out.println("Save data not loaded :-( " + file.getName());
+			return;
+		}
 		saving.set(true);
+
+		String message = data.toString().length() > 12 ? data.toString().substring(0, 12) : data.toString().substring(0, data.toString().length() - 1);
+		System.out.println("1 Sending data : " + this.getKey() + " : " + message);
 		
 		DataSavers.save(this, data, false);
 	}
-	
+
 	public void saveSync(JsonObject object, boolean update){
 		if(update)
 			addObjectInObject(data, object);
 		else data = object;
 
-		if (!loaded && file.exists()) System.out.println("Not loaded " + file.getName());
-		
+		if (!loaded)
+		{
+			System.out.println("Not loaded " + file.getName());
+			return;
+		}
+
+		String message = data.toString().length() > 12 ? data.toString().substring(0, 12) : data.toString().substring(0, data.toString().length() - 1);
+		System.out.println("2 Sending data : " + this.getKey() + " : " + message);
+
 		if(!data.entrySet().isEmpty())
 			FileUtils.save(file, data, true);
 		else if(file.exists()) {
 			file.delete();
 			System.out.println("File empty! " + file.getName());
 		}
-	
+
 		saving.set(false);
 	}
 }
