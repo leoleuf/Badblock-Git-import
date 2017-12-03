@@ -37,7 +37,7 @@ public class OnlineStaffCommand extends Command {
 						Iterator<Player> iterator = players.iterator();
 						while (iterator.hasNext()) {
 							Player player = iterator.next();
-							o += player.getName() + (iterator.hasNext() ? ", " : "");
+							o += player.getName() + " §8[" + player.getBukkitServer().getName() + "]§7" + (iterator.hasNext() ? ", " : "");
 						}
 					}else o += "§cAucun.";
 					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', o));
