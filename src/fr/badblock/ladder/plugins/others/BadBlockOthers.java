@@ -55,6 +55,7 @@ import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandTempbanip;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnban;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnbanip;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnmute;
+import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandWarn;
 import fr.badblock.ladder.plugins.others.commands.msg.MsgCommand;
 import fr.badblock.ladder.plugins.others.commands.msg.RCommand;
 import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
@@ -169,6 +170,7 @@ public class BadBlockOthers extends Plugin {
 					value.remove("tempban");
 					value.remove("tempbanip");
 					value.remove("unban");
+					value.remove("wan");
 					value.remove("unbanip");
 					value.remove("unmute");
 					value.remove("pardon");
@@ -179,6 +181,7 @@ public class BadBlockOthers extends Plugin {
 				pluginManager.registerCommand(instance, new CommandBan());
 				pluginManager.registerCommand(instance, new CommandBanip());
 				pluginManager.registerCommand(instance, new CommandKick());
+				pluginManager.registerCommand(instance, new CommandWarn());
 				pluginManager.registerCommand(instance, new CommandMute());
 				pluginManager.registerCommand(instance, new CommandSanction());
 				pluginManager.registerCommand(instance, new CommandTempban());

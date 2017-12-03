@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import fr.badblock.ladder.api.chat.RawMessage.ClickEventType;
 import fr.badblock.ladder.api.chat.RawMessage.HoverEventType;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandWarn;
 import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
 import fr.badblock.ladder.plugins.others.database.Request;
 import fr.badblock.ladder.plugins.others.database.Request.RequestType;
@@ -470,6 +472,32 @@ public class FriendPlayer {
 							p = p.substring(0, 255);
 						player.sendMessage(p);
 					}
+					Request request = new Request(
+							"SELECT * FROM sanctions WHERE pseudo = '"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "' AND expire = '-1' AND type = 'warn'",
+									RequestType.GETTER)
+					{
+						@Override
+						public void done(ResultSet resultSet)
+						{
+							try
+							{
+								while (resultSet.next())
+								{
+									String banner = resultSet.getString("banner");
+									String date = CommandWarn.sdf.format(new Date(resultSet.getLong("timestamp")));
+									String reason = resultSet.getString("reason");
+									player.sendMessages(I18N.getTranslatedMessages("msg.warn", banner, reason, date));
+									BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE sanctions SET expire = '0' WHERE id = '" + resultSet.getInt("id") + "'", RequestType.SETTER));
+								}
+							}
+							catch(Exception error)
+							{
+								error.printStackTrace();
+							}
+						}
+					};
+					BadblockDatabase.getInstance().addRequest(request);
 				} catch (Exception error) {
 					error.printStackTrace();
 				}

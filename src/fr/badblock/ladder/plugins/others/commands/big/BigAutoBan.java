@@ -27,6 +27,7 @@ import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandTempbanip;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnban;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnbanip;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandUnmute;
+import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandWarn;
 import fr.badblock.ladder.plugins.others.commands.mod.punish.ModUtils;
 import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
 import fr.badblock.ladder.plugins.others.database.Request;
@@ -215,6 +216,13 @@ public class BigAutoBan extends Command {
 										}
 										CommandKick.instance.ron(sender, (args[0] + " " + shownReason).split(" "),
 												true);
+									}else if (entry.getKey().equalsIgnoreCase("warn")) {
+										if (!sender.hasPermission("ladder.command.warn")) {
+											sender.sendMessage(I18N.getTranslatedMessage("punishments.msg.youcantwarn"));
+											return;
+										}
+										CommandWarn.instance.ron(sender, (args[0] + " " + shownReason).split(" "),
+										true);
 									}else if (entry.getKey().equalsIgnoreCase("mute")) {
 										if (!sender.hasPermission("ladder.command.mute")) {
 											sender.sendMessage(I18N.getTranslatedMessage("punishments.msg.youcantmute"));

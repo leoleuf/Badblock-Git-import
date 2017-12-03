@@ -176,6 +176,10 @@ public class CommandLogs extends SanctionCommand {
 												sanction = "DébannissementIP";
 												active = "§7DONE";
 											}
+											if (type.equals("warn")) {
+												sanction = "Avertissement";
+												active = "§7DONE";
+											}
 											if (type.equals("unmute")) {
 												sanction = "Débâillonnement";
 												active = "§7DONE";

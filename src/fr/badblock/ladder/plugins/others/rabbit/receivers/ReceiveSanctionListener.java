@@ -15,6 +15,7 @@ import fr.badblock.ladder.api.entities.CommandSender;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
 import fr.badblock.ladder.api.entities.Player;
 import fr.badblock.ladder.plugins.others.BadBlockOthers;
+import fr.badblock.ladder.plugins.others.commands.mod.punish.CommandWarn;
 import fr.badblock.ladder.plugins.others.database.BadblockDatabase;
 import fr.badblock.ladder.plugins.others.database.Request;
 import fr.badblock.ladder.plugins.others.database.Request.RequestType;
@@ -176,6 +177,16 @@ public class ReceiveSanctionListener extends RabbitListener {
 			sanctionFactory.setExpire(-1);
 			types.add("kick");
 			break;
+		case "warn":
+			sanctionFactory.setExpire(-1);
+			types.add("warn");
+			Player playerz = Ladder.getInstance().getPlayer(sanctionFactory.getPseudo());
+			if (playerz == null) {
+				System.out.println("[SANCTION] " + sanctionFactory.getPseudo() + " is offline, unable to warn him.");
+				return;
+			}
+
+			break;
 		case "mute":
 			offlinePlayer.getAsPunished().setMute(true);
 			offlinePlayer.getAsPunished().setMuteEnd(sanctionFactory.getExpire());
@@ -336,7 +347,36 @@ public class ReceiveSanctionListener extends RabbitListener {
 				offlinePlayer.getIpData().savePunishions();
 				offlinePlayer.getIpData().saveData();
 			}
+			if (playerd != null)
+			{
+				Request requestz = new Request(
+						"SELECT * FROM sanctions WHERE pseudo = '"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(playerd.getName()) + "' AND expire = '-1' AND type = 'warn'",
+								RequestType.GETTER)
+				{
+					@Override
+					public void done(ResultSet resultSet)
+					{
+						try
+						{
+							while (resultSet.next())
+							{
+								String banner = resultSet.getString("banner");
+								String date = CommandWarn.sdf.format(new Date(resultSet.getLong("timestamp")));
+								String reason = resultSet.getString("reason");
+								playerd.sendMessages(I18N.getTranslatedMessages("msg.warn", banner, reason, date));
+							}
+						}
+						catch(Exception error)
+						{
+							error.printStackTrace();
+						}
+					}
+				};
+				BadblockDatabase.getInstance().addRequest(requestz);
+			}
 		});
+
 	}
 
 }

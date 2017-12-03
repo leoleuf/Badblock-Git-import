@@ -100,6 +100,10 @@ public class CommandSanction extends SanctionCommand {
 											&& offlinePlayer.getAsPunished().getMuteEnd() == expire)
 										active = "§aON";
 								}
+								if (type.equals("warn")) {
+									sanction = "Avertissement";
+									active = "§7DONE";
+								}
 								if (type.equals("muteip")) {
 									sanction = "BâillonIP";
 									if ((expire > System.currentTimeMillis() || expire == -1)
