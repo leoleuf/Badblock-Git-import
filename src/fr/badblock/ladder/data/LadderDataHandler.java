@@ -138,6 +138,8 @@ public abstract class LadderDataHandler implements DataHandler {
 			JsonParser parser = new JsonParser();
 			data = parser.parse(JSON.serialize(cursor.next())).getAsJsonObject();
 			loaded = true;
+			String message = data.toString().length() > 128 ? data.toString().substring(0, 128) : data.toString().substring(0, data.toString().length() - 1);
+			System.out.println("1 Reading data : " + this.getKey() + " : " + message);
 			if (data.has("name"))
 			{
 				data.addProperty("name", data.get("name").getAsString().toLowerCase());
@@ -185,7 +187,7 @@ public abstract class LadderDataHandler implements DataHandler {
 		}
 		saving.set(true);
 
-		String message = data.toString().length() > 12 ? data.toString().substring(0, 12) : data.toString().substring(0, data.toString().length() - 1);
+		String message = data.toString().length() > 128 ? data.toString().substring(0, 128) : data.toString().substring(0, data.toString().length() - 1);
 		System.out.println("1 Sending data : " + this.getKey() + " : " + message);
 		
 		DataSavers.save(this, data, false);
@@ -205,8 +207,11 @@ public abstract class LadderDataHandler implements DataHandler {
 			System.out.println("Not loaded " + getKey());
 			return;
 		}
-
-		String message = data.toString().length() > 12 ? data.toString().substring(0, 12) : data.toString().substring(0, data.toString().length() - 1);
+		
+		// Fix
+		data.addProperty("name", getKey().toLowerCase());
+		
+		String message = data.toString().length() > 256 ? data.toString().substring(0, 256) : data.toString().substring(0, data.toString().length() - 1);
 		System.out.println("2 Sending data : " + this.getKey() + " : " + message);
 
 		query.put("name", this.player);
@@ -223,10 +228,6 @@ public abstract class LadderDataHandler implements DataHandler {
 
 		if (!data.entrySet().isEmpty())
 		{
-			if (data.has("name"))
-			{
-				data.addProperty("name", data.get("name").getAsString().toLowerCase());
-			}
 			if (find)
 			{
 				Proxy.getInstance().getConsoleCommandSender().sendMessage("§eSaving data: " + key + " exists in the player table. Updated data.");
