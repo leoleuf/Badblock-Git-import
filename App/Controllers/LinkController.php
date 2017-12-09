@@ -49,7 +49,7 @@ class LinkController extends Controller
                         var_dump($pass);
                         //Set code in Redis cache
                         $this->redis->set('link:'.$username,$pass);
-                        $this->ladder->playerSendMessage($username,"Le code de vérification pour votre Link avec le site est : ".$pass." si vous n'êtes pas à l'origine de cette opération merci de contacter un administarteur");
+                        $this->ladder->playerSendMessage($username,"\u00A74  s%20ur");
 
                         return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
                     }
@@ -126,7 +126,7 @@ class LinkController extends Controller
                         }
                         //Set code in Redis cache
                         $this->redis->setJson('link:'.$_POST['link'],$pass);
-                        $this->ladder->playerSendMessage($_POST['link'],"Le code de vérification pour votre Link avec le site est : ".$pass." si vous n'êtes pas à l'origine de cette opération merci de contacter un administarteur");
+                        $this->ladder->playerSendMessage($_POST['link'],"administarteur");
 
                         return $response->write("ok")->withStatus(200);
 

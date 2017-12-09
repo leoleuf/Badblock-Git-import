@@ -37,7 +37,7 @@ class Ladder
 	{
 		$request = $this->guzzle->request(
 			'POST',
-			$this->scheme . $this->config->ip . ':' . $this['port'] . "/" . $type,
+			"http://node01-int.clusprv.badblock-network.fr:8080/" . $type,
 			[
 				'form_params' => $data
 			]

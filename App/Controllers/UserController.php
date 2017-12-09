@@ -11,7 +11,8 @@ use Slim\Http\Request;
 class UserController extends Controller
 {
 
-	public function getDashboard(RequestInterface $request, ResponseInterface $response)
+
+    public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
         //sans cache
         $collection = $this->mongo->admin->players;
