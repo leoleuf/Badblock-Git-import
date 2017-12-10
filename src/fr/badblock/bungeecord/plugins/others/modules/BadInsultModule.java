@@ -5,11 +5,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.google.gson.Gson;
 
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.Player;
@@ -184,8 +179,7 @@ public class BadInsultModule extends Module {
 		message = okMessage;
 		// Test d'insultes
 		boolean handle = false;
-		boolean invincible = player.hasPermission("ladder.command.sanction");
-		if (!invincible && !handle) {
+		/*if (!invincible && !handle) {
 			for (String insult : insultsMuteList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
 						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
@@ -222,7 +216,7 @@ public class BadInsultModule extends Module {
 					return;
 				}
 			}
-		}
+		}*/
 		if (!handle) {
 			for (String insult : insultsList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
