@@ -52,6 +52,10 @@ class LinkController extends Controller
                         $this->ladder->playerSendMessage($username,"\u00A74  s%20ur");
 
                         return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                    }else{
+                        $this->flash->addMessage('link_error', "Votre compte n'est pas connecté sur le serveur !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }
                 }else{
                     if ($user["website"]['link'] == false ){

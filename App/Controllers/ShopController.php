@@ -118,7 +118,7 @@ class ShopController extends Controller
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
 	    //Vérification si le produit éxiste
             if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
-                $collection = $this->mongo->badblock->dat_users;
+                $collection = $this->mongo->admin->players;
                 $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
                 $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
 
