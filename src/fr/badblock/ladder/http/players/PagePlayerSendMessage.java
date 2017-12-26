@@ -1,5 +1,6 @@
 package fr.badblock.ladder.http.players;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import com.google.gson.JsonObject;
@@ -24,7 +25,18 @@ public class PagePlayerSendMessage extends LadderPage {
 		} else {
 			Player player = Ladder.getInstance().getPlayer(input.get("name"));
 			if (player == null) return object;
-			player.sendMessage(ChatColor.replaceColor(input.get("message")));
+			String string;
+			try
+			{
+				string = new String(input.get("message").getBytes("UTF-8"));
+				string = ChatColor.replaceColor(string);
+				string = string.replace("+", " ");
+				player.sendMessage(string);
+			}
+			catch (UnsupportedEncodingException e)
+			{
+				e.printStackTrace();
+			}
 		}
 		
 		return object;
