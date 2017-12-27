@@ -428,24 +428,24 @@ public class PlayerConnection implements PacketListenerPlayIn, IUpdatePlayerList
 
                     d13 = d9 - this.player.locZ;
                     d15 = d11 * d11 + d12 * d12 + d13 * d13;
-                    boolean flag1 = false;
+                   // boolean flag1 = false;
 
                     // Spigot: make "moved wrongly" limit configurable
-                    if (d15 > org.spigotmc.SpigotConfig.movedWronglyThreshold && !this.player.isSleeping() && !this.player.playerInteractManager.isCreative()) {
+                    /*if (d15 > org.spigotmc.SpigotConfig.movedWronglyThreshold && !this.player.isSleeping() && !this.player.playerInteractManager.isCreative()) {
                         flag1 = true;
                         PlayerConnection.c.warn(this.player.getName() + " moved wrongly!");
-                    }
+                    }*/
 
                     this.player.setLocation(d7, d8, d9, f2, f3);
                     this.player.checkMovement(this.player.locX - d0, this.player.locY - d1, this.player.locZ - d2);
-                    if (!this.player.noclip) {
+                   /* if (!this.player.noclip) {
                         boolean flag2 = worldserver.getCubes(this.player, this.player.getBoundingBox().shrink(f4, f4, f4)).isEmpty();
 
                         if (flag && (flag1 || !flag2) && !this.player.isSleeping()) {
                             this.a(this.o, this.p, this.q, f2, f3);
                             return;
                         }
-                    }
+                    }*/
 
                     AxisAlignedBB axisalignedbb = this.player.getBoundingBox().grow(f4, f4, f4).a(0.0D, -0.55D, 0.0D);
 
