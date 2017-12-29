@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -20,8 +21,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import fr.badblock.bungeecord.plugins.ladder.bungee.BungeeKeep;
 import fr.badblock.bungeecord.plugins.ladder.entities.CommandDispatcher;
 import fr.badblock.bungeecord.plugins.ladder.entities.LadderHandler;
+import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayerListUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.skins.SkinFactoryBungee;
 import fr.badblock.bungeecord.plugins.ladder.utils.FileUtils;
@@ -155,6 +158,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				rabbitService = RabbitConnector.getInstance().newService("default", config.getString("rabbit.hostname"), config.getInt("rabbit.port"), config.getString("rabbit.username"),
 						config.getString("rabbit.password"), config.getString("rabbit.virtualhost"));
 				new ScalerPlayersUpdateListener();
+				new BungeePlayerListUpdateListener();
 			}catch(Exception error) {
 				Thread.sleep(Long.MAX_VALUE);
 				error.printStackTrace();
@@ -176,6 +180,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				@Override
 				public void run() {
 					rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getInt("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					rabbitService.sendPacket("ladder.playerlistupdateBungee", BungeePlayerListUpdateListener.gson.toJson(new BungeeKeep(config.getString("localHost.ip") + ":" + config.getInt("localHost.port"), BungeeCord.getInstance().getPlayers().parallelStream().map(player -> player.getName()).collect(Collectors.toList()))), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
 			}, 1000, 1000);
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
@@ -185,7 +190,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 					Thread.sleep(1000L);
 				else break;
 			}
-			
+
 		} catch(Exception e){
 			e.printStackTrace();
 
@@ -410,6 +415,17 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
 		System.out.println("Connecting " + packet.getPlayerName() + " : B");
 		if(playerList.containsKey(packet.getPlayerName())) {
+			for (List<String> list : BungeePlayerListUpdateListener.map.values())
+			{
+				for (String string : list)
+				{
+					if (string.equalsIgnoreCase(e.getPlayer()))
+					{
+						e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme."), null);
+						break;
+					}
+				}
+			}
 			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(packet.getPlayerName());
 			if (proxiedPlayer != null) {
 				proxiedPlayer.sendMessage("§cVous êtes déjà connecté sur BadBlock!");
@@ -487,11 +503,22 @@ public class LadderBungee extends Plugin implements PacketHandler {
 	}
 
 	public void handle(PacketPlayerQuit packet, boolean kick) {
+
+		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getUserName());
+		Player		  lPlayer = getPlayer(packet.getUserName());
+		
+		if (bPlayer != null)
+		{
+			playerList.remove(bPlayer.getName());
+		}
+		else
+		{
+			playerList.remove(packet.getUserName());
+		}
+
 		if(!byName.containsKey(packet.getUserName()) && !playersTemp.containsKey(packet.getUserName())) {
 			return;
 		}
-		Player		  lPlayer = getPlayer(packet.getUserName());
-		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getUserName());
 
 		if(lPlayer == null){
 			lPlayer = playersTemp.get(packet.getUserName());
@@ -504,15 +531,12 @@ public class LadderBungee extends Plugin implements PacketHandler {
 		}
 
 		if(bPlayer != null && !kick){
-			playerList.remove(bPlayer.getName());
 
 			if(packet.getReason() != null){
 				bPlayer.disconnect(StringUtils.join(packet.getReason(), "\\n"));
 			} else {
 				bPlayer.disconnect();
 			}
-		} else if(lPlayer.getName() != null) {
-			playerList.remove(lPlayer.getName());
 		}
 
 		if (connectPlayers.size() > ladderPlayers) {
@@ -530,10 +554,10 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			bungeePlayerList.remove(lPlayer.getName());
 		}
 		rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getInt("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-		
+
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
-		
+
 		byName.remove(lPlayer.getName());
 		byName.remove(lPlayer.getName().toLowerCase());
 		playersTemp.remove(lPlayer.getName());
