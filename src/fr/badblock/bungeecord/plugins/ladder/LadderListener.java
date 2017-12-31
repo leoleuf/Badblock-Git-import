@@ -1,8 +1,12 @@
 package fr.badblock.bungeecord.plugins.ladder;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayerListUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.utils.Motd;
 import fr.badblock.bungeecord.plugins.ladder.utils.Punished;
@@ -29,6 +33,7 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -39,22 +44,33 @@ public class LadderListener implements Listener {
 
 	public static long timestampMax = -1;
 	public static String finished = "-";
+	public static Map<ProxiedPlayer, String> servers = new HashMap<>();
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
-		if(e.getPlayer().contains("/")){
+		boolean f = false;
+		if(e.getPlayer().contains("/") || e.getPlayer().contains("'")){
+			f = true;
 			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 			return;
 		}
-		if (LadderBungee.getInstance().getPlayer(e.getPlayer()) != null) {
-			ProxiedPlayer player = BungeeCord.getInstance().getPlayer(e.getPlayer());
-			if (player == null || !player.isConnected()) {
-				LadderBungee.getInstance().playerList.remove(e.getPlayer());
-				LadderBungee.getInstance().byName.remove(e.getPlayer());
-			}else{
-				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock. Veuillez réessayer plus tard."), null);
+		for (List<String> list : BungeePlayerListUpdateListener.map.values())
+		{
+			for (String string : list)
+			{
+				if (string.equalsIgnoreCase(e.getPlayer()))
+				{
+					f = true;
+					e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme."), null);
+					break;
+				}
 			}
-			return;
+		}
+		if (f)
+		{
+			PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer(), null);
+			LadderBungee.getInstance().handle(quitPacket);
+			LadderBungee.getInstance().getClient().sendPacket(quitPacket);
 		}
 		System.out.println("Connecting " + e.getPlayer() + " : A");
 		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
@@ -86,6 +102,13 @@ public class LadderListener implements Listener {
 		PacketPlayerQuit packet = new PacketPlayerQuit(e.getPlayer().getName(), null);
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
+	}
+
+
+	@EventHandler(priority=EventPriority.HIGHEST)
+	public void onServerConnected(ServerConnectedEvent e)
+	{
+		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getServer().getInfo().getName()));
 	}
 
 	@EventHandler(priority=EventPriority.HIGHEST)
@@ -133,7 +156,6 @@ public class LadderListener implements Listener {
 			return;
 		}
 
-		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getTarget().getName()));
 	}
 
 	@EventHandler
@@ -170,10 +192,10 @@ public class LadderListener implements Listener {
 			sample[i] = new PlayerInfo(ChatColor.translateAlternateColorCodes('&', motd.getPlayers()[i]), UUID.randomUUID());
 		}
 
-		int m = LadderBungee.getInstance().slots;
+		motd.setMaxPlayers(LadderBungee.getInstance().slots);
 		BungeeCord.getInstance().setPlayerNames(LadderBungee.getInstance().bungeePlayerList);
 		BungeeCord.getInstance().setCurrentCount(ScalerPlayersUpdateListener.get());
-		reply.setPlayers(new ServerPing.Players(m, LadderBungee.getInstance().ladderPlayers, sample));
+		reply.setPlayers(new ServerPing.Players(motd.getMaxPlayers(), LadderBungee.getInstance().ladderPlayers, sample));
 		String[] motdString = motd.getMotd().clone();
 		timestampMax = BungeeUtils.config.getLong("timestampLimit");
 		finished = BungeeUtils.config.getString("timestampReachLimit");
