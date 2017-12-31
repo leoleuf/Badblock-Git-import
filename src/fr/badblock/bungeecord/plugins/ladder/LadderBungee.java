@@ -408,25 +408,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
 		System.out.println("Connecting " + packet.getPlayerName() + " : B");
-		if(playerList.containsKey(packet.getPlayerName())) {
-			for (List<String> list : BungeePlayerListUpdateListener.map.values())
-			{
-				for (String string : list)
-				{
-					if (string.equalsIgnoreCase(e.getPlayer()))
-					{
-						e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme."), null);
-						break;
-					}
-				}
-			}
-			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(packet.getPlayerName());
-			if (proxiedPlayer != null) {
-				proxiedPlayer.sendMessage("§cVous êtes déjà connecté sur BadBlock ! Veuillez réessayer plus tard.");
-			}
-			return;
-		}
-
+	
 		Player player = null;
 
 		if(falsePacket && playersTemp.containsKey(packet.getPlayerName())){
