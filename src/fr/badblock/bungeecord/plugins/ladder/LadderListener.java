@@ -52,7 +52,7 @@ public class LadderListener implements Listener {
 				LadderBungee.getInstance().playerList.remove(e.getPlayer());
 				LadderBungee.getInstance().byName.remove(e.getPlayer());
 			}else{
-				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock!"), null);
+				e.getDone().done(new Result(null, ChatColor.RED + "Vous êtes déjà connecté sur BadBlock. Veuillez réessayer plus tard."), null);
 			}
 			return;
 		}
