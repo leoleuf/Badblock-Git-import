@@ -35,6 +35,7 @@ import fr.badblock.bungeecord.plugins.others.commands.BTPS;
 import fr.badblock.bungeecord.plugins.others.commands.CLCommand;
 import fr.badblock.bungeecord.plugins.others.commands.CheatCommand;
 import fr.badblock.bungeecord.plugins.others.commands.DoneCommand;
+import fr.badblock.bungeecord.plugins.others.commands.FKickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.LinkCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ModoCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
@@ -86,7 +87,7 @@ import net.sf.json.JSONObject;
 	@Getter @Setter private static BadBlockBungeeOthers instance;
 
 	private static Gson gson = new Gson();
-	
+
 	private Configuration							    configuration;
 	private List<InjectableFilter> 						filters 			= new LinkedList<>();
 	private RabbitService								rabbitService;
@@ -107,7 +108,7 @@ import net.sf.json.JSONObject;
 	private long										maxPlayers = 1;
 	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
 	private CloudflareAccess access;
-	
+
 	private TemmieWebhook temmie = new TemmieWebhook("https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
 
 
@@ -175,6 +176,7 @@ import net.sf.json.JSONObject;
 		pluginManager.registerListener(this, new BadAdvertsModule());
 		pluginManager.registerListener(this, new GuardianModule());
 		pluginManager.registerListener(this, new BadPseudoModule());
+		pluginManager.registerCommand(this, new FKickCommand());
 		pluginManager.registerCommand(this, new BOReloadCommand());
 		pluginManager.registerCommand(this, new BListCommand());
 		pluginManager.registerCommand(this, new ModoCommand());
