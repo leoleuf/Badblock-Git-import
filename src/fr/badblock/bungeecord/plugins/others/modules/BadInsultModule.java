@@ -180,6 +180,8 @@ public class BadInsultModule extends Module {
 		// Test d'insultes
 		boolean handle = false;
 		/*if (!invincible && !handle) {
+		/*boolean invincible = player.hasPermission("ladder.command.sanction");
+		if (!invincible && !handle) {
 			for (String insult : insultsMuteList) {
 				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
 						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {

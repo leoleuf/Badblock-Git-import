@@ -35,6 +35,7 @@ import fr.badblock.bungeecord.plugins.others.commands.CLCommand;
 import fr.badblock.bungeecord.plugins.others.commands.CheatCommand;
 import fr.badblock.bungeecord.plugins.others.commands.DoneCommand;
 import fr.badblock.bungeecord.plugins.others.commands.GNickCommand;
+import fr.badblock.bungeecord.plugins.others.commands.FKickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.LinkCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ModoCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
@@ -93,6 +94,7 @@ import net.sf.json.JSONObject;
 	private static Gson gson = new Gson();
 
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
+	
 	private Configuration							    configuration;
 	private List<InjectableFilter> 						filters 			= new LinkedList<>();
 	private RabbitService								rabbitService;
@@ -185,6 +187,7 @@ import net.sf.json.JSONObject;
 		pluginManager.registerListener(this, new BadAdvertsModule());
 		pluginManager.registerListener(this, new GuardianModule());
 		pluginManager.registerListener(this, new BadPseudoModule());
+		pluginManager.registerCommand(this, new FKickCommand());
 		pluginManager.registerCommand(this, new BOReloadCommand());
 		pluginManager.registerCommand(this, new BListCommand());
 		pluginManager.registerCommand(this, new ReportLagCommand());
