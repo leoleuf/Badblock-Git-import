@@ -80,9 +80,10 @@ class ShopApiController extends \App\Controllers\Controller
 
         //Renvoie d'un code de succès
 
+        $this->log->success('StaffApiController\ShopApiController',' Success writing shop cache');
+
         return $response->write('Success writing shop cache')->withStatus(200);
 
-        $this->log->info('"StaffApiController\ShopApiController": Success writing shop cache');
 
     }
 

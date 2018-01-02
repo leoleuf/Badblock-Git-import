@@ -57,7 +57,7 @@ class BlogApiController extends \App\Controllers\Controller
 		$posts = $this->xenforo->getAllNewsPosts();
 
 		//loggin
-		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
+		$this->log->success('"BlogApiController\getCreateCacheAllPosts"','Creating cache for ' . $posts['count'] . ' items...');
 
 		//2. Les traiter pour en obtenir le contenu
 		$newPosts = [];
@@ -122,10 +122,10 @@ class BlogApiController extends \App\Controllers\Controller
 						$postInfo['cover_url'] = $postInfo['thumb_url'];
 					}
 					//logging
-					$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
+					$this->log->debug('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
 					//logging
-					$this->log->error('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
+					$this->log->error('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid parameters.');
 
 					//stop the script
 					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
@@ -141,7 +141,7 @@ class BlogApiController extends \App\Controllers\Controller
 				];
 
 				//logging
-				$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
+				$this->log->debug('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no parameters.');
 			}
 
 			//definir le contenu
@@ -231,13 +231,13 @@ class BlogApiController extends \App\Controllers\Controller
 
 		//enregister le cache pour les articles épinglés
 		//debug log
-		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
+		$this->log->debug('"BlogApiController\getCreateCacheAllPosts"',' Count of pined rows : ' . count($pinedRawPosts));
 		$this->redis->setJson('pined_posts', $pinedRawPosts);
 
 		//enregistrer le nb d'articles
 		$this->redis->set('posts_count', $posts['count']);
 
-		$this->log->info('"BlogApiController\getCreateCacheAllPosts": Success writing articles cache');
+		$this->log->info('"BlogApiController\getCreateCacheAllPosts"',' Success writing articles cache');
 
 		//return success
 		return $response->write('Success writing posts cache')->withStatus(200);
