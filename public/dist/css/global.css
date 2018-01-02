@@ -38,6 +38,10 @@
 .shop-menu li {
   border-bottom: 4px solid #3498db !important; }
 
+.shop-section {
+  margin-bottom: 0px !important;
+}
+
 .no-link {
   cursor: pointer;
   color: #3b5166 !important; }
