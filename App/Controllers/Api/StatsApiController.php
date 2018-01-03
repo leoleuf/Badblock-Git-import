@@ -16,6 +16,14 @@ class StatsApiController extends \App\Controllers\Controller
 
     public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
+        $collection2 = $this->mongo->zdmin->players;
+
+
+        $cursor = $collection->find(['visibility' => true]);
+
+
+
+
         $this->log->success("StatsApiController\getCreateCacheStats",'Success writing stats cache');
 
 

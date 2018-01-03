@@ -4,40 +4,79 @@
 {% set title = "Statistiques" %}
 {% set sub_title = "Sur le serveur" %}
 {% block cover %}
-    <nav class="stats-nav-container">
-        <ul class="stats-nav">
-            <li class="active">
-                <a href="#">Général</a>
-            </li>
-            <li>
-                <a href="#">Jeux</a>
-            </li>
-            <li>
-                <a href="#">Joueurs</a>
-            </li>
-        </ul>
-    </nav>
-{% endblock %}
-{% block content %}
-    {# Comme un dashboard kibana, on liste differants panel avec le système de colums #}
-    {# (metric) Un panel avec le numbre des joueurs connectés #}
-    {# (chart) Un panel avec le numbre de connectés by time #}
-    <!-- Main content -->
-    <div class="stats-panel">
-        <div class="three columns item">
-            <div class="stats-panel-metric">
-                <span class="metric">160</span>
-                <span class="text">Joueurs connectés</span>
-            </div>
-        </div>
-        <div class="seven columns item">
-            <div class="stats-panel-chart" id="chart1-container" style="
-            min-width: 310px;
-            max-width: 800px;
-            height: 400px;
-            margin: 0 auto">
+    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+
+    <div class="cover-back">
+        <div class="cover">
+            <div class="container">
+                <div class="one-half column animated bounceInLeft">
+                    <button class="button-games" type="submit" id="tower"><span>Tower</span></button>
+                    <button class="button-games" type="submit" id="rush">Rush</button>
+                    <button class="button-games" type="submit" id="survival">Survival</button>
+                    <button class="button-games" type="submit" id="uhc_speed">UHC Speed</button>
+                    <button class="button-games" type="submit" id="peal_wars">Pearl Wars</button>
+                    <button class="button-games" type="submit" id="spaceballs">SpaceBalls</button>
+                    <button class="button-games" type="submit" id="capture_the_sheep">Capture The Sheep</button>
+                </div>
+                <div class="one-half column animated bounceInLeft">
+                    <div class="search-container">
+                        <div class="games-info">
+                            <div class="search-container">
+                                <form action="/action_page.php">
+                                    <label>Rechercher un Joueur</label>
+                                    <input class="u-middle-width" type="text" placeholder="Recherchez un joueur" name="search">
+                                    <button class="button-search" type="submit"><!--Recherche--><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="animated">
+                        <a class="button button-primary" href="/play"><i class="icon-play icon"></i> Jouer</a>
+                    </div>
+                </div>
 
             </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="container content">
+        <div class="twelve columns">
+            <div class="stats-home">
+                <h4 class="heading heading-bar"><span>Statistiques Générales</span></h4>
+                <div class="col-3">
+                    <a href="#player-modal"><h3 id="players-count">1 555 555</h3>
+                        <p>Joueurs connectés</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#account-modal"><h3>17 000</h3>
+                        <p>Nombre de compte crée</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#ban-modal"><h3>5</h3>
+                        <p>Nombre de Ban</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#player-active-modal"><h3>1 432 652</h3>
+                        <p>Joueurs connectés actifs</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#followers-modal"><h3>98 701</h3>
+                        <p>Nombre de followers</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#line-modal"><h3>10.E17</h3>
+                        <p>Nombre de lignes codées par Hooki</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container content">
+        <div class="info-stats">
+            <h4 class="heading heading-bar"><span>Informations sur les Statistiques</span></h4>
+            <h5><span class="bold">BOLD</span> tempore Serenianus ex duce, cuius ignavia populatam in Phoenice Celsen ante rettulimus, pulsatae maiestatis imperii reus iure postulatus ac lege, incertum qua potuit suffragatione absolvi, aperte convictus familiarem suum cum pileo, quo caput operiebat, incantato vetitis artibus ad templum misisse fatidicum, quaeritatum expresse an ei firmum portenderetur imperium, ut cupiebat, et cunctum.</h5>
+
+            <h5>Novitates autem si spem adferunt, ut tamquam in herbis non fallacibus fructus appareat, non sunt illae quidem repudiandae, vetustas tamen suo loco conservanda; maxima est enim vis vetustatis et consuetudinis. Quin in ipso equo, cuius modo feci mentionem, si nulla res impediat, nemo est, quin eo, quo consuevit, libentius utatur quam intractato et novo. Nec vero in hoc quod est animal, sed in iis etiam quae sunt inanima, consuetudo valet, cum locis ipsis delectemur, montuosis etiam et silvestribus, in quibus diutius commorati sumus.</h5>
         </div>
     </div>
 {% endblock %}
@@ -47,60 +86,28 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <script>
-        Highcharts.chart('chart1-container', {
-            chart: {
-                type: 'area'
-            },
-            title: {
-                text: 'Les joueurs dans le temps'
-            },
-            xAxis: {
-                allowDecimals: false,
-                labels: {
-                    formatter: function () {
-                        return this.value; // clean, unformatted number for year
-                    }
+        function players() {
+            console.log('players loading');
+            //Get players
+            $.getJSON('https://api.badblock.fr/public/servers-status/check.php?host=play.badblock.fr&port=25565', function(data) {
+                if (data.players.online == 0){
+                    var message = Aucun
                 }
-            },
-            yAxis: {
-                title: {
-                    text: ''
-                },
-                labels: {
-                    formatter: function () {
-                        return this.value / 1000 + 'k';
-                    }
+                if (data.players.now == 1){
+                    var message = data.players.online
                 }
-            },
-            tooltip: {
-                pointFormat: 'Ta mère produced <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-            },
-            plotOptions: {
-                area: {
-                    pointStart: 1940,
-                    marker: {
-                        enabled: false,
-                        symbol: 'circle',
-                        radius: 2,
-                        states: {
-                            hover: {
-                                enabled: true
-                            }
-                        }
-                    }
+                if (data.players.now > 1){
+                    var message = data.players.online
                 }
-            },
-            series: [{
-                name: ' ',
-                data: [null, null, null, null, null, 6, 11, 32, 110, 235, 369, 640,
-                    1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468, 20434, 24126,
-                    27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342, 26662,
-                    26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-                    24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586,
-                    22380, 21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950,
-                    10871, 10824, 10577, 10527, 10475, 10421, 10358, 10295, 10104]
-            }],
-            legend: false
-        });
+                $('#players-count').html(message);
+
+                console.log('players online: ' + message);
+            });
+        }
+
+        players(); // This will run on page load
+        setInterval(function(){
+            players() // this will run after every 5 seconds
+        }, 2000);
     </script>
 {% endblock %}
