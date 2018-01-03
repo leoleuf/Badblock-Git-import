@@ -5,6 +5,40 @@
   float: left;
   transition: 0.3s;
 }
+.c-table__row:hover {
+  background: rgba(50, 50, 50, 0.7);
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: 0.4s; }
+
+.c-table__cell {
+  overflow: hidden;
+  text-align: center !important; }
+
+td.c-table__cell {
+  text-align: center !important; }
+
+.c-table__row a {
+  text-decoration: none; }
+
+.podium-cover-content img {
+  margin-left: 20px;
+  padding: 5px; }
+
+.avatar-first {
+  border-bottom: 45px solid #eec900;
+  width: 9%; }
+
+.avatar-second {
+  border-bottom: 35px solid #D3D3D3;
+  width: 7%; }
+
+.avatar-third {
+  border-bottom: 25px solid #cd7f32;
+  width: 5%; }
+
+/*# sourceMappingURL=global.css.map */
+
 
 .col-3:hover {
   transform: scale(1.2);

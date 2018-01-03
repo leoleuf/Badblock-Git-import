@@ -16,10 +16,14 @@ class StatsApiController extends \App\Controllers\Controller
 
     public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
-        $collection2 = $this->mongo->zdmin->players;
+        $collection = $this->mongo->admin->players;
 
 
-        $cursor = $collection->find(['visibility' => true]);
+        $register = $collection->count();
+        $banA = $collection->count(['punish.ban' => true]);
+        $muteA = $collection->count(['punish.mute' => true]);
+
+        var_dump($banA);
 
 
 
