@@ -185,12 +185,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 			}, 1000, 1000);
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
 
-			while(true){
-				if(getProxy().getServers().size() < 10)
-					Thread.sleep(1000L);
-				else break;
-			}
-
 		} catch(Exception e){
 			e.printStackTrace();
 
@@ -414,7 +408,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
 		System.out.println("Connecting " + packet.getPlayerName() + " : B");
-
 		Player player = null;
 
 		if(falsePacket && playersTemp.containsKey(packet.getPlayerName())){

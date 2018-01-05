@@ -48,7 +48,9 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
+		boolean f = false;
 		if(e.getPlayer().contains("/") || e.getPlayer().contains("'")){
+			f = true;
 			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 			return;
 		}
@@ -60,6 +62,12 @@ public class LadderListener implements Listener {
 				e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme. Code #02"), null);
 				break;
 			}
+		}
+		if (f)
+		{
+			PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer(), null);
+			LadderBungee.getInstance().handle(quitPacket);
+			LadderBungee.getInstance().getClient().sendPacket(quitPacket);
 		}
 		System.out.println("Connecting " + e.getPlayer() + " : A");
 		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
