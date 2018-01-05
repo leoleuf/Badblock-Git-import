@@ -2,10 +2,10 @@ package fr.badblock.bungeecord.plugins.ladder;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import fr.badblock.bungeecord.plugins.ladder.bungee.BungeeKeep;
 import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayerListUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.utils.Motd;
@@ -52,15 +52,13 @@ public class LadderListener implements Listener {
 			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 			return;
 		}
-		for (List<String> list : BungeePlayerListUpdateListener.map.values())
+		for (BungeeKeep bungeeKeep : BungeePlayerListUpdateListener.map.values())
 		{
-			for (String string : list)
+			if (bungeeKeep.isExpired()) continue;
+			if (bungeeKeep.players.contains(e.getPlayer().toLowerCase()))
 			{
-				if (string.equalsIgnoreCase(e.getPlayer()))
-				{
-					e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme."), null);
-					break;
-				}
+				e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme. Code #02"), null);
+				break;
 			}
 		}
 		System.out.println("Connecting " + e.getPlayer() + " : A");
@@ -101,7 +99,7 @@ public class LadderListener implements Listener {
 	{
 		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getServer().getInfo().getName()));
 	}
-	
+
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
 		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());

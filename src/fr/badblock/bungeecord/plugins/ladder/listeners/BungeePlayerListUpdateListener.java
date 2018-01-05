@@ -2,7 +2,6 @@ package fr.badblock.bungeecord.plugins.ladder.listeners;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -18,8 +17,8 @@ public class BungeePlayerListUpdateListener extends RabbitListener
 	
 	public static final Type type = new TypeToken<BungeeKeep>() {}.getType();
 	
-	public static Map<String, List<String>> map = new HashMap<>();
-	public static Gson						gson = new Gson();
+	public static Map<String, BungeeKeep> map  = new HashMap<>();
+	public static Gson			   gson = new Gson();
 	
 	public BungeePlayerListUpdateListener()
 	{
@@ -38,7 +37,7 @@ public class BungeePlayerListUpdateListener extends RabbitListener
 		{
 			return;
 		}
-		map.put(bungeeKeep.getBungeeName(), bungeeKeep.getPlayers());
+		map.put(bungeeKeep.getBungeeName(), bungeeKeep);
 	}
 	
 }

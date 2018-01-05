@@ -180,7 +180,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 				@Override
 				public void run() {
 					rabbitService.sendPacket("bungee.players", config.getString("localHost.ip") + ":" + config.getInt("localHost.port") + ";" + BungeeCord.getInstance().getPlayers().size(), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-					rabbitService.sendPacket("ladder.playerlistupdateBungee", BungeePlayerListUpdateListener.gson.toJson(new BungeeKeep(config.getString("localHost.ip") + ":" + config.getInt("localHost.port"), BungeeCord.getInstance().getPlayers().parallelStream().map(player -> player.getName()).collect(Collectors.toList()))), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+					rabbitService.sendPacket("ladder.playerlistupdateBungee", BungeePlayerListUpdateListener.gson.toJson(new BungeeKeep(config.getString("localHost.ip") + ":" + config.getInt("localHost.port"), BungeeCord.getInstance().getPlayers().parallelStream().map(player -> player.getName().toLowerCase()).collect(Collectors.toList()), System.currentTimeMillis() + 5000)), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 				}
 			}, 1000, 1000);
 			getProxy().getPluginManager().registerListener(this, new LadderListener());
@@ -414,24 +414,6 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 	public void handle(PacketPlayerJoin packet, boolean falsePacket) {
 		System.out.println("Connecting " + packet.getPlayerName() + " : B");
-		if(playerList.containsKey(packet.getPlayerName())) {
-			for (List<String> list : BungeePlayerListUpdateListener.map.values())
-			{
-				for (String string : list)
-				{
-					if (string.equalsIgnoreCase(e.getPlayer()))
-					{
-						e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme."), null);
-						break;
-					}
-				}
-			}
-			ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(packet.getPlayerName());
-			if (proxiedPlayer != null) {
-				proxiedPlayer.sendMessage("§cVous êtes déjà connecté sur BadBlock!");
-			}
-			return;
-		}
 
 		Player player = null;
 
@@ -506,7 +488,7 @@ public class LadderBungee extends Plugin implements PacketHandler {
 
 		ProxiedPlayer bPlayer = getProxy().getPlayer(packet.getUserName());
 		Player		  lPlayer = getPlayer(packet.getUserName());
-		
+
 		if (bPlayer != null)
 		{
 			playerList.remove(bPlayer.getName());
