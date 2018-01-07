@@ -8,7 +8,7 @@
 			"behaviour": "trigger/start/commands",
 			"arguments":
 			[
-				"cp -r {dir/data}/spigot_defaults/* {dir/process}"
+				"cp -r {dir/data}/prod/static/spigot_defaults/* {dir/process}"
 			]
 		},
 		{
