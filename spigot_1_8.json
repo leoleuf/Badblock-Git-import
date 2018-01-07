@@ -1,7 +1,7 @@
 {
 	"parent": null,
 	"name": "spigot-1.8",
-	"startCommand": "java -jar spigot.jar",
+	"startCommand": "java -jar spigot.jar --port {var/port}",
 	"behaviours":
 	[
 		{
@@ -16,9 +16,6 @@
 		},
 		{
 			"behaviour": "trigger/stop/destroy"
-		},
-		{
-			"behaviour": "trigger/stop/free-port"
 		}
 	]
 }
