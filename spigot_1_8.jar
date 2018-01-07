@@ -1,0 +1,24 @@
+{
+	"parent": null,
+	"name": "spigot-1.8",
+	"startCommand": "java -jar spigot.jar",
+	"behaviours":
+	[
+		{
+			"behaviour": "trigger/start/commands",
+			"arguments":
+			[
+				"cp -r {dir/data}/spigot_defaults/* {dir/process}"
+			]
+		},
+		{
+			"behaviour": "trigger/start/allocate-port"
+		},
+		{
+			"behaviour": "trigger/stop/destroy"
+		},
+		{
+			"behaviour": "trigger/stop/free-port"
+		}
+	]
+}
