@@ -1,0 +1,7 @@
+{
+	"server_id": 1,
+	"name": "Torche",
+	"price": 300,
+	"img": "gold.png",
+	"visibility": true
+}
