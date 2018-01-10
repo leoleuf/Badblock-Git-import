@@ -1,7 +1,5 @@
 package fr.badblock.ladder.http.players;
 
-import java.util.Map;
-
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
@@ -14,13 +12,13 @@ public class PagePlayerExists extends LadderPage{
 	}
 
 	@Override
-	public JsonObject call(Map<String, String> input) {
+	public JsonObject call(JsonObject input) {
 		JsonObject object = new JsonObject();
 		
-		if (!input.containsKey("name")) {
+		if (!input.has("name")) {
 			object.addProperty("error", "Aucun pseudo!");
 		} else {
-			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
+			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name").getAsString());
 			object.addProperty("exist", player.hasPlayed());
 		}
 		

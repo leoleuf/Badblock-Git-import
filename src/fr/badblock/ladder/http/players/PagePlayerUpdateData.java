@@ -1,12 +1,9 @@
 package fr.badblock.ladder.http.players;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.entities.OfflinePlayer;
@@ -19,25 +16,21 @@ public class PagePlayerUpdateData extends LadderPage {
 	}
 
 	@Override
-	public JsonObject call(Map<String, String> input) {
+	public JsonObject call(JsonObject input) {
 		JsonObject object = new JsonObject();
-		if (!input.containsKey("name")) {
+		if (!input.has("name")) {
 			object.addProperty("error", "Aucun pseudo!");
 		} else {
-			object.addProperty("name", input.get("name"));
-			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
+			object.addProperty("name", input.get("name").getAsString());
+			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name").getAsString());
+						
 			input.entrySet().stream().filter(entry -> !entry.getKey().equals("name")).forEach(entry -> {
-				JsonParser parser = new JsonParser();
-				JsonElement jsonObject = parser.parse(entry.getValue());
-				player.getData().add(entry.getKey(), jsonObject);
+				player.getData().add(entry.getKey(), entry.getValue());
 			});
 			Player plo = Ladder.getInstance().getPlayer(player.getName());
 			if (plo != null) {
-				List<String> string = new ArrayList<>();
-				for (String entry : input.keySet()) {
-					if (entry.equals("name")) break;
-					string.add(entry);
-				}
+				List<String> string = input.entrySet().stream().map(e -> e.getKey()).collect(Collectors.toList());
+
 				String[] stringS = string.toArray(new String[string.size()]);
 				plo.sendToBukkit(stringS);
 				plo.sendToBungee(stringS);

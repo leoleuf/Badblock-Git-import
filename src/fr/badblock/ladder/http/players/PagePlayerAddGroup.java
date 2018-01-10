@@ -18,37 +18,37 @@ public class PagePlayerAddGroup extends LadderPage {
 	}
 
 	@Override
-	public JsonObject call(Map<String, String> input) {
+	public JsonObject call(JsonObject input) {
 		JsonObject object = new JsonObject();
-		if (!input.containsKey("name")) {
+		if (!input.has("name")) {
 			object.addProperty("error", "Aucun pseudo!");
-		}else if (!input.containsKey("group")) {
+		}else if (!input.has("group")) {
 			object.addProperty("error", "Aucun groupe!");
-		}else if (!input.containsKey("duration")) {
+		}else if (!input.has("duration")) {
 			object.addProperty("error", "Aucune duration!");
 		} else {
-			object.addProperty("name", input.get("name"));
-			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name"));
+			object.add("name", input.get("name"));
+			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name").getAsString());
 			PermissiblePlayer p = (PermissiblePlayer) player.getAsPermissible();
-			PermissibleGroup group = PermissionManager.getInstance().getGroup(input.get("group"));
+			PermissibleGroup group = PermissionManager.getInstance().getGroup(input.get("group").getAsShort());
 			if (group == null) {
 				object.addProperty("error", "Groupe inconnu!");
 			}
-			if (p.getSuperGroup().equalsIgnoreCase(input.get("group"))) {
+			if (p.getSuperGroup().equalsIgnoreCase(input.get("group").getAsString())) {
 				object.addProperty("error", "Groupe deja assignee");
 				return object;
 			}
 			for (String key : p.getAlternateGroups().keySet())
-				if (key.equalsIgnoreCase(input.get("group"))) {
+				if (key.equalsIgnoreCase(input.get("group").getAsString())) {
 					object.addProperty("error", "Groupe deja assignee");
 					return object;
 				}
 			if (p.getSuperGroup().equalsIgnoreCase("default")) { // pas de groupe
-				p.setParent(Long.parseLong(input.get("duration")), group);
+				p.setParent(Long.parseLong(input.get("duration").getAsString()), group);
 				player.saveData();
 				object.addProperty("success", "ok");
 			} else {
-				p.addParent(Long.parseLong(input.get("duration")), group);
+				p.addParent(Long.parseLong(input.get("duration").getAsString()), group);
 				player.saveData();
 				object.addProperty("success", "ok");
 			}

@@ -1,7 +1,5 @@
 package fr.badblock.ladder.http.players;
 
-import java.util.Map;
-
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
@@ -15,18 +13,18 @@ public class PagePlayerUpdateShopPoints extends LadderPage {
 	}
 
 	@Override
-	public JsonObject call(Map<String, String> input) {
+	public JsonObject call(JsonObject input) {
 		JsonObject object = new JsonObject();
-		if (!input.containsKey("name")) {
+		if (!input.has("name")) {
 			object.addProperty("error", "Aucun pseudo!");
-		}else if (!input.containsKey("shoppoints")) {
+		}else if (!input.has("shoppoints")) {
 			object.addProperty("error", "Aucun shoppoints!");
 		} else {
-			OfflinePlayer offlinePlayer = Ladder.getInstance().getOfflinePlayer(input.get("name"));
+			OfflinePlayer offlinePlayer = Ladder.getInstance().getOfflinePlayer(input.get("name").getAsString());
 			if (offlinePlayer == null) return object;
-			offlinePlayer.getData().addProperty("shoppoints", input.get("shoppoints"));
+			offlinePlayer.getData().addProperty("shoppoints", input.get("shoppoints").getAsString());
 			offlinePlayer.saveData();
-			Player player = Ladder.getInstance().getPlayer(input.get("name"));
+			Player player = Ladder.getInstance().getPlayer(input.get("name").getAsString());
 			if (player == null) return object;
 			player.sendToBukkit("shoppoints");
 			player.sendToBungee("shoppoints");

@@ -2,6 +2,7 @@ package fr.badblock.ladder.http;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.api.utils.StringUtils;
@@ -46,7 +48,7 @@ public class LadderHttpHandler extends AbstractHandler {
 					server.start();
 					server.join();
 				} catch (Exception e) {
-					Ladder.getInstance().getConsoleCommandSender().sendMessage("§b[LadderHTTP] §cUnable to create HttpHandler (port " + port + "). See the stack trace:");
+					Ladder.getInstance().getConsoleCommandSender().sendMessage("ï¿½b[LadderHTTP] ï¿½cUnable to create HttpHandler (port " + port + "). See the stack trace:");
 					e.printStackTrace();
 					return;
 				}
@@ -71,8 +73,13 @@ public class LadderHttpHandler extends AbstractHandler {
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
+
 			baseRequest.setHandled(true);
-			BufferedReader bufferedReader = request.getReader();
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader( request.getInputStream(), "UTF-8" ));
+			JsonObject object = gson.fromJson(reader, JsonObject.class);
+
+			/*BufferedReader bufferedReader = request.getReader();
 			String line = "";
 			Map<String, String> maps = new HashMap<>();
 			while ((line = bufferedReader.readLine()) != null) {
@@ -86,9 +93,9 @@ public class LadderHttpHandler extends AbstractHandler {
 					String data = StringUtils.join(o.split("="), "=", 1);
 					maps.put(o.split("=")[0], new String(data.getBytes("ISO-8859-1"), "UTF-8"));
 				}
-			}
+			}*/
 
-			response.getWriter().println(pages.get(target).call(maps));
+			response.getWriter().println(pages.get(target).call(object));
 		} else {
 			response.setContentType("text/html; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
