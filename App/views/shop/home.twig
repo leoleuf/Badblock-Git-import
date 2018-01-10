@@ -95,7 +95,7 @@
     </div>
 
     {% for key in serverlist %}
-        <div id="{{ key[1] }}" class="tabcontent">
+        <div id="{{ key[1] }}" class="tabcontent" style="display: none;">
             {% for key in key[2] %}
             <section class="shop-section-{{ key[1] }}" class="tabcontent">
                 <h4 class="heading heading-bar"><span>{{  key[1] }}</span></h4>
@@ -142,6 +142,9 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <script>
+
+        document.getElementById("Jeux").style.display = "block";
+
         $('.achat').click(function(){
 
             var prod_id = $(this).attr("idpro");
