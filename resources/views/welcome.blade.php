@@ -58,18 +58,18 @@
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0 m-b-30">Sales Analytics</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Players Online</h4>
 
                             <div class="widget-box-2">
                                 <div class="widget-detail-2">
-                                    <span class="badge badge-success pull-left m-t-20">32% <i class="zmdi zmdi-trending-up"></i> </span>
-                                    <h2 class="m-b-0"> 8451 </h2>
-                                    <p class="text-muted m-b-25">Revenue today</p>
+                                    <span id="playerC" class="badge badge-success pull-left m-t-20">0</span>
+                                    <h2 id="playersT" class="m-b-0">0</h2>
+                                    <p class="text-muted m-b-25">Players Online</p>
                                 </div>
                                 <div class="progress progress-bar-success-alt progress-sm m-b-0">
-                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                    <div id="playerbar" class="progress-bar progress-bar-success" role="progressbar"
                                          aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
-                                         style="width: 77%;">
+                                         style="width: 100%;">
                                         <span class="sr-only">77% Complete</span>
                                     </div>
                                 </div>
@@ -486,10 +486,6 @@
                     $("#mongoUp").text("Unknown");
                     $("#mongoLoad").text("Unknown");
                 }
-
-
-
-
             },
             error : function(data){
                     $("#mongoTi").text("Unknown");
@@ -500,9 +496,7 @@
                     $("#mongoMs").text("Unknown");
                     $("#mongoUp").text("Unknown");
                     $("#mongoLoad").text("Unknown");
-
             }
-
         });
     }, delay);
 </script>
@@ -514,15 +508,27 @@
         timer = setInterval(function(){
             $.ajax({
                 type    : 'get',
-                url     : '/api/mongo',
+                url     : '/api/online',
                 dataType: 'json',
                 success : function(data){
-
                     data = jQuery.parseJSON(JSON.stringify(data));
+                    $("#playerC").text(data.online - $( "#playersT" ).text());
+                    $("#playersT").text(data.online);
+                    if($("#playerC").text() < 0){
+                        $("#playerC").attr('class',"badge badge-danger pull-left m-t-20");
+                    }else{
+                        $("#playerC").attr('class',"badge badge-success pull-left m-t-20");
+                    }
+                    var perct = (data.max - data.online) / 100;
+                    $('#playerbar').css({
+                        width: perct+"%"
+                    });
 
+
+                    //$("#playerC").attr('class',"label label-danger");
                 },
                 error : function(data){
-                    $("#mongoTi").text("Unknown");
+                    $("#playersT").text("Unknown");
                     $("#mongoTi").attr('class',"label label-danger");
                 }
 

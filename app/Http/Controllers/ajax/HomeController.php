@@ -44,22 +44,19 @@ class HomeController
     }
 
     public function online(){
-        $url = "https://api.badblock.fr/public/servers-status/check.php?host=play.badblock.fr&port=25565";
-
+        $url = "https://minecraft-api.com/api/ping/maxplayer.php?ip=play.badblock.fr&port=25565";
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $result = curl_exec($ch);
-        if(curl_errno($ch)){
-            $rt = ['online' => 0,"max" => 0,"per" => 0];
-        }else{
-            $array = json_decode($result);
-            var_dump($result);
-            $per = $array["players"]['online'] / $array["players"]['max'] * 100;
-            $rt = ['online' => $array["players"]['online'],"max" => $array["players"]['max'],"per" => $per];
-        }
+        $result1 = curl_exec($ch);
+
+        $url = "https://minecraft-api.com/api/ping/playeronline.php?ip=play.badblock.fr&port=25565";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result2 = curl_exec($ch);
 
 
-        return json_encode($rt);
+
+        return json_encode(["online" => $result2,"max" => $result1]);
 
 
 
