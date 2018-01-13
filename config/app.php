@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Backpack\PermissionManager\PermissionManagerServiceProvider::class,
+        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
 
     ],

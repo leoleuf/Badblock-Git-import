@@ -1,80 +1,81 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    @include('layouts.head')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <body class="fixed-left">
+    @if(Auth::check())
+        @include('layouts.top')
+        @include('layouts.side')
+    @endif
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    @yield('header')
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+    @yield('content')
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+    @include('layouts.script')
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+    @yield('before_scripts')
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+    @yield('after_scripts')
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        @yield('content')
-    </div>
+    <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
+    <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-</body>
+    <!-- page script -->
+    <script type="text/javascript">
+        /* Store sidebar state */
+        $('.sidebar-toggle').click(function(event) {
+            event.preventDefault();
+            if (Boolean(sessionStorage.getItem('sidebar-toggle-collapsed'))) {
+                sessionStorage.setItem('sidebar-toggle-collapsed', '');
+            } else {
+                sessionStorage.setItem('sidebar-toggle-collapsed', '1');
+            }
+        });
+        // To make Pace works on Ajax calls
+        $(document).ajaxStart(function() { Pace.restart(); });
+
+        // Ajax calls should always have the CSRF token attached to them, otherwise they won't work
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // Set active state on menu element
+        var current_url = "{{ Request::fullUrl() }}";
+        var full_url = current_url+location.search;
+        var $navLinks = $("ul.sidebar-menu li a");
+        // First look for an exact match including the search string
+        var $curentPageLink = $navLinks.filter(
+            function() { return $(this).attr('href') === full_url; }
+        );
+        // If not found, look for the link that starts with the url
+        if(!$curentPageLink.length > 0){
+            $curentPageLink = $navLinks.filter(
+                function() { return $(this).attr('href').startsWith(current_url) || current_url.startsWith($(this).attr('href')); }
+            );
+        }
+
+        $curentPageLink.parents('li').addClass('active');
+                {{-- Enable deep link to tab --}}
+        var activeTab = $('[href="' + location.hash.replace("#", "#tab_") + '"]');
+        location.hash && activeTab && activeTab.tab('show');
+        $('.nav-tabs a').on('shown.bs.tab', function (e) {
+            location.hash = e.target.hash.replace("#tab_", "#");
+        });
+    </script>
+
+    @include('backpack::inc.alerts')
+
+
+    </body>
 </html>
+
+
