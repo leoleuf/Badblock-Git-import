@@ -17,7 +17,16 @@ class ShopController extends Controller
         //get twig of home
         $serverlist = $this->redis->getJson('shop.listsrv');
 
-        $this->render($response, 'shop.home',['serverlist' => $serverlist]);
+
+        //On vérifie si il ya des promos
+        $itempromo = $this->redis->getJson('shop.promo');
+        if(count($itempromo) == 0){
+            $serverlist = false;
+        }
+
+
+
+        $this->render($response, 'shop.home',['serverlist' => $serverlist,'promo' => $itempromo]);
 
 	}
 
@@ -121,6 +130,13 @@ class ShopController extends Controller
                 $collection = $this->mongo->admin->players;
                 $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
                 $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
+
+
+                //vérification si reduction
+                if($dataprod["promo"] == true){
+                    $dataprod["price"] = $dataprod["price"] * ((100+$dataprod["promo_reduc"]) / 100);;
+                }
+
 
                 //Vérification du prix
                 if ($dataprod["price"] <= $data['shop_points']){

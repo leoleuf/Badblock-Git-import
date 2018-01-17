@@ -30,6 +30,7 @@ class ShopApiController extends \App\Controllers\Controller
 
         //Array
         $listserver = [];
+        $itempromo = [];
         //Lecture + push
         foreach ($cursor as $df) {
             $current_listc = [];
@@ -44,7 +45,17 @@ class ShopApiController extends \App\Controllers\Controller
 
 
                 foreach ($current_cursor2 as $current2) {
-                    array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img));
+                    //Si le produit est en promo
+                    if (isset($current2->promo)){
+                        $current2->np = $current2->price * ((100+$current2->promo_reduc) / 100);
+                        array_push($itempromo,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo_reduc,$current2->np));
+                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo,$current2->promo_reduc,$current2->np));
+                    }else{
+                        $current2->promo = false;
+                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo));
+                    }
+
+
                 }
                 array_push($current_listc,array($current->_id,$current->name,$current_listp));
             }
@@ -64,12 +75,15 @@ class ShopApiController extends \App\Controllers\Controller
             $this->redis->setJson('shop.prod.'.$cur["_id"], $cur);
         }
 
+        $this->redis->setJson('shop.promo',$itempromo);
+
 
         //Renvoie d'un code de succès
 
+        $this->log->success('StaffApiController\ShopApiController',' Success writing shop cache');
+
         return $response->write('Success writing shop cache')->withStatus(200);
 
-        $this->log->info('"StaffApiController\ShopApiController": Success writing shop cache');
 
     }
 

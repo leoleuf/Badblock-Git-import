@@ -36,13 +36,13 @@ $container['redis'] = function ($container) {
 };
 
 $container['log'] = function ($container) {
-	$log = new Monolog\Logger('badblock-website');
+    return new App\DiscordHandler($container);
+
+    $log = new Monolog\Logger('badblock-website');
+
 
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
 
-    $log->pushHandler(new App\MonologDiscordHandler($container->config['log']['discord_webhooks'], $container->config['log']['level']));
-
-	return $log;
 };
 
 $container['flash'] = function () {

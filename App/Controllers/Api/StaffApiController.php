@@ -64,9 +64,11 @@ class StaffApiController extends \App\Controllers\Controller
 		$this->redis->setJson('staff.staff', $staff);
 		$this->redis->setJson('staff.number', count($data));
 
+        $this->log->success('"StaffApiController\getCreateCacheAllStaff"',' Success writing staff cache');
+
+
         return $response->write('Success writing staff cache')->withStatus(200);
 
-		$this->log->info('"StaffApiController\getCreateCacheAllStaff": Success writing staff cache');
 
     }
 }

@@ -14,8 +14,29 @@ use Psr\Http\Message\ResponseInterface;
 class StatsApiController extends \App\Controllers\Controller
 {
 
-
     public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
+    {
+        $collection = $this->mongo->admin->players;
+
+
+        $register = $collection->count();
+        $banA = $collection->count(['punish.ban' => true]);
+        $muteA = $collection->count(['punish.mute' => true]);
+
+        var_dump($banA);
+
+
+
+
+        $this->log->success("StatsApiController\getCreateCacheStats",'Success writing stats cache');
+
+
+        return $response->write('Success writing stats cache')->withStatus(200);
+
+
+    }
+
+    public function gdetCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
 
         //Lecture du classement
@@ -33,11 +54,11 @@ class StatsApiController extends \App\Controllers\Controller
             $this->redis->setJson("stats:".$name,$game);
         }
 
+        $this->log->info('"StatsApiController\getCreateCacheA": Success writing stats cache');
 
 
         return $response->write('Success writing stats cache')->withStatus(200);
 
-        $this->log->info('"StatsApiController\getCreateCacheA": Success writing stats cache');
 
     }
 
