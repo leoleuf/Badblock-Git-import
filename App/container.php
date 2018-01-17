@@ -46,9 +46,8 @@ $container['log'] = function ($container) {
 };
 
 $container['flash'] = function () {
-	return new \Slim\Flash\Messages();
+	return new Slim\Flash\Messages();
 };
-
 
 $container['minecraft'] = function ($container) {
 	return new App\MinecraftServerQuery($container,

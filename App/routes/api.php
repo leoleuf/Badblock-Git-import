@@ -8,10 +8,12 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
+		$this->get('/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheComment');
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
 		$this->get('/shop-list', \App\Controllers\Api\ShopApiController::class . ':getCreateCacheShopList');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');
 	});
+	$this->get('/post/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getPostComments');
 	$this->group('/minecraft', function() {
 		$this->get('/players', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
 	});

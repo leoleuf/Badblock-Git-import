@@ -23,7 +23,7 @@ class SessionController extends Controller
 			if (!empty($_POST['username']) & !empty($_POST['password'])) {
 				//obtenir le cookie à partir de de l'api xenforo avec un username et un password
 				$rep = $this->xenforo->getLogin($_POST['username'], $_POST['password'], $_SERVER['REMOTE_ADDR']);
-
+				dd($rep);
 				//la réponse est false si les mots de passe ou le username est correct
 				if ($rep !== false) {
 					//user

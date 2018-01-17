@@ -17,7 +17,7 @@ class LoginApiDevController extends \App\Controllers\Controller
 
         //mise de l'utilisateur en session
         $this->session->set('user', [
-            'id' => 84,
+            'id' => $user['user_id'],
             'username' => $user['username'],
             'email' => $user['email'],
             'user_group_id' => $user['user_group_id'],

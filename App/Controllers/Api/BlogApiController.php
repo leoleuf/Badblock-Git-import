@@ -57,7 +57,7 @@ class BlogApiController extends \App\Controllers\Controller
 		$posts = $this->xenforo->getAllNewsPosts();
 
 		//loggin
-		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
+//		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
 
 		//2. Les traiter pour en obtenir le contenu
 		$newPosts = [];
@@ -118,7 +118,7 @@ class BlogApiController extends \App\Controllers\Controller
 				//on verifie le json si il conporte bien le patern par default
 				if (isset($postInfo['thumb_url'], $postInfo['summary'], $postInfo['pined'], $postInfo['comments'])) {
 					//valide
-					if(!isset($postInfo['cover_url'])){
+					if (!isset($postInfo['cover_url'])) {
 						$postInfo['cover_url'] = $postInfo['thumb_url'];
 					}
 					//logging
@@ -141,7 +141,7 @@ class BlogApiController extends \App\Controllers\Controller
 				];
 
 				//logging
-				$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
+				$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
 			}
 
 			//definir le contenu
@@ -156,90 +156,131 @@ class BlogApiController extends \App\Controllers\Controller
 			//on deduit la longueur
 			$content = substr($post['message_html'], 0, -$postInfoLen);
 
-			$newPosts[$i] = [
-				'uuid' => $uuid,
-				'title' => $title,
-				'slug' => $this->slugify($title),
-				'author' => [
-					'id' => $authorId,
-					'name' => $author,
-				],
-				'thumb_url' => $postInfo['thumb_url'],
-				'summary' => $postInfo['summary'],
-				'created_at' => $postDate,
-				'pined' => $postInfo['pined']
-			];
-			$singleNewPost = [
-				'uuid' => $uuid,
-				'title' => $title,
-				'slug' => $this->slugify($title),
-				'author' => [
-					'id' => $authorId,
-					'name' => $author,
-				],
-				'thumb_url' => $postInfo['thumb_url'],
-				'cover_url' => $postInfo['cover_url'],
-				'summary' => $postInfo['summary'],
-				'created_at' => $postDate,
-				'pined' => $postInfo['pined'],
-				'comments' => $postInfo['comments'],
-				'xenforo_thread_id' => $threadId,
-				'content' => $content
-			];
+			if (empty($content)) {
+				$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
+			}else{
+				$newPosts[$i] = [
+					'uuid' => $uuid,
+					'title' => $title,
+					'slug' => $this->slugify($title),
+					'author' => [
+						'id' => $authorId,
+						'name' => $author,
+					],
+					'thumb_url' => $postInfo['thumb_url'],
+					'summary' => $postInfo['summary'],
+					'created_at' => $postDate,
+					'pined' => $postInfo['pined']
+				];
+				$singleNewPost = [
+					'uuid' => $uuid,
+					'title' => $title,
+					'slug' => $this->slugify($title),
+					'author' => [
+						'id' => $authorId,
+						'name' => $author,
+					],
+					'thumb_url' => $postInfo['thumb_url'],
+					'cover_url' => $postInfo['cover_url'],
+					'summary' => $postInfo['summary'],
+					'created_at' => $postDate,
+					'pined' => $postInfo['pined'],
+					'enable_comments' => $postInfo['comments'],
+					'comments' => [],
+					'xenforo_thread_id' => $threadId,
+					'content' => $content
+				];
 
-			//enregistrer sur redis un article en particul	ier
-			$this->redis->setJson('post:' . $uuid, $singleNewPost);
+				//enregistrer sur redis un article en particul	ier
+				$this->redis->setJson('post:' . $uuid, $singleNewPost);
 
-			//si le poste est épinglé on enregistre dans un tableau
-			if ($postInfo['pined']){
-				array_push($pinedRawPosts, $newPosts[$i]);
+				//si le poste est épinglé on enregistre dans un tableau
+				if ($postInfo['pined']) {
+					array_push($pinedRawPosts, $newPosts[$i]);
+				}
+				$i++;
 			}
-			$i++;
+
 		}
 
-		//4. On enregistre le tout
-		//enregistrer sur redis tout les articles
-		$this->redis->setJson('all_posts', $newPosts);
+		$newPostsCount = count($newPosts);
+		if ($newPostsCount >= 1){
+			//4. On enregistre le tout
+			//enregistrer sur redis tout les articles
+			$this->redis->setJson('all_posts', $newPosts);
 
-		//enregistrer le cache pour la première ligne et la seconde ligne
+			//enregistrer le cache pour la première ligne et la seconde ligne
 
-		if (isset($newPosts[1])) {
-			$firstRowPosts = [
-				$newPosts[0],
-				$newPosts[1]
-			];
-		}else{
-			$firstRowPosts = [
-				$newPosts[0]
-			];
+			if (isset($newPosts[1])) {
+				$firstRowPosts = [
+					$newPosts[0],
+					$newPosts[1]
+				];
+			} else {
+				$firstRowPosts = [
+					$newPosts[0]
+				];
+			}
+
+			if (isset($newPosts[2], $newPosts[3])) {
+				$secondRowPosts = [
+					$newPosts[2],
+					$newPosts[3]
+				];
+			} elseif (isset($newPosts[2])) {
+				$secondRowPosts = [
+					$newPosts[2]
+				];
+			} else {
+				$secondRowPosts = [];
+			}
+			$this->redis->setJson('first_row_posts', $firstRowPosts);
+			$this->redis->setJson('second_row_posts', $secondRowPosts);
+
+			//enregister le cache pour les articles épinglés
+			//debug log
+			$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
+			$this->redis->setJson('pined_posts', $pinedRawPosts);
+
+			//enregistrer le nb d'articles
+			$this->redis->set('posts_count', $posts['count']);
 		}
 
-		if (isset($newPosts[2], $newPosts[3])){
-			$secondRowPosts = [
-				$newPosts[2],
-				$newPosts[3]
-			];
-		}elseif (isset($newPosts[2])) {
-			$secondRowPosts = [
-				$newPosts[2]
-			];
-		}else{
-			$secondRowPosts = [];
-		}
-		$this->redis->setJson('first_row_posts', $firstRowPosts);
-		$this->redis->setJson('second_row_posts', $secondRowPosts);
-
-		//enregister le cache pour les articles épinglés
-		//debug log
-		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
-		$this->redis->setJson('pined_posts', $pinedRawPosts);
-
-		//enregistrer le nb d'articles
-		$this->redis->set('posts_count', $posts['count']);
-
-		$this->log->info('"BlogApiController\getCreateCacheAllPosts": Success writing articles cache');
+		$this->log->info("\"BlogApiController\\getCreateCacheAllPosts\": Success writing articles cache (x{$newPostsCount})");
 
 		//return success
 		return $response->write('Success writing posts cache')->withStatus(200);
+	}
+
+	public function getCreateCacheComment(ServerRequestInterface $request, ResponseInterface $response, $args)
+	{
+		//search in redis cache for single cache
+		if ($this->redis->exists('post:' . $args['uuid'])) {
+			$post = $this->redis->getJson('post:' . $args['uuid']);
+			$comments = $this->container['xenforo']->getPostsInThread($post['xenforo_thread_id'])['posts'];
+			$post['comments'] = $comments;
+			$this->redis->setJson('post:' . $args['uuid'], $post);
+
+			//return success
+			return $response->write("Success writing comment cache of post {$post['uuid']}")->withStatus(200);
+		} else {
+			return $this->container['notFoundHandler']($request, $response);
+		}
+	}
+
+
+	public function getPostComments(ServerRequestInterface $request, ResponseInterface $response, $args)
+	{
+		//search in redis cache for single cache
+		if ($this->redis->exists('post:' . $args['uuid'])) {
+			$post = $this->redis->getJson('post:' . $args['uuid']);
+			$comments = $this->container['xenforo']->getPostsInThread($post['xenforo_thread_id'])['posts'];
+			//return success
+			return $this->render($response, 'blog.comments', [
+				'comments' => $comments
+			]);
+		} else {
+			return $this->container['notFoundHandler']($request, $response);
+		}
 	}
 }

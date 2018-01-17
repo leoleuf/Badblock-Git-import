@@ -1,0 +1,16 @@
+{% for comment in comments %}
+    <div class="comments-item">
+        <div class="comments-author-avatar">
+            <img src="https://api.badblock.fr/public/badblock-heads/?name={{ comment.username }}">
+        </div>
+        <div class="comments-content">
+            <div class="comments-title">
+                <span class="comments-author-username">{{ comment.username }}</span>
+                <span class="comments-info">{{ timeago(timestampToTime(comment.post_date)) }}</span>
+            </div>
+            <div class="comments-text">
+                {{ comment.message }}
+            </div>
+        </div>
+    </div>
+{% endfor %}

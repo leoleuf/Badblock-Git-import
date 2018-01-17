@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Monolog\Logger;
@@ -12,17 +13,16 @@ class MonologDiscordHandler extends AbstractProcessingHandler
 
 	/**
 	 * MonologDiscordHandler constructor.
-	 * @param \GuzzleHttp\Client $guzzle
-	 * @param bool $webhooks
-	 * @param int $level
+	 * @param int $webHooks
+	 * @param bool|int $level
 	 * @param bool $bubble
+	 * @internal param \GuzzleHttp\Client $guzzle
+	 * @internal param bool $webhooks
 	 */
-	public function __construct($webhooks, $level = Logger::DEBUG, $bubble = true)
+	public function __construct($webHooks, $level = Logger::DEBUG, $bubble = true)
 	{
-		$this->webhooks = $webhooks;
+		$this->webhooks = $webHooks;
 		parent::__construct($level, $bubble);
-
-		$this->write($webhooks);
 	}
 
 	/**
@@ -30,21 +30,24 @@ class MonologDiscordHandler extends AbstractProcessingHandler
 	 */
 	protected function write(array $record)
 	{
-//
-        $data = array("username" => "Logger Site","embeds" => array(0 => array(
-            "url" => "https://dev-web.badblock.fr",
-            "title" => "[Info] Logs Site",
-            "description" => "",
-            "color" => 1
-		)));
+		foreach ($this->webhooks AS $webHook) {
+			$data = [
+				"username" => "Logger Site",
+				"embeds" => [
+					[
+						"url" => "https://dev-web.badblock.fr",
+						"title" => "[Info] Logs Site",
+						"description" => $record['message'],
+						"color" => 1
+					]
+				]
+			];
 
-        $curl = curl_init("https://discordapp.com/api/webhooks/373808432324542464/g_ZJQXYA0yPj7LyHebSQZA14eAbLxB7w8idL50weFHX-rSGpdI-cu-fiu0gbHl9BIa8F");
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_exec($curl);
-
-
-
-    }
+			$curl = curl_init($webHook);
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+			curl_exec($curl);
+		}
+	}
 }

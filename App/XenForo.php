@@ -17,20 +17,20 @@ class XenForo
 		$this->config = $config;
 	}
 
-    public function hash(){
-        date_default_timezone_set('Europe/London');
-        $time = date('Y-m-d h:i');
-        var_dump($time);
-        $time =  hash("gost",$time);
-        $key = md5($time);
-        return $key;
-    }
+	public function hash()
+	{
+		date_default_timezone_set('Europe/London');
+		$time = date('Y-m-d h:i');
+		$time = hash("gost", $time);
+		$key = md5($time);
+
+		return $key;
+	}
 
 	public function doGetRequest($action)
 	{
-		return $this->guzzle->request('GET', $this->config['endpoint'] . '?' . $action . '&hash=' . $this->hash());
+		return $this->guzzle->get($this->config['endpoint'] . '?' . $action . '&hash=' . $this->hash());
 	}
-
 
 
 	public function getParsedBody($body)
@@ -68,21 +68,37 @@ class XenForo
 		return $this->getParsedBody($rep->getBody());
 	}
 
+	public function getPostsInThread($threadId)
+	{
+		$rep = $this->doGetRequest("action=getPosts&thread_id={$threadId}");
 
-    public function addGroup($username,$group)
-    {
+		$posts = $this->getParsedBody($rep->getBody());
+		unset($posts['posts'][0]);
 
-        try {
-            $rep = $this->doGetRequest('action=editUser&user='. $username .'&add_groups=' . $group);
+		return $posts;
+	}
 
-            return $this->getParsedBody($rep->getBody());
-        } catch (\Exception $exception) {
-            return false;
+	public function createPost($message, $userId, $threadId)
+	{
+		$rep = $this->doGetRequest("action=createPost&message={$message}&thread_id={$threadId}&grab_as={$userId}");
+
+		return $this->getParsedBody($rep->getBody());
+	}
+
+	public function addGroup($username, $group)
+	{
+
+		try {
+			$rep = $this->doGetRequest('action=editUser&user=' . $username . '&add_groups=' . $group);
+
+			return $this->getParsedBody($rep->getBody());
+		} catch (\Exception $exception) {
+			return false;
 
 
-        }
+		}
 
-    }
+	}
 
 	/**
 	 * @param $username
@@ -92,12 +108,8 @@ class XenForo
 	 */
 	public function getLogin($username, $password, $ip)
 	{
-        try {
-			$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . $ip);
+		$rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . '78.247.197.58');
 
-			return $this->getParsedBody($rep->getBody());
-		} catch (\Exception $exception) {
-             return false;
-		}
+		return $this->getParsedBody($rep->getBody());
 	}
 }
