@@ -400,6 +400,13 @@ public class SpigotConfig
     public static double maxHealth = 2048;
     public static double movementSpeed = 2048;
     public static double attackDamage = 2048;
+    public static double maxMsTask = 10;
+    
+    public static void maxMsTask()
+    {
+        maxMsTask = getInt( "settings.max-ms-task", 10 );
+    }
+    
     private static void attributeMaxes()
     {
         maxHealth = getDouble( "settings.attribute.maxHealth.max", maxHealth );

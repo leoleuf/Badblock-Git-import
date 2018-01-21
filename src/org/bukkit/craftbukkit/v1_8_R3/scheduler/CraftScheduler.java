@@ -1,6 +1,7 @@
 package org.bukkit.craftbukkit.v1_8_R3.scheduler;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.bukkit.scheduler.BukkitWorker;
 import org.github.paperspigot.ServerSchedulerReportingWrapper;
 import org.github.paperspigot.event.ServerExceptionEvent;
 import org.github.paperspigot.exception.ServerSchedulerException;
+import org.spigotmc.SpigotConfig;
 
 /**
  * The fundamental concepts for this implementation:
@@ -83,6 +85,7 @@ public class CraftScheduler implements BukkitScheduler {
 
     static {
         RECENT_TICKS = 30;
+        SpigotConfig.maxMsTask();
     }
 
     @Override
@@ -373,7 +376,15 @@ public class CraftScheduler implements BukkitScheduler {
             }
             if (task.isSync()) {
                 try {
+                	long s = System.currentTimeMillis();
                     task.run();
+                    long end = System.currentTimeMillis() - s;
+                    if (end >= SpigotConfig.maxMsTask)
+                    {
+                    	System.out.println("A task has taken too much time to run.");
+                    	System.out.println("Time : " + end);
+                    	Arrays.asList(Thread.currentThread().getStackTrace()).forEach(stackTrace -> System.out.println(stackTrace));
+                    }
                 } catch (final Throwable throwable) {
                     // Paper start
                     String msg = String.format(
