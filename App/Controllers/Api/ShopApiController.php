@@ -20,9 +20,9 @@ class ShopApiController extends \App\Controllers\Controller
 
         //Check MongoDB
         //Server List
-        $collection = $this->mongo->badblock->server;
-        $collection1 = $this->mongo->badblock->categorie;
-        $collection2 = $this->mongo->badblock->product;
+        $collection = $this->mongo->test->server;
+        $collection1 = $this->mongo->test->category;
+        $collection2 = $this->mongo->test->products;
 
 
         $cursor = $collection->find(['visibility' => true]);
@@ -36,12 +36,13 @@ class ShopApiController extends \App\Controllers\Controller
             $current_listc = [];
 
             //Liste Catégorie Serveur
-            $current_cursor = $collection1->find(['visibility' => true,'server' => $df->_id]);
+            $current_cursor = $collection1->find(['visibility' => true,'server' => (string) $df->_id]);
+
 
             foreach ($current_cursor as $current) {
                 //Liste produits
                 $current_listp = [];
-                $current_cursor2 = $collection2->find(['visibility' => true,'cat' => $current->_id]);
+                $current_cursor2 = $collection2->find(['visibility' => true,'cat' => (string) $current->_id]);
 
 
                 foreach ($current_cursor2 as $current2) {
@@ -69,13 +70,14 @@ class ShopApiController extends \App\Controllers\Controller
 
 
         //Mise en cache produit seul
-        $collection = $this->mongo->badblock->product;
+        $collection = $this->mongo->test->products;
         $curs = $collection->find(['visibility' => true]);
         foreach ($curs as $cur) {
             $this->redis->setJson('shop.prod.'.$cur["_id"], $cur);
         }
 
         $this->redis->setJson('shop.promo',$itempromo);
+
 
 
         //Renvoie d'un code de succès
