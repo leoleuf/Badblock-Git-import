@@ -18,7 +18,6 @@
 
     @yield('before_scripts')
 
-    @yield('after_scripts')
 
 
     <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
@@ -26,6 +25,9 @@
     <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
+
+    @yield('after_scripts')
+
 
     <!-- page script -->
     <script type="text/javascript">

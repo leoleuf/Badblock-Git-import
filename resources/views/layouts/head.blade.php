@@ -9,6 +9,8 @@
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
 
+    <link href="/assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
+
     <!-- App css -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />

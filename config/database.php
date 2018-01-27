@@ -79,14 +79,15 @@ return [
         ],
         //mongoDB
         'mongodb' => [
+            'name'   => 'mongodb',
             'driver'   => 'mongodb',
             'host'     => env('MONGO_HOST', 'localhost'),
-            'port'     => env('MONGO_PORT', 27017),
+            'port'     => env('MONGO_PORT', 27018),
             'database' => env('MONGO_DATABASE'),
             'username' => env('MONGO_USERNAME'),
             'password' => env('MONGO_PASSWORD'),
             'options'  => [
-                'database' => 'admin' // sets the authentication database required by mongo 3
+                'database' => 'test' // sets the authentication database required by mongo 3
             ]
         ],
 

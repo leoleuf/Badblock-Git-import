@@ -1,0 +1,108 @@
+@extends('layouts.app')
+@section('content')
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container">
+
+                <div class="row">
+
+                        <!-- will be used to show any messages -->
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="m-b-30">
+                                <h1>Création d'un nouveau produit.</h1>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="">
+                        {{ Form::open(array('url' => "/website/crud/product" ,'class'=>'form_inline')) }}
+                        Nom d'affichage du produit :
+                        {{ Form::text('name', "",array('class' => 'form-control','placeholder'=>"Nom d'affichage du produit :")) }}
+                        <br>
+                        Prix :
+                        {{ Form::text('price', "",array('class' => 'form-control','placeholder'=>"Prix du produit")) }}
+                        <br>
+                        Type :
+                        {{ Form::text('type', "",array('class' => 'form-control','placeholder'=>"Type du produit")) }}
+                        <br>
+                        Quantité (Uniquement pour les items) :
+                        {{ Form::text('qty', "",array('class' => 'form-control','placeholder'=>"Quantité")) }}
+                        <br>
+                        Sélectionner la catégorie :
+                        <select name="category" class="form-control select2">
+                            <option>Selectionner la catégorie</option>
+                            @foreach($cat as $key => $value)
+                                <option value="{{ $value->_id }}">{{ $value->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        Activer le mode promotion sur ce produit :
+                        <br>
+                        <br>
+                        <input name ="promo" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                        <br>
+                        <br>
+                        Pourcentage de promotion :
+                        {{ Form::text('promo_reduc',"",array('class' => 'form-control','placeholder'=>"Pourcentage de promotion")) }}
+                        <br>
+                        Activer le mode de dépendance sur ce produit :
+                        <br>
+                        <br>
+                        <input name ="depend" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                        <br>
+                        <br>
+                        Groupe de dépendance :
+                        {{ Form::text('depend_to',"",array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
+                        <br>
+                        Activer la visibilitée du produit sur le site :
+                        <br>
+                        <br>
+                        <input name ="visibility" type="checkbox" checked data-plugin="switchery" data-color="#00b19d"/>
+                        <br>
+                        <br>
+                        Image du produit :
+                        {{ Form::text('img', "", array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
+
+                        <br>
+                        Description du produit (HTML) :
+                        <br>
+                        <textarea class="form-control" name="desc"
+                                  rows="10" cols="50">
+                        </textarea>
+                        <br>
+
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Save</button>
+
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <footer class="footer text-right">
+        2017 - 2018 © BadBlock.
+    </footer>
+    </div>
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+
+
+@endsection
+

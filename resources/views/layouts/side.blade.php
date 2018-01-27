@@ -39,6 +39,18 @@
                     <li>
                         <a href="/" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
+                    <li>
+                        <a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
+                    </li>
+                    <li>
+                        <a href="/toenga" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Instances </span> </a>
+                    </li>
+                    <li>
+                        <a href="/devhome" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Développement </span> </a>
+                    </li>
+                    <li>
+                        <a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Site </span> </a>
+                    </li>
 
 
                     <li class="has_sub">
@@ -60,40 +72,6 @@
                         <a href="inbox.html" class="waves-effect"><i class="zmdi zmdi-email"></i><span class="label label-purple pull-right">New</span><span> Mail </span></a>
                     </li>
 
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-item"></i><span> Pages </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="page-starter.html">Starter Page</a></li>
-                            <li><a href="page-login.html">Login</a></li>
-                            <li><a href="page-register.html">Register</a></li>
-                            <li><a href="page-recoverpw.html">Recover Password</a></li>
-                            <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                            <li><a href="page-confirm-mail.html">Confirm Mail</a></li>
-                            <li><a href="page-404.html">Error 404</a></li>
-                            <li><a href="page-500.html">Error 500</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-layers"></i><span>Extra Pages </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="extras-projects.html">Projects</a></li>
-                            <li><a href="extras-tour.html">Tour</a></li>
-                            <li><a href="extras-taskboard.html">Taskboard</a></li>
-                            <li><a href="extras-taskdetail.html">Task Detail</a></li>
-                            <li><a href="extras-profile.html">Profile</a></li>
-                            <li><a href="extras-maps.html">Maps</a></li>
-                            <li><a href="extras-contact.html">Contact list</a></li>
-                            <li><a href="extras-pricing.html">Pricing</a></li>
-                            <li><a href="extras-timeline.html">Timeline</a></li>
-                            <li><a href="extras-invoice.html">Invoice</a></li>
-                            <li><a href="extras-faq.html">FAQ</a></li>
-                            <li><a href="extras-gallery.html">Gallery</a></li>
-                            <li><a href="extras-email-template.html">Email template</a></li>
-                            <li><a href="extras-maintenance.html">Maintenance</a></li>
-                            <li><a href="extras-comingsoon.html">Coming soon</a></li>
-                        </ul>
-                    </li>
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span> Gestion </span> <span class="menu-arrow"></span></a>
