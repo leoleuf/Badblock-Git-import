@@ -43,3 +43,5 @@ $app->add(new RKA\Middleware\IpAddress($checkProxyHeaders, $trustedProxies));
 |--------------------------------------------------------------------------
 */
 $app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
+
+\Validator\ValidationLanguage::setLang('fr');

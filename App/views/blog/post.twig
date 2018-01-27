@@ -26,99 +26,70 @@
     <div class="article-content">
         {{ post.content|raw }}
     </div>
-    {% if post.comments == true %}
-    <div class="comments-area">
-        <h4 class="heading heading-bar"><span>15 commentaires</span></h4>
+    {% if post.enable_comments == true %}
+        {% if flash('errors') is not empty %}
+            <div class="c-alert c-alert--error">
+                <button class="c-button c-button--close">&times;</button>
+                {% for msg in flash('errors') %}
+                    {{ msg }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if flash('success') is not empty %}
+            <div class="c-alert c-alert--success">
+                <button class="c-button c-button--close">&times;</button>
+                {% for msg in flash('success') %}
+                    {{ msg }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="comments-area">
+            <h4 class="heading heading-bar"><span>{{ count(post.comments) }} commentaires</span></h4>
 
-        <div class="comments-container">
-            <form class="comments-form" action="" method="post">
-                <div class="comments-item">
-                    <div class="comments-author-avatar">
-                        <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
-                    </div>
-                    <div class="comments-content">
-                        <div class="comments-title">
-                            <span class="comments-author-username">Ecrivez un commentaire</span>
+            <div class="comments-container">
+                {% if user is defined %}
+                    <form class="comments-form" action="{{ path_for('post-comment', {uuid: post.uuid, slug: post.slug}) }}" method="post">
+                        <div class="comments-item">
+                            <div class="comments-author-avatar">
+                                <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
+                            </div>
+                            <div class="comments-content">
+                                <div class="comments-title">
+                                    <span class="comments-author-username">Ecrivez un commentaire</span>
+                                </div>
+                                <div class="comments-text">
+                                    <textarea name="content"></textarea>
+                                    <button type="submit" class="button button-primary">Envoyer</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="comments-text">
-                            <textarea name="content"></textarea>
-                            <button type="submit" class="button button-primary">Envoyer</button>
+                    </form>
+                {% endif %}
+                {% if user is not defined %}
+                    <p>Vous devez être connecté pour poster un commentaire</p>
+                {% endif %}
+
+                {% if post.comments is empty %}
+                    <div class="no-item-container">
+                        <div class="no-item-content">
+                            <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                            <h4>{{ 'blog.comments_empty'|trans }}</h4>
                         </div>
                     </div>
-                </div>
-            </form>
-            <div class="comments-item">
-                <div class="comments-author-avatar">
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
-                </div>
-                <div class="comments-content">
-                    <div class="comments-title">
-                        <span class="comments-author-username">Le_Futuriste</span>
-                        <span class="comments-info">Posté il y a un mois</span>
+                {% endif %}
+
+                {% if post.comments is not empty %}
+                    <div id="comments-loading" style="display: flex; justify-content: center; align-items: center">
+                        <img src="https://files.lefuturiste.fr/direct/990A0BDEEF8A6D04195B.gif" width="100">
                     </div>
-                    <div class="comments-text">
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
+                    <div id="comments">
+
                     </div>
-                </div>
-            </div>
-            <div class="comments-item comments-sub-item">
-                <div class="comments-author-avatar">
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
-                </div>
-                <div class="comments-content">
-                    <div class="comments-title">
-                        <span class="comments-author-username">Le_Futuriste</span>
-                        <span class="comments-info">Posté il y a un mois</span>
-                    </div>
-                    <div class="comments-text">
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                    </div>
-                </div>
-            </div>
-            <div class="comments-item">
-                <div class="comments-author-avatar">
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
-                </div>
-                <div class="comments-content">
-                    <div class="comments-title">
-                        <span class="comments-author-username">Le_Futuriste</span>
-                        <span class="comments-info">Posté il y a un mois</span>
-                    </div>
-                    <div class="comments-text">
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                    </div>
-                </div>
-            </div>
-            <div class="comments-item comments-sub-item">
-                <div class="comments-author-avatar">
-                    <img src="https://api.badblock.fr/public/badblock-heads/?name=le_futuriste">
-                </div>
-                <div class="comments-content">
-                    <div class="comments-title">
-                        <span class="comments-author-username">Le_Futuriste</span>
-                        <span class="comments-info">Posté il y a un mois</span>
-                    </div>
-                    <div class="comments-text">
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                        Rusticus accentor superbe carpseriss lura est. Avast, shiny pin. you won't desire the bikini atoll.
-                        Speciess sunt nutrixs de lotus spatii.
-                    </div>
-                </div>
+                {% endif %}
             </div>
         </div>
-    </div>
     {% endif %}
-    {% if post.comments == false %}
+    {% if post.enable_comments == false %}
         <div class="no-item-container">
             <div class="no-item-content">
                 <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
@@ -126,4 +97,12 @@
             </div>
         </div>
     {% endif %}
+{% endblock %}
+{% block scripts %}
+<script type="application/javascript">
+    $.ajax({url: "/api/post/comments/{{ post.uuid }}", success: function(result){
+        $("#comments").html(result);
+        $('#comments-loading').fadeOut();
+    }});
+</script>
 {% endblock %}

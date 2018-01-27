@@ -6,6 +6,7 @@ $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('h
 
 $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
+$app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
 
 $app->post('/login', \App\Controllers\SessionController::class . ':login')->setName('login.execute');
 

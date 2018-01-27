@@ -37,6 +37,7 @@ class TwigExtension extends \Twig_Extension
 			new \Twig_Function('ucfirst', [$this, 'ucfirst']),
 			new \Twig_Function('timestampToTime', [$this, 'timestampToTime']),
 			new \Twig_Function('flash', [$this, 'flash']),
+			new \Twig_Function('count', [$this, 'count']),
 			new \Twig_Function('routeNameFor', [$this, 'routeNameFor']),
 		];
 	}
@@ -132,5 +133,9 @@ class TwigExtension extends \Twig_Extension
 		}
 	}
 
+	public function count($array)
+	{
+		return count($array);
+	}
 
 }

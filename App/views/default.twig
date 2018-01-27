@@ -50,9 +50,11 @@
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
 
                         {% if user.is_admin %}
-                            <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
+                            <a class="button button-success" href="{{ path_for('dashboard') }}"><i
                                         class="icon icon-settingsfour-gearsalt"></i> {{ 'admin.title'|trans }}</a>
                         {% endif %}
+                        <a class="button button-danger" href="{{ path_for('logout') }}"><i
+                                    class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -97,9 +99,6 @@
             </ul>
         </div>
 
-        {% if user is defined %}
-            <a href="{{ path_for('logout') }}" class="float-right">{{ 'user.logout'|trans }}</a>
-        {% endif %}
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
 </div>
