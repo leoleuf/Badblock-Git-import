@@ -122,10 +122,10 @@ class BlogApiController extends \App\Controllers\Controller
 						$postInfo['cover_url'] = $postInfo['thumb_url'];
 					}
 					//logging
-					$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
+					//$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
 					//logging
-					$this->log->error('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
+					//$this->log->error('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
 
 					//stop the script
 					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
@@ -141,7 +141,7 @@ class BlogApiController extends \App\Controllers\Controller
 				];
 
 				//logging
-				$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
+				//$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
 			}
 
 			//definir le contenu
@@ -157,7 +157,7 @@ class BlogApiController extends \App\Controllers\Controller
 			$content = substr($post['message_html'], 0, -$postInfoLen);
 
 			if (empty($content)) {
-				$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
+				//$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
 			}else{
 				$newPosts[$i] = [
 					'uuid' => $uuid,
@@ -239,14 +239,14 @@ class BlogApiController extends \App\Controllers\Controller
 
 			//enregister le cache pour les articles épinglés
 			//debug log
-			$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
+			//$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Count of pined rows : ' . count($pinedRawPosts));
 			$this->redis->setJson('pined_posts', $pinedRawPosts);
 
 			//enregistrer le nb d'articles
 			$this->redis->set('posts_count', $posts['count']);
 		}
 
-		$this->log->info("\"BlogApiController\\getCreateCacheAllPosts\": Success writing articles cache (x{$newPostsCount})");
+		//$this->log->info("\"BlogApiController\\getCreateCacheAllPosts\": Success writing articles cache (x{$newPostsCount})");
 
 		//return success
 		return $response->write('Success writing posts cache')->withStatus(200);
@@ -258,6 +258,13 @@ class BlogApiController extends \App\Controllers\Controller
 		if ($this->redis->exists('post:' . $args['uuid'])) {
 			$post = $this->redis->getJson('post:' . $args['uuid']);
 			$comments = $this->container['xenforo']->getPostsInThread($post['xenforo_thread_id'])['posts'];
+            foreach ($comments as $key => $row){
+                if($row['message_state'] == 'deleted'){
+                    unset($comments[$key]);
+                    var_dump($comments);
+                }
+            }
+
 			$post['comments'] = $comments;
 			$this->redis->setJson('post:' . $args['uuid'], $post);
 
@@ -274,10 +281,9 @@ class BlogApiController extends \App\Controllers\Controller
 		//search in redis cache for single cache
 		if ($this->redis->exists('post:' . $args['uuid'])) {
 			$post = $this->redis->getJson('post:' . $args['uuid']);
-			$comments = $this->container['xenforo']->getPostsInThread($post['xenforo_thread_id'])['posts'];
 			//return success
 			return $this->render($response, 'blog.comments', [
-				'comments' => $comments
+				'comments' => $post['comments']
 			]);
 		} else {
 			return $this->container['notFoundHandler']($request, $response);

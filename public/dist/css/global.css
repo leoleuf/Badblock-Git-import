@@ -1,4 +1,73 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee");
+
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s; }
+
+.active, .accordion:hover {
+  background-color: #ccc; }
+
+.accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px; }
+
+.active:after {
+  content: "\2212"; }
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out; }
+
+.panel p {
+  padding: 15px; }
+
+.played {
+  margin: 3em 0em; }
+
+.play-form input {
+  padding: 20px 30px !important;
+  background-color: #34495E !important;
+  border-radius: 0px !important; }
+
+.form-control {
+  display: block;
+  width: 70%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  height: 54px;
+  color: #fff; }
+
+.copied {
+  padding: 12px 50px;
+  width: 30%;
+  margin: 0 auto;
+  display: block;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  background-color: #e74c3c;
+  color: #fff; }
+
+i {
+  margin-right: 10px; }
+
 .col-3 {
   width: calc(33.333333333% - 30px);
   padding: 15px;
@@ -193,3 +262,8 @@ td.c-table__cell {
     border: 4px solid #EA9D01; } }
 
 /*# sourceMappingURL=global.css.map */
+
+
+
+/*# sourceMappingURL=global.css.map */
+

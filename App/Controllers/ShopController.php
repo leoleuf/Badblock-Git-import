@@ -21,10 +21,8 @@ class ShopController extends Controller
         //On vérifie si il ya des promos
         $itempromo = $this->redis->getJson('shop.promo');
         if(count($itempromo) == 0){
-            $serverlist = false;
+            $itempromo = false;
         }
-
-
 
         $this->render($response, 'shop.home',['serverlist' => $serverlist,'promo' => $itempromo]);
 

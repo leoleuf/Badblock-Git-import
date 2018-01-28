@@ -33,6 +33,7 @@ class ShopApiController extends \App\Controllers\Controller
         $itempromo = [];
         //Lecture + push
         foreach ($cursor as $df) {
+
             $current_listc = [];
 
             //Liste Catégorie Serveur
@@ -47,13 +48,13 @@ class ShopApiController extends \App\Controllers\Controller
 
                 foreach ($current_cursor2 as $current2) {
                     //Si le produit est en promo
-                    if (isset($current2->promo)){
+                    if ($current2->promo == true){
                         $current2->np = $current2->price * ((100+$current2->promo_reduc) / 100);
-                        array_push($itempromo,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo_reduc,$current2->np));
-                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo,$current2->promo_reduc,$current2->np));
+                        array_push($itempromo,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo_reduc,$current2->np,$current2->description));
+                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo,$current2->promo_reduc,$current2->np,$current2->description));
                     }else{
                         $current2->promo = false;
-                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo));
+                        array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo,$current2->description));
                     }
 
 
@@ -77,6 +78,7 @@ class ShopApiController extends \App\Controllers\Controller
         }
 
         $this->redis->setJson('shop.promo',$itempromo);
+
 
 
 

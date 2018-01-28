@@ -19,6 +19,7 @@
     <title>BadBlock | {{ title }} </title>
 
     <link rel="stylesheet" href="/dist/css/app.css">
+    <link rel="stylesheet" href="/dist/css/global.css">
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
@@ -173,7 +174,8 @@
             <ul class="footer-links">
                 <li><a href="#">Réglement</a></li>
                 <li><a href="{{ path_for('staff') }}">Notre Equipe</a></li>
-                <li><a href="#">Nous contacter</a></li>
+                <li><a href="mailto:contact@badblock.fr">Nous contacter</a></li>
+                <li><a href="/info">Informations développement</a></li>
             </ul>
         </div>
         <div class="four columns">
@@ -187,11 +189,6 @@
                 <li><a href="{{ contact.facebook }}"><i class="icon-facebook"></i></a></li>
                 <li><a href="{{ contact.youtube }}"><i class="icon-youtube"></i></a></li>
             </ul>
-        </div>
-    </div>
-    <div class="container">
-        <div class="footer-footer">
-            <a href="mailto:contact@badblock.fr">contact@badblock.fr</a>
         </div>
     </div>
 </div>

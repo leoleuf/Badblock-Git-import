@@ -84,6 +84,12 @@ class PagesController extends Controller
 	}
 
 
+    public function getinfo(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'pages.info');
+    }
+
+
 
 
 }

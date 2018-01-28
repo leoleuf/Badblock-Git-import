@@ -69,7 +69,7 @@
                         <h5 class="product-title">{{ key[1] }}</h5>
                     </div>
                     <div class="product-image">
-                        <img src="{{ base_url() }}/dist/images/shop/{{ key[3] }}">
+                        <img src="{{ key[3] }}">
                     </div>
                     <div class="product-price product-promotion">{{ key[5] }}</div>
                     <div class="promotion">{{ key[2] }}</div>
@@ -101,13 +101,14 @@
                 <h4 class="heading heading-bar"><span>{{  key[1] }}</span></h4>
                     <div class="product-list">
                         {% for key in key[2] %}
+                        <a href="#product-{{ key[0]["$oid"] }}">
                             {% if key[4] %}
                                 <div class="product-item product-item-promotion">
                                     <div class="product-header">
                                         <h5 class="product-title">{{ key[1] }}</h5>
                                     </div>
                                     <div class="product-image">
-                                        <img src="{{ base_url() }}/dist/images/shop/{{ key[3] }}">
+                                        <img src="{{ key[3] }}">
                                     </div>
                                     <div class="product-price product-promotion">{{ key[6] }}</div>
                                     <div class="promotion">{{ key[2] }}</div>
@@ -122,7 +123,7 @@
                                         <h5 class="product-title">{{ key[1] }}</h5>
                                     </div>
                                     <div class="product-image">
-                                        <img src="{{ base_url() }}/dist/images/shop/{{ key[3] }}">
+                                        <img src="{{ key[3] }}">
                                     </div>
                                     <div class="product-price">{{ key[2] }}</div>
                                     <div class="product-footer">
@@ -130,6 +131,7 @@
                                     </div>
                                 </div>
                             {% endif %}
+                        </a>
                         {% endfor %}
                     </div>
             </section>
@@ -196,6 +198,41 @@
         <h1>Vous devez être connecter pour effectuer un achat !</h1>
     </div>
     <!-- Fin Shop Succes modal -->
+
+    <div class="remodal modal-remodal modal-promotion" data-remodal-id="promotion-modal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Description du produit / <span class="reduction">-50%</span></h1>
+        <img src="images/Premium.webp">
+        <h3>Kit Premium</h3>
+        <p>Accenderat super his incitatum propositum ad nocendum aliqua mulier vilis, quae ad palatium ut poposcerat intromissa insidias ei latenter obtendi prodiderat a militibus obscurissimis. quam Constantina exultans ut in tuto iam locata mariti salute muneratam vehiculoque inpositam per regiae ianuas emisit in publicum, ut his inlecebris alios quoque ad indicanda proliceret paria vel maiora.</p>
+        <p class="text-center"><button idpro="59f24c452b1e6f35144b0eae" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></p>
+    </div>
+
+    {% for key in serverlist %}
+            {% for key in key[2] %}
+                        {% for key in key[2] %}
+                                {% if key[4] %}
+                                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                                        <button data-remodal-action="close" class="remodal-close"></button>
+                                        <h1>{{ key[1] }} / Promotion <span class="reduction">-50%</span></h1>
+                                        <img src="{{ key[1] }}">
+                                        <p>{{ key[5] }}</p>
+                                        <div class="product-footer">
+                                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                                        </div>                                    </div>
+                                {% else %}
+                                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                                        <button data-remodal-action="close" class="remodal-close"></button>
+                                        <h1>{{ key[1] }}</h1>
+                                        <img src="{{ key[1] }}">
+                                        <p>{{ key[5] }}</p>
+                                        <div class="product-footer">
+                                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                                        </div>                                    </div>
+                                {% endif %}
+                        {% endfor %}
+            {% endfor %}
+    {% endfor %}
 
 
 

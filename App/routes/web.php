@@ -33,6 +33,8 @@ $app->group('/shop', function (){
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
+$app->get('/info', \App\Controllers\PagesController::class . ':getInfo')->setName('info');
+
 $app->get('/dashboard', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 
     $app->post('/dashboard/changeserverpassword/', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));

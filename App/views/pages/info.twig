@@ -1,0 +1,34 @@
+{% extends "default.twig" %}
+{% set active_page = "home" %}
+{% set show_title = false %}
+{% set title = 'play.title'|trans %}
+{% block content %}
+    <div class="container content" id="test">
+        <h4 class="heading-bar"><span>Les développeurs</span></h4>
+        <div class="staff ">
+            <ul class="players-list">
+                <li>
+                    <img src="https://guiria.badblock.fr/head/Fluor/60.png" class="players-list-avatar">
+                    <div class="players-list-info">
+                        <span class="players-list-username">Fluor</span>
+                        <span class="players-list-summary">Responsable & Développeur BackEnd</span>
+                    </div>
+                    <img src="https://guiria.badblock.fr/head/le_futuriste/60.png" class="players-list-avatar">
+                    <div class="players-list-info">
+                        <span class="players-list-username">le_futuriste</span>
+                        <span class="players-list-summary">Développeur BackEnd&FrontEnd</span>
+                    </div>
+                    <img src="https://guiria.badblock.fr/head/Hooki_/60.png" class="players-list-avatar">
+                    <div class="players-list-info">
+                        <span class="players-list-username">Hook_</span>
+                        <span class="players-list-summary">Développeur FrontEnd</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <h4 class="heading-bar"><span>Le Framework & ajouts</span></h4>
+    </div>
+
+
+{% endblock %}

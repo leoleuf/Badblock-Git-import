@@ -2,45 +2,115 @@
 {% set active_page = "play" %}
 {% set show_title = false %}
 {% set title = 'play.title'|trans %}
-{% set sub_title = 'play.sub_title'|trans %}
 {% block content %}
-    <!-- Main content -->
-    <div class="eight columns play">
+    <div class="container content" id="test">
+        <h4 class="heading-bar"><span>Notre Serveur</span></h4>
+        <div class="twelve columns played">
+            <form class="offset-by-three eight columns play-form">
+                <label>Nom du serveur</label>
+                <input type="text" class="form-control" id="" value="BadBlock" readonly="">
+                <label>IP du serveur</label>
+                <input type="text" class="form-control" id="to-copy" value="{{ mc_ip }}" readonly="">
+
+            </form>
+            <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i>Copier l'IP</button>
+        </div>
+
+    <div class="twelve columns play">
         <section>
-            <h4 class="heading-bar"><span>{{ 'play.how_play'|trans }}</span></h4>
+            <h4 class="heading-bar"><span>Comment rejoindre Badblock ?</span></h4>
             <div class="play-way-ip">
-                <p>{{ 'play.how_play_text'|trans }}</p>
-                {% if mc_ip == "eu.badblock.fr" %}
-                    <img src="/dist/images/eu.gif" class="how-to-gif">
-                {% elseif mc_ip == "na.badblock.fr" %}
-                    <img src="/dist/images/na.gif" class="how-to-gif">
-                {% else %}
-                    <img src="/dist/images/play.gif" class="how-to-gif">
-                {% endif %}
+                <button class="accordion"><i class="fa fa-check" aria-hidden="true"></i>  Version Premium</button>
+                <div class="panel">
+                    <p>Dans MINECRAFT, clique sur Multijoueur puis &quot;Ajouter un serveur&quot;.</p>
+                </div>
+
+                <button class="accordion"><i class="fa fa-times" aria-hidden="true"></i>    Version Cracker</button>
+                <div class="panel">
+                    <p>Dans MINECRAFT, clique sur Multijoueur puis &quot;Ajouter un serveur&quot;.</p>
+                </div>
+
+                <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
+                <div class="panel">
+                    <p>1) Lancez votre Launcheur Minecraft dans une version comprise entre 1.8 &amp; 1.10 .</p>
+                    <img src="images/etape_one.png">
+                    <p>2) Cliquez sur Multijoueur.</p>
+                    <img src="images/etape_two.png">
+                    <p>3) Cliquez sur &quot;Ajouter un serveur&quot;.</p>
+                    <img src="images/etape_three.png">
+                    <p>4) Enregistrez les informations du serveur.</p>
+                    {% if mc_ip == "eu.badblock.fr" %}
+                        <img src="/dist/images/eu.gif" class="how-to-gif">
+                    {% elseif mc_ip == "na.badblock.fr" %}
+                        <img src="/dist/images/na.gif" class="how-to-gif">
+                    {% else %}
+                        <img src="/dist/images/play.gif" class="how-to-gif">
+                    {% endif %}
+                    <p>5) Ensuite :) Il vous suffit de rejoindre le serveur.</p>
+                </div>
             </div>
         </section>
         <section>
-            <h4 class="heading-bar"><span>{{ 'play.our_ip'|trans }}</span></h4>
+            <h4 class="heading-bar"><span>Nos Ip de connexions</span></h4>
             <div class="play-list-ip">
-                <input type="submit" value="play.badblock.fr">
-                <br>
-                <input type="submit" value="eu.badblock.fr">
-                <br>
-                <input type="submit" value="na.badblock.fr">
+                {% if mc_ip == "eu.badblock.fr" %}
+                    <input type="submit" value="eu.badblock.fr">
+                    <br>
+                    <input type="submit" value="play.badblock.fr">
+                    <br>
+                    <input type="submit" value="na.badblock.fr">
+                {% elseif mc_ip == "na.badblock.fr" %}
+                    <input type="submit" value="na.badblock.fr">
+                    <br>
+                    <input type="submit" value="eu.badblock.fr">
+                    <br>
+                    <input type="submit" value="play.badblock.fr">
+                {% else %}
+                    <input type="submit" value="play.badblock.fr">
+                    <br>
+                    <input type="submit" value="eu.badblock.fr">
+                    <br>
+                    <input type="submit" value="na.badblock.fr">
+                {% endif %}
+
             </div>
         </section>
         <section>
-            <h4 class="heading-bar"><span>{{ 'play.about'|trans }}</span></h4>
+            <h4 class="heading-bar"><span>A propos de badblock</span></h4>
             <div class="play-list-ip">
                 <p>
                     Badblock est un serveur Minecraft crée le 8 mars 2013 par Latitchips. Aujourd'hui, le serveur compte une impressionnante communauté composé de milliers de joueurs de tout âge. Notre équipe est à votre service afin de vous rendre le jeu meilleur et de vous divertir tout au long de votre expérience sur Badblock. Vous pouvez nous contacter par de nombreux moyens comme nos réseaux sociaux, notre Teamspeak, notre Forum ou tout simplement en jeu !
-
                     Toute l'équipe vous souhaite un bon moment de divertissement sur nos plateformes.
                 </p>
+            </div>
         </section>
     </div>
-    <!-- Main content fin -->
+    </div>
+    <script type="text/javascript">
+        var acc = document.getElementsByClassName("accordion");
+        var i;
 
-    {% include 'macros/sidebar.twig' %}
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight){
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        var toCopy  = document.getElementById( 'to-copy' ),
+            btnCopy = document.getElementById( 'copy' );
+
+        btnCopy.addEventListener( 'click', function(){
+            toCopy.select();
+            document.execCommand( 'copy' );
+            return false;
+        } );
+    </script>
 
 {% endblock %}
