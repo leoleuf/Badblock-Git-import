@@ -27,9 +27,7 @@ class StaffApiController extends \App\Controllers\Controller
             }
 
         }
-
-        var_dump($role);
-
+        
 
         usort($role, function($a, $b) {
             return $a['display_style_priority'] <= $b['display_style_priority'];
