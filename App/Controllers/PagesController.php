@@ -53,26 +53,12 @@ class PagesController extends Controller
 
 	public function getStaff(RequestInterface $request, ResponseInterface $response)
 	{
-		//récupération du cache
-		$admin = $this->redis->getJson('staff.admin');
-		$dev = $this->redis->getJson('staff.dev');
-		$resp = $this->redis->getJson('staff.resp');
-		$sup = $this->redis->getJson('staff.sup');
-		$modo = $this->redis->getJson('staff.modo');
-		$help = $this->redis->getJson('staff.helper');
-		$modof = $this->redis->getJson('staff.modof');
-		$staff = $this->redis->getJson('staff.staff');
+
+		$staff = $this->redis->getJson('staff.list');
 		$nb = $this->redis->getJson('staff.number');
 
 		$this->render($response, 'pages.staff', [
-			'admin' => PagesController::shuffle_assoc($admin),
-			'resp' => PagesController::shuffle_assoc($resp),
-			'dev' => PagesController::shuffle_assoc($dev),
-			'sup' => PagesController::shuffle_assoc($sup),
-			'modo' => PagesController::shuffle_assoc($modo),
-			'help' => PagesController::shuffle_assoc($help),
-			'modof' => PagesController::shuffle_assoc($modof),
-			'staff' => PagesController::shuffle_assoc($staff),
+			'staff' => $staff,
 			'nb' => $nb,
 		]);
 

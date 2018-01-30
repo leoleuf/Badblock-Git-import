@@ -1,6 +1,10 @@
 <?php
 namespace App;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+
+
 class DiscordHandler
 {
 
@@ -61,4 +65,31 @@ class DiscordHandler
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
     }
+
+
+
+    public function sendForum(RequestInterface $request, ResponseInterface $response,$data){
+        if ($data['type'] == 1){
+            $tt = "Nouveau Ticket !";
+        }else{
+            $tt = "Réponse Ticket";
+        }
+
+        $data = array("username" => "Forum","embeds" => array(0 => array(
+            "url" => "https://dev-forum.badblock.fr/support/list",
+            "title" => $tt,
+            "description" => ":new: [". $data["title"] ."]   <:boss:371644291812032512> : " . $data['user'],
+            "color" => 65280
+        )));
+
+        $curl = curl_init("https://canary.discordapp.com/api/webhooks/371229543316324352/-wQdOTC_vWHQiYyhCnH9862GP1KhOmTl4tv5OHT6QN8OQ34a6LmNUvxefk9Ob6D1kQIJ");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+
+
+    }
+
+
 }

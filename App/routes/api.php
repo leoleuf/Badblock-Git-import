@@ -17,4 +17,9 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 	$this->group('/minecraft', function() {
 		$this->get('/players', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
 	});
+
+    $this->group('/discord', function() {
+        $this->get('/support/{id}/{title}/{user}/{type}', \App\DiscordHandler::class . ':sendForum');
+    });
+
 });

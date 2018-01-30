@@ -6,158 +6,26 @@
     <!-- Main content -->
     <div class="staff ">
         <div class="row">
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ admin|length }} - Administrations</span></h4>
-                    <ul class="players-list">
-                        {% for key in admin %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
+    {% for key in staff %}
+        <div class="six columns">
+            <section>
+                <h4 class="heading heading-bar"><span>{{ key['name'] }}</span></h4>
+                <ul class="players-list">
+                    {% for ft in key['data'] %}
+                        <li>
+                            <img src="https://guiria.badblock.fr/head/{{ ft[0] }}/60.png"
+                                 class="players-list-avatar">
                                 <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
+                                    <span class="players-list-username">{{ ft[0] }}</span>
+                                    <span class="players-list-summary">{{ ft[1] }}</span>
                                 </div>
                             </li>
-                        {% endfor %}
+                    {% endfor %}
                     </ul>
                 </section>
             </div>
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ dev|length }} - Développement</span></h4>
-                    <ul class="players-list">
-                        {% for key in dev %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-
+    {% endfor %}
 
         </div>
-        <div class="row">
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ resp|length }} - Responsables</span></h4>
-                    <ul class="players-list">
-                        {% for key in resp %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ sup|length }} - Supervision</span></h4>
-                    <ul class="players-list">
-                        {% for key in sup %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
         </div>
-        <div class="row">
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ modo|length }} - Modération</span></h4>
-                    <ul class="players-list">
-                        {% for key in modo %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ help|length }} - Helpers</span></h4>
-                    <ul class="players-list">
-                        {% for key in help %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ modof|length }} -  Modération forum</span></h4>
-                    <ul class="players-list">
-                        {% for key in modof %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-            <div class="six columns">
-                <section>
-                    <h4 class="heading heading-bar"><span>{{ staff|length }} - Staff</span></h4>
-                    <ul class="players-list">
-                        {% for key in staff %}
-                            <li>
-                                <img src="https://guiria.badblock.fr/head/{{ key[0] }}/60.png"
-                                     class="players-list-avatar">
-
-                                <div class="players-list-info">
-                                    <span class="players-list-username">{{ key[0] }}</span>
-                                    <span class="players-list-summary">{{ key[1] }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </section>
-            </div>
-        </div>
-    </div>
-    <!-- Main content fin -->
-
 {% endblock %}
