@@ -2,6 +2,8 @@
 namespace App;
 
 //TO DO: A commenter
+use App\Controllers\Controller;
+
 class MinecraftServerQuery {
 
 	private $endpoint = "https://mcapi.us/server/";
@@ -9,6 +11,7 @@ class MinecraftServerQuery {
 	public function __construct($container, $config)
 	{
 			$this->guzzle = $container->guzzle;
+			$this->redis = $container->redis;
 			$this->config = $config;
 	}
 
@@ -42,12 +45,18 @@ class MinecraftServerQuery {
 	}
 
 	public function getPlayers(){
-		if ($this->getStatus()){
-			$data = $this->getData();
-			return $data['players'];
-		}else{
-			return $this->getStatus();
-		}
+	    if ($this->redis->exists('api.players')){
+            return $this->redis->get('api.players');
+        }else{
+            if ($this->getStatus()){
+                $data = $this->getData();
+                $this->redis->setJson('api.players', $data['players']);
+                $this->redis->expire('api.players', 5);
+                return $data['players'];
+            }else{
+                return $this->getStatus();
+            }
+        }
 	}
 
 }

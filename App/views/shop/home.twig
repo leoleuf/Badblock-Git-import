@@ -101,7 +101,7 @@
                 <h4 class="heading heading-bar"><span>{{  key[1] }}</span></h4>
                     <div class="product-list">
                         {% for key in key[2] %}
-                        <a href="#product-{{ key[0]["$oid"] }}">
+                        <a href="#product-{{ key[0]["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
                             {% if key[4] %}
                                 <div class="product-item product-item-promotion">
                                     <div class="product-header">
@@ -139,39 +139,7 @@
         </div>
     {% endfor %}
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <script>
 
-        document.getElementById("Jeux").style.display = "block";
-
-        $('.achat').click(function(){
-
-            var prod_id = $(this).attr("idpro");
-
-            var request = $.ajax({
-                url: "shop/achat/"+prod_id,
-                method: "POST",
-                data: { prod_id : prod_id },
-                dataType: "html"
-            });
-
-            request.done(function( msg ) {
-                $('[data-remodal-id=shop-succes]').remodal().open();
-            });
-
-            request.fail(function( jqXHR, textStatus ) {
-                if(jqXHR.status == 406){
-                    $('[data-remodal-id=shop-error]').remodal().open();
-                }else if (jqXHR.status == 409){
-                    $('[data-remodal-id=shop-error-login]').remodal().open();
-                }
-            });
-
-        });
-    </script>
 
     <!-- Shop Modal -->
     <div class="remodal modal-remodal" data-remodal-id="shop-error">
@@ -199,15 +167,6 @@
     </div>
     <!-- Fin Shop Succes modal -->
 
-    <div class="remodal modal-remodal modal-promotion" data-remodal-id="promotion-modal">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Description du produit / <span class="reduction">-50%</span></h1>
-        <img src="images/Premium.webp">
-        <h3>Kit Premium</h3>
-        <p>Accenderat super his incitatum propositum ad nocendum aliqua mulier vilis, quae ad palatium ut poposcerat intromissa insidias ei latenter obtendi prodiderat a militibus obscurissimis. quam Constantina exultans ut in tuto iam locata mariti salute muneratam vehiculoque inpositam per regiae ianuas emisit in publicum, ut his inlecebris alios quoque ad indicanda proliceret paria vel maiora.</p>
-        <p class="text-center"><button idpro="59f24c452b1e6f35144b0eae" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></p>
-    </div>
-
     {% for key in serverlist %}
             {% for key in key[2] %}
                         {% for key in key[2] %}
@@ -228,12 +187,45 @@
                                         <p>{{ key[5] }}</p>
                                         <div class="product-footer">
                                             <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                                        </div>                                    </div>
+                                        </div>
                                 {% endif %}
                         {% endfor %}
             {% endfor %}
     {% endfor %}
 
+                                        <script
+                                                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                                                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                                                crossorigin="anonymous"></script>
+                                        <script>
 
+                                            document.getElementById("Jeux").style.display = "block";
+
+                                            $('.achat').click(function(){
+
+                                                var prod_id = $(this).attr("idpro");
+
+                                                var request = $.ajax({
+                                                    url: "shop/achat/"+prod_id,
+                                                    method: "POST",
+                                                    data: { prod_id : prod_id },
+                                                    dataType: "html"
+                                                });
+
+                                                request.done(function( msg ) {
+                                                    $('[data-remodal-id=shop-succes]').remodal().open();
+                                                });
+
+                                                request.fail(function( jqXHR, textStatus ) {
+                                                    if(jqXHR.status == 406){
+                                                        $('[data-remodal-id=shop-error]').remodal().open();
+                                                    }else if (jqXHR.status == 409){
+                                                        $('[data-remodal-id=shop-error-login]').remodal().open();
+                                                    }
+                                                });
+
+                                            });
+                                        </script>
 
 {% endblock %}
+

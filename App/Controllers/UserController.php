@@ -15,9 +15,9 @@ class UserController extends Controller
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
         //sans cache
-        $collection = $this->mongo->admin->players;
+        $collection = $this->mongo->test->players;
 
-        $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+        $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
 
         //On affiche 0 pts boutiques si le joueur a pas sous (clochard)
         if (empty($user["shoppoints"])){

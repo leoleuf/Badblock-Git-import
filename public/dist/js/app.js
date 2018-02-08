@@ -23,14 +23,14 @@ function menu() {
 
 function players() {
     //Get players
-    $.getJSON('https://mcapi.us/server/status?ip=' + mcHost, function(data) {
-        if (data.players.now == 0){
+    $.getJSON('/api/minecraft/players', function(data) {
+        if (data.now == 0){
             var message = trans.noPlayers
         }
-        if (data.players.now == 1){
+        if (data.now == 1){
             var message = data.players.now + ' ' + trans.onePlayer
         }
-        if (data.players.now > 1){
+        if (data.now > 1){
             var message = data.players.now + ' ' + trans.manyPlayers
         }
         $('#players').html(message);
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
     console.log("%cMais pour encore mieux en profiter, et pour la sécurité de votre compte badblock, blabla en fait je fait un texte pour meubler ma vrai pensé : - je sais ce que tu veux faire, tu veux trafiquoter le site pour impréssionner tes amis! LOLOLOLOLOLOL", 'background: #222; color: #bada55');
 
-    console.log("%cBref, le site à été développé par plein de développeurs comme Skript/FeedDev/Fluor (oui, oui le mec à 50 0000 pseudos), Hooki_, et Le_Futuriste <lefuturiste.fr>", 'background: #000; color: #fff');
+    console.log("%cBref, le site à été développé par pleins de développeurs comme Skript/FeedDev/Fluor (oui, oui le mec à 50 0000 pseudos et il est BG), Hooki_, et Le_Futuriste <lefuturiste.fr>", 'background: #000; color: #fff');
 
     //Check to see if the window is top if not then display button
     $(window).scroll(function () {

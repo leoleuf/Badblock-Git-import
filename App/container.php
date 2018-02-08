@@ -152,3 +152,13 @@ $container['ladder'] = function ($container) {
         'port' => $container->config['ladder']['port']
     ]);
 };
+
+$container['rabbit'] = function ($container) {
+    return new App\Shoplinker($container, [
+        'ip' => $container->config['rabbit']['ip'],
+        'port' => $container->config['rabbit']['port'],
+        'username' => $container->config['rabbit']['username'],
+        'password' => $container->config['rabbit']['password'],
+        'virtualhost' => $container->config['rabbit']['virtualhost']
+    ]);
+};

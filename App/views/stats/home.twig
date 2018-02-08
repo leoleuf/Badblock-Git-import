@@ -45,7 +45,7 @@
             <div class="stats-home">
                 <h4 class="heading heading-bar"><span>Statistiques Générales</span></h4>
                 <div class="col-3">
-                    <a href="#player-modal"><h3 id="players-count">1 555 555</h3>
+                    <a href="#player-modal"><h3 id="players-count">0</h3>
                         <p>Joueurs connectés</p></a>
                 </div>
                 <div class="col-3">
@@ -87,21 +87,10 @@
 
     <script>
         function players() {
-            console.log('players loading');
-            //Get players
-            $.getJSON('https://api.badblock.fr/public/servers-status/check.php?host=play.badblock.fr&port=25565', function(data) {
-                if (data.players.online == 0){
-                    var message = Aucun
-                }
-                if (data.players.now == 1){
-                    var message = data.players.online
-                }
-                if (data.players.now > 1){
-                    var message = data.players.online
-                }
-                $('#players-count').html(message);
+            $.getJSON('/api/minecraft/players', function(data) {
 
-                console.log('players online: ' + message);
+                $('#players-count').html(data.now);
+
             });
         }
 

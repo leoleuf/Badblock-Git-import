@@ -125,7 +125,7 @@ class ShopController extends Controller
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
 	    //Vérification si le produit éxiste
             if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
-                $collection = $this->mongo->admin->players;
+                $collection = $this->mongo->test->players;
                 $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
                 $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
 
@@ -136,67 +136,14 @@ class ShopController extends Controller
                 }
 
 
+                if (!isset($data['shop_points'])){
+                    $data['shop_points'] = 0;
+                }
+
                 //Vérification du prix
                 if ($dataprod["price"] <= $data['shop_points']){
                     //On continue car il a les sous
-                    //vérifions si le joueur est connecté au serveur
-                    if ($this->ladder->playerOnline($this->session->getProfile('username')['username'])['connected'] == true){
-                            //vérification si il est sur le bon serveur
-                            if ($this->ladder->playerGetConnectedServer($this->session->getProfile('username')['username'])->server == $dataprod['server_name']){
-                                //Vérification si l'achat et réel ou virtuel
-                                if ($dataprod['type'] == "item"){
-                                    //Vérif anti usebug
-                                    if ($dataprod["price"] <= $data['shop_points']){
-                                        //On retire les sous
-                                        $pts = $data['shop_points'] - $dataprod["price"];
-                                        //Real / Item
-                                        if ($this->shopItem()){
-                                            $result = $collection->updateOne(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
-                                            return $response->write("ok")->withStatus(200);
-                                        }else{
-                                            return $response->write("Achat Fail")->withStatus(500);
-                                        }
-                                    }else{
-                                        return $response->write("Not enought")->withStatus(406);
-                                    }
-                                }elseif ($dataprod['type'] == "grade"){
-                                    //Vérif anti usebug
-                                    if ($dataprod["price"] <= $data['shop_points']){
-                                        //On retire les sous
-                                        $pts = $data['shop_points'] - $dataprod["price"];
-                                        //Real / Item
-                                        if ($this->shopGrade()){
-                                            $result = $collection->updateOne(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
-                                            return $response->write("ok")->withStatus(200);
-                                        }else{
-                                            return $response->write("Achat Fail")->withStatus(500);
-                                        }
-                                    }else{
-                                        return $response->write("Not enought")->withStatus(406);
-                                    }
-                                }else{
-                                    //Achat via commande
-                                    //Vérif anti usebug
-                                    if ($dataprod["price"] <= $data['shop_points']){
-                                        //On retire les sous
-                                        $pts = $data['shop_points'] - $dataprod["price"];
-                                        //Real / Item
-                                        if ($this->shopCommand()){
-                                            $result = $collection->findOneAndUpdate(['name' => $this->session->getProfile('username')['username']],['$set' => ["shop_points" => $pts]]);
-                                            return $response->write("ok")->withStatus(200);
-                                        }else{
-                                            return $response->write("Achat Fail")->withStatus(500);
-                                        }
-                                    }else{
-                                        return $response->write("Not enought")->withStatus(406);
-                                    }
-                                }
-                            }else{
-                                return $response->write("Not connected")->withStatus(409);
-                            }
-                    }else{
-                        return $response->write("Not connected")->withStatus(409);
-                    }
+
                 }else{
                     //C'est un clodo donc erreur
                     return $response->write("Not enought")->withStatus(406);
@@ -208,21 +155,6 @@ class ShopController extends Controller
 
     }
 
-
-    //Achat d'un Item sur un serveur précis
-    private function shopItem($player,$item,$server){
-	    return true;
-    }
-
-    //Achat d'un grade sur un serveur préci ou non
-    private function shopGrade($player,$grade,$server = null){
-        return true;
-    }
-
-    //Achat via une commande sur un serveur préci
-    private function shopCommand($player,$commande,$server){
-        return true;
-    }
 
 
 
