@@ -32,22 +32,28 @@ import fr.badblock.ladder.http.players.PagePlayerUpdateData;
 import fr.badblock.ladder.http.players.PagePlayerUpdateShopPoints;
 import fr.badblock.ladder.http.players.PageServerBroadcast;
 
-public class LadderHttpHandler extends AbstractHandler {
+public class LadderHttpHandler extends AbstractHandler
+{
 
 	private Map<String, LadderPage> pages = Maps.newConcurrentMap();
 	public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	public LadderHttpHandler(int port) {
+	public LadderHttpHandler(int port)
+	{
 		AbstractHandler abstractHandler = this;
 		new Thread() {
 			@Override
-			public void run() {
+			public void run()
+			{
 				Server server = new Server(port);
 				server.setHandler(abstractHandler);
-				try {
+				try
+				{
 					server.start();
 					server.join();
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					Ladder.getInstance().getConsoleCommandSender().sendMessage("�b[LadderHTTP] �cUnable to create HttpHandler (port " + port + "). See the stack trace:");
 					e.printStackTrace();
 					return;
@@ -67,9 +73,11 @@ public class LadderHttpHandler extends AbstractHandler {
 	}
 
 	@Override
-	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
 		if (target.equals("/favicon.ico")) return;
-		if(pages.containsKey(target)){
+		if (pages.containsKey(target))
+		{
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_ACCEPTED);
@@ -96,7 +104,9 @@ public class LadderHttpHandler extends AbstractHandler {
 			}*/
 
 			response.getWriter().println(pages.get(target).call(object));
-		} else {
+		}
+		else
+		{
 			response.setContentType("text/html; charset=utf-8");
 			response.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
 			response.getWriter().println("403 Not allowed");
@@ -105,9 +115,12 @@ public class LadderHttpHandler extends AbstractHandler {
 		}
 	}
 
-	public void addHandler(LadderPage page){
+	public void addHandler(LadderPage page)
+	{
 		if(!pages.containsKey(page.getPath()))
+		{
 			pages.put(page.getPath(), page);
+		}
 	}
 
 }
