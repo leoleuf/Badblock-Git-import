@@ -27,7 +27,18 @@ class StaffApiController extends \App\Controllers\Controller
             }
 
         }
-        
+
+        foreach ($role as $key => $row){
+            if (count( $row['data']) > 1){
+                $data_r = preg_split("/[\s,]+/", $row['name']);
+                if (count($data_r) > 1){
+                    $role[$key]['name'] = preg_replace("/[\s,]+/", "s ", $row['name']);
+                }else{
+                    $role[$key]['name'] = $row['name']."s";
+                }
+            }
+
+        }
 
         usort($role, function($a, $b) {
             return $a['display_style_priority'] <= $b['display_style_priority'];
