@@ -107,12 +107,12 @@ $container['guzzle'] = function ($container) {
 	return $client;
 };
 
-$container['mysql'] = function ($container) {
+$container['mysql_forum'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql']['host'], // server
-		$container->config['mysql']['user'],     // user
-		$container->config['mysql']['password'],      // password
-		$container->config['mysql']['database']   // database
+		$container->config['mysql_forum']['host'], // server
+		$container->config['mysql_forum']['user'],     // user
+		$container->config['mysql_forum']['password'],      // password
+		$container->config['mysql_forum']['database']   // database
 	);
 
 	$pdoConn = $pdo->connect('utf8', []); // charset, options
@@ -122,10 +122,48 @@ $container['mysql'] = function ($container) {
 	return $dbConn;
 };
 
+
+$container['mysql_rankeds'] = function ($container) {
+    $pdo = new \Simplon\Mysql\PDOConnector(
+        $container->config['mysql_rankeds']['host'], // server
+        $container->config['mysql_rankeds']['user'],     // user
+        $container->config['mysql_rankeds']['password'],      // password
+        $container->config['mysql_rankeds']['database']   // database
+    );
+
+    $pdoConn = $pdo->connect('utf8', []); // charset, options
+
+    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+
+    return $dbConn;
+};
+
+$container['mysql_box'] = function ($container) {
+    $pdo = new \Simplon\Mysql\PDOConnector(
+        $container->config['mysql_rankeds']['host'], // server
+        $container->config['mysql_rankeds']['user'],     // user
+        $container->config['mysql_rankeds']['password'],      // password
+        $container->config['mysql_rankeds']['database']   // database
+    );
+
+    $pdoConn = $pdo->connect('utf8', []); // charset, options
+
+    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+
+    return $dbConn;
+};
+
+$container['mongoServer'] = function ($container) {
+    return new \MongoDB\Client(
+        'mongodb://'.$container->config['mongo_local']['user'].":".$container->config['mongo_local']['password']."@".$container->config['mongo_local']['host'].":".$container->config['mongo_local']['port']	."/".$container->config['mongo_local']['database']
+    );
+};
+
+
 $container['mongo'] = function ($container) {
-	return new \MongoDB\Client(
-		'mongodb://'.$container->config['mongo_db']['user'].":".$container->config['mongo_db']['password']."@".$container->config['mongo_db']['host'].":".$container->config['mongo_db']['port']	."/".$container->config['mongo_db']['database']
-	);
+    return new \MongoDB\Client(
+        'mongodb://'.$container->config['mongo_local']['user'].":".$container->config['mongo_local']['password']."@".$container->config['mongo_local']['host'].":".$container->config['mongo_local']['port']	."/".$container->config['mongo_local']['database']
+    );
 };
 
 $container['xenforo'] = function ($container) {

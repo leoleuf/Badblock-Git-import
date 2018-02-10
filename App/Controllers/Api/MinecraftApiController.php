@@ -9,6 +9,13 @@ class MinecraftApiController extends \App\Controllers\Controller
 {
 	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response)
 	{
+
 		return $response->withJson($this->mc->getPlayers());
 	}
+
+    public function getStats(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $data = [];
+        return $response->withJson($data);
+    }
 }

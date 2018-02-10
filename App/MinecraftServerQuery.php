@@ -59,4 +59,29 @@ class MinecraftServerQuery {
         }
 	}
 
+
+    /**
+     * @return mixed
+     */
+
+    public function registredCount(){
+        
+    }
+
+    public function getRegistred()
+    {
+        if ($this->redis->exists('api.registred')){
+            return $this->redis->get('api.registred');
+        }else{
+            if ($this->getStatus()){
+                $data = $this->getData();
+                $this->redis->setJson('api.registred', $data['players']);
+                $this->redis->expire('api.registred', 5);
+                return $data['players'];
+            }else{
+                return $this->getStatus();
+            }
+        }
+    }
+
 }

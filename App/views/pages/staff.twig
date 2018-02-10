@@ -29,6 +29,10 @@
                 {% if k % 2 != 0 %}
                     </div>
                 {% endif %}
+
             {% endfor %}
+    {% if staff|length % 2 != 0 %}
+        </div>
+    {% endif %}
     </div>
 {% endblock %}

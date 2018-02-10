@@ -15,7 +15,8 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 	});
 	$this->get('/post/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getPostComments');
 	$this->group('/minecraft', function() {
-		$this->get('/players', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
+		$this->get('/playertss', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
+		$this->get('/sta', \App\Controllers\Api\MinecraftApiController::class . ':getStats');
 	});
 
     $this->group('/discord', function() {
