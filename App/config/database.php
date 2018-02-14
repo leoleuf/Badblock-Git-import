@@ -17,6 +17,12 @@ return [
         'password' => getenv('MYSQL_BOX_PASSWORD'),
         'database' => getenv('MYSQL_BOX_DATABASE'),
     ],
+    'mysql_guardian' => [
+        'host' => getenv('MYSQL_GUARDIAN_HOST'),
+        'user' => getenv('MYSQL_GUARDIAN_USERNAME'),
+        'password' => getenv('MYSQL_GUARDIAN_PASSWORD'),
+        'database' => getenv('MYSQL_GUARDIAN_DATABASE'),
+    ],
     'mysql_forum' => [
         'host' => getenv('MYSQL_HOST'),
         'user' => getenv('MYSQL_USERNAME'),
@@ -43,5 +49,6 @@ return [
         'ip' => getenv('LADDER_IP'),
         'port' => getenv('LADDER_PORT'),
     ]
+
 
 ];

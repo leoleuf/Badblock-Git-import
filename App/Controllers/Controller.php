@@ -25,6 +25,7 @@ class Controller{
 		$this->mysql_forum = $container['mysql_forum'];
 		$this->mysql_rankeds = $container['mysql_rankeds'];
 		$this->mysql_box = $container['mysql_box'];
+		$this->mysql_guardian = $container['mysql_guardian'];
 		$this->mongo = $container['mongo'];
 		$this->mongo_dist = $container['mongoServer'];
 		$this->log = $container['log'];
@@ -32,6 +33,7 @@ class Controller{
 		$this->mc = $container['minecraft'];
 		$this->flash = $container['flash'];
 		$this->ladder = $container['ladder'];
+		$this->teamspeak = $container['teamspeak'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){

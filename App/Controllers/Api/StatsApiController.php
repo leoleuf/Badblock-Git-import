@@ -10,6 +10,9 @@ namespace App\Controllers\Api;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use DatePeriod;
+use DateTime;
+use DateInterval;
 
 class StatsApiController extends \App\Controllers\Controller
 {
@@ -24,8 +27,6 @@ class StatsApiController extends \App\Controllers\Controller
         $muteA = $collection->count(['punish.mute' => true]);
 
         var_dump($banA);
-
-
 
 
         $this->log->success("StatsApiController\getCreateCacheStats",'Success writing stats cache');
@@ -58,6 +59,77 @@ class StatsApiController extends \App\Controllers\Controller
 
 
         return $response->write('Success writing stats cache')->withStatus(200);
+
+
+    }
+
+    public function jsonResp(RequestInterface $request, ResponseInterface $response){
+
+
+        //Stats provenant du mongoDB dist
+        $collection = $this->mongo->test->players;
+        $register = $collection->count();
+        $banA = $collection->count(['punish.ban' => true]);
+        $muteA = $collection->count(['punish.mute' => true]);
+        $banG = $collection->count(['punish.ban' => true,'punish.banner' => "Guardian"]);
+        $banM = $banA - $banG;
+
+        //Get du staff sur redis
+        $staff = $this->redis->getjson('staff.number');
+
+        //Count des line sur le forum
+        $msg_forum = $this->mysql_forum->fetchRow('SELECT COUNT(*) FROM xf_post;')["COUNT(*)"];
+
+        //Connecté sur TS
+        $ts_connected = $this->teamspeak->online();
+
+        //nombre d'articles
+        $article = $this->redis->get('posts_count');
+
+        //Guardian
+        $cheat = ["KillAura",
+                "Criticals",
+                "Heuristics",
+                "ForceField",
+                "Aimbot",
+                "Fly",
+                "Reach",
+                "SpeedHack",
+                "FightSpeed",
+                "KnockBack"];
+
+        $guardian = [];
+        foreach ($cheat as $row){
+            $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE cheat LIKE '%". $row ."%'")["COUNT(*)"];
+            array_push($guardian, ['name' => $row,'number' => $data]);
+        }
+
+        $this->redis->setJson('stats:guardian', $guardian);
+
+        //Ban total guardian
+        $nmban = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban'")["COUNT(*)"];
+        $this->redis->setJson('stats:gban', $nmban);
+
+        //Ban total du moi guardian
+        $nmbanM = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("m/y") ."%'")["COUNT(*)"];
+        $this->redis->setJson('stats:mban', $nmbanM);
+
+        //Ban total du jour guardian
+        $nmbanJ = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("d/m/y") ."%'")["COUNT(*)"];
+        $this->redis->setJson('stats:jban', $nmbanJ);
+
+        $period = new DatePeriod(
+            new DateTime(date("y-m-d", strtotime("-30 days"))),
+            new DateInterval('P1D'),
+            new DateTime(date("y-m-d"))
+        );
+        $stats = [];
+        foreach ($period as $key => $value) {
+            $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date_format($value, "d/m/Y") ."%'")["COUNT(*)"];
+            array_push($stats, ['date' => date_format($value, "d/m/y"), "number" => $data]);
+        }
+        $this->redis->setJson('stats:gstats', $stats);
+
 
 
     }

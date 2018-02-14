@@ -153,9 +153,24 @@ $container['mysql_box'] = function ($container) {
     return $dbConn;
 };
 
+$container['mysql_guardian'] = function ($container) {
+    $pdo = new \Simplon\Mysql\PDOConnector(
+        $container->config['mysql_guardian']['host'], // server
+        $container->config['mysql_guardian']['user'],     // user
+        $container->config['mysql_guardian']['password'],      // password
+        $container->config['mysql_guardian']['database']   // database
+    );
+
+    $pdoConn = $pdo->connect('utf8', []); // charset, options
+
+    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+
+    return $dbConn;
+};
+
 $container['mongoServer'] = function ($container) {
     return new \MongoDB\Client(
-        'mongodb://'.$container->config['mongo_local']['user'].":".$container->config['mongo_local']['password']."@".$container->config['mongo_local']['host'].":".$container->config['mongo_local']['port']	."/".$container->config['mongo_local']['database']
+        'mongodb://'.$container->config['mongo_dist']['user'].":".$container->config['mongo_dist']['password']."@".$container->config['mongo_dist']['host'].":".$container->config['mongo_dist']['port']	."/".$container->config['mongo_dist']['database']
     );
 };
 
@@ -184,6 +199,7 @@ $container['notFoundHandler'] = function ($container) {
 };
 
 
+
 $container['ladder'] = function ($container) {
     return new App\Ladder($container, [
         'ip' => $container->config['ladder']['ip'],
@@ -200,3 +216,14 @@ $container['rabbit'] = function ($container) {
         'virtualhost' => $container->config['rabbit']['virtualhost']
     ]);
 };
+
+$container['teamspeak'] = function ($container){
+    return new App\TeamSpeak($container, (object) [
+        'ip' => $container->config['teamspeak']['ip'],
+        'port' => $container->config['teamspeak']['port'],
+        'username' => $container->config['teamspeak']['username'],
+        'password' => $container->config['teamspeak']['password'],
+        'query_port' => $container->config['teamspeak']['query_port']
+    ]);
+};
+

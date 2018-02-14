@@ -11,12 +11,16 @@
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
                     <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower"><span>Tower</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower"><span>Tower Run</span></button>
                     <button class="button-games" onclick="location.href='/stats/all/rush/'" id="rush">Rush</button>
                     <button class="button-games" onclick="location.href='/stats/all/survival/'" id="survival">Survival</button>
+                    <button class="button-games" onclick="location.href='/stats/all/survival/'" id="survival">SkyWars</button>
                     <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="uhc_speed">UHC Speed</button>
                     <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="peal_wars">Pearl Wars</button>
                     <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="spaceballs">SpaceBalls</button>
                     <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="capture_the_sheep">Capture The Sheep</button>
+                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="capture_the_sheep">Build Contest</button>
+                    <button class="button-games" onclick="location.href='/stats/all/Box/'" id="pvp_box">Pvp-Box</button>
                 </div>
                 <div class="one-half column animated bounceInLeft">
                     <div class="search-container">
@@ -58,15 +62,15 @@
                 </div>
                 <div class="col-3">
                     <a href="#player-active-modal"><h3>0</h3>
-                        <p>Joueurs Mute</p></a>
+                        <p>Messages sur le Forum</p></a>
                 </div>
                 <div class="col-3">
                     <a href="#followers-modal"><h3>0</h3>
-                        <p>Joueurs Ban</p></a>
+                        <p>Joueurs Connectés au TeamSpeak</p></a>
                 </div>
                 <div class="col-3">
                     <a href="#line-modal"><h3>0</h3>
-                        <p>Nombre de lignes codées par Hooki</p></a>
+                        <p>Articles sur le site</p></a>
                 </div>
             </div>
         </div>
@@ -81,6 +85,58 @@
                 Bon jeu sur nos plateformes.</h5>
         </div>
     </div>
+    <div class="container content">
+        <div class="twelve columns">
+            <div class="stats-home">
+                <h4 class="heading heading-bar"><span>Statistiques Serveur</span></h4>
+                <div class="col-3">
+                    <a href="#player-modal"><h3 id="players-count">0</h3>
+                        <p>Joueurs connectés</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#account-modal"><h3>0</h3>
+                        <p>Joueurs inscrits</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#ban-modal"><h3>0</h3>
+                        <p>Ban Guardian</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#player-active-modal"><h3>0</h3>
+                        <p>Joueurs Mute</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#followers-modal"><h3>0</h3>
+                        <p>Joueurs Ban</p></a>
+                </div>
+                <div class="col-3">
+                    <a href="#line-modal"><h3>0</h3>
+                        <p>Ban Modération</p></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container content">
+        <div class="info-stats">
+            <h4 class="heading heading-bar"><span>Informations sur le Guardian</span></h4>
+
+            <h5>Le Guardian est una nti cheat ezvbfmlv;vhjlvnlkrsbl,m</h5>
+        </div>
+    </div>
+    <div class="container content">
+        <div class="twelve columns">
+            <div class="stats-home">
+                <h4 class="heading heading-bar"><span>Statistiques Guardian</span></h4>
+                <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+
 {% endblock %}
 {% block scripts %}
     <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -88,25 +144,89 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <script>
-        function players() {
-            $.getJSON('/api/minecraft/players', function(data) {
 
-                $('#players-count').html(data.now);
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Nombre de détections en fonction du type de cheat'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Bans',
+                colorByPoint: true,
+                data: [
+                    {% for data,key in guardian %}
+                    {
+                        name: '{{ key['name'] }}',
+                        y: {{ key['number'] }}
+                    },
+                    {% endfor %}
+                ]
+            }]
+        });
+    </script>
+    <script>
 
-            });
-        }
+        Highcharts.chart('container2', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Évolution des suspensions Guardian sur 30 jours'
+            },
+            xAxis: {
+                categories: [
+                    {% for data,key in gstats %}
+                        '{{ key['date'] }}',
+                    {% endfor %}
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Bans'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} bans</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Guardian',
+                data: [{% for data,key in gstats %} {{ key['number'] }}, {% endfor %}]
 
-        function stats() {
-            $.getJSON('/api/minecraft/stats', function(data) {
-
-                $('#players-count').html(data.now);
-
-            });
-        }
-
-        players(); // This will run on page load
-        setInterval(function(){
-            players() // this will run after every 5 seconds
-        }, 2000);
+            }]
+        });
     </script>
 {% endblock %}

@@ -16,7 +16,10 @@ class StatsController extends Controller
 
 	public function home(RequestInterface $request, ResponseInterface $response)
 	{
-		$this->render($response, 'stats.home');
+	    $guardian = $this->redis->getJson('stats:guardian');
+	    $gstats = $this->redis->getJson('stats:gstats');
+	    var_dump($gstats);
+		$this->render($response, 'stats.home',['guardian' => $guardian,'gstats' => $gstats]);
 	}
 
 	public function games(RequestInterface $request, ResponseInterface $response)

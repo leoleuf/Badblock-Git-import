@@ -23,4 +23,13 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
         $this->get('/support/{id}/{title}/{user}/{type}', \App\DiscordHandler::class . ':sendForum');
     });
 
+    $this->group('/teamspeak', function() {
+        $this->get('/test', \App\Controllers\Api\LoginApiDevController::class . ':ts');
+    });
+
+    $this->group('/stats', function() {
+        $this->get('/json', \App\Controllers\Api\StatsApiController::class . ':jsonResp');
+    });
+
+
 });
