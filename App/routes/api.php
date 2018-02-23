@@ -3,7 +3,11 @@
 // Route API
 
 $app->group('/api', function(){
-$this->get('/login/{username}', \App\Controllers\Api\LoginApiDevController::class . ':login');
+    $this->get('/test', function (){
+        echo "tets";
+    });
+
+    $this->get('/login/{username}', \App\Controllers\Api\LoginApiDevController::class . ':login');
 $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':test');
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {

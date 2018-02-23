@@ -8,18 +8,22 @@
 
 namespace App\Controllers;
 
+use App\MinecraftServerQuery;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\App;
 
 class StatsController extends Controller
 {
 
 	public function home(RequestInterface $request, ResponseInterface $response)
 	{
+	    $connected = $this->mc->getPlayers()["now"];
+	    $c_ts = $this->teamspeak->online() - 1;
 	    $guardian = $this->redis->getJson('stats:guardian');
-	    $gstats = $this->redis->getJson('stats:gstats');
-	    var_dump($gstats);
-		$this->render($response, 'stats.home',['guardian' => $guardian,'gstats' => $gstats]);
+	    $gstats = $this->redis->getJson('stats:stats_guardian');
+	    $stats = $this->redis->getJson('stats:stats_general');
+		$this->render($response, 'stats.home',['c_ts' => $c_ts,'connected' => $connected,'guardian' => $guardian,'gstats' => $gstats,'stats' => $stats]);
 	}
 
 	public function games(RequestInterface $request, ResponseInterface $response)

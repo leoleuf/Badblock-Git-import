@@ -17,25 +17,6 @@ use DateInterval;
 class StatsApiController extends \App\Controllers\Controller
 {
 
-    public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
-    {
-        $collection = $this->mongo->admin->players;
-
-
-        $register = $collection->count();
-        $banA = $collection->count(['punish.ban' => true]);
-        $muteA = $collection->count(['punish.mute' => true]);
-
-        var_dump($banA);
-
-
-        $this->log->success("StatsApiController\getCreateCacheStats",'Success writing stats cache');
-
-
-        return $response->write('Success writing stats cache')->withStatus(200);
-
-
-    }
 
     public function gdetCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
@@ -108,15 +89,10 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Ban total guardian
         $nmban = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban'")["COUNT(*)"];
-        $this->redis->setJson('stats:gban', $nmban);
-
         //Ban total du moi guardian
         $nmbanM = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("m/y") ."%'")["COUNT(*)"];
-        $this->redis->setJson('stats:mban', $nmbanM);
-
         //Ban total du jour guardian
         $nmbanJ = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("d/m/y") ."%'")["COUNT(*)"];
-        $this->redis->setJson('stats:jban', $nmbanJ);
 
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),
@@ -128,7 +104,25 @@ class StatsApiController extends \App\Controllers\Controller
             $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date_format($value, "d/m/Y") ."%'")["COUNT(*)"];
             array_push($stats, ['date' => date_format($value, "d/m/y"), "number" => $data]);
         }
-        $this->redis->setJson('stats:gstats', $stats);
+        $this->redis->setJson('stats:stats_guardian', $stats);
+
+        $stats = [
+            "registred" => $register,
+            "ban" => $banA,
+            "mute" => $muteA,
+            "banMod" => $banM,
+            "banGuardian" => $banG,
+            "staff" => $staff,
+            "message_forum" => $msg_forum,
+            "ts_co" => $ts_connected,
+            "article" => $article,
+            "ban_g_total" => $nmban,
+            "ban_m_total" => $nmbanM,
+            "ban_j_total" => $nmbanJ,
+        ];
+
+        $this->redis->setJson('stats:stats_general', $stats);
+
 
 
 

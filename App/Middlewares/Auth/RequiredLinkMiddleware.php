@@ -17,7 +17,6 @@ class RequiredLinkMiddleware {
 	public function __invoke(ServerRequestInterface $request, Response $response, $next)
 	{
 
-		//verify if the user is connected
 		if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])){
 			return $next($request, $response);
 		}else{

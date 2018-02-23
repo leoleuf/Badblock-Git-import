@@ -207,6 +207,7 @@ $container['ladder'] = function ($container) {
     ]);
 };
 
+
 $container['rabbit'] = function ($container) {
     return new App\Shoplinker($container, [
         'ip' => $container->config['rabbit']['ip'],
