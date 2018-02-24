@@ -37,7 +37,7 @@ public class AsyncDataLoadRequestListener implements Listener
 						int count = resultSet.getInt("count");
 						if (count > 0)
 						{
-							event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloqué par notre système automatisé pour cause de mauvaise réputation."), null);
+							event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."), null);
 							event.setCancelled(true);
 							return;
 						}
@@ -45,7 +45,7 @@ public class AsyncDataLoadRequestListener implements Listener
 					if (!isGoodIP(ip))
 					{
 						BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO blockedIps(ip) VALUES('" + ip + "')", RequestType.SETTER));
-						event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloqué par notre système automatisé pour cause de mauvaise réputation."), null);
+						event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."), null);
 						event.setCancelled(true);
 					}
 				}
