@@ -69,7 +69,7 @@ public class AsyncDataLoadRequestListener implements Listener
 			{
 				return true;
 			}
-			return object.getBlock() == 0;
+			return object.getBlock() != 1;
 		}catch(Exception error)
 		{
 			System.out.println("Error (GOODIP-CHECK) : " + sourceCode);
