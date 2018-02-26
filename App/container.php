@@ -138,12 +138,12 @@ $container['mysql_rankeds'] = function ($container) {
     return $dbConn;
 };
 
-$container['mysql_box'] = function ($container) {
+$container['mysql_casier'] = function ($container) {
     $pdo = new \Simplon\Mysql\PDOConnector(
-        $container->config['mysql_rankeds']['host'], // server
-        $container->config['mysql_rankeds']['user'],     // user
-        $container->config['mysql_rankeds']['password'],      // password
-        $container->config['mysql_rankeds']['database']   // database
+        $container->config['mysql_casier']['host'], // server
+        $container->config['mysql_casier']['user'],     // user
+        $container->config['mysql_casier']['password'],      // password
+        $container->config['mysql_casier']['database']   // database
     );
 
     $pdoConn = $pdo->connect('utf8', []); // charset, options

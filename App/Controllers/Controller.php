@@ -22,15 +22,9 @@ class Controller{
 		$this->container = $container;
 		$this->xenforo = $container['xenforo'];
 		$this->redis = $container['redis'];
-		$this->mysql_forum = $container['mysql_forum'];
-		$this->mysql_rankeds = $container['mysql_rankeds'];
-		$this->mysql_box = $container['mysql_box'];
-		$this->mysql_guardian = $container['mysql_guardian'];
-		$this->mongo = $container['mongo'];
-		$this->mongo_dist = $container['mongoServer'];
 		$this->log = $container['log'];
 		$this->session = $container['session'];
-		$this->mc = $container['minecraft'];
+		//$this->mc = $container['minecraft'];
 		$this->flash = $container['flash'];
 		$this->ladder = $container['ladder'];
 		$this->teamspeak = $container['teamspeak'];

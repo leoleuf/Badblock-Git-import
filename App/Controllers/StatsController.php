@@ -18,7 +18,7 @@ class StatsController extends Controller
 
 	public function home(RequestInterface $request, ResponseInterface $response)
 	{
-	    $connected = $this->mc->getPlayers()["now"];
+	    $connected = 0;
 	    $c_ts = $this->teamspeak->online() - 1;
 	    $guardian = $this->redis->getJson('stats:guardian');
 	    $gstats = $this->redis->getJson('stats:stats_guardian');
