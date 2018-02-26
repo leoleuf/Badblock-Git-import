@@ -26,7 +26,7 @@ $whoopsGuard->install();
 | Login Middleware
 |--------------------------------------------------------------------------
 */
-$app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
+//$app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
 
 
 /*
@@ -34,6 +34,6 @@ $app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
 | Minecraft Ip generator Middleware
 |--------------------------------------------------------------------------
 */
-//$app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
+$app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
 
 \Validator\ValidationLanguage::setLang('fr');

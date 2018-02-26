@@ -57,15 +57,15 @@ class IpGeneratorMiddleware
 
 	public function __invoke($request, $response, $next)
 	{
-		$ip = $_SERVER['REMOTE_ADDR'];
-		//if the key doesn't exist in cache
-		if (!$this->container->redis->exists("ip_" . $ip)) {
-			$result = [];
+        $ip = $_SERVER['REMOTE_ADDR'];
+        //if the key doesn't exist in cache
+        if (!$this->container->session->exist('mcIp')) {
+            $result = [];
 
-			//Geo IP
-			//Get list of countries
+            //Geo IP
+            //Get list of countries
 
-			//open geoip file
+            //open geoip file
             $db6 = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
             $db4 = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
 
@@ -83,38 +83,35 @@ class IpGeneratorMiddleware
 
 
             //Check Pays
-			if (in_array($code, $this->euAllowed)) {
+            if (in_array($code, $this->euAllowed)) {
 
-				$iptos = $this->euServerIp;
+                $iptos = $this->euServerIp;
 
-			} elseif (in_array($code, $this->naAllowed)) {
+            } elseif (in_array($code, $this->naAllowed)) {
 
-				$iptos = $this->naServerIp;
+                $iptos = $this->naServerIp;
 
-			} else {
+            } else {
 
-				$iptos = $this->defaultServerIp;
+                $iptos = $this->defaultServerIp;
 
-			}
+            }
 
-			//compile et envoie
-			array_push($result, $iptos, $code, $pays);
+            //compile et envoie
+            array_push($result, $iptos, $code, $pays);
 
-			//Mise en cache
-			$this->container->redis->setJson('ip_' . $ip, $result);
-			$this->container->redis->expire('ip_' . $ip, 3600);
+            $this->container->session->set('mcIp', $result[0]);
+            $generatedIp = $result[0];
 
-			$generatedIp = $result[0];
+        } else {
+            $generatedIp = $this->container->session->get('mcIp');
+        }
 
-		} else {
-			$generatedIp = $this->container->redis->getjson('ip_' . $ip)[0];
-		}
+        //ajout de l'ip généré aux variables globales twig
+        $twig = $this->container->view->getEnvironment();
+        $twig->addGlobal('mc_ip', $generatedIp);
 
-		//ajout de l'ip généré aux variables globales twig
-		$twig = $this->container->view->getEnvironment();
-		$twig->addGlobal('mc_ip', $generatedIp);
-
-		//return next
+        //return next
 		return $next($request, $response);
 	}
 }
