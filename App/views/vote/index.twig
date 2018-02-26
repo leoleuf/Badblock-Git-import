@@ -1,0 +1,34 @@
+{% extends 'default.twig' %}
+{% set title = 'Voter !'|trans %}
+{% set sub_title = ''|trans~user.username %}
+{% set show_title = false %}
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover">
+            <div class="container">
+                <div class="one-half column">
+                    <h4 class="cover-heading">Voter pour soutenir le serveur !</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+    <section>
+        <h4 class="heading-bar"><span>Voter sur RPG-Paradize (Tout les 3heures)</span></h4>
+        <div class="play-way-ip">
+                <form action="/vote/rpg/1" method="post">
+                    <div class="four columns">
+                        <input name="username" class="u-full-width" type="text" placeholder="Fluor" id="username" required="" autocomplete="off" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+                    </div>
+                    <div class="four columns">
+                        <button class="button button-success" type="submit">Voter !</button>
+                    </div>
+                </form>
+        </div>
+    </section>
+
+{% endblock %}
+

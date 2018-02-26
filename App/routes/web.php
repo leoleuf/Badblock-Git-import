@@ -30,6 +30,11 @@ $app->group('/shop', function (){
 	$this->get('/paypal/cancel', \App\Controllers\PaypalController::class . ':getPaypalCancel')->setName('shop.paypal.cancel');
 });
 
+$app->group('/vote', function (){
+    $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
+    $this->get('/rpg/{id}', \App\Controllers\VoteController::class . ':step')->setName('vote.step');
+});
+
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 

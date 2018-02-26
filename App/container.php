@@ -228,3 +228,7 @@ $container['teamspeak'] = function ($container){
     ]);
 };
 
+$container['RpgApi'] = function ($container){
+    return new App\RpgApi($container,"45397");
+};
+

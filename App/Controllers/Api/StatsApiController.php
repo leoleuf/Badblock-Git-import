@@ -69,13 +69,13 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Guardian
         $cheat = ["KillAura",
-                "Criticals",
-                "Heuristics",
                 "ForceField",
                 "Aimbot",
                 "Fly",
                 "Reach",
+                "Heuristics",
                 "SpeedHack",
+                "Criticals",
                 "FightSpeed",
                 "KnockBack"];
 
@@ -97,9 +97,11 @@ class StatsApiController extends \App\Controllers\Controller
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),
             new DateInterval('P1D'),
-            new DateTime(date("y-m-d"))
+            new DateTime(date("y-m-d",strtotime("+1 day")))
         );
+
         $stats = [];
+        //array_push($period, new DateTime(date("y-m-d")));
         foreach ($period as $key => $value) {
             $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date_format($value, "d/m/Y") ."%'")["COUNT(*)"];
             array_push($stats, ['date' => date_format($value, "d/m/y"), "number" => $data]);
