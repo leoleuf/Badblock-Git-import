@@ -9,10 +9,28 @@
 namespace App\Http\Controllers\website;
 
 
-class IndexController
+use App\Funds;
+use App\Http\Controllers\Controller;
+
+
+class IndexController extends Controller
 {
     public function index(){
-        return view('website.index');
+        $period = new \DatePeriod(
+            new \DateTime(date("y-m-d", strtotime("-30 days"))),
+            new \DateInterval('P1D'),
+            new \DateTime(date("y-m-d"))
+        );
+
+        foreach ($period as $row){
+            $mongoDateObject = new MongoDate(strtotime($row));
+
+            $data = Funds::where('date', '=', $mongoDateObject)->get();
+            var_dump($data);
+        }
+
+
+        return view('website.index')->with('date', $period);
     }
 
 }

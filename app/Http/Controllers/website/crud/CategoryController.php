@@ -25,14 +25,16 @@ class CategoryController extends \App\Http\Controllers\Controller {
         foreach ($Category as $row){
             if (!empty($row->server)){
                 $server = Server::find($row->server);
-                $row->server = $server->name;
+                if (isset($server->name)){
+                    $row->server = $server->name;
+                }
             }else{
                 $row->server = 'Serveur Inconnu';
             }
         }
 
 
-        return view('website.Category.Category', compact('Category'));
+        return view('website.category.category', compact('Category'));
     }
     /**
      * Show the form for creating a new user
@@ -43,7 +45,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
     {
         $server = Server::all();
 
-        return view('website.Category.Category-create', compact('server'));
+        return view('website.category.category-create', compact('server'));
     }
     /**
      * Store a newly created user in storage.
@@ -77,7 +79,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
     public function show($id)
     {
         $user = Category::findOrFail($id);
-        return view('Category.show', compact('user'));
+        return view('category.show', compact('user'));
     }
     /**
      * Show the form for editing the specified user.
@@ -90,7 +92,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
         $category = Category::find($id);
         $server = Server::all();
 
-        return view('website.Category.Category-edit', compact('category'),compact('server'));
+        return view('website.category.category-edit', compact('category'),compact('server'));
     }
     /**
      * Update the specified resource in storage.

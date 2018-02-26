@@ -51,25 +51,6 @@
                     <li>
                         <a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Site </span> </a>
                     </li>
-
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-device-hub"></i><span class="label label-warning pull-right">150</span><span> Instances</span> </a>
-                        <ul class="list-unstyled">
-                            <li><a href="form-elements.html">General Elements</a></li>
-                            <li><a href="form-advanced.html">Advanced Form</a></li>
-                            <li><a href="form-validation.html">Form Validation</a></li>
-                            <li><a href="form-wizard.html">Form Wizard</a></li>
-                            <li><a href="form-fileupload.html">Form Uploads</a></li>
-                            <li><a href="form-wysiwig.html">Wysiwig Editors</a></li>
-                            <li><a href="form-xeditable.html">X-editable</a></li>
-                        </ul>
-                    </li>
-
-
-
-                    <li>
-                        <a href="inbox.html" class="waves-effect"><i class="zmdi zmdi-email"></i><span class="label label-purple pull-right">New</span><span> Mail </span></a>
                     </li>
 
 

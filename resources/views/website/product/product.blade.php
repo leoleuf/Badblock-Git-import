@@ -16,6 +16,7 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="m-b-30">
+                                <h1>Liste des produits  </h1>
                                 <a href="/website/crud/product/create" id="addToTable" class="btn btn-primary waves-effect waves-light">Add <i class="fa fa-plus"></i></a>
                             </div>
                         </div>

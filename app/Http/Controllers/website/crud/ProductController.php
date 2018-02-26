@@ -24,16 +24,18 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product = Product::all();
 
         foreach ($Product as $row){
-            if (!empty($row->cat)){
-                $cat = Category::find($row->cat);
-                $row->cat = $cat->name;
-            }else{
-                $row->cat = 'Catégorie Inconnue';
-            }
+                if (!empty($row->cat)){
+                    $cat = Category::find($row->cat);
+                    if (isset($cat->name)){
+                        $row->cat = $cat->name;
+                    }
+                }else{
+                    $row->cat = 'Catégorie Inconnue';
+                }
         }
 
 
-        return view('website.Product.Product', compact('Product'));
+        return view('website.product.product', compact('Product'));
     }
     /**
      * Show the form for creating a new user
@@ -44,7 +46,7 @@ class ProductController extends \App\Http\Controllers\Controller {
     {
         $cat = Category::all();
 
-        return view('website.Product.Product-create', compact('cat'));
+        return view('website.product.product-create', compact('cat'));
     }
     /**
      * Store a newly created user in storage.
@@ -97,7 +99,7 @@ class ProductController extends \App\Http\Controllers\Controller {
     public function show($id)
     {
         $user = Product::findOrFail($id);
-        return view('Product.show', compact('user'));
+        return view('product.show', compact('user'));
     }
     /**
      * Show the form for editing the specified user.

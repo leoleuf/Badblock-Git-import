@@ -1,0 +1,25 @@
+<?php
+
+namespace App;
+
+
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+
+class Funds extends Eloquent {
+
+    protected $connection = 'mongodb';
+    protected $collection = "funds";
+
+
+    public static $rules = array(
+        'date'=>'required',
+        'unique-id'=>'required',
+        'gateway'=>'required',
+        'points'=>'required',
+        'amount'=>'required',
+    );
+
+
+
+}
