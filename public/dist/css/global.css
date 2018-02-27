@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee");
 
+h1 {
+  color: #fff;
+}
 
 .accordion {
   background-color: #eee;
