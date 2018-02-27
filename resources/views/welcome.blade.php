@@ -162,7 +162,7 @@
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0">Node01 MongoDB Server <span id="mongoTi" class="label label-purple"> Unknown </span></h4>
+                            <h4 class="header-title m-t-0">Node01 MongoDB <span id="mongoTi" class="label label-purple"> Unknown </span></h4>
 
                             <div class="widget-chart text-center">
                                 <table class="table m-0">
@@ -199,7 +199,7 @@
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0">Node01 CouchDB Server <span id="mongoTi" class="label label-purple"> Unknown </span></h4>
+                            <h4 class="header-title m-t-0">Website MongoDB <span id="mongoTi" class="label label-purple"> Unknown </span></h4>
 
                             <div class="widget-chart text-center">
                                 <table class="table m-0">
@@ -258,106 +258,7 @@
                             </div>
                         </div>
                     </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <h4 class="header-title m-t-0">Statistics</h4>
-                            <div id="morris-bar-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-4">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <h4 class="header-title m-t-0">Total Revenue</h4>
-                            <div id="morris-line-example" style="height: 280px;"></div>
-                        </div>
-                    </div><!-- end col -->
-
-                </div>
                 <!-- end row -->
-
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-user">
-                            <div>
-                                <img src="assets/images/users/avatar-3.jpg" class="img-responsive img-circle" alt="user">
-                                <div class="wid-u-info">
-                                    <h4 class="m-t-0 m-b-5 font-600">Chadengle</h4>
-                                    <p class="text-muted m-b-5 font-13">coderthemes@gmail.com</p>
-                                    <small class="text-warning"><b>Admin</b></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-user">
-                            <div>
-                                <img src="assets/images/users/avatar-2.jpg" class="img-responsive img-circle" alt="user">
-                                <div class="wid-u-info">
-                                    <h4 class="m-t-0 m-b-5 font-600"> Michael Zenaty</h4>
-                                    <p class="text-muted m-b-5 font-13">coderthemes@gmail.com</p>
-                                    <small class="text-custom"><b>Support Lead</b></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-user">
-                            <div>
-                                <img src="assets/images/users/avatar-1.jpg" class="img-responsive img-circle" alt="user">
-                                <div class="wid-u-info">
-                                    <h4 class="m-t-0 m-b-5 font-600">Stillnotdavid</h4>
-                                    <p class="text-muted m-b-5 font-13">coderthemes@gmail.com</p>
-                                    <small class="text-success"><b>Designer</b></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="card-box widget-user">
-                            <div>
-                                <img src="assets/images/users/avatar-10.jpg" class="img-responsive img-circle" alt="user">
-                                <div class="wid-u-info">
-                                    <h4 class="m-t-0 m-b-5 font-600">Tomaslau</h4>
-                                    <p class="text-muted m-b-5 font-13">coderthemes@gmail.com</p>
-                                    <small class="text-info"><b>Developer</b></small>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
-                </div>
-                <!-- end row -->
-
-        </div> <!-- content -->
-
         <footer class="footer text-right">
             2017 - 2018 © BadBlock.
         </footer>
@@ -368,81 +269,6 @@
     <!-- ============================================================== -->
     <!-- End Right content here -->
     <!-- ============================================================== -->
-
-
-    <!-- Right Sidebar -->
-    <div class="side-bar right-bar">
-        <a href="javascript:void(0);" class="right-bar-toggle">
-            <i class="zmdi zmdi-close-circle-o"></i>
-        </a>
-        <h4 class="">Notifications</h4>
-        <div class="notification-list nicescroll">
-            <ul class="list-group list-no-border user-list">
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-2.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Michael Zenaty</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-info">
-                            <i class="zmdi zmdi-account"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Signup</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">5 hours ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-pink">
-                            <i class="zmdi zmdi-comment"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">New Message received</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="avatar">
-                            <img src="assets/images/users/avatar-3.jpg" alt="">
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">James Anderson</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">2 days ago</span>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item active">
-                    <a href="#" class="user-list-item">
-                        <div class="icon bg-warning">
-                            <i class="zmdi zmdi-settings"></i>
-                        </div>
-                        <div class="user-desc">
-                            <span class="name">Settings</span>
-                            <span class="desc">There are new settings available</span>
-                            <span class="time">1 day ago</span>
-                        </div>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-    <!-- /Right-bar -->
 
 </div>
 <!-- END wrapper -->

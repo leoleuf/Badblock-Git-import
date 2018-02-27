@@ -24,7 +24,7 @@ class InstanceController
     public function tokenWS($uid){
         $token = base64_encode(bin2hex(random_bytes(50)));
         $key = base64_encode(bin2hex(random_bytes(30)));
-        $perm = 2;
+        $perm = 1;
 
         Redis::set('toenga:'. $token .':console',json_encode(["name" => $uid,"user" => Auth::user()->name,"ip" => Request::ip(),"perm" => $perm,'key' => $key]));
         Redis::expire('toenga:'. $token .':console', 30);

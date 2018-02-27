@@ -17,6 +17,7 @@
                         <div class="col-sm-6">
                             <div class="m-b-30">
                                 <h1>Liste des catégories  </h1>
+                                <a href="/website" id="addToTable" class="btn btn-primary waves-effect waves-light">Retour <i class="fa fa-long-arrow-left"></i></a>
                                 <a href="/website/crud/category/create" id="addToTable" class="btn btn-primary waves-effect waves-light">Add <i class="fa fa-plus"></i></a>
                             </div>
                         </div>

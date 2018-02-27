@@ -79,8 +79,9 @@ tps / ram / processeur / nb de joueurs
 
                         <div class="widget-box-2">
                             <div class="widget-detail-2 center">
-                                <center><button type="button" class="btn btn-success waves-effect w-md waves-light m-b-5">Success</button></center>
+                                <center><button type="button" class="btn btn-success waves-effect w-md waves-light m-b-5">Créer</button></center>
                             </div>
+                            <br>
                             <div class="progress progress-bar-success-alt progress-sm m-b-0">
                                 <div id="playerbar" class="progress-bar progress-bar-success" role="progressbar"
                                      aria-valuenow="77" aria-valuemin="0" aria-valuemax="100"
@@ -109,9 +110,11 @@ tps / ram / processeur / nb de joueurs
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0 m-b-30">Players Onlines</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Instance dev_fluor</h4>
 
-                            <div id="container" style="height: 320px;"></div>
+                            <h2>RAM : 10%</h2>
+                            <h2>CPU : 10%</h2>
+                            <h2>Model : rush</h2>
 
                         </div>
                     </div><!-- end col-->
@@ -131,30 +134,11 @@ tps / ram / processeur / nb de joueurs
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0 m-b-30">Realtime Statistics</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Instance dev_fluor</h4>
 
-                            <div id="contddainer" style="height: 320px;"></div>
-
-                        </div>
-                    </div><!-- end col-->
-                    <div class="col-lg-3">
-                        <div class="card-box">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-
-                            <h4 class="header-title m-t-0 m-b-30">Realtime Statistics</h4>
-
-                            <div id="contddainer" style="height: 320px;"></div>
+                            <h2>RAM : 10%</h2>
+                            <h2>CPU : 10%</h2>
+                            <h2>Model : rush</h2>
 
                         </div>
                     </div><!-- end col-->
@@ -173,9 +157,34 @@ tps / ram / processeur / nb de joueurs
                                 </ul>
                             </div>
 
-                            <h4 class="header-title m-t-0 m-b-30">Realtime Statistics</h4>
+                            <h4 class="header-title m-t-0 m-b-30">Instance dev_fluor</h4>
 
-                            <div id="contddainer" style="height: 320px;"></div>
+                            <h2>RAM : 10%</h2>
+                            <h2>CPU : 10%</h2>
+                            <h2>Model : rush</h2>
+
+                        </div>
+                    </div><!-- end col-->
+                    <div class="col-lg-3">
+                        <div class="card-box">
+                            <div class="dropdown pull-right">
+                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+
+                            <h4 class="header-title m-t-0 m-b-30">Instance dev_fluor</h4>
+
+                            <h2>RAM : 10%</h2>
+                            <h2>CPU : 10%</h2>
+                            <h2>Model : rush</h2>
 
                         </div>
                     </div><!-- end col-->

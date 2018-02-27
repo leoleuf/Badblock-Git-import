@@ -40,23 +40,17 @@
                         <a href="/" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
-                    </li>
-                    <li>
                         <a href="/toenga" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Instances </span> </a>
                     </li>
                     <li>
                         <a href="/devhome" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Développement </span> </a>
                     </li>
-                    <li>
-                        <a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Site </span> </a>
-                    </li>
-                    </li>
-
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span> Gestion </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Administration </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
+                            <li><a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Serveur</span></a></li>
+                            <li><a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Site </span> </a></li>
                             <li><a href="/role">Role</a></li>
                             <li><a href="/permission">Permissions</a></li>
                             <li><a href="/user">Utilisateurs</a></li>

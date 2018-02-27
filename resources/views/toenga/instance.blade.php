@@ -349,10 +349,10 @@ tps / ram / processeur / nb de joueurs
                             ws = initWS();
                         }
 
-                        if(data.perm == 1){
+                        if(data.perm == 0){
                             $("<div class=line><span class=white>Connection en lecteur seule !</span></div>")
                                 .appendTo("div.command-line");
-                        }else if(data.perm == 2){
+                        }else if(data.perm == 1){
                             $("<div class=line><span class=white>Connection all permissions !</span></div>")
                                 .appendTo("div.command-line");
                         }

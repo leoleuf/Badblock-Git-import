@@ -31,7 +31,7 @@ class DevInstanceController
 
 
         return response()->json([
-            'host' => 'localhost:8090/ws',
+            'host' => 'node02-dev.cluster.badblock-network.fr:40899',
             'token' => $token,
         ]);
     }
