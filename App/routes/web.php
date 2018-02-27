@@ -32,7 +32,7 @@ $app->group('/shop', function (){
 
 $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
-    $this->get('/rpg/{id}', \App\Controllers\VoteController::class . ':step')->setName('vote.step');
+    $this->post('/rpg/{id}', \App\Controllers\VoteController::class . ':step')->setName('vote.step');
 });
 
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');

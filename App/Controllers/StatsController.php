@@ -149,9 +149,16 @@ class StatsController extends Controller
 
 
 
-    public function cache()
+    public function search()
     {
-
+        $data = $_POST["search_player"];
+        $resultR = [];
+        $query = "SELECT username FROM xf_user WHERE username LIKE '%". $data ."%' ORDER by username DESC LIMIT 5";
+        foreach ($this->container->mysql_forum->fetchRowManyCursor($query) as $result)
+        {
+            array_push($resultR, $result);
+        }
+        return json_encode($resultR);
     }
 
 

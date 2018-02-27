@@ -6,7 +6,7 @@
             200
         </div>
         <div class="recharge-real-price">
-            € {{ price * 200 }}
+            5€
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
@@ -14,10 +14,10 @@
     </div>
     <div class="c-card__item">
         <div class="recharge-price">
-            200
+            500
         </div>
         <div class="recharge-real-price">
-            € {{ price * 200 }}
+            10€
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
@@ -25,10 +25,10 @@
     </div>
     <div class="c-card__item">
         <div class="recharge-price">
-            200
+            1200
         </div>
         <div class="recharge-real-price">
-            € {{ price * 200 }}
+            20€
         </div>
         <div class="recharge-action">
             <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
@@ -36,7 +36,18 @@
     </div>
     <div class="c-card__item">
         <div class="recharge-price">
-            {{ 'shop.recharge_custom_amount'|trans }}
+            2700
+        </div>
+        <div class="recharge-real-price">
+            50€
+        </div>
+        <div class="recharge-action">
+            <a class="button button-primary" href="{{ path_for('shop.recharge.nextstep') }}?step=1&amount=200">{{ 'shop.chose'|trans }}</a>
+        </div>
+    </div>
+    <div class="c-card__item">
+        <div class="recharge-price">
+            {{ 'shop.recharge_custom_amount'|trans }} (Montant > 50€)
         </div>
         <div class="recharge-real-price">
             <form method="get" action="{{ path_for('shop.recharge.nextstep') }}" class="recharge-chose-custom">
