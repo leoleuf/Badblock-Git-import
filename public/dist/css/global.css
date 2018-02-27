@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee");
 
-h1 {
-  color: #fff;
-}
 
 .accordion {
   background-color: #eee;
@@ -237,6 +234,14 @@ td.c-table__cell {
   margin-left: 18px;
   margin-bottom: 70px;
   margin-top: -55px; }
+
+.u-middle-width {
+  width: 70%; }
+
+.dropdown-dropdown {
+  flex-direction: column !important;
+  margin-left: 50px;
+  z-index: 999; }
 
 .promotion {
   text-decoration: line-through; }
