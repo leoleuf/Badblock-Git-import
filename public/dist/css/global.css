@@ -105,11 +105,15 @@ td.c-table__cell {
 
 /*# sourceMappingURL=global.css.map */
 
+.col-3 {
+  width: calc(33.333333333% - 30px);
+  padding: 15px;
+  float: left;
+  transition: 0.3s; }
 
 .col-3:hover {
   transform: scale(1.2);
-  background: rgba(50,50,50,0.2);
-}
+  width: calc(33.333333333% - 33px); }
 
 .stats-home .col-3 {
   text-align: center; }

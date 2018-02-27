@@ -133,6 +133,11 @@
         </div>
     </div>
 
+
+
+
+{% endblock %}
+{% block scripts %}
 <!-- Ul recherche des joueurs -->
 <ul class="search" id="search" style="display: none; width: 428px; left: 1002px; top: 331px;">
     <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
@@ -149,10 +154,6 @@
     <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
     <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
 </ul>
-
-
-{% endblock %}
-{% block scripts %}
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -267,7 +268,7 @@
     </script>
     <script>
     function showDiv(){
-        document.getElementById('search').style.display = 'inline-block';
+        document.getElementById('search').style.display = 'block';
     }
  
  
