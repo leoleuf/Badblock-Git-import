@@ -307,6 +307,97 @@ td.c-table__cell {
     cursor: default;
 }
 
+.vote 
+{
+  margin: 3% 0px;
+}
+
+.text-center 
+{
+  text-align: center;
+}
+
+.step 
+{
+  position: relative;
+  margin: 50px 15px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  height: 360px;
+}
+
+.disabled
+{
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.step .step-contains
+{
+  margin: 50px 0px;
+}
+
+.step .step-round
+{
+  top: -50px;
+  left: calc(50% - 50px);
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #e74c3c;
+  text-align: center;
+  margin-bottom: 15px;
+  position: absolute;
+  color: #fff;  
+}
+
+.votes 
+{
+  width: 100%;
+}
+
+.votes .vote1 img
+{
+  width: 50px;
+}
+
+.votes .vote2 img
+{
+  width: 35px;
+}
+
+.votes .vote3 img
+{
+  width: 25px;
+}
+
+.votes img 
+{
+  width: 15px;
+}
+
+table.votes tr td:first-child
+{
+  text-align: center;
+}
+
+table.votes tr.vote1 {font-size: 32px; color: #EED740;}
+table.votes tr.vote2 {font-size: 28px; color: #A6A6A6;}
+table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
 @keyframes promotion {
   0% {
     transform: translateY(0px);
@@ -335,4 +426,6 @@ td.c-table__cell {
     margin: 0 auto;
     margin-bottom: 1em;
     display: block; } 
+
+  .step {margin: 50px 0px 50px 0px;}
 }

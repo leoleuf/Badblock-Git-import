@@ -17,17 +17,206 @@
 {% endblock %}
 {% block content %}
     <section>
-        <h4 class="heading-bar"><span>Voter sur RPG-Paradize (Tout les 3heures)</span></h4>
-        <div class="play-way-ip">
-                <form action="/vote/rpg/1" method="post">
-                    <div class="four columns">
-                        <input name="username" class="u-full-width" type="text" placeholder="Fluor" id="username" required="" autocomplete="off" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
-                    </div>
-                    <div class="four columns">
-                        <button class="button button-success" type="submit">Voter !</button>
-                    </div>
-                </form>
+        <div class="vote">
+    <div class="container">
+        <div class="step step-first four columns">
+            <center><h3 class="step-round">I</h3>
+            <div class="step-contains">
+                <h5 class="text-center">Choisissez un serveur</h5>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">RPG Paradize (3H)</a>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Minecraft-Server.fr (24H)</a>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Minecraft-Server.com (24H)</a>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Hooki-Feu-D'artifice.fr (24H)</a>
+            </div>
+            </center>
         </div>
+        <div class="step step-two four columns disabled">
+            <center><h3 class="step-round">II</h3>
+            <div class="step-contains">
+                <h5 class="text-center">Entrez votre pseudo</h5>
+                <form>
+                    <input type="text" name="pseudo">
+                    <input type="submit" name="submit">
+                </form>
+            </div>
+            </center>
+        </div>
+        <div class="step step-three four columns disabled">
+            <center><h3 class="step-round">III</h3>
+            <div class="step-contains">
+                <h5 class="text-center">Obtenez votre récompense</h5>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Skyblock</a>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Faction</a>
+                <a class="button button-primary" href="/dashboard" style="width: 95%;">Points Boutique</a>
+            </div>
+            </center>
+        </div>
+        <h3 class="text-center">Les Meilleurs votants !</h3>
+        <p class="text-center">Retrouvez chaque mois le classement des meilleurs votants de BadBlock !</p>
+        <button class="accordion">Les récompenses</button>
+        <div class="panel">
+          <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Récompense</th>
+                  <th>% chance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1 Bronze</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>2 Bronze</td>
+                  <td>16</td>
+                </tr>
+                <tr>
+                  <td>1 Gold</td>
+                  <td>1</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <table class="votes">
+                <thead>
+                    <tr>
+                        <td>Joueur</td>
+                        <td>Votes</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class='vote1'>
+                    <td><span>1</span></td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=braydawg4202" alt="avatar-braydawg4202" /> braydawg4202</td>
+                    <td>175</td>
+                </tr>
+                    <tr class='vote2'>
+                    <td><span>2</span></td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Puepsu" alt="avatar-Puepsu" /> Puepsu</td>
+                    <td>171</td>
+                </tr>
+                    <tr class='vote3'>
+                    <td><span>3</span></td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=KanekiSama" alt="avatar-KanekiSama" /> KanekiSama</td>
+                    <td>170</td>
+                </tr>
+                                    <tr>
+                    <td>4</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=petit_billy" alt="avatar-petit_billy" /> petit_billy</td>
+                    <td>170</td>
+                </tr>
+                                    <tr>
+                    <td>5</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=swaggoat11" alt="avatar-swaggoat11" /> swaggoat11</td>
+                    <td>168</td>
+                </tr>
+                                    <tr>
+                    <td>6</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=zone_killer" alt="avatar-zone_killer" /> zone_killer</td>
+                    <td>167</td>
+                </tr>
+                                    <tr>
+                    <td>7</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Soul_Le_Fou" alt="avatar-Soul_Le_Fou" /> Soul_Le_Fou</td>
+                    <td>146</td>
+                </tr>
+                                    <tr>
+                    <td>8</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=FrostKingFR" alt="avatar-FrostKingFR" /> FrostKingFR</td>
+                    <td>139</td>
+                </tr>
+                                    <tr>
+                    <td>9</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Fasory" alt="avatar-Fasory" /> Fasory</td>
+                    <td>134</td>
+                </tr>
+                                    <tr>
+                    <td>10</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=RoiSalamandre" alt="avatar-RoiSalamandre" /> RoiSalamandre</td>
+                    <td>134</td>
+                </tr>
+                                    <tr>
+                    <td>11</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Zzhunter_" alt="avatar-Zzhunter_" /> Zzhunter_</td>
+                    <td>132</td>
+                </tr>
+                                    <tr>
+                    <td>12</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Ektorp" alt="avatar-Ektorp" /> Ektorp</td>
+                    <td>130</td>
+                </tr>
+                                    <tr>
+                    <td>13</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Svira" alt="avatar-Svira" /> Svira</td>
+                    <td>127</td>
+                </tr>
+                                    <tr>
+                    <td>14</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Snowbeeee" alt="avatar-Snowbeeee" /> Snowbeeee</td>
+                    <td>125</td>
+                </tr>
+                                    <tr>
+                    <td>15</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=laborifer" alt="avatar-laborifer" /> laborifer</td>
+                    <td>124</td>
+                </tr>
+                                    <tr>
+                    <td>16</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Iotte_" alt="avatar-Iotte_" /> Iotte_</td>
+                    <td>124</td>
+                </tr>
+                                    <tr>
+                    <td>17</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=zozododo" alt="avatar-zozododo" /> zozododo</td>
+                    <td>117</td>
+                </tr>
+                                    <tr>
+                    <td>18</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=_Sniper007_" alt="avatar-_Sniper007_" /> _Sniper007_</td>
+                    <td>116</td>
+                </tr>
+                                    <tr>
+                    <td>19</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Spad35" alt="avatar-Spad35" /> Spad35</td>
+                    <td>115</td>
+                </tr>
+                                    <tr>
+                    <td>20</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=mai1905" alt="avatar-mai1905" /> mai1905</td>
+                    <td>114</td>
+                </tr>
+                                    <tr>
+                    <td>21</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Thiluboss" alt="avatar-Thiluboss" /> Thiluboss</td>
+                    <td>113</td>
+                </tr>
+                                    <tr>
+                    <td>22</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Luender" alt="avatar-Luender" /> Luender</td>
+                    <td>108</td>
+                </tr>
+                                    <tr>
+                    <td>23</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=dodo67" alt="avatar-dodo67" /> dodo67</td>
+                    <td>106</td>
+                </tr>
+                                    <tr>
+                    <td>24</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=roi_juju" alt="avatar-roi_juju" /> roi_juju</td>
+                    <td>104</td>
+                </tr>
+                                    <tr>
+                    <td>25</td>
+                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Mineur_Ccraft" alt="avatar-Mineur_Ccraft" /> Mineur_Ccraft</td>
+                    <td>104</td>
+                </tr>
+                            </tbody>
+        </table>
+    </div>
+</div>
+
     </section>
 
 {% endblock %}
