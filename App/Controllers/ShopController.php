@@ -123,35 +123,41 @@ class ShopController extends Controller
 
 
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
-	    //Vérification si le produit éxiste
-            if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
-                $collection = $this->mongo->test->players;
-                $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
-                $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
+	    //On vérifie si le joueur est connecté
+        if(!$this->container->session->exist('user')){
+            return $response->write("Not connected")->withStatus(403);
+        }else{
+            if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])){
+                if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
+                    //Vérification si le produit éxiste
+                    $collection = $this->mongoServer->test->players;
+                    $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
+                    $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
+                    //vérification si reduction
+                    if($dataprod["promo"] == true){
+                        $dataprod["price"] = $dataprod["price"] * ((100+$dataprod["promo_reduc"]) / 100);;
+                    }
 
 
-                //vérification si reduction
-                if($dataprod["promo"] == true){
-                    $dataprod["price"] = $dataprod["price"] * ((100+$dataprod["promo_reduc"]) / 100);;
-                }
+                    if (!isset($data['shop_points'])){
+                        $data['shop_points'] = 0;
+                    }
 
+                    //Vérification du prix
+                    if ($dataprod["price"] <= $data['shop_points']){
+                        //On continue car il a les sous
 
-                if (!isset($data['shop_points'])){
-                    $data['shop_points'] = 0;
-                }
-
-                //Vérification du prix
-                if ($dataprod["price"] <= $data['shop_points']){
-                    //On continue car il a les sous
-
+                    }else{
+                        //C'est un clodo donc erreur
+                        return $response->write("Not enought")->withStatus(406);
+                    }
                 }else{
-                    //C'est un clodo donc erreur
-                    return $response->write("Not enought")->withStatus(406);
+                    return $response->write("Product not found")->withStatus(404);
                 }
             }else{
-                return $response->write("Product not found")->withStatus(404);
+                return $response->write("Not linked")->withStatus(405);
             }
-
+        }
 
     }
 

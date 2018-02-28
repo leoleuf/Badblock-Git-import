@@ -152,13 +152,19 @@ class StatsController extends Controller
     public function search()
     {
         $data = $_POST["search_player"];
-        $resultR = [];
-        $query = "SELECT username FROM xf_user WHERE username LIKE '%". $data ."%' ORDER by username DESC LIMIT 5";
-        foreach ($this->container->mysql_forum->fetchRowManyCursor($query) as $result)
-        {
-            array_push($resultR, $result);
+        if($this->redis->exists("search:" . $data)){
+            return $this->redis->get("search:" . $data);
+        }else{
+            $resultR = [];
+            $query = "SELECT username FROM xf_user WHERE username LIKE '%". $data ."%' ORDER by username DESC LIMIT 5";
+            foreach ($this->container->mysql_forum->fetchRowManyCursor($query) as $result)
+            {
+                array_push($resultR, $result);
+            }
+            $this->redis->setjson('search:' . $data, $resultR);
+            $this->redis->expire('search:' . $data, 60);
+            return json_encode($resultR);
         }
-        return json_encode($resultR);
     }
 
 
