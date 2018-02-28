@@ -250,9 +250,35 @@ td.c-table__cell {
 .promotion {
   text-decoration: line-through; }
 
-.shop-menu li {
-  border-bottom: 4px solid #3498db !important; }
+#sky{color: #40A45B;}
+#fac{color: #A44040;}
+#play{color: #E68A01;}
+#pvp{color: #3997C6;}
+#free{color:#39C6A0;}
 
+.no-link {
+  cursor: pointer;
+}
+
+.shop-menu {
+  border: none !important;
+  border-radius: 0px !important;
+  margin-bottom: 50px !important;
+  padding: 15px;
+}
+
+.shop-menu-menu a {
+  padding: 5px 15px;
+  border-right: 3px solid #ccc;
+  border-left: 3px solid #ccc;
+}
+
+.shop-menu-menu .no-link{
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #34495e !important;
+}
 .shop-section {
   margin-bottom: 0px !important;
 }

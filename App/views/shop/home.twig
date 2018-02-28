@@ -88,8 +88,27 @@
         <ul class="shop-menu-menu">
             {% for key in serverlist %}
                 <li class="shop-menu-active">
-                    <a class="no-link" onclick="opentab(event, '{{ key[1] }}')">{{ key[1] }}</a>
+                    <a class="no-link" onclick="opentab(event, '{{ key[1] }}')"><i class="icon icon-cloud" id="sky"></i>    {{ key[1] }}</a>
                 </li>
+                <!--
+                <ul class="shop-menu-menu">
+<li class="">
+<a class="no-link" onclick="opentab(event, 'SkyBlock')"><i class="icon icon-cloud" id="sky"></i>SkyBlock</a>
+</li>
+<li class="">
+<a class="no-link" onclick="opentab(event, 'Faction')"><i class="icon icon-viking" id="fac"></i> Faction</a>
+</li>
+<li class="">
+<a class="no-link" onclick="opentab(event, 'Jeux')"><i class="icon icon-pacman" id="play"></i>Jeux</a>
+</li>
+<li class="">
+<a class="no-link" onclick="opentab(event, 'PvpBox')"><i class="icon icon-pixelbroadsword" id="pvp"></i> PvpBox</a>
+</li>
+<li class="">
+<a class="no-link" onclick="opentab(event, 'FreeBuild')"><i class="icon icon-minecraftalt" id="free"></i>FreeBuild</a>
+</li>
+</ul>
+-->
             {% endfor %}
         </ul>
     </div>
