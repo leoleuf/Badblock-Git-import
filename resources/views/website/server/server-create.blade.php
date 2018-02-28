@@ -33,6 +33,9 @@
                         Nom réel du serveur :
                         {{ Form::text('realname', "", array('class' => 'form-control','placeholder'=>"Nom réel du Serveur")) }}
                         <br>
+                        Icone FA du serveur :
+                        {{ Form::text('icon', "", array('class' => 'form-control','placeholder'=>"icon icon-cloud")) }}
+                        <br>
                         Activer la visibilitée du serveur sur le site :
                         <br>
                         <br>

@@ -43,6 +43,7 @@ class ServerController extends \App\Http\Controllers\Controller {
         $server = new Server;
         $server->name = $request->input('name');
         $server->realname = $request->input('realname');
+        $server->icon = $request->input('icon');
 
         if ($request->input('visibility') == "on"){
             $server->visibility = true;
@@ -88,6 +89,10 @@ class ServerController extends \App\Http\Controllers\Controller {
     {
 
         $server = Server::findOrFail($id);
+
+        $server->name = $request->input('name');
+        $server->realname = $request->input('realname');
+        $server->icon = $request->input('icon');
 
         if ($request->input('visibility') == "on"){
             $server->visibility = true;

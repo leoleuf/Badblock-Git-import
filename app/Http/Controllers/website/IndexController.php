@@ -22,12 +22,8 @@ class IndexController extends Controller
             new \DateTime(date("y-m-d"))
         );
 
-        foreach ($period as $row){
-            $mongoDateObject = new MongoDate(strtotime($row));
 
-            $data = Funds::where('date', '=', $mongoDateObject)->get();
-            var_dump($data);
-        }
+
 
 
         return view('website.index')->with('date', $period);

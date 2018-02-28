@@ -16,6 +16,8 @@ class Server extends Eloquent {
 
         'realname'=>'required',
 
+        'icon'=>'required',
+
         'visibility' => 'required',
     );
 
