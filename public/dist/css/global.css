@@ -279,6 +279,13 @@ td.c-table__cell {
   letter-spacing: 0.2em;
   color: #34495e !important;
 }
+
+.shop-menu-menu .no-link{
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #34495e !important;
+}
 .shop-section {
   margin-bottom: 0px !important;
 }
