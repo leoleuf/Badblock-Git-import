@@ -28,15 +28,15 @@ class LinkController extends Controller
         $username = $this->session->getProfile('username')['username'];
 
         if ($_POST['step'] == 1){
-            $collection = $this->mongo->admin->players;
-            $user = $collection->findOne(['realName' => $username]);
+            $collection = $this->container->mongoServer->test->players;
+            $user = $collection->findOne(['name' => $username]);
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null){
                 //On vérifie si son compte est pas déjà link
-                if (!isset($user["website"]['link'])){
+                if (!in_array(17,$this->session->getProfile('user')['secondary_group_ids'],true)){
                     if ($this->ladder->playerOnline($username)['connected'] == true){
                         //Création du code random
-                        $chars = "SKRIPTSKRIPT20020623#";
+                        $chars = "FLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBG";
                         srand((double)microtime()*1000000);
                         $i = 0;
                         $pass = '' ;
@@ -46,10 +46,12 @@ class LinkController extends Controller
                             $pass = $pass . $tmp;
                             $i++;
                         }
-                        var_dump($pass);
                         //Set code in Redis cache
                         $this->redis->set('link:'.$username,$pass);
-                        $this->ladder->playerSendMessage($username,"\u00A74  s%20ur");
+                        $this->redis->expire('link:'.$username, 3600);
+                        $this->ladder->playerSendMessage($username," ");
+                        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+                        $this->ladder->playerSendMessage($username," ");
 
                         return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
                     }else{
@@ -58,12 +60,9 @@ class LinkController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }
                 }else{
-                    if ($user["website"]['link'] == false ){
-                    }else{
-                        $this->flash->addMessage('link_error', "Votre compte est déjà linké !");
-                        //redirect to last page
-                        return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-                    }
+                    $this->flash->addMessage('link_error', "Votre compte est déjà linké !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                 }
             }else{
                 //Message erreur
@@ -76,12 +75,12 @@ class LinkController extends Controller
         }elseif($_POST['step'] == 2){
             //On vérifie si le code de linkage est le bon
             if ($_POST["code"] == $this->redis->get('link:'.$username)){
-                //Tout est réussi on update le mongo + forum
+                //Tout est réussi on update le forum
                 $this->xenforo->addGroup($username,17);
 
-                $collection = $this->mongo->badblock->dat_users;
-                $newdata = array('$set' => array("website.link" => true,"website.id_forum" => $this->session->get('user')['id']));
-                $data = $collection->updateOne(['realName' => $username],$newdata);
+                $old = $this->session->getProfile('user');
+                array_push($old['secondary_group_ids'], 17);
+                $this->session->set('user', $old);
 
                 return $this->render($response, 'user.link.step3', ["width" => 100,"step" => 3]);
             }else{

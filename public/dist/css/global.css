@@ -428,4 +428,5 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     display: block; } 
 
   .step {margin: 50px 0px 50px 0px;}
+  .search{display: none;}
 }
