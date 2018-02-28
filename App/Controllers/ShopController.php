@@ -17,7 +17,6 @@ class ShopController extends Controller
         //get twig of home
         $serverlist = $this->redis->getJson('shop.listsrv');
 
-
         //On vérifie si il ya des promos
         $itempromo = $this->redis->getJson('shop.promo');
         if(count($itempromo) == 0){
