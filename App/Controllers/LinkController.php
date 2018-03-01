@@ -35,25 +35,34 @@ class LinkController extends Controller
                 //On vérifie si son compte est pas déjà link
                 if (!in_array(17,$this->session->getProfile('user')['secondary_group_ids'],true)){
                     if ($this->ladder->playerOnline($username)['connected'] == true){
-                        //Création du code random
-                        $chars = "FLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBG";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-                        while ($i <= 6) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
-                        //Set code in Redis cache
-                        $this->redis->set('link:'.$username,$pass);
-                        $this->redis->expire('link:'.$username, 3600);
-                        $this->ladder->playerSendMessage($username," ");
-                        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
-                        $this->ladder->playerSendMessage($username," ");
+                        //vérification si le joueur est pas au login
+                        $server = $this->ladder->playerGetConnectedServer($username)->server;
+                        $data = explode("_",$server);
+                        if ($data[0] == "login"){
+                            $this->flash->addMessage('link_error', "Votre devez vous authentifier sur le serveur !");
+                            //redirect to last page
+                            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+                        }else{
+                            //Création du code random
+                            $chars = "FLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBG";
+                            srand((double)microtime()*1000000);
+                            $i = 0;
+                            $pass = '' ;
+                            while ($i <= 6) {
+                                $num = rand() % 33;
+                                $tmp = substr($chars, $num, 1);
+                                $pass = $pass . $tmp;
+                                $i++;
+                            }
+                            //Set code in Redis cache
+                            $this->redis->set('link:'.$username,$pass);
+                            $this->redis->expire('link:'.$username, 3600);
+                            $this->ladder->playerSendMessage($username," ");
+                            $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+                            $this->ladder->playerSendMessage($username," ");
 
-                        return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                            return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                        }
                     }else{
                         $this->flash->addMessage('link_error', "Votre compte n'est pas connecté sur le serveur !");
                         //redirect to last page

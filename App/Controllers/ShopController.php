@@ -129,22 +129,32 @@ class ShopController extends Controller
             if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])){
                 if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
                     //Vérification si le produit éxiste
-                    $collection = $this->mongoServer->test->players;
+                    $collection = $this->container->mongoServer->test->players;
                     $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
                     $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
                     //vérification si reduction
                     if($dataprod["promo"] == true){
                         $dataprod["price"] = $dataprod["price"] * ((100+$dataprod["promo_reduc"]) / 100);;
                     }
-
-
                     if (!isset($data['shop_points'])){
                         $data['shop_points'] = 0;
                     }
-
                     //Vérification du prix
                     if ($dataprod["price"] <= $data['shop_points']){
                         //On continue car il a les sous
+                        $operation = $this->container->mongo->test->operation;
+                        //Prépartion de l'insertion de l'achat
+                        $insert = [
+                            "unique-id" => $data['uniqueId'],
+                            "name" => $this->session->getProfile('username')['username'],
+                            "price" => intval($dataprod["price"]),
+                            "promo" => $dataprod["promo"],
+                            "date" => date("Y-m-d H:i:s"),
+                            "product_name" => $dataprod["name"],
+                            "product_id" => $args['id']
+                        ];
+                        $operation->insertOne($insert);
+
 
                     }else{
                         //C'est un clodo donc erreur
@@ -157,6 +167,10 @@ class ShopController extends Controller
                 return $response->write("Not linked")->withStatus(405);
             }
         }
+
+    }
+
+    public function send(){
 
     }
 
