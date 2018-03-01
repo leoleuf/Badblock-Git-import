@@ -19,35 +19,32 @@
     <section>
         <div class="vote">
     <div class="nothing">
-        <div class="step step-first four columns">
+        <div id="step1" class="step step-first four columns">
             <center><h3 class="step-round">I</h3>
             <div class="step-contains">
                 <h5 class="text-center">Choisissez un serveur</h5>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">RPG Paradize (3H)</a>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Minecraft-Server.fr (24H)</a>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Minecraft-Server.com (24H)</a>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Hooki-Feu-D'artifice.fr (24H)</a>
+                <a class="button button-primary" onclick="step('rpg')" style="width: 95%;">RPG Paradize (3H)</a>
+                <a class="button button-primary" onclick="step('msf')" style="width: 95%;">Minecraft-Server.fr (1H30)</a>
             </div>
             </center>
         </div>
-        <div class="step step-two four columns disabled">
+        <div id="step2" class="step step-two four columns disabled">
             <center><h3 class="step-round">II</h3>
             <div class="step-contains">
                 <h5 class="text-center">Entrez votre pseudo</h5>
-                <form>
-                    <input type="text" name="pseudo"><br>
-                    <input type="submit" name="submit">
-                </form>
+                    <input type="text" id="pseudo" name="pseudo"><br>
+                    <a class="button button-primary" onclick="step('go')" style="width: 95%;">Valider</a>
             </div>
             </center>
         </div>
-        <div class="step step-three four columns disabled">
+        <div id="step3" class="step step-three four columns disabled">
             <center><h3 class="step-round">III</h3>
             <div class="step-contains">
                 <h5 class="text-center">Obtenez votre récompense</h5>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Skyblock</a>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Faction</a>
-                <a class="button button-primary" href="/dashboard" style="width: 95%;">Points Boutique</a>
+                <a class="button button-primary" id="lot1" href="" style="width: 95%;">Lotterie n°1</a>
+                <a class="button button-primary" id="lot2" href="" style="width: 95%;">Lotterie n°2</a>
+                <a class="button button-primary" id="lot3" href="" style="width: 95%;">Lotterie n°3</a>
+                <a class="button button-primary" onclick="bank()" id="bank" style="width: 95%;">Placer en banque</a>
             </div>
             </center>
         </div>
@@ -137,87 +134,203 @@
                     <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=RoiSalamandre" alt="avatar-RoiSalamandre" /> RoiSalamandre</td>
                     <td>134</td>
                 </tr>
-                                    <tr>
-                    <td>11</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Zzhunter_" alt="avatar-Zzhunter_" /> Zzhunter_</td>
-                    <td>132</td>
-                </tr>
-                                    <tr>
-                    <td>12</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Ektorp" alt="avatar-Ektorp" /> Ektorp</td>
-                    <td>130</td>
-                </tr>
-                                    <tr>
-                    <td>13</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Svira" alt="avatar-Svira" /> Svira</td>
-                    <td>127</td>
-                </tr>
-                                    <tr>
-                    <td>14</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Snowbeeee" alt="avatar-Snowbeeee" /> Snowbeeee</td>
-                    <td>125</td>
-                </tr>
-                                    <tr>
-                    <td>15</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=laborifer" alt="avatar-laborifer" /> laborifer</td>
-                    <td>124</td>
-                </tr>
-                                    <tr>
-                    <td>16</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Iotte_" alt="avatar-Iotte_" /> Iotte_</td>
-                    <td>124</td>
-                </tr>
-                                    <tr>
-                    <td>17</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=zozododo" alt="avatar-zozododo" /> zozododo</td>
-                    <td>117</td>
-                </tr>
-                                    <tr>
-                    <td>18</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=_Sniper007_" alt="avatar-_Sniper007_" /> _Sniper007_</td>
-                    <td>116</td>
-                </tr>
-                                    <tr>
-                    <td>19</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Spad35" alt="avatar-Spad35" /> Spad35</td>
-                    <td>115</td>
-                </tr>
-                                    <tr>
-                    <td>20</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=mai1905" alt="avatar-mai1905" /> mai1905</td>
-                    <td>114</td>
-                </tr>
-                                    <tr>
-                    <td>21</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Thiluboss" alt="avatar-Thiluboss" /> Thiluboss</td>
-                    <td>113</td>
-                </tr>
-                                    <tr>
-                    <td>22</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Luender" alt="avatar-Luender" /> Luender</td>
-                    <td>108</td>
-                </tr>
-                                    <tr>
-                    <td>23</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=dodo67" alt="avatar-dodo67" /> dodo67</td>
-                    <td>106</td>
-                </tr>
-                                    <tr>
-                    <td>24</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=roi_juju" alt="avatar-roi_juju" /> roi_juju</td>
-                    <td>104</td>
-                </tr>
-                                    <tr>
-                    <td>25</td>
-                    <td><img src="https://nationsglory.fr/utilitaire/face_renderer.php?size=40&name=Mineur_Ccraft" alt="avatar-Mineur_Ccraft" /> Mineur_Ccraft</td>
-                    <td>104</td>
-                </tr>
+
                             </tbody>
         </table>
     </div>
 </div>
 
     </section>
+    <!-- Reg Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-user">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous devez vous enregistrer sur le Forum de BadBlock pour voter !</h1>
+        <a class="button button-danger" href="https://forum.badblock.fr/inscription/"><i class="icon-repeat"></i>S'inscrire !</a>
+    </div>
+    <!-- Reg modal -->
+    <!-- Time Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-time">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="time-title">Vous devez attendre pour voter !</h1>
+        <a class="button button-danger" href="/vote"><i class="icon-repeat"></i>Retour</a>
+    </div>
+    <!-- Time modal -->
+
+    <!-- Out Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-out">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="time-title">Cliquer sur le lien pour voter !</h1>
+        <a class="button button-danger" id="vote-link" target="_blank" href="" onclick="vote"><i class="icon-repeat"></i>Voter sur RPG-Paradize</a>
+        <div class="step-contains center">
+            <h5 class="text-center">Entrer le nombre de clics sortant :</h5>
+            <input type="text" id="outvote" name="outvote"><br>
+            <a class="button button-primary" onclick="step('out')" style="width: 95%;">Valider</a>
+        </div>
+    </div>
+    <!-- Out modal -->
+
+    <!-- Link Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-link">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="time-title">Cliquer sur le lien pour voter !</h1>
+        <a class="button button-danger" id="vote-link2" target="_blank" href="" onclick="vote"><i class="icon-repeat"></i>Voter !</a>
+        <br>
+        <a class="button button-primary" onclick="step('out')" style="width: 95%;">Valider</a>
+    </div>
+    <!-- Link modal -->
+
+    <!-- Error out Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="error-vote-link">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="time-title" class="icon-danger">Nombre de clics sortants incorrect !</h1>
+        <div class="step-contains center">
+            <h5 class="text-center">Entrer le nombre de clics sortant (OUT) :</h5>
+            <input type="text" id="outvoter" name="outvoter"><br>
+            <a class="button button-primary" onclick="step('out')" style="width: 95%;">Valider</a>
+        </div>
+    </div>
+    <!-- Error out Modal -->
+
+    <!-- End Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-end">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Merci de votre soutiens !</h1>
+        <h1 id="end-tt"></h1>
+        <a class="button button-danger" href="#"><i class="icon-repeat"></i>Fermer</a>
+    </div>
+    <!-- End modal -->
+
+    <!-- Bank Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="vote-bank">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vos bronze(s) ont bien été placé en banque !</h1>
+        <a class="button button-danger" href="#"><i class="icon-closetab"></i>Fermer</a>
+    </div>
+    <!-- Bank modal -->
+
+
+    <script>
+        var vote;
+        var error = false;
+
+        function  bank() {
+            $('[data-remodal-id=vote-bank]').remodal().open();
+            $("#step3").addClass("disabled");
+            $("#lot1").addClass("disabled");
+            $("#lot2").addClass("disabled");
+            $("#lot3").addClass("disabled");
+            $("#bank").addClass("disabled");
+        }
+
+        function step(type) {
+            $("#step2").removeClass("disabled");
+            $("#step1").addClass("disabled");
+            if (type == "rpg"){
+                vote = "rpg";
+            }else if (type== "msf"){
+                vote = "msf";
+            }else if (type== "go"){
+                if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
+                }else{
+                    $("#step2").addClass("disabled");
+                    //requet if user exist
+                    var request = $.ajax({
+                        url: "/vote/check/",
+                        method: "POST",
+                        data: { pseudo : $('#pseudo').val(),
+                                vote : vote
+                        },
+                        dataType: "html",
+                        success: function (data) {
+                            if (vote == "rpg"){
+                                $("#vote-link").attr("href", data);
+                                $('[data-remodal-id=vote-out]').remodal().open();
+                            }else if (vote == "msf"){
+                                $("#vote-link2").attr("href", data);
+                                $('[data-remodal-id=vote-link]').remodal().open();
+                            }
+                        }
+                    });
+
+                    request.fail(function( jqXHR, msg ) {
+                        if(jqXHR.status == 404){
+                            $('[data-remodal-id=vote-user]').remodal().open();
+                        }else if (jqXHR.status == 405){
+                            $("#time-title").text("Vous devez attendre " + jqXHR.responseText +" pour voter !");
+                            $('[data-remodal-id=vote-time]').remodal().open();
+                        }
+                    });
+                }
+            }else if (type== "out"){
+                if (vote == "rpg"){
+                    if($('#outvote').val() == "" || $('#outvote').val() == null) {
+                    }else{
+                        $("#step2").addClass("disabled");
+                        if (error){
+                            out = $('#outvoter').val()
+                        }else{
+                            out = $('#outvote').val()
+                        }
+                        var request = $.ajax({
+                            url: "/vote/end/rpg",
+                            method: "POST",
+                            data: { out : out},
+                            dataType: "html",
+                            success: function (data) {
+                                $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
+                                $('[data-remodal-id=vote-end]').remodal().open();
+                                $("#step3").removeClass("disabled");
+
+                            }
+                        });
+
+                        request.fail(function( jqXHR, msg ) {
+                            if (jqXHR.status == 405){
+                                $('[data-remodal-id=error-vote-link]').remodal().open();
+                                error = true;
+                            }else if (jqXHR.status == 403){
+                                $("#end-tt").text("Vous avez gagner " + jqXHR.responseText +" bronze(s)");
+                                $('[data-remodal-id=vote-end]').remodal().open();
+                                $("#step3").removeClass("disabled");
+                                $("#lot1").addClass("disabled");
+                                $("#lot2").addClass("disabled");
+                                $("#lot3").addClass("disabled");
+                            }
+                        });
+                    }
+                }else{
+                    $("#step2").addClass("disabled");
+
+                    var request = $.ajax({
+                        url: "/vote/end/msf",
+                        method: "POST",
+                        data: {},
+                        dataType: "html",
+                        success: function (data) {
+                            $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
+                            $('[data-remodal-id=vote-end]').remodal().open();
+                            $("#step3").removeClass("disabled");
+
+                        }
+                    });
+
+                    request.fail(function( jqXHR, msg ) {
+                        if (jqXHR.status == 405){
+                            $('[data-remodal-id=error-vote-link]').remodal().open();
+                            error = true;
+                        }else if (jqXHR.status == 403){
+                            $("#end-tt").text("Vous avez gagner " + jqXHR.responseText +" bronze(s)");
+                            $('[data-remodal-id=vote-end]').remodal().open();
+                            $("#step3").removeClass("disabled");
+                            $("#lot1").addClass("disabled");
+                            $("#lot2").addClass("disabled");
+                            $("#lot3").addClass("disabled");
+                        }
+                    });
+                }
+            }
+        }
+    </script>
 
 {% endblock %}
 
