@@ -14,17 +14,17 @@ class ShopController extends Controller
 	public function getHome(ServerRequestInterface $request, ResponseInterface $response)
 	{
 
-        //get twig of home
-        $serverlist = $this->redis->getJson('shop.listsrv');
+		//get twig of home
+		$serverlist = $this->redis->getJson('shop.listsrv');
 
 
-        //On vérifie si il ya des promos
-        $itempromo = $this->redis->getJson('shop.promo');
-        if(count($itempromo) == 0){
-            $itempromo = false;
-        }
+		//On vérifie si il ya des promos
+		$itempromo = $this->redis->getJson('shop.promo');
+		if (count($itempromo) == 0) {
+			$itempromo = false;
+		}
 
-        $this->render($response, 'shop.home',['serverlist' => $serverlist,'promo' => $itempromo]);
+		$this->render($response, 'shop.home', ['serverlist' => $serverlist, 'promo' => $itempromo]);
 
 	}
 
@@ -36,12 +36,18 @@ class ShopController extends Controller
 		} else {
 			$step = 1;
 		}
-		$priceUniq = 0.01;
+
+		if ($this->session->exist('recharge')) {
+			$recharge = $this->session->get('recharge');
+		} else {
+			$recharge = [];
+		}
 		//get twig of recharge
 		$this->render($response, "shop.recharge.step{$step}", [
-			'width' => 100/$nbStep * $step,
+			'width' => 100 / $nbStep * $step,
 			'step' => $step,
-			'price' => $priceUniq
+			'payways' => $this->container['config']['shop']['payways'],
+			'recharge' => $recharge
 		]);
 	}
 
@@ -54,18 +60,17 @@ class ShopController extends Controller
 		}
 		switch ($step) {
 			case 1:
-				//save in session the choice
-				$this->session->set('recharge', [
-							'amount' => $_GET['amount']
-						]);
+				//SAVING PAYWAY
+				$this->session->set('recharge', ['payway' => $_GET['payway']]);
 
 				//redirect to second step
 				return $this->redirect($response, $this->pathFor('shop.recharge') . '?step=2');
 				break;
 			case 2:
-				//save in session the username
+				//SAVING AMOUNT
+				//save in session the choice
 				$this->session->set('recharge', array_merge(
-					$this->session->get('recharge'), ['username' => $_GET['username']])
+						$this->session->get('recharge'), ['amount' => $_GET['amount']])
 				);
 
 				//redirect to third step
@@ -73,11 +78,14 @@ class ShopController extends Controller
 				break;
 
 			case 3:
-				//save in session the payway
+				//SAVING USERNAME
+				//save in session the username
 				$this->session->set('recharge', array_merge(
-						$this->session->get('recharge'), ['payway' => $_GET['payway']])
+						$this->session->get('recharge'), ['username' => $_GET['username']])
 				);
-				$recharge = array_merge($this->session->get('recharge'), ['payway' => $_GET['payway']]);
+
+				$recharge = $this->session->get('recharge');
+
 				//redirect to start page
 				return $this->redirect($response, $this->pathFor('shop.recharge.start', [
 					'amount' => $recharge['amount'],
@@ -91,10 +99,15 @@ class ShopController extends Controller
 	public function getRechargeStart(ServerRequestInterface $request, ResponseInterface $response, $args)
 	{
 		$recharge = $this->session->get('recharge');
-		//get price of 1
-		$priceUniq = 0.01;
-		$price = $priceUniq * $recharge['amount'];
-		switch ($recharge['payway']){
+
+		if (isset($this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']])) {
+			$price = $this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']];
+		}else{
+			$coef = $this->container['config']['shop']['payways'][$recharge['payway']]['coef'];
+			$price = $coef * $recharge['amount'];
+		}
+
+		switch ($recharge['payway']) {
 			case 'paypal':
 				//invoke paypal and generate url
 				return $this->redirect($response, $this->container->paypal->setExpressCheckout([
@@ -121,43 +134,39 @@ class ShopController extends Controller
 	}
 
 
-
-	public function getachat(ServerRequestInterface $request, ResponseInterface $response,$args){
-	    //Vérification si le produit éxiste
-            if (isset($args['id'])&!empty($args['id'])&$this->redis->exists('shop.prod.'.$args['id'])){
-                $collection = $this->mongo->test->players;
-                $data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
-                $dataprod = $this->redis->getjson('shop.prod.'.$args['id']);
-
-
-                //vérification si reduction
-                if($dataprod["promo"] == true){
-                    $dataprod["price"] = $dataprod["price"] * ((100+$dataprod["promo_reduc"]) / 100);;
-                }
+	public function getachat(ServerRequestInterface $request, ResponseInterface $response, $args)
+	{
+		//Vérification si le produit éxiste
+		if (isset($args['id']) & !empty($args['id']) & $this->redis->exists('shop.prod.' . $args['id'])) {
+			$collection = $this->mongo->test->players;
+			$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
+			$dataprod = $this->redis->getjson('shop.prod.' . $args['id']);
 
 
-                if (!isset($data['shop_points'])){
-                    $data['shop_points'] = 0;
-                }
-
-                //Vérification du prix
-                if ($dataprod["price"] <= $data['shop_points']){
-                    //On continue car il a les sous
-
-                }else{
-                    //C'est un clodo donc erreur
-                    return $response->write("Not enought")->withStatus(406);
-                }
-            }else{
-                return $response->write("Product not found")->withStatus(404);
-            }
+			//vérification si reduction
+			if ($dataprod["promo"] == true) {
+				$dataprod["price"] = $dataprod["price"] * ((100 + $dataprod["promo_reduc"]) / 100);;
+			}
 
 
-    }
+			if (!isset($data['shop_points'])) {
+				$data['shop_points'] = 0;
+			}
+
+			//Vérification du prix
+			if ($dataprod["price"] <= $data['shop_points']) {
+				//On continue car il a les sous
+
+			} else {
+				//C'est un clodo donc erreur
+				return $response->write("Not enought")->withStatus(406);
+			}
+		} else {
+			return $response->write("Product not found")->withStatus(404);
+		}
 
 
-
-
+	}
 
 
 }

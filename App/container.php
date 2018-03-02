@@ -36,9 +36,9 @@ $container['redis'] = function ($container) {
 };
 
 $container['log'] = function ($container) {
-    return new App\DiscordHandler($container);
+	return new App\DiscordHandler($container);
 
-    $log = new Monolog\Logger('badblock-website');
+	$log = new Monolog\Logger('badblock-website');
 
 
 	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
@@ -86,9 +86,9 @@ $container['view'] = function ($container) use ($app) {
 	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
 	$twig->addGlobal('ts3_query', $container['config']['ts3_query']);
 
-	if($container['session']->exist('user')){
+	if ($container['session']->exist('user')) {
 		$twig->addGlobal('user', $container['session']->get('user'));
-	}elseif($container['session']->exist('recharge')){
+	} elseif ($container['session']->exist('recharge')) {
 		$twig->addGlobal('recharge', $container['session']->get('recharge'));
 	}
 
@@ -124,61 +124,61 @@ $container['mysql_forum'] = function ($container) {
 
 
 $container['mysql_rankeds'] = function ($container) {
-    $pdo = new \Simplon\Mysql\PDOConnector(
-        $container->config['mysql_rankeds']['host'], // server
-        $container->config['mysql_rankeds']['user'],     // user
-        $container->config['mysql_rankeds']['password'],      // password
-        $container->config['mysql_rankeds']['database']   // database
-    );
+	$pdo = new \Simplon\Mysql\PDOConnector(
+		$container->config['mysql_rankeds']['host'], // server
+		$container->config['mysql_rankeds']['user'],     // user
+		$container->config['mysql_rankeds']['password'],      // password
+		$container->config['mysql_rankeds']['database']   // database
+	);
 
-    $pdoConn = $pdo->connect('utf8', []); // charset, options
+	$pdoConn = $pdo->connect('utf8', []); // charset, options
 
-    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
 
-    return $dbConn;
+	return $dbConn;
 };
 
 $container['mysql_box'] = function ($container) {
-    $pdo = new \Simplon\Mysql\PDOConnector(
-        $container->config['mysql_rankeds']['host'], // server
-        $container->config['mysql_rankeds']['user'],     // user
-        $container->config['mysql_rankeds']['password'],      // password
-        $container->config['mysql_rankeds']['database']   // database
-    );
+	$pdo = new \Simplon\Mysql\PDOConnector(
+		$container->config['mysql_rankeds']['host'], // server
+		$container->config['mysql_rankeds']['user'],     // user
+		$container->config['mysql_rankeds']['password'],      // password
+		$container->config['mysql_rankeds']['database']   // database
+	);
 
-    $pdoConn = $pdo->connect('utf8', []); // charset, options
+	$pdoConn = $pdo->connect('utf8', []); // charset, options
 
-    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
 
-    return $dbConn;
+	return $dbConn;
 };
 
 $container['mysql_guardian'] = function ($container) {
-    $pdo = new \Simplon\Mysql\PDOConnector(
-        $container->config['mysql_guardian']['host'], // server
-        $container->config['mysql_guardian']['user'],     // user
-        $container->config['mysql_guardian']['password'],      // password
-        $container->config['mysql_guardian']['database']   // database
-    );
+	$pdo = new \Simplon\Mysql\PDOConnector(
+		$container->config['mysql_guardian']['host'], // server
+		$container->config['mysql_guardian']['user'],     // user
+		$container->config['mysql_guardian']['password'],      // password
+		$container->config['mysql_guardian']['database']   // database
+	);
 
-    $pdoConn = $pdo->connect('utf8', []); // charset, options
+	$pdoConn = $pdo->connect('utf8', []); // charset, options
 
-    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
 
-    return $dbConn;
+	return $dbConn;
 };
 
 $container['mongoServer'] = function ($container) {
-    return new \MongoDB\Client(
-        'mongodb://'.$container->config['mongo_dist']['user'].":".$container->config['mongo_dist']['password']."@".$container->config['mongo_dist']['host'].":".$container->config['mongo_dist']['port']	."/".$container->config['mongo_dist']['database']
-    );
+	return new \MongoDB\Client(
+		'mongodb://' . $container->config['mongo_dist']['user'] . ":" . $container->config['mongo_dist']['password'] . "@" . $container->config['mongo_dist']['host'] . ":" . $container->config['mongo_dist']['port'] . "/" . $container->config['mongo_dist']['database']
+	);
 };
 
 
 $container['mongo'] = function ($container) {
-    return new \MongoDB\Client(
-        'mongodb://'.$container->config['mongo_local']['user'].":".$container->config['mongo_local']['password']."@".$container->config['mongo_local']['host'].":".$container->config['mongo_local']['port']	."/".$container->config['mongo_local']['database']
-    );
+	return new \MongoDB\Client(
+		'mongodb://' . $container->config['mongo_local']['user'] . ":" . $container->config['mongo_local']['password'] . "@" . $container->config['mongo_local']['host'] . ":" . $container->config['mongo_local']['port'] . "/" . $container->config['mongo_local']['database']
+	);
 };
 
 $container['xenforo'] = function ($container) {
@@ -188,7 +188,12 @@ $container['xenforo'] = function ($container) {
 };
 
 $container['paypal'] = function ($container) {
-	return new \lefuturiste\PaypalExpressCheckout\Paypal($container->config['paypal']['username'], $container->config['paypal']['password'], $container->config['paypal']['signature']);
+	return new \lefuturiste\PaypalExpressCheckout\Paypal(
+		$container->config['paypal']['username'],
+		$container->config['paypal']['password'],
+		$container->config['paypal']['signature'],
+		$container->config['paypal']['prod']
+	);
 };
 
 $container['notFoundHandler'] = function ($container) {
@@ -199,31 +204,30 @@ $container['notFoundHandler'] = function ($container) {
 };
 
 
-
 $container['ladder'] = function ($container) {
-    return new App\Ladder($container, [
-        'ip' => $container->config['ladder']['ip'],
-        'port' => $container->config['ladder']['port']
-    ]);
+	return new App\Ladder($container, [
+		'ip' => $container->config['ladder']['ip'],
+		'port' => $container->config['ladder']['port']
+	]);
 };
 
 $container['rabbit'] = function ($container) {
-    return new App\Shoplinker($container, [
-        'ip' => $container->config['rabbit']['ip'],
-        'port' => $container->config['rabbit']['port'],
-        'username' => $container->config['rabbit']['username'],
-        'password' => $container->config['rabbit']['password'],
-        'virtualhost' => $container->config['rabbit']['virtualhost']
-    ]);
+	return new App\Shoplinker($container, [
+		'ip' => $container->config['rabbit']['ip'],
+		'port' => $container->config['rabbit']['port'],
+		'username' => $container->config['rabbit']['username'],
+		'password' => $container->config['rabbit']['password'],
+		'virtualhost' => $container->config['rabbit']['virtualhost']
+	]);
 };
 
-$container['teamspeak'] = function ($container){
-    return new App\TeamSpeak($container, (object) [
-        'ip' => $container->config['teamspeak']['ip'],
-        'port' => $container->config['teamspeak']['port'],
-        'username' => $container->config['teamspeak']['username'],
-        'password' => $container->config['teamspeak']['password'],
-        'query_port' => $container->config['teamspeak']['query_port']
-    ]);
+$container['teamspeak'] = function ($container) {
+//    return new App\TeamSpeak($container, (object) [
+//        'ip' => $container->config['teamspeak']['ip'],
+//        'port' => $container->config['teamspeak']['port'],
+//        'username' => $container->config['teamspeak']['username'],
+//        'password' => $container->config['teamspeak']['password'],
+//        'query_port' => $container->config['teamspeak']['query_port']
+//    ]);
 };
 

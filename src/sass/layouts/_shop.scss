@@ -17,26 +17,27 @@ Rechargement (pub)
   background-color: rgba(78, 101, 135, 0.6);
 
   .recharge-content {
-      .recharge-flex {
-        padding-top: 3em;
-        padding-bottom: 3em;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        //flex-wrap: wrap;
+    margin-top: 3em;
+    .recharge-flex {
+      padding-top: 3em;
+      padding-bottom: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      //flex-wrap: wrap;
+    }
+    .recharge-info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      img {
+        width: 100px;
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+        margin-right: 1em;
       }
-      .recharge-info {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        img {
-          width: 100px;
-          margin-bottom: 0.5em;
-          margin-top: 0.5em;
-          margin-right: 1em;
-        }
-      }
+    }
   }
 }
 
@@ -156,4 +157,8 @@ Shop menu
   .shop-summary-icon {
     margin-right: 10px;
   }
+}
+
+.no-link.c-button.c-button--block.c-button--error {
+  color: white !important;
 }

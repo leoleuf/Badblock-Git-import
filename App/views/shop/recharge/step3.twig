@@ -1,12 +1,9 @@
 {% extends 'macros/recharge.twig' %}
 {% block recharge_content %}
-    <div class="recharge-payway-list">
-        <div class="c-input-group">
-            <a href="{{ path_for('shop.recharge.nextstep') }}?step=3&payway=paypal" class="c-button c-button--block c-button--brand">Paypal</a>
-            <a href="{{ path_for('shop.recharge.nextstep') }}?step=3&payway=sms" class="c-button c-button--block c-button--info">SMS</a>
-            <a href="{{ path_for('shop.recharge.nextstep') }}?step=3&payway=paysafecard" class="c-button c-button--block c-button--warning">Paysafe card</a>
-            <a href="{{ path_for('shop.recharge.nextstep') }}?step=3&payway=bitcoin" class="c-button c-button--block c-button--success">Bitcoin</a>
-            <a href="{{ path_for('shop.recharge.nextstep') }}?step=3&payway=bank_card" class="no-link c-button c-button--block c-button--error">Carte bancaire</a>
-        </div>
-    </div>
+    <form action="{{ path_for('shop.recharge.nextstep') }}" method="get">
+        <label for="username">{{ 'shop.your_username'|trans }}</label>
+        <input class="c-field" type="text" name="username" value="{{ user.username }}" required>
+        <input class="c-field" type="hidden" name="step" value="3" required>
+        <button class="button button-danger recharge-next" type="submit">{{ 'shop.next'|trans }}</button>
+    </form>
 {% endblock %}

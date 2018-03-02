@@ -10,8 +10,12 @@ class PaypalController extends Controller
 	public function getPaypalExecute(ServerRequestInterface $request, ResponseInterface $response)
 	{
 		$recharge = $this->session->get('recharge');
-		$priceUniq = 0.01;
-		$price = $priceUniq * $recharge['amount'];
+		if (isset($this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']])) {
+			$price = $this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']];
+		}else{
+			$coef = $this->container['config']['shop']['payways'][$recharge['payway']]['coef'];
+			$price = $coef * $recharge['amount'];
+		}
 		$paypalResponse = $this->container->paypal->doExpressCheckoutPayment([
 			[
 				'name' => "Recharge de {$recharge['amount']}",

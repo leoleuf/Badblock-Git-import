@@ -1,9 +1,53 @@
 {% extends 'macros/recharge.twig' %}
 {% block recharge_content %}
-    <form action="{{ path_for('shop.recharge.nextstep') }}" method="get">
-        <label for="username">{{ 'shop.your_username'|trans }}</label>
-        <input class="c-field" type="text" name="username" value="{{ user.username }}" required>
-        <input class="c-field" type="hidden" name="step" value="2" required>
-        <button class="button button-danger recharge-next" type="submit">{{ 'shop.next'|trans }}</button>
-    </form>
+    <div class="c-card c-card--highest recharge-list">
+        {% for amount, price in payways[recharge.payway].table %}
+            <div class="c-card__item">
+                <div class="recharge-price">
+                    {{ amount }}
+                </div>
+                <div class="recharge-real-price">
+                    € {{ price }}
+                </div>
+                <div class="recharge-action">
+                    <a class="button button-primary"
+                       href="{{ path_for('shop.recharge.nextstep') }}?step=2&amount=200">{{ 'shop.chose'|trans }}</a>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="c-card__item">
+            <div class="recharge-price">
+                {{ 'shop.recharge_custom_amount'|trans }}
+            </div>
+            <div class="recharge-real-price">
+                <form method="get" action="{{ path_for('shop.recharge.nextstep') }}" class="recharge-chose-custom">
+                    <input type="hidden" name="step" value="2">
+                    <input type="hidden" name="amount" value="" id="finalAmount">
+                    <div class="c-input-group">
+                        <input class="c-field recharge-chose-field" type="text"
+                               id="custom_amount_show" required disabled placeholder="Points boutique">
+                        <input class="c-field recharge-chose-field" type="number" id="custom_amount"
+                               required placeholder="Prix en euro" min="50">
+                        <button class="button button-primary" type="submit">{{ 'shop.chose'|trans }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {#<button class="button button-danger recharge-next">Suivant</button>#}
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        var coef = {{ payways[recharge.payway].coef }}
+        $('#custom_amount').on('input', function () {
+            var inputAmount = Math.round($('#custom_amount').val())
+            if (inputAmount > 50) {
+                $('#custom_amount_show').val(inputAmount * coef + " Points boutique")
+                $('#finalAmount').val(inputAmount * coef)
+            } else {
+                $('#custom_amount_show').val("Le montant doit être supérieur à 50€")
+            }
+        })
+    </script>
+
 {% endblock %}
