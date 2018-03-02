@@ -17,13 +17,11 @@ class ShopController extends Controller
 		//get twig of home
 		$serverlist = $this->redis->getJson('shop.listsrv');
 
-
 		//On vérifie si il ya des promos
 		$itempromo = $this->redis->getJson('shop.promo');
 		if (count($itempromo) == 0) {
 			$itempromo = false;
 		}
-
 		$this->render($response, 'shop.home', ['serverlist' => $serverlist, 'promo' => $itempromo]);
 
 	}
@@ -102,7 +100,7 @@ class ShopController extends Controller
 
 		if (isset($this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']])) {
 			$price = $this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']];
-		}else{
+		} else {
 			$coef = $this->container['config']['shop']['payways'][$recharge['payway']]['coef'];
 			$price = $coef * $recharge['amount'];
 		}
@@ -133,39 +131,60 @@ class ShopController extends Controller
 		}
 	}
 
-
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response, $args)
 	{
-		//Vérification si le produit éxiste
-		if (isset($args['id']) & !empty($args['id']) & $this->redis->exists('shop.prod.' . $args['id'])) {
-			$collection = $this->mongo->test->players;
-			$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
-			$dataprod = $this->redis->getjson('shop.prod.' . $args['id']);
-
-
-			//vérification si reduction
-			if ($dataprod["promo"] == true) {
-				$dataprod["price"] = $dataprod["price"] * ((100 + $dataprod["promo_reduc"]) / 100);;
-			}
-
-
-			if (!isset($data['shop_points'])) {
-				$data['shop_points'] = 0;
-			}
-
-			//Vérification du prix
-			if ($dataprod["price"] <= $data['shop_points']) {
-				//On continue car il a les sous
-
-			} else {
-				//C'est un clodo donc erreur
-				return $response->write("Not enought")->withStatus(406);
-			}
+		//On vérifie si le joueur est connecté
+		if (!$this->container->session->exist('user')) {
+			return $response->write("Not connected")->withStatus(403);
 		} else {
-			return $response->write("Product not found")->withStatus(404);
+			if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])) {
+				if (isset($args['id']) & !empty($args['id']) & $this->redis->exists('shop.prod.' . $args['id'])) {
+					//Vérification si le produit éxiste
+					$collection = $this->container->mongoServer->test->players;
+					$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
+					$dataprod = $this->redis->getjson('shop.prod.' . $args['id']);
+					//vérification si reduction
+					if ($dataprod["promo"] == true) {
+						$dataprod["price"] = $dataprod["price"] * ((100 + $dataprod["promo_reduc"]) / 100);;
+					}
+					if (!isset($data['shop_points'])) {
+						$data['shop_points'] = 0;
+					}
+					//Vérification du prix
+					if ($dataprod["price"] <= $data['shop_points']) {
+						//On continue car il a les sous
+						$operation = $this->container->mongo->test->operation;
+						//Prépartion de l'insertion de l'achat
+						$insert = [
+							"unique-id" => $data['uniqueId'],
+							"name" => $this->session->getProfile('username')['username'],
+							"price" => intval($dataprod["price"]),
+							"promo" => $dataprod["promo"],
+							"date" => date("Y-m-d H:i:s"),
+							"product_name" => $dataprod["name"],
+							"product_id" => $args['id']
+						];
+						$operation->insertOne($insert);
+
+
+					} else {
+						//C'est un clodo donc erreur
+						return $response->write("Not enought")->withStatus(406);
+					}
+				} else {
+					return $response->write("Product not found")->withStatus(404);
+				}
+			} else {
+				return $response->write("Not linked")->withStatus(405);
+			}
 		}
 
+	}
 
+
+	public function send()
+	{
+		return true;
 	}
 
 

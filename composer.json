@@ -41,6 +41,7 @@
         "lefuturiste/validator": "^1.0",
         "lefuturiste/flash": "^0.5.0",
         "kanellov/slim-twig-flash": "^0.2.0",
-        "par0noid/ts3admin": "1.0.2.1"
+        "par0noid/ts3admin": "1.0.2.1",
+        "xpaw/php-minecraft-query": "^2.0"
     }
 }

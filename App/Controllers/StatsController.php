@@ -8,18 +8,23 @@
 
 namespace App\Controllers;
 
+use App\MinecraftServerQuery;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Slim\App;
 
 class StatsController extends Controller
 {
 
 	public function home(RequestInterface $request, ResponseInterface $response)
 	{
+	    $connected = 0;
+	    //debug
+	    $c_ts = 0;
 	    $guardian = $this->redis->getJson('stats:guardian');
-	    $gstats = $this->redis->getJson('stats:gstats');
-	    var_dump($gstats);
-		$this->render($response, 'stats.home',['guardian' => $guardian,'gstats' => $gstats]);
+	    $gstats = $this->redis->getJson('stats:stats_guardian');
+	    $stats = $this->redis->getJson('stats:stats_general');
+		$this->render($response, 'stats.home',['c_ts' => $c_ts,'connected' => $connected,'guardian' => $guardian,'gstats' => $gstats,'stats' => $stats]);
 	}
 
 	public function games(RequestInterface $request, ResponseInterface $response)
@@ -145,9 +150,22 @@ class StatsController extends Controller
 
 
 
-    public function cache()
+    public function search()
     {
-
+        $data = $_POST["search_player"];
+        if($this->redis->exists("search:" . $data)){
+            return $this->redis->get("search:" . $data);
+        }else{
+            $resultR = [];
+            $query = "SELECT username FROM xf_user WHERE username LIKE '%". $data ."%' ORDER by username DESC LIMIT 5";
+            foreach ($this->container->mysql_forum->fetchRowManyCursor($query) as $result)
+            {
+                array_push($resultR, $result);
+            }
+            $this->redis->setjson('search:' . $data, $resultR);
+            $this->redis->expire('search:' . $data, 60);
+            return json_encode($resultR);
+        }
     }
 
 

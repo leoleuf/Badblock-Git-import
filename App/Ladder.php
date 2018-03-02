@@ -37,10 +37,10 @@ class Ladder
 	{
 
 		$request = $this->guzzle->request(
-			'POST',
+			'GET',
 			"http://node01-int.clusprv.badblock-network.fr:8080/" . $type,
 			[
-                'form_params' => $this->parse($data)
+                'form_params' => $data
             ]
 		);
 		$response = $request->getBody();
@@ -113,7 +113,17 @@ class Ladder
 	 */
 	public function playerSendMessage($player, $message)
 	{
-		return $this->sendData("players/sendMessage/", ["name" => $player, "message" => $message]);
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL,            "http://node01-int.clusprv.badblock-network.fr:8080/players/sendMessage/" );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($ch, CURLOPT_POST,           1 );
+        curl_setopt($ch, CURLOPT_POSTFIELDS,     "name=". $player ."&message=". $message );
+        curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
+
+        $result=curl_exec ($ch);
+
+		return true;
 	}
 
 	/**

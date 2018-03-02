@@ -12,7 +12,7 @@ class IpController extends Controller
 
 		$ip = $_SERVER['REMOTE_ADDR'];
 		//if the key doesn't exist in cache
-		if (!$this->container->redis->exists("ip_" . $ip)) {
+		if (!$this->container->session->exist('mcIp')) {
 			$result = [];
 
 			//Geo IP
@@ -53,14 +53,11 @@ class IpController extends Controller
 			//compile et envoie
 			array_push($result, $iptos, $code, $pays);
 
-			//Mise en cache
-			$this->container->redis->setJson('ip_' . $ip, $result);
-			$this->container->redis->expire('ip_' . $ip, 3600);
-
+            $this->container->session->set('mcIp', $result);
 			$generatedIp = $result[0];
 
 		} else {
-			$generatedIp = $this->container->redis->getjson('ip_' . $ip)[0];
+			$generatedIp = $this->container->session->get('mcIp');
 		}
 
 		//ajout de l'ip généré aux variables globales twig

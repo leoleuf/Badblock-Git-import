@@ -145,7 +145,15 @@ $container['mysql_box'] = function ($container) {
 		$container->config['mysql_rankeds']['password'],      // password
 		$container->config['mysql_rankeds']['database']   // database
 	);
+};
 
+$container['mysql_casier'] = function ($container) {
+	$pdo = new \Simplon\Mysql\PDOConnector(
+		$container->config['mysql_casier']['host'], // server
+		$container->config['mysql_casier']['user'],     // user
+		$container->config['mysql_casier']['password'],      // password
+		$container->config['mysql_casier']['database']   // database
+	);
 	$pdoConn = $pdo->connect('utf8', []); // charset, options
 
 	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
@@ -211,6 +219,7 @@ $container['ladder'] = function ($container) {
 	]);
 };
 
+
 $container['rabbit'] = function ($container) {
 	return new App\Shoplinker($container, [
 		'ip' => $container->config['rabbit']['ip'],
@@ -229,5 +238,9 @@ $container['teamspeak'] = function ($container) {
 //        'password' => $container->config['teamspeak']['password'],
 //        'query_port' => $container->config['teamspeak']['query_port']
 //    ]);
+};
+
+$container['RpgApi'] = function ($container) {
+	return new App\RpgApi($container, "45397");
 };
 

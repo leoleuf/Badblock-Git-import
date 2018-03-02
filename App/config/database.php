@@ -11,11 +11,11 @@ return [
 		'password' => getenv('MYSQL_RANKEDS_PASSWORD'),
 		'database' => getenv('MYSQL_RANKEDS_DATABASE'),
 	],
-    'mysql_box' => [
-        'host' => getenv('MYSQL_BOX_HOST'),
-        'user' => getenv('MYSQL_BOX_USERNAME'),
-        'password' => getenv('MYSQL_BOX_PASSWORD'),
-        'database' => getenv('MYSQL_BOX_DATABASE'),
+    'mysql_casier' => [
+        'host' => getenv('MYSQL_CASIER_HOST'),
+        'user' => getenv('MYSQL_CASIER_USERNAME'),
+        'password' => getenv('MYSQL_CASIER_PASSWORD'),
+        'database' => getenv('MYSQL_CASIER_DATABASE'),
     ],
     'mysql_guardian' => [
         'host' => getenv('MYSQL_GUARDIAN_HOST'),

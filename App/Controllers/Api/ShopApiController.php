@@ -20,9 +20,9 @@ class ShopApiController extends \App\Controllers\Controller
 
         //Check MongoDB
         //Server List
-        $collection = $this->mongo->test->server;
-        $collection1 = $this->mongo->test->category;
-        $collection2 = $this->mongo->test->products;
+        $collection = $this->container->mongo->test->server;
+        $collection1 = $this->container->mongo->test->category;
+        $collection2 = $this->container->mongo->test->products;
 
 
         $cursor = $collection->find(['visibility' => true]);
@@ -62,16 +62,18 @@ class ShopApiController extends \App\Controllers\Controller
                 array_push($current_listc,array($current->_id,$current->name,$current_listp));
             }
 
-            array_push($listserver,array($df->_id,$df->name,$current_listc));
+            array_push($listserver,array($df->_id,$df->name,$current_listc,$df->icon));
         }
         //Mise en Cache
 
 
         $this->redis->setJson('shop.listsrv', $listserver);
 
+        dd($listserver);
+
 
         //Mise en cache produit seul
-        $collection = $this->mongo->test->products;
+        $collection = $this->container->mongo->test->products;
         $curs = $collection->find(['visibility' => true]);
         foreach ($curs as $cur) {
             $this->redis->setJson('shop.prod.'.$cur["_id"], $cur);
