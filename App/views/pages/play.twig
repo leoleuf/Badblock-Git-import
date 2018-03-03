@@ -26,21 +26,13 @@
                 </div>
                 <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
                 <div class="panel">
-                    <p>1) Lancez votre Launcheur Minecraft dans une version comprise entre 1.8 &amp; 1.10 .</p>
-                    <img src="images/etape_one.png">
-                    <p>2) Cliquez sur Multijoueur.</p>
-                    <img src="images/etape_two.png">
-                    <p>3) Cliquez sur &quot;Ajouter un serveur&quot;.</p>
-                    <img src="images/etape_three.png">
-                    <p>4) Enregistrez les informations du serveur.</p>
                     {% if mc_ip == "eu.badblock.fr" %}
                         <img src="/dist/images/eu.gif" class="how-to-gif">
                     {% elseif mc_ip == "na.badblock.fr" %}
-                        <img src="e" class="how-to-gif">
+                        <img src="/dist/images/na.gif" class="how-to-gif">
                     {% else %}
                         <img src="/dist/images/play.gif" class="how-to-gif">
                     {% endif %}
-                    <p>5) Ensuite :) Il vous suffit de rejoindre le serveur.</p>
                 </div>
             </div>
         </section>
