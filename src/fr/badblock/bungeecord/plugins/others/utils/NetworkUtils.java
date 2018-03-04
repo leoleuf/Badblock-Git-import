@@ -33,6 +33,8 @@ public class NetworkUtils
 			System.setProperty("http.agent", "Mozilla/5.0");
 			URL url = new URL(link);
 			URLConnection con = url.openConnection();
+			con.setConnectTimeout(2000);
+			con.setReadTimeout(2000);
 			con.setRequestProperty("User-Agent", "Mozilla/5.0");
 			con.setRequestProperty("X-Key", "MTU4NTpTMXV2TXdZbFJ0YlVZOGV2aGo3dUV0dG4zOVprTWVldQ==");
 			InputStream in = con.getInputStream();
