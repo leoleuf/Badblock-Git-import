@@ -14,7 +14,7 @@ import fr.badblock.permissions.PermissiblePlayer;
 public class ScaleCommand extends Command {
 
 	public ScaleCommand() {
-		super("onlinestaff", "onlinestaff.scale", "os");
+		super("scale", "onlinestaff.scale", "scs");
 	}
 
 	@Override
