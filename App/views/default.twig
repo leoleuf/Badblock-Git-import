@@ -234,6 +234,38 @@
 </div>
 <!-- Fin login modal -->
 
+<!-- TFA2 Modal -->
+<div class="remodal modal-remodal" data-remodal-id="tfa-modal">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>{{ 'login.title'|trans }}</h1>
+
+    {% if flash('login_error') %}
+        {% for flash in flash('login_error') %}
+            <div class="alert alert-error">
+                {{ flash }}
+                <i class="icon icon-remove"></i>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <p>
+        <!-- TFA2 Form -->
+    <form method="POST" action="{{ path_for('login.execute') }}">
+        <label for="username">Taper votre code : (TFA)</label>
+        <input name="code" class="u-full-width" type="text" placeholder="000000"
+               id="username" required>
+        <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
+    </form>
+    <!-- Fin TFA2 form -->
+    </p>
+    <br>
+
+</div>
+<!-- Fin TFA2 modal -->
+
+
+
+
+
 <!-- JS -->
 <!-- Var js -->
 <script>

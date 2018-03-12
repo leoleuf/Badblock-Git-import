@@ -48,6 +48,13 @@ return [
     'ladder' => [
         'ip' => getenv('LADDER_IP'),
         'port' => getenv('LADDER_PORT'),
+    ],
+    'rabbit' => [
+        'ip' => getenv('RABBIT_IP'),
+        'port' => getenv('RABBIT_PORT'),
+        'username' => getenv('RABBIT_USERNAME'),
+        'password' => getenv('RABBIT_PASSWORD'),
+        'virtualhost' => getenv('RABBIT_VIRTUALHOST'),
     ]
 
 

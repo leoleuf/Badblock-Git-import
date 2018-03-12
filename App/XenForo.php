@@ -106,10 +106,27 @@ class XenForo
      * @param $ip
      * @return mixed
      */
-    public function getLogin($username, $password, $ip)
+    public function getLogin($username, $password, $ip,$tfa = false)
     {
-        $rep = $this->doGetRequest('action=login&username=' . $username . '&password=' . $password . '&ip_address=' . '78.247.197.58');
+        try {
+            if ($tfa){
+                $data = $this->guzzle->get($this->config['endpoint'] . '?' . 'action=login&username=' . $username . '&password=' . $password . '&ip_address=' . '127.0.0.1' . '&hash=' . $this->hash(). "&tfa=true");
+            }else{
+                $data = $this->guzzle->get($this->config['endpoint'] . '?' . 'action=login&username=' . $username . '&password=' . $password . '&ip_address=' . '127.0.0.1' . '&hash=' . $this->hash());
+            }
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBody = $e->getResponse()->getBody(true)->getContents();
+            $responseBody = json_decode($responseBody);
 
-        return $this->getParsedBody($rep->getBody());
+            if ($response && $response->getStatusCode() == 400) {
+                if($responseBody->error == 5){
+                    return "bad";
+                }elseif($responseBody->error == 25){
+                    return "tfa";
+                }
+            }
+        }
+        return $this->getParsedBody($data->getBody());
     }
 }

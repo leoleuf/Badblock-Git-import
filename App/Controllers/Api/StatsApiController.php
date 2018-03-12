@@ -59,7 +59,7 @@ class StatsApiController extends \App\Controllers\Controller
         $staff = $this->redis->getjson('staff.number');
 
         //Count des line sur le forum
-        $msg_forum = $this->mysql_forum->fetchRow('SELECT COUNT(*) FROM xf_post;')["COUNT(*)"];
+        $msg_forum = $this->container->mysql_forum->fetchRow('SELECT COUNT(*) FROM xf_post;')["COUNT(*)"];
 
         //Connecté sur TS
         $ts_connected = $this->teamspeak->online();

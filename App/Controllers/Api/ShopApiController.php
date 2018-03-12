@@ -44,10 +44,7 @@ class ShopApiController extends \App\Controllers\Controller
                 //Liste produits
                 $current_listp = [];
                 $current_cursor2 = $collection2->find(['visibility' => true,'cat' => (string) $current->_id]);
-
-
                 foreach ($current_cursor2 as $current2) {
-                    //Si le produit est en promo
                     if ($current2->promo == true){
                         $current2->np = $current2->price * ((100+$current2->promo_reduc) / 100);
                         array_push($itempromo,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo_reduc,$current2->np,$current2->description));
@@ -56,21 +53,15 @@ class ShopApiController extends \App\Controllers\Controller
                         $current2->promo = false;
                         array_push($current_listp,array($current2->_id,$current2->name,$current2->price,$current2->img,$current2->promo,$current2->description));
                     }
-
-
                 }
                 array_push($current_listc,array($current->_id,$current->name,$current_listp));
             }
-
             array_push($listserver,array($df->_id,$df->name,$current_listc,$df->icon));
         }
         //Mise en Cache
 
 
         $this->redis->setJson('shop.listsrv', $listserver);
-
-        dd($listserver);
-
 
         //Mise en cache produit seul
         $collection = $this->container->mongo->test->products;

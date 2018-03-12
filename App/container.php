@@ -220,8 +220,8 @@ $container['ladder'] = function ($container) {
 };
 
 
-$container['rabbit'] = function ($container) {
-	return new App\Shoplinker($container, [
+$container['ShopLinker'] = function ($container) {
+	return new App\Shoplinker($container, (object)[
 		'ip' => $container->config['rabbit']['ip'],
 		'port' => $container->config['rabbit']['port'],
 		'username' => $container->config['rabbit']['username'],
@@ -231,13 +231,13 @@ $container['rabbit'] = function ($container) {
 };
 
 $container['teamspeak'] = function ($container) {
-//    return new App\TeamSpeak($container, (object) [
-//        'ip' => $container->config['teamspeak']['ip'],
-//        'port' => $container->config['teamspeak']['port'],
-//        'username' => $container->config['teamspeak']['username'],
-//        'password' => $container->config['teamspeak']['password'],
-//        'query_port' => $container->config['teamspeak']['query_port']
-//    ]);
+   return new App\TeamSpeak($container, (object) [
+        'ip' => $container->config['teamspeak']['ip'],
+        'port' => $container->config['teamspeak']['port'],
+        'username' => $container->config['teamspeak']['username'],
+        'password' => $container->config['teamspeak']['password'],
+        'query_port' => $container->config['teamspeak']['query_port']
+    ]);
 };
 
 $container['RpgApi'] = function ($container) {

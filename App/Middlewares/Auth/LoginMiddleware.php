@@ -21,13 +21,6 @@ class LoginMiddleware
 	public function __invoke(ServerRequestInterface $request, $response, $next)
 	{
 
-//        if (!$this->redis->exists('init.ok')){
-//            $this->log->success('"Login Controller"',' Initialisation du cache !');
-//
-//
-//
-//        }
-
 
 	    //Unsafe method
 //		//si le cookie existe, on ouvre une session

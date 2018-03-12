@@ -14,7 +14,6 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 class Shoplinker
 {
-    public $queuePrefix = "shopLinker."; // Don't edit this field
 
 
     public function __construct($container, $config)
@@ -25,10 +24,10 @@ class Shoplinker
         $this->username = $config->username;
         $this->password = $config->password;
         $this->virtualhost = $config->virtualhost;
+        $this->queuePrefix = "shopLinker."; // Don't edit this field
         $this->connection = new AMQPStreamConnection($config->ip, $config->port, $config->username, $config->password, $config->virtualhost);
         $this->channel = $this->connection->channel();
 	}
-
 
 
     /**
@@ -37,16 +36,16 @@ class Shoplinker
     - VOTE
      **/
 
-// Do not use
-    private function sendShopDataPacket($rabbitCredentials, $shopQueue, $shopObject) {
-        $queue = $queuePrefix.$shopQueue;
+    // Do not use
+    private function sendShopDataPacket($shopQueue, $shopObject) {
+        $queue = $this->queuePrefix.$shopQueue;
         $jsonObject = json_encode($shopObject);
-        sendRabbitMessage($rabbitCredentials, $queue, $jsonObject);
+        $this->sendRabbitMessage($queue, $jsonObject);
     }
 
 
-    public function sendRabbitMessage($rabbitCredentials, $queue, $jsonMessage) {
-        $channel = $rabbitCredentials->channel;
+    public function sendRabbitMessage($queue, $jsonMessage) {
+        $channel = $this->channel;
         $message = (object) [
             'expire' => (time() + 604800) * 1000,
             'message' => $jsonMessage
@@ -56,25 +55,17 @@ class Shoplinker
         $channel->basic_publish($msg, $queue);
     }
 
-    public function sendShopData($rabbitCredentials, $shopQueue, $dataType, $playerName, $displayName, $objectName) {
+    public function sendShopData($shopQueue, $dataType, $playerName, $displayName, $command, $price) {
         $shopObject = (object) [
             'dataType' => $dataType,
             'playerName' => $playerName,
             'displayName' => $displayName,
-            'objectName' => $objectName
+            'command' => $command,
+            'ingame' => false,
+            'price' => $price
         ];
-        return sendShopDataPacket($rabbitCredentials, $shopQueue, $shopObject);
+        return $this->sendShopDataPacket($shopQueue, $shopObject);
     }
-
-    public function broadcastServer($rabbitCredentials,$server,$message){
-        //Todo
-
-
-    }
-
-
-
-
 
 
 }

@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Shoplinker;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\App;
 
 /**
  * Class ShopController
@@ -142,7 +144,8 @@ class ShopController extends Controller
 					//Vérification si le produit éxiste
 					$collection = $this->container->mongoServer->test->players;
 					$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
-					$dataprod = $this->redis->getjson('shop.prod.' . $args['id']);
+					$collec = $this->container->mongo->test->products;
+					$dataprod = $collec->findOne(['_id' => $args['id']]);
 					//vérification si reduction
 					if ($dataprod["promo"] == true) {
 						$dataprod["price"] = $dataprod["price"] * ((100 + $dataprod["promo_reduc"]) / 100);;
@@ -166,6 +169,8 @@ class ShopController extends Controller
 						];
 						$operation->insertOne($insert);
 
+						//$shopQueue, $dataType, $playerName, $displayName, $command, $price
+						$this->container->ShopLinker->sendShopData($dataprod["queue"],"BUY",$this->session->getProfile('username')['username'],$dataprod["name"],$dataprod["command"],$dataprod["price"]);
 
 					} else {
 						//C'est un clodo donc erreur
@@ -181,11 +186,6 @@ class ShopController extends Controller
 
 	}
 
-
-	public function send()
-	{
-		return true;
-	}
 
 
 }
