@@ -36,35 +36,27 @@ class Shoplinker
     - VOTE
      **/
 
-    // Do not use
-    private function sendShopDataPacket($shopQueue, $shopObject) {
-        $queue = $this->queuePrefix.$shopQueue;
-        $jsonObject = json_encode($shopObject);
-        $this->sendRabbitMessage($queue, $jsonObject);
-    }
-
-
-    public function sendRabbitMessage($queue, $jsonMessage) {
-        $channel = $this->channel;
-        $message = (object) [
-            'expire' => (time() + 604800) * 1000,
-            'message' => $jsonMessage
-        ];
-        $msg = new AMQPMessage(json_encode($message));
-        $channel->exchange_declare($msg, 'fanout', false, false, false, false);
-        $channel->basic_publish($msg, $queue);
-    }
 
     public function sendShopData($shopQueue, $dataType, $playerName, $displayName, $command, $price) {
         $shopObject = (object) [
-            'dataType' => $dataType,
-            'playerName' => $playerName,
-            'displayName' => $displayName,
-            'command' => $command,
+            'dataType' => "BUY",
+            'playerName' => "Fluor",
+            'displayName' => "Grade Gold",
+            'command' => "perms user ",
             'ingame' => false,
-            'price' => $price
+            'price' => "200"
         ];
-        return $this->sendShopDataPacket($shopQueue, $shopObject);
+
+        $queue = "shopLinker.hub";
+        $jsonObject = json_encode($shopObject);
+
+        $message = (object)[
+            'expire' => (time() + 604800) * 1000,
+            'message' => $jsonObject
+        ];
+
+        $msg = new AMQPMessage(json_encode($message));
+        $this->channel->basic_publish($msg,$queue);
     }
 
 

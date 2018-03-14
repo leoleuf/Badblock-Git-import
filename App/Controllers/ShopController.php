@@ -6,6 +6,7 @@ use App\Shoplinker;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
+use MongoDB;
 
 /**
  * Class ShopController
@@ -145,8 +146,9 @@ class ShopController extends Controller
 					$collection = $this->container->mongoServer->test->players;
 					$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
 					$collec = $this->container->mongo->test->products;
-					$dataprod = $collec->findOne(['_id' => $args['id']]);
-					//vérification si reduction
+					$dataprod = $collec->findOne(["_id" => new MongoDB\BSON\ObjectId($args['id'])]);
+
+                    //vérification si reduction
 					if ($dataprod["promo"] == true) {
 						$dataprod["price"] = $dataprod["price"] * ((100 + $dataprod["promo_reduc"]) / 100);;
 					}

@@ -231,7 +231,7 @@ $container['ShopLinker'] = function ($container) {
 };
 
 $container['teamspeak'] = function ($container) {
-   return new App\TeamSpeak($container, (object) [
+   return new App\Teamspeak($container, (object) [
         'ip' => $container->config['teamspeak']['ip'],
         'port' => $container->config['teamspeak']['port'],
         'username' => $container->config['teamspeak']['username'],
