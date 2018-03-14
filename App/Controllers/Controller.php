@@ -29,7 +29,6 @@ class Controller{
 		$this->ladder = $container['ladder'];
 		$this->teamspeak = $container['teamspeak'];
 		$this->rpgapi = $container['RpgApi'];
-		$this->ShopLinler = $container['ShopLinker'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){
