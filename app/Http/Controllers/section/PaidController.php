@@ -42,7 +42,8 @@ class PaidController extends Controller
             //Foreach pour les paie
             foreach ($result as $row){
                 if (!empty($request->input('pb_'. $row->user_id))){
-                    //Enregistremetn de l'opération
+
+                    //Enregistrement de l'opération
                     $Funds = new Funds;
                     $Funds->points = intval($request->input('pb_'. $row->user_id));
                     $Funds->price = 0;
@@ -52,7 +53,7 @@ class PaidController extends Controller
                     $Funds->date = date("Y-m-d h:i:s");
                     $Funds->save();
 
-
+                    
 
                 }
             }
