@@ -39,6 +39,11 @@ Route::group([
     Route::get('/api/playersjson', 'ajax\HomeController@onlineChart');
 
 
+    Route::get('/section/forum', 'section\ForumController@index');
+    Route::get('/section/paid/{section}', 'section\PaidController@index');
+    Route::post('/section/paid/{section}', 'section\PaidController@save');
+
+
     Route::get('/website', 'website\IndexController@index');
     Route::resource('/website/crud/server', 'website\crud\ServerController');
     Route::resource('/website/crud/category', 'website\crud\CategoryController');

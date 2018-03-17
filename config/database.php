@@ -91,6 +91,22 @@ return [
             ]
         ],
 
+
+        'mysql_forum' => [
+            'driver' => 'mysql',
+            'host' => env('DB_FORUM_HOST', '127.0.0.1'),
+            'port' => env('DB_FORUM_PORT', '3306'),
+            'database' => env('DB_FORUM_DATABASE', 'forge'),
+            'username' => env('DB_FORUM_USERNAME', 'forge'),
+            'password' => env('DB_FORUM_PASSWORD', ''),
+            'unix_socket' => env('DB_FORUM_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
     ],
 
     /*

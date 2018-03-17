@@ -15,9 +15,11 @@ class Funds extends Eloquent {
     public static $rules = array(
         'date'=>'required',
         'unique-id'=>'required',
+        'name'=>'required',
         'gateway'=>'required',
         'points'=>'required',
         'price'=>'required',
+        'comment'=>'required',
     );
 
 
