@@ -43,6 +43,7 @@ Route::group([
     Route::resource('/website/crud/server', 'website\crud\ServerController');
     Route::resource('/website/crud/category', 'website\crud\CategoryController');
     Route::resource('/website/crud/product', 'website\crud\ProductController');
+    Route::resource('/website/crud/items', 'website\crud\ItemsController');
 
 
 

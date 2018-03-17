@@ -25,9 +25,6 @@
                         Type :
                         {{ Form::text('type', $Product['type'],array('class' => 'form-control','placeholder'=>"Type du produit")) }}
                         <br>
-                        Quantitée (Uniquement pour les items) :
-                        {{ Form::text('qty', $Product['qty'], array('class' => 'form-control','placeholder'=>"Sous-titre de la categorie")) }}
-                        <br>
                         Sélectionner la catégorie :
                         <select name="category" class="form-control select2">
                             <option>Selectionner la catégorie</option>
@@ -39,6 +36,18 @@
                                 @endif
                             @endforeach
                         </select>
+                        <br>
+                        <br>
+                        Nom de la Queue (si ShopLinker) :
+                        <br>
+                        {{ Form::text('queue',$Product['queue'],array('class' => 'form-control','placeholder'=>"Ex : hub,skyb")) }}
+
+                        <br>
+                        <br>
+                        Commande (use %player%) :
+                        <br>
+                        {{ Form::text('command',$Product['command'],array('class' => 'form-control','placeholder'=>"Ex : give %player% 137")) }}
+                        <br>
                         <br>
                         Activer le mode promotion sur ce produit :
                         <br>
@@ -52,7 +61,13 @@
                         <br>
                         <br>
                         Pourcentage de promotion :
-                        {{ Form::text('promo_reduc', $Product['promo_reduc'], array('class' => 'form-control','placeholder'=>"Sous-titre de la categorie")) }}
+                        {{ Form::text('promo_reduc', $Product['promo_reduc'], array('class' => 'form-control','placeholder'=>"50%")) }}
+                        <br>
+                        <br>
+                        Nom de la dépendance (si néssecaire) :
+                        <br>
+                        {{ Form::text('depend_name',"",array('class' => 'form-control','placeholder'=>"Ex : gold")) }}
+                        <br>
                         <br>
                         Activer le mode de dépendance sur ce produit :
                         <br>

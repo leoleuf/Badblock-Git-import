@@ -65,6 +65,9 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->promo_reduc = $request->input('promo_reduc');
         $Product->type = $request->input('type');
         $Product->depend_to = $request->input('depend_to');
+        $Product->depend_name = $request->input('depend_name');
+        $Product->queue = $request->input('queue');
+        $Product->command = $request->input('command');
         $Product->img = $request->input('img');
 
 
@@ -128,11 +131,13 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->name = $request->input('name');
         $Product->price = $request->input('price');
         $Product->description = $request->input('desc');
-        $Product->qty = $request->input('qty');
         $Product->cat = $request->input('category');
         $Product->promo_reduc = $request->input('promo_reduc');
         $Product->type = $request->input('type');
         $Product->depend_to = $request->input('depend_to');
+        $Product->depend_name = $request->input('depend_name');
+        $Product->queue = $request->input('queue');
+        $Product->command = $request->input('command');
         $Product->img = $request->input('img');
 
 

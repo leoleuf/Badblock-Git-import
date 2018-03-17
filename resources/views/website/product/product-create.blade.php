@@ -38,9 +38,6 @@
                         Type :
                         {{ Form::text('type', "",array('class' => 'form-control','placeholder'=>"Type du produit")) }}
                         <br>
-                        Quantité (Uniquement pour les items) :
-                        {{ Form::text('qty', "",array('class' => 'form-control','placeholder'=>"Quantité")) }}
-                        <br>
                         Sélectionner la catégorie :
                         <select name="category" class="form-control select2">
                             <option>Selectionner la catégorie</option>
@@ -48,6 +45,19 @@
                                 <option value="{{ $value->_id }}">{{ $value->name }}</option>
                             @endforeach
                         </select>
+                        <br>
+                        <br>
+                        <br>
+                        Nom de la Queue (si ShopLinker) :
+                        <br>
+                        {{ Form::text('queue',"",array('class' => 'form-control','placeholder'=>"Ex : hub,skyb")) }}
+
+                        <br>
+                        <br>
+                        Commande (use %player%) :
+                        <br>
+                        {{ Form::text('command',"",array('class' => 'form-control','placeholder'=>"Ex : give %player% 137")) }}
+                        <br>
                         <br>
                         Activer le mode promotion sur ce produit :
                         <br>
@@ -57,6 +67,12 @@
                         <br>
                         Pourcentage de promotion :
                         {{ Form::text('promo_reduc',"",array('class' => 'form-control','placeholder'=>"Pourcentage de promotion")) }}
+                        <br>
+
+                        <br>
+                        Nom de la dépendance (si néssecaire) :
+                        <br>
+                        {{ Form::text('depend_name',"",array('class' => 'form-control','placeholder'=>"Ex : gold")) }}
                         <br>
                         Activer le mode de dépendance sur ce produit :
                         <br>

@@ -17,7 +17,7 @@ class Funds extends Eloquent {
         'unique-id'=>'required',
         'gateway'=>'required',
         'points'=>'required',
-        'amount'=>'required',
+        'price'=>'required',
     );
 
 
