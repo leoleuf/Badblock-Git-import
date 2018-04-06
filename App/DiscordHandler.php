@@ -19,6 +19,18 @@ class DiscordHandler
         return $this->info($controller,$text);
     }
 
+    public function maintenance($controller,$text)
+    {
+        $data = array("username" => "Logger Site","embeds" => array(0 => array(
+            "url" => "https://http://badblock.fr",
+            "title" => "INFO : " . $controller,
+            "description" => $text,
+            "color" => 5788507
+        )));
+
+        $this->sendData($data);
+    }
+
 
 	public function info($controller,$text)
 	{
@@ -59,7 +71,7 @@ class DiscordHandler
 
 
     private function sendData($data){
-        $curl = curl_init("https://discordapp.com/api/webhooks/373808432324542464/g_ZJQXYA0yPj7LyHebSQZA14eAbLxB7w8idL50weFHX-rSGpdI-cu-fiu0gbHl9BIa8F");
+        $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

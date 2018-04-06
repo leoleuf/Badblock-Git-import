@@ -37,17 +37,17 @@ class Shoplinker
      **/
 
 
-    public function sendShopData($shopQueue, $dataType, $playerName, $displayName, $command, $price) {
+    public function sendShopData($data,$dataType,$player) {
         $shopObject = (object) [
-            'dataType' => "BUY",
-            'playerName' => "Fluor",
-            'displayName' => "Grade Gold",
-            'command' => "perms user ",
+            'dataType' => $dataType,
+            'playerName' => $player,
+            'displayName' => $data["name"],
+            'command' => $data["command"],
             'ingame' => false,
-            'price' => "200"
+            'price' => $data["price"]
         ];
 
-        $queue = "shopLinker.hub";
+        $queue = "shopLinker.".$data["queue"];
         $jsonObject = json_encode($shopObject);
 
         $message = (object)[
@@ -57,6 +57,24 @@ class Shoplinker
 
         $msg = new AMQPMessage(json_encode($message));
         $this->channel->basic_publish($msg,$queue);
+
+        //Broadcast on all serveur
+        $this->channel->queue_declare('guardian.broadcast', false, false, false, false);
+        //Vérification si le produti est en promo
+        if ($data['promo'] == true){
+            $msg = (object) [
+                'expire' => (time() + 604800) * 1000,
+                'message' => "&6[Boutique] &c$player&6 à acheté l'offre &b". $data["name"]."&6 en échange de &b". $data["price"]." points boutique &d&kii&r&4(". $data['promo_reduc'] ."%)&d&kii"
+            ];
+        }else{
+            $msg = (object) [
+                'expire' => (time() + 604800) * 1000,
+                'message' => "&6[Boutique] &c$player&a à acheté l'offre &b". $data["name"]."&6 en échange de &b". $data["price"]." points boutique &a!"
+            ];
+        }
+
+        $msg = new AMQPMessage(json_encode($msg));
+        $this->channel->basic_publish($msg, '', 'guardian.broadcast');
     }
 
 

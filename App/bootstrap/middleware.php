@@ -23,10 +23,9 @@ $whoopsGuard->install();
 /*
  *
 |--------------------------------------------------------------------------
-| Login Middleware
+| Error Middleware
 |--------------------------------------------------------------------------
 */
-//$app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
 
 
 /*

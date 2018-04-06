@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 
+use function DI\string;
 use function DusanKasan\Knapsack\identity;
 use HansOtt\PSR7Cookies\SetCookie;
 use Psr\Http\Message\RequestInterface;
@@ -36,16 +37,17 @@ class VoteController extends Controller
             //n'a jamais voté -> on créer le fichier de vote
             if ($cto == 0){
                 $insert = [
-                    "name" => $_POST['pseudo'],
+                    "name" => strtolower($_POST['pseudo']),
                     "ip" => $_SERVER['REMOTE_ADDR'],
                     "rpg" => ["number" => 0,"time" => 0],
-                    "msf" => ["number" => 0,"time" => 0]
+                    "msf" => ["number" => 0,"time" => 0],
+                    "bronze" => 0
                 ];
                 $collection->insertOne($insert);
             }
             if ($_POST['vote'] == "rpg"){
                 //vote tout les 3h
-                $mongo = $collection->findOne(['name' => $_POST['pseudo']]);
+                $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $date = new DateTime();
                 if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
                     return $response->write("http://www.rpg-paradize.com/?page=vote&vote=45397")->withStatus(200);
@@ -55,7 +57,7 @@ class VoteController extends Controller
                 }
             }elseif ($_POST['vote'] == "msf"){
                 //vote tout les 1.5h
-                $mongo = $collection->findOne(['name' => $_POST['pseudo']]);
+                $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $date = new DateTime();
                 if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()){
                     return $response->write("https://serveur-prive.net/minecraft/deira-network-173/vote")->withStatus(200);
@@ -73,12 +75,20 @@ class VoteController extends Controller
 
 
     public function end(RequestInterface $request, ResponseInterface $response,$type){
+        //New data for back usage
+        $date = new DateTime();
+
         $type = $type["type"];
         if ($type == "rpg"){
             if ($_POST['out'] != null || $_POST['out'] != ""){
                 $out = $this->rpgapi->getOut();
                 if ($_POST['out'] == $out){
-                    $this->container->mongo->test->vote;
+                    $collection = $this->container->mongo->test->vote;
+                    $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
+                    $number = $mongo['rpg']['number'] + 1;
+                    $bronze = $mongo['bronze'] + 2;
+                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"rpg.time" => $date->getTimestamp(),"rpg.number" => $number]]);
+
                     if ($this->container->session->exist('user')){
                         return $response->write("2")->withStatus(200);
                     }else{
@@ -95,15 +105,128 @@ class VoteController extends Controller
             $API_call = @file_get_contents($API_url);
 
             if ($API_call == 1 || true){
+                $collection = $this->container->mongo->test->vote;
+                $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
+                $number = $mongo['msf']['number'] + 1;
+                $bronze = $mongo['bronze'] + 1;
+                $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"msf.time" => $date->getTimestamp(),"msf.number" => $number]]);
+
                 if ($this->container->session->exist('user')){
-                    return $response->write("2")->withStatus(200);
+                    return $response->write("1")->withStatus(200);
                 }else{
-                    return $response->write("2")->withStatus(403);
+                    return $response->write("1")->withStatus(403);
                 }
             }else{
                 return $response->write("Vote invalid")->withStatus(405);
             }
         }
+    }
+
+
+    public function loterie(RequestInterface $request, ResponseInterface $response, $type){
+        if ($this->container->session->exist('user')){
+            $player = strtolower($this->session->getProfile('username')['username']);
+            //Lotterie 1 : 1 bronze
+            //Lotterie 2 : 5 bronze
+            //Lotterie 3 : 20 bronze
+            if ($type['type'] == "1"){
+                $collection = $this->container->mongo->vote;
+                $mongo = $collection->findOne(['name' => $player]);
+                if ($mongo['bronze'] > 0){
+                    $this->recomp($player,1);
+                }else{
+                    return $response->write("1")->withStatus(404);
+                }
+            }elseif ($type['type'] == "2"){
+                $collection = $this->container->mongo->test->vote;
+                $mongo = $collection->findOne(['name' => $player]);
+                if ($mongo['bronze'] >= 5){
+                    $this->recomp($player,2);
+                }else{
+                    return $response->write(5 - $mongo['bronze'])->withStatus(404);
+                }
+            }elseif ($type['type'] == "3"){
+                $collection = $this->container->mongo->test->vote;
+                $mongo = $collection->findOne(['name' => $player]);
+                if ($mongo['bronze'] >= 20){
+                    $this->recomp($player,3);
+                }else{
+                    return $response->write(20 - $mongo['bronze'])->withStatus(404);
+                }
+            }
+        }else{
+            return $response->write("Not connected")->withStatus(403);
+        }
+    }
+
+    public function recomp($player,$level){
+        $level = 1;
+        if ($level == 1){
+            $nb1 = rand(0, 5);
+            $nb2 = rand(0, 10);
+            $nb3 = rand(0, 50);
+            $nb = ($nb1 + $nb2 + $nb3) / 3;
+        }elseif ($level == 2){
+            $nb1 = rand(10, 33);
+            $nb2 = rand(15, 40);
+            $nb3 = rand(20, 100);
+            $nb = ($nb1 + $nb2 + $nb3) / 3;
+        }elseif ($level == 3){
+            $nb1 = rand(30, 100);
+            $nb2 = rand(45, 100);
+            $nb3 = rand(50, 100);
+            $nb = ($nb1 + $nb2 + $nb3) / 3;
+        }
+
+        $nb = round($nb, 0);
+
+        while ($search = false){
+            $collection = $this->container->mongo->items;
+            $data = $collection->count(['vote_percent' => $nb]);
+            if ($data > 0){
+                $search = true;
+            }else{
+                $search = false;
+                $nb = $nb - 1;
+            }
+        }
+        echo "end";
+    }
+
+
+    public function top($player, $vote){
+        $vote = 1;
+        $player = "Fluor";
+        $mongo = $this->container->mongo->stats_vote;
+
+        $date =  date("Y-m-d");
+        $count = $mongo->count(["date" => $date]);
+
+        if ($count == 0){
+            $data = [
+                "date" => $date,
+                "give" => false,
+                "players" => []
+            ];
+
+            $mongo->insertOne($data);
+        }
+
+        $data = $mongo->findOne(["date" => $date]);
+
+        foreach($data['players'] as $row) {
+            if ($row->name == $player) {
+                $datarcp = $row;
+                break;
+            }
+        }
+
+        if(!isset($datarcp)){
+            $data = $mongo->updateOne(["_id" => $data['_id']], ['$push' => ["players" => ['name' => $player,'vote' => $vote]]]);
+        }else{
+            $data = $mongo->updateOne(["_id" => $data['_id'], "players.name" => $player], ['$set' => ["players.$.vote" => $datarcp->vote + $vote]]);
+        }
+
     }
 
 }

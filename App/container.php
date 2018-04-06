@@ -37,12 +37,6 @@ $container['redis'] = function ($container) {
 
 $container['log'] = function ($container) {
 	return new App\DiscordHandler($container);
-
-	$log = new Monolog\Logger('badblock-website');
-
-
-	$log->pushHandler(new Monolog\Handler\StreamHandler($container->config['log']['path'], $container->config['log']['level']));
-
 };
 
 $container['flash'] = function () {
@@ -177,16 +171,20 @@ $container['mysql_guardian'] = function ($container) {
 };
 
 $container['mongoServer'] = function ($container) {
-	return new \MongoDB\Client(
+	$client = new \MongoDB\Client(
 		'mongodb://' . $container->config['mongo_dist']['user'] . ":" . $container->config['mongo_dist']['password'] . "@" . $container->config['mongo_dist']['host'] . ":" . $container->config['mongo_dist']['port'] . "/" . $container->config['mongo_dist']['database']
 	);
+
+    return $client->selectDatabase($container->config['mongo_dist']['database']);
 };
 
 
 $container['mongo'] = function ($container) {
-	return new \MongoDB\Client(
+	$client = new \MongoDB\Client(
 		'mongodb://' . $container->config['mongo_local']['user'] . ":" . $container->config['mongo_local']['password'] . "@" . $container->config['mongo_local']['host'] . ":" . $container->config['mongo_local']['port'] . "/" . $container->config['mongo_local']['database']
 	);
+
+	return $client->selectDatabase($container->config['mongo_local']['database']);
 };
 
 $container['xenforo'] = function ($container) {

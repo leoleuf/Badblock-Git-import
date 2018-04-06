@@ -76,7 +76,7 @@ class UserController extends Controller
                     if (strlen($_POST['newpassword']) >= 4){
                         $data = $this->ladder->encryptPassword($_POST['newpassword']);
 
-                        $collection = $this->mongo->admin->players;
+                        $collection = $this->container->mongo->admin->players;
 
                         $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["loginPassword" => $data]]);
 

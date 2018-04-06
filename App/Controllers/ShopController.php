@@ -144,7 +144,7 @@ class ShopController extends Controller
 				if (isset($args['id']) & !empty($args['id']) & $this->redis->exists('shop.prod.' . $args['id'])) {
 					//Vérification si le produit éxiste
 					$collection = $this->container->mongoServer->test->players;
-					$data = $collection->findOne(['name' => $this->session->getProfile('username')['username']]);
+					$data = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 					$collec = $this->container->mongo->test->products;
 					$dataprod = $collec->findOne(["_id" => new MongoDB\BSON\ObjectId($args['id'])]);
 
@@ -160,19 +160,24 @@ class ShopController extends Controller
 						//On continue car il a les sous
 						$operation = $this->container->mongo->test->operation;
 						//Prépartion de l'insertion de l'achat
+                        if ($dataprod["promo"] == false){
+                            $dataprod["promo_reduc"] = 0;
+                        }
 						$insert = [
 							"unique-id" => $data['uniqueId'],
 							"name" => $this->session->getProfile('username')['username'],
 							"price" => intval($dataprod["price"]),
 							"promo" => $dataprod["promo"],
+							"promo_reduc" => $dataprod["promo_reduc"],
 							"date" => date("Y-m-d H:i:s"),
 							"product_name" => $dataprod["name"],
-							"product_id" => $args['id']
+							"product_id" => $args['id'],
+                            "in-game" => false
 						];
 						$operation->insertOne($insert);
 
-						//$shopQueue, $dataType, $playerName, $displayName, $command, $price
-						$this->container->ShopLinker->sendShopData($dataprod["queue"],"BUY",$this->session->getProfile('username')['username'],$dataprod["name"],$dataprod["command"],$dataprod["price"]);
+						//$data , $datatype , $username
+						$this->container->ShopLinker->sendShopData($dataprod,"BUY",$this->session->getProfile('username')['username']);
 
 					} else {
 						//C'est un clodo donc erreur

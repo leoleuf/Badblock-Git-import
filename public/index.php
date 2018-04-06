@@ -58,6 +58,16 @@ $app = new \Slim\App([
 | In this file we have all container dependency who is registered
 |
 */
+if ($config['app_debug'] == 0){
+    //Error middleware
+    $c = new \Slim\Container();
+    $c['errorHandler'] = function ($c) {
+        return new \App\Middlewares\ErrorMiddleware($c);
+    };
+
+    $app = new \Slim\App($c);
+}
+
 require '../App/container.php';
 
 /*
@@ -81,4 +91,7 @@ include("../App/bootstrap/middleware.php");
 include("../App/routes/web.php");
 include("../App/routes/api.php");
 
+
 $app->run();
+
+

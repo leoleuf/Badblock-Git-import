@@ -2,6 +2,7 @@
 
 namespace App\Commands;
 
+use Slim\App;
 use \Symfony\Component\Console\Command\Command;
 use \Symfony\Component\Console\Input\InputInterface;
 use \Symfony\Component\Console\Output\OutputInterface;
@@ -29,6 +30,14 @@ class MaintenanceCommand extends Command
 				if (file_exists('maintenance.php')){
 					rename('index.php', '_index.php');
 					rename('maintenance.php', 'index.php');
+
+                    $data = array("username" => "Logger Site","content" => "Passage en maintenance ! <@&428516439641817089> ");
+
+                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
+                    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_exec($curl);
 
 					$io->success('Maintenance mode is now enabled!');
 				}else{
