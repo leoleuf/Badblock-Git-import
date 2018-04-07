@@ -57,9 +57,10 @@ class PagesController extends Controller
 		$staff = $this->redis->getJson('staff.list');
 		$nb = $this->redis->getJson('staff.number');
 
-		foreach ($staff as $row){
-            $row = $this->shuffle_assoc($row['data']);
+		foreach ($staff as $key => $row){
+		    shuffle($staff[$key]['data']);
         }
+
 
 
 		$this->render($response, 'pages.staff', [

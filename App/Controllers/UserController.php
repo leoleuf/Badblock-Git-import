@@ -15,7 +15,7 @@ class UserController extends Controller
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
         //sans cache
-        $collection = $this->mongo->test->players;
+        $collection = $this->container->mongoServer->players;
 
         $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
 

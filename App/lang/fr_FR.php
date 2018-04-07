@@ -45,5 +45,5 @@ return [
 	'user.dashboard_subtitle' => 'Bonjour, ',
 	'user.logout' => 'Déconnexion',
 	'admin.title' => 'Administration',
-	'forum.title' => 'Forum'
+	'forum.title' => 'Forum',
 ];

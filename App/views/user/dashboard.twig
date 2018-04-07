@@ -69,13 +69,13 @@
                     <a class="no-link" onclick="opentab(event, '2')">Mon casier</a>
                 </li>
                 <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '3')">Mes Achat</a>
+                    <a class="no-link" onclick="opentab(event, '3')">Mes Factures</a>
                 </li>
                 <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '4')">Mes Factures</a>
+                    <a class="no-link" onclick="opentab(event, '4')">Paramètres</a>
                 </li>
                 <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '5')">Paramètres</a>
+                    <a class="no-link" onclick="opentab(event, '5')">Grade Custom</a>
                 </li>
         </ul>
     </div>
@@ -85,24 +85,19 @@
             <h4 class="heading heading-bar"><span>Informations générales </span></h4>
             <div class="row">
                 <div class="six columns">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td><font color="black">Status : </font></td>
-                                <td><font color="black"> </font></td>
-                            </tr>
-                            <tr>
-                                <td><font color="black">Pseudonyme</font></td>
-                                <td><font color="black">Date</font></td>
-                                <td><font color="black">Type</font></td>
-                                <td><font color="black">Auteur</font></td>
-                                <td><font color="black">Raison</font></td>
-                                <td><font color="black">Preuve</font></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="container">
+                        <ul>
+                            <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
+                            <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
+                            <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
+                            <li><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Point(s) Boutique</span></li>
+                            <li><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Vote(s)</span></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="six columns">2</div>
+                <div class="six columns">
+                    <img src="https://visage.surgeplay.com/head/512/Fluor">
+                </div>
             </div>
         </section>
     </div>
