@@ -419,6 +419,52 @@ table.votes tr.vote1 {font-size: 32px; color: #EED740;}
 table.votes tr.vote2 {font-size: 28px; color: #A6A6A6;}
 table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
 
+.nav-profil {
+  background-color: #34495e;
+}
+
+.nav-profil a {
+  padding: 17px 24px;
+  text-decoration: none;
+  float: left;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.nav-profil a:hover {
+  color: #3498db;
+}
+
+.nav-profil .right {
+  float: right !important;
+}
+
+.nav-profil a img {
+  margin-bottom: 0px;
+}
+.table {
+  width: 100%;
+}
+
+.table .btn-primary {
+  text-decoration: none;
+  background-color: #3498db;
+  padding: 7px;
+  color: #fff;
+  transition: all 0.2s;
+}
+
+.table .btn-primary:hover {
+  border-radius: 15px;
+}
+
+.table .btn-disabled {
+  background-color: #e74c3c;
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.7;
+}
+
 .accordion {
     background-color: #eee;
     color: #444;
