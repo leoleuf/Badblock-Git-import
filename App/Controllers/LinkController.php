@@ -28,8 +28,8 @@ class LinkController extends Controller
         $username = $this->session->getProfile('username')['username'];
 
         if ($_POST['step'] == 1){
-            $collection = $this->container->mongoServer->test->players;
-            $user = $collection->findOne(['name' => $username]);
+            $collection = $this->container->mongoServer->players;
+            $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null){
                 //On vérifie si son compte est pas déjà link
@@ -115,7 +115,7 @@ class LinkController extends Controller
                 return $response->write("Invalide Inputss")->withStatus(500);
             }
 
-            $collection = $this->mongo->badblock->dat_users;
+            $collection = $this->mongo->dat_users;
             $user = $collection->findOne(['realName' => $_POST['link']]);
 
             //On vérifie si le joueur existe sur le serveur
