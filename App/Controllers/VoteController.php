@@ -32,7 +32,7 @@ class VoteController extends Controller
         $data = $this->container->mysql_forum->fetchRow($query);
         //On vérifie si il est inscrit sur le forum
         if (count($data) > 0){
-            $collection = $this->container->mongo->test->vote;
+            $collection = $this->container->mongo->vote;
             $cto = $collection->count(['name' => $_POST['pseudo']]);
             //n'a jamais voté -> on créer le fichier de vote
             if ($cto == 0){
@@ -83,7 +83,7 @@ class VoteController extends Controller
             if ($_POST['out'] != null || $_POST['out'] != ""){
                 $out = $this->rpgapi->getOut();
                 if ($_POST['out'] == $out){
-                    $collection = $this->container->mongo->test->vote;
+                    $collection = $this->container->mongo->vote;
                     $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                     $number = $mongo['rpg']['number'] + 1;
                     $bronze = $mongo['bronze'] + 2;
@@ -105,7 +105,7 @@ class VoteController extends Controller
             $API_call = @file_get_contents($API_url);
 
             if ($API_call == 1 || true){
-                $collection = $this->container->mongo->test->vote;
+                $collection = $this->container->mongo->vote;
                 $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $number = $mongo['msf']['number'] + 1;
                 $bronze = $mongo['bronze'] + 1;
@@ -138,7 +138,7 @@ class VoteController extends Controller
                     return $response->write("1")->withStatus(404);
                 }
             }elseif ($type['type'] == "2"){
-                $collection = $this->container->mongo->test->vote;
+                $collection = $this->container->mongo->vote;
                 $mongo = $collection->findOne(['name' => $player]);
                 if ($mongo['bronze'] >= 5){
                     $this->recomp($player,2);
@@ -146,7 +146,7 @@ class VoteController extends Controller
                     return $response->write(5 - $mongo['bronze'])->withStatus(404);
                 }
             }elseif ($type['type'] == "3"){
-                $collection = $this->container->mongo->test->vote;
+                $collection = $this->container->mongo->vote;
                 $mongo = $collection->findOne(['name' => $player]);
                 if ($mongo['bronze'] >= 20){
                     $this->recomp($player,3);
