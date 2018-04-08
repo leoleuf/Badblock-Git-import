@@ -1,0 +1,47 @@
+{% extends 'default.twig' %}
+{% set title = 'user.dashboard_title'|trans %}
+{% set sub_title = 'user.dashboard_subtitle'|trans~user.username %}
+{% set show_title = false %}
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="one-half column animated bounceInLeft">
+                    <div class="profile-title">
+                        <div class="profile-mc-head"><img src="https://api.badblock.fr/public/badblock-heads/?name={{ user.name }}" title="Tête du skin"></div>
+                        <div>
+                            <h2 class="cover-heading">Bonjour, {{ user.name }}.</h2>
+                            <span class="badge badge-{{ user.permissions.group }}">{{ ucfirst(user.permissions.group) }}</span>
+                            {% for key, permission in user.permissions.alternateGroups %}
+                                <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="container">
+                    <ul>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
+                        <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
+                        <li><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Point(s) Boutique</span></li>
+                        <li><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Vote(s)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+<section class="shop-section-1" class="tabcontent">
+    <h4 class="heading heading-bar">
+        <span><a class="button button-primary" href="/dashboard"><i class="icon icon-backward"></i> Retour</a></td>
+Facture du {{ facture['date'] }}</span>
+    </h4>
+</section>
+
+{% endblock %}
+

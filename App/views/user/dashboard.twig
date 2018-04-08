@@ -96,28 +96,85 @@
                     </div>
                 </div>
                 <div class="six columns">
-                    <img src="https://visage.surgeplay.com/head/512/Fluor">
+                    <img src="https://visage.surgeplay.com/head/512/{{ user.name }}">
                 </div>
             </div>
         </section>
     </div>
     <div id="2" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>ui</span></h4>
-            ss
+            <h4 class="heading heading-bar"><span>Mes 10 dernières sanction(s)</span></h4>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><font color="black">Pseudonyme</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Type</font></td>
+                        <td><font color="black">Auteur</font></td>
+                        <td><font color="black">Durée</font></td>
+                        <td><font color="black">Raison</font></td>
+                    </tr>
+                    <tr>
+                        <td>Fluor</td>
+                        <td>25/12/2017 14:57:12</td>
+                        <td><span class="label label-danger">BannissementTEMP</span></td>
+                        <td><a href="/profile/xMalware">xMalware</a></td>
+                        <td>364j23h59m59s</td>
+                        <td>.</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </div>
     <div id="3" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
+            <h4 class="heading heading-bar"><span>Mes Factures</span></h4>
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td><font color="black">Pseudo</font></td>
+                    <td><font color="black">Date</font></td>
+                    <td><font color="black">Montant</font></td>
+                    <td><font color="black">Points Boutique</font></td>
+                    <td><font color="black"></font></td>
+                </tr>
+                {% for key in factures %}
+                    <tr>
+                        <td>{{ key["name"] }}</td>
+                        <td>{{ key["date"] }}</td>
+                        <td>{{ key["price"] }}</td>
+                        <td>{{ key["points"] }}</td>
+                        <td><a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}"><i class="icon icon-paperclip"></i> Consulter</a></td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="4" class="tabcontent" style="display: none;">
+        <section class="shop-section-1" class="tabcontent">
             <h4 class="heading heading-bar"><span>Mes paramètres </span></h4>
+            <div class="six columns">
                 <div class="span">
                     <h4 class="top0">Changer mon mot de passe serveur</h4>
                     <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" /> <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
+                        <input type="submit" class="button-primary"></input>
+                        </input>
+                    </form>
+                </div>
+                <div class="span">
+                    <h4 class="top0">Relier son Compte TeamSpeak <a href="/"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
+                    <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
+                        <label for="newpassword">Entrez votre ID TeamSpeak</label>
+                        <input type="password" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
                         <input type="submit" class="button-primary">
                         </input>
                     </form>
                 </div>
+            </div>
+            <div class="six columns">
                 <div class="span">
                     <h4 class="top0">Changer mon mode de connection</h4>
                     <form action="/dashboard/changeserverconnect/" method="post" name="confirm-mdp">
@@ -132,15 +189,8 @@
                         </input>
                     </form>
                 </div>
-            <div class="span">
-                <h4 class="top0">Relier son Compte TeamSpeak <a href="/"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
-                <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
-                    <label for="newpassword">Entrez votre ID TeamSpeak</label>
-                    <input type="password" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
-                    <input type="submit" class="button-primary">
-                    </input>
-                </form>
             </div>
+
         </section>
     </div>
 

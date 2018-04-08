@@ -3,6 +3,8 @@ namespace App\Controllers;
 
 use function DusanKasan\Knapsack\identity;
 use function DusanKasan\Knapsack\isEmpty;
+use MongoDB\Exception\Exception;
+use Monolog\Handler\Mongo;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -14,20 +16,60 @@ class UserController extends Controller
 
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
-        //sans cache
+        //Récupération des données du serveur
         $collection = $this->container->mongoServer->players;
-
         $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
 
-        //On affiche 0 pts boutiques si le joueur a pas sous (clochard)
+
+        //Recherche des factures du joueurs
+        $collection_facture = $this->container->mongo->funds;
+        $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
+
+
+        //On affiche 0 pts boutiques si le joueur a pas sous
         if (empty($user["shoppoints"])){
             $user["shoppoints"] = 0;
         }
 
 
-        //return view
-        return $this->render($response, 'user.dashboard', ['user' => $user]);
+        //Return view
+        return $this->render($response, 'user.dashboard', ['user' => $user,'factures' => $factures]);
+
 	}
+
+
+	public function facture(RequestInterface $request, ResponseInterface $response, $args){
+        //Check du get sale
+        if (strlen($args["uid"]) != 24){
+            $this->getDashboard($request,$response);
+        }
+
+        //Recherche de la facture
+        $collection_facture = $this->container->mongo->funds;
+        $factures = $collection_facture->findOne(['_id' => new \MongoDB\BSON\ObjectId($args["uid"])]);
+
+        //Check si elle existe
+        if ($factures == null){
+            $this->getDashboard($request,$response);
+        }
+
+        //Récupération des données du serveur
+        $collection = $this->container->mongoServer->players;
+        $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
+
+        if ($factures['unique-id'] == $user['uniqueId'] || $this->container->session->getProfile('username')['is_admin'] == true){
+            //On affiche 0 pts boutiques si le joueur a pas sous
+            if (empty($user["shoppoints"])){
+                $user["shoppoints"] = 0;
+            }
+            //Return view
+            return $this->render($response, 'user.facture-view', ["user" => $user, "facture" => $factures]);
+        }else{
+            $this->getDashboard($request,$response);
+        }
+
+
+    }
 
 	public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
 	{
@@ -43,7 +85,7 @@ class UserController extends Controller
         }else{
             //Nouveau cache
             //sans cache
-            $collection = $this->mongo->admin->players;
+            $collection = $this->container->mongoServer->players;
 
             $user = $collection->findOne(['name' => $args['pseudo']]);
 
@@ -76,7 +118,7 @@ class UserController extends Controller
                     if (strlen($_POST['newpassword']) >= 4){
                         $data = $this->ladder->encryptPassword($_POST['newpassword']);
 
-                        $collection = $this->container->mongo->admin->players;
+                        $collection = $this->container->mongoServer->players;
 
                         $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["loginPassword" => $data]]);
 
@@ -112,7 +154,7 @@ class UserController extends Controller
 	    if (isset($_POST['selectmode'])){
             if ($_POST['selectmode'] === "crack"){
                 //Connection a mongo pour update le mode de connection
-                $collection = $this->mongo->admin->players;
+                $collection = $this->container->mongoServer->players;
                 $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["onlineMode" => false]]);
 
                 $this->flash->addMessage('setting_error', "Changement de mode de connection vers crack !");
@@ -121,7 +163,7 @@ class UserController extends Controller
 
             }elseif($_POST['selectmode'] === "premium"){
                 //Connection a mongo pour update le mode de connection
-                $collection = $this->mongo->admin->players;
+                $collection = $this->container->mongoServer->players;
                 $end = $collection->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["onlineMode" => true]]);
 
 
