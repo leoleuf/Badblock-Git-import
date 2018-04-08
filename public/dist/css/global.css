@@ -477,6 +477,19 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     transition: 0.4s;
 }
 
+.img-anim {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.img-anim:hover {
+  transform: scale(1.05);
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active {
+  border: 0 !important;
+}
+
 @keyframes promotion {
   0% {
     transform: translateY(0px);

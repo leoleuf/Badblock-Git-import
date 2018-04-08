@@ -105,6 +105,20 @@
         <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
 </div>
+<!-------page-navbar-user------->
+{% if user is defined %}
+<div class="nav-profil">
+    <div class="container">
+        <a href="#"><img src="https://api.badblock.fr/public/badblock-heads/?name={{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
+        <a href="#"><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Points Boutique</span></a>
+        <a href="#"><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Votes</span></a>
+
+        <a href="{{ path_for('logout') }}" class="right"> {{ 'user.logout'|trans }}</a>
+        <a href="{{ path_for('dashboard') }}" class="right">Paramètres</a>
+    </div>
+</div>
+{% endif %}
+<!-------page-navbar-user fin------->
 <!------Menu fin ------->
 
 <!-------page-title------->

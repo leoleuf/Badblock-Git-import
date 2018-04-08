@@ -51,6 +51,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="shop-menu">
+        <ul class="shop-menu-menu">
+            {% for key in serverlist %}
+                <li class="shop-menu-active">
+                    <a class="no-link" onclick="opentab(event, '{{ key[1] }}')"><i class="{{ key[3] }}" id="sky"></i>    {{ key[1] }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
     {% if flash('shop_error') %}
         {% for flash in flash('shop_error') %}
             <div class="alert alert-error">
@@ -84,15 +93,7 @@
 {% endif %}
 
     <!-- Menu shop -->
-    <div class="shop-menu">
-        <ul class="shop-menu-menu">
-            {% for key in serverlist %}
-                <li class="shop-menu-active">
-                    <a class="no-link" onclick="opentab(event, '{{ key[1] }}')"><i class="{{ key[3] }}" id="sky"></i>    {{ key[1] }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    
 
     {% for key in serverlist %}
         <div id="{{ key[1] }}" class="tabcontent" style="display: none;">
