@@ -106,7 +106,7 @@
     </div>
 </div>
 <!-------page-navbar-user------->
-{% if user is defined %}
+{#{% if user is defined %}
 <div class="nav-profil">
     <div class="container">
         <a href="#"><img src="https://api.badblock.fr/public/badblock-heads/?name={{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
@@ -117,7 +117,7 @@
         <a href="{{ path_for('dashboard') }}" class="right">Paramètres</a>
     </div>
 </div>
-{% endif %}
+{% endif %}#}
 <!-------page-navbar-user fin------->
 <!------Menu fin ------->
 
