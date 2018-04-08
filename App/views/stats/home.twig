@@ -29,7 +29,7 @@
                                 <form action="/action_page.php">
                                     <label>Rechercher un Joueur</label>
                                     <input class="u-middle-width" id="player_search" type="text" placeholder="Recherchez un joueur" name="search" onFocus='showDiv();' onBlur='hideDiv();'>
-                                    <button class="button-search" type="submit"><!--Recherche--><i class="fa fa-search"></i></button>
+                                    <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search" style="margin-left: 9px;"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -38,13 +38,12 @@
                         <a class="button button-primary" href="/play"><i class="icon-play icon"></i> Jouer</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 {% endblock %}
 {% block content %}
-    <div class="container content">
+    <div class="content">
         <div class="twelve columns">
             <div class="stats-home">
                 <h4 class="heading heading-bar"><span>Statistiques Générales</span></h4>
@@ -75,17 +74,38 @@
             </div>
         </div>
     </div>
-    <div class="container content">
+    <div class="content">
+        <div class="twelve columns">
+            <!--<h4 class="heading heading-bar"><span>Statistiques Guardian</span></h4>-->
+            <div class="stats-home">
+                <div class="six columns">
+                    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                </div>
+            </div>
+            <div class="stats-home">
+                <div class="six columns">
+                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="twelve columns">
+        <br />
+            <p class="ita">Le Guardian est un anti cheat développé par xMalware. C'est un robot, détectant donc une grande panoplie de cheats mais il filtre aussi les messages selon une liste de termes interdits. Ceux-ci sont envoyés à tous les modérateurs et le relai est donc passé à la modération. Étant donné que c'est un robot, il se peut qu'il se trompe. Mais il a su acquérir avec son expérience une grande rigueur dans l'art de détecter les petits malins outrepassant le règlement.</p>
+        </div>
+    </div>
+    <!--<div class="content">
         <div class="info-stats">
             <h4 class="heading heading-bar"><span>Informations sur les Statistiques</span></h4>
-
             <h5>Les statistiques d'un serveur en disent long sur celui-ci. C'est pourquoi nous avons choisi de les rendre publiques. Pas toutes évidemment mais vous pouvez consulter les statistiques générales sur cette page, ou alors celles des joueurs de Badblock via l'onglet prévu à cet effet.
                 Les classements des jeux sont également disponibles et vous permettent de savoir votre position ce mois-ci, et depuis la mise en place de ceux-ci.
                 Les statistiques sont mises à jour tous les <b>30 minutes automatiquement</b> .
-                Bon jeu sur nos plateformes.</h5>
+                Bon jeu sur nos plateformes.*
+            </h5>
         </div>
     </div>
-    <div class="container content">
+    <div class="content">
         <div class="twelve columns">
             <div class="stats-home">
                 <h4 class="heading heading-bar"><span>Statistiques Serveur</span></h4>
@@ -115,23 +135,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container content">
+    </div>-->
+    <!--<div class="content">
         <div class="info-stats">
             <h4 class="heading heading-bar"><span>Informations sur le Guardian</span></h4>
 
             <h5>Le guardian est un anti cheat développé par xMalware. C'est un robot, détectant donc une grande panoplie de cheats mais il filtre aussi les messages selon une liste de termes interdits. Ceux-ci sont envoyés à tous les modérateurs et le relai est donc passé à la modération. Étant donné que c'est un robot, il se peut qu'il se trompe. Mais il a su acquérir avec son expérience une grande rigueur dans l'art de détecter les petits malins outrepassant le règlement.</h5>
         </div>
-    </div>
-    <div class="container content">
-        <div class="twelve columns">
-            <div class="stats-home">
-                <h4 class="heading heading-bar"><span>Statistiques Guardian</span></h4>
-                <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-            </div>
-        </div>
-    </div>
+    </div>-->
 
 
 
