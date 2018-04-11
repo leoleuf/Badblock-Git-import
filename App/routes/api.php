@@ -12,7 +12,8 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
 		$this->get('/shop-list', \App\Controllers\Api\ShopApiController::class . ':getCreateCacheShopList');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');
-	});
+        $this->get('/vote', \App\Controllers\Api\VoteApiController::class . ':cacheTop');
+    });
 	$this->get('/post/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getPostComments');
 	$this->group('/minecraft', function() {
 		$this->get('/playertss', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
@@ -30,7 +31,6 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
     $this->group('/stats', function() {
         $this->get('/json', \App\Controllers\Api\StatsApiController::class . ':jsonResp');
         $this->post('/search', \App\Controllers\StatsController::class . ':search');
-
     });
 
 

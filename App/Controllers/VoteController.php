@@ -20,8 +20,11 @@ class VoteController extends Controller
 {
 
     public function getHome(RequestInterface $request, ResponseInterface $response){
+        //Read Top from Redis
+        $top = $this->redis->getJson('vote.top');
 
-        return $this->render($response, 'vote.index');
+
+        return $this->render($response, 'vote.index', ['top' => $top]);
 
     }
 
@@ -136,6 +139,8 @@ class VoteController extends Controller
                     $bronze = $mongo['bronze'] + 2;
                     $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"rpg.time" => $date->getTimestamp(),"rpg.number" => $number]]);
 
+                    $this->top($_POST['pseudo'], 1);
+
                     if ($this->container->session->exist('user')){
                         return $response->write("2")->withStatus(200);
                     }else{
@@ -157,6 +162,8 @@ class VoteController extends Controller
                 $number = $mongo['msf']['number'] + 1;
                 $bronze = $mongo['bronze'] + 1;
                 $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"msf.time" => $date->getTimestamp(),"msf.number" => $number]]);
+
+                $this->top($_POST['pseudo'], 1);
 
                 if ($this->container->session->exist('user')){
                     return $response->write("1")->withStatus(200);
@@ -246,7 +253,7 @@ class VoteController extends Controller
         $player = "Fluor";
         $mongo = $this->container->mongo->stats_vote;
 
-        $date =  date("Y-m-d");
+        $date =  date("Y-m");
         $count = $mongo->count(["date" => $date]);
 
         if ($count == 0){
@@ -273,6 +280,14 @@ class VoteController extends Controller
         }else{
             $data = $mongo->updateOne(["_id" => $data['_id'], "players.name" => $player], ['$set' => ["players.$.vote" => $datarcp->vote + $vote]]);
         }
+
+        //Read top from mongoDB
+        $mongo = $this->container->mongo->stats_vote;
+        $date =  date("Y-m");
+        $data = $mongo->findOne(["date" => $date]);
+
+        //Write in redis
+        $this->redis->setJson('vote.top', $data['players']);
 
     }
 
