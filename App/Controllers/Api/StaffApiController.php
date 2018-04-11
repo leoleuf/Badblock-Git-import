@@ -12,7 +12,7 @@ class StaffApiController extends \App\Controllers\Controller
     public function getCreateCacheAllStaff(RequestInterface $request, ResponseInterface $response)
     {
 
-        $data = $this->mysql_forum->fetchRowMany('SELECT username,custom_title,user_group_id FROM xf_user WHERE is_staff = 1 ORDER by user_group_id');
+        $data = $this->container->mysql_forum->fetchRowMany('SELECT username,custom_title,user_group_id FROM xf_user WHERE is_staff = 1 ORDER by user_group_id');
 
         $role = [];
 
@@ -20,7 +20,7 @@ class StaffApiController extends \App\Controllers\Controller
             if (isset($role[$document["user_group_id"]])){
                 array_push($role[$document["user_group_id"]]["data"], array($document["username"],$document["custom_title"]));
             }else{
-                $dat = $this->mysql_forum->fetchRow('SELECT user_group_id,banner_text,display_style_priority FROM xf_user_group WHERE user_group_id = ' . $document["user_group_id"] .' ORDER by user_group_id');
+                $dat = $this->container->mysql_forum->fetchRow('SELECT user_group_id,banner_text,display_style_priority FROM xf_user_group WHERE user_group_id = ' . $document["user_group_id"] .' ORDER by user_group_id');
                 $role[$dat['user_group_id']] = ['name' => $dat['banner_text'],'display_style_priority' => $dat['display_style_priority'],'data' => []];
                 array_push($role[$document["user_group_id"]]["data"], array($document["username"],$document["custom_title"]));
 

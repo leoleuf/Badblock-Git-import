@@ -20,9 +20,9 @@ class ShopApiController extends \App\Controllers\Controller
 
         //Check MongoDB
         //Server List
-        $collection = $this->container->mongo->test->server;
-        $collection1 = $this->container->mongo->test->category;
-        $collection2 = $this->container->mongo->test->products;
+        $collection = $this->container->mongo->server;
+        $collection1 = $this->container->mongo->category;
+        $collection2 = $this->container->mongo->products;
 
 
         $cursor = $collection->find(['visibility' => true]);
@@ -64,7 +64,7 @@ class ShopApiController extends \App\Controllers\Controller
         $this->redis->setJson('shop.listsrv', $listserver);
 
         //Mise en cache produit seul
-        $collection = $this->container->mongo->test->products;
+        $collection = $this->container->mongo->products;
         $curs = $collection->find(['visibility' => true]);
         foreach ($curs as $cur) {
             $this->redis->setJson('shop.prod.'.$cur["_id"], $cur);

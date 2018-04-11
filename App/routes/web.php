@@ -32,6 +32,7 @@ $app->group('/shop', function (){
 
 $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
+    $this->post('/start', \App\Controllers\VoteController::class . ':start')->setName('vote.step');
     $this->post('/check/', \App\Controllers\VoteController::class . ':check')->setName('vote.step');
     $this->post('/end/{type}', \App\Controllers\VoteController::class . ':end')->setName('vote.step');
     $this->post('/loterie/{type}', \App\Controllers\VoteController::class . ':loterie')->setName('vote.loterie');

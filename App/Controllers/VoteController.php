@@ -25,7 +25,55 @@ class VoteController extends Controller
 
     }
 
+    public function start(RequestInterface $request, ResponseInterface $response){
+        $query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
+        $data = $this->container->mysql_forum->fetchRow($query);
+        //On vérifie si il est inscrit sur le forum
+        if (count($data) > 0){
+            $collection = $this->container->mongo->vote;
+            $cto = $collection->count(['name' => $_POST['pseudo']]);
+            //n'a jamais voté -> on créer le fichier de vote
+            if ($cto == 0){
+                $insert = [
+                    "name" => strtolower($_POST['pseudo']),
+                    "ip" => $_SERVER['REMOTE_ADDR'],
+                    "rpg" => ["number" => 0,"time" => 0],
+                    "msf" => ["number" => 0,"time" => 0],
+                    "bronze" => 0
+                ];
+                $collection->insertOne($insert);
+            }
 
+                //vote tout les 3h
+                //http://www.rpg-paradize.com/?page=vote&vote=45397
+                //https://serveur-prive.net/minecraft/badblock-198
+                $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
+                $date = new DateTime();
+                if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
+                    $rpg = true;
+                }else{
+                    $rpg = false;
+                }
+                //vote tout les 1.5h
+                $date = new DateTime();
+                if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()){
+                    $msf = true;
+                }else{
+                    $msf = false;
+                }
+                $time_rpg = $mongo['rpg']['time'] + 10800;
+                $time_msf = $mongo['msf']['time'] + 5400;
+                if ($msf == false && $rpg == false){
+                    $resp = json_encode(['rpg' => $rpg, "time_rpg" => date("H:i", $time_rpg),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
+                    return $response->write($resp)->withStatus(405);
+                }else{
+                    $resp = json_encode(['rpg' => $rpg, "time_rpg" => date("H:i", $time_rpg),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
+                    return $response->write($resp)->withStatus(405);
+                }
+        }else{
+            return $response->write("User not found !")->withStatus(404);
+        }
+    }
 
     public function check(RequestInterface $request, ResponseInterface $response){
         $query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
@@ -60,7 +108,7 @@ class VoteController extends Controller
                 $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $date = new DateTime();
                 if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()){
-                    return $response->write("https://serveur-prive.net/minecraft/deira-network-173/vote")->withStatus(200);
+                    return $response->write("https://serveur-prive.net/minecraft/badblock-198/vote")->withStatus(200);
                 }else{
                     $time = $mongo['rpg']['time'] + 5400;
                     return $response->write(date("H:i", $time))->withStatus(405);
@@ -69,7 +117,6 @@ class VoteController extends Controller
         }else{
             return $response->write("User not found !")->withStatus(404);
         }
-
     }
 
 
@@ -99,7 +146,7 @@ class VoteController extends Controller
                 }
             }
         }elseif ($type == "msf"){
-            $API_id = 173; // ID de votre serveur
+            $API_id = 198; // ID de votre serveur
             $API_ip = $_SERVER['REMOTE_ADDR']; // Adresse IP de l'utilisateur
             $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
             $API_call = @file_get_contents($API_url);
