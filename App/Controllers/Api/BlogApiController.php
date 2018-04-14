@@ -246,9 +246,9 @@ class BlogApiController extends \App\Controllers\Controller
 			$this->redis->set('posts_count', $posts['count']);
 		}
 
-		//$this->log->info("\"BlogApiController\\getCreateCacheAllPosts\": Success writing articles cache (x{$newPostsCount})");
+        $this->log->success('BlogApiController\getCreateCacheAllPosts\ ',"Success writing articles cache : $newPostsCount article(s)");
 
-		//return success
+        //return success
 		return $response->write('Success writing posts cache')->withStatus(200);
 	}
 

@@ -48,7 +48,7 @@ class StatsApiController extends \App\Controllers\Controller
 
 
         //Stats provenant du mongoDB dist
-        $collection = $this->mongo->test->players;
+        $collection = $this->container->mongo->players;
         $register = $collection->count();
         $banA = $collection->count(['punish.ban' => true]);
         $muteA = $collection->count(['punish.mute' => true]);
@@ -81,18 +81,18 @@ class StatsApiController extends \App\Controllers\Controller
 
         $guardian = [];
         foreach ($cheat as $row){
-            $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE cheat LIKE '%". $row ."%'")["COUNT(*)"];
+            $data = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE cheat LIKE '%". $row ."%'")["COUNT(*)"];
             array_push($guardian, ['name' => $row,'number' => $data]);
         }
 
         $this->redis->setJson('stats:guardian', $guardian);
 
         //Ban total guardian
-        $nmban = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban'")["COUNT(*)"];
+        $nmban = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban'")["COUNT(*)"];
         //Ban total du moi guardian
-        $nmbanM = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("m/y") ."%'")["COUNT(*)"];
+        $nmbanM = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("m/y") ."%'")["COUNT(*)"];
         //Ban total du jour guardian
-        $nmbanJ = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("d/m/y") ."%'")["COUNT(*)"];
+        $nmbanJ = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("d/m/y") ."%'")["COUNT(*)"];
 
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),
@@ -103,7 +103,7 @@ class StatsApiController extends \App\Controllers\Controller
         $stats = [];
         //array_push($period, new DateTime(date("y-m-d")));
         foreach ($period as $key => $value) {
-            $data = $this->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date_format($value, "d/m/Y") ."%'")["COUNT(*)"];
+            $data = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date_format($value, "d/m/Y") ."%'")["COUNT(*)"];
             array_push($stats, ['date' => date_format($value, "d/m/y"), "number" => $data]);
         }
         $this->redis->setJson('stats:stats_guardian', $stats);

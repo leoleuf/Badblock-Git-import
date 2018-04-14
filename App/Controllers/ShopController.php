@@ -143,9 +143,9 @@ class ShopController extends Controller
 			if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])) {
 				if (isset($args['id']) & !empty($args['id']) & $this->redis->exists('shop.prod.' . $args['id'])) {
 					//Vérification si le produit éxiste
-					$collection = $this->container->mongoServer->test->players;
+					$collection = $this->container->mongoServer->players;
 					$data = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
-					$collec = $this->container->mongo->test->products;
+					$collec = $this->container->mongo->products;
 					$dataprod = $collec->findOne(["_id" => new MongoDB\BSON\ObjectId($args['id'])]);
 
                     //vérification si reduction
@@ -158,7 +158,7 @@ class ShopController extends Controller
 					//Vérification du prix
 					if ($dataprod["price"] <= $data['shop_points']) {
 						//On continue car il a les sous
-						$operation = $this->container->mongo->test->operation;
+						$operation = $this->container->mongo->operation;
 						//Prépartion de l'insertion de l'achat
                         if ($dataprod["promo"] == false){
                             $dataprod["promo_reduc"] = 0;
