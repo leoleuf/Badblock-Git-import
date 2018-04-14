@@ -14,7 +14,6 @@
             </form>
             <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i>Copier l'IP</button>
         </div>
-
     <div class="twelve columns play">
         <div class="six columns play">
         <section>
@@ -42,23 +41,23 @@
             <h4 class="heading-bar"><span>Nos Ip de connexions</span></h4>
             <div class="play-list-ip">
                 {% if mc_ip == "eu.badblock.fr" %}
-                    <input type="submit" value="eu.badblock.fr">
+                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
                     <br>
-                    <input type="submit" value="play.badblock.fr">
+                    <input type="submit" id="copy-play" value="play.badblock.fr">
                     <br>
-                    <input type="submit" value="na.badblock.fr">
+                    <input type="submit" id="copy-na" value="na.badblock.fr">
                 {% elseif mc_ip == "na.badblock.fr" %}
-                    <input type="submit" value="na.badblock.fr">
+                    <input type="submit" id="copy-na" value="na.badblock.fr">
                     <br>
-                    <input type="submit" value="eu.badblock.fr">
+                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
                     <br>
-                    <input type="submit" value="play.badblock.fr">
+                    <input type="submit" id="copy-play" value="play.badblock.fr">
                 {% else %}
-                    <input type="submit" value="play.badblock.fr">
+                    <input type="submit" id="copy-play" value="play.badblock.fr">
                     <br>
-                    <input type="submit" value="eu.badblock.fr">
+                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
                     <br>
-                    <input type="submit" value="na.badblock.fr">
+                    <input type="submit" id="copy-na" value="na.badblock.fr">
                 {% endif %}
 
             </div>
@@ -103,5 +102,4 @@
             return false;
         } );
     </script>
-
 {% endblock %}

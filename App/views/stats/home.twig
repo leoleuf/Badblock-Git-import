@@ -26,10 +26,21 @@
                     <div class="search-container">
                         <div class="games-info">
                             <div class="search-container">
-                                <form action="/action_page.php">
+                                <form>
                                     <label>Rechercher un Joueur</label>
-                                    <input class="u-middle-width" id="player_search" type="text" placeholder="Recherchez un joueur" name="search" onFocus='showDiv();' onBlur='hideDiv();'>
+                                    <input class="u-middle-width" id="player_search" type="text" placeholder="Recherchez un joueur" name="search" onkeyup="searchPlayer()">
                                     <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search" style="margin-left: 9px;"></i></button>
+                                    <ul class="search" id="myUL">
+                                      <li><a href="#"><img src="https://guiria.badblock.fr/head/Fluor/64.png"> Le chieur infini</a></li>
+                                      <li><a href="#">Agnes</a></li>
+
+                                      <li><a href="#">Billy</a></li>
+                                      <li><a href="#">Bob</a></li>
+
+                                      <li><a href="#">Calvin</a></li>
+                                      <li><a href="#">Christina</a></li>
+                                      <li><a href="#">Cindy</a></li>
+                                    </ul>
                                 </form>
                             </div>
                         </div>
@@ -150,21 +161,6 @@
 {% endblock %}
 {% block scripts %}
 <!-- Ul recherche des joueurs -->
-<ul class="search" id="search" style="display: none; width: 428px; left: 1002px; top: 331px;">
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-    <li><img src="https://guiria.badblock.fr/head/Teckso32/64.png"><a href="#">Fragan</a></li>
-</ul>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -278,13 +274,26 @@
         });
     </script>
     <script>
-    function showDiv(){
-        document.getElementById('search').style.display = 'block';
-    }
- 
- 
-    function hideDiv(){
-        document.getElementById('search').style.display = 'none';
-    }
-    </script>
+        function searchPlayer() {
+            var input, filter, ul, li, a, i;
+
+
+            input = document.getElementById("player_search");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+
+
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "block";
+                } else {
+                    li[i].style.display = "none";
+
+                }
+            }
+        }
+        </script>
 {% endblock %}

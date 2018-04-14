@@ -297,11 +297,14 @@ td.c-table__cell {
 .search
 {
     list-style-type: none;
-    margin-left: -28px;
+    margin-left: 0px;
+    margin-top: -15px;
     background-color: #343434;
     color: #FFF;
     position: absolute;
     cursor: default;
+    width: 37.6%;
+    z-index: 99999999;
 }
 
 .search li {
@@ -309,6 +312,7 @@ td.c-table__cell {
   margin-bottom: 1px solid #ccc;
   width: calc(100% - 20px);
   padding: 10px;
+  display: none;
 }
 
 .search li:hover {
