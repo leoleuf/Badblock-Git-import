@@ -344,17 +344,17 @@ td.c-table__cell {
     cursor: default;
 }
 
-.vote 
+.vote
 {
   margin: 3% 0px;
 }
 
-.text-center 
+.text-center
 {
   text-align: center;
 }
 
-.step 
+.step
 {
   position: relative;
   margin: 50px 15px;
@@ -386,10 +386,10 @@ td.c-table__cell {
   text-align: center;
   margin-bottom: 15px;
   position: absolute;
-  color: #fff;  
+  color: #fff;
 }
 
-.votes 
+.votes
 {
   width: 100%;
 }
@@ -409,7 +409,7 @@ td.c-table__cell {
   width: 25px;
 }
 
-.votes img 
+.votes img
 {
   width: 15px;
 }
@@ -550,6 +550,22 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     opacity: 1;
 }
 
+#form-login {
+  display: none;
+  float: left;
+  margin: -0.9px 10px;
+  border-radius: 0;
+  animation: login-enter .7s;
+}
+
+@@keyframes login-enter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
 
 
 @keyframes promotion {
@@ -563,7 +579,7 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     transform: translateY(0px);
     border: 4px solid #EA9D01; } }
 
-    
+
 @media screen and (max-width: 768px) {
   .col-3 {
     width: calc(100%);
@@ -579,7 +595,7 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     width: 310px;
     margin: 0 auto;
     margin-bottom: 1em;
-    display: block; } 
+    display: block; }
 
   .step {margin: 50px 0px 50px 0px;}
   .search{display: none;}
