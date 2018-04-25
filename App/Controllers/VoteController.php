@@ -22,9 +22,14 @@ class VoteController extends Controller
     public function getHome(RequestInterface $request, ResponseInterface $response){
         //Read Top from Redis
         $top = $this->redis->getJson('vote.top');
+        if ($this->container->session->exist('user')) {
+            $player = $this->session->getProfile('username')['username'];
+        }else{
+            $player = "";
+        }
 
 
-        return $this->render($response, 'vote.index', ['top' => $top]);
+        return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
 
@@ -249,8 +254,7 @@ class VoteController extends Controller
 
 
     public function top($player, $vote){
-        $vote = 1;
-        $player = "Fluor";
+        //Collection
         $mongo = $this->container->mongo->stats_vote;
 
         $date =  date("Y-m");
@@ -286,9 +290,28 @@ class VoteController extends Controller
         $date =  date("Y-m");
         $data = $mongo->findOne(["date" => $date]);
 
+
+        $data = (array) $data['players'];
+        usort($data, create_function('$a, $b', '
+        $a = $a["vote"];
+        $b = $b["vote"];
+
+        if ($a == $b) return 0;
+
+        $direction = strtolower(trim("desc"));
+
+        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
+        '));
+
+        $data = array_slice($data, 0, 10);
+
         //Write in redis
-        $this->redis->setJson('vote.top', $data['players']);
+        $this->redis->setJson('vote.top', $data);
+
+
 
     }
+
+
 
 }

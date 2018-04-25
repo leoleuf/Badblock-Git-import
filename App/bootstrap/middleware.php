@@ -35,4 +35,6 @@ $whoopsGuard->install();
 */
 $app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
 
+$app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
+
 \Validator\ValidationLanguage::setLang('fr');

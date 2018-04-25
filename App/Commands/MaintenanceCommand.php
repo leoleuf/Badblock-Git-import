@@ -31,7 +31,7 @@ class MaintenanceCommand extends Command
 					rename('index.php', '_index.php');
 					rename('maintenance.php', 'index.php');
 
-                    $data = array("username" => "Logger Site","content" => "Passage en maintenance ! <@&428516439641817089> ");
+                    $data = array("username" => "Logger Site","content" => "[OK] Maintenance mode is now enabled ! <@&428275202166751236> ");
 
                     $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
                     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -52,6 +52,14 @@ class MaintenanceCommand extends Command
 				if (file_exists('_index.php')){
 					rename('index.php', 'maintenance.php');
 					rename('_index.php', 'index.php');
+
+                    $data = array("username" => "Logger Site","content" => "[OK] Maintenance mode is now disabled ! <@&428275202166751236> ");
+
+                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
+                    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                    curl_exec($curl);
 
 					$io->success('Maintenance mode is now disabled!');
 				}else{

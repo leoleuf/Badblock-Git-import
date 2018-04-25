@@ -47,11 +47,15 @@ $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setN
 
 $app->get('/info', \App\Controllers\PagesController::class . ':getInfo')->setName('info');
 
-$app->get('/dashboard', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
-$app->get('/dashboard/facture/{uid}', \App\Controllers\UserController::class . ':facture')->setName('dashboard-facture')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
+$app->group('/dashboard', function (){
+    $this->get('', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard');
+    $this->get('/facture/{uid}', \App\Controllers\UserController::class . ':facture')->setName('dashboard-facture');
 
-    $app->post('/dashboard/changeserverpassword/', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
-    $app->post('/dashboard/changeserverconnect/', \App\Controllers\UserController::class . ':changeconnectmode')->setName('dashboard:changeconnectmode')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
+    $this->post('/changeserverpassword/', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv');
+    $this->post('/changeserverconnect/', \App\Controllers\UserController::class . ':changeconnectmode')->setName('dashboard:changeconnectmode');
+    $this->post('/teamspeak/', \App\Controllers\UserController::class . ':teamspeak')->setName('dashboard:teamspeak');
+
+})->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 
 
 $app->get('/link', \App\Controllers\LinkController::class . ':step1')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));

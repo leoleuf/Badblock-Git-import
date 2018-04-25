@@ -23,7 +23,7 @@
             <center><h3 class="step-round">I</h3>
             <div class="step-contains">
                 <h5 class="text-center">Entrez votre pseudo</h5>
-                    <input type="text" id="pseudo" name="pseudo"><br>
+                    <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
                     <a class="button button-primary" onclick="start()" style="width: 95%;">Valider</a>
             </div>
             </center>
@@ -76,6 +76,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% if count(top) > 0 %}
                     {% for k,data in top %}
                         <tr class='vote1'>
                             <td><span>{{ k + 1 }}</span></td>
@@ -83,6 +84,7 @@
                             <td>{{ data['vote'] }}</td>
                         </tr>
                     {% endfor %}
+                {% endif %}
                 </tbody>
         </table>
     </div>
@@ -112,7 +114,7 @@
         <div class="step-contains center">
             <h5 class="text-center">Entrer le nombre de clics sortant :</h5>
             <input type="text" id="outvote" name="outvote"><br>
-            <a class="button button-primary disabled" id="rpg-vote" onclick="step('out')" style="width: 95%;">Valider</a>
+            <a class="button button-primary disabled" id="rpg-vote" onclick="step('rpg')" style="width: 95%;">Valider</a>
         </div>
     </div>
     <!-- Out modal -->
@@ -123,7 +125,7 @@
         <h1 id="time-title">Cliquer sur le lien pour voter !</h1>
         <a class="button button-danger" id="vote-link2" target="_blank" href="" onclick="vote"><i class="icon-repeat"></i>Voter !</a>
         <br>
-        <a class="button button-primary" onclick="step('out')" style="width: 95%;">Valider</a>
+        <a class="button button-primary" onclick="step('msf')" style="width: 95%;">Valider</a>
     </div>
     <!-- Link modal -->
 
@@ -134,7 +136,7 @@
         <div class="step-contains center">
             <h5 class="text-center">Entrer le nombre de clics sortant (OUT) :</h5>
             <input type="text" id="outvoter" name="outvoter"><br>
-            <a class="button button-primary" onclick="step('out')" style="width: 95%;">Valider</a>
+            <a class="button button-primary" onclick="step('rpg')" style="width: 95%;">Valider</a>
         </div>
     </div>
     <!-- Error out Modal -->
@@ -234,7 +236,7 @@
                         data = JSON.parse(jqXHR.responseText);
                         if (data.rpg == false){
                             $("#btm-rpg").addClass("disabled");
-                            $("#btm-rpg").text("Serveur-Prive.net Heure : " + data.time_rpg);
+                            $("#btm-rpg").text("RPG-Paradize Heure : " + data.time_rpg);
                         }
                         if (data.msf == false){
                             $("#btm-msf").addClass("disabled");
@@ -270,6 +272,73 @@
                     $('[data-remodal-id=login-modal]').remodal().open();
                 }
             });
+        }
+
+        function step(vote) {
+            console.log(vote);
+                if (vote == "rpg"){
+                    if($('#outvote').val() == "" || $('#outvote').val() == null) {
+                    }else{
+                        $("#step2").addClass("disabled");
+                        if (error){
+                            out = $('#outvoter').val()
+                        }else{
+                            out = $('#outvote').val()
+                        }
+                        var request = $.ajax({
+                            url: "/vote/end/rpg",
+                            method: "POST",
+                            data: { out : out,
+                                pseudo : pseudo
+                            },
+                            dataType: "html",
+                            success: function (data) {
+                                $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
+                                $('[data-remodal-id=vote-end]').remodal().open();
+                                $("#step3").removeClass("disabled");
+
+                            }
+                        });
+
+                        request.fail(function( jqXHR, msg ) {
+                            if (jqXHR.status == 405){
+                                $('[data-remodal-id=error-vote-link]').remodal().open();
+                                error = true;
+                            }else if (jqXHR.status == 403){
+                                $("#end-tt").text("Vous avez gagner " + jqXHR.responseText +" bronze(s)");
+                                $('[data-remodal-id=vote-end]').remodal().open();
+                                $("#step3").removeClass("disabled");
+                                $("#lot1").addClass("disabled");
+                                $("#lot2").addClass("disabled");
+                                $("#lot3").addClass("disabled");
+                            }
+                        });
+                    }
+                }else{
+                    $("#step2").addClass("disabled");
+
+                    var request = $.ajax({
+                        url: "/vote/end/msf",
+                        method: "POST",
+                        data: {pseudo : pseudo},
+                        dataType: "html",
+                        success: function (data) {
+                            $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
+                            $('[data-remodal-id=vote-end]').remodal().open();
+                            $("#step3").removeClass("disabled");
+
+                        }
+                    });
+
+                    request.fail(function( jqXHR, msg ) {
+                        if (jqXHR.status == 405){
+                            $('[data-remodal-id=error-vote-link]').remodal().open();
+                            error = true;
+                        }else if (jqXHR.status == 403){
+                            $('[data-remodal-id=login-modal]').remodal().open();
+                        }
+                    });
+                }
         }
 
 

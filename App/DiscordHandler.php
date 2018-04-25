@@ -19,18 +19,6 @@ class DiscordHandler
         return $this->info($controller,$text);
     }
 
-    public function maintenance($controller,$text)
-    {
-        $data = array("username" => "Logger Site","embeds" => array(0 => array(
-            "url" => "https://http://badblock.fr",
-            "title" => "INFO : " . $controller,
-            "description" => $text,
-            "color" => 5788507
-        )));
-
-        $this->sendData($data);
-    }
-
 
 	public function info($controller,$text)
 	{
@@ -55,6 +43,8 @@ class DiscordHandler
 
         $this->sendData($data);
     }
+
+
 
     public function success($controller,$text)
     {

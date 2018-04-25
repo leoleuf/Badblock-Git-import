@@ -99,14 +99,9 @@ class UserController extends Controller
             $this->redis->setJson('profile:'.$args["pseudo"], $user);
             $this->redis->expire('profile:'.$args["pseudo"], 300);
 
-
-
             //return view
             return $this->render($response, 'user.profile', ['user' => $user]);
         }
-
-
-
 
 	}
 
@@ -127,7 +122,7 @@ class UserController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
 
                     }else{
-                        $this->flash->addMessage('setting_error', "Votre mot de passe choisi est trop court !");
+                        $this->flash->addMessage('setting_error', "Votre mot de passe est trop court !");
                         //redirect to last page
                         return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
                     }
@@ -150,7 +145,8 @@ class UserController extends Controller
 
 
 
-    public function changeconnectmode(RequestInterface $request, ResponseInterface $response){
+    public function changeconnectmode(RequestInterface $request, ResponseInterface $response)
+    {
 	    if (isset($_POST['selectmode'])){
             if ($_POST['selectmode'] === "crack"){
                 //Connection a mongo pour update le mode de connection
@@ -179,19 +175,17 @@ class UserController extends Controller
         }
     }
 
+    public function teamspeak(RequestInterface $request, ResponseInterface $response)
+    {
+        if (isset($_POST['idts']) & !empty($_POST['idts'])){
 
+        }else{
+            $this->flash->addMessage('setting_error', "Merci de saisir un UID valide !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
