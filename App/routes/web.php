@@ -23,7 +23,14 @@ $app->group('/stats', function (){
 $app->group('/shop', function (){
 	$this->get('', \App\Controllers\ShopController::class . ':getHome')->setName('shop.home');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':getAchat')->setName('api.shop.achat');
-	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
+	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge')
+    ;
+	$this->get('/recharge/starpass', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass');
+	$this->get('/recharge/starpass/post', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass.post');
+
+    $this->get('/recharge/dedipass', \App\Controllers\ShopController::class . ':dedipass')->setName('shop.recharge.dedipass');
+    $this->get('/recharge/dedipass/post', \App\Controllers\ShopController::class . ':dedipass')->setName('shop.recharge.dedipass.post');
+
 	$this->get('/recharge/next', \App\Controllers\ShopController::class . ':getNextStepRecharge')->setName('shop.recharge.nextstep');
 	$this->get('/recharge/start/{amount}/{username}/{payway}', \App\Controllers\ShopController::class . ':getRechargeStart')->setName('shop.recharge.start');
 	$this->get('/paypal/execute', \App\Controllers\PaypalController::class . ':getPaypalExecute')->setName('shop.paypal.execute');

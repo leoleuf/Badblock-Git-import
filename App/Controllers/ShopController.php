@@ -14,20 +14,7 @@ use MongoDB;
  */
 class ShopController extends Controller
 {
-	public function getHome(ServerRequestInterface $request, ResponseInterface $response)
-	{
 
-		//get twig of home
-		$serverlist = $this->redis->getJson('shop.listsrv');
-
-		//On vérifie si il ya des promos
-		$itempromo = $this->redis->getJson('shop.promo');
-		if (count($itempromo) == 0) {
-			$itempromo = false;
-		}
-		$this->render($response, 'shop.home', ['serverlist' => $serverlist, 'promo' => $itempromo]);
-
-	}
 
 	public function getRecharge(ServerRequestInterface $request, ResponseInterface $response)
 	{
@@ -133,6 +120,106 @@ class ShopController extends Controller
 				break;
 		}
 	}
+
+
+	public function starpass(ServerRequestInterface $request, ResponseInterface $response){
+
+        $this->render($response, "shop.recharge.starpass", ['step' => 'starpass', 'width' => 77]);
+
+
+    }
+
+
+    public function dedipass(ServerRequestInterface $request, ResponseInterface $response){
+
+        $this->render($response, "shop.recharge.dedipass", ['step' => 'dedipass', 'width' => 77]);
+
+
+    }
+
+    public function dedipassPost(ServerRequestInterface $request, ResponseInterface $response){
+
+        $code = isset($_POST['code']) ? preg_replace('/[^a-zA-Z0-9]+/', '', $_POST['code']) : '';
+        if( empty($code) ) {
+            return $this->redirect($response, $this->pathFor('shop.recharge.dedipass'));
+        }
+        else {
+            $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=95576b4b99c5d76e20319817e24761ae&private_key=6d7ba3255b0a85cfe4f8d8d088ca35a1baf82f89&code=' . $code);
+            $dedipass = json_decode($dedipass);
+            if($dedipass->status == 'success') {
+                // Le transaction est validée et payée.
+                // Vous pouvez utiliser la variable $virtual_currency
+                // pour créditer le nombre de Crystals.
+                $virtual_currency = $dedipass->virtual_currency;
+
+
+                //Insertion dans MongoDB
+                $operation = $this->container->mongo->funds;
+                $insert = [
+                    "name" => $this->session->getProfile('username')['username'],
+                    "date" => date("Y-m-d H:i:s"),
+                    "gateway" => "dedipass",
+                    "comment" => "Recharge en crédit du compte",
+                    "price" => $dedipass->payout,
+                    "credit" => $virtual_currency
+                ];
+                $operation->insertOne($insert);
+
+
+                echo 'Le code est valide et vous êtes crédité de ' . $virtual_currency . 'Crystals';
+            }
+            else {
+                // Le code est invalide
+                echo 'Le code '.$code.' est invalide';
+            }
+        }
+
+        $this->render($response, "shop.recharge.dedipass", ['step' => 'dedipass', 'width' => 77]);
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getHome(ServerRequestInterface $request, ResponseInterface $response)
+    {
+
+        //get twig of home
+        $serverlist = $this->redis->getJson('shop.listsrv');
+
+        //On vérifie si il ya des promos
+        $itempromo = $this->redis->getJson('shop.promo');
+        if (count($itempromo) == 0) {
+            $itempromo = false;
+        }
+        $this->render($response, 'shop.home', ['serverlist' => $serverlist, 'promo' => $itempromo]);
+
+    }
+
+
+
 
 	public function getachat(ServerRequestInterface $request, ResponseInterface $response, $args)
 	{
