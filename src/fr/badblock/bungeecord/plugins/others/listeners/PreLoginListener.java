@@ -1,7 +1,10 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 import com.google.gson.Gson;
 
@@ -13,7 +16,9 @@ import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
+import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -22,6 +27,8 @@ import net.md_5.bungee.event.EventPriority;
 
 public class PreLoginListener implements Listener {
 
+	public static HashMap<UUID, String> player2nickname = new HashMap<>();
+	public static Set<String> nicknames = new HashSet<>();
 	//public static List<String> players = new ArrayList<>();
 
 	private static Gson gson = new Gson();
@@ -35,8 +42,19 @@ public class PreLoginListener implements Listener {
 			if (event.getTarget().getName() != null)
 				if (!players.contains(playerName))
 					players.add(playerName);*/
-		/*UserConnection userConnection = (UserConnection) proxiedPlayer;
-		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT nick FROM nick WHERE playerName = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName().toLowerCase()) + "'", RequestType.GETTER)
+		
+		UserConnection userConnection = (UserConnection) proxiedPlayer;
+
+		if(player2nickname.containsKey(proxiedPlayer.getUniqueId()))
+		{
+			userConnection.getPendingConnection().getLoginRequest().setData(player2nickname.get(proxiedPlayer.getUniqueId()));
+		}
+		else
+		{
+			userConnection.getPendingConnection().getLoginRequest().setData(proxiedPlayer.getName());
+		}
+		
+		/*BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT nick FROM nick WHERE playerName = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName().toLowerCase()) + "'", RequestType.GETTER)
 		{
 			@Override
 			public void done(ResultSet resultSet)
@@ -58,6 +76,7 @@ public class PreLoginListener implements Listener {
 				}
 			}
 		});*/
+
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName()) + "'", RequestType.SETTER));
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
 			if (bye >= 15)
@@ -79,6 +98,18 @@ public class PreLoginListener implements Listener {
 		BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 	}
 
+	@EventHandler
+	public void onDisconnect(PlayerDisconnectEvent e)
+	{
+		if(player2nickname.containsKey(e.getPlayer().getUniqueId()))
+		{
+			String s = player2nickname.get(e.getPlayer().getUniqueId());
+			player2nickname.remove(e.getPlayer().getUniqueId());
+			
+			nicknames.remove(s.toLowerCase());
+		}
+	}
+	
 	@EventHandler
 	public void onLogin(PreLoginEvent event) {
 		/*if (BadBlockBungeeOthers.getInstance().getDeleteTime() != -1 && BadBlockBungeeOthers.getInstance().getDelete() == -1 && BadBlockBungeeOthers.getInstance().getDeleteTime() < System.currentTimeMillis()) {
