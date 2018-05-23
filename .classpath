@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/t/p/service/spigot-1.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/root/Downloads/lombok.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/LadderPlugin"/>
-	<classpathentry kind="lib" path="C:/Users/root/Desktop/cloudflare-api-1.1.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/CommonRedis"/>
-	<classpathentry kind="lib" path="C:/Users/root/Downloads/json-lib.jar/json-lib.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/BadBlockBungee"/>
-	<classpathentry kind="lib" path="C:/Users/root/Downloads/netty-4.1.9.Final/netty-4.1.9.Final/jar/all-in-one/netty-all-4.1.9.Final.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/spigot/spigot-1.8.8.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/lombok/lombok-1.16.18.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/BadBlockCommon.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/BungeeDockerDepends.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/BungeeUtils.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/cloudflare-api-1.1.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/json-lib.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/LadderBungee.jar"/>
+	<classpathentry kind="lib" path="/media/audran/Stockage/JavaLibs/minecraft/bungee.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
