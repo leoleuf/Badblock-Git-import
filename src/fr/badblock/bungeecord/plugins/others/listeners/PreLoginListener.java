@@ -1,6 +1,5 @@
 package fr.badblock.bungeecord.plugins.others.listeners;
 
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +13,6 @@ import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.common.commons.technologies.rabbitmq.RabbitPacketType;
 import fr.badblock.common.commons.utils.Encodage;
-import net.md_5.bungee.UserConnection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectEvent;
@@ -37,7 +35,7 @@ public class PreLoginListener implements Listener {
 			if (event.getTarget().getName() != null)
 				if (!players.contains(playerName))
 					players.add(playerName);*/
-		UserConnection userConnection = (UserConnection) proxiedPlayer;
+		/*UserConnection userConnection = (UserConnection) proxiedPlayer;
 		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT nick FROM nick WHERE playerName = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName().toLowerCase()) + "'", RequestType.GETTER)
 		{
 			@Override
@@ -59,7 +57,7 @@ public class PreLoginListener implements Listener {
 					error.printStackTrace();
 				}
 			}
-		});
+		});*/
 		BadblockDatabase.getInstance().addRequest(new Request("UPDATE friends SET uuid = '" + proxiedPlayer.getUniqueId() + "' WHERE pseudo = '" + BadblockDatabase.getInstance().mysql_real_escape_string(proxiedPlayer.getName()) + "'", RequestType.SETTER));
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
 			if (bye >= 15)
