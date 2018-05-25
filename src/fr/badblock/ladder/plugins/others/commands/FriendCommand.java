@@ -238,7 +238,8 @@ public class FriendCommand extends Command {
 			return;
 		Integer b = player.getPermissionValue("friendsSlots", Integer.class);
 		if (b == null) b = 10; // default friendsSlots
-		if (!player.hasPermission("others.friendsbypass") && from.getFriendsMap().size() >= b) {
+		if (!player.hasPermission("others.friendsbypass") && 
+			from.getFriendsMap().values().stream().filter(vo -> vo.getStatus().equals(FriendStatus.OK)).count() >= b) {
 			player.sendMessage(I18N.getTranslatedMessage("commands.friend.reachedlimit"));
 			return;
 		}

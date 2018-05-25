@@ -8,9 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.badblock.ladder.api.Ladder;
 import fr.badblock.ladder.plugins.others.database.Request.RequestType;
-import fr.badblock.ladder.plugins.others.utils.I18N;
 
 public class BadblockDatabase {
 
@@ -21,33 +19,15 @@ public class BadblockDatabase {
 	private boolean isConnected;
 
 	List<Thread> threads;
-	// Queue<Request> requests;
 	Thread thread = null;
 
-	public BadblockDatabase() {
+	public BadblockDatabase()
+	{
 		threads = new ArrayList<>();
-		/*
-		 * requests = Queues.newLinkedBlockingDeque(); for (int i = 0; i < 16;
-		 * i++) { thread = new Thread("database_" + new
-		 * Random().nextInt(99999999)) {
-		 * 
-		 * @Override public void run() { synchronized (thread) { while (true) {
-		 * boolean isEmpty = true; synchronized (requests) { isEmpty =
-		 * requests.isEmpty(); } if (!isEmpty) { Request request = null;
-		 * synchronized (requests) { request = requests.poll(); } if (request !=
-		 * null) { try { Statement statement = createStatement(); if
-		 * (request.getRequestType().equals(RequestType.SETTER)) {
-		 * statement.executeUpdate(request.getRequest()); }else{ ResultSet
-		 * resultSet = statement.executeQuery(request.getRequest());
-		 * request.done(resultSet); resultSet.close(); } statement.close();
-		 * }catch(Exception error) { error.printStackTrace(); } } } try {
-		 * thread.wait(); } catch (InterruptedException e) {
-		 * e.printStackTrace(); } } } } }; threads.add(thread); thread.start();
-		 * }
-		 */
 	}
 
-	public String mysql_real_escape_string(String str) {
+	public String mysql_real_escape_string(String str)
+	{
 		if (str == null) {
 			return null;
 		}
@@ -149,19 +129,13 @@ public class BadblockDatabase {
 						connection = DriverManager.getConnection("jdbc:mysql://" + hostName + ":" + port + "/"
 								+ database + "?autoReconnect=true&connectTimeout=5000", username, password);
 						isConnected = true;
-						Ladder.getInstance().getConsoleCommandSender()
-								.sendMessage(I18N.getTranslatedMessage("commands.database.connected"));
 					} catch (Exception e) {
-						Ladder.getInstance().getConsoleCommandSender()
-								.sendMessage(I18N.getTranslatedMessage("commands.database.error", e.getMessage()));
 						e.printStackTrace();
 						try {
 							Thread.sleep(1000);
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
-						Ladder.getInstance().getConsoleCommandSender()
-								.sendMessage(I18N.getTranslatedMessage("commands.database.tryingtoreconnect"));
 					}
 				}
 			}
@@ -232,7 +206,7 @@ public class BadblockDatabase {
 	@SuppressWarnings("serial")
 	private class DatabaseIsNotConnectedException extends RuntimeException {
 		public DatabaseIsNotConnectedException() {
-			super(I18N.getTranslatedMessage("msg.cannotbeconnected"));
+			super("");
 		}
 	}
 
