@@ -30,7 +30,7 @@ public class PagePlayerAddGroup extends LadderPage {
 			object.add("name", input.get("name"));
 			OfflinePlayer player = Ladder.getInstance().getOfflinePlayer(input.get("name").getAsString());
 			PermissiblePlayer p = (PermissiblePlayer) player.getAsPermissible();
-			PermissibleGroup group = PermissionManager.getInstance().getGroup(input.get("group").getAsShort());
+			PermissibleGroup group = PermissionManager.getInstance().getGroup(input.get("group").getAsString());
 			if (group == null) {
 				object.addProperty("error", "Groupe inconnu!");
 			}
