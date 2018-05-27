@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import fr.badblock.bungeecord.plugins.others.BadBlockBungeeOthers;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
@@ -15,11 +17,12 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class GNickCommand extends Command {
-
+	static Pattern pattern = Pattern.compile("^[a-zA-Z0-9_]{5,16}$");
+	
 	public GNickCommand() {
 		super("gnick", "others.gnick");
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	public void execute(CommandSender sender, String[] args) {
 		if (args.length != 1) {
@@ -58,6 +61,15 @@ public class GNickCommand extends Command {
 		}
 		else
 		{
+			Matcher m = pattern.matcher(name);
+			
+			if(!m.find())
+			{
+				sender.sendMessage("§cCe surnom n'est pas valide. Un surnom doit avoir entre 5 et 16 caractères.");
+				sender.sendMessage("§cLes caractères autorisés sont: lettres, chiffres et _.");
+				return;
+			}
+			
 			String current = map.get(uniqueId);
 
 			if(playerName.equals(current))
