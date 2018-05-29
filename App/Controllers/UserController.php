@@ -21,6 +21,13 @@ class UserController extends Controller
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
 
+
+        if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
+            $custom = "dd";
+        }else{
+            $custom = false;
+        }
+
         //Recherche des factures du joueurs
         $collection_facture = $this->container->mongo->funds;
         $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
@@ -36,7 +43,7 @@ class UserController extends Controller
 
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['user' => $user,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
 	}
 
@@ -209,6 +216,14 @@ class UserController extends Controller
             //redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
         }
+
+    }
+
+
+    //gestion du grade custom
+    public function custom(RequestInterface $request, ResponseInterface $response, $method){
+
+
 
     }
 
