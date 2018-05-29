@@ -23,7 +23,21 @@ class UserController extends Controller
 
 
         if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
-            $custom = "dd";
+            //vérifiaction s'il n'y a pas deja un doc
+            $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
+
+            //Création du document si inexistant
+            $data = [
+                'uniqueId' => $user['uniqueId'],
+                'prefix' => "",
+                'prefix_state' => false,
+                'chat_color' => "",
+            ];
+            if ($count == 0){
+                $this->container->mongoServer->custom_data->InsertOne($data);
+            }else{
+                $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
+            }
         }else{
             $custom = false;
         }
@@ -40,6 +54,8 @@ class UserController extends Controller
         if (empty($user["shoppoints"])){
             $user["shoppoints"] = 0;
         }
+
+
 
 
         //Return view
@@ -222,7 +238,36 @@ class UserController extends Controller
 
     //gestion du grade custom
     public function custom(RequestInterface $request, ResponseInterface $response, $method){
+        //Formatting
+        $method = $method['method'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        //vérifiaction s'il n'y a pas deja un doc
+        $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
+
+        //Création du document si inexistant
+        $data = [
+            'uniqueId' => $user['uniqueId'],
+            'prefix' => "",
+            'prefix_state' => false,
+            'chat_color' => "",
+        ];
+        if ($count == 0){
+            $this->container->mongoServer->custom_data->InsertOne($data);
+        }
+
+
+
+        if ($method == "prefix"){
+            //Nouveau préfix
+
+
+
+
+
+        }elseif ($method == ""){
+
+        }
 
 
     }
