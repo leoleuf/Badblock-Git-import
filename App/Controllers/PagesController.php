@@ -82,6 +82,15 @@ class PagesController extends Controller
     }
 
 
+    public function getDon(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'pages.don');
+    }
+
+
+
+
+
 
 
 }

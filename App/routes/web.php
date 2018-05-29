@@ -4,6 +4,8 @@
 
 $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('home');
 
+$app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
+
 $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
@@ -23,8 +25,8 @@ $app->group('/stats', function (){
 $app->group('/shop', function (){
 	$this->get('', \App\Controllers\ShopController::class . ':getHome')->setName('shop.home');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':getAchat')->setName('api.shop.achat');
-	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge')
-    ;
+	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
+
 	$this->get('/recharge/starpass', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass');
 	$this->get('/recharge/starpass/post', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass.post');
 

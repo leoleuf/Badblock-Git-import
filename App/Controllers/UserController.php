@@ -18,7 +18,7 @@ class UserController extends Controller
 	{
         //Récupération des données du serveur
         $collection = $this->container->mongoServer->players;
-        $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
+        $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
 
         //Recherche des factures du joueurs
