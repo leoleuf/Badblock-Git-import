@@ -25,6 +25,9 @@ class UserController extends Controller
         $collection_facture = $this->container->mongo->funds;
         $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
 
+        //Récupération des sanctions
+        $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
+
 
         //On affiche 0 pts boutiques si le joueur a pas sous
         if (empty($user["shoppoints"])){
@@ -33,7 +36,7 @@ class UserController extends Controller
 
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['user' => $user,'factures' => $factures]);
+        return $this->render($response, 'user.dashboard', ['user' => $user,'factures' => $factures, 'sanctions' => $sanctions]);
 
 	}
 
@@ -178,6 +181,28 @@ class UserController extends Controller
     public function teamspeak(RequestInterface $request, ResponseInterface $response)
     {
         if (isset($_POST['idts']) & !empty($_POST['idts'])){
+            $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+
+            //vérifiaction s'il n'y a pas deja un doc
+            $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
+
+            $data = [
+                'uniqueId' => $user['uniqueId'],
+                'teamspeak_uid' => $_POST['idts'],
+                'ban' => false,
+                'banExpire' => -1
+            ];
+
+
+            if ($count == 0){
+                $this->container->mongo->teamspeak_uid->InsertOne($data);
+            }else{
+                $this->container->mongo->teamspeak_uid->updateOne(['uniqueId' => $user['uniqueId']],['$set' => ["teamspeak_uid" => $_POST['idts']]]);
+            }
+
+            $this->flash->addMessage('setting_error', "Compte TeamSpeak linké !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
 
         }else{
             $this->flash->addMessage('setting_error', "Merci de saisir un UID valide !");
