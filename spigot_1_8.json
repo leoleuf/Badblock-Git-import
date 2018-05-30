@@ -1,21 +1,19 @@
 {
-	"parent": null,
+	"parents": [],
 	"name": "spigot-1.8",
-	"startCommand": "java -jar spigot.jar --port {vars/port}",
-	"behaviours":
-	[
+	"command": "java -jar spigot.jar --port {port}",
+	"create": [
 		{
-			"behaviour": "trigger/start/commands",
-			"arguments":
-			[
-				"cp -r {dir/data}/prod/static/spigot_defaults/* {dir/process}"
-			]
+			"src": "prod/static/spigot_defaults/spigot.jar",
+			"dst": "spigot.jar"
 		},
 		{
-			"behaviour": "trigger/start/allocate-port"
-		},
-		{
-			"behaviour": "trigger/stop/destroy"
+			"src": "prod/static/spigot_defaults/eula.txt",
+			"dst": "eula.txt"
 		}
+	],
+	"modules": [
+		"module": "choosePort",
+		"params": []
 	]
 }
