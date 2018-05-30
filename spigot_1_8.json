@@ -13,7 +13,9 @@
 		}
 	],
 	"modules": [
-		"module": "choosePort",
-		"params": []
+		{
+			"module": "choosePort",
+			"params": []
+		}
 	]
 }
