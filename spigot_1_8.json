@@ -2,6 +2,7 @@
 	"parents": [],
 	"name": "spigot-1.8",
 	"command": "java -jar spigot.jar --port {port}",
+	"startable": true,
 	"create": [
 		{
 			"src": "prod/static/spigot_defaults/spigot.jar",
