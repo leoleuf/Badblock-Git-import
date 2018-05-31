@@ -17,6 +17,10 @@
 		{
 			"module": "choosePort",
 			"params": []
+		},
+		{
+		    "module": "autoRemove",
+		    "params": []
 		}
 	]
 }
