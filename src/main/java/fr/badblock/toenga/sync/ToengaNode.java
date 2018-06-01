@@ -6,7 +6,7 @@ import java.util.Set;
 import com.sun.management.OperatingSystemMXBean;
 
 import fr.badblock.api.common.utils.GsonUtils;
-import fr.badblock.toenga.utils.TimeUtils;
+import fr.badblock.api.common.utils.TimeUtils;
 import lombok.Setter;
 
 @Setter

@@ -1,7 +1,7 @@
 package fr.badblock.toenga.sync;
 
+import fr.badblock.api.common.utils.TimeUtils;
 import fr.badblock.toenga.Toenga;
-import fr.badblock.toenga.utils.TimeUtils;
 
 public class ToengaLocalSender extends Thread
 {
