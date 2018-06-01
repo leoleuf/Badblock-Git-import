@@ -31,14 +31,7 @@ public class ToengaNodeDataReceiver extends RabbitListener
 			return;
 		}
 		
-		ToengaSyncManager syncManager = ToengaSyncManager.getInstance();
-		
-		if (!syncManager.isInSameCluster(toengaNode))
-		{
-			return;
-		}
-		
-		syncManager.put(toengaNode);
+		ToengaSyncManager.getInstance().put(toengaNode);
 	}	
 	
 }

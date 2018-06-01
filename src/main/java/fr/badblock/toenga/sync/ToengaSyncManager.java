@@ -24,6 +24,7 @@ public class ToengaSyncManager
 	
 	private	Map<String, ToengaNode> nodes		= new HashMap<>();
 	private ToengaLocalSender		localSender = new ToengaLocalSender();
+	private ToengaNode				localNode   = null;
 	
 	public ToengaSyncManager()
 	{
@@ -42,10 +43,22 @@ public class ToengaSyncManager
 	{
 		return nodes.values().stream().filter(toengaNode -> toengaNode.isValid() && isInSameCluster(toengaNode)).collect(Collectors.toSet());
 	}
+
+	
+	public Set<ToengaNode> getAvailableNodes(String cluster)
+	{
+		return nodes.values().stream().filter(toengaNode -> toengaNode.isValid() && toengaNode.getClusters().contains(cluster)).collect(Collectors.toSet());
+	}
 	
 	public ToengaNode generateLocalData()
 	{
-		return new ToengaNode(Toenga.instance.getHostname(), Toenga.instance.getStaticConfiguration().getTypes(), Toenga.instance.getConfiguration().getKeepAliveTime());
+		long keepAliveTime = Toenga.instance.getConfiguration().getKeepAliveTime();
+		if (localNode == null)
+		{
+			localNode = new ToengaNode(Toenga.instance.getHostname(), Toenga.instance.getStaticConfiguration().getTypes(), keepAliveTime);
+		}
+		localNode.update(keepAliveTime);
+		return localNode;
 	}
 	
 	public void keepAlive()

@@ -32,14 +32,22 @@ public class ToengaNode
 	{
 		setName(name);
 		setClusters(clusters);
-		setLastProofOfExistence(TimeUtils.nextTimeWithSeconds(keepAlive));
-		fillMXBean();
+		update(keepAlive);
 	}
 
 	/**
+	 * Update
+	 */
+	void update(long keepAlive)
+	{
+		setLastProofOfExistence(TimeUtils.nextTimeWithSeconds(keepAlive));
+		fillMXBean();
+	}
+	
+	/**
 	 * Fill MXBean values
 	 */
-	private void fillMXBean()
+	void fillMXBean()
 	{
 		OperatingSystemMXBean MXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 		setComittedVirtualMemorySize(MXBean.getCommittedVirtualMemorySize());
