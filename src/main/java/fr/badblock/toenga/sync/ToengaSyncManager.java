@@ -39,11 +39,15 @@ public class ToengaSyncManager
 		return !Collections.disjoint(toengaNode.getClusters(), Toenga.instance.getStaticConfiguration().getTypes());
 	}
 
-	public Set<ToengaNode> getAvailableNodes()
+	public Set<ToengaNode> getAvailableSameClusterNodes()
 	{
 		return nodes.values().stream().filter(toengaNode -> toengaNode.isValid() && isInSameCluster(toengaNode)).collect(Collectors.toSet());
 	}
-
+	
+	public Set<ToengaNode> getAvailableNodes()
+	{
+		return nodes.values().stream().filter(toengaNode -> toengaNode.isValid()).collect(Collectors.toSet());
+	}
 
 	public Set<ToengaNode> getAvailableNodes(String cluster)
 	{
