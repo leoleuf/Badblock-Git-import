@@ -1,5 +1,6 @@
 package fr.badblock.toenga.config;
 
+import fr.badblock.api.common.tech.rabbitmq.setting.RabbitSettings;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -7,8 +8,11 @@ import lombok.Data;
 @Data
 public class ToengaConfiguration
 {
+	
 	private String								toengaSocket;
-    private GitConfiguration					toengaData;
+	private long								keepAliveTime;
+	private GitConfiguration					toengaData;
+    private RabbitSettings						rabbitSettings;
     
     public ToengaConfiguration()
     {

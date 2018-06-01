@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.badblock.api.common.tech.rabbitmq.RabbitConnector;
+import fr.badblock.api.common.tech.rabbitmq.RabbitService;
 import fr.badblock.api.common.utils.FileUtils;
 import fr.badblock.api.common.utils.JsonUtils;
 import fr.badblock.toenga.config.ToengaConfiguration;
@@ -15,6 +17,7 @@ import fr.badblock.toenga.instance.ToengaInstance;
 import fr.badblock.toenga.instance.locale.LocalInstance;
 import fr.badblock.toenga.models.ToengaModel;
 import fr.badblock.toenga.modules.ToengaModule;
+import fr.badblock.toenga.sync.ToengaSyncManager;
 import fr.badblock.toenga.utils.GitUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -73,6 +76,10 @@ public class Toenga
 	
 	@Getter @Setter
 	private ToengaConfiguration configuration;
+	
+	@Getter @Setter
+	private RabbitService		rabbitService;
+	
 	@Getter
 	private String hostname;
 	private ToengaStatus status;
@@ -114,6 +121,12 @@ public class Toenga
 		}
 		
 		this.reloadConfiguration();
+
+		RabbitConnector rabbitConnector = RabbitConnector.getInstance();
+		RabbitService rabbitService = new RabbitService("default", configuration.getRabbitSettings());
+		setRabbitService(rabbitConnector.registerService(rabbitService));
+		
+		new ToengaSyncManager();
 	}
 
 	public File sourceFile(String src)
@@ -140,7 +153,7 @@ public class Toenga
 	{
 		File config = new File("config.json");
 		setConfiguration(JsonUtils.load(config, ToengaConfiguration.class));
-
+		
 		this.pullOrClone();
 	}
 	
