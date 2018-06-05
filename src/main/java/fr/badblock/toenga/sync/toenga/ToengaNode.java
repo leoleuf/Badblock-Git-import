@@ -1,4 +1,4 @@
-package fr.badblock.toenga.sync;
+package fr.badblock.toenga.sync.toenga;
 
 import java.lang.management.ManagementFactory;
 import java.util.Set;

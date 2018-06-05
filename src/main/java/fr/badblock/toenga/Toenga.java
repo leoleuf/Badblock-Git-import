@@ -17,7 +17,7 @@ import fr.badblock.toenga.instance.ToengaInstance;
 import fr.badblock.toenga.instance.locale.LocalInstance;
 import fr.badblock.toenga.models.ToengaModel;
 import fr.badblock.toenga.modules.ToengaModule;
-import fr.badblock.toenga.sync.ToengaSyncManager;
+import fr.badblock.toenga.sync.toenga.ToengaSyncManager;
 import fr.badblock.toenga.utils.GitUtils;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package fr.badblock.toenga.sync;
+package fr.badblock.toenga.sync.toenga;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketEncoder;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketMessage;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketType;
 import fr.badblock.toenga.Toenga;
-import fr.badblock.toenga.sync.receivers.ToengaNodeDataReceiver;
+import fr.badblock.toenga.sync.toenga.receivers.ToengaNodeDataReceiver;
 import lombok.Data;
 import lombok.Getter;
 

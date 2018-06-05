@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Map;
 
+import fr.badblock.api.common.nodesync.ToengaInstanceStatus;
 import fr.badblock.toenga.models.ToengaModel;
 
 /**

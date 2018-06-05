@@ -1,4 +1,4 @@
-package fr.badblock.toenga.sync;
+package fr.badblock.toenga.sync.toenga;
 
 import fr.badblock.api.common.utils.TimeUtils;
 import fr.badblock.toenga.Toenga;

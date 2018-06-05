@@ -1,12 +1,12 @@
-package fr.badblock.toenga.sync.receivers;
+package fr.badblock.toenga.sync.toenga.receivers;
 
 import fr.badblock.api.common.tech.rabbitmq.ToengaQueues;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
 import fr.badblock.api.common.utils.GsonUtils;
 import fr.badblock.toenga.Toenga;
-import fr.badblock.toenga.sync.ToengaNode;
-import fr.badblock.toenga.sync.ToengaSyncManager;
+import fr.badblock.toenga.sync.toenga.ToengaNode;
+import fr.badblock.toenga.sync.toenga.ToengaSyncManager;
 
 public class ToengaNodeDataReceiver extends RabbitListener
 {
