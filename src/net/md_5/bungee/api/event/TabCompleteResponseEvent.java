@@ -2,8 +2,9 @@ package net.md_5.bungee.api.event;
 
 import java.util.List;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import net.md_5.bungee.api.connection.Connection;
 import net.md_5.bungee.api.plugin.Cancellable;
@@ -14,7 +15,8 @@ import net.md_5.bungee.api.plugin.Cancellable;
  * BungeeCord or a plugin responds to a tab-complete request. Use
  * {@link TabCompleteEvent} for that.
  */
-@Data
+@Getter
+@Setter
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class TabCompleteResponseEvent extends TargetedEvent implements Cancellable

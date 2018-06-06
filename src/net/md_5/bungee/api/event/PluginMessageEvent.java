@@ -1,7 +1,8 @@
 package net.md_5.bungee.api.event;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import net.md_5.bungee.api.connection.Connection;
 import net.md_5.bungee.api.plugin.Cancellable;
@@ -9,7 +10,8 @@ import net.md_5.bungee.api.plugin.Cancellable;
 /**
  * Event called when a plugin message is sent to the client or server.
  */
-@Data
+@Getter
+@Setter
 @ToString(callSuper = true, exclude = "data")
 @EqualsAndHashCode(callSuper = true)
 public class PluginMessageEvent extends TargetedEvent implements Cancellable

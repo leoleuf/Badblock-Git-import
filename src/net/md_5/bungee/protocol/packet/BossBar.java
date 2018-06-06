@@ -3,14 +3,18 @@ package net.md_5.bungee.protocol.packet;
 import java.util.UUID;
 
 import io.netty.buffer.ByteBuf;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import net.md_5.bungee.protocol.AbstractPacketHandler;
 import net.md_5.bungee.protocol.DefinedPacket;
 import net.md_5.bungee.protocol.ProtocolConstants;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class BossBar extends DefinedPacket

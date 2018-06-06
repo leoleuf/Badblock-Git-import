@@ -1,7 +1,8 @@
 package net.md_5.bungee.api.event;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.connection.PendingConnection;
@@ -15,7 +16,8 @@ import net.md_5.bungee.api.plugin.Cancellable;
  * in after authentication with Mojang's servers. Examples of attributes which
  * are not available include their UUID.
  */
-@Data
+@Getter
+@Setter
 @ToString(callSuper = false)
 @EqualsAndHashCode(callSuper = false)
 public class PreLoginEvent extends AsyncEvent<PreLoginEvent> implements Cancellable

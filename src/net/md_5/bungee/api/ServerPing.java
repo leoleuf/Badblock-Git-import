@@ -18,13 +18,17 @@ import net.md_5.bungee.api.chat.TextComponent;
  */
 @Data
 @ToString(exclude = "favicon")
-@NoArgsConstructor
 @AllArgsConstructor
 public class ServerPing
 {
 
     private Protocol version;
 
+    public ServerPing()
+    {
+    	
+    }
+    
     @Data
     @AllArgsConstructor
     public static class Protocol

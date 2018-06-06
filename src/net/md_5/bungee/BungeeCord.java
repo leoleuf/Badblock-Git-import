@@ -334,7 +334,7 @@ public class BungeeCord extends ProxyServer
 			.group( eventLoops )
 			.localAddress( info.getHost() )
 			.bind().addListener( listener );
-			BadblockDatabase.getInstance().connect("01-bkd.badblock-network.fr", 3306, "others", "712IYAYA8ERAr4Woq15AvijOk1S7H8", "others");
+			BadblockDatabase.getInstance().connect("node01-int.clusprv.badblock-network.fr", 15486, "others", "712IYAYA8ERAr4Woq15AvijOk1S7H8", "others");
 			if ( info.isQueryEnabled() )
 			{
 				ChannelFutureListener bindListener = new ChannelFutureListener()
