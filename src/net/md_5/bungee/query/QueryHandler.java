@@ -33,7 +33,7 @@ public class QueryHandler extends SimpleChannelInboundHandler<DatagramPacket>
 
     private void writeShort(ByteBuf buf, int s)
     {
-        buf.writeShortLE( s );
+        buf.writeShort( s );
     }
 
     private void writeNumber(ByteBuf buf, int i)
