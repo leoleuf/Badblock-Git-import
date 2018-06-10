@@ -48,7 +48,7 @@ class StatsApiController extends \App\Controllers\Controller
 
 
         //Stats provenant du mongoDB dist
-        $collection = $this->container->mongo->players;
+        $collection = $this->container->mongoServer->players;
         $register = $collection->count();
         $banA = $collection->count(['punish.ban' => true]);
         $muteA = $collection->count(['punish.mute' => true]);
@@ -62,7 +62,7 @@ class StatsApiController extends \App\Controllers\Controller
         $msg_forum = $this->container->mysql_forum->fetchRow('SELECT COUNT(*) FROM xf_post;')["COUNT(*)"];
 
         //Connecté sur TS
-        //$ts_connected = $this->teamspeak->online();
+        $ts_connected = 0;
 
         //nombre d'articles
         $article = $this->redis->get('posts_count');

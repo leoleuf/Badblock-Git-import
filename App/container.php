@@ -132,9 +132,9 @@ $container['mysql_rankeds'] = function ($container) {
 	return $dbConn;
 };
 
-$container['mysql_box'] = function ($container) {
+$container['mysql_rankeds'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_rankeds']['host'], // server
+		$container->config['mysql_rankeds']['host'] . ':' . $container->config['mysql_rankeds']['port'], // server
 		$container->config['mysql_rankeds']['user'],     // user
 		$container->config['mysql_rankeds']['password'],      // password
 		$container->config['mysql_rankeds']['database']   // database
@@ -143,7 +143,7 @@ $container['mysql_box'] = function ($container) {
 
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_casier']['host'], // server
+		$container->config['mysql_casier']['host'] . ':' . $container->config['mysql_casier']['port'], // server
 		$container->config['mysql_casier']['user'],     // user
 		$container->config['mysql_casier']['password'],      // password
 		$container->config['mysql_casier']['database']   // database
@@ -157,7 +157,7 @@ $container['mysql_casier'] = function ($container) {
 
 $container['mysql_guardian'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_guardian']['host'], // server
+		$container->config['mysql_guardian']['host'] . ':' . $container->config['mysql_guardian']['port'], // server
 		$container->config['mysql_guardian']['user'],     // user
 		$container->config['mysql_guardian']['password'],      // password
 		$container->config['mysql_guardian']['database']   // database
