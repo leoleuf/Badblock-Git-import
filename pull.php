@@ -8,7 +8,7 @@ shell_exec('php composer.phar update');
 $data = array("username" => "Logger Site","embeds" => array(0 => array(
     "url" => "https://dev-web.badblock.fr",
     "title" => "GitLab Puller ",
-    "description" => "@here Site Web de démo update !",
+    "description" => "Site Web de démo update !",
     "color" => 65280
 )));
 
