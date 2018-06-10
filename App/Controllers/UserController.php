@@ -30,11 +30,13 @@ class UserController extends Controller
             $data = [
                 'uniqueId' => $user['uniqueId'],
                 'prefix' => "",
+                'prefix_new' => "",
                 'prefix_state' => false,
                 'chat_color' => "",
             ];
             if ($count == 0){
                 $this->container->mongoServer->custom_data->InsertOne($data);
+                $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
             }else{
                 $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
             }
@@ -47,8 +49,11 @@ class UserController extends Controller
         $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
 
         //Récupération des sanctions
+        $array = $this->container['config']['punishTypes'];
         $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
-
+        foreach ($sanctions as $k => $row){
+            $sanctions[$k]['type'] = $array[$row['type']];
+        }
 
         //On affiche 0 pts boutiques si le joueur a pas sous
         if (empty($user["shoppoints"])){
@@ -244,11 +249,17 @@ class UserController extends Controller
 
         //vérifiaction s'il n'y a pas deja un doc
         $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
-
-        //Création du document si inexistant
+        if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
+        }else{
+            $this->flash->addMessage('setting_error', "Erreur interne !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+            //Création du document si inexistant
         $data = [
             'uniqueId' => $user['uniqueId'],
             'prefix' => "",
+            'prefix_new' => "",
             'prefix_state' => false,
             'chat_color' => "",
         ];
@@ -257,19 +268,48 @@ class UserController extends Controller
         }
 
 
-
         if ($method == "prefix"){
             //Nouveau préfix
+            if (isset($_POST['prefix'])){
+                if (!empty($_POST['prefix'])){
+                    if (strlen($_POST['prefix']) < 16){
+                        $this->container->mongoServer->custom_data->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ['prefix_state' => false,'prefix_new' => $_POST['prefix']]]);
 
+                        $this->flash->addMessage('setting_error', "Demande de préfix envoyé !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }else{
+                        $this->flash->addMessage('setting_error', "Merci de saisir un préfix de moins de 16 caractères !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }
+                }else{
+                    $this->flash->addMessage('setting_error', "Merci de saisir un préfix valide !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                }
+            }
+        }elseif ($method == "textcolor"){
+            if (isset($_POST['color'])){
+                if (!empty($_POST['color'])){
+                    $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+                    if (in_array($_POST['color'], $this->container['config']['colorChat'])){
 
+                        $_POST['color'] = array_search($_POST['color'], $this->container['config']['colorChat']);
+                        $this->container->mongoServer->custom_data->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ['chat_color' => $_POST['color']]]);
 
-
-        }elseif ($method == ""){
-
+                        $this->flash->addMessage('setting_error', "Couleur de chat validé !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }
+                }else{
+                    $this->flash->addMessage('setting_error', "Merci de choisir une couleur !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                }
+            }
         }
-
-
     }
 
 

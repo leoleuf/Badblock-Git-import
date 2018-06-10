@@ -4,5 +4,6 @@ return [
 	'minecraft.php',
 	'api.php',
 	'shop.php',
-	'database.php'
+	'database.php',
+    'array.php'
 ];
