@@ -19,6 +19,10 @@ class DiscordHandler
         return $this->info($controller,$text);
     }
 
+    public function warning($controller,$text){
+        return $this->info($controller,$text);
+    }
+
 
 	public function info($controller,$text)
 	{
