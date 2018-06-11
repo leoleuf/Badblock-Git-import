@@ -43,9 +43,15 @@ class UserController extends Controller
             $custom = false;
         }
 
-        //Recherche des factures du joueurs
+        //Recherche des achats du joueurs
         $collection_facture = $this->container->mongo->funds;
         $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
+
+
+        if (count($factures) == "1"){
+            $factures = false;
+        }
+
 
         //Récupération des sanctions
         $array = $this->container['config']['punishTypes'];
@@ -64,8 +70,14 @@ class UserController extends Controller
             $user["shoppoints"] = 0;
         }
 
+        $collection_vote = $this->container->mongo->vote;
+        $vote = $collection_vote->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
-
+        if ($vote == null){
+            $user['vote'] = 0;
+        }else{
+            $user['vote'] = $vote["bronze"];
+        }
 
         //Return view
         return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);

@@ -27,7 +27,7 @@
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Point(s) Boutique</span></li>
-                        <li><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Vote(s)</span></li>
+                        <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Bronze(s)</span></li>
                     </ul>
                 </div>
             </div>
@@ -103,63 +103,73 @@
     </div>
     <div id="2" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Mes 10 dernières sanction(s)</span></h4>
-            <table class="table table-bordered">
-                <tbody>
-                    {% if sanctions != false %}
-                        <tr>
-                            <td><font color="black">Pseudonyme</font></td>
-                            <td><font color="black">Date</font></td>
-                            <td><font color="black">Type</font></td>
-                            <td><font color="black">Auteur</font></td>
-                            <td><font color="black">Expiration</font></td>
-                            <td><font color="black">Raison</font></td>
-                        </tr>
-                        
-                        {% for key in sanctions %}
+            {% if sanctions != false %}
+                <h4 class="heading heading-bar"><span>Mes 10 dernières sanction(s)</span></h4>
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
-                                <td>{{ key["pseudo"] }}</td>
-                                <td>{{ key["date"] }}</td>
-                                <td><span class="label label-danger">BannissementTEMP</span></td>
-                                <td><a href="/profile/xMalware">{{ key["banner"] }}</a></td>
-                                <td>{{ key["expire"] }}</td>
-                                <td>{{ key["reason"] }}</td>
+                                <td><font color="black">Pseudonyme</font></td>
+                                <td><font color="black">Date</font></td>
+                                <td><font color="black">Type</font></td>
+                                <td><font color="black">Auteur</font></td>
+                                <td><font color="black">Expiration</font></td>
+                                <td><font color="black">Raison</font></td>
                             </tr>
-                        {% endfor %}
-                    {% else %}
-                        <div class="no-item-content">
-                            <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                            <h4>Aucunes sanctions</h4>
-                        </div>
-                    {% endif %}
-                </tbody>
-            </table>
-        </section>
+
+                            {% for key in sanctions %}
+                                <tr>
+                                    <td>{{ key["pseudo"] }}</td>
+                                    <td>{{ key["date"] }}</td>
+                                    <td><span class="label label-danger">BannissementTEMP</span></td>
+                                    <td><a href="/profile/xMalware">{{ key["banner"] }}</a></td>
+                                    <td>{{ key["expire"] }}</td>
+                                    <td>{{ key["reason"] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+            {% else %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucune sanction</h4>
+                    </div>
+                </div>
+            {% endif %}
     </div>
     <div id="3" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Mes achats</span></h4>
-            <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <td><font color="black">Pseudo</font></td>
-                    <td><font color="black">Date</font></td>
-                    <td><font color="black">Montant</font></td>
-                    <td><font color="black">Crédits €</font></td>
-                    <td><font color="black"></font></td>
-                </tr>
-                {% for key in factures %}
+            {% if factures != false %}
+                <h4 class="heading heading-bar"><span>Mes achats</span></h4>
+                <table class="table table-bordered">
+                    <tbody>
                     <tr>
-                        <td>{{ key["name"] }}</td>
-                        <td>{{ key["date"] }}</td>
-                        <td>{{ key["price"] }}</td>
-                        <td>{{ key["points"] }}</td>
-                        <td><a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}"><i class="icon icon-paperclip"></i> Consulter</a></td>
+                        <td><font color="black">Pseudo</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Montant</font></td>
+                        <td><font color="black">Crédits €</font></td>
+                        <td><font color="black"></font></td>
                     </tr>
-                {% endfor %}
-
-                </tbody>
-            </table>
+                    {% for key in factures %}
+                        <tr>
+                            <td>{{ key["name"] }}</td>
+                            <td>{{ key["date"] }}</td>
+                            <td>{{ key["price"] }}</td>
+                            <td>{{ key["points"] }}</td>
+                            <td><a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}"><i class="icon icon-paperclip"></i> Consulter</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucun achat</h4>
+                    </div>
+                </div>
+            {% endif %}
         </section>
     </div>
     <div id="4" class="tabcontent" style="display: none;">
