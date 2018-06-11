@@ -8,7 +8,7 @@ return [
 	'socials_network' => "Réseaux sociaux",
 	'home.cards.more_posts' => "Plus d'articles",
 	'blog.no_posts' => "Aucun articles disponible pour l'instant",
-	'blog.title' => "Touw les articles",
+	'blog.title' => "Tous les articles",
 	'blog.summary' => "Toutes les dernières fraiches news du serveur",
 	'blog.comments_disable' => "Commentaires désactivé sur cet article",
 	'blog.comments_empty' => "Aucuns commentaires de disonible",
