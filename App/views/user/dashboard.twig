@@ -106,15 +106,16 @@
             <h4 class="heading heading-bar"><span>Mes 10 dernières sanction(s)</span></h4>
             <table class="table table-bordered">
                 <tbody>
-                    <tr>
-                        <td><font color="black">Pseudonyme</font></td>
-                        <td><font color="black">Date</font></td>
-                        <td><font color="black">Type</font></td>
-                        <td><font color="black">Auteur</font></td>
-                        <td><font color="black">Expiration</font></td>
-                        <td><font color="black">Raison</font></td>
-                    </tr>
-                    {% sanctions != false %}
+                    {% if sanctions != false %}
+                        <tr>
+                            <td><font color="black">Pseudonyme</font></td>
+                            <td><font color="black">Date</font></td>
+                            <td><font color="black">Type</font></td>
+                            <td><font color="black">Auteur</font></td>
+                            <td><font color="black">Expiration</font></td>
+                            <td><font color="black">Raison</font></td>
+                        </tr>
+                        
                         {% for key in sanctions %}
                             <tr>
                                 <td>{{ key["pseudo"] }}</td>
