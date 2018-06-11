@@ -58,6 +58,7 @@ class LoginMiddleware
                     'is_staff' => $user['is_staff'],
                     'is_moderator' => $user['is_moderator']
                 ]);
+
             }
 
             return $next($request, $response);
