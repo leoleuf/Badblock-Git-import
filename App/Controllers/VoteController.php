@@ -200,7 +200,7 @@ class VoteController extends Controller
             //Lotterie 3 : 20 bronze
             if ($type['type'] == "1"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] > 0){
                     $this->recomp($player,1);
                 }else{
@@ -208,7 +208,7 @@ class VoteController extends Controller
                 }
             }elseif ($type['type'] == "2"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] >= 5){
                     $this->recomp($player,2);
                 }else{
@@ -216,7 +216,7 @@ class VoteController extends Controller
                 }
             }elseif ($type['type'] == "3"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] >= 20){
                     $this->recomp($player,3);
                 }else{
@@ -264,6 +264,8 @@ class VoteController extends Controller
 
 
     public function top($player, $vote){
+        $player = strtolower($player);
+
         //Collection
         $mongo = $this->container->mongo->stats_vote;
 

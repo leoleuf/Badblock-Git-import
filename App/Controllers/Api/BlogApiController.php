@@ -57,7 +57,7 @@ class BlogApiController extends \App\Controllers\Controller
 		$posts = $this->xenforo->getAllNewsPosts();
 
 		//loggin
-//		$this->log->debug('"BlogApiController\getCreateCacheAllPosts": Creating cache for ' . $posts['count'] . ' items...');
+        $this->log->debug('"BlogApiController\getCreateCacheAllPosts"', '" Creating cache for ' . $posts['count'] . ' items...');
 
 		//2. Les traiter pour en obtenir le contenu
 		$newPosts = [];
