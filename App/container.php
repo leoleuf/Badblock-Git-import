@@ -103,7 +103,7 @@ $container['guzzle'] = function ($container) {
 
 $container['mysql_forum'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_forum']['host'], // server
+		$container->config['mysql_forum']['host']. ':' . $container->config['mysql_forum']['port'], // server
 		$container->config['mysql_forum']['user'],     // user
 		$container->config['mysql_forum']['password'],      // password
 		$container->config['mysql_forum']['database']   // database
