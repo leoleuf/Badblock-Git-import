@@ -39,7 +39,7 @@ class VoteController extends Controller
         //On vérifie si il est inscrit sur le forum
         if (count($data) > 0){
             $collection = $this->container->mongo->vote;
-            $cto = $collection->count(['name' => $_POST['pseudo']]);
+            $cto = $collection->count(['name' => strtolower($_POST['pseudo'])]);
             //n'a jamais voté -> on créer le fichier de vote
             if ($cto == 0){
                 $insert = [
@@ -89,7 +89,7 @@ class VoteController extends Controller
         //On vérifie si il est inscrit sur le forum
         if (count($data) > 0){
             $collection = $this->container->mongo->vote;
-            $cto = $collection->count(['name' => $_POST['pseudo']]);
+            $cto = $collection->count(['name' => strtolower($_POST['pseudo'])]);
             //n'a jamais voté -> on créer le fichier de vote
             if ($cto == 0){
                 $insert = [
@@ -140,16 +140,21 @@ class VoteController extends Controller
                 if ($_POST['out'] == $out){
                     $collection = $this->container->mongo->vote;
                     $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
-                    $number = $mongo['rpg']['number'] + 1;
-                    $bronze = $mongo['bronze'] + 2;
-                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"rpg.time" => $date->getTimestamp(),"rpg.number" => $number]]);
 
-                    $this->top($_POST['pseudo'], 1);
+                    if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
+                        $number = $mongo['rpg']['number'] + 1;
+                        $bronze = $mongo['bronze'] + 2;
+                        $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"rpg.time" => $date->getTimestamp(),"rpg.number" => $number]]);
 
-                    if ($this->container->session->exist('user')){
-                        return $response->write("2")->withStatus(200);
+                        $this->top($_POST['pseudo'], 1);
+
+                        if ($this->container->session->exist('user')){
+                            return $response->write("2")->withStatus(200);
+                        }else{
+                            return $response->write("2")->withStatus(403);
+                        }
                     }else{
-                        return $response->write("2")->withStatus(403);
+                        return $response->write("")->withStatus(500);
                     }
                 }else{
                     return $response->write("Out invalide")->withStatus(405);
@@ -164,16 +169,21 @@ class VoteController extends Controller
             if ($API_call == 1 || true){
                 $collection = $this->container->mongo->vote;
                 $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
-                $number = $mongo['msf']['number'] + 1;
-                $bronze = $mongo['bronze'] + 1;
-                $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"msf.time" => $date->getTimestamp(),"msf.number" => $number]]);
 
-                $this->top($_POST['pseudo'], 1);
+                if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()) {
+                    $number = $mongo['msf']['number'] + 1;
+                    $bronze = $mongo['bronze'] + 1;
+                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])], ['$set' => ["bronze" => $bronze, "msf.time" => $date->getTimestamp(), "msf.number" => $number]]);
 
-                if ($this->container->session->exist('user')){
-                    return $response->write("1")->withStatus(200);
+                    $this->top($_POST['pseudo'], 1);
+
+                    if ($this->container->session->exist('user')) {
+                        return $response->write("1")->withStatus(200);
+                    } else {
+                        return $response->write("1")->withStatus(403);
+                    }
                 }else{
-                    return $response->write("1")->withStatus(403);
+                    return $response->write("")->withStatus(500);
                 }
             }else{
                 return $response->write("Vote invalid")->withStatus(405);
@@ -190,7 +200,7 @@ class VoteController extends Controller
             //Lotterie 3 : 20 bronze
             if ($type['type'] == "1"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] > 0){
                     $this->recomp($player,1);
                 }else{
@@ -198,7 +208,7 @@ class VoteController extends Controller
                 }
             }elseif ($type['type'] == "2"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] >= 5){
                     $this->recomp($player,2);
                 }else{
@@ -206,7 +216,7 @@ class VoteController extends Controller
                 }
             }elseif ($type['type'] == "3"){
                 $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => $player]);
+                $mongo = $collection->findOne(['name' => strtolower($player)]);
                 if ($mongo['bronze'] >= 20){
                     $this->recomp($player,3);
                 }else{
@@ -254,6 +264,8 @@ class VoteController extends Controller
 
 
     public function top($player, $vote){
+        $player = strtolower($player);
+
         //Collection
         $mongo = $this->container->mongo->stats_vote;
 
