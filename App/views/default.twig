@@ -260,8 +260,7 @@
         <!-- TFA2 Form -->
     <form method="POST" action="{{ path_for('login.execute') }}">
         <label for="username">Taper votre code : (TFA)</label>
-        <input name="code" class="u-full-width" type="text" placeholder="000000"
-               id="username" required>
+        <input name="code" class="u-full-width" type="text" placeholder="000000" required>
         <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
     </form>
     <!-- Fin TFA2 form -->

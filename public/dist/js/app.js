@@ -40,6 +40,8 @@ function players() {
 }
 
 $(document).ready(function () {
+    players();
+
 
     console.log("%cHeyyy!", 'background: #222; font-size: 5em; color: #00A8E7');
 
@@ -64,7 +66,6 @@ $(document).ready(function () {
         return false;
     })
 
-    players();
 
     /*
     Rechargez son compte
