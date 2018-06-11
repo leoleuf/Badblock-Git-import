@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Api;
 
+use function FastRoute\cachedDispatcher;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -66,7 +67,8 @@ class BlogApiController extends \App\Controllers\Controller
 
 		//boucle
 		while ($i < $posts['count']) {
-			//on fait une requete sur ce post en particulier
+
+            //on fait une requete sur ce post en particulier
 			$post = $this->xenforo->getNewPost($posts['threads'][$i]['first_post_id']);
 
 			//on va chercher les infos dont on a besoin
@@ -122,13 +124,13 @@ class BlogApiController extends \App\Controllers\Controller
 						$postInfo['cover_url'] = $postInfo['thumb_url'];
 					}
 					//logging
-					//$this->log->debug('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has been valid parameters.');
+					//$this->log->debug('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
 					//logging
-					//$this->log->error('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid parameters.');
+					//$this->log->error('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid parameters.');
 
 					//stop the script
-					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
+					//return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
 				}
 			} else {
 				//valeur par default
@@ -141,10 +143,10 @@ class BlogApiController extends \App\Controllers\Controller
 				];
 
 				//logging
-				//$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no parameters.');
+				//$this->log->warning('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no parameters.');
 			}
 
-			//definir le contenu
+            //definir le contenu
 			//on redefini le post info sur message html
 			$postInfoPos = strpos($post['message_html'], '<pre style="margin: 1em auto" title="Code">{!!');
 			$postInfoRaw = substr(
@@ -154,10 +156,10 @@ class BlogApiController extends \App\Controllers\Controller
 			//on prend la longeur à partir du [CODE]{!!
 			$postInfoLen = strlen($postInfoRaw);
 			//on deduit la longueur
-			$content = substr($post['message_html'], 0, -$postInfoLen);
+			$content = $post['message_html'];
 
-			if (empty($content)) {
-				//$this->log->warning('"BlogApiController\getCreateCacheAllPosts": The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
+            if (empty($content)) {
+                //$this->log->warning('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
 			}else{
 				$newPosts[$i] = [
 					'uuid' => $uuid,
@@ -191,15 +193,17 @@ class BlogApiController extends \App\Controllers\Controller
 					'content' => $content
 				];
 
-				//enregistrer sur redis un article en particul	ier
-				$this->redis->setJson('post:' . $uuid, $singleNewPost);
+				//enregistrer sur redis un article en particulier
+
+                $this->redis->setJson('post:' . $uuid, $singleNewPost);
 
 				//si le poste est épinglé on enregistre dans un tableau
 				if ($postInfo['pined']) {
 					array_push($pinedRawPosts, $newPosts[$i]);
 				}
 				$i++;
-			}
+
+            }
 
 		}
 
