@@ -50,9 +50,14 @@ class UserController extends Controller
         //Récupération des sanctions
         $array = $this->container['config']['punishTypes'];
         $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
-        foreach ($sanctions as $k => $row){
-            $sanctions[$k]['type'] = $array[$row['type']];
+        if (count($sanctions) > 0){
+            foreach ($sanctions as $k => $row){
+                $sanctions[$k]['type'] = $array[$row['type']];
+            }
+        }else{
+            $sanctions = false;
         }
+
 
         //On affiche 0 pts boutiques si le joueur a pas sous
         if (empty($user["shoppoints"])){
