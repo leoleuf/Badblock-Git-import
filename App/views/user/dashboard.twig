@@ -69,7 +69,7 @@
                     <a class="no-link" onclick="opentab(event, '2')">Mon casier</a>
                 </li>
                 <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '3')">Mes Factures</a>
+                    <a class="no-link" onclick="opentab(event, '3')">Mes Achats</a>
                 </li>
                 <li class="shop-menu">
                     <a class="no-link" onclick="opentab(event, '4')">Paramètres</a>
@@ -130,7 +130,7 @@
     </div>
     <div id="3" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Mes Factures</span></h4>
+            <h4 class="heading heading-bar"><span>Mes achats</span></h4>
             <table class="table table-bordered">
                 <tbody>
                 <tr>
@@ -202,8 +202,14 @@
                 <div class="six columns">
                     <div class="span">
                         <h4 class="top0">État de la demande</h4>
-                        État : <span class="badge badge-admin">Refusé</span>
-                        Préfix : ddd
+                        État :
+                        {% if custom['prefix_state'] == true %}
+                            <span class="badge badge-default">Accepté</span>
+                            Préfix : {{ custom['prefix'] }}
+                        {% else %}
+                            <span class="badge badge-admin">En attente</span>
+                            Préfix : {{ custom['prefix_new'] }}
+                        {% endif %}
                     </div>
                     <div class="span">
                         <h4 class="top0">Choisir mon préfix !</h4>

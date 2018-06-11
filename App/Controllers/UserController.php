@@ -20,11 +20,6 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
-        //Récupération des données du serveur
-        $collection = $this->container->mongoServer->custom_data;
-        $custom_data = $collection->findOne(['uniqueId' => $user['uniqueId']]);
-
-
 
         if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
             //vérifiaction s'il n'y a pas deja un doc
