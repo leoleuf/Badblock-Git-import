@@ -621,3 +621,15 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     .step {margin: 50px 0px 50px 0px;}
     .search{display: none;}
 }
+@media screen and (max-width: 400px){
+    .copied {
+        width: 60% !important;
+    }
+    .form-control {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .played {
+        text-align: center !important;
+    }
+}
