@@ -42,14 +42,10 @@
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="#" onclick="showLogin()"><i
+                        <a class="button button-primary" href="#login-modal"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
-                        <form id="form-login">
-                                      <input type="text" placeholder="Pseudo">
-                                      <input type="password" placeholder="Password">
-                        </form>
                     {% endif %}
                     {% if user is defined %}
                         <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
@@ -312,22 +308,7 @@
     });
 </script>
 
-<script type="text/javascript">
-  function showLogin()
-  {
-    var form = document.getElementById('form-login');
 
-    if (form.style.display == "none") {
-      form.style.display = "block";
-    }
-    else {
-      form.style.display = "none";
-    }
-  }
-</script>
-<!-- Tracy Debug Bar -->
-
-<!-- Fin Js -->
 
 </body>
 </html>

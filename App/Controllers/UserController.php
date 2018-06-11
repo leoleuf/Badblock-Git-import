@@ -20,6 +20,10 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        //Récupération des données du serveur
+        $collection = $this->container->mongoServer->custom_data;
+        $custom_data = $collection->findOne(['uniqueId' => $user['uniqueId']]);
+
 
 
         if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
@@ -268,6 +272,20 @@ class UserController extends Controller
         }
 
 
+        $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
+
+        $data = [
+            'uniqueId' => $user['uniqueId'],
+            'teamspeak_uid' => "",
+            'ban' => false,
+            'banExpire' => -1
+        ];
+
+
+        if ($count == 0){
+            $this->container->mongo->teamspeak_uid->InsertOne($data);
+        }
+
         if ($method == "prefix"){
             //Nouveau préfix
             if (isset($_POST['prefix'])){
@@ -292,7 +310,6 @@ class UserController extends Controller
         }elseif ($method == "textcolor"){
             if (isset($_POST['color'])){
                 if (!empty($_POST['color'])){
-                    $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
                     if (in_array($_POST['color'], $this->container['config']['colorChat'])){
 
@@ -309,10 +326,50 @@ class UserController extends Controller
                     return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
                 }
             }
+        }elseif ($method == "teamspeak_canal"){
+            if (isset($_POST['canal_name']) && isset($_POST['canal_psw'])){
+                if (!empty($_POST['canal_name']) && !empty($_POST['canal_psw'])){
+                    $ts_uid = $this->container->mongo->teamspeak_uid->findOne(['uniqueId' => $user['uniqueId']]);
+                    $count = $this->container->mongo->teamspeak_channel->count(['uniqueId' => $user['uniqueId']]);
+                    //Création du document si inexistant
+                    $data = [
+                        'uniqueId' => $user['uniqueId'],
+                        'ts_owner_uid' => $ts_uid['teamspeak_uid'],
+                        'channel_name' => $_POST['canal_name'],
+                        'channel_pwd' => $_POST['canal_psw'],
+                        'state' => true
+                    ];
+                    if ($count == 0){
+                        $this->container->mongo->teamspeak_channel->InsertOne($data);
+
+                        $this->flash->addMessage('setting_error', "Canal créer !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }else{
+                        $this->container->mongo->teamspeak_channel->updateOne(['uniqueId' => $user['uniqueId']], ['$set' =>
+                            [
+                                'uniqueId' => $user['uniqueId'],
+                                'ts_owner_uid' => $ts_uid['teamspeak_uid'],
+                                'channel_name' => $_POST['canal_name'],
+                                'channel_pwd' => $_POST['canal_psw']
+                            ]
+                        ]);
+                        $this->flash->addMessage('setting_error', "Paramètre de canal changé !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                    }
+                }else{
+                    $this->flash->addMessage('setting_error', "Merci de choisir un nom et un mot de passe valide !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+                }
+            }
+        }elseif ($method == "icone"){
+            $this->flash->addMessage('setting_error', "Fonctionnalité désactivé !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
         }
     }
-
-
 
 
 
