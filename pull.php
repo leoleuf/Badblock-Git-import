@@ -12,10 +12,10 @@ $data = array("username" => "Logger Site","embeds" => array(0 => array(
     "color" => 65280
 )));
 
-$curl = curl_init("https://discordapp.com/api/webhooks/455466832871292928/TazyKTAJ_DIaMpciQOmriVP5aiaa3pM8E7rIFBHUFnGP1OcFnqfbH8Rzsr-YbiyQOg5d");
-curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-curl_exec($curl);
+#$curl = curl_init("https://discordapp.com/api/webhooks/455466832871292928/TazyKTAJ_DIaMpciQOmriVP5aiaa3pM8E7rIFBHUFnGP1OcFnqfbH8Rzsr-YbiyQOg5d");
+#curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+#curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+#curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+#curl_exec($curl);
 
 ?>
