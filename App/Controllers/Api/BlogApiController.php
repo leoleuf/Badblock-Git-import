@@ -156,7 +156,7 @@ class BlogApiController extends \App\Controllers\Controller
 			//on prend la longeur à partir du [CODE]{!!
 			$postInfoLen = strlen($postInfoRaw);
 			//on deduit la longueur
-			$content = $post['message_html'];
+			$content = substr($post['message_html'], 0, -$postInfoLen);
 
             if (empty($content)) {
                 //$this->log->warning('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
