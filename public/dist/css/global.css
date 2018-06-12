@@ -215,21 +215,31 @@ td.c-table__cell {
     text-decoration: none;
     color: #222; }
 
-.search-container label {
-    font-size: 20px; }
-
-.search-container input[type=text] {
-    border-radius: 0px;
-    border: none; }
-
-.search-container .button-search {
-    margin-left: -4px;
-    padding: 7px;
+.btn-group .button-search {
+    padding: 6px 16px;
+    cursor: pointer;
+    float: left;
     border: none;
-    padding-right: 15px; }
+    height: 38px;
+    text-align: center;
+    color: #fff;
+    background-color: #3498db;
+}
 
-.search-container .button-search i {
-    margin-left: 7.5px; }
+.btn-group .input-search {
+    padding: 9px 24px !important;
+    float: left;
+    border: none;
+    border-radius: 0px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 .button-games {
     padding: 12px 20px;
@@ -577,6 +587,10 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     margin: -0.9px 10px;
     border-radius: 0;
     animation: login-enter .7s;
+}
+
+.card-inline {
+    
 }
 
 @@keyframes login-enter {
