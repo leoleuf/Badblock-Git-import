@@ -31,6 +31,9 @@ class LoginMiddleware
 
                 $data_session = $this->container->mysql_forum->fetchRow("SELECT * FROM xf_session WHERE session_id = '" . $_COOKIE['forum_session'] . "'");
 
+                if ($data_session == null){
+                    return $next($request, $response);
+                }
 
                 $data_session = explode("user_id\";i:",$data_session["session_data"]);
 

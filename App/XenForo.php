@@ -45,7 +45,7 @@ class XenForo
      */
     public function getAllNewsPosts()
     {
-        $rep = $this->doGetRequest('action=getThreads&node_id=113&order_by=post_date');
+        $rep = $this->doGetRequest('action=getThreads&node_id=113&order_by=post_date&limit=999');
 
         return $this->getParsedBody($rep->getBody());
     }

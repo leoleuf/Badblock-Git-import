@@ -127,10 +127,10 @@ class BlogApiController extends \App\Controllers\Controller
 					//$this->log->debug('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has been valid parameters.');
 				} else {
 					//logging
-					//$this->log->error('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid parameters.');
+					$this->log->error('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . " / " . $title . ' has no valid parameters.');
 
 					//stop the script
-					//return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
+					return $response->write('The item with id: ' . $threadId . ' has no valid parameters.')->withStatus(400);
 				}
 			} else {
 				//valeur par default
@@ -158,8 +158,12 @@ class BlogApiController extends \App\Controllers\Controller
 			//on deduit la longueur
 			$content = substr($post['message_html'], 0, -$postInfoLen);
 
+            $content = str_replace('src="', 'upd="', $content);
+
+            $content = str_replace('data-url="', 'src="', $content);
+
             if (empty($content)) {
-                //$this->log->warning('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
+                $this->log->warning('"BlogApiController\getCreateCacheAllPosts"',' The item with id: ' . $threadId . ' has no valid content -> maybe the syntax of the ');
 			}else{
 				$newPosts[$i] = [
 					'uuid' => $uuid,
