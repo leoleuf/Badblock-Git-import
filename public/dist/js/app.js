@@ -36,6 +36,8 @@ function players() {
         $('#players').html(message);
 
         console.log('%c' + message + " connecté!", 'background: #222; font-size: 2em; color: #9b59b6');
+
+        setTimeout(players, 3000);
     });
 }
 
@@ -50,6 +52,10 @@ $(document).ready(function () {
     console.log("%cMais pour encore mieux en profiter, et pour la sécurité de votre compte badblock, blabla en fait je fait un texte pour meubler ma vrai pensé : - je sais ce que tu veux faire, tu veux trafiquoter le site pour impréssionner tes amis! LOLOLOLOLOLOL", 'background: #222; color: #bada55');
 
     console.log("%cBref, le site à été développé par pleins de développeurs comme Skript/FeedDev/Fluor (oui, oui le mec à 50 0000 pseudos et il est BG), Hooki_, et Le_Futuriste <lefuturiste.fr>", 'background: #000; color: #fff');
+
+
+    console.log("%cNe colle rien ici, Jamais !", 'background: #000; color: #fff');
+
 
     //Check to see if the window is top if not then display button
     $(window).scroll(function () {
