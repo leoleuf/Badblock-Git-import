@@ -18,6 +18,8 @@ class MinecraftApiController extends \App\Controllers\Controller
         {
             $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
 
+            dd($this->container->teamspeak->onlineNC());
+
 
             return $response->withJson(["players" => ['now' => $Query->Query()["players"]["online"]]]);
 
