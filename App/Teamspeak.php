@@ -46,7 +46,7 @@ class Teamspeak
     }
 
     public function online(){
-        //$this->connection();
+        $this->connection();
         if ($this->redis->exists('api.teamspeak.online')){
             return $this->redis->get('api.teamspeak.online');
         }else{
@@ -59,6 +59,8 @@ class Teamspeak
     }
 
     public function onlineNC(){
+        $this->connection();
+
         return $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
     }
 

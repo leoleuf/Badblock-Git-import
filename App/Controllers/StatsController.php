@@ -20,7 +20,9 @@ class StatsController extends Controller
 	{
 	    $connected = 0;
 	    //debug
-	    $c_ts = 0;
+	    $c_ts = $this->container->teamspeak->online();
+
+
 	    $guardian = $this->redis->getJson('stats:guardian');
 	    $gstats = $this->redis->getJson('stats:stats_guardian');
 	    $stats = $this->redis->getJson('stats:stats_general');
