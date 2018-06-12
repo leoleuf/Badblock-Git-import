@@ -173,7 +173,9 @@
                 $.ajax({
                     url: '/api/minecraft/players',
                     success: function(data) {
-                        $("#players-count").text(data.players.now);
+                        if (data.players.now != null){
+                            $("#players-count").text(data.players.now);
+                        }
                         setTimeout(playerAj, 3000);
                     }
                 });
