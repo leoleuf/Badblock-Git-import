@@ -32,7 +32,7 @@
                                         <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
                                     </div>
                                     <ul class="search" id="search_down">
-                                      <li><a href="#"><img src="https://guiria.badblock.fr/head/Fluor/64.png"> Le chieur infini</a></li>
+                                      <li><a href="#">Aucun résultat</a></li>
                                     </ul>
                                 </form>
                             </div>
@@ -128,6 +128,8 @@
             ul = document.getElementById("search_down");
             li = ul.getElementsByTagName("li");
 
+            last = "";
+
 
             $.ajax({
                 url: '/api/stats/search',
@@ -135,27 +137,30 @@
                 data: { search_player : filter},
                 success: function(data) {
                     data = JSON.parse(data);
-
+                    $("#search_down").empty();
                     for (i = 0; i < data.length; i++) {
-                        $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://guiria.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
+                        if (data[i] != last){
+                            $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://guiria.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
 
-                        console.log(data[i]);
+                            last = data[i];
+                            console.log(data[i]);
+
+                            for (i = 0; i < li.length; i++) {
+                                a = li[i].getElementsByTagName("a")[0];
+                                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    li[i].style.display = "block";
+                                } else {
+                                    li[i].style.display = "none";
+
+                                }
+                            }
+                        }
                     }
                 }
             });
 
 
-            for (i = 0; i < li.length; i++) {
 
-
-                a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "block";
-                } else {
-                    li[i].style.display = "none";
-
-                }
-            }
         }
     </script>
 
