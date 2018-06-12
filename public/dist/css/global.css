@@ -589,8 +589,10 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     animation: login-enter .7s;
 }
 
-.card-inline {
-    
+.pagination li a {
+    border: none !important;
+    background-color: #3498db !important;
+    padding: 12px 15px !important;
 }
 
 @@keyframes login-enter {
