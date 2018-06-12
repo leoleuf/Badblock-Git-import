@@ -129,6 +129,20 @@
             ul = document.getElementById("search_down");
             li = ul.getElementsByTagName("li");
 
+
+            $.ajax({
+                url: 'http://localhost/api/stats/search',
+                type: "POST",
+                data: { search_player : filter},
+                success: function(data) {
+
+                    for (i = 0; i < data.length; i++) {
+                        console.log(data[i]);
+                    }
+                }
+            });
+
+
             for (i = 0; i < li.length; i++) {
 
 
