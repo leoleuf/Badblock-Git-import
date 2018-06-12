@@ -305,6 +305,26 @@ class UserController extends Controller
                     if (strlen($_POST['prefix']) < 16){
                         $this->container->mongoServer->custom_data->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ['prefix_state' => false,'prefix_new' => $_POST['prefix']]]);
 
+                        //https://canary.discordapp.com/api/webhooks/456069141464612864/8GTSrExs1xlL2v4fxj5pTI8BEhJlYqpn0M_Lesioqrw81dCS07hdo3fN9Vz_JPq9jWqv
+
+
+                        //Discord WebHook notif
+
+                        $data = array("username" => "Grade Custom","embeds" => array(0 => array(
+                            "url" => "http://badblock.fr",
+                            "title" => "Prefix de " . $user['realName'] . " à valider !",
+                            "description" => "Valider le préfix " . $_POST['prefix'],
+                            "color" => 5788507
+                        )));
+
+                        $curl = curl_init(getenv("DISCORD_RESP"));
+                        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+                        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+                        curl_exec($curl);
+
+
+
                         $this->flash->addMessage('setting_error', "Demande de préfix envoyé !");
                         //redirect to last page
                         return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');

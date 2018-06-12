@@ -65,7 +65,7 @@ class DiscordHandler
 
 
     private function sendData($data){
-        $curl = curl_init("https://canary.discordapp.com/api/webhooks/455700348485632003/lMjAgITiNlgRYa9cUb7xKw0D_ufQUsC56V4_pgHF25BXlvaFFpebPabERu-QwHH-XHYQ");
+        $curl = curl_init(getenv('DISCORD_WH'));
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

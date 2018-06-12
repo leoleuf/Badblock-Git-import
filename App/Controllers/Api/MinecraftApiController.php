@@ -17,7 +17,7 @@ class MinecraftApiController extends \App\Controllers\Controller
         try
         {
             $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
-            
+
             return $response->withJson(["players" => ['now' => $Query->Query()["players"]["online"]]]);
 
         }
