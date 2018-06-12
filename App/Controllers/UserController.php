@@ -20,6 +20,8 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        $check = false;
+
         foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
