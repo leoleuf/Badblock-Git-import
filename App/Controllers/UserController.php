@@ -271,7 +271,13 @@ class UserController extends Controller
 
         //vérifiaction s'il n'y a pas deja un doc
         $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
-        if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
+        foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
+            if ($k == "gradeperso"){
+                $check = true;
+            }
+        }
+
+        if ($user['permissions']['group'] == "gradeperso" || $check == true){
         }else{
             $this->flash->addMessage('setting_error', "Erreur interne !");
             //redirect to last page
