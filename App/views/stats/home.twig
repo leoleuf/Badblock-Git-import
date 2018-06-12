@@ -29,7 +29,7 @@
                                 <form>
                                     <label>Rechercher un Joueur</label>
                                     <div class="btn-group">
-                                        <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Recherchez un joueur" name="search" onkeyup="searchPlayer()">
+                                        <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Ex : Fluor" name="search" onkeyup="searchPlayer()">
                                         <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
                                     </div>
                                     <ul class="search" id="search_down">
@@ -120,6 +120,30 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+        function searchPlayer() {
+
+            input = document.getElementById("player_search");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("search_down");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+
+
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "block";
+                } else {
+                    li[i].style.display = "none";
+
+                }
+            }
+        }
+    </script>
+
+
     <script>
 
 
@@ -243,15 +267,5 @@
             }]
         });
     </script>
-    <script>
-        function searchPlayer() {
 
-            input = document.getElementById("player_search");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
-
-
-        }
-        </script>
 {% endblock %}
