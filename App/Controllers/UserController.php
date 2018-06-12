@@ -20,8 +20,14 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
+            if ($k == "gradeperso"){
+                $check = true;
+            }
+        }
 
-        if ($user['permissions']['group'] == "gradeperso" || in_array('gradeperso', (array) $user['permissions']['alternateGroups'])){
+        if ($user['permissions']['group'] == "gradeperso" || $check == true){
+
             //vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
 
