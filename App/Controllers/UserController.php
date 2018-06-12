@@ -23,6 +23,8 @@ class UserController extends Controller
         foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
+            }else{
+                $check = false;
             }
         }
 
@@ -274,6 +276,8 @@ class UserController extends Controller
         foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
+            }else{
+                $check = false;
             }
         }
 
