@@ -10,17 +10,17 @@
         <div class="cover">
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower"><span>Tower</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower"><span>Tower Run</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/rush/'" id="rush">Rush</button>
-                    <button class="button-games" onclick="location.href='/stats/all/survival/'" id="survival">Survival</button>
-                    <button class="button-games" onclick="location.href='/stats/all/survival/'" id="survival">SkyWars</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="uhc_speed">UHC Speed</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="peal_wars">Pearl Wars</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="spaceballs">SpaceBalls</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="capture_the_sheep">Capture The Sheep</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="capture_the_sheep">Build Contest</button>
-                    <button class="button-games" onclick="location.href='/stats/all/Box/'" id="pvp_box">Pvp-Box</button>
+                    <button class="button-games" onclick="location.href='/'" id="tower"><span>Tower</span></button>
+                    <button class="button-games" onclick="location.href='/'" id="tower"><span>Tower Run</span></button>
+                    <button class="button-games" onclick="location.href='/'" id="rush">Rush</button>
+                    <button class="button-games" onclick="location.href='/'" id="survival">Survival</button>
+                    <button class="button-games" onclick="location.href='/'" id="survival">SkyWars</button>
+                    <button class="button-games" onclick="location.href='/'" id="uhc_speed">UHC Speed</button>
+                    <button class="button-games" onclick="location.href='/'" id="peal_wars">Pearl Wars</button>
+                    <button class="button-games" onclick="location.href='/'" id="spaceballs">SpaceBalls</button>
+                    <button class="button-games" onclick="location.href='/'" id="capture_the_sheep">Capture The Sheep</button>
+                    <button class="button-games" onclick="location.href='/'" id="capture_the_sheep">Build Contest</button>
+                    <button class="button-games" onclick="location.href='/'" id="pvp_box">Pvp-Box</button>
                 </div>
                 <div class="one-half column animated bounceInLeft">
                     <div class="search-container">
@@ -32,7 +32,7 @@
                                         <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Recherchez un joueur" name="search" onkeyup="searchPlayer()">
                                         <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
                                     </div>
-                                    <ul class="search" id="myUL">
+                                    <ul class="search" id="search_down">
                                       <li><a href="#"><img src="https://guiria.badblock.fr/head/Fluor/64.png"> Le chieur infini</a></li>
                                     </ul>
                                 </form>
@@ -245,25 +245,13 @@
     </script>
     <script>
         function searchPlayer() {
-            var input, filter, ul, li, a, i;
-
 
             input = document.getElementById("player_search");
             filter = input.value.toUpperCase();
             ul = document.getElementById("myUL");
             li = ul.getElementsByTagName("li");
 
-            for (i = 0; i < li.length; i++) {
 
-
-                a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "block";
-                } else {
-                    li[i].style.display = "none";
-
-                }
-            }
         }
         </script>
 {% endblock %}
