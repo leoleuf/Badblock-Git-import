@@ -20,7 +20,16 @@ class StatsController extends Controller
 	{
 	    $connected = 0;
 	    //debug
-	    $c_ts = intval($this->container->teamspeak->online());
+        if ($this->redis->exists('api.teamspeak.online')){
+            $data = $this->redis->get('api.teamspeak.online');
+        }else{
+            $data = $this->container->teamspeak->online();
+            $this->redis->setJson('api.teamspeak.online', $data);
+            $this->redis->expire('api.teamspeak.online', 10);
+        }
+
+
+	    $c_ts = intval($data);
 
 
 	    $guardian = $this->redis->getJson('stats:guardian');
