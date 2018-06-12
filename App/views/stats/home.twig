@@ -134,8 +134,11 @@
                 type: "POST",
                 data: { search_player : filter},
                 success: function(data) {
+                    data = JSON.parse(data);
 
                     for (i = 0; i < data.length; i++) {
+                        $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://guiria.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
+
                         console.log(data[i]);
                     }
                 }
