@@ -168,7 +168,7 @@ class StatsController extends Controller
             return $this->redis->get("search:" . $data);
         }else{
             $resultR = [];
-            $query = "SELECT username FROM xf_user WHERE username LIKE '%". $data ."%' ORDER by username DESC LIMIT 5";
+            $query = "SELECT username FROM xf_user WHERE username LIKE '". $data ."%' ORDER by username DESC LIMIT 10";
             foreach ($this->container->mysql_forum->fetchRowManyCursor($query) as $result)
             {
                 array_push($resultR, $result);
