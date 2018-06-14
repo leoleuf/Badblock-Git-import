@@ -596,6 +596,11 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     padding: 12px 15px !important;
 }
 
+/* Dreaams*/
+.author-color {
+    color: #e74c3c;
+}
+
 @media only screen and (max-width: 768px){
 .vote-tr {
     overflow-x: scroll;
