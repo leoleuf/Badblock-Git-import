@@ -581,6 +581,7 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     opacity: 1;
 }
 
+
 #form-login {
     display: none;
     float: left;
@@ -589,11 +590,17 @@ table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
     animation: login-enter .7s;
 }
 
-.card-inline {
-    
+.pagination li a {
+    border: none !important;
+    background-color: #3498db !important;
+    padding: 12px 15px !important;
 }
 
-@@keyframes login-enter {
+@media only screen and (max-width: 768px){
+.vote-tr {
+    overflow-x: scroll;
+}
+@keyframes login-enter {
      0% {
          opacity: 0;
      }
