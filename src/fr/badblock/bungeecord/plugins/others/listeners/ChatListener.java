@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import fr.badblock.utils.Flags;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -42,6 +43,10 @@ public class ChatListener implements Listener {
 	public void onChat(ChatEvent event) {
 		if (!(event.getSender() instanceof ProxiedPlayer)) return;
 		ProxiedPlayer player = (ProxiedPlayer) event.getSender();
+		Server server = player.getServer();
+		String serverName = server.getInfo().getName();
+		// Do stuff
+		String
 		String message = event.getMessage();
 		if (message.startsWith("/")) return;
 		boolean cheat = contains(message, cheatWords);
