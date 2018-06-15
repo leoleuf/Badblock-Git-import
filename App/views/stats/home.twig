@@ -28,7 +28,7 @@
                             <div class="search-container">
                                 <form>
                                     <div class="btn-group">
-                                        <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Rechercher un Joueur" name="search" onkeyup="searchPlayer()">
+                                        <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Rechercher un Joueur" name="search" onkeypress="searchPlayer()" >
                                         <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
                                     </div>
                                     <ul class="search" id="search_down">
@@ -64,7 +64,7 @@
                         <p>Membres du staff</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#player-active-modal"><h3>{{  stats['message_forum'] }}</h3>
+                    <a href="#player-active-modal"><h3>{{ stats['message_forum'] }}</h3>
                         <p>Messages sur le Forum</p></a>
                 </div>
                 <div class="col-3">
@@ -120,6 +120,24 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
+    <script type="text/javascript">
+        document.addEventListener("click", (evt) => {
+            const flyoutElement = document.getElementById("player_search");
+            let targetElement = evt.target;
+
+            do {
+                if (targetElement == flyoutElement) {
+
+                    document.getElementById("search_down").style.display = "block";
+                    return;
+                }
+
+                targetElement = targetElement.parentNode;
+            } while (targetElement);
+
+            document.getElementById("search_down").style.display = "none";
+        });
+    </script>
     <script>
         function searchPlayer() {
 
@@ -129,7 +147,6 @@
             li = ul.getElementsByTagName("li");
 
             last = "";
-
 
             $.ajax({
                 url: '/api/stats/search',
