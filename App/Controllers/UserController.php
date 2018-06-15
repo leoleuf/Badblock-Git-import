@@ -85,9 +85,12 @@ class UserController extends Controller
 
         if ($vote == null){
             $user['vote'] = 0;
+            $user['votenb'] = 0;
         }else{
             $user['vote'] = $vote["bronze"];
+            $user['votenb'] = $vote['rpg']['number'] + $vote['msf']['number'];
         }
+
 
         //Return view
         return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);

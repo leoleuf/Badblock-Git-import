@@ -63,6 +63,13 @@ class BlogController extends Controller
 	{
 		//search in redis cache for single cache
 		if ($this->redis->exists('post:' . $args['uuid'])) {
+
+		    //Insertion d'un vue sur le compteur
+		    $collection = $this->container->mongo->blog;
+
+		    $collection;
+
+
 			$post = $this->redis->getJson('post:' . $args['uuid']);
 
 			$this->render($response, 'blog.post', [

@@ -197,6 +197,15 @@ class BlogApiController extends \App\Controllers\Controller
 					'content' => $content
 				];
 
+				//Création du document mongoDB pour le loggage IP
+                $data = [
+                    "uid" => $uuid,
+                    "title" => $title,
+                    "view" => []
+                ];
+                $this->container->mongo->blog
+
+
 				//enregistrer sur redis un article en particulier
 
                 $this->redis->setJson('post:' . $uuid, $singleNewPost);
