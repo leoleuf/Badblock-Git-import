@@ -26,11 +26,11 @@
                 <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
                 <div class="panel">
                     {% if mc_ip == "eu.badblock.fr" %}
-                        <img src="/dist/images/eu.gif" class="how-to-gif">
+                        <img src="/dist/images/eu.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/eu.gif');">
                     {% elseif mc_ip == "na.badblock.fr" %}
-                        <img src="/dist/images/na.gif" class="how-to-gif">
+                        <img src="/dist/images/na.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/na.gif');">
                     {% else %}
-                        <img src="/dist/images/play.gif" class="how-to-gif">
+                        <img src="/dist/images/play.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/play.gif');">
                     {% endif %}
                 </div>
             </div>
