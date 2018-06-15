@@ -42,7 +42,7 @@ class LinkController extends Controller
                             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                         }else{
                             //Création du code random
-                            $chars = "FLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBGFLUORLEBG";
+                            $chars = "FLUORLEBG";
                             srand((double)microtime()*1000000);
                             $i = 0;
                             $pass = '' ;
@@ -81,7 +81,7 @@ class LinkController extends Controller
 
         }elseif($_POST['step'] == 2){
             //On vérifie si le code de linkage est le bon
-            if ($_POST["code"] == $this->redis->get('link:'.$username)){
+            if (strtoupper($_POST["code"]) == $this->redis->get('link:'.$username)){
                 //Tout est réussi on update le forum
                 $this->xenforo->addGroup($username,17);
 
