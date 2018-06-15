@@ -42,7 +42,7 @@
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="#login-modal"><i
+                        <a class="button button-primary" href="{{ forum_url }}/login"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
@@ -209,70 +209,6 @@
 <a href="#" class="scrollToTop no-link" title="{{ 'scroll_to_top'|trans }}"><i
             class="icon icon-circle-arrow-up"></i> </a>
 <!-- Fin back to top -->
-
-<!-- Login Modal -->
-<div class="remodal modal-remodal" data-remodal-id="login-modal">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <h1>{{ 'login.title'|trans }}</h1>
-
-    {% if flash('login_error') %}
-        {% for flash in flash('login_error') %}
-            <div class="alert alert-error">
-                {{ flash }}
-                <i class="icon icon-remove"></i>
-            </div>
-        {% endfor %}
-    {% endif %}
-    <p>
-        <!-- Login Form -->
-    <form method="POST" action="{{ path_for('login.execute') }}">
-        <label for="username">{{ 'login.username'|trans }}</label>
-        <input name="username" class="u-full-width" type="text" placeholder="{{ 'login.username.placeholder'|trans }}"
-               id="username" required>
-        <label for="password">{{ 'login.password'|trans }}</label>
-        <input name="password" class="u-full-width" type="password"
-               placeholder="{{ 'login.password.placeholder'|trans }}" id="password" required>
-        <a href="#" class="{{ forum_url }}/lost-password/">{{ 'login.lost_password'|trans }}</a><br><br>
-        <a class="button button-danger" href="{{ forum_url }}/inscription/">{{ 'login.register'|trans }}</a>
-        <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
-    </form>
-    <!-- Fin login form -->
-    </p>
-    <br>
-
-</div>
-<!-- Fin login modal -->
-
-<!-- TFA2 Modal -->
-<div class="remodal modal-remodal" data-remodal-id="tfa-modal">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <h1>{{ 'login.title'|trans }}</h1>
-
-    {% if flash('login_error') %}
-        {% for flash in flash('login_error') %}
-            <div class="alert alert-error">
-                {{ flash }}
-                <i class="icon icon-remove"></i>
-            </div>
-        {% endfor %}
-    {% endif %}
-    <p>
-        <!-- TFA2 Form -->
-    <form method="POST" action="{{ path_for('login.execute') }}">
-        <label for="username">Taper votre code : (TFA)</label>
-        <input name="code" class="u-full-width" type="text" placeholder="000000" required>
-        <button class="button button-success" type="submit">{{ 'login.login'|trans }}</button>
-    </form>
-    <!-- Fin TFA2 form -->
-    </p>
-    <br>
-
-</div>
-<!-- Fin TFA2 modal -->
-
-
-
-
 
 <!-- JS -->
 <!-- Var js -->
