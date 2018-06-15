@@ -15,12 +15,10 @@ use Psr\Http\Message\ResponseInterface;
 class LinkController extends Controller
 {
 
-    //étape 1
     public function step1(RequestInterface $request, ResponseInterface $response){
-        var_dump($this->container->session->getProfile("user")['secondary_group_ids']);
-
 
         return $this->render($response, 'user.link.step1', ["width" => 33,"step" => 1]);
+
     }
 
     //fonction qui gère les form en POST
