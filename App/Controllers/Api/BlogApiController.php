@@ -203,7 +203,13 @@ class BlogApiController extends \App\Controllers\Controller
                     "title" => $title,
                     "view" => []
                 ];
-                $this->container->mongo->blog
+                $count_data = $this->container->mongo->blog->count(['uid' => $uuid]);
+                if ($count_data > 0){
+
+                }else{
+                    //Insertion du documennt
+                    $this->container->mongo->blog->insertOne($data);
+                }
 
 
 				//enregistrer sur redis un article en particulier
