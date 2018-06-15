@@ -8,11 +8,12 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
-		$this->get('/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheComment');
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
-		$this->get('/shop-list', \App\Controllers\Api\ShopApiController::class . ':getCreateCacheShopList');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');
+        $this->get('/all-stats', \App\Controllers\Api\StatsApiController::class . ':jsonResp');
         $this->get('/vote', \App\Controllers\Api\VoteApiController::class . ':cacheTop');
+
+        $this->get('/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheComment');
     });
 	$this->get('/post/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getPostComments');
 	$this->group('/minecraft', function() {
@@ -24,9 +25,6 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
         $this->get('/support/{id}/{title}/{user}/{type}', \App\DiscordHandler::class . ':sendForum');
     });
 
-    $this->group('/teamspeak', function() {
-        $this->get('/test', \App\Controllers\Api\LoginApiDevController::class . ':ts');
-    });
 
     $this->group('/stats', function() {
         $this->get('/json', \App\Controllers\Api\StatsApiController::class . ':jsonResp');

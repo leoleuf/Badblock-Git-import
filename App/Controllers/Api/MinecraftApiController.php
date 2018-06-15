@@ -11,25 +11,31 @@ use xPaw\MinecraftPingException;
 
 class MinecraftApiController extends \App\Controllers\Controller
 {
-	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response)
-	{
+	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response){
 
-        try
-        {
-            $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
-
-            return $response->withJson(["players" => ['now' => $Query->Query()["players"]["online"]]]);
-
-        }
-        catch( MinecraftPingException $e )
-        {
-            echo $e->getMessage();
-        }
-        finally
-        {
-            if( $Query )
+        if ($this->container->redis->exists('api.mc.player')){
+            return $response->withJson(["players" => ['now' => $this->container->redis->get('api.mc.player')]]);
+        }else{
+            try
             {
-                $Query->Close();
+                $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
+
+                $this->container->redis->set('api.mc.player', $Query->Query()["players"]["online"]);
+                $this->container->redis->expire('api.mc.player', 10);
+
+                return $response->withJson(["players" => ['now' => $Query->Query()["players"]["online"]]]);
+
+            }
+            catch( MinecraftPingException $e )
+            {
+                //
+            }
+            finally
+            {
+                if( $Query )
+                {
+                    $Query->Close();
+                }
             }
         }
 	}

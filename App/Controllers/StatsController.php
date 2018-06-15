@@ -23,9 +23,12 @@ class StatsController extends Controller
         if ($this->redis->exists('api.teamspeak.online')){
             $data = $this->redis->get('api.teamspeak.online');
         }else{
-            $data = $this->container->teamspeak->online();
-            $this->redis->setJson('api.teamspeak.online', $data);
-            $this->redis->expire('api.teamspeak.online', 100);
+            $data = 0;
+            while($data == 0){
+                $data = $this->container->teamspeak->online();
+            }
+            $this->redis->set('api.teamspeak.online', $data);
+            $this->redis->expire('api.teamspeak.online', 10);
         }
 
 
