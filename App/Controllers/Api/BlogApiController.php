@@ -204,9 +204,7 @@ class BlogApiController extends \App\Controllers\Controller
                     "view" => []
                 ];
                 $count_data = $this->container->mongo->blog->count(['uid' => $uuid]);
-                if ($count_data > 0){
-
-                }else{
+                if ($count_data == 0){
                     //Insertion du documennt
                     $this->container->mongo->blog->insertOne($data);
                 }

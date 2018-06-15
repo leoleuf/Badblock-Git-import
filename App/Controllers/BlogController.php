@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\XenForo;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use HansOtt\PSR7Cookies\SetCookie;
 use Validator\Validator;
 
 class BlogController extends Controller
@@ -61,18 +61,53 @@ class BlogController extends Controller
 
 	public function getPost(RequestInterface $request, ResponseInterface $response, $args)
 	{
-		//search in redis cache for single cache
+
+        //search in redis cache for single cache
 		if ($this->redis->exists('post:' . $args['uuid'])) {
+            if (isset($_COOKIE['article_view'])){
+                $cook = (array) json_decode($_COOKIE['article_view']);
+                if (!in_array($args['uuid'],$cook)){
+                    //Insertion d'un vue sur le compteur
+                    $collection = $this->container->mongo->blog;
+                    $count_data = $collection->count(["uid" => $args['uuid'],['view' => ['$all' => [$_SERVER['REMOTE_ADDR']]]]]);
+                    if ($count_data == 0){
+                        $data = $collection->updateOne(["uid" => $args['uuid']], ['$push' => ["view" => $_SERVER['REMOTE_ADDR']]]);
+                    }
+                    array_push($cook, $args['uuid']);
 
-		    //Insertion d'un vue sur le compteur
-		    $collection = $this->container->mongo->blog;
+                    //vérification du nombre de vue dans redis
+                    if ($this->redis->exist('post:' . $args['uuid'].":view")){
+                        $view_count = $this->redis->get('post:' . $args['uuid'].":view");
+                        $this->redis->set('post:' . $args['uuid'].":view", $view_count + 1);
+                    }else{
+                        $this->redis->set('post:' . $args['uuid'].":view", 1);
+                    }
 
-		    $collection;
+                    setcookie('article_view', json_encode($cook), -1, '/');
+                }
+            }else{
+                //Insertion d'un vue sur le compteur
+                $collection = $this->container->mongo->blog;
+                $count_data = $collection->count(["uid" => $args['uuid'],['view' => ['$all' => [$_SERVER['REMOTE_ADDR']]]]]);
+                if ($count_data == 0){
+                    $data = $collection->updateOne(["uid" => $args['uuid']], ['$push' => ["view" => $_SERVER['REMOTE_ADDR']]]);
+                    //vérification du nombre de vue dans redis
+                    if ($this->redis->exist('post:' . $args['uuid'].":view")){
+                        $view_count = $this->redis->get('post:' . $args['uuid'].":view");
+                        $this->redis->set('post:' . $args['uuid'].":view", $view_count + 1);
+                    }else{
+                        $this->redis->set('post:' . $args['uuid'].":view", 1);
+                    }
+                }
+                //ajout du cookie
+                setcookie('article_view', json_encode($args['uuid']), -1, '/');
+            }
 
+            $post = $this->redis->getJson('post:' . $args['uuid']);
 
-			$post = $this->redis->getJson('post:' . $args['uuid']);
+            $post["view"] = $this->redis->get('post:' . $args['uuid'].":view");
 
-			$this->render($response, 'blog.post', [
+            $this->render($response, 'blog.post', [
 				'post' => $post
 			]);
 		} else {
