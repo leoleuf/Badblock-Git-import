@@ -3,7 +3,7 @@ return [
 	'home' => "Accueil",
 	'home.last_posts' => "Derniers articles",
 	'home.posts' => "Derniers articles",
-	'home.cover.title' => "Bienvenue sur ce qui est la meilleure plateforme de jeux Minecraft en ligne",
+	'home.cover.title' => "BadBlock, serveur MineCraft MiniJeux 1.8 1.9 1.10 1.12",
 	'sidebar.title' => "Derniers sujets",
 	'socials_network' => "Réseaux sociaux",
 	'home.cards.more_posts' => "Plus d'articles",
