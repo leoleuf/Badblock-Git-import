@@ -605,6 +605,27 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     cursor: pointer;
 }
 
+#clic-out-txt {
+    margin-bottom: -2px;
+    margin-top: -20px;
+}
+
+#clic-out {
+    width: calc(100% - 30px);
+    margin-left: 0px;
+
+}
+
+#clic-out-img {
+    width: 500px !important;
+    height: 365px !important;
+    margin-left: auto;
+}
+
+#rpg-vote {
+    margin-left: 0px;
+}
+
 @media only screen and (max-width: 768px){
 .vote-tr {
     overflow-x: scroll;
