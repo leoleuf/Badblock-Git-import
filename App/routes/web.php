@@ -74,6 +74,7 @@ $app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setNa
 
 
 $app->get('/logout', function ($request, $response) {
+    session_destroy();
     return $response->withRedirect('https://forum.badblock.fr/logout');
 })->setName('logout');
 
