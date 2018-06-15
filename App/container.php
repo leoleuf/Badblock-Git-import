@@ -43,14 +43,6 @@ $container['flash'] = function () {
 	return new Slim\Flash\Messages();
 };
 
-$container['minecraft'] = function ($container) {
-	return new App\MinecraftServerQuery($container,
-		[
-			'host' => $container->config['minecraft']['host'],
-			'port' => $container->config['minecraft']['port']
-		]);
-};
-
 
 $container['translator'] = function ($container) {
 	// First param is the "default language" to use.
