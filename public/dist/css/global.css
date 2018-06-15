@@ -328,13 +328,13 @@ td.c-table__cell {
 .search
 {
     list-style-type: none;
-    margin-left: 0px;
+    margin-left: 17px;
     margin-top: -15px;
     background-color: #343434;
     color: #FFF;
     position: absolute;
     cursor: default;
-    width: 37.6%;
+    width: 36.725%;
     z-index: 99999999;
 }
 
