@@ -65,6 +65,10 @@ if ($config['app_debug'] == 0){
         return new \App\Middlewares\ErrorMiddleware($c);
     };
 
+    $c['phpErrorHandler'] = function ($c) {
+        return new \App\Middlewares\ErrorMiddleware($c);
+    };
+
     $app = new \Slim\App($c);
 }
 
