@@ -423,26 +423,23 @@ td.c-table__cell {
 .votes
 {
     width: 100%;
+    text-align: center;
 }
 
-.votes .vote1 img
-{
-    width: 50px;
+.votes-1 img {
+    width: 60px !important;
 }
 
-.votes .vote2 img
-{
+.votes-2 img {
+    width: 50px !important;
+}
+
+.votes-3 img {
+    width: 40px !important;
+}
+
+.votes img {
     width: 35px;
-}
-
-.votes .vote3 img
-{
-    width: 25px;
-}
-
-.votes img
-{
-    width: 15px;
 }
 
 table.votes tr td:first-child
@@ -450,10 +447,10 @@ table.votes tr td:first-child
     text-align: center;
 }
 
-table.votes tr.vote1 {font-size: 32px; color: #EED740;}
-table.votes tr.vote2 {font-size: 28px; color: #A6A6A6;}
-table.votes tr.vote3 {font-size: 24px; color: #CC984D;}
-
+table.votes tr:nth-child(1) {font-size: 32px; color: #EED740;}
+table.votes tr:nth-child(2) {font-size: 28px; color: #A6A6A6;}
+table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
+ 
 .nav-profil {
     background-color: #34495e;
 }

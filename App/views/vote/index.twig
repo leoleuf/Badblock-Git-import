@@ -79,9 +79,9 @@
                 <tbody>
                 {% if count(top) > 0 %}
                     {% for k,data in top %}
-                        <tr class='vote1'>
+                        <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
-                            <td><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/64.png"/> {{ data['name'] }}</td>
+                            <td class="img"><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/64.png"/> {{ data['name'] }}</td>
                             <td>{{ data['vote'] }}</td>
                         </tr>
                     {% endfor %}
