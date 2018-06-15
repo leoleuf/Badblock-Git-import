@@ -10,8 +10,6 @@ $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPo
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
 
-$app->post('/login', \App\Controllers\SessionController::class . ':login')->setName('login.execute');
-
 $app->get('/profile/{pseudo}', \App\Controllers\UserController::class . ':getProfile')->setName('user.profile');
 
 $app->group('/stats', function (){
@@ -72,6 +70,10 @@ $app->group('/dashboard', function (){
 
 $app->get('/link', \App\Controllers\LinkController::class . ':step1')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setName('link-post');
-$app->get('/logout', \App\Controllers\SessionController::class . ':getLogout')->setName('logout')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 
+
+
+$app->get('/logout', function ($request, $response) {
+    return $response->withRedirect('https://forum.badblock.fr/logout');
+})->setName('logout');
 
