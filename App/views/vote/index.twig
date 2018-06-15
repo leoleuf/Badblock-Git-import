@@ -83,7 +83,15 @@
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
                             <td class="img"><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/64.png"/> {{ data['name'] }}</td>
-                            <td>1€</td>
+                            {% if k < 3 %}
+                                <td>15€</td>
+                            {% elseif k < 10 %}
+                                <td>8.5€</td>
+                            {% elseif k < 20 %}
+                                <td>5€</td>
+                            {% else %}
+                                <td>2.5€</td>
+                            {% endif %}
                             <td>{{ data['vote'] }}</td>
                         </tr>
                     {% endfor %}
