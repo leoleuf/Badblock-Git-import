@@ -612,8 +612,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 #clic-out {
     width: calc(100% - 30px);
-    margin-left: 0px;
-
+    margin-left: 15px;
 }
 
 #clic-out-img {
@@ -623,7 +622,15 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 #rpg-vote {
-    margin-left: 0px;
+    margin-left: 15px;
+}
+
+#vote-link {
+    margin-left: 185px;
+}
+
+#outvote {
+    margin-left: 215px;
 }
 
 @media only screen and (max-width: 768px){

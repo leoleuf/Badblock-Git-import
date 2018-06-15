@@ -121,15 +121,15 @@
     <!-- Out Modal -->
     <div class="remodal modal-remodal" data-remodal-id="vote-out">
         <button data-remodal-action="close" class="remodal-close"></button>
-        <h2 id="time-title">Cliquer sur le bouton pour voter !</h2>
+        <h2 id="time-title" class="text-center">Cliquer sur le bouton pour voter !</h2>
         <a class="button button-danger" id="vote-link" target="_blank" href="" onclick="$('#rpg-vote').removeClass('disabled'); "><i class="fas fa-link"></i>   Voter sur RPG-Paradize</a>
         <div class="step-contains center">
-            <br><h5 id="clic-out-txt">Entrer le nombre de clic sortant :</h5>
+            <br><h5 id="clic-out-txt" class="text-center">Entrer le nombre de clic sortant :</h5>
             <input type="text" id="outvote" name="outvote"><br>
             <button class="accordion" id="clic-out"><i class="fa fa-cogs" aria-hidden="true"></i> C'est quoi le nombre de clic sortant ?</button>
                 <div class="panel">
-                    <h6>Un clic sortant est un clic effectué sur le site étudié qui dirige l’internaute vers un site externe. Ici, le site étudié est Badblock et le site externe est RPG-Paradize.<br>
-                    Le nombre de clic sortant change tous les jours. Pour le voir, il faut cliquer <a href="http://www.rpg-paradize.com/site-IP++play.badblock.fr++UHC++Rush++The+Tower++Faction-45397" target="_blank">ici</a> et regarder le nombre écrit.<br><i class="fas fa-exclamation-triangle"></i>  Attention, le nombre de clic sortant change tous les jours !<br><strong>Trouver le nombre de clic sortant sur RPG-Paradize :</strong> <img src="/dist/images/clic out.png" id="clic-out-img"></h6>
+                    <h6 class="text-center">Un clic sortant est un clic effectué sur le site étudié qui dirige l’internaute vers un site externe. Ici, le site étudié est Badblock et le site externe est RPG-Paradize.<br>
+                    Le nombre de clic sortant change tous les jours. Pour le voir, il faut cliquer <a href="http://www.rpg-paradize.com/site-IP++play.badblock.fr++UHC++Rush++The+Tower++Faction-45397" target="_blank">ici</a> et regarder le nombre écrit.<br><i class="fas fa-exclamation-triangle"></i>  Attention, le nombre de clic sortant change tous les jours !<br><strong>Trouver le nombre de clic sortant sur RPG-Paradize :</strong> <img src="/dist/images/clic_out.png" id="clic-out-img"></h6>
                 </div>
             <a class="button button-primary disabled" id="rpg-vote" onclick="step('rpg')" style="width: 95%;">Valider</a>
         </div>
