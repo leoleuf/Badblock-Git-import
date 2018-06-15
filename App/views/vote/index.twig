@@ -73,6 +73,7 @@
                     <tr>
                         <td>Rang</td>
                         <td>Joueur</td>
+                        <td>Récompense</td>
                         <td>Votes</td>
                     </tr>
                 </thead>
@@ -82,6 +83,7 @@
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
                             <td class="img"><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/64.png"/> {{ data['name'] }}</td>
+                            <td>1€</td>
                             <td>{{ data['vote'] }}</td>
                         </tr>
                     {% endfor %}
