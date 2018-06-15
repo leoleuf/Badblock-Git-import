@@ -76,7 +76,7 @@ class BlogController extends Controller
                     array_push($cook, $args['uuid']);
 
                     //vérification du nombre de vue dans redis
-                    if ($this->redis->exist('post:' . $args['uuid'].":view")){
+                    if ($this->redis->exists('post:' . $args['uuid'].":view")){
                         $view_count = $this->redis->get('post:' . $args['uuid'].":view");
                         $this->redis->set('post:' . $args['uuid'].":view", $view_count + 1);
                     }else{
@@ -92,7 +92,7 @@ class BlogController extends Controller
                 if ($count_data == 0){
                     $data = $collection->updateOne(["uid" => $args['uuid']], ['$push' => ["view" => $_SERVER['REMOTE_ADDR']]]);
                     //vérification du nombre de vue dans redis
-                    if ($this->redis->exist('post:' . $args['uuid'].":view")){
+                    if ($this->redis->exists('post:' . $args['uuid'].":view")){
                         $view_count = $this->redis->get('post:' . $args['uuid'].":view");
                         $this->redis->set('post:' . $args['uuid'].":view", $view_count + 1);
                     }else{
