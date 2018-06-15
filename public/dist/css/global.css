@@ -587,10 +587,18 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     animation: login-enter .7s;
 }
 
+
+
 .pagination li a {
     border: none !important;
     background-color: #3498db !important;
     padding: 12px 15px !important;
+}
+
+/*Dreaams*/
+.how-to-gif {
+    height: 300px !important;
+    width: 500px !important;
 }
 
 @media only screen and (max-width: 768px){
