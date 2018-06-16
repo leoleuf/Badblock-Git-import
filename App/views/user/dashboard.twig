@@ -48,7 +48,7 @@
             }
 
             // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
+            tablinks = document.getElementsByClassName("no-link");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
@@ -59,42 +59,40 @@
         }
     </script>
     <!-- Menu shop -->
-    <div class="shop-menu">
-        <ul class="shop-menu-menu">
-                <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '1')">Mes Informations</a>
+    <div class="user-menu">
+        <ul>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i>    Mes Informations</a>
                 </li>
-                <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '2')">Mon casier</a>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Mon casier</a>
                 </li>
-                <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '3')">Mes Achats</a>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '3')"><i class="fas fa-shopping-bag"></i>    Mes Achats</a>
                 </li>
-                <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '4')">Paramètres</a>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '4')"><i class="fas fa-cogs"></i>    Paramètres</a>
                 </li>
-                <li class="shop-menu">
-                    <a class="no-link" onclick="opentab(event, '5')">Grade Custom</a>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i>    Grade Custom</a>
                 </li>
-                <li class="shop-menu">
-                    <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');">Mes données personnelles (Forum)</a>
+                <li class="user-tab">
+                    <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i>    Compte Forum</a>
                 </li>
         </ul>
     </div>
 
     <div id="1" class="tabcontent">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Informations générales </span></h4>
+            <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Informations générales </span></h4>
             <div class="row">
                 <div class="six columns">
-                    <div class="container">
-                        <ul>
-                            <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
-                            <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
-                            <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
-                            <li><i class="icon icon-paperboat"></i> {{ user.votenb }} <span>Vote(s)</span></li>
-                        </ul>
-                    </div>
+                    <ul class="user-info">
+                        <li>Niveau In-Game : {{ user.game.level }} <span>0 niveaux</span></li>
+                        <li>Niveau d'XP : {{ user.game.xp }} <span>0 points</span></li>
+                        <li>Nombre de BadCoins : {{ user.game.badcoins }} <span>0 BC</span></li>
+                        <li>Nombre vote : {{ user.votenb }} <span>0 vote(s)</span></li>
+                    </ul>
                 </div>
                 <div class="six columns">
                     <img src="https://visage.surgeplay.com/head/512/{{ user.name }}">
@@ -173,20 +171,21 @@
             {% endif %}
         </section>
     </div>
-    <div id="4" class="tabcontent" style="display: none;">
+    <div id="4" class="tabcontent para" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Mes paramètres </span></h4>
+            <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mes paramètres </span></h4>
             <div class="six columns">
                 <div class="span">
                     <h4 class="top0">Changer mon mot de passe serveur</h4>
                     <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
-                        <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" /> <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
+                        <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" />
+                        <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
                         <input type="submit" class="button-primary"></input>
                         </input>
                     </form>
                 </div>
                 <div class="span">
-                    <h4 class="top0">Relier son Compte TeamSpeak <a href="/"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
+                    <h4 class="top0">Relier son Compte TeamSpeak <a href="/" style="text-decoration: none; font-size: 15px;"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
                     <form action="/dashboard/teamspeak/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre ID TeamSpeak</label>
                         <input type="text" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
@@ -214,7 +213,7 @@
 
         </section>
     </div>
-    <div id="5" class="tabcontent" style="display: none;">
+    <div id="5" class="tabcontent para" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             {% if custom != false %}
                 <h4 class="heading heading-bar"><span>Mon grade custom </span></h4>

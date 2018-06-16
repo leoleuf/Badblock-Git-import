@@ -518,10 +518,6 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     transform: scale(1.05);
 }
 
-.shop-menu .shop-menu-menu .shop-menu-active {
-    border: 0 !important;
-}
-
 .stats-home {
     margin:  15px;
 }
@@ -679,6 +675,61 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     background-color: #428bca;
 }
 
+.user-menu {
+    margin-bottom: 25px;
+}
+
+.user-menu ul, .user-info {
+    list-style-type: none;
+}
+
+.user-menu ul .user-tab {
+    display: inline-block;
+    margin: 0px 5px;
+}
+
+.user-menu ul .user-tab:first-child {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.user-menu ul .user-tab a {
+    padding: 12px 20px;
+    font-size: 17px;
+    border: 3px solid #ccc;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: all 0.4s;
+}
+
+.user-menu ul .user-tab a.active {
+    border-color: #428bca;
+}
+
+.user-menu ul .user-tab a:hover {
+    border-radius: 0px;
+}
+
+.user-info li {
+    padding: 15px 0px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    font-size: 20px;
+}
+
+.user-info li span {
+    float: right;
+    background-color: #56D968;
+    padding: 2px 7px;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+}
+
+.para .columns {
+    margin-left: 0px;
+}
+
 @media only screen and (max-width: 768px){
 .vote-tr {
     overflow-x: scroll;
@@ -724,6 +775,12 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
     .step {margin: 50px 0px 50px 0px;}
     .search{display: none;}
+
+    .user-menu ul .user-tab {
+        display: block;
+        margin: 40px 0px;
+    }
+
 }
 @media screen and (max-width: 400px){
     .copied {
