@@ -389,7 +389,7 @@ import net.sf.json.JSONObject;
 				@Override
 				public void run() {
 					double o = LadderBungee.getInstance().bungeePlayerList.size() / maxPlayers * 100;
-					if (done & BungeeCord.getInstance().getOnlineCount() <= 0) {
+					if (done && BungeeCord.getInstance().getOnlineCount() <= 0) {
 						marginDelete++;
 						if (marginDelete >= 60)
 						{
