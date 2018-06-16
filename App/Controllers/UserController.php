@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
     {
-        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => null,'factures' => null, 'sanctions' => null]);
+        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => true,'factures' => null, 'sanctions' => null]);
 
     }
     public function getDashboarddd(RequestInterface $request, ResponseInterface $response)
@@ -403,7 +403,7 @@ class UserController extends Controller
                         'ts_owner_uid' => $ts_uid['teamspeak_uid'],
                         'channel_name' => $_POST['canal_name'],
                         'channel_pwd' => $_POST['canal_psw'],
-                        'state' => true
+                        'state' => false
                     ];
                     if ($count == 0){
                         $this->container->mongo->teamspeak_channel->InsertOne($data);
@@ -417,7 +417,8 @@ class UserController extends Controller
                                 'uniqueId' => $user['uniqueId'],
                                 'ts_owner_uid' => $ts_uid['teamspeak_uid'],
                                 'channel_name' => $_POST['canal_name'],
-                                'channel_pwd' => $_POST['canal_psw']
+                                'channel_pwd' => $_POST['canal_psw'],
+                                'state' => false
                             ]
                         ]);
                         $this->flash->addMessage('setting_error', "Paramètre de canal changé !");
