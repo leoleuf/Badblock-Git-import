@@ -194,27 +194,31 @@ class VoteController extends Controller
 
     public function loterie(RequestInterface $request, ResponseInterface $response, $type){
         if ($type['type'] == "1"){
-            //Vérification des bronzes
-            $doc = $this->container->mongo->vote->findOne(['name' => strtolower($_POST['pseudo'])]);
-            if ($doc['bronze'] >= 1){
-                $bronze = $doc['bronze'] - 1;
-                $doc = $this->container->mongo->vote->updateOne(['name' => strtolower($_POST['pseudo'])], ['$set' => ["bronze" => $bronze]]);
+            if (isset($_POST['pseudo'])){
+                //Vérification des bronzes
+                $doc = $this->container->mongo->vote->findOne(['name' => strtolower($_POST['pseudo'])]);
+                if ($doc['bronze'] >= 1){
+                    $bronze = $doc['bronze'] - 1;
+                    $doc = $this->container->mongo->vote->updateOne(['name' => strtolower($_POST['pseudo'])], ['$set' => ["bronze" => $bronze]]);
 
 
-                //Random 1 / 3
-                $nb1 = mt_rand(1, 3);
-                $nb2 = mt_rand(1, 3);
-                $nb3 = mt_rand(1, 3);
-                $nb4 = mt_rand(1, 3);
+                    //Random 1 / 3
+                    $nb1 = mt_rand(1, 3);
+                    $nb2 = mt_rand(1, 3);
+                    $nb3 = mt_rand(1, 3);
+                    $nb4 = mt_rand(1, 3);
 
-                $nb = ((($nb1 + $nb2 + $nb3 + $nb4) / 4) / 100);
+                    $nb = ((($nb1 + $nb2 + $nb3 + $nb4) / 4) / 100);
 
-                //Ajout des points boutique au compte TODO
+                    //Ajout des points boutique au compte TODO
 
-                return $response->write($nb . " points boutiques")->withStatus(200);
+                    return $response->write($nb . " points boutiques")->withStatus(200);
 
+                }else{
+                    return $response->write(1)->withStatus(404);
+                }
             }else{
-                return $response->write(1)->withStatus(404);
+                return $response->write("No pseudo")->withStatus(405);
             }
         }else{
             if ($this->container->session->exist('user')){
