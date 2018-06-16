@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use function DusanKasan\Knapsack\identity;
 use function DusanKasan\Knapsack\isEmpty;
+use function DusanKasan\Knapsack\slice;
 use MongoDB\Exception\Exception;
 use Monolog\Handler\Mongo;
 use Psr\Http\Message\RequestInterface;
@@ -13,8 +14,12 @@ use Slim\Http\Request;
 class UserController extends Controller
 {
 
-
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => null,'factures' => null, 'sanctions' => null]);
+
+    }
+    public function getDashboarddd(RequestInterface $request, ResponseInterface $response)
 	{
         //Récupération des données du serveur
         $collection = $this->container->mongoServer->players;
@@ -94,6 +99,7 @@ class UserController extends Controller
 
         //Return view
         return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+
 
 	}
 
@@ -243,9 +249,16 @@ class UserController extends Controller
             //vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
 
+            $id_ts = explode("//",$_POST['idts']);
+            $id_ts = explode("/",$id_ts[1]);
+            $id_ts = explode("=",$id_ts[1]);
+
+            $id_ts = $id_ts[0] . "=";
+
+
             $data = [
                 'uniqueId' => $user['uniqueId'],
-                'teamspeak_uid' => $_POST['idts'],
+                'teamspeak_uid' => $id_ts,
                 'ban' => false,
                 'banExpire' => -1
             ];

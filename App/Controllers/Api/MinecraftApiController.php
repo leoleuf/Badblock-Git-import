@@ -20,10 +20,12 @@ class MinecraftApiController extends \App\Controllers\Controller
             {
                 $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
 
-                $this->container->redis->set('api.mc.player', $Query->Query()["players"]["online"]);
+                $online = $Query->Query()["players"]["online"];
+
+                $this->container->redis->set('api.mc.player', $online);
                 $this->container->redis->expire('api.mc.player', 10);
 
-                return $response->withJson(["players" => ['now' => $Query->Query()["players"]["online"]]]);
+                return $response->withJson(["players" => ['now' => $online]]);
 
             }
             catch( MinecraftPingException $e )
