@@ -84,8 +84,10 @@
                                 <td>8.50€</td>
                             {% elseif k < 20 %}
                                 <td>5€</td>
-                            {% else %}
+                            {% elseif k < 30 %}
                                 <td>2.50€</td>
+                            {% else %}
+                                <td></td>
                             {% endif %}
                             <td>{{ data['vote'] }}</td>
                         </tr>
