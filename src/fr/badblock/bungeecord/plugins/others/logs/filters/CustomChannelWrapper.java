@@ -13,10 +13,10 @@ public class CustomChannelWrapper extends ChannelWrapper {
 	public boolean isClosed() {
 		return false;
 	}
-	
+
 	@Override
 	public void write(Object packet) {
-		
+
 	}
 
 }

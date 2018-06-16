@@ -11,7 +11,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 public class BOReloadCommand extends Command {
-	
+
 	public BOReloadCommand() {
 		super("boreload", "bungeeothers.reload", "borl");
 	}
@@ -20,12 +20,13 @@ public class BOReloadCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		try {
-			Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+			Configuration configuration = ConfigurationProvider.getProvider(YamlConfiguration.class)
+					.load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			BadBlockBungeeOthers.getInstance().setConfiguration(configuration);
 			sender.sendMessage("§aConfiguration rechargée !");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

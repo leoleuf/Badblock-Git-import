@@ -5,19 +5,15 @@ import fr.badblock.common.protocol.packets.PacketPlayerQuit;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Command;
 
-public class FKickCommand extends Command
-{
-	
-	public FKickCommand()
-	{
+public class FKickCommand extends Command {
+
+	public FKickCommand() {
 		super("fkick", "badblock.fkick");
 	}
 
 	@SuppressWarnings("deprecation")
-	public void execute(CommandSender sender, String[] args)
-	{
-		if (args.length != 1)
-		{
+	public void execute(CommandSender sender, String[] args) {
+		if (args.length != 1) {
 			sender.sendMessage("§cUsage: /fkick <pseudo>");
 			return;
 		}
@@ -27,5 +23,5 @@ public class FKickCommand extends Command
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 		sender.sendMessage("§aPacket de déconnexion envoyé à Ladder pour " + playerName + ".");
 	}
-	
+
 }

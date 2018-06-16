@@ -9,23 +9,24 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.config.ServerInfo;
 
 public class ServerBroadcastListener extends RabbitListener {
-	
+
 	public ServerBroadcastListener() {
-		super(BadBlockBungeeOthers.getInstance().getRabbitService(), "serverBroadcast", false, RabbitListenerType.SUBSCRIBER);
+		super(BadBlockBungeeOthers.getInstance().getRabbitService(), "serverBroadcast", false,
+				RabbitListenerType.SUBSCRIBER);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onPacketReceiving(String body) {
 		String[] splitter = body.split(";");
-		if (splitter.length < 2) return;
+		if (splitter.length < 2)
+			return;
 		String server = splitter[0];
 		String rest = StringUtils.join(splitter, " ", 1);
 		ServerInfo serverInfo = BungeeCord.getInstance().getServerInfo(server);
 		if (serverInfo != null)
-			serverInfo.getPlayers().forEach(player -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', rest)));
+			serverInfo.getPlayers()
+					.forEach(player -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', rest)));
 	}
-
-
 
 }

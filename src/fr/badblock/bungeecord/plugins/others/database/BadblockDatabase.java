@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 
-
 public class BadblockDatabase {
 
 	private static BadblockDatabase instance;
@@ -26,23 +25,20 @@ public class BadblockDatabase {
 	public BadblockDatabase() {
 		threads = new ArrayList<>();
 		/*
-		 * requests = Queues.newLinkedBlockingDeque(); for (int i = 0; i < 16;
-		 * i++) { thread = new Thread("database_" + new
-		 * Random().nextInt(99999999)) {
+		 * requests = Queues.newLinkedBlockingDeque(); for (int i = 0; i < 16; i++) {
+		 * thread = new Thread("database_" + new Random().nextInt(99999999)) {
 		 * 
-		 * @Override public void run() { synchronized (thread) { while (true) {
-		 * boolean isEmpty = true; synchronized (requests) { isEmpty =
-		 * requests.isEmpty(); } if (!isEmpty) { Request request = null;
-		 * synchronized (requests) { request = requests.poll(); } if (request !=
-		 * null) { try { Statement statement = createStatement(); if
-		 * (request.getRequestType().equals(RequestType.SETTER)) {
-		 * statement.executeUpdate(request.getRequest()); }else{ ResultSet
-		 * resultSet = statement.executeQuery(request.getRequest());
-		 * request.done(resultSet); resultSet.close(); } statement.close();
-		 * }catch(Exception error) { error.printStackTrace(); } } } try {
-		 * thread.wait(); } catch (InterruptedException e) {
-		 * e.printStackTrace(); } } } } }; threads.add(thread); thread.start();
-		 * }
+		 * @Override public void run() { synchronized (thread) { while (true) { boolean
+		 * isEmpty = true; synchronized (requests) { isEmpty = requests.isEmpty(); } if
+		 * (!isEmpty) { Request request = null; synchronized (requests) { request =
+		 * requests.poll(); } if (request != null) { try { Statement statement =
+		 * createStatement(); if (request.getRequestType().equals(RequestType.SETTER)) {
+		 * statement.executeUpdate(request.getRequest()); }else{ ResultSet resultSet =
+		 * statement.executeQuery(request.getRequest()); request.done(resultSet);
+		 * resultSet.close(); } statement.close(); }catch(Exception error) {
+		 * error.printStackTrace(); } } } try { thread.wait(); } catch
+		 * (InterruptedException e) { e.printStackTrace(); } } } } };
+		 * threads.add(thread); thread.start(); }
 		 */
 	}
 
@@ -129,8 +125,8 @@ public class BadblockDatabase {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			DriverManager.setLoginTimeout(10);
-			connection = DriverManager.getConnection("jdbc:mysql://" + hostName + ":" + port + "/"
-					+ database + "?autoReconnect=true&connectTimeout=5000", username, password);
+			connection = DriverManager.getConnection("jdbc:mysql://" + hostName + ":" + port + "/" + database
+					+ "?autoReconnect=true&connectTimeout=5000", username, password);
 			isConnected = true;
 			System.out.print("a");
 		} catch (Exception e) {
@@ -177,9 +173,9 @@ public class BadblockDatabase {
 	}
 
 	/**
-	 * V�rifier si la personne est connect�e � la base de donn�e. Attention:
-	 * m�thode d�capr�c�e car elle ne permet pas de savoir si la personne est
-	 * r�ellement connect�e encore.
+	 * V�rifier si la personne est connect�e � la base de donn�e. Attention: m�thode
+	 * d�capr�c�e car elle ne permet pas de savoir si la personne est r�ellement
+	 * connect�e encore.
 	 * 
 	 * @deprecated
 	 * @return

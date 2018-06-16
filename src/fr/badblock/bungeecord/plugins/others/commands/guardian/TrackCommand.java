@@ -12,11 +12,11 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class TrackCommand extends Command {
-	
+
 	public TrackCommand() {
 		super("track", "guardian.modo");
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(CommandSender sender, String[] args) {
@@ -40,23 +40,30 @@ public class TrackCommand extends Command {
 		for (String arg : args) {
 			i++;
 			String spacer = " ";
-			if (args.length == i) spacer = "";
+			if (args.length == i)
+				spacer = "";
 			message += arg + spacer;
 		}
-		BadBlockBungeeOthers.getInstance().getProxy().getConsole().sendMessage("[Guardian] " + player.getName() + " (on the server " + player.getServer().getInfo().getName() + ") issued server command: /track " + message + " (on the server " + p.getServer().getInfo().getName() + ")");
-		if (p.getServer() == null || p.getServer().getInfo() == null || p.getServer().getInfo().getName() == null || p.getServer().getInfo().getName().startsWith("login")) {
-			player.sendMessage("§8(§b§lGuardian§8) §cCe joueur est entrain de se connecter, impossible de vous y téléporter.");
+		BadBlockBungeeOthers.getInstance().getProxy().getConsole()
+				.sendMessage("[Guardian] " + player.getName() + " (on the server "
+						+ player.getServer().getInfo().getName() + ") issued server command: /track " + message
+						+ " (on the server " + p.getServer().getInfo().getName() + ")");
+		if (p.getServer() == null || p.getServer().getInfo() == null || p.getServer().getInfo().getName() == null
+				|| p.getServer().getInfo().getName().startsWith("login")) {
+			player.sendMessage(
+					"§8(§b§lGuardian§8) §cCe joueur est entrain de se connecter, impossible de vous y téléporter.");
 			return;
 		}
 		if (player.getServer().getInfo().getName().equals(p.getServer().getInfo().getName())) {
-			// Déjà connecté sur son serveur, on va envoyer un joli message au serveur où il est
+			// Déjà connecté sur son serveur, on va envoyer un joli message au serveur où il
+			// est
 			ByteArrayDataOutput out = ByteStreams.newDataOutput();
 			out.writeUTF("Vanish");
 			out.writeUTF(player.getName());
 			out.writeUTF(p.getName());
 			player.getServer().sendData("Guardian", out.toByteArray());
 			return;
-		}else{
+		} else {
 			player.connect(p.getServer().getInfo());
 			BungeeCord.getInstance().getScheduler().schedule(BadBlockBungeeOthers.getInstance(), new Runnable() {
 				@Override

@@ -18,14 +18,16 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 public class BadAdvertsModule extends Module {
-	
-	@Getter @Setter private static BadAdvertsModule instance;	
-	
-	private List<String> advertError							= new ArrayList<>();
-	private List<String> blockedFirstTopLevelDomainsList 		= new ArrayList<>();
-	private List<String> excludedWebsitesList 					= new ArrayList<>();
-	private List<String> blockedWebsitesList 					= new ArrayList<>();
-	
+
+	@Getter
+	@Setter
+	private static BadAdvertsModule instance;
+
+	private List<String> advertError = new ArrayList<>();
+	private List<String> blockedFirstTopLevelDomainsList = new ArrayList<>();
+	private List<String> excludedWebsitesList = new ArrayList<>();
+	private List<String> blockedWebsitesList = new ArrayList<>();
+
 	public BadAdvertsModule() {
 		instance = this;
 		Configuration configuration = BadBlockBungeeOthers.getInstance().getConfiguration();
@@ -51,12 +53,14 @@ public class BadAdvertsModule extends Module {
 		}
 		if (change) {
 			try {
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration,
+						new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			try {
-				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class)
+						.load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 				BadBlockBungeeOthers.getInstance().setConfiguration(configuration);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -67,10 +71,11 @@ public class BadAdvertsModule extends Module {
 		excludedWebsitesList = configuration.getStringList("modules.badAdverts.excludedWebsites");
 		blockedWebsitesList = configuration.getStringList("modules.badAdverts.blockedWebsites");
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void testAdvert(ProxiedPlayer proxiedPlayer, ChatEvent event, String filteredMessage, String message) {
-		if (proxiedPlayer.hasPermission("chat.bypass")) return;
+		if (proxiedPlayer.hasPermission("chat.bypass"))
+			return;
 		if (hasIPv4IP(message) || hasIPv4IP(filteredMessage)) {
 			event.setCancelled(true);
 			proxiedPlayer.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(advertError));
@@ -105,11 +110,12 @@ public class BadAdvertsModule extends Module {
 			}
 		}
 	}
-	
+
 	public static boolean hasIPv4IP(String text) {
-		Pattern p = Pattern.compile("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+		Pattern p = Pattern.compile(
+				"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
 		Matcher m = p.matcher(text);
 		return m.find();
 	}
-	
+
 }

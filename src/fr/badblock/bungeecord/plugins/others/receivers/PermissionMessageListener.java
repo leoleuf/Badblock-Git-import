@@ -8,18 +8,21 @@ import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.ChatColor;
 
 public class PermissionMessageListener extends RabbitListener {
-	
+
 	public PermissionMessageListener() {
-		super(BadBlockBungeeOthers.getInstance().getRabbitService(), "permissionMessage", false, RabbitListenerType.SUBSCRIBER);
+		super(BadBlockBungeeOthers.getInstance().getRabbitService(), "permissionMessage", false,
+				RabbitListenerType.SUBSCRIBER);
 	}
 
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onPacketReceiving(String body) {
 		String[] splitter = body.split(";");
-		if (splitter.length < 2) return;
+		if (splitter.length < 2)
+			return;
 		String rest = StringUtils.join(splitter, " ", 1);
-		BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.hasPermission(splitter[0])).forEach(player -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', rest)));
+		BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.hasPermission(splitter[0]))
+				.forEach(player -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', rest)));
 	}
 
 }

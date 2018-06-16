@@ -9,18 +9,20 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 public class PartyChatModule extends Module {
-	
-	@EventHandler (priority = EventPriority.LOWEST)
+
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void onAsyncChat(ChatEvent event) {
 		Connection sender = event.getSender();
-		if (!(sender instanceof ProxiedPlayer)) return;
+		if (!(sender instanceof ProxiedPlayer))
+			return;
 		ProxiedPlayer player = (ProxiedPlayer) sender;
-		if (event.isCommand()) return;
+		if (event.isCommand())
+			return;
 		if (event.getMessage().startsWith("%")) {
 			event.setCancelled(true);
 			String finalMessage = event.getMessage().substring(1, event.getMessage().length());
 			BungeeCord.getInstance().getPluginManager().dispatchCommand(player, "party msg " + finalMessage);
 		}
 	}
-	
+
 }

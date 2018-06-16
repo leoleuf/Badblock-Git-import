@@ -21,29 +21,27 @@ public class RNickCommand extends Command {
 			return;
 		}
 		String name = args[0];
-		BadblockDatabase.getInstance().addRequest(new Request("SELECT playerName FROM nick WHERE nick = '" + BadblockDatabase.getInstance().mysql_real_escape_string(name) + "'", RequestType.GETTER)
-		{
-			@Override
-			public void done(ResultSet resultSet)
-			{
-				try
-				{
-					if (resultSet.next())
-					{
-						sender.sendMessage("§bLe vrai pseudo de §e" + name + " §best §d" + resultSet.getString("playerName") + ".");
+		BadblockDatabase.getInstance()
+				.addRequest(new Request(
+						"SELECT playerName FROM nick WHERE nick = '"
+								+ BadblockDatabase.getInstance().mysql_real_escape_string(name) + "'",
+						RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								sender.sendMessage("§bLe vrai pseudo de §e" + name + " §best §d"
+										+ resultSet.getString("playerName") + ".");
+							} else {
+								sender.sendMessage("§cAucune personne ne porte actuellement le surnom suivant : §d"
+										+ name + "§c.");
+							}
+						} catch (Exception error) {
+							error.printStackTrace();
+							sender.sendMessage("§cUne erreur est survenue lors de la révélation de surnom. Erreur 9.");
+						}
 					}
-					else
-					{
-						sender.sendMessage("§cAucune personne ne porte actuellement le surnom suivant : §d" + name + "§c.");
-					}
-				}
-				catch (Exception error)
-				{
-					error.printStackTrace();
-					sender.sendMessage("§cUne erreur est survenue lors de la révélation de surnom. Erreur 9.");
-				}
-			}
-		});
+				});
 	}
 
 }

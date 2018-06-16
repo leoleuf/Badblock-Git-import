@@ -13,7 +13,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class ModoCommand extends Command {
 
 	private static Map<String, Long> times = new HashMap<>();
-	private static long				 time  = 120_000L;
+	private static long time = 120_000L;
 
 	public ModoCommand() {
 		super("modo");
@@ -51,8 +51,12 @@ public class ModoCommand extends Command {
 		long expire = timestamp + time;
 		times.put(playerName, expire);
 		String message = StringUtils.join(args, " ");
-		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport", "§6[/modo] §f" + playerName + " >> §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport", "§fRépondez à la question en faisant /msg " + playerName, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport",
+				"§6[/modo] §f" + playerName + " >> §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000,
+				false);
+		BadBlockBungeeOthers.getInstance().getRabbitService().sendSyncPacket("badreport",
+				"§fRépondez à la question en faisant /msg " + playerName, Encodage.UTF8, RabbitPacketType.PUBLISHER,
+				5000, false);
 		sender.sendMessage("§e--------------------------------------------------");
 		sender.sendMessage("§aVotre question a été posée à la modération :");
 		sender.sendMessage(message);

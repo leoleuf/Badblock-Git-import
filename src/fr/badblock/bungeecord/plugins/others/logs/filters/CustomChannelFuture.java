@@ -82,7 +82,8 @@ public class CustomChannelFuture implements ChannelFuture {
 	}
 
 	@Override
-	public ChannelFuture addListeners(@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
+	public ChannelFuture addListeners(
+			@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
 		return this;
 	}
 
@@ -107,7 +108,8 @@ public class CustomChannelFuture implements ChannelFuture {
 	}
 
 	@Override
-	public ChannelFuture removeListeners(@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
+	public ChannelFuture removeListeners(
+			@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
 		return this;
 	}
 

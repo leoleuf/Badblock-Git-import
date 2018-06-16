@@ -28,20 +28,21 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 public class GuardianModule extends Module implements Listener {
-	
+
 	private ProxyServer proxy = BungeeCord.getInstance();
-	
+
 	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onPluginMessage(PluginMessageEvent e) throws IOException{
-		if (!(e.getSender() instanceof Server)) return;
+	public void onPluginMessage(PluginMessageEvent e) throws IOException {
+		if (!(e.getSender() instanceof Server))
+			return;
 		if (e.getTag().equals("GuardianBroad")) {
 			ByteArrayInputStream stream = new ByteArrayInputStream(e.getData());
 			DataInputStream in = new DataInputStream(stream);
 			proxy.broadcast(in.readUTF());
 			in.close();
 			stream.close();
-		}else if (e.getTag().equals("GuardianKick")) {
+		} else if (e.getTag().equals("GuardianKick")) {
 			ByteArrayInputStream stream = new ByteArrayInputStream(e.getData());
 			DataInputStream in = new DataInputStream(stream);
 			String json = in.readUTF();
@@ -52,38 +53,46 @@ public class GuardianModule extends Module implements Listener {
 			}
 			in.close();
 			stream.close();
-		}else if (e.getTag().equals("GuardianBan")) {
+		} else if (e.getTag().equals("GuardianBan")) {
 			ByteArrayInputStream stream = new ByteArrayInputStream(e.getData());
 			DataInputStream in = new DataInputStream(stream);
 			String json = in.readUTF();
 			GuardianKick kick = new Gson().fromJson(json, GuardianKick.class);
 			ProxiedPlayer proxiedPlayer = proxy.getPlayer(kick.getUniqueId());
 			if (proxiedPlayer != null) {
-				BadBlockBungeeOthers.getInstance().getProxy().getPluginManager().dispatchCommand(BadBlockBungeeOthers.getInstance().getProxy().getConsole(), "tempban " + proxiedPlayer.getName() + " 2d Cheat §b(banni par Guardian)§c");
-				BadBlockBungeeOthers.getInstance().getProxy().getPluginManager().dispatchCommand(BadBlockBungeeOthers.getInstance().getProxy().getConsole(), "tempbanip " + proxiedPlayer.getName() + " 2d Cheat §b(banni par Guardian)§c");
+				BadBlockBungeeOthers.getInstance().getProxy().getPluginManager().dispatchCommand(
+						BadBlockBungeeOthers.getInstance().getProxy().getConsole(),
+						"tempban " + proxiedPlayer.getName() + " 2d Cheat §b(banni par Guardian)§c");
+				BadBlockBungeeOthers.getInstance().getProxy().getPluginManager().dispatchCommand(
+						BadBlockBungeeOthers.getInstance().getProxy().getConsole(),
+						"tempbanip " + proxiedPlayer.getName() + " 2d Cheat §b(banni par Guardian)§c");
 				proxiedPlayer.disconnect(kick.getMessage());
 			}
 			in.close();
 			stream.close();
-		}else if (e.getTag().equals("GuardianReport")) {
+		} else if (e.getTag().equals("GuardianReport")) {
 			ByteArrayInputStream stream = new ByteArrayInputStream(e.getData());
 			DataInputStream in = new DataInputStream(stream);
 			String json = in.readUTF();
 			GuardianReport guardianReport = new Gson().fromJson(json, GuardianReport.class);
 			String server = "Inconnu";
 			ProxiedPlayer proxiedPlayer = proxy.getPlayer(guardianReport.getUniqueId());
-			if (proxiedPlayer != null) server = proxiedPlayer.getServer().getInfo().getName();
-			TextComponent component = getMessage(guardianReport.getMessage().replace("[SERVER]", "[" + server + "]"), "Cliquez pour vous téléporter au joueur");
+			if (proxiedPlayer != null)
+				server = proxiedPlayer.getServer().getInfo().getName();
+			TextComponent component = getMessage(guardianReport.getMessage().replace("[SERVER]", "[" + server + "]"),
+					"Cliquez pour vous téléporter au joueur");
 			component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/track " + proxiedPlayer.getName()));
 			proxy.getConsole().sendMessage(component);
-			BungeeCord.getInstance().getPlayers().parallelStream().filter(player -> player.hasPermission("guardian.modo")).filter(player -> !GReportsCommand.exclusions.contains(player.getUniqueId())).forEach(player -> {
-				player.sendMessage(component);
-			});
+			BungeeCord.getInstance().getPlayers().parallelStream()
+					.filter(player -> player.hasPermission("guardian.modo"))
+					.filter(player -> !GReportsCommand.exclusions.contains(player.getUniqueId())).forEach(player -> {
+						player.sendMessage(component);
+					});
 			in.close();
 			stream.close();
 		}
 	}
-	
+
 	public TextComponent getMessage(String message, String lore) {
 		// Envoi du message au joueur
 		TextComponent textComponent = new TextComponent(message);
@@ -102,5 +111,5 @@ public class GuardianModule extends Module implements Listener {
 		}
 		return textComponent;
 	}
-	
+
 }

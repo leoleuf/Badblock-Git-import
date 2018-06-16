@@ -39,12 +39,13 @@ public class RCCommand extends Command {
 		if (args.length == 1) {
 			try {
 				topId = Integer.parseInt(args[0]);
-			}catch(Exception error) {
+			} catch (Exception error) {
 				sender.sendMessage("§cLe topId doit être un nombre.");
 				return;
 			}
 		}
-		if (topId < 1) topId = 1;
+		if (topId < 1)
+			topId = 1;
 		final int finalTopId = topId;
 		if (!(sender instanceof ProxiedPlayer)) {
 			sender.sendMessage("§cVous devez être sur le serveur pour pouvoir utiliser cette commande.");
@@ -57,44 +58,51 @@ public class RCCommand extends Command {
 			public void run() {
 				sender.sendMessage("§eRecherche d'un potentiel tricheur...");
 				Map<String, Long> bestCheaters = new HashMap<>();
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis() + "' AND lastLogin > '" + System.currentTimeMillis() + "' ORDER BY id DESC;", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							while (resultSet.next()) {
-								String pseudo = resultSet.getString("pseudo");
-								long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
-								bestCheaters.put(pseudo, nb);
+				BadblockDatabase.getInstance()
+						.addSyncRequest(new Request(
+								"SELECT * FROM cheatReports WHERE timestamp > '" + System.currentTimeMillis()
+										+ "' AND lastLogin > '" + System.currentTimeMillis() + "' ORDER BY id DESC;",
+								RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
+								try {
+									while (resultSet.next()) {
+										String pseudo = resultSet.getString("pseudo");
+										long nb = !bestCheaters.containsKey(pseudo) ? 1 : bestCheaters.get(pseudo) + 1;
+										bestCheaters.put(pseudo, nb);
+									}
+								} catch (Exception error2) {
+									error2.printStackTrace();
+								}
 							}
-						}catch(Exception error2) {
-							error2.printStackTrace();
-						}
-					}
-				});
+						});
 				List<Entry<String, Long>> entries = entriesSortedByValues(bestCheaters);
 				int id = 0;
 				for (Entry<String, Long> entry : entries) {
 					id++;
 					if (finalTopId == id) {
-						sender.sendMessage("§aJoueur trouvé (" + entry.getKey() + " avec " + entry.getValue() + " signalement" + (entry.getValue() > 1 ? "s" : "") + ")");
+						sender.sendMessage("§aJoueur trouvé (" + entry.getKey() + " avec " + entry.getValue()
+								+ " signalement" + (entry.getValue() > 1 ? "s" : "") + ")");
 						sender.sendMessage("§aTéléportation en cours en GhostConnect..");
-						Packet packet = new PacketPlayerChat(player.getName(), ChatAction.LADDER_COMMAND, "gconnect " + entry.getKey());
+						Packet packet = new PacketPlayerChat(player.getName(), ChatAction.LADDER_COMMAND,
+								"gconnect " + entry.getKey());
 						LadderBungee.getInstance().getClient().sendPacket(packet);
 						return;
 					}
 				}
 				if (finalTopId > id) {
-					sender.sendMessage("§cL'ID " + finalTopId + " est en dehors de la liste des tricheurs, tapez /cl pour la voir.");
+					sender.sendMessage("§cL'ID " + finalTopId
+							+ " est en dehors de la liste des tricheurs, tapez /cl pour la voir.");
 				}
 			}
 		}.start();
 	}
 
-	static <K,V extends Comparable<? super V>> List<Entry<K, V>> entriesSortedByValues(Map<K,V> map) {
-		List<Entry<K,V>> sortedEntries = new ArrayList<Entry<K,V>>(map.entrySet());
-		Collections.sort(sortedEntries,  new Comparator<Entry<K,V>>() {
+	static <K, V extends Comparable<? super V>> List<Entry<K, V>> entriesSortedByValues(Map<K, V> map) {
+		List<Entry<K, V>> sortedEntries = new ArrayList<Entry<K, V>>(map.entrySet());
+		Collections.sort(sortedEntries, new Comparator<Entry<K, V>>() {
 			@Override
-			public int compare(Entry<K,V> e1, Entry<K,V> e2) {
+			public int compare(Entry<K, V> e1, Entry<K, V> e2) {
 				return e2.getValue().compareTo(e1.getValue());
 			}
 		});

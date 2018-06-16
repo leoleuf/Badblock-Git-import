@@ -7,5 +7,5 @@ public class NoDNSRecordFoundException extends RuntimeException {
 	public NoDNSRecordFoundException(int recordId) {
 		super("No DNS record found (" + recordId + ")");
 	}
-	
+
 }

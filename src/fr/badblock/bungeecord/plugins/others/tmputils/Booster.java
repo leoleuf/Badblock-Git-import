@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Booster {
 
-	private int    id;
+	private int id;
 	private double coinsMultiplier;
 	private double xpMultiplier;
 	private double minRandomBadcoins;
@@ -16,6 +16,6 @@ public class Booster {
 	private double maxRandomXp;
 	private double maxBadcoins;
 	private double maxXP;
-	private long   length;
+	private long length;
 
 }

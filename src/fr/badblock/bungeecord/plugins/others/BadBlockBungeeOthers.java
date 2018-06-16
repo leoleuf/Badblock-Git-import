@@ -88,38 +88,43 @@ import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
 import net.sf.json.JSONObject;
 
-@Getter @Setter public class BadBlockBungeeOthers extends Plugin {
+@Getter
+@Setter
+public class BadBlockBungeeOthers extends Plugin {
 
-	@Getter @Setter private static BadBlockBungeeOthers instance;
+	@Getter
+	@Setter
+	private static BadBlockBungeeOthers instance;
 
 	private static Gson gson = new Gson();
 
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
-	
-	private Configuration							    configuration;
-	private List<InjectableFilter> 						filters 			= new LinkedList<>();
-	private RabbitService								rabbitService;
-	private List<UUID>									reengagedUUIDs;
-	private TimerTask									timerTask;
-	private TimerTask									timerTask2;
-	private TimerTask									timerTask3;
-	private TimerTask									timerTask4;
-	private boolean										done = false;
-	private boolean										deleted = false;
-	private int											recordId = -1;
-	private long										deleteTime = -1;
-	private long										connections = -1;
-	private RedisService								redisConnector;
-	private boolean										finished;
-	private long										openTime;
-	private long										time = 3600 * 48;
-	private long										maxPlayers = 1;
-	private int											marginDelete;
-	public static final Type bungeeDataType 	= new TypeToken<HashMap<String, Bungee>>() {}.getType();
+
+	private Configuration configuration;
+	private List<InjectableFilter> filters = new LinkedList<>();
+	private RabbitService rabbitService;
+	private List<UUID> reengagedUUIDs;
+	private TimerTask timerTask;
+	private TimerTask timerTask2;
+	private TimerTask timerTask3;
+	private TimerTask timerTask4;
+	private boolean done = false;
+	private boolean deleted = false;
+	private int recordId = -1;
+	private long deleteTime = -1;
+	private long connections = -1;
+	private RedisService redisConnector;
+	private boolean finished;
+	private long openTime;
+	private long time = 3600 * 48;
+	private long maxPlayers = 1;
+	private int marginDelete;
+	public static final Type bungeeDataType = new TypeToken<HashMap<String, Bungee>>() {
+	}.getType();
 	private CloudflareAccess access;
 
-	private TemmieWebhook temmie = new TemmieWebhook("https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
-
+	private TemmieWebhook temmie = new TemmieWebhook(
+			"https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -132,9 +137,11 @@ import net.sf.json.JSONObject;
 		ProxyServer proxy = this.getProxy();
 		// fichier de config
 		try {
-			if (!this.getDataFolder().exists()) this.getDataFolder().mkdirs();
+			if (!this.getDataFolder().exists())
+				this.getDataFolder().mkdirs();
 			File file = new File(this.getDataFolder(), "config.yml");
-			if (!file.exists()) file.createNewFile();
+			if (!file.exists())
+				file.createNewFile();
 			configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(file);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -151,26 +158,32 @@ import net.sf.json.JSONObject;
 		String webdb = configuration.getString("webdb.db");
 		WebDatabase.getInstance().connect(webhost, webport, webuser, webpass, webdb);
 		BadblockDatabase.getInstance().connect(host, port, user, pass, db);
-		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
-			@Override
-			public void done(ResultSet resultSet) {
-				try {
-					if (resultSet.next()) {
-						maxPlayers = resultSet.getInt("slots");
-						LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
-						new PlayersUpdateListener();
-						new BungeePlayersUpdateListener();
+		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
+				+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+		BadblockDatabase.getInstance()
+				.addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								maxPlayers = resultSet.getInt("slots");
+								LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
+								new PlayersUpdateListener();
+								new BungeePlayersUpdateListener();
+							}
+						} catch (Exception errora) {
+							errora.printStackTrace();
+						}
 					}
-				}catch(Exception errora) {
-					errora.printStackTrace();
-				}
-			}
-		});
-		access = new CloudflareAccess(configuration.getString("cloudflare.email"), configuration.getString("cloudflare.key"));
-		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"), configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
+				});
+		access = new CloudflareAccess(configuration.getString("cloudflare.email"),
+				configuration.getString("cloudflare.key"));
+		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"),
+				configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
 				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
-		redisConnector = RedisConnector.getInstance().newService("default", configuration.getString("redis.hostname"), configuration.getInt("redis.port"), configuration.getString("redis.password"), configuration.getInt("redis.database"));
+		redisConnector = RedisConnector.getInstance().newService("default", configuration.getString("redis.hostname"),
+				configuration.getInt("redis.port"), configuration.getString("redis.password"),
+				configuration.getInt("redis.database"));
 		new PlayerMessageListener();
 		new PermissionMessageListener();
 		new ServerBroadcastListener();
@@ -197,7 +210,7 @@ import net.sf.json.JSONObject;
 		pluginManager.registerCommand(this, new RNickCommand());
 		pluginManager.registerCommand(this, new GNickCommand());
 		pluginManager.registerCommand(this, new DoneCommand());
-		//pluginManager.registerCommand(this, new TrackCommand());
+		// pluginManager.registerCommand(this, new TrackCommand());
 		pluginManager.registerCommand(this, new BTPS());
 		pluginManager.registerCommand(this, new BOAddInsultCommand());
 		pluginManager.registerCommand(this, new ThxCommand());
@@ -228,23 +241,31 @@ import net.sf.json.JSONObject;
 		timerTask2 = new TimerTask() {
 			@Override
 			public void run() {
-				if (System.currentTimeMillis() - openTime > 900_000 && LadderBungee.getInstance().bungeePlayerList.size() == 0) {
+				if (System.currentTimeMillis() - openTime > 900_000
+						&& LadderBungee.getInstance().bungeePlayerList.size() == 0) {
 					setDone(true);
 				}
-				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
+						.getHostString() + ":"
+						+ ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 				Map<Integer, Integer> versions = new HashMap<>();
 				Data data = new Data();
 				for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
-					int version = ((InitialHandler)player.getPendingConnection()).getVersion();
-					if (!versions.containsKey(version)) versions.put(version, 1);
-					else versions.put(version, versions.get(version) + 1);
+					int version = ((InitialHandler) player.getPendingConnection()).getVersion();
+					if (!versions.containsKey(version))
+						versions.put(version, 1);
+					else
+						versions.put(version, versions.get(version) + 1);
 				}
 				data.versions = versions;
 				data.bungeeIp = a;
-				//int bungeeId = 
-				rabbitService.sendPacket("bungee.", new Gson().toJson(data), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-				long count = BungeeCord.getInstance().getPlayers().stream().filter(player -> player.getPendingConnection().isOnlineInfo()).count();
-				rabbitService.sendPacket("bungee.online", a + ";" + Long.toString(count), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				// int bungeeId =
+				rabbitService.sendPacket("bungee.", new Gson().toJson(data), Encodage.UTF8, RabbitPacketType.PUBLISHER,
+						5000, false);
+				long count = BungeeCord.getInstance().getPlayers().stream()
+						.filter(player -> player.getPendingConnection().isOnlineInfo()).count();
+				rabbitService.sendPacket("bungee.online", a + ";" + Long.toString(count), Encodage.UTF8,
+						RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		};
 		new Timer().schedule(timerTask2, 1000, 1000);
@@ -254,91 +275,105 @@ import net.sf.json.JSONObject;
 			public void run() {
 				boolean d = !finished ? done : false;
 				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
-				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-				BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '" + LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '" + bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								maxPlayers = resultSet.getInt("slots");
-							}
-						}catch(Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								String o = resultSet.getString("value");
+				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
+						.getHostString() + ":"
+						+ ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+				BadblockDatabase.getInstance()
+						.addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '"
+								+ LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '"
+								+ bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
+				BadblockDatabase.getInstance().addSyncRequest(
+						new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
 								try {
-									int p = Integer.parseInt(o);
-									LadderListener.timestampMax = p;
-								}catch(Exception error) {
-									error.printStackTrace();
-								}
-							}
-						}catch(Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'slots';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								String o = resultSet.getString("value");
-								try {
-									int p = Integer.parseInt(o);
-									LadderBungee.getInstance().slots = p;
-								}catch(Exception error) {
-									try {
-										BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT slots FROM absorbances WHERE `bungeeTimestamp` > " + System.currentTimeMillis() + " AND countEnvironment = '" + LadderBungee.getInstance().countEnvironment + "' AND done = 'false';", RequestType.GETTER) {
-											@Override
-											public void done(ResultSet result) {
-												try {
-													int slots = 0;
-													while (result.next())
-														slots += result.getInt("slots");
-													LadderBungee.getInstance().slots = slots;
-												}catch(Exception errorb) {
-													errorb
-													.printStackTrace();
-												}
-											}
-										});
-									}catch(Exception errore) {
-										errore.printStackTrace();
+									if (resultSet.next()) {
+										maxPlayers = resultSet.getInt("slots");
 									}
+								} catch (Exception errora) {
+									errora.printStackTrace();
 								}
 							}
-						}catch(Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
-				BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								String o = resultSet.getString("value");
+						});
+				BadblockDatabase.getInstance().addSyncRequest(
+						new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
 								try {
-									int p = Integer.parseInt(o);
-									LadderListener.timestampMax = p;
-								}catch(Exception error) {
-									error.printStackTrace();
+									if (resultSet.next()) {
+										String o = resultSet.getString("value");
+										try {
+											int p = Integer.parseInt(o);
+											LadderListener.timestampMax = p;
+										} catch (Exception error) {
+											error.printStackTrace();
+										}
+									}
+								} catch (Exception errora) {
+									errora.printStackTrace();
 								}
 							}
-						}catch(Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
+						});
+				BadblockDatabase.getInstance().addSyncRequest(
+						new Request("SELECT `value` FROM keyValues WHERE `key` = 'slots';", RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
+								try {
+									if (resultSet.next()) {
+										String o = resultSet.getString("value");
+										try {
+											int p = Integer.parseInt(o);
+											LadderBungee.getInstance().slots = p;
+										} catch (Exception error) {
+											try {
+												BadblockDatabase.getInstance().addSyncRequest(new Request(
+														"SELECT slots FROM absorbances WHERE `bungeeTimestamp` > "
+																+ System.currentTimeMillis()
+																+ " AND countEnvironment = '"
+																+ LadderBungee.getInstance().countEnvironment
+																+ "' AND done = 'false';",
+														RequestType.GETTER) {
+													@Override
+													public void done(ResultSet result) {
+														try {
+															int slots = 0;
+															while (result.next())
+																slots += result.getInt("slots");
+															LadderBungee.getInstance().slots = slots;
+														} catch (Exception errorb) {
+															errorb.printStackTrace();
+														}
+													}
+												});
+											} catch (Exception errore) {
+												errore.printStackTrace();
+											}
+										}
+									}
+								} catch (Exception errora) {
+									errora.printStackTrace();
+								}
+							}
+						});
+				BadblockDatabase.getInstance().addSyncRequest(
+						new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
+								try {
+									if (resultSet.next()) {
+										String o = resultSet.getString("value");
+										try {
+											int p = Integer.parseInt(o);
+											LadderListener.timestampMax = p;
+										} catch (Exception error) {
+											error.printStackTrace();
+										}
+									}
+								} catch (Exception errora) {
+									errora.printStackTrace();
+								}
+							}
+						});
 			}
 		};
 		new Timer().schedule(timerTask3, 1000, 5000);
@@ -346,23 +381,25 @@ import net.sf.json.JSONObject;
 			@Override
 			public void run() {
 				BadblockDatabase database = BadblockDatabase.getInstance();
-				database.addSyncRequest(new Request("SELECT pseudo FROM friends ORDER BY id DESC LIMIT 10000;", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							while (resultSet.next()) {
-								String o = resultSet.getString("pseudo");
-								if (o != null) {
-									if (LadderBungee.getInstance() != null && LadderBungee.getInstance().totalPlayers != null) {
-										LadderBungee.getInstance().totalPlayers.add(o);
+				database.addSyncRequest(
+						new Request("SELECT pseudo FROM friends ORDER BY id DESC LIMIT 10000;", RequestType.GETTER) {
+							@Override
+							public void done(ResultSet resultSet) {
+								try {
+									while (resultSet.next()) {
+										String o = resultSet.getString("pseudo");
+										if (o != null) {
+											if (LadderBungee.getInstance() != null
+													&& LadderBungee.getInstance().totalPlayers != null) {
+												LadderBungee.getInstance().totalPlayers.add(o);
+											}
+										}
 									}
+								} catch (Exception error) {
+									error.printStackTrace();
 								}
 							}
-						}catch(Exception error) {
-							error.printStackTrace();
-						}
-					}
-				});
+						});
 			}
 		}, 2500);
 		timerTask4 = new TimerTask() {
@@ -371,7 +408,8 @@ import net.sf.json.JSONObject;
 				Map<String, Integer> map = new HashMap<>();
 				for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers())
 					map.put(player.getName(), player.getPing());
-				BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map), Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map),
+						Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
 			}
 		};
 		new Timer().schedule(timerTask4, 1000, 5000);
@@ -381,7 +419,11 @@ import net.sf.json.JSONObject;
 				BadblockDatabase database = BadblockDatabase.getInstance();
 				for (ProxiedPlayer plo : BungeeCord.getInstance().getPlayers())
 					if (plo.isConnected())
-						database.addSyncRequest(new Request("UPDATE cheatReports SET lastLogin = '" + (System.currentTimeMillis() + 600000) + "' WHERE pseudo = '" + database.mysql_real_escape_string(plo.getName()) + "' AND timestamp > '" + System.currentTimeMillis() + "'", RequestType.SETTER));
+						database.addSyncRequest(new Request(
+								"UPDATE cheatReports SET lastLogin = '" + (System.currentTimeMillis() + 600000)
+										+ "' WHERE pseudo = '" + database.mysql_real_escape_string(plo.getName())
+										+ "' AND timestamp > '" + System.currentTimeMillis() + "'",
+								RequestType.SETTER));
 			}
 		}, 5000, 5000);
 		if (configuration.getBoolean("dns")) {
@@ -391,33 +433,46 @@ import net.sf.json.JSONObject;
 					double o = LadderBungee.getInstance().bungeePlayerList.size() / maxPlayers * 100;
 					if (done && BungeeCord.getInstance().getOnlineCount() <= 0) {
 						marginDelete++;
-						if (marginDelete >= 60)
-						{
-							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+						if (marginDelete >= 60) {
+							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/"
+									+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
+									+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 							finished = true;
-							String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+							String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
+									.getHostString() + ":"
+									+ ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
+											.getPort();
 							if (BadblockDatabase.getInstance().isConnected())
-								BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
+								BadblockDatabase.getInstance().addSyncRequest(new Request(
+										"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a
+												+ "'",
+										RequestType.SETTER));
 							System.exit(-1);
+						} else {
+							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-MARGINDELETE!/" + o + "%/" + marginDelete
+									+ "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/"
+									+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
 						}
-						else
-						{
-							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-MARGINDELETE!/" + o + "%/" + marginDelete + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-						}
-					}else if (done) {
+					} else if (done) {
 						marginDelete = 0;
-						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-					}else{
+						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/"
+								+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
+								+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
+					} else {
 						marginDelete = 0;
-						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/" + LadderBungee.getInstance().bungeePlayerList.size() + "/" + LadderBungee.getInstance().bungeePlayerList.size() + "> /!\\");
+						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/"
+								+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
+								+ LadderBungee.getInstance().bungeePlayerList.size() + "> /!\\");
 					}
 					if (done) {
 						time--;
 						if (time >= 0) {
 							if (time == 0) {
-								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eDéconnexion de cette absorbance...");
+								BungeeCord.getInstance()
+										.broadcast("§f[§cAbsorbance§f] §eDéconnexion de cette absorbance...");
 								for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
-									player.disconnect("§cDéconnexion de l'aborsbance. Vous pouvez vous reconnecter au serveur.");
+									player.disconnect(
+											"§cDéconnexion de l'aborsbance. Vous pouvez vous reconnecter au serveur.");
 								}
 								try {
 									Thread.sleep(1000);
@@ -425,19 +480,30 @@ import net.sf.json.JSONObject;
 									e.printStackTrace();
 								}
 								finished = true;
-								String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+								String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next()
+										.getHost().getHostString() + ":"
+										+ ProxyServer.getInstance().getConfig().getListeners().iterator().next()
+												.getHost().getPort();
 								if (BadblockDatabase.getInstance().isConnected())
-									BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
+									BadblockDatabase.getInstance().addSyncRequest(new Request(
+											"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '"
+													+ a + "'",
+											RequestType.SETTER));
 								System.exit(-1);
-							}else if (time % 60 == 0 && ((time % 900 == 0 && time <= 3600) || (time % 600 == 0 && time <= 1800) || (time % 300 == 0 && time <= 900))) {
-								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
-										(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-							}else if (time % 60 == 0 && time % 900 == 0 && time <= 3600) {
-								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " +
-										(time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-							}else if (time > 0 && time < 60 && time % 15 == 0) {
-								BungeeCord.getInstance().broadcast("§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans " + time + " seconde" + (time > 1 ? "s" : "") + ".");
-							} 
+							} else if (time % 60 == 0 && ((time % 900 == 0 && time <= 3600)
+									|| (time % 600 == 0 && time <= 1800) || (time % 300 == 0 && time <= 900))) {
+								BungeeCord.getInstance().broadcast(
+										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
+												+ (time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
+							} else if (time % 60 == 0 && time % 900 == 0 && time <= 3600) {
+								BungeeCord.getInstance().broadcast(
+										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
+												+ (time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
+							} else if (time > 0 && time < 60 && time % 15 == 0) {
+								BungeeCord.getInstance().broadcast(
+										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
+												+ time + " seconde" + (time > 1 ? "s" : "") + ".");
+							}
 						}
 					}
 				}
@@ -451,59 +517,89 @@ import net.sf.json.JSONObject;
 	public void onDisable() {
 		filters.forEach(filter -> filter.reset());
 		deleteDNS();
-		if (timerTask != null) timerTask.cancel();
-		if (timerTask2 != null) timerTask2.cancel();
-		if (timerTask3 != null) timerTask3.cancel();
-		if (timerTask4 != null) timerTask4.cancel();
+		if (timerTask != null)
+			timerTask.cancel();
+		if (timerTask2 != null)
+			timerTask2.cancel();
+		if (timerTask3 != null)
+			timerTask3.cancel();
+		if (timerTask4 != null)
+			timerTask4.cancel();
 		finished = true;
-		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
+				+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
 		if (BadblockDatabase.getInstance().isConnected())
-			BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
+			BadblockDatabase.getInstance()
+					.addSyncRequest(new Request(
+							"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'",
+							RequestType.SETTER));
 	}
 
 	public void deleteDNS() {
-		if (deleted) return;
+		if (deleted)
+			return;
 		if (access != null) {
 			@SuppressWarnings("deprecation")
-			String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString() + ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-			BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT recordId FROM absorbances WHERE ip = '" + a + "'", RequestType.GETTER) {
-				@Override
-				public void done(ResultSet resultSet) {
-					try {
-						if (resultSet.next()) {
-							int recordId = resultSet.getInt("recordId");
-							if (recordId != 0) {
-								System.out.println("Deleting record ID " + recordId + " / " + access);
-								DNSDeleteRecord dns = new DNSDeleteRecord(access, "badblock.fr", recordId);
-								try {
-									JSONObject json = dns.executeBasic();
-									StringBuilder stringBuilder = new StringBuilder();
-									for (StackTraceElement element : Thread.currentThread().getStackTrace())
-										stringBuilder.append(element.toString() + System.lineSeparator());
-									if (json != null) {
-										BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO history(ip, action, log, date) VALUES('" + a + "', 'Deleted record in cloudflare (DeleteDNS1 / ID " + recordId + ")', '" + json.toString() + System.lineSeparator() + stringBuilder.toString() + "', '" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS").format(new Date()) + "')", RequestType.SETTER));
-										BadblockDatabase.getInstance().addSyncRequest(new Request("UPDATE absorbances SET recordId = '0' WHERE ip = '" + a + "'", RequestType.SETTER));
-									}else{
-										BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO history(ip, action, log, date) VALUES('" + a + "', 'Fail: Deleted record in cloudflare (DeleteDNS1 / ID " + recordId + ")', 'null" + System.lineSeparator() + stringBuilder.toString() + "', '" + new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS").format(new Date()) + "')", RequestType.SETTER));
+			String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
+					+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
+			BadblockDatabase.getInstance().addSyncRequest(
+					new Request("SELECT recordId FROM absorbances WHERE ip = '" + a + "'", RequestType.GETTER) {
+						@Override
+						public void done(ResultSet resultSet) {
+							try {
+								if (resultSet.next()) {
+									int recordId = resultSet.getInt("recordId");
+									if (recordId != 0) {
+										System.out.println("Deleting record ID " + recordId + " / " + access);
+										DNSDeleteRecord dns = new DNSDeleteRecord(access, "badblock.fr", recordId);
+										try {
+											JSONObject json = dns.executeBasic();
+											StringBuilder stringBuilder = new StringBuilder();
+											for (StackTraceElement element : Thread.currentThread().getStackTrace())
+												stringBuilder.append(element.toString() + System.lineSeparator());
+											if (json != null) {
+												BadblockDatabase.getInstance().addSyncRequest(new Request(
+														"INSERT INTO history(ip, action, log, date) VALUES('" + a
+																+ "', 'Deleted record in cloudflare (DeleteDNS1 / ID "
+																+ recordId + ")', '" + json.toString()
+																+ System.lineSeparator() + stringBuilder.toString()
+																+ "', '"
+																+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS")
+																		.format(new Date())
+																+ "')",
+														RequestType.SETTER));
+												BadblockDatabase.getInstance().addSyncRequest(new Request(
+														"UPDATE absorbances SET recordId = '0' WHERE ip = '" + a + "'",
+														RequestType.SETTER));
+											} else {
+												BadblockDatabase.getInstance().addSyncRequest(new Request(
+														"INSERT INTO history(ip, action, log, date) VALUES('" + a
+																+ "', 'Fail: Deleted record in cloudflare (DeleteDNS1 / ID "
+																+ recordId + ")', 'null" + System.lineSeparator()
+																+ stringBuilder.toString() + "', '"
+																+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS")
+																		.format(new Date())
+																+ "')",
+														RequestType.SETTER));
+											}
+											System.out.println(json.toString());
+											deleted = true;
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
+										try {
+											dns.close();
+										} catch (IOException e) {
+											e.printStackTrace();
+										}
 									}
-									System.out.println(json.toString());
-									deleted = true;
-								} catch (Exception e) {
-									e.printStackTrace();
 								}
-								try {
-									dns.close();
-								} catch (IOException e) {
-									e.printStackTrace();
-								}
+							} catch (SQLException e) {
+								e.printStackTrace();
 							}
 						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-		}else{
+					});
+		} else {
 			throw new UnableToDeleteDNSException();
 		}
 	}

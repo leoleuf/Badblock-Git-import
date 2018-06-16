@@ -7,5 +7,5 @@ public class UnableToDeleteDNSException extends RuntimeException {
 	public UnableToDeleteDNSException() {
 		super("Unable to delete DNS :(");
 	}
-	
+
 }

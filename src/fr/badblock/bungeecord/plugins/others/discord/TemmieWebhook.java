@@ -21,12 +21,16 @@ public class TemmieWebhook {
 	public void sendMessage(DiscordMessage dm) {
 		Runnable r = new Runnable() {
 			public void run() {
-				String strResponse = HttpRequest.post(url)
-						.acceptJson()
-						.contentType("application/json")
-						.header("User-Agent", "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11") // Why? Because discordapp.com blocks the default User Agent
-						.send(gson.toJson(dm))
-						.body();
+				String strResponse = HttpRequest.post(url).acceptJson().contentType("application/json")
+						.header("User-Agent", "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11") // Why?
+																													// Because
+																													// discordapp.com
+																													// blocks
+																													// the
+																													// default
+																													// User
+																													// Agent
+						.send(gson.toJson(dm)).body();
 
 				if (!strResponse.isEmpty()) {
 					Response response = gson.fromJson(strResponse, Response.class);

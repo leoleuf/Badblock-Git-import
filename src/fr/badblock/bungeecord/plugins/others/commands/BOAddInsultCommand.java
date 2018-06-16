@@ -11,7 +11,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 public class BOAddInsultCommand extends Command {
-	
+
 	public BOAddInsultCommand() {
 		super("boaddspooker", "others.spymsg", "boaddspook", "boaspook", "boaspooker", "boas");
 	}
@@ -25,16 +25,19 @@ public class BOAddInsultCommand extends Command {
 				return;
 			}
 			BadInsultModule.instance.insultsList.add(BadInsultModule.instance.applyFilter(args[0]));
-			BadBlockBungeeOthers.getInstance().getConfiguration().set("modules.badInsult.insults", BadInsultModule.instance.insultsList);
+			BadBlockBungeeOthers.getInstance().getConfiguration().set("modules.badInsult.insults",
+					BadInsultModule.instance.insultsList);
 			try {
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(BadBlockBungeeOthers.getInstance().getConfiguration(), new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				ConfigurationProvider.getProvider(YamlConfiguration.class).save(
+						BadBlockBungeeOthers.getInstance().getConfiguration(),
+						new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			sender.sendMessage("§aInsulte '" + BadInsultModule.instance.applyFilter(args[0]) + "' ajoutée.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

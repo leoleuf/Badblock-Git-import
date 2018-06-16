@@ -16,62 +16,54 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
-public class AsyncDataLoadRequestListener implements Listener
-{
+public class AsyncDataLoadRequestListener implements Listener {
 
 	private Gson gson = new Gson();
 
-	@EventHandler (priority = EventPriority.LOWEST)
-	public void onJoin(AsyncDataLoadRequest event)
-	{
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onJoin(AsyncDataLoadRequest event) {
 		String ip = event.getHandler().getAddress().getAddress().getHostAddress();
-		BadblockDatabase.getInstance().addSyncRequest(new Request("SELECT COUNT(id) AS count FROM blockedIps WHERE ip = '" + ip + "'", RequestType.GETTER)
-		{
-			@Override
-			public void done(ResultSet resultSet)
-			{
-				try
-				{
-					if (resultSet.next())
-					{
-						int count = resultSet.getInt("count");
-						if (count > 0)
-						{
-							event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."), null);
-							event.setCancelled(true);
-							return;
+		BadblockDatabase.getInstance().addSyncRequest(
+				new Request("SELECT COUNT(id) AS count FROM blockedIps WHERE ip = '" + ip + "'", RequestType.GETTER) {
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								int count = resultSet.getInt("count");
+								if (count > 0) {
+									event.getDone().done(new Result(null, ChatColor.RED
+											+ "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."),
+											null);
+									event.setCancelled(true);
+									return;
+								}
+							}
+							if (!isGoodIP(ip)) {
+								BadblockDatabase.getInstance().addSyncRequest(new Request(
+										"INSERT INTO blockedIps(ip) VALUES('" + ip + "')", RequestType.SETTER));
+								event.getDone().done(new Result(null, ChatColor.RED
+										+ "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."),
+										null);
+								event.setCancelled(true);
+							}
+						} catch (Exception error) {
+							error.printStackTrace();
 						}
 					}
-					if (!isGoodIP(ip))
-					{
-						BadblockDatabase.getInstance().addSyncRequest(new Request("INSERT INTO blockedIps(ip) VALUES('" + ip + "')", RequestType.SETTER));
-						event.getDone().done(new Result(null, ChatColor.RED + "Votre IP a été bloquée par notre système automatisé pour cause de mauvaise réputation."), null);
-						event.setCancelled(true);
-					}
-				}
-				catch(Exception error)
-				{
-					error.printStackTrace();
-				}
-			}
-		});
+				});
 	}
 
-	private boolean isGoodIP(String ip)
-	{
+	private boolean isGoodIP(String ip) {
 		String urlBuilder = "http://v2.api.iphub.info/ip/" + ip;
 		String apiKey = "MTU4NTpTMXV2TXdZbFJ0YlVZOGV2aGo3dUV0dG4zOVprTWVldQ==";
 		String sourceCode = NetworkUtils.fetchSourceCodeWithAPI(urlBuilder, apiKey);
-		try
-		{
+		try {
 			IPHubObject object = gson.fromJson(sourceCode, IPHubObject.class);
-			if (object == null)
-			{
+			if (object == null) {
 				return true;
 			}
 			return object.getBlock() != 1;
-		}catch(Exception error)
-		{
+		} catch (Exception error) {
 			System.out.println("Error (GOODIP-CHECK) : " + sourceCode);
 			return true;
 		}

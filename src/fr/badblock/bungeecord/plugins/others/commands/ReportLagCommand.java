@@ -24,28 +24,27 @@ public class ReportLagCommand extends Command {
 			sender.sendMessage("§cUtilisation: /lagreport");
 			return;
 		}
-		if (!(sender instanceof ProxiedPlayer))
-		{
+		if (!(sender instanceof ProxiedPlayer)) {
 			sender.sendMessage("§cVous devez être un joueur pour pouvoir exécuter cette commande.");
 			return;
 		}
 		ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 		String playerName = sender.getName();
 		String flagName = "lagreport_" + playerName;
-		if (!Flags.has(flagName))
-		{
+		if (!Flags.has(flagName)) {
 			Flags.set(flagName, 300_000);
-			String serverName = proxiedPlayer.getServer() != null && proxiedPlayer.getServer().getInfo() != null ? proxiedPlayer.getServer().getInfo().getName() : "unknown";
+			String serverName = proxiedPlayer.getServer() != null && proxiedPlayer.getServer().getInfo() != null
+					? proxiedPlayer.getServer().getInfo().getName()
+					: "unknown";
 			String date = BadBlockBungeeOthers.getInstance().simpleDateFormat.format(new Date());
-			BadblockDatabase.getInstance().addRequest(new Request(
-					"INSERT INTO lagReports(playerName, server, date, timestamp) VALUES('" + playerName
-					+ "', '" + serverName + "', '" + date 
-					+ "', '" + System.currentTimeMillis() + "')", RequestType.SETTER));
+			BadblockDatabase.getInstance()
+					.addRequest(new Request(
+							"INSERT INTO lagReports(playerName, server, date, timestamp) VALUES('" + playerName + "', '"
+									+ serverName + "', '" + date + "', '" + System.currentTimeMillis() + "')",
+							RequestType.SETTER));
 			sender.sendMessage("§6[INFO] §aVous avez signalé un lag.");
 			sender.sendMessage("§6[INFO] §aNous vous remercions de l'intérêt que vous portez à BadBlock !");
-		}
-		else
-		{
+		} else {
 			sender.sendMessage("§6[INFO] §cVous avez déjà signalé un lag récemment.");
 		}
 	}

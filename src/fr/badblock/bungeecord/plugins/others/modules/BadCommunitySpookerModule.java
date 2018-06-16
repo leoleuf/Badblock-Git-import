@@ -17,10 +17,12 @@ import net.md_5.bungee.config.YamlConfiguration;
 
 public class BadCommunitySpookerModule extends Module {
 
-	@Getter @Setter public static BadCommunitySpookerModule instance = null;
+	@Getter
+	@Setter
+	public static BadCommunitySpookerModule instance = null;
 
-	public List<String> badWordsList 		= new ArrayList<>();
-	
+	public List<String> badWordsList = new ArrayList<>();
+
 	public BadCommunitySpookerModule() {
 		instance = this;
 		Configuration configuration = BadBlockBungeeOthers.getInstance().getConfiguration();
@@ -50,12 +52,14 @@ public class BadCommunitySpookerModule extends Module {
 			badWordsList.add("cheta");
 			configuration.set("modules.badCommunitySpooker.badWords", badWordsList);
 			try {
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration,
+						new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			try {
-				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class)
+						.load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 				BadBlockBungeeOthers.getInstance().setConfiguration(configuration);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -66,10 +70,12 @@ public class BadCommunitySpookerModule extends Module {
 		badWordsList.forEach(word -> strings.add(BadInsultModule.instance.applyFilter(word.toLowerCase())));
 		badWordsList = strings;
 	}
-	
+
 	public boolean testSpooking(ProxiedPlayer proxiedPlayer, ChatEvent event) {
-		if (event.isCommand()) return false;
-		if (proxiedPlayer.hasPermission("chat.bypass")) return false;
+		if (event.isCommand())
+			return false;
+		if (proxiedPlayer.hasPermission("chat.bypass"))
+			return false;
 		String lowerMessage = BadInsultModule.instance.applyFilter(event.getMessage());
 		for (String badword : badWordsList) {
 			if (lowerMessage.contains(badword) || lowerMessage.equalsIgnoreCase(badword)) {
@@ -79,5 +85,5 @@ public class BadCommunitySpookerModule extends Module {
 		}
 		return false;
 	}
-	
+
 }

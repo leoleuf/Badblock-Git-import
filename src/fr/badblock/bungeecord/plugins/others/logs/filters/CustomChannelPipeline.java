@@ -315,5 +315,5 @@ public class CustomChannelPipeline implements ChannelPipeline {
 	public ChannelFuture writeAndFlush(Object arg0, ChannelPromise arg1) {
 		return new CustomChannelFuture();
 	}
-	
+
 }

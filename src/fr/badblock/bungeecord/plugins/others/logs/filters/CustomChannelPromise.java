@@ -97,7 +97,8 @@ public class CustomChannelPromise implements ChannelPromise {
 	}
 
 	@Override
-	public ChannelPromise addListeners(@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
+	public ChannelPromise addListeners(
+			@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
 		return this;
 	}
 
@@ -122,7 +123,8 @@ public class CustomChannelPromise implements ChannelPromise {
 	}
 
 	@Override
-	public ChannelPromise removeListeners(@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
+	public ChannelPromise removeListeners(
+			@SuppressWarnings("unchecked") GenericFutureListener<? extends Future<? super Void>>... arg0) {
 		return this;
 	}
 

@@ -7,12 +7,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class PlayerBooster {
 
-	private String  username;
-	private long	expire;
+	private String username;
+	private long expire;
 	private boolean enabled;
-	private long 	addedXp;
-	private long 	addedBadcoins;
-	private String  gameName;
+	private long addedXp;
+	private long addedBadcoins;
+	private String gameName;
 	private Booster booster;
 
 	/**

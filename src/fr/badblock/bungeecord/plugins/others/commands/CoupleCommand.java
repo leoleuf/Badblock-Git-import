@@ -29,100 +29,83 @@ public class CoupleCommand extends Command {
 		String type = BadblockDatabase.getInstance().mysql_real_escape_string(args[0]);
 		String name = BadblockDatabase.getInstance().mysql_real_escape_string(args[1]);
 		String playerName = sender.getName().toLowerCase();
-		BadblockDatabase.getInstance().addRequest(new Request("SELECT COUNT(pseudo) AS count FROM friends WHERE pseudo = '" + name + "'", RequestType.GETTER)
-		{
+		BadblockDatabase.getInstance().addRequest(new Request(
+				"SELECT COUNT(pseudo) AS count FROM friends WHERE pseudo = '" + name + "'", RequestType.GETTER) {
 			@Override
-			public void done(ResultSet resultSet)
-			{
-				try
-				{
-					if (resultSet.next())
-					{
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next()) {
 						int count = resultSet.getInt("count");
-						if (count == 0)
-						{
+						if (count == 0) {
 							sender.sendMessage("§cLe joueur '" + name + "' ne s'est jamais connecté.");
 							return;
 						}
-						if (type.equalsIgnoreCase("request"))
-						{
+						if (type.equalsIgnoreCase("request")) {
 							request(proxiedPlayer, name);
 							return;
 						}
-						if (type.equalsIgnoreCase("accept"))
-						{
+						if (type.equalsIgnoreCase("accept")) {
 							accept(proxiedPlayer, name);
 							return;
 						}
 					}
-				}
-				catch (Exception error)
-				{
+				} catch (Exception error) {
 					error.printStackTrace();
 				}
 			}
 		});
 	}
 
-	private void request(ProxiedPlayer player, String name)
-	{
-		BadblockDatabase.getInstance().addRequest(new Request("SELECT COUNT(pseudo) AS count FROM couples WHERE pseudo = '" + name + "' AND (status = 'WAITING' OR status = 'ACCEPTED')", RequestType.GETTER)
-		{
-			@SuppressWarnings("deprecation")
-			@Override
-			public void done(ResultSet resultSet)
-			{
-				try
-				{
-					if (resultSet.next())
-					{
-						int count = resultSet.getInt("count");
-						if (count != 0)
-						{
-							player.sendMessage("§cCe couple est déjà en attente d'acceptation ou est déjà créé.");
-							return;
+	private void request(ProxiedPlayer player, String name) {
+		BadblockDatabase.getInstance()
+				.addRequest(new Request("SELECT COUNT(pseudo) AS count FROM couples WHERE pseudo = '" + name
+						+ "' AND (status = 'WAITING' OR status = 'ACCEPTED')", RequestType.GETTER) {
+					@SuppressWarnings("deprecation")
+					@Override
+					public void done(ResultSet resultSet) {
+						try {
+							if (resultSet.next()) {
+								int count = resultSet.getInt("count");
+								if (count != 0) {
+									player.sendMessage(
+											"§cCe couple est déjà en attente d'acceptation ou est déjà créé.");
+									return;
+								}
+								BadblockDatabase.getInstance().addRequest(
+										new Request("INSERT INTO couples(pseudo, fromPlayer, status, timestamp) SET('"
+												+ name + "', '" + player.getName() + "', 'WAITING', '"
+												+ System.currentTimeMillis() + "')", RequestType.SETTER));
+								player.sendMessage("§aVotre demande de couple a été envoyée à " + name + ".");
+								player.sendMessage("§eDîtes à votre potentiel amour de vous accepter.");
+							}
+						} catch (Exception error) {
+							error.printStackTrace();
 						}
-						BadblockDatabase.getInstance().addRequest(new Request(
-								"INSERT INTO couples(pseudo, fromPlayer, status, timestamp) SET('" + name + "', '" +
-										player.getName() + "', 'WAITING', '" + System.currentTimeMillis() + "')", RequestType.SETTER));
-						player.sendMessage("§aVotre demande de couple a été envoyée à " + name + ".");
-						player.sendMessage("§eDîtes à votre potentiel amour de vous accepter.");
 					}
-				}
-				catch (Exception error)
-				{
-					error.printStackTrace();
-				}
-			}
-		});
+				});
 	}
 
-	private void accept(ProxiedPlayer player, String name)
-	{
-		BadblockDatabase.getInstance().addRequest(new Request("SELECT COUNT(pseudo) AS count FROM couples WHERE fromPlayer = '" + name + "' AND status = 'WAITING'", RequestType.GETTER)
-		{
+	private void accept(ProxiedPlayer player, String name) {
+		BadblockDatabase.getInstance().addRequest(new Request(
+				"SELECT COUNT(pseudo) AS count FROM couples WHERE fromPlayer = '" + name + "' AND status = 'WAITING'",
+				RequestType.GETTER) {
 			@SuppressWarnings("deprecation")
 			@Override
-			public void done(ResultSet resultSet)
-			{
-				try
-				{
-					if (resultSet.next())
-					{
+			public void done(ResultSet resultSet) {
+				try {
+					if (resultSet.next()) {
 						int count = resultSet.getInt("count");
-						if (count == 0)
-						{
+						if (count == 0) {
 							player.sendMessage("§cAucune demande en cours concernant ce couple.");
 							return;
 						}
-						BadblockDatabase.getInstance().addRequest(new Request(
-								"UPDATE couples SET status = 'ACCEPTED' WHERE fromPlayer = '" + name + "' AND status = 'WAITING'", RequestType.SETTER));
+						BadblockDatabase.getInstance()
+								.addRequest(new Request("UPDATE couples SET status = 'ACCEPTED' WHERE fromPlayer = '"
+										+ name + "' AND status = 'WAITING'", RequestType.SETTER));
 						player.sendMessage("§aVous avez accepté(e) la demande de " + name + ".");
 						player.sendMessage("§bJouez ensemble pour gagner + !");
 					}
-				}
-				catch (Exception error)
-				{
+				} catch (Exception error) {
 					error.printStackTrace();
 				}
 			}

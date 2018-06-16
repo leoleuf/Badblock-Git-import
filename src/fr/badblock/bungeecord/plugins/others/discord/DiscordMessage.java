@@ -53,7 +53,7 @@ public class DiscordMessage {
 
 	public static class DiscordMessageBuilder {
 		List<DiscordEmbed> embeds = new ArrayList<DiscordEmbed>();
-		
+
 		public DiscordMessageBuilder embed(DiscordEmbed embed) {
 			embeds.add(embed);
 			return this;

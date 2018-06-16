@@ -11,7 +11,7 @@ import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 
 public class BORemoveInsultCommand extends Command {
-	
+
 	public BORemoveInsultCommand() {
 		super("boaddinsult", "others.spymsg", "bodelinsult", "bodeleteinsult", "borminsult", "boreminsult", "bormi");
 	}
@@ -29,16 +29,19 @@ public class BORemoveInsultCommand extends Command {
 				return;
 			}
 			BadInsultModule.instance.insultsList.remove(BadInsultModule.instance.applyFilter(args[0]));
-			BadBlockBungeeOthers.getInstance().getConfiguration().set("modules.badInsult.insults", BadInsultModule.instance.insultsList);
+			BadBlockBungeeOthers.getInstance().getConfiguration().set("modules.badInsult.insults",
+					BadInsultModule.instance.insultsList);
 			try {
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(BadBlockBungeeOthers.getInstance().getConfiguration(), new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				ConfigurationProvider.getProvider(YamlConfiguration.class).save(
+						BadBlockBungeeOthers.getInstance().getConfiguration(),
+						new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			sender.sendMessage("§aInsulte '" + BadInsultModule.instance.applyFilter(args[0]) + "' retirée.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

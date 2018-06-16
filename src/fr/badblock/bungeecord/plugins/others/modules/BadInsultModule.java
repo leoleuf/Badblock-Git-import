@@ -25,16 +25,16 @@ import net.md_5.bungee.event.EventPriority;
 
 public class BadInsultModule extends Module {
 
-	public static BadInsultModule	instance	= null;
+	public static BadInsultModule instance = null;
 
-	public  List<String> insultsList 			= new ArrayList<>();
-	public  List<String> insultsMuteList 		= new ArrayList<>();
-	private List<String> antiSpam				= new ArrayList<>();
-	public  List<String> pseudoList				= new ArrayList<>();
-	private List<String> antiFlood				= new ArrayList<>();
-	private long		 timeBetweenEachMessage = 1000L;
-	private long		 timeBetweenSameMessage = 60000L;
-	private List<String> commands				= new ArrayList<>();
+	public List<String> insultsList = new ArrayList<>();
+	public List<String> insultsMuteList = new ArrayList<>();
+	private List<String> antiSpam = new ArrayList<>();
+	public List<String> pseudoList = new ArrayList<>();
+	private List<String> antiFlood = new ArrayList<>();
+	private long timeBetweenEachMessage = 1000L;
+	private long timeBetweenSameMessage = 60000L;
+	private List<String> commands = new ArrayList<>();
 
 	public BadInsultModule() {
 		instance = this;
@@ -66,15 +66,20 @@ public class BadInsultModule extends Module {
 			configuration.set("modules.spam.timeBetweenSameMessage", timeBetweenSameMessage);
 			changed = true;
 		}
-		/*if (configuration.get("modules.badInsult.insultError") == null) {
-			configuration.set("modules.badInsult.insultError", insultError);
-			changed = true;
-		}*/
+		/*
+		 * if (configuration.get("modules.badInsult.insultError") == null) {
+		 * configuration.set("modules.badInsult.insultError", insultError); changed =
+		 * true; }
+		 */
 		if (configuration.get("modules.badInsult.onlyForCommands") == null) {
 			/*
-			 * 	/*if (!message.startsWith("msg") && !message.startsWith("whisper") && !message.startsWith("m") && !message.startsWith("w") && !message.startsWith("tellraw") 
-				&& !message.startsWith("tell") && !message.startsWith("minecraft:tell") && !message.startsWith("message:tellraw") && 
-				!message.startsWith("minecraft:whisper") && !message.startsWith("minecraft:w") && !message.startsWith("r")) return;
+			 * /*if (!message.startsWith("msg") && !message.startsWith("whisper") &&
+			 * !message.startsWith("m") && !message.startsWith("w") &&
+			 * !message.startsWith("tellraw") && !message.startsWith("tell") &&
+			 * !message.startsWith("minecraft:tell") &&
+			 * !message.startsWith("message:tellraw") &&
+			 * !message.startsWith("minecraft:whisper") &&
+			 * !message.startsWith("minecraft:w") && !message.startsWith("r")) return;
 			 */
 			commands.add("msg");
 			commands.add("whisper");
@@ -92,12 +97,14 @@ public class BadInsultModule extends Module {
 		}
 		if (changed) {
 			try {
-				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration, new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				ConfigurationProvider.getProvider(YamlConfiguration.class).save(configuration,
+						new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 			} catch (IOException e) {
 				e.printStackTrace();
-			}	
+			}
 			try {
-				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
+				configuration = ConfigurationProvider.getProvider(YamlConfiguration.class)
+						.load(new File(BadBlockBungeeOthers.getInstance().getDataFolder(), "config.yml"));
 				BadBlockBungeeOthers.getInstance().setConfiguration(configuration);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -114,23 +121,31 @@ public class BadInsultModule extends Module {
 		insultsMuteList = temporarye;
 		antiSpam = configuration.getStringList("modules.spam.antiSpam");
 		antiFlood = configuration.getStringList("modules.spam.antiFlood");
-		//insultError = configuration.getStringList("modules.badInsult.insultError");
+		// insultError = configuration.getStringList("modules.badInsult.insultError");
 		commands = configuration.getStringList("modules.badInsult.onlyForCommands");
 		timeBetweenEachMessage = configuration.getLong("modules.spam.timeBetweenEachMessage");
 		timeBetweenSameMessage = configuration.getLong("modules.spam.timeBetweenSameMessage");
 	}
+
 	public SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss");
 
 	@SuppressWarnings({ "deprecation", "static-access" })
-	@EventHandler (priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onAsyncChat(ChatEvent event) {
 		Connection sender = event.getSender();
-		if (!(sender instanceof ProxiedPlayer)) return;
+		if (!(sender instanceof ProxiedPlayer))
+			return;
 		ProxiedPlayer player = (ProxiedPlayer) sender;
-		if (player.getServer() == null || player.getServer().getInfo() == null || player.getServer().getInfo().getName() == null || player.getServer().getInfo().getName().startsWith("login")) return;
-		if (player.hasPermission("chat.bypass")) return;
-		fr.badblock.bungeecord.plugins.ladder.Player pl = fr.badblock.bungeecord.plugins.ladder.LadderBungee.getInstance().getPlayer(player.getName());
-		if (pl.getPunished().isMute() || pl.getPunished().getMuteEnd() > System.currentTimeMillis()) return;
+		if (player.getServer() == null || player.getServer().getInfo() == null
+				|| player.getServer().getInfo().getName() == null
+				|| player.getServer().getInfo().getName().startsWith("login"))
+			return;
+		if (player.hasPermission("chat.bypass"))
+			return;
+		fr.badblock.bungeecord.plugins.ladder.Player pl = fr.badblock.bungeecord.plugins.ladder.LadderBungee
+				.getInstance().getPlayer(player.getName());
+		if (pl.getPunished().isMute() || pl.getPunished().getMuteEnd() > System.currentTimeMillis())
+			return;
 		String message = event.getMessage();
 		if (message.startsWith("/")) {
 			boolean bypass = true;
@@ -140,10 +155,11 @@ public class BadInsultModule extends Module {
 					break;
 				}
 			}
-			if (bypass) return;
+			if (bypass)
+				return;
 		}
 
-		//if (event.isCommand()) return;
+		// if (event.isCommand()) return;
 		// Réécriture du message sans doublons
 		// plus ou égal à trois choses
 		int nb = 0;
@@ -152,7 +168,8 @@ public class BadInsultModule extends Module {
 		int upperCase = 0;
 		String okMessage = "";
 		for (Character character : message.toCharArray()) {
-			if (lastCharacter != null && character.toString().equals(lastCharacter.toString()) && (lastCharacter.toString().equals("!") || lastCharacter.toString().equals("?"))) {
+			if (lastCharacter != null && character.toString().equals(lastCharacter.toString())
+					&& (lastCharacter.toString().equals("!") || lastCharacter.toString().equals("?"))) {
 				nb++;
 				if (nb >= 2 && (lastCharacter.toString().equals("!") || lastCharacter.toString().equals("?"))) {
 					if (nb == 2) {
@@ -164,7 +181,7 @@ public class BadInsultModule extends Module {
 					event.setCancelled(true);
 					return;
 				}
-			}else{
+			} else {
 				nb = 0;
 				if (character.isUpperCase(character)) {
 					if (upperCase >= 5) {
@@ -179,63 +196,82 @@ public class BadInsultModule extends Module {
 		message = okMessage;
 		// Test d'insultes
 		boolean handle = false;
-		/*if (!invincible && !handle) {
-		/*boolean invincible = player.hasPermission("ladder.command.sanction");
-		if (!invincible && !handle) {
-			for (String insult : insultsMuteList) {
-				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
-						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
-					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§eVérification neuronale §9>> §b" + player.getName() + " §e(" + insult + ")", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-					handle = true;
-					final String finalMessage = message;
-					new Timer().schedule(new TimerTask() {
-						@Override
-						public void run() {
-							if (pl.getPunished() != null && (pl.getPunished().isMute() && pl.getPunished().getMuteEnd() > System.currentTimeMillis())) return;
-							Sanction sanction = new Sanction(player.getName(), "mute", System.currentTimeMillis() + 1800_000L, System.currentTimeMillis(), "Message irrespectueux envers les CGU : " + finalMessage, pseudoList.get(new Random().nextInt(pseudoList.size())), "127.0.0.1", finalMessage, false);
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("sanction", new Gson().toJson(sanction), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
-							if (pl.getPunished() != null) {
-								pl.getPunished().setMuteEnd(System.currentTimeMillis() + 1800_000L);
-								pl.getPunished().setMute(true);
-								pl.getPunished().setMuter(sanction.getBanner());
-								pl.getPunished().setMuteReason("Message irrespectueux envers les CGU : " + finalMessage);
-							}
-							player.sendMessage("§4----------------------------------------");
-							player.sendMessage("§cVous avez été baîllonné par l'IA qui veille");
-							player.sendMessage("§csur le t'chat du jeu. Cette sanction est temporaire.");
-							player.sendMessage("§c");
-							player.sendMessage("§eLe message en question est le suivant :");
-							player.sendMessage("§c'" + finalMessage + "'");
-							player.sendMessage("§c");
-							player.sendMessage("§9En cas de faux positif, veuillez nous le signaler");
-							player.sendMessage("§9sur le forum dans la catégorie bugs.");
-							player.sendMessage("§4----------------------------------------");
-							String msg = "§c[§6Guardian§c] §b" + player.getName() + "§6 a été sanctionné pour §cMessage irrespectueux§6.";
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("guardian.broadcast", msg, Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER, 5000, false);
-							BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§cPunish §9>> §e" + player.getName() + " §8- §9" + insult + " §8: §7" + finalMessage, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-						}
-					}, new Random().nextInt(5000) + 5000);
-					return;
-				}
-			}
-		}*/
+		/*
+		 * if (!invincible && !handle) { /*boolean invincible =
+		 * player.hasPermission("ladder.command.sanction"); if (!invincible && !handle)
+		 * { for (String insult : insultsMuteList) { if ((!insult.contains("_") &&
+		 * (filteredMessage.contains(insult) ||
+		 * filteredMessage.equalsIgnoreCase(insult))) || (insult.contains("_") &&
+		 * ((event.getMessage().contains(" " + insult + " ") ||
+		 * event.getMessage().startsWith(insult + " ") ||
+		 * event.getMessage().endsWith(" " + insult))))) {
+		 * BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter",
+		 * "§eVérification neuronale §9>> §b" + player.getName() + " §e(" + insult +
+		 * ")", Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false); handle = true;
+		 * final String finalMessage = message; new Timer().schedule(new TimerTask() {
+		 * 
+		 * @Override public void run() { if (pl.getPunished() != null &&
+		 * (pl.getPunished().isMute() && pl.getPunished().getMuteEnd() >
+		 * System.currentTimeMillis())) return; Sanction sanction = new
+		 * Sanction(player.getName(), "mute", System.currentTimeMillis() + 1800_000L,
+		 * System.currentTimeMillis(), "Message irrespectueux envers les CGU : " +
+		 * finalMessage, pseudoList.get(new Random().nextInt(pseudoList.size())),
+		 * "127.0.0.1", finalMessage, false);
+		 * BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("sanction",
+		 * new Gson().toJson(sanction), Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER,
+		 * 5000, false); if (pl.getPunished() != null) {
+		 * pl.getPunished().setMuteEnd(System.currentTimeMillis() + 1800_000L);
+		 * pl.getPunished().setMute(true);
+		 * pl.getPunished().setMuter(sanction.getBanner());
+		 * pl.getPunished().setMuteReason("Message irrespectueux envers les CGU : " +
+		 * finalMessage); }
+		 * player.sendMessage("§4----------------------------------------");
+		 * player.sendMessage("§cVous avez été baîllonné par l'IA qui veille");
+		 * player.sendMessage("§csur le t'chat du jeu. Cette sanction est temporaire.");
+		 * player.sendMessage("§c");
+		 * player.sendMessage("§eLe message en question est le suivant :");
+		 * player.sendMessage("§c'" + finalMessage + "'"); player.sendMessage("§c");
+		 * player.sendMessage("§9En cas de faux positif, veuillez nous le signaler");
+		 * player.sendMessage("§9sur le forum dans la catégorie bugs.");
+		 * player.sendMessage("§4----------------------------------------"); String msg
+		 * = "§c[§6Guardian§c] §b" + player.getName() +
+		 * "§6 a été sanctionné pour §cMessage irrespectueux§6.";
+		 * BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket(
+		 * "guardian.broadcast", msg, Encodage.UTF8, RabbitPacketType.MESSAGE_BROKER,
+		 * 5000, false);
+		 * BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter",
+		 * "§cPunish §9>> §e" + player.getName() + " §8- §9" + insult + " §8: §7" +
+		 * finalMessage, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false); } },
+		 * new Random().nextInt(5000) + 5000); return; } } }
+		 */
 		if (!handle) {
 			for (String insult : insultsList) {
-				if ((!insult.contains("_") && (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult))) ||
-						(insult.contains("_") && ((event.getMessage().contains(" " + insult + " ") || event.getMessage().startsWith(insult + " ") || event.getMessage().endsWith(" " + insult))))) {
-					//event.setCancelled(true);
-					//event.setCancelled(true);
-					BadblockDatabase.getInstance().addRequest(new Request("INSERT INTO reportMsg(byPlayer, player, message, timestamp) VALUES('', '" + BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "', '" + BadblockDatabase.getInstance().mysql_real_escape_string(message) + "', '" + System.currentTimeMillis() + "')", RequestType.SETTER));
-					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter", "§7" + player.getName() + " (" + insult + ") §8» §7" + message, Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
+				if ((!insult.contains("_")
+						&& (filteredMessage.contains(insult) || filteredMessage.equalsIgnoreCase(insult)))
+						|| (insult.contains("_") && ((event.getMessage().contains(" " + insult + " ")
+								|| event.getMessage().startsWith(insult + " ")
+								|| event.getMessage().endsWith(" " + insult))))) {
+					// event.setCancelled(true);
+					// event.setCancelled(true);
+					BadblockDatabase.getInstance().addRequest(
+							new Request("INSERT INTO reportMsg(byPlayer, player, message, timestamp) VALUES('', '"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(player.getName()) + "', '"
+									+ BadblockDatabase.getInstance().mysql_real_escape_string(message) + "', '"
+									+ System.currentTimeMillis() + "')", RequestType.SETTER));
+					BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("badfilter",
+							"§7" + player.getName() + " (" + insult + ") §8» §7" + message, Encodage.UTF8,
+							RabbitPacketType.PUBLISHER, 5000, false);
 					handle = true;
 					break;
-					//player.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(this.insultError));
+					// player.sendMessage(BadBlockBungeeOthers.getInstance().getMessage(this.insultError));
 				}
 			}
 		}
-		if (BadCommunitySpookerModule.getInstance().testSpooking(player, event)) return;
+		if (BadCommunitySpookerModule.getInstance().testSpooking(player, event))
+			return;
 		// Test de publicité
-		String filteredWithoutDotMessage = message.toLowerCase().replaceAll("[^\\w.]+", "").replace(" ", "").replace("_", "");
+		String filteredWithoutDotMessage = message.toLowerCase().replaceAll("[^\\w.]+", "").replace(" ", "")
+				.replace("_", "");
 		BadAdvertsModule.getInstance().testAdvert(player, event, filteredMessage, filteredWithoutDotMessage);
 		Player playerO = Player.get(player);
 		if (!event.isCancelled()) {
@@ -264,7 +300,7 @@ public class BadInsultModule extends Module {
 		String o = "";
 		Character lastCharacter = null;
 		for (Character character : string.toCharArray()) {
-			if (lastCharacter == null || !lastCharacter.toString().equals(character.toString())) 
+			if (lastCharacter == null || !lastCharacter.toString().equals(character.toString()))
 				o += character.toString();
 			lastCharacter = character;
 		}
@@ -277,7 +313,7 @@ public class BadInsultModule extends Module {
 		String o = "";
 		Character lastCharacter = null;
 		for (Character character : string.toCharArray()) {
-			if (lastCharacter == null || !lastCharacter.toString().equals(character.toString())) 
+			if (lastCharacter == null || !lastCharacter.toString().equals(character.toString()))
 				o += character.toString();
 			lastCharacter = character;
 		}
