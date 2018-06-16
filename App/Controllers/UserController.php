@@ -14,7 +14,11 @@ use Slim\Http\Request;
 class UserController extends Controller
 {
 
+    public function getDashboard(RequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => null,'factures' => null, 'sanctions' => null]);
 
+    }
     public function getDashboarddd(RequestInterface $request, ResponseInterface $response)
 	{
         //Récupération des données du serveur
@@ -94,9 +98,8 @@ class UserController extends Controller
 
 
         //Return view
-        //return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
-        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => null,'factures' => null, 'sanctions' => null]);
 
 	}
 
