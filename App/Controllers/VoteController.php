@@ -193,39 +193,55 @@ class VoteController extends Controller
 
 
     public function loterie(RequestInterface $request, ResponseInterface $response, $type){
-        if ($this->container->session->exist('user')){
-            $player = strtolower($this->session->getProfile('username')['username']);
-            //Lotterie 1 : 1 bronze
-            //Lotterie 2 : 5 bronze
-            //Lotterie 3 : 20 bronze
-            if ($type['type'] == "1"){
-                $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => strtolower($player)]);
-                if ($mongo['bronze'] > 0){
-                    $this->recomp($player,1);
-                }else{
-                    return $response->write("1")->withStatus(404);
-                }
-            }elseif ($type['type'] == "2"){
-                $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => strtolower($player)]);
-                if ($mongo['bronze'] >= 5){
-                    $this->recomp($player,2);
-                }else{
-                    return $response->write(5 - $mongo['bronze'])->withStatus(404);
-                }
-            }elseif ($type['type'] == "3"){
-                $collection = $this->container->mongo->vote;
-                $mongo = $collection->findOne(['name' => strtolower($player)]);
-                if ($mongo['bronze'] >= 20){
-                    $this->recomp($player,3);
-                }else{
-                    return $response->write(20 - $mongo['bronze'])->withStatus(404);
-                }
-            }
+        if ($type['type'] == "1"){
+            //Random 1 / 3
+            $nb1 = mt_rand(1, 3);
+            $nb2 = mt_rand(1, 3);
+            $nb3 = mt_rand(1, 3);
+            $nb4 = mt_rand(1, 3);
+
+            $nb = ((($nb1 + $nb2 + $nb3 + $nb4) / 4) / 100);
+
+            //Ajout des points boutique au compte TODO
+
+            return $response->write($nb . " points boutiques")->withStatus(200);
+
         }else{
-            return $response->write("Not connected")->withStatus(403);
+            if ($this->container->session->exist('user')){
+                $player = strtolower($this->session->getProfile('username')['username']);
+                //Lotterie 1 : 1 bronze
+                //Lotterie 2 : 5 bronze
+                //Lotterie 3 : 20 bronze
+                if ($type['type'] == "1"){
+                    $collection = $this->container->mongo->vote;
+                    $mongo = $collection->findOne(['name' => strtolower($player)]);
+                    if ($mongo['bronze'] > 0){
+                        $this->recomp($player,1);
+                    }else{
+                        return $response->write("1")->withStatus(404);
+                    }
+                }elseif ($type['type'] == "2"){
+                    $collection = $this->container->mongo->vote;
+                    $mongo = $collection->findOne(['name' => strtolower($player)]);
+                    if ($mongo['bronze'] >= 5){
+                        $this->recomp($player,2);
+                    }else{
+                        return $response->write(5 - $mongo['bronze'])->withStatus(404);
+                    }
+                }elseif ($type['type'] == "3"){
+                    $collection = $this->container->mongo->vote;
+                    $mongo = $collection->findOne(['name' => strtolower($player)]);
+                    if ($mongo['bronze'] >= 20){
+                        $this->recomp($player,3);
+                    }else{
+                        return $response->write(20 - $mongo['bronze'])->withStatus(404);
+                    }
+                }
+            }else{
+                return $response->write("Not connected")->withStatus(403);
+            }
         }
+
     }
 
     public function recomp($player,$level){
