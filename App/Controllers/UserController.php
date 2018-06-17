@@ -63,18 +63,22 @@ class UserController extends Controller
         }
 
 
-        //Récupération des sanctions
-        $array = $this->container['config']['punishTypes'];
-        $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
-        if (count($sanctions) > 0){
-            foreach ($sanctions as $k => $row){
-                $sanctions[$k]['type'] = $array[$row['type']];
-                if ($sanctions[$k]['expire'] != -1){
-                    $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
-                    $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
+        try{
+            //Récupération des sanctions
+            $array = $this->container['config']['punishTypes'];
+            $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
+            if (count($sanctions) > 0){
+                foreach ($sanctions as $k => $row){
+                    $sanctions[$k]['type'] = $array[$row['type']];
+                    if ($sanctions[$k]['expire'] != -1){
+                        $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
+                        $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
+                    }
                 }
+            }else{
+                $sanctions = false;
             }
-        }else{
+        }catch (\mysqli_sql_exception $e){
             $sanctions = false;
         }
 
