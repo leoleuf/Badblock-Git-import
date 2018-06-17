@@ -15,11 +15,6 @@ class UserController extends Controller
 {
 
     public function getDashboard(RequestInterface $request, ResponseInterface $response)
-    {
-        return $this->render($response, 'user.dashboard', ['user' => null,'custom' => true,'factures' => null, 'sanctions' => null]);
-
-    }
-    public function getDashboarddd(RequestInterface $request, ResponseInterface $response)
 	{
         //Récupération des données du serveur
         $collection = $this->container->mongoServer->players;
