@@ -135,7 +135,7 @@ $container['mysql_rankeds'] = function ($container) {
 
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_casier']['host'], // server
+		$container->config['mysql_casier']['host']. ':' . $container->config['mysql_casier']['port'], // server
 		$container->config['mysql_casier']['user'],     // user
 		$container->config['mysql_casier']['password'],      // password
 		$container->config['mysql_casier']['database']   // database

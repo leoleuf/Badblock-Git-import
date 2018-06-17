@@ -69,6 +69,10 @@ class UserController extends Controller
         if (count($sanctions) > 0){
             foreach ($sanctions as $k => $row){
                 $sanctions[$k]['type'] = $array[$row['type']];
+                if ($sanctions[$k]['expire'] != -1){
+                    $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
+                    $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
+                }
             }
         }else{
             $sanctions = false;

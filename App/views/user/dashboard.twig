@@ -103,7 +103,7 @@
     <div id="2" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             {% if sanctions != false %}
-                <h4 class="heading heading-bar"><span>Mes 10 dernières sanction(s)</span></h4>
+                <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mes 10 dernières sanction(s)</span></h4>
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
@@ -119,9 +119,13 @@
                                 <tr>
                                     <td>{{ key["pseudo"] }}</td>
                                     <td>{{ key["date"] }}</td>
-                                    <td><span class="label label-danger">BannissementTEMP</span></td>
+                                    <td><span class="label label-danger">{{ key["type"] }}</span></td>
                                     <td><a href="/profile/xMalware">{{ key["banner"] }}</a></td>
-                                    <td>{{ key["expire"] }}</td>
+                                    {% if key["expire"] == -1 %}
+                                        <td>Aucune</td>
+                                    {% else %}
+                                        <td>{{ key["expire"] | date("m/d/Y") }}</td>
+                                    {% endif %}
                                     <td>{{ key["reason"] }}</td>
                                 </tr>
                             {% endfor %}
