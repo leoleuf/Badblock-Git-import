@@ -625,6 +625,11 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-left: 185px;
 }
 
+#vote-link2 {
+    margin-left: 235px;
+    margin-bottom: 40px;
+}
+
 #outvote {
     margin-left: 215px;
 }
