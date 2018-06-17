@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use function DusanKasan\Knapsack\identity;
 use function DusanKasan\Knapsack\isEmpty;
+use function DusanKasan\Knapsack\slice;
 use MongoDB\Exception\Exception;
 use Monolog\Handler\Mongo;
 use Psr\Http\Message\RequestInterface;
@@ -13,8 +14,7 @@ use Slim\Http\Request;
 class UserController extends Controller
 {
 
-
-    public function getDashboarddd(RequestInterface $request, ResponseInterface $response)
+    public function getDashboard(RequestInterface $request, ResponseInterface $response)
 	{
         //Récupération des données du serveur
         $collection = $this->container->mongoServer->players;
@@ -69,6 +69,10 @@ class UserController extends Controller
         if (count($sanctions) > 0){
             foreach ($sanctions as $k => $row){
                 $sanctions[$k]['type'] = $array[$row['type']];
+                if ($sanctions[$k]['expire'] != -1){
+                    $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
+                    $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
+                }
             }
         }else{
             $sanctions = false;
@@ -95,15 +99,8 @@ class UserController extends Controller
         //Return view
         return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
+
 	}
-
-    public function getDashboard(RequestInterface $request, ResponseInterface $response)
-    {
-
-        //Return view
-        return $this->render($response, 'user.dashboard', ['user' => 0,'custom' =>0,'factures' => 0, 'sanctions' => 0]);
-
-    }
 
 
 	public function facture(RequestInterface $request, ResponseInterface $response, $args){
@@ -251,9 +248,16 @@ class UserController extends Controller
             //vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
 
+            $id_ts = explode("//",$_POST['idts']);
+            $id_ts = explode("/",$id_ts[1]);
+            $id_ts = explode("=",$id_ts[1]);
+
+            $id_ts = $id_ts[0] . "=";
+
+
             $data = [
                 'uniqueId' => $user['uniqueId'],
-                'teamspeak_uid' => $_POST['idts'],
+                'teamspeak_uid' => $id_ts,
                 'ban' => false,
                 'banExpire' => -1
             ];
@@ -398,7 +402,7 @@ class UserController extends Controller
                         'ts_owner_uid' => $ts_uid['teamspeak_uid'],
                         'channel_name' => $_POST['canal_name'],
                         'channel_pwd' => $_POST['canal_psw'],
-                        'state' => true
+                        'state' => false
                     ];
                     if ($count == 0){
                         $this->container->mongo->teamspeak_channel->InsertOne($data);
@@ -412,7 +416,8 @@ class UserController extends Controller
                                 'uniqueId' => $user['uniqueId'],
                                 'ts_owner_uid' => $ts_uid['teamspeak_uid'],
                                 'channel_name' => $_POST['canal_name'],
-                                'channel_pwd' => $_POST['canal_psw']
+                                'channel_pwd' => $_POST['canal_psw'],
+                                'state' => false
                             ]
                         ]);
                         $this->flash->addMessage('setting_error', "Paramètre de canal changé !");

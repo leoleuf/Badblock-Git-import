@@ -67,7 +67,7 @@ $container['view'] = function ($container) use ($app) {
 	$twig = $view->getEnvironment();
 	$twig->addExtension(new \App\TwigExtension($container));
 
-	//global variables
+    //global variables
 	$twig->addGlobal('forum_url', $container['config']['forum_url']);
 	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
 	$twig->addGlobal('ts3_query', $container['config']['ts3_query']);
@@ -135,7 +135,7 @@ $container['mysql_rankeds'] = function ($container) {
 
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_casier']['host'], // server
+		$container->config['mysql_casier']['host']. ':' . $container->config['mysql_casier']['port'], // server
 		$container->config['mysql_casier']['user'],     // user
 		$container->config['mysql_casier']['password'],      // password
 		$container->config['mysql_casier']['database']   // database

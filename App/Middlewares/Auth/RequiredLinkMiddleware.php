@@ -18,6 +18,8 @@ class RequiredLinkMiddleware {
 	{
         if ($this->container->session->exist('user')){
             if (in_array(17, $this->container->session->getProfile("user")['secondary_group_ids'])){
+
+
                 return $next($request, $response);
             }else{
                 return $response->withHeader('Location', '/link')->withStatus(302);

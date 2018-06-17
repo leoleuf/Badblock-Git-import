@@ -34,7 +34,7 @@ class BlogController extends Controller
 		} else {
 			$adapter = new \Pagerfanta\Adapter\ArrayAdapter($array);
 			$pagerfanta = new \Pagerfanta\Pagerfanta($adapter);
-			$pagerfanta->setMaxPerPage(10); // 10 by default
+			$pagerfanta->setMaxPerPage(9); // 10 by default
 			$pagerfanta->setCurrentPage($p);
 			$haveToPaginate = $pagerfanta->haveToPaginate();
 			$currentPage = $pagerfanta->getCurrentPage();
