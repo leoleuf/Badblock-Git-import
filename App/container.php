@@ -67,7 +67,7 @@ $container['view'] = function ($container) use ($app) {
 	$twig = $view->getEnvironment();
 	$twig->addExtension(new \App\TwigExtension($container));
 
-	//global variables
+    //global variables
 	$twig->addGlobal('forum_url', $container['config']['forum_url']);
 	$twig->addGlobal('current_url', $_SERVER['REQUEST_URI']);
 	$twig->addGlobal('ts3_query', $container['config']['ts3_query']);
