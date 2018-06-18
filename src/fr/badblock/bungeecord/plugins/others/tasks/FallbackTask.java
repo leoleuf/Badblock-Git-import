@@ -46,7 +46,7 @@ public class FallbackTask extends TimerTask {
 									"§b> §eVeuillez patienter, le temps de trouver un serveur.");
 						} else {
 							player.sendMessages("§b> §cL'instance de connexion a plantée.",
-									"§b> §cCell-ci a sûrement dû être coupé automatiquement.",
+									"§b> §cCelle-ci a sûrement dû être coupé automatiquement.",
 									"§b> §aVous allez être retéléporté sur une autre instance.",
 									"§b> §eVeuillez patienter, le temps de trouver un serveur.");
 						}
