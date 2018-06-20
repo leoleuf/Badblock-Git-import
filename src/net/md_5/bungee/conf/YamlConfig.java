@@ -196,7 +196,7 @@ public class YamlConfig implements ConfigurationAdapter
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public Map<String, ServerInfo> getServers()
     {
-        Map<String, Map<String, Object>> base = get( "servers", (Map) Collections.singletonMap( "lobby", new HashMap<>() ) );
+        Map<String, Map<String, Object>> base = get( "servers", (Map) Collections.singletonMap( "skeleton", new HashMap<>() ) );
         Map<String, ServerInfo> ret = new HashMap<>();
 
         for ( Map.Entry<String, Map<String, Object>> entry : base.entrySet() )
@@ -271,8 +271,9 @@ public class YamlConfig implements ConfigurationAdapter
             // Add defaults if required
             if ( serverPriority.isEmpty() )
             {
-                serverPriority.add( "lobby" );
+                serverPriority.add( "skeleton" );
             }
+            
             set( "priorities", serverPriority, val );
 
             ListenerInfo info = new ListenerInfo( address, motd, maxPlayers, tabListSize, serverPriority, forceDefault, forced, value.toString(), setLocalAddress, pingPassthrough, queryPort, query );

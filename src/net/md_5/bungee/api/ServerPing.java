@@ -6,11 +6,8 @@ import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import net.md_5.bungee.Util;
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 
 /**
  * Represents the standard list data returned by opening a server in the
@@ -83,7 +80,7 @@ public class ServerPing
         }
     }
 
-    private BaseComponent description;
+    private String description;
     private Favicon favicon;
 
     @Data
@@ -107,18 +104,12 @@ public class ServerPing
     // create the server ping. Vanilla clients will ignore this.
     private final ModInfo modinfo = new ModInfo();
 
-    @Deprecated
-    public ServerPing(Protocol version, Players players, String description, String favicon)
+    @SuppressWarnings("deprecation")
+	public ServerPing(Protocol version, Players players, String description, String favicon)
     {
-        this( version, players, new TextComponent( TextComponent.fromLegacyText( description ) ), favicon == null ? null : Favicon.create( favicon ) );
+        this( version, players, description, favicon == null ? null : Favicon.create( favicon ) );
     }
-
-    @Deprecated
-    public ServerPing(Protocol version, Players players, String description, Favicon favicon)
-    {
-        this( version, players, new TextComponent( TextComponent.fromLegacyText( description ) ), favicon );
-    }
-
+    
     @Deprecated
     public String getFavicon()
     {
@@ -144,22 +135,13 @@ public class ServerPing
     @Deprecated
     public void setDescription(String description)
     {
-        this.description = new TextComponent( TextComponent.fromLegacyText( description ) );
+        this.description = description;
     }
 
     @Deprecated
     public String getDescription()
     {
-        return BaseComponent.toLegacyText( description );
-    }
-
-    public void setDescriptionComponent(BaseComponent description)
-    {
-        this.description = description;
-    }
-
-    public BaseComponent getDescriptionComponent()
-    {
         return description;
     }
+
 }
