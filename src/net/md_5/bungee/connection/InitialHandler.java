@@ -261,7 +261,6 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 					new ServerPing.Players( listener.getMaxPlayers(), 0, null ),
 					motd, BungeeCord.getInstance().config.getFaviconObject() ),
 					null );
-			System.out.println("LegacyPing3(" + this.getAddress().getHostString() + ")");
 			
 		}
 
