@@ -392,6 +392,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 				BungeeCord.getInstance().getPluginManager().callEvent(new AsyncDataLoadRequest(getName(), InitialHandler.this, new Callback<Result>(){
 					boolean good = false;
 
+					@SuppressWarnings("deprecation")
 					@Override
 					public void done(Result result, Throwable error) {
 						if(good) return;
@@ -405,10 +406,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 							return;
 						}
 
-						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
-						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
-						if (result.object.has("authKey"))
-							authKey 	 = result.object.get("authKey").getAsString();
+						uniqueId     = offlineId = UUID.fromString(result.object.getString("uniqueId"));
+						onlinePlayer = result.object.getBoolean("onlineMode");
+						if (result.object.containsKey("authKey"))
+							authKey 	 = result.object.getString("authKey");
 						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
 							onlineInfo = true;
 							OnlineManager.joinBypass(InitialHandler.this, new Callback<Boolean>() {
