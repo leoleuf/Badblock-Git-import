@@ -59,6 +59,11 @@ return [
         'username' => getenv('RABBIT_USERNAME'),
         'password' => getenv('RABBIT_PASSWORD'),
         'virtualhost' => getenv('RABBIT_VIRTUALHOST'),
+    ],
+    'ftp' => [
+        'ip' => getenv('FTP_IP'),
+        'user' => getenv('FTP_USER'),
+        'password' => getenv('FTP_PASSWORD')
     ]
 
 
