@@ -1,6 +1,6 @@
 package fr.badblock.toenga.sync.nodes.receivers;
 
-import fr.badblock.api.common.nodesync.NodeData;
+import fr.badblock.api.common.sync.node.NodeData;
 import fr.badblock.api.common.tech.rabbitmq.RabbitService;
 import fr.badblock.api.common.tech.rabbitmq.ToengaQueues;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import fr.badblock.api.common.nodesync.NodeData;
+import fr.badblock.api.common.sync.node.NodeData;
 import fr.badblock.api.common.tech.rabbitmq.RabbitService;
 import fr.badblock.toenga.Toenga;
 import fr.badblock.toenga.sync.nodes.receivers.NodeDataReceiver;

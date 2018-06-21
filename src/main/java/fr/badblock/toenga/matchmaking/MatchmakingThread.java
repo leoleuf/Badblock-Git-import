@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import fr.badblock.api.common.nodesync.ToengaInstanceStatus;
+import fr.badblock.api.common.sync.node.ToengaInstanceStatus;
 import fr.badblock.toenga.Toenga;
 import fr.badblock.toenga.instance.InstanceStorage.InstanceStorageCluster;
 import fr.badblock.toenga.instance.ToengaInstance;
