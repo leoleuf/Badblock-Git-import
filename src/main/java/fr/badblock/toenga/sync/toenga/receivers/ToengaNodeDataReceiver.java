@@ -11,9 +11,9 @@ import fr.badblock.toenga.sync.toenga.ToengaSyncManager;
 public class ToengaNodeDataReceiver extends RabbitListener
 {
 
-	public ToengaNodeDataReceiver()
+	public ToengaNodeDataReceiver(Toenga toenga)
 	{
-		super(Toenga.instance.getRabbitService(), ToengaQueues.TOENGA_SYNC, RabbitListenerType.SUBSCRIBER, true);
+		super(toenga.getRabbitService(), ToengaQueues.TOENGA_SYNC, RabbitListenerType.SUBSCRIBER, true);
 	}
 
 	@Override

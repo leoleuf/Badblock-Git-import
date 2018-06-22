@@ -126,7 +126,7 @@ public class Toenga
 		RabbitService rabbitService = new RabbitService("default", configuration.getRabbitSettings());
 		setRabbitService(rabbitConnector.registerService(rabbitService));
 		
-		new ToengaSyncManager();
+		new ToengaSyncManager(this);
 	}
 
 	public File sourceFile(String src)

@@ -24,14 +24,14 @@ public class ToengaSyncManager
 	@Getter private static ToengaSyncManager instance;
 
 	private	Map<String, ToengaNode> nodes		= new HashMap<>();
-	private ToengaLocalSender		localSender = new ToengaLocalSender();
+	private ToengaLocalSender		localSender = null;
 	private ToengaNode				localNode   = null;
 
-	public ToengaSyncManager()
+	public ToengaSyncManager(Toenga toenga)
 	{
 		instance = this;
-		Toenga.instance.getRabbitService().addListener(new ToengaNodeDataReceiver());
-		setLocalSender(new ToengaLocalSender());
+		toenga.getRabbitService().addListener(new ToengaNodeDataReceiver(toenga));
+		setLocalSender(new ToengaLocalSender(toenga));
 		getLocalSender().start();
 	}
 
