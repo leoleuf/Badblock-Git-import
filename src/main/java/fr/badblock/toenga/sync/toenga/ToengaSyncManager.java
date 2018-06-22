@@ -3,6 +3,7 @@ package fr.badblock.toenga.sync.toenga;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,12 @@ public class ToengaSyncManager
 	{
 		return !Collections.disjoint(toengaNode.getClusters(), Toenga.instance.getStaticConfiguration().getTypes());
 	}
+	
+	public boolean isMaster()
+	{
+		Optional<String> optional = getAvailableSameClusterNodes().parallelStream().map(node -> node.getName()).sorted().findFirst();
+		return optional.isPresent() ? optional.get().equalsIgnoreCase(Toenga.instance.getHostname()) : false;
+	}
 
 	public Set<ToengaNode> getAvailableSameClusterNodes()
 	{
@@ -70,6 +77,7 @@ public class ToengaSyncManager
 
 	public void keepAlive()
 	{
+		System.out.println("Master: " + isMaster());
 		ToengaNode toengaNode = generateLocalData();
 		RabbitPacketMessage rabbitPacketMessage = new RabbitPacketMessage(-1, toengaNode.toJson());
 		RabbitPacket rabbitPacket = new RabbitPacket(rabbitPacketMessage, ToengaQueues.TOENGA_SYNC, false, RabbitPacketEncoder.UTF8, RabbitPacketType.PUBLISHER);

@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Map;
 
+import fr.badblock.api.common.sync.node.NodeState;
 import fr.badblock.api.common.sync.node.ToengaInstanceStatus;
 import fr.badblock.toenga.models.ToengaModel;
 
@@ -14,7 +15,7 @@ import fr.badblock.toenga.models.ToengaModel;
  */
 public abstract class ToengaInstance
 {
-	private ToengaInstanceStatus status = new ToengaInstanceStatus(Arrays.asList(), 0, 0, 0);
+	private ToengaInstanceStatus status = new ToengaInstanceStatus(Arrays.asList(), 0, 0, 0, NodeState.ACCEPT_NEW_CONNECTIONS);
 	
 	/**
 	 * @return Instance's ID.
