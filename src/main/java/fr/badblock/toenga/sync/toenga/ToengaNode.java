@@ -41,6 +41,7 @@ public class ToengaNode
 	void update(long keepAlive)
 	{
 		setLastProofOfExistence(TimeUtils.nextTimeWithSeconds(keepAlive));
+		System.out.println(getLastProofOfExistence() + " / " + TimeUtils.time());
 		fillMXBean();
 	}
 	

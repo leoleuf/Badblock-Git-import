@@ -48,6 +48,7 @@ public class ToengaSyncManager
 
 	public Set<ToengaNode> getAvailableSameClusterNodes()
 	{
+		nodes.values().stream().forEach(toengaNode -> System.out.println(toengaNode.isValid() + " / " + isInSameCluster(toengaNode)));
 		return nodes.values().stream().filter(toengaNode -> toengaNode.isValid() && isInSameCluster(toengaNode)).collect(Collectors.toSet());
 	}
 	
@@ -63,7 +64,7 @@ public class ToengaSyncManager
 
 	public ToengaNode generateLocalData()
 	{
-		long keepAliveTime = Toenga.instance.getConfiguration().getKeepAliveTime();
+		long keepAliveTime = Toenga.instance.getConfiguration().getKeepAliveTime() * 2;
 		if (localNode == null)
 		{
 			localNode = new ToengaNode(Toenga.instance.getHostname(), Toenga.instance.getStaticConfiguration().getTypes(), keepAliveTime);
