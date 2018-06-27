@@ -22,7 +22,7 @@ class IpGeneratorMiddleware
 	 *
 	 * @var string
 	 */
-	private $naServerIp = "na.badblock.fr";
+	private $naServerIp = "play.badblock.fr";
 
 	/**
 	 * The europeans server ip

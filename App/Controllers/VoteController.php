@@ -223,7 +223,7 @@ class VoteController extends Controller
         }
     }
 
-   
+
 
     public function top($player, $vote){
         $player = strtolower($player);
