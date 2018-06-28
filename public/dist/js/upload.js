@@ -635,24 +635,18 @@
                 url: options.url,
                 data: $.extend(obj, options.data),
                 success: function(response) {
-
-                    if (response.status == "success") {
-                        var file		= response.url.split('?');
-                        $(element).find('.tools .saving').remove();
-                        $(element).find('.tools').children().toggle();
-                        $(element).data('name',file[0])
-                        $(element).data('filename',response.filename)
-                        if (options.canvas != true) {
-                            $(element).append($('<img src="' + file[0] + '" class="final" style="width: 100%" />'));
-                        }
-
-                        _self.imageFinal();
-                    } else {
-                        $(element).find('.tools .saving').remove();
-                        $(element).find('.tools').children().toggle();
-                        $(element).append($('<div class="alert alert-danger">' + response.error + '</div>').css({bottom: '10px',left: '10px',right: '10px',position: 'absolute', zIndex: 99}));
-                        setTimeout(function() { _self.responseReset();},2000);
+                    console.log(response);
+                    $("#end-link").text("https://images.badblock.fr/i/" + response);
+                    self.location = '#link-end';
+                    var file		= response.url.split('?');
+                    $(element).find('.tools .saving').remove();
+                    $(element).find('.tools').children().toggle();
+                    $(element).data('name',file[0])
+                    $(element).data('filename',response.filename)
+                    if (options.canvas != true) {
+                        $(element).append($('<img src="' + file[0] + '" class="final" style="width: 100%" />'));
                     }
+                    _self.imageFinal();
                 },
                 error: function(response, status) {
                     $(element).find('.tools .saving').remove();

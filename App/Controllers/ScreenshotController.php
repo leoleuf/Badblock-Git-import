@@ -53,7 +53,8 @@ class ScreenshotController extends Controller
         $data = [
             'ip' => $_SERVER['REMOTE_ADDR'],
             'user' => $player,
-            'file_name' => $uuid . $ext
+            'date' => date("Y-m-d h:i"),
+            'file_name' => $uuid . '.' .$ext
         ];
         $this->container->mongo->log_upload->insertOne($data);
 
@@ -66,9 +67,12 @@ class ScreenshotController extends Controller
 
         // Identification avec un nom d'utilisateur et un mot de passe
         $login_result = ftp_login($conn_id, getenv('FTP_USER'), getenv('FTP_PASSWORD'));
-        ftp_fput($conn_id, "/" . $uuid . $ext, $handle,FTP_BINARY);
+        ftp_pasv($conn_id, true) or die("Cannot switch to passive mode");
 
-        dd($ext);
+        ftp_fput($conn_id,  $uuid . "." . $ext, $handle,FTP_BINARY);
+
+        return $response->write($uuid . '.' .$ext)->withStatus(200);
+
     }
 
 
