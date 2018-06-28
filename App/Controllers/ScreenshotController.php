@@ -68,10 +68,10 @@ class ScreenshotController extends Controller
         $conn_id = ftp_connect(getenv('FTP_IP'));
 
         // Identification avec un nom d'utilisateur et un mot de passe
-        $login_result = ftp_login($conn_id, getenv('FTP_USER'), getenv('FTP_PASSWORD'));
-        ftp_pasv($conn_id, true) or die("Cannot switch to passive mode");
+        $login_result = ftp_login($conn_id, getenv('FTP_USER'), getenv('FTP_PASSWORD')) or die("Erreur serveur !");;
+        ftp_pasv($conn_id, true) or die("Erreur serveur !");
 
-        ftp_fput($conn_id,  $uuid . "." . $ext, $handle,FTP_BINARY);
+        ftp_fput($conn_id,  $uuid . "." . $ext, $handle,FTP_BINARY) or die("Erreur serveur !");;
 
         return $response->write($uuid . '.' .$ext)->withStatus(200);
 
