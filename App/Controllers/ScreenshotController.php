@@ -31,12 +31,7 @@ class ScreenshotController extends Controller
             $player = false;
         }
 
-        //Generate file name
-        $hash = hash('sha256', $player . $_SERVER['REMOTE_ADDR']);
-        $uuid = substr(
-            $hash,
-            strlen($hash) - 8
-        );
+
 
         //Search extension of file
         $filename = $_POST["name"];
@@ -47,6 +42,13 @@ class ScreenshotController extends Controller
         }else{
             $ext = end($filename);
         }
+
+        //Generate file name
+        $hash = uniqId($filename[1] . date('s'));
+        $uuid = substr(
+            $hash,
+            strlen($hash) - 8
+        );
 
 
         //Save dans MongoDB
