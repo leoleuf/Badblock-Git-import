@@ -1,9 +1,17 @@
 package fr.badblock.bungeecord.plugins.ladder;
 
+import java.awt.Event;
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.google.common.collect.Queues;
 
 import fr.badblock.bungeecord.plugins.ladder.bungee.BungeeKeep;
 import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayerListUpdateListener;
@@ -11,6 +19,7 @@ import fr.badblock.bungeecord.plugins.ladder.listeners.ScalerPlayersUpdateListen
 import fr.badblock.bungeecord.plugins.ladder.utils.Motd;
 import fr.badblock.bungeecord.plugins.ladder.utils.Punished;
 import fr.badblock.bungeecord.plugins.ladder.utils.TimeUnit;
+import fr.badblock.bungeecord.plugins.others.haproxy.antibot.AntiBotData;
 import fr.badblock.bungeecord.plugins.utils.BungeeUtils;
 import fr.badblock.common.commons.utils.StringUtils;
 import fr.badblock.common.permissions.Permission;
@@ -37,6 +46,7 @@ import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.event.ServerConnectionFailEvent;
 import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.conf.Configuration;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
@@ -46,33 +56,143 @@ public class LadderListener implements Listener {
 	public static String finished = "-";
 	public static Map<ProxiedPlayer, String> servers = new HashMap<>();
 
+	public static Map<Integer, Queue<Long>> chars = new HashMap<>();
+	public static Map<String, Set<String>> usernames = new HashMap<>();
+
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
-		boolean f = false;
-		if(e.getPlayer().contains("/") || e.getPlayer().contains("'")){
-			f = true;
-			e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
+		String player = e.getPlayer();
+		int count = player.length();
+
+		// Mini anti bot
+
+		if (player.toLowerCase().startsWith("mcbot_"))
+		{
+			e.getDone().done(new Result(null, ChatColor.RED + "Attaques de bots interdites."), null);
 			return;
 		}
-		for (BungeeKeep bungeeKeep : BungeePlayerListUpdateListener.map.values())
+
+		// Chars
+		Queue<Long> queue = chars.containsKey(count) ? chars.get(count) : Queues.newLinkedBlockingDeque();
+		queue.add(System.currentTimeMillis());
+		chars.put(count, queue);
+
+		if (queue.size() >= 10)
 		{
-			if (bungeeKeep.isExpired()) continue;
-			if (bungeeKeep.players.contains(e.getPlayer().toLowerCase()))
+			long time = System.currentTimeMillis() - queue.poll();
+			if (time / queue.size() <= 500)
 			{
-				e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme. Code #02"), null);
-				break;
+				BungeeCord bungeeCord = BungeeCord.getInstance();
+				Configuration config = bungeeCord.getConfig();
+				String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
+				AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
+				e.getDone().done(new Result(null, ChatColor.RED + 
+						"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes."), null);
+				return;
 			}
 		}
-		if (f)
-		{
-			PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer(), null);
-			LadderBungee.getInstance().handle(quitPacket);
-			LadderBungee.getInstance().getClient().sendPacket(quitPacket);
+
+		// Multi usernames
+		Set<String> q = usernames.containsKey(e.getHandler().getAddress().getAddress().getHostAddress()) ? 
+				usernames.get(e.getHandler().getAddress().getAddress().getHostAddress()) : new HashSet<>();
+				if (!q.contains(player))
+				{
+					q.add(player);
+				}
+				usernames.put(e.getHandler().getAddress().getAddress().getHostAddress(), q);
+
+				if (countSyllables(player) == 0)
+				{
+					if (q.size() >= 2)
+					{
+						BungeeCord bungeeCord = BungeeCord.getInstance();
+						Configuration config = bungeeCord.getConfig();
+						String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
+						AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
+						e.getDone().done(new Result(null, ChatColor.RED + 
+								"Vous avez été bloqué temporairement suite à un comportement de connexion suspect! Réessayez dans cinq minutes."), null);
+						return;
+					}
+				}else if (q.size() >= 5)
+				{
+					BungeeCord bungeeCord = BungeeCord.getInstance();
+					Configuration config = bungeeCord.getConfig();
+					String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
+					AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
+					e.getDone().done(new Result(null, ChatColor.RED + 
+							"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes."), null);
+					return;
+				}
+
+				boolean f = false;
+				if(e.getPlayer().contains("/") || e.getPlayer().contains("'")){
+					f = true;
+					e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
+					return;
+				}
+				for (BungeeKeep bungeeKeep : BungeePlayerListUpdateListener.map.values())
+				{
+					if (bungeeKeep.isExpired()) continue;
+					if (bungeeKeep.players.contains(e.getPlayer().toLowerCase()))
+					{
+						e.getDone().done(new Result(null, ChatColor.RED + "Vous semblez être déjà connecté sur le serveur sous ce pseudonyme. Code #02"), null);
+						break;
+					}
+				}
+				if (f)
+				{
+					PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer(), null);
+					LadderBungee.getInstance().handle(quitPacket);
+					LadderBungee.getInstance().getClient().sendPacket(quitPacket);
+				}
+				System.out.println("Connecting " + e.getPlayer() + " : A");
+				PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
+				LadderBungee.getInstance().handle(packet, e.getDone());
+				LadderBungee.getInstance().getClient().sendPacket(packet);
+	}
+
+	protected int countSyllables(String word)
+	{
+		// TODO: Implement this method so that you can call it from the 
+		// getNumSyllables method in BasicDocument (module 1) and 
+		// EfficientDocument (module 2).
+		int count = 0;
+		word = word.toLowerCase();
+
+		if (word.charAt(word.length()-1) == 'e') {
+			if (silente(word)){
+				String newword = word.substring(0, word.length()-1);
+				count = count + countit(newword);
+			} else {
+				count++;
+			}
+		} else {
+			count = count + countit(word);
 		}
-		System.out.println("Connecting " + e.getPlayer() + " : A");
-		PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
-		LadderBungee.getInstance().handle(packet, e.getDone());
-		LadderBungee.getInstance().getClient().sendPacket(packet);
+		return count;
+	}
+
+	private int countit(String word) {
+		int count = 0;
+		Pattern splitter = Pattern.compile("[^aeiouy]*[aeiouy]+");
+		Matcher m = splitter.matcher(word);
+
+		while (m.find()) {
+			count++;
+		}
+		return count;
+	}
+
+	private boolean silente(String word) {
+		word = word.substring(0, word.length()-1);
+
+		Pattern yup = Pattern.compile("[aeiouy]");
+		Matcher m = yup.matcher(word);
+
+		if (m.find()) {
+			return true;
+		} else
+			return false;
 	}
 
 	@EventHandler
@@ -242,7 +362,14 @@ public class LadderListener implements Listener {
 			if(lPlayer == null){
 				e.getSender().disconnect(); return;
 			} else if(lPlayer.getPunished() == null) return;
-			if (bPlayer.getServer() == null || (bPlayer.getServer() != null && bPlayer.getServer().getInfo() != null && bPlayer.getServer().getInfo().getName() != null && bPlayer.getServer().getInfo().getName().startsWith("login"))) return;
+			if (bPlayer.getServer() == null || (bPlayer.getServer() != null && bPlayer.getServer().getInfo() != null && bPlayer.getServer().getInfo().getName() != null && bPlayer.getServer().getInfo().getName().startsWith("login")))
+			{
+				if (e.getMessage().toLowerCase().contains("mcbot"))
+				{
+					e.setCancelled(true);
+					return;
+				}
+			}
 			Punished ip	= LadderBungee.getInstance().getIpPunishable(lPlayer);
 
 			if(ip == null) ip = new Punished();
