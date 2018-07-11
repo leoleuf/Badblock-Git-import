@@ -48,7 +48,6 @@ import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.discord.TemmieWebhook;
 import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
-import fr.badblock.bungeecord.plugins.others.listeners.AsyncDataLoadRequestListener;
 import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PluginMessageListener;
@@ -190,7 +189,6 @@ public class BadBlockBungeeOthers extends Plugin {
 		new TPS();
 		new LagTask();
 		PluginManager pluginManager = proxy.getPluginManager();
-		pluginManager.registerListener(this, new AsyncDataLoadRequestListener());
 		pluginManager.registerListener(this, new ProxyBoundListener());
 		pluginManager.registerListener(this, new PartyChatModule());
 		pluginManager.registerListener(this, new ChatListener());
