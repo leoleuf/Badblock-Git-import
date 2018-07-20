@@ -60,8 +60,8 @@ class ScreenshotController extends Controller
         ];
         $this->container->mongo->log_upload->insertOne($data);
 
-        $handle = fopen($_POST['data'], 'r');
 
+        $handle = fopen($_POST['data'], 'r');
 
         //Upload to FTP
         // Mise en place d'une connexion basique
@@ -72,6 +72,7 @@ class ScreenshotController extends Controller
         ftp_pasv($conn_id, true) or die("Erreur serveur !");
 
         ftp_fput($conn_id,  $uuid . "." . $ext, $handle,FTP_BINARY) or die("Erreur serveur !");;
+        fclose($handle);
 
         return $response->write($uuid . '.' .$ext)->withStatus(200);
 
