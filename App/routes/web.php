@@ -27,8 +27,11 @@ $app->group('/stats', function (){
 });
 
 $app->group('/shop', function (){
-	$this->get('', \App\Controllers\ShopController::class . ':getHome')->setName('shop.home');
-	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':getAchat')->setName('api.shop.achat');
+	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
+	//Get for dev easy
+	$this->get('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
+	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
+
 	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
 
 	$this->get('/recharge/starpass', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass');

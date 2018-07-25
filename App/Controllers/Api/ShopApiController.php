@@ -34,10 +34,12 @@ class ShopApiController extends \App\Controllers\Controller
                 //Search item of the cat
                 $filter  = ['cat_id' => new \MongoDB\BSON\ObjectId($cat->_id)];
                 $options = ['sort' => ['power' => -1]];
-                $product_list = $this->container->mongo->category_list->find($filter, $options);
+                $product_list = $this->container->mongo->product_list->find($filter, $options);
                 array_push($data[$key]['cat'], ["name" => $cat->name, "sub-name" => $cat->subname, "items" => $product_list]);
             }
         }
+
+        $this->redis->setJson('shop', $data);
 
         echo "OK";
     }
