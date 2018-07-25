@@ -28,7 +28,6 @@ class Controller{
 		$this->flash = $container['flash'];
 		$this->ladder = $container['ladder'];
 		$this->teamspeak = $container['teamspeak'];
-		$this->rpgapi = $container['RpgApi'];
 	}
 
 	public function redirect(ResponseInterface $response, $location){
