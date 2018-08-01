@@ -28,6 +28,9 @@ $app->group('/stats', function (){
 
 $app->group('/shop', function (){
 	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
+
+	$this->get('/test', \App\Controllers\ShopController::class . ':sendRabbitData');
+
 	//Get for dev easy
 	$this->get('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');

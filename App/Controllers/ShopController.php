@@ -18,8 +18,13 @@ class ShopController extends Controller
 {
 
 
-    function index(){
+    function index(RequestInterface $request, ResponseInterface $response){
         //TODO by TomDev
+        $data_shop = $this->redis->getJson('shop');
+
+
+        $this->render($response, 'shop.index',['serverlist' => $data_shop]);
+
     }
 
 
@@ -109,37 +114,31 @@ class ShopController extends Controller
     }
 
 
-    private function sendRabbitData($data){
+   public function sendRabbitData(){
         //Connection to rabbitMQ server
         $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
         $channel = $connection->channel();
 
-
         $player = "FluorL";
         $shopQueue = "skyb";
 
-        $shopObject = (object) [
+        $channel->exchange_declare('shopLinker.'.$shopQueue, 'fanout', false, false, false, false);
+        $sanction = (object) [
             'dataType' => 'BUY',
-            'playerName' => "FluorL",
-            'displayName' => "Spawner génial",
-            'command' => "spawner give pigzombie FluorL",
+            'playerName' => $player,
+            'displayName' => "Spawner",
+            'command' => "/spawner give zombie FluorL",
             'ingame' => false,
-            'price' => 200
+            'price' => "500",
+            'forceCommand' => true
         ];
 
-        $queue = "shopLinker." . $shopQueue;
-        $jsonObject = json_encode($shopObject);
-
-        $message = (object)[
+        $message = (object) [
             'expire' => (time() + 604800) * 1000,
-            'message' => $jsonObject
+            'message' => json_encode($sanction)
         ];
-
         $msg = new AMQPMessage(json_encode($message));
-
-        $channel->exchange_declare($queue, 'fanout', false, false, false, false);
-        $channel->basic_publish($msg, '',$queue);
-
+        $channel->basic_publish($msg, 'shopLinker.'.$shopQueue);
 
 
         $channel->close();

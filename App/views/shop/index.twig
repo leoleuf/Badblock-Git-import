@@ -1,0 +1,245 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'shop.title'|trans %}
+
+{% block cover %}
+    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+
+    <!-- Recharger -->
+    <div class="recharge-back">
+        <div class="recharge-container">
+            <div class="recharge-content">
+                <div class="container recharge-flex">
+                    <div class="recharge-info">
+                        <img src="{{ base_url() }}/dist/images/paypal.png">
+                        <img src="{{ base_url() }}/dist/images/smsplus.png">
+                        <img src="{{ base_url() }}/dist/images/paysafecard.png">
+                    </div>
+                    <div class="recharge-button">
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin recharger -->
+
+    <script>
+        function opentab(evt, serv) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(serv).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="shop-menu">
+        <ul class="shop-menu-menu">
+            {% for key,value in serverlist %}
+                <li class="shop-menu-active">
+                    <a class="no-link" onclick="opentab(event, '{{ key }}')">
+                        <i class="{{ value["server"]["icon"] }}" id="sky"></i>{{ value["server"]["name"] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if flash('shop_error') %}
+        {% for flash in flash('shop_error') %}
+            <div class="alert alert-error">
+                {{ flash }}
+                <i class="icon icon-remove"></i>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if promo != false %}
+        <section class="shop-section" class="tabcontent">
+            <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
+            <div class="product-list">
+                {% for key in promo %}
+                    <div class="product-item product-item-promotion">
+                        <div class="product-header">
+                            <h5 class="product-title">{{ key[1] }}</h5>
+                        </div>
+                        <div class="product-image">
+                            <img src="{{ key[3] }}">
+                        </div>
+                        <div class="product-price product-promotion">{{ key[5] }}</div>
+                        <div class="promotion">{{ key[2] }}</div>
+                        <div class="promotion-reduction">{{ key[4] }}%</div>
+                        <div class="product-footer">
+                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Menu shop -->
+
+
+    {% for key,value in serverlist %}
+        <div id="{{ key }}" class="tabcontent" style="display: none;">
+            {% for k,cat in value['cat'] %}
+                <section class="shop-section-{{ k }}" class="tabcontent">
+                    <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small>{{ cat['sub-name'] }}</small></span></h4>
+                    <div class="product-list">
+                        {% for prod in cat['items'] %}
+                            <a href="#product-{{ prod["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
+                                {% if key[4] %}
+                                    <div class="product-item product-item-promotion">
+                                        <div class="product-header">
+                                            <h5 class="product-title">{{ prod['name'] }}</h5>
+                                        </div>
+                                        <div class="product-image">
+                                            <img src="{{ prod['image'] }}">
+                                        </div>
+                                        <div class="product-price product-promotion">{{ key[6] }}</div>
+                                        <div class="promotion">{{ prod['price'] }}</div>
+                                        <div class="promotion-reduction">{{ key[5] }}%</div>
+                                        <div class="product-footer">
+                                            <div class="product-action">
+                                                <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
+                                                    <i class="icon icon-shopping-cart"></i>
+                                                    Acheter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="product-item">
+                                        <div class="product-header">
+                                            <h5 class="product-title">{{ prod['name'] }}</h5>
+                                        </div>
+                                        <div class="product-image">
+                                            <img src="{{ prod['image'] }}">
+                                        </div>
+                                        <div class="product-price">{{ prod['price'] }}</div>
+                                        <div class="product-footer">
+                                            <div class="product-action">
+                                                <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
+                                                    <i class="icon icon-shopping-cart"></i>
+                                                    Acheter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+
+
+    <!-- Shop Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-error">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Désoler, mais vous n'avez pas les points néssecaires</h1>
+        <div class="recharge-button">
+            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+        </div>
+    </div>
+    <!-- Fin Shop modal -->
+
+
+    <!-- Shop Succes Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-succes">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Achat éffectué avec succès !</h1>
+    </div>
+    <!-- Fin Shop Succes modal -->
+
+    <!-- Link Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="link-modal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous devez linker votre compte pour éffectuer un achat !</h1>
+        <a class="button button-danger" href="/link"><i class="icon-repeat"></i>Linker son Compte !</a>
+    </div>
+
+    {% for key,value in serverlist %}
+        {% for k,cat in value['cat'] %}
+            {% for prod in cat['items'] %}
+                {% if key[4] %}
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ key[1] }} / Promotion <span class="reduction">-50%</span></h1>
+                        <img src="{{ key[1] }}">
+                        <p>{{ key[5] }}</p>
+                        <div class="product-footer">
+                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>                                    </div>
+                {% else %}
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ prod['name'] }}</h1>
+                        <img src="{{ prod['image'] }}">
+                        <p>{{ prod['description'] }}</p>
+                        <div class="product-footer">
+                            <div class="product-action"><button idpro="{{ prod["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script>
+
+        document.getElementById("Jeux").style.display = "block";
+
+        $('.achat').click(function(){
+
+            var prod_id = $(this).attr("idpro");
+
+            var request = $.ajax({
+                url: "shop/achat/"+prod_id,
+                method: "POST",
+                data: { prod_id : prod_id },
+                dataType: "html"
+            });
+
+            request.done(function( msg ) {
+                $('[data-remodal-id=shop-succes]').remodal().open();
+            });
+
+            request.fail(function( jqXHR, textStatus ) {
+                if(jqXHR.status == 406){
+                    $('[data-remodal-id=shop-error]').remodal().open();
+                }else if (jqXHR.status == 403){
+                    $('[data-remodal-id=login-modal]').remodal().open();
+                }else if (jqXHR.status == 405){
+                    $('[data-remodal-id=link-modal]').remodal().open();
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
+
