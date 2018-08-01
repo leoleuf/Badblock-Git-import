@@ -33,9 +33,8 @@ class ShopApiController extends \App\Controllers\Controller
             foreach ($cat_list as $cat){
                 //Search item of the cat
                 $product = [];
-                $filter  = ['cat_id' => new \MongoDB\BSON\ObjectId($cat->_id)];
                 $options = ['sort' => ['power' => -1]];
-                $product_list = $this->container->mongo->product_list->find($filter, $options);
+                $product_list = $this->container->mongo->product_list->find(['cat_id' => new \MongoDB\BSON\ObjectId($cat->_id)], $options);
                 foreach ($product_list as $row){
                     array_push($product, $row);
                 }
@@ -44,6 +43,8 @@ class ShopApiController extends \App\Controllers\Controller
         }
 
         $this->redis->setJson('shop', $data);
+
+        dd($data);
 
         echo "OK";
     }
