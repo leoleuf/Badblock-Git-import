@@ -59,18 +59,18 @@ class ShopController extends Controller
         }
 
         //Check if player have money
-        if(!$this->haveMoney("Fluor", 100)){
+        if(!$this->haveMoney($this->session->getProfile('username')['username'], 100)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
 
         //Check depend
         if($product->depend){
-            $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product->depend_to]);
+            $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product->depend_name]);
             if ($depend == 0){
                 //Search depend produc pour proposer a la vente
-                $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_product]);
+                $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
                 $product_depend = $product_depend->name;
-                return $response->write("Vous devez acheter l'offre $product_depend avant d'acheter celle-ci !")->withStatus(405);
+                return $response->write("Vous devez acheter l'offre $product_depend avant d'acheter celle-ci !")->withStatus(400);
             }
         }
 
@@ -78,10 +78,13 @@ class ShopController extends Controller
 
 
         //Log the buy and subtract money
+        if (!isset($product->depend_name)){
+            $product->depend_name = $product->name;
+        }
         $data = [
             'uniqueId' => $player['uniqueId'],
             'offer' => $product->depend_name,
-            'name' => $product ->name,
+            'name' => $product->name,
             'price' => $product->price,
             'ingame' => false
         ];
@@ -106,11 +109,17 @@ class ShopController extends Controller
         //Search money of player
         $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
 
+        if (!isset($player->points)){
+            return false;
+        }
+
         if($player->points >= $amount){
             return true;
         }else{
             return false;
         }
+
+
     }
 
 

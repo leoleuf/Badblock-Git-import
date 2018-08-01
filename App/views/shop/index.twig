@@ -104,7 +104,7 @@
                     <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small>{{ cat['sub-name'] }}</small></span></h4>
                     <div class="product-list">
                         {% for prod in cat['items'] %}
-                            <a href="#product-{{ prod["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
+                            <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
                                 {% if key[4] %}
                                     <div class="product-item product-item-promotion">
                                         <div class="product-header">
@@ -118,7 +118,7 @@
                                         <div class="promotion-reduction">{{ key[5] }}%</div>
                                         <div class="product-footer">
                                             <div class="product-action">
-                                                <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
+                                                <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
                                                     <i class="icon icon-shopping-cart"></i>
                                                     Acheter
                                                 </button>
@@ -172,6 +172,13 @@
     </div>
     <!-- Fin Shop Succes modal -->
 
+    <!-- Shop Error Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-depend">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="textp"></h1>
+    </div>
+    <!-- Fin Shop Succes modal -->
+
     <!-- Link Modal -->
     <div class="remodal modal-remodal" data-remodal-id="link-modal">
         <button data-remodal-action="close" class="remodal-close"></button>
@@ -179,26 +186,34 @@
         <a class="button button-danger" href="/link"><i class="icon-repeat"></i>Linker son Compte !</a>
     </div>
 
+    <!-- Login Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="login-modal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous devez vous connecter pour éffectuer un achat !</h1>
+        <a class="button button-default" href="https://forum.badblock.fr/login">Se connecter !</a>
+    </div>
+
     {% for key,value in serverlist %}
         {% for k,cat in value['cat'] %}
             {% for prod in cat['items'] %}
                 {% if key[4] %}
-                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
                         <button data-remodal-action="close" class="remodal-close"></button>
                         <h1>{{ key[1] }} / Promotion <span class="reduction">-50%</span></h1>
                         <img src="{{ key[1] }}">
                         <p>{{ key[5] }}</p>
                         <div class="product-footer">
-                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
-                        </div>                                    </div>
+                            <div class="product-action"><button onclick="achat({{ prod['_id']["$oid"] }})" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
                 {% else %}
-                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ key[0]["$oid"] }}">
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
                         <button data-remodal-action="close" class="remodal-close"></button>
                         <h1>{{ prod['name'] }}</h1>
                         <img src="{{ prod['image'] }}">
                         <p>{{ prod['description'] }}</p>
                         <div class="product-footer">
-                            <div class="product-action"><button idpro="{{ prod["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            <div class="product-action"><button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
                         </div>
                     </div>
                 {% endif %}
@@ -206,20 +221,16 @@
         {% endfor %}
     {% endfor %}
 
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
     <script>
 
-        document.getElementById("Jeux").style.display = "block";
+        document.getElementById("1").style.display = "block";
 
-        $('.achat').click(function(){
+        function achat(idpro){
 
-            var prod_id = $(this).attr("idpro");
+            var prod_id = idpro;
 
             var request = $.ajax({
-                url: "shop/achat/"+prod_id,
+                url: "/shop/achat/"+prod_id,
                 method: "POST",
                 data: { prod_id : prod_id },
                 dataType: "html"
@@ -230,16 +241,19 @@
             });
 
             request.fail(function( jqXHR, textStatus ) {
-                if(jqXHR.status == 406){
+                if(jqXHR.status == 405){
                     $('[data-remodal-id=shop-error]').remodal().open();
-                }else if (jqXHR.status == 403){
+                }else if (jqXHR.status == 401){
                     $('[data-remodal-id=login-modal]').remodal().open();
                 }else if (jqXHR.status == 405){
                     $('[data-remodal-id=link-modal]').remodal().open();
+                }else if (jqXHR.status == 400){
+                    $( "#textp" ).text(jqXHR.responseText);
+                    $('[data-remodal-id=shop-depend]').remodal().open();
                 }
             });
 
-        });
+        }
     </script>
 {% endblock %}
 

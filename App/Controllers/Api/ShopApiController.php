@@ -44,8 +44,6 @@ class ShopApiController extends \App\Controllers\Controller
 
         $this->redis->setJson('shop', $data);
 
-        dd($data);
-
         echo "OK";
     }
 
