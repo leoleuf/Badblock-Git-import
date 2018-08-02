@@ -58,25 +58,23 @@ class ShopController extends Controller
             return $response->write("Product doesn't exist !")->withStatus(404);
         }
 
-        //Check if player have money
-        if(!$this->haveMoney($this->session->getProfile('username')['username'], 100)){
-            return $response->write("Fond insuffisant")->withStatus(405);
-        }
-
         //Check depend
         if($product->depend){
-            $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product->depend_name]);
+            $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
+            $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product_depend->depend_name]);
             if ($depend == 0){
                 //Search depend produc pour proposer a la vente
-                $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
                 $product_depend = $product_depend->name;
                 return $response->write("Vous devez acheter l'offre $product_depend avant d'acheter celle-ci !")->withStatus(400);
             }
         }
 
+        //Check if player have money
+        if(!$this->haveMoney($this->session->getProfile('username')['username'], 100)){
+            return $response->write("Fond insuffisant")->withStatus(405);
+        }
+
         $product->depend_name == null;
-
-
         //Log the buy and subtract money
         if (!isset($product->depend_name)){
             $product->depend_name = $product->name;
@@ -123,22 +121,32 @@ class ShopController extends Controller
     }
 
 
-   public function sendRabbitData(){
+   public function sendRabbitData($product){
         //Connection to rabbitMQ server
         $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
         $channel = $connection->channel();
 
-        $player = "FluorL";
-        $shopQueue = "skyb";
+        $player = $this->session->getProfile('username')['username'];
+        $shopQueue = $product->queue;
+        if (is_string($product->command)){
+            $command = str_replace("%player%", $player, $product->command);
+        }else{
+            $product->command = iterator_to_array($product->command);
+            $command = "";
+            foreach ($product->command as $row){
+                $command .= str_replace("%player%", $player, $row) . ";";
+            }
+        }
+
 
         $channel->exchange_declare('shopLinker.'.$shopQueue, 'fanout', false, false, false, false);
         $sanction = (object) [
             'dataType' => 'BUY',
             'playerName' => $player,
-            'displayName' => "Spawner",
-            'command' => "/spawner give zombie FluorL",
+            'displayName' => $product->name,
+            'command' => $command,
             'ingame' => false,
-            'price' => "500",
+            'price' => $product->price,
             'forceCommand' => true
         ];
 
