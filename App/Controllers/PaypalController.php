@@ -3,50 +3,72 @@
 namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\RequestInterface;
 
 class PaypalController extends Controller
 {
-	public function getPaypalExecute(ServerRequestInterface $request, ResponseInterface $response)
-	{
-		$recharge = $this->session->get('recharge');
-		if (isset($this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']])) {
-			$price = $this->container['config']['shop']['payways'][$recharge['payway']]['table'][$recharge['amount']];
-		}else{
-			$coef = $this->container['config']['shop']['payways'][$recharge['payway']]['coef'];
-			$price = $coef * $recharge['amount'];
-		}
-		$paypalResponse = $this->container->paypal->doExpressCheckoutPayment([
-			[
-				'name' => "Recharge de {$recharge['amount']}",
-				'description' => "",
-				'price' => $price,
-				'count' => 1
-			]
-		], [
-			'TOKEN' => $_GET['token'],
-			'PAYERID' => $_GET['PayerID'],
-			'PAYMENTACTION' => 'Sale',
-			'PAYMENTREQUEST_0_AMT' => $price,
-			'PAYMENTREQUEST_0_CURRENCYCODE' => 'EUR',
-			'PAYMENTREQUEST_0_SHIPPINGAMT' => 0,
-			'PAYMENTREQUEST_0_ITEMAMT' => $price
-		]);
-		if ($paypalResponse['ACK'] == "Success"){
-			//payment success
-			$this->log->info('New paypal payment success!');
-			dd('success');
-			//TODO: Redirect to success page
-		}else {
-			$this->log->error('New paypal payment abort!');
-			//TODO: Show an error page
-			return $response->write('Error while read paypal api response: you payment is rejected. The token is bad or the order is bad, please contact our team support@badblock.fr')->withStatus(500);
-		}
-	}
+	public  function index(RequestInterface $request, ResponseInterface $response){
 
-	public function getPaypalCancel(ServerRequestInterface $request, ResponseInterface $response)
-	{
-		//TODO: Show an error page
-		dd('cancel');
-	}
+	    dd($this->container->config['paypal']);
+    }
+
+
+    public  function execute(RequestInterface $request, ResponseInterface $response, $id){
+	    $id = $id['id'];
+
+	    if (!isset($this->container->config['paypal'][$id])){
+	        return $this->redirect($response, "/shop/recharge");
+        }
+
+        // After Step 1
+        $apiContext = new \PayPal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential(
+                'AXckGcSUbDIlHxQ-_RI4QCqU6OHrlhhhpxj3880-SJGqiJr4hAWVV-SC58TS_S6eoQ721sv5_rpGT77s',     // ClientID
+                'EJBa4GGjXQR1SRltECYczEU4huzwpTUPUGyeuJ52DZmP9e2NAzDGL1-DSKfzTk4ZgaYX8z_4FsdIgSxv'      // ClientSecret
+            )
+        );
+
+        // After Step 2
+        $payer = new \PayPal\Api\Payer();
+        $payer->setPaymentMethod('paypal');
+
+        $amount = new \PayPal\Api\Amount();
+        $amount->setTotal('1.00');
+        $amount->setCurrency('EUR');
+
+        $transaction = new \PayPal\Api\Transaction();
+        $transaction->setAmount($amount);
+
+        $redirectUrls = new \PayPal\Api\RedirectUrls();
+        $redirectUrls->setReturnUrl("https://badblock.fr/recharge/succes")
+            ->setCancelUrl("https://badblock.fr/recharge/cancel");
+
+        $payment = new \PayPal\Api\Payment();
+        $payment->setIntent('sale')
+            ->setPayer($payer)
+            ->setTransactions(array($transaction))
+            ->setRedirectUrls($redirectUrls);
+
+        // After Step 3
+        try {
+            $payment->create($apiContext);
+
+            return $this->redirect($response,$payment->getApprovalLink());
+        }
+        catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            // This will print the detailed information on the exception.
+            //REALLY HELPFUL FOR DEBUGGING
+            echo $ex->getData();
+        }
+
+    }
+
+    public function ipn(RequestInterface $request, ResponseInterface $response){
+
+
+
+
+
+    }
+
 }
