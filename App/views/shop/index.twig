@@ -432,7 +432,7 @@
             {% for key,value in serverlist %}
                 <li class="shop-menu-active">
                     <a class="no-link" onclick="opentab(event, '{{ key }}')">
-                        <i class="{{ value["server"]["icon"] }}" id="sky"></i>{{ value["server"]["name"] }}
+                        <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
                     </a>
                 </li>
             {% endfor %}
@@ -478,7 +478,7 @@
         <div id="{{ key }}" class="tabcontent" style="display: none;">
             {% for k,cat in value['cat'] %}
                 <section class="shop-section-{{ k }}" class="tabcontent">
-                    <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small>{{ cat['sub-name'] }}</small></span></h4>
+                    <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small id="very-small">{{ cat['sub-name'] }}</small></span></h4>
                     <div class="product-list">
                         {% for prod in cat['items'] %}
                             <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
@@ -497,7 +497,7 @@
                                             <div class="product-action">
                                                 <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    Acheter  !
+                                                    Acheter
                                                 </button>
                                             </div>
                                         </div>
@@ -515,11 +515,12 @@
                                             <div class="product-action">
                                                 <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
                                                     <i class="fas fa-shopping-cart"></i>
-                                                    Acheter!
+                                                    Acheter
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                 {% endif %}
                             </a>
                         {% endfor %}
@@ -841,7 +842,7 @@
                 <td>Mastodonte</td>
             </tr>
             <tr>
-                <td class="header-td"><i class="fas fa-cubes"></i> Préfixe Freebuild :</td>
+                <td class="header-td"><i class="fas fa-building"></i> Préfixe Freebuild :</td>
                 <td>Constructeur</td>
                 <td>Constructeur</td>
                 <td>Architecte</td>

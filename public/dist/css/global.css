@@ -689,8 +689,28 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     background-size: 100%;
 }
 
+.product-price {
+    color: black;
+}
+
+#very-small {
+    font-size: 0.7em;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
 .shop-menu {
-    float: center;
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
 }
 
 /*Fin Dreaams*/
