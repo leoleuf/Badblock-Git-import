@@ -402,6 +402,7 @@
     <!-- Fin recharger -->
 
     <script>
+
         function opentab(evt, serv) {
             // Declare all variables
             var i, tabcontent, tablinks;
@@ -412,11 +413,6 @@
                 tabcontent[i].style.display = "none";
             }
 
-            // Get all elements with class="tablinks" and remove the class "active"
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
 
             // Show the current tab, and add an "active" class to the button that opened the tab
             document.getElementById(serv).style.display = "block";
@@ -474,7 +470,7 @@
 
 
     {% for key,value in serverlist %}
-        {% if key != 5 %}
+        {% if key != 4 %}
         <div id="{{ key }}" class="tabcontent" style="display: none;">
             {% for k,cat in value['cat'] %}
                 <section class="shop-section-{{ k }}" class="tabcontent">
@@ -530,7 +526,7 @@
         </div>
         {% endif %}
     {% endfor %}
-<div id="5" class="tabcontent">
+<div id="4" class="tabcontent" style="display: none;">
 <div class="panel-tr">
         <table width="100%" style="text-align: center;">
             <tr class="d" id="top-td">
@@ -996,6 +992,9 @@
     {% endfor %}
 
     <script>
+        document.getElementById('4').style.display = "block";
+
+
         function achat(idpro){
 
             var prod_id = idpro;
