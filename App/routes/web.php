@@ -37,16 +37,12 @@ $app->group('/shop', function (){
 
 	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
 
-	$this->get('/recharge/starpass', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass');
-	$this->get('/recharge/starpass/post', \App\Controllers\ShopController::class . ':starpass')->setName('shop.recharge.starpass.post');
+	$this->get('/recharge/paypal', \App\Controllers\PaypalController::class . ':index')->setName('shop.recharge.paypal');
+	$this->get('/recharge/paypal/{id}', \App\Controllers\PaypalController::class . ':execute')->setName('shop.recharge.paypal.exec');
 
-    $this->get('/recharge/dedipass', \App\Controllers\ShopController::class . ':dedipass')->setName('shop.recharge.dedipass');
-    $this->get('/recharge/dedipass/post', \App\Controllers\ShopController::class . ':dedipass')->setName('shop.recharge.dedipass.post');
+	$this->get('/recharge/paypal-ipn', \App\Controllers\PaypalController::class . ':ipn')->setName('shop.recharge.paypal.ipn');
 
-	$this->get('/recharge/next', \App\Controllers\ShopController::class . ':getNextStepRecharge')->setName('shop.recharge.nextstep');
-	$this->get('/recharge/start/{amount}/{username}/{payway}', \App\Controllers\ShopController::class . ':getRechargeStart')->setName('shop.recharge.start');
-	$this->get('/paypal/execute', \App\Controllers\PaypalController::class . ':getPaypalExecute')->setName('shop.paypal.execute');
-	$this->get('/paypal/cancel', \App\Controllers\PaypalController::class . ':getPaypalCancel')->setName('shop.paypal.cancel');
+
 });
 
 $app->group('/vote', function (){
