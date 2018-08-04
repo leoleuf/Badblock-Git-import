@@ -61,8 +61,10 @@ class IpGeneratorMiddleware
 
         if ($ip == "127.0.0.1"){
             $this->container->session->set('eula', true);
+            $eula = true;
         }elseif ($ip == "::1"){
             $this->container->session->set('eula', true);
+            $eula = true;
         }else{
             if (!$this->container->session->exist('eula')) {
                 $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
