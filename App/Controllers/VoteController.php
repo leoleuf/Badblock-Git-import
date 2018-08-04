@@ -220,77 +220,9 @@ class VoteController extends Controller
             }else{
                 return $response->write("No pseudo")->withStatus(405);
             }
-        }else{
-            if ($this->container->session->exist('user')){
-                $player = strtolower($this->session->getProfile('username')['username']);
-                //Lotterie 1 : 1 bronze
-                //Lotterie 2 : 5 bronze
-                //Lotterie 3 : 20 bronze
-                if ($type['type'] == "1"){
-                    $collection = $this->container->mongo->vote;
-                    $mongo = $collection->findOne(['name' => strtolower($player)]);
-                    if ($mongo['bronze'] > 0){
-                        $this->recomp($player,1);
-                    }else{
-                        return $response->write("1")->withStatus(404);
-                    }
-                }elseif ($type['type'] == "2"){
-                    $collection = $this->container->mongo->vote;
-                    $mongo = $collection->findOne(['name' => strtolower($player)]);
-                    if ($mongo['bronze'] >= 5){
-                        $this->recomp($player,2);
-                    }else{
-                        return $response->write(5 - $mongo['bronze'])->withStatus(404);
-                    }
-                }elseif ($type['type'] == "3"){
-                    $collection = $this->container->mongo->vote;
-                    $mongo = $collection->findOne(['name' => strtolower($player)]);
-                    if ($mongo['bronze'] >= 20){
-                        $this->recomp($player,3);
-                    }else{
-                        return $response->write(20 - $mongo['bronze'])->withStatus(404);
-                    }
-                }
-            }else{
-                return $response->write("Not connected")->withStatus(403);
-            }
         }
-
     }
 
-    public function recomp($player,$level){
-        $level = 1;
-        if ($level == 1){
-            $nb1 = rand(0, 5);
-            $nb2 = rand(0, 10);
-            $nb3 = rand(0, 50);
-            $nb = ($nb1 + $nb2 + $nb3) / 3;
-        }elseif ($level == 2){
-            $nb1 = rand(10, 33);
-            $nb2 = rand(15, 40);
-            $nb3 = rand(20, 100);
-            $nb = ($nb1 + $nb2 + $nb3) / 3;
-        }elseif ($level == 3){
-            $nb1 = rand(30, 100);
-            $nb2 = rand(45, 100);
-            $nb3 = rand(50, 100);
-            $nb = ($nb1 + $nb2 + $nb3) / 3;
-        }
-
-        $nb = round($nb, 0);
-
-        while ($search = false){
-            $collection = $this->container->mongo->items;
-            $data = $collection->count(['vote_percent' => $nb]);
-            if ($data > 0){
-                $search = true;
-            }else{
-                $search = false;
-                $nb = $nb - 1;
-            }
-        }
-        echo "end";
-    }
 
 
     public function top($player, $vote){

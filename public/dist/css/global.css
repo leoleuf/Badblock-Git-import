@@ -638,20 +638,24 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     vertical-align: middle; 
 }
 
-.button-blue {
+.button-twitter {
     background-color: #00ACED !important;
 }
 
-.button-dark-blue {
+.button-facebook {
     background-color: #3B5998 !important;
 }
 
-.button-red {
+.button-youtube {
     background-color: #BB0000 !important;
 }
 
-.button-purple {
+.button-discord {
     background-color: #7289da !important;
+}
+
+.button-teamspeak {
+    background-color: #1d3b5b  !important;
 }
 
 .discord {
@@ -683,6 +687,30 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .cover-back {
     background-position: center;
     background-size: 100%;
+}
+
+.product-price {
+    color: black;
+}
+
+#very-small {
+    font-size: 0.7em;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+.shop-menu {
+    display: flex;
+    justify-content: center;
+    border: none;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
 }
 
 /*Fin Dreaams*/

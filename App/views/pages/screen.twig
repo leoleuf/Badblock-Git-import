@@ -2,21 +2,25 @@
 {% set show_title = false %}
 {% set title = "Héberger un sceenshot" %}
 {% block content %}
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="/dist/css/upload.css" rel="stylesheet">
 
-    <link href="/dist/css/upload.css" rel="stylesheet">
-
-    <form>
-        <div class="dropzone" data-width="960" data-height="540" data-resize="true" style="width: 100%;">
-            <input type="file" name="thumb" required="required" />
+        <form action="/screenshot" method="post">
+            <div class="dropzone" data-width="960" data-height="540" data-resize="true" style="width: 100%;">
+                <input type="file" name="thumb" required="required" />
+            </div>
+        </form>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <div class="remodal modal-remodal" data-remodal-id="link-end">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>Succès lien :</h1>
+            <h1 id="end-link"></h1>
+            <a class="button button-danger" href="/screenshot"><i class="icon-repeat"></i>Fermer</a>
         </div>
 
-        <button type="submit">Valider</button>
-    </form>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/dist/js/upload.js"></script>
+        <script src="/dist/js/upload.js"></script>
 
-    <script>$('.dropzone').html5imageupload();</script>
+        <script>$('.dropzone').html5imageupload();</script>
 
 
 {% endblock %}

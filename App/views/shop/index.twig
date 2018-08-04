@@ -1,0 +1,1029 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'shop.title'|trans %}
+
+{% block cover %}
+    <style>.package-badblock {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            padding: 7px;
+        }
+
+        .package-badblock img {
+            margin: 5px 0px;
+        }
+
+        .package-badblock h5, .badblock-price, .package-badblock p {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: -3px;
+            font-weight: 700;
+        }
+
+        .badblock-price {
+            color: #e74c3c;
+            font-size: 17px;
+        }
+
+        .package-badblock p {
+            padding: 16px 18px;
+        }
+
+        .package-badblock a {
+            text-align: center;
+            text-decoration: none;
+            background-color: #56D968;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+        .tebexLogin {
+            display: none !important;
+        }
+
+        .btn-lg {
+            padding: 6px 12px;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            position: inherit;
+        }
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            display: inline-block;
+            height: 38px;
+            padding: 0 30px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 38px;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            background-color: transparent;
+            border-radius: 0px;
+            cursor: pointer;
+            box-sizing: border-box;
+            border: none;
+            background-color: #e74c3c;
+            margin-right: 5px;
+        }
+
+        .btn-shop {
+            text-transform: capitalize !important;
+            background-color: #56D968 !important;
+            font-size: 14px !important;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block !important;
+        }
+        .footer {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            margin: 0px !important;
+            padding-top: 0px !important;
+            border: none !important;
+        }
+
+        #navbar li {
+            margin: 0px 15px 0px 0px;
+        }
+
+        #navbar li a {
+            padding: 12px 24px;
+            background-color: #3498db;
+            background-size: cover;
+            border-radius: 5px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        #navbar li a:hover {
+            transform: scale(1.1);
+            transition: all 0.2s;
+        }
+
+        #navbar li .right-active {
+            background-color: #56D968;
+        }
+
+        .input-group .form-control:first-child {
+            color: #333 !important;
+        }
+
+        th, td {
+            border: none !important;
+        }
+
+        .othercolor {
+            background-color: #fcfcfc;
+        }
+
+        .panel {
+            max-height: none !important;
+        }
+
+        .header-shop h5 {
+            border-bottom: 6px solid #3965be;
+            padding-bottom: 5px;
+        }
+
+        .header-shop #promo-header {
+            border-bottom: 6px solid #10a09e;
+        }
+
+        .header-shop .header-shop-title span {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ccc;
+        }
+
+        .buttons {
+            margin: 30px 0px;
+        }
+
+        .buycraft table, .buycraft th, .buycraft td {
+            border-color: transparent !important;
+        }
+
+        .shop {
+            margin: 50px 0px;
+            cursor: pointer;
+        }
+
+        .promotion {
+            animation : promotion 1s infinite ease-in-out;
+            font-weight: 700;
+            text-decoration: none !important;
+        }
+
+
+        .abo {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #gold {
+            color: #E19806;
+            font-weight: 700;
+        }
+
+        #obsi {
+            color: #6937C0;
+            font-weight: 700;
+        }
+
+        #custom {
+            color: #C64F4F;
+            font-weight: 700;
+        }
+
+        #rank-3020312 {background-color: #42b3f4;}
+        #rank-3020392 {background-color: #55FF55;}
+        #rank-3020415 {background-color: #6937C0;}
+        #rank-3026513 {background-color: #E19806;}
+        #rank-3026514 {background-color: #3CC35B;animation: promotion-s 1.5s infinite;}
+
+
+        .header-td {
+            text-align: right !important;
+        }
+
+        td {
+            text-align: center !important;
+            vertical-align: middle !important;
+            padding: 12px 24px;
+        }
+
+        td .fa-check {
+            color: #40A468;
+        }
+
+        td .fa-times {
+            color: #C64F4F;
+        }
+
+        .price-text {
+            text-decoration: line-through;
+            font-size: 15px;
+        }
+
+        table .rank {
+            padding: 25px 5px !important;
+            text-transform: uppercase;
+            font-size: 18px;
+            background-color: #C64F4F;
+            border: 5px solid #fff !important;
+            color: #fff;
+            border-bottom: 0px;
+            border-left: 0px solid #fff !important;
+            position: relative;
+            width: 190px;
+        }
+
+        table .rank:hover {
+            transform: scale(1.1);
+            z-index: 999;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        table .rank .rank-head {
+            font-size: 23px;
+            margin-bottom: 0px !important;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        table .rank p {
+            font-size: 17px;
+        }
+
+        table .rank a {
+            background-color: rgba(0,0,0,0.5);
+            padding: 6px 2px !important;
+            color: #fff;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        table .rank a span {
+            color: #edfc00;
+        }
+
+        table .rank .ex-price {
+            text-decoration: line-through;
+            margin-left: 5px;
+            color: #e74c3c;
+            font-size: 15px;
+        }
+
+
+        .line-tr {
+            background-color: #535353;
+            border: 5px solid #fff;
+        }
+
+        .line-tr .header-td {
+            padding: 5px 10px;
+            font-size: 17px;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+        }
+
+        .right-tr {
+            text-transform: uppercase;
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 12px 24px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .panel-tr {
+                overflow-x: scroll;
+            }
+            .package-badblock {
+                width: 100% !important;
+                margin: 10px 0px;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            .container {
+                width: 1700px !important;
+            }
+
+            .header {
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @keyframes anim-shop {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes promotion-s
+        {
+            0% {
+                background-color: #40A497;
+            }
+            25% {
+                background-color: #EABA19;
+            }
+            50% {
+                background-color: #EA4A19;
+            }
+            75% {
+                background-color: #2FD505;
+            }
+            100% {
+                background-color: #D92CCE;
+            }
+        }
+
+        @keyframes promotion
+        {
+            0% {
+                color: #40A497;
+            }
+            25% {
+                color: #EABA19;
+            }
+            50% {
+                color: #EA4A19;
+            }
+            75% {
+                color: #2FD505;
+            }
+            100% {
+                color: #D92CCE;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+
+    <!-- Recharger -->
+    <div class="recharge-back">
+        <div class="recharge-container">
+            <div class="recharge-content">
+                <div class="container recharge-flex">
+                    <div class="recharge-info">
+                        <img src="{{ base_url() }}/dist/images/paypal.png">
+                        <img src="{{ base_url() }}/dist/images/smsplus.png">
+                        <img src="{{ base_url() }}/dist/images/paysafecard.png">
+                    </div>
+                    <div class="recharge-button">
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin recharger -->
+
+    <script>
+
+        function opentab(evt, serv) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(serv).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="shop-menu">
+        <ul class="shop-menu-menu">
+            {% for key,value in serverlist %}
+                <li class="shop-menu-active">
+                    <a class="no-link" onclick="opentab(event, '{{ key }}')">
+                        <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% if flash('shop_error') %}
+        {% for flash in flash('shop_error') %}
+            <div class="alert alert-error">
+                {{ flash }}
+                <i class="icon icon-remove"></i>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if promo != false %}
+        <section class="shop-section" class="tabcontent">
+            <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
+            <div class="product-list">
+                {% for key in promo %}
+                    <div class="product-item product-item-promotion">
+                        <div class="product-header">
+                            <h5 class="product-title">{{ key[1] }}</h5>
+                        </div>
+                        <div class="product-image">
+                            <img src="{{ key[3] }}">
+                        </div>
+                        <div class="product-price product-promotion">{{ key[5] }}</div>
+                        <div class="promotion">{{ key[2] }}</div>
+                        <div class="promotion-reduction">{{ key[4] }}%</div>
+                        <div class="product-footer">
+                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Menu shop -->
+
+
+    {% for key,value in serverlist %}
+        {% if key != 4 %}
+        <div id="{{ key }}" class="tabcontent" style="display: none;">
+            {% for k,cat in value['cat'] %}
+                <section class="shop-section-{{ k }}" class="tabcontent">
+                    <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small id="very-small">{{ cat['sub-name'] }}</small></span></h4>
+                    <div class="product-list">
+                        {% for prod in cat['items'] %}
+                            <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
+                                {% if key[4] %}
+                                    <div class="product-item product-item-promotion">
+                                        <div class="product-header">
+                                            <h5 class="product-title">{{ prod['name'] }}</h5>
+                                        </div>
+                                        <div class="product-image">
+                                            <img src="{{ prod['image'] }}">
+                                        </div>
+                                        <div class="product-price product-promotion">{{ key[6] }}</div>
+                                        <div class="promotion">{{ prod['price'] }}</div>
+                                        <div class="promotion-reduction">{{ key[5] }}%</div>
+                                        <div class="product-footer">
+                                            <div class="product-action">
+                                                <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    Acheter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="product-item">
+                                        <div class="product-header">
+                                            <h5 class="product-title">{{ prod['name'] }}</h5>
+                                        </div>
+                                        <div class="product-image">
+                                            <img src="{{ prod['image'] }}">
+                                        </div>
+                                        <div class="product-price">{{ prod['price'] }}</div>
+                                        <div class="product-footer">
+                                            <div class="product-action">
+                                                <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    Acheter
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endfor %}
+<div id="4" class="tabcontent" style="display: none;">
+<div class="panel-tr">
+        <table width="100%" style="text-align: center;">
+            <tr class="d" id="top-td">
+                <td>&nbsp;</td>
+                <td class="rank" id="rank-3020312">
+                    <p class="rank-head">VIP</p>
+                    <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" style="margin-bottom: 10px; width:90%;">
+                    <a href="/category/1177957">Voir le Grade</a>
+                </td>
+                <td class="rank" id="rank-3020392">
+                    <p class="rank-head">VIP+</p>
+                    <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" style="margin-bottom: 10px; width:90%;">
+                    <a href="/category/1177957">Voir le Grade</a>
+                </td>
+                <td class="rank" id="rank-3020415">
+                    <p class="rank-head">MVP</p>
+                    <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/0a322550eb949f1674083c419553c286ff3dded6.png" style="margin-bottom: 10px; width:90%;">
+                    <a href="/category/1177957">Voir le Grade</a>
+                </td>
+                <td class="rank" id="rank-3026513">
+                    <p class="rank-head">MVP+</p>
+                    <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/1b37e56cc4205b4eb0e27d9151829969b5cce4a1.png" style="margin-bottom: 10px; width:90%;">
+                    <a href="/category/1177957">Voir le Grade</a>
+                </td>
+                <td class="rank" id="rank-3026514">
+                    <p class="rank-head">Legend</p>
+                    <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/92d220428f49697f0c3fbb9a2d640118d791469c.png" style="margin-bottom: 10px; width:90%;">
+                    <a href="/category/1177957">Voir le Grade</a>
+                </td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Détails du grade</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-clock"></i> Durée du grade :</td>
+                <td>Permanent</td>
+                <td>Permanent</td>
+                <td>Permanent</td>
+                <td>Permanent</td>
+                <td>1 mois</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-sitemap"></i> Dépendance :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i>  VIP</td>
+                <td><i class="fas fa-check"></i>  VIP+</td>
+                <td><i class="fas fa-check"></i>  MVP</td>
+                <td><i class="fas fa-check"></i>  MVP+</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-id-card"></i> Préfix :</td>
+                <td style="color: #55FFFF"><strong>[VIP]</strong></td>
+                <td style="color: #55FF55"><strong>[VIP+]</strong></td>
+                <td id="obsi">[MVP]</td>
+                <td id="gold">[MVP+]</td>
+                <td class="promotion">Personnalisable</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-sign-in-alt"></i> Pack de bienvenue :</td>
+                <td>3 Basique Coffres</td>
+                <td>5 Basique Coffres</td>
+                <td>3 Super Coffres</td>
+                <td>5 Super Coffres</td>
+                <td>1 Mega coffre (/mois)</td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Avantages Serveur</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-coins"></i> BadCoins gagnés :</td>
+                <td class="promotion">+ 25%</td>
+                <td class="promotion">+ 50%</td>
+                <td class="promotion">+ 100%</td>
+                <td class="promotion">+ 200%</td>
+                <td class="promotion">+ 400%</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-bolt"></i> Expérience gagnée :</td>
+                <td class="promotion">+ 25%</td>
+                <td class="promotion">+ 50%</td>
+                <td class="promotion">+ 100%</td>
+                <td class="promotion">+ 200%</td>
+                <td class="promotion">+ 400%</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-comment"></i> Publicité dans le chat :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-history"></i> Accès logs de cheat :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-users"></i> Slot réservé :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-angle-double-left"></i> Nouveautés en bêta :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-user-secret"></i> Accès /gnick :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-certificate"></i> Accès /aura :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-eye-dropper"></i> Personnalisation /aura :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Avantages Hub</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-comment-alt"></i> Couleur des messages :</td>
+                <td>Blanc</td>
+                <td>Blanc</td>
+                <td>Blanc</td>
+                <td>Blanc</td>
+                <td class="promotion">Personnalisable</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-users"></i> Joueurs en groupe :</td>
+                <td>5 max</td>
+                <td>8 max</td>
+                <td>12 max</td>
+                <td>16 max</td>
+                <td>32 max</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-user-friends"></i> Nombre d'amis :</td>
+                <td>20 max</td>
+                <td>40 max</td>
+                <td>60 max</td>
+                <td>100 max</td>
+                <td>500 max</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-ban"></i> Limite de messages :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-vial"></i> Multiples jump :</td>
+                <td><i class="fas fa-check"></i> x1</td>
+                <td><i class="fas fa-check"></i> x2</td>
+                <td><i class="fas fa-check"></i> x3</td>
+                <td><i class="fas fa-check"></i> x4</td>
+                <td><i class="fas fa-check"></i> x8</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-lock-open"></i> Accès zone VIP :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fab fa-sticker-mule"></i> Monture Pegasus :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fab fa-superpowers"></i> Monture > Mode fun :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td" style="font-size: 0.85em"><i class="fas fa-road"></i> Monture > Mode araignée :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-plane"></i> Monture > Mode fly :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-arrow-right"></i> Notif de bienvenue :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Avantages Mini-jeux</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-map-pin"></i> Votes de map :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i> x2</td>
+                <td><i class="fas fa-check"></i> x3</td>
+                <td><i class="fas fa-check"></i> x4</td>
+                <td><i class="fas fa-check"></i> x8</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-balance-scale"></i> Kit VIP équilibré :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-chevron-circle-right"></i> File d'attente prioritaire :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Avantages big-games</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-gem"></i> Préfixe Skyblock :</td>
+                <td>Islander</td>
+                <td>Islander</td>
+                <td>Skylander</td>
+                <td>Skylander</td>
+                <td style="font-size: 0.85em">Skylander + Premium (/12h)</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-fire"></i> Préfixe Faction :</td>
+                <td>Héros</td>
+                <td>Légende</td>
+                <td>Titan</td>
+                <td>Dieu</td>
+                <td>Immortel</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-hands-helping"></i> Préfixe PvPBox :</td>
+                <td>Assassin</td>
+                <td>Assassin</td>
+                <td>Mastodonte</td>
+                <td>Mastdonte</td>
+                <td>Mastodonte</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-building"></i> Préfixe Freebuild :</td>
+                <td>Constructeur</td>
+                <td>Constructeur</td>
+                <td>Architecte</td>
+                <td>Architecte</td>
+                <td>Architecte</td>
+            </tr>
+            <tr class="line-tr">
+                <td class="header-td">Autres avantages</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Forum :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Discord :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Teamspeak :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fab fa-teamspeak"></i> Salon gradés (TS) :</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-eye-dropper"></i> Grade perso (TS) :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-image"></i> Icône perso (TS) :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-lock"></i> Salon perso (TS) :</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="header-td"><i class="fas fa-question-circle"></i> Support + (Discord):</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+    <!-- Shop Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-error">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Désoler, mais vous n'avez pas les points néssecaires</h1>
+        <div class="recharge-button">
+            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+        </div>
+    </div>
+    <!-- Fin Shop modal -->
+
+
+    <!-- Shop Succes Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-succes">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Achat éffectué avec succès !</h1>
+    </div>
+    <!-- Fin Shop Succes modal -->
+
+    <!-- Shop Error Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="shop-depend">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="textp"></h1>
+    </div>
+    <!-- Fin Shop Succes modal -->
+
+    <!-- Link Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="link-modal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous devez linker votre compte pour éffectuer un achat !</h1>
+        <a class="button button-danger" href="/link"><i class="icon-repeat"></i>Linker son Compte !</a>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="login-modal">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous devez vous connecter pour éffectuer un achat !</h1>
+        <a class="button button-default" href="https://forum.badblock.fr/login">Se connecter !</a>
+    </div>
+
+    {% for key,value in serverlist %}
+        {% for k,cat in value['cat'] %}
+            {% for prod in cat['items'] %}
+                {% if key[4] %}
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ key[1] }} / Promotion <span class="reduction">-50%</span></h1>
+                        <img src="{{ key[1] }}">
+                        <p>{{ key[5] }}</p>
+                        <div class="product-footer">
+                            <div class="product-action"><button onclick="achat({{ prod['_id']["$oid"] }})" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ prod['name'] }}</h1>
+                        <img src="{{ prod['image'] }}">
+                        <p>{{ prod['description'] }}</p>
+                        <div class="product-footer">
+                            <div class="product-action"><button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+
+    <script>
+        document.getElementById('4').style.display = "block";
+
+
+        function achat(idpro){
+
+            var prod_id = idpro;
+
+            var request = $.ajax({
+                url: "/shop/achat/"+prod_id,
+                method: "POST",
+                data: { prod_id : prod_id },
+                dataType: "html"
+            });
+
+            request.done(function( msg ) {
+                $('[data-remodal-id=shop-succes]').remodal().open();
+            });
+
+            request.fail(function( jqXHR, textStatus ) {
+                if(jqXHR.status == 405){
+                    $('[data-remodal-id=shop-error]').remodal().open();
+                }else if (jqXHR.status == 401){
+                    $('[data-remodal-id=login-modal]').remodal().open();
+                }else if (jqXHR.status == 405){
+                    $('[data-remodal-id=link-modal]').remodal().open();
+                }else if (jqXHR.status == 400){
+                    $( "#textp" ).text(jqXHR.responseText);
+                    $('[data-remodal-id=shop-depend]').remodal().open();
+                }
+            });
+
+        }
+    </script>
+{% endblock %}
+

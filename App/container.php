@@ -209,17 +209,6 @@ $container['ladder'] = function ($container) {
 	]);
 };
 
-
-$container['ShopLinker'] = function ($container) {
-	return new App\Shoplinker($container, (object)[
-		'ip' => $container->config['rabbit']['ip'],
-		'port' => $container->config['rabbit']['port'],
-		'username' => $container->config['rabbit']['username'],
-		'password' => $container->config['rabbit']['password'],
-		'virtualhost' => $container->config['rabbit']['virtualhost']
-	]);
-};
-
 $container['teamspeak'] = function ($container) {
    return new App\Teamspeak($container, (object) [
         'ip' => $container->config['teamspeak']['ip'],
@@ -230,7 +219,4 @@ $container['teamspeak'] = function ($container) {
     ]);
 };
 
-$container['RpgApi'] = function ($container) {
-	return new App\RpgApi($container, "45397");
-};
 

@@ -7,6 +7,7 @@ $app->group('/api', function(){
 $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':test');
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {
+		$this->get('/shop', \App\Controllers\Api\ShopApiController::class . ':upCache');
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');

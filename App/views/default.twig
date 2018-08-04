@@ -71,9 +71,10 @@
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
-        <a href="https://boutique2.badblock.fr/" class="">
+        <a href="/shop"
+           class="{% if active_page == 'shop' %}actived{% endif %}">
             <i class="shopping_basket-colored-icon colored-icon"></i>
-            {{ 'shop.title'|trans }}
+            Boutique
         </a>
         <a href="{{ path_for('stats.home') }}"
            class="{% if active_page == 'stats' %}actived{% endif %}">
@@ -188,6 +189,7 @@
                 <li><a href="{{ path_for('staff') }}">Notre Equipe</a></li>
                 <li><a href="mailto:contact@badblock.fr">Nous contacter</a></li>
                 <li><a href="/info">Informations développement</a></li>
+                <li><a href="/screenshot">Héberger une image</a></li>
             </ul>
         </div>
         <div class="four columns">
