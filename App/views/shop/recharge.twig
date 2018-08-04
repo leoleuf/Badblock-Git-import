@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
 
     <!-- Recharger -->
+
     <div class="recharge-back">
         <div class="recharge-container">
             <div class="recharge-content">
@@ -16,6 +17,9 @@
                         <img src="{{ base_url() }}/dist/images/paypal.png">
                         <img src="{{ base_url() }}/dist/images/smsplus.png">
                         <img src="{{ base_url() }}/dist/images/paysafecard.png">
+                        <img src="https://images.badblock.fr/i/mastercard%20logo.png" style="width: 5%">
+                        <img src="https://images.badblock.fr/i/cb%20logo.png" style="width: 5%">
+                        <img src="https://images.badblock.fr/i/visa%20logo.png" style="width: 7%">
                     </div>
                     <div class="recharge-button">
                         <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
@@ -31,7 +35,13 @@
 {% endblock %}
 
 {% block content %}
-
+    <h4 class="heading-bar"><span>Recharger mon compte</span></h4>
+    <div class="recharge-info">La page où vous vous trouvez permet de créditer son compte de points boutique, par de nombreux services tels que PayPal, SMS+ ou encore paysafecard. Le rechargement se fait de manière 100% sécurisée.</div>
+    <div class="row">
+        <div class="four columns">4</div>
+        <div class="four columns">4</div>
+        <div class="four columns">4</div>
+    </div>
     {% for k,pay in paiement %}
         {{ k }}
         {% for p,m in pay %}
