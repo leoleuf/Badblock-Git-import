@@ -423,6 +423,7 @@
 {% endblock %}
 
 {% block content %}
+    {% if eula == true %}
     <div class="shop-menu">
         <ul class="shop-menu-menu">
             {% for key,value in serverlist %}
@@ -526,6 +527,8 @@
         </div>
         {% endif %}
     {% endfor %}
+    {% endif %}
+
 <div id="4" class="tabcontent" style="display: none;">
 <div class="panel-tr">
         <table width="100%" style="text-align: center;">
