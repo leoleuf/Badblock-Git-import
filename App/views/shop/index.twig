@@ -46,6 +46,7 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
     <div class="shop-full-w">
     	<div class="shop-menu">
 	        <ul class="shop-menu-menu">
@@ -58,6 +59,19 @@
 	            {% endfor %}
 	        </ul>
 	    </div>
+=======
+    {% if eula == true %}
+    <div class="shop-menu">
+        <ul class="shop-menu-menu">
+            {% for key,value in serverlist %}
+                <li class="shop-menu-active">
+                    <a class="no-link" onclick="opentab(event, '{{ key }}')">
+                        <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+>>>>>>> 39b0c9d92f815fd5cc6e82e6f7e2cdea8317cb5a
     </div>
     {% if flash('shop_error') %}
         {% for flash in flash('shop_error') %}
@@ -151,6 +165,8 @@
         </div>
         {% endif %}
     {% endfor %}
+    {% endif %}
+
 <div id="4" class="tabcontent" style="display: none;">
 <div class="panel-tr">
         <table width="100%" style="text-align: center;">

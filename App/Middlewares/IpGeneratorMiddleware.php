@@ -58,7 +58,27 @@ class IpGeneratorMiddleware
 	public function __invoke($request, $response, $next)
 	{
         $ip = $_SERVER['REMOTE_ADDR'];
-        //if the key doesn't exist in cache
+
+        if (!$this->container->session->exist('eula')) {
+            $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
+            if ($ip == "127.0.0.1"){
+                $eula = true;
+            }elseif ($ips == null){
+                $eula = false;
+            }else{
+                $eula = true;
+            }
+            $this->container->session->set('eula', $eula);
+        }else{
+            $eula = $this->container->session->get('eula');
+        }
+
+        //ajout de l'EULA aux variables globales twig
+        $twig = $this->container->view->getEnvironment();
+        $twig->addGlobal('eula', $eula);
+
+
+            //if the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {
             $result = [];
 
