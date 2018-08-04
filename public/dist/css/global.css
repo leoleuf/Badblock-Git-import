@@ -712,7 +712,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .shop-full-w {
     background-color: #2c3e50;
     padding: 12px 24px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .shop-menu-active {
@@ -759,6 +759,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .product-list {
     display: flex;
     justify-content: center;
+}
+
+.recharge-back {
+    margin-top: -45px;
 }
 
 /*Fin Dreaams*/
