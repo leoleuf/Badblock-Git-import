@@ -59,20 +59,24 @@ class IpGeneratorMiddleware
 	{
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        if (!$this->container->session->exist('eula')) {
-            $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
-            if ($ip == "127.0.0.1"){
-                $eula = true;
-            }elseif ($ips == null){
-                $eula = false;
-            }else{
-                $eula = true;
-            }
-            $this->container->session->set('eula', $eula);
+        if ($ip == "127.0.0.1"){
+            $this->container->session->set('eula', true);
         }else{
-            $eula = $this->container->session->get('eula');
+            if (!$this->container->session->exist('eula')) {
+                $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
+                if ($ip == "127.0.0.1"){
+                    $eula = true;
+                }elseif ($ips == null){
+                    $eula = false;
+                }else{
+                    $eula = true;
+                }
+                $this->container->session->set('eula', $eula);
+            }else{
+                $eula = $this->container->session->get('eula');
+            }
         }
-
+        
         //ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
