@@ -40,7 +40,7 @@ $app->group('/shop', function (){
 	$this->get('/recharge/paypal', \App\Controllers\PaypalController::class . ':index')->setName('shop.recharge.paypal');
 	$this->get('/recharge/paypal/{id}', \App\Controllers\PaypalController::class . ':execute')->setName('shop.recharge.paypal.exec');
 
-	$this->get('/recharge/paypal-ipn', \App\Controllers\PaypalController::class . ':ipn')->setName('shop.recharge.paypal.ipn');
+	$this->get('/recharge/paypal-ipn', \App\PaypalIPN::class . ':verifyIPN')->setName('shop.recharge.paypal.ipn');
 
 
 });
