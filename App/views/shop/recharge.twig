@@ -6,6 +6,7 @@
 {% block cover %}
 
     <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <!-- Recharger -->
 
@@ -35,9 +36,28 @@
 {% endblock %}
 
 {% block content %}
-    <h4 class="heading-bar"><span>Recharger mon compte</span></h4>
-    <div class="recharge-info">La page où vous vous trouvez permet de créditer son compte de points boutique, par de nombreux services tels que PayPal, SMS+ ou encore paysafecard. Le rechargement se fait de manière 100% sécurisée.</div>
+    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row">
+        <div class="five columns">
+            <div class="recharge-info">
+                Vous pouvez ici recharger votre compte en <i class="fas fa-money-check"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
+                Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
+                Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
+                Notez que nous ne faisons pas de remboursements lorsque le produit a bien été livré en jeu.
+
+            </div>
+        </div>
+        <div class="seven columns">
+            <div class="step-contains center">
+                <h5 class="text-center">Entrez votre pseudo</h5>
+                <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
+                <a class="button button-primary" onclick="start()" style="width: 95%;">Valider</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="row center">
         <div class="four columns">4</div>
         <div class="four columns">4</div>
         <div class="four columns">4</div>

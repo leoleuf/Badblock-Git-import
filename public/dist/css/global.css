@@ -765,6 +765,19 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-top: -45px;
 }
 
+.center {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.recharge-heading {
+    margin-top: 50px;
+}
+
+.link {
+    text-decoration: none;
+    font-style: italic;
+}
 /*Fin Dreaams*/
 
 .user-menu {
