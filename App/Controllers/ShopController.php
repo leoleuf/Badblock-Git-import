@@ -58,10 +58,12 @@ class ShopController extends Controller
             return $response->write("Product doesn't exist !")->withStatus(404);
         }
 
-        if ($product->buy_one){
-            $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product->depend_name]);
-            if ($depend != 0){
-                return $response->write("Vous ne pouvez re-acheter cette offre !")->withStatus(400);
+        if (isset($product->buy_one)){
+            if ($product->buy_one == true){
+                $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product->depend_name]);
+                if ($depend != 0){
+                    return $response->write("Vous ne pouvez re-acheter cette offre !")->withStatus(400);
+                }
             }
         }
 
