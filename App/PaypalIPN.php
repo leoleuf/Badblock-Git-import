@@ -1,5 +1,10 @@
 <?php
-class PaypalIPN
+
+namespace App;
+
+use App\Controllers\Controller;
+
+class PaypalIPN extends Controller
 {
     /** @var bool Indicates if the sandbox endpoint is used. */
     private $use_sandbox = false;
@@ -117,11 +122,15 @@ class PaypalIPN
             throw new Exception("PayPal responded with http code $http_code");
         }
         curl_close($ch);
+
+        $this->container->mongo->paypal->insertOne([$res]);
+
         // Check if PayPal verifies the IPN data, and if so, return true.
         if ($res == self::VALID) {
             return true;
         } else {
             return false;
         }
+
     }
 }

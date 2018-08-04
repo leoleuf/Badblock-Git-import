@@ -63,14 +63,6 @@ class PaypalController extends Controller
 
     }
 
-    public function ipn(RequestInterface $request, ResponseInterface $response){
 
-	    if (\PaypalIPN::ver)
-
-
-
-
-
-    }
 
 }
