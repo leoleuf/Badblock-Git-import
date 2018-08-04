@@ -1,0 +1,46 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'shop.title'|trans %}
+
+{% block cover %}
+
+    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+
+    <!-- Recharger -->
+    <div class="recharge-back">
+        <div class="recharge-container">
+            <div class="recharge-content">
+                <div class="container recharge-flex">
+                    <div class="recharge-info">
+                        <img src="{{ base_url() }}/dist/images/paypal.png">
+                        <img src="{{ base_url() }}/dist/images/smsplus.png">
+                        <img src="{{ base_url() }}/dist/images/paysafecard.png">
+                    </div>
+                    <div class="recharge-button">
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin recharger -->
+
+
+
+{% endblock %}
+
+{% block content %}
+
+    {% for k,pay in paiement %}
+        {{ k }}
+        {% for p,m in pay %}
+            {{ m['points'] }}
+            {{ m['price'] }}
+        {% endfor %}
+    {% endfor %}
+
+
+
+{% endblock %}
+

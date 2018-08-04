@@ -16,7 +16,7 @@ class PaypalController extends Controller
     public  function execute(RequestInterface $request, ResponseInterface $response, $id){
 	    $id = $id['id'];
 
-	    if (!isset($this->container->config['paypal'][$id])){
+	    if (!isset($this->container->config['paiement']['paypal'][$id])){
 	        return $this->redirect($response, "/shop/recharge");
         }
 
