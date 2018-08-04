@@ -155,8 +155,7 @@ class ShopController extends Controller
             'displayName' => $product->name,
             'command' => $command,
             'ingame' => false,
-            'price' => $product->price,
-            'forceCommand' => true
+            'price' => $product->price
         ];
 
         $message = (object) [
