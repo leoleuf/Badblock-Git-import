@@ -38,29 +38,68 @@
 {% block content %}
     <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row">
-        <div class="five columns">
+        <div class="seven columns">
             <div class="recharge-info">
                 Vous pouvez ici recharger votre compte en <i class="fas fa-money-check"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
                 Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
                 Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
+                Toute utilisation de PayPal sans accord parental ou tout problème sur PayPal entraînera un ban définitif de notre plateforme.<br>
                 Notez que nous ne faisons pas de remboursements lorsque le produit a bien été livré en jeu.
-
             </div>
         </div>
-        <div class="seven columns">
+        <div class="five columns">
             <div class="step-contains center">
                 <h5 class="text-center">Entrez votre pseudo</h5>
+                <img src="https://images.badblock.fr/i/image7710_2018-08-05_23-40-49.png" class="center" style="width: 20%"><br>
                 <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                <a class="button button-primary" onclick="start()" style="width: 95%;">Valider</a>
+                <a class="button button-primary" onclick="start()" style="width: 50%;">Valider</a>
             </div>
         </div>
     </div>
     
     
     <div class="row center">
-        <div class="four columns">4</div>
-        <div class="four columns">4</div>
-        <div class="four columns">4</div>
+        <div class="four columns height" style="background-color: gray;">
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <span class="center" style="font-weight: bold;">Paypal</span>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1.500 points boutique<br>Pas de bonus !</td>
+                        <td>5€</td>
+                    </tr>
+                    <tr>
+                        <td>3.000 points boutique<br>Pas de bonus !</td>
+                        <td>10€</td>
+                    </tr>
+                    <tr>
+                        <td><span class="barre">4.500 points boutique</span><br>5.400 points boutique<br><span class="promotion">Bonus +900 pb</span></td>
+                        <td>15€</td>
+                    </tr>
+                    <tr>
+                        <td><span class="barre">6.000 points boutique</span><br>7.800 points boutique<br><span class="promotion">Bonus +1.800 pb</span></td>
+                        <td>20€</td>
+                    </tr>
+                    <tr>
+                        <td><span class="barre">9.000 points boutique</span><br>11.400 points boutique<br><span class="promotion">Bonus +2.400 pb</span></td>
+                        <td>25€</td>
+                    </tr>
+                    <tr>
+                        <td><span class="barre">15.000 points boutique</span><br>18.300 points boutique<br><span class="promotion">Bonus +3.300 pb</span></td>
+                        <td>50€</td>
+                    </tr>
+                    <tr>
+                        <td><span class="barre">30.000 points boutique</span><br>34.200 points boutique<br><span class="promotion">Bonus +4.200 pb</span></td>
+                        <td>100€</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="four columns height"></div>
+        <div class="four columns height"></div>
     </div>
     {% for k,pay in paiement %}
         {{ k }}
