@@ -786,6 +786,33 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .barre {
     text-decoration: line-through;
 }
+
+.shop-recharge-head {
+    width: 15%;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.shop-recharge-validation {
+    width: 50%;
+    margin-top: -10px;
+}
+
+.paypal-head {
+    font-weight: bold;
+    background-color: #3498db !important;
+    padding: 20px;
+    color: white;
+}
+
+.paypal-offer-1 {
+    background-color: #93c8ec !important;
+}
+
+.paypal-offer-2 {
+    background-color: #a8d3f0 !important;
+}
+
 /*Fin Dreaams*/
 
 .user-menu {

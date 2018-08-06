@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Recharger -->
 
@@ -36,44 +37,44 @@
 {% endblock %}
 
 {% block content %}
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <!-- Début infos -->
+    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte - Étape 1</span></h4>
     <div class="row">
         <div class="seven columns">
             <div class="recharge-info">
-                Vous pouvez ici recharger votre compte en <i class="fas fa-money-check"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
+                Vous pouvez ici recharger votre compte en <i class="fa fa-money"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
                 Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
                 Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
                 Toute utilisation de PayPal sans accord parental ou tout problème sur PayPal entraînera un ban définitif de notre plateforme.<br>
                 Notez que nous ne faisons pas de remboursements lorsque le produit a bien été livré en jeu.
             </div>
         </div>
+<!-- Fin infos -->
         <div class="five columns">
             <div class="step-contains center">
                 <h5 class="text-center">Entrez votre pseudo</h5>
-                <img src="https://images.badblock.fr/i/image7710_2018-08-05_23-40-49.png" class="center" style="width: 20%"><br>
+                <img src="https://images.badblock.fr/i/image7710_2018-08-05_23-40-49.png" class="center shop-recharge-head"><br>
                 <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                <a class="button button-primary" onclick="start()" style="width: 50%;">Valider</a>
+                <a class="button button-primary shop-recharge-validation" onclick="start()">Valider</a>
             </div>
         </div>
     </div>
-    
-    
+<!-- Debut liste paiements -->   
+    <h4 class="heading-bar recharge-heading"><span>Étape 2</span></h4>
     <div class="row center">
-        <div class="four columns height" style="background-color: gray;">
-            <table class="u-full-width">
+        <div class="four columns height">
+            <table class="u-full-width paypal">
                 <thead>
-                    <tr>
-                        <span class="center" style="font-weight: bold;">Paypal</span>
-                    </tr>
+                   <div class="paypal-head">Paypal</div>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1.500 points boutique<br>Pas de bonus !</td>
-                        <td>5€</td>
+                        <td class="paypal-offer-1 price">1.500 points boutique<br>Pas de bonus</td>
+                        <td class="paypal-offer-1 price">5€</td>
                     </tr>
                     <tr>
-                        <td>3.000 points boutique<br>Pas de bonus !</td>
-                        <td>10€</td>
+                        <td class="paypal-offer-2 price">3.000 points boutique<br>Pas de bonus</td>
+                        <td class="paypal-offer-2 price">10€</td>
                     </tr>
                     <tr>
                         <td><span class="barre">4.500 points boutique</span><br>5.400 points boutique<br><span class="promotion">Bonus +900 pb</span></td>
