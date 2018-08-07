@@ -38,7 +38,7 @@
 
 {% block content %}
     <!-- Début infos -->
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte - Étape 1</span></h4>
+    <h4 class="heading-bar recharge-heading"><span>Étape 1 - Recharger mon compte</span></h4>
     <div class="row">
         <div class="seven columns">
             <div class="recharge-info">
@@ -60,47 +60,35 @@
         </div>
     </div>
 <!-- Debut liste paiements -->   
-    <h4 class="heading-bar recharge-heading"><span>Étape 2</span></h4>
+    <h4 class="heading-bar recharge-heading"><span>Étape 2 - Choisir mon mode de paiement</span></h4>
     <div class="row center">
-        <div class="four columns height">
-            <table class="u-full-width paypal">
-                <thead>
-                   <div class="paypal-head">Paypal</div>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="paypal-offer-1 price">1.500 points boutique<br>Pas de bonus</td>
-                        <td class="paypal-offer-1 price">5€</td>
-                    </tr>
-                    <tr>
-                        <td class="paypal-offer-2 price">3.000 points boutique<br>Pas de bonus</td>
-                        <td class="paypal-offer-2 price">10€</td>
-                    </tr>
-                    <tr>
-                        <td><span class="barre">4.500 points boutique</span><br>5.400 points boutique<br><span class="promotion">Bonus +900 pb</span></td>
-                        <td>15€</td>
-                    </tr>
-                    <tr>
-                        <td><span class="barre">6.000 points boutique</span><br>7.800 points boutique<br><span class="promotion">Bonus +1.800 pb</span></td>
-                        <td>20€</td>
-                    </tr>
-                    <tr>
-                        <td><span class="barre">9.000 points boutique</span><br>11.400 points boutique<br><span class="promotion">Bonus +2.400 pb</span></td>
-                        <td>25€</td>
-                    </tr>
-                    <tr>
-                        <td><span class="barre">15.000 points boutique</span><br>18.300 points boutique<br><span class="promotion">Bonus +3.300 pb</span></td>
-                        <td>50€</td>
-                    </tr>
-                    <tr>
-                        <td><span class="barre">30.000 points boutique</span><br>34.200 points boutique<br><span class="promotion">Bonus +4.200 pb</span></td>
-                        <td>100€</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="six columns">
+            <h4 class="heading-bar"><span>PayPal</span></h4>
+            <div class="paypal">
+                <br><br><br>
+                <img src="{{ base_url() }}/dist/images/paypal.png" class="paypal-img"><br><br>
+                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
+            </div>
+            <h4 class="heading-bar"><span>Carte bancaire & Internet +</span></h4>
+            <div class="cb"><br>
+                <img src="https://images.badblock.fr/i/mastercard%20logo.png" class="mastercard-img">
+                <img src="https://images.badblock.fr/i/cb%20logo.png" class="cb-img"><br>
+                <img src="https://images.badblock.fr/i/visa%20logo.png" class="visa-img"><br>
+                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
+            </div>
         </div>
-        <div class="four columns height"></div>
-        <div class="four columns height"></div>
+        <div class="six columns">
+            <h4 class="heading-bar"><span>paysafecard</span></h4>
+            <div class="paysafecard"><br><br><br>
+                <img src="{{ base_url() }}/dist/images/paysafecard.png" class="paysafe-img"><br><br>
+                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
+            </div>
+            <h4 class="heading-bar"><span>Dedipass (mobile)</span></h4>
+            <div class="mobile"><br><br>
+                <img src="https://images.badblock.fr/i/dedi.png" class="dedipass-img"><br><br>
+                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
+            </div>
+        </div>
     </div>
     {% for k,pay in paiement %}
         {{ k }}
