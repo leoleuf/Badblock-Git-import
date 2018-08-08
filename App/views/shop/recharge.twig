@@ -37,8 +37,39 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Début infos -->
-    <h4 class="heading-bar recharge-heading"><span>Étape 1 - Recharger mon compte</span></h4>
+<!-- Debut liste paiements -->   
+    <h4 class="heading-bar recharge-heading"><span>Choisir mon mode de paiement</span></h4>
+    <div class="row center">
+        <div class="six columns">
+            {% for k,pay in paiement %}
+                {% if k is even %}
+                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
+                    <div class="{{ pay['class'] }}">
+                        <br><br><br>
+                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
+                        {% for key,offer in pay['offer'] %}
+                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="six columns">
+            {% for k,pay in paiement %}
+                {% if k is not even %}
+                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
+                    <div class="{{ pay['class'] }}">
+                        <br><br><br>
+                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
+                        {% for key,offer in pay['offer'] %}
+                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
     <div class="row">
         <div class="seven columns">
             <div class="recharge-info">
@@ -49,56 +80,6 @@
                 Notez que nous ne faisons pas de remboursements lorsque le produit a bien été livré en jeu.
             </div>
         </div>
-<!-- Fin infos -->
-        <div class="five columns">
-            <div class="step-contains center">
-                <h5 class="text-center">Entrez votre pseudo</h5>
-                <img src="https://images.badblock.fr/i/image7710_2018-08-05_23-40-49.png" class="center shop-recharge-head"><br>
-                <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                <a class="button button-primary shop-recharge-validation" onclick="start()">Valider</a>
-            </div>
-        </div>
     </div>
-<!-- Debut liste paiements -->   
-    <h4 class="heading-bar recharge-heading"><span>Étape 2 - Choisir mon mode de paiement</span></h4>
-    <div class="row center">
-        <div class="six columns">
-            <h4 class="heading-bar"><span>PayPal</span></h4>
-            <div class="paypal">
-                <br><br><br>
-                <img src="{{ base_url() }}/dist/images/paypal.png" class="paypal-img"><br><br>
-                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
-            </div>
-            <h4 class="heading-bar"><span>Carte bancaire & Internet +</span></h4>
-            <div class="cb"><br>
-                <img src="https://images.badblock.fr/i/mastercard%20logo.png" class="mastercard-img">
-                <img src="https://images.badblock.fr/i/cb%20logo.png" class="cb-img"><br>
-                <img src="https://images.badblock.fr/i/visa%20logo.png" class="visa-img"><br>
-                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
-            </div>
-        </div>
-        <div class="six columns">
-            <h4 class="heading-bar"><span>paysafecard</span></h4>
-            <div class="paysafecard"><br><br><br>
-                <img src="{{ base_url() }}/dist/images/paysafecard.png" class="paysafe-img"><br><br>
-                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
-            </div>
-            <h4 class="heading-bar"><span>Dedipass (mobile)</span></h4>
-            <div class="mobile"><br><br>
-                <img src="https://images.badblock.fr/i/dedi.png" class="dedipass-img"><br><br>
-                <a class="button button-primary" onclick="start()">Voir les offres disponbiles</a>
-            </div>
-        </div>
-    </div>
-    {% for k,pay in paiement %}
-        {{ k }}
-        {% for p,m in pay %}
-            {{ m['points'] }}
-            {{ m['price'] }}
-        {% endfor %}
-    {% endfor %}
-
-
-
 {% endblock %}
 
