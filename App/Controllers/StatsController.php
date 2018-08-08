@@ -22,17 +22,11 @@ class StatsController extends Controller
 	    //debug
         if ($this->redis->exists('api.teamspeak.online')){
             $data = $this->redis->get('api.teamspeak.online');
+            $c_ts = intval($data);
         }else{
-            $data = 0;
-            while($data == 0){
-                $data = $this->container->teamspeak->online();
-            }
-            $this->redis->set('api.teamspeak.online', $data);
-            $this->redis->expire('api.teamspeak.online', 10);
+            $c_ts = 0;
         }
 
-
-	    $c_ts = intval($data);
 
 
 	    $guardian = $this->redis->getJson('stats:guardian');
