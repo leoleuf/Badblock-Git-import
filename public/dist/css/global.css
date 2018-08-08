@@ -785,71 +785,54 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-top: -20px;
 }
 
-.shop-recharge-validation {
-    width: 50%;
-    margin-top: -10px;
+.shop-recharge-validation-pseudo {
+    width: 40%;
+    margin-left: 25px;
 }
 
 .paypal {
-    height: 250px;
-    margin-bottom: 40px;
+    height: 601px;
+    margin-top: 10px;
     border-style: double;
     border-color: #42b3f4;
 }
 
-.cb {
-    height: 250px;
+.sms {
+    height: 150px;
+    margin-top: 10px;
     border-style: double;
     border-color: #55FF55;
 }
 
-.paysafecard {
-    height: 250px;
-    margin-bottom: 40px;
-    border-style: double;
-    border-color: #E19806;
-}
-
-.mobile {
-    height: 250px;
+.sms-appel-neosurf {
+    height: 195px;
+    margin-top: 25px;
     border-style: double;
     border-color: #C64F4F;
 }
 
-.mode-head {
-    font-size: 3em;
+.paysafecard {
+    height: 195px;
+    margin-top: 25px;
+    border-style: double;
+    border-color: #E19806;
 }
 
-.paypal-img {
-    height: 75px;
-    width: 275px;
+.form-pseudo {
+    width: 50%;
+    margin-top: -25px;
 }
 
-.mastercard-img {
-    height: 75px;
-    width: 100px;
-    margin-right: 25px;
+.tab-top {
+    width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25em;
+    color: black !important;
 }
 
-.cb-img {
-    height: 75px;
-    width: 100px;
-}
-
-.visa-img {
-    width: 200px;
-    height: 75px;
-}
-
-.paysafe-img {
-    width: 450px;
-    height: 75px;
-}
-
-.dedipass-img {
-    width: 275px;
-    height: 100px;
-    margin-bottom: 7px;
+.nombre {
 }
 /*Fin Dreaams*/
 

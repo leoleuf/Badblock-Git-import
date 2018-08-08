@@ -37,41 +37,53 @@
 {% endblock %}
 
 {% block content %}
-<!-- Debut liste paiements -->   
-    <h4 class="heading-bar recharge-heading"><span>Choisir mon mode de paiement</span></h4>
+<!-- Debut liste paiements -->
+    
+    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row center">
-        <div class="six columns">
-            {% for k,pay in paiement %}
-                {% if k is even %}
-                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
-                    <div class="{{ pay['class'] }}">
-                        <br><br><br>
-                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
-                        {% for key,offer in pay['offer'] %}
-                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endfor %}
+        <div class="three columns">
+            <a class="tab-top"><span class="nombre">1</span> Pseudo</a>
         </div>
-        <div class="six columns">
-            {% for k,pay in paiement %}
-                {% if k is not even %}
-                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
-                    <div class="{{ pay['class'] }}">
-                        <br><br><br>
-                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
-                        {% for key,offer in pay['offer'] %}
-                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endfor %}
+        <div class="three columns">
+            <a class="tab-top">Mode de paiement</a>
+        </div>
+        <div class="three columns">
+            <a class="tab-top">Somme</a>
+        </div>
+        <div class="three columns">
+            <a class="tab-top">Validation</a>
         </div>
     </div>
+    
+    <div>
+        1er tab
+        <h5>Indiquez le pseudo du compte à recharger</h5><br>
+        <form action="" method="get" id="choix-pseudo" name="choix-pseudo" class="form-pseudo">
+        <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici">
+        <a class="button button-primary shop-recharge-validation-pseudo" onclick="start()">Valider</a>
+    </div>
+    
+    <div class="row center">
+        <div class="six columns">
+            <div class="paypal">
 
+            </div>
+        </div>
+        <div class="six columns">
+            <div class="sms">
+
+            </div>
+            <div class="sms-appel-neosurf">
+
+            </div>
+            <div class="paysafecard">
+
+            </div>
+        </div>
+    </div>
+<!--
     <div class="row">
-        <div class="seven columns">
+        <div class="twelve columns">
             <div class="recharge-info">
                 Vous pouvez ici recharger votre compte en <i class="fa fa-money"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
                 Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
@@ -81,5 +93,7 @@
             </div>
         </div>
     </div>
+-->
+    
 {% endblock %}
 
