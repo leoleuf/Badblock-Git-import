@@ -44,6 +44,17 @@ class ShopApiController extends \App\Controllers\Controller
 
         $this->redis->setJson('shop', $data);
 
+
+        //Search promotions
+        $product = [];
+        $options = ['sort' => ['power' => -1]];
+        $product_list = $this->container->mongo->product_list->find(['promotion_view' => true], $options);
+        foreach ($product_list as $row){
+            array_push($product, $row);
+        }
+
+        $this->redis->setJson('shop.promotion', $product);
+
         echo "OK";
     }
 

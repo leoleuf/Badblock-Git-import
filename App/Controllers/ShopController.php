@@ -19,11 +19,11 @@ class ShopController extends Controller
 
 
     function index(RequestInterface $request, ResponseInterface $response){
-        //TODO by TomDev
+
         $data_shop = $this->redis->getJson('shop');
+        $data_promo = $this->redis->getJson('shop.promotion');
 
-
-        $this->render($response, 'shop.index',['serverlist' => $data_shop]);
+        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo]);
 
     }
 
@@ -78,8 +78,15 @@ class ShopController extends Controller
             }
         }
 
+        //Check promotion
+        if (isset($product->promotion)){
+            if ($product->promotion == true){
+                $product->price = $product->promotion_new_price;
+            }
+        }
+
         //Check if player have money
-        if(!$this->haveMoney($this->session->getProfile('username')['username'], 100)){
+        if(!$this->haveMoney($this->session->getProfile('username')['username'], $product->price)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
 

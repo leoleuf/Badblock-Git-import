@@ -71,25 +71,32 @@
             </div>
         {% endfor %}
     {% endif %}
-    {% if promo != false %}
+    {% if promotion != false %}
         <section class="shop-section" class="tabcontent">
             <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
             <div class="product-list">
-                {% for key in promo %}
+                {% for k,prod in promotion %}
+                <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
                     <div class="product-item product-item-promotion">
                         <div class="product-header">
-                            <h5 class="product-title">{{ key[1] }}</h5>
+                            <h5 class="product-title">{{ prod['name'] }}</h5>
                         </div>
                         <div class="product-image">
-                            <img src="{{ key[3] }}">
+                            <img src="{{ prod['image'] }}">
                         </div>
-                        <div class="product-price product-promotion">{{ key[5] }}</div>
-                        <div class="promotion">{{ key[2] }}</div>
-                        <div class="promotion-reduction">{{ key[4] }}%</div>
+                        <div class="product-price product-promotion">{{ prod['promotion_new_price'] }}</div>
+                        <div class="promotion">{{ prod['price'] }}</div>
+                        <div class="promotion-reduction">{{ prod['promotion_coef'] }}%</div>
                         <div class="product-footer">
-                            <div class="product-action"><button idpro="{{ key[0]["$oid"] }}" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            <div class="product-action">
+                                <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    Acheter
+                                </button>
+                            </div>
                         </div>
                     </div>
+                </a>
                 {% endfor %}
             </div>
         </section>
@@ -107,7 +114,7 @@
                     <div class="product-list">
                         {% for prod in cat['items'] %}
                             <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
-                                {% if key[4] %}
+                                {% if prod['promotion'] %}
                                     <div class="product-item product-item-promotion">
                                         <div class="product-header">
                                             <h5 class="product-title">{{ prod['name'] }}</h5>
