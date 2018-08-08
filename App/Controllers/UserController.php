@@ -442,5 +442,21 @@ class UserController extends Controller
     }
 
 
+    public function changeName(RequestInterface $request, ResponseInterface $response){
+        if (!isset($_POST['name'])){
+            $this->flash->addMessage('setting_error', "Nouveau Pseudo non renseigné !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+        if (strlen($_POST['name']) < 3 || strlen($_POST['name']) > 16){
+            $this->flash->addMessage('setting_error', "Votre Nouveau Pseudo doit faire entre 4 et 16 caractères !");
+            //redirect to last page
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+
+    }
+
+
 
 }

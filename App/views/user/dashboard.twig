@@ -215,6 +215,18 @@
                 </div>
             </div>
 
+            <div class="six columns">
+                <div class="span">
+                    <h4 class="top0">Changer mon Pseudo</h4>
+                    <form action="/dashboard/changespseudo/" method="post" name="confirm-mdp">
+                        <label for="newpassword">Entrez votre nouveau pseudo</label>
+                        <input type="text" name="newpseudo" id="newpseudo" placeholder="Ex : Fluor" />
+
+                        <input type="submit" class="button-primary">
+                    </form>
+                </div>
+            </div>
+
         </section>
     </div>
     <div id="5" class="tabcontent para" style="display: none;">
@@ -347,7 +359,6 @@
     </div>
 
     {% if flash('setting_error') %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
         {% for flash in flash('setting_error') %}
             <div class="remodal modal-remodal " data-remodal-id="shop-succes">
                 <button data-remodal-action="close" class="remodal-close"></button>
@@ -361,6 +372,9 @@
             </script>
         {% endfor %}
     {% endif %}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
 
 {% endblock %}
 
