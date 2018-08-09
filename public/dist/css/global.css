@@ -831,8 +831,29 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     font-size: 1.25em;
     color: black !important;
 }
+.text-sms {
+    margin-top: 35px;
+}
+.paypal-img {
+    width: 500px;
+    margin-top: 60px;
+    height: 165px;
+}
 
-.nombre {
+.master-img {
+    width: 30%;
+    height: 20%;
+}
+
+.cb-img {
+    width: 30%;
+    height: 20%;
+    margin-left: 25px;
+}
+
+.visa-img {
+    width: 500px;
+    height: 200px;
 }
 /*Fin Dreaams*/
 

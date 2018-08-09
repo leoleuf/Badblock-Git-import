@@ -42,19 +42,20 @@
     <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row center">
         <div class="three columns">
-            <a class="tab-top"><span class="nombre">1</span> Pseudo</a>
+            <input class="tab-top" type="button" name="bt1" value="Pseudo" onclick="afficher('pseudo');" />
         </div>
         <div class="three columns">
-            <a class="tab-top">Mode de paiement</a>
+            <input class="tab-top" type="button" name="bt1" value="Mode de paiement" onclick="afficher('mode');" />
         </div>
         <div class="three columns">
-            <a class="tab-top">Somme</a>
+            <input class="tab-top" type="button" name="bt1" value="Somme" onclick="afficher('somme');" />
         </div>
         <div class="three columns">
-            <a class="tab-top">Validation</a>
+            <input class="tab-top" type="button" name="bt1" value="Validation" onclick="afficher('validation');" />
         </div>
     </div>
-    
+
+<!-- 1er tab -->
     <div>
         1er tab
         <h5>Indiquez le pseudo du compte à recharger</h5><br>
@@ -62,16 +63,22 @@
         <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici">
         <a class="button button-primary shop-recharge-validation-pseudo" onclick="start()">Valider</a>
     </div>
-    
+<!-- Fin 1er tab -->
+<!-- 2ème tab -->
+    2e tab
     <div class="row center">
         <div class="six columns">
             <div class="paypal">
 
+                <img class="paypal-img" src="{{ base_url() }}/dist/images/paypal.png"><br>
+                <img class="master-img" src="https://images.badblock.fr/i/mastercard%20logo.png">
+                <img class="cb-img" src="https://images.badblock.fr/i/cb%20logo.png"><br>
+                <img class="visa-img" src="https://images.badblock.fr/i/visa%20logo.png">
             </div>
         </div>
         <div class="six columns">
             <div class="sms">
-
+                <h5 class="text-sms">Envoie BADBLOCK suivi de ton pseudo au 84300 et reçoit 2.000 points boutique pour 2.50€</h5>
             </div>
             <div class="sms-appel-neosurf">
 
@@ -81,6 +88,14 @@
             </div>
         </div>
     </div>
+<!-- Fin 2ème tab -->
+    <script type="text/javascript"> 
+    var pseudo=""; 
+    var mode="";
+    var somme=""; 
+    var validation=""; 
+    function afficher(num_texte){ document.getElementById('mon_div').innerHTML=eval(num_texte); } </script>
+     
 <!--
     <div class="row">
         <div class="twelve columns">
