@@ -836,8 +836,8 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 .paypal-img {
     width: 500px;
-    margin-top: 60px;
-    height: 165px;
+    margin-top: 65px;
+    height: 150px;
 }
 
 .master-img {
@@ -854,6 +854,29 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .visa-img {
     width: 500px;
     height: 200px;
+}
+
+.smsplus-img {
+    width: 200px;
+    height: 65px;
+}
+
+.neosurf-img {
+    width: 200px;
+    height: 75px;
+}
+
+.tel-txt {
+    font-size: 1.9em;
+    font-weight: bold;
+    color: #ff3399;
+    letter-spacing: 4px;
+}
+
+.paysafe-img {
+    width: 525px;
+    height: 90px;
+    margin-top: 5px;
 }
 /*Fin Dreaams*/
 
