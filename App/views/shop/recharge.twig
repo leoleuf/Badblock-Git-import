@@ -37,41 +37,75 @@
 {% endblock %}
 
 {% block content %}
-<!-- Debut liste paiements -->   
-    <h4 class="heading-bar recharge-heading"><span>Choisir mon mode de paiement</span></h4>
+<!-- Debut liste paiements -->
+    
+    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row center">
-        <div class="six columns">
-            {% for k,pay in paiement %}
-                {% if k is even %}
-                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
-                    <div class="{{ pay['class'] }}">
-                        <br><br><br>
-                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
-                        {% for key,offer in pay['offer'] %}
-                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endfor %}
+        <div class="three columns">
+            <input class="tab-top" type="button" name="bt1" value="Pseudo" onclick="afficher('pseudo');" />
         </div>
-        <div class="six columns">
-            {% for k,pay in paiement %}
-                {% if k is not even %}
-                    <h4 class="heading-bar"><span>{{ pay['name'] }}</span></h4>
-                    <div class="{{ pay['class'] }}">
-                        <br><br><br>
-                        <img src="{{ pay['image'] }}" class="paypal-img"><br><br>
-                        {% for key,offer in pay['offer'] %}
-                            <a class="button button-primary">{{ offer['points'] }} / {{ offer['price'] }}€</a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            {% endfor %}
+        <div class="three columns">
+            <input class="tab-top" type="button" name="bt1" value="Mode de paiement" onclick="afficher('mode');" />
+        </div>
+        <div class="three columns">
+            <input class="tab-top" type="button" name="bt1" value="Somme" onclick="afficher('somme');" />
+        </div>
+        <div class="three columns">
+            <input class="tab-top" type="button" name="bt1" value="Validation" onclick="afficher('validation');" />
         </div>
     </div>
 
+<!-- 1er tab -->
+    <div>
+        1er tab
+        <h5>Indiquez le pseudo du compte à recharger</h5><br>
+        <form action="" method="get" id="choix-pseudo" name="choix-pseudo" class="form-pseudo">
+        <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici">
+        <a class="button button-primary shop-recharge-validation-pseudo" onclick="start()">Valider</a>
+    </div>
+<!-- Fin 1er tab -->
+<!-- 2ème tab -->
+    2e tab
+    <div class="row center">
+        <div class="six columns">
+            <div class="paypal">
+
+                <img class="paypal-img" src="{{ base_url() }}/dist/images/paypal.png"><br>
+                <img class="master-img" src="https://images.badblock.fr/i/mastercard%20logo.png">
+                <img class="cb-img" src="https://images.badblock.fr/i/cb%20logo.png"><br>
+                <img class="visa-img" src="https://images.badblock.fr/i/visa%20logo.png">
+            </div>
+        </div>
+        <div class="six columns">
+            <div class="sms">
+                <h5 class="text-sms">Envoie BADBLOCK suivi de ton pseudo au 84300 et reçoit 2.000 points boutique pour 4.50€</h5><span class="info">Service 4.50€/SMS + prix éventuel du SMS</span>
+                <form action="" method="get" id="code-recu" name="code-recu" class="form-code">
+                <input type="text" id="pseudo" name="pseudo" class="form-code" placeholder="Entrer le code reçu ici">
+                <a class="button button-primary shop-recharge-validation-pseudo" onclick="start()">Valider</a>
+                
+                
+            </div>
+            <div class="sms-appel-neosurf">
+                <img class="neosurf-img" src="https://images.badblock.fr/i/neosurfLogo5.png"><br>
+                <img class="smsplus-img" src="https://images.badblock.fr/i/Logo-SMSPlus-e1391101911874.png"><br>
+                <h5 class="tel-txt">Téléphone</h5>
+            </div>
+            <div class="paysafecard"><br><br>
+                <img class="paysafe-img" src="{{ base_url() }}/dist/images/paysafecard.png">
+            </div>
+        </div>
+    </div>
+<!-- Fin 2ème tab -->
+    <script type="text/javascript"> 
+    var pseudo=""; 
+    var mode="";
+    var somme=""; 
+    var validation=""; 
+    function afficher(num_texte){ document.getElementById('mon_div').innerHTML=eval(num_texte); } </script>
+     
+<!--
     <div class="row">
-        <div class="seven columns">
+        <div class="twelve columns">
             <div class="recharge-info">
                 Vous pouvez ici recharger votre compte en <i class="fa fa-money"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
                 Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
@@ -81,5 +115,7 @@
             </div>
         </div>
     </div>
+-->
+    
 {% endblock %}
 
