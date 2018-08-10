@@ -797,6 +797,11 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     border-color: #42b3f4;
 }
 
+.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+}
+
 .sms {
     height: 150px;
     margin-top: 10px;
@@ -832,7 +837,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     color: black !important;
 }
 .text-sms {
-    margin-top: 35px;
+    margin-top: 5px;
 }
 .paypal-img {
     width: 500px;
@@ -877,6 +882,16 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     width: 525px;
     height: 90px;
     margin-top: 5px;
+}
+.sms:hover > .info {
+    display: block;
+}
+
+.info {
+    display: none;
+    font-size: 0.7em;
+    margin-top: -20px;
+    margin-bottom: 5px;
 }
 /*Fin Dreaams*/
 
