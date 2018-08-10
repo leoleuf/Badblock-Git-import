@@ -20,11 +20,10 @@ class Paypal {
 
     // Remplisser les variables avec vos identifiants api paypal
 
-    private $user = 'X';
-    private $pwd = 'X';
-    private $signature = "X-X-X";
-    private $endpoint = "https://api-3t.paypal.com/nvp";
-    //private $prod = 1;
+    private $user = 'mathieu.richard31-facilitator_api1.orange.fr';
+    private $pwd = '4C39FSAG9BF7L63S';
+    private $signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AsNrH04zwtanbQeahRFvsUlq7qdf";
+    private $endpoint = "https://api-3t.sandbox.paypal.com/nvp";
     public $errors = array();
 
     public function __construct($user = false, $pwd = false, $signature = false, $prod = false){
@@ -44,12 +43,6 @@ class Paypal {
             $this->signature = $signature;
 
         }
-        if($prod){
-
-            $this->endpoint = preg_replace('/\.sandbox/', '', $this->endpoint);
-
-        }
-
     }
 
     public function request($method, $params){

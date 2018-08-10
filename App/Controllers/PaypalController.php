@@ -10,11 +10,12 @@ class PaypalController extends Controller
 {
     public function startPaiement(RequestInterface $request, ResponseInterface $response,$id){
         //Search offer in array
+        $id = $id['id'];
 
-        if (!isset($this->container->config['paiement']['paypal']['offer'][$id])){
+        if (!isset($this->container->config['paiement'][0]['offer'][$id])){
             return $this->redirect($response, '/shop/recharge');
         }else{
-            $offer = $this->container->config['paiement']['paypal']['offer'][$id];
+            $offer = $this->container->config['paiement'][0]['offer'][$id];
         }
 
         $produit = array();
@@ -23,8 +24,8 @@ class PaypalController extends Controller
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';            // Redirection après payement
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';              // Redirection en cas d'annulation
         $produit['Paypal']['Prix'] = $offer['price'];                                // Prix de votre produit (doit etre en format XX.X, ex: 60.0 ou 19.99)
-        $produit['Paypal']['OfferID'] = "Rechargement";                        // Donnez un id unique à votre offre sans espaces
-        $produit['Paypal']['Offer'] = 'Rechagement Points Boutique';                    // Nom de votre produit( sera afficher sur paypal )
+        $produit['Paypal']['OfferID'] = "1";                        // Donnez un id unique à votre offre sans espaces
+        $produit['Paypal']['Offer'] = 'Rechargement Points Boutique';                    // Nom de votre produit( sera afficher sur paypal )
         $produit['Paypal']['Offer_desc'] = 'Rechargement de '. $offer['points'] . 'points boutique';    // Offre de votre produit.
         $produit['Paypal']['Currency'] = 'EUR';                           // Code de votre monnaie( en majuscule ).
         $produit['Paypal']['QTY'] = 1;                                    // Quantité( 1 par défault )( Le prix sera multiplié par la quantité).
@@ -51,7 +52,7 @@ class PaypalController extends Controller
 
         if($resp){
             // Remplacer www.paypal.com par www.sandbox.paypal.com pour utiliser la sandbox
-            $paypal = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$response['TOKEN'];
+            $paypal = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
             return $this->redirect($response, $paypal);
         }else{
             return $this->redirect($response, '/shop/recharge');
@@ -67,23 +68,27 @@ class PaypalController extends Controller
 
         $produit = array();
         $produit['Paypal']['Prix'] = $_GET['Prix'];
-        $produit['Paypal']['OfferID'] = $_GET['OfferID'];
+        $produit['Paypal']['OfferID'] = $_GET['offer'];
         $produit['Paypal']['Offer'] = $_GET['Offer'];
         $produit['Paypal']['Offer_desc'] = $_GET['Offer_desc'];
         $produit['Paypal']['Currency'] = $_GET['Currency'];
         $produit['Paypal']['QTY'] = $_GET['QTY'];
+        $produit['Paypal']['Url'] = 'https://badblock.fr';
+        $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
+        $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
+
 
         if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
             return $this->redirect($response, '/shop/recharge');
         }
 
         $paypal = new Paypal();
-        $response = $this->request('GetExpressCheckoutDetails', array(
+        $resp = $paypal->request('GetExpressCheckoutDetails', array(
             'TOKEN' => $_GET['token']
         ));
 
-        if($response){
-            if($response['CHECKOUTSTATUS'] == 'PaymentActionCompleted'){
+        if($resp){
+            if($resp['CHECKOUTSTATUS'] == 'PaymentActionCompleted'){
                 // Détéction du payement
                 return $this->redirect($response, '/shop/recharge');
             }
