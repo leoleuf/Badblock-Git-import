@@ -8,34 +8,21 @@
 
 namespace App\Controllers;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 
 class CreditController extends Controller
 {
 
-    private $request;
 
-    private $offers = [
-        'PAYPAL' => [
-            950 => 10.0,
-            2300 => 25.0
-        ],
-        'DEDIPASS' => [
-            950 => 10.0,
-            2300 => 25.0
-        ]
-    ];
-
-    public function paymentCancel(){
-        return $this->redirect();
+    public function paymentCancel(RequestInterface $request, ResponseInterface $response){
+        $this->render($response, 'pages.play');
     }
 
-    public function  paymentSuccess(){
-        return $this->redirect();
+    public function paymentSuccess(RequestInterface $request, ResponseInterface $response){
+        $this->render($response, 'pages.play');
     }
 
-    public function paymentError(){
-        return $this->redirect();
-    }
 
     
 }

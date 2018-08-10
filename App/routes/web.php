@@ -37,8 +37,8 @@ $app->group('/shop', function (){
 	$this->get('/recharge/paypal-process', \App\Controllers\PaypalController::class . ':process')->setName('shop.recharge.paypal.process');
 
 
-	$this->get('/recharge/cancel', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.cancel');
-	$this->get('/recharge/sucess', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.sucess');
+	$this->get('/recharge/cancel', \App\Controllers\CreditController::class . ':paymentCancel')->setName('shop.recharge.paypal.cancel');
+	$this->get('/recharge/sucess', \App\Controllers\CreditController::class . ':paymentSuccess')->setName('shop.recharge.paypal.sucess');
 
 });
 
