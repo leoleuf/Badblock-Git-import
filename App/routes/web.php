@@ -28,20 +28,17 @@ $app->group('/stats', function (){
 
 $app->group('/shop', function (){
 	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
-
-	$this->get('/test', \App\Controllers\ShopController::class . ':sendRabbitData');
-
-	//Get for dev easy
-	$this->get('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 
 	$this->get('/recharge', \App\Controllers\ShopController::class . ':getRecharge')->setName('shop.recharge');
 
-	$this->get('/recharge/paypal', \App\Controllers\PaypalController::class . ':index')->setName('shop.recharge.paypal');
-	$this->get('/recharge/paypal/{id}', \App\Controllers\PaypalController::class . ':execute')->setName('shop.recharge.paypal.exec');
+	//Paypal part
+	$this->get('/recharge/paypal/{id}', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.start');
+	$this->get('/recharge/paypal-process', \App\Controllers\PaypalController::class . ':process')->setName('shop.recharge.paypal.process');
 
-	$this->get('/recharge/paypal-ipn', \App\PaypalIPN::class . ':verifyIPN')->setName('shop.recharge.paypal.ipn');
 
+	$this->get('/recharge/cancel', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.cancel');
+	$this->get('/recharge/sucess', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.sucess');
 
 });
 
