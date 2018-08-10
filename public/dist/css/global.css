@@ -797,7 +797,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     border-color: #42b3f4;
 }
 
-.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover {
+.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover, .btn:hover {
     transform: scale(1.05);
     transition: 0.5s;
 }
@@ -820,7 +820,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     height: 195px;
     margin-top: 25px;
     border-style: double;
-    border-color: #E19806;
+    border-color: #8B4FC6;
 }
 
 .form-pseudo {
@@ -893,6 +893,96 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-top: -20px;
     margin-bottom: 5px;
 }
+
+.progress-bar {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255,255,255,.5) 25px, rgba(255,255,255,.5) 50px);
+}
+
+.small-offer {
+    height: 150px;
+    padding-top: 8px;
+    border-style: double;
+    border-color: #42b3f4;
+    font-size: 1.2em;
+}
+
+.small-offer:hover {
+    transform: scale(1.02);
+    transition: 0.5s;
+}
+
+.medium-offer:hover {
+    transform: scale(1.04);
+    transition: 0.5s;
+}
+
+.big-offer:hover {
+    transform: scale(1.06);
+    transition: 0.5s;
+}
+
+.small-offer-btn {
+    margin-top: 5px;
+}
+
+.medium-offer {
+    height: 200px;
+    padding-top: 18px;
+    border-style: double;
+    border-color: #55FF55;
+    font-size: 1.5em;
+    border-width: medium;
+}
+
+.top-medium {
+    margin-top: 35px;
+}
+
+.top-big {
+    margin-top: 35px;
+}
+
+.medium-offer-btn {
+    margin-top: 15px;
+    width: 60%
+}
+
+.big-offer-btn {
+    width: 75%
+}
+
+.big-offer {
+    height: 250px;
+    margin-left: 275px;
+    width: 50%;
+    padding-top: 35px;
+    border-style: double;
+    border-width: thick;
+    font-size: 2.3em;
+}
+
+.promotion-border {
+    animation : border-promotion 1.5s infinite ease-in-out;
+}
+
+.h6-small {
+    font-size: 1.2em !important;
+    margin-bottom: -18px !important;
+    line-height: 25px !important;
+}
+
+.h6-medium {
+    font-size: 1.2em !important;
+    margin-bottom: -35px !important;
+    line-height: 35px !important;
+}
+
+.h6-big {
+    font-size: 1.2em !important;
+    margin-bottom: -35px !important;
+    line-height: 50px !important;
+}
+
 /*Fin Dreaams*/
 
 .user-menu {
@@ -1322,6 +1412,25 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
             }
             100% {
                 color: #D92CCE;
+            }
+        }
+
+        @keyframes border-promotion
+        {
+            0% {
+                border-color: #40A497;
+            }
+            25% {
+                border-color: #EABA19;
+            }
+            50% {
+                border-color: #C64F4F;
+            }
+            75% {
+                border-color: #55FF55;
+            }
+            100% {
+                border-color: #D92CCE;
             }
         }
 

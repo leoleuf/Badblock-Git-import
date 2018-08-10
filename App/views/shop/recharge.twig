@@ -42,23 +42,27 @@
     <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
     <div class="row center">
         <div class="three columns">
-            <input class="tab-top" type="button" name="bt1" value="Pseudo" onclick="afficher('pseudo');" />
+            <a href="#pseudo"><input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo" onclick="afficher('pseudo');" /></a>
         </div>
         <div class="three columns">
-            <input class="tab-top" type="button" name="bt1" value="Mode de paiement" onclick="afficher('mode');" />
+            <input class="tab-top btn" type="button" name="bt2" value="Mode de paiement" onclick="afficher('mode');" />
         </div>
         <div class="three columns">
-            <input class="tab-top" type="button" name="bt1" value="Somme" onclick="afficher('somme');" />
+            <input class="tab-top btn" type="button" name="bt3" value="Somme" onclick="afficher('somme');" />
         </div>
         <div class="three columns">
-            <input class="tab-top" type="button" name="bt1" value="Validation" onclick="afficher('validation');" />
+            <input class="tab-top btn" type="button" name="bt4" value="Validation" onclick="afficher('validation');" />
         </div>
+        
     </div>
-
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 25%;"></div>
+    </div>
+    <br>
 <!-- 1er tab -->
     <div>
         1er tab
-        <h5>Indiquez le pseudo du compte à recharger</h5><br>
+        <h5 id="pseudo">Indique le pseudo du compte à recharger</h5><br>
         <form action="" method="get" id="choix-pseudo" name="choix-pseudo" class="form-pseudo">
         <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici">
         <a class="button button-primary shop-recharge-validation-pseudo" onclick="start()">Valider</a>
@@ -66,10 +70,10 @@
 <!-- Fin 1er tab -->
 <!-- 2ème tab -->
     2e tab
+    <h5 id="mode">Choisis le mode de paiement</h5>
     <div class="row center">
         <div class="six columns">
             <div class="paypal">
-
                 <img class="paypal-img" src="{{ base_url() }}/dist/images/paypal.png"><br>
                 <img class="master-img" src="https://images.badblock.fr/i/mastercard%20logo.png">
                 <img class="cb-img" src="https://images.badblock.fr/i/cb%20logo.png"><br>
@@ -96,6 +100,64 @@
         </div>
     </div>
 <!-- Fin 2ème tab -->
+<!-- Début 3ème tab -->
+    3e tab
+    <h5 id="somme">Quelle somme de points boutique veux-tu ?</h5>
+    <div class="row center">
+        <div class="three columns small-offer">
+            <h6 class="h6-small">1 500 points boutique<br>
+            5€<br>
+            Bonus +0</h6><br>
+            <a class="button button-primary small-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+        <div class="three columns small-offer">
+            <h6 class="h6-small">3 000 points boutique<br>
+            10€<br>
+            Bonus +0</h6><br>
+            <a class="button button-primary small-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+        <div class="three columns small-offer">
+            <h6 class="h6-small">5 400 points boutique<br>
+            15€<br>
+            Bonus +900</h6><br>
+            <a class="button button-primary small-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+        <div class="three columns small-offer">
+            <h6 class="h6-small">7 800 points boutique<br>
+            20€<br>
+            Bonus +1 800</h6><br>
+            <a class="button button-primary small-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+    </div>
+    <div class="row center top-medium">
+        <div class="four columns medium-offer">
+            <h6 class="h6-medium">11 400 points boutique<br>
+            30€<br>
+            Bonus +2 400</h6><br>
+            <a class="button button-primary medium-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+        <div class="four columns medium-offer">
+            <h6 class="h6-medium">18 300 points boutique<br>
+            50€<br>
+            Bonus +3 300</h6><br>
+            <a class="button button-primary medium-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+        <div class="four columns medium-offer">
+            <h6 class="h6-medium">34 200 points boutique<br>
+            100€<br>
+            Bonus +4 200</h6><br>
+            <a class="button button-primary medium-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+        </div>
+    </div>
+    <div class="row center big-offer promotion-border top-big">
+        <h6 class="h6-big">180 000 points boutique<br>
+        250€<br>
+        Bonus +30 000</h6><br>
+        <a class="button button-primary big-offer-btn" onclick="start()"><i class="fas fa-check"></i>  Choisir</a>
+    </div>
+
+<!-- Fin 3ème tab -->
+
     <script type="text/javascript"> 
     var pseudo=""; 
     var mode="";
