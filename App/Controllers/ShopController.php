@@ -178,17 +178,4 @@ class ShopController extends Controller
 
 
     }
-
-
-    public function getRecharge(RequestInterface $request, ResponseInterface $response){
-
-        $Paiement_data = $this->container->config['paiement'];
-
-
-        $this->render($response, 'shop.recharge',['paiement' => $Paiement_data]);
-
-
-    }
-
-
 }

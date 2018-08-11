@@ -23,6 +23,28 @@ class CreditController extends Controller
         $this->render($response, 'pages.play');
     }
 
+    public function paymentINT($pseudo, $price, $points, $mode){
+
+    }
+
+
+
+    public function getRecharge(RequestInterface $request, ResponseInterface $response){
+
+        $Paiement_data = $this->container->config['paiement'];
+
+
+        $this->render($response, 'shop.recharge',['paiement' => $Paiement_data]);
+
+
+    }
+
+
+
+
+
+
+
 
     
 }
