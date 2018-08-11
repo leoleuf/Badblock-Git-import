@@ -136,6 +136,8 @@ class PaypalController extends Controller
             ];
 
             $this->container->mongo->funds->insertOne([$data]);
+            
+            return $this->redirect($response, '/shop/recharge/sucess');
         }else{
             return $this->redirect($response, '/shop/recharge');
         }
