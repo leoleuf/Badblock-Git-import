@@ -14,6 +14,9 @@ use Psr\Http\Message\ResponseInterface;
 class CreditController extends Controller
 {
 
+    public function paymentINT($mongoDB,RequestInterface $request, ResponseInterface $response,$price, $points, $mode){
+
+    }
 
     public function paymentCancel(RequestInterface $request, ResponseInterface $response){
         $this->render($response, 'pages.play');
@@ -23,20 +26,34 @@ class CreditController extends Controller
         $this->render($response, 'pages.play');
     }
 
-    public function paymentINT($pseudo, $price, $points, $mode){
-
-    }
-
-
 
     public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1){
         if (empty($id)){
             $this->render($response, 'shop.recharge.step-1');
         }elseif($id['id'] == 2){
             $this->render($response, 'shop.recharge.step-2');
-        }else{
-            $this->render($response, 'shop.recharge.step-3');
+        }elseif($id['id'] == "paypal"){
+            return $this->paypal($request,$response);
         }
+    }
+
+    public function postRecharge(RequestInterface $request, ResponseInterface $response){
+        if (!empty($_POST['pseudo'])){
+            $data = $this->container->mongoServer->players->findOne(['name' => strtolower($_POST['pseudo'])]);
+
+            if ($data != null){
+                $this->container->session->set('recharge-username', $_POST['pseudo']);
+                $this->render($response, 'shop.recharge.step-2');
+            }else{
+                $this->render($response, 'shop.recharge.step-1', ['error' => $_POST['pseudo'] . ' ne s\'est jamais connecté sur le serveur !']);
+            }
+        }
+    }
+
+    public function paypal(RequestInterface $request, ResponseInterface $response){
+
+        $this->render($response, 'shop.recharge.paypal');
+
     }
 
 

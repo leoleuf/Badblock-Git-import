@@ -55,7 +55,7 @@ class UserController extends Controller
 
         //Recherche des achats du joueurs
         $collection_facture = $this->container->mongo->funds;
-        $factures = $collection_facture->find(['unique-id' => $user['uniqueId']]);
+        $factures = $collection_facture->find(['uniqueId' => $user['uniqueId']]);
 
 
         if (count($factures) == "1"){

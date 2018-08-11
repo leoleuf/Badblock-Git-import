@@ -31,6 +31,7 @@ $app->group('/shop', function (){
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 
 	$this->get('/recharge', \App\Controllers\CreditController::class . ':stepRecharge')->setName('shop.recharge');
+	$this->post('/recharge', \App\Controllers\CreditController::class . ':postRecharge')->setName('shop.recharge.post');
 	$this->get('/recharge/step-{id}', \App\Controllers\CreditController::class . ':stepRecharge')->setName('shop.recharge.step');
 
 	//Paypal part

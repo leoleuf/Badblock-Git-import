@@ -14,6 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
+
 class ShopController extends Controller
 {
 
@@ -100,7 +101,8 @@ class ShopController extends Controller
             'offer' => $product->depend_name,
             'name' => $product->name,
             'price' => $product->price,
-            'ingame' => false
+            'ingame' => false,
+            'date' => date('Y-m-d H:i:s')
         ];
         $this->container->mongo->buy_logs->InsertOne($data);
 

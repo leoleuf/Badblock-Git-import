@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\RequestInterface;
 use App\Paypal;
+use App\Controllers\CreditController;
 
 class PaypalController extends Controller
 {
@@ -24,7 +25,7 @@ class PaypalController extends Controller
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';            // Redirection après payement
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';              // Redirection en cas d'annulation
         $produit['Paypal']['Prix'] = $offer['price'];                                // Prix de votre produit (doit etre en format XX.X, ex: 60.0 ou 19.99)
-        $produit['Paypal']['OfferID'] = "1";                        // Donnez un id unique à votre offre sans espaces
+        $produit['Paypal']['OfferID'] = $id;                        // Donnez un id unique à votre offre sans espaces
         $produit['Paypal']['Offer'] = 'Rechargement Points Boutique';                    // Nom de votre produit( sera afficher sur paypal )
         $produit['Paypal']['Offer_desc'] = 'Rechargement de '. $offer['points'] . 'points boutique';    // Offre de votre produit.
         $produit['Paypal']['Currency'] = 'EUR';                           // Code de votre monnaie( en majuscule ).
@@ -122,9 +123,19 @@ class PaypalController extends Controller
         if($resp){
             // Detection d'une quelconque action
             // Sauvegarde dans mongoDB
-            $this->container->mongo->funds_logs->insertOne([$response]);
+            $this->container->mongo->funds_logs->insertOne([$resp]);
 
-            return $this->redirect($response, '/shop/recharge/sucess');
+            $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
+
+            $data = [
+                'uniqueId' => $user['uniqueId'],
+                'date' => date('Y-m-d H:i:s'),
+                'price' => $resp["PAYMENTINFO_0_AMT"],
+                'gateway' => 'paypal',
+                'points' => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
+            ];
+
+            $this->container->mongo->funds->insertOne([$data]);
         }else{
             return $this->redirect($response, '/shop/recharge');
         }
