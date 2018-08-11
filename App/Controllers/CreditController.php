@@ -29,14 +29,12 @@ class CreditController extends Controller
 
 
 
-    public function getRecharge(RequestInterface $request, ResponseInterface $response){
-
-        $Paiement_data = $this->container->config['paiement'];
-
-
-        $this->render($response, 'shop.recharge',['paiement' => $Paiement_data]);
-
-
+    public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1){
+        if (empty($id)){
+            $this->render($response, 'shop.recharge.step-1');
+        }else{
+            $this->render($response, 'shop.recharge.step-2');
+        }
     }
 
 
