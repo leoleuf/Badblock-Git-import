@@ -32,8 +32,10 @@ class CreditController extends Controller
     public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1){
         if (empty($id)){
             $this->render($response, 'shop.recharge.step-1');
-        }else{
+        }elseif($id['id'] == 2){
             $this->render($response, 'shop.recharge.step-2');
+        }else{
+            $this->render($response, 'shop.recharge.step-3');
         }
     }
 
