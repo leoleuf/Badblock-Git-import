@@ -46,13 +46,14 @@
                     {% if user is not defined %}
                         <a class="button button-primary" href="{{ forum_url }}/login"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
+                        <span class="margin"></span>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
                     {% endif %}
                     {% if user is defined %}
                         <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
-                        
+                        <span class="margin"></span>
                         <a class="button button-danger" href="{{ path_for('logout') }}"><i
                                     class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
                     {% endif %}
@@ -116,25 +117,6 @@
 {% endif %}#}
 <!-------page-navbar-user fin------->
 <!------Menu fin ------->
-
-<!-------page-title------->
-{% if show_title != false %}
-    <section id="pagetitle-container">
-        <div class="container">
-            <div class="">
-                <h1>{{ title }}</h1>
-                <h3>{{ sub_title }}</h3>
-            </div>
-            <div class="breadcrumb">
-                <ul>
-                    <li><a href="{{ path_for('home') }}">{{ 'home'|trans }}</a></li>
-                    <li class="current-page"><a href="#">{{ title }}</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-{% endif %}
-<!-------page-title fin ------->
 
 <!-- COVER  -->
 {% if block('cover') is defined %}
