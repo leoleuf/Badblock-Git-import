@@ -786,8 +786,12 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .shop-recharge-validation-pseudo {
-    width: 40%;
-    margin-left: 25px;
+    width: 60%;
+    margin-left: 5%;
+}
+
+.recharge-bottom {
+    margin-bottom: -35px;
 }
 
 .paypal {
@@ -824,7 +828,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .form-pseudo {
-    width: 50%;
+    width: 100% !important;
     margin-top: -25px;
 }
 

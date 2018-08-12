@@ -67,12 +67,24 @@
             <i class="icon icon-remove"></i>
         </div>
     {% endif %}
-    <div>
-        <h5 id="pseudo">Indiquer le pseudo du compte à recharger</h5><br>
-        <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="form-pseudo">
-            <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" required>
-            <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
-        </form>
+    <div class="row">
+        <div class="six columns">
+            <h5 id="pseudo">Indiquer le pseudo du compte à recharger</h5><br>
+            <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="form-pseudo">
+                <input type="text" id="pseudo" name="pseudo" placeholder="Entrer le pseudo ici" required>
+                <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
+            </form>
+        </div>
+        <div class="six columns recharge-bottom">
+            <div class="recharge-info">
+                Vous pouvez ici recharger votre compte en <i class="fa fa-money"></i>  points boutique afin d'acheter sur la boutique de Badblock.<br>
+                Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
+                Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
+                Toute utilisation de PayPal par un mineur sans accord parental ou tout problème sur PayPal entraînera un ban définitif de notre plateforme.<br>
+                Aucun remboursement ne sera effectué si le produit a bien été livré en jeu.
+            </div>
+
+        </div>
     </div>
 {% endblock %}
 
