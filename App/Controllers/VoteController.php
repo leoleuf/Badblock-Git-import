@@ -189,10 +189,37 @@ class VoteController extends Controller
 
 
     public function loterie(RequestInterface $request, ResponseInterface $response, $type){
+        $type = $type['type'];
         if (isset($_POST['pseudo'])){
+            $array_type = ["1","2","3","4","5"];
+            if (in_array($type, $array_type)){
+                if (rand(0, 3) == 1){
+                    $nb1 = rand(0, 100);
+                }else{
+                    $nb1 = 1;
+                }
+                $nb2 = rand(0, 45);
+                $nb3 = rand(0, 30);
+                $nb = round(($nb1 + $nb2 + $nb3) / 3, 0);
 
-        }else{
-            return $response->write("No pseudo")->withStatus(405);
+                $search = false;
+
+                while ($search == false){
+                    $data = $this->container->mongo->vote_recomp->findOne(['type' => $type,'power' => $nb]);
+
+                    if ($data == null){
+                        $nb = $nb - 1;
+                    }else{
+                        $search = true;
+                    }
+
+                    if ($nb < 1){
+                        return $response->write('Error')->withStatus(200);
+                    }
+                }
+
+                return $response->write("Vous avez gagné " . $data['name'])->withStatus(200);
+            }
         }
     }
 
