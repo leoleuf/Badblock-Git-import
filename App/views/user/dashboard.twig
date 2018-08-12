@@ -11,7 +11,7 @@
                     <div class="profile-title">
                         <div class="profile-mc-head"><img src="https://guiria.badblock.fr/head/{{ user.name }}/110.png" title="Tête du skin"></div>
                         <div>
-                            <h2 class="cover-heading">Bonjour, {{ user.name }}.</h2>
+                            <h2 class="cover-heading">Bonjour, {{ user.realName }}.</h2>
                             <span class="badge badge-{{ user.permissions.group }}">{{ ucfirst(user.permissions.group) }}</span>
                             {% for key, permission in user.permissions.alternateGroups %}
                                 <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span>
@@ -26,7 +26,7 @@
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
-                        <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Bronze(s)</span></li>
+                        <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Vote(s)</span></li>
                     </ul>
                 </div>
             </div>
@@ -144,6 +144,7 @@
     <div id="3" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             {% if factures != false %}
+                <br>
                 <h4 class="heading heading-bar"><span>Mes achats</span></h4>
                 <table class="table table-bordered">
                     <tbody>
@@ -156,7 +157,7 @@
                     </tr>
                     {% for key in factures %}
                         <tr>
-                            <td>{{ key["name"] }}</td>
+                            <td>{{ key["pseudo"] }}</td>
                             <td>{{ key["date"] }}</td>
                             <td>{{ key["price"] }}</td>
                             <td>{{ key["points"] }}</td>

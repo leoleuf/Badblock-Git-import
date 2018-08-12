@@ -33,8 +33,8 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-rpg" onclick="vote('rpg')" style="width: 95%;">RPG Paradize (3H)</a>
                     <a class="button button-primary" id="btm-msf" onclick="vote('msf')" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <a class="button button-primary" id="btm-asf" onclick="vote('asf')" style="width: 95%;">Serveur-Minecraft.net (3H)</a>
                 </div>
             </center>
         </div>
@@ -42,15 +42,30 @@
             <center><h3 class="step-round">III</h3>
             <div class="step-contains">
                 <h5 class="text-center">Obtenez votre récompense</h5>
-                <div class="tooltip"><button class="button button-primary" id="lot1" onclick="loterie('1')" href="" style="width: 95%;">Points Boutique</button>
-                    <span class="tooltiptext tooltip-right">Nécessite 1 <img src="https://images.badblock.fr/i/lingot.png" width="16"></span>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot1" onclick="loterie('1')" href="" style="width: 95%;">
+                        Points Boutique
+                    </button>
                 </div>
-                
-                <div class="tooltip"><button class="button button-primary disabled" id="lot2" href="" style="width: 95%;">Coffres / Clés</button>
-                    <span class="tooltiptext tooltip-right">Nécessite 3 <img src="https://images.badblock.fr/i/lingot.png" width="16"></span>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot2" onclick="loterie('2')" href="" style="width: 95%;">
+                        SkyBlock
+                    </button>
                 </div>
-
-                <div class="tooltip"><button class="button button-primary disabled" id="step3" onclick="bank()" id="bank" style="width: 95%;">Placer en banque</button>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot3" onclick="loterie('3')" href="" style="width: 95%;">
+                        Mini-jeux
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot4" onclick="loterie('4')" href="" style="width: 95%;">
+                        Faction
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot5" onclick="loterie('5')" href="" style="width: 95%;">
+                        PvpBox
+                    </button>
                 </div>
             </div>
             </center>
@@ -115,118 +130,39 @@
     </div>
     <!-- Time modal -->
 
-    <!-- Out Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-out">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h2 id="time-title" class="text-center">Cliquer sur le bouton pour voter !</h2>
-        <a class="button button-danger" id="vote-link" target="_blank" href="" onclick="$('#rpg-vote').removeClass('disabled'); "><i class="fas fa-link"></i>   Voter sur RPG-Paradize</a>
-        <div class="step-contains center">
-            <br><h5 id="clic-out-txt" class="text-center">Entrer le nombre de clic sortant :</h5>
-            <input type="text" id="outvote" name="outvote"><br>
-            <button class="accordion" id="clic-out"><i class="fa fa-cogs" aria-hidden="true"></i> C'est quoi le nombre de clic sortant ?</button>
-                <div class="panel">
-                    <h6 class="text-center">Un clic sortant est un clic effectué sur le site étudié qui dirige l’internaute vers un site externe. Ici, le site étudié est Badblock et le site externe est RPG-Paradize.<br>
-                    Le nombre de clic sortant change tous les jours. Pour le voir, il faut cliquer <a href="http://www.rpg-paradize.com/site-IP++play.badblock.fr++UHC++Rush++The+Tower++Faction-45397" target="_blank">ici</a> et regarder le nombre écrit.<br><i class="fas fa-exclamation-triangle"></i>  Attention, le nombre de clic sortant change tous les jours !<br><strong>Trouver le nombre de clic sortant sur RPG-Paradize :</strong> <img src="/dist/images/clic_out.png" id="clic-out-img"></h6>
-                </div>
-            <a class="button button-primary disabled" id="rpg-vote" onclick="step('rpg')" style="width: 95%;">Valider</a>
-        </div>
-    </div>
-    <!-- Out modal -->
-
     <!-- Link Modal -->
     <div class="remodal modal-remodal" data-remodal-id="vote-link">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1 id="time-title">Cliquer sur le lien pour voter !</h1>
         <a class="button button-danger" id="vote-link2" target="_blank" href="" onclick="vote"><i class="fas fa-link"></i>  Voter !</a>
         <br>
-        <a class="button button-primary" onclick="step('msf')" style="width: 95%;">Valider</a>
+        <a class="button button-primary" onclick="validate()" style="width: 95%;">Valider</a>
     </div>
     <!-- Link modal -->
-
-    <!-- Error out Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="error-vote-link">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="time-title" class="icon-danger">Nombre de clic sortant incorrect !</h1>
-        <div class="step-contains center">
-            <h5 class="text-center">Entrer le nombre de clic sortant (OUT) :</h5>
-            <input type="text" id="outvoter" name="outvoter"><br>
-            <a class="button button-primary" onclick="step('rpg')" style="width: 95%;">Valider</a>
-        </div>
-    </div>
-    <!-- Error out Modal -->
 
     <!-- End Modal -->
     <div class="remodal modal-remodal" data-remodal-id="vote-end">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1>Merci de votre soutiens !</h1>
-        <h1 id="end-tt"></h1>
         <a class="button button-danger" href="#"><i class="icon-repeat"></i>Fermer</a>
     </div>
     <!-- End modal -->
 
-    <!-- Bank Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-bank">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vos bronze(s) ont bien été placé en banque !</h1>
-        <a class="button button-danger" href="#"><i class="icon-closetab"></i>Fermer</a>
-    </div>
-    <!-- Bank modal -->
 
-    <!-- Bronze Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="bronze-modal">
+    <!-- Info Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="info-modal">
         <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="bronze-title"></h1>
+        <h1 id="title"></h1>
         <a class="button button-danger" href="#"><i class="icon-closetab"></i>Fermer</a>
     </div>
-    <!-- Bronze modal -->
+    <!-- Info modal -->
 
 
     <script>
-        var vote;
+        var type;
         var pseudo;
         var error = false;
 
-        function  bank() {
-            $('[data-remodal-id=vote-bank]').remodal().open();
-            $("#step3").addClass("disabled");
-            $("#lot1").addClass("disabled");
-            $("#lot2").addClass("disabled");
-            $("#bank").addClass("disabled");
-        }
-
-        function vote(vote) {
-            $("#step2").addClass("disabled");
-            //requet if user exist
-            var request = $.ajax({
-                url: "/vote/check/",
-                method: "POST",
-                data: { pseudo : pseudo,
-                    vote : vote
-                },
-                dataType: "html",
-                success: function (data) {
-                    if (vote == "rpg"){
-                        $("#vote-link").attr("href", data);
-                        $('[data-remodal-id=vote-out]').remodal().open();
-                    }else if (vote == "msf"){
-                        $("#vote-link2").attr("href", data);
-                        $('[data-remodal-id=vote-link]').remodal().open();
-                    }
-                }
-            });
-
-            request.fail(function( jqXHR, msg ) {
-                if(jqXHR.status == 404){
-                    $('[data-remodal-id=vote-user]').remodal().open();
-                }else if (jqXHR.status == 405){
-                    $("#time-title").text("Vous devez attendre " + jqXHR.responseText +" pour voter !");
-                    $('[data-remodal-id=vote-time]').remodal().open();
-                }
-            });
-        }
-        
-        
-        
         function start() {
             if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
             }else{
@@ -247,9 +183,9 @@
                         $('[data-remodal-id=vote-user]').remodal().open();
                     }else if (jqXHR.status == 405){
                         data = JSON.parse(jqXHR.responseText);
-                        if (data.rpg == false){
-                            $("#btm-rpg").addClass("disabled");
-                            $("#btm-rpg").text("RPG-Paradize Heure : " + data.time_rpg);
+                        if (data.asf == false){
+                            $("#btm-asf").addClass("disabled");
+                            $("#btm-asf").text("Serveur-Minecraft.net Heure : " + data.time_asf);
                         }
                         if (data.msf == false){
                             $("#btm-msf").addClass("disabled");
@@ -264,121 +200,88 @@
             }
         }
 
-        function loterie(type){
+        function vote(vote) {
+            $("#step2").addClass("disabled");
+            //requet if user exist
             var request = $.ajax({
-                url: "/vote/loterie/" + type,
+                url: "/vote/check/",
                 method: "POST",
-                data: {pseudo : pseudo},
+                data: { pseudo : pseudo,
+                    vote : vote
+                },
                 dataType: "html",
                 success: function (data) {
-                    $("#bronze-title").text("Vous avez gagner " + data +" !");
-                    $('[data-remodal-id=bronze-modal]').remodal().open();
+                    if (vote == "asf"){
+                        type = "asf";
+                        $("#vote-link").attr("href", data);
+                        $('[data-remodal-id=vote-link]').remodal().open();
+                    }else if (vote == "msf"){
+                        type = "msf";
+                        $("#vote-link2").attr("href", data);
+                        $('[data-remodal-id=vote-link]').remodal().open();
+                    }
                 }
             });
 
             request.fail(function( jqXHR, msg ) {
-                if (jqXHR.status == 404){
-                    $("#bronze-title").text("Il vous manque " + jqXHR.responseText +" bronze(s) pour cette lotterie !");
-                    $('[data-remodal-id=bronze-modal]').remodal().open();
-
-                }else if (jqXHR.status == 403){
-                    window.location.replace("https://forum.badblock.fr/login");
+                if(jqXHR.status == 404){
+                    $('[data-remodal-id=vote-user]').remodal().open();
                 }else if (jqXHR.status == 405){
-                    $("#bronze-title").text("Rentrer votre pseudo pour utiliser cette fonction !");
-                    $('[data-remodal-id=bronze-modal]').remodal().open();
+                    $("#time-title").text("Vous devez attendre " + jqXHR.responseText +" pour voter !");
+                    $('[data-remodal-id=vote-time]').remodal().open();
                 }
             });
         }
 
-        function step(vote) {
-            console.log(vote);
-                if (vote == "rpg"){
-                    if($('#outvote').val() == "" || $('#outvote').val() == null) {
-                    }else{
-                        $("#step2").addClass("disabled");
-                        if (error){
-                            out = $('#outvoter').val()
-                        }else{
-                            out = $('#outvote').val()
-                        }
-                        var request = $.ajax({
-                            url: "/vote/end/rpg",
-                            method: "POST",
-                            data: { out : out,
-                                pseudo : pseudo
-                            },
-                            dataType: "html",
-                            success: function (data) {
-                                $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
-                                $('[data-remodal-id=vote-end]').remodal().open();
-                                $("#step3").removeClass("disabled");
 
-                            }
-                        });
+        function validate() {
+            //requet if user have vote
+            var request = $.ajax({
+                url: "/vote/end/" + type,
+                method: "POST",
+                data: {
+                    pseudo : pseudo
+                },
+                dataType: "html",
+                success: function (data) {
+                    $("#lot1").removeClass("disabled");
+                    $("#lot2").removeClass("disabled");
+                    $("#lot3").removeClass("disabled");
+                    $("#lot4").removeClass("disabled");
+                    $("#lot5").removeClass("disabled");
 
-                        request.fail(function( jqXHR, msg ) {
-                            if (jqXHR.status == 405){
-                                $('[data-remodal-id=error-vote-link]').remodal().open();
-                                error = true;
-                            }else if (jqXHR.status == 403){
-                                $("#end-tt").text("Vous avez gagner " + jqXHR.responseText +" bronze(s)");
-                                $('[data-remodal-id=vote-end]').remodal().open();
-                                $("#step3").removeClass("disabled");
-                                $("#lot2").addClass("disabled");
-                                $("#lot3").addClass("disabled");
-                            }
-                        });
-                    }
-                }else{
-                    $("#step2").addClass("disabled");
-
-                    var request = $.ajax({
-                        url: "/vote/end/msf",
-                        method: "POST",
-                        data: {pseudo : pseudo},
-                        dataType: "html",
-                        success: function (data) {
-                            $("#end-tt").text("Vous avez gagner " + data +" bronze(s)");
-                            $('[data-remodal-id=vote-end]').remodal().open();
-                            $("#step3").removeClass("disabled");
-
-                        }
-                    });
-
-                    request.fail(function( jqXHR, msg ) {
-                        if (jqXHR.status == 405){
-                            $('[data-remodal-id=error-vote-link]').remodal().open();
-                            error = true;
-                        }else if (jqXHR.status == 403){
-                            $("#end-tt").text("Vous avez gagner " + jqXHR.responseText +" bronze(s)");
-                            $('[data-remodal-id=vote-end]').remodal().open();
-                            $("#step3").removeClass("disabled");
-                            $("#lot1").addClass("disabled");
-                            $("#lot2").addClass("disabled");
-                            $("#lot3").addClass("disabled");
-                        }
-                    });
+                    $('[data-remodal-id=vote-end]').remodal().open();
                 }
-        }
+            });
 
-
-    </script>
-    <script type="text/javascript">
-        var acc = document.getElementsByClassName("accordion");
-        var i;
-
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+            request.fail(function( jqXHR, msg ) {
+                if(jqXHR.status == 404){
+                    $('[data-remodal-id=vote-user]').remodal().open();
+                }else if (jqXHR.status == 500){
+                    $("#title").text("Vous devez attendre pour voter !");
+                    $('[data-remodal-id=info-modal]').remodal().open();
+                }else if (jqXHR.status == 405){
+                    $("#title").text("Vote invalide !");
+                    $('[data-remodal-id=info-modal]').remodal().open();
                 }
             });
         }
-    </script>
 
+        function loterie(tye){
+            var request = $.ajax({
+                url: "/vote/loterie/" + tye,
+                method: "POST",
+                data: {pseudo : pseudo},
+                dataType: "html",
+                success: function (data) {
+                    $("#title").text("Vous avez gagner " + data +" !");
+                    $('[data-remodal-id=info-modal]').remodal().open();
+                }
+            });
+        }
+
+
+
+    </script>
 {% endblock %}
 

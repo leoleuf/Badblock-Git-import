@@ -123,7 +123,7 @@ class PaypalController extends Controller
         if($resp){
             // Detection d'une quelconque action
             // Sauvegarde dans mongoDB
-            $this->container->mongo->funds_logs->insertOne([$resp]);
+            $this->container->mongo->funds_logs->insertOne($resp);
 
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
 
@@ -132,11 +132,13 @@ class PaypalController extends Controller
                 'date' => date('Y-m-d H:i:s'),
                 'price' => $resp["PAYMENTINFO_0_AMT"],
                 'gateway' => 'paypal',
-                'points' => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
+                'pseudo' => $this->container->session->get('recharge-username'),
+                'points' => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'],
+                'transaction_id' => $resp['PAYMENTINFO_0_TRANSACTIONID']
             ];
 
-            $this->container->mongo->funds->insertOne([$data]);
-            
+            $this->container->mongo->funds->insertOne($data);
+
             return $this->redirect($response, '/shop/recharge/sucess');
         }else{
             return $this->redirect($response, '/shop/recharge');

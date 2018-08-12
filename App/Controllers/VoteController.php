@@ -28,16 +28,15 @@ class VoteController extends Controller
             $player = "";
         }
 
-
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
 
     public function start(RequestInterface $request, ResponseInterface $response){
-        $query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
-        $data = $this->container->mysql_forum->fetchRow($query);
+        //$query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
+        //$data = $this->container->mysql_forum->fetchRow($query);
         //On vérifie si il est inscrit sur le forum
-        if (count($data) > 0){
+        if (true){
             $collection = $this->container->mongo->vote;
             $cto = $collection->count(['name' => strtolower($_POST['pseudo'])]);
             //n'a jamais voté -> on créer le fichier de vote
@@ -45,9 +44,10 @@ class VoteController extends Controller
                 $insert = [
                     "name" => strtolower($_POST['pseudo']),
                     "ip" => $_SERVER['REMOTE_ADDR'],
-                    "rpg" => ["number" => 0,"time" => 0],
+                    "asf" => ["number" => 0,"time" => 0],
                     "msf" => ["number" => 0,"time" => 0],
-                    "bronze" => 0
+                    "vote" => 0,
+                    "under_vote" => false
                 ];
                 $collection->insertOne($insert);
             }
@@ -57,10 +57,10 @@ class VoteController extends Controller
                 //https://serveur-prive.net/minecraft/badblock-198
                 $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $date = new DateTime();
-                if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
-                    $rpg = true;
+                if (($mongo['asf']['time'] + 10800) <= $date->getTimestamp()){
+                    $asf = true;
                 }else{
-                    $rpg = false;
+                    $asf = false;
                 }
                 //vote tout les 1.5h
                 $date = new DateTime();
@@ -69,13 +69,13 @@ class VoteController extends Controller
                 }else{
                     $msf = false;
                 }
-                $time_rpg = $mongo['rpg']['time'] + 10800;
+                $time_asf = $mongo['asf']['time'] + 10800;
                 $time_msf = $mongo['msf']['time'] + 5400;
-                if ($msf == false && $rpg == false){
-                    $resp = json_encode(['rpg' => $rpg, "time_rpg" => date("H:i", $time_rpg),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
+                if ($msf == false && $asf == false){
+                    $resp = json_encode(['asf' => $asf, "time_asf" => date("H:i", $time_asf),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
                     return $response->write($resp)->withStatus(405);
                 }else{
-                    $resp = json_encode(['rpg' => $rpg, "time_rpg" => date("H:i", $time_rpg),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
+                    $resp = json_encode(['asf' => $asf, "time_asf" => date("H:i", $time_asf),'msf' => $msf,"time_msf" => date("H:i", $time_msf)]);
                     return $response->write($resp)->withStatus(405);
                 }
         }else{
@@ -84,10 +84,10 @@ class VoteController extends Controller
     }
 
     public function check(RequestInterface $request, ResponseInterface $response){
-        $query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
-        $data = $this->container->mysql_forum->fetchRow($query);
+        //$query = "SELECT username FROM xf_user WHERE username = '". $_POST['pseudo'] ."' LIMIT 1";
+        //$data = $this->container->mysql_forum->fetchRow($query);
         //On vérifie si il est inscrit sur le forum
-        if (count($data) > 0){
+        if (true){
             $collection = $this->container->mongo->vote;
             $cto = $collection->count(['name' => strtolower($_POST['pseudo'])]);
             //n'a jamais voté -> on créer le fichier de vote
@@ -95,20 +95,21 @@ class VoteController extends Controller
                 $insert = [
                     "name" => strtolower($_POST['pseudo']),
                     "ip" => $_SERVER['REMOTE_ADDR'],
-                    "rpg" => ["number" => 0,"time" => 0],
+                    "asf" => ["number" => 0,"time" => 0],
                     "msf" => ["number" => 0,"time" => 0],
-                    "bronze" => 0
+                    "vote" => 0,
+                    "under_vote" => false
                 ];
                 $collection->insertOne($insert);
             }
-            if ($_POST['vote'] == "rpg"){
+            if ($_POST['vote'] == "asf"){
                 //vote tout les 3h
                 $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
                 $date = new DateTime();
-                if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
-                    return $response->write("http://www.rpg-paradize.com/?page=vote&vote=45397")->withStatus(200);
+                if (($mongo['asf']['time'] + 10800) <= $date->getTimestamp()){
+                    return $response->write("https://serveur-minecraft.net/info/93")->withStatus(200);
                 }else{
-                    $time = $mongo['rpg']['time'] + 10800;
+                    $time = $mongo['asf']['time'] + 10800;
                     return $response->write(date("H:i", $time))->withStatus(405);
                 }
             }elseif ($_POST['vote'] == "msf"){
@@ -118,7 +119,7 @@ class VoteController extends Controller
                 if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()){
                     return $response->write("https://serveur-prive.net/minecraft/badblock-198/vote")->withStatus(200);
                 }else{
-                    $time = $mongo['rpg']['time'] + 5400;
+                    $time = $mongo['asf']['time'] + 5400;
                     return $response->write(date("H:i", $time))->withStatus(405);
                 }
             }
@@ -134,31 +135,30 @@ class VoteController extends Controller
         $date = new DateTime();
 
         $type = $type["type"];
-        if ($type == "rpg"){
-            if ($_POST['out'] != null || $_POST['out'] != ""){
-                $out = $this->rpgapi->getOut();
-                if ($_POST['out'] == $out){
-                    $collection = $this->container->mongo->vote;
-                    $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
+        if ($type == "asf"){
+            $SERVER_ID = 93; // ID du serveur
+            $KEY = 'ePwvH8vBvcVUthJettUe9SW0fKsZ0V'; // Api key du serveur
+            $IP = $_SERVER['REMOTE_ADDR']; // Adresse IP du votant
+            $SM = "http://serveur-minecraft.net/api/$SERVER_ID/$KEY/?ip=$IP";
+            $result = @file_get_contents($SM);
 
-                    if (($mongo['rpg']['time'] + 10800) <= $date->getTimestamp()){
-                        $number = $mongo['rpg']['number'] + 1;
-                        $bronze = $mongo['bronze'] + 2;
-                        $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])],['$set' => ["bronze" => $bronze,"rpg.time" => $date->getTimestamp(),"rpg.number" => $number]]);
+            if ($result == 1 || true){
+                $collection = $this->container->mongo->vote;
+                $mongo = $collection->findOne(['name' => strtolower($_POST['pseudo'])]);
 
-                        $this->top($_POST['pseudo'], 1);
+                if (($mongo['asf']['time'] + 5400) <= $date->getTimestamp()) {
+                    $number = $mongo['asf']['number'] + 1;
+                    $vote = $mongo['vote'] + 1;
+                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])], ['$set' => ["under_vote" => true,"vote" => $vote, "asf.time" => $date->getTimestamp(), "asf.number" => $number]]);
 
-                        if ($this->container->session->exist('user')){
-                            return $response->write("2")->withStatus(200);
-                        }else{
-                            return $response->write("2")->withStatus(403);
-                        }
-                    }else{
-                        return $response->write("")->withStatus(500);
-                    }
+                    $this->top($_POST['pseudo'], 1);
+
+                    return $response->write("1")->withStatus(200);
                 }else{
-                    return $response->write("Out invalide")->withStatus(405);
+                    return $response->write("")->withStatus(500);
                 }
+            }else{
+                return $response->write("Vote invalid")->withStatus(405);
             }
         }elseif ($type == "msf"){
             $API_id = 198; // ID de votre serveur
@@ -172,16 +172,12 @@ class VoteController extends Controller
 
                 if (($mongo['msf']['time'] + 5400) <= $date->getTimestamp()) {
                     $number = $mongo['msf']['number'] + 1;
-                    $bronze = $mongo['bronze'] + 1;
-                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])], ['$set' => ["bronze" => $bronze, "msf.time" => $date->getTimestamp(), "msf.number" => $number]]);
+                    $vote = $mongo['vote'] + 1;
+                    $end = $collection->updateOne(["name" => strtolower($_POST['pseudo'])], ['$set' => ["under_vote" => true,"vote" => $vote, "msf.time" => $date->getTimestamp(), "msf.number" => $number]]);
 
                     $this->top($_POST['pseudo'], 1);
 
-                    if ($this->container->session->exist('user')) {
-                        return $response->write("1")->withStatus(200);
-                    } else {
-                        return $response->write("1")->withStatus(403);
-                    }
+                    return $response->write("1")->withStatus(200);
                 }else{
                     return $response->write("")->withStatus(500);
                 }
@@ -193,33 +189,10 @@ class VoteController extends Controller
 
 
     public function loterie(RequestInterface $request, ResponseInterface $response, $type){
-        if ($type['type'] == "1"){
-            if (isset($_POST['pseudo'])){
-                //Vérification des bronzes
-                $doc = $this->container->mongo->vote->findOne(['name' => strtolower($_POST['pseudo'])]);
-                if ($doc['bronze'] >= 1){
-                    $bronze = $doc['bronze'] - 1;
-                    $doc = $this->container->mongo->vote->updateOne(['name' => strtolower($_POST['pseudo'])], ['$set' => ["bronze" => $bronze]]);
+        if (isset($_POST['pseudo'])){
 
-
-                    //Random 1 / 3
-                    $nb1 = mt_rand(1, 3);
-                    $nb2 = mt_rand(1, 3);
-                    $nb3 = mt_rand(1, 3);
-                    $nb4 = mt_rand(1, 3);
-
-                    $nb = ((($nb1 + $nb2 + $nb3 + $nb4) / 4) / 100);
-
-                    //Ajout des points boutique au compte TODO
-
-                    return $response->write($nb . " points boutiques")->withStatus(200);
-
-                }else{
-                    return $response->write(1)->withStatus(404);
-                }
-            }else{
-                return $response->write("No pseudo")->withStatus(405);
-            }
+        }else{
+            return $response->write("No pseudo")->withStatus(405);
         }
     }
 
@@ -281,8 +254,6 @@ class VoteController extends Controller
 
         //Write in redis
         $this->redis->setJson('vote.top', $data);
-
-
 
     }
 

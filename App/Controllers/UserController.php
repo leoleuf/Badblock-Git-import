@@ -57,8 +57,7 @@ class UserController extends Controller
         $collection_facture = $this->container->mongo->funds;
         $factures = $collection_facture->find(['uniqueId' => $user['uniqueId']]);
 
-
-        if (count($factures) == "1"){
+        if (count($factures) == "0"){
             $factures = false;
         }
 
@@ -126,7 +125,7 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['realName' => strtolower($this->session->getProfile('username')['username'])]);
 
-        if ($factures['unique-id'] == $user['uniqueId'] || $this->container->session->getProfile('username')['is_admin'] == true){
+        if ($factures['uniqueId'] == $user['uniqueId'] || $this->container->session->getProfile('username')['is_admin'] == true){
             //On affiche 0 pts boutiques si le joueur a pas sous
             if (empty($user["shoppoints"])){
                 $user["shoppoints"] = 0;

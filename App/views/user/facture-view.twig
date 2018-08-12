@@ -11,23 +11,9 @@
                     <div class="profile-title">
                         <div class="profile-mc-head"><img src="https://guiria.badblock.fr/head/{{ user.name }}/64.png" title="Tête du skin"></div>
                         <div>
-                            <h2 class="cover-heading">Bonjour, {{ user.name }}.</h2>
-                            <span class="badge badge-{{ user.permissions.group }}">{{ ucfirst(user.permissions.group) }}</span>
-                            {% for key, permission in user.permissions.alternateGroups %}
-                                <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span>
-                            {% endfor %}
+                            <h2 class="cover-heading">Facture du {{ facture['date'] }}</h2>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="profile-info">
-                <div class="container">
-                    <ul>
-                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
-                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
-                        <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
-                        <li><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Vote(s)</span></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -37,17 +23,20 @@
 {% block content %}
 <section class="shop-section-1" class="tabcontent">
     <h4 class="heading heading-bar">
-        <span><a class="button button-primary" href="/dashboard"><i class="icon icon-backward"></i> Retour</a></td>
-Facture du {{ facture['date'] }}</span>
+        <span>
+            <a class="button button-primary" href="/dashboard">
+                <i class="icon icon-backward"></i>
+                Retour
+            </a>
+        </span>
     </h4>
 </section>
     <div id="invoice-box">
-
     <!doctype html>
     <html>
     <head>
         <meta charset="utf-8">
-        <title>BadBlock | Facture #BB-00000000</title>
+        <title>BadBlock | Facture #BB-{{ facture['_id'] }}</title>
 
         <style>
             .invoice-box {
@@ -201,7 +190,7 @@ Facture du {{ facture['date'] }}</span>
                     {{ facture['gateway'] }}<br>
                 </td>
                 <td>
-                    {{ facture['gateway'] }}-0000000000000000000000<br>
+                    {{ facture['gateway'] }}-{{ facture['transaction_id'] }}<br>
                 </td>
             </tr>
 
