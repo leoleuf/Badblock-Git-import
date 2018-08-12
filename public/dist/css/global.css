@@ -987,6 +987,26 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     line-height: 50px !important;
 }
 
+
+.players-list-avatar {
+    width: 100px !important;
+}
+
+.players-list-twitter {
+    text-decoration: none !important;
+    color: black;
+}
+
+.players-list-twitter:hover {
+    text-decoration: underline !important;
+    color: black;
+}
+
+.dev-card:hover {
+    transform: scale(1.015);
+    transition: 0.5s;
+    transition-timing-function: ease;
+}
 /*Fin Dreaams*/
 
 .user-menu {
