@@ -14,6 +14,8 @@ use HansOtt\PSR7Cookies\SetCookie;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 use DateTime;
 
 class VoteController extends Controller
@@ -191,34 +193,44 @@ class VoteController extends Controller
     public function loterie(RequestInterface $request, ResponseInterface $response, $type){
         $type = $type['type'];
         if (isset($_POST['pseudo'])){
-            $array_type = ["1","2","3","4","5"];
-            if (in_array($type, $array_type)){
-                if (rand(0, 3) == 1){
-                    $nb1 = rand(0, 100);
-                }else{
-                    $nb1 = 1;
-                }
-                $nb2 = rand(0, 45);
-                $nb3 = rand(0, 30);
-                $nb = round(($nb1 + $nb2 + $nb3) / 3, 0);
-
-                $search = false;
-
-                while ($search == false){
-                    $data = $this->container->mongo->vote_recomp->findOne(['type' => $type,'power' => $nb]);
-
-                    if ($data == null){
-                        $nb = $nb - 1;
+            $player = $this->container->mongo->vote->findOne(["name" => strtolower($_POST['pseudo'])]);
+            if ($player['under_vote'] == true){
+                $array_type = ["1","2","3","4","5"];
+                if (in_array($type, $array_type)){
+                    if (rand(0, 3) == 1){
+                        $nb1 = rand(0, 100);
                     }else{
-                        $search = true;
+                        $nb1 = 1;
+                    }
+                    $nb2 = rand(0, 45);
+                    $nb3 = rand(0, 30);
+                    $nb = round(($nb1 + $nb2 + $nb3) / 3, 0);
+
+                    $search = false;
+
+                    while ($search == false){
+                        $data = $this->container->mongo->vote_recomp->findOne(['type' => $type,'power' => $nb]);
+
+                        if ($data == null){
+                            $nb = $nb - 1;
+                        }else{
+                            $search = true;
+                        }
+
+                        if ($nb < 1){
+                            return $response->write('Error')->withStatus(200);
+                        }
                     }
 
-                    if ($nb < 1){
-                        return $response->write('Error')->withStatus(200);
-                    }
+                    $this->sendRabbitData($_POST['pseudo'], $data);
+
+                    $this->container->mongo->vote->updateOne(["name" => strtolower($_POST['pseudo'])], ['$set' => ["under_vote" => false]]);
+
+
+                    return $response->write("Vous avez gagné " . $data['name'])->withStatus(200);
                 }
-
-                return $response->write("Vous avez gagné " . $data['name'])->withStatus(200);
+            }else{
+                return $response->write("Vous avez déjà récupéré votre récompense !")->withStatus(200);
             }
         }
     }
@@ -281,6 +293,47 @@ class VoteController extends Controller
 
         //Write in redis
         $this->redis->setJson('vote.top', $data);
+
+    }
+
+
+    public function sendRabbitData($player,$product){
+        //Connection to rabbitMQ server
+        $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
+        $channel = $connection->channel();
+
+        $shopQueue = $product->queue;
+        if (is_string($product->command)){
+            $command = str_replace("%player%", $player, $product->command);
+        }else{
+            $product->command = iterator_to_array($product->command);
+            $command = "";
+            foreach ($product->command as $row){
+                $command .= str_replace("%player%", $player, $row) . ";";
+            }
+        }
+
+
+        $channel->exchange_declare('shopLinker.'.$shopQueue, 'fanout', false, false, false, false);
+        $sanction = (object) [
+            'dataType' => 'VOTE',
+            'playerName' => $player,
+            'displayName' => $product->name,
+            'command' => $command,
+            'ingame' => false,
+            'price' => 0
+        ];
+
+        $message = (object) [
+            'expire' => (time() + 604800) * 1000,
+            'message' => json_encode($sanction)
+        ];
+        $msg = new AMQPMessage(json_encode($message));
+        $channel->basic_publish($msg, 'shopLinker.'.$shopQueue);
+
+
+        $channel->close();
+        $connection->close();
 
     }
 

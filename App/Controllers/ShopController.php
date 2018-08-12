@@ -178,6 +178,5 @@ class ShopController extends Controller
         $channel->close();
         $connection->close();
 
-
     }
 }

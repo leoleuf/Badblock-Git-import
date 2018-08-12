@@ -274,7 +274,7 @@
                 data: {pseudo : pseudo},
                 dataType: "html",
                 success: function (data) {
-                    $("#title").text("Vous avez gagner " + data +" !");
+                    $("#title").text(data);
                     $('[data-remodal-id=info-modal]').remodal().open();
                 }
             });
