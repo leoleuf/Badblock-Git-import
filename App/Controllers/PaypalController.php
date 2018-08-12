@@ -139,6 +139,22 @@ class PaypalController extends Controller
 
             $this->container->mongo->funds->insertOne($data);
 
+            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+
+            if ($money == null){
+                $data = [
+                    "uniqueId" => $user['uniqueId'],
+                    "points" => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
+                ];
+
+                $this->container->mongo->fund_list->insertOne($data);
+
+            }else{
+                $money['points'] = $money['points'] + $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'];
+                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            }
+
+
             return $this->redirect($response, '/shop/recharge/sucess');
         }else{
             return $this->redirect($response, '/shop/recharge');
