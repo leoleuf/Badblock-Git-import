@@ -110,6 +110,26 @@ class ShopController extends Controller
             $this->sendRabbitData($product);
         }elseif ($product->mode == "webladder"){
             $this->ladder->playerAddGroup($player['name'], $product['command'], $product['duration']);
+        }elseif ($product->mode == "hybrid"){
+            foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+                if ($k == "legend"){
+                    $check = true;
+                }else{
+                    $check = false;
+                }
+            }
+
+            if ($player['permissions']['group'] == "legend" || $check == true){
+
+                $time = $player['permissions']['alternateGroups']['legend'] + ($product['duration'] * 1000);
+                $this->ladder->playerAddGroup($player['name'], $product['command'], $time);
+
+            }else{
+
+                $time = (time() + $product['duration']) * 1000;
+                $this->ladder->playerAddGroup($player['name'], $product['command'], $time);
+
+            }
         }
 
     }
