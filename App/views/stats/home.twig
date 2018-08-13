@@ -26,15 +26,13 @@
                     <div class="search-container">
                         <div class="games-info">
                             <div class="search-container">
-                                <form>
-                                    <div class="btn-group">
-                                        <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Rechercher un Joueur" name="search" onkeypress="searchPlayer()" >
-                                        <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
-                                    </div>
-                                    <ul class="search" id="search_down">
-                                      <li><a href="#">Aucun résultat</a></li>
-                                    </ul>
-                                </form>
+                                <div class="btn-group">
+                                    <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Rechercher un Joueur" name="search" onkeypress="searchPlayer()" >
+                                    <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
+                                </div>
+                                <ul class="search" id="search_down">
+                                    <li><a href="#">Aucun résultat</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -199,25 +197,6 @@
             };
 
             playerAj();
-
-
-            // Document is ready
-
-            $("#player_search").keyup(function()
-            {
-                $.ajax({
-                    type: "POST",
-                    url: "/api/stats/search",
-                    data: {'search_player' : $( "#player_search" ).val()},
-                    dataType: "text",
-                    success: function(msg)
-                    {
-                        //Receiving the result of search here
-                    }
-                });
-
-            });
-
         });
     </script>
 

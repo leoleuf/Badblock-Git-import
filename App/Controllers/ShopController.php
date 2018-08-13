@@ -108,6 +108,8 @@ class ShopController extends Controller
 
         if ($product->mode == "rabbitmq"){
             $this->sendRabbitData($product);
+        }elseif ($product->mode == "webladder"){
+            $this->ladder->playerAddGroup($player['name'], $product['command'], $product['duration']);
         }
 
     }
