@@ -38,8 +38,12 @@ $app->group('/shop', function (){
 	$this->get('/recharge/paypal/{id}', \App\Controllers\PaypalController::class . ':startPaiement')->setName('shop.recharge.paypal.start');
 	$this->get('/recharge/paypal-process', \App\Controllers\PaypalController::class . ':process')->setName('shop.recharge.paypal.process');
 
+    $this->get('/recharge/dedipass', \App\Controllers\DedipassController::class . ':index')->setName('shop.recharge.dedipass');
+    $this->get('/recharge/dedipass-process', \App\Controllers\DedipassController::class . ':process')->setName('shop.recharge.dedipass.process');
 
-	$this->get('/recharge/cancel', \App\Controllers\CreditController::class . ':paymentCancel')->setName('shop.recharge.paypal.cancel');
+
+
+    $this->get('/recharge/cancel', \App\Controllers\CreditController::class . ':paymentCancel')->setName('shop.recharge.paypal.cancel');
 	$this->get('/recharge/sucess', \App\Controllers\CreditController::class . ':paymentSuccess')->setName('shop.recharge.paypal.sucess');
 
 });
