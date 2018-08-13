@@ -990,6 +990,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .players-list-avatar {
     width: 100px !important;
+    height: 100px;
 }
 
 .players-list-twitter {
@@ -1007,6 +1008,34 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     transition: 0.5s;
     transition-timing-function: ease;
 }
+
+.players-list-desc {
+    font-size: 1.09em;
+}
+
+.players-list-username {
+    font-size: 1.2em;
+}
+
+.margin-top-small {
+    margin-top: -15px;
+}
+
+.margin {
+    margin-left: 10px;
+}
+
+.info-recrutement {
+    margin-top: 115px !important;
+    width: 100%;
+}
+
+.info-recrutement:hover {
+    background-color: #eb6e60 !important;
+    transform: scale(1.02);
+    transition: 0.5s;
+}
+
 /*Fin Dreaams*/
 
 .user-menu {
