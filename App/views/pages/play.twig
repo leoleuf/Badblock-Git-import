@@ -1,24 +1,53 @@
 {% extends "default.twig" %}
 {% set active_page = "play" %}
 {% set show_title = false %}
+{% set hide_title = true %}
+{% block skyscrapers %}
+
+<div style="float: left; position: absolute; margin-top: 2%; margin-left: 1.5%;">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
+<div style="float: left; position: absolute; margin-top: 2%; margin-left: 82%;">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+{% endblock %}
+
 {% set title = 'play.title'|trans %}
 {% block content %}
+
     <div class=" content" id="test">
         <h4 class="heading-bar"><span>Launcher Minecraft</span></h4>
-        // Todo : dégager les style=""
-        <div class="twelve columns played" style="text-align: center;">
+        <div id="pub-large">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="twelve columns played" id="launcher-minecraft">
             <div>
-                <button class="button button-danger" style="height: 5%; width: 55%;"><i class="fab fa-apple"></i> Télécharger le Launcher Minecraft Gratuit pour Mac OS</button></a>
+                <button class="button button-danger" id="minecraft-download-mac"><i class="fab fa-apple"></i> Télécharger le Launcher Minecraft Gratuit pour Mac OS</button></a>
             </div>
             <div>
-                <button class="button button-primary" style="height: 5%; width: 55%;"><i class="fab fa-windows"></i> Télécharger le Launcher Minecraft Gratuit pour Windows</button></a>
+                <button class="button button-primary" id="minecraft-download-windows"><i class="fab fa-windows"></i> Télécharger le Launcher Minecraft Gratuit pour Windows</button></a>
             </div>
             <div>
-                <button class="button button-success" style="height: 5%; width: 55%;"><i class="fab fa-linux"></i> Télécharger le Launcher Minecraft Gratuit pour Linux</button></a>
+                <button class="button button-success" id="minecraft-download-linux"><i class="fab fa-linux"></i> Télécharger le Launcher Minecraft Gratuit pour Linux</button></a>
             </div>
         </div>
         <div id="pub-large">
-            Publicité pour soutenir BadBlock &nbsp;<i class="icon-ban-circle">&nbsp;</i>désactivez votre bloqueur<br>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
             <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>

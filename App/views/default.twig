@@ -19,7 +19,12 @@
         {{ block('meta') }}
     {% endif %}
 
-    <title>BadBlock | {{ title }} </title>
+    <title>
+        {% if hide_title is not defined %}
+        BadBlock |
+        {% endif %}
+        {{ title }}
+    </title>
 
     <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="/dist/css/xmalware.css">
@@ -126,6 +131,11 @@
 <!-- END COVER -->
 
 <!-- CONTENT -->
+
+{% if block("skyscrapers") is defined %}
+    {{ block('skyscrapers') }}
+{% endif %}
+
 <div class="container content">
     {{ block('content') }}
 </div>
