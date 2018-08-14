@@ -19,11 +19,12 @@
                 {% if k % 2 == 0 %}
                     <div class="row">
                 {% endif %}
-                    <div class="six columns">
+                    <div class="twelve columns">
                     <section>
                         <h4 class="heading heading-bar"><span>{{ key['name'] }} - {{ key["data"]|length }}</span></h4>
-                            <ul class="players-list">
+                            <ul class="players-list inline">
                                 {% for ft in key['data'] %}
+                                    <div class="four columns">
                                     <li class="img-anim">
                                         <img src="https://guiria.badblock.fr/head/{{ ft[0] }}/60.png"
                                              class="players-list-avatar">
@@ -32,6 +33,7 @@
                                                 <span class="players-list-desc">{{ ft[1] }}</span>
                                             </div>
                                         </li>
+                                    </div>
                                 {% endfor %}
                             </ul>
                         </section>
