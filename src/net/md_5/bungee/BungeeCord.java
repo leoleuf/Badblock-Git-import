@@ -599,8 +599,13 @@ public class BungeeCord extends ProxyServer
 		return Collections.unmodifiableCollection( pluginChannels );
 	}
 
-	public PluginMessage registerChannels()
+	public PluginMessage registerChannels(int protocolVersion)
 	{
+		if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_13 )
+		{
+			return new PluginMessage( "minecraft:register", Util.format( Iterables.transform( pluginChannels, PluginMessage.MODERNISE ), "\00" ).getBytes( Charsets.UTF_8 ), false );
+		}
+
 		return new PluginMessage( "REGISTER", Util.format( pluginChannels, "\00" ).getBytes( Charsets.UTF_8 ), false );
 	}
 

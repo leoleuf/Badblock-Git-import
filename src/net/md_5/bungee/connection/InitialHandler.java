@@ -63,6 +63,7 @@ import net.md_5.bungee.protocol.packet.Handshake;
 import net.md_5.bungee.protocol.packet.Kick;
 import net.md_5.bungee.protocol.packet.LegacyHandshake;
 import net.md_5.bungee.protocol.packet.LegacyPing;
+import net.md_5.bungee.protocol.packet.LoginPayloadResponse;
 import net.md_5.bungee.protocol.packet.LoginRequest;
 import net.md_5.bungee.protocol.packet.LoginSuccess;
 import net.md_5.bungee.protocol.packet.PingPacket;
@@ -70,6 +71,7 @@ import net.md_5.bungee.protocol.packet.PluginMessage;
 import net.md_5.bungee.protocol.packet.StatusRequest;
 import net.md_5.bungee.protocol.packet.StatusResponse;
 import net.md_5.bungee.util.BoundedArrayList;
+import net.md_5.bungee.util.BufUtil;
 
 @RequiredArgsConstructor
 public class InitialHandler extends PacketHandler implements PendingConnection
@@ -132,10 +134,25 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	}
 
 	@Override
+	public void handle(LoginPayloadResponse response) throws Exception
+	{
+		disconnect( "Unexpected custom LoginPayloadResponse" );
+	}
+
+	@Override
 	public void connected(ChannelWrapper channel) throws Exception
 	{
 		this.ch = channel;
 	}
+	
+    @Override
+    public void handle(PacketWrapper packet) throws Exception
+    {
+        if ( packet.packet == null )
+        {
+            throw new IllegalArgumentException( "Unexpected packet received during login process!\n" + BufUtil.dump( packet.buf, 64 ) );
+        }
+    }
 
 	@Override
 	public void exception(Throwable t) throws Exception
@@ -261,7 +278,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 					new ServerPing.Players( listener.getMaxPlayers(), 0, null ),
 					motd, BungeeCord.getInstance().config.getFaviconObject() ),
 					null );
-			
+
 		}
 
 		thisState = State.PING;
@@ -405,10 +422,10 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 							return;
 						}
 
-						uniqueId     = offlineId = UUID.fromString(result.object.getString("uniqueId"));
-						onlinePlayer = result.object.getBoolean("onlineMode");
-						if (result.object.containsKey("authKey"))
-							authKey 	 = result.object.getString("authKey");
+						uniqueId     = offlineId = UUID.fromString(result.object.get("uniqueId").getAsString());
+						onlinePlayer = result.object.get("onlineMode").getAsBoolean();
+						if (result.object.has("authKey"))
+							authKey 	 = result.object.get("authKey").getAsString();
 						if (BungeeCord.getInstance().config.isOnlineMode() || onlinePlayer) {
 							onlineInfo = true;
 							OnlineManager.joinBypass(InitialHandler.this, new Callback<Boolean>() {
@@ -419,7 +436,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 									if (bool) finish();
 									else unsafe().sendPacket(request = EncryptionUtil.encryptRequest());
 								}
-								
+
 							});
 						}else finish();
 					}

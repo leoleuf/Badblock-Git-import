@@ -1,13 +1,11 @@
 package net.md_5.bungee.entitymap;
 
-import java.io.IOException;
-
 import com.flowpowered.nbt.stream.NBTInputStream;
 import com.google.common.base.Throwables;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
+import java.io.IOException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import net.md_5.bungee.protocol.DefinedPacket;
@@ -47,9 +45,10 @@ public abstract class EntityMap
             case ProtocolConstants.MINECRAFT_1_12:
                 return EntityMap_1_12.INSTANCE;
             case ProtocolConstants.MINECRAFT_1_12_1:
-                return EntityMap_1_12_1.INSTANCE;
             case ProtocolConstants.MINECRAFT_1_12_2:
-            	return EntityMap_1_12_1.INSTANCE;
+                return EntityMap_1_12_1.INSTANCE;
+            case ProtocolConstants.MINECRAFT_1_13:
+                return EntityMap_1_13.INSTANCE;
         }
         throw new RuntimeException( "Version " + version + " has no entity map" );
     }
@@ -79,9 +78,19 @@ public abstract class EntityMap
         rewrite( packet, oldId, newId, serverboundInts, serverboundVarInts );
     }
 
+    public void rewriteServerbound(ByteBuf packet, int oldId, int newId, int protocolVersion)
+    {
+        rewriteServerbound( packet, oldId, newId );
+    }
+
     public void rewriteClientbound(ByteBuf packet, int oldId, int newId)
     {
         rewrite( packet, oldId, newId, clientboundInts, clientboundVarInts );
+    }
+
+    public void rewriteClientbound(ByteBuf packet, int oldId, int newId, int protocolVersion)
+    {
+        rewriteClientbound( packet, oldId, newId );
     }
 
     protected static void rewriteInt(ByteBuf packet, int oldId, int newId, int offset)
@@ -101,6 +110,7 @@ public abstract class EntityMap
     {
         // Need to rewrite the packet because VarInts are variable length
         int readId = DefinedPacket.readVarInt( packet );
+        int readIdLength = packet.readerIndex() - offset;
         if ( readId == oldId || readId == newId )
         {
             ByteBuf data = packet.copy();
@@ -112,8 +122,12 @@ public abstract class EntityMap
         }
     }
 
-    @SuppressWarnings("resource")
-	protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
+    protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex)
+    {
+        rewriteMetaVarInt( packet, oldId, newId, metaIndex, -1 );
+    }
+
+    protected static void rewriteMetaVarInt(ByteBuf packet, int oldId, int newId, int metaIndex, int protocolVersion)
     {
         int readerIndex = packet.readerIndex();
 
@@ -121,6 +135,37 @@ public abstract class EntityMap
         while ( ( index = packet.readUnsignedByte() ) != 0xFF )
         {
             int type = DefinedPacket.readVarInt( packet );
+            if ( protocolVersion >= ProtocolConstants.MINECRAFT_1_13 )
+            {
+                switch ( type )
+                {
+                    case 5: // optional chat
+                        if ( packet.readBoolean() )
+                        {
+                            DefinedPacket.readString( packet );
+                        }
+                        break;
+                    case 14: // particle
+                        int particleId = DefinedPacket.readVarInt( packet );
+                        switch ( particleId )
+                        {
+                            case 3:
+                            case 20:
+                                DefinedPacket.readVarInt( packet ); // block state
+                                break;
+                            case 11: // dust
+                                packet.skipBytes( 16 ); // float, float, float, flat
+                                break;
+                            case 27: // item
+                                readSkipSlot( packet );
+                                break;
+                        }
+                        break;
+                    default:
+                        type--;
+                        break;
+                }
+            }
 
             switch ( type )
             {
@@ -144,24 +189,7 @@ public abstract class EntityMap
                     DefinedPacket.readString( packet );
                     break;
                 case 5:
-                    if ( packet.readShort() != -1 )
-                    {
-                        packet.skipBytes( 3 ); // byte, short
-
-                        int position = packet.readerIndex();
-                        if ( packet.readByte() != 0 )
-                        {
-                            packet.readerIndex( position );
-
-                            try
-                            {
-                                new NBTInputStream( new ByteBufInputStream( packet ), false ).readTag();
-                            } catch ( IOException ex )
-                            {
-                                throw Throwables.propagate( ex );
-                            }
-                        }
-                    }
+                    readSkipSlot( packet );
                     break;
                 case 6:
                     packet.skipBytes( 1 ); // boolean
@@ -205,6 +233,28 @@ public abstract class EntityMap
         }
 
         packet.readerIndex( readerIndex );
+    }
+
+    private static void readSkipSlot(ByteBuf packet)
+    {
+        if ( packet.readShort() != -1 )
+        {
+            packet.skipBytes( 3 ); // byte, short
+
+            int position = packet.readerIndex();
+            if ( packet.readByte() != 0 )
+            {
+                packet.readerIndex( position );
+
+                try
+                {
+                    new NBTInputStream( new ByteBufInputStream( packet ), false ).readTag();
+                } catch ( IOException ex )
+                {
+                    throw Throwables.propagate( ex );
+                }
+            }
+        }
     }
 
     // Handles simple packets

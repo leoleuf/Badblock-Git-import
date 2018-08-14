@@ -2,6 +2,7 @@ package net.md_5.bungee.api.score;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import net.md_5.bungee.protocol.packet.ScoreboardObjective.HealthDisplay;
 
 /**
  * Represents an objective entry.
@@ -22,5 +23,6 @@ public class Objective
     /**
      * Type; integer or hearts
      */
-    private final String type;
+    private String type;
+    
 }
