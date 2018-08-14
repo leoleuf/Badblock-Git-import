@@ -60,6 +60,7 @@ $app->group('/vote', function (){
     $this->get('/test', \App\Controllers\VoteController::class . ':top');
 });
 
+$app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('launcher-minecraft');
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
