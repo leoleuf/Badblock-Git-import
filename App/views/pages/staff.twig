@@ -17,28 +17,23 @@
     <div class="staff ">
         {% for k,key in staff %}
                 {% if k % 2 == 0 %}
-                    <div class="row">
+                    <div class="row staff-width">
+
                 {% endif %}
-                    <div class="twelve columns">
                     <section>
                         <h4 class="heading heading-bar"><span>{{ key['name'] }} - {{ key["data"]|length }}</span></h4>
                             <ul class="players-list inline">
                                 {% for ft in key['data'] %}
-                                    <div class="four columns">
-                                    <li class="img-anim">
-                                        <img src="https://guiria.badblock.fr/head/{{ ft[0] }}/60.png"
-                                             class="players-list-avatar">
+                                    <li>
+                                        <img src="https://guiria.badblock.fr/head/{{ ft[0] }}/60.png" class="players-list-avatar">
                                             <div class="players-list-info">
                                                 <span class="players-list-username">{{ ft[0] }}</span>
                                                 <span class="players-list-desc">{{ ft[1] }}</span>
                                             </div>
-                                        </li>
-                                    </div>
+                                    </li>
                                 {% endfor %}
                             </ul>
-                        </section>
-
-                    </div>
+                    </section>
                 {% if k % 2 != 0 %}
                     </div>
                 {% endif %}
