@@ -391,37 +391,31 @@
     </div>
     <div id="6" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
-            {% if factures != false %}
-                <br>
-                <h4 class="heading heading-bar"><span>Mes dernière(s) connection(s)</span></h4>
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td><font color="black">Pseudo</font></td>
-                        <td><font color="black">Date</font></td>
-                        <td><font color="black">Montant</font></td>
-                        <td><font color="black">Crédits €</font></td>
-                        <td><font color="black"></font></td>
-                    </tr>
-                    {% for key in factures %}
-                        <tr>
-                            <td>{{ key["pseudo"] }}</td>
-                            <td>{{ key["date"] }}</td>
-                            <td>{{ key["price"] }}</td>
-                            <td>{{ key["points"] }}</td>
-                            <td><a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}"><i class="icon icon-paperclip"></i> Consulter</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <div class="no-item-container">
-                    <div class="no-item-content">
-                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                        <h4>Aucun rechargement</h4>
-                    </div>
+            <br>
+            <h4 class="heading heading-bar"><span>Mes dernière(s) connection(s)</span></h4>
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td><font color="black">Pseudo</font></td>
+                    <td><font color="black">Date</font></td>
+                    <td><font color="black">Montant</font></td>
+                    <td><font color="black">Crédits €</font></td>
+                    <td><font color="black"></font></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="no-item-container">
+                <div class="no-item-content">
+                    <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                    <h4>Aucune(s) connection(s)</h4>
                 </div>
-            {% endif %}
+            </div>
         </section>
     </div>
 
