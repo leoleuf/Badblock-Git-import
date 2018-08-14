@@ -57,6 +57,29 @@ class IpGeneratorMiddleware
 
 	public function __invoke($request, $response, $next)
 	{
+        if ($this->container->session->exist('user')){
+            if (!$this->container->redis->exists('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']))){
+                //Search data player
+                $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->getProfile('username')['username'])]);
+                if ($player == null){
+                    return false;
+                }
+                //Search money of player
+                $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
+                if (!isset($player->points)){
+                    $shoppoints = 0;
+                }else{
+                    $shoppoints = $player->points;
+                }
+                $this->container->redis->set('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']), $shoppoints);
+                $this->container->redis->expire('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']), 120);
+            }else{
+                $shoppoints = $this->container->redis->get('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']));
+            }
+        }else{
+            $shoppoints = "Non connecté";
+        }
+
         $ip = $_SERVER['REMOTE_ADDR'];
 
         if ($ip == "127.0.0.1"){
@@ -84,6 +107,7 @@ class IpGeneratorMiddleware
         //ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
+        $twig->addGlobal('points', $shoppoints);
 
 
             //if the key doesn't exist in cache

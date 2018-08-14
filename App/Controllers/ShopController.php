@@ -20,33 +20,11 @@ class ShopController extends Controller
 
 
     function index(RequestInterface $request, ResponseInterface $response){
-        if ($this->container->session->exist('user')){
-            if (!$this->redis->exists('shoppoints.' . strtolower($this->session->getProfile('username')['username']))){
-                //Search data player
-                $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
-                if ($player == null){
-                    return false;
-                }
-                //Search money of player
-                $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
-                if (!isset($player->points)){
-                    $shoppoints = 0;
-                }else{
-                    $shoppoints = $player->points;
-                }
-                $this->redis->set('shoppoints.' . strtolower($this->session->getProfile('username')['username']), $shoppoints);
-                $this->redis->expire('shoppoints.' . strtolower($this->session->getProfile('username')['username']), 120);
-            }else{
-                $shoppoints = $this->redis->get('shoppoints.' . strtolower($this->session->getProfile('username')['username']));
-            }
-        }else{
-            $shoppoints = "Non connecté";
-        }
 
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
-        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'shoppoints' => $shoppoints]);
+        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo]);
 
     }
 
