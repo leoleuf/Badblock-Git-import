@@ -54,10 +54,20 @@ class UserController extends Controller
         }
 
         //Recherche des achats du joueurs
+        $collection_facture = $this->container->mongo->buy_logs;
+        $buys = $collection_facture->find(['uniqueId' => $user['uniqueId']]);
+        $c_buys = $collection_facture->count(['uniqueId' => $user['uniqueId']]);
+
+        if ($c_buys == 0){
+            $buys = false;
+        }
+
+        //Recherche des refund du joueurs
         $collection_facture = $this->container->mongo->funds;
         $factures = $collection_facture->find(['uniqueId' => $user['uniqueId']]);
+        $c_factures = $collection_facture->count(['uniqueId' => $user['uniqueId']]);
 
-        if (count($factures) == "0"){
+        if ($c_factures == 0){
             $factures = false;
         }
 
@@ -94,13 +104,13 @@ class UserController extends Controller
             $user['vote'] = 0;
             $user['votenb'] = 0;
         }else{
-            $user['vote'] = $vote["bronze"];
-            $user['votenb'] = $vote['rpg']['number'] + $vote['msf']['number'];
+            $user['vote'] = $vote["vote"];
+            $user['votenb'] = $vote['asf']['number'] + $vote['msf']['number'];
         }
 
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['buys' => $buys,'user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
 
 	}

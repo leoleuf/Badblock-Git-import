@@ -62,22 +62,25 @@
     <div class="user-menu">
         <ul>
                 <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i>    Mes Informations</a>
+                    <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i> Compte</a>
                 </li>
                 <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Mon casier</a>
+                    <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Casier</a>
                 </li>
                 <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '3')"><i class="fas fa-shopping-bag"></i>    Mes Achats</a>
+                    <a class="no-link" onclick="opentab(event, '3')"><i class="fas fa-shopping-bag"></i> Achats</a>
                 </li>
                 <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '4')"><i class="fas fa-cogs"></i>    Paramètres</a>
+                    <a class="no-link" onclick="opentab(event, '4')"><i class="fas fa-cogs"></i> Paramètres</a>
                 </li>
                 <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i>    Grade Custom</a>
+                    <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i> Grade Custom</a>
                 </li>
                 <li class="user-tab">
-                    <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i>    Compte Forum</a>
+                    <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i> Compte Forum</a>
+                </li>
+                <li class="user-tab">
+                    <a class="no-link" onclick="opentab(event, '6')"><i class="fas fa-secure"></i> Dernière(s) connection(s)</a>
                 </li>
         </ul>
     </div>
@@ -145,7 +148,7 @@
         <section class="shop-section-1" class="tabcontent">
             {% if factures != false %}
                 <br>
-                <h4 class="heading heading-bar"><span>Mes achats</span></h4>
+                <h4 class="heading heading-bar"><span>Mes Rechargement(s)</span></h4>
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
@@ -170,7 +173,35 @@
                 <div class="no-item-container">
                     <div class="no-item-content">
                         <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                        <h4>Aucun achat</h4>
+                        <h4>Aucun rechargement</h4>
+                    </div>
+                </div>
+            {% endif %}
+            {% if buys != false %}
+                <br>
+                <h4 class="heading heading-bar"><span>Mes achats</span></h4>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><font color="black">Offre</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Points</font></td>
+                        <td><font color="black"></font></td>
+                    </tr>
+                    {% for key in buys %}
+                        <tr>
+                            <td>Achat de {{ key["name"] }}</td>
+                            <td>{{ key["date"] }}</td>
+                            <td>{{ key["price"] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucun achat sur la boutique</h4>
                     </div>
                 </div>
             {% endif %}
@@ -353,6 +384,41 @@
                             <input type="submit" class="button-primary"></input>
                             </input>
                         </form>
+                    </div>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+    <div id="6" class="tabcontent" style="display: none;">
+        <section class="shop-section-1" class="tabcontent">
+            {% if factures != false %}
+                <br>
+                <h4 class="heading heading-bar"><span>Mes dernière(s) connection(s)</span></h4>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><font color="black">Pseudo</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Montant</font></td>
+                        <td><font color="black">Crédits €</font></td>
+                        <td><font color="black"></font></td>
+                    </tr>
+                    {% for key in factures %}
+                        <tr>
+                            <td>{{ key["pseudo"] }}</td>
+                            <td>{{ key["date"] }}</td>
+                            <td>{{ key["price"] }}</td>
+                            <td>{{ key["points"] }}</td>
+                            <td><a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}"><i class="icon icon-paperclip"></i> Consulter</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucun rechargement</h4>
                     </div>
                 </div>
             {% endif %}
