@@ -50,27 +50,27 @@
             <div class="stats-home">
                 <h4 class="heading heading-bar"><span>Statistiques Générales</span></h4>
                 <div class="col-3">
-                    <a href="#"><h3 id="players-count">{{ connected }}</h3>
+                    <a href="#"><h3 id="players-count">{{ connected|number_format(0, '', ' ') }}</h3>
                         <p>Joueurs connectés</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['registred'] }}</h3>
+                    <a href="#"><h3>{{ stats['registred']|number_format(0, '', ' ') }}</h3>
                         <p>Joueurs inscrits</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['staff'] }}</h3>
+                    <a href="#"><h3>{{ stats['staff']|number_format(0, '', ' ') }}</h3>
                         <p>Membres du staff</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['message_forum'] }}</h3>
+                    <a href="#"><h3>{{ stats['message_forum']|number_format(0, '', ' ') }}</h3>
                         <p>Messages sur le Forum</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ c_ts }}</h3>
+                    <a href="#"><h3>{{ c_ts|number_format(0, '', ' ') }}</h3>
                         <p>Joueurs connectés au TeamSpeak</p></a>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['article'] }}</h3>
+                    <a href="#"><h3>{{ stats['article']|number_format(0, '', ' ') }}</h3>
                         <p>Articles sur le site</p></a>
                 </div>
             </div>
@@ -99,15 +99,15 @@
     </div>
     <div class="stats-home">
         <div class="col-3">
-            <a href="#player-modal"><h3 id="players-count">{{ stats['ban'] }}</h3>
+            <a href="#player-modal"><h3 id="players-count">{{ stats['ban']|number_format(0, '', ' ') }}</h3>
                 <p>Joueurs suspendus</p></a>
         </div>
         <div class="col-3">
-            <a href="#account-modal"><h3>{{ stats['mute'] }}</h3>
+            <a href="#account-modal"><h3>{{ stats['mute']|number_format(0, '', ' ') }}</h3>
                 <p>Joueurs baillonés</p></a>
         </div>
         <div class="col-3">
-            <a href="#ban-modal"><h3>{{ stats['banGuardian'] }}</h3>
+            <a href="#ban-modal"><h3>{{ stats['banGuardian']|number_format(0, '', ' ') }}</h3>
                 <p>Joueurs suspendus par le Guardian</p></a>
         </div>
     </div>
