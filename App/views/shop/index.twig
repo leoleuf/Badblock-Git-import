@@ -17,6 +17,7 @@
                         <img src="https://images.badblock.fr/i/cb%20logo.png" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" style="width: 7%">
                     </div>
+                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : 1500 pb</a>
                     <div class="recharge-button">
                         <a class="button button-danger" href="{{ path_for('shop.recharge') }}" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
                     </div>
@@ -25,6 +26,19 @@
         </div>
     </div>
     <!-- Fin recharger -->
+    <div class="shop-full-w">
+        <div class="shop-menu">
+            <ul class="shop-menu-menu">
+                {% for key,value in serverlist %}
+                    <li class="shop-menu-active">
+                        <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link">
+                            <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
     <script async>
 
@@ -80,19 +94,6 @@
                 </div>
             </section>
         {% endif %}
-    <div class="shop-full-w">
-    	<div class="shop-menu">
-	        <ul class="shop-menu-menu">
-	            {% for key,value in serverlist %}
-	                <li class="shop-menu-active">
-	                    <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link">
-	                        <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
-	                    </a>
-	                </li>
-	            {% endfor %}
-	        </ul>
-	    </div>
-    </div>
     {% if flash('shop_error') %}
         {% for flash in flash('shop_error') %}
             <div class="alert alert-error">

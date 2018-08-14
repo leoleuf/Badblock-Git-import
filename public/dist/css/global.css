@@ -739,7 +739,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .shop-menu .shop-menu-menu .shop-menu-active:nth-child(3) a{
-    color: #6937C0 !important;
+    color: #7b4dcb !important;
 }
 
 .shop-menu .shop-menu-menu .shop-menu-active:nth-child(4) a{
@@ -786,8 +786,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .shop-recharge-validation-pseudo {
-    width: 60%;
-    margin-left: 5%;
+    width: 100%;
 }
 
 .recharge-bottom {
@@ -804,6 +803,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover, .btn:hover {
     transform: scale(1.05);
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .sms {
@@ -829,6 +829,9 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .form-pseudo {
     width: 100% !important;
+}
+
+.recharge-step-1 {
     margin-top: -25px;
 }
 
@@ -1034,6 +1037,15 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     background-color: #eb6e60 !important;
     transform: scale(1.02);
     transition: 0.5s;
+}
+
+.solde-button {
+    margin-right: 15px;
+    background-color: #00cc00 !important;
+}
+
+.solde-button:hover {
+    cursor: default;
 }
 
 /*Fin Dreaams*/
