@@ -71,10 +71,6 @@
             </center>
         </div>
 
-        <div class="rewards">
-            <h6 class="text-center">RPG Paradize = <img src="https://images.badblock.fr/i/lingot.png" width="16"><img src="https://images.badblock.fr/i/lingot.png" width="16">   Serveur-Prive.net = <img src="https://images.badblock.fr/i/lingot.png" width="16"></h6>
-        </div>
-
         <h3 class="text-center">Les meilleurs votants !</h3>
         <p class="text-center">Retrouvez chaque mois le classement des meilleurs votants de BadBlock !</p>
         <div class="vote-tr">
@@ -92,7 +88,7 @@
                     {% for k,data in top %}
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
-                            <td class="img"><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/64.png" class="align-middle"/> <span class="align-middle">{{ data['name'] }}</span></td>
+                            <td class="img"><img src="https://guiria.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle"/> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></td>
                             {% if k < 3 %}
                                 <td>15€</td>
                             {% elseif k < 10 %}
