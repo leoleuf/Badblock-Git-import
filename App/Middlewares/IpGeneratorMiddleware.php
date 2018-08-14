@@ -79,6 +79,7 @@ class IpGeneratorMiddleware
         }else{
             $shoppoints = "Non connecté";
         }
+        
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
