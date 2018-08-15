@@ -29,7 +29,13 @@ class CreditController extends Controller
 
     public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1){
         if (empty($id)){
-            $this->render($response, 'shop.recharge.step-1');
+            if ($this->container->session->exist('user')) {
+                $player = $this->session->getProfile('username')['username'];
+            }else{
+                $player = "";
+            }
+
+            $this->render($response, 'shop.recharge.step-1', ['player' => $player]);
         }elseif($id['id'] == 2){
             $this->render($response, 'shop.recharge.step-2');
         }elseif($id['id'] == "paypal"){
