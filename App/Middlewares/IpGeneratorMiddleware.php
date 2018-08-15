@@ -77,9 +77,9 @@ class IpGeneratorMiddleware
                 $shoppoints = $this->container->redis->get('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']));
             }
         }else{
-            $shoppoints = "Non connecté";
+            $shoppoints = "0";
         }
-        
+
 
         $ip = $_SERVER['REMOTE_ADDR'];
 

@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 
+use function GuzzleHttp\Psr7\str;
 use MongoDB\Exception\Exception;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -87,7 +88,7 @@ class ShopController extends Controller
         }
 
         //Check if player have money
-        if(!$this->haveMoney($this->session->getProfile('username')['username'], $product->price)){
+        if(!$this->haveMoney(strtolower($this->session->getProfile('username')['username']), $product->price)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
 
@@ -132,13 +133,34 @@ class ShopController extends Controller
             }
         }
 
+
+        //Subtract points
+        $this->subtract(strtolower($this->session->getProfile('username')['username']), $product->price);
+
+        return "";
+    }
+
+
+    public function subtract($username, $amount){
+        //Search data player
+        $player = $this->container->mongoServer->players->findOne(['name' => $username]);
+        $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
+
+        $points = $player->points - $amount;
+
+        $this->container->mongo->fund_list->updateOne(['uniqueId' => $player->uniqueId],['$set' => ['points' => $points]]);
+
+        //Refresh points cache
+        $this->container->redis->set('shoppoints.' . $username, $points);
+        $this->container->redis->expire('shoppoints.' . $username, 120);
+
     }
 
 
 
     public function haveMoney($username, $amount){
         //Search data player
-        $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+        $player = $this->container->mongoServer->players->findOne(['name' => $username]);
 
         if ($player == null){
             return false;

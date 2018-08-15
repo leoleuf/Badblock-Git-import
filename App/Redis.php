@@ -30,6 +30,12 @@ class Redis
         return $this->client->expire($this->prefix . $key, $value);
     }
 
+
+    public function del($key)
+    {
+        return $this->client->del([$this->prefix . $key]);
+    }
+
 	/**
 	 * Check if key exist
 	 *
