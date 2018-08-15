@@ -35,6 +35,30 @@ class DedipassController extends Controller
               // Sauvegarde dans mongoDB
               $this->container->mongo->funds_logs->insertOne($dedipass);
 
+              $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
+              $data = [
+                  'uniqueId' => $user['uniqueId'],
+                  'date' => date('Y-m-d H:i:s'),
+                  'price' => $dedipass->payout,
+                  'gateway' => 'dedipass',
+                  'pseudo' => $this->container->session->get('recharge-username'),
+                  'points' => $dedipass->virtual_currency,
+                  'transaction_id' => $code
+              ];
+
+              $this->container->mongo->funds->insertOne($data);
+              $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+              if ($money == null){
+                  $data = [
+                      "uniqueId" => $user['uniqueId'],
+                      "points" => $dedipass->virtual_currency
+                  ];
+                  $this->container->mongo->fund_list->insertOne($data);
+              }else{
+                  $money['points'] = $money['points'] + $dedipass->virtual_currency;
+                  $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+              }
+
           } 
           else { 
             // Le code est invalide 
