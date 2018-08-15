@@ -933,6 +933,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     transition: 0.5s;
 }
 
+.success-center {
+    text-align: center;
+}
+
 .small-offer-btn {
     margin-top: 5px;
 }
@@ -1070,6 +1074,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     cursor: default;
 }
 
+
+.img-succes {
+    width: 100%;
+}
 /*Fin Dreaams*/
 
 .user-menu {
