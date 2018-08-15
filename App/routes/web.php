@@ -45,7 +45,7 @@ $app->group('/shop', function (){
 
 
     $this->get('/recharge/cancel', \App\Controllers\CreditController::class . ':paymentCancel')->setName('shop.recharge.paypal.cancel');
-	$this->get('/recharge/sucess', \App\Controllers\CreditController::class . ':paymentSuccess')->setName('shop.recharge.paypal.sucess');
+	$this->get('/recharge/success', \App\Controllers\CreditController::class . ':paymentSuccess')->setName('shop.recharge.paypal.success');
 
 });
 
