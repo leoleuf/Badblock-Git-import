@@ -123,6 +123,8 @@ class PaypalController extends Controller
         if($resp){
             // Detection d'une quelconque action
             // Sauvegarde dans mongoDB
+            $resp['name'] = strtolower($this->container->session->get('recharge-username'));
+            $resp["date"] = date('Y-m-d H:i:s');
             $this->container->mongo->funds_logs->insertOne($resp);
 
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
