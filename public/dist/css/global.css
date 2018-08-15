@@ -1067,14 +1067,33 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .solde-button {
     margin-right: 15px;
-    background-color: #00ff6c !important;
+    background-color: #2ecc71 !important;
 }
 
 .solde-button:hover {
     cursor: default;
 }
 
+.footer-success {
+    margin-bottom: -200px !important;
+}
 
+.button-success-recharge {
+    width: 75%;
+    height: 75px;
+    background-color: #2ecc71 !important;
+}
+
+.button-danger-recharge {
+    width: 75%;
+    height: 75px;
+    
+}
+
+.text-success {
+    margin-top: 20px;
+    color: white;
+}
 .img-succes {
     width: 100%;
 }
