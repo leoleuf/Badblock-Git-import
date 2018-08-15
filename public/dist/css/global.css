@@ -992,8 +992,8 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 
 .players-list-avatar {
-    width: 100px !important;
-    height: 100px;
+    width: 75px !important;
+    height: 75px !important;
 }
 
 .players-list-twitter {
@@ -1021,18 +1021,22 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .inline {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     flex-wrap: wrap;
-    flex-basis: 25%;
-    flex-direction: row-reverse;
 }
 
 .staff-width {
     width: 100%;
 }
 
+.card-staff {
+    margin-right: 15px;
+}
+
+.card-staff:hover {
+    transition: 0.2s;
+    transform: scale(1.05);
+}
 .margin-top-small {
     margin-top: -15px;
 }
