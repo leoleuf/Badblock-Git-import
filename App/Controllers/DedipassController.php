@@ -63,15 +63,12 @@ class DedipassController extends Controller
                   $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
 
-              return $this->redirect($response, '/shop/recharge/sucess');
-
+              return $this->redirect($response, '/shop/recharge/success');
 
           } 
-          else { 
-            // Le code est invalide 
-            $this->render($response,'shop.recharge.dedipass-process', [
-                'status' => $dedipass->status
-            ]);
+          else {
+              return $this->redirect($response, '/shop/recharge/cancel');
+
           } 
         }     
     }
