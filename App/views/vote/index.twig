@@ -61,7 +61,7 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" href="https://serveur-prive.net/minecraft/badblock-198/vote" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <a class="button button-primary" id="btm-msf" onclick="vote('https://serveur-prive.net/minecraft/badblock-198/vote')" style="width: 95%;">Serveur-Prive.net (1H30)</a>
                 </div>
             </center>
         </div>
@@ -201,14 +201,27 @@
                     $("#step2").removeClass("disabled");
                     if(jqXHR.status == 404){
                         $('[data-remodal-id=vote-user]').remodal().open();
-                    }else if (jqXHR.status == 405){
+                    }else if (jqXHR.status == 405) {
                         data = JSON.parse(jqXHR.responseText);
-                        if (data.msf == false){
+                        if (data.msf == false) {
                             $("#btm-msf").addClass("disabled");
                             $("#btm-msf").text("Serveur-Prive.net Heure : " + data.time_msf);
                         }
+                    }
                 });
             }
+        }
+
+        function vote(wb)
+        {
+            window.open(wb, '_blank');
+            setTimeout(function () {
+                $("#lot1").removeClass("disabled");
+                $("#lot2").removeClass("disabled");
+                $("#lot3").removeClass("disabled");
+                $("#lot4").removeClass("disabled");
+                $("#lot5").removeClass("disabled");
+            }, 10000);
         }
 
         function validate() {
