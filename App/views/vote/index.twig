@@ -61,8 +61,7 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" onclick="vote('msf')" style="width: 95%;">Serveur-Prive.net (1H30)</a>
-                    <a class="button button-primary" id="btm-asf" onclick="vote('asf')" style="width: 95%;">Serveur-Minecraft.net (3H)</a>
+                    <a class="button button-primary" id="btm-msf" href="https://serveur-prive.net/minecraft/badblock-198/vote" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
                 </div>
             </center>
         </div>
@@ -161,16 +160,6 @@
     </div>
     <!-- Time modal -->
 
-    <!-- Link Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-link">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="time-title">Cliquer sur le lien pour voter !</h1>
-        <a class="button button-danger" id="vote-link2" target="_blank" href="" onclick="vote"><i class="fas fa-link"></i>  Voter !</a>
-        <br>
-        <a class="button button-primary" onclick="validate()" style="width: 95%;">Valider</a>
-    </div>
-    <!-- Link modal -->
-
     <!-- End Modal -->
     <div class="remodal modal-remodal" data-remodal-id="vote-end">
         <button data-remodal-action="close" class="remodal-close"></button>
@@ -214,56 +203,13 @@
                         $('[data-remodal-id=vote-user]').remodal().open();
                     }else if (jqXHR.status == 405){
                         data = JSON.parse(jqXHR.responseText);
-                        if (data.asf == false){
-                            $("#btm-asf").addClass("disabled");
-                            $("#btm-asf").text("Serveur-Minecraft.net Heure : " + data.time_asf);
-                        }
                         if (data.msf == false){
                             $("#btm-msf").addClass("disabled");
                             $("#btm-msf").text("Serveur-Prive.net Heure : " + data.time_msf);
                         }
-                        if (data.rpg == false && data.msf == false){
-                            $("#time-title").text("Aucuns de vote de vote de disponible. Veuillez patienter !");
-                            $('[data-remodal-id=vote-time]').remodal().open();
-                        }
-                    }
                 });
             }
         }
-
-        function vote(vote) {
-            $("#step2").addClass("disabled");
-            //requet if user exist
-            var request = $.ajax({
-                url: "/vote/check/",
-                method: "POST",
-                data: { pseudo : pseudo,
-                    vote : vote
-                },
-                dataType: "html",
-                success: function (data) {
-                    if (vote == "asf"){
-                        type = "asf";
-                        $("#vote-link").attr("href", data);
-                        $('[data-remodal-id=vote-link]').remodal().open();
-                    }else if (vote == "msf"){
-                        type = "msf";
-                        $("#vote-link2").attr("href", data);
-                        $('[data-remodal-id=vote-link]').remodal().open();
-                    }
-                }
-            });
-
-            request.fail(function( jqXHR, msg ) {
-                if(jqXHR.status == 404){
-                    $('[data-remodal-id=vote-user]').remodal().open();
-                }else if (jqXHR.status == 405){
-                    $("#time-title").text("Vous devez attendre " + jqXHR.responseText +" pour voter !");
-                    $('[data-remodal-id=vote-time]').remodal().open();
-                }
-            });
-        }
-
 
         function validate() {
             //requet if user have vote
@@ -297,21 +243,6 @@
                 }
             });
         }
-
-        function loterie(tye){
-            var request = $.ajax({
-                url: "/vote/loterie/" + tye,
-                method: "POST",
-                data: {pseudo : pseudo},
-                dataType: "html",
-                success: function (data) {
-                    $("#title").text(data);
-                    $('[data-remodal-id=info-modal]').remodal().open();
-                }
-            });
-        }
-
-
 
     </script>
 {% endblock %}
