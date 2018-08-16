@@ -24,7 +24,7 @@
                 <div class="container">
                     <ul>
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
-                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.xp }} <span>Xp</span></li>
+                        <li><i class="fas fa-bolt"></i> {{ user.game.xp }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
                         <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Vote(s)</span></li>
                     </ul>
@@ -61,27 +61,28 @@
     <!-- Menu shop -->
     <div class="user-menu">
         <ul>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i> Compte</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Casier</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '3')"><i class="fas fa-shopping-bag"></i> Achats</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '4')"><i class="fas fa-cogs"></i> Paramètres</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i> Grade Custom</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i> Compte Forum</a>
-                </li>
-                <li class="user-tab">
-                    <a class="no-link" onclick="opentab(event, '6')"><i class="fas fa-secure"></i> Dernière(s) connection(s)</a>
-                </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i> Compte</a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Casier</a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '3')"><i class="fas fa-shopping-bag"></i> Achats</a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '4')"><i class="fas fa-cogs"></i> Paramètres</a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '6')"><i class="fas fa-lock"></i> Dernières connexions</a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i> Grade Custom</a>
+            </li>
+            
+            <li class="user-tab">
+                <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i> Compte Forum</a>
+            </li>
         </ul>
     </div>
 
@@ -91,14 +92,14 @@
             <div class="row">
                 <div class="six columns">
                     <ul class="user-info">
-                        <li>Niveau In-Game : <span>{{ user.game.level }} niveaux</span></li>
-                        <li>Niveau d'XP : <span>{{ user.game.xp }} Xp(s)</span></li>
-                        <li>Nombre de BadCoins : <span>{{ user.game.badcoins }} BC</span></li>
-                        <li>Nombre vote : <span>{{ user.votenb }} vote(s)</span></li>
+                        <li>Niveau : <span>{{ user.game.level }} niveau(x)</span></li>
+                        <li>Point(s) d'expérience : <span>{{ user.game.xp }} point(s)</span></li>
+                        <li>Nombre de BadCoin(s) : <span>{{ user.game.badcoins }} BC</span></li>
+                        <li>Nombre de vote(s) : <span>{{ user.votenb }} vote(s)</span></li>
                     </ul>
                 </div>
                 <div class="six columns">
-                    <img src="https://visage.surgeplay.com/head/512/{{ user.name }}">
+                    <img src="https://minotar.net/body/{{ user.name }}/150.png" class="avatar-player">
                 </div>
             </div>
         </section>
@@ -106,7 +107,7 @@
     <div id="2" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             {% if sanctions != false %}
-                <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mes 10 dernières sanction(s)</span></h4>
+                <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mes 10 dernières sanctions</span></h4>
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
@@ -215,8 +216,8 @@
                     <h4 class="top0">Changer mon mot de passe serveur</h4>
                     <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" />
-                        <input type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
-                        <input type="submit" class="button-primary"></input>
+                        <input class="espace-valider"type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
+                        <input type="submit" class="button-primary espace-valider"></input>
                         </input>
                     </form>
                 </div>
@@ -225,23 +226,23 @@
                     <form action="/dashboard/teamspeak/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre ID TeamSpeak</label>
                         <input type="text" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
-                        <input type="submit" class="button-primary">
+                        <input type="submit" class="button-primary espace-valider">
                         </input>
                     </form>
                 </div>
             </div>
             <div class="six columns">
                 <div class="span">
-                    <h4 class="top0">Changer mon mode de connection</h4>
+                    <h4 class="top0">Changer mon mode de connexion</h4>
                     <form action="/dashboard/changeserverconnect/" method="post" name="confirm-mdp">
                         {% if user.onlineMode %}
-                            <input type="radio" name="selectmode" value="premium" id="rb" checked>Connection premium
-                            <input type="radio" name="selectmode" value="crack" id="rb">Connection cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb" checked>Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb">Connexion cracké
                         {% else %}
-                            <input type="radio" name="selectmode" value="premium" id="rb">Connection premium
-                            <input type="radio" name="selectmode" value="crack" id="rb" checked>Connection cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb">Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb" checked>Connexion cracké
                         {% endif %}
-                        <input type="submit" class="button-primary">
+                        <input type="submit" class="button-primary espace-valider">
                         </input>
                     </form>
                 </div>
@@ -249,12 +250,12 @@
 
             <div class="six columns">
                 <div class="span">
-                    <h4 class="top0">Changer mon Pseudo</h4>
+                    <br><h4 class="top0">Changer mon Pseudo</h4>
                     <form action="/dashboard/changespseudo/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau pseudo</label>
                         <input type="text" name="newpseudo" id="newpseudo" placeholder="Ex : Fluor" />
 
-                        <input type="submit" class="button-primary">
+                        <input type="submit" class="button-primary espace-valider">
                     </form>
                 </div>
             </div>
@@ -280,9 +281,9 @@
                     <div class="span">
                         <h4 class="top0">Choisir mon préfix :</h4>
                         <form action="/dashboard/custom/prefix" method="post" name="confirm-mdp">
-                            <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
+                            <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères.</label>
                             <input type="text" name="prefix" id="prefix" placeholder="&bFluor" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -291,8 +292,68 @@
                         <form action="/dashboard/custom/textcolor" method="post" name="confirm-mdp">
                             <label for="newpassword">Choissisez !</label>
                             <select name="color">
-                                <option value="Vert clair">Vert clair</option><option value="Bleu clair">Bleu clair</option><option value="Rouge clair">Rouge clair</option><option value="Rose">Rose</option><option value="Jaune">Jaune</option><option value="Blanc">Blanc</option><option value="Bleu foncé">Bleu foncé</option><option value="Vert foncé">Vert foncé</option><option value="Bleu/Aqua">Bleu/Aqua</option><option value="Rouge foncé">Rouge foncé</option><option value="Violet">Violet</option><option value="Orange/Gold">Orange/Gold</option><option value="Gris">Gris</option><option value="Gris foncé">Gris foncé</option><option value="Bleu">Bleu</option><option value="Vert clair souligné">Vert clair souligné</option><option value="Bleu clair souligné">Bleu clair souligné</option><option value="Rouge clair souligné">Rouge clair souligné</option><option value="Rose souligné">Rose souligné</option><option value="Jaune souligné">Jaune souligné</option><option value="Blanc souligné">Blanc souligné</option><option value="Bleu foncé souligné">Bleu foncé souligné</option><option value="Vert foncé souligné">Vert foncé souligné</option><option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option><option value="Rouge foncé souligné">Rouge foncé souligné</option><option value="Violet souligné">Violet souligné</option><option value="Orange/Gold souligné">Orange/Gold souligné</option><option value="Gris souligné">Gris souligné</option><option value="Gris foncé souligné">Gris foncé souligné</option><option value="Bleu souligné">Bleu souligné</option><option value="Vert clair gras">Vert clair gras</option><option value="Bleu clair gras">Bleu clair gras</option><option value="Rouge clair gras">Rouge clair gras</option><option value="Rose gras">Rose gras</option><option value="Jaune gras">Jaune gras</option><option value="Blanc gras">Blanc gras</option><option value="Bleu foncé gras">Bleu foncé gras</option><option value="Vert foncé gras">Vert foncé gras</option><option value="Bleu/Aqua gras">Bleu/Aqua gras</option><option value="Rouge foncé gras">Rouge foncé gras</option><option value="Violet gras">Violet gras</option><option value="Orange/Gold gras">Orange/Gold gras</option><option value="Gris gras">Gris gras</option><option value="Gris foncé gras">Gris foncé gras</option><option value="Bleu gras">Bleu gras</option><option value="Vert clair italique">Vert clair italique</option><option value="Bleu clair italique">Bleu clair italique</option><option value="Rouge clair italique">Rouge clair italique</option><option value="Rose italique">Rose italique</option><option value="Jaune italique">Jaune italique</option><option value="Blanc italique">Blanc italique</option><option value="Bleu foncé italique">Bleu foncé italique</option><option value="Vert foncé italique">Vert foncé italique</option><option value="Bleu/Aqua italique">Bleu/Aqua italique</option><option value="Rouge foncé italique">Rouge foncé italique</option><option value="Violet italique">Violet italique</option><option value="Orange/Gold italique">Orange/Gold italique</option><option value="Gris italique">Gris italique</option><option value="Gris foncé italique">Gris foncé italique</option><option value="Bleu italique">Bleu italique</option>										</select>
-                            <input type="submit" class="button-primary"></input>
+                                <option value="Vert clair">Vert clair</option>
+                                <option value="Bleu clair">Bleu clair</option>
+                                <option value="Rouge clair">Rouge clair</option>
+                                <option value="Rose">Rose</option>
+                                <option value="Jaune">Jaune</option>
+                                <option value="Blanc">Blanc</option>
+                                <option value="Bleu foncé">Bleu foncé</option>
+                                <option value="Vert foncé">Vert foncé</option>
+                                <option value="Bleu/Aqua">Bleu/Aqua</option>
+                                <option value="Rouge foncé">Rouge foncé</option>
+                                <option value="Violet">Violet</option>
+                                <option value="Orange/Gold">Orange/Gold</option>
+                                <option value="Gris">Gris</option>
+                                <option value="Gris foncé">Gris foncé</option>
+                                <option value="Bleu">Bleu</option>
+                                <option value="Vert clair souligné">Vert clair souligné</option>
+                                <option value="Bleu clair souligné">Bleu clair souligné</option>
+                                <option value="Rouge clair souligné">Rouge clair souligné</option>
+                                <option value="Rose souligné">Rose souligné</option>
+                                <option value="Jaune souligné">Jaune souligné</option>
+                                <option value="Blanc souligné">Blanc souligné</option>
+                                <option value="Bleu foncé souligné">Bleu foncé souligné</option>
+                                <option value="Vert foncé souligné">Vert foncé souligné</option>
+                                <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
+                                <option value="Rouge foncé souligné">Rouge foncé souligné</option>
+                                <option value="Violet souligné">Violet souligné</option>
+                                <option value="Orange/Gold souligné">Orange/Gold souligné</option>
+                                <option value="Gris souligné">Gris souligné</option>
+                                <option value="Gris foncé souligné">Gris foncé souligné</option>
+                                <option value="Bleu souligné">Bleu souligné</option>
+                                <option value="Vert clair gras">Vert clair gras</option>
+                                <option value="Bleu clair gras">Bleu clair gras</option>
+                                <option value="Rouge clair gras">Rouge clair gras</option>
+                                <option value="Rose gras">Rose gras</option>
+                                <option value="Jaune gras">Jaune gras</option>
+                                <option value="Blanc gras">Blanc gras</option>
+                                <option value="Bleu foncé gras">Bleu foncé gras</option>
+                                <option value="Vert foncé gras">Vert foncé gras</option>
+                                <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
+                                <option value="Rouge foncé gras">Rouge foncé gras</option>
+                                <option value="Violet gras">Violet gras</option>
+                                <option value="Orange/Gold gras">Orange/Gold gras</option>
+                                <option value="Gris gras">Gris gras</option>
+                                <option value="Gris foncé gras">Gris foncé gras</option>
+                                <option value="Bleu gras">Bleu gras</option>
+                                <option value="Vert clair italique">Vert clair italique</option>
+                                <option value="Bleu clair italique">Bleu clair italique</option>
+                                <option value="Rouge clair italique">Rouge clair italique</option>
+                                <option value="Rose italique">Rose italique</option>
+                                <option value="Jaune italique">Jaune italique</option>
+                                <option value="Blanc italique">Blanc italique</option>
+                                <option value="Bleu foncé italique">Bleu foncé italique</option>
+                                <option value="Vert foncé italique">Vert foncé italique</option>
+                                <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
+                                <option value="Rouge foncé italique">Rouge foncé italique</option>
+                                <option value="Violet italique">Violet italique</option>
+                                <option value="Orange/Gold italique">Orange/Gold italique</option>
+                                <option value="Gris italique">Gris italique</option>
+                                <option value="Gris foncé italique">Gris foncé italique</option>
+                                <option value="Bleu italique">Bleu italique</option>                    
+                            </select>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -303,9 +364,9 @@
                         <form action="/dashboard/custom/teamspeak_canal" method="post" name="confirm-mdp">
                             <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères !</label>
                             <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !" />
-                            <label for="newpassword">Entrer le mot de votre canal !</label>
+                            <label for="newpassword">Entrer le mot de passe de votre canal !</label>
                             <input type="password" name="canal_psw" id="canal_psw" placeholder="" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -315,7 +376,7 @@
                             <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier que tous les critères soient bons avant de nous contacter.
                                 Une fois cela fait, insérez le lien vers l'image ici :</label>
                             <input type="text" name="url_icone" id="canal_psw" placeholder="" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -337,7 +398,7 @@
                         <form action="/" method="post" name="confirm-mdp">
                             <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
                             <input type="text" name="prefix" id="prefix" placeholder="&bFluor" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -354,11 +415,60 @@
                                 <option value="Blanc">Blanc</option>
                                 <option value="Bleu foncé">Bleu foncé</option>
                                 <option value="Vert foncé">Vert foncé</option>
-                                <option value="Bleu/Aqua">Bleu/Aqua</option><option value="Rouge foncé">Rouge foncé</option>
-                                <option value="Violet">Violet</option><option value="Orange/Gold">Orange/Gold</option>
-                                <option value="Gris">Gris</option><option value="Gris foncé">Gris foncé</option>
-                                <option value="Bleu">Bleu</option><option value="Vert clair souligné">Vert clair souligné</option><option value="Bleu clair souligné">Bleu clair souligné</option><option value="Rouge clair souligné">Rouge clair souligné</option><option value="Rose souligné">Rose souligné</option><option value="Jaune souligné">Jaune souligné</option><option value="Blanc souligné">Blanc souligné</option><option value="Bleu foncé souligné">Bleu foncé souligné</option><option value="Vert foncé souligné">Vert foncé souligné</option><option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option><option value="Rouge foncé souligné">Rouge foncé souligné</option><option value="Violet souligné">Violet souligné</option><option value="Orange/Gold souligné">Orange/Gold souligné</option><option value="Gris souligné">Gris souligné</option><option value="Gris foncé souligné">Gris foncé souligné</option><option value="Bleu souligné">Bleu souligné</option><option value="Vert clair gras">Vert clair gras</option><option value="Bleu clair gras">Bleu clair gras</option><option value="Rouge clair gras">Rouge clair gras</option><option value="Rose gras">Rose gras</option><option value="Jaune gras">Jaune gras</option><option value="Blanc gras">Blanc gras</option><option value="Bleu foncé gras">Bleu foncé gras</option><option value="Vert foncé gras">Vert foncé gras</option><option value="Bleu/Aqua gras">Bleu/Aqua gras</option><option value="Rouge foncé gras">Rouge foncé gras</option><option value="Violet gras">Violet gras</option><option value="Orange/Gold gras">Orange/Gold gras</option><option value="Gris gras">Gris gras</option><option value="Gris foncé gras">Gris foncé gras</option><option value="Bleu gras">Bleu gras</option><option value="Vert clair italique">Vert clair italique</option><option value="Bleu clair italique">Bleu clair italique</option><option value="Rouge clair italique">Rouge clair italique</option><option value="Rose italique">Rose italique</option><option value="Jaune italique">Jaune italique</option><option value="Blanc italique">Blanc italique</option><option value="Bleu foncé italique">Bleu foncé italique</option><option value="Vert foncé italique">Vert foncé italique</option><option value="Bleu/Aqua italique">Bleu/Aqua italique</option><option value="Rouge foncé italique">Rouge foncé italique</option><option value="Violet italique">Violet italique</option><option value="Orange/Gold italique">Orange/Gold italique</option><option value="Gris italique">Gris italique</option><option value="Gris foncé italique">Gris foncé italique</option><option value="Bleu italique">Bleu italique</option>										</select>
-                            <input type="submit" class="button-primary"></input>
+                                <option value="Bleu/Aqua">Bleu/Aqua</option>
+                                <option value="Rouge foncé">Rouge foncé</option>
+                                <option value="Violet">Violet</option>
+                                <option value="Orange/Gold">Orange/Gold</option>
+                                <option value="Gris">Gris</option>
+                                <option value="Gris foncé">Gris foncé</option>
+                                <option value="Bleu">Bleu</option>
+                                <option value="Vert clair souligné">Vert clair souligné</option>
+                                <option value="Bleu clair souligné">Bleu clair souligné</option>
+                                <option value="Rouge clair souligné">Rouge clair souligné</option>
+                                <option value="Rose souligné">Rose souligné</option>
+                                <option value="Jaune souligné">Jaune souligné</option>
+                                <option value="Blanc souligné">Blanc souligné</option>
+                                <option value="Bleu foncé souligné">Bleu foncé souligné</option>
+                                <option value="Vert foncé souligné">Vert foncé souligné</option>
+                                <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
+                                <option value="Rouge foncé souligné">Rouge foncé souligné</option>
+                                <option value="Violet souligné">Violet souligné</option>
+                                <option value="Orange/Gold souligné">Orange/Gold souligné</option>
+                                <option value="Gris souligné">Gris souligné</option>
+                                <option value="Gris foncé souligné">Gris foncé souligné</option>
+                                <option value="Bleu souligné">Bleu souligné</option>
+                                <option value="Vert clair gras">Vert clair gras</option>
+                                <option value="Bleu clair gras">Bleu clair gras</option>
+                                <option value="Rouge clair gras">Rouge clair gras</option>
+                                <option value="Rose gras">Rose gras</option>
+                                <option value="Jaune gras">Jaune gras</option>
+                                <option value="Blanc gras">Blanc gras</option>
+                                <option value="Bleu foncé gras">Bleu foncé gras</option>
+                                <option value="Vert foncé gras">Vert foncé gras</option>
+                                <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
+                                <option value="Rouge foncé gras">Rouge foncé gras</option>
+                                <option value="Violet gras">Violet gras</option>
+                                <option value="Orange/Gold gras">Orange/Gold gras</option>
+                                <option value="Gris gras">Gris gras</option>
+                                <option value="Gris foncé gras">Gris foncé gras</option>
+                                <option value="Bleu gras">Bleu gras</option>
+                                <option value="Vert clair italique">Vert clair italique</option>
+                                <option value="Bleu clair italique">Bleu clair italique</option>
+                                <option value="Rouge clair italique">Rouge clair italique</option>
+                                <option value="Rose italique">Rose italique</option>
+                                <option value="Jaune italique">Jaune italique</option>
+                                <option value="Blanc italique">Blanc italique</option>
+                                <option value="Bleu foncé italique">Bleu foncé italique</option>
+                                <option value="Vert foncé italique">Vert foncé italique</option>
+                                <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
+                                <option value="Rouge foncé italique">Rouge foncé italique</option>
+                                <option value="Violet italique">Violet italique</option>
+                                <option value="Orange/Gold italique">Orange/Gold italique</option>
+                                <option value="Gris italique">Gris italique</option>
+                                <option value="Gris foncé italique">Gris foncé italique</option>
+                                <option value="Bleu italique">Bleu italique</option>					
+                            </select>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -369,9 +479,9 @@
                         <form action="/" method="post" name="confirm-mdp">
                             <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères !</label>
                             <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !" />
-                            <label for="newpassword">Entrer le mot de votre canal !</label>
+                            <label for="newpassword">Entrer le mot de passe de votre canal !</label>
                             <input type="password" name="canal_psw" id="canal_psw" placeholder="" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -381,7 +491,7 @@
                             <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier que tous les critères soient bons avant de nous contacter.
                                 Une fois cela fait, insérez le lien vers l'image ici :</label>
                             <input type="text" name="url_icone" id="canal_psw" placeholder="" />
-                            <input type="submit" class="button-primary"></input>
+                            <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
@@ -392,15 +502,15 @@
     <div id="6" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <br>
-            <h4 class="heading heading-bar"><span>Mes dernière(s) connection(s)</span></h4>
+            <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
             <table class="table table-bordered">
                 <tbody>
                 <tr>
                     <td><font color="black">Pseudo</font></td>
                     <td><font color="black">Date</font></td>
-                    <td><font color="black">Montant</font></td>
-                    <td><font color="black">Crédits €</font></td>
-                    <td><font color="black"></font></td>
+                    <td><font color="black">Heure</font></td>
+                    <td><font color="black">Adresse IP</font></td>
+                    <td><font color="black">2FA validée</font></td>
                 </tr>
                 <tr>
                     <td></td>

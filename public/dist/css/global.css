@@ -186,6 +186,9 @@ td.c-table__cell {
     border-bottom: 25px solid #cd7f32;
     width: 5%; }
 
+.avatar-player {
+    margin-left: 190px;
+}
 /*# sourceMappingURL=global.css.map */
 
 .col-3 {
@@ -1097,10 +1100,14 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .img-succes {
     width: 100%;
 }
+
+.user-tab {
+    margin-right: -2px !important;
+}
 /*Fin Dreaams*/
 
 .user-menu {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 .user-menu ul, .user-info {
@@ -1117,21 +1124,29 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     padding-left: 0px;
 }
 
+.user-menu ul .user-tab:nth-child(7) {
+    float: right;
+}
+
 .user-menu ul .user-tab a {
     padding: 12px 20px;
     font-size: 17px;
     border: 3px solid #ccc;
-    border-top-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 20px;
     transition: all 0.4s;
 }
 
+.espace-valider {
+    margin-left: 5px !important;
+}
+
 .user-menu ul .user-tab a.active {
-    border-color: #428bca;
+    border-color: #56d968;
 }
 
 .user-menu ul .user-tab a:hover {
     border-radius: 0px;
+    border-color: #56d968;
 }
 
 .user-info li {
