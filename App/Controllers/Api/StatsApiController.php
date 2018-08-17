@@ -18,7 +18,7 @@ class StatsApiController extends \App\Controllers\Controller
 {
 
 
-    public function gdetCreateCacheStats(RequestInterface $request, ResponseInterface $response)
+    public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
     {
 
         //Lecture du classement
