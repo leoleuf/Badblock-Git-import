@@ -134,7 +134,7 @@ class VoteController extends Controller
         }
 
         $collection = $this->container->mongo->votes_logs;
-        $command = str_replace("%player%", "", $winItem->command);
+        $command = str_replace("%player%", $pseudo, $winItem->command);
 
         // award log
         $insert = [
