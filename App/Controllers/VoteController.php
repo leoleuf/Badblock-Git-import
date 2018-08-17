@@ -43,13 +43,15 @@ class VoteController extends Controller
 
         $pseudo = htmlspecialchars($_POST['pseudo']);
 
-        $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
-        $data = $this->container->mysql_forum->fetchRow($query);
+        if (getenv('APP_DEBUG') == 0){
+            $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+            $data = $this->container->mysql_forum->fetchRow($query);
 
-        // user exists?
-        if ($data == false)
-        {
-            return $response->write("User not found !")->withStatus(404);
+            // user exists?
+            if ($data == false)
+            {
+                return $response->write("User not found !")->withStatus(404);
+            }
         }
 
         return $response->write("ok")->withStatus(200);
