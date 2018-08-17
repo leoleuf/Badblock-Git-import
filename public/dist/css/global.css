@@ -801,6 +801,11 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-bottom: -35px;
 }
 
+.article-checkbox  {
+    display: inline !important;
+    font-size: 0.8em;
+}
+
 .paypal {
     height: 601px;
     margin-top: 10px;
@@ -1103,6 +1108,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .user-tab {
     margin-right: -2px !important;
+}
+
+.no-decoration {
+    text-decoration: none;
 }
 /*Fin Dreaams*/
 
