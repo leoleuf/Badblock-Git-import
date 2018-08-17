@@ -18,7 +18,7 @@
 	<p class="lead">Nos services sont en maintenance</p>
 	<footer style="height: 80px">
 		<p>Contact Technique: <a href="mailto:sysadmin@badblock.fr">sysadmin@badblock.fr</a></p>
-		<p>Notre Twitter: <a href="https://twitter.com/BadBlockGame">BadBlockGame</a></p>
+		<p>Notre Twitter: <a href="https://twitter.com/BadBlockGame" rel="nofollow">BadBlockGame</a></p>
 	</footer>
 </div>
 </body>

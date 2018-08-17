@@ -99,10 +99,10 @@ class VoteController extends Controller
         $API_call = @file_get_contents($API_url);
 
         // voted?
-       /* if ($API_call != 1)
+        if ($API_call != 1)
         {
             return $response->write("Vote invalid")->withStatus(405);
-        }*/
+        }
 
         $queue = $types[$type];
 
