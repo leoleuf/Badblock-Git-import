@@ -84,13 +84,15 @@ class VoteController extends Controller
             return $response->write("User not found !")->withStatus(404);
         }
 
-        $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
-        $data = $this->container->mysql_forum->fetchRow($query);
+        if (getenv('APP_DEBUG') == 0){
+            $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+            $data = $this->container->mysql_forum->fetchRow($query);
 
-        // user exists?
-        if ($data == false)
-        {
-            return $response->write("User not found !")->withStatus(404);
+            // user exists?
+            if ($data == false)
+            {
+                return $response->write("User not found !")->withStatus(404);
+            }
         }
 
         $API_id = 198; // ID de votre serveur
@@ -164,7 +166,7 @@ class VoteController extends Controller
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
 
         $this->top($displayPseudo, 1);
-        
+
         return $response->write("Vous avez gagné ".$awardName)->withStatus(200);
     }
 
