@@ -99,11 +99,11 @@ class VoteController extends Controller
         $API_call = @file_get_contents($API_url);
 
         // voted?
-        if ($API_call != 1)
+        /*if ($API_call != 1)
         {
             return $response->write("Vote invalid")->withStatus(405);
         }
-
+*/
         $queue = $types[$type];
 
         $collection = $this->container->mongo->votes_awards;
@@ -160,8 +160,8 @@ class VoteController extends Controller
 
         $this->sendRabbitData($pseudo, $product);
 
-        broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
-        broadcast(' &aRécompense gagnée : &d'.$awardName);
+        $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
+        $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
 
         return $response->write("Vous avez gagné ".$awardName)->withStatus(200);
     }
