@@ -422,29 +422,29 @@ td.c-table__cell {
 
 .votes
 {
+    text-align: justify;
     width: 100%;
-    text-align: center;
 }
 
 .votes-1 img {
-    width: 60px !important;
+    width: 30px !important;
 }
 
 .votes-2 img {
-    width: 50px !important;
+    width: 24px !important;
 }
 
 .votes-3 img {
-    width: 40px !important;
+    width: 20px !important;
 }
 
 .votes img {
-    width: 35px;
+    width: 16px;
 }
 
 table.votes tr td:first-child
 {
-    text-align: center;
+    text-align: justify;
 }
 
 table.votes tr:nth-child(1) {font-size: 32px; color: #EED740;}
@@ -1396,7 +1396,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
         }
 
         td {
-            text-align: center !important;
+            text-align: justify !important;
             vertical-align: middle !important;
             padding: 12px 24px;
         }
