@@ -251,6 +251,9 @@
                 }else if (jqXHR.status == 405){
                     $("#title").text("Vous n'avez pas voté.");
                     $('[data-remodal-id=info-modal]').remodal().open();
+                }else if (jqXHR.status == 500){
+                    $("#title").text("Une erreur est survenue lors du vote.");
+                    $('[data-remodal-id=info-modal]').remodal().open();
                 }
             });
         }
