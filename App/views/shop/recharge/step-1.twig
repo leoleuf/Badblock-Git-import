@@ -83,7 +83,11 @@
             <h5 id="pseudo">Indiquer le pseudo du compte à recharger</h5><br>
             <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
                 <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" value="{{ player }}" required><br>
-                <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
+                <label class="check-recharge">
+                    <input type="checkbox" checked required>
+                    <span class="label-body article-checkbox">Conformément à l'<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006292052&cidTexte=LEGITEXT000006069565" class="no-link">Article L121-20-2</a> du Code de la Consommation française, je refuse à mon droit de rétractation en cochant cette case à partir du moment où la commande s'est bien efféctuée.</span>
+                </label>
+           <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
             </form>
         </div>
         

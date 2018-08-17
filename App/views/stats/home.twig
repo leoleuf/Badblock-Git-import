@@ -10,17 +10,11 @@
         <div class="cover">
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
+                    <button class="button-games" onclick="location.href='/'" id="bedwars"><span>BedWars</span></button>
                     <button class="button-games" onclick="location.href='/'" id="tower"><span>Tower</span></button>
-                    <button class="button-games" onclick="location.href='/'" id="tower"><span>Tower Run</span></button>
-                    <button class="button-games" onclick="location.href='/'" id="rush">Rush</button>
-                    <button class="button-games" onclick="location.href='/'" id="survival">Survival</button>
-                    <button class="button-games" onclick="location.href='/'" id="survival">SkyWars</button>
-                    <button class="button-games" onclick="location.href='/'" id="uhc_speed">UHC Speed</button>
-                    <button class="button-games" onclick="location.href='/'" id="peal_wars">Pearl Wars</button>
-                    <button class="button-games" onclick="location.href='/'" id="spaceballs">SpaceBalls</button>
-                    <button class="button-games" onclick="location.href='/'" id="capture_the_sheep">Capture The Sheep</button>
-                    <button class="button-games" onclick="location.href='/'" id="capture_the_sheep">Build Contest</button>
-                    <button class="button-games" onclick="location.href='/'" id="pvp_box">Pvp-Box</button>
+                    <button class="button-games" onclick="location.href='/'" id="rush"><span>Rush</span></button>
+                    <button class="button-games" onclick="location.href='/'" id="uhcspeed"><span>UHCSpeed</span></button>
+                    <button class="button-games" onclick="location.href='/'" id="spaceballs"><span>SpaceBalls</span></button>
                 </div>
                 <div class="one-half column animated bounceInLeft">
                     <div class="search-container">
@@ -50,28 +44,28 @@
             <div class="stats-home">
                 <h4 class="heading heading-bar"><span>Statistiques Générales</span></h4>
                 <div class="col-3">
-                    <a href="#"><h3 id="players-count">{{ connected|number_format(0, '', ' ') }}</h3>
-                        <p>Joueurs connectés</p></a>
+                    <h3 id="players-count">{{ connected|number_format(0, '', ' ') }}</h3>
+                        <p>Joueurs connectés</p>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['registred']|number_format(0, '', ' ') }}</h3>
-                        <p>Joueurs inscrits</p></a>
+                    <h3>{{ stats['registred']|number_format(0, '', ' ') }}</h3>
+                        <p>Joueurs inscrits</p>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['staff']|number_format(0, '', ' ') }}</h3>
-                        <p>Membres du staff</p></a>
+                    <h3>{{ stats['staff']|number_format(0, '', ' ') }}</h3>
+                        <p>Membres du staff</p>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['message_forum']|number_format(0, '', ' ') }}</h3>
-                        <p>Messages sur le Forum</p></a>
+                    <h3>{{ stats['message_forum']|number_format(0, '', ' ') }}</h3>
+                        <p>Messages sur le Forum</p>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ c_ts|number_format(0, '', ' ') }}</h3>
-                        <p>Joueurs connectés au TeamSpeak</p></a>
+                    <h3>{{ c_ts|number_format(0, '', ' ') }}</h3>
+                        <p>Joueurs connectés au TeamSpeak</p>
                 </div>
                 <div class="col-3">
-                    <a href="#"><h3>{{ stats['article']|number_format(0, '', ' ') }}</h3>
-                        <p>Articles sur le site</p></a>
+                    <h3>{{ stats['article']|number_format(0, '', ' ') }}</h3>
+                        <p>Articles sur le site</p>
                 </div>
             </div>
         </div>
@@ -99,16 +93,16 @@
     </div>
     <div class="stats-home">
         <div class="col-3">
-            <a href="#player-modal"><h3 id="players-count">{{ stats['ban']|number_format(0, '', ' ') }}</h3>
-                <p>Joueurs suspendus</p></a>
+            <h3 id="players-count">{{ stats['ban']|number_format(0, '', ' ') }}</h3>
+                <p>Joueurs suspendus</p>
         </div>
         <div class="col-3">
-            <a href="#account-modal"><h3>{{ stats['mute']|number_format(0, '', ' ') }}</h3>
-                <p>Joueurs baillonés</p></a>
+            <h3>{{ stats['mute']|number_format(0, '', ' ') }}</h3>
+                <p>Joueurs baillonés</p>
         </div>
         <div class="col-3">
-            <a href="#ban-modal"><h3>{{ stats['banGuardian']|number_format(0, '', ' ') }}</h3>
-                <p>Joueurs suspendus par le Guardian</p></a>
+            <h3>{{ stats['banGuardian']|number_format(0, '', ' ') }}</h3>
+                <p>Joueurs suspendus par le Guardian</p>
         </div>
     </div>
 {% endblock %}

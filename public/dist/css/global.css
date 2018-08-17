@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee");
+@import url("https://fonts.googleapis.com/css?family=Righteous");
 
 .shop {
     margin: 50px 0px;
@@ -199,7 +200,9 @@ td.c-table__cell {
 
 .col-3:hover {
     transform: scale(1.2);
-    width: calc(33.333333333% - 33px); }
+    width: calc(33.333333333% - 33px); 
+    cursor: default !important;
+}
 
 .stats-home .col-3 {
     text-align: center; }
@@ -245,20 +248,20 @@ td.c-table__cell {
 }
 
 .button-games {
-    padding: 12px 20px;
+    padding: 10px 16px;
     margin-right: 10px;
-    border-radius: 0px;
     border: none;
-    color: #fff;
-    opacity: 0.8;
+    color: white;
+    opacity: 0.9;
     transition: 0.2s;
-    font-size: 15px;
+    font-size: 18px;
     text-transform: uppercase;
-    font-family: 'Bungee', cursive; }
+    font-family: 'Righteous', cursive;
+}
 
 .button-games:hover {
     opacity: 1.3;
-    transform: scale(1.1);
+    transform: scale(1.06);
     border-radius: 7px; }
 
 .info-stats h5 {
@@ -268,28 +271,22 @@ td.c-table__cell {
 .bold {
     text-transform: uppercase; }
 
-#rush {
-    background: #ac8a2a; }
 
+#bedwars {
+    background-color: #42b3f4 !important;
+}
 #tower {
-    background: #84ac25; }
-
-#survival {
-    background: #21ac13; }
-
-#uhc_speed {
-    background: #bd402a; }
-
-#peal_wars {
-    background: #347395; }
-
+    background-color: #2ecc71 !important;
+}
+#rush {
+    background-color: #E19806 !important;
+}
+#uhcspeed {
+    background-color: #7b4dcb !important;
+}
 #spaceballs {
-    background: #090980; }
-
-#capture_the_sheep {
-    background: #48ac30; }
-#pvp_box {
-    background: #ac4b00; }
+    background-color: #C64F4F !important;
+}
 
 .u-middle-width {
     width: 70%; }
@@ -801,6 +798,11 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-bottom: -35px;
 }
 
+.article-checkbox  {
+    display: inline !important;
+    font-size: 0.8em;
+}
+
 .paypal {
     height: 601px;
     margin-top: 10px;
@@ -1098,11 +1100,16 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     color: white;
 }
 .img-succes {
-    width: 100%;
+    width: 75%;
+    margin-top: 50px;
 }
 
 .user-tab {
     margin-right: -2px !important;
+}
+
+.no-decoration {
+    text-decoration: none;
 }
 /*Fin Dreaams*/
 
