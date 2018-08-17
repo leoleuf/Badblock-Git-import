@@ -124,14 +124,6 @@ $container['mysql_rankeds'] = function ($container) {
 	return $dbConn;
 };
 
-$container['mysql_rankeds'] = function ($container) {
-	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_rankeds']['host'] . ':' . $container->config['mysql_rankeds']['port'], // server
-		$container->config['mysql_rankeds']['user'],     // user
-		$container->config['mysql_rankeds']['password'],      // password
-		$container->config['mysql_rankeds']['database']   // database
-	);
-};
 
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
