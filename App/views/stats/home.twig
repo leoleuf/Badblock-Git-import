@@ -183,7 +183,12 @@
                     url: '/api/minecraft/players',
                     success: function(data) {
                         if (data.players.now != null){
-                            $("#players-count").text(data.players.now);
+                            var n = data.players.now;
+                            var value = n.toLocaleString(
+                                'fr-FR',
+                                { minimumFractionDigits: 0 }
+                            );
+                            $("#players-count").text(value);
                         }
                         setTimeout(playerAj, 3000);
                     }
