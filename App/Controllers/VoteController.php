@@ -163,6 +163,8 @@ class VoteController extends Controller
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
 
+        $this->top($displayPseudo, 1);
+
         return $response->write("Vous avez gagné ".$awardName)->withStatus(200);
     }
 
