@@ -70,27 +70,27 @@
             <div class="step-contains">
                 <h5 class="text-center">Obtenez votre récompense</h5>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot1" onclick="loterie('1')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot1" onclick="award('1')" href="" style="width: 95%;">
                         Points Boutique
                     </button>
                 </div>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot2" onclick="loterie('2')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot2" onclick="award('2')" href="" style="width: 95%;">
                         SkyBlock
                     </button>
                 </div>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot3" onclick="loterie('3')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
                         Mini-jeux
                     </button>
                 </div>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot4" onclick="loterie('4')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
                         Faction
                     </button>
                 </div>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot5" onclick="loterie('5')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot5" onclick="award('5')" href="" style="width: 95%;">
                         PvpBox
                     </button>
                 </div>
@@ -188,25 +188,23 @@
             }else{
                 pseudo = $('#pseudo').val();
                 var request = $.ajax({
-                    url: "/vote/start",
+                    url: "/vote/playerexists",
                     method: "POST",
                     data: {pseudo : pseudo},
                     dataType: "html",
                     success: function (data) {
+                        $("#step1").addClass("disabled");
+                        $("#step2").removeClass("disabled");
                     }
                 });
 
                 request.fail(function( jqXHR, msg ) {
-                    $("#step1").addClass("disabled");
-                    $("#step2").removeClass("disabled");
-                    if(jqXHR.status == 404){
+                    if(jqXHR.status == 404)
+                    {
                         $('[data-remodal-id=vote-user]').remodal().open();
-                    }else if (jqXHR.status == 405) {
-                        data = JSON.parse(jqXHR.responseText);
-                        if (data.msf == false) {
-                            $("#btm-msf").addClass("disabled");
-                            $("#btm-msf").text("Serveur-Prive.net Heure : " + data.time_msf);
-                        }
+                        $("#step1").removeClass("disabled");
+                        $("#step2").addClass("disabled");
+                        $("#step3").addClass("disabled");
                     }
                 });
             }
@@ -215,43 +213,43 @@
         function vote(wb)
         {
             window.open(wb, '_blank');
+            $("#step2").addClass("disabled");
             setTimeout(function () {
                 $("#lot1").removeClass("disabled");
                 $("#lot2").removeClass("disabled");
                 $("#lot3").removeClass("disabled");
                 $("#lot4").removeClass("disabled");
                 $("#lot5").removeClass("disabled");
-            }, 10000);
+            }, 5000);
         }
 
-        function validate() {
+        function award(type) {
             //requet if user have vote
             var request = $.ajax({
-                url: "/vote/end/" + type,
+                url: "/vote/award",
                 method: "POST",
                 data: {
-                    pseudo : pseudo
+                    pseudo : pseudo,
+                    type : type
                 },
                 dataType: "html",
                 success: function (data) {
-                    $("#lot1").removeClass("disabled");
-                    $("#lot2").removeClass("disabled");
-                    $("#lot3").removeClass("disabled");
-                    $("#lot4").removeClass("disabled");
-                    $("#lot5").removeClass("disabled");
+                    $("#lot1").addClass("disabled");
+                    $("#lot2").addClass("disabled");
+                    $("#lot3").addClass("disabled");
+                    $("#lot4").addClass("disabled");
+                    $("#lot5").addClass("disabled");
 
-                    $('[data-remodal-id=vote-end]').remodal().open();
+                    $("#title").text(data);
+                    $('[data-remodal-id=info-modal]').remodal().open();
                 }
             });
 
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
                     $('[data-remodal-id=vote-user]').remodal().open();
-                }else if (jqXHR.status == 500){
-                    $("#title").text("Vous devez attendre pour voter !");
-                    $('[data-remodal-id=info-modal]').remodal().open();
                 }else if (jqXHR.status == 405){
-                    $("#title").text("Vote invalide !");
+                    $("#title").text("Vous n'avez pas voté.");
                     $('[data-remodal-id=info-modal]').remodal().open();
                 }
             });

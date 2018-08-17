@@ -51,12 +51,8 @@ $app->group('/shop', function (){
 
 $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
-    $this->post('/start', \App\Controllers\VoteController::class . ':start')->setName('vote.step');
-    $this->post('/check/', \App\Controllers\VoteController::class . ':check')->setName('vote.step');
-    $this->post('/end/{type}', \App\Controllers\VoteController::class . ':end')->setName('vote.step');
-    $this->post('/loterie/{type}', \App\Controllers\VoteController::class . ':loterie')->setName('vote.loterie');
-    $this->get('/lot', \App\Controllers\VoteController::class . ':recomp')->setName('vote.loterie');
-
+    $this->post('/award', \App\Controllers\VoteController::class . ':award')->setName('vote.award');
+    $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
 
     $this->get('/test', \App\Controllers\VoteController::class . ':top');
 });
