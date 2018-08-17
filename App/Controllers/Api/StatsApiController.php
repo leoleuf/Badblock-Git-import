@@ -23,7 +23,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Lecture du classement
         $query = "SELECT * FROM information_schema.TABLES WHERE (TABLE_SCHEMA = 'rankeds')";
-        foreach ($this->mysql->fetchRowManyCursor($query) as $game)
+        foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
         {
             $name = $game["TABLE_NAME"];
             $game = [];
