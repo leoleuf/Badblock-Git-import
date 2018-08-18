@@ -106,7 +106,7 @@
 
 
     {% for key,value in serverlist %}
-        {% if key != 4 %}
+        {% if key != 0 %}
         <div id="{{ key }}" class="tabcontent" style="display: none;">
             {% for k,cat in value['cat'] %}
                 <section class="shop-section-{{ k }}" class="tabcontent">
@@ -164,7 +164,7 @@
     {% endfor %}
     {% endif %}
 
-<div id="4" class="tabcontent" style="display: none;">
+<div id="0" class="tabcontent" style="display: none;">
 <div class="panel-tr">
         <table width="100%" style="text-align: center;">
             <tr class="d" id="top-td">
@@ -630,7 +630,7 @@
     {% endfor %}
 
     <script>
-        document.getElementById('4').style.display = "block";
+        document.getElementById('0').style.display = "block";
 
 
         function achat(idpro){
