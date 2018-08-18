@@ -12,28 +12,28 @@ class Mail
 	function __construct($container) {
 		$this->Mail = new PHPMailer();
 		$this->Mail->SMTPDebug = 2;  
-		$this->Mail->Host = 'tls://mail.badblockmail.fr'; 					// Host
-		$this->Mail->SMTPAuth = true;                               		// Pour permettre l'authentificationgit 
-		$this->Mail->Username = 'no-reply@badblockmail.fr';                 // SMTP username
-		$this->Mail->Password = 'sivdgfmpyh2nsxfhyu9600y6tomobu5q';                           // SMTP password
-		$this->Mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-		$this->Mail->Port = 587; 
-		$this->Mail->setFrom('from@badblockmail.fr', 'BadBlock');
+		$this->Mail->Host = getenv("PHP_MAILER_HOST"); 					
+		$this->Mail->SMTPAuth = true;                               	
+		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
+		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');     
+		$this->Mail->Port = getenv('PHP_MAILER_PORT'); 
+		$this->Mail->setFrom(getenv('PHP_MAILER_FROM_EMAIL'), getenv('PHP_MAILER_FROM_NAME'));
 
     }
 
 
-	public function sendMail($adress, $subject, $body)
+	public function sendMail($adress, $subject, $body, $attachment = null)
 	{
 		try {
-            $this->Mail->addAddress($adress); // Adresse
+			$this->Mail->addAddress($adress); // Adresse
 			$this->Mail->isHTML(true);                                  // Set email format to HTML
 			$this->Mail->Subject = $subject;
 			$this->Mail->Body    = $body;
+			if(!is_null($attachment)) $this->Mail->addAttachment($attachment);
 			$this->Mail->send();
-			echo "send ok";
+			return true;
 		} catch (Exception $e) {
-			echo 'Message could not be sent. Mailer Error: ', $e;
+			return false;
 		}
 	}
 
