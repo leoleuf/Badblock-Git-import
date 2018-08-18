@@ -45,6 +45,7 @@
         "xpaw/php-minecraft-query": "^2.0",
 		"phpgangsta/googleauthenticator": "@dev",
         "php-amqplib/php-amqplib": "^2.7",
-        "paypal/rest-api-sdk-php": "*"
+        "paypal/rest-api-sdk-php": "*",
+        "phpmailer/phpmailer": "^6.0"
     }
 }
