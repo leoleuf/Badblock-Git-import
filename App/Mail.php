@@ -23,13 +23,13 @@ class Mail
     }
 
 
-	public function sendMail()
+	public function sendMail($adress, $subject, $body)
 	{
 		try {
-            $this->Mail->addAddress('mathieu.richard31@orange.fr'); // Adresse
+            $this->Mail->addAddress($adress); // Adresse
 			$this->Mail->isHTML(true);                                  // Set email format to HTML
-			$this->Mail->Subject = 'Here is the subject';
-			$this->Mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$this->Mail->Subject = $subject;
+			$this->Mail->Body    = $body;
 			$this->Mail->send();
 			echo "send ok";
 		} catch (Exception $e) {
