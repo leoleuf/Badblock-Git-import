@@ -27,8 +27,6 @@ class StatsController extends Controller
             $c_ts = 0;
         }
 
-
-
 	    $guardian = $this->redis->getJson('stats:guardian');
 	    $gstats = $this->redis->getJson('stats:stats_guardian');
 	    $stats = $this->redis->getJson('stats:stats_general');
@@ -55,6 +53,7 @@ class StatsController extends Controller
      */
     public function game(RequestInterface $request, ResponseInterface $response, $game)
 	{
+
         // Noms des jeux & affichage
         $list = array(
             'TowerRun' => 'Tower Run',
@@ -91,10 +90,21 @@ class StatsController extends Controller
         }
 
         if ($game["date"] === "all"){
-            //Vérification si le jeux écist
+            //Vérification si le jeux existe
             if (isset($list[$game["game"]])) {
-                //Régulation vers fonction
-                $this->lecture($game["game"],$page,$response);
+                if($page == "1"){
+                    $data = $this->redis->getJson("stats:".$game.":".$page);
+                    //Slice de l'array
+                    $datatop = array_slice($data,0,3,true);
+                    $data = array_slice($data,3,17,true);
+                    //Affichage de la page
+                    $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game]);
+                }else{
+                    $data = $this->redis->getJson("stats:".$game.":".$page);
+                    $nb1 = $page * 2 * 10-2;
+                    $nb2 = $nb1 - 20+2;
+                    $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2,'name' => "Statistiques ".$game]);
+                }
             }else {
                 //Erreur 404
                 return $response->withStatus(404);

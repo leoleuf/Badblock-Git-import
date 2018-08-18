@@ -115,7 +115,7 @@ $container['mysql_forum'] = function ($container) {
 
 $container['mysql_rankeds'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_rankeds']['host'], // server
+		$container->config['mysql_rankeds']['host']. ':' . $container->config['mysql_rankeds']['port'], // server
 		$container->config['mysql_rankeds']['user'],     // user
 		$container->config['mysql_rankeds']['password'],      // password
 		$container->config['mysql_rankeds']['database']   // database
