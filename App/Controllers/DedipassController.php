@@ -11,7 +11,7 @@ namespace App\Controllers;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-
+require "../mail.php";
 
 class DedipassController extends Controller
 {
@@ -62,6 +62,9 @@ class DedipassController extends Controller
                   $money['points'] = $money['points'] + $dedipass->virtual_currency;
                   $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
+
+              $mail = new \App\Mail(true);
+              $mail->sendMail("gastbob40@gmail.com", "test", "body");
 
               return $this->redirect($response, '/shop/recharge/success');
 
