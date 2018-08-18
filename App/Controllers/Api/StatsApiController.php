@@ -23,6 +23,8 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Lecture du classement
         $query = "SELECT * FROM information_schema.TABLES WHERE (TABLE_SCHEMA = 'rankeds')";
+
+        dd($this->container->mysql_rankeds->fetchRowManyCursor($query));
         foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
         {
             $name = $game["TABLE_NAME"];
@@ -34,6 +36,7 @@ class StatsApiController extends \App\Controllers\Controller
             }
             //Save Redis
             $this->redis->setJson("stats:".$name,$game);
+
         }
 
         $this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');

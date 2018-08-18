@@ -60,7 +60,7 @@ class DedipassController extends Controller
                   $money['points'] = $money['points'] + $dedipass->virtual_currency;
                   $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
-              
+
               if ($this->container->session->exist('user')){
                   $mailContent = file_get_contents("../mail-achat.html");
                   $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);

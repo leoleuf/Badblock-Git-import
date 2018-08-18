@@ -71,6 +71,9 @@ class UserController extends Controller
             $factures = false;
         }
 
+        //Recherche des connections
+        $connection = "";
+
 
         try{
             //Récupération des sanctions
@@ -110,7 +113,7 @@ class UserController extends Controller
 
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['buys' => $buys,'user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['connection' => $connection,'buys' => $buys,'user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
 
 	}
