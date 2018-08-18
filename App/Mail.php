@@ -19,13 +19,14 @@ class Mail
 		$this->Mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$this->Mail->Port = 587; 
 		$this->Mail->setFrom('from@badblockmail.fr', 'BadBlock');
-		$this->Mail->addAddress('mathieu.richard31@orange.fr'); // Adresse
+
     }
 
 
 	public function sendMail()
 	{
 		try {
+            $this->Mail->addAddress('mathieu.richard31@orange.fr'); // Adresse
 			$this->Mail->isHTML(true);                                  // Set email format to HTML
 			$this->Mail->Subject = 'Here is the subject';
 			$this->Mail->Body    = 'This is the HTML message body <b>in bold!</b>';

@@ -17,7 +17,9 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response){
 
-        return $this->render($response, 'user.move.step1');
+        return $this->container->mail->sendMail();
+
+        //return $this->render($response, 'user.move.step1');
 
     }
 
