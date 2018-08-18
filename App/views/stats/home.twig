@@ -22,7 +22,7 @@
                             <div class="search-container">
                                 <div class="btn-group">
                                     <input class="u-middle-width input-search" id="player_search" type="text" placeholder="Rechercher un Joueur" name="search" onkeypress="searchPlayer()" >
-                                    <button class="button-search" type="submit"><!--Recherche--><i class="fas fa-search"></i></button>
+                                    <button class="button-search" type="submit" onclick="search()"><!--Recherche--><i class="fas fa-search"></i></button>
                                 </div>
                                 <ul class="search" id="search_down">
                                     <li><a href="#">Aucun résultat</a></li>
@@ -111,6 +111,16 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script>
+        function search() {
+
+            pseudo = $('#player_search').val();
+            if (pseudo != ""){
+                window.location.href = '/profile/' + pseudo;
+            }
+        }
+    </script>
 
     <script type="text/javascript">
         document.addEventListener("click", (evt) => {
