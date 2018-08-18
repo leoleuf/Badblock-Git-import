@@ -80,6 +80,9 @@ $app->group('/dashboard', function (){
 $app->get('/link', \App\Controllers\LinkController::class . ':step1')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setName('link-post');
 
+$app->get('/move', \App\Controllers\MoveController::class . ':step1')->setName('move-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->post('/move', \App\Controllers\MoveController::class . ':poststep')->setName('move-post')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+
 
 
 $app->get('/logout', function ($request, $response) {
