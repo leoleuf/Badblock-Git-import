@@ -35,6 +35,10 @@ $container['redis'] = function ($container) {
 	return new \App\Redis($container->redis_client);
 };
 
+$container['mail'] = function ($container) {
+    return new App\Mail($container);
+};
+
 $container['log'] = function ($container) {
 	return new App\DiscordHandler($container);
 };

@@ -1,18 +1,15 @@
 <?php
 
+namespace App;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-//Load Composer's autoloader
-require '../vendor/autoload.php';
-
-
 
 class Mail
 {
 	private $Mail;
 
-	function __construct() {
+	function __construct($container) {
 		$this->Mail = new PHPMailer();
 		$this->Mail->SMTPDebug = 2;  
 		$this->Mail->Host = 'tls://mail.badblockmail.fr'; 					// Host
@@ -21,9 +18,8 @@ class Mail
 		$this->Mail->Password = 'sivdgfmpyh2nsxfhyu9600y6tomobu5q';                           // SMTP password
 		$this->Mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$this->Mail->Port = 587; 
-		$this->Mail->setFrom('from@example.com', 'Mailer');
-		$this->Mail->addAddress('gastbob40@gmail.com'); // Adresse 
-		echo "construct ok\n";
+		$this->Mail->setFrom('from@badblockmail.fr', 'BadBlock');
+		$this->Mail->addAddress('mathieu.richard31@orange.fr'); // Adresse
     }
 
 
@@ -36,7 +32,7 @@ class Mail
 			$this->Mail->send();
 			echo "send ok";
 		} catch (Exception $e) {
-			echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+			echo 'Message could not be sent. Mailer Error: ', $e;
 		}
 	}
 
