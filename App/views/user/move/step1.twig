@@ -10,12 +10,18 @@
     <!-- Debut liste paiements -->
 
     <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
+    {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+            <i class="icon icon-remove"></i>
+        </div>
+    {% endif %}
     <div class="row center">
         <div class="three columns">
             <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
         </div>
         <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt2" value="Vérificatipn n°1" />
+            <input class="tab-top btn disabled" type="button" name="bt2" value="Vérification n°1" />
         </div>
         <div class="three columns">
             <input class="tab-top btn disabled" type="button" name="bt3" value="Vérification n°2"  />
