@@ -156,7 +156,11 @@ class PaypalController extends Controller
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
             }
 
-
+            $mailContent = file_get_contents("../mail-achat.html");
+              //$mailContent = $mailContent.str_replace("(username", $pseudo);
+              //$mailContent = $mailContent.str_replace("(date)", $date);
+              $mail = new \App\Mail(true);
+              $mail->sendMail($mailAdress, "Achat", $mailContent);
             return $this->redirect($response, '/shop/recharge/sucess');
         }else{
             return $this->redirect($response, '/shop/recharge');

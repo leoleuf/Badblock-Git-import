@@ -11,8 +11,6 @@ namespace App\Controllers;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-require "../mail.php";
-
 class DedipassController extends Controller
 {
 
@@ -62,10 +60,12 @@ class DedipassController extends Controller
                   $money['points'] = $money['points'] + $dedipass->virtual_currency;
                   $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
-
+              $mailContent = file_get_contents("../mail-achat.html");
+              //$mailContent = $mailContent.str_replace("(username", $pseudo);
+              //$mailContent = $mailContent.str_replace("(date)", $date);
               $mail = new \App\Mail(true);
-              $mail->sendMail("gastbob40@gmail.com", "test", "body");
-
+              $mail->sendMail($mailAdress, "Achat", $mailContent);
+              
               return $this->redirect($response, '/shop/recharge/success');
 
           } 
