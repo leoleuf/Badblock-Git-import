@@ -60,11 +60,14 @@ class DedipassController extends Controller
                   $money['points'] = $money['points'] + $dedipass->virtual_currency;
                   $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
-              $mailContent = file_get_contents("../mail-achat.html");
-              //$mailContent = $mailContent.str_replace("(username", $pseudo);
-              //$mailContent = $mailContent.str_replace("(date)", $date);
-              $mail = new \App\Mail(true);
-              $mail->sendMail($mailAdress, "Achat", $mailContent);
+              
+              if ($this->container->session->exist('user')){
+                  $mailContent = file_get_contents("../mail-achat.html");
+                  $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
+                  $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                  $mail = new \App\Mail(true);
+                  $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+              }
               
               return $this->redirect($response, '/shop/recharge/success');
 
