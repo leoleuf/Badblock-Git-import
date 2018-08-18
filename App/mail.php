@@ -15,14 +15,14 @@ class Mail
 	function __construct() {
 		$this->Mail = new PHPMailer();
 		$this->Mail->SMTPDebug = 2;  
-		$this->Mail->Host = 'tls://mail.badblockmail.fr';
-		$this->Mail->SMTPAuth = true;                               // Enable SMTP authentication
+		$this->Mail->Host = 'tls://mail.badblockmail.fr'; 					// Host
+		$this->Mail->SMTPAuth = true;                               		// Pour permettre l'authentificationgit 
 		$this->Mail->Username = 'no-reply@badblockmail.fr';                 // SMTP username
 		$this->Mail->Password = 'sivdgfmpyh2nsxfhyu9600y6tomobu5q';                           // SMTP password
 		$this->Mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$this->Mail->Port = 587; 
 		$this->Mail->setFrom('from@example.com', 'Mailer');
-		$this->Mail->addAddress('gastbob40@gmail.com');
+		$this->Mail->addAddress('gastbob40@gmail.com'); // Adresse 
 		echo "construct ok\n";
     }
 
