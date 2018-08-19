@@ -24,8 +24,9 @@ class StatsApiController extends \App\Controllers\Controller
         //Lecture du classement
         $query = "show tables;";
 
-       // dd($this->container->mysql_rankeds->fetchRowManyCursor($query));
-        foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
+        $for = $this->container->mysql_rankeds->fetchRowManyCursor($query);
+
+        foreach ($for as $game)
         {
             $name = $game["Tables_in_rankeds"];
             $game = [];
@@ -45,12 +46,11 @@ class StatsApiController extends \App\Controllers\Controller
                 $data = array_slice($game,($n * 20),20,true);
                 $this->redis->setJson("stats:".$name .":". ($n +1),$data);
             }
-            dd($name);
         }
 
-        //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
+        $this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
-        //return $response->write('Success writing stats cache')->withStatus(200);
+        return $response->write('Success writing stats cache')->withStatus(200);
     }
 
     public function jsonResp(RequestInterface $request, ResponseInterface $response){
