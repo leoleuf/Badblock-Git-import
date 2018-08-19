@@ -93,7 +93,8 @@ class StatsController extends Controller
             //Vérification si le jeux existe
             if (isset($list[$game["game"]])) {
                 if($page == "1"){
-                    $data = $this->redis->getJson("stats:".$game.":".$page);
+                    $data = $this->redis->getJson("stats:".$game["game"].":1");
+                    dd($game["game"]);
                     //Slice de l'array
                     $datatop = array_slice($data,0,3,true);
                     $data = array_slice($data,3,17,true);
@@ -139,7 +140,7 @@ class StatsController extends Controller
                 $nb1 = $page * 2 * 10-2;
                 $nb2 = $nb1 - 20+2;
                 //Lecture du cache
-                $data = $this->redis->getJson("stats:".$game);
+                $data = $this->redis->getJson("stats:".$game.":1");
                 //Slice de l'array
                 $datatop = array_slice($data,0,3,true);
                 $data = array_slice($data,3,17,true);
