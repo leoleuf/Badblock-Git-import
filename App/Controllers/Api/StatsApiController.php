@@ -48,9 +48,9 @@ class StatsApiController extends \App\Controllers\Controller
             echo $name;
         }
 
-        $this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
+        //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
-        return $response->write('Success writing stats cache')->withStatus(200);
+        //return $response->write('Success writing stats cache')->withStatus(200);
     }
 
     public function jsonResp(RequestInterface $request, ResponseInterface $response){
