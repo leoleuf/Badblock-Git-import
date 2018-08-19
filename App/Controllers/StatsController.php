@@ -59,12 +59,8 @@ class StatsController extends Controller
             'TowerRun' => 'Tower Run',
             'Tower' => 'Tower',
             'Rush' => 'Rush',
-            'SurvivalGames' => 'SurvivalGames',
             'UHCSpeed' => 'UHCSpeed',
-            'CaptureTheSheep' => 'CaptureTheSheep',
-            'BuildContest' => 'BuildContest',
             'SpaceBalls' => 'SpaceBalls',
-            'PearlsWars' => 'PearlsWars',
             'Bedwars' => 'Bedwars'
         );
 
@@ -124,8 +120,7 @@ class StatsController extends Controller
                 //Vérification si le jeux existe
                 if (isset($list[$game["game"]])) {
                     if($page == "1"){
-                        $data = $this->redis->getJson("stats:Bedwars_juillet_2018:1");
-                        dd($data);
+                        $data = $this->redis->getJson("stats:".$game["game"].'_'.$game["date"].":1");
                         if ($data == null){
                             //Erreur 404
                             return $this->redirect($response, '/stats');
@@ -136,7 +131,7 @@ class StatsController extends Controller
                         //Affichage de la page
                         $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game['game']]);
                     }else{
-                        $data = $this->redis->getJson("stats:".$game.'_'.$game["date"].":".$page);
+                        $data = $this->redis->getJson("stats:".$game["game"].'_'.$game["date"].":".$page);
                         if ($data == null){
                             //Erreur 404
                             return $this->redirect($response, '/stats');
