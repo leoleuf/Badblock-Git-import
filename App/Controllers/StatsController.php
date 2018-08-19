@@ -124,7 +124,7 @@ class StatsController extends Controller
                 //Vérification si le jeux existe
                 if (isset($list[$game["game"]])) {
                     if($page == "1"){
-                        $data = $this->redis->getJson("stats:".$game["game"].'_'.$game["date"].":1");
+                        $data = $this->redis->getJson("stats:Bedwars_juillet_2018:1");
                         dd($data);
                         if ($data == null){
                             //Erreur 404
