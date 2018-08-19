@@ -45,6 +45,7 @@ class StatsApiController extends \App\Controllers\Controller
                 $data = array_slice($game,($n * 20),20,true);
                 $this->redis->setJson("stats:".$name .":". ($n +1),$data);
             }
+            echo $name;
         }
 
         $this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
