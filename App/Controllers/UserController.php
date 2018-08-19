@@ -76,14 +76,21 @@ class UserController extends Controller
             $connection = $this->container->mysql_casier->fetchRowMany('SELECT logs from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
             $connection = json_decode($connection[0]['logs']);
             if (count($connection) > 0){
+                $connection = array_slice($connection, (count($connection) - 10));
+
                 foreach ($connection as $k => $row){
-                    $row['date'] = str_replace("[", "", $row['date']);
-                    $row['date'] = str_replace("]", "", $row['date']);
-                    $datetime = \DateTime::createFromFormat('d/m/Y H:i:s', $row['date'], new \DateTimeZone('Europe/Paris'));
+                    $row->ip = substr($row->log, strpos($row->log, "(IP:"),strpos($row->log, ")"));
+                    $row->ip = str_replace("(IP: ", "", $row->ip);
+                    $row->ip = str_replace(")", "", $row->ip);
+                    $row->date = str_replace("[", "", $row->date);
+                    $row->date = str_replace("]", "", $row->date);
+                    $datetime = \DateTime::createFromFormat('d/m/Y H:i:s', $row->date, new \DateTimeZone('Europe/Paris'));
                     $timestamp = $datetime->getTimestamp();
                     $timestamp = $timestamp - (86400 * 365);
                     $timestamp = $timestamp + (86400 * 30);
-                    $connection[$k]["date"] = date("d/m/Y H:i:s", $timestamp);
+                    $connection[$k]->date = date("d/m/Y", $timestamp);
+                    $connection[$k]->time = date("H:i:s", $timestamp);
+                    $connection[$k]->ip = $row->ip;
                 }
             }else{
                 $connection = false;

@@ -511,14 +511,13 @@
                     <td><font color="black">Date</font></td>
                     <td><font color="black">Heure</font></td>
                     <td><font color="black">Adresse IP</font></td>
-                    <td><font color="black">2FA validée</font></td>
                 </tr>
                 {% for k,val in connection %}
                     <tr>
-                        <td>{{ val['date'] }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ user.realName }}</td>
+                        <td>{{ val.date }}</td>
+                        <td>{{ val.time }}</td>
+                        <td>{{ val.ip }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
