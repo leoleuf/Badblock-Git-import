@@ -64,7 +64,8 @@ class StatsController extends Controller
             'CaptureTheSheep' => 'CaptureTheSheep',
             'BuildContest' => 'BuildContest',
             'SpaceBalls' => 'SpaceBalls',
-            'PearlsWars' => 'PearlsWars'
+            'PearlsWars' => 'PearlsWars',
+            'Bedwars' => 'Bedwars'
         );
 
         $months = array(
@@ -93,13 +94,12 @@ class StatsController extends Controller
             //Vérification si le jeux existe
             if (isset($list[$game["game"]])) {
                 if($page == "1"){
-                    $data = $this->redis->getJson("stats:".$game["game"].":1");
-                    dd($game["game"]);
+                    $data = $this->redis->getJson("stats:".$game["game"].'_all'.":1");
                     //Slice de l'array
                     $datatop = array_slice($data,0,3,true);
                     $data = array_slice($data,3,17,true);
                     //Affichage de la page
-                    $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game]);
+                    $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game['game']]);
                 }else{
                     $data = $this->redis->getJson("stats:".$game.":".$page);
                     $nb1 = $page * 2 * 10-2;
