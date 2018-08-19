@@ -23,12 +23,10 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Lecture du classement
         $query = "show tables;";
-
-        $for = $this->container->mysql_rankeds->fetchRowManyCursor($query);
-
+        
         $re = [];
 
-        foreach ($for as $game)
+        foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
         {
             $name = $game["Tables_in_rankeds"];
             $game = [];
