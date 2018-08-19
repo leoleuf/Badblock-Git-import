@@ -49,9 +49,10 @@ class StatsApiController extends \App\Controllers\Controller
                 $this->redis->setJson("stats:".$name .":". ($n +1),$data);
                 array_push($re, "stats:".$name .":". ($n +1));
             }
+            dd($re);
+
         }
 
-        dd($re);
 
         //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
