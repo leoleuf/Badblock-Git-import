@@ -5,10 +5,21 @@ namespace App;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ *  Class Mail
+ *  Permet de créer et envoyer un mail.
+ */
+
 class Mail
 {
+	/**
+	 * @var PHPMailer données du mail
+	 */
 	private $Mail;
 
+	/**
+	 * @param container $container Container utilisé
+	 */
 	function __construct($container) {
 		$this->Mail = new PHPMailer();
 		$this->Mail->SMTPDebug = 2;  
@@ -21,7 +32,12 @@ class Mail
 
     }
 
-
+	/**
+	 *  @param string $adress Adresse mail du destinataire
+	 *  @param string $subject Sujet du mail
+	 *  @param string $body Contenue HTML du mail
+	 *  @param string $attachment Ficher envoyer par mail
+ 	*/
 	public function sendMail($adress, $subject, $body, $attachment = null)
 	{
 		try {
