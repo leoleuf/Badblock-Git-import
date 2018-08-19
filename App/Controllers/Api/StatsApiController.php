@@ -23,7 +23,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Lecture du classement
         $query = "show tables;";
-        
+
         $re = [];
 
         foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
@@ -45,10 +45,8 @@ class StatsApiController extends \App\Controllers\Controller
             while ($nb != $n){
                 $data = array_slice($game,($n * 20),20,true);
                 $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                array_push($re, "stats:".$name .":". ($n +1));
+                $n++;
             }
-            dd($re);
-
         }
 
 
