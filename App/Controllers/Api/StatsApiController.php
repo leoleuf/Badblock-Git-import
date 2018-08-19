@@ -34,18 +34,17 @@ class StatsApiController extends \App\Controllers\Controller
 
             foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $result)
             {
-                array_push($game,$result);
-            }
-            //Save Redis
-            $nb = count($game);
-            if (is_double($nb / 20)){
-                $nb = round(($nb / 20)) + 1;
-            }
-            $n = 0;
-            while ($nb != $n){
-                $data = array_slice($game,($n * 20),20,true);
-                $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                $n++;
+                //Save Redis
+                $nb = count($game);
+                if (is_double($nb / 20)){
+                    $nb = round(($nb / 20)) + 1;
+                }
+                $n = 0;
+                while ($nb != $n){
+                    $data = array_slice($game,($n * 20),20,true);
+                    $this->redis->setJson("stats:".$name .":". ($n +1),$data);
+                    $n++;
+                }
             }
         }
 
