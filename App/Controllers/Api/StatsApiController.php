@@ -44,7 +44,7 @@ class StatsApiController extends \App\Controllers\Controller
             $n = 0;
             while ($nb != $n){
                 $data = array_slice($game,($n * 20),20,true);
-                $this->redis->setJson("stats:".$name .":". ($n +1),"sddd");
+                $this->redis->setJson("stats:".$name .":". ($n +1),$data);
                 $n++;
             }
         }
