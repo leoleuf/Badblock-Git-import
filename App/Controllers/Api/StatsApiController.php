@@ -51,9 +51,11 @@ class StatsApiController extends \App\Controllers\Controller
             }
         }
 
+        dd($re);
+
         //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
-        return $response->write(var_dump($re))->withStatus(200);
+        return $response->write('okok')->withStatus(200);
     }
 
     public function jsonResp(RequestInterface $request, ResponseInterface $response){
