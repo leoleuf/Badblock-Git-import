@@ -72,7 +72,25 @@ class UserController extends Controller
         }
 
         //Recherche des connections
-        $connection = "";
+        try{
+            $connection = $this->container->mysql_casier->fetchRowMany('SELECT logs from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
+            $connection = json_decode($connection[0]['logs']);
+            if (count($connection) > 0){
+                foreach ($connection as $k => $row){
+                    $row['date'] = str_replace("[", "", $row['date']);
+                    $row['date'] = str_replace("]", "", $row['date']);
+                    $datetime = \DateTime::createFromFormat('d/m/Y H:i:s', $row['date'], new \DateTimeZone('Europe/Paris'));
+                    $timestamp = $datetime->getTimestamp();
+                    $timestamp = $timestamp - (86400 * 365);
+                    $timestamp = $timestamp + (86400 * 30);
+                    $connection[$k]["date"] = date("d/m/Y H:i:s", $timestamp);
+                }
+            }else{
+                $connection = false;
+            }
+        }catch (\mysqli_sql_exception $e){
+            $connection = false;
+        }
 
 
         try{

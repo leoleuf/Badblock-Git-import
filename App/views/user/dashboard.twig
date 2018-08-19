@@ -502,6 +502,7 @@
     <div id="6" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <br>
+            {% if connection != false %}
             <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
             <table class="table table-bordered">
                 <tbody>
@@ -512,20 +513,24 @@
                     <td><font color="black">Adresse IP</font></td>
                     <td><font color="black">2FA validée</font></td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {% for k,val in connection %}
+                    <tr>
+                        <td>{{ val['date'] }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
+            {% else %}
             <div class="no-item-container">
                 <div class="no-item-content">
                     <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
                     <h4>Aucune(s) connection(s)</h4>
                 </div>
             </div>
+            {% endif %}
         </section>
     </div>
 
