@@ -50,9 +50,7 @@ class StatsApiController extends \App\Controllers\Controller
                 array_push($result, "stats:".$name .":". ($n +1));
             }
         }
-
-        dd($result);
-
+        
         //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
         return $response->write(var_dump($result))->withStatus(200);
