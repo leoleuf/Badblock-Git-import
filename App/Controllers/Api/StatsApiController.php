@@ -27,7 +27,7 @@ class StatsApiController extends \App\Controllers\Controller
         $for = $this->container->mysql_rankeds->fetchRowManyCursor($query);
 
         $result = [];
-        
+
         foreach ($for as $game)
         {
             $name = $game["Tables_in_rankeds"];
@@ -55,7 +55,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
-        return $response->write('Success writing stats cache')->withStatus(200);
+        return $response->write(var_dump($result))->withStatus(200);
     }
 
     public function jsonResp(RequestInterface $request, ResponseInterface $response){
