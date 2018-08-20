@@ -5,6 +5,34 @@
 <head>
     <!-- Meta -->
     <meta name="charset" content="utf-8">
+
+    <title>
+        {% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}
+    </title>
+
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
+    <meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="robots" content="follow, index, all" />
+    <meta name="description" content="{% if description is defined %} {{ description }} {% else %} Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta name="author" content="BadBlock developers" />
+    <meta name="keywords" content="badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://cdn.badblock.fr/images/logo_small.png" />
+    <meta name="twitter:url" content="https://badblock.fr/" />
+    <meta name="twitter:site" content="@BadBlockGame">
+    <meta name="twitter:creator" content="@BadBlockGame" />
+    <meta name="twitter:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
+    <meta name="twitter:description" content="{% if description is defined %} {{ description }} {% else %} Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta property="og:site_name" content="BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)" />
+    <meta property="og:locale" content="fr" />
+    <meta property="og:url" content="https://cdn.badblock.fr/images/logo_small.png" />
+    <meta property="og:description" content="{% if description is defined %} {{ description }} {% else %} Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta property="og:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
+    <meta property="og:image" content="https://cdn.badblock.fr/images/logo_small.png" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#2ecc71" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Favicon meta -->
@@ -18,13 +46,6 @@
     {% if block("meta") is defined %}
         {{ block('meta') }}
     {% endif %}
-
-    <title>
-        {% if hide_title is not defined %}
-        BadBlock |
-        {% endif %}
-        {{ title }}
-    </title>
 
     <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="/dist/css/xmalware.css">
@@ -41,7 +62,7 @@
     <div class="container">
         <div class="header-container">
             <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
-                <img src="https://guiria.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+                <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 <div class="">
                     <h3 class="header-title">BadBlock</h3>
                     <h5 class="header-sub-title">{{ mc_ip }}</h5>
@@ -112,7 +133,7 @@
 {#{% if user is defined %}
 <div class="nav-profil">
     <div class="container">
-        <a href="#"><img src="https://guiria.badblock.fr/head/{{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
+        <a href="#"><img src="https://cdn.badblock.fr/head/{{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
         <a href="#"><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Points Boutique</span></a>
         <a href="#"><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Votes</span></a>
 
@@ -178,7 +199,7 @@
     <div class="container">
         <div class="four columns">
             <div class="footer-title-container">
-                <img src="https://guiria.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
+                <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4><br><br>
             </div>
 			    BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <a href="https://badblock.fr/legals/Mentions_legales.pdf" title="Mentions légales BadBlock"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock"><font color="FFFFFF">Documents légaux</font></a>.
@@ -207,7 +228,7 @@
                 <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
                 <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://badblock.fr/discord" title="Discord BadBlock"><img src="//guiria.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
+                <li><a href="https://badblock.fr/discord" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
             </ul>
         </div>
     </div>

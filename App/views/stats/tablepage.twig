@@ -34,7 +34,7 @@ On liste les différantes place en grossisant au fur et à mesure
     {% for data,key in data %}
     <tr class="c-table__row">
       <td class="c-table__cell">#{{ data+1  }}</td>
-      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ key['playerName'] }}/30.png" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}" class="avatar"> <a href="/profile/{{  key['playerName'] }}" title="Statistiques de {{ key['playerName'] }}">{{  key['playerName'] }}</a></td>
+      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/30.png" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}" class="avatar"> <a href="/profile/{{  key['playerName'] }}" title="Statistiques de {{ key['playerName'] }}">{{  key['playerName'] }}</a></td>
         <td class="c-table__cell">{{  key['_points'] }}</td>
         <td class="c-table__cell">{{  key['kills'] }}</td>
         <td class="c-table__cell">{{  key['deaths'] }}</td>
