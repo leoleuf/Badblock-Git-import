@@ -151,8 +151,8 @@ class ShopController extends Controller
         $this->container->mongo->fund_list->updateOne(['uniqueId' => $player->uniqueId],['$set' => ['points' => $points]]);
 
         //Refresh points cache
-        $this->container->redis->set('shoppoints.' . $username, $points);
-        $this->container->redis->expire('shoppoints.' . $username, 120);
+        $this->container->session->set('points', $points);
+
 
     }
 

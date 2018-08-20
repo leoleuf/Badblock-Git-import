@@ -85,9 +85,61 @@ class MoveController extends Controller
             }else{
                 return $this->render($response, 'user.link.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
             }
-        }else{
-            //Erreur qui doit jamais arriver
-            return $response->write("Invalid STEP !")->withStatus(500);
+        }elseif ($_POST['step'] == 3){
+            $collection = $this->container->mongoServer->players;
+            $user = $collection->findOne(['name' => strtolower($username)]);
+            //On vérifie si le joueur existe dans la BDD serveur
+            if ($user != null){
+                if ($this->ladder->playerOnline($username)->connected == true){
+                    //vérification si le joueur est pas au login
+                    $server = $this->ladder->playerGetConnectedServer($username)->server;
+                    $data = explode("_",$server);
+                    if ($data[0] == "login"){
+                        $this->flash->addMessage('move_error', "Votre devez vous authentifier sur le serveur !");
+                        //redirect to last page
+                        return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+                    }else{
+                        //Création du code random
+                        $chars = "FLUORLEBG";
+                        srand((double)microtime()*1000000);
+                        $i = 0;
+                        $pass = '' ;
+                        while ($i <= 8) {
+                            $num = rand() % 33;
+                            $tmp = substr($chars, $num, 1);
+                            $pass = $pass . $tmp;
+                            $i++;
+                        }
+                        //Set code in Redis cache
+                        $this->redis->set('move:2:'.$username,$pass);
+                        $this->redis->expire('move:2:'.$username, 3600);
+                        $this->ladder->playerSendMessage($username," ");
+                        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+                        $this->ladder->playerSendMessage($username," ");
+
+                        return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                    }
+                }else{
+                    $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+                }
+            }else{
+                //Message erreur
+                $this->flash->addMessage('move_error', 'Votre compte : "'.$username.'"'." ne s'est jamais connecté sur le serveur");
+                //redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+            }
+        }elseif($_POST['step'] == 4){
+            //On vérifie si le code de linkage est le bon
+            if (strtoupper($_POST["code"]) == $this->redis->get('move:1:'.$username)){
+                $this->redis->set('move:2:'.$username, true);
+                $this->redis->expire('move:2:'.$username, 3600);
+
+                return $this->render($response, 'user.link.step3', ["width" => 75,"step" => 3]);
+            }else{
+                return $this->render($response, 'user.link.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
+            }
         }
     }
 

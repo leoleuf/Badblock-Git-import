@@ -58,7 +58,7 @@ class IpGeneratorMiddleware
 	public function __invoke($request, $response, $next)
 	{
         if ($this->container->session->exist('user')){
-            if (!$this->container->redis->exists('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']))){
+            if (!$this->container->session->exist('points')){
                 //Search data player
                 $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->getProfile('username')['username'])]);
                 if ($player == null){
@@ -71,10 +71,9 @@ class IpGeneratorMiddleware
                 }else{
                     $shoppoints = $player->points;
                 }
-                $this->container->redis->set('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']), $shoppoints);
-                $this->container->redis->expire('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']), 120);
+                $this->container->session->set('points', $shoppoints);
             }else{
-                $shoppoints = $this->container->redis->get('shoppoints.' . strtolower($this->container->session->getProfile('username')['username']));
+                $shoppoints = $this->container->session->get('points');
             }
         }else{
             $shoppoints = "0";
