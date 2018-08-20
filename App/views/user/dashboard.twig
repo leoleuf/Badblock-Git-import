@@ -520,12 +520,35 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="no-item-container">
-                <div class="no-item-content">
-                    <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                    <h4>Aucune(s) connection(s)</h4>
+            {% if lastLogins != false %}
+                <br>
+                <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><font color="black">Pseudo</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Heure</font></td>
+                        <td><font color="black">Adresse IP</font></td>
+                        <td><font color="black">2FA validée</font></td>
+                    </tr>
+                    {% for key in lastLogins %}
+                        <tr>
+                            <td>Achat de {{ key["name"] }}</td>
+                            <td>{{ key["date"] }}</td>
+                            <td>{{ key["price"] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucune(s) connection(s)</h4>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </section>
     </div>
 

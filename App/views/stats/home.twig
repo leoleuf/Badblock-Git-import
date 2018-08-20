@@ -70,6 +70,11 @@
             </div>
         </div>
     </div>
+    <div class="stats-home">
+        <div class="two colmuns">
+            <div id="playergraph" style="margin: 0 auto"></div>
+        </div>
+    </div>
     <div class="content">
         <div class="twelve columns">
             <!--<h4 class="heading heading-bar"><span>Statistiques Guardian</span></h4>-->
@@ -208,7 +213,53 @@
             playerAj();
         });
     </script>
+    <script>
+            Highcharts.chart('playergraph', {
 
+                chart: {
+                    type: 'areaspline'
+                },
+
+                tooltip: {
+                    shared: true,
+                    valueSuffix: ' joueurs'
+                },
+
+                title: {
+                 text: 'Joueurs connectés sur le serveur'
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 150,
+                    y: 100,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+
+                series: [
+                    {
+                        name: 'Joueurs connectés',
+                        data: [
+                            [1534773556000, 36],
+                            [1534773656000, 37],
+                            [1534773756000, 37],
+                            [1534773856000, 38],
+                            [1534773956000, 39]]
+                    }
+                ],
+
+                yAxis: {
+                    title: {
+                        text: 'Temps'
+                    }
+                }
+
+            });
+    </script>
     <script>
 
         Highcharts.chart('container', {

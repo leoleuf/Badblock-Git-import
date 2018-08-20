@@ -91,6 +91,35 @@ class UserController extends Controller
             $sanctions = false;
         }
 
+        try{
+            // Récupération des dernières connexions
+            $lastLogins = array();
+            $lq = $this->container->mysql_casier->fetchRow('SELECT logs from friends WHERE pseudo = "' . $user["name"] . '" ORDER BY id LIMIT 1');
+            if (count($lq) > 0){
+                $i = 0;
+                $brq = json_decode($lq['logs'], true);
+                foreach ($brq as $k => $v){
+                    $i++;
+                    $v = str_replace("]", "", $v);
+                    $v = str_replace("[", "", $v);
+                    $datetime = DateTime::createFromFormat( 'd/m/Y H:i:s', $v, new DateTimeZone('Europe/Paris'));
+                    $timestamp = $datetime->getTimestamp();
+                    $timestamp = $timestamp - (86400 * 365);
+                    $timestamp = $timestamp + (86400 * 30);
+                    $v = date("d/m/Y à H:i:s", $timestamp);
+                    $lastLogins[$i] = $v;
+                    if ($sanctions[$k]['expire'] != -1){
+                        $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
+                        $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
+                    }
+                }
+            }else{
+                $sanctions = false;
+            }
+        }catch (\mysqli_sql_exception $e){
+            $sanctions = false;
+        }
+
 
         //On affiche 0 pts boutiques si le joueur a pas sous
         if (empty($user["shoppoints"])){
