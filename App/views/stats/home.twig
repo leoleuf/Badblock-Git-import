@@ -10,12 +10,12 @@
         <div class="cover">
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
-                    <button class="button-games" onclick="location.href='/stats/all/Bedwars/'" id="bedwars"><span>BedWars</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/TowerRun/'" id="tower"><span>TowerRun</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower"><span>Tower</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/Rush/'" id="rush"><span>Rush</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed"><span>UHCSpeed</span></button>
-                    <button class="button-games" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs"><span>SpaceBalls</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/TowerRun/'" id="tower" title="Statistiques Tower Run"><span>TowerRun</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
+                    <button class="button-games" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques Spaceballs"><span>SpaceBalls</span></button>
                 </div>
                 <div class="one-half column animated bounceInLeft">
                     <div class="search-container">
@@ -69,6 +69,11 @@
                         <p>Articles sur le site</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="stats-home">
+        <div class="two colmuns">
+            <div id="playergraph" style="margin: 0 auto"></div>
         </div>
     </div>
     <div class="content">
@@ -160,7 +165,7 @@
                     $("#search_down").empty();
                     for (i = 0; i < data.length; i++) {
                         if (data[i] != last){
-                            $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://guiria.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
+                            $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://cdn.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
 
                             last = data[i];
                             console.log(data[i]);
@@ -209,7 +214,53 @@
             playerAj();
         });
     </script>
+    <script>
+            Highcharts.chart('playergraph', {
 
+                chart: {
+                    type: 'areaspline'
+                },
+
+                tooltip: {
+                    shared: true,
+                    valueSuffix: ' joueurs'
+                },
+
+                title: {
+                 text: 'Joueurs connectés sur le serveur'
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 150,
+                    y: 100,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                },
+
+                series: [
+                    {
+                        name: 'Joueurs connectés',
+                        data: [
+                            [1534773556000, 36],
+                            [1534773656000, 37],
+                            [1534773756000, 37],
+                            [1534773856000, 38],
+                            [1534773956000, 39]]
+                    }
+                ],
+
+                yAxis: {
+                    title: {
+                        text: 'Temps'
+                    }
+                }
+
+            });
+    </script>
     <script>
 
         Highcharts.chart('container', {
