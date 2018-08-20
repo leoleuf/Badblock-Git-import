@@ -26,10 +26,25 @@ class PagesController extends Controller
 		]);
 	}
 
-	public function getPlay(ServerRequestInterface $request, ResponseInterface $response)
-	{
-		$this->render($response, 'pages.play');
-	}
+    public function getPlay(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.play');
+    }
+
+    public function getPlayWindows(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.play-windows');
+    }
+
+    public function getPlayLinux(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.play-linux');
+    }
+
+    public function getPlayMac(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.play-mac');
+    }
 
 	public function getTest(ServerRequestInterface $request, ResponseInterface $response)
 	{

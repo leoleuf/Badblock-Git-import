@@ -58,6 +58,9 @@ $app->group('/vote', function (){
 });
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('launcher-minecraft');
+$app->get('/launcher-minecraft/windows', \App\Controllers\PagesController::class . ':getPlayWindows')->setName('launcher-minecraft-windows');
+$app->get('/launcher-minecraft/mac', \App\Controllers\PagesController::class . ':getPlayMac')->setName('launcher-minecraft-mac');
+$app->get('/launcher-minecraft/linux', \App\Controllers\PagesController::class . ':getPlayLinux')->setName('launcher-minecraft-linux');
 $app->get('/play', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
