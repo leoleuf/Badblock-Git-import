@@ -22,23 +22,36 @@ class StatsApiController extends \App\Controllers\Controller
     {
 
         //Lecture du classement
-        $query = "SELECT * FROM information_schema.TABLES WHERE (TABLE_SCHEMA = 'rankeds')";
+        $query = "show tables;";
+
         foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $game)
         {
-            $name = $game["TABLE_NAME"];
+            $name = $game["Tables_in_rankeds"];
             $game = [];
             $query = 'SELECT * FROM '. $name .' ORDER by _points DESC';
-            foreach ($this->mysql->fetchRowManyCursor($query) as $result)
+
+            foreach ($this->container->mysql_rankeds->fetchRowManyCursor($query) as $result)
             {
                 array_push($game,$result);
             }
+
             //Save Redis
-            $this->redis->setJson("stats:".$name,$game);
+            $nb = count($game);
+            if (is_double($nb / 20)){
+                $nb = round(($nb / 20)) + 1;
+            }
+            $n = 0;
+            while ($nb != $n){
+                $data = array_slice($game,($n * 20),20,true);
+                $this->redis->setJson("stats:".$name .":". ($n +1),$data);
+                $n++;
+            }
         }
 
-        $this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
-        return $response->write('Success writing stats cache')->withStatus(200);
+        //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
+
+        return $response->write('okok')->withStatus(200);
     }
 
     public function jsonResp(RequestInterface $request, ResponseInterface $response){

@@ -71,6 +71,34 @@ class UserController extends Controller
             $factures = false;
         }
 
+        //Recherche des connections
+        try{
+            $connection = $this->container->mysql_casier->fetchRowMany('SELECT logs from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
+            $connection = json_decode($connection[0]['logs']);
+            if (count($connection) > 0){
+                $connection = array_slice($connection, (count($connection) - 10));
+
+                foreach ($connection as $k => $row){
+                    $row->ip = substr($row->log, strpos($row->log, "(IP:"),strpos($row->log, ")"));
+                    $row->ip = str_replace("(IP: ", "", $row->ip);
+                    $row->ip = str_replace(")", "", $row->ip);
+                    $row->date = str_replace("[", "", $row->date);
+                    $row->date = str_replace("]", "", $row->date);
+                    $datetime = \DateTime::createFromFormat('d/m/Y H:i:s', $row->date, new \DateTimeZone('Europe/Paris'));
+                    $timestamp = $datetime->getTimestamp();
+                    $timestamp = $timestamp - (86400 * 365);
+                    $timestamp = $timestamp + (86400 * 30);
+                    $connection[$k]->date = date("d/m/Y", $timestamp);
+                    $connection[$k]->time = date("H:i:s", $timestamp);
+                    $connection[$k]->ip = $row->ip;
+                }
+            }else{
+                $connection = false;
+            }
+        }catch (\mysqli_sql_exception $e){
+            $connection = false;
+        }
+
 
         try{
             //Récupération des sanctions
@@ -139,7 +167,7 @@ class UserController extends Controller
 
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['buys' => $buys,'user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['connection' => $connection,'buys' => $buys,'user' => $user,'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
 
 	}

@@ -27,8 +27,6 @@ class StatsController extends Controller
             $c_ts = 0;
         }
 
-
-
 	    $guardian = $this->redis->getJson('stats:guardian');
 	    $gstats = $this->redis->getJson('stats:stats_guardian');
 	    $stats = $this->redis->getJson('stats:stats_general');
@@ -55,17 +53,15 @@ class StatsController extends Controller
      */
     public function game(RequestInterface $request, ResponseInterface $response, $game)
 	{
+
         // Noms des jeux & affichage
         $list = array(
             'TowerRun' => 'Tower Run',
             'Tower' => 'Tower',
             'Rush' => 'Rush',
-            'SurvivalGames' => 'SurvivalGames',
             'UHCSpeed' => 'UHCSpeed',
-            'CaptureTheSheep' => 'CaptureTheSheep',
-            'BuildContest' => 'BuildContest',
             'SpaceBalls' => 'SpaceBalls',
-            'PearlsWars' => 'PearlsWars'
+            'Bedwars' => 'Bedwars'
         );
 
         $months = array(
@@ -91,71 +87,69 @@ class StatsController extends Controller
         }
 
         if ($game["date"] === "all"){
-            //Vérification si le jeux écist
+            //Vérification si le jeux existe
             if (isset($list[$game["game"]])) {
-                //Régulation vers fonction
-                $this->lecture($game["game"],$page,$response);
+                if($page == "1"){
+                    $data = $this->redis->getJson("stats:".$game["game"].'_all'.":1");
+                    if ($data == null){
+                        //Erreur 404
+                        return $this->redirect($response, '/stats');
+                    }
+                    //Slice de l'array
+                    $datatop = array_slice($data,0,3,true);
+                    $data = array_slice($data,3,17,true);
+                    //Affichage de la page
+                    $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game['game']]);
+                }else{
+                    $data = $this->redis->getJson("stats:".$game.":".$page);
+                    if ($data == null){
+                        //Erreur 404
+                        return $this->redirect($response, '/stats');
+                    }
+                    $nb1 = $page * 2 * 10-2;
+                    $nb2 = $nb1 - 20+2;
+                    $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2,'name' => "Statistiques ".$game]);
+                }
             }else {
                 //Erreur 404
-                return $response->withStatus(404);
+                return $this->redirect($response, '/stats');
             }
         }else{
             $data = explode("_", $game["date"]);
             if (in_array(strtolower($data[0]), $months)){
-                    //check if stat are invalid
-                    $sql = $this->mysql->fetchrow("SELECT count(*) FROM information_schema.TABLES WHERE (TABLE_NAME = '". $game['game'] ."_". strtolower($game['date']) ."')");
-                    if($sql["count(*)"] > 0){
-                        //ok
-                        $this->lecture($game["game"]."_".strtolower($game['date']),$page,$response);
+                //Vérification si le jeux existe
+                if (isset($list[$game["game"]])) {
+                    if($page == "1"){
+                        $data = $this->redis->getJson("stats:".$game["game"].'_'.$game["date"].":1");
+                        if ($data == null){
+                            //Erreur 404
+                            return $this->redirect($response, '/stats');
+                        }
+                        //Slice de l'array
+                        $datatop = array_slice($data,0,3,true);
+                        $data = array_slice($data,3,17,true);
+                        //Affichage de la page
+                        $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game['game']]);
                     }else{
-                        //Erreur 404
-                        return $response->withStatus(404);
+                        $data = $this->redis->getJson("stats:".$game["game"].'_'.$game["date"].":".$page);
+                        if ($data == null){
+                            //Erreur 404
+                            return $this->redirect($response, '/stats');
+                        }
+                        $nb1 = $page * 2 * 10-2;
+                        $nb2 = $nb1 - 20+2;
+                        $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2,'name' => "Statistiques ".$game]);
                     }
-                }else{
-                //Erreur 404
-                return $response->withStatus(404);
-            }
-
-            }
-	}
-
-
-    public function lecture($game,$page,$response)
-    {
-        if(is_numeric($page)){
-            var_dump($page);
-            //page top
-            if ($page === '1'){
-                $nb1 = $page * 2 * 10-2;
-                $nb2 = $nb1 - 20+2;
-                //Lecture du cache
-                $data = $this->redis->getJson("stats:".$game);
-                //Slice de l'array
-                $datatop = array_slice($data,0,3,true);
-                $data = array_slice($data,3,17,true);
-                //Affichage de la page
-                $this->render($response, 'stats.table',['data' => $data,'datatop' => $datatop,'name' => "Statistiques ".$game]);
-            //page avec page > 1
+                }else {
+                    //Erreur 404
+                    return $this->redirect($response, '/stats');
+                }
             }else{
-                $nb1 = $page * 2 * 10-2;
-                $nb2 = $nb1 - 20+2;
-                //Lecture du cache
-                $data = $this->redis->getJson("stats:".$game);
-                //Slice de l'array
-                $data = array_slice($data,$nb2,20,true);
-                var_dump($data);
-                //Affichage de la page
-                $this->render($response, 'stats.tablepage',['data' => $data,'nb' => $nb2,'name' => "Statistiques ".$game]);
+                //Erreur 404
+                return $this->redirect($response, '/stats');
             }
-
-        }
-
-
-
-
-
-    }
-
+		}
+	}
 
 
     public function search()

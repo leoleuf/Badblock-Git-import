@@ -502,6 +502,7 @@
     <div id="6" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <br>
+            {% if connection != false %}
             <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
             <table class="table table-bordered">
                 <tbody>
@@ -510,16 +511,18 @@
                     <td><font color="black">Date</font></td>
                     <td><font color="black">Heure</font></td>
                     <td><font color="black">Adresse IP</font></td>
-                    <td><font color="black">2FA validée</font></td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                {% for k,val in connection %}
+                    <tr>
+                        <td>{{ user.realName }}</td>
+                        <td>{{ val.date }}</td>
+                        <td>{{ val.time }}</td>
+                        <td>{{ val.ip }}</td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
+<<<<<<< HEAD
             {% if lastLogins != false %}
                 <br>
                 <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
@@ -548,6 +551,15 @@
                         <h4>Aucune(s) connection(s)</h4>
                     </div>
                 </div>
+=======
+            {% else %}
+            <div class="no-item-container">
+                <div class="no-item-content">
+                    <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                    <h4>Aucune(s) connection(s)</h4>
+                </div>
+            </div>
+>>>>>>> 9f7bbcb70c10473c87ac0668a667dab8f97d0ea7
             {% endif %}
         </section>
     </div>

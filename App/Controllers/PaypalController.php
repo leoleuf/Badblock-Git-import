@@ -157,6 +157,14 @@ class PaypalController extends Controller
             }
 
 
+            if ($this->container->session->exist('user')){
+                $mailContent = file_get_contents("../mail-achat.html");
+                $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
+                $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                $mail = new \App\Mail(true);
+                $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+            }
+
             return $this->redirect($response, '/shop/recharge/sucess');
         }else{
             return $this->redirect($response, '/shop/recharge');
