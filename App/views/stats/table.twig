@@ -10,9 +10,9 @@
         <div class="cover">
             <div class="container">
                 <div class="podium-cover-content">
-                    <img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar-first">
-                    <img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar-second">
-                    <img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar-third">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" title="1er du podium" alt="1er du podium" class="avatar-first">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" title="2e du podium" alt="2e du podium" class="avatar-second">
+                    <img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" title="3e du podium" alt="3e du podium" class="avatar-third">
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@ On liste les différantes place en grossisant au fur et à mesure
   <tbody class="c-table__body">
     <tr class="c-table__row first" onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" >
       <td class="c-table__cell">#1</td>
-      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar"> {{  datatop[0]['playerName'] }}</td><!-- Je suis le meilleur! -->
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}"> {{  datatop[0]['playerName'] }}</td><!-- Je suis le meilleur! -->
       <td class="c-table__cell">{{  datatop[0]['kills'] }}</td>
       <td class="c-table__cell">{{  datatop[0]['_points'] }}</td>
       <td class="c-table__cell">{{  datatop[0]['deaths'] }}</td>
@@ -48,7 +48,7 @@ On liste les différantes place en grossisant au fur et à mesure
     </tr>
     <tr onclick="document.location = '/profile/{{  datatop[1]['playerName'] }}';" class="c-table__row second">
       <td class="c-table__cell" >#2</td>
-      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar">{{  datatop[1]['playerName'] }}</td> <!-- t'est une merde -->
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}">{{  datatop[1]['playerName'] }}</td> <!-- t'est une merde -->
         <td class="c-table__cell">{{  datatop[1]['_points'] }}</td>
         <td class="c-table__cell">{{  datatop[1]['kills'] }}</td>
         <td class="c-table__cell">{{  datatop[1]['deaths'] }}</td>
@@ -58,7 +58,7 @@ On liste les différantes place en grossisant au fur et à mesure
     </tr>
     <tr onclick="document.location = '/profile/{{  datatop[2]['playerName'] }}';" class="c-table__row third">
       <td class="c-table__cell" >#3</td>
-      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar">{{  datatop[2]['playerName'] }}</td>
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}">{{  datatop[2]['playerName'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['_points'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['kills'] }}</td>
         <td class="c-table__cell">{{  datatop[2]['deaths'] }}</td>
@@ -69,7 +69,7 @@ On liste les différantes place en grossisant au fur et à mesure
     {% for data,key in data %}
     <tr class="c-table__row" onclick="document.location = '/profile/{{  key['playerName'] }}';" >
       <td class="c-table__cell">#{{ data+1 }}</td>
-      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ key['playerName'] }}/30.png" class="avatar"> <a href="/profile/{{  key['playerName'] }}">{{  key['playerName'] }}</a></td>
+      <td class="c-table__cell"><img src="https://guiria.badblock.fr/head/{{ key['playerName'] }}/30.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}"> <a href="/profile/{{  key['playerName'] }}">{{  key['playerName'] }}</a></td>
       <td class="c-table__cell">{{  key['_points'] }}</td>
       <td class="c-table__cell">{{  key['kills'] }}</td>
         <td class="c-table__cell">{{  key['deaths'] }}</td>

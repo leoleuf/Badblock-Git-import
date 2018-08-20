@@ -40,8 +40,8 @@
 <div class="header">
     <div class="container">
         <div class="header-container">
-            <a class="header-logo-container no-link" href="{{ path_for('home') }}">
-                <img src="https://guiria.badblock.fr/images/logo_small.png" class="header-logo">
+            <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
+                <img src="https://guiria.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 <div class="">
                     <h3 class="header-title">BadBlock</h3>
                     <h5 class="header-sub-title">{{ mc_ip }}</h5>
@@ -50,17 +50,17 @@
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="{{ forum_url }}/login"><i
+                        <a class="button button-primary" href="{{ forum_url }}/login" title="Connexion"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <span class="margin"></span>
-                        <a class="button button-primary" href="{{ forum_url }}/inscription/"><i
+                        <a class="button button-primary" href="{{ forum_url }}/inscription/" title="Inscription"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
                     {% endif %}
                     {% if user is defined %}
-                        <a class="button button-primary" href="{{ path_for('dashboard') }}"><i
+                        <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord"><i
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
                         <span class="margin"></span>
-                        <a class="button button-danger" href="{{ path_for('logout') }}"><i
+                        <a class="button button-danger" href="{{ path_for('logout') }}" title="Déconnexion"><i
                                     class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
                     {% endif %}
                 </div>
@@ -74,38 +74,38 @@
 <div class="topnav" id="myTopnav">
     <div class="container">
         <a href="{{ path_for('home') }}"
-           class="{% if active_page == 'home' %}actived{% endif %} home">
+           class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
         <a href="/shop"
-           class="{% if active_page == 'shop' %}actived{% endif %}">
+           class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique">
             <i class="shopping_basket-colored-icon colored-icon"></i>
             Boutique
         </a>
         <a href="{{ path_for('stats.home') }}"
-           class="{% if active_page == 'stats' %}actived{% endif %}">
+           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques">
             <i class="stats-colored-icon colored-icon"></i>
             {{ 'stats.title'|trans }}
         </a>
         <a href="{{ path_for('play') }}"
-           class="{% if active_page == 'play' %}actived{% endif %}">
+           class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
         <a href="{{ path_for('vote.home') }}"
-            class="{% if active_page == 'vote.home' %}actived{% endif %}">
+            class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
             <i class="edit-colored-icon colored-icon"></i>
             Vote
         </a>
-        <a href="{{ forum_url }}"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
+        <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
-        <a href="https://forum.badblock.fr/recrutement" class="">
+        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
             <i class="list-colored-icon colored-icon"></i>
             Recrutements
         </a>
 
-        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
+        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()" title="Menu BadBlock"><i class="icon-menu"></i></a>
     </div>
 </div>
 <!-------page-navbar-user------->
@@ -178,10 +178,10 @@
     <div class="container">
         <div class="four columns">
             <div class="footer-title-container">
-                <img src="https://guiria.badblock.fr/images/logo_small.png" class="footer-logo">
+                <img src="https://guiria.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4><br><br>
             </div>
-			    BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <a href="https://badblock.fr/legals/Mentions_legales.pdf"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/"><font color="FFFFFF">Documents légaux</font></a>.
+			    BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <a href="https://badblock.fr/legals/Mentions_legales.pdf" title="Mentions légales BadBlock"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock"><font color="FFFFFF">Documents légaux</font></a>.
         </div>
         <div class="four columns">
             <div class="footer-links-title-container">
@@ -190,11 +190,11 @@
                 </h5>
             </div>
             <ul class="footer-links">
-                <li><a href="https://forum.badblock.fr/règlement">Réglement</a></li>
-                <li><a href="{{ path_for('staff') }}">Notre Equipe</a></li>
-                <li><a href="mailto:contact@badblock.fr">Nous contacter</a></li>
-                <li><a href="/info">Informations développement</a></li>
-                <li><a href="/screenshot">Héberger une image</a></li>
+                <li><a href="https://forum.badblock.fr/règlement" title="Règlement BadBlock">Règlement</a></li>
+                <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
+                <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
+                <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
+                <li><a href="/screenshot" title="Héberger une image BadBlock">Héberger une image</a></li>
             </ul>
         </div>
         <div class="four columns">
@@ -204,10 +204,10 @@
                 </h5>
             </div>
             <ul class="footer-links footer-social-links">
-                <li><a href="https://twitter.com/BadBlockGame" rel="nofollow"><i class="icon-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/BadBlockGame" rel="nofollow"><i class="icon-facebook"></i></a></li>
-                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://badblock.fr/discord"><img src="//guiria.badblock.fr/images/discord.png" width="31" style="margin-top: 3px"></a></li>
+                <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
+                <li><a href="https://badblock.fr/discord" title="Discord BadBlock"><img src="//guiria.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
             </ul>
         </div>
     </div>
@@ -215,7 +215,7 @@
 <!-- Fin footer -->
 
 <!-- Back to top -->
-<a href="#" class="scrollToTop no-link" title="{{ 'scroll_to_top'|trans }}"><i
+<a href="#" class="scrollToTop no-link" title="{{ 'scroll_to_top'|trans }}" title="Revenir en haut"><i
             class="icon icon-circle-arrow-up"></i> </a>
 <!-- Fin back to top -->
 

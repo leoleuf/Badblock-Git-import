@@ -6,21 +6,21 @@
     </a>
     <div class="card-body">
         <div class="card-title"><a
-                    href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">{{ infos.title }}</a>
+                    href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}" title="{{ infos.title }}">{{ infos.title }}</a>
         </div>
         <div class="card-subtitle">
-            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}" title="Auteur {{ infos.author.name }}">
                 <i class="icon icon-user"></i>
                 {{ infos.author.name }}
             </a>
-            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+            <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}" title="Créé le {{ timeago(infos.created_at) }}">
                 <i class="icon icon-time"></i>
                 {{ timeago(infos.created_at) }}
             </a>
         </div>
         <p class="card-description">
             {% if card_special_class == 'card-second' %}
-                <a class="button button-primary" href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">Lire plus</a>
+                <a class="button button-primary" href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}" title="Lire +">Lire plus</a>
             {% endif %}
             {% if card_special_class != 'card-second' %}
                 {{ infos.summary }}

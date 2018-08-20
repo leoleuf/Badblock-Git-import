@@ -38,21 +38,21 @@
         </div>
         <div class="twelve columns played" id="launcher-minecraft">
             <div>
-                <a href="https://launcher-minecraft.com/">
+                <a href="https://launcher-minecraft.com/" title="Télécharger le Launcher Minecraft gratuit pour Mac OS">
                     <button class="button button-danger" id="minecraft-download-mac">
                         <i class="fab fa-apple"></i> Télécharger le Launcher Minecraft Gratuit pour Mac OS
                     </button>
                 </a>
             </div>
             <div>
-                <a href=https://launcher-minecraft.com/">
+                <a href=https://launcher-minecraft.com/" title="Télécharger le Launcher Minecraft gratuit pour Windows">
                     <button class="button button-primary" id="minecraft-download-windows">
                         <i class="fab fa-windows"></i> Télécharger le Launcher Minecraft Gratuit pour Windows
                     </button>
                 </a>
             </div>
             <div>
-                <a href=https://launcher-minecraft.com/">
+                <a href=https://launcher-minecraft.com/" title="Télécharger le Launcher Minecraft gratuit pour Linux">
                     <button class="button button-success" id="minecraft-download-linux">
                         <i class="fab fa-linux"></i> Télécharger le Launcher Minecraft Gratuit pour Linux
                     </button>
@@ -99,11 +99,11 @@
                 <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
                 <div class="panel">
                     {% if mc_ip == "eu.badblock.fr" %}
-                        <img src="/dist/images/eu.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/eu.gif');">
+                        <img src="/dist/images/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('/dist/images/eu.gif');">
                     {% elseif mc_ip == "na.badblock.fr" %}
-                        <img src="/dist/images/na.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/na.gif');">
+                        <img src="/dist/images/na.gif" alt="Serveur NA BadBlock" title="Serveur NA BadBlock" class="how-to-gif" onClick="Javascript:window.open('/dist/images/na.gif');">
                     {% else %}
-                        <img src="/dist/images/play.gif" class="how-to-gif" onClick="Javascript:window.open('/dist/images/play.gif');">
+                        <img src="/dist/images/play.gif" alt="Serveur Play BadBlock" title="Serveur Play BadBlock" class="how-to-gif" onClick="Javascript:window.open('/dist/images/play.gif');">
                     {% endif %}
                     <br>
                     <span>Cliquer sur le GIF pour le voir en grand</span>

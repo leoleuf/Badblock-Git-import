@@ -23,14 +23,14 @@
                 {% if currentPage > 1 %}
                     <li>
                         <a href="{{ path_for('all-posts') }}/{{ currentPage - 1 }}" aria-label="Previous"
-                           class="previous">
+                           class="previous" title="Accéder au blog de la page précédentes">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                 {% endif %}
                 {% for infos in pages %}
                     <li>
-                        <a href="{{ path_for('all-posts') }}/{{ infos }}"
+                        <a href="{{ path_for('all-posts') }}/{{ infos }}" title="Accéder à l'information {{ infos }}"
                            {% if infos == currentPage %}class="current"{% endif %}>
                             {{ infos }}
                         </a>
@@ -38,7 +38,7 @@
                 {% endfor %}
                 {% if currentPage < nbPage %}
                     <li>
-                        <a href="{{ path_for('all-posts') }}/{{ currentPage + 1 }}" aria-label="Next" class="next">
+                        <a href="{{ path_for('all-posts') }}/{{ currentPage + 1 }}" title="Accéder au blog de la page suivante" aria-label="Next" class="next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

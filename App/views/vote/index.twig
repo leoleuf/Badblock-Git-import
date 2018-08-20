@@ -53,7 +53,7 @@
             <div class="step-contains">
                 <h5 class="text-center">Entrez votre pseudo</h5>
                     <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                    <a class="button button-primary" onclick="start()" style="width: 95%;">Valider</a>
+                    <a class="button button-primary" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
             </div>
             </center>
         </div>
@@ -61,7 +61,7 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" onclick="vote('https://serveur-prive.net/minecraft/badblock-198/vote')" rel="nofollow" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('https://serveur-prive.net/minecraft/badblock-198/vote')" rel="nofollow" style="width: 95%;">Serveur-Prive.net (1H30)</a>
                 </div>
             </center>
         </div>
@@ -149,14 +149,14 @@
     <div class="remodal modal-remodal" data-remodal-id="vote-user">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1>Vous devez vous enregistrer sur le Forum de BadBlock pour voter !</h1>
-        <a class="button button-danger" href="https://forum.badblock.fr/inscription/"><i class="icon-repeat"></i>S'inscrire !</a>
+        <a class="button button-danger" href="https://forum.badblock.fr/inscription/" title="S'inscrire"><i class="icon-repeat"></i>S'inscrire !</a>
     </div>
     <!-- Reg modal -->
     <!-- Time Modal -->
     <div class="remodal modal-remodal" data-remodal-id="vote-time">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1 id="time-title">Vous devez attendre pour voter !</h1>
-        <a class="button button-danger" data-remodal-action="close"><i class="icon-repeat"></i>Retour</a>
+        <a class="button button-danger" data-remodal-action="close" title="Retour"><i class="icon-repeat"></i>Retour</a>
     </div>
     <!-- Time modal -->
 
@@ -164,7 +164,7 @@
     <div class="remodal modal-remodal" data-remodal-id="vote-end">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1>Merci de votre soutiens !</h1>
-        <a class="button button-danger" href="#"><i class="icon-repeat"></i>Fermer</a>
+        <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
     </div>
     <!-- End modal -->
 
@@ -173,7 +173,7 @@
     <div class="remodal modal-remodal" data-remodal-id="info-modal">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1 id="title"></h1>
-        <a class="button button-danger" href="#"><i class="icon-closetab"></i>Fermer</a>
+        <a class="button button-danger" href="#" title="Fermer"><i class="icon-closetab"></i>Fermer</a>
     </div>
     <!-- Info modal -->
 

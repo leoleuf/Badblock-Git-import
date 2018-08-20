@@ -10,7 +10,7 @@
                 <div class="one-half column">
                     <h4 class="cover-heading">{{ 'home.cover.title'|trans }}</h4>
                     <div class="animated bounceInLeft">
-                        <a class="button button-primary" href="{{ path_for('play') }}"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
+                        <a class="button button-primary" href="{{ path_for('play') }}" title="Jouer à BadBlock"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                     {% endfor %}
 
                     <!-- Plus card -->
-                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}">
+                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder à tous les posts">
                         <div class="card-plus-text">{{ 'home.cards.more_posts'|trans }}</div>
                         <i class="icon icon-calcplus"></i>
                     </a>
@@ -66,9 +66,9 @@
         <!-- Informations début -->
         <div class="side-item">
             <h4 class="heading-bar"><span>Informations</span></h4> 
-            <a class="button button-primary informations" id="recrutement-button" href="https://forum.badblock.fr/recrutement/" ><i class="far fa-file-alt"></i>  Les Recrutements<br>Trouvez toutes les informations nécessaires pour rejoindre notre équipe</a><br>
-            <a class="button button-primary informations" id="staff-button" href="/staff"><i class="fas fa-sitemap"></i>  Le Staff<br>Découvrez l'équipe de Badblock, sa hiérarchie et son fonctionnement</a>
-            <a class="button button-primary informations" id="devblog-button" href="https://forum.badblock.fr/devblog/"><i class="far fa-file-code"></i>  Le DevBlog<br>Les dernières modifications apportées sur le serveur sont ici !</a>
+            <a class="button button-primary informations" id="recrutement-button" href="https://forum.badblock.fr/recrutement/" title="Recrutements de BadBlock"><i class="far fa-file-alt"></i>  Les Recrutements<br>Trouvez toutes les informations nécessaires pour rejoindre notre équipe</a><br>
+            <a class="button button-primary informations" id="staff-button" href="/staff" title="Staff de BadBlock"><i class="fas fa-sitemap"></i>  Le Staff<br>Découvrez l'équipe de Badblock, sa hiérarchie et son fonctionnement</a>
+            <a class="button button-primary informations" id="devblog-button" href="https://forum.badblock.fr/devblog/" title="DevBlog de BadBlock"><i class="far fa-file-code"></i>  Le DevBlog<br>Les dernières modifications apportées sur le serveur sont ici !</a>
         </div>
         <!-- Informations fin -->
     </div>

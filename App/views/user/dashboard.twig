@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
                     <div class="profile-title">
-                        <div class="profile-mc-head"><img src="https://guiria.badblock.fr/head/{{ user.name }}/110.png" title="Tête du skin"></div>
+                        <div class="profile-mc-head"><img src="https://guiria.badblock.fr/head/{{ user.name }}/110.png" title="Tête de {{ user.name }}" alt="Tête de {{ user.name }}"></div>
                         <div>
                             <h2 class="cover-heading">Bonjour, {{ user.realName }}.</h2>
                             <span class="badge badge-{{ user.permissions.group }}">{{ ucfirst(user.permissions.group) }}</span>
@@ -99,7 +99,7 @@
                     </ul>
                 </div>
                 <div class="six columns">
-                    <img src="https://minotar.net/body/{{ user.name }}/150.png" class="avatar-player">
+                    <img src="https://minotar.net/body/{{ user.name }}/150.png" title="Avatar de {{ user.name }}" alt="Avatar de {{ user.name }}" class="avatar-player">
                 </div>
             </div>
         </section>
@@ -124,7 +124,7 @@
                                     <td>{{ key["pseudo"] }}</td>
                                     <td>{{ key["date"] }}</td>
                                     <td><span class="label label-danger">{{ key["type"] }}</span></td>
-                                    <td><a href="/profile/{{ key["banner"] }}">{{ key["banner"] }}</a></td>
+                                    <td><a href="/profile/{{ key["banner"] }}" title="Profil de {{ key['banner'] }}">{{ key["banner"] }}</a></td>
                                     {% if key["expire"] == -1 %}
                                         <td>Aucune</td>
                                     {% else %}
@@ -222,7 +222,7 @@
                     </form>
                 </div>
                 <div class="span">
-                    <h4 class="top0">Relier son Compte TeamSpeak <a href="/" style="text-decoration: none; font-size: 15px;"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
+                    <h4 class="top0">Relier son Compte TeamSpeak <a href="/" title="Tutoriel pour relier son compte TeamSpeak" style="text-decoration: none; font-size: 15px;"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
                     <form action="/dashboard/teamspeak/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre ID TeamSpeak</label>
                         <input type="text" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
@@ -522,7 +522,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-<<<<<<< HEAD
             {% if lastLogins != false %}
                 <br>
                 <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
@@ -537,7 +536,7 @@
                     </tr>
                     {% for key in lastLogins %}
                         <tr>
-                            <td>Achat de {{ key["name"] }}</td>
+                            <td>Connexion de {{ key["name"] }}</td>
                             <td>{{ key["date"] }}</td>
                             <td>{{ key["price"] }}</td>
                         </tr>
@@ -551,15 +550,6 @@
                         <h4>Aucune(s) connection(s)</h4>
                     </div>
                 </div>
-=======
-            {% else %}
-            <div class="no-item-container">
-                <div class="no-item-content">
-                    <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                    <h4>Aucune(s) connection(s)</h4>
-                </div>
-            </div>
->>>>>>> 9f7bbcb70c10473c87ac0668a667dab8f97d0ea7
             {% endif %}
         </section>
     </div>

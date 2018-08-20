@@ -52,7 +52,7 @@
                     <form class="comments-form" action="{{ path_for('post-comment', {uuid: post.uuid, slug: post.slug}) }}" method="post">
                         <div class="comments-item">
                             <div class="comments-author-avatar">
-                                <img src="https://guiria.badblock.fr/head/{{ user.username }}/64.png">
+                                <img src="https://guiria.badblock.fr/head/{{ user.username }}/64.png" title="Tête de {{ user.username }}" alt="Tête de {{ user.username }}">
                             </div>
                             <div class="comments-content">
                                 <div class="comments-title">
@@ -81,7 +81,7 @@
 
                 {% if post.comments is not empty %}
                     <div id="comments-loading" style="display: flex; justify-content: center; align-items: center">
-                        <img src="https://guiria.badblock.fr/images/990A0BDEEF8A6D04195B.gif" width="100">
+                        <img src="https://guiria.badblock.fr/images/990A0BDEEF8A6D04195B.gif" width="100" alt="Chargement des commentaires" title="Chargement des commentaires">
                     </div>
                     <div id="comments">
 
