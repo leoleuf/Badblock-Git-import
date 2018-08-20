@@ -78,7 +78,17 @@ class Ladder
 	 */
 	public function playerOnline($player)
 	{
-		return json_decode($this->sendData("players/isConnected/", ["name" => $player]), true);
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL,            "http://node01-int.clusprv.badblock-network.fr:8080/players/isConnected/" );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($ch, CURLOPT_POST,           1 );
+        curl_setopt($ch, CURLOPT_POSTFIELDS,     "name=". $player);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
+
+        $result = curl_exec ($ch);
+
+		return json_decode($result);
 	}
 
 	/**

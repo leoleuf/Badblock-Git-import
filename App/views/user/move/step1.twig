@@ -1,7 +1,7 @@
 {% extends "default.twig" %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
-{% set title = 'Changer votre pseudi !'|trans %}
+{% set title = 'Changer votre pseudo !'|trans %}
 
 {% block cover %}
 
@@ -34,12 +34,15 @@
         <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 25%;"></div>
     </div>
     <br>
-    {% if error %}
-        <div class="alert alert-error">
-            {{ error }}
-            <i class="icon icon-remove"></i>
-        </div>
+    {% if flash('move_error') %}
+         {% for flash in flash('move_error') %}
+             <div class="alert alert-error">
+                 {{ flash }}
+                 <i class="icon icon-remove"></i>
+             </div>
+         {% endfor %}
     {% endif %}
+
     <div class="row">
         <div class="six columns recharge-bottom">
             <div class="recharge-info">
@@ -50,8 +53,9 @@
             </div>
         </div>
         <div class="six columns">
-            <h5 id="pseudo">Indiquer le nouveau pseudo du compte</h5><br>
-            <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
+            <h5 id="pseudo">Indiquer le nouveau pseudo du compte & connecter vous sur le serveur avec celui-ci</h5><br>
+            <form action="/move" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
+                <input type="hidden" name="step" value="1">
                 <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" value="" required><br>
                 <label class="check-recharge">
                     <input type="checkbox" checked required>

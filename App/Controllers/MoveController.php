@@ -16,26 +16,31 @@ class MoveController extends Controller
 {
 
     public function step1(RequestInterface $request, ResponseInterface $response){
-
-        return $this->render($response, 'user.move.step1');
-
+        if ($this->container->session->getProfile('username')['is_staff'] == true){
+            if ($this->container->config['app_debug'] == 1){
+                return $this->render($response, 'user.move.step1');
+            }
+            return $this->render($response, 'user.move.staff');
+        }else{
+            return $this->render($response, 'user.move.step1');
+        }
     }
 
     //fonction qui gère les form en POST
     public function poststep(RequestInterface $request, ResponseInterface $response){
-        $username = $this->session->getProfile('username')['username'];
+        $username = $_POST['pseudo'];
 
         if ($_POST['step'] == 1){
             $collection = $this->container->mongoServer->players;
             $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null){
-                if ($this->ladder->playerOnline($username)['connected'] == true){
+                if ($this->ladder->playerOnline($username)->connected == true){
                     //vérification si le joueur est pas au login
                     $server = $this->ladder->playerGetConnectedServer($username)->server;
                     $data = explode("_",$server);
                     if ($data[0] == "login"){
-                        $this->flash->addMessage('link_error', "Votre devez vous authentifier sur le serveur !");
+                        $this->flash->addMessage('move_error', "Votre devez vous authentifier sur le serveur !");
                         //redirect to last page
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }else{
@@ -44,7 +49,7 @@ class MoveController extends Controller
                         srand((double)microtime()*1000000);
                         $i = 0;
                         $pass = '' ;
-                        while ($i <= 6) {
+                        while ($i <= 8) {
                             $num = rand() % 33;
                             $tmp = substr($chars, $num, 1);
                             $pass = $pass . $tmp;
@@ -60,13 +65,13 @@ class MoveController extends Controller
                         return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
                     }
                 }else{
-                    $this->flash->addMessage('link_error', "Votre compte n'est pas connecté sur le serveur !");
+                    $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
                     //redirect to last page
                     return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                 }
             }else{
                 //Message erreur
-                $this->flash->addMessage('link_error', 'Votre compte : "'.$username.'"'." ne s'est jamais connecté sur le serveur");
+                $this->flash->addMessage('move_error', 'Votre compte : "'.$username.'"'." ne s'est jamais connecté sur le serveur");
                 //redirect to last page
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
             }
@@ -76,9 +81,9 @@ class MoveController extends Controller
                 $this->redis->set('move:1:'.$username, true);
                 $this->redis->expire('move:1:'.$username, 3600);
 
-                return $this->render($response, 'user.link.step3', ["width" => 100,"step" => 3]);
+                return $this->render($response, 'user.link.step3', ["width" => 75,"step" => 3]);
             }else{
-                return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
+                return $this->render($response, 'user.link.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
             }
         }else{
             //Erreur qui doit jamais arriver
@@ -141,7 +146,7 @@ class MoveController extends Controller
             if ($_POST["code"] == $this->redis->getJson('link:'.$_POST['user'])){
                 return $response->write("ok")->withStatus(200);
             }else{
-                $this->flash->addMessage('link_error', "Mauvais code !");
+                $this->flash->addMessage('move_error', "Mauvais code !");
 
                 //redirect to last page
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
