@@ -13,7 +13,7 @@ $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');
         $this->get('/all-stats', \App\Controllers\Api\StatsApiController::class . ':jsonResp');
-        $this->get('/vote', \App\Controllers\Api\VoteApiController::class . ':cacheTop');
+        $this->get('/vote', \App\Controllers\Api\VoteApiController::class . ':updateVoteCount');
 
         $this->get('/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheComment');
     });

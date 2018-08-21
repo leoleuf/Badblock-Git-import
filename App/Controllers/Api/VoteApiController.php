@@ -14,34 +14,16 @@ use Psr\Http\Message\ResponseInterface;
 
 class VoteApiController extends \App\Controllers\Controller
 {
-    public function cacheTop(RequestInterface $request, ResponseInterface $response){
-        //Read top from mongoDB
-        $mongo = $this->container->mongo->stats_vote;
-        $date =  date("Y-m");
-        $data = $mongo->findOne(["date" => $date]);
+    public function updateVoteCount(RequestInterface $request, ResponseInterface $response)
+    {
+        $API_id = 198; // ID du serveur
+        $API_da = 'vote'; // vote,clic,commentaire ou note
+        $API_url = "https://serveur-prive.net/api/stats/198/vote";
+        $API_call = @file_get_contents($API_url);
 
-        $data = (array) $data['players'];
-        usort($data, create_function('$a, $b', '
-        $a = $a["vote"];
-        $b = $b["vote"];
+        $this->redis->set('vote.nb', $API_call);
 
-        if ($a == $b) return 0;
-
-        $direction = strtolower(trim("desc"));
-
-        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
-        '));
-
-        $data = array_slice($data, 0, 10);
-
-        //Write in redis
-        $this->redis->setJson('vote.top', $data['players']);
-
-
-        //Renvoie d'un code de succès
-        $this->log->success('Api\VoteApiController::cacheTop',' Success writing vote cache');
-
-        return $response->write('Success writing vote cache')->withStatus(200);
+        return $response->write('Vote number : '.$API_call)->withStatus(200);
     }
 
 
