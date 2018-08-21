@@ -21,17 +21,24 @@ use DateTime;
 class VoteController extends Controller
 {
 
-    public function getHome(RequestInterface $request, ResponseInterface $response){
+    public function getHome(RequestInterface $request, ResponseInterface $response)
+    {
         //Read Top from Redis
         $top = $this->redis->getJson('vote.top');
-        if ($this->container->session->exist('user')) {
+
+        $player = "";
+        if ($this->container->session->exist('user'))
+        {
             $player = $this->session->getProfile('username')['username'];
-        }else{
-            $player = "";
         }
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
+    }
 
+    public function voteRedirect(RequestInterface $request, ResponseInterface $response)
+    {
+        $top = $this->redis->getJson('vote.top');
+        return $this->render($response, 'vote.vote-redirect', ['top' => $top]);
     }
 
     public function playerexists(RequestInterface $request, ResponseInterface $response)
@@ -43,7 +50,8 @@ class VoteController extends Controller
 
         $pseudo = htmlspecialchars($_POST['pseudo']);
 
-        if (getenv('APP_DEBUG') == 0){
+        if (getenv('APP_DEBUG') == 0)
+        {
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
@@ -59,7 +67,6 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
-
         if (!isset($_POST['pseudo']) && !isset($_POST['type']))
         {
             return $response->write("User not found !")->withStatus(404);
@@ -86,7 +93,8 @@ class VoteController extends Controller
             return $response->write("User not found !")->withStatus(404);
         }
 
-        if (getenv('APP_DEBUG') == 0){
+        if (getenv('APP_DEBUG') == 0)
+        {
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 

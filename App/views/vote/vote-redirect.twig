@@ -4,6 +4,9 @@
 {% set sub_title = ''|trans~user.username %}
 {% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action prend quelques secondes." %}
 {% set show_title = false %}
+{% block meta %}
+
+{% endblock %}
 {% block cover %}
     <!------Cover------>
     <div class="cover-back">
@@ -49,55 +52,10 @@
                 </script>
             </div>
     <div class="nothing">
-        <div id="step1" class="step step-two four columns">
-            <center><h3 class="step-round">I</h3>
-            <div class="step-contains">
-                <h5 class="text-center">Entrez votre pseudo</h5>
-                    <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                    <a class="button button-primary" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
-            </div>
-            </center>
-        </div>
-        <div id="step2" class="step step-first four columns disabled">
-            <center><h3 class="step-round">II</h3>
-                <div class="step-contains">
-                    <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/vote/redirect')" rel="nofollow" style="width: 95%;">Serveur-Prive.net (1H30)</a>
-                </div>
-            </center>
-        </div>
-        <div class="step step-three four columns">
-            <center><h3 class="step-round">III</h3>
-            <div class="step-contains">
-                <h5 class="text-center">Obtenez votre récompense</h5>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot1" onclick="award('1')" href="" style="width: 95%;">
-                        Points Boutique
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot2" onclick="award('2')" href="" style="width: 95%;">
-                        SkyBlock
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
-                        Mini-jeux
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
-                        Faction
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot5" onclick="award('5')" href="" style="width: 95%;">
-                        PvpBox
-                    </button>
-                </div>
-            </div>
-            </center>
-        </div>
+        <h5 style="text-align: center;">Tu vas être redirigé sur la page pour voter dans <span id="countdown">16</span> secondes.<br />Une fois redirigé, remplis le captcha et clique sur Voter.
+            <br /><img src="/dist/images/loading.gif" title="Chargement du vote BadBlock" alt="Chargement du vote BadBlock" width="128" height="128" />
+        </h5>
+
         <div id="pub-large">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -106,7 +64,7 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-        <h3 class="text-center">Les meilleurs votants !</h3>
+        <h3 class="text-center">Les meilleurs votants</h3>
         <p class="text-center">Retrouvez chaque mois le classement des meilleurs votants de BadBlock !</p>
         <div class="vote-tr">
             <table class="votes">
@@ -178,6 +136,23 @@
     </div>
     <!-- Info modal -->
 
+    <script type="text/javascript">
+
+        var seconds = 16;
+
+        function countdown() {
+            seconds = seconds - 1;
+            if (seconds < 0) {
+                window.location = "https://serveur-prive.net/minecraft/badblock-198/vote";
+            } else {
+                document.getElementById("countdown").innerHTML = seconds;
+                window.setTimeout("countdown()", 1000);
+            }
+        }
+
+        countdown();
+
+    </script>
 
     <script>
         var type;

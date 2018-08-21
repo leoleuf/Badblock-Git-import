@@ -49,12 +49,13 @@ $app->group('/shop', function (){
 
 });
 
+$app->get('/svote', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.server-redirect');
+
 $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
+    $this->get('/redirect', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.redirect');
     $this->post('/award', \App\Controllers\VoteController::class . ':award')->setName('vote.award');
     $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
-
-    $this->get('/test', \App\Controllers\VoteController::class . ':top');
 });
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('launcher-minecraft');

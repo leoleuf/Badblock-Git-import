@@ -1027,6 +1027,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     color: black;
 }
 
+a {
+    text-decoration:none;
+}
+
 .dev-card:hover {
     transform: scale(1.015);
     transition: 0.5s;
