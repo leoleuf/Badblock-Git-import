@@ -215,6 +215,12 @@
         });
     </script>
     <script>
+            Highcharts.setOptions({
+                global: {
+                    useUTC: false
+                }
+            });
+
             Highcharts.chart('playergraph', {
 
                 chart: {
