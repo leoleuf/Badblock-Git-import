@@ -28,7 +28,7 @@ class MoveController extends Controller
         }
     }
 
-    function generateRandomString($length = 10) {
+    public function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -56,7 +56,7 @@ class MoveController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }else{
                         //Création du code random
-                        $pass = generateRandomString(8);
+                        $pass = $this->generateRandomString(8);
                         //Set code in Redis cache
                         $this->session->set('move:1', $username);
                         $this->redis->set('move:1:'.$username,$pass);
@@ -104,7 +104,7 @@ class MoveController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }else{
                         //Création du code random
-                        $pass = generateRandomString(8);
+                        $pass = $this->generateRandomString(8);
                         //Set code in Redis cache
                         $this->session->set('move:2', $username);
                         $this->redis->set('move:2:'.$username,$pass);
