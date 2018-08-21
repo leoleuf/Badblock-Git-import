@@ -31,7 +31,11 @@ class StatsController extends Controller
 	    $gstats = $this->redis->getJson('stats:stats_guardian');
 	    $stats = $this->redis->getJson('stats:stats_general');
 
-	    $playergraph = file_get_contents("servergraphs.dat");
+	    try {
+            $playergraph = file_get_contents("servergraphs.dat");
+        }catch (\Exception $e){
+            $playergraph = "";
+        }
 
 		$this->render($response, 'stats.home',['c_ts' => $c_ts,'connected' => $connected,'guardian' => $guardian,'gstats' => $gstats,'stats' => $stats, 'playergraph' => $playergraph]);
 	}

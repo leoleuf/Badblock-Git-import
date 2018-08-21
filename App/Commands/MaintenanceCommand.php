@@ -31,9 +31,9 @@ class MaintenanceCommand extends Command
 					rename('index.php', '_index.php');
 					rename('maintenance.php', 'index.php');
 
-                    $data = array("username" => "Logger Site","content" => "[OK] Maintenance mode is now enabled ! <@&428275202166751236> ");
+                    $data = array("username" => "Badblock Website","content" => "[COMMAND-RECEIVED] Maintenance mode is now enabled ! <@&428275202166751236> ");
 
-                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
+                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/481553626213646347/2sOHRjALgY7K61Y5SNnadYFS_VaUhgOCpB1mhmOZCq9CsMkfUGA5OoR6wYG3EJ-Xvs-j");
                     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -53,9 +53,9 @@ class MaintenanceCommand extends Command
 					rename('index.php', 'maintenance.php');
 					rename('_index.php', 'index.php');
 
-                    $data = array("username" => "Logger Site","content" => "[OK] Maintenance mode is now disabled ! <@&428275202166751236> ");
+                    $data = array("username" => "Badblock Website","content" => "[COMMAND-RECEIVED] Maintenance mode is now disabled ! <@&428275202166751236> ");
 
-                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/418434729084190732/DKbr0dN-PNwi260GP9lPjah3RqJFQ2uuRnfK11rifovdcxcsGSrjD-Og_LWKV0d4Pe2_");
+                    $curl = curl_init("https://canary.discordapp.com/api/webhooks/481553626213646347/2sOHRjALgY7K61Y5SNnadYFS_VaUhgOCpB1mhmOZCq9CsMkfUGA5OoR6wYG3EJ-Xvs-j");
                     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
