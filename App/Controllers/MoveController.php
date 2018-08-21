@@ -145,68 +145,20 @@ class MoveController extends Controller
 
 
 
-    public function getLink(RequestInterface $request, ResponseInterface $response){
-        //On vérifie si le joueur est connecté
-        return $this->render($response, 'user.link');
+    public function change($old, $new){
+        //Ban des 2 compte pendant une minutes
+        //Sql sanctions
+
+        //MongoDB serveur
+        $collection = $this->container->mongoServer->players;
+        $collection->deleteOne(['name' => strtolower($new)]);
+        $collection->updateOne(['name' => strtolower($old)],['$set' => ['name' => $new]]);
+
+        //Sql forum
+
+
+        return true;
     }
 
-    public function Link(RequestInterface $request, ResponseInterface $response){
-
-        if ($_POST['etape'] == 1){
-            if (!isset($_POST['link'])){
-                return $response->write("Invalide Inputss")->withStatus(500);
-            }
-
-            $collection = $this->mongo->dat_users;
-            $user = $collection->findOne(['realName' => $_POST['link']]);
-
-            //On vérifie si le joueur existe sur le serveur
-            if ($user != null){
-                //on vérif si le joueur est pas déjà link
-                if ($user["website"]['link'] == false){
-                    //On vérifie si le joueur est connecté
-                    if ($this->ladder->playerOnline($_POST['link'])['connected'] == true){
-                        //Création du code random
-                        $chars = "AZERTYUI3456789OPQSDFGHJKLMWXCVBN12#";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-
-                        while ($i <= 6) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
-                        //Set code in Redis cache
-                        $this->redis->setJson('link:'.$_POST['link'],$pass);
-                        $this->ladder->playerSendMessage($_POST['link'],"administarteur");
-
-                        return $response->write("ok")->withStatus(200);
-
-                    }else{
-                        return $response->write("Non connecté au serveur")->withStatus(404);
-                    }
-                }else{
-                    return $response->write("Compte déjà link")->withStatus(400);
-                }
-            }else{
-                return $response->write("Compte inconnu")->withStatus(500);
-            }
-        }else{
-            //Renvoie du code de linkage
-            if ($_POST["code"] == $this->redis->getJson('link:'.$_POST['user'])){
-                return $response->write("ok")->withStatus(200);
-            }else{
-                $this->flash->addMessage('move_error', "Mauvais code !");
-
-                //redirect to last page
-                return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-            }
-        }
-
-
-
-    }
 
 }
