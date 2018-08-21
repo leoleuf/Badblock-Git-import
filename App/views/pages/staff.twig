@@ -20,18 +20,18 @@
                     <div class="row staff-width">
 
                 {% endif %}
-                    <section>
+                    <section class="player-staff">
                         <h4 class="heading heading-bar"><span>{{ key['name'] }} - {{ key["data"]|length }}</span></h4>
-                            <ul class="players-list inline">
+                            <div class="players-list inline">
                                 {% for ft in key['data'] %}
-                                    <li class="card-staff">
-                                        <img src="https://cdn.badblock.fr/head/{{ ft[0] }}/60.png" title="Tête de {{ ft[0] }}" alt="Tête de {{ ft[0] }}">
-                                        <br />
-                                        {{ ft[0] }}
-                                        {{ ft[1] }}
-                                    </li>
+                                    <div class="card-staff">
+                                        <a href="/profile/{{ ft[0] }}" title="Profil de {{ ft[0] }}">
+                                            <img src="https://cdn.badblock.fr/head/{{ ft[0] }}/60.png" title="Tête de {{ ft[0] }}" alt="Tête de {{ ft[0] }}" class="players-list-avatar">
+                                            <span class="players-list-name">{{ ft[0] }}</span>
+                                        </a>
+                                    </div>
                                 {% endfor %}
-                            </ul>
+                            </div>
                     </section>
                 {% if k % 2 != 0 %}
                     </div>
