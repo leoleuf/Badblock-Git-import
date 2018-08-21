@@ -10,12 +10,6 @@
     <!-- Debut liste paiements -->
 
     <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
-    {% if error %}
-        <div class="alert alert-error">
-            {{ error }}
-            <i class="icon icon-remove"></i>
-        </div>
-    {% endif %}
     <div class="row center">
         <div class="three columns">
             <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
@@ -24,10 +18,10 @@
             <input class="tab-top" type="button" name="bt2" value="Vérification n°1" />
         </div>
         <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt3" value="Vérification n°2"  />
+            <input class="tab-top btn" type="button" name="bt3" value="Vérification n°2"  />
         </div>
         <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+            <input class="tab-top btn" type="button" name="bt4" value="Validation"  />
         </div>
     </div>
     <div class="c-progress">
@@ -42,16 +36,11 @@
     {% endif %}
     <h5>Veuillez taper le code reçu en jeu :</h5>
     <br>
-    <form method="post" action="/move" class="recharge-chose-custom">
-        <input type="hidden" name="step" value="2">
-
-        <label for="code">Code :</label>
-        <input name="code" class="u-full-width" type="text" placeholder="FLUORLEBG"
-               id="code" required>
-        <div class="c-input-group">
-            <button class="button button-danger" type="submit">Valider</button>
+    <div class="shop-summary">
+        <div class="shop-summary-icon">
+            <i class="icon-info-sign icon"></i> Si vous ne recevez pas de message merci de contacter un administrateur.
         </div>
-    </form>
+    </div>
 
     <div class="shop-summary">
         <div class="shop-summary-icon">

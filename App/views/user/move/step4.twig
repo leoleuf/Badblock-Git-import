@@ -1,12 +1,40 @@
-{% extends 'macros/link.twig' %}
-{% block link_content %}
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'Changer votre pseudo !'|trans %}
+
+{% block cover %}
+
+{% endblock %}
+{% block content %}
+    <!-- Debut liste paiements -->
+
+    <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
+    <div class="row center">
+        <div class="three columns">
+            <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+        </div>
+        <div class="three columns">
+            <input class="tab-top" type="button" name="bt2" value="Vérification n°1" />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn" type="button" name="bt3" value="Vérification n°2"  />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 50%;"></div>
+    </div>
+    <br>
     {% if error %}
-            <div class="alert alert-error">
-                {{ error }}
-                <i class="icon icon-remove"></i>
-            </div>
+        <div class="alert alert-error">
+            {{ error }}
+            <i class="icon icon-remove"></i>
+        </div>
     {% endif %}
-    <h5>Veuillez taper le code reçus en jeu :</h5>
+    <h5>Veuillez taper le code reçu en jeu :</h5>
     <br>
     <form method="post" action="/move" class="recharge-chose-custom">
         <input type="hidden" name="step" value="4">
@@ -25,4 +53,5 @@
         </div>
     </div>
 {% endblock %}
+
 

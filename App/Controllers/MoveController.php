@@ -28,9 +28,8 @@ class MoveController extends Controller
 
     //fonction qui gère les form en POST
     public function poststep(RequestInterface $request, ResponseInterface $response){
-        $username = $_POST['pseudo'];
-
         if ($_POST['step'] == 1){
+            $username = $_POST['pseudo'];
             $collection = $this->container->mongoServer->players;
             $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
@@ -56,13 +55,14 @@ class MoveController extends Controller
                             $i++;
                         }
                         //Set code in Redis cache
+                        $this->session->set('move:1', $username);
                         $this->redis->set('move:1:'.$username,$pass);
                         $this->redis->expire('move:1:'.$username, 3600);
                         $this->ladder->playerSendMessage($username," ");
                         $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
                         $this->ladder->playerSendMessage($username," ");
 
-                        return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                        return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2]);
                     }
                 }else{
                     $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
@@ -77,15 +77,16 @@ class MoveController extends Controller
             }
         }elseif($_POST['step'] == 2){
             //On vérifie si le code de linkage est le bon
-            if (strtoupper($_POST["code"]) == $this->redis->get('move:1:'.$username)){
-                $this->redis->set('move:1:'.$username, true);
-                $this->redis->expire('move:1:'.$username, 3600);
+            if (strtoupper($_POST["code"]) == $this->redis->get('move:1:'.$this->session->get('move:1'))){
+                $this->redis->set('move:1:'.$this->session->get('move:1'), true);
+                $this->redis->expire('move:1:'.$this->session->get('move:1'), 3600);
 
-                return $this->render($response, 'user.link.step3', ["width" => 75,"step" => 3]);
+                return $this->render($response, 'user.move.step3', ["width" => 75,"step" => 3]);
             }else{
-                return $this->render($response, 'user.link.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
+                return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
             }
         }elseif ($_POST['step'] == 3){
+            $username = $_POST['pseudo'];
             $collection = $this->container->mongoServer->players;
             $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
@@ -111,13 +112,14 @@ class MoveController extends Controller
                             $i++;
                         }
                         //Set code in Redis cache
+                        $this->session->set('move:2', $username);
                         $this->redis->set('move:2:'.$username,$pass);
                         $this->redis->expire('move:2:'.$username, 3600);
                         $this->ladder->playerSendMessage($username," ");
                         $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
                         $this->ladder->playerSendMessage($username," ");
 
-                        return $this->render($response, 'user.link.step2', ["width" => 66,"step" => 2]);
+                        return $this->render($response, 'user.move.step4', ["width" => 75,"step" => 4]);
                     }
                 }else{
                     $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
@@ -131,14 +133,15 @@ class MoveController extends Controller
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
             }
         }elseif($_POST['step'] == 4){
+            $username = $this->session->get('move:2');
             //On vérifie si le code de linkage est le bon
-            if (strtoupper($_POST["code"]) == $this->redis->get('move:1:'.$username)){
+            if (strtoupper($_POST["code"]) == $this->redis->get('move:2:'.$username)){
                 $this->redis->set('move:2:'.$username, true);
                 $this->redis->expire('move:2:'.$username, 3600);
 
-                return $this->render($response, 'user.link.step3', ["width" => 75,"step" => 3]);
+                return $this->render($response, 'user.move.step5', ["width" => 75,"step" => 3]);
             }else{
-                return $this->render($response, 'user.link.step2', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
+                return $this->render($response, 'user.move.step4', ["width" => 50,"step" => 2,"error" => "Code invalide ! Veuillez vérifier."]);
             }
         }
     }
@@ -146,15 +149,35 @@ class MoveController extends Controller
 
 
     public function change($old, $new){
-        //Ban des 2 compte pendant une minutes
+        if ($old != $this->session->get('move:2') || $new != $this->session->get('move:1')){
+            return false;
+        }
+        if (!$this->redis->get('move:1:'. $old) && !$this->redis->get('move:2:'. $new)){
+            return false;
+        }
+        //Log in mongoDB
+        $data = [
+            'old_name' => $old,
+            'new_name' => $new,
+            'date' => date('Y-m-d H:i:s')
+        ];
+
+        $this->container->mongo->move_logs->insertOne($data);
+
+        //TODO Ban des 2 compte pendant une minutes
+
         //Sql sanctions
+        $this->container->mysql_casier->update("sanctions", ['pseudo' => $old],['pseudo' => $new]);
 
         //MongoDB serveur
         $collection = $this->container->mongoServer->players;
         $collection->deleteOne(['name' => strtolower($new)]);
-        $collection->updateOne(['name' => strtolower($old)],['$set' => ['name' => $new]]);
+        $collection->updateOne(['name' => strtolower($old)],['$set' => ['name' => strtolower($new)]]);
 
         //Sql forum
+        $this->container->mysql_forum->delete("xf_user", ['username' => $new]);
+        $this->container->mysql_forum->update("xf_user", ['username' => $old],['username' => $new]);
+
 
 
         return true;
