@@ -28,6 +28,16 @@ class MoveController extends Controller
         }
     }
 
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
     //fonction qui gère les form en POST
     public function poststep(RequestInterface $request, ResponseInterface $response){
         if ($_POST['step'] == 1){
@@ -46,16 +56,7 @@ class MoveController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }else{
                         //Création du code random
-                        $chars = "FLUORLEBG";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-                        while ($i <= 8) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
+                        $pass = generateRandomString(8);
                         //Set code in Redis cache
                         $this->session->set('move:1', $username);
                         $this->redis->set('move:1:'.$username,$pass);
@@ -103,16 +104,7 @@ class MoveController extends Controller
                         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                     }else{
                         //Création du code random
-                        $chars = "FLUORLEBG";
-                        srand((double)microtime()*1000000);
-                        $i = 0;
-                        $pass = '' ;
-                        while ($i <= 8) {
-                            $num = rand() % 33;
-                            $tmp = substr($chars, $num, 1);
-                            $pass = $pass . $tmp;
-                            $i++;
-                        }
+                        $pass = generateRandomString(8);
                         //Set code in Redis cache
                         $this->session->set('move:2', $username);
                         $this->redis->set('move:2:'.$username,$pass);
