@@ -31,7 +31,7 @@ class MaintenanceCommand extends Command
 					rename('index.php', '_index.php');
 					rename('maintenance.php', 'index.php');
 
-                    $data = array("username" => "Logger Site","content" => "[COMMAND-RECEIVED] Maintenance mode is now enabled ! <@&428275202166751236> ");
+                    $data = array("username" => "Badblock Website","content" => "[COMMAND-RECEIVED] Maintenance mode is now enabled ! <@&428275202166751236> ");
 
                     $curl = curl_init("https://canary.discordapp.com/api/webhooks/481553626213646347/2sOHRjALgY7K61Y5SNnadYFS_VaUhgOCpB1mhmOZCq9CsMkfUGA5OoR6wYG3EJ-Xvs-j");
                     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -53,7 +53,7 @@ class MaintenanceCommand extends Command
 					rename('index.php', 'maintenance.php');
 					rename('_index.php', 'index.php');
 
-                    $data = array("username" => "Logger Site","content" => "[COMMAND-RECEIVED] Maintenance mode is now disabled ! <@&428275202166751236> ");
+                    $data = array("username" => "Badblock Website","content" => "[COMMAND-RECEIVED] Maintenance mode is now disabled ! <@&428275202166751236> ");
 
                     $curl = curl_init("https://canary.discordapp.com/api/webhooks/481553626213646347/2sOHRjALgY7K61Y5SNnadYFS_VaUhgOCpB1mhmOZCq9CsMkfUGA5OoR6wYG3EJ-Xvs-j");
                     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
