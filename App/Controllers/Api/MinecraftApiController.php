@@ -11,6 +11,7 @@ use xPaw\MinecraftPingException;
 
 class MinecraftApiController extends \App\Controllers\Controller
 {
+
 	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response){
 
         if ($this->container->redis->exists('api.mc.player')){

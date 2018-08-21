@@ -70,4 +70,6 @@ fabric.properties
 node_modules/*
 vendor/*
 
+public/servergraphs.dat
+
 package-lock.json

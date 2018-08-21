@@ -4,6 +4,7 @@
 
 $app->group('/api', function(){
     $this->get('/login/{username}', \App\Controllers\Api\LoginApiDevController::class . ':login');
+    $this->get('/update-server-graph', \App\Controllers\Api\UpdateServerGraphApiController::class . ':update');
 $this->get('/send/{pas}', \App\Controllers\Api\LoginApiDevController::class . ':test');
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {

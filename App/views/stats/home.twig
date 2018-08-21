@@ -221,9 +221,17 @@
                     type: 'areaspline'
                 },
 
+                series: [
+                    {
+                        name: 'Joueurs connectés',
+                        data: [
+                            {{ playergraph }}]
+                    }
+                ],
+
                 tooltip: {
                     shared: true,
-                    valueSuffix: ' joueurs'
+                    valueSuffix: ' joueurs',
                 },
 
                 title: {
@@ -241,21 +249,16 @@
                     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
                 },
 
-                series: [
-                    {
-                        name: 'Joueurs connectés',
-                        data: [
-                            [1534773556000, 36],
-                            [1534773656000, 37],
-                            [1534773756000, 37],
-                            [1534773856000, 38],
-                            [1534773956000, 39]]
+                xAxis: {
+                    type: 'datetime',
+                    title: {
+                        text: 'Temps'
                     }
-                ],
+                },
 
                 yAxis: {
                     title: {
-                        text: 'Temps'
+                        text: 'Joueurs connectés'
                     }
                 }
 
