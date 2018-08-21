@@ -129,6 +129,14 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
+        $pass = $this->generateRandomString(8);
+        $this->session->set('move:2', $username);
+        $this->redis->set('move:2:'.$username, $pass);
+        $this->redis->expire('move:2:'.$username, 3600);
+        $this->ladder->playerSendMessage($username," ");
+        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+        $this->ladder->playerSendMessage($username," ");
+
         return $this->render($response, 'user.move.step4', ["width" => 75,"step" => 4]);
     }
 
@@ -136,7 +144,8 @@ class MoveController extends Controller
     {
         $username = $this->session->get('move:2');
         // On vérifie si le code de linkage est le bon
-        if (strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username)) {
+        if (strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username))
+        {
             return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
 
