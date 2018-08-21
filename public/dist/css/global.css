@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Bungee");
 @import url("https://fonts.googleapis.com/css?family=Righteous");
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
 
 .shop {
     margin: 50px 0px;
@@ -156,17 +157,19 @@ i {
     transition: 0.3s;
 }
 .c-table__row:hover {
-    background: rgba(50, 50, 50, 0.7);
-    cursor: pointer;
+    cursor: default;
     transform: scale(1.01);
     transition: 0.4s; }
 
 .c-table__cell {
     overflow: hidden;
-    text-align: center !important; }
+    text-align: center !important;
+
+}
 
 td.c-table__cell {
-    text-align: center !important; }
+    text-align: center !important; 
+}
 
 .c-table__row a {
     text-decoration: none; }
@@ -277,6 +280,9 @@ td.c-table__cell {
 }
 #tower {
     background-color: #2ecc71 !important;
+}
+#towerrun {
+    background-color: #2B2D42 !important;
 }
 #rush {
     background-color: #E19806 !important;
@@ -1110,6 +1116,91 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .no-decoration {
     text-decoration: none;
+}
+
+
+.header-too-big {
+    margin-top: -38px;
+}
+
+.table-stats {
+    font-size: 1.09em;
+}
+
+.animation-table:hover {
+    border-bottom-style: groove;
+    transform: scale(1.01);
+    transition: 0.4s;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.animation-table {
+    border-top-style: groove;
+    border-color: #34495e;
+    border-width: 2px;
+}
+
+.table-stats-head {
+    font-size: 1.1em;
+}
+
+.decoration-thead {
+    font-weight: bold !important;
+    text-align: center;
+    border-bottom-style: double !important;
+    border-width: 3px;
+    border-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.decoration-td {
+    text-align: center !important;
+    font-family: 'Quicksand', sans-serif;
+}
+.decoration-place:hover {
+    color: #7b4dcb;
+}
+.decoration-nickname:hover {
+    color: #3498db !important;
+}
+.decoration-class:hover {
+    color: #2ecc71 !important;
+}
+.decoration-kill:hover {
+    color: #E19806;
+}
+.decoration-death:hover {
+    color: #3366cc;
+}
+.decoration-points:hover {
+    color: #C64F4F;
+}
+.decoration-win:hover {
+    color: #66ff66;
+}
+.decoration-lose:hover {
+    color: #ff3333;
+}
+
+.button-first-place {
+    background-color: #EED740;
+    padding: 10px;
+    color: white;
+    width: 10%;
+    text-align: center;
+}
+
+.button-first-place:hover {
+    color: white;
+}
+
+.button-second-place {
+    background-color: #A6A6A6;
+}
+
+.button-third-place {
+    background-color: #CC984D;
 }
 /*Fin Dreaams*/
 

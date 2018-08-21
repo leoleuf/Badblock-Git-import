@@ -3,82 +3,100 @@
 {% set active_page = "stats" %}
 {% set title = name %}
 {% block cover %}
+
   <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
 
-
+  <div class="header-too-big">
+  </div>
   <div class="cover-back podium-cover">
         <div class="cover">
             <div class="container">
                 <div class="podium-cover-content">
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" title="1er du podium" alt="1er du podium" class="avatar-first">
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" title="2e du podium" alt="2e du podium" class="avatar-second">
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" title="3e du podium" alt="3e du podium" class="avatar-third">
+                  <!--<a onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" target="_blank" class="button-first-place">{{ datatop[0]['playerName'] }}</a><br>!-->
+                    <img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/100.png" title="1er du podium" alt="1er du podium">
+                    <img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/75.png" title="2e du podium" alt="2e du podium">
+                    <img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/50.png" title="3e du podium" alt="3e du podium">
+
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 {% block content %}
-{#
-On liste les différantes place en grossisant au fur et à mesure
-#}
-<table class="c-table stats-podium-table">
-  <thead class="c-table__head">
-    <tr class="c-table__row c-table__row--heading">
-      <th class="c-table__cell">Place</th>
-      <th class="c-table__cell">Pseudonyme</th>
-      <th class="c-table__cell">Points de Classement</th>
-      <th class="c-table__cell">Kills</th>
-      <th class="c-table__cell">Morts</th>
-      <th class="c-table__cell">Points</th>
-      <th class="c-table__cell">Parties Gagnées</th>
-      <th class="c-table__cell">Parties Perdues</th>
+<!-- DEBUT TABLEAU !-->
+<table class="u-full-width table-stats">
+  <thead>
+    <tr class="table-stats-head">
+      <th class="decoration-thead decoration-place">Place</th>
+      <th class="decoration-thead decoration-nickname">Pseudonyme</th>
+      <th class="decoration-thead decoration-class">Points de Classement</th>
+      <th class="decoration-thead decoration-kill">Kills</th>
+      <th class="decoration-thead decoration-death">Morts</th>
+      <th class="decoration-thead decoration-points">Points</th>
+      <th class="decoration-thead decoration-win">Parties Gagnées</th>
+      <th class="decoration-thead decoration-lose">Parties Perdues</th>
     </tr>
   </thead>
-  <tbody class="c-table__body">
-    <tr class="c-table__row first" onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" >
-      <td class="c-table__cell">#1</td>
-      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}"> {{  datatop[0]['playerName'] }}</td><!-- Je suis le meilleur! -->
-      <td class="c-table__cell">{{  datatop[0]['kills'] }}</td>
-      <td class="c-table__cell">{{  datatop[0]['_points'] }}</td>
-      <td class="c-table__cell">{{  datatop[0]['deaths'] }}</td>
-      <td class="c-table__cell">{{  datatop[0]['marks'] }}</td>
-      <td class="c-table__cell">{{  datatop[0]['wins'] }}</td>
-      <td class="c-table__cell">{{  datatop[0]['looses'] }}</td>
+
+<!-- PREMIERE PLACE !-->
+
+  <tbody>
+    <tr onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" class="animation-table">
+      <td class="decoration-td decoration-place">#1</td>
+      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/100.png" class="avatar" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}">!--> {{  datatop[0]['playerName'] }}</td>
+      <td class="decoration-td decoration-class">{{  datatop[0]['_points'] }}</td>
+      <td class="decoration-td decoration-kill">{{  datatop[0]['kills'] }}</td>
+      <td class="decoration-td decoration-death">{{  datatop[0]['deaths'] }}</td>
+      <td class="decoration-td decoration-points">{{  datatop[0]['marks'] }}</td>
+      <td class="decoration-td decoration-win">{{  datatop[0]['wins'] }}</td>
+      <td class="decoration-td decoration-lose">{{  datatop[0]['looses'] }}</td>
     </tr>
-    <tr onclick="document.location = '/profile/{{  datatop[1]['playerName'] }}';" class="c-table__row second">
-      <td class="c-table__cell" >#2</td>
-      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}">{{  datatop[1]['playerName'] }}</td> <!-- t'est une merde -->
-        <td class="c-table__cell">{{  datatop[1]['_points'] }}</td>
-        <td class="c-table__cell">{{  datatop[1]['kills'] }}</td>
-        <td class="c-table__cell">{{  datatop[1]['deaths'] }}</td>
-        <td class="c-table__cell">{{  datatop[1]['marks'] }}</td>
-        <td class="c-table__cell">{{  datatop[1]['wins'] }}</td>
-        <td class="c-table__cell">{{  datatop[1]['looses'] }}</td>
+
+<!-- DEUXIEME PLACE !-->
+
+    <tr onclick="document.location = '/profile/{{  datatop[1]['playerName'] }}';" class="animation-table">
+      <td class="decoration-td decoration-place">#2</td>
+      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/50.png" class="avatar" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}">!-->{{  datatop[1]['playerName'] }}</td>
+        <td class="decoration-td decoration-class">{{  datatop[1]['_points'] }}</td>
+        <td class="decoration-td decoration-kill">{{  datatop[1]['kills'] }}</td>
+        <td class="decoration-td decoration-death">{{  datatop[1]['deaths'] }}</td>
+        <td class="decoration-td decoration-points">{{  datatop[1]['marks'] }}</td>
+        <td class="decoration-td decoration-win">{{  datatop[1]['wins'] }}</td>
+        <td class="decoration-td decoration-lose">{{  datatop[1]['looses'] }}</td>
     </tr>
-    <tr onclick="document.location = '/profile/{{  datatop[2]['playerName'] }}';" class="c-table__row third">
-      <td class="c-table__cell" >#3</td>
-      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/192.png" class="avatar" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}">{{  datatop[2]['playerName'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['_points'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['kills'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['deaths'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['marks'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['wins'] }}</td>
-        <td class="c-table__cell">{{  datatop[2]['looses'] }}</td>
+
+<!-- TROISIEME PLACE !-->
+
+    <tr onclick="document.location = '/profile/{{  datatop[2]['playerName'] }}';" class="animation-table">
+      <td class="decoration-td decoration-place">#3</td>
+      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/40.png" class="avatar" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}">!-->{{  datatop[2]['playerName'] }}</td>
+        <td class="decoration-td decoration-class">{{  datatop[2]['_points'] }}</td>
+        <td class="decoration-td decoration-kill">{{  datatop[2]['kills'] }}</td>
+        <td class="decoration-td decoration-death">{{  datatop[2]['deaths'] }}</td>
+        <td class="decoration-td decoration-points">{{  datatop[2]['marks'] }}</td>
+        <td class="decoration-td decoration-win">{{  datatop[2]['wins'] }}</td>
+        <td class="decoration-td decoration-lose">{{  datatop[2]['looses'] }}</td>
     </tr>
+
+<!-- QUATRIEME A VINGTIEME PLACE !-->
+
     {% for data,key in data %}
-    <tr class="c-table__row" onclick="document.location = '/profile/{{  key['playerName'] }}';" >
-      <td class="c-table__cell">#{{ data+1 }}</td>
-      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/30.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}"> <a href="/profile/{{  key['playerName'] }}">{{  key['playerName'] }}</a></td>
-      <td class="c-table__cell">{{  key['_points'] }}</td>
-      <td class="c-table__cell">{{  key['kills'] }}</td>
-        <td class="c-table__cell">{{  key['deaths'] }}</td>
-        <td class="c-table__cell">{{  key['marks'] }}</td>
-        <td class="c-table__cell">{{  key['wins'] }}</td>
-        <td class="c-table__cell">{{  key['looses'] }}</td>
+    <tr onclick="document.location = '/profile/{{  key['playerName'] }}';" class="animation-table">
+      <td class="decoration-td decoration-place">#{{ data+1 }}</td>
+      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/30.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}">!--> {{  key['playerName'] }}</td>
+      <td class="decoration-td decoration-class">{{  key['_points'] }}</td>
+      <td class="decoration-td decoration-kill">{{  key['kills'] }}</td>
+      <td class="decoration-td decoration-death">{{  key['deaths'] }}</td>
+      <td class="decoration-td decoration-points">{{  key['marks'] }}</td>
+      <td class="decoration-td decoration-win">{{  key['wins'] }}</td>
+      <td class="decoration-td decoration-lose">{{  key['looses'] }}</td>
     </tr>
    {% endfor %}
+
+
+
   </tbody>
 
 </table>
+
 {% endblock %}
