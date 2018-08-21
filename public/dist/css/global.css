@@ -1042,7 +1042,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 .inline {
     display: inline-flex;
-    justify-content: space-around;
+    justify-content: center;
+    width: 100%;
+    overflow-x: hidden;
+    flex-wrap: wrap;
 }
 
 .staff-width {
@@ -1050,18 +1053,16 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .card-staff {
-    margin: 0px 25px;
+    margin: 0px 15px;
     text-align:center;
-    
-
 }
 
 .card-staff img {
     display: flex;
-    
     width: 60px;
     margin: 0 auto;
     margin-bottom: 10px;
+    
 }
 
 .card-staff .players-list-name {
@@ -1070,11 +1071,6 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     text-align: center;
 }
 
-
-.card-staff:hover {
-    transition: 0.2s;
-    transform: scale(1.05);
-}
 .margin-top-small {
     margin-top: -15px;
 }
