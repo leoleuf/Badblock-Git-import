@@ -10,6 +10,8 @@ namespace App\Controllers;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 
 class MoveController extends Controller
@@ -157,14 +159,15 @@ class MoveController extends Controller
         }
         //Log in mongoDB
         $data = [
-            'old_name' => $old,
-            'new_name' => $new,
+            'old_name' => strtolower($old),
+            'new_name' => strtolower($new),
             'date' => date('Y-m-d H:i:s')
         ];
 
         $this->container->mongo->move_logs->insertOne($data);
 
-        //TODO Ban des 2 compte pendant une minutes
+        //Ban des 2 compte pendant une minutes
+        $this->banMove($new, $old);
 
         //Sql sanctions
         $this->container->mysql_casier->update("sanctions", ['pseudo' => $old],['pseudo' => $new]);
@@ -178,7 +181,67 @@ class MoveController extends Controller
         $this->container->mysql_forum->delete("xf_user", ['username' => $new]);
         $this->container->mysql_forum->update("xf_user", ['username' => $old],['username' => $new]);
 
+        return true;
+    }
 
+
+    public function banMove($new, $old){
+        //Connection to rabbitMQ server
+        $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
+        $channel = $connection->channel();
+
+
+        $channel->queue_declare('sanction', false, false, false, false);
+        $sanction = (object)
+        [
+            'pseudo' => strtolower($new),
+            'type' => 'ban',
+            'expire' => (time() + 60) * 1000,
+            'timestamp' => time() * 1000,
+            'reason' => "Changement de pseudo en provenance de => ". $old,
+            'banner' => 'Website',
+            'fromIp' => '127.0.0.1',
+            'proof' => '-',
+            'auto' => false
+        ];
+
+        $message = (object)
+        [
+            'expire' => (time() + 604800) * 1000,
+            'message' => json_encode($sanction)
+        ];
+
+        $msg = new AMQPMessage(json_encode($message));
+        $channel->basic_publish($msg, '', 'sanction');
+
+        $channel->queue_declare('sanction', false, false, false, false);
+        $sanction = (object)
+        [
+            'pseudo' => strtolower($old),
+            'type' => 'ban',
+            'expire' => (time() + 60) * 1000,
+            'timestamp' => time() * 1000,
+            'reason' => "Changement de pseudo vers => ". $new,
+            'banner' => 'Website',
+            'fromIp' => '127.0.0.1',
+            'proof' => '-',
+            'auto' => false
+        ];
+
+        $message = (object)
+        [
+            'expire' => (time() + 604800) * 1000,
+            'message' => json_encode($sanction)
+        ];
+
+        $msg = new AMQPMessage(json_encode($message));
+        $channel->basic_publish($msg, '', 'sanction');
+
+
+
+
+        $channel->close();
+        $connection->close();
 
         return true;
     }
