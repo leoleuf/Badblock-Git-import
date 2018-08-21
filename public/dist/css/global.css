@@ -1014,6 +1014,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 .players-list-avatar {
     width: 75px !important;
     height: 75px !important;
+    border-radius: 3px;
 }
 
 .players-list-twitter {
