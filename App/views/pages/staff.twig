@@ -22,17 +22,15 @@
                 {% endif %}
                     <section>
                         <h4 class="heading heading-bar"><span>{{ key['name'] }} - {{ key["data"]|length }}</span></h4>
-                            <ul class="players-list inline">
+                            <div class="players-list inline">
                                 {% for ft in key['data'] %}
-                                    <li class="card-staff">
+                                    <div class="card-staff">
                                         <img src="https://cdn.badblock.fr/head/{{ ft[0] }}/60.png" title="Tête de {{ ft[0] }}" alt="Tête de {{ ft[0] }}" class="players-list-avatar">
-                                            <div class="players-list-info">
-                                                <span class="players-list-username">{{ ft[0] }}</span>
-                                                <span class="players-list-desc">{{ ft[1] }}</span>
-                                            </div>
-                                    </li>
+                                        <span class="players-list-name">{{ ft[0] }}</span>
+                                        
+                                    </div>
                                 {% endfor %}
-                            </ul>
+                            </div>
                     </section>
                 {% if k % 2 != 0 %}
                     </div>
