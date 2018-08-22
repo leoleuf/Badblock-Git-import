@@ -13,10 +13,15 @@
             <div class="container">
                 <div class="podium-cover-content">
                   <!--<a onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" target="_blank" class="button-first-place">{{ datatop[0]['playerName'] }}</a><br>!-->
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/100.png" title="1er du podium" alt="1er du podium">
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/75.png" title="2e du podium" alt="2e du podium">
-                    <img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/50.png" title="3e du podium" alt="3e du podium">
-
+                    <a href="/profile/{{ datatop[0]['playerName'] }}" title="Profil de {{ datatop[0]['playerName'] }}">
+                      <img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/100.png" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}" />
+                    </a>
+                    <a href="/profile/{{ datatop[1]['playerName'] }}" title="Profil de {{ datatop[1]['playerName'] }}">
+                      <img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/75.png" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}">
+                    </a>
+                    <a href="/profile/{{ datatop[2]['playerName'] }}" title="Profil de {{ datatop[2]['playerName'] }}">
+                      <img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/50.png" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}">
+                    </a>
                 </div>
             </div>
         </div>

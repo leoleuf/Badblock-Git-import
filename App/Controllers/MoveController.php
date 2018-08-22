@@ -25,7 +25,6 @@ class MoveController extends Controller
             return $this->render($response, 'user.move.staff');
         }
 
-        // TODO: max time between each account transfer
         return $this->render($response, 'user.move.step1');
     }
 
@@ -55,7 +54,7 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        if ($this->ladder->playerOnline($username)->connected == true)
+        if ($this->ladder->playerOnline($username)->connected != true)
         {
             $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
             //redirect to last page
@@ -77,10 +76,10 @@ class MoveController extends Controller
         $pass = $this->generateRandomString(8);
         // Set code in Redis cache
         $this->session->set('move:1', $username);
-        $this->redis->set('move:1:'.$username,$pass);
+        $this->redis->set('move:1:'.$username,strtoupper($pass));
         $this->redis->expire('move:1:'.$username, 3600);
         $this->ladder->playerSendMessage($username," ");
-        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". strtoupper($pass));
         $this->ladder->playerSendMessage($username," ");
 
         return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2]);
@@ -90,11 +89,14 @@ class MoveController extends Controller
     {
         // On vérifie si le code de linkage est le bon
         if (strtoupper($_POST["code"]) != $this->redis->get('move:1:' . $this->session->get('move:1'))) {
+
             return $this->render($response, 'user.move.step2', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
-
         $this->redis->set('move:1:' . $this->session->get('move:1'), true);
         $this->redis->expire('move:1:' . $this->session->get('move:1'), 3600);
+
+        return $this->render($response, 'user.move.step3', ["width" => 50,"step" => 3]);
+
     }
 
     public function process_step3(RequestInterface $request, ResponseInterface $response)
@@ -110,6 +112,21 @@ class MoveController extends Controller
             // Redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
+
+        //Search last move
+        $data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
+        if ($data != null){
+            $time = strtotime($data['date']);
+            $time = $time + (60*60*24*30);
+            if ($time > strtotime(date('Y-m-d H:i:s'))){
+                // Message erreur
+                $this->flash->addMessage('move_error', 'Vous devez attendre 30 jours entre deux changement de pseudo !');
+                // Redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+            }
+        }
+
+
 
         if ($this->ladder->playerOnline($username)->connected != true)
         {
@@ -129,9 +146,9 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        $pass = $this->generateRandomString(8);
+        $pass = strtoupper($this->generateRandomString(8));
         $this->session->set('move:2', $username);
-        $this->redis->set('move:2:'.$username, $pass);
+        $this->redis->set('move:2:'.$username, strtoupper($pass));
         $this->redis->expire('move:2:'.$username, 3600);
         $this->ladder->playerSendMessage($username," ");
         $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
@@ -144,13 +161,18 @@ class MoveController extends Controller
     {
         $username = $this->session->get('move:2');
         // On vérifie si le code de linkage est le bon
-        if (strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username))
-        {
-            return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
+        if(strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username)){
+          return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
 
         $this->redis->set('move:2:' . $username, true);
         $this->redis->expire('move:2:' . $username, 3600);
+
+        if (!$this->change($this->session->get('move:2'), $this->session->get('move:1'))){
+            return $this->render($response, 'user.move.step5', ["width" => 100, "step" => 5, "error" => "UNe erreur est survenue si le problème persiste merci de contacter l'asistance !"]);
+        }else{
+            return $this->render($response, 'user.move.step5', ["width" => 100, "step" => 5]);
+        }
     }
 
     // Fonction qui gère les form en POST
@@ -184,7 +206,7 @@ class MoveController extends Controller
             return false;
         }
 
-        if (!$this->redis->get('move:1:'. $old) && !$this->redis->get('move:2:'. $new))
+        if (!$this->redis->get('move:1:'. $new) && !$this->redis->get('move:2:'. $old))
         {
             return false;
         }
@@ -234,7 +256,7 @@ class MoveController extends Controller
         $sanction = (object)
         [
             'pseudo' => strtolower($new),
-            'type' => 'ban',
+            'type' => 'tempban',
             'expire' => (time() + 60) * 1000,
             'timestamp' => time() * 1000,
             'reason' => "Changement de pseudo en provenance de => " . $old,
@@ -253,7 +275,6 @@ class MoveController extends Controller
         $msg = new AMQPMessage(json_encode($message));
         $channel->basic_publish($msg, '', 'sanction');
 
-        $channel->queue_declare('sanction', false, false, false, false);
         $sanction = (object)
         [
             'pseudo' => strtolower($old),
