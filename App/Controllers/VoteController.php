@@ -21,23 +21,27 @@ use DateTime;
 class VoteController extends Controller
 {
 
-    public function getHome(RequestInterface $request, ResponseInterface $response)
-    {
+    public function getHome(RequestInterface $request, ResponseInterface $response){
         //Read Top from Redis
         $top = $this->redis->getJson('vote.top');
 
         $player = "";
-        if ($this->container->session->exist('user'))
-        {
+        if ($this->container->session->exist('user')) {
             $player = $this->session->getProfile('username')['username'];
         }
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
+
     }
 
-    public function voteRedirect(RequestInterface $request, ResponseInterface $response)
-    {
+    public function voteRedirect(RequestInterface $request, ResponseInterface $response){
         $top = $this->redis->getJson('vote.top');
+
+        $player = "";
+        if ($this->container->session->exist('user')) {
+            $player = $this->session->getProfile('username')['username'];
+        }
+
         return $this->render($response, 'vote.vote-redirect', ['top' => $top]);
     }
 
@@ -50,8 +54,7 @@ class VoteController extends Controller
 
         $pseudo = htmlspecialchars($_POST['pseudo']);
 
-        if (getenv('APP_DEBUG') == 0)
-        {
+        if (getenv('APP_DEBUG') == 0){
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
@@ -67,6 +70,7 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
+
         if (!isset($_POST['pseudo']) && !isset($_POST['type']))
         {
             return $response->write("User not found !")->withStatus(404);
@@ -93,8 +97,7 @@ class VoteController extends Controller
             return $response->write("User not found !")->withStatus(404);
         }
 
-        if (getenv('APP_DEBUG') == 0)
-        {
+        if (getenv('APP_DEBUG') == 0){
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
@@ -105,13 +108,15 @@ class VoteController extends Controller
             }
         }
 
+       // return $response->write("test")->withStatus(200);
+        
         $API_id = 198; // ID de votre serveur
         $API_ip = $_SERVER['REMOTE_ADDR']; // Adresse IP de l'utilisateur
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
 
         // voted?
-        if ($API_call != 1)
+        if (getenv('APP_DEBUG') != 1 && $API_call != 1)
         {
             return $response->write("Vote invalid")->withStatus(405);
         }
