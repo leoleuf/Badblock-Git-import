@@ -32,7 +32,7 @@ class ShopController extends Controller
 
 
     function buy(RequestInterface $request, ResponseInterface $response, $argument){
-        return $response->write("Maintenance de la boutique")->withStatus(404);
+        return "";
 
         //Check if user is connected
         if (!$this->container->session->exist('user')){
