@@ -111,7 +111,8 @@ class VoteController extends Controller
        // return $response->write("test")->withStatus(200);
         
         $API_id = 198; // ID de votre serveur
-        $API_ip = $_SERVER['REMOTE_ADDR']; // Adresse IP de l'utilisateur
+        dd($_SERVER['CF-Connecting-IP']);
+        $API_ip = $_SERVER['CF-Connecting-IP']; // Adresse IP de l'utilisateur
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
 
@@ -156,7 +157,7 @@ class VoteController extends Controller
         // award log
         $insert = [
             "name" => $pseudo,
-            "ip" => $_SERVER['REMOTE_ADDR'],
+            "ip" => $_SERVER['CF-Connecting-IP'],
             "type" => $type,
             "queue" => $queue,
             "date" => date("d/m/Y H:i:s"),
