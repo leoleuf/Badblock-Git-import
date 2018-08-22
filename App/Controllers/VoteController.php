@@ -24,8 +24,14 @@ class VoteController extends Controller
     public function getHome(RequestInterface $request, ResponseInterface $response){
         //Read Top from Redis
         $top = $this->redis->getJson('vote.top');
+        
+        $player = "";
+        if ($this->container->session->exist('user')) {
+            $player = $this->session->getProfile('username')['username'];
+        }
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
+
     }
 
     public function voteRedirect(RequestInterface $request, ResponseInterface $response){
