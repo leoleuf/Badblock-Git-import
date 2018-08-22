@@ -1,8 +1,10 @@
+{% set title = 'Profil de ' ~ joueur.realName ~ ' - BadBlock'%}
+{% set hide_title = true %}
 {% extends "default.twig" %}
-{% set show_title = false %}
 {% set active_page = "stats" %}
-{% set title = user.name %}
-{% set subtitle = 'Ses statistiques' %}
+{% set sub_title = ''|trans~user.username %}
+{% set keywords = 'profil, ' ~ joueur.realName %}
+{% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
 {% block cover %}
     <!------Cover------>
     <div class="cover-back">
