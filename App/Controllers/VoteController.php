@@ -132,6 +132,8 @@ class VoteController extends Controller
         $SM = "http://serveur-minecraft.net/api/$SERVER_ID/$KEY/?ip=$API_ip";
         $result = @file_get_contents($SM);
 
+        dd($result);
+
         // voted?
         if (!$dev && $result !== true)
         {
