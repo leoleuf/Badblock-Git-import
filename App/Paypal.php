@@ -23,7 +23,7 @@ class Paypal {
     private $user = 'mathieu.richard31-facilitator_api1.orange.fr';
     private $pwd = '4C39FSAG9BF7L63S';
     private $signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AsNrH04zwtanbQeahRFvsUlq7qdf";
-    private $endpoint = "https://api-3t.sandbox.paypal.com/nvp";
+    private $endpoint = "https://api-3t.paypal.com/nvp";
     public $errors = array();
 
     public function __construct($user = false, $pwd = false, $signature = false, $prod = false){

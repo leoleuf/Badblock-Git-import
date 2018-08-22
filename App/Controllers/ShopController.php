@@ -245,7 +245,11 @@ class ShopController extends Controller
            $p->name = "§6" . $grade;
            $p->queue = $row;
            $p->price = $price;
-           $p->command = "pex user %player% group add " . $grade ." ". $duration;
+           if ($duration != -1){
+               $p->command = "pex user %player% group add ". $grade .' "" '. $duration;
+           }else{
+               $p->command = "pex user %player% group add " . $grade;
+           }
            $this->sendRabbitData($p);
        }
 

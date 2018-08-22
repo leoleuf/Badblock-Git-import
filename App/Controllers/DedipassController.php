@@ -25,8 +25,9 @@ class DedipassController extends Controller
           echo 'Vous devez saisir un code'; 
         } 
         else { 
-          $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=1ebee64135e73413e44fcf6f9d9903b6&private_key=a5c1b01b3e98fd3a57e32e6f6577b3580ff53ed6&code=' . $code); 
-          $dedipass = json_decode($dedipass); 
+          $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLICKEY").'&private_key='.getenv("DEDIPASS_PRIVATEKEY").'&code=' . $code);
+          $dedipass = json_decode($dedipass);
+          dd($dedipass);
           if($dedipass->status == 'success') { 
               $virtual_currency = $dedipass->virtual_currency;
               // Détection d'une quelconque action
