@@ -25,7 +25,7 @@ class Teamspeak
         $this->query_port = $config->query_port;
         $this->client = new ts3admin($this->ip, $this->query_port);
         //Check de connection + login avant éxecution de commandes
-        //$this->connection();
+        $this->connection();
     }
 
     public function connection(){
@@ -41,7 +41,7 @@ class Teamspeak
             }
         }else{
              $this->container->log->error('"App/TeamSpeak"',' Connection could not be established to ' . $this->ip);
-            throw new Exception('Connection could not be established to ' . $this->ip);
+            throw new Exception('Connection could not be established to ' . $this->ip.' '.var_dump($this->client->connect()));
         }
     }
 
