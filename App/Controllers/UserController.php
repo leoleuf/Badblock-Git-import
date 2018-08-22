@@ -222,9 +222,16 @@ class UserController extends Controller
             //Replace stylé
             $group = [];
             foreach ($user['permissions']['alternateGroups'] as $k => $row){
-                if (strpos($k, 'pmanage_') !== false) {
-                    array_push($group, str_replace('pmanage_', 'Manager-', $k));
-                }else{
+                if (strpos($k, 'pmanage_') !== false)
+                {
+                    array_push($group, str_replace('pmanage_', 'Manager ', $k));
+                }
+                else if (strpos($k, 'gradeperso') !== false)
+                {
+                    array_push($group, 'Legend');
+                }
+                else
+                {
                     array_push($group, $k);
                 }
             }
