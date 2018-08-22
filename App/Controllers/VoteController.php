@@ -34,9 +34,6 @@ class VoteController extends Controller
 
         $cursor = $collection->find(["type" => 1]);
 
-        var_dump($cursor);
-        exit;
-
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
