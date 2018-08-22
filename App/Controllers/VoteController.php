@@ -167,7 +167,7 @@ class VoteController extends Controller
             $winItem = $value;
         }
 
-        dd($winItem);
+        dd("test");
 
         $collection = $this->container->mongo->votes_logs;
         $command = str_replace("%player%", $pseudo, $winItem->command);
