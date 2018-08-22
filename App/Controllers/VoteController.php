@@ -141,7 +141,7 @@ class VoteController extends Controller
         $queue = $types[$type];
 
         $collection = $this->container->mongo->votes_awards;
-        $cursor = $collection->find(['type' => $type]);
+        $cursor = $collection->find(['type' => intval($type)]);
 
         $maxRandom = 0;
 
@@ -167,7 +167,7 @@ class VoteController extends Controller
             $winItem = $value;
         }
 
-        return $response->write("fdp : ".var_dump($type))->withStatus(200);
+        return $response->write("fdp : ".var_dump($winItem))->withStatus(200);
 
         $collection = $this->container->mongo->votes_logs;
         $command = str_replace("%player%", $pseudo, $winItem->command);
