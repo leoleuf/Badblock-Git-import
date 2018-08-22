@@ -38,14 +38,14 @@
                     vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
                 }
             }
-        }, 2000);
-        var script = document.createElement('script');
-        script.onload = function () {
-            //do stuff with the script
-        };
-        script.src = "https://platform.twitter.com/widgets.js";
+            var script = document.createElement('script');
+            script.onload = function () {
+                //do stuff with the script
+            };
+            script.src = "https://platform.twitter.com/widgets.js";
 
-        document.head.appendChild(script);
+            document.head.appendChild(script);
+        }, 1000);
     }
     window.onload = init;
 </script>
