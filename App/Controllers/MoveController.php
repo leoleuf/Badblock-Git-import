@@ -25,7 +25,6 @@ class MoveController extends Controller
             return $this->render($response, 'user.move.staff');
         }
 
-        // TODO: max time between each account transfer
         return $this->render($response, 'user.move.step1');
     }
 
@@ -114,6 +113,21 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
+        //Search last move
+        $data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
+        if ($data != null){
+            $time = strtotime($data['date']);
+            $time = $time + (60*60*24*30);
+            if ($time > strtotime(date('Y-m-d H:i:s'))){
+                // Message erreur
+                $this->flash->addMessage('move_error', 'Vous devez attendre 30 jours entre deux changement de pseudo !');
+                // Redirect to last page
+                return $this->redirect($response, $_SERVER['HTTP_REFERER']);
+            }
+        }
+
+
+
         if ($this->ladder->playerOnline($username)->connected != true)
         {
             $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
@@ -155,9 +169,10 @@ class MoveController extends Controller
         $this->redis->expire('move:2:' . $username, 3600);
 
         if (!$this->change($this->session->get('move:2'), $this->session->get('move:1'))){
-
+            return $this->render($response, 'user.move.step5', ["width" => 100, "step" => 5, "error" => "UNe erreur est survenue si le problème persiste merci de contacter l'asistance !"]);
+        }else{
+            return $this->render($response, 'user.move.step5', ["width" => 100, "step" => 5]);
         }
-
     }
 
     // Fonction qui gère les form en POST
@@ -241,7 +256,7 @@ class MoveController extends Controller
         $sanction = (object)
         [
             'pseudo' => strtolower($new),
-            'type' => 'ban',
+            'type' => 'tempban',
             'expire' => (time() + 60) * 1000,
             'timestamp' => time() * 1000,
             'reason' => "Changement de pseudo en provenance de => " . $old,
@@ -260,7 +275,6 @@ class MoveController extends Controller
         $msg = new AMQPMessage(json_encode($message));
         $channel->basic_publish($msg, '', 'sanction');
 
-        $channel->queue_declare('sanction', false, false, false, false);
         $sanction = (object)
         [
             'pseudo' => strtolower($old),
