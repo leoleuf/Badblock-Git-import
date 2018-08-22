@@ -48,7 +48,10 @@
   <tbody>
     <tr onclick="document.location = '/profile/{{  datatop[0]['playerName'] }}';" class="animation-table">
       <td class="decoration-td decoration-place">#1</td>
-      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/100.png" class="avatar" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}">!--> {{  datatop[0]['playerName'] }}</td>
+      <td class="decoration-td decoration-nickname">
+        <img src="https://cdn.badblock.fr/head/{{ datatop[0]['playerName'] }}/16.png" class="avatar" title="Tête de {{ datatop[0]['playerName'] }}" alt="Tête de {{ datatop[0]['playerName'] }}" />
+          {{  datatop[0]['playerName'] }}
+      </td>
       <td class="decoration-td decoration-class">{{  datatop[0]['_points'] }}</td>
       <td class="decoration-td decoration-kill">{{  datatop[0]['kills'] }}</td>
       <td class="decoration-td decoration-death">{{  datatop[0]['deaths'] }}</td>
@@ -61,7 +64,10 @@
 
     <tr onclick="document.location = '/profile/{{  datatop[1]['playerName'] }}';" class="animation-table">
       <td class="decoration-td decoration-place">#2</td>
-      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/50.png" class="avatar" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}">!-->{{  datatop[1]['playerName'] }}</td>
+      <td class="decoration-td decoration-nickname">
+        <img src="https://cdn.badblock.fr/head/{{ datatop[1]['playerName'] }}/16.png" class="avatar" title="Tête de {{ datatop[1]['playerName'] }}" alt="Tête de {{ datatop[1]['playerName'] }}" />
+          {{  datatop[1]['playerName'] }}
+      </td>
         <td class="decoration-td decoration-class">{{  datatop[1]['_points'] }}</td>
         <td class="decoration-td decoration-kill">{{  datatop[1]['kills'] }}</td>
         <td class="decoration-td decoration-death">{{  datatop[1]['deaths'] }}</td>
@@ -74,7 +80,10 @@
 
     <tr onclick="document.location = '/profile/{{  datatop[2]['playerName'] }}';" class="animation-table">
       <td class="decoration-td decoration-place">#3</td>
-      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/40.png" class="avatar" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}">!-->{{  datatop[2]['playerName'] }}</td>
+      <td class="decoration-td decoration-nickname">
+        <img src="https://cdn.badblock.fr/head/{{ datatop[2]['playerName'] }}/16.png" class="avatar" title="Tête de {{ datatop[2]['playerName'] }}" alt="Tête de {{ datatop[2]['playerName'] }}" />
+          {{  datatop[2]['playerName'] }}
+      </td>
         <td class="decoration-td decoration-class">{{  datatop[2]['_points'] }}</td>
         <td class="decoration-td decoration-kill">{{  datatop[2]['kills'] }}</td>
         <td class="decoration-td decoration-death">{{  datatop[2]['deaths'] }}</td>
@@ -88,7 +97,10 @@
     {% for data,key in data %}
     <tr onclick="document.location = '/profile/{{  key['playerName'] }}';" class="animation-table">
       <td class="decoration-td decoration-place">#{{ data+1 }}</td>
-      <td class="decoration-td decoration-nickname"><!--<img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/30.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}">!--> {{  key['playerName'] }}</td>
+      <td class="decoration-td decoration-nickname">
+        <img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/16.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}" />
+          {{  key['playerName'] }}
+      </td>
       <td class="decoration-td decoration-class">{{  key['_points'] }}</td>
       <td class="decoration-td decoration-kill">{{  key['kills'] }}</td>
       <td class="decoration-td decoration-death">{{  key['deaths'] }}</td>
