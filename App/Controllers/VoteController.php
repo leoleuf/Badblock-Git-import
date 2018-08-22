@@ -32,7 +32,9 @@ class VoteController extends Controller
 
         $collection = $this->container->mongo->votes_awards;
 
-        $cursor = $collection->find(["type" => 1]);
+        $cursor = $collection->find(['type' => 1]);
+
+        dd($cursor);
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
