@@ -215,7 +215,8 @@ class MoveController extends Controller
         $data = [
             'old_name' => strtolower($old),
             'new_name' => strtolower($new),
-            'date' => date('Y-m-d H:i:s')
+            'date' => date('Y-m-d H:i:s'),
+            'ip' => $_SERVER['REMOTE_ADDR']
         ];
 
         $this->container->mongo->move_logs->insertOne($data);
