@@ -156,7 +156,7 @@ class VoteController extends Controller
         $rand = rand(1, $maxRandom);
 
         $winItem = null;
-        
+
         foreach ($things as $key => $value)
         {
             if ($rand > $key && $winItem != null)
@@ -201,7 +201,7 @@ class VoteController extends Controller
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$awardName)->withStatus(200);
+        return $response->write("Vous avez gagné ".$type)->withStatus(200);
     }
 
     public function top($player, $vote){
