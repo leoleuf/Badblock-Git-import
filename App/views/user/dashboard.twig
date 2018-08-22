@@ -26,7 +26,7 @@
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level|number_format(0, '', ' ') }} <span>Levels</span></li>
                         <li><i class="fas fa-bolt"></i> {{ user.game.xp|number_format(0, '', ' ') }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins|number_format(0, '', ' ')|number_format(0, '', ' ') }} <span>BadCoins</span></li>
-                        <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Vote(s)</span></li>
+                        <li><i class="icon icon-paperboat"></i> {{ user.votenb }} <span>Vote(s)</span></li>
                     </ul>
                 </div>
             </div>
@@ -244,6 +244,7 @@
                             <input type="radio" name="selectmode" value="premium" id="rb">Connexion premium
                             <input type="radio" name="selectmode" value="crack" id="rb" checked>Connexion cracké
                         {% endif %}
+                        <br />
                         <input type="submit" class="button-primary espace-valider">
                         </input>
                     </form>
@@ -256,7 +257,7 @@
                     <form action="/dashboard/changespseudo/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau pseudo</label>
                         <input type="text" name="newpseudo" id="newpseudo" placeholder="Ex : Fluor" />
-
+                        <br />
                         <input type="submit" class="button-primary espace-valider">
                     </form>
                 </div>
@@ -531,35 +532,13 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% endif %}
-            {% if lastLogins != false %}
-                <br>
-                <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td><font color="black">Pseudo</font></td>
-                        <td><font color="black">Date</font></td>
-                        <td><font color="black">Heure</font></td>
-                        <td><font color="black">Adresse IP</font></td>
-                        <td><font color="black">2FA validée</font></td>
-                    </tr>
-                    {% for key in lastLogins %}
-                        <tr>
-                            <td>Connexion de {{ key["name"] }}</td>
-                            <td>{{ key["date"] }}</td>
-                            <td>{{ key["price"] }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            {% else %}
-                <div class="no-item-container">
-                    <div class="no-item-content">
-                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                        <h4>Aucune(s) connection(s)</h4>
+            {%  else %}
+                    <div class="no-item-container">
+                        <div class="no-item-content">
+                            <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                            <h4>Aucune(s) connection(s)</h4>
+                        </div>
                     </div>
-                </div>
             {% endif %}
         </section>
     </div>
