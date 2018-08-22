@@ -281,7 +281,27 @@
     });
 </script>
 
+{% if async_socialnetworks == true %}
+    <script async>
+        $(window).load(function () {
+            setTimeout(function () {
+                var vidDefer = document.getElementsByTagName('iframe');
+                for (var i=0; i<vidDefer.length; i++) {
+                    if(vidDefer[i].getAttribute('data-src')) {
+                        vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+                    }
+                }
+                var script = document.createElement('script');
+                script.onload = function () {
+                    //do stuff with the script
+                };
+                script.src = "https://platform.twitter.com/widgets.js";
 
+                document.head.appendChild(script);
+            }, 10000);
+        });
+    </script>
+{% endif %}
 
 </body>
 </html>
