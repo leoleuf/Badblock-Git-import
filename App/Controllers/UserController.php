@@ -219,6 +219,17 @@ class UserController extends Controller
                 $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
             }
 
+            //Search friends
+            $friends = $this->container->mysql_casier->fetchRowMany('SELECT friends from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
+            $friends_valid = [];
+            foreach (json_decode($friends[0]['friends']) as $k => $friend){
+                if ($friend->status == "OK"){
+                    array_push($friends_valid, $k);
+                }
+            }
+
+            $user['friends'] = $friends_valid;
+
             $this->redis->setJson('profile:'.$args["pseudo"], $user);
             $this->redis->expire('profile:'.$args["pseudo"], 300);
 

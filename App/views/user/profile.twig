@@ -24,23 +24,10 @@
                     <div class="search-container">
                         <div class="games-info">
                             <h6 class="cover-heading">Amis</h6>
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
-                            &nbsp;&nbsp;
-                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            {% for f,friend in user.friends %}
+                                <img src="https://cdn.badblock.fr/head/{{ friend }}/32.png" title="Tête de {{ friend }}" alt="Tête de {{ friend }}" />
+                                &nbsp;&nbsp;
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
