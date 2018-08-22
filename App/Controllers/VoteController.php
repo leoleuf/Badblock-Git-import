@@ -30,6 +30,13 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
+        $collection = $this->container->mongo->votes_awards;
+
+        $cursor = $collection->find(["type" => 1]);
+
+        var_dump($cursor);
+        exit;
+
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
@@ -136,9 +143,8 @@ class VoteController extends Controller
 
         $collection = $this->container->mongo->votes_awards;
 
-        $cursor = $collection->find(
-            ['type' => $type]
-        );
+        $cursor = $collection->find();
+
         $maxRandom = 0;
 
         $things = array();
@@ -164,7 +170,7 @@ class VoteController extends Controller
         }
 
         $collection = $this->container->mongo->votes_logs;
-        $command = str_replace("%player%", $pseudo, $winItem->command);
+        $command = str_replace("%player%", $pseudo, $winItem['command']);
 
         // award log
         $insert = [
@@ -180,7 +186,7 @@ class VoteController extends Controller
 
         $collection->insertOne($insert);
 
-        $awardName = $winItem->name;
+        $awardName = $winItem['name'];
 
         $product = array(
             'queue' => $queue,
