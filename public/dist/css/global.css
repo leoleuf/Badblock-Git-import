@@ -234,21 +234,15 @@ td.c-table__cell {
 
 .avatar-first {
     border-bottom: 45px solid #eec900;
-    width: 9%;
-    vertical-align: middle;
-}
+    width: 9%; }
 
 .avatar-second {
     border-bottom: 35px solid #D3D3D3;
-    width: 7%;
-    vertical-align: middle;
-}
+    width: 7%; }
 
 .avatar-third {
     border-bottom: 25px solid #cd7f32;
-    width: 5%;
-    vertical-align: middle;
-}
+    width: 5%; }
 
 .avatar-player {
     margin-left: 190px;
@@ -731,23 +725,31 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 .informations {
-    width: calc(100% - 100px);
-    margin-left: 50px;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 75px;
+}
+
+.informations span {
+    width: 300px;
 }
 
 #recrutement-button {
-    height: 75px !important;
     background-color: #d9534f;
+    width: 100%;
 }
 
 #staff-button {
-    height: 75px !important;
     background-color: #5cb85c;
+    width: 100%;
 }
 
 #devblog-button {
-    height: 75px !important;
     background-color: #428bca;
+    width: 100%;
 }
 
 .cover-back {
@@ -1240,10 +1242,6 @@ a {
 .decoration-place:hover {
     color: #7b4dcb;
 }
-.decoration-nickname
-{
-    text-align: left !important;
-}
 .decoration-nickname:hover {
     color: #3498db !important;
 }
@@ -1566,8 +1564,6 @@ a {
 
 
         .header-td {
-            width: 17%;
-            font-size: 0.8em;
             text-align: right !important;
         }
 
@@ -1795,6 +1791,14 @@ a {
     .user-menu ul .user-tab {
         display: block;
         margin: 40px 0px;
+    }
+
+    .informations {
+        height: inherit;
+    }
+
+    .info-p {
+        display: none;
     }
 
 }
