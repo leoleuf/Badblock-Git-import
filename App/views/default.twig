@@ -284,6 +284,7 @@
 {% if async_socialnetworks == true %}
     <script>
         $( document ).ready(function() {
+            alert('test');
                 var vidDefer = document.getElementsByTagName('iframe');
                 for (var i=0; i<vidDefer.length; i++) {
                     if(vidDefer[i].getAttribute('data-src')) {
@@ -297,7 +298,6 @@
                 script.src = "https://platform.twitter.com/widgets.js";
 
                 document.head.appendChild(script);
-                alert('test');
         });
     </script>
 {% endif %}
