@@ -24,7 +24,7 @@ class VoteController extends Controller
     public function getHome(RequestInterface $request, ResponseInterface $response){
         //Read Top from Redis
         $top = $this->redis->getJson('vote.top');
-        
+
         $player = "";
         if ($this->container->session->exist('user')) {
             $player = $this->session->getProfile('username')['username'];
@@ -135,9 +135,7 @@ class VoteController extends Controller
         $queue = $types[$type];
 
         $collection = $this->container->mongo->votes_awards;
-
-        $collection = $this->container->mongo->votes_awards;
-        $cursor = $collection->find(['type' => 1]);
+        $cursor = $collection->find(['type' => $type]);
 
         $maxRandom = 0;
 
@@ -148,8 +146,6 @@ class VoteController extends Controller
             $things[$maxRandom] = $value;
             $maxRandom += $value->probability;
         }
-
-        dd($things);
 
         $rand = rand(1, $maxRandom);
 
