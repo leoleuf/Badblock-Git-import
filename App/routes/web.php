@@ -4,6 +4,7 @@
 
 $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('home');
 $app->get('/accueil', \App\Controllers\PagesController::class . ':getHome')->setName('home-old');
+$app->get('/accueil/', \App\Controllers\PagesController::class . ':getHome')->setName('home-old2');
 
 $app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
 
