@@ -25,7 +25,7 @@ class Teamspeak
         $this->query_port = $config->query_port;
         $this->client = new ts3admin($this->ip, $this->query_port);
         //Check de connection + login avant éxecution de commandes
-        $this->online();
+        //$this->online();
     }
 
     public function connection(){
