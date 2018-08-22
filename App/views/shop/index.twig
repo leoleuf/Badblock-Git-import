@@ -749,11 +749,11 @@
                 {% if key[4] %}
                     <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
                         <button data-remodal-action="close" class="remodal-close"></button>
-                        <h1>{{ key[1] }} / Promotion <span class="reduction">-50%</span></h1>
-                        <img src="{{ key[1] }}">
+                        <h1>{{ prod['name'] }}</h1>
+                        <img src="{{ prod['image'] }}">
                         <p>{{ prod['description'] | raw }}</p>
                         <div class="product-footer">
-                            <div class="product-action"><button onclick="achat({{ prod['_id']["$oid"] }})" class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            <div class="product-action"><button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
                         </div>
                     </div>
                 {% else %}
