@@ -1,7 +1,7 @@
 {% for comment in comments %}
     <div class="comments-item">
         <div class="comments-author-avatar">
-            <img src="https://cdn.badblock.fr/head/{{ comment.username }}/64.png" alt="Tête de {{ comment.username }}" title="Tête de {{ comment.username }}">
+            <a href="/profile/{{ comment.username }}" title="Profil de {{ comment.username }}"<img src="https://cdn.badblock.fr/head/{{ comment.username }}/64.png" alt="Tête de {{ comment.username }}" title="Tête de {{ comment.username }}"></a>
         </div>
         <div class="comments-content">
             <div class="comments-title">

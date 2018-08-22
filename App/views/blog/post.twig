@@ -14,7 +14,7 @@
                 <div class="container">
                     <ul>
                         <li><i class="icon icon-calendarthree"></i> {{ timeago(post.created_at) }}</li>
-                        <li><i class="icon icon-user"></i><span>Écrit par </span> {{ post.author.name }}</li>
+                        <li><i class="icon icon-user"></i><span>Écrit par </span> <a href="/profile/{{ post.author.name }}" title="Profil de {{ post.author.name }}">{{ post.author.name }}</a></li>
                         <li><i class="fa fa-eye"></i><span> Lecture(s) </span> {{ post.view }}</li>
                     </ul>
                 </div>
