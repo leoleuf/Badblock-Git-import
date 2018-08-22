@@ -74,7 +74,7 @@
         <h2>Statistiques</h2>
         <div class="row">
             <div class="four columns">
-                <div class="game-title"><h3>Tower <span class="badge badge-primary">{{ joueur.game.stats.tower.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
+                <div class="game-title"><h3>Tower <a href="/stats/all/Tower/" title="Classement du Tower"><span class="badge badge-primary">Classement</span></a></h3></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -101,7 +101,34 @@
                 </table>
             </div>
             <div class="four columns">
-                <div class="game-title"><h3>Rush <span class="badge badge-primary">{{ joueur.game.stats.rush.cpoints|number_format(0, '', ' ') }} Points</span> </h3></div>
+                <div class="game-title"><h3>BedWars <a href="/stats/all/BedWars/" title="Classement du BedWars"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.bedwars.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.bedwars.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Points</td>
+                        <td>{{ joueur.game.stats.bedwars.marks|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.bedwars.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.bedwars.looses|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="four columns">
+                <div class="game-title"><h3>Rush <a href="/stats/all/Rush/" title="Classement du Rush"><span class="badge badge-primary">Classement</span></a></h3></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -127,34 +154,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="four columns">
-                <div class="game-title"><h3>Survival <span class="badge badge-primary">{{ joueur.game.stats.survival.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
-                <table class="u-full-width">
-                    <tbody>
-                    <tr>
-                        <td>Exécutions</td>
-                        <td>{{ joueur.game.stats.survival.kills|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Morts</td>
-                        <td>{{ joueur.game.stats.survival.deaths|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties gagnés</td>
-                        <td>{{ joueur.game.stats.survival.wins|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties perdus</td>
-                        <td>{{ joueur.game.stats.survival.looses|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
-
         <div class="row">
             <div class="four columns">
-                <div class="game-title"><h3>Uhc speed <span class="badge badge-primary">{{ joueur.game.stats.uhcspeed.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
+                <div class="game-title"><h3>UHCSpeed <a href="/stats/all/UHCSpeed/" title="Classement du UHCSpeed"><span class="badge badge-primary">Classement</span></a></h3></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -177,34 +180,11 @@
                 </table>
             </div>
             <div class="four columns">
-                <div class="game-title"><h3>Pearls Wars <span class="badge badge-primary">{{ joueur.game.stats.pearlswar.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
+                <div class="game-title"><h3>SpaceBalls <a href="/stats/all/SpaceBalls/" title="Classement du SpaceBalls"><span class="badge badge-primary">Classement</span></a></h3></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
-                        <td>Exécutions</td>
-                        <td>{{ joueur.game.stats.pearlswar.kills|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Morts</td>
-                        <td>{{ joueur.game.stats.pearlswar.deaths|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties gagnés</td>
-                        <td>{{ joueur.game.stats.pearlswar.wins|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties perdus</td>
-                        <td>{{ joueur.game.stats.pearlswar.looses|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="four columns">
-                <div class="game-title"><h3>Spaceballs <span class="badge badge-primary">{{ joueur.game.stats.spaceballs.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
-                <table class="u-full-width">
-                    <tbody>
-                    <tr>
-                        <td>Diamants</td>
+                        <td>Diamants récupérés</td>
                         <td>{{ joueur.game.stats.spaceballs.diamonds|number_format(0, '', ' ') }}</td>
                     </tr>
                     <tr>
@@ -223,34 +203,5 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="four columns">
-                <div class="game-title"><h3>Capture The Sheep <span class="badge badge-primary">{{ joueur.game.stats.cts.cpoints|number_format(0, '', ' ') }} Points</span></h3></div>
-                <table class="u-full-width">
-                    <tbody>
-                    <tr>
-                        <td>Exécutions</td>
-                        <td>{{ joueur.game.stats.cts.kills|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Morts</td>
-                        <td>{{ joueur.game.stats.cts.deaths|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties gagnés</td>
-                        <td>{{ joueur.game.stats.cts.wins|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Mouton Capturés</td>
-                        <td>{{ joueur.game.stats.cts.capturedflags|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    <tr>
-                        <td>Parties perdues</td>
-                        <td>{{ joueur.game.stats.cts.looses|number_format(0, '', ' ') }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 {% endblock %}
