@@ -110,7 +110,9 @@ class ShopController extends Controller
         if ($product->mode == "rabbitmq"){
             $this->sendRabbitData($product);
         }elseif ($product->mode == "webladder"){
+
             $this->ladder->playerAddGroup($player['name'], $product['command'], $product['duration']);
+
         }elseif ($product->mode == "hybrid"){
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
                 if ($k == "legend"){
