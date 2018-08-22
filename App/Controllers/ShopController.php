@@ -254,7 +254,7 @@ class ShopController extends Controller
        $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
        $channel = $connection->channel();
 
-       $channel->exchange_declare('ladder', 'fanout', false, false, false, false);
+       $channel->exchange_declare('shopLinker.ladder', 'fanout', false, false, false, false);
        $sanction = (object) [
            'dataType' => 'BUY',
            'playerName' => $username,
