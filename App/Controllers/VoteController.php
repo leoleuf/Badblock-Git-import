@@ -167,8 +167,6 @@ class VoteController extends Controller
             $winItem = $value;
         }
 
-        return $response->write("fdp : ".var_dump($winItem))->withStatus(200);
-
         $collection = $this->container->mongo->votes_logs;
         $command = str_replace("%player%", $pseudo, $winItem->command);
 
