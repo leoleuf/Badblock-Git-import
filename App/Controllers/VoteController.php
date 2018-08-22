@@ -111,7 +111,7 @@ class VoteController extends Controller
        // return $response->write("test")->withStatus(200);
         
         $API_id = 198; // ID de votre serveur
-        dd($_SERVER['CF-Connecting-IP']);
+        dd(getallheaders());
         $API_ip = $_SERVER['CF-Connecting-IP']; // Adresse IP de l'utilisateur
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
