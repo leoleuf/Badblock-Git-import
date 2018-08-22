@@ -22,6 +22,7 @@ class StatsController extends Controller
 	    //debug
         if ($this->redis->exists('api.teamspeak.online')){
             $data = $this->redis->get('api.teamspeak.online');
+            $data = str_replace("\"", "", $data);
             $c_ts = intval($data);
         }else{
             $c_ts = 0;

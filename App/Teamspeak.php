@@ -25,7 +25,7 @@ class Teamspeak
         $this->query_port = $config->query_port;
         $this->client = new ts3admin($this->ip, $this->query_port);
         //Check de connection + login avant éxecution de commandes
-        //$this->connection();
+        $this->online();
     }
 
     public function connection(){
@@ -46,15 +46,12 @@ class Teamspeak
     }
 
     public function online(){
-        $this->connection();
-        if ($this->redis->exists('api.teamspeak.online')){
-            return $this->redis->get('api.teamspeak.online');
-        }else{
+        if (!$this->redis->exists('api.teamspeak.online'))
+        {
+            $this->connection();
             $data = $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
             $this->redis->setJson('api.teamspeak.online', $data);
-            $this->redis->expire('api.teamspeak.online', 10);
-
-            return $data;
+            $this->redis->expire('api.teamspeak.online', 300);
         }
     }
 
