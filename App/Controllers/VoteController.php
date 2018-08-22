@@ -167,7 +167,7 @@ class VoteController extends Controller
             $winItem = $value;
         }
 
-        return $response->write("fdp : ".var_dump($winItem))->withStatus(200);
+        return $response->write("fdp : ".var_dump($type))->withStatus(200);
 
         $collection = $this->container->mongo->votes_logs;
         $command = str_replace("%player%", $pseudo, $winItem->command);
@@ -201,7 +201,7 @@ class VoteController extends Controller
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$type)->withStatus(200);
+        return $response->write("Vous avez gagné ".$winItem->name)->withStatus(200);
     }
 
     public function top($player, $vote){
