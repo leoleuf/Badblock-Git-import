@@ -41,7 +41,7 @@ class Teamspeak
             }
         }else{
              $this->container->log->error('"App/TeamSpeak"',' Connection could not be established to ' . $this->ip);
-            throw new Exception('Connection could not be established to ' . $this->ip.' '.var_dump($this->ip));
+            throw new Exception('Connection could not be established to ' . $this->ip.' '.var_dump($this->password));
         }
     }
 
