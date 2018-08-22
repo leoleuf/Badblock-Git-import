@@ -313,7 +313,6 @@ td.c-table__cell {
     transition: 0.2s;
     font-size: 18px;
     text-transform: uppercase;
-    font-family: 'Righteous', cursive;
 }
 
 .button-games:hover {
