@@ -20,6 +20,30 @@
                         </div>
                     </div>
                 </div>
+                <div class="one-half column animated bounceInLeft">
+                    <div class="search-container">
+                        <div class="games-info">
+                            <h2 class="cover-heading">Amis</h2>
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                            &nbsp;&nbsp;
+                            <img src="https://cdn.badblock.fr/head/{{ user.realName }}/32.png" title="Tête de {{ user.realName }}" alt="Tête de {{ user.realName }}" />
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="profile-info">
                 <div class="container">
@@ -30,6 +54,7 @@
                     </ul>
                 </div>
             </div>
+
         </div>
     </div>
     <!------Cover fin------>
@@ -70,7 +95,7 @@
                     </tr>
                     <tr>
                         <td>Parties perdus</td>
-                        <td>{{ user.game.stats.tower.|number_format(0, '', ' ') }}</td>
+                        <td>{{ user.game.stats.tower.looses|number_format(0, '', ' ') }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -85,7 +110,7 @@
                     </tr>
                     <tr>
                         <td>Morts</td>
-                        <td>{{ user.game.stats.rush.|number_format(0, '', ' ') }}</td>
+                        <td>{{ user.game.stats.rush.deaths|number_format(0, '', ' ') }}</td>
                     </tr>
                     <tr>
                         <td>Parties gagnés</td>
