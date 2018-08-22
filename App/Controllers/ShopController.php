@@ -8,6 +8,7 @@
 
 namespace App\Controllers;
 
+use function DI\object;
 use function GuzzleHttp\Psr7\str;
 use MongoDB\Exception\Exception;
 use Psr\Http\Message\RequestInterface;
@@ -110,9 +111,7 @@ class ShopController extends Controller
         if ($product->mode == "rabbitmq"){
             $this->sendRabbitData($product);
         }elseif ($product->mode == "webladder"){
-
-            $this->ladder->playerAddGroup($player['name'], $product['command'], $product['duration']);
-
+            $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, -1);
         }elseif ($product->mode == "hybrid"){
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
                 if ($k == "legend"){
@@ -125,12 +124,12 @@ class ShopController extends Controller
             if ($player['permissions']['group'] == "legend" || $check == true){
 
                 $time = $player['permissions']['alternateGroups']['legend'] + ($product['duration'] * 1000);
-                $this->ladder->playerAddGroup($player['name'], $product['command'], $time);
+                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
 
             }else{
 
                 $time = (time() + $product['duration']) * 1000;
-                $this->ladder->playerAddGroup($player['name'], $product['command'], $time);
+                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
 
             }
         }
@@ -225,4 +224,62 @@ class ShopController extends Controller
         $connection->close();
 
     }
+
+   public function hybrid($username, $grade, $price, $duration){
+        //Big game server rank
+       $server_list = [
+           'skyb',
+           'fb',
+           'faction'
+       ];
+
+
+       if ($duration != -1){
+           $duration = (60*60*24*31);
+       }else{
+           $duration = -1;
+       }
+
+       foreach ($server_list as $row){
+           $p = new \stdClass();
+           $p->name = "§6" . $grade;
+           $p->queue = $row;
+           $p->price = $price;
+           $p->command = "pex user %player% group add " . $grade ." ". $duration;
+           $this->sendRabbitData($p);
+       }
+
+       //Ladder rankup
+       ////Connection to rabbitMQ server
+       $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
+       $channel = $connection->channel();
+
+       $channel->exchange_declare('ladder', 'fanout', false, false, false, false);
+       $sanction = (object) [
+           'dataType' => 'BUY',
+           'playerName' => $username,
+           'displayName' => $grade,
+           'command' => "perms user $username group add $grade",
+           'ingame' => false,
+           'price' => $price
+       ];
+
+       if ($duration != -1){
+           $sanction->command = "perms user $username group add $grade 31d";
+       }
+
+       $message = (object) [
+           'expire' => (time() + 604800) * 1000,
+           'message' => json_encode($sanction)
+       ];
+       $msg = new AMQPMessage(json_encode($message));
+       $channel->basic_publish($msg, 'ladder');
+
+
+       $channel->close();
+       $connection->close();
+
+
+   }
+
 }
