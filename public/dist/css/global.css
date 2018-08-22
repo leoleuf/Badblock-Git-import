@@ -6,6 +6,27 @@
     margin: 50px 0px;
 }
 
+.c-table__row:hover {
+    background: rgba(50, 50, 50, 0.7);
+    cursor: pointer;
+    cursor: default;
+    transform: scale(1.01);
+    transition: 0.4s; }
+
+.c-table__cell {
+    overflow: hidden;
+    text-align: center !important; }
+
+}
+
+td.c-table__cell {
+    text-align: center !important; }
+}
+
+.c-table__row a {
+    text-decoration: none; }
+
+
 .promotion {
     animation : promotion 1s infinite ease-in-out;
 }
