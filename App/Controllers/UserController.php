@@ -202,9 +202,9 @@ class UserController extends Controller
         }
 	    $args["pseudo"] = strtolower($args["pseudo"]);
         //Check si la page est déjà en cache
-        if ($this->redis->exists('profile:'.$args["pseudo"])){
+        if ($this->redis->exists('profssile:'.$args["pseudo"])){
             $user = $this->redis->getJson('profile:'.$args["pseudo"]);
-            return $this->render($response, 'user.profile', ['user' => $user]);
+            return $this->render($response, 'user.profile', ['joueur' => $user]);
         }else{
             //Nouveau cache
             //sans cache
@@ -218,12 +218,36 @@ class UserController extends Controller
             if($user["punish"]["ban"]){
                 $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
             }
+            $user['permissions']['alternateGroups'] = (array) $user['permissions']['alternateGroups'];
+            //Replace stylé
+            $group = [];
+            foreach ($user['permissions']['alternateGroups'] as $k => $row){
+                if (strpos($k, 'pmanage_') !== false) {
+                    array_push($group, str_replace('pmanage_', 'Manager-', $k));
+                }else{
+                    array_push($group, $k);
+                }
+            }
+            $user['permissions']['alternateGroups'] = $group;
+
+
+
+            //Search friends
+            $friends = $this->container->mysql_casier->fetchRowMany('SELECT friends from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
+            $friends_valid = [];
+            foreach (json_decode($friends[0]['friends']) as $k => $friend){
+                if ($friend->status == "OK"){
+                    array_push($friends_valid, $k);
+                }
+            }
+
+            $user['friends'] = $friends_valid;
 
             $this->redis->setJson('profile:'.$args["pseudo"], $user);
             $this->redis->expire('profile:'.$args["pseudo"], 300);
 
             //return view
-            return $this->render($response, 'user.profile', ['user' => $user]);
+            return $this->render($response, 'user.profile', ['joueur' => $user]);
         }
 
 	}
