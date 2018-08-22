@@ -1241,6 +1241,9 @@ a {
 .decoration-place:hover {
     color: #7b4dcb;
 }
+.decoration-nickname {
+    text-align: left !important;
+}
 .decoration-nickname:hover {
     color: #3498db !important;
 }
