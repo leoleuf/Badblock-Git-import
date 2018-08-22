@@ -88,9 +88,9 @@ class VoteController extends Controller
         $types = array(
           1 => 'ptsboutique',
           2 => 'skyb',
-            3 => 'minigames',
-            4 => 'faction',
-        5 => 'box'
+          3 => 'minigames',
+          4 => 'faction',
+          5 => 'box'
         );
 
         // unknown type
@@ -137,7 +137,7 @@ class VoteController extends Controller
         $collection = $this->container->mongo->votes_awards;
 
         $cursor = $collection->find(
-            ['type' => 1]
+            ['type' => $type]
         );
         $maxRandom = 0;
 
