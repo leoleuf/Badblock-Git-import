@@ -22,6 +22,7 @@ class Teamspeak
         $this->port = $config->port;
         $this->username = $config->username;
         $this->password = $config->password;
+        dd($this->password);
         $this->query_port = $config->query_port;
         $this->client = new ts3admin($this->ip, $this->query_port);
         //Check de connection + login avant éxecution de commandes
