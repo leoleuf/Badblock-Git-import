@@ -17,7 +17,7 @@
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                     </div>
-                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points }} pb</a>
+                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                     <div class="recharge-button">
                         <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
                     </div>
@@ -77,8 +77,8 @@
                                 <div class="product-image">
                                     <img src="{{ prod['image'] }}">
                                 </div>
-                                <div class="product-price product-promotion">{{ prod['promotion_new_price'] }}</div>
-                                <div class="promotion">{{ prod['price'] }}</div>
+                                <div class="product-price product-promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</div>
+                                <div class="promotion">{{ prod['price']|number_format(0, '', ' ') }}</div>
                                 <div class="promotion-reduction">{{ prod['promotion_coef'] }}%</div>
                                 <div class="product-footer">
                                     <div class="product-action">
@@ -122,9 +122,9 @@
                                         <div class="product-image">
                                             <img src="{{ prod['image'] }}" title="Produit {{ prod['name'] }}" title="Produit {{ prod['name'] }}">
                                         </div>
-                                        <div class="product-price product-promotion">{{ key[6] }}</div>
-                                        <div class="promotion">{{ prod['price'] }}</div>
-                                        <div class="promotion-reduction">{{ key[5] }}%</div>
+                                        <div class="product-price product-promotion">{{ key[6]|number_format(0, '', ' ') }}</div>
+                                        <div class="promotion">{{ prod['price']|number_format(0, '', ' ') }}</div>
+                                        <div class="promotion-reduction">{{ key[5|number_format(0, '', ' ') }}%</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
@@ -142,7 +142,7 @@
                                         <div class="product-image">
                                             <img src="{{ prod['image'] }}" title="Produit {{ prod['name'] }}" title="Produit {{ prod['name'] }}">
                                         </div>
-                                        <div class="product-price">{{ prod['price'] }}</div>
+                                        <div class="product-price">{{ prod['price'|number_format(0, '', ' ') }}</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">

@@ -23,9 +23,9 @@
             <div class="profile-info">
                 <div class="container">
                     <ul>
-                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level }} <span>Levels</span></li>
-                        <li><i class="fas fa-bolt"></i> {{ user.game.xp }} <span>Xp</span></li>
-                        <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins }} <span>BadCoins</span></li>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level|number_format(0, '', ' ') }} <span>Levels</span></li>
+                        <li><i class="fas fa-bolt"></i> {{ user.game.xp|number_format(0, '', ' ') }} <span>Xp</span></li>
+                        <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins|number_format(0, '', ' ')|number_format(0, '', ' ') }} <span>BadCoins</span></li>
                         <li><i class="icon icon-paperboat"></i> {{ user.vote }} <span>Vote(s)</span></li>
                     </ul>
                 </div>
@@ -92,10 +92,10 @@
             <div class="row">
                 <div class="six columns">
                     <ul class="user-info">
-                        <li>Niveau : <span>{{ user.game.level }} niveau(x)</span></li>
-                        <li>Point(s) d'expérience : <span>{{ user.game.xp }} point(s)</span></li>
-                        <li>Nombre de BadCoin(s) : <span>{{ user.game.badcoins }} BC</span></li>
-                        <li>Nombre de vote(s) : <span>{{ user.votenb }} vote(s)</span></li>
+                        <li>Niveau : <span>{{ user.game.level|number_format(0, '', ' ') }} niveau(x)</span></li>
+                        <li>Point(s) d'expérience : <span>{{ user.game.xp|number_format(0, '', ' ') }} point(s)</span></li>
+                        <li>Nombre de BadCoin(s) : <span>{{ user.game.badcoins|number_format(0, '', ' ') }} BC</span></li>
+                        <li>Nombre de vote(s) : <span>{{ user.votenb|number_format(0, '', ' ') }} vote(s)</span></li>
                     </ul>
                 </div>
                 <div class="six columns">
@@ -217,6 +217,7 @@
                     <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" />
                         <input class="espace-valider"type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
+                        <br />
                         <input type="submit" class="button-primary espace-valider"></input>
                         </input>
                     </form>
@@ -226,6 +227,7 @@
                     <form action="/dashboard/teamspeak/" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre ID TeamSpeak</label>
                         <input type="text" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
+                        <br />
                         <input type="submit" class="button-primary espace-valider">
                         </input>
                     </form>
@@ -265,7 +267,7 @@
     <div id="5" class="tabcontent para" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             {% if custom != false %}
-                <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mon grade custom </span></h4>
+                <h4 class="heading heading-bar" style="margin-top: 50px;"><span>Mon Grade Custom </span></h4>
                 <div class="six columns">
                     <div class="span">
                         <h4 class="top0">État de ma demande :</h4>
@@ -279,18 +281,18 @@
                         {% endif %}
                     </div>
                     <div class="span">
-                        <h4 class="top0">Choisir mon préfix :</h4>
+                        <h4 class="top0">Choisir mon préfixe :</h4>
                         <form action="/dashboard/custom/prefix" method="post" name="confirm-mdp">
-                            <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères.</label>
+                            <label for="newpassword">Entrez votre préfixe, entre 1 & 15 caractères.</label>
                             <input type="text" name="prefix" id="prefix" placeholder="&bFluor" />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
                     <div class="span">
-                        <h4 class="top0">Choisir la couleur de mes messages !</h4>
+                        <h4 class="top0">Choisir la couleur de mes messages</h4>
                         <form action="/dashboard/custom/textcolor" method="post" name="confirm-mdp">
-                            <label for="newpassword">Choissisez !</label>
+                            <label for="newpassword">Choissisez</label>
                             <select name="color">
                                 <option value="Vert clair">Vert clair</option>
                                 <option value="Bleu clair">Bleu clair</option>
@@ -353,6 +355,7 @@
                                 <option value="Gris foncé italique">Gris foncé italique</option>
                                 <option value="Bleu italique">Bleu italique</option>                    
                             </select>
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
@@ -366,6 +369,7 @@
                             <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !" />
                             <label for="newpassword">Entrer le mot de passe de votre canal !</label>
                             <input type="password" name="canal_psw" id="canal_psw" placeholder="" />
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
@@ -376,6 +380,7 @@
                             <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier que tous les critères soient bons avant de nous contacter.
                                 Une fois cela fait, insérez le lien vers l'image ici :</label>
                             <input type="text" name="url_icone" id="canal_psw" placeholder="" />
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
@@ -394,18 +399,19 @@
                 </div>
                 <div class="six columns disabled">
                     <div class="span">
-                        <h4 class="top0">Choisir mon préfix !</h4>
+                        <h4 class="top0">Choisir mon préfixe</h4>
                         <form action="/" method="post" name="confirm-mdp">
                             <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
                             <input type="text" name="prefix" id="prefix" placeholder="&bFluor" />
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
                     <div class="span">
-                        <h4 class="top0">Choisir la couleur de mes messages !</h4>
+                        <h4 class="top0">Choisir la couleur de mes messages</h4>
                         <form action="/ " method="post" name="confirm-mdp">
-                            <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
+                            <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères</label>
                             <select name="color">
                                 <option value="Vert clair">Vert clair</option>
                                 <option value="Bleu clair">Bleu clair</option>
@@ -468,6 +474,7 @@
                                 <option value="Gris foncé italique">Gris foncé italique</option>
                                 <option value="Bleu italique">Bleu italique</option>					
                             </select>
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
@@ -475,22 +482,24 @@
                 </div>
                 <div class="six columns disabled">
                     <div class="span">
-                        <h4 class="top0">Créer mon canal !</h4>
+                        <h4 class="top0">Créer mon canal TeamSpeak</h4>
                         <form action="/" method="post" name="confirm-mdp">
                             <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères !</label>
                             <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !" />
                             <label for="newpassword">Entrer le mot de passe de votre canal !</label>
                             <input type="password" name="canal_psw" id="canal_psw" placeholder="" />
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>
                     </div>
                     <div class="span">
-                        <h4 class="top0">Changer d'icône TeamSpeak !</h4>
+                        <h4 class="top0">Changer d'icône TeamSpeak</h4>
                         <form action="/" method="post" name="confirm-mdp">
                             <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier que tous les critères soient bons avant de nous contacter.
                                 Une fois cela fait, insérez le lien vers l'image ici :</label>
                             <input type="text" name="url_icone" id="canal_psw" placeholder="" />
+                            <br />
                             <input type="submit" class="button-primary espace-valider"></input>
                             </input>
                         </form>

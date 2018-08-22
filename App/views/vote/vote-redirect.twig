@@ -93,7 +93,7 @@
                             {% else %}
                                 <td></td>
                             {% endif %}
-                            <td>{{ data['vote'] }}</td>
+                            <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
                         </tr>
                     {% endfor %}
                 {% endif %}
