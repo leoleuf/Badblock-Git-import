@@ -123,7 +123,7 @@
                     {% for k,data in top %}
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
-                            <a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"></a><td class="img"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></td></a>
+                            <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
                             {% if k < 3 %}
                                 <td>15€</td>
                             {% elseif k < 10 %}
