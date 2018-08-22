@@ -29,8 +29,8 @@
     </div>
 </div>
 
-<script>
-    function init() {
+<script async defer>
+    $(window).load(function () {
         setTimeout(function () {
             var vidDefer = document.getElementsByTagName('iframe');
             for (var i=0; i<vidDefer.length; i++) {
@@ -45,7 +45,6 @@
             script.src = "https://platform.twitter.com/widgets.js";
 
             document.head.appendChild(script);
-        }, 2000);
+        }, 10000);
     }
-    window.onload = init;
 </script>
