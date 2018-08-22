@@ -182,7 +182,7 @@ class VoteController extends Controller
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$awardName)->withStatus(200);
+        return $response->write("Vous avez gagné ".$awardName." - ".$_SERVER['HTTP_CF_CONNECTING_IP'])->withStatus(200);
     }
 
     public function top($player, $vote){
