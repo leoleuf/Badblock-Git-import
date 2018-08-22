@@ -1,8 +1,32 @@
+{% set title = 'Profil de ' ~ joueur.realName ~ ' - BadBlock'%}
+{% set hide_title = true %}
 {% extends "default.twig" %}
-{% set show_title = false %}
 {% set active_page = "stats" %}
-{% set title = user.name %}
-{% set subtitle = 'Ses statistiques' %}
+{% set sub_title = ''|trans~user.username %}
+{% set keywords = 'profil, ' ~ joueur.realName %}
+
+{% set foo = date().timestamp %}
+
+{% if joueur.punish.ban == true and joueur.punish.banEnd > foo %}
+    {% set ban = true %}
+{% else %}
+    {% set ban = false %}
+{% endif %}
+
+{% if joueur.punish.mute == true and joueur.punish.muteEnd > foo %}
+    {% set mute = true %}
+{% else %}
+    {% set mute = false %}
+{% endif %}
+
+{% if ban == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.banReason ~ ". Fin de la suspension le " ~ joueur.punish.banEnd|date("m/d/Y") ~ "."  %}
+{% elseif mute == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est bâillonné pour " ~ joueur.punish.muteReason ~ ". Fin du bâillonnement le " ~ joueur.punish.muteEnd|date("m/d/Y") ~ "."  %}
+{% else %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
+{% endif %}
+
 {% block cover %}
     <!------Cover------>
     <div class="cover-back">
@@ -60,13 +84,13 @@
     <!------Cover fin------>
 {% endblock %}
 {% block content %}
-    {% if joueur.punish.mute == true %}
-        <div class="alert alert-warning" role="alert">
+    {% if mute == true %}
+        <div class="alert alert-error" role="alert">
             Cet Utilisateur est baillonné jusqu'au {{ joueur.punish.muteEnd | date("m/d/Y") }}
         </div>
     {% endif %}
-    {% if joueur.punish.ban == true %}
-        <div class="alert alert-warning" role="alert">
+    {% if ban == true %}
+        <div class="alert alert-error" role="alert">
             Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd | date("m/d/Y") }}
         </div>
     {% endif %}
@@ -74,7 +98,7 @@
         <h2>Statistiques</h2>
         <div class="row">
             <div class="four columns">
-                <div class="game-title"><h3>Tower <a href="/stats/all/Tower/" title="Classement du Tower"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <div class="game-title"><h4>Tower <a href="/stats/all/Tower/" title="Classement du Tower"><span class="badge badge-primary">Classement</span></a></h4></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -101,7 +125,7 @@
                 </table>
             </div>
             <div class="four columns">
-                <div class="game-title"><h3>BedWars <a href="/stats/all/Bedwars/" title="Classement du BedWars"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <div class="game-title"><h4>BedWars <a href="/stats/all/Bedwars/" title="Classement du BedWars"><span class="badge badge-primary">Classement</span></a></h4></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -128,7 +152,7 @@
                 </table>
             </div>
             <div class="four columns">
-                <div class="game-title"><h3>Rush <a href="/stats/all/Rush/" title="Classement du Rush"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <div class="game-title"><h4>Rush <a href="/stats/all/Rush/" title="Classement du Rush"><span class="badge badge-primary">Classement</span></a></h4></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -157,7 +181,7 @@
         </div>
         <div class="row">
             <div class="four columns">
-                <div class="game-title"><h3>UHCSpeed <a href="/stats/all/UHCSpeed/" title="Classement du UHCSpeed"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <div class="game-title"><h4>UHCSpeed <a href="/stats/all/UHCSpeed/" title="Classement du UHCSpeed"><span class="badge badge-primary">Classement</span></a></h4></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>
@@ -180,7 +204,7 @@
                 </table>
             </div>
             <div class="four columns">
-                <div class="game-title"><h3>SpaceBalls <a href="/stats/all/SpaceBalls/" title="Classement du SpaceBalls"><span class="badge badge-primary">Classement</span></a></h3></div>
+                <div class="game-title"><h4>SpaceBalls <a href="/stats/all/SpaceBalls/" title="Classement du SpaceBalls"><span class="badge badge-primary">Classement</span></a></h4></div>
                 <table class="u-full-width">
                     <tbody>
                     <tr>

@@ -234,15 +234,21 @@ td.c-table__cell {
 
 .avatar-first {
     border-bottom: 45px solid #eec900;
-    width: 9%; }
+    width: 9%;
+    vertical-align: middle;
+}
 
 .avatar-second {
     border-bottom: 35px solid #D3D3D3;
-    width: 7%; }
+    width: 7%;
+    vertical-align: middle;
+}
 
 .avatar-third {
     border-bottom: 25px solid #cd7f32;
-    width: 5%; }
+    width: 5%;
+    vertical-align: middle;
+}
 
 .avatar-player {
     margin-left: 190px;
@@ -1234,6 +1240,10 @@ a {
 .decoration-place:hover {
     color: #7b4dcb;
 }
+.decoration-nickname
+{
+    text-align: left !important;
+}
 .decoration-nickname:hover {
     color: #3498db !important;
 }
@@ -1556,6 +1566,8 @@ a {
 
 
         .header-td {
+            width: 17%;
+            font-size: 0.8em;
             text-align: right !important;
         }
 
