@@ -201,7 +201,7 @@ class VoteController extends Controller
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$type)->withStatus(200);
+        return $response->write("Vous avez gagné : ".$type)->withStatus(200);
     }
 
     public function top($player, $vote){
