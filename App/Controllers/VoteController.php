@@ -169,7 +169,7 @@ class VoteController extends Controller
         // award log
         $insert = [
             "name" => $pseudo,
-            "ip" => $_SERVER['HTTP_CF_CONNECTING_IP'],
+            "ip" => $API_ip,
             "type" => $type,
             "queue" => $queue,
             "date" => date("d/m/Y H:i:s"),
