@@ -30,12 +30,6 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $collection = $this->container->mongo->votes_awards;
-
-        $cursor = $collection->find(['type' => 1]);
-
-        dd($cursor);
-
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
@@ -142,7 +136,8 @@ class VoteController extends Controller
 
         $collection = $this->container->mongo->votes_awards;
 
-        $cursor = $collection->find();
+        $collection = $this->container->mongo->votes_awards;
+        $cursor = $collection->find(['type' => 1]);
 
         $maxRandom = 0;
 
