@@ -226,7 +226,7 @@ class UserController extends Controller
                 {
                     array_push($group, str_replace('pmanage_', 'Manager ', $k));
                 }
-                else if (strpos($k, 'gradeperso') !== false)
+                else if (strcasecmp($k, 'gradeperso') == 0)
                 {
                     array_push($group, 'Legend');
                 }
