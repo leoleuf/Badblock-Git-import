@@ -230,6 +230,10 @@ class UserController extends Controller
                 {
                     array_push($group, 'Legend');
                 }
+                else if (strcasecmp($k, 'default') == 0)
+                {
+                    array_push($group, 'Joueur');
+                }
                 else
                 {
                     array_push($group, $k);
