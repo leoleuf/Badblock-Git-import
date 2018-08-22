@@ -76,6 +76,8 @@ class VoteController extends Controller
             return $response->write("User not found !")->withStatus(404);
         }
 
+        $dev = getenv('APP_DEBUG') == 1;
+
         $displayPseudo = $_POST['pseudo'];
         $pseudo = htmlspecialchars($displayPseudo);
         $type = htmlspecialchars($_POST['type']);
@@ -97,7 +99,8 @@ class VoteController extends Controller
             return $response->write("User not found !")->withStatus(404);
         }
 
-        if (getenv('APP_DEBUG') == 0){
+        if (!$dev)
+        {
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
@@ -111,12 +114,20 @@ class VoteController extends Controller
        // return $response->write("test")->withStatus(200);
         
         $API_id = 198; // ID de votre serveur
-        $API_ip = $_SERVER['HTTP_CF_CONNECTING_IP']; // Adresse IP de l'utilisateur
+        if ($dev)
+        {
+            $API_ip = $_SERVER['REMOTE_ADDR'];
+        }
+        else
+        {
+            $API_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
 
         // voted?
-        if (getenv('APP_DEBUG') != 1 && $API_call != 1)
+        if (!$dev && $API_call != 1)
         {
             return $response->write("Vote invalid")->withStatus(405);
         }
@@ -125,7 +136,9 @@ class VoteController extends Controller
 
         $collection = $this->container->mongo->votes_awards;
 
-        $cursor = $collection->find();
+        $cursor = $collection->find(
+            ['type' => 1]
+        );
         $maxRandom = 0;
 
         $things = array();
@@ -161,7 +174,7 @@ class VoteController extends Controller
             "queue" => $queue,
             "date" => date("d/m/Y H:i:s"),
             "timestamp" => time(),
-            "user_agent" => htmlspecialchars($_SERVER['HTTP_USER_AGENT'])
+            "user_agent" => htmlspecialchars($API_ip)
         ];
 
 
