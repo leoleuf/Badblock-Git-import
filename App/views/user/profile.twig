@@ -24,10 +24,21 @@
                     <div class="search-container">
                         <div class="games-info">
                             <h6 class="cover-heading">Amis</h6>
-                            {% for f,friend in joueur.friends %}
-                                <img src="https://cdn.badblock.fr/head/{{ friend }}/32.png" title="Tête de {{ friend }}" alt="Tête de {{ friend }}" />
-                                &nbsp;&nbsp;
-                            {% endfor %}
+                            <table>
+                                <tr>
+                                    {% set friendises = 0 %}
+                                    {% for f,friend in joueur.friends %}
+                                        {% set friendises = friendises + 1 %}
+                                        {% if (friendises > 12) %}
+                                            </tr><tr>
+                                            {% set friendises = 0 %}
+                                        {% endif %}
+                                        <td style="width: 32px; padding: 0 3px;">
+                                            <img src="https://cdn.badblock.fr/head/{{ friend }}/32.png" title="Tête de {{ friend }}" alt="Tête de {{ friend }}" />
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
