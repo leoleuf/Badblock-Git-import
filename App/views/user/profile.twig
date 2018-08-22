@@ -4,7 +4,29 @@
 {% set active_page = "stats" %}
 {% set sub_title = ''|trans~user.username %}
 {% set keywords = 'profil, ' ~ joueur.realName %}
-{% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
+
+{% set foo = date().timestamp %}
+
+{% if joueur.punish.ban == true and joueur.punish.banEnd > foo %}
+    {% set ban = true %}
+{% else %}
+    {% set ban = false %}
+{% endif %}
+
+{% if joueur.punish.mute == true and joueur.punish.muteEnd > foo %}
+    {% set mute = true %}
+{% else %}
+    {% set mute = false %}
+{% endif %}
+
+{% if ban == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.banReason ~ ". Fin de la suspension le " ~ joueur.punish.banEnd|date("m/d/Y") ~ "."  %}
+{% elseif mute == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est bâillonné pour " ~ joueur.punish.muteReason ~ ". Fin du bâillonnement le " ~ joueur.punish.muteEnd|date("m/d/Y") ~ "."  %}
+{% else %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
+{% endif %}
+
 {% block cover %}
     <!------Cover------>
     <div class="cover-back">
@@ -62,13 +84,13 @@
     <!------Cover fin------>
 {% endblock %}
 {% block content %}
-    {% if joueur.punish.mute == true %}
-        <div class="alert alert-warning" role="alert">
+    {% if mute == true %}
+        <div class="alert alert-error" role="alert">
             Cet Utilisateur est baillonné jusqu'au {{ joueur.punish.muteEnd | date("m/d/Y") }}
         </div>
     {% endif %}
-    {% if joueur.punish.ban == true %}
-        <div class="alert alert-warning" role="alert">
+    {% if ban == true %}
+        <div class="alert alert-error" role="alert">
             Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd | date("m/d/Y") }}
         </div>
     {% endif %}
