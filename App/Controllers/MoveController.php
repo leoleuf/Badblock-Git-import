@@ -55,7 +55,7 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        if ($this->ladder->playerOnline($username)->connected == true)
+        if ($this->ladder->playerOnline($username)->connected != true)
         {
             $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
             //redirect to last page
@@ -77,10 +77,10 @@ class MoveController extends Controller
         $pass = $this->generateRandomString(8);
         // Set code in Redis cache
         $this->session->set('move:1', $username);
-        $this->redis->set('move:1:'.$username,$pass);
+        $this->redis->set('move:1:'.$username,strtoupper($pass));
         $this->redis->expire('move:1:'.$username, 3600);
         $this->ladder->playerSendMessage($username," ");
-        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
+        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". strtoupper($pass));
         $this->ladder->playerSendMessage($username," ");
 
         return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2]);
@@ -90,11 +90,14 @@ class MoveController extends Controller
     {
         // On vérifie si le code de linkage est le bon
         if (strtoupper($_POST["code"]) != $this->redis->get('move:1:' . $this->session->get('move:1'))) {
+
             return $this->render($response, 'user.move.step2', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
-
         $this->redis->set('move:1:' . $this->session->get('move:1'), true);
         $this->redis->expire('move:1:' . $this->session->get('move:1'), 3600);
+
+        return $this->render($response, 'user.move.step3', ["width" => 50,"step" => 3]);
+
     }
 
     public function process_step3(RequestInterface $request, ResponseInterface $response)
@@ -129,9 +132,9 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        $pass = $this->generateRandomString(8);
+        $pass = strtoupper($this->generateRandomString(8));
         $this->session->set('move:2', $username);
-        $this->redis->set('move:2:'.$username, $pass);
+        $this->redis->set('move:2:'.$username, strtoupper($pass));
         $this->redis->expire('move:2:'.$username, 3600);
         $this->ladder->playerSendMessage($username," ");
         $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
@@ -144,13 +147,17 @@ class MoveController extends Controller
     {
         $username = $this->session->get('move:2');
         // On vérifie si le code de linkage est le bon
-        if (strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username))
-        {
-            return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
+        if(strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username)){
+          return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
 
         $this->redis->set('move:2:' . $username, true);
         $this->redis->expire('move:2:' . $username, 3600);
+
+        if (!$this->change($this->session->get('move:2'), $this->session->get('move:1'))){
+
+        }
+
     }
 
     // Fonction qui gère les form en POST
@@ -184,7 +191,7 @@ class MoveController extends Controller
             return false;
         }
 
-        if (!$this->redis->get('move:1:'. $old) && !$this->redis->get('move:2:'. $new))
+        if (!$this->redis->get('move:1:'. $new) && !$this->redis->get('move:2:'. $old))
         {
             return false;
         }
