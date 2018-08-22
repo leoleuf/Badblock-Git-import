@@ -124,7 +124,7 @@
                                         </div>
                                         <div class="product-price product-promotion">{{ key[6]|number_format(0, '', ' ') }}</div>
                                         <div class="promotion">{{ prod['price']|number_format(0, '', ' ') }}</div>
-                                        <div class="promotion-reduction">{{ key[5|number_format(0, '', ' ') }}%</div>
+                                        <div class="promotion-reduction">{{ key[5]|number_format(0, '', ' ') }}%</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
@@ -142,7 +142,7 @@
                                         <div class="product-image">
                                             <img src="{{ prod['image'] }}" title="Produit {{ prod['name'] }}" title="Produit {{ prod['name'] }}">
                                         </div>
-                                        <div class="product-price">{{ prod['price'|number_format(0, '', ' ') }}</div>
+                                        <div class="product-price">{{ prod['price']|number_format(0, '', ' ') }}</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
