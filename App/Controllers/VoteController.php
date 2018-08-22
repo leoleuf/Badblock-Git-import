@@ -156,9 +156,7 @@ class VoteController extends Controller
         $rand = rand(1, $maxRandom);
 
         $winItem = null;
-
-        var_dump()
-
+        *
         foreach ($things as $key => $value)
         {
             if ($rand > $key && $winItem != null)
