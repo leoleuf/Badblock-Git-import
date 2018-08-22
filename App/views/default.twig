@@ -261,13 +261,13 @@
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
 </script>
-<script src="/dist/js/app.min.js"></script>
+<script defer src="/dist/js/app.min.js"></script>
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
 {% endif %}
 
 
-<script>
+<script defer>
     $(".dropdown-link").on('mouseover', function () {
         $(".dropdown-dropdown").show()
         $(".dropdown-dropdown").css('display', 'flex')
@@ -279,7 +279,7 @@
     });
 </script>
 
-    <script>
+    <script defer>
         $( document ).ready(function() {
             setTimeout(function () {
                 var vidDefer = document.getElementsByTagName('iframe');
