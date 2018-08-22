@@ -123,11 +123,17 @@ class VoteController extends Controller
             $API_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
 
-        $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
-        $API_call = @file_get_contents($API_url);
+        //$API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
+        //$API_call = @file_get_contents($API_url);
+
+        $SERVER_ID = 93; // ID du serveur
+        $KEY = 'ePwvH8vBvcVUthJettUe9SW0fKsZ0V'; // Api key du serveur
+
+        $SM = "http://serveur-minecraft.net/api/$SERVER_ID/$KEY/?ip=$API_ip";
+        $result = @file_get_contents($SM);
 
         // voted?
-        if (!$dev && $API_call != 1)
+        if (!$dev && $result !== true)
         {
             return $response->write("Vote invalid")->withStatus(405);
         }
@@ -162,7 +168,7 @@ class VoteController extends Controller
         }
 
         $collection = $this->container->mongo->votes_logs;
-        $command = str_replace("%player%", $pseudo, $winItem['command']);
+        $command = str_replace("%player%", $pseudo, $winItem->command);
 
         // award log
         $insert = [
@@ -178,7 +184,7 @@ class VoteController extends Controller
 
         $collection->insertOne($insert);
 
-        $awardName = $winItem['name'];
+        $awardName = $winItem->name;
 
         $product = array(
             'queue' => $queue,
