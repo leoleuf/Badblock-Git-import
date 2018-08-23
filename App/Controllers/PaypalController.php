@@ -13,7 +13,7 @@ class PaypalController extends Controller
         //Search offer in array
         $id = $id['id'];
 
-        var_dump($id);
+        var_dump($this->container->config['paiement'][0]);
         exit;
         return;
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
