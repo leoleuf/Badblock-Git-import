@@ -149,11 +149,13 @@ class PaypalController extends Controller
                     "points" => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
                 ];
 
+                $this->container->session->set('points', $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']);
                 $this->container->mongo->fund_list->insertOne($data);
 
             }else{
                 $money['points'] = $money['points'] + $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'];
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
             }
 
 

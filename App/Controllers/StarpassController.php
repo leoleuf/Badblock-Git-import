@@ -118,9 +118,11 @@ class StarpassController extends Controller
                 "points" => $virtual_currency
             ];
             $this->container->mongo->fund_list->insertOne($data);
+            $this->container->session->set('points', $virtual_currency);
         }else{
             $money['points'] = $money['points'] + $virtual_currency;
             $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            $this->container->session->set('points', $money['points']);
         }
 
         if ($this->container->session->exist('user')){
