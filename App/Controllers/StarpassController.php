@@ -100,6 +100,9 @@ class StarpassController extends Controller
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
         $insertedId = $this->container->mongo->funds_logs->insertOne($dat);
         //$insertedId = $insertedId->insertedId;
+        var_dump($insertedId);
+        exit;
+        return;
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
         $data = [
@@ -131,7 +134,7 @@ class StarpassController extends Controller
             $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
             $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-            $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+            $mailContent = str_replace("(lien)", "test", $mailContent);
             $mail = new \App\Mail(true);
             $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
         }
