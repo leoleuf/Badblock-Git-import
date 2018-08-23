@@ -56,7 +56,7 @@ class PaypalController extends Controller
             $paypal = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
             return $this->redirect($response, $paypal);
         }else{
-            dd($resp);
+            var_dump($resp);
             exit;
             return;
         }
