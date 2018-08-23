@@ -114,16 +114,16 @@ class ShopController extends Controller
             $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, -1);
         }elseif ($product->mode == "hybrid"){
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
-                if ($k == "legend"){
+                if ($k == "gradeperso"){
                     $check = true;
                 }else{
                     $check = false;
                 }
             }
 
-            if ($player['permissions']['group'] == "legend" || $check == true){
+            if ($player['permissions']['group'] == "gradeperso" || $check == true){
 
-                $time = $player['permissions']['alternateGroups']['legend'] + ($product['duration'] * 1000);
+                $time = $player['permissions']['alternateGroups']['gradeperso'] + ($product['duration'] * 1000);
                 $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
 
             }else{
@@ -233,7 +233,6 @@ class ShopController extends Controller
            'faction'
        ];
 
-
        if ($duration != -1){
            $duration = (60*60*24*31);
        }else{
@@ -251,6 +250,11 @@ class ShopController extends Controller
                $p->command = "pex user %player% group add " . $grade;
            }
            $this->sendRabbitData($p);
+       }
+
+       if ($grade == "legend")
+       {
+           $grade = "gradeperso";
        }
 
        //Ladder rankup
