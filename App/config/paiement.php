@@ -13,7 +13,8 @@ return [
                 3 => ["points" => 7800, "price" => 20.0],
                 4 => ["points" => 11400, "price" => 30.0],
                 5 => ["points" => 18300, "price" => 50.0],
-                6 => ["points" => 34200, "price" => 100.0]
+                6 => ["points" => 34200, "price" => 100.0],
+                6 => ["points" => 85000, "price" => 250.0]
             ]
         ],
         [
