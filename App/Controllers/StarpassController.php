@@ -34,7 +34,9 @@ class StarpassController extends Controller
         return $this->render($response, 'shop.recharge.starpass-process', ['documentId' => $offer['document_id']]);
     }
 
-    public function process(RequestInterface $request, ResponseInterface $response){
+    public function process(RequestInterface $request, ResponseInterface $response)
+    {
+
         $datas = $_GET['DATAS'];
         $PAYS = $_GET['PAYS'];
         $PALIER = $_GET['PALIER'];
@@ -44,7 +46,24 @@ class StarpassController extends Controller
             '1' => 50
         ];
 
+        $offer = null;
+        foreach ($this->container->config['paiement'][1]['offer'] as $key => $value)
+        {
+            if ($value['document_id'] == $ID_PALIER)
+            {
+                $offer = $value;
+                break;
+            }
+        }
+
+        if ($offer == null)
+        {
+            return $this->redirect($response, '/shop/recharge/recharge-cancel');
+        }
+
         $virtual_currency = $obj[$ID_PALIER];
+
+
         $name = $this->container->session->get('recharge-username');
         // Sauvegarde dans mongoDB
         $date = date('Y-m-d H:i:s');
