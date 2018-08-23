@@ -45,7 +45,7 @@ class Mail
 	{
 		try {
 			$this->Mail->addAddress($adress); // Adresse
-			$this->Mail->isHTML(false);                                  // Set email format to HTML
+			$this->Mail->isHTML(true);                                  // Set email format to HTML
 			$this->Mail->Subject = $subject;
 			$this->Mail->Body    = $body;
 			//if(!is_null($attachment)) $this->Mail->addAttachment($attachment);

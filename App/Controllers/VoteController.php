@@ -30,9 +30,9 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $mailContent = "Oui le Québec ne sera jamais un pays !";
+        $mailContent = "Allo ici la terre";
         $mail = new \App\Mail(true);
-        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Le Québec ne sera jamais un pays", $mailContent);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - La lune", $mailContent);
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
