@@ -76,7 +76,6 @@ public class PreLoginListener implements Listener {
 		if (LadderBungee.getInstance().bungeePlayerList.size() >= BadBlockBungeeOthers.getInstance().getMaxPlayers()) {
 			if (bye >= 15) {
 				BadBlockBungeeOthers.getInstance().setDone(true);
-				BadBlockBungeeOthers.getInstance().deleteDNS();
 			} else {
 				bye++;
 			}
