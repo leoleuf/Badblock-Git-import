@@ -14,7 +14,7 @@ class PaypalController extends Controller
         $id = $id['id'];
 
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
-            return $this->redirect($response, '/shop/recharge/test-1');
+            return $this->redirect($response, '/shop/recharge/cancel#5');
         }else{
             $offer = $this->container->config['paiement'][0]['offer'][$id];
         }
@@ -56,16 +56,14 @@ class PaypalController extends Controller
             $link = 'https://www.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
             return $this->redirect($response, $link);
         }else{
-            var_dump($paypal->errors);
-            exit;
-            return;
+            return $this->redirect($response, '/shop/recharge/cancel#6');
         }
     }
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
         if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
-            return $this->redirect($response, '/shop/recharge/fail-1-test');
+            return $this->redirect($response, '/shop/recharge/cancel#4');
         }
 
         $produit = array();
@@ -81,7 +79,7 @@ class PaypalController extends Controller
 
 
         if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
-            return $this->redirect($response, '/shop/recharge/fail-2');
+            return $this->redirect($response, '/shop/recharge/cancel#3');
         }
 
         $paypal = new Paypal();
@@ -92,10 +90,10 @@ class PaypalController extends Controller
         if($resp){
             if($resp['CHECKOUTSTATUS'] !== 'PaymentActionCompleted'){
                 // Détéction du payement
-                return $this->redirect($response, '/shop/recharge/cancel');
+                return $this->redirect($response, '/shop/recharge/cancel#1');
             }
         }else{
-            return $this->redirect($response, '/shop/recharge/cancel');
+            return $this->redirect($response, '/shop/recharge/cancel#2');
         }
 
         $params = array(
