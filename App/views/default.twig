@@ -69,7 +69,8 @@
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="{{ forum_url }}/login" title="Connexion"><i
+                        <!-- href="{{ forum_url }}/login"!-->
+                        <a class="button button-primary" onclick="login()" title="Connexion"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <span class="margin"></span>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/" title="Inscription"><i
@@ -234,6 +235,37 @@
         </div>
     </div>
 </div>
+
+<div class="remodal modal-remodal" data-remodal-id="login">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1>Connexion</h1>
+    <form action="https://forum.badblock.fr/connexion/login" method="post">
+        <label for="playerName">
+            Pseudonyme :
+        </label>
+        <input type="text" name="login" value="" />
+        <br />
+        <label for="password">
+            Mot de passe :
+        </label>
+        <input type="password" name="password" value="" />
+        <br />
+        <input type="submit" value="Valider" />
+        <input type="hidden" name="remember" value="1" />
+        <input type="hidden" name="cookie_check" value="1" />
+        <input type="hidden" name="_xfToken" value="" />
+        <input type="hidden" name="redirect" value="https://{{ app.request.server.get("HTTP_HOST") }}{{ app.request.server.get("REQUEST_URI") }}" />
+    </form>
+</div>
+
+<script async defer>
+
+    function login() {
+        $('[data-remodal-id=login]').remodal().open();
+    }
+
+</script>
+
 <!-- Fin footer -->
 
 <script type="application/ld+json">
