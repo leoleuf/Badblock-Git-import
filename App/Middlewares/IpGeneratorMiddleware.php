@@ -101,6 +101,7 @@ class IpGeneratorMiddleware
         {
             if (!$this->container->session->exist('eula'))
             {
+
                 $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
 
                 if ($ips == null)

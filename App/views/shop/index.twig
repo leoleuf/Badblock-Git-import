@@ -3,7 +3,9 @@
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 {% block cover %}
-    test : {{ eula }}
+    {% if eula != true %}
+        test
+    {% endif %}
     <!-- Recharger -->
     <div class="recharge-back">
         <div class="recharge-container">
