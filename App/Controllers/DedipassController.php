@@ -152,11 +152,11 @@ class DedipassController extends Controller
                 $user = $this->xenforo->getUser($name);
                 if ($user != null) {
                     $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
-                    $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
+                    $mailContent = str_replace("(username)", $name, $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
+                    $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
                 }
 
                 echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques.";
