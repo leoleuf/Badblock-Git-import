@@ -1,3 +1,6 @@
+{% if eula != true %}
+    {% redirect "/" %}
+{% endif %}
 {% extends "default.twig" %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
