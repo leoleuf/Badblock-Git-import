@@ -68,6 +68,8 @@ class StarpassController extends Controller
         $codes=$code1.$code2.$code3.$code4.$code5;
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
 
+        $ccodes = $codes;
+
         $ident=urlencode($offer['private_id'].';;'.$offer['document_id']);
         $codes=urlencode($codes);
         $datas=urlencode($datas);
@@ -98,22 +100,31 @@ class StarpassController extends Controller
         $date = date('Y-m-d H:i:s');
 
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
-        $insertedId = $this->container->mongo->funds_logs->insertOne($dat);
-        $insertedId = $insertedId->getInsertedId()->__ToString();
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
+
         $data = [
             'uniqueId' => $user['uniqueId'],
             'date' => date('Y-m-d H:i:s'),
-            'price' => $palier,
+            'price' => $offer['price'],
             'gateway' => 'starpass',
             'pseudo' => $name,
             'points' => $virtual_currency,
-            'transaction_id' => $datas
+            'transaction_id' => $ccodes
         ];
 
-        $this->container->mongo->funds->insertOne($data);
+        $insertedId = $this->container->mongo->funds->insertOne($data);
+        $insertedId = $insertedId->getInsertedId()->__ToString();
+
+        $resp = [
+            'name' => $name,
+            'date' => date("Y-m-d H:i:s")
+        ];
+
+        $this->container->mongo->funds_logs->insertOne($resp);
+
         $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+        
         if ($money == null){
             $data = [
                 "uniqueId" => $user['uniqueId'],

@@ -47,8 +47,7 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $insertedId = $this->container->mongo->funds_logs->insertOne($dedipass);
-                $insertedId = $insertedId->getInsertedId()->__ToString();
+                $this->container->mongo->funds_logs->insertOne($dedipass);
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -61,7 +60,9 @@ class DedipassController extends Controller
                     'transaction_id' => $code
                 ];
 
-                $this->container->mongo->funds->insertOne($data);
+                $insertedId = $this->container->mongo->funds->insertOne($data);
+                $insertedId = $insertedId->getInsertedId()->__ToString();
+
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
                 if ($money == null){
                     $data = [
@@ -122,8 +123,7 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $insertedId = $this->container->mongo->funds_logs->insertOne($dedipass);
-                $insertedId = $insertedId->getInsertedId()->__ToString();
+                $this->container->mongo->funds_logs->insertOne($dedipass);
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -136,7 +136,9 @@ class DedipassController extends Controller
                     'transaction_id' => $code
                 ];
 
-                $this->container->mongo->funds->insertOne($data);
+                $insertedId = $this->container->mongo->funds->insertOne($data);
+                $insertedId = $insertedId->getInsertedId()->__ToString();
+
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
                 if ($money == null){
                     $data = [
