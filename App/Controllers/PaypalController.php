@@ -13,6 +13,7 @@ class PaypalController extends Controller
         //Search offer in array
         $id = $id['id'];
 
+        dd($id);
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
             return $this->redirect($response, '/shop/recharge');
         }else{
