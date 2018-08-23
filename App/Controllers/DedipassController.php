@@ -29,6 +29,9 @@ class DedipassController extends Controller
               .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
           $dedipass = json_decode($dedipass);
 
+          var_dump($dedipass);
+          exit;
+          return;
           if($dedipass->status == 'success') { 
               $virtual_currency = $dedipass->virtual_currency;
               // Détection d'une quelconque action
