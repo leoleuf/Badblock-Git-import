@@ -2,10 +2,8 @@
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
-{% if eula != true %}
-    {% redirect "https://badblock.fr/" %}
-{% endif %}
 {% block cover %}
+    test : {{ eula }}
     <!-- Recharger -->
     <div class="recharge-back">
         <div class="recharge-container">
