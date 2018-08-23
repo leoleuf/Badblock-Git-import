@@ -64,6 +64,13 @@ class PaypalController extends Controller
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
+        var_dump(empty($_GET['offer']));
+        var_dump(empty($_GET['Prix']));
+        var_dump(empty($_GET['Offer']));
+        var_dump(empty($_GET['Offer_desc']));
+        var_dump(empty($_GET['Currency']));
+        var_dump(empty($_GET['QTY']));
+
         if(empty($_GET['offer']) || empty($_GET['Prix']) || empty($_GET['Offer']) || empty($_GET['Offer_desc']) || empty($_GET['Currency']) || empty($_GET['QTY'])){
             return $this->redirect($response, '/shop/recharge/fail-1-test');
         }
