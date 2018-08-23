@@ -13,11 +13,7 @@ class PaypalController extends Controller
         //Search offer in array
         $id = $id['id'];
 
-        var_dump($this->container->config['paiement'][0]['offer'][$id]);
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
-            var_dump("test");
-            exit;
-            return;
             return $this->redirect($response, '/shop/recharge');
         }else{
             $offer = $this->container->config['paiement'][0]['offer'][$id];
