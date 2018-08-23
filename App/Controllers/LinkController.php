@@ -42,7 +42,7 @@ class LinkController extends Controller
                             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                         }else{
                             //Création du code random
-                            $pass = $this->generateRandomString();
+                            $pass = strtoupper($this->generateRandomString());
 
                             //Set code in Redis cache
                             $this->redis->set('link:'.$username,$pass);
