@@ -125,7 +125,7 @@ class IpGeneratorMiddleware
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
         $twig->addGlobal('points', $shoppoints);
-        $twig->addGlobal('currentUrl', "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
         // If the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {
