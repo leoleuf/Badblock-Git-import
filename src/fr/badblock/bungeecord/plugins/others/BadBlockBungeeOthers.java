@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,8 +16,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
-import com.cloudflare.api.CloudflareAccess;
-import com.cloudflare.api.requests.dns.DNSDeleteRecord;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,6 +30,7 @@ import fr.badblock.bungeecord.plugins.others.commands.BORemoveInsultCommand;
 import fr.badblock.bungeecord.plugins.others.commands.BTPS;
 import fr.badblock.bungeecord.plugins.others.commands.CLCommand;
 import fr.badblock.bungeecord.plugins.others.commands.CheatCommand;
+import fr.badblock.bungeecord.plugins.others.commands.CodeCommand;
 import fr.badblock.bungeecord.plugins.others.commands.DoneCommand;
 import fr.badblock.bungeecord.plugins.others.commands.FKickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.GNickCommand;
@@ -42,12 +40,12 @@ import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RNickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ReportLagCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ThxCommand;
+import fr.badblock.bungeecord.plugins.others.commands.VoteCommand;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
 import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.discord.TemmieWebhook;
-import fr.badblock.bungeecord.plugins.others.exceptions.UnableToDeleteDNSException;
 import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PluginMessageListener;
@@ -85,7 +83,6 @@ import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
 import net.md_5.bungee.config.YamlConfiguration;
 import net.md_5.bungee.connection.InitialHandler;
-import net.sf.json.JSONObject;
 
 @Getter
 @Setter
@@ -115,12 +112,11 @@ public class BadBlockBungeeOthers extends Plugin {
 	private RedisService redisConnector;
 	private boolean finished;
 	private long openTime;
-	private long time = 3600 * 48;
+	private long time = 3600 * 5;
 	private long maxPlayers = 1;
 	private int marginDelete;
 	public static final Type bungeeDataType = new TypeToken<HashMap<String, Bungee>>() {
 	}.getType();
-	private CloudflareAccess access;
 
 	private TemmieWebhook temmie = new TemmieWebhook(
 			"https://discordapp.com/api/webhooks/351074484196868096/EQE2yz9EIgBROBTnkze8ese7jANormT8K8d6SmR1_KRSYrY4UU2f5clb400UJxeSwmHL");
@@ -175,8 +171,6 @@ public class BadBlockBungeeOthers extends Plugin {
 						}
 					}
 				});
-		access = new CloudflareAccess(configuration.getString("cloudflare.email"),
-				configuration.getString("cloudflare.key"));
 		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"),
 				configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
 				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
@@ -203,6 +197,8 @@ public class BadBlockBungeeOthers extends Plugin {
 		pluginManager.registerCommand(this, new FKickCommand());
 		pluginManager.registerCommand(this, new BOReloadCommand());
 		pluginManager.registerCommand(this, new BListCommand());
+		pluginManager.registerCommand(this, new VoteCommand());
+		pluginManager.registerCommand(this, new CodeCommand());
 		pluginManager.registerCommand(this, new ReportLagCommand());
 		pluginManager.registerCommand(this, new ModoCommand());
 		pluginManager.registerCommand(this, new RNickCommand());
@@ -218,13 +214,6 @@ public class BadBlockBungeeOthers extends Plugin {
 		pluginManager.registerCommand(this, new LinkCommand());
 		pluginManager.registerCommand(this, new BORemoveInsultCommand());
 		proxy.getPlayers().forEach(player -> Player.get(player));
-
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				deleteDNS();
-			}
-		});
 
 		filters.clear();
 		filters.add(new IHConnectedFilter());
@@ -514,7 +503,6 @@ public class BadBlockBungeeOthers extends Plugin {
 	@Override
 	public void onDisable() {
 		filters.forEach(filter -> filter.reset());
-		deleteDNS();
 		if (timerTask != null)
 			timerTask.cancel();
 		if (timerTask2 != null)
@@ -531,75 +519,6 @@ public class BadBlockBungeeOthers extends Plugin {
 					.addSyncRequest(new Request(
 							"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'",
 							RequestType.SETTER));
-	}
-
-	public void deleteDNS() {
-		if (deleted)
-			return;
-		if (access != null) {
-			@SuppressWarnings("deprecation")
-			String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
-					+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-			BadblockDatabase.getInstance().addSyncRequest(
-					new Request("SELECT recordId FROM absorbances WHERE ip = '" + a + "'", RequestType.GETTER) {
-						@Override
-						public void done(ResultSet resultSet) {
-							try {
-								if (resultSet.next()) {
-									int recordId = resultSet.getInt("recordId");
-									if (recordId != 0) {
-										System.out.println("Deleting record ID " + recordId + " / " + access);
-										DNSDeleteRecord dns = new DNSDeleteRecord(access, "badblock.fr", recordId);
-										try {
-											JSONObject json = dns.executeBasic();
-											StringBuilder stringBuilder = new StringBuilder();
-											for (StackTraceElement element : Thread.currentThread().getStackTrace())
-												stringBuilder.append(element.toString() + System.lineSeparator());
-											if (json != null) {
-												BadblockDatabase.getInstance().addSyncRequest(new Request(
-														"INSERT INTO history(ip, action, log, date) VALUES('" + a
-																+ "', 'Deleted record in cloudflare (DeleteDNS1 / ID "
-																+ recordId + ")', '" + json.toString()
-																+ System.lineSeparator() + stringBuilder.toString()
-																+ "', '"
-																+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS")
-																		.format(new Date())
-																+ "')",
-														RequestType.SETTER));
-												BadblockDatabase.getInstance().addSyncRequest(new Request(
-														"UPDATE absorbances SET recordId = '0' WHERE ip = '" + a + "'",
-														RequestType.SETTER));
-											} else {
-												BadblockDatabase.getInstance().addSyncRequest(new Request(
-														"INSERT INTO history(ip, action, log, date) VALUES('" + a
-																+ "', 'Fail: Deleted record in cloudflare (DeleteDNS1 / ID "
-																+ recordId + ")', 'null" + System.lineSeparator()
-																+ stringBuilder.toString() + "', '"
-																+ new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SS")
-																		.format(new Date())
-																+ "')",
-														RequestType.SETTER));
-											}
-											System.out.println(json.toString());
-											deleted = true;
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-										try {
-											dns.close();
-										} catch (IOException e) {
-											e.printStackTrace();
-										}
-									}
-								}
-							} catch (SQLException e) {
-								e.printStackTrace();
-							}
-						}
-					});
-		} else {
-			throw new UnableToDeleteDNSException();
-		}
 	}
 
 	public String getMessage(List<String> list) {
