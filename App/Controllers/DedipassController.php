@@ -47,7 +47,8 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $this->container->mongo->funds_logs->insertOne($dedipass);
+                $insertedId = $this->container->mongo->funds_logs->insertOne($dedipass);
+                $insertedId = $insertedId->getInsertedId()->__ToString();
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -74,11 +75,12 @@ class DedipassController extends Controller
                 }
 
                 if ($this->container->session->exist('user')){
-                    $mailContent = file_get_contents("../mail-achat.html");
-                    $mailContent = str_replace("(username)", $name, $mailContent);
+                    $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+                    $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                    $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
                 }
 
                 return $this->redirect($response, '/shop/recharge/success');
@@ -121,7 +123,7 @@ class DedipassController extends Controller
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
                 $insertedId = $this->container->mongo->funds_logs->insertOne($dedipass);
-                $insertedId = $insertedId->insertedId;
+                $insertedId = $insertedId->getInsertedId()->__ToString();
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -142,16 +144,13 @@ class DedipassController extends Controller
                         "points" => $dedipass->virtual_currency
                     ];
                     $this->container->mongo->fund_list->insertOne($data);
-
-                    $this->container->session->set('points', $dedipass->virtual_currency);
                 }else{
                     $money['points'] = $money['points'] + $dedipass->virtual_currency;
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
-
-                    $this->container->session->set('points', $money['points']);
                 }
 
-                if ($this->container->session->exist('user')){
+                $user = $this->xenforo->getUser($name);
+                if ($user != null) {
                     $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);

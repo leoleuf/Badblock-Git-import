@@ -99,9 +99,7 @@ class StarpassController extends Controller
 
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
         $insertedId = $this->container->mongo->funds_logs->insertOne($dat);
-        var_dump($insertedId->getInsertedId()->__ToString());
-        exit;
-        return;
+        $insertedId = $insertedId->getInsertedId()->__ToString();
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
         $data = [
