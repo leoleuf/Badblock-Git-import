@@ -48,6 +48,7 @@ $app->group('/shop', function (){
     // starppass part
     $this->get('/recharge/starpass', \App\Controllers\StarpassController::class . ':index')->setName('shop.recharge.starpass');
     $this->get('/recharge/starpass-process', \App\Controllers\StarpassController::class . ':process')->setName('shop.recharge.starpass-process');
+    $this->get('/recharge/starpass/{id}', \App\Controllers\StarpassController::class . ':showDocument')->setName('shop.recharge.starpass-showdocument');
 
     $this->get('/recharge/cancel', \App\Controllers\CreditController::class . ':paymentCancel')->setName('shop.recharge.paypal.cancel');
 	$this->get('/recharge/success', \App\Controllers\CreditController::class . ':paymentSuccess')->setName('shop.recharge.paypal.success');
