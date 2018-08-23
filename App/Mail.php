@@ -53,9 +53,6 @@ class Mail
 			$this->Mail->send();
 			return true;
 		} catch (Exception $e) {
-		    var_dump($e);
-		    exit;
-		    return;
 			return false;
 		}
 	}
