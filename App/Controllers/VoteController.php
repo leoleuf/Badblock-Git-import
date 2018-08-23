@@ -31,8 +31,8 @@ class VoteController extends Controller
         }
 
         try {
-            $mailContent = fopen("/public/dist/mails/mail-achat.html", "r");
-            $mailContent = fread($mailContent, filesize("/public/dist/mails/mail-achat.html"));
+            $mailContent = fopen("../../public/dist/mails/mail-achat.html", "r");
+            $mailContent = fread($mailContent, filesize("../../public/dist/mails/mail-achat.html"));
             $mailContent = str_replace("(username)", $player, $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
         }
