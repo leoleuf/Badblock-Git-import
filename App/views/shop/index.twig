@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="product-price product-promotion">{{ key[6]|number_format(0, '', ' ') }}</div>
                                         <div class="promotion">{{ prod['price']|number_format(0, '', ' ') }}</div>
-                                        <div class="promotion-reduction">{{ key[5]|number_format(0, '', ' ') }}%</div>
+                                        <div class="promotion-reduction">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}%</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
