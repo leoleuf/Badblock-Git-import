@@ -120,9 +120,9 @@ class PaypalController extends Controller
         $resp = $paypal->request('DoExpressCheckoutPayment', $params);
 
         if($resp){
-            if (!isset($resp['CHECKOUTSTATUS']) || $resp['CHECKOUTSTATUS'] !== 'PaymentActionCompleted')
+            if (!isset($resp['ACK']) || $resp['ACK'] !== 'Success')
             {
-                echo 'BUG, impossible de checkout: ';
+                echo '1 (BUG), impossible de checkout: ';
                 var_dump($resp);
                 exit;
                 return;
