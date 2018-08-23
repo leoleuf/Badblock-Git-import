@@ -22,7 +22,7 @@ class StarpassController extends Controller
     public function process(RequestInterface $request, ResponseInterface $response){
         $datas = $_GET['DATAS'];
         $PAYS = $_GET['PAYS'];
-        $datas = $_GET['PALIER'];
+        $PALIER = $_GET['PALIER'];
         $ID_PALIER = $_GET['ID_PALIER'];
         $TYPE = $_GET['TYPE'];
         return $this->redirect($response, '/shop/recharge/success');
