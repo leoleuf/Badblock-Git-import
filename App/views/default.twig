@@ -254,7 +254,7 @@
         <input type="hidden" name="remember" value="1" />
         <input type="hidden" name="cookie_check" value="1" />
         <input type="hidden" name="_xfToken" value="" />
-        <input type="hidden" name="redirect" value="https://{{ app.request.server.get("HTTP_HOST") }}{{ app.request.server.get("REQUEST_URI") }}" />
+        <input type="hidden" name="redirect" value="{{ app.request.uri }}" />
     </form>
 </div>
 
