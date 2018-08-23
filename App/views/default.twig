@@ -97,12 +97,13 @@
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
-
-        <a href="/shop"
-           class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique">
-            <i class="shopping_basket-colored-icon colored-icon"></i>
-            Boutique
-        </a>
+        {% if eula == true %}
+            <a href="/shop"
+               class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique">
+                <i class="shopping_basket-colored-icon colored-icon"></i>
+                Boutique
+            </a>
+        {% endif %}
         <a href="{{ path_for('stats.home') }}"
            class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques">
             <i class="stats-colored-icon colored-icon"></i>
