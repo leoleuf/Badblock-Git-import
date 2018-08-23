@@ -132,6 +132,9 @@ class StarpassController extends Controller
             $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
             $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+            var_dump($mailContent);
+            exit;
+            return;
             $mail = new \App\Mail(true);
             $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
         }
