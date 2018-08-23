@@ -277,7 +277,7 @@ class ShopController extends Controller
            'message' => json_encode($sanction)
        ];
        $msg = new AMQPMessage(json_encode($message));
-       $channel->basic_publish($msg, 'ladder');
+       $channel->basic_publish($msg, 'shopLinker.ladder');
 
 
        $channel->close();
