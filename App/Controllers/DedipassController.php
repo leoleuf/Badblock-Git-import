@@ -60,10 +60,10 @@ class DedipassController extends Controller
                   $this->container->mongo->fund_list->insertOne($data);
               }else{
                   $money['points'] = $money['points'] + $dedipass->virtual_currency;
-                  var_dump($money['points']);
+                  $qrs = $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                  var_dump($qrs);
                   exit;
                   return;
-                  $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
               }
 
               if ($this->container->session->exist('user')){
