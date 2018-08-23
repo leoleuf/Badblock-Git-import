@@ -25,44 +25,49 @@ class StarpassController extends Controller
         $PALIER = $_GET['PALIER'];
         $ID_PALIER = $_GET['ID_PALIER'];
         $TYPE = $_GET['TYPE'];
-        $obj = (object) array('1' => '50');
+        $obj = [
+            '1' => 50
+        ];
 
-        $virtual_currency = $obj("1");
+        $virtual_currency = $obj[$ID_PALIER];
+        $name = $this->container->session->get('recharge-username');
         // Sauvegarde dans mongoDB
-        $starpass->date = date('Y-m-d H:i:s');
-        $this->container->mongo->funds_logs->insertOne($starpass);
+        $date = date('Y-m-d H:i:s');
 
-                $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
-                $data = [
-                    'uniqueId' => $user['uniqueId'],
-                    'date' => date('Y-m-d H:i:s'),
-                    'price' => $PALIER,
-                    'gateway' => 'starpass',
-                    'pseudo' => $name,
-                    'points' => $virtual_currency,
-                    //'transaction_id' => $code
-                ];
+        $dat = [$date,$datas, $PAYS, $PALIER, $ID_PALIER,$TYPE];
+        $this->container->mongo->funds_logs->insertOne($dat);
 
-                $this->container->mongo->funds->insertOne($data);
-                $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-                if ($money == null){
-                    $data = [
-                        "uniqueId" => $user['uniqueId'],
-                        "points" => $dedipass->virtual_currency
-                    ];
-                    $this->container->mongo->fund_list->insertOne($data);
-                }else{
-                    $money['points'] = $money['points'] + $dedipass->virtual_currency;
-                    $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
-                }
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
+        $data = [
+            'uniqueId' => $user['uniqueId'],
+            'date' => date('Y-m-d H:i:s'),
+            'price' => $PALIER,
+            'gateway' => 'starpass',
+            'pseudo' => $name,
+            'points' => $virtual_currency,
+            'transaction_id' => $datas
+        ];
 
-                if ($this->container->session->exist('user')){
-                    $mailContent = file_get_contents("../mail-achat.html");
-                    $mailContent = str_replace("(username)", $name, $mailContent);
-                    $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-                    $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
-                }
+        $this->container->mongo->funds->insertOne($data);
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+        if ($money == null){
+            $data = [
+                "uniqueId" => $user['uniqueId'],
+                "points" => $virtual_currency
+            ];
+            $this->container->mongo->fund_list->insertOne($data);
+        }else{
+            $money['points'] = $money['points'] + $virtual_currency;
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+        }
+
+        if ($this->container->session->exist('user')){
+            $mailContent = file_get_contents("../mail-achat.html");
+            $mailContent = str_replace("(username)", $name, $mailContent);
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            $mail = new \App\Mail(true);
+            $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+        }
 
         return $this->redirect($response, '/shop/recharge/success');
     }
