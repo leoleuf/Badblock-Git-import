@@ -34,26 +34,22 @@ class StarpassController extends Controller
         return $this->render($response, 'shop.recharge.starpass-process', ['documentId' => $offer['document_id']]);
     }
 
-    public function process(RequestInterface $request, ResponseInterface $response)
+    public function process(RequestInterface $request, ResponseInterface $response, $id)
     {
+        $documentId = intval($id);
 
-        $datas = $_GET['DATAS'];
-        $PAYS = $_GET['PAYS'];
-        $PALIER = $_GET['PALIER'];
-        $ID_PALIER = $_GET['ID_PALIER'];
-        $TYPE = $_GET['TYPE'];
-        $obj = [
-            '1' => 50
-        ];
-
-        $offer = null;
-        foreach ($this->container->config['paiement'][1]['offer'] as $key => $value)
+        if (!$this->container->session->exist('recharge-username'))
         {
-            if ($value['document_id'] == $ID_PALIER)
-            {
-                $offer = $value;
-                break;
-            }
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        if (!isset($this->container->config['paiement'][1]['offer'][$documentId]))
+        {
+            return $this->redirect($response, '/shop/recharge');
+        }
+        else
+        {
+            $offer = $this->container->config['paiement'][1]['offer'][$documentId];
         }
 
         if ($offer == null)
@@ -61,21 +57,53 @@ class StarpassController extends Controller
             return $this->redirect($response, '/shop/recharge/recharge-cancel');
         }
 
-        $virtual_currency = $obj[$ID_PALIER];
+        // moche, merci starpass
+        $ident=$idp=$ids=$idd=$codes=$code1=$code2=$code3=$code4=$code5=$datas='';
 
+        if(isset($_POST['code1'])){$code1 = $_POST['code1'];}
+        if(isset($_POST['code2'])) $code2 = ";".$_POST['code2'];
+        if(isset($_POST['code3'])) $code3 = ";".$_POST['code3'];
+        if(isset($_POST['code4'])) $code4 = ";".$_POST['code4'];
+        if(isset($_POST['code5'])) $code5 = ";".$_POST['code5'];
+        $codes=$code1.$code2.$code3.$code4.$code5;
+        if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
+
+        $ident=urlencode($offer['document_id'].';;'.$offer['private_id']);
+        $codes=urlencode($codes);
+        $datas=urlencode($datas);
+
+        $get_f=@file( "http://script.starpass.fr/check_php.php?ident=$ident&codes=$codes&DATAS=$datas" );
+
+        if(!$get_f)
+        {
+            exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
+        }
+        $tab = explode("|",$get_f[0]);
+
+        $pays = $tab[2];
+        $palier = urldecode($tab[3]);
+        $id_palier = urldecode($tab[4]);
+        $type = urldecode($tab[5]);
+
+        if( substr($tab[0],0,3) != "OUI" )
+        {
+            return $this->redirect($response, '/shop/recharge/recharge-cancel');
+        }
+
+        $virtual_currency = $offer['points'];
 
         $name = $this->container->session->get('recharge-username');
         // Sauvegarde dans mongoDB
         $date = date('Y-m-d H:i:s');
 
-        $dat = [$date,$datas, $PAYS, $PALIER, $ID_PALIER,$TYPE];
+        $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
         $this->container->mongo->funds_logs->insertOne($dat);
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
         $data = [
             'uniqueId' => $user['uniqueId'],
             'date' => date('Y-m-d H:i:s'),
-            'price' => $PALIER,
+            'price' => $palier,
             'gateway' => 'starpass',
             'pseudo' => $name,
             'points' => $virtual_currency,
