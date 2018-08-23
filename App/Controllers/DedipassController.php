@@ -27,6 +27,9 @@ class DedipassController extends Controller
         else {
           $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLIC_KEY")
               .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
+          var_dump(getenv("DEDIPASS_PUBLIC_KEY"));
+          exit;
+          return;
           if($dedipass->status == 'success') { 
               $virtual_currency = $dedipass->virtual_currency;
               // Détection d'une quelconque action
