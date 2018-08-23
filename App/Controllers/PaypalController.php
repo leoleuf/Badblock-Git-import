@@ -53,10 +53,10 @@ class PaypalController extends Controller
 
         if($resp){
             // Remplacer www.paypal.com par www.sandbox.paypal.com pour utiliser la sandbox
-            $paypal = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
-            return $this->redirect($response, $paypal);
+            $link = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
+            return $this->redirect($response, $link);
         }else{
-            var_dump($resp);
+            var_dump($paypal->errors);
             exit;
             return;
         }
