@@ -17,16 +17,22 @@ namespace App;
  **/
 
 class Paypal {
-
     // Remplisser les variables avec vos identifiants api paypal
 
-    private $user = 'mathieu.richard31-facilitator_api1.orange.fr';
-    private $pwd = '4C39FSAG9BF7L63S';
-    private $signature = "AFcWxV21C7fd0v3bYYYRCpSSRl31AsNrH04zwtanbQeahRFvsUlq7qdf";
-    private $endpoint = "https://api-3t.paypal.com/nvp";
+    private $user;
+    private $pwd ;
+    private $signature;
+    private $endpoint;
     public $errors = array();
 
-    public function __construct($user = false, $pwd = false, $signature = false, $prod = false){
+
+    public function __construct(){
+
+        $user = getenv('PAYPAL_USER');
+        $pwd = getenv('PAYPAL_PASSWORD');
+        $signature = getenv('PAYPAL_SIGNATURE');
+        $endpoint = getenv('PAYPAL_ENDPOINT');
+
 
         if($user){
 
@@ -41,6 +47,11 @@ class Paypal {
         if($signature){
 
             $this->signature = $signature;
+
+        }
+        if($endpoint){
+
+            $this->endpoint = $endpoint;
 
         }
     }
@@ -69,9 +80,7 @@ class Paypal {
         $response = curl_exec($curl);
         $responseArray = array();
         parse_str($response, $responseArray);
-        var_dump($responseArray);
-        exit;
-        return false;
+
 
         if(curl_errno($curl)){
             $this->errors = curl_error($curl);
@@ -85,12 +94,7 @@ class Paypal {
                 curl_close($curl);
                 return false;
             }
-
         }
-
     }
-
-
-
 }
 ?>
