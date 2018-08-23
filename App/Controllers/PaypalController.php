@@ -64,7 +64,7 @@ class PaypalController extends Controller
     public function process(RequestInterface $request, ResponseInterface $response){
 
         if(empty($_GET['offer']) || empty($_GET['Prix']) || empty($_GET['Offer']) || empty($_GET['Offer_desc']) || empty($_GET['Currency']) || empty($_GET['QTY'])){
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/fail-1');
         }
 
         $produit = array();
@@ -80,7 +80,7 @@ class PaypalController extends Controller
 
 
         if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/fail-2');
         }
 
         $paypal = new Paypal();
@@ -91,10 +91,10 @@ class PaypalController extends Controller
         if($resp){
             if($resp['CHECKOUTSTATUS'] == 'PaymentActionCompleted'){
                 // Détéction du payement
-                return $this->redirect($response, '/shop/recharge');
+                return $this->redirect($response, '/shop/recharge/fail-3');
             }
         }else{
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/fail-4');
         }
 
         $params = array(
