@@ -32,7 +32,7 @@ class LinkController extends Controller
             if ($user != null){
                 //On vérifie si son compte est pas déjà link
                 if (!in_array(17,$this->session->getProfile('user')['secondary_group_ids'],true)){
-                    if ($this->ladder->playerOnline($username)['connected'] == true){
+                    if ($this->ladder->playerOnline($username)->connected == true){
                         //vérification si le joueur est pas au login
                         $server = $this->ladder->playerGetConnectedServer($username)->server;
                         $data = explode("_",$server);
