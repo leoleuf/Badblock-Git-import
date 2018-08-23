@@ -174,7 +174,7 @@ class PaypalController extends Controller
                 $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
             }
 
-            return $this->redirect($response, '/shop/recharge/sucess');
+            return $this->redirect($response, '/shop/recharge/success');
         }else{
             return $this->redirect($response, '/shop/recharge');
         }
