@@ -146,7 +146,8 @@ class PaypalController extends Controller
                 'transaction_id' => $resp['PAYMENTINFO_0_TRANSACTIONID']
             ];
 
-            $this->container->mongo->funds->insertOne($data);
+            $insertedId = $this->container->mongo->funds->insertOne($data);
+            $insertedId = $insertedId->insertedId;
 
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
 
@@ -167,11 +168,12 @@ class PaypalController extends Controller
 
 
             if ($this->container->session->exist('user')){
-                $mailContent = file_get_contents("../mail-achat.html");
+                $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
                 $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
                 $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                 $mail = new \App\Mail(true);
-                $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
             }
 
             return $this->redirect($response, '/shop/recharge/success');
