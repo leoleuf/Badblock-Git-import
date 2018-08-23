@@ -124,7 +124,7 @@ class StarpassController extends Controller
         $this->container->mongo->funds_logs->insertOne($resp);
 
         $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-        
+
         if ($money == null){
             $data = [
                 "uniqueId" => $user['uniqueId'],
