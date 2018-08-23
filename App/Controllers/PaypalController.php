@@ -88,6 +88,9 @@ class PaypalController extends Controller
         ));
 
         if($resp){
+            var_dump($resp['CHECKOUTSTATUS']);
+            exit;
+            return;
             if($resp['CHECKOUTSTATUS'] !== 'PaymentActionCompleted'){
                 // Détéction du payement
                 return $this->redirect($response, '/shop/recharge/cancel#1');
