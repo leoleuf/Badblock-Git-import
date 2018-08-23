@@ -29,7 +29,7 @@ class Mail
 		$this->Mail->SMTPAuth = true;                               	
 		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
 		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');
-        $mail->Mail->SMTPSecure = 'tls';
+        $this->Mail->SMTPSecure = 'tls';
         $this->Mail->Port = getenv('PHP_MAILER_PORT');
 		$this->Mail->setFrom(getenv('PHP_MAILER_FROM_EMAIL'), getenv('PHP_MAILER_FROM_NAME'));
 
@@ -48,7 +48,7 @@ class Mail
 			$this->Mail->isHTML(true);                                  // Set email format to HTML
 			$this->Mail->Subject = $subject;
 			$this->Mail->Body    = $body;
-			//if(!is_null($attachment)) $this->Mail->addAttachment($attachment);
+			if(!is_null($attachment)) $this->Mail->addAttachment($attachment);
 			$this->Mail->send();
 			return true;
 		} catch (Exception $e) {
