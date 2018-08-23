@@ -246,11 +246,14 @@ class UserController extends Controller
             //Search friends
             $friends = $this->container->mysql_casier->fetchRowMany('SELECT friends from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
             $friends_valid = [];
-            foreach (json_decode($friends[0]['friends']) as $k => $friend){
-                if ($friend->status == "OK"){
-                    array_push($friends_valid, $k);
+            if(count($friends) > 1){
+                foreach (json_decode($friends[0]['friends']) as $k => $friend){
+                    if ($friend->status == "OK"){
+                        array_push($friends_valid, $k);
+                    }
                 }
             }
+
 
             $user['friends'] = $friends_valid;
 
