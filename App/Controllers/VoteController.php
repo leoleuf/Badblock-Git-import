@@ -30,13 +30,6 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
-        $mailContent = str_replace("(username)", $player, $mailContent);
-        $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-
-        $mail = new \App\Mail(true);
-        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Paiement effectué", $mailContent);
-
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
     }
