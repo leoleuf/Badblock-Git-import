@@ -122,21 +122,15 @@
                             <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;" title="Produit {{ prod['name'] }}">
                                 {% if prod['promotion'] %}
                                     <div class="product-item product-item-promotion">
-                                        <div class="promotion-coef">
-                                            {{ prod['promotion_coef'] }}%
-                                        </div>
                                         <div class="product-header">
                                             <h5 class="product-title">{{ prod['name'] }}</h5>
                                         </div>
                                         <div class="product-image">
-                                            <img src="{{ prod['image'] }}">
+                                            <img src="{{ prod['image'] }}" title="Produit {{ prod['name'] }}" title="Produit {{ prod['name'] }}">
                                         </div>
-                                        <div class="product-price product-promotion"><span class="promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</span>
-                                            <div class="product-old-price">
-                                                <span class="promotion-reduction">{{ prod['price']|number_format(0, '', ' ') }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="promotion-reduction"></div>
+                                        <div class="product-price product-promotion">{{ key[6]|number_format(0, '', ' ') }}</div>
+                                        <div class="promotion">{{ prod['price']|number_format(0, '', ' ') }}</div>
+                                        <div class="promotion-reduction">{{ key[5]|number_format(0, '', ' ') }}%</div>
                                         <div class="product-footer">
                                             <div class="product-action">
                                                 <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
