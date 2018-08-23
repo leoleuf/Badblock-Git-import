@@ -19,6 +19,21 @@ class StarpassController extends Controller
         $this->render($response,'shop.recharge.starpass', []);
     }
 
+    public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
+        $documentId = intval($documentId);
+
+        if (!isset($this->container->config['paiement'][1]['offer'][$documentId]))
+        {
+            return $this->redirect($response, '/shop/recharge');
+        }
+        else
+        {
+            $offer = $this->container->config['paiement'][1]['offer'][$documentId];
+        }
+
+        return $this->render($response, 'shop.recharge.starpass-process', ['documentId' => $offer['document_id']]);
+    }
+
     public function process(RequestInterface $request, ResponseInterface $response){
         $datas = $_GET['DATAS'];
         $PAYS = $_GET['PAYS'];

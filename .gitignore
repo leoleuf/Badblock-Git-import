@@ -72,4 +72,6 @@ vendor/*
 
 public/servergraphs.dat
 
+App/config/paiement.php
+
 package-lock.json
