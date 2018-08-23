@@ -69,7 +69,6 @@ class StarpassController extends Controller
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
 
         $ident=urlencode($offer['private_id'].';;'.$offer['document_id']);
-        var_dump($ident);
         $codes=urlencode($codes);
         $datas=urlencode($datas);
 
@@ -100,7 +99,7 @@ class StarpassController extends Controller
 
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
         $insertedId = $this->container->mongo->funds_logs->insertOne($dat);
-        $insertedId = $insertedId->insertedId;
+        //$insertedId = $insertedId->insertedId;
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
         $data = [
