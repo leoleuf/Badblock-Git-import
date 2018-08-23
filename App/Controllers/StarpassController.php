@@ -69,6 +69,7 @@ class StarpassController extends Controller
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
 
         $ident=urlencode($offer['document_id'].';;'.$offer['private_id']);
+        var_dump($ident);
         $codes=urlencode($codes);
         $datas=urlencode($datas);
 
