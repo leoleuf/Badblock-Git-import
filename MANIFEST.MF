@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Class-Path: ../lib/cloudflare-api-1.1.jar ../lib/BadBlockCommon.jar ../lib/rabbitmq-client.jar ../lib/json-lib.jar
+Class-Path: ../lib/cloudflare-api-1.1.jar ../lib/BadBlockCommon.jar ../lib/rabbitmq-client.jar ../lib/json-lib.jar ../lib/jedis-2.0.0.jar
 
