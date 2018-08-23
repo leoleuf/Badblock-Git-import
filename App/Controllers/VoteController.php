@@ -33,6 +33,9 @@ class VoteController extends Controller
         $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
         $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
         $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+        echo($mailContent);
+        exit;
+        return;
         $mail = new \App\Mail(true);
         $mail->sendMail("xmalware2@gmail.com", "BadBlock - Invitation à venir au Québec", $mailContent);
 
