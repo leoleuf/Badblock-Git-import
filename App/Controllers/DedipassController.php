@@ -27,7 +27,7 @@ class DedipassController extends Controller
         else { 
           $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLICKEY").'&private_key='.getenv("DEDIPASS_PRIVATEKEY").'&code=' . $code);
 
-            dd('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLICKEY").'&private_key='.getenv("DEDIPASS_PRIVATEKEY").'&code=' . $code);
+            var_dump('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLICKEY").'&private_key='.getenv("DEDIPASS_PRIVATEKEY").'&code=' . $code);
             exit;
             return;
             $dedipass = json_decode($dedipass);
