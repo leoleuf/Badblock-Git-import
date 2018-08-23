@@ -30,7 +30,7 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $mailContent = "Allo ici la terre";
+        $mailContent = "Allo ici la test";
         $mail = new \App\Mail(true);
         $mail->sendMail("xmalware2@gmail.com", "BadBlock - La lune", $mailContent);
 
