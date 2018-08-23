@@ -34,14 +34,6 @@ class Controller{
         return $response->withStatus(302)->withHeader('Location', $location);
     }
 
-    public function redirect303(ResponseInterface $response, $location){
-        return $response->withStatus(303)->withHeader('Location', $location);
-    }
-
-    public function redirect301(ResponseInterface $response, $location){
-        return $response->withStatus(301)->withHeader('Location', $location);
-    }
-
 	/**
 	 * Helper for render function
 	 * Please give file name without extension

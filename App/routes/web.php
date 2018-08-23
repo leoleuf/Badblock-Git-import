@@ -43,6 +43,7 @@ $app->group('/shop', function (){
     // Dedipass part
     $this->get('/recharge/dedipass', \App\Controllers\DedipassController::class . ':index')->setName('shop.recharge.dedipass');
     $this->post('/recharge/dedipass-process', \App\Controllers\DedipassController::class . ':process')->setName('shop.recharge.dedipass.process');
+    $this->post('/recharge/dedipass-process-ig', \App\Controllers\DedipassController::class . ':processig')->setName('shop.recharge.dedipass.processig');
 
     // starppass part
     $this->get('/recharge/starpass', \App\Controllers\StarpassController::class . ':index')->setName('shop.recharge.starpass');
