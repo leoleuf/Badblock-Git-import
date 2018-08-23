@@ -98,7 +98,7 @@ class StarpassController extends Controller
         $date = date('Y-m-d H:i:s');
 
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
-        $insertedId = $this->container->mongo->funds_logs->insert($dat);
+        $insertedId = $this->container->mongo->funds_logs->insertOne($dat);
         var_dump($insertedId);
         exit;
         return;
