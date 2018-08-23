@@ -123,8 +123,6 @@ class IpGeneratorMiddleware
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
-        var_dump($eula);
-        exit;
         $twig->addGlobal('points', $shoppoints);
 
         // If the key doesn't exist in cache
