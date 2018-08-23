@@ -14,7 +14,7 @@ class PaypalController extends Controller
         $id = $id['id'];
 
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/test-1');
         }else{
             $offer = $this->container->config['paiement'][0]['offer'][$id];
         }
@@ -53,10 +53,10 @@ class PaypalController extends Controller
 
         if($resp){
             // Remplacer www.paypal.com par www.sandbox.paypal.com pour utiliser la sandbox
-            $paypal = 'https://www.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
+            $paypal = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
             return $this->redirect($response, $paypal);
         }else{
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/test-2');
         }
     }
 
