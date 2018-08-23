@@ -3,6 +3,7 @@
 namespace App;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
@@ -22,12 +23,14 @@ class Mail
 	 */
 	function __construct($container) {
 		$this->Mail = new PHPMailer();
+		$this->Mail->isSMTP();
 		$this->Mail->SMTPDebug = 2;  
 		$this->Mail->Host = getenv("PHP_MAILER_HOST"); 					
 		$this->Mail->SMTPAuth = true;                               	
 		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
-		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');     
-		$this->Mail->Port = getenv('PHP_MAILER_PORT'); 
+		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');
+        $mail->Mail->SMTPSecure = 'tls';
+        $this->Mail->Port = getenv('PHP_MAILER_PORT');
 		$this->Mail->setFrom(getenv('PHP_MAILER_FROM_EMAIL'), getenv('PHP_MAILER_FROM_NAME'));
 
     }
@@ -42,13 +45,16 @@ class Mail
 	{
 		try {
 			$this->Mail->addAddress($adress); // Adresse
-			$this->Mail->isHTML(true);                                  // Set email format to HTML
+			$this->Mail->isHTML(false);                                  // Set email format to HTML
 			$this->Mail->Subject = $subject;
 			$this->Mail->Body    = $body;
-			if(!is_null($attachment)) $this->Mail->addAttachment($attachment);
+			//if(!is_null($attachment)) $this->Mail->addAttachment($attachment);
 			$this->Mail->send();
 			return true;
 		} catch (Exception $e) {
+		    var_dump($e);
+		    exit;
+		    return;
 			return false;
 		}
 	}
