@@ -120,7 +120,8 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $this->container->mongo->funds_logs->insertOne($dedipass);
+                $insertedId = $this->container->mongo->funds_logs->insertOne($dedipass);
+                $insertedId = $insertedId->insertedId;
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -151,11 +152,12 @@ class DedipassController extends Controller
                 }
 
                 if ($this->container->session->exist('user')){
-                    $mailContent = file_get_contents("../mail-achat.html");
-                    $mailContent = str_replace("(username)", $name, $mailContent);
+                    $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+                    $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                    $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
                 }
 
                 echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques.";
