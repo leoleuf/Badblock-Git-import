@@ -122,10 +122,7 @@ class PaypalController extends Controller
         if($resp){
             if (!isset($resp['ACK']) || $resp['ACK'] !== 'Success')
             {
-                echo '1 (BUG), impossible de checkout: ';
-                var_dump($resp);
-                exit;
-                return;
+                return $this->redirect($response, '/shop/recharge/cancel#9');
             }
 
             // Detection d'une quelconque action
@@ -133,7 +130,7 @@ class PaypalController extends Controller
             $resp['name'] = strtolower($this->container->session->get('recharge-username'));
             $resp["date"] = date('Y-m-d H:i:s');
             $insertedId = $this->container->mongo->funds_logs->insertOne($resp);
-            $insertedId = $insertedId->insertedId;
+            $insertedId = $insertedId->getInsertedId()->__ToString();
 
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
 
