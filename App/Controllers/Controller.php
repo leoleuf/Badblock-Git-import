@@ -30,9 +30,17 @@ class Controller{
 		$this->teamspeak = $container['teamspeak'];
 	}
 
-	public function redirect(ResponseInterface $response, $location){
-		return $response->withStatus(302)->withHeader('Location', $location);
-	}
+    public function redirect(ResponseInterface $response, $location){
+        return $response->withStatus(302)->withHeader('Location', $location);
+    }
+
+    public function redirect303(ResponseInterface $response, $location){
+        return $response->withStatus(303)->withHeader('Location', $location);
+    }
+
+    public function redirect301(ResponseInterface $response, $location){
+        return $response->withStatus(301)->withHeader('Location', $location);
+    }
 
 	/**
 	 * Helper for render function

@@ -81,11 +81,11 @@ class DedipassController extends Controller
                   $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
               }
               
-              return $this->redirect($response, '/shop/recharge/success');
+              return $this->redirect303($response, '/shop/recharge/success');
 
           } 
           else {
-              return $this->redirect($response, '/shop/recharge/cancel');
+              return $this->redirect301($response, '/shop/recharge/cancel');
 
           } 
         }     
