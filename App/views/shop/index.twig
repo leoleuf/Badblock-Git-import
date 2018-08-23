@@ -3,11 +3,6 @@
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 {% block cover %}
-    {% if eula != true %}
-         <div class="nothing">
-            <h5 style="text-align: center;">Cette page n'existe pas ou n'existe plus.</h5>
-         </div>
-    {% elseif %}
         <!-- Recharger -->
         <div class="recharge-back">
             <div class="recharge-container">
@@ -178,7 +173,6 @@
                     </div>
                 {% endif %}
             {% endfor %}
-        {% endif %}
 
         <div id="0" class="tabcontent" style="display: none;">
             <div class="panel-tr">
@@ -815,5 +809,7 @@
 
             }
         </script>
+    {% else %}
+        test
     {% endif %}
 {% endblock %}
