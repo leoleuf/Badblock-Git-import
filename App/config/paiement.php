@@ -7,7 +7,7 @@ return [
             'class' => "paypal",
             //EX 5.0
             'offer' => [
-                0 => ["points" => 1500, "price" => 5.0],
+                0 => ["points" => 300, "price" => 1.0],
                 1 => ["points" => 3000, "price" => 10.0],
                 2 => ["points" => 5400, "price" => 15.0],
                 3 => ["points" => 7800, "price" => 20.0],
