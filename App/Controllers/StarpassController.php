@@ -54,7 +54,7 @@ class StarpassController extends Controller
 
         if ($offer == null)
         {
-            return $this->redirect($response, '/shop/recharge/cancel-test');
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         // moche, merci starpass
@@ -78,6 +78,11 @@ class StarpassController extends Controller
         {
             exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
         }
+
+        var_dump($get_f);
+        exit;
+        return;
+
         $tab = explode("|",$get_f[0]);
 
         $pays = $tab[2];
