@@ -23,11 +23,21 @@ class DedipassController extends Controller
         $code = isset($_POST['code']) ? preg_replace('/[^a-zA-Z0-9]+/', '', $_POST['code']) : ''; 
         if( empty($code) ) { 
           echo 'Vous devez saisir un code'; 
-        } 
+        }
         else {
           $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key='.getenv("DEDIPASS_PUBLIC_KEY")
               .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
           $dedipass = json_decode($dedipass);
+
+          $name = "";
+          if (isset($_POST['internal_username']))
+          {
+              $name = $_POST['internal_username'];
+          }
+          else
+          {
+              $name = $this->container->session->get('recharge-username');
+          }
 
           if($dedipass->status == 'success') { 
               $virtual_currency = $dedipass->virtual_currency;
@@ -35,17 +45,17 @@ class DedipassController extends Controller
               // Sauvegarde dans mongoDB
               unset($dedipass->key);
               unset($dedipass->public_key);
-              $dedipass->name = strtolower($this->container->session->get('recharge-username'));
+              $dedipass->name = strtolower($name);
               $dedipass->date = date('Y-m-d H:i:s');
               $this->container->mongo->funds_logs->insertOne($dedipass);
 
-              $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
+              $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
               $data = [
                   'uniqueId' => $user['uniqueId'],
                   'date' => date('Y-m-d H:i:s'),
                   'price' => $dedipass->payout,
                   'gateway' => 'dedipass',
-                  'pseudo' => $this->container->session->get('recharge-username'),
+                  'pseudo' => $name,
                   'points' => $dedipass->virtual_currency,
                   'transaction_id' => $code
               ];
@@ -65,7 +75,7 @@ class DedipassController extends Controller
 
               if ($this->container->session->exist('user')){
                   $mailContent = file_get_contents("../mail-achat.html");
-                  $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
+                  $mailContent = str_replace("(username)", $name, $mailContent);
                   $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                   $mail = new \App\Mail(true);
                   $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
