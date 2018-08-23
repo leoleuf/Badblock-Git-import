@@ -30,9 +30,9 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $mailContent = "Allo ici la test";
+        $mailContent = "Invite moi au Québec";
         $mail = new \App\Mail(true);
-        $mail->sendMail("xmalware2@gmail.com", "BadBlock - La test", $mailContent);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Invitation à venir au Québec", $mailContent);
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
