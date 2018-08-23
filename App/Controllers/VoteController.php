@@ -32,7 +32,7 @@ class VoteController extends Controller
 
         $mailContent = "Allo ici la test";
         $mail = new \App\Mail(true);
-        $mail->sendMail("xmalware2@gmail.com", "BadBlock - La lune", $mailContent);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - La test", $mailContent);
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
