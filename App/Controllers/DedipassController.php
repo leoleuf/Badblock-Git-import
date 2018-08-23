@@ -154,10 +154,10 @@ class DedipassController extends Controller
                     $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
                 }
 
-                echo "Code valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques.";
+                echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques.";
             }
             else {
-                echo "Code entré invalide.";
+                echo "§cCode entré invalide.";
             }
         }
     }
