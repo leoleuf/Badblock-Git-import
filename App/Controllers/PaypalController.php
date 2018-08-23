@@ -88,11 +88,8 @@ class PaypalController extends Controller
         ));
 
         if($resp){
-            var_dump($resp['CHECKOUTSTATUS']);
-            exit;
-            return;
-            if($resp['CHECKOUTSTATUS'] !== 'PaymentActionCompleted'){
-                // Détéction du payement
+            if($resp['CHECKOUTSTATUS'] !== 'PaymentActionNotInitiated'){
+                // oups?
                 return $this->redirect($response, '/shop/recharge/cancel#1');
             }
         }else{
@@ -123,6 +120,14 @@ class PaypalController extends Controller
         $resp = $paypal->request('DoExpressCheckoutPayment', $params);
 
         if($resp){
+            if (!isset($resp['CHECKOUTSTATUS']) || $resp['CHECKOUTSTATUS'] !== 'PaymentActionCompleted')
+            {
+                echo 'BUG, impossible de checkout: ';
+                var_dump($resp);
+                exit;
+                return;
+            }
+
             // Detection d'une quelconque action
             // Sauvegarde dans mongoDB
             $resp['name'] = strtolower($this->container->session->get('recharge-username'));
