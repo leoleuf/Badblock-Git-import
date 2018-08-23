@@ -30,7 +30,7 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        $mailContent = file_get_contents("../mail-achat.html");
+        $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
         $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
         $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
         $mail = new \App\Mail(true);
