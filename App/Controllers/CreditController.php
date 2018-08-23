@@ -22,7 +22,7 @@ class CreditController extends Controller
         $this->render($response, 'shop.recharge.recharge-cancel');
     }
 
-    public function paymentSuccess(RequestInterface $request, ResponseInterface $response){
+    public function paymentSuccess(RequestInterface $request, ResponseInterface $response){:
         $this->render($response, 'shop.recharge.recharge-sucess');
     }
 
