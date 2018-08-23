@@ -202,7 +202,7 @@ class UserController extends Controller
         }
 	    $args["pseudo"] = strtolower($args["pseudo"]);
         //Check si la page est déjà en cache
-        if ($this->redis->exists('profssile:'.$args["pseudo"])){
+        if ($this->redis->exists('profile:'.$args["pseudo"])){
             $user = $this->redis->getJson('profile:'.$args["pseudo"]);
             return $this->render($response, 'user.profile', ['joueur' => $user]);
         }else{
@@ -216,8 +216,10 @@ class UserController extends Controller
                 $user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
             }
             if($user["punish"]["ban"]){
-                $user["punish"]["banEnd"] = round($user["punish"]["banEnd"] / 1000);
+                $user["punish"]["banEnd"] = date("m/d/Y à H:i:s", intval(round($user["punish"]["banEnd"] / 1000)));
             }
+
+
             $user['permissions']['alternateGroups'] = (array) $user['permissions']['alternateGroups'];
             //Replace stylé
             $group = [];
@@ -246,7 +248,8 @@ class UserController extends Controller
             //Search friends
             $friends = $this->container->mysql_casier->fetchRowMany('SELECT friends from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
             $friends_valid = [];
-            if(count($friends) > 1){
+
+            if(count((array) json_decode($friends[0]['friends'])) > 0){
                 foreach (json_decode($friends[0]['friends']) as $k => $friend){
                     if ($friend->status == "OK"){
                         array_push($friends_valid, $k);

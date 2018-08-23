@@ -84,14 +84,14 @@
     <!------Cover fin------>
 {% endblock %}
 {% block content %}
-    {% if mute == true %}
+    {% if joueur.punish.mute == true %}
         <div class="alert alert-error" role="alert">
-            Cet Utilisateur est baillonné jusqu'au {{ joueur.punish.muteEnd | date("m/d/Y à H:i:s") }} pour {{ joueur.punish.muteReason }}.
+            Cet Utilisateur est baillonné jusqu'au {{ joueur.punish.muteEnd }} pour {{ joueur.punish.muteReason }}.
         </div>
     {% endif %}
-    {% if ban == true %}
+    {% if joueur.punish.ban == true %}
         <div class="alert alert-error" role="alert">
-            Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd | date("m/d/Y à H:i:s") }} pour {{ joueur.punish.banReason }}.
+            Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd }} pour {{ joueur.punish.banReason }}.
         </div>
     {% endif %}
     <div class="profile-stats">
