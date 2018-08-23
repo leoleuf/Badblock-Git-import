@@ -82,35 +82,50 @@ class IpGeneratorMiddleware
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        if ($ip == "127.0.0.1"){
+        if (isset($_SERVER['CF_CONNECTING_IP']))
+        {
+            $ip = $_SERVER['CF_CONNECTING_IP'];
+        }
+
+        if ($ip == "127.0.0.1")
+        {
             $this->container->session->set('eula', true);
             $eula = true;
-        }elseif ($ip == "::1"){
+        }
+        else if ($ip == "::1")
+        {
             $this->container->session->set('eula', true);
             $eula = true;
-        }elseif ($this->container->session->exist('user')){
-            $eula = true;
-        }else{
-            if (!$this->container->session->exist('eula')) {
+        }
+        else 
+        {
+            if (!$this->container->session->exist('eula'))
+            {
                 $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
-                if ($ips == null){
+
+                if ($ips == null)
+                {
                     $eula = false;
-                }else{
+                }
+                else
+                {
                     $eula = true;
                 }
+
                 $this->container->session->set('eula', $eula);
-            }else{
+            }
+            else
+            {
                 $eula = $this->container->session->get('eula');
             }
         }
 
-        //ajout de l'EULA aux variables globales twig
+        // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
         $twig->addGlobal('points', $shoppoints);
 
-
-            //if the key doesn't exist in cache
+        // If the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {
             $result = [];
 

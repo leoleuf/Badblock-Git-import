@@ -2,7 +2,9 @@
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
-
+{% if eula != true %}
+    {% redirect "https://badblock.fr/" %}
+{% endif %}
 {% block cover %}
     <!-- Recharger -->
     <div class="recharge-back">
@@ -12,7 +14,7 @@
                     <div class="recharge-info">
                         <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
                         <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
-                        <img src="https://images.badblock.fr/i/paysafe.png" title="Paysafecard" alt="Paysafecard">
+                        <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
                         <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">

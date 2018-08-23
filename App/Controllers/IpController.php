@@ -8,17 +8,22 @@ use Psr\Http\Message\ResponseInterface;
 class IpController extends Controller
 {
 	public function getIp(RequestInterface $request, ResponseInterface $response)
-	{
-
+    {
 		$ip = $_SERVER['REMOTE_ADDR'];
-		//if the key doesn't exist in cache
+
+		if (isset($_SERVER['CF_CONNECTING_IP']))
+        {
+            $ip = $_SERVER['CF_CONNECTING_IP'];
+        }
+
+        // If the key doesn't exist in cache
 		if (!$this->container->session->exist('mcIp')) {
 			$result = [];
 
-			//Geo IP
-			//Get list of countries
+			// Geo IP
+			// Get list of countries
 
-			//open geoip file
+			// Open geoip file
 			$db6 = geoip_open("../App/config/GeoIPv6.dat", GEOIP_STANDARD);
 			$db4 = geoip_open("../App/config/geoip.dat", GEOIP_STANDARD);
 
@@ -35,22 +40,21 @@ class IpController extends Controller
 			geoip_close($db6);
 
 
-			//Check Pays
-			if (in_array($code, $this->euAllowed)) {
-
+			// Check Pays
+			if (in_array($code, $this->euAllowed))
+			{
 				$iptos = $this->euServerIp;
-
-			} elseif (in_array($code, $this->naAllowed)) {
-
+			}
+			elseif (in_array($code, $this->naAllowed))
+            {
 				$iptos = $this->naServerIp;
-
-			} else {
-
+			}
+			else
+			{
 				$iptos = $this->defaultServerIp;
-
 			}
 
-			//compile et envoie
+			// Compile et envoie
 			array_push($result, $iptos, $code, $pays);
 
             $this->container->session->set('mcIp', $result);
