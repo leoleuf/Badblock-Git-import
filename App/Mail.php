@@ -24,7 +24,7 @@ class Mail
 	function __construct($container) {
 		$this->Mail = new PHPMailer();
 		$this->Mail->isSMTP();
-		$this->Mail->SMTPDebug = 2;  
+		$this->Mail->SMTPDebug = 0;
 		$this->Mail->Host = getenv("PHP_MAILER_HOST"); 					
 		$this->Mail->SMTPAuth = true;                               	
 		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
