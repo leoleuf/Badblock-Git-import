@@ -79,6 +79,7 @@ class VoteController extends Controller
         $dev = getenv('APP_DEBUG') == 1;
 
         $displayPseudo = $_POST['pseudo'];
+
         $pseudo = htmlspecialchars($displayPseudo);
         $type = htmlspecialchars($_POST['type']);
 
@@ -121,6 +122,11 @@ class VoteController extends Controller
         else
         {
             $API_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
+        if (isset($_POST['internal_ip']))
+        {
+            $API_ip = strtolower($_POST['internal_ip']);
         }
 
         //$API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
