@@ -64,7 +64,7 @@ class PaypalController extends Controller
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
-        if(isset($_GET['offer']) || isset($_GET['Prix']) || isset($_GET['Offer']) || isset($_GET['Offer_desc']) || isset($_GET['Currency']) || isset($_GET['QTY'])){
+        if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
             return $this->redirect($response, '/shop/recharge/fail-1-test');
         }
 
