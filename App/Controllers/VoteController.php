@@ -31,7 +31,7 @@ class VoteController extends Controller
         }
 
         try {
-            $mailContent = file_get_contents("../../public/dist/mails/mail-achat.html");
+            $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
             $mailContent = str_replace("(username)", $player, $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
         }
