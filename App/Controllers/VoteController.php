@@ -35,7 +35,7 @@ class VoteController extends Controller
         $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
 
         $mail = new \App\Mail(true);
-        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Invitation à venir au Québec", $mailContent);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Paiement effectué", $mailContent);
 
         return $this->render($response, 'vote.index', ['top' => $top, 'player' => $player]);
 
