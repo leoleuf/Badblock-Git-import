@@ -121,7 +121,8 @@ class ShopController extends Controller
                 }
             }
 
-            if ($player['permissions']['group'] == "gradeperso" || $check == true){
+            if ($player['permissions']['group'] == "gradeperso")
+            {
 
                 $time = $player['permissions']['end'] + ($product['duration'] * 1000);
                 $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
