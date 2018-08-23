@@ -30,6 +30,7 @@ class Mail
 		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
 		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');
         $this->Mail->SMTPSecure = 'tls';
+        $this->Mail->CharSet = 'UTF-8';
         $this->Mail->Port = getenv('PHP_MAILER_PORT');
 		$this->Mail->setFrom(getenv('PHP_MAILER_FROM_EMAIL'), getenv('PHP_MAILER_FROM_NAME'));
 
