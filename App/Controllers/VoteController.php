@@ -30,20 +30,10 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        try {
-            $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
-            $mailContent = str_replace("(username)", $player, $mailContent);
-            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-        }
-        catch(Exception $e)
-        {
-            var_dump($e);
-            exit;
-            return;
-        }
-        var_dump($mailContent);
-        exit;
-        return;
+        $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+        $mailContent = str_replace("(username)", $player, $mailContent);
+        $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+
         $mail = new \App\Mail(true);
         $mail->sendMail("xmalware2@gmail.com", "BadBlock - Invitation à venir au Québec", $mailContent);
 
