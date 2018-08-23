@@ -32,8 +32,6 @@ class ShopController extends Controller
 
 
     function buy(RequestInterface $request, ResponseInterface $response, $argument){
-        return "";
-
         //Check if user is connected
         if (!$this->container->session->exist('user')){
             return $response->write("User not connected !")->withStatus(401);

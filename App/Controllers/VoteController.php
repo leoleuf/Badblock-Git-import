@@ -88,7 +88,7 @@ class VoteController extends Controller
         $types = array(
           1 => 'ptsboutique',
           2 => 'skyb',
-          3 => 'minigames',
+          3 => 'hub',
           4 => 'faction',
           5 => 'box'
         );
