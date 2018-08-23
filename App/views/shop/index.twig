@@ -4,7 +4,10 @@
 {% set title = 'shop.title'|trans %}
 {% block cover %}
     {% if eula != true %}
-        test
+         <div class="nothing">
+            <h5 style="text-align: center;">Cette page n'existe pas ou n'existe plus.</h5>
+         </div>
+    {% exit %}
     {% endif %}
     <!-- Recharger -->
     <div class="recharge-back">
