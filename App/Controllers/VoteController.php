@@ -294,7 +294,7 @@ class VoteController extends Controller
             $channel = $connection->channel();
 
             $shopQueue = $product['queue'];
-            $command = str_replace("%player%", $player, $product['command']);
+            $command = str_replace("%pseudo%", $player, $product['command']);
 
             $channel->exchange_declare('shopLinker.' . $shopQueue, 'fanout', false, false, false, false);
             $sanction = (object)[
