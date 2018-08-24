@@ -26,9 +26,11 @@ class LoginMiddleware
 		//en revanche si le cookie exsite mais une session est déjà ouverte, on ne fait rien
         if(!isset($_COOKIE['forum_logged_in'])){
             return $next($request, $response);
+        }elseif(!isset($_COOKIE['forum_logged_in']) && $this->container->session->exist('user')){
+            session_destroy();
+            return $next($request, $response);
         }else{
             if (isset($_COOKIE['forum_session']) && $_COOKIE['forum_logged_in'] == "1" && !$this->container->session->exist('user')) {
-
                 $data_session = $this->container->mysql_forum->fetchRow("SELECT * FROM xf_session WHERE session_id = '" . $_COOKIE['forum_session'] . "'");
 
                 if ($data_session == null){

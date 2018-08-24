@@ -97,7 +97,9 @@ $app->post('/move', \App\Controllers\MoveController::class . ':poststep')->setNa
 
 
 $app->get('/logout', function ($request, $response) {
+    setcookie("forum_session", "", time()-3600);
+    setcookie("forum_logged_in", "", time()-3600);
     session_destroy();
-    return $response->withRedirect('https://forum.badblock.fr/logout');
+    return $response->withRedirect('https://badblock.fr');
 })->setName('logout');
 
