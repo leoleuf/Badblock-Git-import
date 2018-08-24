@@ -29,15 +29,7 @@ class DedipassController extends Controller
                 .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
             $dedipass = json_decode($dedipass);
 
-            $name = "";
-            if (isset($_POST['internal_username']))
-            {
-                $name = $_POST['internal_username'];
-            }
-            else
-            {
-                $name = $this->container->session->get('recharge-username');
-            }
+            $name = $this->container->session->get('recharge-username');
 
             if($dedipass->status == 'success') {
                 $virtual_currency = $dedipass->virtual_currency;
