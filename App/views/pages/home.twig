@@ -9,21 +9,30 @@
             <div class="container">
             	<div class="animated bounceInLeft">
 	            	<div class="row">
-	                	<div class="eight columns">
-	                    	<h4 class="cover-heading">{{ 'home.cover.title'|trans }}</h4>
+	                	<div class="four columns">
+	                    	<h4 class="cover-heading">BadBlock</h4><h5 class="cover-heading">Serveur Minecraft Gratuit</h5>
 	                    	<div class="animated bounceInLeft">
 	                        <a class="button button-primary" href="{{ path_for('play') }}" title="Jouer à BadBlock"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
 	                    	</div>
 	                	</div>
 	                	<div class="two columns">
-	                		<button class="button-games" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
-		                    <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
-		                    <button class="button-games" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
+	                		<button class="button-games button-games-home" id="skyb"><span>SkyBlock</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
 	                	</div>
 	                	<div class="two columns">
-	                		<button class="button-games" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
-		                    <button class="button-games" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
-		                    <button class="button-games" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques Spaceballs"><span>SpaceBalls</span></button>
+		                    
+		                    <button class="button-games button-games-home" id="fb" ><span>Freebuild</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques Spaceballs"><span>SpaceBalls</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" id="box" ><span>PvPBox</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" id="faction"><span>Faction</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
 	                	</div>
 	                </div>
                 </div>

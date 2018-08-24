@@ -329,27 +329,38 @@ td.c-table__cell {
 
 
 #bedwars {
-    background-color: #42b3f4 !important;
-    width: 100%;
+    background-color: #e74c3c !important;
 }
 #tower {
-    background-color: #2ecc71 !important;
-    width: 100%;
+    background-color: #f1c40f !important;
 }
 #towerrun {
-    background-color: #2B2D42 !important;
-    width: 100%;
+    background-color: #ff6348 !important;
 }
 #rush {
-    background-color: #E19806 !important;
-    width: 100%;
+    background-color: #bdc3c7 !important;
 }
 #uhcspeed {
-    background-color: #7b4dcb !important;
-    width: 100%;
+    background-color: #34495e !important;
 }
 #spaceballs {
-    background-color: #C64F4F !important;
+    background-color: #e67e22 !important;
+}
+#skyb {
+    background-color: #1abc9c !important;
+}
+#fb {
+    background-color: #2ecc71 !important;
+}
+#box {
+    background-color: #3498db !important;
+}
+#faction {
+    background-color: #9b59b6 !important;
+}
+
+
+.button-games-home {
     width: 100%;
 }
 
