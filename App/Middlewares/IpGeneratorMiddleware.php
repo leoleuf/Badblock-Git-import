@@ -110,7 +110,7 @@ class IpGeneratorMiddleware
             if (!$this->container->session->exist('eula'))
             {
 
-                if ($ips == null)
+                if ($ips < 1)
                 {
                     $eula = false;
                 }
