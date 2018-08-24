@@ -20,7 +20,7 @@ class StarpassController extends Controller
     }
 
     public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
-        $documentId = intval($documentId);
+        $documentId = $documentId;
 
         var_dump($documentId);
         exit;
