@@ -13,6 +13,18 @@ class PaypalController extends Controller
         //Search offer in array
         $id = $id['id'];
 
+        if (!$this->container->session->has('recharge-username'))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
             return $this->redirect($response, '/shop/recharge/cancel#5');
         }else{
@@ -64,6 +76,18 @@ class PaypalController extends Controller
     public function process(RequestInterface $request, ResponseInterface $response){
         if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
             return $this->redirect($response, '/shop/recharge/cancel#4');
+        }
+
+        if (!$this->container->session->exist('recharge-username'))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         $produit = array();

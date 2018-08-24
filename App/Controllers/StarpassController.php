@@ -43,6 +43,13 @@ class StarpassController extends Controller
             return $this->redirect($response, '/shop/recharge/cancel');
         }
 
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
         if (!isset($this->container->config['paiement'][1]['offer'][$documentId]))
         {
             return $this->redirect($response, '/shop/recharge');

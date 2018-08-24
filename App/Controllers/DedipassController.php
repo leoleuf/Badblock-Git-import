@@ -29,7 +29,17 @@ class DedipassController extends Controller
                 .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
             $dedipass = json_decode($dedipass);
 
+            if (!$this->container->session->exist('recharge-username'))
+            {
+                return $this->redirect($response, '/shop/recharge/cancel');
+            }
+
             $name = $this->container->session->get('recharge-username');
+
+            if (empty($name))
+            {
+                return $this->redirect($response, '/shop/recharge/cancel');
+            }
 
             if($dedipass->status == 'success') {
                 $virtual_currency = $dedipass->virtual_currency;
