@@ -22,6 +22,10 @@ class StarpassController extends Controller
     public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
         $documentId = intval($documentId);
 
+        var_dump($documentId);
+        exit;
+        return;
+
         if (!isset($this->container->config['paiement'][1]['offer'][$documentId]))
         {
             return $this->redirect($response, '/shop/recharge');
