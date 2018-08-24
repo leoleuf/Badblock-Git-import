@@ -102,7 +102,7 @@ class IpGeneratorMiddleware
             $ips = $this->container->mongoServer->ips->count(['name' => $ip]);
 
             var_dump($ip);
-            echo '<br />';
+            echo("<br />");
             var_dump($ips);
             return;
             exit;
