@@ -92,7 +92,7 @@
 
 <!------Menu------->
 <div class="topnav" id="myTopnav">
-    <div class="container">
+    <div class="container" style="max-width: 65% !important; margin: 0 20%;">
         <a href="{{ path_for('home') }}"
            class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
             <i class="home-colored-icon colored-icon"></i>
@@ -110,10 +110,15 @@
             <i class="stats-colored-icon colored-icon"></i>
             {{ 'stats.title'|trans }}
         </a>
-        <a href="{{ path_for('play') }}"
+        <a href="{{ path_for('play-adwords') }}"
            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
+        </a>
+        <a href="{{ path_for('play') }}"
+           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+            <i class="user-colored-icon colored-icon"></i>
+            {{ 'launcher.title'|trans }}
         </a>
         <a href="{{ path_for('vote.home') }}"
             class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
