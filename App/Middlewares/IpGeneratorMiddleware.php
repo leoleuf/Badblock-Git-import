@@ -99,7 +99,10 @@ class IpGeneratorMiddleware
         }
         else 
         {
-            //$ips = $this->container->mongoServer->ips->count(['name' => $ip]);
+            $ips = $this->container->mongoServer->ips->count(['name' => $ip]);
+
+            var_dump($ips);
+            echo("<br />");
 
             var_dump($ip);
 
