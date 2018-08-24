@@ -83,11 +83,11 @@ class DedipassController extends Controller
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
                     $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
-
-                    $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass site)";
-                    $mail = new \App\Mail(true);
-                    $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
                 }
+
+                $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass site)";
+                $mail = new \App\Mail(true);
+                $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 
                 return $this->redirect($response, '/shop/recharge/success');
 
@@ -165,16 +165,16 @@ class DedipassController extends Controller
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
                     $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
-
-                    $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass en jeu)";
-                    $mail = new \App\Mail(true);
-                    $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
-                    $dzb .= "§bUn mail a été envoyé à §e".$user['email']." §bcontenant la facture et ta preuve d'achat en cas de problème.";
                 }
                 else
                 {
                     $dzb .= "§eNous t'invitons à t'inscrire sur le site de BadBlock pour avoir une facture et une preuve d'achat la prochaine fois.";
                 }
+
+                $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass en jeu)";
+                $mail = new \App\Mail(true);
+                $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
+                $dzb .= "§bUn mail a été envoyé à §e".$user['email']." §bcontenant la facture et ta preuve d'achat en cas de problème.";
 
                 echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques. ".$dzb;
             }

@@ -138,18 +138,19 @@ class StarpassController extends Controller
             $this->container->session->set('points', $money['points']);
         }
 
-        if ($this->container->session->exist('user')){
+        $user = $this->xenforo->getUser($name);
+        if ($user != null) {
             $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
             $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
             $mailContent = str_replace("(lien)", $insertedId, $mailContent);
             $mail = new \App\Mail(true);
-            $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
-
-            $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - codes : ".$ccodes.")";
-            $mail = new \App\Mail(true);
-            $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
+            $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
         }
+
+        $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - codes : ".$ccodes.")";
+        $mail = new \App\Mail(true);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 
         return $this->redirect($response, '/shop/recharge/success');
     }
