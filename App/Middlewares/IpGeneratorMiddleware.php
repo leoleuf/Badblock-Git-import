@@ -99,10 +99,17 @@ class IpGeneratorMiddleware
         }
         else 
         {
+            $ips = $this->container->mongoServer->ips->count(['name' => $ip]);
+
+            var_dump($ip);
+            echo '<br />';
+            var_dump($ips);
+            return;
+            exit;
+
+
             if (!$this->container->session->exist('eula'))
             {
-
-                $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
 
                 if ($ips == null)
                 {
