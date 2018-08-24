@@ -171,6 +171,10 @@ class PaypalController extends Controller
                 $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                 $mail = new \App\Mail(true);
                 $mail->sendMail($this->session->get('user')["email"], "BadBlock - Paiement effectué", $mailContent);
+
+                $mailContent = $this->container->session>get('recharge-username')." recharge +".$this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal)";
+                $mail = new \App\Mail(true);
+                $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
             }
 
             return $this->redirect($response, '/shop/recharge/success');
