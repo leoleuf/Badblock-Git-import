@@ -57,21 +57,21 @@ class IpGeneratorMiddleware
 
 	public function __invoke($request, $response, $next)
 	{
-        if ($this->container->session->exist('user')){
+        if ($this->container->session->exist('user'))
+        {
             if (!$this->container->session->exist('points')){
                 //Search data player
                 $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->getProfile('username')['username'])]);
-                if ($player == null){
-                    return false;
+                if ($player != null) {
+                    //Search money of player
+                    $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
+                    if (!isset($player->points)) {
+                        $shoppoints = 0;
+                    } else {
+                        $shoppoints = $player->points;
+                    }
+                    $this->container->session->set('points', $shoppoints);
                 }
-                //Search money of player
-                $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
-                if (!isset($player->points)){
-                    $shoppoints = 0;
-                }else{
-                    $shoppoints = $player->points;
-                }
-                $this->container->session->set('points', $shoppoints);
             }else{
                 $shoppoints = $this->container->session->get('points');
             }
@@ -107,7 +107,14 @@ class IpGeneratorMiddleware
 
                 if ($ips < 1)
                 {
-                    $eula = false;
+                    if ($this->container->session->exist('user'))
+                    {
+                        $eula = true;
+                    }
+                    else
+                    {
+                        $eula = false;
+                    }
                 }
                 else
                 {
