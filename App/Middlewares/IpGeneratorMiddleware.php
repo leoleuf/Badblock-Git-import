@@ -122,6 +122,10 @@ class IpGeneratorMiddleware
             }*/
         }
 
+        var_dump($ips);
+        echo("<br />");
+        var_dump($ip);
+
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
