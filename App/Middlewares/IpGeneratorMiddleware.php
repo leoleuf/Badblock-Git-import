@@ -102,8 +102,6 @@ class IpGeneratorMiddleware
             //$ips = $this->container->mongoServer->ips->count(['name' => $ip]);
 
             var_dump($ip);
-            return;
-            exit;
 
 
             if (!$this->container->session->exist('eula'))
