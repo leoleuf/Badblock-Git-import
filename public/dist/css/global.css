@@ -330,21 +330,27 @@ td.c-table__cell {
 
 #bedwars {
     background-color: #42b3f4 !important;
+    width: 100%;
 }
 #tower {
     background-color: #2ecc71 !important;
+    width: 100%;
 }
 #towerrun {
     background-color: #2B2D42 !important;
+    width: 100%;
 }
 #rush {
     background-color: #E19806 !important;
+    width: 100%;
 }
 #uhcspeed {
     background-color: #7b4dcb !important;
+    width: 100%;
 }
 #spaceballs {
     background-color: #C64F4F !important;
+    width: 100%;
 }
 
 .u-middle-width {
