@@ -31,14 +31,70 @@ class ShopController extends Controller
     }
 
 
-    function buy(RequestInterface $request, ResponseInterface $response, $argument){
-        //Check if user is connected
-        if (!$this->container->session->exist('user')){
-            return $response->write("User not connected !")->withStatus(401);
+    function buy(RequestInterface $request, ResponseInterface $response, $argument)
+    {
+        $ingame = false;
+        $playerName = "";
+
+        if (isset($_POST['playerName'])) {
+            $ip = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : $_SERVER['REMOTE_ADDR'];
+            $whitelist = array(
+                '127.0.0.1',
+                '151.80.47.206',
+                '54.37.180.38',
+                '54.37.180.39',
+                '178.33.24.184',
+                '178.33.24.185',
+                '178.33.24.186',
+                '178.33.24.187',
+                '178.33.24.188',
+                '176.31.106.11',
+                '178.33.24.189',
+                '178.33.24.190',
+                '178.33.24.191',
+                '164.132.200.176',
+                '164.132.200.183',
+                '91.134.165.88',
+                '91.134.165.89',
+                '91.134.165.90',
+                '91.134.165.91',
+                '91.134.165.92',
+                '91.134.165.93',
+                '91.134.165.94',
+                '91.134.165.95',
+                '91.121.143.108',
+                '149.91.82.150',
+                '51.38.189.205',
+                '51.38.35.126',
+                '66.70.251.20',
+                '66.70.251.21',
+                '66.70.251.22',
+                '91.134.165.88',
+                '164.132.200.110',
+                '164.132.200.198',
+                '164.132.200.198'
+            );
+
+            if (!in_array($ip, $whitelist)) {
+                return 'Lolnope.';
+            }
+
+            $ingame = true;
+            $playerName = htmlspecialchars($_POST['playerName']);
+        }
+
+        if (!$ingame)
+        {
+            //Check if user is connected
+            if (!$this->container->session->exist('user')) {
+                return $response->write("User not connected !")->withStatus(401);
+            }
+
+            $playerName = $this->session->getProfile('username')['username'];
         }
 
         //Search data player
-        $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+        $player = $this->container->mongoServer->players->findOne(['name' => strtolower($playerName)]);
 
         if ($player == null){
             return $response->write("Pas inscrit sur le serveur !")->withStatus(403);
@@ -89,7 +145,7 @@ class ShopController extends Controller
         }
 
         //Check if player have money
-        if(!$this->haveMoney(strtolower($this->session->getProfile('username')['username']), $product->price)){
+        if(!$this->haveMoney(strtolower($playerName), $product->price)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
 
@@ -111,7 +167,7 @@ class ShopController extends Controller
         if ($product->mode == "rabbitmq"){
             $this->sendRabbitData($product);
         }elseif ($product->mode == "webladder"){
-            $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, -1);
+            $this->hybrid(strtolower($playerName), $product['command'], $product->price, -1);
         }elseif ($product->mode == "hybrid"){
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
                 if ($k == "gradeperso"){
@@ -125,7 +181,7 @@ class ShopController extends Controller
             {
 
                 $time = $player['permissions']['end'] + ($product['duration'] * 1000);
-                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
+                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
 
             }else{
 
@@ -136,14 +192,14 @@ class ShopController extends Controller
                     }
                 }
                 $time = $expireC + ((time() + $product['duration']) * 1000);
-                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
+                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
 
             }
         }
 
 
         //Subtract points
-        $this->subtract(strtolower($this->session->getProfile('username')['username']), $product->price);
+        $this->subtract(strtolower($playerName), $product->price);
 
         return "";
     }
