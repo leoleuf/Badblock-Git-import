@@ -45,8 +45,12 @@ class LoginMiddleware
 
 
                 //recipérer le profile de l'utilisateur à partir de l'api
-                $user = $this->container->xenforo->getUser($userid);
-
+                try {
+                    $user = $this->container->xenforo->getUser($userid);
+                } catch (Exception $e) {
+                    return $next($request, $response);
+                }
+                
                 //Transformation string en array
                 $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
 
