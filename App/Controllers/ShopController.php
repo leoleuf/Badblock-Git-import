@@ -82,7 +82,7 @@ class ShopController extends Controller
             }
 
             $ingame = true;
-            $playerName = htmlspecialchars($_POST['playerName']);
+            $playerName = $_POST['playerName'];
         }
 
         if (!$ingame)
