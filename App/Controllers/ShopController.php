@@ -77,8 +77,6 @@ class ShopController extends Controller
                 '164.132.200.198'
             );
 
-            return $ip;
-
             if (!in_array($ip, $whitelist)) {
                 return 'Lolnope.';
             }
