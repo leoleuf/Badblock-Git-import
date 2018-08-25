@@ -256,12 +256,12 @@ class ShopController extends Controller
 
         $shopQueue = $product->queue;
         if (is_string($product->command)){
-            $command = str_replace("%player%", $player, $product->command);
+            $command = str_replace("%player%", $playerName, $product->command);
         }else{
             $product->command = iterator_to_array($product->command);
             $command = "";
             foreach ($product->command as $row){
-                $command .= str_replace("%player%", $player, $row) . ";";
+                $command .= str_replace("%player%", $playerName, $row) . ";";
             }
         }
 
@@ -269,7 +269,7 @@ class ShopController extends Controller
         $channel->exchange_declare('shopLinker.'.$shopQueue, 'fanout', false, false, false, false);
         $sanction = (object) [
             'dataType' => 'BUY',
-            'playerName' => $player,
+            'playerName' => $playerName,
             'displayName' => $product->name,
             'command' => $command,
             'ingame' => false,
