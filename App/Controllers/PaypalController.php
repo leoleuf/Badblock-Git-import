@@ -12,8 +12,8 @@ class PaypalController extends Controller
     public function startPaiement(RequestInterface $request, ResponseInterface $response,$id){
         //Search offer in array
         $id = $id['id'];
-
-        if (!$this->container->session->has('recharge-username'))
+        
+        if (!$this->container->session->exist('recharge-username'))
         {
             return $this->redirect($response, '/shop/recharge/cancel');
         }
