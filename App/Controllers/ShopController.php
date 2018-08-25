@@ -167,7 +167,7 @@ class ShopController extends Controller
         $this->container->mongo->buy_logs->InsertOne($data);
 
         if ($product->mode == "rabbitmq"){
-            $this->sendRabbitData($product);
+            $this->sendRabbitData($playerName, $product);
         }elseif ($product->mode == "webladder"){
             $this->hybrid(strtolower($playerName), $product['command'], $product->price, -1);
         }elseif ($product->mode == "hybrid"){
@@ -249,12 +249,11 @@ class ShopController extends Controller
     }
 
 
-   public function sendRabbitData($product){
+   public function sendRabbitData($playerName, $product){
         //Connection to rabbitMQ server
         $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
         $channel = $connection->channel();
 
-        $player = $this->session->getProfile('username')['username'];
         $shopQueue = $product->queue;
         if (is_string($product->command)){
             $command = str_replace("%player%", $player, $product->command);
@@ -314,7 +313,7 @@ class ShopController extends Controller
            }else{
                $p->command = "pex user %player% group add " . $grade;
            }
-           $this->sendRabbitData($p);
+           $this->sendRabbitData($username, $p);
        }
 
        if ($grade == "legend")
