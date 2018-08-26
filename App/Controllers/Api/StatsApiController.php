@@ -59,7 +59,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Stats provenant du mongoDB dist
         $collection = $this->container->mongoServer->players;
-        $register = $collection->count();
+        $register = $this->container->mysql_casier->fetchRow("SELECT COUNT(*) AS count FROM friends")["count"] + $this->container->mongoServer->players->count();
         $banA = $collection->count(['punish.ban' => true]);
         $muteA = $collection->count(['punish.mute' => true]);
         $banG = $collection->count(['punish.ban' => true,'punish.banner' => "Guardian"]);
