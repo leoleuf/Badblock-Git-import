@@ -83,6 +83,8 @@ class StarpassController extends Controller
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=$ident&codes=$codes&DATAS=$datas" );
 
+        return var_dump($get_f);
+
         if(!$get_f)
         {
             exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
@@ -97,7 +99,7 @@ class StarpassController extends Controller
 
         if( substr($tab[0],0,3) != "OUI" )
         {
-            return var_dump($tab);
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         $virtual_currency = $offer['points'];
