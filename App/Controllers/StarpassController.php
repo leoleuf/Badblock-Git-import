@@ -61,7 +61,7 @@ class StarpassController extends Controller
 
         if ($offer == null)
         {
-            //return $this->redirect($response, '/shop/recharge/cancel');
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         // moche, merci starpass
@@ -97,7 +97,7 @@ class StarpassController extends Controller
 
         if( substr($tab[0],0,3) != "OUI" )
         {
-            return $this->redirect($response, '/shop/recharge/cancel');
+            return $this->redirect($response, '/shop/recharge/cancel#1');
         }
 
         $virtual_currency = $offer['points'];
