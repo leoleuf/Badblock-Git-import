@@ -279,7 +279,7 @@ class MoveController extends Controller
         $sanction = (object)
         [
             'pseudo' => strtolower($old),
-            'type' => 'ban',
+            'type' => 'tempban',
             'expire' => (time() + 60) * 1000,
             'timestamp' => time() * 1000,
             'reason' => "Changement de pseudo vers => " . $new,
