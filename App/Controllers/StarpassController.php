@@ -81,7 +81,7 @@ class StarpassController extends Controller
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas" );
 
-        var_dump("http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas");
+        return var_dump("http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas");
 
         if(!$get_f)
         {
