@@ -11,7 +11,7 @@ return [
 	'blog.title' => "Tous les articles",
 	'blog.summary' => "Toutes les dernières fraiches news du serveur",
 	'blog.comments_disable' => "Commentaires désactivé sur cet article",
-	'blog.comments_empty' => "Aucuns commentaires de disonible",
+	'blog.comments_empty' => "Aucuns commentaires de disponible",
     'play.title_meta' => "Télécharger Launcher Minecraft Gratuit BadBlock LifeCraft",
     'play.title' => "Jouer",
     'launcher.title' => "Launcher",

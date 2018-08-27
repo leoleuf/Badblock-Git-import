@@ -34,14 +34,13 @@ class Teamspeak
             $login = $this->client->login($this->username, $this->password);
             if ($login['success'] == true){
                 $this->client->selectServer($this->port);
-                //TODO log connection
             }else{
                 $this->container->log->error('"App/TeamSpeak"',' Bad login ! User : ' . $this->username);
-                throw new Exception('TeamSpeak : Bad Login');
+                //throw new Exception('TeamSpeak : Bad Login');
             }
         }else{
              $this->container->log->error('"App/TeamSpeak"',' Connection could not be established to ' . $this->ip);
-            throw new Exception('Connection could not be established to ' . $this->ip);
+            //throw new Exception('Connection could not be established to ' . $this->ip);
         }
     }
 
