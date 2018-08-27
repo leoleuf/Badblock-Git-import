@@ -97,7 +97,7 @@ class StarpassController extends Controller
 
         if( substr($tab[0],0,3) != "OUI" )
         {
-            return $tab[0];
+            return $tab;
         }
 
         $virtual_currency = $offer['points'];
