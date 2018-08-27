@@ -83,8 +83,6 @@ class StarpassController extends Controller
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=$ident&codes=$codes&DATAS=$datas" );
 
-        return var_dump($offer['private_id'], $offer['document_id']);
-
         if(!$get_f)
         {
             exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
