@@ -97,7 +97,7 @@ class StarpassController extends Controller
 
         if( substr($tab[0],0,3) != "OUI" )
         {
-            return $this->redirect($response, '/shop/recharge/cancel#1');
+            return $tab[0];
         }
 
         $virtual_currency = $offer['points'];
