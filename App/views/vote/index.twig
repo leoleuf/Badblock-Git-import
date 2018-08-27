@@ -161,8 +161,13 @@
         <h1>Merci de votre soutiens !</h1>
         <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
     </div>
-    <!-- End modal -->
 
+    <!-- AdBlock Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="blc">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1 id="time-title">Veuillez désactiver votre bloqueur de publicités sur BadBlock pour pouvoir voter.</h1>
+        <a class="button button-danger" href="" title="Rafraichir la page"><i class="icon-repeat"></i> J'ai enlevé mon bloqueur</a>
+    </div>
 
     <!-- Info Modal -->
     <div class="remodal modal-remodal" data-remodal-id="info-modal">
@@ -179,6 +184,11 @@
         var error = false;
 
         function start() {
+            if( window.canRunAds === undefined )
+            {
+                $('[data-remodal-id=blc]').remodal().open();
+                return;
+            }
             if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
             }else{
                 pseudo = $('#pseudo').val();
