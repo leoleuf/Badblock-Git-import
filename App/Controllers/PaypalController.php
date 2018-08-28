@@ -187,8 +187,12 @@ class PaypalController extends Controller
                 $this->container->session->set('points', $money['points']);
             }
 
+            try {
+                $user = $this->xenforo->getUser($this->container->session->get('recharge-username'));
+            }catch (\Exception $e){
+                $user = null;
+            }
 
-            $user = $this->xenforo->getUser($this->container->session->get('recharge-username'));
             if ($user != null) {
                 $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
                 $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
