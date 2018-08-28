@@ -152,11 +152,14 @@ class VoteController extends Controller
                     "uniqueId" => $user['uniqueId'],
                     "points" => 2
                 ];
+                $this->container->session->set('points', 2);
                 $this->container->mongo->fund_list->insertOne($data);
             }else{
                 $money['points'] = $money['points'] + 2;
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
             }
+
         }
 
         $queue = $types[$type];
