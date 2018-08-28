@@ -43,7 +43,7 @@ class ErrorMiddleware
             "header" => $head,
             "error" => $exception->getMessage(),
             "last_error" => error_get_last(),
-            "server" => $_SERVER
+            "stack" => debug_print_backtrace()
         ];
 
         $collection->insertOne($data);
