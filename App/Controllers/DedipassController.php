@@ -77,7 +77,12 @@ class DedipassController extends Controller
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                 }
 
-                $user = $this->xenforo->getUser($name);
+                try {
+                    $user = $this->xenforo->getUser($name);
+                }catch (\Exception $e){
+                    $user = null;
+                }
+
                 if ($user != null) {
                     $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $name, $mailContent);

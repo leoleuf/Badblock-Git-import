@@ -144,6 +144,21 @@ class VoteController extends Controller
             return $response->write("Vote invalid")->withStatus(405);
         }
 
+        if ($type == 1){
+            $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
+            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+            if ($money == null){
+                $data = [
+                    "uniqueId" => $user['uniqueId'],
+                    "points" => 2
+                ];
+                $this->container->mongo->fund_list->insertOne($data);
+            }else{
+                $money['points'] = $money['points'] + 2;
+                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            }
+        }
+
         $queue = $types[$type];
 
         $collection = $this->container->mongo->votes_awards;
