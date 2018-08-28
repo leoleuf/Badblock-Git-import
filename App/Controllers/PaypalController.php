@@ -202,7 +202,7 @@ class PaypalController extends Controller
                 $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
             }
 
-            $mailContent = $this->container->session>get('recharge-username')." recharge +".$this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal)";
+            $mailContent = $this->session->get('recharge-username')." recharge +".$this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal)";
             $mail = new \App\Mail($this->container);
             $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 
