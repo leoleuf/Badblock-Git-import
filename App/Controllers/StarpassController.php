@@ -38,9 +38,6 @@ class StarpassController extends Controller
     {
         $documentId = intval($id['id']);
 
-        var_dump($documentId);
-        exit;
-
         if (!$this->container->session->exist('recharge-username'))
         {
             return $this->redirect($response, '/shop/recharge/cancel');
