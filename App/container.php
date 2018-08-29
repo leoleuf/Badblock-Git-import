@@ -113,21 +113,6 @@ $container['mysql_forum'] = function ($container) {
 };
 
 
-$container['mysql_rankeds'] = function ($container) {
-	$pdo = new \Simplon\Mysql\PDOConnector(
-		$container->config['mysql_rankeds']['host']. ':' . $container->config['mysql_rankeds']['port'], // server
-		$container->config['mysql_rankeds']['user'],     // user
-		$container->config['mysql_rankeds']['password'],      // password
-		$container->config['mysql_rankeds']['database']   // database
-	);
-
-	$pdoConn = $pdo->connect('utf8', []); // charset, options
-
-	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
-
-	return $dbConn;
-};
-
 
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
@@ -181,14 +166,6 @@ $container['xenforo'] = function ($container) {
 	]);
 };
 
-$container['paypal'] = function ($container) {
-	return new \lefuturiste\PaypalExpressCheckout\Paypal(
-		$container->config['paypal']['username'],
-		$container->config['paypal']['password'],
-		$container->config['paypal']['signature'],
-		$container->config['paypal']['prod']
-	);
-};
 
 $container['notFoundHandler'] = function ($container) {
 	return new \App\NotFoundHandler($container->get('view'), function ($request, $response) use ($container) {

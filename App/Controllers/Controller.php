@@ -24,7 +24,6 @@ class Controller{
 		$this->redis = $container['redis'];
 		$this->log = $container['log'];
 		$this->session = $container['session'];
-		//$this->mc = $container['minecraft'];
 		$this->flash = $container['flash'];
 		$this->ladder = $container['ladder'];
 		$this->teamspeak = $container['teamspeak'];

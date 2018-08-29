@@ -20,7 +20,7 @@ class MoveController extends Controller
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
         if ($this->container->session->getProfile('username')['is_staff'] == true
-        && $this->container->config['app_debug'] != 1)
+            && $this->container->config['app_debug'] != 1)
         {
             return $this->render($response, 'user.move.staff');
         }
@@ -162,7 +162,7 @@ class MoveController extends Controller
         $username = $this->session->get('move:2');
         // On vérifie si le code de linkage est le bon
         if(strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username)){
-          return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
+            return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
 
         $this->redis->set('move:2:' . $username, true);

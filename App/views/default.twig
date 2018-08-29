@@ -90,52 +90,6 @@
 </div>
 <!-- Fin Header -->
 
-<!------Menu------->
-<div class="topnav" id="myTopnav">
-    <div class="container" style="max-width: 65% !important; margin: 0 20%;">
-        <a href="{{ path_for('home') }}"
-           class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
-            <i class="home-colored-icon colored-icon"></i>
-            {{ 'home'|trans }}
-        </a>
-        {% if eula == true %}
-            <a href="/shop"
-               class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique">
-                <i class="shopping_basket-colored-icon colored-icon"></i>
-                Boutique
-            </a>
-        {% endif %}
-        <a href="{{ path_for('stats.home') }}"
-           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques">
-            <i class="stats-colored-icon colored-icon"></i>
-            {{ 'stats.title'|trans }}
-        </a>
-        <a href="{{ path_for('play-adwords') }}"
-           class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer">
-            <i class="game-colored-icon colored-icon"></i>
-            {{ 'play.title'|trans }}
-        </a>
-        <a href="{{ path_for('play') }}"
-           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-            <i class="user-colored-icon colored-icon"></i>
-            {{ 'launcher.title'|trans }}
-        </a>
-        <a href="{{ path_for('vote.home') }}"
-            class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
-            <i class="edit-colored-icon colored-icon"></i>
-            Vote
-        </a>
-        <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
-
-        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
-            <i class="list-colored-icon colored-icon"></i>
-            Recrutements
-        </a>
-
-        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()" title="Menu BadBlock"><i class="icon-menu"></i></a>
-    </div>
-</div>
-<!-------page-navbar-user------->
 {#{% if user is defined %}
 <div class="nav-profil">
     <div class="container">
@@ -218,7 +172,7 @@
             </div>
             <ul class="footer-links">
                 <li><a href="https://forum.badblock.fr/règlement" title="Règlement BadBlock">Règlement</a></li>
-                <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
+                <li><a href="" title="Équipe de BadBlock">Notre Equipe</a></li>
                 <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
                 <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
                 <li><a href="/screenshot" title="Héberger une image BadBlock">Héberger une image</a></li>
