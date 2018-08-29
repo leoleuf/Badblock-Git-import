@@ -61,7 +61,7 @@ class StarpassController extends Controller
 
         if ($offer == null)
         {
-            return $this->redirect($response, '/shop/recharge/cancel');
+            //return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         // moche, merci starpass
