@@ -91,7 +91,8 @@ class VoteController extends Controller
           2 => 'skyb',
           3 => 'hub',
           4 => 'faction',
-          5 => 'box'
+          5 => 'box',
+          6 => 'skyb2'
         );
 
         // unknown type
