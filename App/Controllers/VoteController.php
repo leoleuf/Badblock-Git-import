@@ -95,10 +95,10 @@ class VoteController extends Controller
           6 => 'skyb2'
         );
 
-        if ($type == 6)
+       /* if ($type == 6)
         {
             return $response->write("Le Nouveau SkyBlock arrive Bientôt !")->withStatus(200);
-        }
+        }*/
 
         // unknown type
         if (!isset($types[$type]))
