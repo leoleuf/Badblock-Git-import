@@ -75,9 +75,14 @@ class StarpassController extends Controller
         $codes=$code1.$code2.$code3.$code4.$code5;
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
 
+        dd("http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas");
+
+
         $ccodes = $codes;
         $codes=urlencode($codes);
         $datas=urlencode($datas);
+
+
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas" );
         
