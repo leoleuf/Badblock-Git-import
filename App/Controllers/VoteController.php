@@ -85,6 +85,11 @@ class VoteController extends Controller
 
         $pseudo = strtolower($pseudo);
 
+        if ($type == 2)
+        {
+            $type = 6;
+        }
+
         // TODO move
         $types = array(
           1 => 'ptsboutique',
