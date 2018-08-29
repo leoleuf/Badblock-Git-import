@@ -36,7 +36,7 @@ class StarpassController extends Controller
 
     public function process(RequestInterface $request, ResponseInterface $response, $id)
     {
-        $documentId = intval($id);
+        $documentId = intval($id['id']);
 
         var_dump($documentId);
         exit;
