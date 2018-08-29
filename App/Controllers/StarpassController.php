@@ -38,6 +38,9 @@ class StarpassController extends Controller
     {
         $documentId = intval($id);
 
+        var_dump($documentId);
+        exit;
+
         if (!$this->container->session->exist('recharge-username'))
         {
             return $this->redirect($response, '/shop/recharge/cancel');
@@ -74,9 +77,6 @@ class StarpassController extends Controller
         if(isset($_POST['code5'])) $code5 = ";".$_POST['code5'];
         $codes=$code1.$code2.$code3.$code4.$code5;
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
-
-        var_dump("http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas");
-        exit;
 
         $ccodes = $codes;
         $codes=urlencode($codes);
