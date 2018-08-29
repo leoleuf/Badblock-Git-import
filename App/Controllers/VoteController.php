@@ -91,8 +91,14 @@ class VoteController extends Controller
           2 => 'skyb',
           3 => 'hub',
           4 => 'faction',
-          5 => 'box'
+          5 => 'box',
+          6 => 'skyb2'
         );
+
+       /* if ($type == 6)
+        {
+            return $response->write("Le Nouveau SkyBlock arrive Bientôt !")->withStatus(200);
+        }*/
 
         // unknown type
         if (!isset($types[$type]))
