@@ -1,0 +1,119 @@
+{% extends "default.twig" %}
+{% set active_page = "home" %}
+{% set hide_title = true %}
+{% set title = 'BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)' %}
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover">
+            <div class="container">
+            	<div class="animated bounceInLeft">
+	            	<div class="row">
+	                	<div class="four columns">
+	                    	<h4 class="cover-heading">BadBlock</h4><h5 class="cover-heading">Serveur Minecraft Gratuit</h5>
+	                    	<div class="animated bounceInLeft">
+	                        <a class="button button-primary" href="{{ path_for('play') }}" title="Jouer à BadBlock"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
+	                    	</div>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" id="skyb"><span>SkyBlock</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
+	                	</div>
+	                	<div class="two columns">
+		                    
+		                    <button class="button-games button-games-home" id="fb" ><span>Freebuild</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques Spaceballs"><span>SpaceBalls</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" id="box" ><span>PvPBox</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" id="faction"><span>Faction</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
+	                	</div>
+	                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+    <!-- Main content -->
+    <!-- Articles pined -->
+    <div class="eight columns">
+        <!-- end Articles pined -->
+        <!-- Articles -->
+        <div id="pub-large" style="width: 100%;">
+            <script async src="/pagead/js/adsbygoogle.js"></script>
+
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="articles-home">
+            <h4 class="heading heading-bar"><span>{{ 'home.last_posts'|trans }}</span></h4>
+            {% if posts_count > 0 %}
+                <!-- Première ligne de card -->
+                <div class="mosaic">
+                    {% for infos in first_row %}
+                        {{ include('macros/card.twig') }}
+                    {% endfor %}
+                </div>
+                <!-- Fin première ligne de card -->
+                <!-- Seconde ligne de card -->
+                <div class="mosaic">
+                    {% for infos in second_row %}
+                        {% set card_special_class = "card-second" %}
+                        {{ include('macros/card.twig') }}
+                    {% endfor %}
+
+                    <!-- Plus card -->
+                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder à tous les posts">
+                        <div class="card-plus-text">{{ 'home.cards.more_posts'|trans }}</div>
+                        <i class="icon icon-calcplus"></i>
+                    </a>
+                    <!-- Fin plus card-->
+                </div>
+                <!-- Fin seconde ligne de card -->
+            {% endif %}
+            <!-- Si pas d'articles -->
+            {% if posts_count == 0 %}
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4><i class="icon-erroralt"></i></h4>
+                        <h4>{{ 'blog.no_posts'|trans }}</h4>
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Fin si pas d'articles -->
+        </div>
+        <!-- Articles Fin -->
+        <!-- Informations début -->
+        <div class="side-item">
+            <h4 class="heading-bar"><span>Informations</span></h4> 
+            <a class="button button-primary informations" id="recrutement-button" href="https://forum.badblock.fr/recrutement/" title="Recrutements de BadBlock">
+                <span><i class="far fa-file-alt"></i> Les Recrutements</span>
+                <p class="info-p">Trouvez toutes les informations nécessaires pour rejoindre notre équipe</p>
+            </a>
+            <a class="button button-primary informations" id="staff-button" href="/staff" title="Staff de BadBlock">
+                <span><i class="fas fa-sitemap"></i>  Le Staff</span>
+                <p class="info-p">Découvrez l'équipe de Badblock, sa hiérarchie et son fonctionnement</p>
+            </a>
+            <a class="button button-primary informations" id="devblog-button" href="https://forum.badblock.fr/devblog/" title="DevBlog de BadBlock">
+                <span><i class="far fa-file-code"></i>  Le DevBlog</span>
+                <p class="info-p">Les dernières modifications apportées sur le serveur sont ici !</p>
+            </a>
+        </div>
+        <!-- Informations fin -->
+    </div>
+    <!-- Main content fin -->
+
+    {% include 'macros/sidebar.twig' %}
+
+{% endblock %}
