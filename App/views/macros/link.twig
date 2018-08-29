@@ -1,0 +1,26 @@
+{% extends "default.twig" %}
+{% set show_title = true %}
+{% set active_page = "shop" %}
+{% set title = "Linker son compte" %}
+{% set sub_title = "Linker votre compte pour accèder a toutes les fonctionnalités du site !" %}
+{% block content %}
+
+    <div class="recharge-content">
+        <h4 class="heading heading-bar"><span>Étape {{ step }} / 3</span></h4>
+        <div class="c-progress">
+            <div class="c-progress__bar c-progress__bar--info" style="width:{{ width }}%;"></div>
+        </div>
+            {% if flash('link_error') %}
+                {% for flash in flash('link_error') %}
+                    <div class="alert alert-error">
+                        {{ flash }}
+                        <i class="icon icon-remove"></i>
+                    </div>
+                {% endfor %}
+                <a href="/link" class="button button-danger" type="submit" title="Réessayer">Réessayer</a>
+            {% else %}
+                {{ block('link_content') }}
+        {% endif %}
+        {#<button class="button button-danger recharge-next">Suivant</button>#}
+    </div>
+{% endblock %}

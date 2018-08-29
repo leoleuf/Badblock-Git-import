@@ -1,0 +1,66 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'Changer votre pseudi !'|trans %}
+
+{% block cover %}
+
+{% endblock %}
+{% block content %}
+    <!-- Debut liste paiements -->
+
+    <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
+    {% if error %}
+        <div class="alert alert-error">
+            {{ error }}
+            <i class="icon icon-remove"></i>
+        </div>
+    {% endif %}
+    <div class="row center">
+        <div class="three columns">
+            <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn" type="button" name="bt2" value="Vérification n°1" />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn" type="button" name="bt3" value="Vérification n°2"  />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 75%;"></div>
+    </div>
+    <br>
+    {% if flash('move_error') %}
+         {% for flash in flash('move_error') %}
+             <div class="alert alert-error">
+                 {{ flash }}
+                 <i class="icon icon-remove"></i>
+             </div>
+         {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="six columns recharge-bottom">
+            <div class="recharge-info">
+                Vous pouvez ici changer de pseudo<br>
+
+                Pour tout problème avec le systeme, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
+                Aucun remboursement ne sera effectué en cas de mauvaise utilisation.
+            </div>
+        </div>
+        <div class="six columns">
+            <h5 id="pseudo">Indiquez le pseudo du compte <b>actuel</b> & connectez vous sur le serveur avec celui-ci</h5><br>
+            <form action="/move" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
+                <input type="hidden" name="step" value="3">
+                <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" value="" required><br>
+                <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
+

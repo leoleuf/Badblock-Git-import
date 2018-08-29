@@ -1,0 +1,809 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'shop.title'|trans %}
+{% block cover %}
+        <!-- Recharger -->
+        <div class="recharge-back">
+            <div class="recharge-container">
+                <div class="recharge-content">
+                    <div class="container recharge-flex">
+                        <div class="recharge-info">
+                            <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
+                            <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
+                            <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
+                            <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
+                            <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
+                            <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
+                        </div>
+                        <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                        <div class="recharge-button">
+                            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin recharger -->
+        <div class="shop-full-w">
+            <div class="shop-menu">
+                <ul class="shop-menu-menu">
+                    {% for key,value in serverlist %}
+                        <li class="shop-menu-active">
+                            <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link" title="Menu boutique {{ value["server"]["name"] }}">
+                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <script async>
+
+            function opentab(evt, serv, a) {
+                // Declare all variables
+                var i, tabcontent, tablinks;
+
+                // Get all elements with class="tabcontent" and hide them
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    evt.currentTarget.className = "no-link";
+                }
+
+
+                // Show the current tab, and add an "active" class to the button that opened the tab
+                document.getElementById(serv).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+    {% endblock %}
+
+    {% block content %}
+        {% if eula == true %}
+            {% if promotion != false %}
+                <section class="shop-section" class="tabcontent">
+                    <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
+                    <div class="product-list">
+                        {% for k,prod in promotion %}
+                            <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
+                                <div class="product-item product-item-promotion">
+                                    <div class="promotion-coef">
+                                        {{ prod['promotion_coef'] }}%
+                                    </div>
+                                    <div class="product-header">
+                                        <h5 class="product-title">{{ prod['name'] }}</h5>
+                                    </div>
+                                    <div class="product-image">
+                                        <img src="{{ prod['image'] }}">
+                                    </div>
+                                    <div class="product-price product-promotion"><span class="promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</span>
+                                        <div class="product-old-price">
+                                            <span class="promotion-reduction">{{ prod['price']|number_format(0, '', ' ') }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="promotion-reduction"></div>
+                                    <div class="product-footer">
+                                        <div class="product-action">
+                                            <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Obtenir
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endif %}
+            {% if flash('shop_error') %}
+                {% for flash in flash('shop_error') %}
+                    <div class="alert alert-error">
+                        {{ flash }}
+                        <i class="icon icon-remove"></i>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!-- Menu shop -->
+
+
+            {% for key,value in serverlist %}
+                {% if key != 0 %}
+                    <div id="{{ key }}" class="tabcontent" style="display: none;">
+                        {% for k,cat in value['cat'] %}
+                            <section class="shop-section-{{ k }}" class="tabcontent">
+                                <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small id="very-small">{{ cat['sub-name'] }}</small></span></h4>
+                                <div class="product-list">
+                                    {% for prod in cat['items'] %}
+                                        <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;" title="Produit {{ prod['name'] }}">
+                                            {% if prod['promotion'] %}
+                                                <div class="product-item product-item-promotion">
+                                                    <div class="promotion-coef">
+                                                        {{ prod['promotion_coef'] }}%
+                                                    </div>
+                                                    <div class="product-header">
+                                                        <h5 class="product-title">{{ prod['name'] }}</h5>
+                                                    </div>
+                                                    <div class="product-image">
+                                                        <img src="{{ prod['image'] }}">
+                                                    </div>
+                                                    <div class="product-price product-promotion"><span class="promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</span>
+                                                        <div class="product-old-price">
+                                                            <span class="promotion-reduction">{{ prod['price']|number_format(0, '', ' ') }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="promotion-reduction"></div>
+                                                    <div class="product-footer">
+                                                        <div class="product-action">
+                                                            <button idpro="{{ prod['_id']["$oid"] }}" class="button button-primary achat">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                                Obtenir
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% else %}
+                                                <div class="product-item">
+                                                    <div class="product-header">
+                                                        <h5 class="product-title">{{ prod['name'] }}</h5>
+                                                    </div>
+                                                    <div class="product-image">
+                                                        <img src="{{ prod['image'] }}" title="Produit {{ prod['name'] }}" title="Produit {{ prod['name'] }}">
+                                                    </div>
+                                                    <div class="product-price">{{ prod['price']|number_format(0, '', ' ') }}</div>
+                                                    <div class="product-footer">
+                                                        <div class="product-action">
+                                                            <button idpro="{{ prod["$oid"] }}" class="button button-primary achat">
+                                                                <i class="fas fa-shopping-cart"></i>
+                                                                Obtenir
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            {% endif %}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        <div id="0" class="tabcontent" style="display: none;">
+            <div class="panel-tr">
+                <table width="100%" style="text-align: center !important;" class="center">
+                    <tr class="d" id="top-td">
+                        <td class="center">&nbsp;</td>
+                        <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
+                            <p class="rank-head">VIP</p>
+                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
+                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1050 points</span></a>
+                        </td>
+                        <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
+                            <p class="rank-head">VIP+</p>
+                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
+                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>2250 points</span></a>
+                        </td>
+                        <td class="rank center" id="rank-3020415" onclick='achat("5b71afa9b1fe8a85fe31bb70")'>
+                            <p class="rank-head">MVP</p>
+                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0a322550eb949f1674083c419553c286ff3dded6.png" title="Grade MVP" alt="Grade MVP" style="margin-bottom: 10px; width:90%;">
+                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>4350 points</span></a>
+                        </td>
+                        <td class="rank center" id="rank-3026513" onclick='achat("5b71afcab1fe8a85fe31bb76")'>
+                            <p class="rank-head">MVP+</p>
+                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1b37e56cc4205b4eb0e27d9151829969b5cce4a1.png" title="Grade MVP+" alt="Grade MVP+" style="margin-bottom: 10px; width:90%;">
+                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>6900 points</span></a>
+                        </td>
+                        <td class="rank center disabled" id="rank-3026514" onclick='achat("5b71b062b1fe8a85fe31bb84")'>
+                            <p class="rank-head">Legend</p>
+                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/92d220428f49697f0c3fbb9a2d640118d791469c.png" title="Grade Legend" alt="Grade Legend" style="margin-bottom: 10px; width:90%;">
+                            <a class="toggle-modal"><!--Obtenir!-->Bientôt<div style="margin-top: 10px;"></div><span><!--2100 points!-->Disponible</span></a>
+                        </td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Détails du grade</td>
+                        <td class="center">&nbsp;</td>
+                        <td class="center">&nbsp;</td>
+                        <td class="center">&nbsp;</td>
+                        <td class="center">&nbsp;</td>
+                        <td class="center">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-clock"></i> Durée du grade</td>
+                        <td class="center">A vie</td>
+                        <td class="center">A vie</td>
+                        <td class="center">A vie</td>
+                        <td class="center">A vie</td>
+                        <td class="center">1 mois</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-sitemap"></i> Dépendance</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i>  VIP</td>
+                        <td class="center"><i class="fas fa-check"></i>  VIP+</td>
+                        <td class="center"><i class="fas fa-check"></i>  MVP</td>
+                        <td class="center"><i class="fas fa-check"></i>  MVP+</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-id-card"></i> Préfixe</td>
+                        <td class="center" style="color: #55FFFF"><strong>[VIP]</strong></td>
+                        <td class="center" style="color: #55FF55"><strong>[VIP+]</strong></td>
+                        <td class="center" id="obsi">[MVP]</td>
+                        <td class="center" id="gold">[MVP+]</td>
+                        <td class="promotion center">Personnalisable</td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Avantages Mini-Jeux</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-credit-card"></i> BadCoins & XP</td>
+                        <td class="promotion center">+ 25%</td>
+                        <td class="promotion center">+ 50%</td>
+                        <td class="promotion center">+ 100%</td>
+                        <td class="promotion center">+ 200%</td>
+                        <td class="promotion center">+ 400%</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-chevron-circle-right"></i> Attente prioritaire</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-users"></i> Accès serveur full</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-angle-double-left"></i> Nouveautés en bêta</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-user-secret"></i> Accès /gnick</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-certificate"></i> Accès /aura</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-eye-dropper"></i> Personnalisation /aura</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-map-pin"></i> Votes de map</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i> x2</td>
+                        <td class="center"><i class="fas fa-check"></i> x3</td>
+                        <td class="center"><i class="fas fa-check"></i> x4</td>
+                        <td class="center"><i class="fas fa-check"></i> x8</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-balance-scale"></i> Kit VIP équilibré</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Avantages Hub</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-comment-alt"></i> Couleur des messages</td>
+                        <td class="center">Blanc</td>
+                        <td class="center">Blanc</td>
+                        <td class="center">Blanc</td>
+                        <td class="center">Blanc</td>
+                        <td class="promotion center">Personnalisable</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-users"></i> Joueurs en groupe</td>
+                        <td class="center">5 max</td>
+                        <td class="center">8 max</td>
+                        <td class="center">12 max</td>
+                        <td class="center">16 max</td>
+                        <td class="center">32 max</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-user-plus"></i> Nombre d'amis</td>
+                        <td class="center">20 max</td>
+                        <td class="center">40 max</td>
+                        <td class="center">60 max</td>
+                        <td class="center">100 max</td>
+                        <td class="center">500 max</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-ban"></i> Limite de messages</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-vial"></i> Multiples jump</td>
+                        <td class="center"><i class="fas fa-check"></i> x1</td>
+                        <td class="center"><i class="fas fa-check"></i> x2</td>
+                        <td class="center"><i class="fas fa-check"></i> x3</td>
+                        <td class="center"><i class="fas fa-check"></i> x4</td>
+                        <td class="center"><i class="fas fa-check"></i> x8</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-lock-open"></i> Accès zone VIP</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-arrow-right"></i> Notif de bienvenue</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Avantages SkyBlock</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-credit-card"></i> Shop VIP</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-list"></i> FarmZone VIP</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-medkit"></i> Kit Islander</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-plane"></i> /fly</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-backward"></i> /back</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-map-pin"></i> /tpahere</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-hands-helping"></i> /craft</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-plus"></i> Maximum sur l'île</td>
+                        <td class="center">5</td>
+                        <td class="center">6</td>
+                        <td class="center">7</td>
+                        <td class="center">8</td>
+                        <td class="center">10</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-search"></i> /near</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-forward"></i> /enderchest</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-medkit"></i> Kit Skylander</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Avantages FreeBuild</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-globe"></i> Accès WorldEdit</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-user"></i> ArmorStand</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-moon"></i> NightVision</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-square"></i> /blocks</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-flag"></i> /banner</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-plus-square"></i> Parcelles au maximum</td>
+                        <td class="center">3</td>
+                        <td class="center">5</td>
+                        <td class="center">8</td>
+                        <td class="center">10</td>
+                        <td class="center">15</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-plus-circle"></i> Homes au maximum</td>
+                        <td class="center">2</td>
+                        <td class="center">5</td>
+                        <td class="center">8</td>
+                        <td class="center">10</td>
+                        <td class="center">20</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-filter"></i> Flags du plot</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-location-arrow"></i> /tp</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-trash-alt"></i> /ci</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-chevron-right"></i> /enderchest</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Avantages PvPBox</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-angle-right"></i> Kit Tanky II</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-angle-left"></i> Kit Archer II</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-angle-double-right"></i> Kit Tanky III</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-angle-double-left"></i> Kit Archer III</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-user-secret"></i> Kit Invisible</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr class="line-tr">
+                        <td class="header-td">Autres avantages</td>
+                        <td class="center" style="color: white;">VIP</td>
+                        <td class="center" style="color: white;">VIP+</td>
+                        <td class="center" style="color: white;">MVP</td>
+                        <td class="center" style="color: white;">MVP+</td>
+                        <td class="center" style="color: white;">LEGEND</td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Forum</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Discord</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-id-card-alt"></i> Grade Teamspeak</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-map"></i> Salon gradés (TS)</td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-eye-dropper"></i> Grade perso (TS)</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-image"></i> Icône perso (TS)</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-lock"></i> Salon perso (TS)</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    <tr>
+                        <td class="header-td"><i class="fas fa-question-circle"></i> Support + (Discord)</td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
+                        <td class="center"><i class="fas fa-check"></i></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- Shop Modal -->
+        <div class="remodal modal-remodal" data-remodal-id="shop-error">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>Désolé mais vous n'avez pas les points boutique nécessaires</h1>
+            <div class="recharge-button">
+                <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+            </div>
+        </div>
+        <!-- Fin Shop modal -->
+
+
+        <!-- Shop Succes Modal -->
+        <div class="remodal modal-remodal" data-remodal-id="shop-succes">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>Opération effectuée avec succès.</h1>
+        </div>
+        <!-- Fin Shop Succes modal -->
+
+        <!-- Shop Error Modal -->
+        <div class="remodal modal-remodal" data-remodal-id="shop-depend">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1 id="textp"></h1>
+        </div>
+        <!-- Fin Shop Succes modal -->
+
+        <!-- Link Modal -->
+        <div class="remodal modal-remodal" data-remodal-id="link-modal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>Vous devez linker votre compte pour obtenir ceci</h1>
+            <a class="button button-danger" href="/link" title="Lier mon compte"><i class="icon-repeat"></i>Linker son Compte !</a>
+        </div>
+
+        <!-- Login Modal -->
+        <div class="remodal modal-remodal" data-remodal-id="login-modal">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1>Vous devez vous connecter pour obtenir ceci</h1>
+            <a class="button button-default" href="https://forum.badblock.fr/login" title="Connexion">Se connecter !</a>
+        </div>
+
+        {% for key,value in serverlist %}
+            {% for k,cat in value['cat'] %}
+                {% for prod in cat['items'] %}
+                    {% if key[4] %}
+                        <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                            <button data-remodal-action="close" class="remodal-close"></button>
+                            <h1>{{ prod['name'] }}</h1>
+                            <img src="{{ prod['image'] }}">
+                            <p>{{ prod['description'] | raw }}</p>
+                            <div class="product-footer">
+                                <div class="product-action"><button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                            <button data-remodal-action="close" class="remodal-close"></button>
+                            <h1>{{ prod['name'] }}</h1>
+                            <img src="{{ prod['image'] }}">
+                            <p>{{ prod['description'] | raw }}</p>
+                            <div class="product-footer">
+                                <div class="product-action"><button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i class="icon icon-shopping-cart"></i> Commander</button></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+
+        <script>
+            document.getElementById('0').style.display = "block";
+
+
+            function achat(idpro){
+
+                var prod_id = idpro;
+
+                var request = $.ajax({
+                    url: "/shop/achat/"+prod_id,
+                    method: "POST",
+                    data: { prod_id : prod_id },
+                    dataType: "html"
+                });
+
+                request.done(function( msg ) {
+                    $('[data-remodal-id=shop-succes]').remodal().open();
+                });
+
+                request.fail(function( jqXHR, textStatus ) {
+                    if(jqXHR.status == 405){
+                        $('[data-remodal-id=shop-error]').remodal().open();
+                    }else if (jqXHR.status == 401){
+                        $('[data-remodal-id=login-modal]').remodal().open();
+                    }else if (jqXHR.status == 405){
+                        $('[data-remodal-id=link-modal]').remodal().open();
+                    }else if (jqXHR.status == 400){
+                        $( "#textp" ).text(jqXHR.responseText);
+                        $('[data-remodal-id=shop-depend]').remodal().open();
+                    }
+                });
+
+            }
+        </script>
+    {% else %}
+        <div class="nothing">
+            <h5 style="text-align: center;">La page n'existe pas ou n'existe plus.</h5>
+        </div>
+    {% endif %}
+{% endblock %}

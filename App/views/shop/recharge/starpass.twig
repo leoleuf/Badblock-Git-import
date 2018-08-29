@@ -1,0 +1,100 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'shop.title'|trans %}
+
+{% block cover %}
+
+    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Recharger -->
+
+    <div class="recharge-back">
+        <div class="recharge-container">
+            <div class="recharge-content">
+                <div class="container recharge-flex">
+                    <div class="recharge-info">
+                        <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
+                        <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
+                        <img src="https://images.badblock.fr/i/paysafe.png" title="Paysafecard" alt="Paysafecard">
+                        <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
+                        <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
+                        <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
+                    </div>
+                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                    <div class="recharge-button">
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin recharger -->
+
+
+
+{% endblock %}
+
+{% block content %}
+    <!-- Debut liste paiements -->
+
+    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <div class="row center">
+        <div class="three columns">
+            <a href="/shop/recharge">
+                <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/step-2">
+                <input class="tab-top btn" type="button" name="bt2" value="Mode de paiement" />
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/step-paypal">
+                <input class="tab-top btn" type="button" name="bt3" value="Somme" />
+            </a>
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 75%;"></div>
+    </div>
+    <br>
+
+    <h5 id="somme">Quelle somme de points boutique veux-tu ?</h5>
+    <div class="row center">
+        <div class="three columns small-offer">
+             <h6 class="h6-small">1 500 points boutique<br>
+             5€</h6><br>
+             <a href="/shop/recharge/starpass/0" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Choisir</a>
+         </div>
+         <div class="three columns small-offer">
+             <h6 class="h6-small">3 000 points boutique<br>
+             10€</h6><br>
+             <a href="/shop/recharge/starpass/1" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Choisir</a>
+         </div>
+         <div class="three columns small-offer">
+             <h6 class="h6-small">4 500 points boutique<br>
+             15€</h6><br>
+             <a href="/shop/recharge/starpass/2" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Choisir</a>
+         </div>
+         <div class="three columns small-offer">
+             <h6 class="h6-small">6 000 points boutique<br>
+             20€</h6><br>
+             <a href="/shop/recharge/starpass/3" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Choisir</a>
+         </div>
+     </div>
+     <div class="row center big-offer promotion-border top-big">
+         <h6 class="h6-big">15 000 points boutique<br>
+         50€</h6><br>
+         <a href="/shop/recharge/starpass/4" class="button button-primary big-offer-btn" ><i class="fas fa-check"></i>  Choisir</a>
+    </div>
+
+{% endblock %}
+

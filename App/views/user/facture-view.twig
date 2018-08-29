@@ -1,0 +1,249 @@
+{% extends 'default.twig' %}
+{% set title = 'user.dashboard_title'|trans %}
+{% set sub_title = 'user.dashboard_subtitle'|trans~user.username %}
+{% set show_title = false %}
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="one-half column animated bounceInLeft">
+                    <div class="profile-title">
+                        <div class="profile-mc-head"><img src="https://cdn.badblock.fr/head/{{ user.name }}/64.png" title="Tête de {{ user.name }}" alt="Tête de {{ user.name }}"></div>
+                        <div>
+                            <h2 class="cover-heading">Facture du {{ facture['date'] }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+<section class="shop-section-1" class="tabcontent">
+    <h4 class="heading heading-bar">
+        <span>
+            <a class="button button-primary" href="/dashboard" title="Tableau de bord BadBlock">
+                <i class="icon icon-backward"></i>
+                Retour
+            </a>
+        </span>
+    </h4>
+</section>
+    <div id="invoice-box">
+    <!doctype html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>BadBlock | Facture #BB-{{ facture['_id'] }}</title>
+
+        <style>
+            .invoice-box {
+                max-width: 800px;
+                margin: auto;
+                padding: 30px;
+                border: 1px solid #eee;
+                box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+                font-size: 16px;
+                line-height: 24px;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                color: #555;
+            }
+
+            .invoice-box table {
+                width: 100%;
+                line-height: inherit;
+                text-align: left;
+            }
+
+            .invoice-box table td {
+                padding: 5px;
+                vertical-align: top;
+            }
+
+            .invoice-box table tr td:nth-child(2) {
+                text-align: right;
+            }
+
+            .invoice-box table tr.top table td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.top table td.title {
+                font-size: 45px;
+                line-height: 45px;
+                color: #333;
+            }
+
+            .invoice-box table tr.information table td {
+                padding-bottom: 40px;
+            }
+
+            .invoice-box table tr.heading td {
+                background: #eee;
+                border-bottom: 1px solid #ddd;
+                font-weight: bold;
+            }
+
+            .invoice-box table tr.details td {
+                padding-bottom: 20px;
+            }
+
+            .invoice-box table tr.item td{
+                border-bottom: 1px solid #eee;
+            }
+
+            .invoice-box table tr.item.last td {
+                border-bottom: none;
+            }
+
+            .invoice-box table tr.total td:nth-child(2) {
+                border-top: 2px solid #eee;
+                font-weight: bold;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .invoice-box table tr.top table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+
+                .invoice-box table tr.information table td {
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            /** RTL **/
+            .rtl {
+                direction: rtl;
+                font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+            }
+
+            .rtl table {
+                text-align: right;
+            }
+
+            .rtl table tr td:nth-child(2) {
+                text-align: left;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="https://cdn.badblock.fr/images/logo_bigsmall.png" title="Logo de BadBlock" alt="Logo de BadBlock">
+                            </td>
+
+                            <td>
+                                <a href="https://badblock.fr/legals/Conditions_generales_de_vente.pdf" title="Conditions générales de vente" target="_blank">Conditions générales de vente</a><br>
+                                Facture #: BB-{{ facture['_id'] }}<br>
+                                Date: {{ facture['date'] }}<br>
+                                <form><input type="button" value="Imprimer cette facture" onClick="print()"></form>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                BadBlock<br>
+                                12 av Tilleuls<br>
+                                91360 EPINAY SUR ORGE<br>
+                                SIRET <b>811 643 956</b><br />
+                                SIREN <b>811 643 956 00014</b><br />
+                                TVA <b>FR50811643956</b><br />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                {{ facture['pseudo'] }}<br>
+                                {{ facture['email'] }}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Mode de paiement
+                </td>
+
+                <td>
+                    Transaction #
+                </td>
+            </tr>
+
+            <tr class="details">
+                <td>
+                    {{ facture['gateway'] }}<br>
+                </td>
+                <td>
+                    {{ facture['gateway'] }}-{{ facture['transaction_id'] }}<br>
+                </td>
+            </tr>
+
+            <tr class="heading">
+                <td>
+                    Article(s)
+                </td>
+
+                <td>
+                    EUR (€)
+                </td>
+            </tr>
+
+            <tr class="item">
+                <td>
+                    Rechargement du compte ({{ facture['points'] }} points boutique)
+                </td>
+
+                <td>
+                    {{ facture['price'] }}
+                </td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+
+                <td>
+                    Total : {{ facture['price'] }} EUR (€)<br>
+                    Un problème avec votre achat? support@badblock.fr<br>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    </body>
+    </html>
+    <script>
+        function  print() {
+            var prtContent = document.getElementById("invoice-box");
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            WinPrint.close();
+        }
+    </script>
+{% endblock %}
+

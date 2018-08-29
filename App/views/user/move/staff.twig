@@ -1,0 +1,46 @@
+{% extends "default.twig" %}
+{% set active_page = "shop" %}
+{% set show_title = false %}
+{% set title = 'Changer votre pseudo !'|trans %}
+
+{% block cover %}
+
+{% endblock %}
+{% block content %}
+    <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
+    <div class="row center disabled">
+        <div class="three columns">
+            <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt2" value="Vérification n°1" />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt3" value="Vérification n°2"  />
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 25%;"></div>
+    </div>
+    <br>
+    {% if flash('move_error') %}
+         {% for flash in flash('move_error') %}
+             <div class="alert alert-error">
+                 {{ flash }}
+                 <i class="icon icon-remove"></i>
+             </div>
+         {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="twelve columns recharge-bottom">
+            <div class="recharge-info">
+                Pour des raison évidentes de sécurité et de traçabilité les membres du staff ne sont pas autorisés à changer de pseudo. Nous vous invitons à contacter un administrateur pour effectuer l'opération manuellement.
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,231 @@
+{% set title = 'Profil de ' ~ joueur.realName ~ ' - BadBlock'%}
+{% set hide_title = true %}
+{% extends "default.twig" %}
+{% set active_page = "stats" %}
+{% set sub_title = ''|trans~user.username %}
+{% set keywords = 'profil, ' ~ joueur.realName %}
+
+{% set foo = date().timestamp %}
+
+{% if joueur.punish.ban == true and joueur.punish.banEnd > foo %}
+    {% set ban = true %}
+{% else %}
+    {% set ban = false %}
+{% endif %}
+
+{% if joueur.punish.mute == true and joueur.punish.muteEnd > foo %}
+    {% set mute = true %}
+{% else %}
+    {% set mute = false %}
+{% endif %}
+
+{% if ban == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.banReason ~ ". Fin de la suspension le " ~ joueur.punish.banEnd|date("m/d/Y") ~ "."  %}
+{% elseif mute == true %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.muteReason ~ ". Fin du bâillonnement le " ~ joueur.punish.muteEnd|date("m/d/Y") ~ "."  %}
+{% else %}
+    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
+{% endif %}
+
+{% block cover %}
+    <!------Cover------>
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="one-half column animated bounceInLeft">
+                    <div class="profile-title">
+                        <div class="profile-mc-head"><img src="https://cdn.badblock.fr/head/{{ joueur.realName }}/192.png" title="Tête de {{ joueur.realName }}" alt="Tête de {{ joueur.realName }}"></div>
+                        <div>
+                            <h2 class="cover-heading">{{ joueur.realName }}</h2>
+                            <span class="badge badge-{{ joueur.permissions.group }}">{{ ucfirst(joueur.permissions.group) }}</span>
+                            {% for key, permission in joueur.permissions.alternateGroups %}
+                                <span class="badge badge-{{ permission }}">{{ ucfirst(permission) }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="one-half column animated bounceInLeft">
+                    <div class="search-container">
+                        <div class="games-info">
+                            <h6 class="cover-heading">Amis</h6>
+                            <table>
+                                <tr>
+                                    {% set friendises = 0 %}
+                                    {% for f,friend in joueur.friends %}
+                                        {% set friendises = friendises + 1 %}
+                                        {% if (friendises > 12) %}
+                                            </tr><tr>
+                                            {% set friendises = 1 %}
+                                        {% endif %}
+                                        <td class="friend">
+                                            <a href="/profile/{{ friend }}" class="friend-mc-head" title="Profil de {{ friend }}">
+                                                <img src="https://cdn.badblock.fr/head/{{ friend }}/32.png" title="Tête de {{ friend }}" alt="Tête de {{ friend }}" />
+                                            </a>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="container">
+                    <ul>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ joueur.game.level|number_format(0, '', ' ') }} <span>Levels</span></li>
+                        <li><i class="icon icon-bookmarkalt"></i> {{ joueur.game.xp|number_format(0, '', ' ') }} <span>Xp</span></li>
+                        <li><i class="icon icon-value-coins"></i> {{ joueur.game.badcoins|number_format(0, '', ' ') }} <span>BadCoins</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+    {% if joueur.punish.mute == true %}
+        <div class="alert alert-error" role="alert">
+            Cet Utilisateur est baillonné jusqu'au {{ joueur.punish.muteEnd }} pour {{ joueur.punish.muteReason }}.
+        </div>
+    {% endif %}
+    {% if joueur.punish.ban == true %}
+        <div class="alert alert-error" role="alert">
+            Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd }} pour {{ joueur.punish.banReason }}.
+        </div>
+    {% endif %}
+    <div class="profile-stats">
+        <h2>Statistiques</h2>
+        <div class="row">
+            <div class="four columns">
+                <div class="game-title"><h4>Tower <a href="/stats/all/Tower/" title="Classement du Tower"><span class="badge badge-primary">Classement</span></a></h4></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.tower.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.tower.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Points</td>
+                        <td>{{ joueur.game.stats.tower.marks|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.tower.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.tower.looses|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="four columns">
+                <div class="game-title"><h4>BedWars <a href="/stats/all/Bedwars/" title="Classement du BedWars"><span class="badge badge-primary">Classement</span></a></h4></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.bedwars.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.bedwars.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Points</td>
+                        <td>{{ joueur.game.stats.bedwars.marks|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.bedwars.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.bedwars.looses|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="four columns">
+                <div class="game-title"><h4>Rush <a href="/stats/all/Rush/" title="Classement du Rush"><span class="badge badge-primary">Classement</span></a></h4></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.rush.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.rush.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.rush.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Lit détruits</td>
+                        <td>{{ joueur.game.stats.rush.brokenbeds|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.rush.looses|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="four columns">
+                <div class="game-title"><h4>UHCSpeed <a href="/stats/all/UHCSpeed/" title="Classement du UHCSpeed"><span class="badge badge-primary">Classement</span></a></h4></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.uhcspeed.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.uhcspeed.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.uhcspeed.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.uhcspeed.looses|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="four columns">
+                <div class="game-title"><h4>SpaceBalls <a href="/stats/all/SpaceBalls/" title="Classement du SpaceBalls"><span class="badge badge-primary">Classement</span></a></h4></div>
+                <table class="u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Diamants récupérés</td>
+                        <td>{{ joueur.game.stats.spaceballs.diamonds|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.spaceballs.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.spaceballs.wins|number_format(0, '', ' ') }}</td>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.spaceballs.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

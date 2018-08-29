@@ -1,0 +1,35 @@
+{
+  "name": "fr_badblock",
+  "version": "1.0.0",
+  "description": "mon read me à été modifié\r et je le modifie encore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/lefuturiste/fr_badblock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/lefuturiste/fr_badblock/issues"
+  },
+  "homepage": "https://gitlab.com/lefuturiste/fr_badblock#README",
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssbeautify": "latest",
+    "gulp-csscomb": "latest",
+    "gulp-csso": "latest",
+    "gulp-livereload": "^3.8.1",
+    "gulp-load-plugins": "latest",
+    "gulp-minify": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "latest",
+    "gulp-sass-glob-import": "^0.1.0",
+    "gulp-uglify": "^2.1.2",
+    "node-bourbon": "^4.2.8"
+  }
+}

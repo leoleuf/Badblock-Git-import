@@ -1,0 +1,37 @@
+.button {
+  text-transform: uppercase;
+  border-radius: 1px;
+  transition: background .25s ease-in-out;
+  -moz-transition: background .25s ease-in-out;
+  -webkit-transition: background .25s ease-in-out;
+  font-size: 12px;
+  border: 0px;
+}
+
+.button.button-primary {
+  background-color: $color-primary;
+}
+
+.button.button-primary:hover {
+  background-color: #5ebeff;
+}
+
+.button.button-success {
+  color: #FFF !important;
+  background-color: #2ecc71 !important;
+}
+
+.button.button-success:hover {
+  color: #F1F1F1 !important;
+  background-color: #51D88C !important;
+}
+
+.button.button-danger {
+  color: #FFF !important;
+  background-color: #e74c3c !important;
+}
+
+.button.button-danger:hover {
+  color: #F1F1F1 !important;
+  background-color: #E74C3C !important;
+}

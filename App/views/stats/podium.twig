@@ -1,0 +1,64 @@
+{% extends 'default.twig' %}
+{% set show_title = true %}
+{% set title = "Podium" %}
+{% set sub_title = "Podium" %}
+{% block cover %}
+<div class="cover-back podium-cover">
+        <div class="cover">
+            <div class="container">
+                <div class="podium-cover-content">
+                    <img src="https://classement.badblock.fr/face.php?name=Luzaria" title="1er du podium" alt="1er du podium" class="avatar-first">
+                    <img src="https://classement.badblock.fr/face.php?name=Luzaria" title="2e du podium" alt="2e du podium" class="avatar-second">
+                    <img src="https://classement.badblock.fr/face.php?name=Luzaria" title="3e du podium" alt="3e du podium" class="avatar-third">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+{#
+On liste les différantes place en grossisant au fur et à mesure
+#}
+<table class="c-table stats-podium-table">
+  <caption class="c-table__caption">INSERTE TON TITRE ICI</caption>
+  <thead class="c-table__head">
+    <tr class="c-table__row c-table__row--heading">
+      <th class="c-table__cell">Place</th>
+      <th class="c-table__cell">Username</th>
+      <th class="c-table__cell">Data1</th>
+      <th class="c-table__cell">Data2</th>
+      <th class="c-table__cell">Data3</th>
+    </tr>
+  </thead>
+  <tbody class="c-table__body">
+    <tr class="c-table__row first">
+      <td class="c-table__cell">#1</td>
+      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name=Luzaria" class="avatar"> lefuturiste</td><!-- non t'es moche -->
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+    </tr>
+    <tr class="c-table__row second">
+      <td class="c-table__cell">#2</td>
+      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name=Luzaria" class="avatar"> Skript</td> <!-- t'est une merde -->
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+    </tr>
+    <tr class="c-table__row third">
+      <td class="c-table__cell">#3</td>
+      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name=Luzaria" class="avatar"> Uhura</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+    </tr>   
+    <tr class="c-table__row">
+      <td class="c-table__cell">#4</td>
+      <td class="c-table__cell"><img src="https://classement.badblock.fr/face.php?name=Luzaria" class="avatar"> Uhura</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+      <td class="c-table__cell">8088080</td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

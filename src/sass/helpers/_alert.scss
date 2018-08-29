@@ -1,0 +1,20 @@
+.alert {
+  background-color: #96a8b2;
+  color: #fff;
+  position: relative;
+  margin: 0 0 1em;
+  padding: 1em 1.6em 1em 1em;
+  border-radius: 4px;
+
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+
+  .icon {
+    float: right;
+  }
+}
+
+.alert-error {
+  background-color: #f44336 !important;
+  color: #fff !important;
+}

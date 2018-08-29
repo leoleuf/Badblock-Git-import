@@ -1,0 +1,23 @@
+/* Cover */
+.cover-back {
+  background-image: url('img/cover-back-1.png');
+  background-color: #F1F1F1;
+  background-size: cover;
+}
+
+.cover {
+  background-color: rgba(78, 101, 135, 0.6);
+  padding-top: 50px;
+  padding-bottom: 60px;
+
+  .cover-heading {
+    color: white;
+  }
+}
+
+.button-primary {
+  border-radius: 1px;
+}
+/**
+End cover
+ */

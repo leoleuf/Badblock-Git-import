@@ -1,0 +1,68 @@
+.badge {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+  margin-bottom: 3px;
+}
+
+.badge-admin {
+  color: #fff;
+  background-color: #DC3545;
+}
+
+.badge-moderateur {
+  color: #fff;
+  background-color: #f39c12;
+}
+
+.badge-supermodo,.badge-superviseurmodo, .badge-modocheat {
+  color: #fff;
+  background-color: #e67e22;
+}
+
+.badge-obsidienne {
+  color: #fff;
+  background-color: #2c3e50;
+}
+
+.badge-diamant {
+  color: #fff;
+  background-color: #2980b9;
+}
+
+.badge-staff {
+  background-color: #1abc9c;
+  color: #FFFFFF;
+}
+
+.badge-superviseur {
+  background-color: #8e44ad;
+  color: #FFFFFF;
+}
+
+.badge-gold {
+  color: #fff;
+  background-color: #f1c40f;
+}
+
+.badge-emeraude {
+  color: #fff;
+  background-color: #2ecc71;
+}
+
+.badge-default {
+  color: #333333;
+  background-color: #ecf0f1;
+}
+
+.badge-primary {
+  color: #fff;
+  background-color: #3498db;
+}

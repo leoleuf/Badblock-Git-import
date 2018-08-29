@@ -1,0 +1,49 @@
+{% extends 'default.twig' %}
+{% set show_title = false %}
+{% set title = "Podium" %}
+{% set sub_title = "Podium" %}
+{% block cover %}
+<div class="cover-back podium-cover">
+        <div class="cover">
+            <div class="container">
+                <div class="podium-cover-content">
+                    <h1>Tableau Classement {{ name }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+{#
+On liste les différantes place en grossisant au fur et à mesure
+#}
+<table class="c-table stats-podium-table">
+  <thead class="c-table__head">
+    <tr class="c-table__row c-table__row--heading">
+        <th class="c-table__cell">Place</th>
+        <th class="c-table__cell">Pseudonyme</th>
+        <th class="c-table__cell">Points de Classement</th>
+        <th class="c-table__cell">Kills</th>
+        <th class="c-table__cell">Morts</th>
+        <th class="c-table__cell">Points</th>
+        <th class="c-table__cell">Parties Gagnées</th>
+        <th class="c-table__cell">Parties Perdues</th>
+    </tr>
+  </thead>
+  <tbody class="c-table__body">
+    {% for data,key in data %}
+    <tr class="c-table__row">
+      <td class="c-table__cell">#{{ data+1  }}</td>
+      <td class="c-table__cell"><img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/30.png" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}" class="avatar"> <a href="/profile/{{  key['playerName'] }}" title="Statistiques de {{ key['playerName'] }}">{{  key['playerName'] }}</a></td>
+        <td class="c-table__cell">{{  key['_points'] }}</td>
+        <td class="c-table__cell">{{  key['kills'] }}</td>
+        <td class="c-table__cell">{{  key['deaths'] }}</td>
+        <td class="c-table__cell">{{  key['marks'] }}</td>
+        <td class="c-table__cell">{{  key['wins'] }}</td>
+        <td class="c-table__cell">{{  key['looses'] }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+
+</table>
+{% endblock %}

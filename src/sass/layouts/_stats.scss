@@ -1,0 +1,118 @@
+.stats-back {
+  margin-top: 5em;
+  background-image: url('img/cover-back-1.png');
+  background-size: cover;
+}
+
+.stats {
+  color: white;
+  font-size: 1.5em;
+  line-height: 45px;
+  color: #f4f4f4;
+  font-weight: 300;
+  background-color: rgba(78, 101, 135, 0.7);
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .colored-icon {
+    margin-right: 10px;
+  }
+}
+
+.podium-cover {
+  margin-top: 2.5em;
+}
+
+.c-table__cell {
+  padding-left: 12px !important;
+}
+.podium-cover {
+  .cover {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+.podium-cover-content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  .podium-cover-content-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    .text {
+      padding-top: 0.5em;
+      font-size: 1em;
+    }
+    .avatar {
+      margin-right: 1em;
+    }
+  }
+  .first .avatar {
+    width: 100px;
+    height: 100px;
+  }
+  .second .avatar {
+    width: 75px;
+    height: 75px;
+  }
+  .third .avatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .first .text {
+    font-size: 1.4em;
+  }
+  .second .text {
+    padding-top: 0.8em;
+    font-size: 1.2em;
+  }
+  .third .text {
+    padding-top: 1.25em;
+    font-size: 1em;
+  }
+}
+.stats-podium-table {
+  .avatar {
+    width: 25px;
+    height: 25px;
+    margin-right: 0.6em;
+  }
+  .first {
+    .avatar {
+      width: 40px;
+      height: 40px;
+    }
+    .c-table__cell {
+      padding-left: 0.4em !important;
+    }
+    font-size: 1.5em;
+  }
+  .second {
+    .avatar {
+      width: 35px;
+      height: 35px;
+    }
+    font-size: 1.4em;
+
+    .c-table__cell {
+      padding-left: 0.46em !important;
+    }
+  }
+  .third {
+    .avatar {
+      width: 30px;
+      height: 30px;
+    }
+
+    font-size: 1.2em;
+
+
+    .c-table__cell {
+      padding-left: 0.6em !important;
+    }
+  }
+}

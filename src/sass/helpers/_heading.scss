@@ -1,0 +1,23 @@
+
+.heading-bar {
+  margin: 12px 0px 24px 0px;
+  background: rgba(230, 230, 230, 0.7);
+  height: 3px;
+  border-radius: 10px;
+
+  span {
+    background: #FFFFFF;
+    padding-right: 15px;
+    position: relative;
+    top: -18px;
+  }
+}
+
+.heading {
+  margin-bottom: 1.2em;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
