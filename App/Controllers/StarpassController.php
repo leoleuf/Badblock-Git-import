@@ -36,7 +36,7 @@ class StarpassController extends Controller
 
     public function process(RequestInterface $request, ResponseInterface $response, $id)
     {
-        $documentId = intval($id);
+        $documentId = intval($id['id']);
 
         if (!$this->container->session->exist('recharge-username'))
         {
@@ -61,7 +61,7 @@ class StarpassController extends Controller
 
         if ($offer == null)
         {
-            return $this->redirect($response, '/shop/recharge/cancel');
+            //return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         // moche, merci starpass
@@ -78,6 +78,8 @@ class StarpassController extends Controller
         $ccodes = $codes;
         $codes=urlencode($codes);
         $datas=urlencode($datas);
+
+
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas" );
         

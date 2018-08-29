@@ -39,6 +39,10 @@ class LoginMiddleware
 
                 $data_session = explode("user_id\";i:",$data_session["session_data"]);
 
+                //Petit fdp qui modifie ses cookie
+                if (!isset($data_session[1])){
+                    return $next($request, $response);
+                }
                 $data_session = explode(";",$data_session[1]);
 
                 $userid = $data_session[0];
