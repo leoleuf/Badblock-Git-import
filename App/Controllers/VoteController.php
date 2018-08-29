@@ -88,7 +88,7 @@ class VoteController extends Controller
         // TODO move
         $types = array(
           1 => 'ptsboutique',
-          2 => 'skyb',
+          2 => 'skyb2',
           3 => 'hub',
           4 => 'faction',
           5 => 'box',
