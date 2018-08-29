@@ -67,18 +67,13 @@
             <div class="step-contains">
                 <h5 class="text-center">Obtenez votre récompense</h5>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot6" onclick="award('6')" href="" style="width: 95%;">
+                    <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
                         Nouveau SkyBlock
                     </button>
                 </div>
                 <div class="tooltip">
                     <button class="button button-primary disabled" id="lot1" onclick="award('1')" href="" style="width: 95%;">
                         Points Boutique
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot2" onclick="award('2')" href="" style="width: 95%;">
-                        SkyBlock
                     </button>
                 </div>
                 <div class="tooltip">
@@ -230,7 +225,6 @@
                 $("#lot3").removeClass("disabled");
                 $("#lot4").removeClass("disabled");
                 $("#lot5").removeClass("disabled");
-                $("#lot6").removeClass("disabled");
             }, 5000);
         }
 
@@ -250,7 +244,6 @@
                     $("#lot3").addClass("disabled");
                     $("#lot4").addClass("disabled");
                     $("#lot5").addClass("disabled");
-                    $("#lot6").addClass("disabled");
 
                     $("#title").text(data);
                     $('[data-remodal-id=info-modal]').remodal().open();
