@@ -36,6 +36,11 @@ class Redis
         return $this->client->del([$this->prefix . $key]);
     }
 
+    public function keys($key)
+    {
+        return $this->client->keys($key);
+    }
+
 	/**
 	 * Check if key exist
 	 *

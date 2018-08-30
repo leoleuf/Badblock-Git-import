@@ -90,6 +90,8 @@ class IpGeneratorMiddleware
         $this->container->redis->set('online:'.$ip, $ip);
         $this->container->redis->expire('online:'.$ip, 600);
 
+        $onlineCount = count($this->container->redis->keys('*online*'));
+
         if ($ip == "127.0.0.1")
         {
             $this->container->session->set('eula', true);
@@ -135,6 +137,7 @@ class IpGeneratorMiddleware
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
+        $twig->addGlobal('onlineCount', $onlineCount);
         $twig->addGlobal('points', $shoppoints);
         $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
