@@ -143,7 +143,7 @@ class VoteController extends Controller
         //dd($API_call);
         if($API_call != 1)
         {
-            return $response->write($API_call)->withStatus(405);
+            return $response->write(var_dump($API_call))->withStatus(405);
         }
 
         if ($type == 1){
