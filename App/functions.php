@@ -21,7 +21,7 @@ if ($config['app_debug']) {
 | This function is ignored is debug mode is not enabled
 |
 */
-function dd($value = 'Die and Debug ! ;)')
+function ddd($value = 'Die and Debug ! ;)')
 {
 	global $config;
 	if ($config['app_debug']){
@@ -32,10 +32,10 @@ function dd($value = 'Die and Debug ! ;)')
 
 function debug($value)
 {
-	return dd($value);
+	return ddd($value);
 }
 
 function d($value)
 {
-	return dd($value);
+	return ddd($value);
 }

@@ -113,7 +113,6 @@ $container['mysql_forum'] = function ($container) {
 };
 
 
-
 $container['mysql_casier'] = function ($container) {
 	$pdo = new \Simplon\Mysql\PDOConnector(
 		$container->config['mysql_casier']['host']. ':' . $container->config['mysql_casier']['port'], // server
