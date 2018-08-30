@@ -140,25 +140,14 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        //$API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
-        //$API_call = @file_get_contents($API_url);
-
-        $SERVER_ID = 93; // ID du serveur
-        $KEY = 'ePwvH8vBvcVUthJettUe9SW0fKsZ0V'; // Api key du serveur
-
-        $SM = "http://serveur-minecraft.net/api/$SERVER_ID/$KEY/?ip=$API_ip";
-        $result = @file_get_contents($SM);
+        $API_id = 193; // ID du serveur
+        $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
+        $API_call = @file_get_contents($API_url);
 
         // voted?
-        if (!$dev && $result != true)
+        if (!$dev && $API_call != 1)
         {
-            $API_id = 193; // ID de votre serveur
-            $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
-            $API_call = @file_get_contents($API_url);
-            if($API_call != 1)
-            {
-                return $response->write("Vote invalid")->withStatus(405);
-            }
+            return $response->write("Vote invalid")->withStatus(405);
         }
 
         if ($type == 1){
