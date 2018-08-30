@@ -22,13 +22,18 @@ class UpdateServerGraphApiController extends \App\Controllers\Controller
 
                 $online = $Query->Query()["players"]["online"];
 
+                if ($online == null || empty($online) || !is_int($online))
+                {
+                    return $response->write('Server down');
+                }
+
                 $this->container->redis->set('api.mc.player_graph', $online);
                 $this->container->redis->expire('api.mc.player_graph', 3600);
 
 
-                file_put_contents("servergraphs.dat", "[".time()."000,".$online."],", FILE_APPEND);
+                file_put_contents("servergraphs.dat", "[".time()."
+                return $response->withJson(["players" => ['now' => $online]]);000,".$online."],", FILE_APPEND);
 
-                return $response->withJson(["players" => ['now' => $online]]);
 
                 $Query->Close();
 
