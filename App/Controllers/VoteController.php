@@ -140,7 +140,7 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        $API_id = 193; // ID du serveur
+        $API_id = 198; // ID du serveur
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
 
