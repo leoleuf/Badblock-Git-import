@@ -87,6 +87,9 @@ class IpGeneratorMiddleware
             $ip = $_SERVER['CF_CONNECTING_IP'];
         }
 
+        $this->container->redis->set('online:'.$ip, $ip);
+        $this->container->redis->expire('online:'.$ip, 600);
+
         if ($ip == "127.0.0.1")
         {
             $this->container->session->set('eula', true);
