@@ -140,10 +140,10 @@ class VoteController extends Controller
         $API_id = 193; // ID de votre serveur
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
-        dd($API_call);
+        //dd($API_call);
         if($API_call != 1)
         {
-            return $response->write("Vote invalid")->withStatus(405);
+            return $response->write($API_call)->withStatus(405);
         }
 
         if ($type == 1){
