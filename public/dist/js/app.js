@@ -66,12 +66,33 @@ $(document).ready(function () {
         }
     });
 
+    var endpoint = ""
+    var mcHost = "eu.badblock.fr"
+    var trans = {
+        'noPlayers': "Aucun joueurs connectés",
+        'onePlayer': "joueur",
+        'manyPlayers': "joueurs"
+    }
+
+    function login() {
+        $('[data-remodal-id=login]').remodal().open();
+    }
+
     //Click event to scroll to top
     $('.scrollToTop').click(function () {
         $('html, body').animate({scrollTop: 0}, 800);
         return false;
     })
 
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
 
     /*
     Rechargez son compte
