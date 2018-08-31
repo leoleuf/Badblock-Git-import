@@ -143,7 +143,7 @@ class DedipassController extends Controller
                 $data = [
                     'uniqueId' => $user['uniqueId'],
                     'date' => date('Y-m-d H:i:s'),
-                    'price' => $dedipass->payout,
+                    'price' => intval($dedipass->payout),
                     'gateway' => 'dedipass-ingame',
                     'pseudo' => $name,
                     'points' => $dedipass->virtual_currency,
