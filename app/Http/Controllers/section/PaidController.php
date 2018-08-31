@@ -47,6 +47,9 @@ class PaidController extends Controller
 
         $group_rel = ["forum" => 8,"redaction" => 24,"moderation","graphisme" => 26,"animation" => 27,"developpement" => 14];
 
+        $logg = [];
+        $pts= 0;
+
         if (in_array($section, $sections)){
             $result = DB::connection('mysql_forum')->select("select * from xf_user where user_group_id = " . $group_rel[$section]);
             //Foreach pour les paie
@@ -54,6 +57,23 @@ class PaidController extends Controller
                 if (!empty($request->input('pb_'. $row->user_id))){
 
                     $user = DB::connection('mongodb_server')->collection('players')->where('name', strtolower($row->username))->first();
+
+                    $paie = DB::connection('mongodb')->collection('fund_list')->where('uniqueId', $user['uniqueId'])->first();
+
+                    if ($paie == null){
+                        $data = [
+                            "uniqueId" => $user['uniqueId'],
+                            "points" => intval($request->input('pb_'. $row->user_id))
+                        ];
+                        DB::connection('mongodb')->collection('fund_list')->insert($data);
+                    }else{
+                        $paie = $paie['points'] + intval($request->input('pb_'. $row->user_id));
+                        DB::connection('mongodb')->collection('fund_list')->where('uniqueId', $user['uniqueId'])->update([
+                            'points' => $paie
+                        ]);
+                    }
+
+                    $pts = $pts + intval($request->input('pb_'. $row->user_id));
 
                     if ($user != null){
                         //Enregistrement de l'opération
@@ -67,10 +87,19 @@ class PaidController extends Controller
                         $Funds->date = date("Y-m-d h:i:s");
                         $Funds->save();
                     }
+
+                    array_push($logg, ['Pseudo' => $row->username, 'points' => intval($request->input('pb_'. $row->user_id))]);
                 }
             }
-
         }
+
+        //Log to mongoDB
+        DB::connection('mongodb')->collection('section_paid')->insert([
+            'section' => $section,
+            'total' => $pts,
+            'date' => date("Y-m-d h:i:s"),
+            'data' => $logg
+        ]);
 
         return redirect('/');
     }

@@ -1,0 +1,99 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: mathieu
+ * Date: 21/01/2018
+ * Time: 15:10
+ */
+
+namespace App\Http\Controllers\website;
+
+
+use App\Models\Funds;
+use App\Http\Controllers\Controller;
+use App\Models\Operation;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+
+
+class VoteController extends Controller
+{
+
+    public function index(){
+        $date = new \DateTime(date("Y-m-d", strtotime("-1 month")));
+
+        //Search data
+        $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();
+
+        if ($data['give'] == true){
+            return redirect('/');
+        }
+
+        //Lecture du classement
+        $data = (array) $data['players'];
+        usort($data, create_function('$a, $b', '
+        $a = $a["vote"];
+        $b = $b["vote"];
+
+        if ($a == $b) return 0;
+
+        $direction = strtolower(trim("desc"));
+
+        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
+        '));
+
+        $data = array_slice($data, 0, 29);
+
+        foreach ($data as $k => $row){
+            if ($k < 3){
+                $data[$k]['pb'] = 4875;
+            }elseif ($k < 10){
+                $data[$k]['pb'] = 2625;
+            }elseif ($k < 20){
+                $data[$k]['pb'] = 1500;
+            }else{
+                $data[$k]['pb'] = 750;
+            }
+        }
+
+        return view('website.vote')->with('data', $data);
+    }
+
+
+    public function save(){
+
+        $logg = [];
+
+        foreach ($_POST['list'] as $k => $row){
+            $user = DB::connection('mongodb_server')->collection('players')->where('name', strtolower($row))->first();
+            $paie = DB::connection('mongodb')->collection('fund_list')->where('uniqueId', $user['uniqueId'])->first();
+            $pb = $_POST['pb'][$k];
+            if ($paie == null){
+                $data = [
+                    "uniqueId" => $user['uniqueId'],
+                    "points" => intval($pb)
+                ];
+                DB::connection('mongodb')->collection('fund_list')->insert($data);
+            }else{
+                $paie = $paie['points'] + intval($pb);
+                DB::connection('mongodb')->collection('fund_list')->where('uniqueId', $user['uniqueId'])->update([
+                    'points' => $paie
+                ]);
+            }
+            array_push($logg, ['Pseudo' => $row, 'points' => intval($pb)]);
+        }
+
+
+
+
+        //Log to mongoDB
+        DB::connection('mongodb')->collection('vote_paid')->insert([
+            'date' => date("Y-m-d h:i:s"),
+            'data' => $logg
+        ]);
+
+        return redirect('/');
+    }
+
+
+}
