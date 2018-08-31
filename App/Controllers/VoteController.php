@@ -70,7 +70,7 @@ class VoteController extends Controller
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
     {
-        $API_id = 198; // ID du serveur
+        /*$API_id = 198; // ID du serveur
         $API_da = 'clic'; // vote,clic,commentaire ou note
         $API_url = "https://serveur-prive.net/api/stats/$API_id/$API_da";
         $API_call = @file_get_contents($API_url);
@@ -89,7 +89,7 @@ class VoteController extends Controller
         {
             header("Location: https://badblock.fr/accueil/");
             exit;
-        }
+        }*/
     }
 
     public function award(RequestInterface $request, ResponseInterface $response)
