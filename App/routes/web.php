@@ -56,6 +56,7 @@ $app->group('/shop', function (){
 
 });
 
+$app->get('/badblock', \App\Controllers\VoteController::class . ':badblocok')->setName('vote.server-redirect');
 $app->get('/svote', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.server-redirect');
 $app->get('/autovote', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.server-redirect3');
 
