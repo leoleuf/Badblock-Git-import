@@ -31,7 +31,7 @@ class UpdateServerGraphApiController extends \App\Controllers\Controller
                 $this->container->redis->expire('api.mc.player_graph', 3600);
 
 
-                file_put_contents("servergraphs.dat", "[".time().",".$online."],", FILE_APPEND);
+                file_put_contents("servergraphs.dat", "[".time().",".$online."000],", FILE_APPEND);
                 return $response->write($online);
 
 
