@@ -179,16 +179,29 @@
                 <table width="100%" style="text-align: center !important;" class="center">
                     <tr class="d" id="top-td">
                         <td class="center">&nbsp;</td>
-                        <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
-                            <p class="rank-head">VIP</p>
-                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
-                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1050 points</span></a>
-                        </td>
-                        <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
-                            <p class="rank-head">VIP+</p>
-                            <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
-                            <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>2250 points</span></a>
-                        </td>
+                        {% if promo == true %}
+                            <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
+                                <p class="rank-head">VIP</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>525 points (-50%)</span></a>
+                            </td>
+                            <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
+                                <p class="rank-head">VIP+</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1125 points (-50%)</span></a>
+                            </td>
+                        {% else %}
+                            <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
+                                <p class="rank-head">VIP</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1050 points</span></a>
+                            </td>
+                            <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
+                                <p class="rank-head">VIP+</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>2250 points</span></a>
+                            </td>
+                        {% endif %}
                         <td class="rank center" id="rank-3020415" onclick='achat("5b71afa9b1fe8a85fe31bb70")'>
                             <p class="rank-head">MVP</p>
                             <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0a322550eb949f1674083c419553c286ff3dded6.png" title="Grade MVP" alt="Grade MVP" style="margin-bottom: 10px; width:90%;">

@@ -26,7 +26,18 @@ class ShopController extends Controller
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
-        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo]);
+        if ($this->session->exist('user')){
+            $username = $this->session->getProfile('username')['username'];
+            if ($this->obsipromo($username)){
+                $promo = true;
+            }else{
+                $promo = false;
+            }
+        }else{
+            $promo = false;
+        }
+
+        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
 
     }
 
@@ -150,6 +161,24 @@ class ShopController extends Controller
         if(!$this->haveMoney(strtolower($playerName), $product->price)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
+
+        //Remove after
+        if ($this->session->exist('user')){
+            $username = $this->session->getProfile('username')['username'];
+            if ($this->obsipromo($username)){
+                $promo = true;
+            }else{
+                $promo = false;
+            }
+        }else{
+            $promo = false;
+        }
+        if ($product->depend_name == 'vip' || $product->depend_name == 'vip+'){
+            if ($promo == true){
+                $product->price = $product->price / 2;
+            }
+        }
+
 
         $product->depend_name == null;
         //Log the buy and subtract money
@@ -351,6 +380,32 @@ class ShopController extends Controller
        $channel->close();
        $connection->close();
 
+
+   }
+
+
+   public function obsipromo($pseudo){
+
+       //Search data player
+       $player = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
+
+       if ($player == null){
+           $check = false;
+       }else{
+           if ($player['permissions']['group'] == "obsidienne"){
+               $check = true;
+           }else{
+               foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+                   if ($k == "obsidienne"){
+                       $check = true;
+                   }else{
+                       $check = false;
+                   }
+               }
+           }
+       }
+
+       return $check;
 
    }
 
