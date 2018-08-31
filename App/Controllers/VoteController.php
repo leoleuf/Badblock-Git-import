@@ -255,7 +255,7 @@ class VoteController extends Controller
 
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
-        $this->broadcast(' &d&lCe soir lotterie à 18H ! &b&nhttps://badblock.fr/vote');
+        $this->broadcast(' &d&lCe soir loterie à 18H ! &b&nhttps://badblock.fr/vote');
 
         $this->top($displayPseudo, 1);
 
