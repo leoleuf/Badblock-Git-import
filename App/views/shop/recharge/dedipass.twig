@@ -42,6 +42,31 @@
 <!-- Debut liste paiements -->
     
     <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <div class="row center">
+        <div class="three columns">
+            <a href="/shop/recharge">
+                <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/step-2">
+                <input class="tab-top btn" type="button" name="bt2" value="Méthode" />
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/dedipass">
+                <input class="tab-top btn" type="button" name="bt3" value="Combien de points ?" />
+            </a>
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 75%;"></div>
+    </div>
+    <br>
     <br>
     <div data-dedipass="95576b4b99c5d76e20319817e24761ae" data-dedipass-custom=""></div>
     <script src="//api.dedipass.com/v1/pay.js"></script>
