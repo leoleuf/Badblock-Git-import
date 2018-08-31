@@ -25,14 +25,13 @@
             </div>
         </div>
         <!-- Fin recharger -->
-        <div class="shop-full-w">
+        <div class="shop-full-w" id="haut-boutique">
             <div class="shop-menu">
                 <ul class="shop-menu-menu">
                     {% for key,value in serverlist %}
                         <li class="shop-menu-active">
                             <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link" title="Menu boutique {{ value["server"]["name"] }}">
-                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
-                            </a>
+                                <a href="#haut-boutique"><i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}</a></a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -57,7 +56,9 @@
                 document.getElementById(serv).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+            
         </script>
+
 
     {% endblock %}
 
