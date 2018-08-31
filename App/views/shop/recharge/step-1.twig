@@ -41,7 +41,7 @@
 {% block content %}
 <!-- Debut liste paiements -->
     
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
     <div class="row center">
         <div class="three columns">
             <a href="/shop/recharge">
@@ -72,15 +72,13 @@
     <div class="row">
         <div class="six columns recharge-bottom">
             <div class="recharge-info">
-                Vous pouvez ici recharger votre compte en <i class="fas fa-money-bill-wave"></i>  points boutique afin d'obtenir des grades et des objets sur la boutique de Badblock.<br>
-                Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
-                Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
-                Toute utilisation de PayPal par un mineur sans accord parental ou tout problème sur PayPal entraînera un ban définitif de notre plateforme.<br>
-                Aucun remboursement ne sera effectué si le produit a bien été livré en jeu.
+                Tu peux ici obtenir plus de <i class="fas fa-money-bill-wave"></i> points boutique afin d'obtenir des <strong>Grades</strong>, des <strong>Accès</strong>, des <strong>Clés</strong> et des <strong>Objets</storng> sur la boutique de Badblock.<br>
+                    Tu peux obtenir des points boutique par <strong>PayPal (carte bancaire), par SMS, par Appel, par carte prépayée (PaySafeCard / NeoSurf) etc</strong>.<br>
+                Pour tout problème rencontré, tu peux <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>.
             </div>
         </div>
         <div class="six columns">
-            <h5 id="pseudo">Indiquez le pseudo du compte à recharger</h5><br>
+            <h5 id="pseudo">Donne-nous le nom de ton compte</h5><br>
             <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
                 <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" value="{{ player }}" required><br>
                 <label class="check-recharge">
@@ -91,7 +89,7 @@
                     <input type="checkbox" required>
                     <span class="label-body article-checkbox">J'accepte les <a href="https://badblock.fr/legals/Conditions_generales_de_vente.pdf" title="Conditions Générales de Vente" target="_blank">Conditions Générales de Vente</a>, les <a href="https://badblock.fr/legals/Conditions_generales_dutilisation.pdf" title="Conditions Générales d'Utilisation" target="_blank">Conditions Générales d'Utilisation</a>, la <a href="https://badblock.fr/legals/Politique_de_confidentialit%C3%A9.pdf" title="Politique de Confidentialité" target="_blank">Politique de Confidentialité</a> et le <a href="https://forum.badblock.fr/règlement" target="_blank" title="Règlement de BadBlock">Règlement de BadBlock</a>.</a></span>
                 </label>
-           <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
+           <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Je veux recharger mon compte</button>
             </form>
         </div>
         
