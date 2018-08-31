@@ -79,6 +79,9 @@
             <li class="user-tab">
                 <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i> Grade</a>
             </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '7')"><i class="fas fa-male"></i> Skins</a>
+            </li>
             
             <li class="user-tab">
                 <a class="no-link" onclick="window.open('https://forum.badblock.fr/mon-compte', 'name');"><i class="far fa-file-alt"></i> Forum</a>
@@ -514,33 +517,40 @@
         <section class="shop-section-1" class="tabcontent">
             <br>
             {% if connection != false %}
-            <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
-            <table class="table table-bordered">
-                <tbody>
-                <tr>
-                    <td><font color="black">Pseudo</font></td>
-                    <td><font color="black">Date</font></td>
-                    <td><font color="black">Heure</font></td>
-                    <td><font color="black">Adresse IP</font></td>
-                </tr>
-                {% for k,val in connection %}
+                <h4 class="heading heading-bar"><span>Mes dernières connexions</span></h4>
+                <table class="table table-bordered">
+                    <tbody>
                     <tr>
-                        <td>{{ user.realName }}</td>
-                        <td>{{ val.date }}</td>
-                        <td>{{ val.time }}</td>
-                        <td>{{ val.ip }}</td>
+                        <td><font color="black">Pseudo</font></td>
+                        <td><font color="black">Date</font></td>
+                        <td><font color="black">Heure</font></td>
+                        <td><font color="black">Adresse IP</font></td>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    {% for k,val in connection %}
+                        <tr>
+                            <td>{{ user.realName }}</td>
+                            <td>{{ val.date }}</td>
+                            <td>{{ val.time }}</td>
+                            <td>{{ val.ip }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             {%  else %}
-                    <div class="no-item-container">
-                        <div class="no-item-content">
-                            <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
-                            <h4>Aucune(s) connection(s)</h4>
-                        </div>
+                <div class="no-item-container">
+                    <div class="no-item-content">
+                        <h4 class="flex-center"><i class="icon-erroralt"></i></h4>
+                        <h4>Aucune(s) connection(s)</h4>
                     </div>
+                </div>
             {% endif %}
+        </section>
+    </div>
+    <div id="7" class="tabcontent" style="display: none;">
+        <section class="shop-section-1" class="tabcontent">
+            <br>
+                <h4 class="heading heading-bar"><span>Mon Skin</span></h4>
+                Bonjour, tu pourras configurer ton <strong>Skin</strong> très prochainement. Pour cela, il suffit de patienter quelques heures afin que nous mettions en place cette technologie.
         </section>
     </div>
 
