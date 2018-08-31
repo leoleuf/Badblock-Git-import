@@ -222,6 +222,7 @@ class VoteController extends Controller
         }
 
         $collection = $this->container->mongo->votes_logs;
+        $total = $collection->count(['timestamp' => ['$gte' => (1535731200000 - 86400000)]]);
         $command = str_replace("%player%", $pseudo, $winItem->command);
 
         // award log
@@ -237,6 +238,10 @@ class VoteController extends Controller
 
 
         $collection->insertOne($insert);
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1535731200000 - 86400000)]]);
+
+        $total = max($total, 1);
+        $proba = round($dbh / $total, 2);
 
         $awardName = $winItem->name;
 
@@ -250,10 +255,12 @@ class VoteController extends Controller
 
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
+        $this->broadcast(' &d&lCe soir lotterie à 18H ! &b&nhttps://badblock.fr/vote');
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$winItem->name)->withStatus(200);
+        return $response->write("Vous avez gagné ".$winItem->name .
+            " ainsi qu'une participation à la lotterie. Vous êtes désormais à " . $proba . "% de chance de gagner. Tirage ce soir à 18H sur https://badblock.fr/vote")->withStatus(200);
     }
 
     public function top($player, $vote){
