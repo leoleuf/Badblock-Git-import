@@ -90,6 +90,8 @@ class VoteController extends Controller
             header("Location: https://badblock.fr/accueil/");
             exit;
         }*/
+        header("Location: https://badblock.fr/jouer");
+        exit;
     }
 
     public function award(RequestInterface $request, ResponseInterface $response)
