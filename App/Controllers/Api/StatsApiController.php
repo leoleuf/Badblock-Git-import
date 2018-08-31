@@ -40,16 +40,16 @@ class StatsApiController extends \App\Controllers\Controller
             if (is_double($nb / 20)){
                 $nb = round(($nb / 20)) + 1;
             }
+
             $n = 0;
             while ($nb != $n){
                 $data = array_slice($game,($n * 20),20,true);
-                $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                $n++;
+                if (!empty($data)){
+                    $this->redis->setJson("stats:".$name .":". ($n +1),$data);
+                    $n++;
+                }
             }
         }
-
-
-        //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
         return $response->write('okok')->withStatus(200);
     }
