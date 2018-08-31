@@ -995,6 +995,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     display: block;
 }
 
+.small-offer:hover > .info {
+    display: block;
+}
+
 .small-offer:hover > .hidden-text {
     display: block;
     margin-bottom: -5px;
