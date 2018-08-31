@@ -31,7 +31,7 @@
                     {% for key,value in serverlist %}
                         <li class="shop-menu-active">
                             <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link" title="Menu boutique {{ value["server"]["name"] }}">
-                                <a href="#haut-boutique"><i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}</a></a>
+                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}</a>
                         </li>
                     {% endfor %}
                 </ul>

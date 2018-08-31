@@ -157,11 +157,6 @@ class ShopController extends Controller
             }
         }
 
-        //Check if player have money
-        if(!$this->haveMoney(strtolower($playerName), $product->price)){
-            return $response->write("Fond insuffisant")->withStatus(405);
-        }
-
         //Remove after
         if ($this->session->exist('user')){
             $username = $this->session->getProfile('username')['username'];
@@ -178,6 +173,13 @@ class ShopController extends Controller
                 $product->price = $product->price / 2;
             }
         }
+
+        //Check if player have money
+        if(!$this->haveMoney(strtolower($playerName), $product->price)){
+            return $response->write("Fond insuffisant")->withStatus(405);
+        }
+
+
 
 
         $product->depend_name == null;
