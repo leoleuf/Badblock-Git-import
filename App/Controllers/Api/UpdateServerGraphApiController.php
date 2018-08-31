@@ -22,7 +22,7 @@ class UpdateServerGraphApiController extends \App\Controllers\Controller
 
                 $online = $Query->Query()["players"]["online"];
 
-                if ($online == null || empty($online))
+                if ($online == null)
                 {
                     return $response->write('Server down');
                 }
