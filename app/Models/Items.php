@@ -1,20 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
-class Players extends Eloquent {
+class Items extends Eloquent {
 
     protected $connection = 'mongodb';
-    protected $collection = "operation";
+    protected $collection = "items";
 
     public static $rules = array(
         'name'=>'required',
-        'nickName'=>'required',
-        'lastip'=>'required',
     );
 
 

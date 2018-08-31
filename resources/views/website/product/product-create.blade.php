@@ -36,7 +36,7 @@
                         {{ Form::text('price', "",array('class' => 'form-control','placeholder'=>"Prix du produit")) }}
                         <br>
                         Type :
-                        {{ Form::text('type', "",array('class' => 'form-control','placeholder'=>"Type du produit")) }}
+                        {{ Form::text('mode', "",array('class' => 'form-control','placeholder'=>"rabbitmq")) }}
                         <br>
                         Sélectionner la catégorie :
                         <select name="category" class="form-control select2">
@@ -65,10 +65,23 @@
                         <input name ="promo" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
                         <br>
                         <br>
-                        Pourcentage de promotion :
-                        {{ Form::text('promo_reduc',"",array('class' => 'form-control','placeholder'=>"Pourcentage de promotion")) }}
+                        Activer le mode promotion sur ce produit :
                         <br>
-
+                        <br>
+                        <input name ="promotion" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                        <br>
+                        <br>
+                        Pourcentage de promotion :
+                        {{ Form::text('promo_coef', "", array('class' => 'form-control','placeholder'=>"50")) }}
+                        <br>
+                        <br>
+                        Nouveau prix de promotion :
+                        {{ Form::text('promotion_new_price', "", array('class' => 'form-control','placeholder'=>"50")) }}
+                        <br>
+                        Visibilité dans le container promotion :
+                        <br>
+                        <input name ="promotion_view" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                        <br>
                         <br>
                         Nom de la dépendance (si néssecaire) :
                         <br>

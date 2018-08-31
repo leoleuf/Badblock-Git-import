@@ -22,21 +22,17 @@ Route::group([
     Route::get('/', function () {return view('welcome');});
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/devhome', 'toenga\DevInstanceController@index');
-    Route::get('/toenga', 'toenga\HomeController@index');
-    Route::get('/toenga/instance/{uid}', 'toenga\InstanceController@index');
-    Route::get('/toenga/websock/{uid}', 'toenga\InstanceController@tokenWS');
 
     Route::get('/players', 'stats\StatsController@playersStats');
+
+    Route::get('/players/search', 'stats\StatsController@playersStats');
+    Route::get('/players/search/json/{text}', 'stats\StatsController@search');
+    Route::get('/players/edit/{id}', 'stats\StatsController@editPlayer');
+
     Route::resource('/players/crud', 'crud\PlayersController');
 
     Route::get('/api/toenga/treeroot/{name}', 'toenga\HomeController@treeroot');
     Route::get('/api/toenga/treechild/{name}', 'toenga\HomeController@treechild');
-
-    Route::get('/api/mongo', 'ajax\HomeController@mongoStat');
-    Route::get('/api/online', 'ajax\HomeController@online');
-    Route::get('/api/players', 'ajax\HomeController@players');
-    Route::get('/api/playersjson', 'ajax\HomeController@onlineChart');
 
 
     Route::get('/section/forum', 'section\ForumController@index');
@@ -45,13 +41,12 @@ Route::group([
 
 
     Route::get('/website', 'website\IndexController@index');
+    Route::get('/website/compta', 'website\IndexController@compta');
+    Route::get('/website/compta/{date}', 'website\IndexController@compta');
     Route::resource('/website/crud/server', 'website\crud\ServerController');
     Route::resource('/website/crud/category', 'website\crud\CategoryController');
     Route::resource('/website/crud/product', 'website\crud\ProductController');
     Route::resource('/website/crud/items', 'website\crud\ItemsController');
-
-
-
 
 
 });

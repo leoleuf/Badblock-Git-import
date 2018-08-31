@@ -87,7 +87,21 @@ return [
             'username' => env('MONGO_USERNAME'),
             'password' => env('MONGO_PASSWORD'),
             'options'  => [
-                'database' => 'test' // sets the authentication database required by mongo 3
+                'database' => 'admin' // sets the authentication database required by mongo 3
+            ]
+        ],
+
+        //mongoDB
+        'mongodb_server' => [
+            'name'   => 'mongodb',
+            'driver'   => 'mongodb',
+            'host'     => env('MONGO_SERVER_HOST', 'localhost'),
+            'port'     => env('MONGO_SERVER_PORT', 27018),
+            'database' => env('MONGO_SERVER_DATABASE'),
+            'username' => env('MONGO_SERVER_USERNAME'),
+            'password' => env('MONGO_SERVER_PASSWORD'),
+            'options'  => [
+                'database' => 'admin' // sets the authentication database required by mongo 3
             ]
         ],
 

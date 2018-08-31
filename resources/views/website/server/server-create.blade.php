@@ -36,6 +36,9 @@
                         Icone FA du serveur :
                         {{ Form::text('icon', "", array('class' => 'form-control','placeholder'=>"icon icon-cloud")) }}
                         <br>
+                        Power du serveur :
+                        {{ Form::text('power', "", array('class' => 'form-control','placeholder'=>"0-10")) }}
+                        <br>
                         Activer la visibilitée du serveur sur le site :
                         <br>
                         <br>

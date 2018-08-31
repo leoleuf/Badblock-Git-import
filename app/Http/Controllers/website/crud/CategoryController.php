@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\website\crud;
 
-use App\Category;
-use App\Server;
+use App\Models\Category;
+use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
+use Monolog\Handler\Mongo;
 
 
 class CategoryController extends \App\Http\Controllers\Controller {
@@ -23,8 +24,8 @@ class CategoryController extends \App\Http\Controllers\Controller {
         $Category = Category::all();
 
         foreach ($Category as $row){
-            if (!empty($row->server)){
-                $server = Server::find($row->server);
+            if (!empty($row->server_id)){
+                $server = Server::find($row->server_id);
                 if (isset($server->name)){
                     $row->server = $server->name;
                 }
@@ -57,8 +58,9 @@ class CategoryController extends \App\Http\Controllers\Controller {
 
         $Category = new Category;
         $Category->name = $request->input('name');
-        $Category->{'sub-name'} = $request->input('sub-name');
-        $Category->server = $request->input('server');
+        $Category->subname = $request->input('sub-name');
+        $Category->server_id = new \MongoDB\BSON\ObjectId($request->input('server'));
+        $Category->power = $request->input('power');
 
         if ($request->input('visibility') == "on"){
             $Category->visibility = true;
@@ -105,8 +107,10 @@ class CategoryController extends \App\Http\Controllers\Controller {
 
         $Category = Category::findOrFail($id);
 
-        $Category->server = $request->input('server');
-
+        $Category->name = $request->input('name');
+        $Category->subname = $request->input('sub-name');
+        $Category->server_id = new \MongoDB\BSON\ObjectId($request->input('server'));
+        $Category->power = $request->input('power');
 
         if ($request->input('visibility') == "on"){
             $Category->visibility = true;
@@ -130,7 +134,6 @@ class CategoryController extends \App\Http\Controllers\Controller {
         Category::destroy($id);
 
         return redirect('/website/crud/category/');
-
 
     }
 }

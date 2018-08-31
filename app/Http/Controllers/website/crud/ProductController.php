@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\website\crud;
 
-use App\Category;
-use App\Server;
-use App\Product;
+use App\Models\Category;
+use App\Models\Server;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 
@@ -24,14 +24,14 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product = Product::all();
 
         foreach ($Product as $row){
-                if (!empty($row->cat)){
-                    $cat = Category::find($row->cat);
-                    if (isset($cat->name)){
-                        $row->cat = $cat->name;
-                    }
-                }else{
-                    $row->cat = 'Catégorie Inconnue';
+            if (!empty($row->cat_id)){
+                $cat = Category::find($row->cat_id);
+                if (isset($cat->name)){
+                    $row->cat = $cat->name;
                 }
+            }else{
+                $row->cat = 'Catégorie Inconnue';
+            }
         }
 
 
@@ -60,21 +60,28 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->name = $request->input('name');
         $Product->price = $request->input('price');
         $Product->description = $request->input('desc');
-        $Product->qty = $request->input('qty');
-        $Product->cat = $request->input('category');
-        $Product->promo_reduc = $request->input('promo_reduc');
-        $Product->type = $request->input('type');
-        $Product->depend_to = $request->input('depend_to');
+        $Product->cat_id = new \MongoDB\BSON\ObjectId($request->input('category'));
+        $Product->promo_coef = $request->input('promo_coef');
+        $Product->promotion_new_price = $request->input('promotion_new_price');
+        $Product->mode = $request->input('mode');
+        $Product->depend_to = new \MongoDB\BSON\ObjectId($request->input('depend_to'));
         $Product->depend_name = $request->input('depend_name');
         $Product->queue = $request->input('queue');
         $Product->command = $request->input('command');
-        $Product->img = $request->input('img');
+        $Product->image = $request->input('image');
 
 
-        if ($request->input('promo') == "on"){
-            $Product->promo = true;
+
+        if ($request->input('promotion') == "on"){
+            $Product->promotion = true;
         }else{
-            $Product->promo = false;
+            $Product->promotion = false;
+        }
+
+        if ($request->input('promotion_view') == "on"){
+            $Product->promotion_view = true;
+        }else{
+            $Product->promotion_view = false;
         }
 
         if ($request->input('depend') == "on"){
@@ -131,21 +138,28 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->name = $request->input('name');
         $Product->price = $request->input('price');
         $Product->description = $request->input('desc');
-        $Product->cat = $request->input('category');
-        $Product->promo_reduc = $request->input('promo_reduc');
-        $Product->type = $request->input('type');
-        $Product->depend_to = $request->input('depend_to');
+        $Product->cat_id = new \MongoDB\BSON\ObjectId($request->input('category'));
+        $Product->promo_coef = $request->input('promo_coef');
+        $Product->promotion_new_price = $request->input('promotion_new_price');
+        $Product->mode = $request->input('mode');
+        $Product->depend_to = new \MongoDB\BSON\ObjectId($request->input('depend_to'));
         $Product->depend_name = $request->input('depend_name');
         $Product->queue = $request->input('queue');
         $Product->command = $request->input('command');
-        $Product->img = $request->input('img');
+        $Product->image = $request->input('image');
 
 
 
-        if ($request->input('promo') == "on"){
-            $Product->promo = true;
+        if ($request->input('promotion') == "on"){
+            $Product->promotion = true;
         }else{
-            $Product->promo = false;
+            $Product->promotion = false;
+        }
+
+        if ($request->input('promotion_view') == "on"){
+            $Product->promotion_view = true;
+        }else{
+            $Product->promotion_view = false;
         }
 
         if ($request->input('depend') == "on"){

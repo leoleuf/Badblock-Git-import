@@ -25,14 +25,14 @@
                         {{ Form::text('name', $category['name'], array('class' => 'form-control','placeholder'=>"Nom d'affichage de la categorie")) }}
                         <br>
                         Sous-titre de la categorie :
-                        {{ Form::text('sub-name', $category['sub-name'], array('class' => 'form-control','placeholder'=>"Sous-titre de la categorie")) }}
+                        {{ Form::text('sub-name', $category['subname'], array('class' => 'form-control','placeholder'=>"Sous-titre de la categorie")) }}
                         <br>
                         Sélectionner le serveur de la catégorie :
                         <select name="server" class="form-control select2">
                             <option>Selectionner le serveur</option>
                             <optgroup label="Serveur Principal">
                                 @foreach($server as $key => $value)
-                                        @if($category['server'] == $value->_id)
+                                        @if($category['server_id'] == $value->_id)
                                         <option value="{{ $value->realName }}" selected>{{ $value->name }}</option>
                                          @else
                                             <option value="{{ $value->_id }}">{{ $value->name }}</option>
@@ -40,6 +40,10 @@
                                 @endforeach
                             </optgroup>
                         </select>
+                        <br>
+                        <br>
+                        Power de la categorie :
+                        {{ Form::text('power', $category['power'], array('class' => 'form-control','placeholder'=>"0-10")) }}
                         <br>
                         <br>
                         Activer la visibilitée de la categorie sur le site :

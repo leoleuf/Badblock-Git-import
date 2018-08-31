@@ -34,6 +34,10 @@
                         {{ Form::text('sub-name', "", array('class' => 'form-control','placeholder'=>"Sous-titre de la categorie")) }}
                         <br>
                         <br>
+                        Power de la categorie :
+                        {{ Form::text('power', "", array('class' => 'form-control','placeholder'=>"0-10")) }}
+                        <br>
+                        <br>
                         Sélectionner le serveur de la catégorie :
                         <select name="server" class="form-control select2">
                             <option>Selectionner le serveur</option>

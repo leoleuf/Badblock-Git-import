@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\website\crud;
 
-use App\Server;
+use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 
@@ -19,7 +19,7 @@ class ServerController extends \App\Http\Controllers\Controller {
      */
     public function index()
     {
-        $server = Server::take(10)->get();
+        $server = Server::take(100)->get();
 
         return view('website.server.server', compact('server'));
     }
@@ -44,6 +44,7 @@ class ServerController extends \App\Http\Controllers\Controller {
         $server->name = $request->input('name');
         $server->realname = $request->input('realname');
         $server->icon = $request->input('icon');
+        $server->power = $request->input('power');
 
         if ($request->input('visibility') == "on"){
             $server->visibility = true;
@@ -53,7 +54,7 @@ class ServerController extends \App\Http\Controllers\Controller {
 
         $server->save();
 
-        $server = Server::take(10)->get();
+        $server = Server::take(100)->get();
 
         return view('website.server.server', compact('server'));
     }
@@ -93,6 +94,7 @@ class ServerController extends \App\Http\Controllers\Controller {
         $server->name = $request->input('name');
         $server->realname = $request->input('realname');
         $server->icon = $request->input('icon');
+        $server->power = $request->input('power');
 
         if ($request->input('visibility') == "on"){
             $server->visibility = true;
@@ -102,7 +104,7 @@ class ServerController extends \App\Http\Controllers\Controller {
 
         $server->save();
 
-        $server = Server::take(10)->get();
+        $server = Server::take(100)->get();
 
         return view('website.server.server', compact('server'));
     }
@@ -116,7 +118,7 @@ class ServerController extends \App\Http\Controllers\Controller {
     {
         Server::destroy($id);
 
-        $server = Server::take(10)->get();
+        $server = Server::take(100)->get();
 
         return view('website.server.server', compact('server'));
 

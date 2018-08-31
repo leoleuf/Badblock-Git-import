@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\website\crud;
 
-use App\Items;
+use App\Models\Items;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 

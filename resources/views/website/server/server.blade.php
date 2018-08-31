@@ -31,6 +31,7 @@
                                 <th>Name</th>
                                 <th>RealName</th>
                                 <th>État</th>
+                                <th>Power</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -46,6 +47,7 @@
                                                 <span class="label label-danger">Désactivé</span>
                                             @endif
                                         </td>
+                                        <td>{{ $value->power }}</td>
                                         <td>
                                             <div>
                                                 <!-- delete the users (uses the destroy method DESTROY /users/{id} -->

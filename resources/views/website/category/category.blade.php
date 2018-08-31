@@ -31,6 +31,7 @@
                                 <th>Sous-titre</th>
                                 <th>Serveur</th>
                                 <th>État</th>
+                                <th>Power</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -38,7 +39,7 @@
                                @foreach($Category as $key => $value)
                                    <tr>
                                         <td>{{ $value->name }}</td>
-                                        <td>{{ $value->{'sub-name'} }}</td>
+                                        <td>{{ $value->subname }}</td>
                                         <td>{{ $value->server }}</td>
                                         <td>
                                             @if($value->visibility)
@@ -47,7 +48,8 @@
                                                 <span class="label label-danger">Désactivé</span>
                                             @endif
                                         </td>
-                                        <td>
+                                       <td>{{ $value->power }}</td>
+                                       <td>
                                             <div>
                                                 <!-- delete the users (uses the destroy method DESTROY /users/{id} -->
                                                 {{ Form::open(array('url' => '/website/crud/category/' . $value->id)) }}

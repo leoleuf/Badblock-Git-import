@@ -39,42 +39,19 @@
                     <li>
                         <a href="/" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
-                    <li>
-                        <a href="/toenga" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Instances </span> </a>
-                    </li>
-                    <li>
-                        <a href="/devhome" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Développement </span> </a>
-                    </li>
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Section </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Website </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="/section/animation" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Animation</span></a></li>
-                            <li><a href="/section/forum" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Forum</span></a></li>
-                            <li><a href="/section/graphisme" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Graphisme</span></a></li>
-                            <li><a href="/section/moderation" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Modération</span></a></li>
-                            <li><a href="/section/redaction" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Rédaction</span></a></li>
+                            <li><a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Joueur</span></a></li>
+                            <li><a href="/website/vote" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Votes</span></a></li>
+                            <li><a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Administration</span></a></li>
                         </ul>
                     </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Administration </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Serveur</span></a></li>
-                            <li><a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Site </span> </a></li>
-                            <li><a href="/role">Role</a></li>
-                            <li><a href="/permission">Permissions</a></li>
-                            <li><a href="/user">Utilisateurs</a></li>
-
-                        </ul>
-                    </li>
-
                 </ul>
                 <div class="clearfix"></div>
             </div>
             <!-- Sidebar -->
             <div class="clearfix"></div>
-
         </div>
-
     </div>
     <!-- Left Sidebar End -->

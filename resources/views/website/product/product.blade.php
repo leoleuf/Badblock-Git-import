@@ -32,7 +32,7 @@
                                 <th>Catégorie</th>
                                 <th>Dépendance</th>
                                 <th>Promo</th>
-                                <th>État</th>
+                                <th>Achat Unique</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -57,7 +57,7 @@
                                            @endif
                                        </td>
                                         <td>
-                                            @if($value->visibility)
+                                            @if($value->buy_one == true)
                                                 <span class="label label-success">Activé</span>
                                             @else
                                                 <span class="label label-danger">Désactivé</span>

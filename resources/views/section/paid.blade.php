@@ -24,7 +24,7 @@
                                                 <tr class="gradeX">
                                                     <td>{{ $row->username }}</td>
                                                     <td>
-                                                        <input type="text" name="pb_{{ $row->user_id }}" class="form-control input-block" value="">                                                </td>
+                                                        <input type="text" name="pb_{{ $row->user_id }}" class="form-control input-block" value="{{ $row->pb }}">                                                </td>
                                                     <td>
                                                         <input type="text" name="comment_{{ $row->user_id }}" class="form-control input-block" value="">                                                </td>
                                                     </td>

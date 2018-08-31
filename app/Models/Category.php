@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -9,15 +9,17 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Category extends Eloquent {
 
     protected $connection = 'mongodb';
-    protected $collection = "category";
+    protected $collection = "category_list";
 
 
     public static $rules = array(
         'name'=>'required',
 
-        'realname'=>'required',
+        'subname'=>'required',
 
-        'server'=>'required',
+        'server_id'=>'required',
+
+        'power'=>'required',
 
         'visibility' => 'required',
     );

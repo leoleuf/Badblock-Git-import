@@ -22,8 +22,8 @@
                         Prix :
                         {{ Form::text('price', $Product['price'], array('class' => 'form-control','placeholder'=>"Prix du produit")) }}
                         <br>
-                        Type :
-                        {{ Form::text('type', $Product['type'],array('class' => 'form-control','placeholder'=>"Type du produit")) }}
+                        Type de livraison :
+                        {{ Form::text('mode', $Product['mode'],array('class' => 'form-control','placeholder'=>"Type du produit")) }}
                         <br>
                         Sélectionner la catégorie :
                         <select name="category" class="form-control select2">
@@ -52,16 +52,27 @@
                         Activer le mode promotion sur ce produit :
                         <br>
                         <br>
-                        <input name ="promo" type="checkbox"
-                               @if($Product['promo'])
+                        <input name ="promotion" type="checkbox"
+                               @if($Product['promotion'])
                                checked
                                @endif
                                data-plugin="switchery" data-color="#00b19d"/>
-
                         <br>
                         <br>
                         Pourcentage de promotion :
-                        {{ Form::text('promo_reduc', $Product['promo_reduc'], array('class' => 'form-control','placeholder'=>"50%")) }}
+                        {{ Form::text('promo_coef', $Product['promo_coef'], array('class' => 'form-control','placeholder'=>"50%")) }}
+                        <br>
+                        <br>
+                        Nouveau prix de promotion :
+                        {{ Form::text('promotion_new_price', $Product['promotion_new_price'], array('class' => 'form-control','placeholder'=>"50%")) }}
+                        <br>
+                        Visibilité dans le container promotion :
+                        <br>
+                        <input name ="promotion_view" type="checkbox"
+                               @if($Product['promotion_view'])
+                               checked
+                               @endif
+                               data-plugin="switchery" data-color="#00b19d"/>
                         <br>
                         <br>
                         Nom de la dépendance (si néssecaire) :
@@ -79,8 +90,13 @@
                                data-color="#00b19d"/>
                         <br>
                         <br>
-                        Groupe de dépendance :
+                        Id de dépendance :
                         {{ Form::text('depend_to',$Product['depend_to'],array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
+                        <br>
+
+                        <br>
+                        Nom unique de dépendance :
+                        {{ Form::text('depend_name',$Product['depend_name'],array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
                         <br>
 
                         Activer la visibilitée du produit sur le site :
@@ -96,7 +112,7 @@
                         <br>
                         <br>
                         Image du produit :
-                        {{ Form::text('img', $Product['img'], array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
+                        {{ Form::text('image', $Product['image'], array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
 
                         <br>
                         Description du produit (HTML) :

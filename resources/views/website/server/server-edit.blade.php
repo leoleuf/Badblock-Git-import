@@ -27,6 +27,9 @@
                         Nom réel du serveur :
                         {{ Form::text('realname', $server['realName'], array('class' => 'form-control','placeholder'=>"Nom réel du Serveur")) }}
                         <br>
+                        Power du serveur :
+                        {{ Form::text('power', $server['power'], array('class' => 'form-control','placeholder'=>"0-10")) }}
+                        <br>
                         Icone FA du serveur :
                         {{ Form::text('icon', $server['icon'], array('class' => 'form-control','placeholder'=>"icon icon-cloud")) }}
                         <br>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -9,7 +9,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 class Server extends Eloquent {
 
     protected $connection = 'mongodb';
-    protected $collection = "server";
+    protected $collection = "server_list";
 
     public static $rules = array(
         'name'=>'required',
@@ -17,6 +17,8 @@ class Server extends Eloquent {
         'realname'=>'required',
 
         'icon'=>'required',
+
+        'power'=>'required',
 
         'visibility' => 'required',
     );
