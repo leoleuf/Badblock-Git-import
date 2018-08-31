@@ -241,7 +241,7 @@ class VoteController extends Controller
         $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1535731200 - 86400)]]);
 
         $total = max($total, 1);
-        $proba = round($dbh / $total, 2);
+        $proba = round(($dbh / $total) * 100, 2);
 
         $awardName = $winItem->name;
 
