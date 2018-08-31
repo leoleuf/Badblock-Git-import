@@ -160,7 +160,7 @@ class PaypalController extends Controller
             $data = [
                 'uniqueId' => $user['uniqueId'],
                 'date' => date('Y-m-d H:i:s'),
-                'price' => $resp["PAYMENTINFO_0_AMT"],
+                'price' => intval($resp["PAYMENTINFO_0_AMT"]),
                 'gateway' => 'paypal',
                 'pseudo' => $this->container->session->get('recharge-username'),
                 'points' => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'],

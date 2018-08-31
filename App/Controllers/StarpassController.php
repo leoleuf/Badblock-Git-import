@@ -113,7 +113,7 @@ class StarpassController extends Controller
         $data = [
             'uniqueId' => $user['uniqueId'],
             'date' => date('Y-m-d H:i:s'),
-            'price' => $offer['price'],
+            'price' => intval($offer['price']),
             'gateway' => 'starpass',
             'pseudo' => $name,
             'points' => $virtual_currency,
