@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\section;
 
 
-use App\Funds;
+use App\Models\Funds;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +43,7 @@ class PaidController extends Controller
 
     public function save($section, Request $request){
 
-        $sections = ["forum","redaction","moderation","graphisme","animation"];
+        $sections = ["forum","redaction","moderation","graphisme","animation","developpement"];
 
         $group_rel = ["forum" => 8,"redaction" => 24,"moderation","graphisme" => 26,"animation" => 27,"developpement" => 14];
 
@@ -53,18 +53,20 @@ class PaidController extends Controller
             foreach ($result as $row){
                 if (!empty($request->input('pb_'. $row->user_id))){
 
-                    //Enregistrement de l'opération
-                    $Funds = new Funds;
-                    $Funds->points = intval($request->input('pb_'. $row->user_id));
-                    $Funds->price = 0;
-                    $Funds->name = $row->username;
-                    $Funds->gateway = "badblock";
-                    $Funds->comment = "Paie du" . date("Y-m") . " Commentaire : " . $request->input('comment_'. $row->user_id);
-                    $Funds->date = date("Y-m-d h:i:s");
-                    $Funds->save();
+                    $user = DB::connection('mongodb_server')->collection('players')->where('name', strtolower($row->username))->first();
 
-
-
+                    if ($user != null){
+                        //Enregistrement de l'opération
+                        $Funds = new Funds;
+                        $Funds->uniqueId = $user['uniqueId'];
+                        $Funds->points = intval($request->input('pb_'. $row->user_id));
+                        $Funds->price = 0;
+                        $Funds->pseudo = $row->username;
+                        $Funds->gateway = "badblock";
+                        $Funds->transaction_id = "Paie du " . date("Y-m") . " Commentaire : " . $request->input('comment_'. $row->user_id);
+                        $Funds->date = date("Y-m-d h:i:s");
+                        $Funds->save();
+                    }
                 }
             }
 
