@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
 {% set title = post.title %}
 {% set subtitle = post.summary %}
+{% set description = {{ post.content|raw }} %}
 {% block cover %}
     <!------Cover------>
     <div class="cover-back" style="background-image: url({{ post.cover_url }})">

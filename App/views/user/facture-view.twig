@@ -1,6 +1,7 @@
 {% extends 'default.twig' %}
 {% set title = 'user.dashboard_title'|trans %}
 {% set sub_title = 'user.dashboard_subtitle'|trans~user.username %}
+{% set description = "Visualisez la facture " ~ facture['_id'] ~ " afin de vérifier la validité de l'achat ou imprimer gratuitement la facture." %}
 {% set show_title = false %}
 {% block cover %}
     <!------Cover------>
