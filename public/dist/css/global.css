@@ -957,6 +957,10 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-left: 25px;
 }
 
+#haut-boutique {
+    transition: 2s;
+}
+
 .visa-img {
     width: 500px;
     height: 200px;
