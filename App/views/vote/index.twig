@@ -50,7 +50,7 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
                 </div>
             </center>
         </div>
@@ -237,7 +237,7 @@
 
         function vote(wb)
         {
-            window.open(wb, '_blank');
+            window.open('https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote', '_blank');
             $("#step2").addClass("disabled");
             setTimeout(function () {
                 $("#lot1").removeClass("disabled");
