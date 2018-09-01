@@ -7,14 +7,14 @@
     <meta name="charset" content="utf-8">
 
     <title>
-        {% if hide_title is not defined %}BadBlock : {% endif %}{{ title }}
+        {% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}
     </title>
 
-    <link rel="icon" type="image/png" href="https://cdn.badblock.fr/wd/i/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="/dist/images/favicon-32x32.png" />
     <meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="robots" content="follow, index, all" />
-    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous avec l'IP play.badblock.fr{% endif %}" />
+    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta name="author" content="BadBlock developers" />
     <meta name="keywords" content="{% if keywords is defined %}{{ keywords }}, {%  endif %}badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
     <meta name="twitter:card" content="summary" />
@@ -36,16 +36,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Favicon meta -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/i/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/i/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/i/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/images/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
 
     {% if block("meta") is defined %}
         {{ block('meta') }}
     {% endif %}
 
-    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
+    <link rel="stylesheet" href="/dist/css/app.css">
+    <link rel="stylesheet" href="/dist/css/xmalware.css">
+    <link rel="stylesheet" href="/dist/css/global.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 
 
 
@@ -66,7 +70,7 @@
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 <div class="">
                     <h1 class="header-title">BadBlock</h1>
-                    <h2 class="header-sub-title">{{ mc_ip }}</h2>
+                    <h1 class="header-sub-title">{{ mc_ip }}</h1>
                 </div>
             </a>
             <div class="header-login-container">
@@ -93,7 +97,6 @@
 </div>
 <!-- Fin Header -->
 
-<!------Menu------->
 <div class="topnav" id="myTopnav">
     <div class="container" style="max-width: 65% !important; margin: 0 20%;">
         <a href="{{ path_for('home') }}"
@@ -118,24 +121,29 @@
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
-        <a href="{{ path_for('play') }}"
-           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-            <i class="user-colored-icon colored-icon"></i>
-            {{ 'launcher.title'|trans }}
-        </a>
+        
         <a href="{{ path_for('vote.home') }}"
             class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
-            <i class="edit-colored-icon colored-icon"></i>
+            <i class="star-colored-icon colored-icon"></i>
             Vote
         </a>
         <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
-        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
-            <i class="list-colored-icon colored-icon"></i>
+            <div class="dropdown">
+                <a href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
+                <ul class="dropdown-dropdown">
+                    <li><a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+            <i class="edit-colored-icon colored-icon"></i>
             Recrutements
-        </a>
-
-        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()" title="Menu BadBlock"><i class="icon-menu"></i></a>
+        </a></li>
+                    <li><a href="{{ path_for('play') }}"
+           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+            <i class="user-colored-icon colored-icon"></i>
+            {{ 'launcher.title'|trans }}
+        </a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <!-------page-navbar-user------->
@@ -209,7 +217,7 @@
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4>
             </div>
-            BadBlock est un Serveur Minecraft, accessible, c'est gratuit, pour tous, depuis plus de 5 ans.<br />
+                BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <br />
             <a href="https://badblock.fr/legals/Mentions_legales.pdf" title="Mentions légales BadBlock"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock"><font color="FFFFFF">Documents légaux</font></a>.
             <br /><br />
             {{ onlineCount }} utilisateurs connectés sur le site.<br />
@@ -341,8 +349,8 @@
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
 </script>!-->
-<script src="https://cdn.badblock.fr/wd/js/app.min.js"></script>
-<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
+<script src="/dist/js/app.min.js"></script>
+<script src="/dist/js/ads.js"></script>
 
 {% set randomPassword = [] %}
 {% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
@@ -403,7 +411,7 @@
                 script.onload = function () {
                     //do stuff with the script
                 };
-                script.src = "https://cdn.badblock.fr/wd//syndication.js";
+                script.src = "/dist/js/syndication.js";
 
                 document.head.appendChild(script);
             }, 2000);
@@ -417,10 +425,17 @@
 
         gtag('config', 'UA-104430841-1');
     </script>
-
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script>
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
+</script>
 
 </body>
 </html>

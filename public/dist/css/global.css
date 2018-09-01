@@ -1317,6 +1317,14 @@ a {
     color: #ff3333;
 }
 
+.attachment-colored-icon {
+  background: url(../colored-icons/attachment.png) no-repeat;
+}
+
+.star-colored-icon {
+  background: url(../colored-icons/star.png) no-repeat;
+}
+
 .button-first-place {
     background-color: #EED740;
     padding: 10px;
@@ -1336,6 +1344,30 @@ a {
 .button-third-place {
     background-color: #CC984D;
 }
+
+.btn-info {
+                border: none;
+                cursor: pointer;
+            }
+            .btn-info:hover {
+            }
+            .btn-info-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            .btn-info-dropdown-child {
+                display: none;
+                min-width: 50px;
+                z-index: 1000;
+            }
+            .btn-info-dropdown-child a {
+                text-decoration: none;
+                display: block;
+            }
+            .btn-info-dropdown:hover .btn-info-dropdown-child {
+                display: block;
+            }
+
 /*Fin Dreaams*/
 
 .user-menu {
@@ -1488,7 +1520,7 @@ a {
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            z-index: 10;
         }
 
         .dropdown-content a {
@@ -1506,6 +1538,7 @@ a {
 
         .show {
             display: block !important;
+            display: flex !important;
         }
         .footer {
             margin-left: 0px !important;
