@@ -173,25 +173,36 @@ class VoteController extends Controller
         // voted?
         if (!$dev && $API_call != 1)
         {
-            return $response->write("Vote invalid")->withStatus(405);
+            $collection = $this->container->mongo->votes_logs;
+            $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+            if ($dbh != null)
+            {
+                $t = time() - $dbh['timestamp'];
+                return $response->write("Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
+            }
+
+            return $response->write("Tu n'as pas voté.")->withStatus(405);
         }
 
-        if ($type == 1){
+        if ($type == 1)
+        {
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-            if ($money == null){
+            if ($money == null)
+            {
                 $data = [
                     "uniqueId" => $user['uniqueId'],
                     "points" => 2
                 ];
                 $this->container->session->set('points', 2);
                 $this->container->mongo->fund_list->insertOne($data);
-            }else{
+            }
+            else
+            {
                 $money['points'] = $money['points'] + 2;
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                 $this->container->session->set('points', $money['points']);
             }
-
         }
 
         $queue = $types[$type];
@@ -238,7 +249,6 @@ class VoteController extends Controller
             "user_agent" => htmlspecialchars($API_ip)
         ];
 
-
         $collection->insertOne($insert);
         $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1535817600 - 86400)]]);
 
@@ -257,12 +267,12 @@ class VoteController extends Controller
 
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
-        $this->broadcast(' &d&lCe soir loterie à 18H ! &b&nhttps://badblock.fr/vote');
+        $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$winItem->name .
-            " ainsi qu'une participation à la lotterie. Vous êtes désormais à " . $proba . "% de chance de gagner. Tirage ce soir à 18H sur https://badblock.fr/vote")->withStatus(200);
+        return $response->write("Ton vote a été pris en compte. Tu as gagné ".$winItem->name .
+            " ainsi qu'une participation à la loterie. Tu es désormais à " . $proba . "% de chance de gagner le lot de la loterie. Tirage ce soir à 18H sur la page de vote.")->withStatus(200);
     }
 
     public function top($player, $vote){
