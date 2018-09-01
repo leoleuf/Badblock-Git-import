@@ -224,7 +224,7 @@
                 request.fail(function( jqXHR, msg ) {
                     if(jqXHR.status == 404)
                     {
-                        $("#err-alert").text("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                        $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                         $("#err-alert").show();
                     }
                 });
@@ -268,7 +268,7 @@
 
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
-                    $("#err-alert").text("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                    $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
                     $("#err-alert").text("Vous n'avez pas voté.");
