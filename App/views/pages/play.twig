@@ -26,68 +26,6 @@
 {% block content %}
 
     <div class=" content" id="test">
-        <h4 class="heading-bar"><span>Télécharger le Launcher Minecraft Gratuit Crack & Premium</span></h4>
-        <div id="pub-large">
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="twelve columns played" id="launcher-minecraft">
-            <p>Notre <a href="https://launcher-minecraft.com" title="Launcher Minecraft Gratuit">Launcher</a> contient plusieurs versions et une possibilité de le configurer pour tous les ordinateurs.
-            Nous avons misé sur l'expérience utilisateur dans le but de rendre propre notre Launcher à tous les joueurs.
-            Notre Launcher Minecraft Gratuit est compatible pour les joueurs sur Windows, sur Linux et sur Mac OS.
-            Vous pouvez jouer sur n'importe quel serveur supportant les dernières versions de Minecraft (1.8 à 1.11).
-            Notre Launcher Minecraft Gratuit est très optimisé et puissant pour les petites configurations d'ordinateurs.
-            Notre Launcher est très facile à utiliser et il n'y a pas besoin de payer un compte Minecraft pour jouer.
-            Nous avons développé des fonctionnalités modulables pour enrichir votre expérience de jeu Minecraft sur notre Launcher crack et premium.
-                Téléchargeable gratuitement, pour tous les usages.</p>
-            <div>
-                <a href="/launcher-minecraft/mac" title="Télécharger le Launcher Minecraft gratuit pour Mac OS">
-                    <button class="button button-danger" id="minecraft-download-mac">
-                        <i class="fab fa-apple"></i> Télécharger le Launcher Minecraft Gratuit pour Mac OS
-                    </button>
-                </a>
-            </div>
-            <div>
-                <a href="/launcher-minecraft/windows" title="Télécharger le Launcher Minecraft gratuit pour Windows">
-                    <button class="button button-primary" id="minecraft-download-windows">
-                        <i class="fab fa-windows"></i> Télécharger le Launcher Minecraft Gratuit pour Windows
-                    </button>
-                </a>
-            </div>
-            <div>
-                <a href="/launcher-minecraft/linux" title="Télécharger le Launcher Minecraft gratuit pour Linux">
-                    <button class="button button-success" id="minecraft-download-linux">
-                        <i class="fab fa-linux"></i> Télécharger le Launcher Minecraft Gratuit pour Linux
-                    </button>
-                </a>
-            </div>
-            Propulsé par <a href="https://launcher-minecraft.com" title="Launcher Minecraft Gratuit">launcher-minecraft.com</a>.
-        </div>
-        <div id="pub-large">
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <h4 class="heading-bar"><span>Notre Serveur</span></h4>
-        <div class="twelve columns played">
-            <form class="offset-by-three eight columns play-form">
-                <label>Nom du serveur</label>
-                <input type="text" class="form-control" id="" value="BadBlock" readonly="">
-                <label>IP du serveur</label>
-                <input type="text" class="form-control" id="to-copy" value="{{ mc_ip }}" readonly="">
-            </form>
-            <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i> Copier l'IP</button>
-        </div>
-        <div id="pub-large">
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <div id="join-badblock-margin"></div>
     <div class="twelve columns play">
         <div class="six columns play">
@@ -157,19 +95,23 @@
     </div>
     <script type="text/javascript">
         var acc = document.getElementsByClassName("accordion");
-        var i;
+var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
         }
+    });
+}
     </script>
     <script type="text/javascript">
         var toCopy  = document.getElementById( 'to-copy' ),

@@ -51,9 +51,11 @@
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
+
+    <script type="text/javascript" src="/dist/js/helium.js"></script>
+
 </head>
 <body>
-
 
 <!-- Header -->
 <div class="header">
@@ -300,6 +302,11 @@
         });
     </script> !-->
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+window.addEventListener(‘load’, function(){
+helium.init();
+}, false);
+</script>
 
 </body>
 </html>
