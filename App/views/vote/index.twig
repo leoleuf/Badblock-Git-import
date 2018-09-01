@@ -277,11 +277,11 @@
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
                     $("#success-alert").hide();
-                    $("#err-alert").text(jqXHR.responseText);
+                    $("#err-alert").html(jqXHR.responseText);
                     $("#err-alert").show();
                 }else if (jqXHR.status == 500){
                     $("#success-alert").hide();
-                    $("#err-alert").text("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
+                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
                     $("#err-alert").show();
                 }
             });
