@@ -58,6 +58,9 @@
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
                     <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <div id="pleasewait" style="display: none;">
+
+                    </div>
                 </div>
             </center>
         </div>
@@ -220,6 +223,7 @@
                     success: function (data) {
                         $("#step1").addClass("disabled");
                         $("#step2").removeClass("disabled");
+                        $("#pleasewait").hide();
                     }
                 });
 
@@ -229,6 +233,14 @@
                         $("#success-alert").hide();
                         $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                         $("#err-alert").show();
+                        $("#pleasewait").hide();
+                    }
+                    else if(jqXHR.status == 405)
+                    {
+                        $("#step1").addClass("disabled");
+                        $("#step2").removeClass("disabled");
+                        $("#pleasewait").html(jqXHR.responseText);
+                        $("#pleasewait").show();
                     }
                 });
             }
@@ -244,6 +256,7 @@
                 $("#lot3").removeClass("disabled");
                 $("#lot4").removeClass("disabled");
                 $("#lot5").removeClass("disabled");
+                $("#pleasewait").hide();
             }, 5000);
         }
 
@@ -263,9 +276,10 @@
                     $("#lot3").addClass("disabled");
                     $("#lot4").addClass("disabled");
                     $("#lot5").addClass("disabled");
+                    $("#pleasewait").hide();
 
                     $("#err-alert").hide();
-                    $("#success-alert").html(data);
+                    $("#err-alert").html("<i class=\"fas fa-check-circle\"></i> " + data);
                     $("#success-alert").show();
                 }
             });
@@ -275,14 +289,17 @@
                     $("#success-alert").hide();
                     $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                     $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }else if (jqXHR.status == 405){
                     $("#success-alert").hide();
                     $("#err-alert").html(jqXHR.responseText);
                     $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }else if (jqXHR.status == 500){
                     $("#success-alert").hide();
                     $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
                     $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }
             });
         }
