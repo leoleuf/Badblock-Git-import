@@ -20,12 +20,12 @@ class PaidController extends Controller
 
     public function index($section){
 
-        $sections = ["forum","redaction","moderation","graphisme","animation","developpement"];
+        $sections = ["forum","redaction","moderation","graphisme","animation","developpement","construction"];
 
-        $ar_paid = ['25',"12","13","27","26","24","4","29"];
-        $ar_paidpb = ['25' => 300,"12" => 200,"13" => 100,"27" => 300,"26" => 300,"24" => 300,"4" => 500,"29" => 500];
+        $ar_paid = ["32",'25',"12","13","27","26","24","4","29","8","14","33","10"];
+        $ar_paidpb = ["4" => 1000,"32" => 1000,'25' => 800,"12" => 700,"27" => 700,"8" => 700,"26" => 700,"24" => 700,"14" => 700,"29" => 1000,"33" => 700,"10" => 1000];
 
-        $group_rel = ["forum" => 8,"redaction" => 24,"moderation" => "25 OR user_group_id = 12 OR user_group_id = 13","graphisme" => "26 OR user_group_id = 4","animation" => "27 OR user_group_id = 29","developpement" => 14];
+        $group_rel = ["construction" => "33 OR user_group_id = 32","forum" => "8 OR user_group_id = 4","redaction" => 24,"moderation" => "25 OR user_group_id = 12 OR user_group_id = 10","graphisme" => "26 OR user_group_id = 4","animation" => "27 OR user_group_id = 29","developpement" => 14];
 
         if (in_array($section, $sections)){
             $result = DB::connection('mysql_forum')->select("select * from xf_user where user_group_id = " . $group_rel[$section] . " ORDER by username");
@@ -43,9 +43,9 @@ class PaidController extends Controller
 
     public function save($section, Request $request){
 
-        $sections = ["forum","redaction","moderation","graphisme","animation","developpement"];
+        $sections = ["forum","redaction","moderation","graphisme","animation","developpement","construction"];
 
-        $group_rel = ["forum" => 8,"redaction" => 24,"moderation","graphisme" => 26,"animation" => 27,"developpement" => 14];
+        $group_rel = ["construction" => 33,"forum" => 8,"redaction" => 24,"moderation" => "25 OR user_group_id = 12","graphisme" => "26 OR user_group_id = 4","animation" => "27 OR user_group_id = 29","developpement" => 14];
 
         $logg = [];
         $pts= 0;

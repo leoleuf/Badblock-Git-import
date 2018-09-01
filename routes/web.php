@@ -23,16 +23,20 @@ Route::group([
     Route::get('/home', 'HomeController@index')->name('home');
 
 
-    Route::get('/players', 'stats\StatsController@playersStats');
+    Route::get('/players', 'profile\IndexController@index');
+    Route::get('/profile/{uuid}', 'profile\IndexController@profile');
+    Route::post('/api/stats/search', 'profile\IndexController@search');
+    Route::post('/api/stats/searchip', 'profile\IndexController@searchip');
+
 
     Route::get('/players/search', 'stats\StatsController@playersStats');
     Route::get('/players/search/json/{text}', 'stats\StatsController@search');
     Route::get('/players/edit/{id}', 'stats\StatsController@editPlayer');
-
     Route::resource('/players/crud', 'crud\PlayersController');
 
     Route::get('/api/toenga/treeroot/{name}', 'toenga\HomeController@treeroot');
     Route::get('/api/toenga/treechild/{name}', 'toenga\HomeController@treechild');
+
 
 
     Route::get('/section/forum', 'section\ForumController@index');
@@ -41,6 +45,9 @@ Route::group([
 
 
     Route::get('/website', 'website\IndexController@index');
+
+    Route::get('/website/achat/{uuid}', 'website\AchatController@index');
+
     Route::get('/website/vote', 'website\VoteController@index');
     Route::post('/website/vote', 'website\VoteController@save');
     Route::get('/website/compta', 'website\IndexController@compta');
