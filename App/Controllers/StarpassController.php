@@ -152,7 +152,7 @@ class StarpassController extends Controller
         }
 
         if ($user != null) {
-            $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
             $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
             $mailContent = str_replace("(lien)", $insertedId, $mailContent);

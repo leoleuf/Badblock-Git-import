@@ -86,7 +86,7 @@ class DedipassController extends Controller
                 }
 
                 if ($user != null) {
-                    $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+                    $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $name, $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);
@@ -168,7 +168,7 @@ class DedipassController extends Controller
                 $user = $this->xenforo->getUser($name);
                 $dzb = "";
                 if ($user != null) {
-                    $mailContent = file_get_contents("https://badblock.fr/dist/mails/mail-achat.html");
+                    $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $name, $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);

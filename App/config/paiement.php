@@ -3,7 +3,7 @@ return [
     'paiement' => [
         [
             'name' => 'Carte Bancaire & PayPal',
-            'image' => "http://localhost/dist/images/paypal.png",
+            'image' => "https://cdn.badblock.fr/wd/i/paypal.png",
             'class' => "paypal",
             //EX 5.0
             'offer' => [
@@ -19,7 +19,7 @@ return [
         ],
         [
             'name' => 'PaySafeCard',
-            'image' => "http://localhost/dist/images/paysafecard.png",
+            'image' => "https://cdn.badblock.fr/wd/i/paysafecard.png",
             'class' => "paysafecard",
             'offer' => [
                 0 => ["points" => 1500, "price" => 5, "document_id" => 415142, "private_id" => 233211],
