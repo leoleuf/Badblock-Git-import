@@ -177,7 +177,7 @@ class VoteController extends Controller
             $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
             if ($dbh != null)
             {
-                $t = time() - $dbh['timestamp'];
+                $t = ($dbh['timestamp'] + 5400) - time();
                 return $response->write("Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
             }
 
