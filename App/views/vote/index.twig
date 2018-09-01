@@ -42,6 +42,8 @@
         </div>
         <div class="alert alert-error" role="alert" id="err-alert" style="display: none;">
         </div>
+        <div class="alert alert-success" role="alert" id="success-alert" style="display: none;">
+        </div>
         <div id="step1" class="step step-two four columns">
             <center><h3 class="step-round">I</h3>
             <div class="step-contains">
@@ -224,6 +226,7 @@
                 request.fail(function( jqXHR, msg ) {
                     if(jqXHR.status == 404)
                     {
+                        $("#success-alert").hide();
                         $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                         $("#err-alert").show();
                     }
@@ -261,19 +264,23 @@
                     $("#lot4").addClass("disabled");
                     $("#lot5").addClass("disabled");
 
-                    $("#title").text(data);
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#err-alert").hide();
+                    $("#success-alert").html(data);
+                    $("#success-alert").show();
                 }
             });
 
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
+                    $("#success-alert").hide();
                     $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
+                    $("#success-alert").hide();
                     $("#err-alert").text("Vous n'avez pas voté. : " + msg);
                     $("#err-alert").show();
                 }else if (jqXHR.status == 500){
+                    $("#success-alert").hide();
                     $("#err-alert").text("Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
                     $("#err-alert").show();
                 }
