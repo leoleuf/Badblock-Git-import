@@ -227,7 +227,7 @@
                     if(jqXHR.status == 404)
                     {
                         $("#success-alert").hide();
-                        $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                        $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                         $("#err-alert").show();
                     }
                 });
@@ -273,7 +273,7 @@
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
                     $("#success-alert").hide();
-                    $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
                     $("#success-alert").hide();
@@ -281,7 +281,7 @@
                     $("#err-alert").show();
                 }else if (jqXHR.status == 500){
                     $("#success-alert").hide();
-                    $("#err-alert").text("Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
+                    $("#err-alert").text("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
                     $("#err-alert").show();
                 }
             });

@@ -49,7 +49,7 @@ class VoteController extends Controller
     {
         if (!isset($_POST['pseudo']))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -61,7 +61,7 @@ class VoteController extends Controller
             // user exists?
             if ($data == false)
             {
-                return $response->write("User not found !")->withStatus(404);
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
 
@@ -99,7 +99,7 @@ class VoteController extends Controller
 
         if (!isset($_POST['pseudo']) && !isset($_POST['type']))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         $dev = getenv('APP_DEBUG') == 1;
@@ -134,7 +134,7 @@ class VoteController extends Controller
         // unknown type
         if (!isset($types[$type]))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         if (!$dev)
@@ -145,7 +145,7 @@ class VoteController extends Controller
             // user exists?
             if ($data == false)
             {
-                return $response->write("User not found !")->withStatus(404);
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
 
@@ -178,10 +178,10 @@ class VoteController extends Controller
             if ($dbh != null)
             {
                 $t = ($dbh['timestamp'] + 5400) - time();
-                return $response->write("Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
+                return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
             }
 
-            return $response->write("Tu n'as pas voté.")->withStatus(405);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
         }
 
         if ($type == 1)
