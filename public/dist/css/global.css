@@ -1853,6 +1853,9 @@ a {
     .info-p {
         display: none;
     }
+    .button-games {
+        display: none;
+    }
 
 }
 @media screen and (max-width: 400px){
