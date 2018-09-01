@@ -65,6 +65,14 @@ class VoteController extends Controller
             }
         }
 
+        $collection = $this->container->mongo->votes_logs;
+        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        if ($dbh != null)
+        {
+            $t = ($dbh['timestamp'] + 5400) - time();
+            return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
+        }
+
         return $response->write("ok")->withStatus(200);
     }
 
