@@ -326,22 +326,39 @@ td.c-table__cell {
 
 
 #bedwars {
-    background-color: #42b3f4 !important;
+    background-color: #e74c3c !important;
 }
 #tower {
-    background-color: #2ecc71 !important;
+    background-color: #f1c40f !important;
 }
 #towerrun {
-    background-color: #2B2D42 !important;
+    background-color: #ff6348 !important;
 }
 #rush {
-    background-color: #E19806 !important;
+    background-color: #bdc3c7 !important;
 }
 #uhcspeed {
-    background-color: #7b4dcb !important;
+    background-color: #34495e !important;
 }
 #spaceballs {
-    background-color: #C64F4F !important;
+    background-color: #e67e22 !important;
+}
+#skyb {
+    background-color: #1abc9c !important;
+}
+#fb {
+    background-color: #2ecc71 !important;
+}
+#box {
+    background-color: #3498db !important;
+}
+#faction {
+    background-color: #9b59b6 !important;
+}
+
+
+.button-games-home {
+    width: 100%;
 }
 
 .u-middle-width {
@@ -937,6 +954,13 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     margin-left: 25px;
 }
 
+#haut-boutique {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
 .visa-img {
     width: 500px;
     height: 200px;
@@ -966,6 +990,33 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 .sms:hover > .info {
     display: block;
+}
+
+.small-offer:hover > .info {
+    display: block;
+}
+
+.small-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.medium-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.big-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.hidden-text {
+    display: none;
+    font-size: 0.7em;
 }
 
 .info {
@@ -1263,6 +1314,14 @@ a {
     color: #ff3333;
 }
 
+.attachment-colored-icon {
+  background: url(../colored-icons/attachment.png) no-repeat;
+}
+
+.star-colored-icon {
+  background: url(../colored-icons/star.png) no-repeat;
+}
+
 .button-first-place {
     background-color: #EED740;
     padding: 10px;
@@ -1282,6 +1341,30 @@ a {
 .button-third-place {
     background-color: #CC984D;
 }
+
+.btn-info {
+                border: none;
+                cursor: pointer;
+            }
+            .btn-info:hover {
+            }
+            .btn-info-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            .btn-info-dropdown-child {
+                display: none;
+                min-width: 50px;
+                z-index: 1000;
+            }
+            .btn-info-dropdown-child a {
+                text-decoration: none;
+                display: block;
+            }
+            .btn-info-dropdown:hover .btn-info-dropdown-child {
+                display: block;
+            }
+
 /*Fin Dreaams*/
 
 .user-menu {
@@ -1434,7 +1517,7 @@ a {
             background-color: #f9f9f9;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            z-index: 10;
         }
 
         .dropdown-content a {
@@ -1452,6 +1535,7 @@ a {
 
         .show {
             display: block !important;
+            display: flex !important;
         }
         .footer {
             margin-left: 0px !important;
@@ -1797,6 +1881,9 @@ a {
     }
 
     .info-p {
+        display: none;
+    }
+    .button-games {
         display: none;
     }
 

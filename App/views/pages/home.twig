@@ -1,26 +1,40 @@
 {% extends "default.twig" %}
 {% set active_page = "home" %}
 {% set hide_title = true %}
-{% set title = 'BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)' %}
+{% set title = 'BadBlock - Serveur Minecraft Gratuit' %}
 {% block cover %}
     <!------Cover------>
     <div class="cover-back">
         <div class="cover">
             <div class="container">
-                <div class="ten column">
-                    <h4 class="cover-heading">{{ 'home.cover.title'|trans }}</h4>
-                    <div class="animated bounceInLeft">
-                        <button class="button-games" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
-                        <button class="button-games" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
-                        <button class="button-games" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
-                        <button class="button-games" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
-                        <button class="button-games" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
-                        <button class="button-games" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques Spaceballs"><span>SpaceBalls</span></button>
-                    </div>
-                    <br />
-                    <div class="animated bounceInLeft">
-                        <a class="button button-primary" href="{{ path_for('play') }}" title="Jouer à BadBlock"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
-                    </div>
+            	<div class="animated bounceInLeft">
+	            	<div class="row">
+	                	<div class="four columns">
+	                    	<h2>BadBlock</h2><h2 class="cover-heading">Serveur Minecraft Gratuit</h2>
+	                    	<div class="animated bounceInLeft">
+	                        <a class="button button-primary" href="{{ path_for('play') }}" title="Jouer à BadBlock"><i class="icon-play icon"></i> {{ 'play.title'|trans }}</a>
+	                    	</div>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" onclick="location.href='/decouvrez/skyblock'" title="SkyBlock" id="skyb"><span>SkyBlock</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
+	                	</div>
+	                	<div class="two columns">
+		                    
+		                    <button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="fb"><span>Freebuild</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques SpaceBalls"><span>SpaceBalls</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="box" ><span>PvPBox</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
+	                	</div>
+	                	<div class="two columns">
+	                		<button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="faction"><span>Faction</span></button>
+		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
+	                	</div>
+	                </div>
                 </div>
             </div>
         </div>
@@ -35,8 +49,6 @@
         <!-- end Articles pined -->
         <!-- Articles -->
         <div id="pub-large" style="width: 100%;">
-            <script async src="/pagead/js/adsbygoogle.js"></script>
-
             <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
@@ -60,7 +72,7 @@
                     {% endfor %}
 
                     <!-- Plus card -->
-                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder à tous les posts">
+                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder au post {{ 'home.cards.more_posts'|trans }}">
                         <div class="card-plus-text">{{ 'home.cards.more_posts'|trans }}</div>
                         <i class="icon icon-calcplus"></i>
                     </a>

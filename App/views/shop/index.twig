@@ -1,4 +1,5 @@
 {% extends "default.twig" %}
+{% set description = "Obtiens dès maintenant des Grades, des Accès, des Clés ou des Objets sur la boutique de BadBlock pour améliorer drastiquement ton expérience de jeu sur nos serveurs. Résultat garanti." %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
@@ -16,23 +17,22 @@
                             <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                             <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                         </div>
-                        <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                        <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                         <div class="recharge-button">
-                            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Fin recharger -->
-        <div class="shop-full-w">
+        <div class="shop-full-w" id="haut-boutique">
             <div class="shop-menu">
                 <ul class="shop-menu-menu">
                     {% for key,value in serverlist %}
                         <li class="shop-menu-active">
                             <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link" title="Menu boutique {{ value["server"]["name"] }}">
-                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}
-                            </a>
+                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -57,7 +57,9 @@
                 document.getElementById(serv).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+            
         </script>
+
 
     {% endblock %}
 
@@ -179,6 +181,7 @@
                 <table width="100%" style="text-align: center !important;" class="center">
                     <tr class="d" id="top-td">
                         <td class="center">&nbsp;</td>
+<<<<<<< HEAD
                         <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
                             <p class="rank-head">VIP</p>
                             <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
@@ -189,6 +192,31 @@
                             <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
                             <a class="toggle-modal"><span>2250 points</span></a>
                         </td>
+=======
+                        {% if promo == true %}
+                            <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
+                                <p class="rank-head">VIP</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>525 points (-50%)</span></a>
+                            </td>
+                            <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
+                                <p class="rank-head">VIP+</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1125 points (-50%)</span></a>
+                            </td>
+                        {% else %}
+                            <td class="rank center" id="rank-3020312" onclick='achat("5b71adefb1fe8a85fe31bb4d")'>
+                                <p class="rank-head">VIP</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0f0873e91b6acf16880f5b32f0b7640c17e5873f.png" title="Grade VIP" alt="Grade VIP" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>1050 points</span></a>
+                            </td>
+                            <td class="rank center" id="rank-3020392" onclick='achat("5b71af8db1fe8a85fe31bb6d")'>
+                                <p class="rank-head">VIP+</p>
+                                <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/1a59b24ed11199aa380a8408f2f791a1422f0cfc.png" title="Grade VIP+" alt="Grade VIP+" style="margin-bottom: 10px; width:90%;">
+                                <a class="toggle-modal">Obtenir<div style="margin-top: 10px;"></div><span>2250 points</span></a>
+                            </td>
+                        {% endif %}
+>>>>>>> 42abc8e6dcf0c23cc3ef06ed71c036554f91faee
                         <td class="rank center" id="rank-3020415" onclick='achat("5b71afa9b1fe8a85fe31bb70")'>
                             <p class="rank-head">MVP</p>
                             <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/0a322550eb949f1674083c419553c286ff3dded6.png" title="Grade MVP" alt="Grade MVP" style="margin-bottom: 10px; width:90%;">
@@ -202,7 +230,11 @@
                         <td class="rank center disabled" id="rank-3026514" onclick='achat("5b71b062b1fe8a85fe31bb84")'>
                             <p class="rank-head">Legend</p>
                             <img src="//dunb17ur4ymx4.cloudfront.net/packages/images/92d220428f49697f0c3fbb9a2d640118d791469c.png" title="Grade Legend" alt="Grade Legend" style="margin-bottom: 10px; width:90%;">
+<<<<<<< HEAD
                             <a class="toggle-modal"><span>2100 points</span></a>
+=======
+                            <a class="toggle-modal"><!--Obtenir!-->Bientôt<div style="margin-top: 10px;"></div><span><!--2100 points!-->Disponible</span></a>
+>>>>>>> 42abc8e6dcf0c23cc3ef06ed71c036554f91faee
                         </td>
                     </tr>
                     <tr class="line-tr">
@@ -236,14 +268,6 @@
                         <td class="center" id="obsi">[MVP]</td>
                         <td class="center" id="gold">[MVP+]</td>
                         <td class="promotion center">Personnalisable</td>
-                    </tr>
-                    <tr>
-                        <td class="header-td"><i class="fas fa-sign-in-alt"></i> Pack de bienvenue</td>
-                        <td class="center">3 Basique Coffres</td>
-                        <td class="center">5 Basique Coffres</td>
-                        <td class="center">3 Super Coffres</td>
-                        <td class="center">5 Super Coffres</td>
-                        <td class="center">1 Mega coffre (par mois)</td>
                     </tr>
                     <tr class="line-tr">
                         <td class="header-td">Avantages Mini-Jeux</td>
@@ -399,7 +423,7 @@
                     </tr>
                     <tr>
                         <td class="header-td"><i class="fas fa-credit-card"></i> Shop VIP</td>
-                        <td class="center"><i class="fas fa-check"></i></td>
+                        <td class="center"><i class="fas fa-times"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
@@ -409,14 +433,6 @@
                         <td class="header-td"><i class="fas fa-list"></i> FarmZone VIP</td>
                         <td class="center"><i class="fas fa-times"></i></td>
                         <td class="center"><i class="fas fa-times"></i></td>
-                        <td class="center"><i class="fas fa-check"></i></td>
-                        <td class="center"><i class="fas fa-check"></i></td>
-                        <td class="center"><i class="fas fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="header-td"><i class="fas fa-medkit"></i> Kit Islander</td>
-                        <td class="center"><i class="fas fa-check"></i></td>
-                        <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
@@ -475,14 +491,6 @@
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
-                        <td class="center"><i class="fas fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="header-td"><i class="fas fa-medkit"></i> Kit Skylander</td>
-                        <td class="center"><i class="fas fa-times"></i></td>
-                        <td class="center"><i class="fas fa-times"></i></td>
-                        <td class="center"><i class="fas fa-times"></i></td>
-                        <td class="center"><i class="fas fa-times"></i></td>
                         <td class="center"><i class="fas fa-check"></i></td>
                     </tr>
                     <tr class="line-tr">
@@ -711,7 +719,7 @@
         <!-- Shop Modal -->
         <div class="remodal modal-remodal" data-remodal-id="shop-error">
             <button data-remodal-action="close" class="remodal-close"></button>
-            <h1>Désoler, mais vous n'avez pas les points néssecaires</h1>
+            <h1>Désolé mais vous n'avez pas les points boutique nécessaires</h1>
             <div class="recharge-button">
                 <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
             </div>

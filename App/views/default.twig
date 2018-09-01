@@ -14,7 +14,7 @@
     <meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="robots" content="follow, index, all" />
-    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta name="author" content="BadBlock developers" />
     <meta name="keywords" content="{% if keywords is defined %}{{ keywords }}, {%  endif %}badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
     <meta name="twitter:card" content="summary" />
@@ -23,11 +23,11 @@
     <meta name="twitter:site" content="@BadBlockGame">
     <meta name="twitter:creator" content="@BadBlockGame" />
     <meta name="twitter:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
-    <meta name="twitter:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta name="twitter:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta property="og:site_name" content="BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)" />
     <meta property="og:locale" content="fr" />
     <meta property="og:url" content="https://cdn.badblock.fr/images/logo_small.png" />
-    <meta property="og:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.{% endif %}" />
+    <meta property="og:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta property="og:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
     <meta property="og:image" content="https://cdn.badblock.fr/images/logo_small.png" />
     <meta property="og:type" content="website" />
@@ -48,12 +48,21 @@
     <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="/dist/css/xmalware.css">
     <link rel="stylesheet" href="/dist/css/global.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+
+
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
 
+<<<<<<< HEAD
     <script type="text/javascript" src="/dist/js/helium.js"></script>
 
+=======
+    <script async defer src="/pagead/js/adsbygoogle.js"></script>
+>>>>>>> 42abc8e6dcf0c23cc3ef06ed71c036554f91faee
 </head>
 <body>
 
@@ -64,14 +73,15 @@
             <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 <div class="">
-                    <h3 class="header-title">BadBlock</h3>
-                    <h5 class="header-sub-title">{{ mc_ip }}</h5>
+                    <h1 class="header-title">BadBlock</h1>
+                    <h1 class="header-sub-title">{{ mc_ip }}</h1>
                 </div>
             </a>
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
-                        <a class="button button-primary" href="{{ forum_url }}/login" title="Connexion"><i
+                        <!-- href="{{ forum_url }}/login"!-->
+                        <a class="button button-primary" onclick="login()" title="Connexion"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <span class="margin"></span>
                         <a class="button button-primary" href="{{ forum_url }}/inscription/" title="Inscription"><i
@@ -91,9 +101,8 @@
 </div>
 <!-- Fin Header -->
 
-<!------Menu------->
 <div class="topnav" id="myTopnav">
-    <div class="container">
+    <div class="container" style="max-width: 65% !important; margin: 0 20%;">
         <a href="{{ path_for('home') }}"
            class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
             <i class="home-colored-icon colored-icon"></i>
@@ -111,24 +120,34 @@
             <i class="stats-colored-icon colored-icon"></i>
             {{ 'stats.title'|trans }}
         </a>
-        <a href="{{ path_for('play') }}"
+        <a href="{{ path_for('play-adwords') }}"
            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
+        
         <a href="{{ path_for('vote.home') }}"
             class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
-            <i class="edit-colored-icon colored-icon"></i>
+            <i class="star-colored-icon colored-icon"></i>
             Vote
         </a>
         <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
-        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
-            <i class="list-colored-icon colored-icon"></i>
+            <div class="dropdown">
+                <a href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
+                <ul class="dropdown-dropdown">
+                    <li><a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+            <i class="edit-colored-icon colored-icon"></i>
             Recrutements
-        </a>
-
-        <a href="javascript:void(0);" class="icon menu-button" onclick="menu()" title="Menu BadBlock"><i class="icon-menu"></i></a>
+        </a></li>
+                    <li><a href="{{ path_for('play') }}"
+           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+            <i class="user-colored-icon colored-icon"></i>
+            {{ 'launcher.title'|trans }}
+        </a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <!-------page-navbar-user------->
@@ -165,7 +184,6 @@
 
     </div>
     <div id="pub-large">
-        <script async src="/pagead/js/adsbygoogle.js"></script>
 
         <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
         <script>
@@ -201,9 +219,13 @@
         <div class="four columns">
             <div class="footer-title-container">
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
-                <h4 class="footer-title">BadBlock</h4><br><br>
+                <h4 class="footer-title">BadBlock</h4>
             </div>
-			    BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <a href="https://badblock.fr/legals/Mentions_legales.pdf" title="Mentions légales BadBlock"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock"><font color="FFFFFF">Documents légaux</font></a>.
+                BadBlock n'est pas affilié avec Mojang AB et Microsoft Corporation. Mojang AB et Microsoft Corporation sont des marques déposées. <br />
+            <a href="https://badblock.fr/legals/Mentions_legales.pdf" title="Mentions légales BadBlock"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock"><font color="FFFFFF">Documents légaux</font></a>.
+            <br /><br />
+            {{ onlineCount }} utilisateurs connectés sur le site.<br />
+            Powered by <a href="https://ipdetector.info/" title="VPN and Proxy detection">IPDetector</a>
         </div>
         <div class="four columns">
             <div class="footer-links-title-container">
@@ -217,6 +239,7 @@
                 <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
                 <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
                 <li><a href="/screenshot" title="Héberger une image BadBlock">Héberger une image</a></li>
+                <li><a href="https://status.badblock.fr" title="Status de BadBlock">Status des services</a></li>
             </ul>
         </div>
         <div class="four columns">
@@ -236,6 +259,71 @@
         </div>
     </div>
 </div>
+
+<div class="remodal modal-remodal" data-remodal-id="login">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h2>Connexion</h2>
+    <br />
+    <form action="https://forum.badblock.fr/connexion/login" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1" method="post">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <label for="playerName" style="margin-top: -10px;">
+                        Pseudonyme :
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="login" class="form-pseudo" value="" />
+                </td>
+            </tr>
+            <tr style="width: 100%;">
+                <td>
+                    <label for="password" style="margin-top: -10px;">
+                        Mot de passe :
+                    </label>
+                </td>
+                <td style="width: 80%;">
+                    <input type="password" name="password" class="form-pseudo" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <label class="check-recharge">
+                        <input type="checkbox" name="remember">
+                        <span class="label-body article-checkbox">Se souvenir de moi</span>
+                    </label>
+                </td>
+            </tr>
+            <tr style="width: 100%;">
+                <td style="width: 50%;">
+                    <a href="https://forum.badblock.fr/lost-password" class="button button-danger" style="width: 100%;" title="Mot de passe oublié sur BadBlock">
+                        Mot de passe oublié ?
+                    </a>
+                </td>
+                <td style="width: 50%;">
+                    <button class="button button-success" style="width: 100%;">Se connecter</button>
+                </td>
+            </tr>
+        </table>
+        <a href="https://forum.badblock.fr/inscription/" class="button button-primary" style="width: 100%;" title="S'inscrire sur BadBlock">
+            Pas encore inscrit ? S'inscrire !
+        </a>
+        <input type="hidden" name="cookie_check" value="1" />
+        <input type="hidden" name="_xfToken" value="" />
+        <input type="hidden" name="redirect" value="https://forum.badblock.fr/redirect.php?redirect={{ currentUrl }}" />
+    </form>
+</div>
+<script async defer>
+
+    function login() {
+        $('[data-remodal-id=login]').remodal().open();
+    }
+
+</script>
+
 <!-- Fin footer -->
 
 <script type="application/ld+json">
@@ -256,7 +344,7 @@
 
 <!-- JS -->
 <!-- Var js -->
-<script async defer>
+<!--<script async defer>
     var endpoint = "{{ base_url() }}"
     var mcHost = "eu.badblock.fr"
     var trans = {
@@ -264,24 +352,56 @@
         'onePlayer': "{{ 'one_player'|trans }}",
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
-</script>
+</script>!-->
 <script src="/dist/js/app.min.js"></script>
+<script src="/dist/js/ads.js"></script>
+
+{% set randomPassword = [] %}
+{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+{% set numbers = '0123456789' %}
+
+{% for i in 1..random(32) %}
+    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
+    {% set randomPassword = randomPassword|merge([randomCharacter]) %}
+{% endfor %}
+{% set randomPassword = randomPassword|join %}
+
+<div class="remodal" data-remodal-id="{{ randomPassword }}"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+
+    <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
+    <p>
+        Vous devez désactiver AdBlock pour accéder à cette page afin d'obtenir des statistiques claires sur notre évolution.<br />
+        <br />
+    </p>
+    <br>
+    <a href="" title="Rafraicihr la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+</div>
+
+<script async defer>
+    $(document).ready(function () {
+
+        if (window.canRunAds === undefined) {
+            $('[data-remodal-id={{ randomPassword }}]').remodal().open();
+            $('.container').fadeTo("slow",0.0);
+            $('.container').empty();
+            $('.cover-back').empty();
+            $('.cover').empty();
+            $('.stats-back').empty();
+            $('.footer').empty();
+            $('.footer').fadeTo("slow",0.0);
+            return;
+        }
+
+    });
+</script>
+
+<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js"></script>
+
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
 {% endif %}
 
-
-<script async defer>
-    $(".dropdown-link").on('mouseover', function () {
-        $(".dropdown-dropdown").show()
-        $(".dropdown-dropdown").css('display', 'flex')
-    });
-    $("body").on('mouseover', function () {
-        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-            $(".dropdown-dropdown").fadeOut()
-        }
-    });
-</script>
   <!--  <script>
         $( document ).ready(function() {
             setTimeout(function () {
@@ -301,11 +421,32 @@
             }, 2000);
         });
     </script> !-->
+<<<<<<< HEAD
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <script type="text/javascript">
 window.addEventListener(‘load’, function(){
 helium.init();
 }, false);
+=======
+    <script async src="/gtag/js?id=UA-104430841-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-104430841-1');
+    </script>
+    <script>
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
+>>>>>>> 42abc8e6dcf0c23cc3ef06ed71c036554f91faee
 </script>
 
 </body>

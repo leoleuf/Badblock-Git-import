@@ -31,6 +31,11 @@ class PagesController extends Controller
         $this->render($response, 'pages.play');
     }
 
+    public function getPlayAdwords(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.play-adwords');
+    }
+
     public function getPlayWindows(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->render($response, 'pages.play-windows');

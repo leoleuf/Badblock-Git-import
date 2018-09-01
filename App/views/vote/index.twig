@@ -2,7 +2,7 @@
 {% set active_page = "voter" %}
 {% set title = 'Voter'|trans %}
 {% set sub_title = ''|trans~user.username %}
-{% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action prend quelques secondes." %}
+{% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action est très rapide." %}
 {% set show_title = false %}
 {% block cover %}
     <!------Cover------>
@@ -20,8 +20,6 @@
 {% block skyscrapers %}
 
     <div class="pub-skyscraper-left">
-        <script async src="/pagead/js/adsbygoogle.js"></script>
-
         <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
@@ -38,13 +36,14 @@
 {% block content %}
     <section>
         <div class="vote">
-            <div id="pub-large">
-                <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
     <div class="nothing">
+        <div class="alert alert-primary" role="alert">
+            Les probabilités de gagner l'Accès à l'HyperFarm du Nouveau SkyBlock sont doublés en votant, en ce début de mois. Profite-en dès maintenant en votant et en ouvrant ta clé au coffre du nouveau SkyBlock !
+        </div>
+        <div class="alert alert-error" role="alert" id="err-alert" style="display: none; text-align: center; font-size: 19px;">
+        </div>
+        <div class="alert alert-success" role="alert" id="success-alert" style="display: none; text-align: center; font-size: 19px;">
+        </div>
         <div id="step1" class="step step-two four columns">
             <center><h3 class="step-round">I</h3>
             <div class="step-contains">
@@ -58,7 +57,10 @@
             <center><h3 class="step-round">II</h3>
                 <div class="step-contains">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" style="width: 95%;">Serveur-Minecraft.net (1H30)</a>
+                    <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                    <div id="pleasewait" style="display: none;">
+
+                    </div>
                 </div>
             </center>
         </div>
@@ -67,13 +69,13 @@
             <div class="step-contains">
                 <h5 class="text-center">Obtenez votre récompense</h5>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot1" onclick="award('1')" href="" style="width: 95%;">
-                        Points Boutique
+                    <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
+                        Nouveau SkyBlock
                     </button>
                 </div>
                 <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot2" onclick="award('2')" href="" style="width: 95%;">
-                        SkyBlock
+                    <button class="button button-primary disabled" id="lot1" onclick="award('1')" href="" style="width: 95%;">
+                        Points Boutique
                     </button>
                 </div>
                 <div class="tooltip">
@@ -94,12 +96,40 @@
             </div>
             </center>
         </div>
-        <div id="pub-large">
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+        <h3 class="text-center">Loterie</h3>
+        <p id="demo"></p>
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = 1535904000000;
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get todays date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("demo").innerHTML = "  <a class='button button-primary' title='Temps de tirage' href=''>Prochain tirage : dans " + hours + " heures "
+                    + minutes + " minutes " + seconds + " secondes </a>";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Tirage en cours...";
+                }
+            }, 1000);
+        </script>
+        <a class='button button-danger' title='Dernier gagnant du tirage' href=''>Dernier gagnant : ivan99 </a><br />
+        <a class='button button-success' title='Temps de tirage' href=''>Prochain lot : Grade VIP+ Temporaire </a>
         <h3 class="text-center">Les meilleurs votants !</h3>
         <p class="text-center">Retrouvez chaque mois le classement des meilleurs votants de BadBlock !</p>
         <div class="vote-tr">
@@ -119,15 +149,15 @@
                             <td><span>{{ k + 1 }}</span></td>
                             <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
                             {% if k < 3 %}
-                                <td>15€</td>
+                                <td>4500 points boutique</td>
                             {% elseif k < 10 %}
-                                <td>8.50€</td>
+                                <td>1500 points boutique</td>
                             {% elseif k < 20 %}
-                                <td>5€</td>
+                                <td>1250 points boutique</td>
                             {% elseif k < 30 %}
-                                <td>2.50€</td>
+                                <td>750 points boutique</td>
                             {% else %}
-                                <td></td>
+                                <td>500 points boutique</td>
                             {% endif %}
                             <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
                         </tr>
@@ -161,8 +191,6 @@
         <h1>Merci de votre soutiens !</h1>
         <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
     </div>
-    <!-- End modal -->
-
 
     <!-- Info Modal -->
     <div class="remodal modal-remodal" data-remodal-id="info-modal">
@@ -179,6 +207,11 @@
         var error = false;
 
         function start() {
+            if( window.canRunAds === undefined )
+            {
+                $('[data-remodal-id=blc]').remodal().open();
+                return;
+            }
             if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
             }else{
                 pseudo = $('#pseudo').val();
@@ -190,16 +223,24 @@
                     success: function (data) {
                         $("#step1").addClass("disabled");
                         $("#step2").removeClass("disabled");
+                        $("#pleasewait").hide();
                     }
                 });
 
                 request.fail(function( jqXHR, msg ) {
                     if(jqXHR.status == 404)
                     {
-                        $('[data-remodal-id=vote-user]').remodal().open();
-                        $("#step1").removeClass("disabled");
-                        $("#step2").addClass("disabled");
-                        $("#step3").addClass("disabled");
+                        $("#success-alert").hide();
+                        $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                        $("#err-alert").show();
+                        $("#pleasewait").hide();
+                    }
+                    else if(jqXHR.status == 405)
+                    {
+                        $("#step1").addClass("disabled");
+                        $("#step2").removeClass("disabled");
+                        $("#pleasewait").html(jqXHR.responseText);
+                        $("#pleasewait").show();
                     }
                 });
             }
@@ -207,7 +248,7 @@
 
         function vote(wb)
         {
-            window.open(wb, '_blank');
+            window.open('https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote', '_blank');
             $("#step2").addClass("disabled");
             setTimeout(function () {
                 $("#lot1").removeClass("disabled");
@@ -215,6 +256,7 @@
                 $("#lot3").removeClass("disabled");
                 $("#lot4").removeClass("disabled");
                 $("#lot5").removeClass("disabled");
+                $("#pleasewait").hide();
             }, 5000);
         }
 
@@ -234,21 +276,30 @@
                     $("#lot3").addClass("disabled");
                     $("#lot4").addClass("disabled");
                     $("#lot5").addClass("disabled");
+                    $("#pleasewait").hide();
 
-                    $("#title").text(data);
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#err-alert").hide();
+                    $("#success-alert").html("<i class=\"fas fa-check-circle\"></i> " + data);
+                    $("#success-alert").show();
                 }
             });
 
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
-                    $('[data-remodal-id=vote-user]').remodal().open();
+                    $("#success-alert").hide();
+                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                    $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }else if (jqXHR.status == 405){
-                    $("#title").text("Vous n'avez pas voté.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#success-alert").hide();
+                    $("#err-alert").html(jqXHR.responseText);
+                    $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }else if (jqXHR.status == 500){
-                    $("#title").text("Une erreur est survenue lors du vote.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#success-alert").hide();
+                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
+                    $("#err-alert").show();
+                    $("#pleasewait").hide();
                 }
             });
         }

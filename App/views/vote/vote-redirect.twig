@@ -2,7 +2,7 @@
 {% set active_page = "voter" %}
 {% set title = 'Voter'|trans %}
 {% set sub_title = ''|trans~user.username %}
-{% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action prend quelques secondes." %}
+{% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action est très rapide." %}
 {% set show_title = false %}
 {% block meta %}
 
@@ -23,8 +23,6 @@
 {% block skyscrapers %}
 
     <div class="pub-skyscraper-left">
-        <script async src="/pagead/js/adsbygoogle.js"></script>
-
         <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
@@ -48,8 +46,11 @@
                 </script>
             </div>
     <div class="nothing">
-        <h5 style="text-align: center;">Tu vas être redirigé sur la page pour voter dans <span id="countdown">16</span> secondes.<br />Une fois redirigé, remplis le captcha et clique sur Voter.
-            <br /><img src="/dist/images/loading.gif" title="Chargement du vote BadBlock" alt="Chargement du vote BadBlock" width="128" height="128" />
+        <div class="alert alert-primary" role="alert">
+            Les probabilités de gagner l'Accès à l'HyperFarm du Nouveau SkyBlock sont doublés en votant, en ce début de mois. Profite-en dès maintenant en votant et en ouvrant ta clé au coffre du nouveau SkyBlock !
+        </div>
+        <h5 style="text-align: center;">Cliquez <a rel="nofollow" href="https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote" target="_blank" title="Voter pour BadBlock">ici</a> pour voter.<br />
+            Vous allez être redirigé à l'accueil dans quelques secondes si vous ne cliquez pas.
         </h5>
 
         <div id="pub-large">
@@ -98,136 +99,36 @@
 </div>
 
     </section>
-    <!-- Reg Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-user">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vous devez vous enregistrer sur le Forum de BadBlock pour voter !</h1>
-        <a class="button button-danger" href="https://forum.badblock.fr/inscription/" title="S'inscrire"><i class="icon-repeat"></i>S'inscrire !</a>
+
+    <!-- AdBlock Modal -->
+    <div class="remodal modal-remodal" data-remodal-id="blc">
+        <h1 id="time-title">Veuillez désactiver votre bloqueur de publicités sur BadBlock pour pouvoir voter.</h1>
+        <a class="button button-danger" href="" title="Rafraichir la page"><i class="icon-repeat"></i> J'ai enlevé mon bloqueur</a>
     </div>
-    <!-- Reg modal -->
-    <!-- Time Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-time">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="time-title">Vous devez attendre pour voter !</h1>
-        <a class="button button-danger" data-remodal-action="close" title="Retour"><i class="icon-repeat"></i>Retour</a>
-    </div>
-    <!-- Time modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!-- End Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-end">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Merci de votre soutiens !</h1>
-        <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
-    </div>
-    <!-- End modal -->
+   <!-- <script async>
+        $(document).ready(function () {
 
-
-    <!-- Info Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="info-modal">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="title"></h1>
-        <a class="button button-danger" href="#" title="Fermer"><i class="icon-closetab"></i>Fermer</a>
-    </div>
-    <!-- Info modal -->
-
-    <script type="text/javascript">
-
-        var seconds = 16;
-
-        function countdown() {
-            seconds = seconds - 1;
-            if (seconds < 0) {
-                window.location = "https://serveur-minecraft.net/vote/93";
-            } else {
-                document.getElementById("countdown").innerHTML = seconds;
-                window.setTimeout("countdown()", 1000);
+            if (window.canRunAds === undefined) {
+                $('[data-remodal-id=blc]').remodal().open();
+                return;
             }
-        }
 
-        countdown();
+            var seconds = 10;
 
-    </script>
+            window.setInterval(function(){
 
-    <script>
-        var type;
-        var pseudo;
-        var error = false;
-
-        function start() {
-            if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
-            }else{
-                pseudo = $('#pseudo').val();
-                var request = $.ajax({
-                    url: "/vote/playerexists",
-                    method: "POST",
-                    data: {pseudo : pseudo},
-                    dataType: "html",
-                    success: function (data) {
-                        $("#step1").addClass("disabled");
-                        $("#step2").removeClass("disabled");
-                    }
-                });
-
-                request.fail(function( jqXHR, msg ) {
-                    if(jqXHR.status == 404)
-                    {
-                        $('[data-remodal-id=vote-user]').remodal().open();
-                        $("#step1").removeClass("disabled");
-                        $("#step2").addClass("disabled");
-                        $("#step3").addClass("disabled");
-                    }
-                });
-            }
-        }
-
-        function vote(wb)
-        {
-            window.open(wb, '_blank');
-            $("#step2").addClass("disabled");
-            setTimeout(function () {
-                $("#lot1").removeClass("disabled");
-                $("#lot2").removeClass("disabled");
-                $("#lot3").removeClass("disabled");
-                $("#lot4").removeClass("disabled");
-                $("#lot5").removeClass("disabled");
-            }, 5000);
-        }
-
-        function award(type) {
-            //requet if user have vote
-            var request = $.ajax({
-                url: "/vote/award",
-                method: "POST",
-                data: {
-                    pseudo : pseudo,
-                    type : type
-                },
-                dataType: "html",
-                success: function (data) {
-                    $("#lot1").addClass("disabled");
-                    $("#lot2").addClass("disabled");
-                    $("#lot3").addClass("disabled");
-                    $("#lot4").addClass("disabled");
-                    $("#lot5").addClass("disabled");
-
-                    $("#title").text(data);
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                seconds = seconds - 1;
+                if (seconds < 0) {
+                    window.location = "https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote";
+                } else {
+                    document.getElementById("countdown").innerHTML = seconds;
                 }
-            });
+            }, 1000);
+        });
 
-            request.fail(function( jqXHR, msg ) {
-                if(jqXHR.status == 404){
-                    $('[data-remodal-id=vote-user]').remodal().open();
-                }else if (jqXHR.status == 405){
-                    $("#title").text("Vous n'avez pas voté.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
-                }else if (jqXHR.status == 500){
-                    $("#title").text("Une erreur est survenue lors du vote.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
-                }
-            });
-        }
-
-    </script>
+    </script>!-->
+    <meta http-equiv="refresh" content="10; URL=https://badblock.fr/badblock">
 {% endblock %}
 

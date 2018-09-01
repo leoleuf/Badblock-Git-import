@@ -1,5 +1,5 @@
 <article class="card {{ card_special_class }}">
-    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}">
+    <a href="{{ path_for('single-post', {'slug': infos.slug, 'uuid': infos.uuid}) }}" title="{{ infos.title }}">
         <header class="card-thumb">
             <div class="img" style="background-image: url({{ infos.thumb_url }})"></div>
         </header>

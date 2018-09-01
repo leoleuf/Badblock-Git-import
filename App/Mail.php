@@ -3,6 +3,7 @@
 namespace App;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
@@ -22,12 +23,15 @@ class Mail
 	 */
 	function __construct($container) {
 		$this->Mail = new PHPMailer();
-		$this->Mail->SMTPDebug = 2;  
+		$this->Mail->isSMTP();
+		$this->Mail->SMTPDebug = 0;
 		$this->Mail->Host = getenv("PHP_MAILER_HOST"); 					
 		$this->Mail->SMTPAuth = true;                               	
 		$this->Mail->Username = getenv('PHP_MAILER_USERNAME');          
-		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');     
-		$this->Mail->Port = getenv('PHP_MAILER_PORT'); 
+		$this->Mail->Password = getenv('PHP_MAILER_PASSWORD');
+        $this->Mail->SMTPSecure = 'tls';
+        $this->Mail->CharSet = 'UTF-8';
+        $this->Mail->Port = getenv('PHP_MAILER_PORT');
 		$this->Mail->setFrom(getenv('PHP_MAILER_FROM_EMAIL'), getenv('PHP_MAILER_FROM_NAME'));
 
     }

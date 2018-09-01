@@ -1,10 +1,11 @@
 {% extends 'default.twig' %}
+{% set description = "Accède gratuitement à toutes les statistiques du serveur. Les données précises du serveur ainsi que les statistiques des joueurs peuvent être accessibles depuis le statistiques." %}
 {% set active_page = "stats" %}
 {% set show_title = false %}
 {% set title = "Statistiques" %}
 {% set sub_title = "Sur le serveur" %}
 {% block cover %}
-    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
 
     <div class="cover-back">
         <div class="cover">
@@ -50,7 +51,7 @@
                 </div>
                 <div class="col-3">
                     <h3>{{ stats['registred']|number_format(0, '', ' ') }}</h3>
-                        <p>Joueurs inscrits</p>
+                        <p>Joueurs actifs</p>
                 </div>
                 <div class="col-3">
                     <h3>{{ stats['staff']|number_format(0, '', ' ') }}</h3>

@@ -21,7 +21,7 @@ var sass_src_dir = "src/sass"
 /**
  * Output directory of sass
  */
-var sass_dest_dir = "public/dist/css"
+var sass_dest_dir = "https://cdn.badblock.fr/wd/css"
 
 /**
  * Output style of sass
@@ -38,7 +38,7 @@ var scripts_src_dir = "src/js/*.js"
 /**
  * Output directory of scripts
  */
-var scripts_dest_dir = "public/dist/js"
+var scripts_dest_dir = "https://cdn.badblock.fr/wd/js"
 
 /**
  * Require dependencies

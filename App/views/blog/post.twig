@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
 {% set title = post.title %}
 {% set subtitle = post.summary %}
+{% set description = post.content|raw  %}
 {% block cover %}
     <!------Cover------>
     <div class="cover-back" style="background-image: url({{ post.cover_url }})">
@@ -22,10 +23,53 @@
         </div>
     </div>
     <!------Cover fin------>
+    <div class="pub-skyscraper-right">
+        <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 {% endblock %}
 {% block content %}
     <div class="article-content">
-        {{ post.content|raw }}
+        {{ post.content | raw }}
+        <!-- Display the countdown timer in an element -->
+        <center><p id="demo" style="font-size: 24px !important; text-align: center;"></p></center>
+
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = new Date("Aug 29, 2018 17:00:00").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+                // Get todays date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("demo").innerHTML = hours + " heures "
+                    + minutes + " minutes " + seconds + " secondes";
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Ouverture du SkyBlock !";
+                }
+            }, 1000);
+        </script>
+    </div>
+    <div id="pub-large">
+        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
+        <script async defer>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
     {% if post.enable_comments == true %}
         {% if flash('errors') is not empty %}

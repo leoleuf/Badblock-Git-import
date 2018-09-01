@@ -1,11 +1,12 @@
 {% extends "default.twig" %}
+{% set description = "Recharge ton compte sur BadBlock très simplement avec le service Dedipass pour payer par SMS, Appel ou NeoSurf pour pouvoir profiter des nouvelles opportunités sur BadBlock." %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 
 {% block cover %}
 
-    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -23,9 +24,9 @@
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                     </div>
-                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                     <div class="recharge-button">
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
                     </div>
                 </div>
             </div>
@@ -39,8 +40,33 @@
 
 {% block content %}
 <!-- Debut liste paiements -->
-    
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+
+    <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
+    <div class="row center">
+        <div class="three columns">
+            <a href="/shop/recharge">
+                <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/step-2">
+                <input class="tab-top btn" type="button" name="bt2" value="Méthode" />
+            </a>
+        </div>
+        <div class="three columns">
+            <a href="/shop/recharge/dedipass">
+                <input class="tab-top btn" type="button" name="bt3" value="Combien de points ?" />
+            </a>
+        </div>
+        <div class="three columns">
+            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        </div>
+
+    </div>
+    <div class="c-progress">
+        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 75%;"></div>
+    </div>
+    <br>
     <br>
     <div data-dedipass="95576b4b99c5d76e20319817e24761ae" data-dedipass-custom=""></div>
     <script src="//api.dedipass.com/v1/pay.js"></script>

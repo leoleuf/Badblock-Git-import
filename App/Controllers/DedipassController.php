@@ -29,14 +29,16 @@ class DedipassController extends Controller
                 .'&private_key='.getenv("DEDIPASS_PRIVATE_KEY").'&code=' . $code);
             $dedipass = json_decode($dedipass);
 
-            $name = "";
-            if (isset($_POST['internal_username']))
+            if (!$this->container->session->exist('recharge-username'))
             {
-                $name = $_POST['internal_username'];
+                return $this->redirect($response, '/shop/recharge/cancel');
             }
-            else
+
+            $name = $this->container->session->get('recharge-username');
+
+            if (empty($name))
             {
-                $name = $this->container->session->get('recharge-username');
+                return $this->redirect($response, '/shop/recharge/cancel');
             }
 
             if($dedipass->status == 'success') {
@@ -60,26 +62,41 @@ class DedipassController extends Controller
                     'transaction_id' => $code
                 ];
 
-                $this->container->mongo->funds->insertOne($data);
+                $insertedId = $this->container->mongo->funds->insertOne($data);
+                $insertedId = $insertedId->getInsertedId()->__ToString();
+
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
                 if ($money == null){
                     $data = [
                         "uniqueId" => $user['uniqueId'],
                         "points" => $dedipass->virtual_currency
                     ];
+                    $this->container->session->set('points', $dedipass->virtual_currency);
                     $this->container->mongo->fund_list->insertOne($data);
                 }else{
                     $money['points'] = $money['points'] + $dedipass->virtual_currency;
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                    $this->container->session->set('points', $money['points']);
                 }
 
-                if ($this->container->session->exist('user')){
-                    $mailContent = file_get_contents("../mail-achat.html");
+                try {
+                    $user = $this->xenforo->getUser($name);
+                }catch (\Exception $e){
+                    $user = null;
+                }
+
+                if ($user != null) {
+                    $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $name, $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                    $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                    $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
                 }
+
+                $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass site)";
+                $mail = new \App\Mail(true);
+                $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 
                 return $this->redirect($response, '/shop/recharge/success');
 
@@ -126,14 +143,16 @@ class DedipassController extends Controller
                 $data = [
                     'uniqueId' => $user['uniqueId'],
                     'date' => date('Y-m-d H:i:s'),
-                    'price' => $dedipass->payout,
-                    'gateway' => 'dedipass',
+                    'price' => intval($dedipass->payout),
+                    'gateway' => 'dedipass-ingame',
                     'pseudo' => $name,
                     'points' => $dedipass->virtual_currency,
                     'transaction_id' => $code
                 ];
 
-                $this->container->mongo->funds->insertOne($data);
+                $insertedId = $this->container->mongo->funds->insertOne($data);
+                $insertedId = $insertedId->getInsertedId()->__ToString();
+
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
                 if ($money == null){
                     $data = [
@@ -146,15 +165,27 @@ class DedipassController extends Controller
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                 }
 
-                if ($this->container->session->exist('user')){
-                    $mailContent = file_get_contents("../mail-achat.html");
+                $user = $this->xenforo->getUser($name);
+                $dzb = "";
+                if ($user != null) {
+                    $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
                     $mailContent = str_replace("(username)", $name, $mailContent);
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                    $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                    $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
+                }
+                else
+                {
+                    $dzb .= "§eNous t'invitons à t'inscrire sur le site de BadBlock pour avoir une facture et une preuve d'achat la prochaine fois.";
                 }
 
-                echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques.";
+                $mailContent = $name." recharge +".$dedipass->virtual_currency." pts boutique (".$dedipass->payout." € - dedipass en jeu)";
+                $mail = new \App\Mail(true);
+                $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
+                $dzb .= "§bUn mail a été envoyé à §e".$user['email']." §bcontenant la facture et ta preuve d'achat en cas de problème.";
+
+                echo "§a§lCode valide. Vous avez été crédité de ".$dedipass->virtual_currency." points boutiques. ".$dzb;
             }
             else {
                 echo "§cCode entré invalide.";

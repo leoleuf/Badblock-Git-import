@@ -12,9 +12,21 @@ class PaypalController extends Controller
     public function startPaiement(RequestInterface $request, ResponseInterface $response,$id){
         //Search offer in array
         $id = $id['id'];
+        
+        if (!$this->container->session->exist('recharge-username'))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
 
         if (!isset($this->container->config['paiement'][0]['offer'][$id])){
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/cancel#5');
         }else{
             $offer = $this->container->config['paiement'][0]['offer'][$id];
         }
@@ -53,18 +65,29 @@ class PaypalController extends Controller
 
         if($resp){
             // Remplacer www.paypal.com par www.sandbox.paypal.com pour utiliser la sandbox
-            $paypal = 'https://www.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
-            return $this->redirect($response, $paypal);
+            $link = 'https://www.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
+            return $this->redirect($response, $link);
         }else{
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/cancel#6');
         }
     }
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
+        if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
+            return $this->redirect($response, '/shop/recharge/cancel#4');
+        }
 
-        if(empty($_GET['offer']) || empty($_GET['Prix']) || empty($_GET['Offer']) || empty($_GET['Offer_desc']) || empty($_GET['Currency']) || empty($_GET['QTY'])){
-            return $this->redirect($response, '/shop/recharge');
+        if (!$this->container->session->exist('recharge-username'))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         $produit = array();
@@ -80,7 +103,7 @@ class PaypalController extends Controller
 
 
         if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/cancel#3');
         }
 
         $paypal = new Paypal();
@@ -89,12 +112,12 @@ class PaypalController extends Controller
         ));
 
         if($resp){
-            if($resp['CHECKOUTSTATUS'] == 'PaymentActionCompleted'){
-                // Détéction du payement
-                return $this->redirect($response, '/shop/recharge');
+            if($resp['CHECKOUTSTATUS'] !== 'PaymentActionNotInitiated'){
+                // oups?
+                return $this->redirect($response, '/shop/recharge/cancel#1');
             }
         }else{
-            return $this->redirect($response, '/shop/recharge');
+            return $this->redirect($response, '/shop/recharge/cancel#2');
         }
 
         $params = array(
@@ -121,6 +144,11 @@ class PaypalController extends Controller
         $resp = $paypal->request('DoExpressCheckoutPayment', $params);
 
         if($resp){
+            if (!isset($resp['ACK']) || $resp['ACK'] !== 'Success')
+            {
+                return $this->redirect($response, '/shop/recharge/cancel#9');
+            }
+
             // Detection d'une quelconque action
             // Sauvegarde dans mongoDB
             $resp['name'] = strtolower($this->container->session->get('recharge-username'));
@@ -132,14 +160,15 @@ class PaypalController extends Controller
             $data = [
                 'uniqueId' => $user['uniqueId'],
                 'date' => date('Y-m-d H:i:s'),
-                'price' => $resp["PAYMENTINFO_0_AMT"],
+                'price' => intval($resp["PAYMENTINFO_0_AMT"]),
                 'gateway' => 'paypal',
                 'pseudo' => $this->container->session->get('recharge-username'),
                 'points' => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'],
                 'transaction_id' => $resp['PAYMENTINFO_0_TRANSACTIONID']
             ];
 
-            $this->container->mongo->funds->insertOne($data);
+            $insertedId = $this->container->mongo->funds->insertOne($data);
+            $insertedId = $insertedId->getInsertedId()->__ToString();
 
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
 
@@ -149,23 +178,35 @@ class PaypalController extends Controller
                     "points" => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
                 ];
 
+                $this->container->session->set('points', $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']);
                 $this->container->mongo->fund_list->insertOne($data);
 
             }else{
                 $money['points'] = $money['points'] + $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'];
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
             }
 
+            try {
+                $user = $this->xenforo->getUser($this->container->session->get('recharge-username'));
+            }catch (\Exception $e){
+                $user = null;
+            }
 
-            if ($this->container->session->exist('user')){
-                $mailContent = file_get_contents("../mail-achat.html");
+            if ($user != null) {
+                $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
                 $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
                 $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-                $mail = new \App\Mail(true);
-                $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+                $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+                $mail = new \App\Mail($this->container);
+                $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
             }
 
-            return $this->redirect($response, '/shop/recharge/sucess');
+            $mailContent = $this->session->get('recharge-username')." recharge +".$this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal)";
+            $mail = new \App\Mail($this->container);
+            $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
+
+            return $this->redirect($response, '/shop/recharge/success');
         }else{
             return $this->redirect($response, '/shop/recharge');
         }

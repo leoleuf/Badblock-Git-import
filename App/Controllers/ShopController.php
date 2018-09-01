@@ -26,19 +26,88 @@ class ShopController extends Controller
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
-        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo]);
+        if ($this->session->exist('user')){
+            $username = $this->session->getProfile('username')['username'];
+            if ($this->obsipromo($username)){
+                $promo = true;
+            }else{
+                $promo = false;
+            }
+        }else{
+            $promo = false;
+        }
+
+        $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
 
     }
 
 
-    function buy(RequestInterface $request, ResponseInterface $response, $argument){
-        //Check if user is connected
-        if (!$this->container->session->exist('user')){
-            return $response->write("User not connected !")->withStatus(401);
+    function buy(RequestInterface $request, ResponseInterface $response, $argument)
+    {
+        $ingame = false;
+        $playerName = "";
+
+        if (isset($_POST['playerName'])) {
+            $ip = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : $_SERVER['REMOTE_ADDR'];
+            $whitelist = array(
+                '127.0.0.1',
+                '151.80.47.206',
+                '54.37.180.38',
+                '54.37.180.39',
+                '178.33.24.184',
+                '178.33.24.185',
+                '178.33.24.186',
+                '178.33.24.187',
+                '178.33.24.188',
+                '176.31.106.11',
+                '178.33.24.189',
+                '178.33.24.190',
+                '178.33.24.191',
+                '164.132.200.176',
+                '164.132.200.183',
+                '91.134.165.88',
+                '91.134.165.89',
+                '91.134.165.90',
+                '91.134.165.91',
+                '91.134.165.92',
+                '91.134.165.93',
+                '91.134.165.94',
+                '91.134.165.95',
+                '91.121.143.108',
+                '149.91.82.150',
+                '51.38.189.205',
+                '51.38.35.126',
+                '66.70.251.20',
+                '66.70.251.21',
+                '149.202.89.72',
+                '149.202.88.2',
+                '66.70.251.22',
+                '91.134.165.88',
+                '164.132.200.110',
+                '164.132.200.198',
+                '164.132.200.198'
+            );
+
+            if (!in_array($ip, $whitelist)) {
+                return 'Lolnope.';
+            }
+
+            $ingame = true;
+            $playerName = $_POST['playerName'];
+        }
+
+        if (!$ingame)
+        {
+            //Check if user is connected
+            if (!$this->container->session->exist('user')) {
+                return $response->write("User not connected !")->withStatus(401);
+            }
+
+            $playerName = $this->session->getProfile('username')['username'];
         }
 
         //Search data player
-        $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+        $player = $this->container->mongoServer->players->findOne(['name' => strtolower($playerName)]);
 
         if ($player == null){
             return $response->write("Pas inscrit sur le serveur !")->withStatus(403);
@@ -88,10 +157,30 @@ class ShopController extends Controller
             }
         }
 
+        //Remove after
+        if ($this->session->exist('user')){
+            $username = $this->session->getProfile('username')['username'];
+            if ($this->obsipromo($username)){
+                $promo = true;
+            }else{
+                $promo = false;
+            }
+        }else{
+            $promo = false;
+        }
+        if ($product->depend_name == 'vip' || $product->depend_name == 'vip+'){
+            if ($promo == true){
+                $product->price = $product->price / 2;
+            }
+        }
+
         //Check if player have money
-        if(!$this->haveMoney(strtolower($this->session->getProfile('username')['username']), $product->price)){
+        if(!$this->haveMoney(strtolower($playerName), $product->price)){
             return $response->write("Fond insuffisant")->withStatus(405);
         }
+
+
+
 
         $product->depend_name == null;
         //Log the buy and subtract money
@@ -109,9 +198,9 @@ class ShopController extends Controller
         $this->container->mongo->buy_logs->InsertOne($data);
 
         if ($product->mode == "rabbitmq"){
-            $this->sendRabbitData($product);
+            $this->sendRabbitData($playerName, $product);
         }elseif ($product->mode == "webladder"){
-            $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, -1);
+            $this->hybrid(strtolower($playerName), $product['command'], $product->price, -1);
         }elseif ($product->mode == "hybrid"){
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
                 if ($k == "gradeperso"){
@@ -125,7 +214,7 @@ class ShopController extends Controller
             {
 
                 $time = $player['permissions']['end'] + ($product['duration'] * 1000);
-                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
+                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
 
             }else{
 
@@ -136,14 +225,14 @@ class ShopController extends Controller
                     }
                 }
                 $time = $expireC + ((time() + $product['duration']) * 1000);
-                $this->hybrid(strtolower($this->session->getProfile('username')['username']), $product['command'], $product->price, $time);
+                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
 
             }
         }
 
 
         //Subtract points
-        $this->subtract(strtolower($this->session->getProfile('username')['username']), $product->price);
+        $this->subtract(strtolower($playerName), $product->price);
 
         return "";
     }
@@ -191,20 +280,19 @@ class ShopController extends Controller
     }
 
 
-   public function sendRabbitData($product){
+   public function sendRabbitData($playerName, $product){
         //Connection to rabbitMQ server
         $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
         $channel = $connection->channel();
 
-        $player = $this->session->getProfile('username')['username'];
         $shopQueue = $product->queue;
         if (is_string($product->command)){
-            $command = str_replace("%player%", $player, $product->command);
+            $command = str_replace("%player%", $playerName, $product->command);
         }else{
             $product->command = iterator_to_array($product->command);
             $command = "";
             foreach ($product->command as $row){
-                $command .= str_replace("%player%", $player, $row) . ";";
+                $command .= str_replace("%player%", $playerName, $row) . ";";
             }
         }
 
@@ -212,7 +300,7 @@ class ShopController extends Controller
         $channel->exchange_declare('shopLinker.'.$shopQueue, 'fanout', false, false, false, false);
         $sanction = (object) [
             'dataType' => 'BUY',
-            'playerName' => $player,
+            'playerName' => $playerName,
             'displayName' => $product->name,
             'command' => $command,
             'ingame' => false,
@@ -256,7 +344,7 @@ class ShopController extends Controller
            }else{
                $p->command = "pex user %player% group add " . $grade;
            }
-           $this->sendRabbitData($p);
+           $this->sendRabbitData($username, $p);
        }
 
        if ($grade == "legend")
@@ -294,6 +382,32 @@ class ShopController extends Controller
        $channel->close();
        $connection->close();
 
+
+   }
+
+
+   public function obsipromo($pseudo){
+
+       //Search data player
+       $player = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
+
+       if ($player == null){
+           $check = false;
+       }else{
+           if ($player['permissions']['group'] == "obsidienne"){
+               $check = true;
+           }else{
+               foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+                   if ($k == "obsidienne"){
+                       $check = true;
+                   }else{
+                       $check = false;
+                   }
+               }
+           }
+       }
+
+       return $check;
 
    }
 

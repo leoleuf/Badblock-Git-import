@@ -1,11 +1,12 @@
 {% extends "default.twig" %}
+{% set description = "Recharge ton compte sur BadBlock très simplement avec le service Starpass pour payer par PaySafeCard pour pouvoir profiter des nouvelles opportunités sur BadBlock." %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 
 {% block cover %}
 
-    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -23,9 +24,9 @@
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                     </div>
-                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                     <div class="recharge-button">
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
 {% block content %}
     <!-- Debut liste paiements -->
 
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
     <div class="row center">
         <div class="three columns">
             <a href="/shop/recharge">
@@ -67,7 +68,11 @@
     </div>
     <br>
 
-    <h5 id="somme">Recharge ton compte par PaySafeCard</h5>
+    Pour obtenir des points boutique, il suffit de cliquer sur l'onglet <strong>PaySafeCard</strong> en dessous et d'<strong>entrer</strong> le code de ta carte. <strong>Si tu n'as pas de carte, tu peux en aller chercher une chez ton buraliste ou ton bar tabac le plus proche de chez toi.</strong><br />
+    <font color="red">Attention : Nous n'acceptons que les Carte PaySafeCard normales, non les Cartes PaySafeCard Junior. Il faut demander une carte PaySafeCard normale.<br />
+    Tu as une carte PaySafeCard Junior et tu aimerais l'échanger contre une normale ? <a href="https://www.paysafecard.com/fr-fr/faq/pin-junior-paysafecard-a-la-place-de-classic/" rel="nofollow" target="_blank" title="PIN Junior PaySafeCard">clique ici</a></font>
+    <br />
+    C'est très facile et cela coûte très peu cher. Tu peux en demander une contre de l'argent de poche à ton buraliste ou par carte bancaire. Reviens et entre ton code, c'est instantané !
     <div class="row center">
         <div id="starpass_{{ documentId }}"></div><script type="text/javascript" src="http://script.starpass.fr/script.php?idd={{ documentId }}&amp;verif_en_php=1&amp;datas="></script><noscript>Veuillez activer le Javascript de votre navigateur s'il vous pla&icirc;t.</noscript>
     </div>

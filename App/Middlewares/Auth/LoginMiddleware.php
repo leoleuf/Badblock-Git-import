@@ -26,9 +26,11 @@ class LoginMiddleware
 		//en revanche si le cookie exsite mais une session est déjà ouverte, on ne fait rien
         if(!isset($_COOKIE['forum_logged_in'])){
             return $next($request, $response);
+        }elseif(!isset($_COOKIE['forum_logged_in']) && $this->container->session->exist('user')){
+            session_destroy();
+            return $next($request, $response);
         }else{
             if (isset($_COOKIE['forum_session']) && $_COOKIE['forum_logged_in'] == "1" && !$this->container->session->exist('user')) {
-
                 $data_session = $this->container->mysql_forum->fetchRow("SELECT * FROM xf_session WHERE session_id = '" . $_COOKIE['forum_session'] . "'");
 
                 if ($data_session == null){
@@ -37,14 +39,22 @@ class LoginMiddleware
 
                 $data_session = explode("user_id\";i:",$data_session["session_data"]);
 
+                //Petit fdp qui modifie ses cookie
+                if (!isset($data_session[1])){
+                    return $next($request, $response);
+                }
                 $data_session = explode(";",$data_session[1]);
 
                 $userid = $data_session[0];
 
 
                 //recipérer le profile de l'utilisateur à partir de l'api
-                $user = $this->container->xenforo->getUser($userid);
-
+                try {
+                    $user = $this->container->xenforo->getUser($userid);
+                } catch (Exception $e) {
+                    return $next($request, $response);
+                }
+                
                 //Transformation string en array
                 $user['secondary_group_ids'] = explode(",", $user['secondary_group_ids']);
 

@@ -437,9 +437,6 @@ class UserController extends Controller
                     if (strlen($_POST['prefix']) < 16){
                         $this->container->mongoServer->custom_data->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ['prefix_state' => false,'prefix_new' => $_POST['prefix']]]);
 
-                        //https://canary.discordapp.com/api/webhooks/456069141464612864/8GTSrExs1xlL2v4fxj5pTI8BEhJlYqpn0M_Lesioqrw81dCS07hdo3fN9Vz_JPq9jWqv
-
-
                         //Discord WebHook notif
 
                         $data = array("username" => "Grade Custom","embeds" => array(0 => array(
@@ -449,7 +446,7 @@ class UserController extends Controller
                             "color" => 5788507
                         )));
 
-                        $curl = curl_init(getenv("DISCORD_RESP"));
+                        $curl = curl_init("https://canary.discordapp.com/api/webhooks/409778028802080769/51kS0SGaE_OrkfFbJig0Wuth1u_bHLnMjpSQ6_TJjAipUaMx-ESo7laD_YjpIj6-xQpz");
                         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

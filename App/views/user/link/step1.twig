@@ -1,6 +1,7 @@
+{% set description = "Lie ton compte et accède à toutes les possibilités que te permettent le site Internet de BadBlock. Lier son compte, c'est gratuit." %}
 {% extends 'macros/link.twig' %}
 {% block link_content %}
-    <h5>Pour relier votre compte, veuillez vous connecter sur le serveur avec votre pseudo forum exact : {{ user.username }}</h5>
+    <h5>Pour relier ton compte, connecte-toi sur le serveur avec ton pseudo connecté sur le site : {{ user.username }}</h5>
     <h5>Pour se connecter sur le Serveur <a href="/launcher-minecraft" title="Jouer sur BadBlock">cliquez ici !</a> </h5>
     <br>
     <br>
@@ -13,7 +14,7 @@
 
     <div class="shop-summary">
         <div class="shop-summary-icon">
-            <i class="icon-info-sign icon"></i> Si vous ne possédez pas le même pseudo sur le Forum et sur le Jeu, veuillez ouvrir un ticket support et demander un changement de pseudo forum.
+            <i class="icon-info-sign icon"></i> Si tu ne possèdes pas le même pseudo sur le Forum et sur le Jeu, ouvre un ticket support et demande pour changer de pseudo forum.
         </div>
     </div>
 {% endblock %}

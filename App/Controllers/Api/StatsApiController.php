@@ -40,16 +40,16 @@ class StatsApiController extends \App\Controllers\Controller
             if (is_double($nb / 20)){
                 $nb = round(($nb / 20)) + 1;
             }
+
             $n = 0;
             while ($nb != $n){
                 $data = array_slice($game,($n * 20),20,true);
-                $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                $n++;
+                if (!empty($data)){
+                    $this->redis->setJson("stats:".$name .":". ($n +1),$data);
+                    $n++;
+                }
             }
         }
-
-
-        //$this->log->info('"StatsApiController\getCreateCacheA"',' Success writing stats cache');
 
         return $response->write('okok')->withStatus(200);
     }
@@ -59,11 +59,14 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Stats provenant du mongoDB dist
         $collection = $this->container->mongoServer->players;
-        $register = $collection->count();
-        $banA = $collection->count(['punish.ban' => true]);
-        $muteA = $collection->count(['punish.mute' => true]);
-        $banG = $collection->count(['punish.ban' => true,'punish.banner' => "Guardian"]);
+        $register = $this->container->mysql_casier->fetchRow("SELECT COUNT(*) AS count FROM friends")["count"] + $this->container->mongoServer->players->count();
+
+        $timestamp = time() * 1000;
+        $banA = $collection->count(['punish.ban' => true, 'punish.banEnd' => ['$gte' => $timestamp]]);
+        $muteA = $collection->count(['punish.mute' => true, 'punish.muteEnd' => ['$gte' => $timestamp]]);
+        $banG = $collection->count(['punish.ban' => true,'punish.banner' => "Guardian",'punish.banEnd' => ['$gte' => $timestamp]]);
         $banM = $banA - $banG;
+
 
         //Get du staff sur redis
         $staff = $this->redis->getjson('staff.number');

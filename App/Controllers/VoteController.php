@@ -49,10 +49,11 @@ class VoteController extends Controller
     {
         if (!isset($_POST['pseudo']))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         $pseudo = htmlspecialchars($_POST['pseudo']);
+        $pseudo = strtolower($pseudo);
 
         if (getenv('APP_DEBUG') == 0){
             $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
@@ -61,11 +62,45 @@ class VoteController extends Controller
             // user exists?
             if ($data == false)
             {
-                return $response->write("User not found !")->withStatus(404);
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
 
-        return $response->write("ok")->withStatus(200);
+        $collection = $this->container->mongo->votes_logs;
+        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        if ($dbh != null)
+        {
+            $t = ($dbh['timestamp'] + 5400) - time();
+            return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
+        }
+
+        return $response->write("Tu peux voter !")->withStatus(405);
+    }
+
+    public function badblock(RequestInterface $request, ResponseInterface $response)
+    {
+        /*$API_id = 198; // ID du serveur
+        $API_da = 'clic'; // vote,clic,commentaire ou note
+        $API_url = "https://serveur-prive.net/api/stats/$API_id/$API_da";
+        $API_call = @file_get_contents($API_url);
+
+        $API_id2 = 265; // ID du serveur
+        $API_da2 = 'clic'; // vote,clic,commentaire ou note
+        $API_url2 = "https://serveur-prive.net/api/stats/$API_id2/$API_da2";
+        $API_call2 = @file_get_contents($API_url2);
+
+        if ($API_call2 + 1572 > $API_call)
+        {
+            header("Location: https://serveur-prive.net/vote.php?c=198");
+            exit;
+        }
+        else
+        {
+            header("Location: https://badblock.fr/accueil/");
+            exit;
+        }*/
+        header("Location: https://badblock.fr/jouer");
+        exit;
     }
 
     public function award(RequestInterface $request, ResponseInterface $response)
@@ -73,7 +108,7 @@ class VoteController extends Controller
 
         if (!isset($_POST['pseudo']) && !isset($_POST['type']))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         $dev = getenv('APP_DEBUG') == 1;
@@ -85,19 +120,30 @@ class VoteController extends Controller
 
         $pseudo = strtolower($pseudo);
 
+        if ($type == 2)
+        {
+            $type = 6;
+        }
+
         // TODO move
         $types = array(
           1 => 'ptsboutique',
-          2 => 'skyb',
+          2 => 'skyb2',
           3 => 'hub',
           4 => 'faction',
-          5 => 'box'
+          5 => 'box',
+          6 => 'skyb2'
         );
+
+       /* if ($type == 6)
+        {
+            return $response->write("Le Nouveau SkyBlock arrive Bientôt !")->withStatus(200);
+        }*/
 
         // unknown type
         if (!isset($types[$type]))
         {
-            return $response->write("User not found !")->withStatus(404);
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
         if (!$dev)
@@ -108,12 +154,12 @@ class VoteController extends Controller
             // user exists?
             if ($data == false)
             {
-                return $response->write("User not found !")->withStatus(404);
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
 
        // return $response->write("test")->withStatus(200);
-        
+
         $API_id = 198; // ID de votre serveur
         if ($dev)
         {
@@ -129,19 +175,43 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        //$API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
-        //$API_call = @file_get_contents($API_url);
-
-        $SERVER_ID = 93; // ID du serveur
-        $KEY = 'ePwvH8vBvcVUthJettUe9SW0fKsZ0V'; // Api key du serveur
-
-        $SM = "http://serveur-minecraft.net/api/$SERVER_ID/$KEY/?ip=$API_ip";
-        $result = @file_get_contents($SM);
+        $API_id = 198; // ID du serveur
+        $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
+        $API_call = @file_get_contents($API_url);
 
         // voted?
-        if (!$dev && $result != true)
+        if (!$dev && $API_call != 1)
         {
-            return $response->write("Vote invalid")->withStatus(405);
+            $collection = $this->container->mongo->votes_logs;
+            $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+            if ($dbh != null)
+            {
+                $t = ($dbh['timestamp'] + 5400) - time();
+                return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
+            }
+
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+        }
+
+        if ($type == 1)
+        {
+            $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
+            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+            if ($money == null)
+            {
+                $data = [
+                    "uniqueId" => $user['uniqueId'],
+                    "points" => 2
+                ];
+                $this->container->session->set('points', 2);
+                $this->container->mongo->fund_list->insertOne($data);
+            }
+            else
+            {
+                $money['points'] = $money['points'] + 2;
+                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
+            }
         }
 
         $queue = $types[$type];
@@ -174,6 +244,7 @@ class VoteController extends Controller
         }
 
         $collection = $this->container->mongo->votes_logs;
+        $total = $collection->count(['timestamp' => ['$gte' => (1535904000 - 86400)]]);
         $command = str_replace("%player%", $pseudo, $winItem->command);
 
         // award log
@@ -187,8 +258,11 @@ class VoteController extends Controller
             "user_agent" => htmlspecialchars($API_ip)
         ];
 
-
         $collection->insertOne($insert);
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1535904000 - 86400)]]);
+
+        $total = max($total, 1);
+        $proba = round(($dbh / $total) * 100, 2);
 
         $awardName = $winItem->name;
 
@@ -202,10 +276,12 @@ class VoteController extends Controller
 
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
+        $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
 
         $this->top($displayPseudo, 1);
 
-        return $response->write("Vous avez gagné ".$winItem->name)->withStatus(200);
+        return $response->write("Ton vote a été pris en compte. Tu as gagné ".$winItem->name .
+            " ainsi qu'une participation à la loterie. Tu es désormais à " . $proba . "% de chance de gagner le lot de la loterie. Tirage ce soir à 18H sur la page de vote.")->withStatus(200);
     }
 
     public function top($player, $vote){

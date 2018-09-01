@@ -57,21 +57,21 @@ class IpGeneratorMiddleware
 
 	public function __invoke($request, $response, $next)
 	{
-        if ($this->container->session->exist('user')){
+        if ($this->container->session->exist('user'))
+        {
             if (!$this->container->session->exist('points')){
                 //Search data player
                 $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->getProfile('username')['username'])]);
-                if ($player == null){
-                    return false;
+                if ($player != null) {
+                    //Search money of player
+                    $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
+                    if (!isset($player->points)) {
+                        $shoppoints = 0;
+                    } else {
+                        $shoppoints = $player->points;
+                    }
+                    $this->container->session->set('points', $shoppoints);
                 }
-                //Search money of player
-                $player = $this->container->mongo->fund_list->findOne(['uniqueId' => $player->uniqueId]);
-                if (!isset($player->points)){
-                    $shoppoints = 0;
-                }else{
-                    $shoppoints = $player->points;
-                }
-                $this->container->session->set('points', $shoppoints);
             }else{
                 $shoppoints = $this->container->session->get('points');
             }
@@ -87,6 +87,11 @@ class IpGeneratorMiddleware
             $ip = $_SERVER['CF_CONNECTING_IP'];
         }
 
+        $this->container->redis->set('online:'.$ip, $ip);
+        $this->container->redis->expire('online:'.$ip, 600);
+
+        $onlineCount = count($this->container->redis->keys('*online*'));
+
         if ($ip == "127.0.0.1")
         {
             $this->container->session->set('eula', true);
@@ -99,14 +104,22 @@ class IpGeneratorMiddleware
         }
         else 
         {
-            if (!$this->container->session->exist('eula'))
-            {
+            $ips = $this->container->mongoServer->ips->count(['name' => $ip]);
 
-                $ips = $this->container->mongoServer->ips->findOne(['name' => $ip]);
 
-                if ($ips == null)
+           /* if (!$this->container->session->exist('eula'))
+            {*/
+
+                if ($ips < 1)
                 {
-                    $eula = false;
+                    if ($this->container->session->exist('user'))
+                    {
+                        $eula = true;
+                    }
+                    else
+                    {
+                        $eula = false;
+                    }
                 }
                 else
                 {
@@ -114,17 +127,19 @@ class IpGeneratorMiddleware
                 }
 
                 $this->container->session->set('eula', $eula);
-            }
-            else
+           // }
+            /*else
             {
                 $eula = $this->container->session->get('eula');
-            }
+            }*/
         }
 
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
+        $twig->addGlobal('onlineCount', $onlineCount);
         $twig->addGlobal('points', $shoppoints);
+        $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
         // If the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {

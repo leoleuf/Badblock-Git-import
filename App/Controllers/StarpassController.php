@@ -20,7 +20,7 @@ class StarpassController extends Controller
     }
 
     public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
-        $documentId = intval($documentId);
+        $documentId = $documentId['id'];
 
         if (!isset($this->container->config['paiement'][1]['offer'][$documentId]))
         {
@@ -36,9 +36,16 @@ class StarpassController extends Controller
 
     public function process(RequestInterface $request, ResponseInterface $response, $id)
     {
-        $documentId = intval($id);
+        $documentId = intval($id['id']);
 
         if (!$this->container->session->exist('recharge-username'))
+        {
+            return $this->redirect($response, '/shop/recharge/cancel');
+        }
+
+        $name = $this->container->session->get('recharge-username');
+
+        if (empty($name))
         {
             return $this->redirect($response, '/shop/recharge/cancel');
         }
@@ -54,7 +61,7 @@ class StarpassController extends Controller
 
         if ($offer == null)
         {
-            return $this->redirect($response, '/shop/recharge/recharge-cancel');
+            //return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         // moche, merci starpass
@@ -68,16 +75,19 @@ class StarpassController extends Controller
         $codes=$code1.$code2.$code3.$code4.$code5;
         if(isset($_POST['DATAS'])) $datas = $_POST['DATAS'];
 
-        $ident=urlencode($offer['document_id'].';;'.$offer['private_id']);
+        $ccodes = $codes;
         $codes=urlencode($codes);
         $datas=urlencode($datas);
 
-        $get_f=@file( "http://script.starpass.fr/check_php.php?ident=$ident&codes=$codes&DATAS=$datas" );
 
+
+        $get_f=@file( "http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas" );
+        
         if(!$get_f)
         {
             exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
         }
+
         $tab = explode("|",$get_f[0]);
 
         $pays = $tab[2];
@@ -87,7 +97,7 @@ class StarpassController extends Controller
 
         if( substr($tab[0],0,3) != "OUI" )
         {
-            return $this->redirect($response, '/shop/recharge/recharge-cancel');
+            return $this->redirect($response, '/shop/recharge/cancel');
         }
 
         $virtual_currency = $offer['points'];
@@ -97,39 +107,62 @@ class StarpassController extends Controller
         $date = date('Y-m-d H:i:s');
 
         $dat = [$date,$datas, $pays, $palier, $id_palier, $type];
-        $this->container->mongo->funds_logs->insertOne($dat);
 
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
+
         $data = [
             'uniqueId' => $user['uniqueId'],
             'date' => date('Y-m-d H:i:s'),
-            'price' => $palier,
+            'price' => intval($offer['price']),
             'gateway' => 'starpass',
             'pseudo' => $name,
             'points' => $virtual_currency,
-            'transaction_id' => $datas
+            'transaction_id' => $ccodes
         ];
 
-        $this->container->mongo->funds->insertOne($data);
+        $insertedId = $this->container->mongo->funds->insertOne($data);
+        $insertedId = $insertedId->getInsertedId()->__ToString();
+
+        $resp = [
+            'name' => $name,
+            'date' => date("Y-m-d H:i:s")
+        ];
+
+        $this->container->mongo->funds_logs->insertOne($resp);
+
         $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+
         if ($money == null){
             $data = [
                 "uniqueId" => $user['uniqueId'],
                 "points" => $virtual_currency
             ];
             $this->container->mongo->fund_list->insertOne($data);
+            $this->container->session->set('points', $virtual_currency);
         }else{
             $money['points'] = $money['points'] + $virtual_currency;
             $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            $this->container->session->set('points', $money['points']);
         }
 
-        if ($this->container->session->exist('user')){
-            $mailContent = file_get_contents("../mail-achat.html");
-            $mailContent = str_replace("(username)", $name, $mailContent);
-            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
-            $mail = new \App\Mail(true);
-            $mail->sendMail($this->session->get('user')["email"], "BadBlock - Rechargement", $mailContent);
+        try {
+            $user = $this->xenforo->getUser($name);
+        }catch (\Exception $e){
+            $user = null;
         }
+
+        if ($user != null) {
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
+            $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+            $mail = new \App\Mail(true);
+            $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
+        }
+
+        $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - codes : ".$ccodes.")";
+        $mail = new \App\Mail(true);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 
         return $this->redirect($response, '/shop/recharge/success');
     }

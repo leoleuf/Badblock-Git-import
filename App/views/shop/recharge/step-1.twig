@@ -1,11 +1,12 @@
 {% extends "default.twig" %}
+{% set description = "Première étape pour recharger ton compte sur BadBlock. Insère le pseudo pour créditer ton compte." %}
 {% set active_page = "shop" %}
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 
 {% block cover %}
 
-    <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -23,10 +24,9 @@
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                     </div>
-                    <a class="button button-primary solde-button" ><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
-
-                        <div class="recharge-button">
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
+                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                    <div class="recharge-button">
+                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
 {% block content %}
 <!-- Debut liste paiements -->
     
-    <h4 class="heading-bar recharge-heading"><span>Recharger mon compte</span></h4>
+    <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
     <div class="row center">
         <div class="three columns">
             <a href="/shop/recharge">
@@ -49,10 +49,10 @@
             </a>
         </div>
         <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt2" value="Mode de paiement" />
+            <input class="tab-top btn disabled" type="button" name="bt2" value="Méthode" />
         </div>
         <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt3" value="Somme"  />
+            <input class="tab-top btn disabled" type="button" name="bt3" value="Combien de points"  />
         </div>
         <div class="three columns">
             <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
@@ -72,22 +72,24 @@
     <div class="row">
         <div class="six columns recharge-bottom">
             <div class="recharge-info">
-                Vous pouvez ici recharger votre compte en <i class="fas fa-money-bill-wave"></i>  points boutique afin d'obtenir des grades et des objets sur la boutique de Badblock.<br>
-                Les rechargements se font de manière totalement sécurisée par différents services que sont PayPal, SMS+, paysafecard etc.<br>
-                Pour tout problème rencontré avec la boutique, veuillez <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>. <br>
-                Toute utilisation de PayPal par un mineur sans accord parental ou tout problème sur PayPal entraînera un ban définitif de notre plateforme.<br>
-                Aucun remboursement ne sera effectué si le produit a bien été livré en jeu.
+                Tu peux ici obtenir plus de <i class="fas fa-money-bill-wave"></i> points boutique afin d'obtenir des <strong>Grades</strong>, des <strong>Accès</strong>, des <strong>Clés</strong> et des <strong>Objets</strong> sur la boutique de Badblock.<br>
+                    Tu peux obtenir des points boutique par <strong>PayPal (carte bancaire), par SMS, par Appel, par carte prépayée (PaySafeCard / NeoSurf) etc</strong>.<br>
+                Pour tout problème rencontré, tu peux <a href="https://forum.badblock.fr/support/open" target="_blank" class="link">ouvrir un ticket</a> ou <a href="mailto:support@badblock.fr" class="link">envoyer un e-mail à support@badblock.fr</a>.
             </div>
         </div>
         <div class="six columns">
-            <h5 id="pseudo">Indiquer le pseudo du compte à recharger</h5><br>
+            <h5 id="pseudo">Donne-nous le nom de ton compte</h5><br>
             <form action="" method="POST" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1">
                 <input type="text" id="pseudo" name="pseudo" class="form-pseudo" placeholder="Entrer le pseudo ici" value="{{ player }}" required><br>
                 <label class="check-recharge">
-                    <input type="checkbox" checked required>
-                    <span class="label-body article-checkbox">Conformément à l'<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006292052&cidTexte=LEGITEXT000006069565" class="no-link">Article L121-20-2</a> du Code de la Consommation française, je refuse à mon droit de rétractation en cochant cette case à partir du moment où la commande s'est bien efféctuée.</span>
+                    <input type="checkbox" required>
+                    <span class="label-body article-checkbox">Conformément à l'<a href="https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000006292052&cidTexte=LEGITEXT000006069565" title="Article L121-20-2" target="_blank">Article L121-20-2</a> du Code de la Consommation française, je m'oppose à mon droit de rétractation en cochant cette case à partir du moment où la commande s'est bien effectuée.</span>
                 </label>
-           <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Valider</button>
+                <label class="check-recharge2">
+                    <input type="checkbox" required>
+                    <span class="label-body article-checkbox">J'accepte les <a href="https://badblock.fr/legals/Conditions_generales_de_vente.pdf" title="Conditions Générales de Vente" target="_blank">Conditions Générales de Vente</a>, les <a href="https://badblock.fr/legals/Conditions_generales_dutilisation.pdf" title="Conditions Générales d'Utilisation" target="_blank">Conditions Générales d'Utilisation</a>, la <a href="https://badblock.fr/legals/Politique_de_confidentialit%C3%A9.pdf" title="Politique de Confidentialité" target="_blank">Politique de Confidentialité</a> et le <a href="https://forum.badblock.fr/règlement" target="_blank" title="Règlement de BadBlock">Règlement de BadBlock</a>.</a></span>
+                </label>
+           <button type="submit" class="button button-primary shop-recharge-validation-pseudo">Je veux recharger mon compte</button>
             </form>
         </div>
         

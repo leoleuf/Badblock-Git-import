@@ -30,8 +30,22 @@ class ErrorMiddleware
 
         $ip = $_SERVER['REMOTE_ADDR'];
         $method = $request->getMethod();
-        $uri = $request->getUri();
         $head = json_encode($request->getHeaders(), true);
+
+        $stack = [];
+        $i = 1;
+        $trace = debug_backtrace();
+        unset($trace[0]); //Remove call to this function from stack trace
+        foreach($trace as $node) {
+            $s = "";
+            $s .= "#$i ".$node['file'] ."(" .$node['line']."): ";
+            if(isset($node['class'])) {
+                $s .= $node['class'] . "->";
+            }
+            $s .= $node['function'] . "()" . PHP_EOL;
+            array_push($stack,$s);
+            $i++;
+        }
 
         $data = [
             "error_id" => $requestCode,
@@ -39,11 +53,11 @@ class ErrorMiddleware
             "date" => date("Y-m-d H:i:s"),
             "ip" => $ip,
             "method" => $method,
-            "uri" => $uri,
+            "uri" => $_SERVER['REQUEST_URI'],
             "header" => $head,
             "error" => $exception->getMessage(),
             "last_error" => error_get_last(),
-            "server" => $_SERVER
+            "stack" => $stack
         ];
 
         $collection->insertOne($data);
