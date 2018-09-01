@@ -40,6 +40,8 @@
         <div class="alert alert-primary" role="alert">
             Les probabilités de gagner l'Accès à l'HyperFarm du Nouveau SkyBlock sont doublés en votant, en ce début de mois. Profite-en dès maintenant en votant et en ouvrant ta clé au coffre du nouveau SkyBlock !
         </div>
+        <div class="alert alert-error" role="alert" id="err-alert" style="display: none;">
+        </div>
         <div id="step1" class="step step-two four columns">
             <center><h3 class="step-round">I</h3>
             <div class="step-contains">
@@ -185,13 +187,6 @@
         <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
     </div>
 
-    <!-- AdBlock Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="blc">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="time-title">Veuillez désactiver votre bloqueur de publicités sur BadBlock pour pouvoir voter.</h1>
-        <a class="button button-danger" href="" title="Rafraichir la page"><i class="icon-repeat"></i> J'ai enlevé mon bloqueur</a>
-    </div>
-
     <!-- Info Modal -->
     <div class="remodal modal-remodal" data-remodal-id="info-modal">
         <button data-remodal-action="close" class="remodal-close"></button>
@@ -229,10 +224,8 @@
                 request.fail(function( jqXHR, msg ) {
                     if(jqXHR.status == 404)
                     {
-                        $('[data-remodal-id=vote-user]').remodal().open();
-                        $("#step1").removeClass("disabled");
-                        $("#step2").addClass("disabled");
-                        $("#step3").addClass("disabled");
+                        $("#err-alert").text("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                        $("#err-alert").show();
                     }
                 });
             }
@@ -275,13 +268,14 @@
 
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
-                    $('[data-remodal-id=vote-user]').remodal().open();
+                    $("#err-alert").text("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                    $("#err-alert").show();
                 }else if (jqXHR.status == 405){
-                    $("#title").text("Vous n'avez pas voté.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#err-alert").text("Vous n'avez pas voté.");
+                    $("#err-alert").show();
                 }else if (jqXHR.status == 500){
-                    $("#title").text("Une erreur est survenue lors du vote.");
-                    $('[data-remodal-id=info-modal]').remodal().open();
+                    $("#err-alert").text("Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
+                    $("#err-alert").show();
                 }
             });
         }
