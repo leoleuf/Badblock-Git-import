@@ -271,7 +271,7 @@
                     $("#err-alert").html("As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
-                    $("#err-alert").text("Vous n'avez pas voté.");
+                    $("#err-alert").text("Vous n'avez pas voté. : " + msg);
                     $("#err-alert").show();
                 }else if (jqXHR.status == 500){
                     $("#err-alert").text("Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
