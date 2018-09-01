@@ -74,7 +74,7 @@ class VoteController extends Controller
             return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
         }
 
-        return $response->write("ok")->withStatus(200);
+        return $response->write("Tu peux voter !")->withStatus(405);
     }
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
