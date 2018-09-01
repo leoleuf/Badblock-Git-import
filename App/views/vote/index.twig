@@ -277,8 +277,7 @@
                     $("#err-alert").show();
                 }else if (jqXHR.status == 405){
                     $("#success-alert").hide();
-                    $("#err-alert").text("Vous n'avez pas voté. : " + msg);
-                    console.info(jqXHR);
+                    $("#err-alert").text(jqXHR.responseText);
                     $("#err-alert").show();
                 }else if (jqXHR.status == 500){
                     $("#success-alert").hide();
