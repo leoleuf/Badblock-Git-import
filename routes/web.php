@@ -25,6 +25,8 @@ Route::group([
 
     Route::get('/players', 'profile\IndexController@index');
     Route::get('/profile/{uuid}', 'profile\IndexController@profile');
+    Route::post('/profile/{uuid}', 'profile\IndexController@save');
+
     Route::post('/api/stats/search', 'profile\IndexController@search');
     Route::post('/api/stats/searchip', 'profile\IndexController@searchip');
 

@@ -52,22 +52,25 @@
                         <div class="card-box">
                             <h3>Options générales</h3>
                             <div class="container">
-                                <div class="row">
-                                    <h5>Changer le mot de passe :</h5>
-                                    <input type="password" name="password" class="form-control" placeholder="******">
-                                    <h5>Mode premium :</h5>
-                                    <select name="onlinemode" class="custom-select mt-3">
-                                        <option selected="">Selectionné le mode</option>
-                                        <option value="true">Mode premium</option>
-                                        <option value="false">Mode cracké</option>
-                                    </select>
-                                    <h5>Double authentification :</h5>
-                                    <input type="text" name="authKey" class="form-control" placeholder="******" value="{{ $Player['authKey'] }}">
-                                    <br>
-                                    <div class="col-auto center-block">
-                                        <center><button type="submit" class="btn btn-primary mb-2">Valider</button></center>
+                                <form action="#" method="POST">
+                                    {{ csrf_field() }}
+                                    <div class="row">
+                                        <h5>Changer le mot de passe :</h5>
+                                        <input type="password" name="password" class="form-control" placeholder="******">
+                                        <h5>Mode premium :</h5>
+                                        <select name="onlinemode" class="custom-select mt-3">
+                                            <option selected="">Selectionné le mode</option>
+                                            <option value="true">Mode premium</option>
+                                            <option value="false">Mode cracké</option>
+                                        </select>
+                                        <h5>Double authentification : (Vider pour supprimer)</h5>
+                                        <input type="text" name="authKey" class="form-control" placeholder="******" value="{{ $Player['authKey'] }}">
+                                        <br>
+                                        <div class="col-auto center-block">
+                                            <center><button type="submit" class="btn btn-primary mb-2">Valider</button></center>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
