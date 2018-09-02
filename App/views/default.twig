@@ -97,7 +97,7 @@
 <!-- Fin Header -->
 
 <div class="topnav" id="myTopnav">
-    <div class="container" style="max-width: 65% !important; margin: 0 20%;">
+    <div class="container">
         <a href="{{ path_for('home') }}"
            class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
             <i class="home-colored-icon colored-icon"></i>
@@ -158,6 +158,7 @@
                     </li>
                 </ul>
             </div>
+            <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
         </div>
     </div>
 </div>
