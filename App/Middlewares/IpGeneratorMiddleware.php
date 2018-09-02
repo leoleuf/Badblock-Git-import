@@ -139,6 +139,7 @@ class IpGeneratorMiddleware
         $twig->addGlobal('eula', $eula);
         $twig->addGlobal('onlineCount', $onlineCount);
         $twig->addGlobal('points', $shoppoints);
+        $twig->addGlobal('isOnline', $this->container->session->exist('user'));
         $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
         // If the key doesn't exist in cache

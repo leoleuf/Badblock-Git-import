@@ -17,7 +17,11 @@
                             <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
                             <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
                         </div>
-                        <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                        {% if (isOnline) %}
+                            <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                        {% else %}
+                            <a class="button button-primary" onclick="login()" title="Se connecter"><i class="fas fa-user"></i>  Se connecter</a>&nbsp;&nbsp;
+                        {% endif %}
                         <div class="recharge-button">
                             <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
                         </div>
@@ -39,11 +43,15 @@
             </div>
         </div>
 
-        {% if (points < 200) %}
-            <div class="alert alert-error" role="alert" id="err-alert" style="text-align: center; font-size: 14px; width: 50%;">
-                Tu n'as que {{ points }} points boutique. Obtiens + de points boutique en cliquant <a title="Obtenir des points boutique" href="/shop/recharge">ici</a>.
-            </div>
-        {% endif %}
+    {% if (points <= 0 and isOnline) %}
+        <div class="alert alert-error" role="alert" id="err-alert" style="margin: 0 auto; text-align: center; font-size: 14px; width: 60%;">
+            Tu n'as pas de points boutique. Obtiens + de points boutique en cliquant <a title="Obtenir des points boutique" href="/shop/recharge">ici</a>.
+        </div>
+    {% elseif (points < 100 and isOnline) %}
+        <div class="alert alert-error" role="alert" id="err-alert" style="margin: 0 auto; text-align: center; font-size: 14px; width: 60%;">
+           Tu n'as que {{ points }} points boutique. Obtiens + de points boutique en cliquant <a title="Obtenir des points boutique" href="/shop/recharge">ici</a>.
+        </div>
+    {% endif %}
 
         <script async>
 
