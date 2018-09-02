@@ -137,7 +137,6 @@
                 <tr>
                     <td>Rang</td>
                     <td>Joueur</td>
-                    <td>Probabilité de gagner (%%)</td>
                     <td>Votes</td>
                 </tr>
                 </thead>
@@ -147,7 +146,6 @@
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
                             <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
-                            <td>?</td>
                             <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
                         </tr>
                     {% endfor %}
