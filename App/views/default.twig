@@ -122,7 +122,7 @@
         </a>
         
         <a href="{{ path_for('vote.home') }}"
-            class="{% if active_page == 'vote.home' %}actived{% endif %}" title="Voter">
+            class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter">
             <i class="star-colored-icon colored-icon"></i>
             Vote
         </a>
@@ -142,20 +142,27 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Équipe">
+                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe">
                             <i class="id-colored-icon colored-icon"></i>Équipe
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path_for('info') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Développement">
+                        <a href="{{ path_for('info') }}" class="{% if active_page == 'info' %}actived{% endif %}" title="Développement">
                             <i class="gear-colored-icon colored-icon"></i>Développement
                         </a>
                     </li>
                     <li>
-                        <a href="/screenshot" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Image">
+                        <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}" title="Image">
                             <i class="art_palette-colored-icon colored-icon"></i>Image
                         </a>
                     </li>
+                    <div class="disabled">
+                    <li>
+                        <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
+                            <i class="calendar_year-colored-icon colored-icon"></i>BadblockNews
+                        </a>
+                    </li>
+                    </div>
                 </ul>
             </div>
             <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
