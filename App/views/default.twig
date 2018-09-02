@@ -129,7 +129,7 @@
         <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
             <div class="dropdown">
-                <a href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
+                <a title="Menu extensible" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
                     <li>
                         <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
@@ -165,7 +165,7 @@
                     </div>
                 </ul>
             </div>
-            <a href="javascript:void(0);" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
+            <a href="javascript:void(0);" title="Accéder au menu" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
         </div>
     </div>
 </div>
