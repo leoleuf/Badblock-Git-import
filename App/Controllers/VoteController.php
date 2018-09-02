@@ -398,7 +398,7 @@ class VoteController extends Controller
         return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
         '));
 
-        $data = array_slice($data, 0, 50);
+        $data = array_slice($data, 0, 10);
 
         //Write in redis
         $this->redis->setJson('vote.toploterie', $data);
