@@ -120,7 +120,7 @@ class StarpassController extends Controller
             'transaction_id' => $ccodes
         ];
 
-        $insertedId = $this->container->mongo->funds->insertOne($data);
+        $insertedId = $this->container->mongoUltra->funds->insertOne($data);
         $insertedId = $insertedId->getInsertedId()->__ToString();
 
         $resp = [
@@ -128,7 +128,7 @@ class StarpassController extends Controller
             'date' => date("Y-m-d H:i:s")
         ];
 
-        $this->container->mongo->funds_logs->insertOne($resp);
+        $this->container->mongoUltra->funds_logs->insertOne($resp);
 
         $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
 

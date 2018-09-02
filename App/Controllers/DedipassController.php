@@ -49,7 +49,7 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $this->container->mongo->funds_logs->insertOne($dedipass);
+                $this->container->mongoUltra->funds_logs->insertOne($dedipass);
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -137,7 +137,7 @@ class DedipassController extends Controller
                 unset($dedipass->public_key);
                 $dedipass->name = strtolower($name);
                 $dedipass->date = date('Y-m-d H:i:s');
-                $this->container->mongo->funds_logs->insertOne($dedipass);
+                $this->container->mongoUltra->funds_logs->insertOne($dedipass);
 
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($name)]);
                 $data = [
@@ -150,7 +150,7 @@ class DedipassController extends Controller
                     'transaction_id' => $code
                 ];
 
-                $insertedId = $this->container->mongo->funds->insertOne($data);
+                $insertedId = $this->container->mongoUltra->funds->insertOne($data);
                 $insertedId = $insertedId->getInsertedId()->__ToString();
 
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);

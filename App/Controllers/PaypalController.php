@@ -153,7 +153,7 @@ class PaypalController extends Controller
             // Sauvegarde dans mongoDB
             $resp['name'] = strtolower($this->container->session->get('recharge-username'));
             $resp["date"] = date('Y-m-d H:i:s');
-            $this->container->mongo->funds_logs->insertOne($resp);
+            $this->container->mongoUltra->funds_logs->insertOne($resp);
 
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
 
@@ -167,7 +167,7 @@ class PaypalController extends Controller
                 'transaction_id' => $resp['PAYMENTINFO_0_TRANSACTIONID']
             ];
 
-            $insertedId = $this->container->mongo->funds->insertOne($data);
+            $insertedId = $this->container->mongoUltra->funds->insertOne($data);
             $insertedId = $insertedId->getInsertedId()->__ToString();
 
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);

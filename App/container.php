@@ -158,14 +158,21 @@ $container['mysql_guardian'] = function ($container) {
 	return $dbConn;
 };
 
+$container['mongoUltra'] = function ($container) {
+    $client = new \MongoDB\Client(
+        'mongodb://' . $container->config['mongo_ultra_dist']['user'] . ":" . $container->config['mongo_ultra_dist']['password'] . "@" . $container->config['mongo_ultra_dist']['host'] . ":" . $container->config['mongo_ultra_dist']['port'] . "/" . $container->config['mongo_ultra_dist']['database']
+    );
+
+    return $client->selectDatabase($container->config['mongo_ultra_dist']['database']);
+};
+
 $container['mongoServer'] = function ($container) {
-	$client = new \MongoDB\Client(
-		'mongodb://' . $container->config['mongo_dist']['user'] . ":" . $container->config['mongo_dist']['password'] . "@" . $container->config['mongo_dist']['host'] . ":" . $container->config['mongo_dist']['port'] . "/" . $container->config['mongo_dist']['database']
-	);
+    $client = new \MongoDB\Client(
+        'mongodb://' . $container->config['mongo_dist']['user'] . ":" . $container->config['mongo_dist']['password'] . "@" . $container->config['mongo_dist']['host'] . ":" . $container->config['mongo_dist']['port'] . "/" . $container->config['mongo_dist']['database']
+    );
 
     return $client->selectDatabase($container->config['mongo_dist']['database']);
 };
-
 
 $container['mongo'] = function ($container) {
 	$client = new \MongoDB\Client(
