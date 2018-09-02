@@ -19,8 +19,26 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
+<div class="cover-back">
+        <div class="cover">
+            <div class="container">
+                <div class="animated bounceInLeft">
+                    <div class="row">
+                        <div class="twelve columns">
+                            <h2>BadBlock</h2><h2 class="cover-heading">Serveur Minecraft Gratuit</h2>
+                            <div class="animated bounceInLeft">
+                                <a href="/launcher-minecraft" class="button button-success"><i class="icon-download icon"></i>   Téléchargez le launcher</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block content %}
+
+
 
     <div class=" content" id="test">
         <div id="pub-large">
@@ -39,24 +57,17 @@
             </form>
             <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i> Copier l'IP</button>
         </div>
-        <center>
-        <a href="/launcher-minecraft" title="Télécharger le Launcher BadBlock" style="width: 40%; margin-bottom: 5%; padding: 12px 50px; margin-top: -5%; height: 15%;">
-            <button class="button button-success" id="minecraft-download-windows" style="width: 40%; margin-bottom: 5%; padding: 12px 50px; margin-top: -5%; height: 15%;">
-                <span style="font-size: 1.6em !important;"><i class="fas fa-download"></i>Télécharger le launcher</span>
-            </button>
-        </a>
-    </center>
     <div class="twelve columns play">
         <div class="six columns play">
         <section>
             <h4 class="heading-bar"><span>Comment rejoindre Badblock ?</span></h4>
             <div class="play-way-ip">
                 <button class="accordion"><i class="fa fa-check" aria-hidden="true"></i>  Version Premium & Version Crackée</button>
-                <div class="panel">
+                <div class="panel" style="display: none;">
                     <p>Lancez Minecraft, rendez-vous dans la partie Multijoueur puis ajoutez un serveur. Indiquez dans les champs à remplir le nom du serveur et l'adresse IP.</p>
                 </div>
                 <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
-                <div class="panel">
+                <div class="panel" style="display: none;">
                     {% if mc_ip == "eu.badblock.fr" %}
                         <img src="https://cdn.badblock.fr/wd/i/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/eu.gif');">
                     {% elseif mc_ip == "na.badblock.fr" %}
@@ -120,19 +131,23 @@
     </div>
     <script type="text/javascript">
         var acc = document.getElementsByClassName("accordion");
-        var i;
+var i;
 
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight){
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            });
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+            panel.style.display = "none";
+        } else {
+            panel.style.display = "block";
         }
+    });
+}
     </script>
     <script type="text/javascript">
         var toCopy  = document.getElementById( 'to-copy' ),
