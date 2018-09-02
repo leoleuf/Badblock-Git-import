@@ -1318,27 +1318,27 @@ a {
 }
 
 .attachment-colored-icon {
-  background: url(../colored-icons/attachment.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/attachment.png') no-repeat;
 }
 
 .star-colored-icon {
-  background: url(../colored-icons/star.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/star.png') no-repeat;
 }
 
 .gear-colored-icon {
-  background: url(../colored-icons/gear.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/gear.png') no-repeat;
 }
 
 .art_palette-colored-icon {
-  background: url(../colored-icons/art_palette.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/art_palette.png') no-repeat;
 }
 
 .id-colored-icon {
-  background: url(../colored-icons/id.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/id.png') no-repeat;
 }
 
 .calendar_year-colored-icon {
-  background: url(../colored-icons/calendar_year.png) no-repeat;
+  background: url('https://cdn.badblock.fr/wd/colored-icons/calendar_year.png') no-repeat;
 }
 
 .button-first-place {
