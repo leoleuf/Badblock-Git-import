@@ -2,6 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Righteous");
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
+.shop {
+    margin: 50px 0px;
+}
 
 .c-table__row:hover {
     background: rgba(50, 50, 50, 0.7);
@@ -1701,7 +1704,7 @@ a {
 
         table .rank a {
             background-color: rgba(0,0,0,0.5);
-            padding: 12px 18px !important;
+            padding: 6px 2px !important;
             color: #fff;
             text-decoration: none;
             z-index: 100;
