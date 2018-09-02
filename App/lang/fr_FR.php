@@ -21,7 +21,7 @@ return [
 	'play.our_ip' => "Nos Ip de connexions",
 	'play.about' => "A propos de badblock",
 	'play.about_text' => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero.",
-	'stats.title' => "Stats",
+	'stats.title' => "Statistiques",
 	'shop.title' => "Boutique",
 	'shop.summary' => "La boutique nous permet de payer nos serveurs afin de vous offrir la meilleure expérience de jeu possible. En faisant un achat sur notre plateforme, vous obtiendrez un certain nombre de crédits que vous pourrez utiliser directement sur notre boutique en ligne afin de vous offrir des abonnements et bien plus !",
 	'shop.recharge_step_1' => "Choissisez votre moyen de payement",
