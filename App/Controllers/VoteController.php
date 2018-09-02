@@ -346,7 +346,7 @@ class VoteController extends Controller
 
     }
 
-    public function top2($player, $vote){
+    public function toploterie($player, $vote){
         $player = strtolower($player);
 
         //Collection
