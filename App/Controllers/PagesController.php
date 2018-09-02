@@ -106,6 +106,11 @@ class PagesController extends Controller
     {
         return $this->render($response, 'pages.don');
     }
+	
+	public function bbnews(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'pages.bbnews');
+    }
 
 
 

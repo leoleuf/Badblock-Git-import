@@ -56,9 +56,14 @@
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> d6849d563852c619f384d0d4c599d0df27f852cf
     <script async defer src="/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
+
 
 <!-- Header -->
 <div class="header">
@@ -130,15 +135,31 @@
             <div class="dropdown">
                 <a href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
-                    <li><a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
-            <i class="edit-colored-icon colored-icon"></i>
-            Recrutements
-        </a></li>
-                    <li><a href="{{ path_for('play') }}"
-           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-            <i class="user-colored-icon colored-icon"></i>
-            {{ 'launcher.title'|trans }}
-        </a></li>
+                    <li>
+                        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+                            <i class="edit-colored-icon colored-icon"></i>Recrutements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+                            <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Équipe">
+                            <i class="id-colored-icon colored-icon"></i>Équipe
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('info') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Développement">
+                            <i class="gear-colored-icon colored-icon"></i>Développement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/screenshot" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Image">
+                            <i class="art_palette-colored-icon colored-icon"></i>Image
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -415,12 +436,15 @@
             }, 2000);
         });
     </script> !-->
+<<<<<<< HEAD
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <script type="text/javascript">
 window.addEventListener(‘load’, function(){
 helium.init();
 }, false);
 =======
+=======
+>>>>>>> d6849d563852c619f384d0d4c599d0df27f852cf
     <script async src="/gtag/js?id=UA-104430841-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
