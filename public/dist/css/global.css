@@ -1325,6 +1325,22 @@ a {
   background: url(../colored-icons/star.png) no-repeat;
 }
 
+.gear-colored-icon {
+  background: url(../colored-icons/gear.png) no-repeat;
+}
+
+.art_palette-colored-icon {
+  background: url(../colored-icons/art_palette.png) no-repeat;
+}
+
+.id-colored-icon {
+  background: url(../colored-icons/id.png) no-repeat;
+}
+
+.calendar_year-colored-icon {
+  background: url(../colored-icons/calendar_year.png) no-repeat;
+}
+
 .button-first-place {
     background-color: #EED740;
     padding: 10px;

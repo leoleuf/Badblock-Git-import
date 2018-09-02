@@ -132,15 +132,31 @@
             <div class="dropdown">
                 <a href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
-                    <li><a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
-            <i class="edit-colored-icon colored-icon"></i>
-            Recrutements
-        </a></li>
-                    <li><a href="{{ path_for('play') }}"
-           class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-            <i class="user-colored-icon colored-icon"></i>
-            {{ 'launcher.title'|trans }}
-        </a></li>
+                    <li>
+                        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+                            <i class="edit-colored-icon colored-icon"></i>Recrutements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+                            <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Équipe">
+                            <i class="id-colored-icon colored-icon"></i>Équipe
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('info') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Développement">
+                            <i class="gear-colored-icon colored-icon"></i>Développement
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/screenshot" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Image">
+                            <i class="art_palette-colored-icon colored-icon"></i>Image
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
