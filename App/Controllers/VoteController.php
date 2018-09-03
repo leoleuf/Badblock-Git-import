@@ -187,14 +187,6 @@ class VoteController extends Controller
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
         }
 
-        $collection = $this->container->mongo->votes_logs;
-        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
-        if ($dbh != null)
-        {
-            $t = ($dbh['timestamp'] + 5400) - time();
-            return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
-        }
-
         if ($type == 1)
         {
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
@@ -218,64 +210,71 @@ class VoteController extends Controller
 
         $queue = $types[$type];
 
-        $collection = $this->container->mongo->votes_awards;
-        $cursor = $collection->find(['type' => intval($type)]);
-
-        $maxRandom = 0;
-
-        $things = array();
-
-        foreach ($cursor as $key => $value)
-        {
-            $things[$maxRandom] = $value;
-            $maxRandom += $value->probability;
-        }
-
-        $rand = rand(1, $maxRandom);
-
-        $winItem = null;
-
-        foreach ($things as $key => $value)
-        {
-            if ($rand > $key && $winItem != null)
-            {
-                continue;
-            }
-
-            $winItem = $value;
-        }
 
         $collection = $this->container->mongo->votes_logs;
-        $total = $collection->count(['timestamp' => ['$gte' => (1536076800 - 86400)]]);
-        $command = str_replace("%player%", $pseudo, $winItem->command);
+        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        if ($dbh == null || !isset($dbh['timestamp'])) {
+            $collection = $this->container->mongo->votes_awards;
+            $cursor = $collection->find(['type' => intval($type)]);
 
-        // award log
-        $insert = [
-            "name" => $pseudo,
-            "ip" => $API_ip,
-            "type" => $type,
-            "queue" => $queue,
-            "date" => date("d/m/Y H:i:s"),
-            "timestamp" => time(),
-            "user_agent" => htmlspecialchars($API_ip)
-        ];
+            $maxRandom = 0;
 
-        $collection->insertOne($insert);
+            $things = array();
+
+            foreach ($cursor as $key => $value) {
+                $things[$maxRandom] = $value;
+                $maxRandom += $value->probability;
+            }
+
+            $rand = rand(1, $maxRandom);
+
+            $winItem = null;
+
+            foreach ($things as $key => $value) {
+                if ($rand > $key && $winItem != null) {
+                    continue;
+                }
+
+                $winItem = $value;
+            }
+
+            $collection = $this->container->mongo->votes_logs;
+            $total = $collection->count(['timestamp' => ['$gte' => (1536076800 - 86400)]]);
+            $command = str_replace("%player%", $pseudo, $winItem->command);
+
+            // award log
+            $insert = [
+                "name" => $pseudo,
+                "ip" => $API_ip,
+                "type" => $type,
+                "queue" => $queue,
+                "date" => date("d/m/Y H:i:s"),
+                "timestamp" => time(),
+                "user_agent" => htmlspecialchars($API_ip)
+            ];
+
+            $awardName = $winItem->name;
+
+            $product = array(
+                'queue' => $queue,
+                'command' => $command,
+                'name' => $awardName
+            );
+
+            $this->sendRabbitData($pseudo, $product);
+            $collection->insertOne($insert);
+
+        }
+        else
+        {
+            // oust les tricheurs
+            $awardName = "Rien";
+        }
+
         $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1536076800 - 86400)]]);
 
         $total = max($total, 1);
         $proba = round(($dbh / $total) * 100, 2);
-
-        $awardName = $winItem->name;
-
-        $product = array(
-            'queue' => $queue,
-            'command' => $command,
-            'name' => $awardName
-        );
-
-        $this->sendRabbitData($pseudo, $product);
-
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
         $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
@@ -283,7 +282,7 @@ class VoteController extends Controller
         $this->top($displayPseudo, 1);
         $this->toploterie($displayPseudo, 1);
 
-        return $response->write("Ton vote a été pris en compte. Tu as gagné ".$winItem->name .
+        return $response->write("Ton vote a été pris en compte. Tu as gagné ".$awardName .
             " ainsi qu'une participation à la loterie. Tu es désormais à " . $proba . "% de chance de gagner le lot de la loterie. Tirage ce soir à 18H sur la page de vote.")->withStatus(200);
     }
 
