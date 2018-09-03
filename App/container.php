@@ -160,10 +160,10 @@ $container['mysql_guardian'] = function ($container) {
 
 $container['mongoUltra'] = function ($container) {
     $client = new \MongoDB\Client(
-        'mongodb://' . $container->config['mongo_ultra_dist']['user'] . ":" . $container->config['mongo_ultra_dist']['password'] . "@" . $container->config['mongo_ultra_dist']['host'] . ":" . $container->config['mongo_ultra_dist']['port'] . "/" . $container->config['mongo_ultra_dist']['database']
+        'mongodb://' . $container->config['mongo_ultra']['user'] . ":" . $container->config['mongo_ultra']['password'] . "@" . $container->config['mongo_ultra']['host'] . ":" . $container->config['mongo_ultra']['port'] . "/" . $container->config['mongo_ultra']['database']
     );
 
-    return $client->selectDatabase($container->config['mongo_ultra_dist']['database']);
+    return $client->selectDatabase($container->config['mongo_ultra']['database']);
 };
 
 $container['mongoServer'] = function ($container) {
