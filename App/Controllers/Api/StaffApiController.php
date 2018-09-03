@@ -16,7 +16,8 @@ class StaffApiController extends \App\Controllers\Controller
 
         $role = [];
 
-        foreach ($data as $document) {
+        foreach ($data as $document)
+        {
             if (isset($role[$document["user_group_id"]])){
                 array_push($role[$document["user_group_id"]]["data"], array($document["username"],$document["custom_title"]));
             }else{
