@@ -47,6 +47,15 @@
                             <li><a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Administration</span></a></li>
                         </ul>
                     </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Gestion </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="/users" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Utilisateur</span></a></li>
+                            <li><a href="/role" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Groupes</span></a></li>
+                            <li><a href="/permission" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Permissions</span></a></li>
+
+                        </ul>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>
