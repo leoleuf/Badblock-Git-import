@@ -184,15 +184,15 @@ class VoteController extends Controller
         // voted?
         if (!$dev && $API_call != 1)
         {
-            $collection = $this->container->mongo->votes_logs;
-            $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
-            if ($dbh != null)
-            {
-                $t = ($dbh['timestamp'] + 5400) - time();
-                return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
-            }
-
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+        }
+
+        $collection = $this->container->mongo->votes_logs;
+        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        if ($dbh != null)
+        {
+            $t = ($dbh['timestamp'] + 5400) - time();
+            return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
         }
 
         if ($type == 1)
