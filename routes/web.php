@@ -52,6 +52,8 @@ Route::group([
 
     Route::get('/website/vote', 'website\VoteController@index');
     Route::post('/website/vote', 'website\VoteController@save');
+    Route::get('/website/section', 'website\PaidController@index');
+    Route::get('/website/section/{uuid}', 'website\PaidController@view');
     Route::get('/website/compta', 'website\IndexController@compta');
     Route::get('/website/compta/{date}', 'website\IndexController@compta');
     Route::resource('/website/crud/server', 'website\crud\ServerController');

@@ -88,7 +88,7 @@ class PaidController extends Controller
                         $Funds->save();
                     }
 
-                    array_push($logg, ['Pseudo' => $row->username, 'points' => intval($request->input('pb_'. $row->user_id))]);
+                    array_push($logg, ['Pseudo' => $row->username, 'points' => intval($request->input('pb_'. $row->user_id)), 'commentaire' => $request->input('comment_'. $row->user_id)]);
                 }
             }
         }

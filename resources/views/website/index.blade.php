@@ -155,8 +155,9 @@ tps / ram / processeur / nb de joueurs
                             <a href="/website/crud/category" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Catégories</a><br>
                             <a href="/website/crud/product" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Produits</a><br>
                             <a href="/website/crud/items" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Items</a><br>
+                            <br>
                             <a href="/website/compta" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Comptabilitée</a><br>
-                            <a href="/website/paid" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Paie Section</a><br>
+                            <a href="/website/section" type="button" class="btn btn-primary waves-effect w-md waves-light m-b-5">Paie Section</a><br>
                         </div>
                     </div>
                 </div><!-- end col -->

@@ -11,7 +11,7 @@
                             <div class="panel-body">
                                 {{ Form::open(array('url' => "/website/vote"  ,'class'=>'form_inline')) }}
                                     <div class="">
-                                        <table class="table table-striped">
+                                        <table class="table table-striped" id="datatable-editable">
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>

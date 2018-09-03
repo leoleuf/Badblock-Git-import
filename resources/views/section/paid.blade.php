@@ -4,7 +4,7 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-                <h1>Paie de la section : {{ $name }}</h1>
+                <h1>Paie de la section : {{ $name }}</h1><h5>Paie la buraliste !!!!</h5>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel">
