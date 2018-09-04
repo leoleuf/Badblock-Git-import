@@ -12,13 +12,13 @@ $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
 $app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
 
-$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
+$app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
 
-$app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
-$app->get('/article/lire/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
-$app->post('/article/lire/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
+$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts-old');
+$app->get('/article/lire/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post-old');
+$app->post('/article/lire/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment-old');
 
 
 $app->get('/screenshot', \App\Controllers\ScreenshotController::class . ':getPage')->setName('get-screenshot');
