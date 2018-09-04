@@ -199,9 +199,13 @@ class VoteController extends Controller
 
             $API_call = @file_get_contents($API_url);
         }
+        else
+        {
+            $API_call = true;
+        }
 
         // voted?
-        if (!$dev && $API_call != 1)
+        if (!$dev && $API_call != true)
         {
 
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
