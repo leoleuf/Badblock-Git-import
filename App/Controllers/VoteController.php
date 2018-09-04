@@ -107,12 +107,11 @@ class VoteController extends Controller
         {
             header("Location: https://serveur-prive.net/vote.php?c=198");
             exit;
+            return;
         }
-        else
-        {
-            header("Location: https://badblock.fr/jouer");
-            exit;
-        }
+
+        header("Location: https://badblock.fr/jouer");
+        exit;
     }
 
     public function award(RequestInterface $request, ResponseInterface $response)
