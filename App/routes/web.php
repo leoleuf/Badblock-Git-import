@@ -16,6 +16,10 @@ $app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPo
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
 
+$app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
+$app->get('/article/lire/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
+$app->post('/article/lire/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
+
 
 $app->get('/screenshot', \App\Controllers\ScreenshotController::class . ':getPage')->setName('get-screenshot');
 $app->post('/screenshot', \App\Controllers\ScreenshotController::class . ':getPost')->setName('post-screenshot');
