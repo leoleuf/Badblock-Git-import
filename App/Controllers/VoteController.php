@@ -47,6 +47,18 @@ class VoteController extends Controller
         return $this->render($response, 'vote.vote-redirect', ['toploterie' => $toploterie, 'top' => $top]);
     }
 
+    public function voteRedirectCustom(RequestInterface $request, ResponseInterface $response){
+        $toploterie = $this->redis->getJson('vote.toploterie');
+        $top = $this->redis->getJson('vote.top');
+
+        $player = "";
+        if ($this->container->session->exist('user')) {
+            $player = $this->session->getProfile('username')['username'];
+        }
+
+        return $this->render($response, 'vote.vote-select', ['toploterie' => $toploterie, 'top' => $top]);
+    }
+
     public function playerexists(RequestInterface $request, ResponseInterface $response)
     {
         if (!isset($_POST['pseudo']))
@@ -181,9 +193,20 @@ class VoteController extends Controller
         $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
         $API_call = @file_get_contents($API_url);
 
+        if ($API_call != 1)
+        {
+            // looking for sm
+            $API_id = 93; // ID du serveur
+            $API_key = "ePwvH8vBvcVUthJettUe9SW0fKsZ0V"; // Clé API
+            $API_url = "https://serveur-minecraft.net/api/$API_id/$API_key/?ip=$API_ip";
+
+            $API_call = @file_get_contents($API_url);
+        }
+
         // voted?
         if (!$dev && $API_call != 1)
         {
+
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
         }
 
@@ -212,8 +235,9 @@ class VoteController extends Controller
 
 
         $collection = $this->container->mongo->votes_logs;
-        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
-        if ($dbh == null || !isset($dbh['timestamp'])) {
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        // 2 sites de vote, 3 sites à venir?
+        if ($dbh == null || $dbh <= 3) {
             $collection = $this->container->mongo->votes_awards;
             $cursor = $collection->find(['type' => intval($type)]);
 
