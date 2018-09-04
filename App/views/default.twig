@@ -142,11 +142,11 @@
             <div class="dropdown">
                 <a title="Menu extensible" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
-                    <li>
+                    <!--<li>
                         <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
                             <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
                         </a>
-                    </li>
+                    </li>!-->
                     <li>
                         <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
                             <i class="edit-colored-icon colored-icon"></i>Recrutements
@@ -167,12 +167,19 @@
                             <i class="art_palette-colored-icon colored-icon"></i>Images
                         </a>
                     </li>
-                    <div class="disabled">
                     <li>
-                        <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
-                            <i class="calendar_year-colored-icon colored-icon"></i>BadblockNews
+                        <a title="Serveur Minecraft" href="https://serveur-minecraft.net">
+                            <i class="art_palette-colored-icon colored-icon"></i>Serveur Minecraft
                         </a>
                     </li>
+                    <div class="disabled">
+                   <!-- quand la page sera dispo
+                   (ça fait un mauvais netlinking si la page est pas ok
+                   <li>
+                        <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
+                            <i class="user-colored-icon colored-icon"></i>BadblockNews
+                        </a>
+                    </li> !-->
                     </div>
                 </ul>
             </div>
