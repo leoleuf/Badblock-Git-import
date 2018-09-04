@@ -93,7 +93,7 @@ class VoteController extends Controller
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
     {
-        /*$API_id = 198; // ID du serveur
+        $API_id = 198; // ID du serveur
         $API_da = 'clic'; // vote,clic,commentaire ou note
         $API_url = "https://serveur-prive.net/api/stats/$API_id/$API_da";
         $API_call = @file_get_contents($API_url);
@@ -103,18 +103,16 @@ class VoteController extends Controller
         $API_url2 = "https://serveur-prive.net/api/stats/$API_id2/$API_da2";
         $API_call2 = @file_get_contents($API_url2);
 
-        if ($API_call2 + 1572 > $API_call)
+        if ($API_call2 + 27 > $API_call)
         {
             header("Location: https://serveur-prive.net/vote.php?c=198");
             exit;
         }
         else
         {
-            header("Location: https://badblock.fr/accueil/");
+            header("Location: https://badblock.fr/jouer");
             exit;
-        }*/
-        header("Location: https://badblock.fr/jouer");
-        exit;
+        }
     }
 
     public function award(RequestInterface $request, ResponseInterface $response)
