@@ -199,7 +199,6 @@ class VoteController extends Controller
 
             $API_call = @file_get_contents($API_url);
             $API_call = ($API_call == 'true') ? true : false;
-            return $response->write("a : ".$API_call)->withStatus(405);
         }
         else
         {
