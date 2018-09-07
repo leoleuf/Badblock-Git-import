@@ -198,6 +198,8 @@ class VoteController extends Controller
             $API_url = "https://serveur-minecraft.net/api/$API_id/$API_key/?ip=$API_ip";
 
             $API_call = @file_get_contents($API_url);
+            $API_call = ($API_call = 'true') ? true : false;
+
         }
         else
         {
