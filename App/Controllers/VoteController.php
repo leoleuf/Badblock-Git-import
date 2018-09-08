@@ -208,7 +208,6 @@ class VoteController extends Controller
         // voted?
         if (!$dev && $API_call != true)
         {
-
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
         }
 

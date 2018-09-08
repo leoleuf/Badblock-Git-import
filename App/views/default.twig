@@ -407,7 +407,7 @@
 {% endfor %}
 {% set randomPassword = randomPassword|join %}
 
-<!--<div class="remodal" data-remodal-id="{{ randomPassword }}"
+<div class="remodal" data-remodal-id="{{ randomPassword }}"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
 
     <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
@@ -416,8 +416,8 @@
         <br />
     </p>
     <br>
-    <a href="" title="Rafraicihr la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>-->
+    <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+</div>
 
 <script async>
     $(document).ready(function () {
@@ -471,11 +471,6 @@
         });
     </script> !-->
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script>
-    window.addEventListener(‘load’, function(){
-     helium.init();
-    }, false);
-    </script>
     <script async src="/gtag/js?id=UA-104430841-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -485,16 +480,16 @@
         gtag('config', 'UA-104430841-1');
     </script>
     <script>
-    $(".dropdown-link").on('mouseover', function () {
-        $(".dropdown-dropdown").show()
-        $(".dropdown-dropdown").css('display', 'flex')
-    });
-    $("body").on('mouseover', function () {
-        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-            $(".dropdown-dropdown").fadeOut()
-        }
-    });
-</script>
+        $(".dropdown-link").on('mouseover', function () {
+            $(".dropdown-dropdown").show()
+            $(".dropdown-dropdown").css('display', 'flex')
+        });
+        $("body").on('mouseover', function () {
+            if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+                $(".dropdown-dropdown").fadeOut()
+            }
+        });
+    </script>
 
 
 </body>
