@@ -121,7 +121,7 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product = Product::find($id);
         $cat = Category::all();
 
-        return view('website.Product.Product-edit', compact('Product'),compact('cat'));
+        return view('website.product.product-edit', compact('Product'),compact('cat'));
     }
     /**
      * Update the specified resource in storage.
