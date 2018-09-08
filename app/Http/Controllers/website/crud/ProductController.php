@@ -34,7 +34,6 @@ class ProductController extends \App\Http\Controllers\Controller {
             }
         }
 
-
         return view('website.product.product', compact('Product'));
     }
     /**
