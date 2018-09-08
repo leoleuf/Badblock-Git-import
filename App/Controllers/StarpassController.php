@@ -83,7 +83,7 @@ class StarpassController extends Controller
 
         $get_f=@file( "http://script.starpass.fr/check_php.php?ident=". $offer['private_id'] . ";;". $offer['document_id'] ."&codes=$codes&DATAS=$datas" );
         
-        if(!$get_f)
+        if (!$get_f)
         {
             exit( "Votre serveur n'a pas accès au serveur de StarPass, merci de contacter votre hébergeur. " );
         }
@@ -132,26 +132,33 @@ class StarpassController extends Controller
 
         $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
 
-        if ($money == null){
+        if ($money == null)
+        {
             $data = [
                 "uniqueId" => $user['uniqueId'],
                 "points" => $virtual_currency
             ];
             $this->container->mongo->fund_list->insertOne($data);
             $this->container->session->set('points', $virtual_currency);
-        }else{
+        }
+        else
+        {
             $money['points'] = $money['points'] + $virtual_currency;
             $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
             $this->container->session->set('points', $money['points']);
         }
 
-        try {
+        try
+        {
             $user = $this->xenforo->getUser($name);
-        }catch (\Exception $e){
+        }
+        catch (\Exception $e)
+        {
             $user = null;
         }
 
-        if ($user != null) {
+        if ($user != null)
+        {
             $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-achat.html");
             $mailContent = str_replace("(username)", $this->container->session->get('recharge-username'), $mailContent);
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);

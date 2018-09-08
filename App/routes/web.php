@@ -12,9 +12,13 @@ $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
 $app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
 
-$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
+$app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
+
+$app->get('/articles[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts-old');
+$app->get('/article/lire/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post-old');
+$app->post('/article/lire/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment-old');
 
 
 $app->get('/screenshot', \App\Controllers\ScreenshotController::class . ':getPage')->setName('get-screenshot');
@@ -60,13 +64,16 @@ $app->group('/shop', function (){
 });
 
 $app->get('/badblock', \App\Controllers\VoteController::class . ':badblock')->setName('vote.server-redirect');
-$app->get('/svote', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.server-redirect');
-$app->get('/autovote', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.server-redirect3');
+$app->get('/svote', \App\Controllers\VoteController::class . ':voteRedirectCustom')->setName('vote.server-redirect');
+
 
 $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
     $this->get('/', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home2');
     $this->get('/redirect', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.redirect');
+    $this->get('/redirect/sp', function ($req, $res, $args) {
+        return $res->withStatus(302)->withHeader('Location', 'https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote');
+    });
     $this->post('/award', \App\Controllers\VoteController::class . ':award')->setName('vote.award');
     $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
 });

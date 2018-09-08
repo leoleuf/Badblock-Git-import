@@ -1,22 +1,27 @@
 {% spaceless %}
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <!-- Meta -->
-    <meta name="charset" content="utf-8">
+    <!-- bases url : serveur-prive / badblock / serveur-minecraft !-->
+    <base href="https://badblock.fr" />
+    <meta charset="UTF-8" />
+    <link rel="canonical" href="{{ currentUrl }}" />
 
     <title>
-        {% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}
+        {% if hide_title is not defined %}BadBlock - {% endif %}{{ title }}
     </title>
 
-    <link rel="icon" type="image/png" href="https://cdn.badblock.fr/wd/i/favicon-32x32.png" />
-    <meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <meta name="robots" content="follow, index, all" />
-    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accessible aux Premium et Crack. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta name="author" content="BadBlock developers" />
     <meta name="keywords" content="{% if keywords is defined %}{{ keywords }}, {%  endif %}badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
+
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:image" content="https://cdn.badblock.fr/images/logo_small.png" />
     <meta name="twitter:url" content="https://badblock.fr/" />
@@ -24,31 +29,45 @@
     <meta name="twitter:creator" content="@BadBlockGame" />
     <meta name="twitter:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
     <meta name="twitter:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
+
+    <meta property="og:image:width" content="177" />
+    <meta property="og:image:height" content="177" />
     <meta property="og:site_name" content="BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)" />
     <meta property="og:locale" content="fr" />
     <meta property="og:url" content="https://cdn.badblock.fr/images/logo_small.png" />
     <meta property="og:description" content="{% if description is defined %}{{ description }}{% else %}Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous. IP : play.badblock.fr{% endif %}" />
     <meta property="og:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
-    <meta property="og:image" content="https://cdn.badblock.fr/images/logo_small.png" />
+    <meta property="og:image" content="https://cdn.badblock.fr/wd/icons/og-image.jpg" />
     <meta property="og:type" content="website" />
+
     <meta name="theme-color" content="#2d94cc" />
+    <meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Favicon meta -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/i/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/i/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/i/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/icons/favicon-16x16.png">
+    <link rel="manifest" href="https://cdn.badblock.fr/wd/icons/site.webmanifest">
+    <link rel="mask-icon" href="https://cdn.badblock.fr/wd/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="https://cdn.badblock.fr/wd/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="https://cdn.badblock.fr/wd/icons/browserconfig.xml">
+
     <link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
 
     {% if block("meta") is defined %}
         {{ block('meta') }}
     {% endif %}
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="../dist/css/app.css">
     <link rel="stylesheet" href="../dist/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+=======
+>>>>>>> 9fb5cb759716553233c7a6272de1b72db2b30516
 
 
 
@@ -130,11 +149,11 @@
             <div class="dropdown">
                 <a title="Menu extensible" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
-                    <li>
+                    <!--<li>
                         <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
                             <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
                         </a>
-                    </li>
+                    </li>!-->
                     <li>
                         <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
                             <i class="edit-colored-icon colored-icon"></i>Recrutements
@@ -155,12 +174,19 @@
                             <i class="art_palette-colored-icon colored-icon"></i>Images
                         </a>
                     </li>
-                    <div class="disabled">
                     <li>
-                        <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
-                            <i class="calendar_year-colored-icon colored-icon"></i>BadblockNews
+                        <a title="Serveur Minecraft" href="https://serveur-minecraft.net">
+                            <i class="user-colored-icon colored-icon"></i>Serveur Minecraft
                         </a>
                     </li>
+                    <div class="disabled">
+                   <!-- quand la page sera dispo
+                   (ça fait un mauvais netlinking si la page est pas ok
+                   <li>
+                        <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
+                            <i class="user-colored-icon colored-icon"></i>BadblockNews
+                        </a>
+                    </li> !-->
                     </div>
                 </ul>
             </div>
@@ -201,7 +227,7 @@
     <div id="pub-margin">
 
     </div>
-    <div id="pub-large">
+    <div class="pub-large">
 
         <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
         <script>
@@ -239,9 +265,10 @@
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4>
             </div>
-            BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposé. <a href="https://badblock.fr/legals/Mentions_legales.pdf"><font color="FFFFFF">Mentions légales</font></a>, <a href="https://badblock.fr/legals/"><font color="FFFFFF">Documents légaux</font></a>.
-			<br /><br />
-            {{ onlineCount }} utilisateurs connectés sur le site.<br />
+            <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un <a title="Serveur Minecraft" href="/jouer">serveur Minecraft</a> créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
+            <a href="https://badblock.fr/legals/MentionsLegales.pdf" title="Mentions légales BadBlock">Mentions légales</a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock">Documents légaux</a>.<br /><br />BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposée. <br />
+            <br />
+            {{ onlineCount }} utilisateurs connectés sur le site.
         </div>
         <div class="four columns">
             <div class="footer-links-title-container">
@@ -250,7 +277,7 @@
                 </h5>
             </div>
             <ul class="footer-links">
-                <li><a href="https://forum.badblock.fr/règlement" title="Règlement BadBlock">Règlement</a></li>
+                <li><a href="https://forum.badblock.fr/reglement-general-de-badblock.t1204/" title="Règlement BadBlock">Règlement</a></li>
                 <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
                 <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
                 <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
@@ -268,10 +295,10 @@
                 <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
                 <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
                 <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://badblock.fr/discord" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
+                <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
             </ul>
             <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
-            <script async defer>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </div>
 </div>
@@ -289,7 +316,7 @@
                     </label>
                 </td>
                 <td>
-                    <input type="text" name="login" class="form-pseudo" value="" />
+                    <input type="text" name="login" id="playerName" class="form-pseudo" value="" />
                 </td>
             </tr>
             <tr style="width: 100%;">
@@ -299,7 +326,7 @@
                     </label>
                 </td>
                 <td style="width: 80%;">
-                    <input type="password" name="password" class="form-pseudo" value="" />
+                    <input type="password" name="password" id="password" class="form-pseudo" value="" />
                 </td>
             </tr>
             <tr>
@@ -332,7 +359,7 @@
         <input type="hidden" name="redirect" value="https://forum.badblock.fr/redirect.php?redirect={{ currentUrl }}" />
     </form>
 </div>
-<script async defer>
+<script async>
 
     function login() {
         $('[data-remodal-id=login]').remodal().open();
@@ -394,7 +421,7 @@
     <a href="" title="Rafraicihr la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
 </div>
 
-<script async defer>
+<script async>
     $(document).ready(function () {
 
         if (window.canRunAds === undefined) {
@@ -412,6 +439,15 @@
     });
 </script>
 <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async></script>
+
+
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
+
+
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
@@ -437,7 +473,7 @@
         });
     </script> !-->
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script type="text/javascript">
+    <script>
     window.addEventListener(‘load’, function(){
      helium.init();
     }, false);

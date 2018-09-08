@@ -14,20 +14,24 @@ use Psr\Http\Message\ResponseInterface;
 class CreditController extends Controller
 {
 
-    public function paymentINT($mongoDB,RequestInterface $request, ResponseInterface $response,$price, $points, $mode){
+    public function paymentINT($mongoDB,RequestInterface $request, ResponseInterface $response,$price, $points, $mode)
+    {
 
     }
 
-    public function paymentCancel(RequestInterface $request, ResponseInterface $response){
+    public function paymentCancel(RequestInterface $request, ResponseInterface $response)
+    {
         $this->render($response, 'shop.recharge.recharge-cancel');
     }
 
-    public function paymentSuccess(RequestInterface $request, ResponseInterface $response){
+    public function paymentSuccess(RequestInterface $request, ResponseInterface $response)
+    {
         $this->render($response, 'shop.recharge.recharge-sucess');
     }
 
 
-    public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1){
+    public function stepRecharge(RequestInterface $request, ResponseInterface $response,$id = 1)
+    {
         if (empty($id)){
             if ($this->container->session->exist('user')) {
                 $player = $this->session->getProfile('username')['username'];

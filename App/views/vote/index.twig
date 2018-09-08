@@ -57,7 +57,10 @@
                     <center><h3 class="step-round">II</h3>
                         <div class="step-contains">
                             <h5 class="text-center">Choisissez un Site</h5>
-                            <a class="button button-primary" id="btm-msf" title="Choisir le site" onclick="vote('/svote')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                            <a title="Choisir le site" class="button button-primary" id="btm-msf" onclick="vote('/vote/redirect')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
+                            {% if eula %}
+                            <a title="Serveur Minecraft" class="button button-primary" id="btm-msf" onclick="vote('https://serveur-minecraft.net/serv/93/info')" target="_blank" style="width: 95%;">Serveur-Minecraft.net (1H30)</a>
+                            {% endif %}
                             <div id="pleasewait" style="display: none;">
 
                             </div>
@@ -100,7 +103,7 @@
                 <p id="demo"></p>
                 <script>
                     // Set the date we're counting down to
-                    var countDownDate = 1536076800000;
+                    var countDownDate = 1536163200000;
 
                     // Update the count down every 1 second
                     var x = setInterval(function() {
@@ -128,8 +131,8 @@
                         }
                     }, 1000);
                 </script>
-                <a class='button button-danger' title='Dernier gagnant du tirage' href=''>Dernier gagnant : swixtv_ </a><br />
-                <a class='button button-success' title='Temps de tirage' href=''>Prochain lot : Grade MVP Temporaire </a>
+                <a class='button button-danger' title='Dernier gagnant du tirage' href=''>Dernier gagnant : davidmairy </a><br />
+                <a class='button button-success' title='Temps de tirage' href=''>Prochain lot : Grade MVP+ Temporaire </a>
                 <h3 class="text-center">Probabilité de gagner à la loterie</h3>
                 <div class="vote-tr">
                     <table class="votes">
@@ -225,7 +228,7 @@
     <!-- Info modal -->
 
 
-    <script async defer>
+    <script async>
         var type;
         var pseudo;
         var error = false;
@@ -272,7 +275,7 @@
 
         function vote(wb)
         {
-            window.open('https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote', '_blank');
+            window.open(wb, '_blank');
             $("#step2").addClass("disabled");
             setTimeout(function () {
                 $("#lot1").removeClass("disabled");

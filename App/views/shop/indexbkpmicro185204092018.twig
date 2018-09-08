@@ -84,7 +84,7 @@
                     <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
                     <div class="product-list">
                         {% for k,prod in promotion %}
-                            <a href="/shop#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
+                            <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;">
                                 <div class="product-item product-item-promotion">
                                     <div class="promotion-coef">
                                         {{ prod['promotion_coef'] }}%
@@ -134,7 +134,7 @@
                                 <h4 class="heading heading-bar"><span>{{ cat['name'] }} <small id="very-small">{{ cat['sub-name'] }}</small></span></h4>
                                 <div class="product-list">
                                     {% for prod in cat['items'] %}
-                                        <a href="/shop#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;" title="Produit {{ prod['name'] }}">
+                                        <a href="#product-{{ prod['_id']["$oid"] }}" style="color: #fb3f00; text-decoration: none;" title="Produit {{ prod['name'] }}">
                                             {% if prod['promotion'] %}
                                                 <div class="product-item product-item-promotion">
                                                     <div class="promotion-coef">

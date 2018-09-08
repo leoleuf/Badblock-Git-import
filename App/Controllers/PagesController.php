@@ -112,10 +112,4 @@ class PagesController extends Controller
         return $this->render($response, 'pages.bbnews');
     }
 
-
-
-
-
-
-
 }
