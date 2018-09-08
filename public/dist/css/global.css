@@ -1,40 +1,77 @@
+/* 
+
+CODE CSS DE BADBLOCK
+Le design du site badblock.fr a été fait par LeFuturiste, Hooki et Dreaams.
+
+Si quelque chose vous plaît n'hésitez pas à regarder comment cela a été fait, certains de nos modèles viennent
+du site www.w3school.com . Allez y faire un tour !
+
+Les commentaires ont été écrits par Hooki,
+pour me contacter en cas de besoin: hooki.kibo@gmail.com ou fragan.fournet@gmail.com (merci d'essayer d'abords sur la 1er).
+
+Version du code : 3.2
+Date de modification majeur: 05/09/2018
+
+LES COMMENTAIRES QUI VONT SUIVRE SONT DES RAPPELS POUR MOI (Hooki, vous n'avez pas besoin d'en tenir compte).
+
+Bug a fix : Responsive;
+Design à faire : Launcheur / Uploads / Staff / Dev;
+
+*/
+
 @import url("https://fonts.googleapis.com/css?family=Bungee");
 @import url("https://fonts.googleapis.com/css?family=Righteous");
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 
-.shop {
-    margin: 50px 0px;
+/* Pour éviter d'avoir moulte ligne de code, j'ai import directement via le fichier. ATTENTION !! LE CDN RISQUE DE NE PAS FONCTIONNER !! */
+
+@import 'dreaams.css';
+@import 'rank.css';
+@import 'xmalware.css';
+@import 'dev-info.css';
+
+/* VERSION CDN */
+
+/*
+@import url('https://cdn.badblock.fr/css/dreaams.css');
+@import url('https://cdn.badblock.fr/css/rank.css');
+@import url('https://cdn.badblock.fr/css/xmalware.css');
+*/
+
+.ita {
+    font-style: italic;
 }
 
-.c-table__row:hover {
-    background: rgba(50, 50, 50, 0.7);
-    cursor: pointer;
-    cursor: default;
-    transform: scale(1.01);
-    transition: 0.4s; }
-
-.c-table__cell {
-    overflow: hidden;
-    text-align: center !important; }
-
+.text-center
+{
+    text-align: center;
 }
 
-td.c-table__cell {
-    text-align: center !important; }
-}
+.bold {
+    text-transform: uppercase; }
 
-.c-table__row a {
-    text-decoration: none; }
+/* PAGE SHOP */
+
+/* Couleur des icônes de la navbar du shop */
+
+#sky{color: #40A45B;}
+#fac{color: #A44040;}
+#play{color: #E68A01;}
+#pvp{color: #3997C6;}
+#free{color:#39C6A0;}
 
 
-.promotion {
+/* Class promotion, permet de faire un effet multi-couleur sur un text*/
+.promotion { 
     animation : promotion 1s infinite ease-in-out;
 }
 
+/* Cadre des promotions , ne pas modifier l'attribut position. */
 .product-item {
     position: relative;
 }
 
+/* Bulle avec les -50%, -30% etc... */
 .product-item .promotion-coef {
     position: absolute;
     top: -35px;
@@ -53,10 +90,12 @@ td.c-table__cell {
     font-size: 20px;
 }
 
+/* 2ème bulle avec le nouveau/ancien prix, ne pas modifier l'attribut position.*/
 .product-promotion {
     position: relative;
 }
 
+/* Ancien prix, la valeur "line-through" permet de barré le texte.*/
 .product-old-price {
     position: absolute;
     bottom: 5px;
@@ -64,82 +103,33 @@ td.c-table__cell {
     text-decoration: line-through;
 }
 
-.price {
-    list-style-type: none;
-    border: 1px solid #eee;
-    margin: 0;
-    padding: 0;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
-}
-
-/* Add shadows on hover */
-.price:hover {
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
-    cursor: pointer;
-}
-
-/* Pricing header */
-.price .header {
-    background-color: #e74c3c;
-    color: white;
-    font-size: 25px;
-}
-
-/* List items */
-.price li {
-    border-bottom: 1px solid #eee;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Grey list item */
-.price .grey {
-    background-color: #eee;
-    font-size: 20px;
-}
-
-/* The "Sign Up" button */
-.button-price {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 25px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-/* Change the width of the three columns to 100%
-(to stack horizontally on small screens) */
-@media only screen and (max-width: 600px) {
-    .columns {
-        width: 100%;
-    }
-}
-
+/* Animation lié à la class "promotion" */
 @keyframes promotion
 {
     0% {
-        border: 4px solid #40A497;
-        transform: translate(0px);
+        color: #40A497;
     }
     25% {
-        border: 4px solid #EABA19;
+        color: #EABA19;
     }
     50% {
-        border: 4px solid #EA4A19;
-        transform: translateY(-10px);
+        color: #EA4A19;
     }
     75% {
-        border: 4px solid #2FD505;
+        color: #2FD505;
     }
     100% {
-        border: 4px solid #D92CCE;
-        transform: translate(0px);
+        color: #D92CCE;
     }
 }
 
+/* FIN PAGE SHOP */
+
+/* PAGE JOUER */ 
+
+
+/* .accordion, .accordion:after & .panel sont là pour la page jouer, pas la peine d'y toucher, modifier simplement la couleur
+si besoin. Lien de référence : https://www.w3schools.com/howto/howto_js_accordion.asp*/
 .accordion {
     background-color: #eee;
     color: #444;
@@ -152,15 +142,12 @@ td.c-table__cell {
     font-size: 15px;
     transition: 0.4s; }
 
-
-
 .accordion:after {
     content: '\002B';
     color: #777;
     font-weight: bold;
     float: right;
     margin-left: 5px; }
-
 
 .panel {
     padding: 0 18px;
@@ -175,11 +162,14 @@ td.c-table__cell {
 .played {
     margin: 3em 0em; }
 
+
+/* Form pour les IP du serveur. */
 .play-form input {
     padding: 20px 30px !important;
     background-color: #34495E !important;
     border-radius: 0px !important; }
 
+/* class générique d'input, définit le style.*/
 .form-control {
     display: block;
     width: 70%;
@@ -189,6 +179,7 @@ td.c-table__cell {
     height: 54px;
     color: #fff; }
 
+/* Class pour l'input copié.*/
 .copied {
     padding: 12px 50px;
     width: 30%;
@@ -201,65 +192,32 @@ td.c-table__cell {
     background-color: #e74c3c;
     color: #fff; }
 
+/* FIN PAGE JOUER */
+
+/* DEBUT PAGE STATS */
+
+/* Ici pour décaler les icônes, je ne me souviens plus lesquelles */
 i {
     margin-right: 10px; }
 
+/* .col-3 est dérivé du système de bootstrap car skeleton ne me convenait pas. Surtout ne pas les supprimées
+car elles sont utilisés partout ! */
+
+/* Ici les col-3 sont utilisé pour faire les carré des stats "généraux" (nbr de joueur co, inscrits etc...)*/
 .col-3 {
     width: calc(33.333333333% - 30px);
     padding: 15px;
     float: left;
     transition: 0.3s;
 }
-.c-table__row:hover {
-    cursor: default;
-    transform: scale(1.01);
-    transition: 0.4s; }
-
-.c-table__cell {
-    overflow: hidden;
-    text-align: center !important;
-
-}
-
-td.c-table__cell {
-    text-align: center !important; 
-}
-
-.c-table__row a {
-    text-decoration: none; }
-
-.podium-cover-content img {
-    margin-left: 20px;
-    padding: 5px; }
-
-.avatar-first {
-    border-bottom: 45px solid #eec900;
-    width: 9%; }
-
-.avatar-second {
-    border-bottom: 35px solid #D3D3D3;
-    width: 7%; }
-
-.avatar-third {
-    border-bottom: 25px solid #cd7f32;
-    width: 5%; }
-
-.avatar-player {
-    margin-left: 190px;
-}
-/*# sourceMappingURL=global.css.map */
-
-.col-3 {
-    width: calc(33.333333333% - 30px);
-    padding: 15px;
-    float: left;
-    transition: 0.3s; }
 
 .col-3:hover {
     transform: scale(1.2);
     width: calc(33.333333333% - 33px); 
     cursor: default !important;
 }
+
+/* .stats-home corréspond au carré cités juste au-dessus. */
 
 .stats-home .col-3 {
     text-align: center; }
@@ -277,6 +235,22 @@ td.c-table__cell {
 .stats-home .col-3 a {
     text-decoration: none;
     color: #222; }
+
+.stats-home {
+    margin:  15px;
+}
+
+.stats-home .heading-bar {
+    margin-top: 0px;
+}
+
+.info-stats {
+    margin: 15px 0px;
+}
+
+/* .btn-group est un dérivé de w3school, vous pourrez trouvé la méthode sur le site (je n'ai pas internet au moment où j'écrit ce commentaire)
+Attention !! Le design de la barre de recherche repose sur les px ! ne pas les modifiers !
+*/
 
 .btn-group .button-search {
     padding: 6px 16px;
@@ -304,6 +278,8 @@ td.c-table__cell {
     display: table;
 }
 
+/* .button-games est là pour les différents jeux, vous retrouverez les couleurs juste un peu plus bas. */
+
 .button-games {
     padding: 10px 16px;
     margin-right: 10px;
@@ -320,13 +296,7 @@ td.c-table__cell {
     transform: scale(1.06);
     border-radius: 7px; }
 
-.info-stats h5 {
-    padding-left: 10px;
-    border-left: 3px solid #222; }
-
-.bold {
-    text-transform: uppercase; }
-
+/* Toutes les couleurs associées au .button-games.*/
 
 #bedwars {
     background-color: #e74c3c !important;
@@ -359,48 +329,39 @@ td.c-table__cell {
     background-color: #9b59b6 !important;
 }
 
-
+/* Class Inconnu mais vu le nom elle doit servir, si elle ne sert pas supprimer là ainsi que ce commentaire. */
 .button-games-home {
     width: 100%;
 }
-
+/* Class Inconnu mais vu le nom elle doit servir, si elle ne sert pas supprimer là ainsi que ce commentaire. */
 .u-middle-width {
     width: 70%; }
 
+/* Responsive des col-3, pas touche !!!!!!!!! */
 @media screen and (max-width: 768px) {
     .col-3 {
         width: calc(100%);
         padding: 0px; } }
 
-/*# sourceMappingURL=global.css.map */
-
-
-.u-middle-width {
-    width: 70%; }
-
+/* Cette class sert à fixer le bug du menu déroulant à l'horizontal, si un jour le menu déroulant (dropdown) se place à l'horizontal
+modifier display : flex par display: block.
+Note personnel de l'auteur, skeletoncss pu !*/
 .dropdown-dropdown {
     flex-direction: column !important;
     margin-left: 50px;
     z-index: 999; }
 
-.promotion {
-    text-decoration: line-through; }
 
-#sky{color: #40A45B;}
-#fac{color: #A44040;}
-#play{color: #E68A01;}
-#pvp{color: #3997C6;}
-#free{color:#39C6A0;}
-
-.no-link {
-    cursor: pointer;
-}
 
 
 .no-link {
     cursor: pointer;
     color: #3b5166 !important; }
 
+
+/* .search et ce qui en découle corrésponde au menu déroulant qu'y s'ouvre quand vous recherchez un joueur dans la page stats
+Attention !! Ce système est fragile est risque de bugué au moindre changement de pixel, il est normalement stable (04/09/2018.) ne pas toucher !!
+ */
 .search
 {
     list-style-type: none;
@@ -451,15 +412,18 @@ td.c-table__cell {
     cursor: default;
 }
 
+/* FIN PAGE STATS */
+
+/* DEBUT PAGE VOTE */
+
+/* Séparateur (section)*/
+
 .vote
 {
     margin: 3% 0px;
 }
 
-.text-center
-{
-    text-align: center;
-}
+/* .step correspond au 3 grand carré du haut de la page vote , les 3 étapes de vote*/
 
 .step
 {
@@ -468,12 +432,6 @@ td.c-table__cell {
     padding: 15px;
     border: 1px solid #ccc;
     height: 360px;
-}
-
-.disabled
-{
-    pointer-events: none;
-    opacity: 0.5;
 }
 
 .step .step-contains
@@ -496,26 +454,20 @@ td.c-table__cell {
     color: #fff;
 }
 
+/* class que l'on ajoute pour empêcher l'utilisateur de modifier les infos qu'il a saisi */
+
+.disabled
+{
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Tableau des vote */
+
 .votes
 {
     text-align: justify;
     width: 100%;
-}
-
-.votes-1 img {
-    width: 30px !important;
-}
-
-.votes-2 img {
-    width: 24px !important;
-}
-
-.votes-3 img {
-    width: 20px !important;
-}
-
-.votes img {
-    width: 16px;
 }
 
 table.votes tr td:first-child
@@ -523,92 +475,15 @@ table.votes tr td:first-child
     text-align: justify;
 }
 
+/* Pour ce qui ne connaisse pas le pseudo-selecteur :nth-child(n) ou :first-child, il y a un excellent tuto sur mdn de firefox*/
+
 table.votes tr:nth-child(1) {font-size: 32px; color: #EED740;}
 table.votes tr:nth-child(2) {font-size: 28px; color: #A6A6A6;}
 table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
- 
-.nav-profil {
-    background-color: #34495e;
-}
 
-.nav-profil a {
-    padding: 17px 24px;
-    text-decoration: none;
-    float: left;
-    color: #fff;
-    transition: all 0.2s;
-}
+/* .tooltips correspond au infos sur le nombre de bronze donner lors d'un vote */
 
-.nav-profil a:hover {
-    color: #3498db;
-}
-
-.nav-profil .right {
-    float: right !important;
-}
-
-.nav-profil a img {
-    margin-bottom: 0px;
-}
-.table {
-    width: 100%;
-}
-
-.table .btn-primary {
-    text-decoration: none;
-    background-color: #3498db;
-    padding: 7px;
-    color: #fff;
-    transition: all 0.2s;
-}
-
-.table .btn-primary:hover {
-    border-radius: 15px;
-}
-
-.table .btn-disabled {
-    background-color: #e74c3c;
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.7;
-}
-
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-.img-anim {
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-.img-anim:hover {
-    transform: scale(1.05);
-}
-
-.stats-home {
-    margin:  15px;
-}
-
-.stats-home .heading-bar {
-    margin-top: 0px;
-}
-
-.info-stats {
-    margin: 15px 0px;
-}
-
-.ita {
-    font-style: italic;
-}
+/* W3school.com >> références */
 
 .tooltip {
     position: relative;
@@ -650,6 +525,67 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
     opacity: 1;
 }
 
+/* FIN PAGE VOTE */
+
+/* 05/09/2018 >> Le reste du code est inconnu au bataillon, nav-profil doit correspondre à la page profil de l'utilisateur 
+et le reste doit être là pour la barre de navigation refaite par Hooki. */
+ 
+.nav-profil {
+    background-color: #34495e;
+}
+
+.nav-profil a {
+    padding: 17px 24px;
+    text-decoration: none;
+    float: left;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.nav-profil a:hover {
+    color: #3498db;
+}
+
+.nav-profil .right {
+    float: right !important;
+}
+
+.nav-profil a img {
+    margin-bottom: 0px;
+}
+
+.table {
+    width: 100%;
+}
+
+.table .btn-primary {
+    text-decoration: none;
+    background-color: #3498db;
+    padding: 7px;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.table .btn-primary:hover {
+    border-radius: 15px;
+}
+
+.table .btn-disabled {
+    background-color: #e74c3c;
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.7;
+}
+
+.img-anim {
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.img-anim:hover {
+    transform: scale(1.05);
+}
+
 
 #form-login {
     display: none;
@@ -660,823 +596,11 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 }
 
 
-
 .pagination li a {
     border: none !important;
     background-color: #3498db !important;
     padding: 12px 15px !important;
 }
-
-/*Dreaams*/
-.how-to-gif {
-    height: 300px !important;
-    width: 500px !important;
-}
-
-.how-to-gif:hover {
-    cursor: pointer;
-}
-
-#clic-out-txt {
-    margin-bottom: -2px;
-    margin-top: -20px;
-}
-
-#clic-out {
-    width: calc(100% - 30px);
-    margin-left: 15px;
-}
-
-#clic-out-img {
-    width: 500px !important;
-    height: 365px !important;
-    margin-left: auto;
-}
-
-#rpg-vote {
-    margin-left: 15px;
-}
-
-#vote-link {
-    margin-left: 185px;
-}
-
-#vote-link2 {
-    margin-left: 235px;
-    margin-bottom: 40px;
-}
-
-#outvote {
-    margin-left: 215px;
-}
-
-.align-middle {
-    vertical-align: middle; 
-}
-
-.button-twitter {
-    background-color: #00ACED !important;
-}
-
-.button-facebook {
-    background-color: #3B5998 !important;
-}
-
-.button-youtube {
-    background-color: #BB0000 !important;
-}
-
-.button-discord {
-    background-color: #7289da !important;
-}
-
-.button-teamspeak {
-    background-color: #1d3b5b  !important;
-}
-
-.discord {
-    height: 15px;
-    width: 15px;
-    margin-bottom: -4px;
-}
-
-.informations {
-    width: 100%;
-    display: flex;
-    text-align: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    height: 75px;
-}
-
-.informations span {
-    width: 300px;
-}
-
-#recrutement-button {
-    background-color: #d9534f;
-    width: 100%;
-}
-
-#staff-button {
-    background-color: #5cb85c;
-    width: 100%;
-}
-
-#devblog-button {
-    background-color: #428bca;
-    width: 100%;
-}
-
-.cover-back {
-    background-position: center;
-    background-size: 100%;
-}
-
-.product-price {
-    color: black;
-}
-
-#very-small {
-    font-size: 0.7em;
-}
-
-.product-item:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-}
-
-.shop-menu {
-    display: flex;
-    justify-content: center;
-    border: none;
-    margin-bottom: 0px !important;
-}
-
-.shop-full-w {
-    background-color: #2c3e50;
-    padding: 12px 24px;
-    margin-bottom: 30px;
-}
-
-.shop-menu-active {
-    text-transform: uppercase;
-    font-weight: 700;
-    border-bottom: none !important;
-    transition: all 0.2s;
-    cursor: pointer;
-    margin: 0px !important;
-    padding: 12px 24px !important;
-    font-size: 18px !important;
-}
-
-.shop-menu-active.active {
-    opacity: 1;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(1) a{
-    color: #42b3f4 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(2) a{
-    color: #55FF55 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(3) a{
-    color: #7b4dcb !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(4) a{
-    color: #E19806 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(5) a{
-    color: #C64F4F !important;
-}
-
-
-
-.shop-menu-active:hover {
-    transform: scale(1.1);
-}
-
-.product-list {
-    display: flex;
-    justify-content: center;
-}
-
-.recharge-back {
-    margin-top: -45px;
-}
-
-.center {
-    text-align: center !important;
-    vertical-align: middle !important;
-}
-
-.recharge-heading {
-    margin-top: 50px;
-}
-
-.link {
-    text-decoration: none;
-    font-style: italic;
-}
-
-.shop-recharge-head {
-    width: 15%;
-    margin-bottom: 10px;
-    margin-top: -20px;
-}
-
-.shop-recharge-validation-pseudo {
-    width: 100%;
-}
-
-.shop-recharge-validation-code {
-    margin-left: 15px;
-    width: 25%;
-}
-
-.recharge-bottom {
-    margin-bottom: -35px;
-}
-
-.article-checkbox  {
-    display: inline !important;
-    font-size: 0.8em;
-}
-
-.paypal {
-    height: 601px;
-    margin-top: 10px;
-    border-style: double;
-    border-color: #42b3f4;
-}
-
-.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover, .btn:hover {
-    transform: scale(1.05);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.sms {
-    height: 150px;
-    margin-top: 10px;
-    border-style: double;
-    border-color: #55FF55;
-}
-
-.sms-appel-neosurf {
-    height: 195px;
-    margin-top: 25px;
-    border-style: double;
-    border-color: #C64F4F;
-}
-
-.paysafecard {
-    height: 195px;
-    margin-top: 25px;
-    border-style: double;
-    border-color: #8B4FC6;
-}
-
-.form-pseudo {
-    width: 100% !important;
-}
-
-.recharge-step-1 {
-    margin-top: -25px;
-}
-
-.tab-top {
-    width: 90%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    font-size: 1.25em;
-    color: black !important;
-}
-.text-sms {
-    margin-top: 5px;
-}
-.paypal-img {
-    width: 500px;
-    margin-top: 65px;
-    height: 150px;
-}
-
-.master-img {
-    width: 30%;
-    height: 20%;
-}
-
-.cb-img {
-    width: 30%;
-    height: 20%;
-    margin-left: 25px;
-}
-
-#haut-boutique {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-}
-
-.visa-img {
-    width: 500px;
-    height: 200px;
-}
-
-.smsplus-img {
-    width: 200px;
-    height: 65px;
-}
-
-.neosurf-img {
-    width: 200px;
-    height: 75px;
-}
-
-.tel-txt {
-    font-size: 1.9em;
-    font-weight: bold;
-    color: #ff3399;
-    letter-spacing: 4px;
-}
-
-.paysafe-img {
-    width: 525px;
-    height: 90px;
-    margin-top: 5px;
-}
-.sms:hover > .info {
-    display: block;
-}
-
-.small-offer:hover > .info {
-    display: block;
-}
-
-.small-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.medium-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.big-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.hidden-text {
-    display: none;
-    font-size: 0.7em;
-}
-
-.info {
-    display: none;
-    font-size: 0.7em;
-    margin-top: -20px;
-    margin-bottom: 5px;
-}
-
-.progress-bar {
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255,255,255,.5) 25px, rgba(255,255,255,.5) 50px);
-}
-
-.small-offer {
-    height: 150px;
-    padding-top: 8px;
-    border-style: double;
-    border-color: #42b3f4;
-    font-size: 1.2em;
-}
-
-.small-offer:hover {
-    transform: scale(1.02);
-    transition: 0.5s;
-}
-
-.medium-offer:hover {
-    transform: scale(1.04);
-    transition: 0.5s;
-}
-
-.big-offer:hover {
-    transform: scale(1.06);
-    transition: 0.5s;
-}
-
-.success-center {
-    text-align: center;
-}
-
-.small-offer-btn {
-    margin-top: 5px;
-}
-
-.medium-offer {
-    height: 200px;
-    padding-top: 18px;
-    border-style: double;
-    border-color: #55FF55;
-    font-size: 1.5em;
-    border-width: medium;
-}
-
-.top-medium {
-    margin-top: 35px;
-}
-
-.top-big {
-    margin-top: 35px;
-}
-
-.medium-offer-btn {
-    margin-top: 15px;
-    width: 60%
-}
-
-.big-offer-btn {
-    width: 75%
-}
-
-.big-offer {
-    height: 250px;
-    margin-left: 275px;
-    width: 50%;
-    padding-top: 35px;
-    border-style: double;
-    border-width: thick;
-    font-size: 2.3em;
-}
-
-.promotion-border {
-    animation : border-promotion 1.5s infinite ease-in-out;
-}
-
-.h6-small {
-    font-size: 1.2em !important;
-    margin-bottom: -18px !important;
-    line-height: 25px !important;
-}
-
-.h6-medium {
-    font-size: 1.2em !important;
-    margin-bottom: -35px !important;
-    line-height: 35px !important;
-}
-
-.h6-big {
-    font-size: 1.2em !important;
-    margin-bottom: -35px !important;
-    line-height: 50px !important;
-}
-
-
-.players-list-avatar {
-    width: 75px !important;
-    height: 75px !important;
-    border-radius: 3px;
-}
-
-.players-list-twitter {
-    text-decoration: none !important;
-    color: black;
-}
-
-.players-list-twitter:hover {
-    text-decoration: underline !important;
-    color: black;
-}
-
-a {
-    text-decoration:none;
-}
-
-.dev-card:hover {
-    transform: scale(1.015);
-    transition: 0.5s;
-    transition-timing-function: ease;
-}
-
-.players-list-desc {
-    font-size: 1.09em;
-}
-
-.players-list-username {
-    font-size: 1.2em;
-}
-
-.inline {
-    display: inline-flex;
-    justify-content: center;
-    width: 100%;
-    overflow-x: hidden;
-    flex-wrap: wrap;
-}
-
-.staff-width {
-    width: 100%;
-}
-
-.card-staff {
-    margin: 10px 15px;
-    text-align:center;
-}
-
-.card-staff img {
-    display: flex;
-    width: 60px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    
-}
-
-.card-staff .players-list-name {
-    text-transform: uppercase;
-    font-weight: 700;
-    text-align: center;
-}
-
-.margin-top-small {
-    margin-top: -15px;
-}
-
-.margin {
-    margin-left: 10px;
-}
-
-.info-recrutement {
-    margin-top: 115px !important;
-    width: 100%;
-}
-
-.info-recrutement:hover {
-    background-color: #eb6e60 !important;
-    transform: scale(1.02);
-    transition: 0.5s;
-}
-
-.solde-button {
-    margin-right: 15px;
-    background-color: #2ecc71 !important;
-}
-
-.solde-button:hover {
-    cursor: default;
-}
-
-.footer-success {
-    margin-bottom: -200px !important;
-}
-
-.button-success-recharge {
-    width: 75%;
-    height: 75px;
-    background-color: #2ecc71 !important;
-}
-
-.button-danger-recharge {
-    width: 75%;
-    height: 75px;
-    
-}
-
-.text-success {
-    margin-top: 20px;
-    color: white;
-}
-.img-succes {
-    width: 75%;
-    margin-top: 50px;
-}
-
-.user-tab {
-    margin-right: -2px !important;
-}
-
-.no-decoration {
-    text-decoration: none;
-}
-
-
-.header-too-big {
-    margin-top: -38px;
-}
-
-.table-stats {
-    font-size: 1.09em;
-}
-
-.animation-table:hover {
-    border-bottom-style: groove;
-    transform: scale(1.01);
-    transition: 0.4s;
-    border-width: 2px;
-    cursor: pointer;
-}
-
-.animation-table {
-    border-top-style: groove;
-    border-color: #34495e;
-    border-width: 2px;
-}
-
-.table-stats-head {
-    font-size: 1.1em;
-}
-
-.decoration-thead {
-    font-weight: bold !important;
-    text-align: center;
-    border-bottom-style: double !important;
-    border-width: 3px;
-    border-color: #34495e;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.decoration-td {
-    text-align: center !important;
-    font-family: 'Quicksand', sans-serif;
-}
-.decoration-place:hover {
-    color: #7b4dcb;
-}
-.decoration-nickname {
-    text-align: left !important;
-}
-.decoration-nickname:hover {
-    color: #3498db !important;
-}
-.decoration-class:hover {
-    color: #2ecc71 !important;
-}
-.decoration-kill:hover {
-    color: #E19806;
-}
-.decoration-death:hover {
-    color: #3366cc;
-}
-.decoration-points:hover {
-    color: #C64F4F;
-}
-.decoration-win:hover {
-    color: #66ff66;
-}
-.decoration-lose:hover {
-    color: #ff3333;
-}
-
-.attachment-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/attachment.png') no-repeat;
-}
-
-.star-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/star.png') no-repeat;
-}
-
-.gear-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/gear.png') no-repeat;
-}
-
-.art_palette-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/art_palette.png') no-repeat;
-}
-
-.id-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/id.png') no-repeat;
-}
-
-.calendar_year-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/calendar_year.png') no-repeat;
-}
-
-.button-first-place {
-    background-color: #EED740;
-    padding: 10px;
-    color: white;
-    width: 10%;
-    text-align: center;
-}
-
-.button-first-place:hover {
-    color: white;
-}
-
-.button-second-place {
-    background-color: #A6A6A6;
-}
-
-.button-third-place {
-    background-color: #CC984D;
-}
-
-.btn-info {
-                border: none;
-                cursor: pointer;
-            }
-            .btn-info:hover {
-            }
-            .btn-info-dropdown {
-                position: relative;
-                display: inline-block;
-            }
-            .btn-info-dropdown-child {
-                display: none;
-                min-width: 50px;
-                z-index: 1000;
-            }
-            .btn-info-dropdown-child a {
-                text-decoration: none;
-                display: block;
-            }
-            .btn-info-dropdown:hover .btn-info-dropdown-child {
-                display: block;
-            }
-
-
-/*CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS*/
-@import url("https://fonts.googleapis.com/css?family=Bungee");
-.col-3 {
-  width: calc(33.333333333% - 30px);
-  padding: 15px;
-  float: left;
-  transition: 0.3s; }
-
-.col-3:hover {
-  transform: scale(1.2);
-  width: calc(33.333333333% - 33px); }
-
-.stats-home .col-3 {
-  text-align: center; }
-
-.stats-home .col-3 h3 {
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 45px; }
-
-.stats-home .col-3 p {
-  font-size: 20px;
-  font-style: italic;
-  margin-top: -20px; }
-
-.stats-home .col-3 a {
-  text-decoration: none;
-  color: #222; }
-
-.search-container label {
-  font-size: 20px; }
-
-.search-container input[type=text] {
-  border-radius: 0px;
-  border: none; }
-
-.search-container .button-search {
-  margin-left: -4px;
-  padding: 7px;
-  border: none;
-  padding-right: 15px;
-  margin-top: -10px; }
-
-.search-container .button-search i {
-  margin-left: 7.5px; }
-
-.button-games {
-  padding: 12px 20px;
-  margin-right: 10px;
-  border-radius: 0px;
-  border: none;
-  color: #fff;
-  opacity: 0.8;
-  transition: 0.2s;
-  font-size: 15px;
-  text-transform: uppercase;
-  font-family: 'Bungee', cursive; }
-
-.button-games:hover {
-  opacity: 1.3;
-  transform: scale(1.1);
-  border-radius: 7px; }
-
-.info-stats h5 {
-  padding-left: 10px;
-  border-left: 3px solid #222; }
-
-.bold {
-  text-transform: uppercase; }
-
-#rush {
-  background: #ac8a2a; }
-
-#tower {
-  background: #84ac25; }
-
-#survival {
-  background: #ac8a2a; }
-
-#uhc_speed {
-  background: #bd402a; }
-
-#peal_wars {
-  background: #347395; }
-
-#spaceballs {
-  background: #806555; }
-
-#capture_the_sheep {
-  background: #48ac30; }
-
-/*Fin Dreaams*/
 
 .user-menu {
     margin-bottom: 10px;
@@ -1541,428 +665,14 @@ a {
     margin-left: 0px;
 }
 
-.package-badblock {
-            width: calc(33.33% - 20px);
-            margin: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            float: left;
-            padding: 7px;
-        }
-
-        .package-badblock img {
-            margin: 5px 0px;
-        }
-
-        .package-badblock h5, .badblock-price, .package-badblock p {
-            text-align: center;
-            text-transform: uppercase;
-            margin-bottom: -3px;
-            font-weight: 700;
-        }
-
-        .badblock-price {
-            color: #e74c3c;
-            font-size: 17px;
-        }
-
-        .package-badblock p {
-            padding: 16px 18px;
-        }
-
-        .package-badblock a {
-            text-align: center;
-            text-decoration: none;
-            background-color: #56D968;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 10px;
-        }
-
-        .tebexLogin {
-            display: none !important;
-        }
-
-        .btn-lg {
-            padding: 6px 12px;
-        }
-
-        .dropdown {
-            float: left;
-            overflow: hidden;
-            position: inherit;
-        }
-
-        .dropdown .dropbtn {
-            cursor: pointer;
-            display: inline-block;
-            height: 38px;
-            padding: 0 30px;
-            color: #fff;
-            text-align: center;
-            font-size: 16px;
-            font-weight: 600;
-            line-height: 38px;
-            letter-spacing: .1rem;
-            text-transform: uppercase;
-            text-decoration: none;
-            white-space: nowrap;
-            background-color: transparent;
-            border-radius: 0px;
-            cursor: pointer;
-            box-sizing: border-box;
-            border: none;
-            background-color: #e74c3c;
-            margin-right: 5px;
-        }
-
-        .btn-shop {
-            text-transform: capitalize !important;
-            background-color: #56D968 !important;
-            font-size: 14px !important;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .show {
-            display: block !important;
-            display: flex !important;
-        }
-        .footer {
-            margin-left: 0px !important;
-            margin-right: 0px !important;
-            margin: 0px !important;
-            padding-top: 0px !important;
-            border: none !important;
-        }
-
-        #navbar li {
-            margin: 0px 15px 0px 0px;
-        }
-
-        #navbar li a {
-            padding: 12px 24px;
-            background-color: #3498db;
-            background-size: cover;
-            border-radius: 5px;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        #navbar li a:hover {
-            transform: scale(1.1);
-            transition: all 0.2s;
-        }
-
-        #navbar li .right-active {
-            background-color: #56D968;
-        }
-
-        .input-group .form-control:first-child {
-            color: #333 !important;
-        }
-
-        th, td {
-            border: none !important;
-        }
-
-        .othercolor {
-            background-color: #fcfcfc;
-        }
-
-        .panel {
-            max-height: none !important;
-        }
-
-        .header-shop h5 {
-            border-bottom: 6px solid #3965be;
-            padding-bottom: 5px;
-        }
-
-        .header-shop #promo-header {
-            border-bottom: 6px solid #10a09e;
-        }
-
-        .header-shop .header-shop-title span {
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #ccc;
-        }
-
-        .buttons {
-            margin: 30px 0px;
-        }
-
-        .buycraft table, .buycraft th, .buycraft td {
-            border-color: transparent !important;
-        }
-
-        .shop {
-            margin: 50px 0px;
-            cursor: pointer;
-        }
-
-        .promotion {
-            animation : promotion 1s infinite ease-in-out;
-            font-weight: 700;
-            text-decoration: none !important;
-        }
-
-
-        .abo {
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        #gold {
-            color: #E19806;
-            font-weight: 700;
-        }
-
-        #obsi {
-            color: #6937C0;
-            font-weight: 700;
-        }
-
-        #custom {
-            color: #C64F4F;
-            font-weight: 700;
-        }
-
-        #rank-3020312 {background-color: #42b3f4;}
-        #rank-3020392 {background-color: #55FF55;}
-        #rank-3020415 {background-color: #6937C0;}
-        #rank-3026513 {background-color: #E19806;}
-        #rank-3026514 {background-color: #3CC35B;animation: promotion-s 1.5s infinite;}
-
-
-        .header-td {
-            text-align: right !important;
-        }
-
-        td {
-            text-align: justify !important;
-            vertical-align: middle !important;
-            padding: 12px 24px;
-        }
-
-        td .fa-check {
-            color: #40A468;
-        }
-
-        td .fa-times {
-            color: #C64F4F;
-        }
-
-        .price-text {
-            text-decoration: line-through;
-            font-size: 15px;
-        }
-
-        table .rank {
-            padding: 25px 5px !important;
-            text-transform: uppercase;
-            font-size: 18px;
-            background-color: #C64F4F;
-            border: 5px solid #fff !important;
-            color: #fff;
-            border-bottom: 0px;
-            border-left: 0px solid #fff !important;
-            position: relative;
-            width: 190px;
-        }
-
-        table .rank:hover {
-            transform: scale(1.1);
-            z-index: 999;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        table .rank .rank-head {
-            font-size: 23px;
-            margin-bottom: 0px !important;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        table .rank p {
-            font-size: 17px;
-        }
-
-        table .rank a {
-            background-color: rgba(0,0,0,0.5);
-            padding: 6px 2px !important;
-            color: #fff;
-            text-decoration: none;
-            z-index: 100;
-        }
-
-        table .rank a span {
-            color: #edfc00;
-        }
-
-        table .rank .ex-price {
-            text-decoration: line-through;
-            margin-left: 5px;
-            color: #e74c3c;
-            font-size: 15px;
-        }
-
-
-        .line-tr {
-            background-color: #535353;
-            border: 5px solid #fff;
-        }
-
-        .line-tr .header-td {
-            padding: 5px 10px;
-            font-size: 17px;
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.25);
-            text-transform: uppercase;
-        }
-
-        .right-tr {
-            text-transform: uppercase;
-            background-color: rgba(255, 255, 255, 0.25);
-            padding: 12px 24px;
-        }
-
-        @media only screen and (max-width: 768px) {
-            .panel-tr {
-                overflow-x: scroll;
-            }
-            .package-badblock {
-                width: 100% !important;
-                margin: 10px 0px;
-            }
-        }
-
-        @media only screen and (min-width: 1200px) {
-            .container {
-                width: 1700px !important;
-            }
-
-            .header {
-                margin-top: 0px !important;
-                margin-bottom: 0px !important;
-            }
-        }
-
-        @keyframes anim-shop {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes promotion-s
-        {
-            0% {
-                background-color: #40A497;
-            }
-            25% {
-                background-color: #EABA19;
-            }
-            50% {
-                background-color: #EA4A19;
-            }
-            75% {
-                background-color: #2FD505;
-            }
-            100% {
-                background-color: #D92CCE;
-            }
-        }
-
-        @keyframes promotion
-        {
-            0% {
-                color: #40A497;
-            }
-            25% {
-                color: #EABA19;
-            }
-            50% {
-                color: #EA4A19;
-            }
-            75% {
-                color: #2FD505;
-            }
-            100% {
-                color: #D92CCE;
-            }
-        }
-
-        @keyframes border-promotion
-        {
-            0% {
-                border-color: #40A497;
-            }
-            25% {
-                border-color: #EABA19;
-            }
-            50% {
-                border-color: #C64F4F;
-            }
-            75% {
-                border-color: #55FF55;
-            }
-            100% {
-                border-color: #D92CCE;
-            }
-        }
-
-@media only screen and (max-width: 768px){
-.vote-tr {
-    overflow-x: scroll;
-}
-@keyframes login-enter {
-     0% {
-         opacity: 0;
-     }
-     100% {
-         opacity: 1.0;
-     }
- }
-
-
-@keyframes promotion {
-    0% {
-        transform: translateY(0px);
-        border: 4px solid #EA9D01; }
-    50% {
-        transform: translateY(-10px);
-        border: 4px solid #E83326; }
-    100% {
-        transform: translateY(0px);
-        border: 4px solid #EA9D01; } }
-
+/* Partie gestion du responsive, ne pas toucher. Si c'est là c'est qu'il y a une raison.*/
 
 @media screen and (max-width: 768px) {
+
+    .vote-tr {
+        overflow-x: scroll;
+    }
+
     .col-3 {
         width: calc(100%);
         padding: 0px; }
