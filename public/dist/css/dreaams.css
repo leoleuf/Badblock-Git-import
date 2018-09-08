@@ -1,0 +1,715 @@
+/*Dreaams*/
+.how-to-gif {
+    height: 300px !important;
+    width: 500px !important;
+}
+
+.how-to-gif:hover {
+    cursor: pointer;
+}
+
+#clic-out-txt {
+    margin-bottom: -2px;
+    margin-top: -20px;
+}
+
+#clic-out {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+}
+
+#clic-out-img {
+    width: 500px !important;
+    height: 365px !important;
+    margin-left: auto;
+}
+
+#rpg-vote {
+    margin-left: 15px;
+}
+
+#vote-link {
+    margin-left: 185px;
+}
+
+#vote-link2 {
+    margin-left: 235px;
+    margin-bottom: 40px;
+}
+
+#outvote {
+    margin-left: 215px;
+}
+
+.align-middle {
+    vertical-align: middle; 
+}
+
+.button-twitter {
+    background-color: #00ACED !important;
+}
+
+.button-facebook {
+    background-color: #3B5998 !important;
+}
+
+.button-youtube {
+    background-color: #BB0000 !important;
+}
+
+.button-discord {
+    background-color: #7289da !important;
+}
+
+.button-teamspeak {
+    background-color: #1d3b5b  !important;
+}
+
+.discord {
+    height: 15px;
+    width: 15px;
+    margin-bottom: -4px;
+}
+
+.informations {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 75px;
+}
+
+.informations span {
+    width: 300px;
+}
+
+#recrutement-button {
+    background-color: #d9534f;
+    width: 100%;
+}
+
+#staff-button {
+    background-color: #5cb85c;
+    width: 100%;
+}
+
+#devblog-button {
+    background-color: #428bca;
+    width: 100%;
+}
+
+.cover-back {
+    background-position: center;
+    background-size: 100%;
+}
+
+.product-price {
+    color: black;
+}
+
+#very-small {
+    font-size: 0.7em;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+.shop-menu {
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin-bottom: 0px !important;
+}
+
+.shop-full-w {
+    background-color: #2c3e50;
+    padding: 12px 24px;
+    margin-bottom: 30px;
+}
+
+.shop-menu-active {
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: none !important;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 0px !important;
+    padding: 12px 24px !important;
+    font-size: 18px !important;
+}
+
+.shop-menu-active.active {
+    opacity: 1;
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active:nth-child(1) a{
+    color: #42b3f4 !important;
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active:nth-child(2) a{
+    color: #55FF55 !important;
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active:nth-child(3) a{
+    color: #7b4dcb !important;
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active:nth-child(4) a{
+    color: #E19806 !important;
+}
+
+.shop-menu .shop-menu-menu .shop-menu-active:nth-child(5) a{
+    color: #C64F4F !important;
+}
+
+
+
+.shop-menu-active:hover {
+    transform: scale(1.1);
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
+}
+
+.recharge-back {
+    margin-top: -45px;
+}
+
+.center {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.recharge-heading {
+    margin-top: 50px;
+}
+
+.link {
+    text-decoration: none;
+    font-style: italic;
+}
+
+.shop-recharge-head {
+    width: 15%;
+    margin-bottom: 10px;
+    margin-top: -20px;
+}
+
+.shop-recharge-validation-pseudo {
+    width: 100%;
+}
+
+.shop-recharge-validation-code {
+    margin-left: 15px;
+    width: 25%;
+}
+
+.recharge-bottom {
+    margin-bottom: -35px;
+}
+
+.article-checkbox  {
+    display: inline !important;
+    font-size: 0.8em;
+}
+
+.paypal {
+    height: 601px;
+    margin-top: 10px;
+    border-style: double;
+    border-color: #42b3f4;
+}
+
+.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover, .btn:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.sms {
+    height: 200px;
+    margin-top: 10px;
+    border-style: double;
+    border-color: #55FF55;
+}
+
+.sms-appel-neosurf {
+    height: 195px;
+    margin-top: 25px;
+    border-style: double;
+    border-color: #C64F4F;
+}
+
+.paysafecard {
+    height: 195px;
+    margin-top: 25px;
+    border-style: double;
+    border-color: #8B4FC6;
+}
+
+.form-pseudo {
+    width: 100% !important;
+}
+
+.recharge-step-1 {
+    margin-top: -25px;
+}
+
+.tab-top {
+    width: 90%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 1.25em;
+    color: black !important;
+}
+.text-sms {
+    margin-top: 5px;
+}
+.paypal-img {
+    width: 500px;
+    margin-top: 65px;
+    height: 150px;
+}
+
+.master-img {
+    height: 20%;
+}
+
+.cb-img {
+    width: 30px;
+    margin-left: 25px;
+}
+
+#haut-boutique {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.visa-img {
+    width: 500px;
+    height: 200px;
+}
+
+.smsplus-img {
+    height: 60px;
+}
+
+.neosurf-img {
+    width: 200px;
+    height: 75px;
+}
+
+.tel-txt {
+    font-size: 1.9em;
+    font-weight: bold;
+    color: #ff3399;
+    letter-spacing: 4px;
+}
+
+.paysafe-img {
+    width: 525px;
+    height: 90px;
+    margin-top: 5px;
+}
+.sms:hover > .info {
+    display: block;
+}
+
+.small-offer:hover > .info {
+    display: block;
+}
+
+.small-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.medium-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.big-offer:hover > .hidden-text {
+    display: block;
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.hidden-text {
+    display: none;
+    font-size: 0.7em;
+}
+
+.info {
+    display: none;
+    font-size: 0.7em;
+    margin-top: -20px;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255,255,255,.5) 25px, rgba(255,255,255,.5) 50px);
+}
+
+.small-offer {
+    height: 150px;
+    padding-top: 8px;
+    border-style: double;
+    border-color: #42b3f4;
+    font-size: 1.2em;
+}
+
+.small-offer:hover {
+    transform: scale(1.02);
+    transition: 0.5s;
+}
+
+.medium-offer:hover {
+    transform: scale(1.04);
+    transition: 0.5s;
+}
+
+.big-offer:hover {
+    transform: scale(1.06);
+    transition: 0.5s;
+}
+
+.success-center {
+    text-align: center;
+}
+
+.small-offer-btn {
+    margin-top: 5px;
+}
+
+.medium-offer {
+    height: 200px;
+    padding-top: 18px;
+    border-style: double;
+    border-color: #55FF55;
+    font-size: 1.5em;
+    border-width: medium;
+}
+
+.top-medium {
+    margin-top: 35px;
+}
+
+.top-big {
+    margin-top: 35px;
+}
+
+.medium-offer-btn {
+    margin-top: 15px;
+    width: 60%
+}
+
+.big-offer-btn {
+    width: 75%
+}
+
+.big-offer {
+    height: 250px;
+    margin-left: 275px;
+    width: 50%;
+    padding-top: 35px;
+    border-style: double;
+    border-width: thick;
+    font-size: 2.3em;
+}
+
+.promotion-border {
+    animation : border-promotion 1.5s infinite ease-in-out;
+}
+
+.h6-small {
+    font-size: 1.2em !important;
+    margin-bottom: -18px !important;
+    line-height: 25px !important;
+}
+
+.h6-medium {
+    font-size: 1.2em !important;
+    margin-bottom: -35px !important;
+    line-height: 35px !important;
+}
+
+.h6-big {
+    font-size: 1.2em !important;
+    margin-bottom: -35px !important;
+    line-height: 50px !important;
+}
+
+
+.players-list-avatar {
+    width: 75px !important;
+    height: 75px !important;
+    border-radius: 3px;
+}
+
+.players-list-twitter {
+    text-decoration: none !important;
+    color: black;
+}
+
+.players-list-twitter:hover {
+    text-decoration: underline !important;
+    color: black;
+}
+
+a {
+    text-decoration:none;
+}
+
+.dev-card:hover {
+    transform: scale(1.015);
+    transition: 0.5s;
+    transition-timing-function: ease;
+}
+
+.players-list-desc {
+    font-size: 1.09em;
+}
+
+.players-list-username {
+    font-size: 1.2em;
+}
+
+.inline {
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+}
+
+.staff-width {
+    width: 100%;
+}
+
+.card-staff {
+    margin: 10px 15px;
+    text-align:center;
+}
+
+.card-staff img {
+    display: flex;
+    width: 60px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    
+}
+
+.card-staff .players-list-name {
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+}
+
+.margin-top-small {
+    margin-top: -15px;
+}
+
+.margin {
+    margin-left: 10px;
+}
+
+.info-recrutement {
+    margin-top: 115px !important;
+    width: 100%;
+}
+
+.info-recrutement:hover {
+    background-color: #eb6e60 !important;
+    transform: scale(1.02);
+    transition: 0.5s;
+}
+
+.solde-button {
+    margin-right: 15px;
+    background-color: #2ecc71 !important;
+}
+
+.solde-button:hover {
+    cursor: default;
+}
+
+.footer-success {
+    margin-bottom: -200px !important;
+}
+
+.button-success-recharge {
+    width: 75%;
+    height: 75px;
+    background-color: #2ecc71 !important;
+}
+
+.button-danger-recharge {
+    width: 75%;
+    height: 75px;
+    
+}
+
+.text-success {
+    margin-top: 20px;
+    color: white;
+}
+.img-succes {
+    width: 75%;
+    margin-top: 50px;
+}
+
+.user-tab {
+    margin-right: -2px !important;
+}
+
+.no-decoration {
+    text-decoration: none;
+}
+
+
+.header-too-big {
+    margin-top: -38px;
+}
+
+.table-stats {
+    font-size: 1.09em;
+}
+
+.animation-table:hover {
+    border-bottom-style: groove;
+    transform: scale(1.01);
+    transition: 0.4s;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+.animation-table {
+    border-top-style: groove;
+    border-color: #34495e;
+    border-width: 2px;
+}
+
+.table-stats-head {
+    font-size: 1.1em;
+}
+
+.decoration-thead {
+    font-weight: bold !important;
+    text-align: center;
+    border-bottom-style: double !important;
+    border-width: 3px;
+    border-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.decoration-td {
+    text-align: center !important;
+    font-family: 'Quicksand', sans-serif;
+}
+.decoration-place:hover {
+    color: #7b4dcb;
+}
+.decoration-nickname {
+    text-align: left !important;
+}
+.decoration-nickname:hover {
+    color: #3498db !important;
+}
+.decoration-class:hover {
+    color: #2ecc71 !important;
+}
+.decoration-kill:hover {
+    color: #E19806;
+}
+.decoration-death:hover {
+    color: #3366cc;
+}
+.decoration-points:hover {
+    color: #C64F4F;
+}
+.decoration-win:hover {
+    color: #66ff66;
+}
+.decoration-lose:hover {
+    color: #ff3333;
+}
+
+.attachment-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/attachment.png') no-repeat;
+}
+
+.star-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/star.png') no-repeat;
+}
+
+.gear-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/gear.png') no-repeat;
+}
+
+.art_palette-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/art_palette.png') no-repeat;
+}
+
+.id-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/id.png') no-repeat;
+}
+
+.calendar_year-colored-icon {
+  background: url('https://cdn.badblock.fr/wd/colored-icons/calendar_year.png') no-repeat;
+}
+
+.button-first-place {
+    background-color: #EED740;
+    padding: 10px;
+    color: white;
+    width: 10%;
+    text-align: center;
+}
+
+.button-first-place:hover {
+    color: white;
+}
+
+.button-second-place {
+    background-color: #A6A6A6;
+}
+
+.button-third-place {
+    background-color: #CC984D;
+}
+
+.btn-info {
+                border: none;
+                cursor: pointer;
+            }
+            .btn-info:hover {
+            }
+            .btn-info-dropdown {
+                position: relative;
+                display: inline-block;
+            }
+            .btn-info-dropdown-child {
+                display: none;
+                min-width: 50px;
+                z-index: 1000;
+            }
+            .btn-info-dropdown-child a {
+                text-decoration: none;
+                display: block;
+            }
+            .btn-info-dropdown:hover .btn-info-dropdown-child {
+                display: block;
+            }
+
+/*Fin Dreaams*/
