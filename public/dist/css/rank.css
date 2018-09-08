@@ -1,0 +1,349 @@
+.package-badblock {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            float: left;
+            padding: 7px;
+        }
+
+        .package-badblock img {
+            margin: 5px 0px;
+        }
+
+        .package-badblock h5, .badblock-price, .package-badblock p {
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: -3px;
+            font-weight: 700;
+        }
+
+        .badblock-price {
+            color: #e74c3c;
+            font-size: 17px;
+        }
+
+        .package-badblock p {
+            padding: 16px 18px;
+        }
+
+        .package-badblock a {
+            text-align: center;
+            text-decoration: none;
+            background-color: #56D968;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+
+        .tebexLogin {
+            display: none !important;
+        }
+
+        .btn-lg {
+            padding: 6px 12px;
+        }
+
+        .dropdown {
+            float: left;
+            overflow: hidden;
+            position: inherit;
+        }
+
+        .dropdown .dropbtn {
+            cursor: pointer;
+            display: inline-block;
+            height: 38px;
+            padding: 0 30px;
+            color: #fff;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 38px;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            background-color: transparent;
+            border-radius: 0px;
+            cursor: pointer;
+            box-sizing: border-box;
+            border: none;
+            background-color: #e74c3c;
+            margin-right: 5px;
+        }
+
+        .btn-shop {
+            text-transform: capitalize !important;
+            background-color: #56D968 !important;
+            font-size: 14px !important;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block !important;
+            display: flex !important;
+        }
+        .footer {
+            margin-left: 0px !important;
+            margin-right: 0px !important;
+            margin: 0px !important;
+            padding-top: 0px !important;
+            border: none !important;
+        }
+
+        #navbar li {
+            margin: 0px 15px 0px 0px;
+        }
+
+        #navbar li a {
+            padding: 12px 24px;
+            background-color: #3498db;
+            background-size: cover;
+            border-radius: 5px;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        #navbar li a:hover {
+            transform: scale(1.1);
+            transition: all 0.2s;
+        }
+
+        #navbar li .right-active {
+            background-color: #56D968;
+        }
+
+        .input-group .form-control:first-child {
+            color: #333 !important;
+        }
+
+        th, td {
+            border: none !important;
+        }
+
+        .othercolor {
+            background-color: #fcfcfc;
+        }
+
+        .panel {
+            max-height: none !important;
+        }
+
+        .header-shop h5 {
+            border-bottom: 6px solid #3965be;
+            padding-bottom: 5px;
+        }
+
+        .header-shop #promo-header {
+            border-bottom: 6px solid #10a09e;
+        }
+
+        .header-shop .header-shop-title span {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #ccc;
+        }
+
+        .buttons {
+            margin: 30px 0px;
+        }
+
+        .buycraft table, .buycraft th, .buycraft td {
+            border-color: transparent !important;
+        }
+
+        .shop {
+            margin: 50px 0px;
+            cursor: pointer;
+        }
+
+        .abo {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #gold {
+            color: #E19806;
+            font-weight: 700;
+        }
+
+        #obsi {
+            color: #6937C0;
+            font-weight: 700;
+        }
+
+        #custom {
+            color: #C64F4F;
+            font-weight: 700;
+        }
+
+        #rank-3020312 {background-color: #42b3f4;}
+        #rank-3020392 {background-color: #55FF55;}
+        #rank-3020415 {background-color: #6937C0;}
+        #rank-3026513 {background-color: #E19806;}
+        #rank-3026514 {background-color: #3CC35B;animation: promotion-s 1.5s infinite;}
+
+
+        .header-td {
+            text-align: right !important;
+        }
+
+        td {
+            text-align: justify !important;
+            vertical-align: middle !important;
+            padding: 12px 24px;
+        }
+
+        td .fa-check {
+            color: #40A468;
+        }
+
+        td .fa-times {
+            color: #C64F4F;
+        }
+
+        .price-text {
+            text-decoration: line-through;
+            font-size: 15px;
+        }
+
+        table .rank {
+            padding: 25px 5px !important;
+            text-transform: uppercase;
+            font-size: 18px;
+            background-color: #C64F4F;
+            border: 5px solid #fff !important;
+            color: #fff;
+            border-bottom: 0px;
+            border-left: 0px solid #fff !important;
+            position: relative;
+            width: 190px;
+        }
+
+        table .rank:hover {
+            transform: scale(1.1);
+            z-index: 999;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        table .rank .rank-head {
+            font-size: 23px;
+            margin-bottom: 0px !important;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        table .rank p {
+            font-size: 17px;
+        }
+
+        table .rank a {
+            background-color: rgba(0,0,0,0.5);
+            padding: 6px 2px !important;
+            color: #fff;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        table .rank a span {
+            color: #edfc00;
+        }
+
+        table .rank .ex-price {
+            text-decoration: line-through;
+            margin-left: 5px;
+            color: #e74c3c;
+            font-size: 15px;
+        }
+
+
+        .line-tr {
+            background-color: #535353;
+            border: 5px solid #fff;
+        }
+
+        .line-tr .header-td {
+            padding: 5px 10px;
+            font-size: 17px;
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+        }
+
+        .right-tr {
+            text-transform: uppercase;
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 12px 24px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .panel-tr {
+                overflow-x: scroll;
+            }
+            .package-badblock {
+                width: 100% !important;
+                margin: 10px 0px;
+            }
+        }
+
+        @media only screen and (min-width: 1200px) {
+            .container {
+                width: 1700px !important;
+            }
+
+            .header {
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @keyframes anim-shop {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes promotion-s
+        {
+            0% {
+                background-color: #40A497;
+            }
+            25% {
+                background-color: #EABA19;
+            }
+            50% {
+                background-color: #EA4A19;
+            }
+            75% {
+                background-color: #2FD505;
+            }
+            100% {
+                background-color: #D92CCE;
+            }
+        }
