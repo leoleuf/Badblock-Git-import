@@ -1,46 +1,35 @@
 {% extends "default.twig" %}
-{% set show_title = true %}
-{% set title = "Staff" %}
-{% set description = "Liste du staff de BadBlock. Rejoins dès maintenant le staff de BadBlock en faisant une candidature." %}
-{% set sub_title = "Liste du staff (#{ nb } membres)" %}
+{% set description = "Recueil de tous les BadBlock News" %}
+{% set active_page = "home" %}
+{% set show_title = false %}
+{% set title = 'BBNews' %}
 {% block content %}
-    <!-- Main content -->
-    <div class="staff-header row">
-        <div class="eight columns">
-        <h2 class="margin-top-small">{{ title }}</h1>
-        <h5 class="margin-top-small">{{ sub_title }}</h5>
-        <h6>Le staff est l'équipe qui travaille bénévolement (pour la plupart) pour Badblock. Tout joueur peut prétendre à un poste, par le biais d'une candidature écrite suivie d'un entretien oral, tant qu'il respecte les conditions définies par les membres de Haute Instance et de Très Haute Instance.</h6>
-        </div>
-        <div class="four columns">
-        <a class="button button-danger info-recrutement" href="https://forum.badblock.fr/forums/recrutement-badblock.86/" title="Recrutement de BadBlock" target="_blank"><i class="far fa-file-alt"></i>    Informations recrutement</a>
-        </div>
-    </div>
-    <div class="staff ">
-        {% for k,key in staff %}
-                {% if k % 2 == 0 %}
-                    <div class="row staff-width">
-
-                {% endif %}
-                    <section class="player-staff">
-                        <h4 class="heading heading-bar"><span>{{ key['name'] }} - {{ key["data"]|length }}</span></h4>
-                            <div class="players-list inline">
-                                {% for ft in key['data'] %}
-                                    <div class="card-staff">
-                                        <a href="/profile/{{ ft[0] }}" title="Profil de {{ ft[0] }}">
-                                            <img src="https://cdn.badblock.fr/head/{{ ft[0] }}/60.png" title="Tête de {{ ft[0] }}" alt="Tête de {{ ft[0] }}" class="players-list-avatar">
-                                            <span class="players-list-name">{{ ft[0] }}</span>
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                    </section>
-                {% if k % 2 != 0 %}
+<div class="content">
+    <section>
+        <div class="bbnews">
+            <!-- Pour créer une nouvelle news, changer le <h3> pour le titre, <p> pour la date,  - pour l'image, il faut juste chnager le url('').-->
+            <div class="card-bbnews columns twelve" style="background-image: url('https://cdn.discordapp.com/attachments/405719926591062027/454370061986299936/Ending_BBNEWS_14.png')">
+                <img src="">
+                <div class="text">
+                    <h3>Ttest</h3>
+                    <p>24 / 04 / 2000</p>
+                    <div class="btn">
+                        <a href="#">Télécharger la news</a>
                     </div>
-                {% endif %}
+                </div>
+            </div>
 
-            {% endfor %}
-    {% if staff|length % 2 != 0 %}
+            <div class="card-bbnews columns twelve" style="background-image: url('https://cdn.discordapp.com/attachments/405719926591062027/454370061986299936/Ending_BBNEWS_14.png')">
+                <img src="">
+                <div class="text">
+                    <h3>Ttest</h3>
+                    <p>24 / 04 / 2000</p>
+                    <div class="btn">
+                        <a href="#">Télécharger la news</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
-    </div>
+    </section>
+</div>
 {% endblock %}
