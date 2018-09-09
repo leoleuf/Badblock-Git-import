@@ -1,0 +1,35 @@
+{% extends "default.twig" %}
+{% set description = "Recueil de tous les BadBlock News" %}
+{% set active_page = "home" %}
+{% set show_title = false %}
+{% set title = 'BBNews' %}
+{% block content %}
+<div class="content">
+    <section>
+        <div class="bbnews">
+            <!-- Pour créer une nouvelle news, changer le <h3> pour le titre, <p> pour la date,  - pour l'image, il faut juste chnager le url('').-->
+            <div class="card-bbnews columns twelve" style="background-image: url('https://cdn.discordapp.com/attachments/405719926591062027/454370061986299936/Ending_BBNEWS_14.png')">
+                <img src="">
+                <div class="text">
+                    <h3>Ttest</h3>
+                    <p>24 / 04 / 2000</p>
+                    <div class="btn">
+                        <a href="#">Télécharger la news</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-bbnews columns twelve" style="background-image: url('https://cdn.discordapp.com/attachments/405719926591062027/454370061986299936/Ending_BBNEWS_14.png')">
+                <img src="">
+                <div class="text">
+                    <h3>Ttest</h3>
+                    <p>24 / 04 / 2000</p>
+                    <div class="btn">
+                        <a href="#">Télécharger la news</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
