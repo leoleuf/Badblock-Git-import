@@ -29,6 +29,7 @@ Design à faire : Launcheur / Uploads / Staff / Dev;
 @import 'rank.css';
 @import 'xmalware.css';
 @import 'dev-info.css';
+@import 'bbnews.css';
 
 /* VERSION CDN */
 
@@ -139,7 +140,7 @@ si besoin. Lien de référence : https://www.w3schools.com/howto/howto_js_accord
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
     transition: 0.4s; }
 
 .accordion:after {
@@ -147,7 +148,10 @@ si besoin. Lien de référence : https://www.w3schools.com/howto/howto_js_accord
     color: #777;
     font-weight: bold;
     float: right;
-    margin-left: 5px; }
+    margin-left: 5px;
+    font-size: 20px;
+    margin-top: -5px;
+}
 
 .panel {
     padding: 0 18px;
@@ -527,7 +531,7 @@ table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
 
 /* FIN PAGE VOTE */
 
-/* 05/09/2018 >> Le reste du code est inconnu au bataillon, nav-profil doit correspondre à la page profil de l'utilisateur 
+/* 05/09/2018 >> Le reste du code est inconnu au batailon, nav-profil doit correspondre à la page profil de l'utilisateur 
 et le reste doit être là pour la barre de navigation refaite par Hooki. */
  
 .nav-profil {
@@ -619,8 +623,7 @@ et le reste doit être là pour la barre de navigation refaite par Hooki. */
     margin-left: 0px;
     padding-left: 0px;
 }
-<<<<<<< HEAD
-=======
+
 .tooltip-right {
     top: 0px;
     left: 100%;
@@ -1585,5 +1588,33 @@ a {
     }
     .played {
         text-align: center !important;
+    }
+}
+
+/* Animation pour l'effet d'apparition de la navbar en mode responsive */
+
+.showOut {
+    animation: out 0.5s ease-in-out;
+}
+
+.showIn {
+    animation: in 0.5s ease-in-out;
+}
+
+@keyframes in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
     }
 }
