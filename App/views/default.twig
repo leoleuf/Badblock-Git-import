@@ -162,11 +162,11 @@
                             <i class="id-colored-icon colored-icon"></i>Équipe
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="{{ path_for('info') }}" class="{% if active_page == 'info' %}actived{% endif %}" title="Développement">
                             <i class="gear-colored-icon colored-icon"></i>Développement
                         </a>
-                    </li>
+                    </li>!-->
                     <li>
                         <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}" title="Image">
                             <i class="art_palette-colored-icon colored-icon"></i>Images
@@ -278,7 +278,7 @@
                 <li><a href="https://forum.badblock.fr/reglement-general-de-badblock.t1204/" title="Règlement BadBlock">Règlement</a></li>
                 <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
                 <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
-                <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
+                <!--<li><a href="/info" title="Informations BadBlock">Informations développement</a></li>!-->
                 <li><a href="/screenshot" title="Héberger une image BadBlock">Héberger une image</a></li>
                 <li><a href="https://status.badblock.fr" title="Status de BadBlock">Status des services</a></li>
             </ul>
@@ -407,7 +407,7 @@
 {% endfor %}
 {% set randomPassword = randomPassword|join %}
 
-<!--<div class="remodal" data-remodal-id="{{ randomPassword }}"
+<div class="remodal" data-remodal-id="{{ randomPassword }}"
      data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
 
     <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
@@ -416,8 +416,8 @@
         <br />
     </p>
     <br>
-    <a href="" title="Rafraicihr la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>-->
+    <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+</div>
 
 <script async>
     $(document).ready(function () {
@@ -471,11 +471,6 @@
         });
     </script> !-->
     <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script>
-    window.addEventListener(‘load’, function(){
-     helium.init();
-    }, false);
-    </script>
     <script async src="/gtag/js?id=UA-104430841-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -485,16 +480,17 @@
         gtag('config', 'UA-104430841-1');
     </script>
     <script>
-    $(".dropdown-link").on('mouseover', function () {
-        $(".dropdown-dropdown").show()
-        $(".dropdown-dropdown").css('display', 'flex')
-    });
-    $("body").on('mouseover', function () {
-        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-            $(".dropdown-dropdown").fadeOut()
-        }
-    });
-</script>
+        $(".dropdown-link").on('mouseover', function () {
+            $(".dropdown-dropdown").show()
+            $(".dropdown-dropdown").css('display', 'flex')
+        });
+        $("body").on('mouseover', function () {
+            if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+                $(".dropdown-dropdown").fadeOut()
+            }
+        });
+    </script>
+
 
 <script type="text/javascript">
     function showMenu(y)
