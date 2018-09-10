@@ -64,7 +64,11 @@
                                             <option value="false">Mode cracké</option>
                                         </select>
                                         <h5>Double authentification : (Vider pour supprimer)</h5>
-                                        <input type="text" name="authKey" class="form-control" placeholder="******" value="{{ $Player['authKey'] }}">
+                                        @if(isset($Player['authKey']))
+                                            <input type="text" name="authKey" class="form-control" placeholder="******" value="{{ $Player['authKey'] }}">
+                                        @else
+                                            <input type="text" name="authKey" class="form-control" placeholder="******" value="">
+                                        @endif
                                         <br>
                                         <div class="col-auto center-block">
                                             <center><button type="submit" class="btn btn-primary mb-2">Valider</button></center>

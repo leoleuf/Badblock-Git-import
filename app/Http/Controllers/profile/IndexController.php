@@ -26,25 +26,47 @@ class IndexController extends Controller
 
     public function search(){
 
+        $PlayerOne = DB::connection('mongodb_server')->collection('players')->where('name', '=', strtolower($_POST['search_player']))->first();
         $Player = DB::connection('mongodb_server')->collection('players')->where('name', 'like', strtolower($_POST['search_player']) .'%')->take(10)->get();
         $json = [];
 
-        foreach ($Player as $p){
-            array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+        if ($PlayerOne != null){
+            array_push($json, ['name' => $PlayerOne['name'], 'uniqueId' => $PlayerOne['uniqueId']]);
+            foreach ($Player as $p){
+                if ($p['name'] != $PlayerOne['name']){
+                    array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+                }
+            }
+
+        }else{
+            foreach ($Player as $p){
+                array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+            }
         }
+
+
 
         return json_encode($json);
     }
 
     public function searchip(){
-
+        $PlayerOne = DB::connection('mongodb_server')->collection('players')->where('lastIp', 'like', $_POST['search_player'] .'%')->first();
         $Player = DB::connection('mongodb_server')->collection('players')->where('lastIp', 'like', $_POST['search_player'] .'%')->take(10)->get();
         $json = [];
 
-        foreach ($Player as $p){
-            array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
-        }
+        if ($PlayerOne != null){
+            array_push($json, ['name' => $PlayerOne['name'], 'uniqueId' => $PlayerOne['uniqueId']]);
+            foreach ($Player as $p){
+                if ($p['name'] != $PlayerOne['name']){
+                    array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+                }
+            }
 
+        }else{
+            foreach ($Player as $p){
+                array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+            }
+        }
         return json_encode($json);
     }
 

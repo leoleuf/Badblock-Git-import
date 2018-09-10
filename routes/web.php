@@ -36,24 +36,25 @@ Route::group([
     Route::get('/players/edit/{id}', 'stats\StatsController@editPlayer');
     Route::resource('/players/crud', 'crud\PlayersController');
 
-    Route::get('/api/toenga/treeroot/{name}', 'toenga\HomeController@treeroot');
-    Route::get('/api/toenga/treechild/{name}', 'toenga\HomeController@treechild');
 
-
-
+    //Gestion section
     Route::get('/section/forum', 'section\ForumController@index');
     Route::get('/section/paid/{section}', 'section\PaidController@index');
     Route::post('/section/paid/{section}', 'section\PaidController@save');
+    Route::get('/paid', 'website\PaidController@index');
+    Route::get('/paid/{uuid}', 'website\PaidController@view');
+
+    Route::get('/tfacheck', 'section\TfaController@index');
 
 
+    //Website
     Route::get('/website', 'website\IndexController@index');
 
     Route::get('/website/achat/{uuid}', 'website\AchatController@index');
 
     Route::get('/website/vote', 'website\VoteController@index');
     Route::post('/website/vote', 'website\VoteController@save');
-    Route::get('/website/section', 'website\PaidController@index');
-    Route::get('/website/section/{uuid}', 'website\PaidController@view');
+
     Route::get('/website/compta', 'website\IndexController@compta');
     Route::get('/website/compta/{date}', 'website\IndexController@compta');
     Route::resource('/website/crud/server', 'website\crud\ServerController');

@@ -27,7 +27,7 @@
                             <h4 class="header-title m-t-0 m-b-30">Rechercher un joueur par pseudo</h4>
 
                             <form>
-                                <input type="text" id="player_search" onkeypress="searchPlayer()" class="form-control" size="30">
+                                <input type="text" id="player_search" onkeyup="searchPlayer()" class="form-control" size="30">
                                 <div id="livesearch"></div>
                             </form>
                             <table class="table">
@@ -63,7 +63,7 @@
                             <h4 class="header-title m-t-0 m-b-30">Rechercher un joueur par IP</h4>
 
                             <form>
-                                <input type="text" id="player_searchIP" onkeypress="searchPlayerIP()" class="form-control" size="30">
+                                <input type="text" id="player_searchIP" onkeyup="searchPlayerIP()" class="form-control" size="30">
                                 <div id="livesearch"></div>
                             </form>
                             <table class="table">
