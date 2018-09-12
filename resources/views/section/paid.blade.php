@@ -11,7 +11,7 @@
                             <div class="panel-body">
                                 {{ Form::open(array('url' => "/section/paid/" . $name ,'class'=>'form_inline')) }}
                                     <div class="">
-                                        <table class="table table-striped" id="datatable-editable">
+                                        <table class="table table-striped" id="datatable">
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
@@ -27,10 +27,6 @@
                                                         <input type="text" name="pb_{{ $row->user_id }}" class="form-control input-block" value="{{ $row->pb }}">                                                </td>
                                                     <td>
                                                         <input type="text" name="comment_{{ $row->user_id }}" class="form-control input-block" value="">                                                </td>
-                                                    </td>
-                                                    <td class="actions">
-                                                        <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
-                                                        <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -61,5 +57,12 @@
 <script src="/assets/plugins/tiny-editable/numeric-input-example.js"></script>
 <!-- init -->
 <script src="/assets/pages/datatables.editable.init.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Default Datatable
+        $('#datatable').DataTable();
+    });
+</script>
 
 @endsection

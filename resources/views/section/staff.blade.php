@@ -4,37 +4,51 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-                <h1>Récompense des votes</h1>
+                <h1>Liste du staff gradé sur le serveur :</h1>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel">
                             <div class="panel-body">
-                                {{ Form::open(array('url' => "/website/vote"  ,'class'=>'form_inline')) }}
                                     <div class="">
                                         <table class="table table-striped" id="datatable">
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
-                                                <th>Points Boutique</th>
+                                                <th>Grade</th>
+                                                <th>Mode premium</th>
+                                                <th>TFA</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($data as $row)
+                                            @foreach($user as $row)
                                                 <tr class="gradeX">
-                                                    <td>{{ $row['name'] }}
-                                                        <input type="hidden" name="list[]" value="{{ $row['name'] }}">
+                                                    <td>{{ $row['name'] }}</td>
+                                                    <td>{{ $row['permissions']['group'] }}</td>
+                                                    <td>
+                                                        @if($row['onlineMode'] == true)
+                                                            <i class="fa fa-check"></i>
+                                                        @else
+                                                            <i class="fa fa-ban"></i>
+                                                        @endif
                                                     </td>
                                                     <td>
-                                                        <input type="text" name="pb[]" class="form-control input-block" value="{{ $row['pb'] }}">                                                </td>
+                                                        @if(!isset($row['authKey']) || empty($row['authKey']))
+                                                            <i class="fa fa-ban"></i>
+                                                        @else
+                                                            <i class="fa fa-check"></i>
+                                                        @endif
+                                                    </td>
                                                     <td>
+                                                        <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                                            <i class="fa fa-ban"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
-                                        <center><button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Valider</button></center>
                                     </div>
-                                {{ Form::close() }}
 </div>
 <!-- end: panel body -->
 
@@ -57,5 +71,12 @@
 <script src="/assets/plugins/tiny-editable/numeric-input-example.js"></script>
 <!-- init -->
 <script src="/assets/pages/datatables.editable.init.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Default Datatable
+        $('#datatable').DataTable();
+    });
+</script>
 
 @endsection

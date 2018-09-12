@@ -40,25 +40,45 @@
                         <a href="/" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
                     </li>
                     <li>
-                        <a href="/players" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Joueur</span></a>
+                        <a href="/players" class="waves-effect">
+                            <i class="fa  fa-search"></i>
+                            <span> Rechercher</span>
+                        </a>
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Gestion </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span>Sections </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="/paid" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Paies Sections</span></a></li>
-                            <li><a href="/tfacheck" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span>/!\ Controle TFA</span></a></li>
-                            <li><a href="/users" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Utilisateur</span></a></li>
-                            <li><a href="/role" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Groupes</span></a></li>
-                            <li><a href="/permission" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Permissions</span></a></li>
+                            <li><a href="/section/forum" class="waves-effect"><i class="fa fa-comment-o"></i><span> Forum</span></a></li>
                         </ul>
                     </li>
 
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> <span>Website </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa  fa-spotify"></i> <span>TeamSpeak </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="/website/vote" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Votes</span></a></li>
-                            <li><a href="/website" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i><span> Administration</span></a></li>
+                            <li><a href="/teamspeak/list" class="waves-effect"><i class="fa fa-legal"></i><span> BanList</span></a></li>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-address-book"></i><span> Utilisateur</span></a></li>
+                            <li><a href="#" class="waves-effect"><i class="fa fa-list-ol"></i><span> Groupes</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-legal"></i> <span>Gestion </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="/paid" class="waves-effect"><i class="fa fa-bank"></i><span> Paies Sections</span></a></li>
+                            <li><a href="/tfacheck" class="waves-effect"><i class="zmdi zmdi-shield-security"></i><span>/!\ Controle TFA</span></a></li>
+                            <li><a href="/allstaff" class="waves-effect"><i class="fa fa-address-book"></i><span>Liste Staff</span></a></li>
+                            <li><a href="/users" class="waves-effect"><i class="fa fa-address-book"></i><span> Utilisateur</span></a></li>
+                            <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i><span> Groupes</span></a></li>
+                            <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i><span> Permissions</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-globe"></i> <span>Website </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="/website/vote" class="waves-effect"><i class="fa fa-envelope-open"></i><span> Votes</span></a></li>
+                            <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i><span> Administration</span></a></li>
                         </ul>
                     </li>
                 </ul>

@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="">
-                        <table class="table table-striped" id="datatable-editable">
+                        <table class="table table-striped" id="datatable">
                             <thead>
                             <tr>
                                 <th>Pseudo</th>

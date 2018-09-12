@@ -46,21 +46,40 @@ Route::group([
 
     Route::get('/tfacheck', 'section\TfaController@index');
 
+    //List all staff
+    Route::get('/allstaff', 'section\StaffController@index');
 
-    //Website
-    Route::get('/website', 'website\IndexController@index');
 
-    Route::get('/website/achat/{uuid}', 'website\AchatController@index');
 
-    Route::get('/website/vote', 'website\VoteController@index');
-    Route::post('/website/vote', 'website\VoteController@save');
+    //TeamSpeak
+    Route::group([
+        'prefix'     => "teamspeak",
+        'middleware' => ['auth'],
+    ], function () {
+        Route::get('/banlist', 'mod\TeamspeakController@banList');
+    });
 
-    Route::get('/website/compta', 'website\IndexController@compta');
-    Route::get('/website/compta/{date}', 'website\IndexController@compta');
-    Route::resource('/website/crud/server', 'website\crud\ServerController');
-    Route::resource('/website/crud/category', 'website\crud\CategoryController');
-    Route::resource('/website/crud/product', 'website\crud\ProductController');
-    Route::resource('/website/crud/items', 'website\crud\ItemsController');
+    Route::group([
+        'prefix'     => "website",
+        'middleware' => ['auth'],
+    ], function () {
+        //Website
+        Route::get('/', 'website\IndexController@index');
+
+        Route::get('//achat/{uuid}', 'website\AchatController@index');
+
+        Route::get('/vote', 'website\VoteController@index');
+        Route::post('vote', 'website\VoteController@save');
+
+        Route::get('/compta', 'website\IndexController@compta');
+        Route::get('/compta/{date}', 'website\IndexController@compta');
+        Route::resource('/crud/server', 'website\crud\ServerController');
+        Route::resource('/crud/category', 'website\crud\CategoryController');
+        Route::resource('/crud/product', 'website\crud\ProductController');
+        Route::resource('/crud/items', 'website\crud\ItemsController');
+    });
+
+
 
 
 });

@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TfaController extends Controller
+class StaffController extends Controller
 {
 
 
@@ -56,7 +56,7 @@ class TfaController extends Controller
 
         $data = DB::connection('mongodb_server')->collection('players')->where($alt)->orWhere($group)->orderby('permissions.group')->get();
 
-        return view('section.tfa')->with('user', $data);
+        return view('section.staff')->with('user', $data);
     }
 
 }

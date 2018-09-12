@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="">
-                        <table class="table table-striped" id="datatable-editable">
+                        <table class="table table-striped" id="datatable">
                             <thead>
                             <tr>
                                 <th>Date</th>
@@ -39,7 +39,7 @@
                                     <td>{{ $value['section'] }}</td>
                                     <td>{{ $value['total'] }}</td>
                                     <td>
-                                        <a href="/website/section/{{ $value['_id'] }}" class="btn btn-success">
+                                        <a href="/paid/{{ $value['_id'] }}" class="btn btn-success">
                                             <span class="fa fa-eye"></span>
                                             Voir
                                         </a>
@@ -67,5 +67,12 @@
     <script src="/assets/plugins/tiny-editable/numeric-input-example.js"></script>
     <!-- init -->
     <script src="/assets/pages/datatables.editable.init.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Default Datatable
+            $('#datatable').DataTable();
+        });
+    </script>
 
 @endsection
