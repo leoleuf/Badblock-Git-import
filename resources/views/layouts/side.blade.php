@@ -56,7 +56,7 @@
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa  fa-spotify"></i> <span>TeamSpeak </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="/teamspeak/list" class="waves-effect"><i class="fa fa-legal"></i><span> BanList</span></a></li>
+                            <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i><span> BanList</span></a></li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-address-book"></i><span> Utilisateur</span></a></li>
                             <li><a href="#" class="waves-effect"><i class="fa fa-list-ol"></i><span> Groupes</span></a></li>
                         </ul>
