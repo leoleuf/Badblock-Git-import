@@ -264,7 +264,7 @@ class VoteController extends Controller
             }
 
             $collection = $this->container->mongo->votes_logs;
-            $total = $collection->count(['timestamp' => ['$gte' => (1536163200 - 86400)]]);
+            $total = $collection->count(['timestamp' => ['$gte' => (1537027800 - 86400)]]);
             $command = str_replace("%player%", $pseudo, $winItem->command);
 
             // award log
@@ -302,7 +302,7 @@ class VoteController extends Controller
             $awardName = "Rien";
         }
 
-        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1536163200 - 86400)]]);
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1537027800 - 86400)]]);
 
         $total = max($total, 1);
         $proba = round(($dbh / $total) * 100, 2);
