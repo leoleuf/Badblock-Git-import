@@ -81,7 +81,7 @@
                 <a class="no-link" onclick="opentab(event, '5')"><i class="far fa-edit"></i> Grade</a>
             </li>
             <li class="user-tab">
-                <a class="no-link" onclick="opentab(event, '7')"><i class="fas fa-male"></i> Skins</a>
+                <a class="no-link" onclick="opentab(event, '8')"><i class="fas fa-trophy"></i> Récompenses</a>
             </li>
             
             <li class="user-tab">
@@ -547,29 +547,52 @@
             {% endif %}
         </section>
     </div>
-    <div id="7" class="tabcontent" style="display: none;">
+    <div id="8" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <br>
-                <h4 class="heading heading-bar"><span>Mon Skin</span></h4>
-                Bonjour, tu pourras configurer ton <strong>Skin</strong> très prochainement. Pour cela, il suffit de patienter quelques heures afin que nous mettions en place cette technologie.<br />
+                <h4 class="heading heading-bar"><span>Gagnez une récompense</span></h4>
+                Gagne des récompenses gratuitement en effectuant certaines actions assez rapidement pour t'acheter des objets, des grades ou des items.<br />
             <br />
+           <!-- <div class="five columns">
+                <div class="span">
+                    <h5 class="top0">Action Twitter 1 (50 points boutique)</h5>
+                    <h6 class="top0"><b>Étape 1 : Effectuer l'action</b></h6>
+                    <a href="https://twitter.com/intent/tweet?text=Rejoins-moi%20sur%20le%20Serveur%20Minecraft%20BadBlock%20d%C3%A8s%20maintenant%20!%20https://badblock.fr/launcher-minecraft%20@BadBlockGame" rel="nofollow" title="Effectuer l'action" target="_blank" class="button button-primary button-play" />
+                    Clique pour effectuer l'action
+                    </a>
+                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                    <form action="/dashboard/reward/twitter-1" method="post" name="recomp-twitter1">
+                        <input type="submit" class="button-primary espace-valider" value="Récupére ta récompense"/>
+                    </form>
+                </div>
+            </div>!-->
             <div class="five columns">
-                    <div class="span">
-                        <h4 class="top0">Téléverser mon Skin personnalisé</h4>
-                        <form action="/dashboard/uploadskin/" method="post" name="confirm-mdp">
-                            <label for="skin">Skin à envoyer (png/jpg/jpeg)</label><input type="file" name="skin" id="skin" placeholder="" />
-                            <br />
-                            <input type="submit" class="button-primary espace-valider" />
-                            </input>
-                        </form>
-                    </div>
+                <div class="span">
+                    <h5 class="top0">Action NameMC (50 points boutique)</h5>
+                    <h6 class="top0"><b>Étape 1 : Aimer le serveur</b></h6>
+                    <a href="https://fr.namemc.com/server/badblock.fr" rel="nofollow" title="Effectuer l'action" target="_blank" class="button button-primary button-play" />
+                    Aller sur la page pour aimer le serveur
+                    </a>
+                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                    <form action="/dashboard/reward/namemc" method="post" name="recomp-namemc">
+                        <input type="submit" class="button-primary espace-valider" value="Récupère ta récompense"/>
+                    </form>
                 </div>
-                <div class="five columns">
-                    <div class="span">
-                        <h4 class="top0">Skin actuel</h4>
-                        testorito !
-                    </div>
+            </div>
+            <!--<div class="five columns">
+                <div class="span">
+                    <h5 class="top0">Action les pages Twitter (50 points boutique)</h5>
+                    <h6 class="top0"><b>Étape 1 : Aimez les pages Twitter du Serveur et Admins</b></h6>
+                    <a href="https://twitter.com/BadBlockGame?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @BadBlockGame</a>
+                    <a href="https://twitter.com/xMalwareMC?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @xMalwareMC</a>
+                    <a href="https://twitter.com/micro_maniaque?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @micro_maniaque</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                    <form action="/dashboard/reward/twitter-2" method="post" name="recomp-twitter2">
+                        <input type="submit" class="button-primary espace-valider" value="Récupére ta récompense"/>
+                    </form>
                 </div>
+            </div>!-->
         </section>
         <br />
         <br />
@@ -585,6 +608,22 @@
                 $( document ).ready(function() {
 
                     $('[data-remodal-id=shop-succes]').remodal().open();
+                })
+            </script>
+        {% endfor %}
+    {% endif %}
+
+
+    {% if flash('reward_error') %}
+        {% for flash in flash('reward_error') %}
+            <div class="remodal modal-remodal " data-remodal-id="reward_error">
+                <button data-remodal-action="close" class="remodal-close"></button>
+                <h1>{{ flash }}</h1>
+            </div>
+            <script>
+                $( document ).ready(function() {
+
+                    $('[data-remodal-id=reward_error]').remodal().open();
                 })
             </script>
         {% endfor %}

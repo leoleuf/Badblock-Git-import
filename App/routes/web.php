@@ -105,12 +105,14 @@ $app->group('/dashboard', function (){
     $this->get('', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard');
     $this->get('/facture/{uid}', \App\Controllers\UserController::class . ':facture')->setName('dashboard-facture');
 
-    $this->post('/changeserverpassword/', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv');
-    $this->post('/changeserverconnect/', \App\Controllers\UserController::class . ':changeconnectmode')->setName('dashboard:changeconnectmode');
-    $this->post('/teamspeak/', \App\Controllers\UserController::class . ':teamspeak')->setName('dashboard:teamspeak');
+    $this->post('/changeserverpassword', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv');
+    $this->post('/changeserverconnect', \App\Controllers\UserController::class . ':changeconnectmode')->setName('dashboard:changeconnectmode');
+    $this->post('/teamspeak', \App\Controllers\UserController::class . ':teamspeak')->setName('dashboard:teamspeak');
 
 
     $this->post('/custom/{method}', \App\Controllers\UserController::class . ':custom')->setName('dashboard:custom');
+
+    $this->post('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
 
 })->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 

@@ -381,6 +381,109 @@ class UserController extends Controller
     }
 
 
+    /**
+     * Get UUID from Username
+     *
+     * @param  string       $username
+     * @return string|bool  UUID (without dashes) on success, false on failure
+     */
+    public function username_to_uuid($username) {
+        $profile = $this->username_to_profile($username);
+        if (is_array($profile) and isset($profile['id'])) {
+            return $profile['id'];
+        }
+        return false;
+    }
+    /**
+     * Get Profile (Username and UUID) from username
+     *
+     * @uses http://wiki.vg/Mojang_API#Username_-.3E_UUID_at_time
+     *
+     * @param  string      $username
+     * @return array|bool  Array with id and name, false on failure
+     */
+    public function username_to_profile($username) {
+        if ($this->is_valid_username($username)) {
+            $json = file_get_contents('https://api.mojang.com/users/profiles/minecraft/' . $username);
+            if (!empty($json)) {
+                $data = json_decode($json, true);
+                if (is_array($data) and !empty($data)) {
+                    return $data;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if string is a valid Minecraft username
+     *
+     * @param  string $string to check
+     * @return bool   Whether username is valid or not
+     */
+    public function is_valid_username($string) {
+        return is_string($string) and strlen($string) >= 2 and strlen($string) <= 16 and ctype_alnum(str_replace('_', '', $string));
+    }
+
+    public function rewardTwitter()
+    {
+
+    }
+
+    public function rewardNameMC(RequestInterface $request, ResponseInterface $response, $method)
+    {
+        $n = $this->session->getProfile('username')['username'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        if ($user == null)
+        {
+            return;
+        }
+
+        $f = @file_get_contents("https://api.namemc.com/server/badblock.fr/likes?profile=".$this->username_to_uuid($n));
+
+        if ($f !== 'true')
+        {
+            $this->flash->addMessage('setting_error', "Tu dois aimer le serveur sur NameMC avant de récuperer ta récompense. Si tu es cracké, tu ne peux pas récupérer de récompense NameMC.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        if (isset($user['recompnamemc']) && $user['recompnamemc'])
+        {
+            $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense NameMC.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        $this->container->mongoServer->players->updateOne(["name" => strtolower($this->session->getProfile('username')['username'])],['$set' => ["recompnamemc" => true]]);
+
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+
+        $cu = 50;
+
+        if ($money == null){
+            $data = [
+                "uniqueId" => $user['uniqueId'],
+                "points" => $cu
+            ];
+
+            $this->container->session->set('points', $cu);
+            $this->container->mongo->fund_list->insertOne($data);
+
+        }else{
+            $money['points'] = $money['points'] + $cu;
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            $this->container->session->set('points', $money['points']);
+        }
+
+        $this->flash->addMessage('setting_error', "Ta récompense NameMC a été donné. Tu viens de gagner 50 points boutique.");
+        //redirect to last page
+        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+    }
+
     //gestion du grade custom
     public function custom(RequestInterface $request, ResponseInterface $response, $method){
         //Formatting
