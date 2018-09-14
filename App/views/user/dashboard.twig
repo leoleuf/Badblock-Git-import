@@ -597,17 +597,18 @@
         <br />
         <br />
     </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 
     {% if flash('setting_error') %}
         {% for flash in flash('setting_error') %}
-            <div class="remodal modal-remodal " data-remodal-id="shop-succes">
+            <div class="remodal modal-remodal " data-remodal-id="errormodal">
                 <button data-remodal-action="close" class="remodal-close"></button>
                 <h1>{{ flash }}</h1>
             </div>
             <script>
                 $( document ).ready(function() {
 
-                    $('[data-remodal-id=shop-succes]').remodal().open();
+                    $('[data-remodal-id=errormodal]').remodal().open();
                 })
             </script>
         {% endfor %}
@@ -616,20 +617,19 @@
 
     {% if flash('reward_error') %}
         {% for flash in flash('reward_error') %}
-            <div class="remodal modal-remodal " data-remodal-id="reward_error">
+            <div class="remodal modal-remodal " data-remodal-id="errormodal">
                 <button data-remodal-action="close" class="remodal-close"></button>
                 <h1>{{ flash }}</h1>
             </div>
             <script>
                 $( document ).ready(function() {
 
-                    $('[data-remodal-id=reward_error]').remodal().open();
+                    $('[data-remodal-id=errormodal]').remodal().open();
                 })
             </script>
         {% endfor %}
     {% endif %}
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 
 
 {% endblock %}
