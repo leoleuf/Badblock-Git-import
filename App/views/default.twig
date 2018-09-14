@@ -114,7 +114,7 @@
 
 <div class="topnav" id="myTopnav">
     <div class="container">
-        <a href="{{ path_for('home') }}"
+            <a href="{{ path_for('home') }}"
            class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
@@ -394,7 +394,7 @@
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
 </script>!-->
-<script src="https://cdn.badblock.fr/wd/js/app.min.js"></script>
+<script src="dist/js/app.js"></script>
 <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
 {% set randomPassword = [] %}
@@ -491,6 +491,30 @@
         });
     </script>
 
+
+<script type="text/javascript">
+    function showMenu(y)
+    {
+        var x = document.getElementById('navbar');
+
+        if(x.style.display === "none")
+        {
+            x.style.display = "block";
+            x.classList.remove("showOut");
+            x.classList.add("showIn");
+            y.classList.toggle("change");
+        }
+        else
+        {
+            setTimeout(function(){
+                x.style.display = "none";
+            }, 350);
+            x.classList.remove("showIn");
+            x.classList.add("showOut");
+            y.classList.toggle("change");
+        }
+    }
+</script>
 
 </body>
 </html>

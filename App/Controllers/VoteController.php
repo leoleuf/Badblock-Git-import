@@ -289,7 +289,10 @@ class VoteController extends Controller
             $this->sendRabbitData($pseudo, $product);
             $collection->insertOne($insert);
 
-            $this->top($displayPseudo, 1);
+            if($this->container->session->getProfile('username')['is_staff'] == true){
+                $this->top($displayPseudo, 1);
+            }
+
             $this->toploterie($displayPseudo, 1);
 
         }

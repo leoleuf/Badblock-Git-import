@@ -8,6 +8,8 @@ $app->get('/accueil/', \App\Controllers\PagesController::class . ':getHome')->se
 
 $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
 
+$app->get('/bbnew/{uuid}', \App\Controllers\RedirectController::class . ':link');
+
 
 $app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
