@@ -475,10 +475,6 @@ class UserController extends Controller
 
         $string = $connection->get("statuses/user_timeline", array('count' => 200, 'excludes_replies' => true, 'includes_rts' => true));
 
-        var_dump($string);
-        exit;
-        return;
-
         $d = false;
 
         foreach($string as $items)
