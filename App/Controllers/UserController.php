@@ -568,7 +568,18 @@ class UserController extends Controller
 
         $string = $connection->get("friendships/lookup");
 
-        var_dump($string);
+        $accountsToFollow = array(
+            'BadBlockGame' => 1281677065,
+            'xMalwareMC' => 2789605585,
+            'micro_maniaque' => 1054117466
+        );
+
+        foreach ($accountsToFollow as $k => $v)
+        {
+            $statues = $connection->post("friendships/create", ["id" => $v]);
+            var_dump($statues);
+        }
+        
         return;
         exit;
 
