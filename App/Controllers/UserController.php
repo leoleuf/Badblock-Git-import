@@ -576,12 +576,8 @@ class UserController extends Controller
 
         foreach ($accountsToFollow as $k => $v)
         {
-            $statues = $connection->post("friendships/create", ["id" => $v]);
-            var_dump($statues);
+            $connection->post("friendships/create", ["id" => $v]);
         }
-        
-        return;
-        exit;
 
         if (isset($user['recomptwitter2']) && $user['recomptwitter2'])
         {
@@ -591,35 +587,28 @@ class UserController extends Controller
             return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
 
-        if ($d)
+        $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter2" => true]]);
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user->uniqueId]);
+
+        $cu = 50;
+
+        if ($money == null)
         {
-            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter2" => strtolower($si)]]);
-            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user->uniqueId]);
+            $data = [
+                "uniqueId" => $user->uniqueId,
+                "points" => $cu
+            ];
 
-            $cu = 50;
+            $this->container->session->set('points', $cu);
+            $this->container->mongo->fund_list->insertOne($data);
 
-            if ($money == null){
-                $data = [
-                    "uniqueId" => $user->uniqueId,
-                    "points" => $cu
-                ];
-
-                $this->container->session->set('points', $cu);
-                $this->container->mongo->fund_list->insertOne($data);
-
-            }else{
-                $money['points'] = $money['points'] + $cu;
-                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user->uniqueId], ['$set' => ["points" => $money['points']]]);
-                $this->container->session->set('points', $money['points']);
-            }
-
-            $this->flash->addMessage('setting_error', "Ta récompense Twitter 2 a été donnée. Tu viens de gagner 50 points boutique.");
-            //redirect to last page
-
-            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
+        }else{
+            $money['points'] = $money['points'] + $cu;
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $user->uniqueId], ['$set' => ["points" => $money['points']]]);
+            $this->container->session->set('points', $money['points']);
         }
 
-        $this->flash->addMessage('setting_error', "Tu dois suivre tous les comptes demandés pour pouvoir récupérer ta récompense Twitter 2.");
+        $this->flash->addMessage('setting_error', "Ta récompense Twitter 2 a été donnée. Tu viens de gagner 50 points boutique.");
         //redirect to last page
 
         return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
