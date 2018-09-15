@@ -502,7 +502,7 @@ class UserController extends Controller
             $this->flash->addMessage('setting_error', "Ce compte Twitter a déjà été utilisé.");
             //redirect to last page
 
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
 
         if ($d)
@@ -530,13 +530,13 @@ class UserController extends Controller
             $this->flash->addMessage('setting_error', "Ta récompense Twitter 1 a été donnée. Tu viens de gagner 50 points boutique.");
             //redirect to last page
 
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
 
         $this->flash->addMessage('setting_error', "Tu dois partager le tweet pour pouvoir récupérer ta récompense Twitter 1.");
         //redirect to last page
 
-        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
     }
 
     public function endsWith($haystack, $needle)
