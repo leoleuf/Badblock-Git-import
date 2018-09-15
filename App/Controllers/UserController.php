@@ -468,7 +468,7 @@ class UserController extends Controller
             $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
             //redirect to last page
 
-            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal');
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
         $string = $connection->get("statuses/user_timeline", array('count' => 200, 'excludes_replies' => true, 'includes_rts' => true));
 
