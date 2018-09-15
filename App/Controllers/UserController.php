@@ -492,7 +492,7 @@ class UserController extends Controller
             $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
             //redirect to last page
 
-            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal');
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
 
         $sbo = $this->container->mongoServer->players->findOne(['recomptwitter1' => "true"]);
