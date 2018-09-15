@@ -493,7 +493,7 @@ class UserController extends Controller
 
         if ($d)
         {
-            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter1" => strtolower($si)]]);
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter1" => true]]);
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user->uniqueId]);
 
             $cu = 50;
