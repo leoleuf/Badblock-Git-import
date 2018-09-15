@@ -451,18 +451,11 @@ class UserController extends Controller
             return;
         }
 
-        $settings = array(
-            'oauth_access_token' => "2789605585-Q2fu8VxOb7HNUevAHJbuFkQmy7cRLcdW05JMJsN",
-            'oauth_access_token_secret' => "crWOKBIcQojoJzdSBXa5bFzu6NGMZ55gtJStdRf9NzR84",
-            'consumer_key' => $consumer_key,
-            'consumer_secret' => $consumer_secret
-        );
-
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
         $params = array("oauth_verifier" => $_GET['oauth_verifier'], "oauth_token" => $_GET['oauth_token']);
 
         $access_token = $connection->oauth("oauth/access_token", $params);
-		$connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
         $content = $connection->get("account/verify_credentials");
 
         if ($content != null && $content->errors != null)
@@ -527,6 +520,95 @@ class UserController extends Controller
         }
 
         $this->flash->addMessage('setting_error', "Tu dois partager le tweet pour pouvoir récupérer ta récompense Twitter 1.");
+        //redirect to last page
+
+        return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
+    }
+
+
+    public function rewardTwitter2(RequestInterface $request, ResponseInterface $response, $method)
+    {
+        $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
+        $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
+
+        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
+        {
+            $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+            $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-2"));
+            $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
+            $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
+            $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
+            return $this->redirect($response, $url);
+            return;
+            exit;
+        }
+
+        $n = $this->session->getProfile('username')['username'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        if ($user == null)
+        {
+            return;
+        }
+
+        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+        $params = array("oauth_verifier" => $_GET['oauth_verifier'], "oauth_token" => $_GET['oauth_token']);
+
+        $access_token = $connection->oauth("oauth/access_token", $params);
+        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $content = $connection->get("account/verify_credentials");
+
+        if ($content != null && $content->errors != null)
+        {
+            $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
+            //redirect to last page
+
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
+        }
+
+        $string = $connection->get("friendships/lookup");
+
+        var_dump($string);
+        return;
+        exit;
+
+        if (isset($user['recomptwitter2']) && $user['recomptwitter2'])
+        {
+            $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 2.");
+            //redirect to last page
+
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
+        }
+
+        if ($d)
+        {
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter2" => strtolower($si)]]);
+            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user->uniqueId]);
+
+            $cu = 50;
+
+            if ($money == null){
+                $data = [
+                    "uniqueId" => $user->uniqueId,
+                    "points" => $cu
+                ];
+
+                $this->container->session->set('points', $cu);
+                $this->container->mongo->fund_list->insertOne($data);
+
+            }else{
+                $money['points'] = $money['points'] + $cu;
+                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user->uniqueId], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
+            }
+
+            $this->flash->addMessage('setting_error', "Ta récompense Twitter 2 a été donnée. Tu viens de gagner 50 points boutique.");
+            //redirect to last page
+
+            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
+        }
+
+        $this->flash->addMessage('setting_error', "Tu dois suivre tous les comptes demandés pour pouvoir récupérer ta récompense Twitter 2.");
         //redirect to last page
 
         return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
