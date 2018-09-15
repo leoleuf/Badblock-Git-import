@@ -218,7 +218,7 @@
             <div class="six columns">
                 <div class="span">
                     <h4 class="top0">Changer mon mot de passe serveur</h4>
-                    <form action="/dashboard/changeserverpassword/" method="post" name="confirm-mdp">
+                    <form action="/dashboard/changeserverpassword" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre nouveau mot de passe</label><input type="password" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe" />
                         <input class="espace-valider"type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe" />
                         <br />
@@ -228,7 +228,7 @@
                 </div>
                 <div class="span">
                     <h4 class="top0">Relier son Compte TeamSpeak <a href="/" title="Tutoriel pour relier son compte TeamSpeak" style="text-decoration: none; font-size: 15px;"><i class="icon icon-bookmarkalt"></i><span>Tutoriel</span></a></h4>
-                    <form action="/dashboard/teamspeak/" method="post" name="confirm-mdp">
+                    <form action="/dashboard/teamspeak" method="post" name="confirm-mdp">
                         <label for="newpassword">Entrez votre ID TeamSpeak</label>
                         <input type="text" name="idts" id="idts" placeholder="[URL=client]...[/URL]" />
                         <br />
@@ -240,7 +240,7 @@
             <div class="six columns">
                 <div class="span">
                     <h4 class="top0">Changer mon mode de connexion</h4>
-                    <form action="/dashboard/changeserverconnect/" method="post" name="confirm-mdp">
+                    <form action="/dashboard/changeserverconnect" method="post" name="confirm-mdp">
                         {% if user.onlineMode %}
                             <input type="radio" name="selectmode" value="premium" id="rb" checked>Connexion premium
                             <input type="radio" name="selectmode" value="crack" id="rb">Connexion cracké
