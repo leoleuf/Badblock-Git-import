@@ -428,6 +428,21 @@ class UserController extends Controller
 
     public function rewardTwitter1(RequestInterface $request, ResponseInterface $response, $method)
     {
+        $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
+        $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
+
+        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['verifier']))
+        {
+            $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+            $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-1"));
+            $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
+            $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
+            $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
+            header('Location: ' . $url);
+            return;
+            exit;
+        }
+
         $n = $this->session->getProfile('username')['username'];
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
 
@@ -447,18 +462,16 @@ class UserController extends Controller
         $settings = array(
             'oauth_access_token' => "2789605585-Q2fu8VxOb7HNUevAHJbuFkQmy7cRLcdW05JMJsN",
             'oauth_access_token_secret' => "crWOKBIcQojoJzdSBXa5bFzu6NGMZ55gtJStdRf9NzR84",
-            'consumer_key' => "JgQHyz4RwedCWVdyUD5VLM8Rw",
-            'consumer_secret' => "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy"
+            'consumer_key' => $consumer_key,
+            'consumer_secret' => $consumer_secret
         );
 
-        $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-        $requestMethod = "GET";
-        $si = htmlspecialchars($_POST['twittername']);
-        $getfield = "?screen_name=$si&count=200&exclude_replies=true&include_rts=false";
-        $twitter = new \App\Twitter\TwitterAPIExchange($settings);
-        $string = json_decode($twitter->setGetfield($getfield)
-            ->buildOauth($url, $requestMethod)
-            ->performRequest(),$assoc = TRUE);
+        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+        $params = array("oauth_verifier" => $_GET['oauth_verifier'], "oauth_token" => $_GET['oauth_token']);
+
+        $access_token = $connection->oauth("oauth/access_token", $params);
+		$connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $string = $connection->get("statuses/user_timeline", array('count' => 200, 'excludes_replies' => true, 'includes_rts' => true));
 
         $d = false;
 
