@@ -6,6 +6,7 @@ use function DusanKasan\Knapsack\isEmpty;
 use function DusanKasan\Knapsack\slice;
 use MongoDB\Exception\Exception;
 use Monolog\Handler\Mongo;
+use App\Twitter\TwitterAPIExchange;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -425,9 +426,121 @@ class UserController extends Controller
         return is_string($string) and strlen($string) >= 2 and strlen($string) <= 16 and ctype_alnum(str_replace('_', '', $string));
     }
 
-    public function rewardTwitter()
+    public function rewardTwitter1(RequestInterface $request, ResponseInterface $response, $method)
     {
+        $n = $this->session->getProfile('username')['username'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
 
+        if ($user == null)
+        {
+            return;
+        }
+
+        if (!isset($_POST['twittername']))
+        {
+            $this->flash->addMessage('setting_error', "Tu dois mettre ton nom Twitter avant de valider.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        $settings = array(
+            'oauth_access_token' => "2789605585-Q2fu8VxOb7HNUevAHJbuFkQmy7cRLcdW05JMJsN",
+            'oauth_access_token_secret' => "crWOKBIcQojoJzdSBXa5bFzu6NGMZ55gtJStdRf9NzR84",
+            'consumer_key' => "JgQHyz4RwedCWVdyUD5VLM8Rw",
+            'consumer_secret' => "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy"
+        );
+
+        $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
+        $requestMethod = "GET";
+        $si = htmlspecialchars($_POST['twittername']);
+        $getfield = "?screen_name=$si&count=200&exclude_replies=true&include_rts=false";
+        $twitter = new \App\Twitter\TwitterAPIExchange($settings);
+        $string = json_decode($twitter->setGetfield($getfield)
+            ->buildOauth($url, $requestMethod)
+            ->performRequest(),$assoc = TRUE);
+
+        $d = false;
+
+        foreach($string as $items)
+        {
+            if (!isset($items["text"]))
+            {
+                continue;
+            }
+
+            if ($this->startswith($items["text"], "Rejoins-moi sur le Serveur Minecraft BadBlock dès maintenant ! https://") && $this->endswith($items["text"], " @BadBlockGame"))
+            {
+                $d = true;
+            }
+        }
+
+        if (isset($user['recomptwitter1']) && $user['recomptwitter1'] != null && !empty($user['recomptwitter1']))
+        {
+            $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        $sbo = $this->container->mongoServer->players->findOne(['recomptwitter1' => strtolower($si)]);
+
+        if ($sbo != null)
+        {
+            $this->flash->addMessage('setting_error', "Ce compte Twitter a déjà été utilisé.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        if ($d)
+        {
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["recomptwitter1" => strtolower($si)]]);
+            $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user->uniqueId]);
+
+            $cu = 50;
+
+            if ($money == null){
+                $data = [
+                    "uniqueId" => $user->uniqueId,
+                    "points" => $cu
+                ];
+
+                $this->container->session->set('points', $cu);
+                $this->container->mongo->fund_list->insertOne($data);
+
+            }else{
+                $money['points'] = $money['points'] + $cu;
+                $this->container->mongo->fund_list->updateOne(["uniqueId" => $user->uniqueId], ['$set' => ["points" => $money['points']]]);
+                $this->container->session->set('points', $money['points']);
+            }
+
+            $this->flash->addMessage('setting_error', "Ta récompense Twitter 1 a été donnée. Tu viens de gagner 50 points boutique.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
+
+        $this->flash->addMessage('setting_error', "Tu dois partager le tweet pour pouvoir récupérer ta récompense Twitter 1.");
+        //redirect to last page
+
+        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+    }
+
+    public function endsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        if ($length == 0) {
+            return true;
+        }
+
+        return (substr($haystack, -$length) === $needle);
+    }
+
+    public function startsWith($haystack, $needle)
+    {
+        $length = strlen($needle);
+        return (substr($haystack, 0, $length) === $needle);
     }
 
     public function rewardNameMC(RequestInterface $request, ResponseInterface $response, $method)

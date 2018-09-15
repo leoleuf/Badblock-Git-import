@@ -115,6 +115,7 @@ $app->group('/dashboard', function (){
     $this->post('/custom/{method}', \App\Controllers\UserController::class . ':custom')->setName('dashboard:custom');
 
     $this->post('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
+    $this->post('/reward/twitter-1', \App\Controllers\UserController::class . ':rewardTwitter1')->setName('dashboard:rewardTwitter1');
 
 })->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 
