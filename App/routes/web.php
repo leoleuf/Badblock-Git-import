@@ -114,11 +114,9 @@ $app->group('/dashboard', function (){
 
     $this->post('/custom/{method}', \App\Controllers\UserController::class . ':custom')->setName('dashboard:custom');
 
-    $this->post('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
+    $this->get('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
     $this->get('/reward/twitter-1', \App\Controllers\UserController::class . ':rewardTwitter1')->setName('dashboard:rewardTwitter1');
-    $this->post('/reward/twitter-1', \App\Controllers\UserController::class . ':rewardTwitter1')->setName('dashboard:rewardTwitter1-2');
     $this->get('/reward/twitter-2', \App\Controllers\UserController::class . ':rewardTwitter2')->setName('dashboard:rewardTwitter2');
-    $this->post('/reward/twitter-2', \App\Controllers\UserController::class . ':rewardTwitter2')->setName('dashboard:rewardTwitter2-2');
 
 })->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 
