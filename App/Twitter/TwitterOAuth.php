@@ -373,9 +373,9 @@ class TwitterOAuth extends Config
             CURLOPT_USERAGENT => $this->userAgent,
         ];
 
-        if ($this->useCAFile()) {
+        /*if ($this->useCAFile()) {
             $options[CURLOPT_CAINFO] = __DIR__ . DIRECTORY_SEPARATOR . 'cacert.pem';
-        }
+        }*/
 
         if($this->gzipEncoding) {
             $options[CURLOPT_ENCODING] = 'gzip';

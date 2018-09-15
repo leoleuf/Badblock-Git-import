@@ -431,14 +431,14 @@ class UserController extends Controller
         $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
         $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
 
-        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['verifier']))
+        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
         {
             $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
             $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-1"));
             $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
             $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
             $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
-            header('Location: ' . $url);
+            return $this->redirect($response, $url);
             return;
             exit;
         }
@@ -449,14 +449,6 @@ class UserController extends Controller
         if ($user == null)
         {
             return;
-        }
-
-        if (!isset($_POST['twittername']))
-        {
-            $this->flash->addMessage('setting_error', "Tu dois mettre ton nom Twitter avant de valider.");
-            //redirect to last page
-
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
         }
 
         $settings = array(
@@ -471,24 +463,31 @@ class UserController extends Controller
 
         $access_token = $connection->oauth("oauth/access_token", $params);
 		$connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $content = $connection->get("account/verify_credentials");
+        if ($content != null && $content->errors != null) {
+            $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
+            //redirect to last page
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+        }
         $string = $connection->get("statuses/user_timeline", array('count' => 200, 'excludes_replies' => true, 'includes_rts' => true));
 
         $d = false;
 
         foreach($string as $items)
         {
-            if (!isset($items["text"]))
+            if (!isset($items->text))
             {
                 continue;
             }
 
-            if ($this->startswith($items["text"], "Rejoins-moi sur le Serveur Minecraft BadBlock dès maintenant ! https://") && $this->endswith($items["text"], " @BadBlockGame"))
+            if ($this->startswith($items->text, "Rejoins-moi sur le Serveur Minecraft BadBlock dès maintenant ! https://") && $this->endswith($items->text, " @BadBlockGame"))
             {
                 $d = true;
             }
         }
 
-        if (isset($user['recomptwitter1']) && $user['recomptwitter1'] != null && !empty($user['recomptwitter1']))
+        if (isset($user['recomptwitter1']) && $user['recomptwitter1'])
         {
             $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
             //redirect to last page
@@ -496,7 +495,7 @@ class UserController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
         }
 
-        $sbo = $this->container->mongoServer->players->findOne(['recomptwitter1' => strtolower($si)]);
+        $sbo = $this->container->mongoServer->players->findOne(['recomptwitter1' => "true"]);
 
         if ($sbo != null)
         {
