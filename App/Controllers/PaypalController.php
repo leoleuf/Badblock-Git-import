@@ -38,7 +38,7 @@ class PaypalController extends Controller
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';              // Redirection en cas d'annulation
         $produit['Paypal']['Prix'] = $offer['price'];                                // Prix de votre produit (doit etre en format XX.X, ex: 60.0 ou 19.99)
         $produit['Paypal']['OfferID'] = $id;                        // Donnez un id unique à votre offre sans espaces
-        $produit['Paypal']['Offer'] = 'Rechargement Points Boutique';                    // Nom de votre produit( sera afficher sur paypal )
+        $produit['Paypal']['Offer'] = $name  . ' - Rechargement Points Boutique ' . $offer['points'];                    // Nom de votre produit( sera afficher sur paypal )
         $produit['Paypal']['Offer_desc'] = 'Rechargement de '. $offer['points'] . 'points boutique';    // Offre de votre produit.
         $produit['Paypal']['Currency'] = 'EUR';                           // Code de votre monnaie( en majuscule ).
         $produit['Paypal']['QTY'] = 1;                                    // Quantité( 1 par défault )( Le prix sera multiplié par la quantité).
