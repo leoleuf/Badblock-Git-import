@@ -464,13 +464,20 @@ class UserController extends Controller
         $access_token = $connection->oauth("oauth/access_token", $params);
 		$connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
         $content = $connection->get("account/verify_credentials");
-        if ($content != null && $content->errors != null) {
+
+        if ($content != null && $content->errors != null)
+        {
             $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
             //redirect to last page
 
             return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
         }
+
         $string = $connection->get("statuses/user_timeline", array('count' => 200, 'excludes_replies' => true, 'includes_rts' => true));
+
+        var_dump($string);
+        exit;
+        return;
 
         $d = false;
 
@@ -490,16 +497,6 @@ class UserController extends Controller
         if (isset($user['recomptwitter1']) && $user['recomptwitter1'])
         {
             $this->flash->addMessage('setting_error', "Tu as déjà reçu ta récompense Twitter 1.");
-            //redirect to last page
-
-            return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
-        }
-
-        $sbo = $this->container->mongoServer->players->findOne(['recomptwitter1' => "true"]);
-
-        if ($sbo != null)
-        {
-            $this->flash->addMessage('setting_error', "Ce compte Twitter a déjà été utilisé.");
             //redirect to last page
 
             return $this->redirect($response, "https://badblock.fr/dashboard#error-modal");
