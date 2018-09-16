@@ -431,18 +431,6 @@ class UserController extends Controller
         $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
         $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
 
-        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
-        {
-            $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
-            $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-1"));
-            $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
-            $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
-            $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
-            return $this->redirect($response, $url);
-            return;
-            exit;
-        }
-
         $n = $this->session->getProfile('username')['username'];
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
 
@@ -451,8 +439,33 @@ class UserController extends Controller
             return;
         }
 
+        $oauth_verifier = "";
+        $oauth_token = "";
+
+        if (!isset($user['oauth_verifier']) && !isset($_GET['oauth_token']))
+        {
+            if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
+            {
+                $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+                $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-1"));
+                $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
+                $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
+                $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
+                return $this->redirect($response, $url);
+            }
+
+            $oauth_verifier = htmlspecialchars($_GET['oauth_verifier']);
+            $oauth_token = htmlspecialchars($_GET['oauth_token']);
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token]]);
+        }
+        else
+        {
+            $oauth_verifier = htmlspecialchars($user['oauth_verifier']);
+            $oauth_token = htmlspecialchars($user['oauth_token']);
+        }
+
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
-        $params = array("oauth_verifier" => $_GET['oauth_verifier'], "oauth_token" => $_GET['oauth_token']);
+        $params = array("oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token);
 
         $access_token = $connection->oauth("oauth/access_token", $params);
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
@@ -531,16 +544,29 @@ class UserController extends Controller
         $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
         $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
 
-        if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
+        $oauth_verifier = "";
+        $oauth_token = "";
+
+        if (!isset($user['oauth_verifier']) && !isset($_GET['oauth_token']))
         {
-            $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
-            $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-2"));
-            $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
-            $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
-            $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
-            return $this->redirect($response, $url);
-            return;
-            exit;
+            if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
+            {
+                $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+                $temporary_credentials = $connection->oauth('oauth/request_token', array("oauth_callback" => "https://badblock.fr/dashboard/reward/twitter-2"));
+                $_SESSION['oauth_token'] = $temporary_credentials['oauth_token'];
+                $_SESSION['oauth_token_secret'] = $temporary_credentials['oauth_token_secret'];
+                $url = $connection->url("oauth/authorize", array("oauth_token" => $temporary_credentials['oauth_token']));
+                return $this->redirect($response, $url);
+            }
+
+            $oauth_verifier = htmlspecialchars($_GET['oauth_verifier']);
+            $oauth_token = htmlspecialchars($_GET['oauth_token']);
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token]]);
+        }
+        else
+        {
+            $oauth_verifier = htmlspecialchars($user['oauth_verifier']);
+            $oauth_token = htmlspecialchars($user['oauth_token']);
         }
 
         $n = $this->session->getProfile('username')['username'];
@@ -552,7 +578,7 @@ class UserController extends Controller
         }
 
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
-        $params = array("oauth_verifier" => $_GET['oauth_verifier'], "oauth_token" => $_GET['oauth_token']);
+        $params = array("oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token);
 
         $access_token = $connection->oauth("oauth/access_token", $params);
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
