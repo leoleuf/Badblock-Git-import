@@ -428,9 +428,6 @@ class UserController extends Controller
 
     public function rewardTwitter1(RequestInterface $request, ResponseInterface $response, $method)
     {
-        $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
-        $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
-
         $n = $this->session->getProfile('username')['username'];
         $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
 
@@ -438,6 +435,9 @@ class UserController extends Controller
         {
             return;
         }
+
+        $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
+        $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
 
         $oauth_verifier = "";
         $oauth_token = "";
@@ -541,6 +541,14 @@ class UserController extends Controller
 
     public function rewardTwitter2(RequestInterface $request, ResponseInterface $response, $method)
     {
+        $n = $this->session->getProfile('username')['username'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        if ($user == null)
+        {
+            return;
+        }
+
         $consumer_key = "JgQHyz4RwedCWVdyUD5VLM8Rw";
         $consumer_secret = "EFvvPXbwd5ANxlKysETsvkq8tJGFxZ43xp304ou9zuc7igPtNy";
 
@@ -567,14 +575,6 @@ class UserController extends Controller
         {
             $oauth_verifier = htmlspecialchars($user['oauth_verifier']);
             $oauth_token = htmlspecialchars($user['oauth_token']);
-        }
-
-        $n = $this->session->getProfile('username')['username'];
-        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
-
-        if ($user == null)
-        {
-            return;
         }
 
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
