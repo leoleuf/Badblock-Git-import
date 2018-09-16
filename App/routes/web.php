@@ -3,8 +3,16 @@
 // Route Principales
 
 $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('home');
-$app->get('/accueil', \App\Controllers\PagesController::class . ':getHome')->setName('home-old');
-$app->get('/accueil/', \App\Controllers\PagesController::class . ':getHome')->setName('home-old2');
+
+$app->get('/accueil', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/accueil/', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
 
 $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
 
@@ -97,6 +105,7 @@ $app->group('/decouvrez', function (){
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 
+// Avoid duplicate content
 $app->get('/launcher-minecraft/windows', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
@@ -110,6 +119,23 @@ $app->get('/launcher-minecraft/mac', function($request, $response)
 $app->get('/launcher-minecraft/linux', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+// accessible index page
+
+$app->get('/index', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/index.php', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/index.html', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
 });
 
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
