@@ -96,9 +96,22 @@ $app->group('/decouvrez', function (){
 });
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
-$app->get('/launcher-minecraft/windows', \App\Controllers\PagesController::class . ':getPlayWindows')->setName('launcher-minecraft-windows');
-$app->get('/launcher-minecraft/mac', \App\Controllers\PagesController::class . ':getPlayMac')->setName('launcher-minecraft-mac');
-$app->get('/launcher-minecraft/linux', \App\Controllers\PagesController::class . ':getPlayLinux')->setName('launcher-minecraft-linux');
+
+$app->get('/launcher-minecraft/windows', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+$app->get('/launcher-minecraft/mac', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+$app->get('/launcher-minecraft/linux', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
 $app->get('/info', \App\Controllers\PagesController::class . ':getInfo')->setName('info');
