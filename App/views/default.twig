@@ -117,13 +117,15 @@
 <div class="header">
     <div class="container">
         <div class="header-container">
-            <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
-                <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+            <div class="header-logo-container no-link" title="Accueil BadBlock">
+                <a href="{{ path_for('home') }}">
+                   <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+                </a>
                 <div class="">
                     {% if h2 is defined %}<h2 class="header-title">BadBlock</h2>{% else %}<h1 class="header-title">BadBlock</h1>{% endif %}
                     <h2 class="header-sub-title">{{ mc_ip }}</h2>
                 </div>
-            </a>
+            </div>
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
