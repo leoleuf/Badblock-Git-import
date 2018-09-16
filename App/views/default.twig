@@ -436,16 +436,52 @@
 
     });
 </script>
-<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async></script>
+
+<!-- très très très très très très expérimental !-->
+<script async defer>
+    var cssdefer = document.createElement('link');
+    cssdefer.rel = 'stylesheet';
+    cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
+    cssdefer.type = 'text/css';
+
+    var deferl = document.getElementsByTagName('link')[0];
+    deferl.parentNode.insertBefore(cssdefer, deferl);
+
+    var cssdefer = document.createElement('link');
+    cssdefer.rel = 'stylesheet';
+    cssdefer.href = 'https://cdn.badblock.fr/wd/css/global.css';
+    cssdefer.type = 'text/css';
+
+    var deferl = document.getElementsByTagName('link')[0];
+    deferl.parentNode.insertBefore(cssdefer, deferl);
+
+    var cssdefer = document.createElement('link');
+    cssdefer.rel = 'stylesheet';
+    cssdefer.href = 'https://cdn.badblock.fr/wd/css/xmalware.css';
+    cssdefer.type = 'text/css';
+
+    var deferl = document.getElementsByTagName('link')[0];
+    deferl.parentNode.insertBefore(cssdefer, deferl);
+
+    var cssdefer = document.createElement('link');
+    cssdefer.rel = 'stylesheet';
+    cssdefer.href = 'https://use.fontawesome.com/releases/v5.3.1/css/all.css';
+    cssdefer.type = 'text/css';
+
+    var deferl = document.getElementsByTagName('link')[0];
+    deferl.parentNode.insertBefore(cssdefer, deferl);
+</script>
+
+<noscript>
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
 
 
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</noscript>
 
-
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
