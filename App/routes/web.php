@@ -111,6 +111,12 @@ $app->get('/launcher-minecraft/windows', function($request, $response)
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
 });
 
+// temp
+$app->get('/launcher', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
 $app->get('/launcher-minecraft/mac', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
