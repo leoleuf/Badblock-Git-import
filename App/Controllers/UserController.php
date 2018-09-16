@@ -597,7 +597,9 @@ class UserController extends Controller
         $accountsToFollow = array(
             'BadBlockGame' => 1281677065,
             'xMalwareMC' => 2789605585,
-            'micro_maniaque' => 1054117466
+            'micro_maniaque' => 1054117466,
+            'DreaamsMC' => 2393002577,
+            'Latitchips' => 4773556581
         );
 
         foreach ($accountsToFollow as $k => $v)
