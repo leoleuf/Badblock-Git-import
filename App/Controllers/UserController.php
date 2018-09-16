@@ -569,14 +569,18 @@ class UserController extends Controller
                 return $this->redirect($response, $url);
             }
 
-            $oauth_verifier = htmlspecialchars($_GET['oauth_verifier']);
-            $oauth_token = htmlspecialchars($_GET['oauth_token']);
+            $oauth_verifier = $_GET['oauth_verifier'];
+            $oauth_token = $_GET['oauth_token'];
+
+            var_dump($_GET);
+            exit;
+            return;
             $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token]]);
         }
         else
         {
-            $oauth_verifier = htmlspecialchars($user['oauth_verifier']);
-            $oauth_token = htmlspecialchars($user['oauth_token']);
+            $oauth_verifier = $user['oauth_verifier'];
+            $oauth_token = $user['oauth_token'];
         }
 
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
