@@ -441,9 +441,13 @@ class UserController extends Controller
 
         $oauth_verifier = "";
         $oauth_token = "";
+        $token = "";
+        $secret = "";
 
-        if (!isset($user['oauth_verifier']) OR !isset($user['oauth_token']) OR empty($user['oauth_verifier'])
-            OR empty($user['oauth_token']))
+        if (!isset($user['oauth_verifier']) OR !isset($user['oauth_token']) OR
+            !isset($user['token']) OR !isset($user['secret']) OR
+            empty($user['oauth_verifier'])
+            OR empty($user['oauth_token']) OR empty($user['token']) OR empty($user['secret']))
         {
             if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
             {
@@ -455,21 +459,29 @@ class UserController extends Controller
                 return $this->redirect($response, $url);
             }
 
-            $oauth_verifier = htmlspecialchars($_GET['oauth_verifier']);
-            $oauth_token = htmlspecialchars($_GET['oauth_token']);
-            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token]]);
+            $oauth_verifier = $_GET['oauth_verifier'];
+            $oauth_token = $_GET['oauth_token'];
+
+            $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
+            $params = array("oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token);
+            $access_token = $connection->oauth("oauth/access_token", $params);
+
+            $token = $access_token['oauth_token'];
+            $secret = $access_token['oauth_token_secret'];
+
+            $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token,
+                "token" => $token, "secret" => $secret]]);
         }
         else
         {
-            $oauth_verifier = htmlspecialchars($user['oauth_verifier']);
-            $oauth_token = htmlspecialchars($user['oauth_token']);
+            $oauth_verifier = $user['oauth_verifier'];
+            $oauth_token = $user['oauth_token'];
+
+            $token = $user['token'];
+            $secret = $user['secret'];
         }
 
-        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
-        $params = array("oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token);
-
-        $access_token = $connection->oauth("oauth/access_token", $params);
-        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+        $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $token, $secret);
         $content = $connection->get("account/verify_credentials");
 
         if ($content != null && $content->errors != null)
