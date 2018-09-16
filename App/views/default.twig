@@ -71,7 +71,6 @@
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
-    <script async defer src="/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 
@@ -357,7 +356,7 @@
     </form>
 </div>
 <!-- très très très très très très expérimental !-->
-<script async defer>
+<script>
     var cssdefer = document.createElement('link');
     cssdefer.rel = 'stylesheet';
     cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
@@ -390,6 +389,8 @@
     var deferl = document.getElementsByTagName('link')[0];
     deferl.parentNode.insertBefore(cssdefer, deferl);
 </script>
+
+<script async defer src="/pagead/js/adsbygoogle.js"></script>
 
 <noscript>
     <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
