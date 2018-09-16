@@ -583,6 +583,10 @@ class UserController extends Controller
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret);
         $params = array("oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token);
 
+        var_dump($params);
+        exit;
+        return;
+
         $access_token = $connection->oauth("oauth/access_token", $params);
         $connection = new \App\Twitter\TwitterOAuth($consumer_key, $consumer_secret, $access_token['oauth_token'], $access_token['oauth_token_secret']);
         $content = $connection->get("account/verify_credentials");
