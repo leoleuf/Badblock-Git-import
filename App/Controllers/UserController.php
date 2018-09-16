@@ -572,9 +572,6 @@ class UserController extends Controller
             $oauth_verifier = $_GET['oauth_verifier'];
             $oauth_token = $_GET['oauth_token'];
 
-            var_dump($_GET);
-            exit;
-            return;
             $this->container->mongoServer->players->updateOne(["name" => strtolower($n)],['$set' => ["oauth_verifier" => $oauth_verifier, "oauth_token" => $oauth_token]]);
         }
         else
