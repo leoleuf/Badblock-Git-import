@@ -61,6 +61,40 @@
         {{ block('meta') }}
     {% endif %}
 
+    <!-- très très très très très très expérimental !-->
+    <script>
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/global.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/xmalware.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://use.fontawesome.com/releases/v5.3.1/css/all.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+    </script>
 <!--
     <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="dist/css/global.css">
@@ -355,40 +389,6 @@
         <input type="hidden" name="redirect" value="https://forum.badblock.fr/redirect.php?redirect={{ currentUrl }}" />
     </form>
 </div>
-<!-- très très très très très très expérimental !-->
-<script>
-    var cssdefer = document.createElement('link');
-    cssdefer.rel = 'stylesheet';
-    cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
-    cssdefer.type = 'text/css';
-
-    var deferl = document.getElementsByTagName('link')[0];
-    deferl.parentNode.insertBefore(cssdefer, deferl);
-
-    var cssdefer = document.createElement('link');
-    cssdefer.rel = 'stylesheet';
-    cssdefer.href = 'https://cdn.badblock.fr/wd/css/global.css';
-    cssdefer.type = 'text/css';
-
-    var deferl = document.getElementsByTagName('link')[0];
-    deferl.parentNode.insertBefore(cssdefer, deferl);
-
-    var cssdefer = document.createElement('link');
-    cssdefer.rel = 'stylesheet';
-    cssdefer.href = 'https://cdn.badblock.fr/wd/css/xmalware.css';
-    cssdefer.type = 'text/css';
-
-    var deferl = document.getElementsByTagName('link')[0];
-    deferl.parentNode.insertBefore(cssdefer, deferl);
-
-    var cssdefer = document.createElement('link');
-    cssdefer.rel = 'stylesheet';
-    cssdefer.href = 'https://use.fontawesome.com/releases/v5.3.1/css/all.css';
-    cssdefer.type = 'text/css';
-
-    var deferl = document.getElementsByTagName('link')[0];
-    deferl.parentNode.insertBefore(cssdefer, deferl);
-</script>
 
 <script async defer src="/pagead/js/adsbygoogle.js"></script>
 
