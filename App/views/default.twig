@@ -84,7 +84,7 @@
             <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 <div class="">
-                    <h1 class="header-title">BadBlock</h1>
+                    {% if h2 is defined %}<h2 class="header-title">BadBlock</h2>{% else %}<h1 class="header-title">BadBlock</h1>{% endif %}
                     <h2 class="header-sub-title">{{ mc_ip }}</h2>
                 </div>
             </a>
@@ -153,7 +153,7 @@
                         </a>
                     </li>!-->
                     <li>
-                        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+                        <a href="https://forum.badblock.fr/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
                             <i class="edit-colored-icon colored-icon"></i>Recrutements
                         </a>
                     </li>
