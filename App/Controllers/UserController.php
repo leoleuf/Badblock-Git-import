@@ -558,8 +558,10 @@ class UserController extends Controller
         $token = "";
         $secret = "";
 
-        if (!isset($user['oauth_verifier']) OR !isset($user['oauth_token']) OR empty($user['oauth_verifier'])
-        OR empty($user['oauth_token']))
+        if (!isset($user['oauth_verifier']) OR !isset($user['oauth_token']) OR
+            !isset($user['token']) OR !isset($user['secret']) OR
+            empty($user['oauth_verifier'])
+            OR empty($user['oauth_token']) OR empty($user['token']) OR empty($user['secret']))
         {
             if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
             {
