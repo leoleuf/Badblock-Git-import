@@ -238,7 +238,7 @@ class VoteController extends Controller
         $collection = $this->container->mongo->votes_logs;
         $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
         // 2 sites de vote, 3 sites à venir?
-        if ($dbh == null || $dbh <= 3) {
+        if ($dbh == null || $dbh <= 1) {
             $collection = $this->container->mongo->votes_awards;
             $cursor = $collection->find(['type' => intval($type)]);
 
@@ -289,7 +289,8 @@ class VoteController extends Controller
             $this->sendRabbitData($pseudo, $product);
             $collection->insertOne($insert);
 
-            if($this->container->session->getProfile('username')['is_staff'] == true){
+            if (!$this->container->session->getProfile('username')['is_staff'])
+            {
                 $this->top($displayPseudo, 1);
             }
 
