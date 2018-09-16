@@ -442,7 +442,7 @@ class UserController extends Controller
         $oauth_verifier = "";
         $oauth_token = "";
 
-        if (!isset($user['oauth_verifier']) && !isset($_GET['oauth_token']))
+        if (!isset($user['oauth_verifier']) && !isset($user['oauth_token']))
         {
             if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
             {
@@ -555,7 +555,7 @@ class UserController extends Controller
         $oauth_verifier = "";
         $oauth_token = "";
 
-        if (!isset($user['oauth_verifier']) && !isset($_GET['oauth_token']))
+        if (!isset($user['oauth_verifier']) && !isset($user['oauth_token']))
         {
             if (!isset($_GET['oauth_verifier']) OR !isset($_GET['oauth_token']))
             {
