@@ -61,12 +61,11 @@
         {{ block('meta') }}
     {% endif %}
 
-
+<!--
     <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="dist/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
+!-->
 
 
     {% if block("style") is defined %}
@@ -136,7 +135,7 @@
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
-        
+
         <a href="{{ path_for('vote.home') }}"
             class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter">
             <i class="star-colored-icon colored-icon"></i>
@@ -357,86 +356,6 @@
         <input type="hidden" name="redirect" value="https://forum.badblock.fr/redirect.php?redirect={{ currentUrl }}" />
     </form>
 </div>
-<script async>
-
-    function login() {
-        $('[data-remodal-id=login]').remodal().open();
-    }
-
-</script>
-
-<!-- Fin footer -->
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org/",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-        "@type": "GameServer",
-        "name": "BadBlock",
-        "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
-        "playersOnline": "",
-        "url": "https://badblock.fr/launcher-minecraft"
-    },
-    "ratingValue": "5",
-    "ratingCount": "{{ voteCount }}"
-}
-</script>
-
-<!-- JS -->
-<!-- Var js -->
-<!--<script async defer>
-    var endpoint = "{{ base_url() }}"
-    var mcHost = "eu.badblock.fr"
-    var trans = {
-        'noPlayers': "{{ 'no_player'|trans }}",
-        'onePlayer': "{{ 'one_player'|trans }}",
-        'manyPlayers': "{{ 'many_players'|trans }}"
-    }
-</script>!-->
-<script src="dist/js/app.js"></script>
-<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
-
-{% set randomPassword = [] %}
-{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
-{% set numbers = '0123456789' %}
-
-{% for i in 1..random(32) %}
-    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
-    {% set randomPassword = randomPassword|merge([randomCharacter]) %}
-{% endfor %}
-{% set randomPassword = randomPassword|join %}
-
-<div class="remodal" data-remodal-id="{{ randomPassword }}"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
-
-    <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
-    <p>
-        Vous devez désactiver AdBlock pour accéder à cette page afin d'obtenir des statistiques claires sur notre évolution.<br />
-        <br />
-    </p>
-    <br>
-    <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>
-
-<script async defer>
-    $(document).ready(function () {
-
-        if (window.canRunAds === undefined) {
-            $('[data-remodal-id={{ randomPassword }}]').remodal().open();
-            $('.container').fadeTo("slow",0.0);
-            $('.container').empty();
-            $('.cover-back').empty();
-            $('.cover').empty();
-            $('.stats-back').empty();
-            $('.footer').empty();
-            $('.footer').fadeTo("slow",0.0);
-            return;
-        }
-
-    });
-</script>
-
 <!-- très très très très très très expérimental !-->
 <script async defer>
     var cssdefer = document.createElement('link');
@@ -481,7 +400,61 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </noscript>
 
-<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
+<!-- Fin footer -->
+
+<!-- JS -->
+<!-- Var js -->
+<!--<script async defer>
+    var endpoint = "{{ base_url() }}"
+    var mcHost = "eu.badblock.fr"
+    var trans = {
+        'noPlayers': "{{ 'no_player'|trans }}",
+        'onePlayer': "{{ 'one_player'|trans }}",
+        'manyPlayers': "{{ 'many_players'|trans }}"
+    }
+</script>!-->
+<script async defer src="dist/js/app.js"></script>
+<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
+
+{% set randomPassword = [] %}
+{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
+{% set numbers = '0123456789' %}
+
+{% for i in 1..random(32) %}
+    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
+    {% set randomPassword = randomPassword|merge([randomCharacter]) %}
+{% endfor %}
+{% set randomPassword = randomPassword|join %}
+
+<div class="remodal" data-remodal-id="{{ randomPassword }}"
+     data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+
+    <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
+    <p>
+        Vous devez désactiver AdBlock pour accéder à cette page afin d'obtenir des statistiques claires sur notre évolution.<br />
+        <br />
+    </p>
+    <br>
+    <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+</div>
+
+<script async defer>
+    $(document).ready(function () {
+
+        if (window.canRunAds === undefined) {
+            $('[data-remodal-id={{ randomPassword }}]').remodal().open();
+            $('.container').fadeTo("slow",0.0);
+            $('.container').empty();
+            $('.cover-back').empty();
+            $('.cover').empty();
+            $('.stats-back').empty();
+            $('.footer').empty();
+            $('.footer').fadeTo("slow",0.0);
+            return;
+        }
+
+    });
+</script>
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
@@ -506,26 +479,6 @@
             }, 2000);
         });
     </script> !-->
-    <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script async src="/gtag/js?id=UA-104430841-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-104430841-1');
-    </script>
-    <script async defer>
-        $(".dropdown-link").on('mouseover', function () {
-            $(".dropdown-dropdown").show()
-            $(".dropdown-dropdown").css('display', 'flex')
-        });
-        $("body").on('mouseover', function () {
-            if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-                $(".dropdown-dropdown").fadeOut()
-            }
-        });
-    </script>
 
 
 <script async defer>
@@ -550,6 +503,53 @@
             y.classList.toggle("change");
         }
     }
+</script>
+
+<script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+<script async src="/gtag/js?id=UA-104430841-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-104430841-1');
+</script>
+<script async defer>
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
+</script>
+
+<script async>
+
+    function login() {
+        $('[data-remodal-id=login]').remodal().open();
+    }
+
+</script>
+
+<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+        "@type": "GameServer",
+        "name": "BadBlock",
+        "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
+        "playersOnline": "",
+        "url": "https://badblock.fr/launcher-minecraft"
+    },
+    "ratingValue": "5",
+    "ratingCount": "{{ voteCount }}"
+}
 </script>
 
 </body>
