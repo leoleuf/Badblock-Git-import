@@ -61,18 +61,49 @@
         {{ block('meta') }}
     {% endif %}
 
+    <!--<script>
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
+        cssdefer.type = 'text/css';
 
-    <link rel="stylesheet" href="/dist/css/app.css">
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/global.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://cdn.badblock.fr/wd/css/xmalware.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+
+        var cssdefer = document.createElement('link');
+        cssdefer.rel = 'stylesheet';
+        cssdefer.href = 'https://use.fontawesome.com/releases/v5.3.1/css/all.css';
+        cssdefer.type = 'text/css';
+
+        var deferl = document.getElementsByTagName('link')[0];
+        deferl.parentNode.insertBefore(cssdefer, deferl);
+    </script>
+
+   <!-- <link rel="stylesheet" href="/dist/css/app.css">
     <link rel="stylesheet" href="dist/css/global.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
-
+!-->
 
 
     {% if block("style") is defined %}
         {{ block('style') }}
     {% endif %}
-    <script async defer src="/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
 
@@ -81,13 +112,15 @@
 <div class="header">
     <div class="container">
         <div class="header-container">
-            <a class="header-logo-container no-link" href="{{ path_for('home') }}" title="Accueil BadBlock">
-                <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+            <div class="header-logo-container no-link" title="Accueil BadBlock">
+                <a href="{{ path_for('home') }}">
+                   <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+                </a>
                 <div class="">
-                    <h1 class="header-title">BadBlock</h1>
+                    {% if h2 is defined %}<h2 class="header-title">BadBlock</h2>{% else %}<h1 class="header-title">BadBlock</h1>{% endif %}
                     <h2 class="header-sub-title">{{ mc_ip }}</h2>
                 </div>
-            </a>
+            </div>
             <div class="header-login-container">
                 <div class="header-login">
                     {% if user is not defined %}
@@ -136,7 +169,7 @@
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
-        
+
         <a href="{{ path_for('vote.home') }}"
             class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter">
             <i class="star-colored-icon colored-icon"></i>
@@ -153,7 +186,7 @@
                         </a>
                     </li>!-->
                     <li>
-                        <a href="https://forum.badblock.fr/recrutement" title="Recrutements BadBlock" class="">
+                        <a href="https://forum.badblock.fr/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
                             <i class="edit-colored-icon colored-icon"></i>Recrutements
                         </a>
                     </li>
@@ -357,31 +390,10 @@
         <input type="hidden" name="redirect" value="https://forum.badblock.fr/redirect.php?redirect={{ currentUrl }}" />
     </form>
 </div>
-<script async>
 
-    function login() {
-        $('[data-remodal-id=login]').remodal().open();
-    }
-
-</script>
+<script async defer src="/pagead/js/adsbygoogle.js"></script>
 
 <!-- Fin footer -->
-
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org/",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-        "@type": "GameServer",
-        "name": "BadBlock",
-        "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
-        "playersOnline": "",
-        "url": "https://badblock.fr/launcher-minecraft"
-    },
-    "ratingValue": "5",
-    "ratingCount": "{{ voteCount }}"
-}
-</script>
 
 <!-- JS -->
 <!-- Var js -->
@@ -394,7 +406,7 @@
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
 </script>!-->
-<script src="dist/js/app.js"></script>
+<script async defer src="dist/js/app.js"></script>
 <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
 {% set randomPassword = [] %}
@@ -419,7 +431,7 @@
     <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
 </div>
 
-<script async>
+<script async defer>
     $(document).ready(function () {
 
         if (window.canRunAds === undefined) {
@@ -436,16 +448,6 @@
 
     });
 </script>
-<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async></script>
-
-
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
-
-
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
@@ -470,29 +472,14 @@
             }, 2000);
         });
     </script> !-->
-    <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-    <script async src="/gtag/js?id=UA-104430841-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-104430841-1');
-    </script>
-    <script>
-        $(".dropdown-link").on('mouseover', function () {
-            $(".dropdown-dropdown").show()
-            $(".dropdown-dropdown").css('display', 'flex')
-        });
-        $("body").on('mouseover', function () {
-            if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-                $(".dropdown-dropdown").fadeOut()
-            }
-        });
-    </script>
 
 
-<script type="text/javascript">
+<!-- très très très très très très expérimental !-->
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+<script async defer>
     function showMenu(y)
     {
         var x = document.getElementById('navbar');
@@ -514,6 +501,53 @@
             y.classList.toggle("change");
         }
     }
+</script>
+
+<script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+<script async defer src="/gtag/js?id=UA-104430841-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-104430841-1');
+</script>
+<script async defer>
+    $(".dropdown-link").on('mouseover', function () {
+        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").css('display', 'flex')
+    });
+    $("body").on('mouseover', function () {
+        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+            $(".dropdown-dropdown").fadeOut()
+        }
+    });
+</script>
+
+<script async>
+
+    function login() {
+        $('[data-remodal-id=login]').remodal().open();
+    }
+
+</script>
+
+<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+        "@type": "GameServer",
+        "name": "BadBlock",
+        "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
+        "playersOnline": "",
+        "url": "https://badblock.fr/launcher-minecraft"
+    },
+    "ratingValue": "5",
+    "ratingCount": "{{ voteCount }}"
+}
 </script>
 
 </body>

@@ -3,8 +3,16 @@
 // Route Principales
 
 $app->get('/', \App\Controllers\PagesController::class . ':getHome')->setName('home');
-$app->get('/accueil', \App\Controllers\PagesController::class . ':getHome')->setName('home-old');
-$app->get('/accueil/', \App\Controllers\PagesController::class . ':getHome')->setName('home-old2');
+
+$app->get('/accueil', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/accueil/', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
 
 $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
 
@@ -96,9 +104,46 @@ $app->group('/decouvrez', function (){
 });
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
-$app->get('/launcher-minecraft/windows', \App\Controllers\PagesController::class . ':getPlayWindows')->setName('launcher-minecraft-windows');
-$app->get('/launcher-minecraft/mac', \App\Controllers\PagesController::class . ':getPlayMac')->setName('launcher-minecraft-mac');
-$app->get('/launcher-minecraft/linux', \App\Controllers\PagesController::class . ':getPlayLinux')->setName('launcher-minecraft-linux');
+
+// Avoid duplicate content
+$app->get('/launcher-minecraft/windows', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+// temp
+$app->get('/launcher', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+$app->get('/launcher-minecraft/mac', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+$app->get('/launcher-minecraft/linux', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
+});
+
+// accessible index page
+
+$app->get('/index', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/index.php', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
+$app->get('/index.html', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/', 301);
+});
+
 $app->get('/staff', \App\Controllers\PagesController::class . ':getStaff')->setName('staff');
 
 $app->get('/info', \App\Controllers\PagesController::class . ':getInfo')->setName('info');
@@ -112,7 +157,9 @@ $app->group('/dashboard', function (){
     $this->post('/teamspeak', \App\Controllers\UserController::class . ':teamspeak')->setName('dashboard:teamspeak');
     $this->post('/custom/{method}', \App\Controllers\UserController::class . ':custom')->setName('dashboard:custom');
 
-    $this->post('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
+    $this->get('/reward/namemc', \App\Controllers\UserController::class . ':rewardNameMC')->setName('dashboard:rewardNameMC');
+    $this->get('/reward/twitter-1', \App\Controllers\UserController::class . ':rewardTwitter1')->setName('dashboard:rewardTwitter1');
+    $this->get('/reward/twitter-2', \App\Controllers\UserController::class . ':rewardTwitter2')->setName('dashboard:rewardTwitter2');
 
 })->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container))->add(new App\Middlewares\Auth\RequiredLinkMiddleware($container));
 
