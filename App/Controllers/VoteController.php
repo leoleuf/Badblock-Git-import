@@ -289,13 +289,12 @@ class VoteController extends Controller
             $this->sendRabbitData($pseudo, $product);
             $collection->insertOne($insert);
 
-            if (!$this->container->session->getProfile('username')['is_staff'])
-            {
-                $this->top($displayPseudo, 1);
+            $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+            $data = $this->container->mysql_forum->fetchRow($query);
+
+            if ($data['is_staff'] != true && $data['is_banned'] != true){
+                $this->toploterie($displayPseudo, 1);
             }
-
-            $this->toploterie($displayPseudo, 1);
-
         }
         else
         {
