@@ -288,13 +288,6 @@ class VoteController extends Controller
 
             $this->sendRabbitData($pseudo, $product);
             $collection->insertOne($insert);
-
-            $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
-            $data = $this->container->mysql_forum->fetchRow($query);
-
-            if ($data['is_staff'] != true && $data['is_banned'] != true){
-                $this->toploterie($displayPseudo, 1);
-            }
         }
         else
         {
@@ -309,6 +302,13 @@ class VoteController extends Controller
         $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
         $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
         $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
+
+        $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+        $data = $this->container->mysql_forum->fetchRow($query);
+
+        if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true){
+            $this->toploterie($displayPseudo, 1);
+        }
 
         return $response->write("Ton vote a été pris en compte. Tu as gagné ".$awardName .
             " ainsi qu'une participation à la loterie. Tu es désormais à " . $proba . "% de chance de gagner le lot de la loterie. Tirage ce soir à 18H sur la page de vote.")->withStatus(200);
