@@ -67,7 +67,7 @@ class ErrorMiddleware
         $html = '<!doctype html>
 <title>BadBlock</title>
 <body style="background-color:#dcdde1">
-<link rel="icon" type="image/png" href="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" title="Logo BadBlock"/>
+<link rel="icon" type="image/png" href="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo BadBlock" title="Logo BadBlock"/>
 <style>
   body { text-align: center; padding: 150px; }
   h1 { font-size: 25px; }
@@ -80,7 +80,7 @@ class ErrorMiddleware
 
 <article>
         <div class="cfmessage"></div>
-        <center><img src="https://cdn.badblock.fr/images/logo_small.png" alt="Logo BadBlock" title="Logo BadBlock"></center>
+        <center><img src="https://cdn.badblock.fr/images/logo-badblock.png" alt="Logo BadBlock" title="Logo BadBlock"></center>
         <center><h1>Code d\'erreur : '. $requestCode .'</h1></center>
         <center><h1>Merci de conserver ce code pour une meilleure asistance !</h1></center>
         <center>                        <p>Discord de BadBlock : <a href="https://badblock.fr/discord">Rejoindre !</a></p></center>

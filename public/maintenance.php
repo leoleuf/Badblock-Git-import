@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="cover">
-	<h1><img src="https://static.badblock.fr/images/logo_small.png"></h1>
+	<h1><img src="https://static.badblock.fr/images/logo-badblock.png"></h1>
 	<h1>De retour bientôt</h1>
 	<p class="lead">Nos services sont en maintenance</p>
 	<footer style="height: 80px">
