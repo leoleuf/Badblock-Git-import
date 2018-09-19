@@ -202,7 +202,7 @@
     <div class="remodal modal-remodal" data-remodal-id="vote-user">
         <button data-remodal-action="close" class="remodal-close"></button>
         <h1>Vous devez vous enregistrer sur le Forum de BadBlock pour voter !</h1>
-        <a class="button button-danger" href="https://forum.badblock.fr/inscription/" title="S'inscrire"><i class="icon-repeat"></i>S'inscrire !</a>
+        <a class="button button-danger" href="https://badblock.fr/forum/inscription/" title="S'inscrire"><i class="icon-repeat"></i>S'inscrire !</a>
     </div>
     <!-- Reg modal -->
     <!-- Time Modal -->
@@ -259,7 +259,7 @@
                     if(jqXHR.status == 404)
                     {
                         $("#success-alert").hide();
-                        $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                        $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
                         $("#err-alert").show();
                         $("#pleasewait").hide();
                     }
@@ -315,7 +315,7 @@
             request.fail(function( jqXHR, msg ) {
                 if(jqXHR.status == 404){
                     $("#success-alert").hide();
-                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://forum.badblock.fr/inscription/'>ici</a>.");
+                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
                     $("#err-alert").show();
                     $("#pleasewait").hide();
                 }else if (jqXHR.status == 405){
