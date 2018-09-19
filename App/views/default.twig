@@ -117,8 +117,11 @@
                    <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
                 </a>
                 <div class="">
-                    {% if h2 is defined %}<h2 class="header-title">BadBlock</h2>{% else %}<h1 class="header-title">BadBlock</h1>{% endif %}
-                    <h2 class="header-sub-title">{{ mc_ip }}</h2>
+                    {% if h2 is not defined %}
+                        <h1 class="header-title">BadBlock</h1><h2 class="header-sub-title">{{ mc_ip }}</h2>
+                    {% else %}
+                        <div class="header-title">BadBlock</div><div class="header-sub-title">{{ mc_ip }}</div>
+                    {% endif %}
                 </div>
             </div>
             <div class="header-login-container">
@@ -316,21 +319,23 @@
                 <li><a href="https://status.badblock.fr" title="Status de BadBlock">Status des services</a></li>
             </ul>
         </div>
-        <div class="four columns">
-            <div class="footer-links-title-container">
-                <h5 class="footer-links-title">
-                    <span>Réseaux sociaux</span>
-                </h5>
+        {% if h2 is not defined %}
+            <div class="four columns">
+                <div class="footer-links-title-container">
+                    <h5 class="footer-links-title">
+                        <span>Réseaux sociaux</span>
+                    </h5>
+                </div>
+                <ul class="footer-links footer-social-links">
+                    <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
+                    <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
+                </ul>
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
+                <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
-            <ul class="footer-links footer-social-links">
-                <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
-                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
-            </ul>
-            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
-            <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
+        {% endif %}
     </div>
 </div>
 
