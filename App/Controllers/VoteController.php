@@ -307,7 +307,7 @@ class VoteController extends Controller
         $data = $this->container->mysql_forum->fetchRow($query);
 
         if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true){
-            $this->toploterie($displayPseudo, 1);
+            $this->top($displayPseudo, 1);
         }
 
         return $response->write("Ton vote a été pris en compte. Tu as gagné ".$awardName .
@@ -373,64 +373,6 @@ class VoteController extends Controller
 
     }
 
-    public function toploterie($player, $vote){
-        $player = strtolower($player);
-
-        //Collection
-        $mongo = $this->container->mongo->stats_vote;
-
-        $date =  date("Y-m-d");
-        $count = $mongo->count(["date" => $date]);
-
-        if ($count == 0){
-            $data = [
-                "date" => $date,
-                "give" => false,
-                "players" => []
-            ];
-
-            $mongo->insertOne($data);
-        }
-
-        $data = $mongo->findOne(["date" => $date]);
-
-        foreach($data['players'] as $row) {
-            if ($row->name == $player) {
-                $datarcp = $row;
-                break;
-            }
-        }
-
-        if(!isset($datarcp)){
-            $data = $mongo->updateOne(["_id" => $data['_id']], ['$push' => ["players" => ['name' => $player,'vote' => $vote]]]);
-        }else{
-            $data = $mongo->updateOne(["_id" => $data['_id'], "players.name" => $player], ['$set' => ["players.$.vote" => $datarcp->vote + $vote]]);
-        }
-
-        //Read top from mongoDB
-        $mongo = $this->container->mongo->stats_vote;
-        $date =  date("Y-m-d");
-        $data = $mongo->findOne(["date" => $date]);
-
-
-        $data = (array) $data['players'];
-        usort($data, create_function('$a, $b', '
-        $a = $a["vote"];
-        $b = $b["vote"];
-
-        if ($a == $b) return 0;
-
-        $direction = strtolower(trim("desc"));
-
-        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
-        '));
-
-        $data = array_slice($data, 0, 10);
-
-        //Write in redis
-        $this->redis->setJson('vote.toploterie', $data);
-
-    }
 
     public function broadcast($message)
     {
