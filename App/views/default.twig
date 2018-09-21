@@ -9,9 +9,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="{{ currentUrl }}" />
 
-    <title>
-        {% if hide_title is not defined %}BadBlock - {% endif %}{{ title }}
-    </title>
+    <title>{% if hide_title is not defined %}BadBlock - {% endif %}{{ title }}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="robots" content="index, follow">
@@ -299,39 +297,31 @@
                 <img src="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4>
             </div>
-            <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un <a title="Serveur Minecraft" href="/jouer">serveur Minecraft</a> créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
-            <a href="https://badblock.fr/legals/MentionsLegales.pdf" title="Mentions légales BadBlock">Mentions légales</a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock">Documents légaux</a>.<br /><br />BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposée. <br />
+            <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un serveur Minecraft créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
+            <a rel="nofollow" href="https://badblock.fr/legals/MentionsLegales.pdf" title="Mentions légales BadBlock">Mentions légales</a>, <a rel="nofollow" href="https://badblock.fr/legals/" title="Documents légaux BadBlock">Documents légaux</a>.<br /><br />BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposée. <br />
             <br />
             {{ onlineCount }} utilisateurs connectés sur le site.
         </div>
         <div class="four columns">
             <div class="footer-links-title-container">
                 <h5 class="footer-links-title">
-                    <span>Liens</span>
+                    <span>Réseaux sociaux</span>
                 </h5>
             </div>
-            <ul class="footer-links">
-                <li><a href="https://badblock.fr/forum/reglement-general-de-badblock.t1204/" title="Règlement BadBlock">Règlement</a></li>
-                <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
-                <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
-                <!--<li><a href="/info" title="Informations BadBlock">Informations développement</a></li>!-->
-                <li><a href="/screenshot" title="Héberger une image BadBlock">Héberger une image</a></li>
-                <li><a href="https://status.badblock.fr" title="Status de BadBlock">Status des services</a></li>
+            <ul class="footer-links footer-social-links">
+                <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
+                <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
             </ul>
         </div>
         {% if h2 is not defined %}
             <div class="four columns">
                 <div class="footer-links-title-container">
                     <h5 class="footer-links-title">
-                        <span>Réseaux sociaux</span>
+                        <span>Publicité</span>
                     </h5>
                 </div>
-                <ul class="footer-links footer-social-links">
-                    <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
-                    <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
-                    <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                    <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
-                </ul>
                 <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
                 <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
