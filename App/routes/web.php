@@ -9,6 +9,12 @@ $app->get('/accueil', function($request, $response)
     return $response->withRedirect('https://badblock.fr/', 301);
 });
 
+$app->get('/mentions-legales', \App\Controllers\PagesController::class . ':getMT');
+$app->get('/cgu', \App\Controllers\PagesController::class . ':getCgu');
+$app->get('/cgv', \App\Controllers\PagesController::class . ':getCgv');
+$app->get('/charte-de-confidentialite', \App\Controllers\PagesController::class . ':getCdc');
+
+
 $app->get('/accueil/', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/', 301);

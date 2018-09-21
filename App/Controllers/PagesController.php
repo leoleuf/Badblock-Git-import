@@ -112,4 +112,26 @@ class PagesController extends Controller
         return $this->render($response, 'pages.bbnews');
     }
 
+    public function getMT(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'legals.mt');
+    }
+
+    public function getCgu(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'legals.cgu');
+    }
+
+    public function getCgv(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'legals.cgv');
+    }
+
+    public function getCdc(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        return $this->render($response, 'legals.cdc');
+    }
+
+
+
 }
