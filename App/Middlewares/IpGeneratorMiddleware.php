@@ -137,6 +137,7 @@ class IpGeneratorMiddleware
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
         $twig->addGlobal('eula', $eula);
+        $twig->addGlobal('spider', isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']));
         $twig->addGlobal('onlineCount', $onlineCount);
         $twig->addGlobal('points', $shoppoints);
         $twig->addGlobal('isOnline', $this->container->session->exist('user'));
