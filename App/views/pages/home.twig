@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
 {% set active_page = "home" %}
 {% set hide_title = true %}
+{% set h2 = true %}
 {% set title = 'BadBlock - Serveur Minecraft Minijeux Skyblock freebuild faction' %}
 {% block cover %}
 
@@ -11,30 +12,14 @@
             	<div class="animated bounceInLeft">
 	            	<div class="row">
 	                	<div class="four columns">
-	                    	<h1 style="color: white;">BadBlock Serveur Minecraft Gratuit</h1>
+	                    	<h1 style="color: white;">Serveur Minecraft Gratuit</h1>
 	                    	<div class="animated bounceInLeft">
 	                        <a title="Launcher Minecraft"class="button button-primary" href="{{ path_for('play') }}"><i class="icon-play icon"></i> Jouez dès maintenant !</a>
 	                    	</div>
 	                	</div>
-	                	<div class="two columns">
-	                		<button class="button-games button-games-home" onclick="location.href='/decouvrez/skyblock'" title="SkyBlock" id="skyb"><span>SkyBlock</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Tower/'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
-	                	</div>
-	                	<div class="two columns">
-		                    
-		                    <button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="fb"><span>Freebuild</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/SpaceBalls/'" id="spaceballs" title="Statistiques SpaceBalls"><span>SpaceBalls</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/UHCSpeed/'" id="uhcspeed" title="Statistiques UHCSpeed"><span>UHCSpeed</span></button>
-	                	</div>
-	                	<div class="two columns">
-	                		<button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="box" ><span>PvPBox</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Bedwars/'" id="bedwars" title="Statistiques Bedwars"><span>BedWars</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/Rush/'" id="rush" title="Statistiques Rush"><span>Rush</span></button>
-	                	</div>
-	                	<div class="two columns">
-	                		<button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="faction"><span>Faction</span></button>
-		                    <button class="button-games button-games-home" onclick="location.href='/stats/all/TowerRun/'" id="towerrun" title="Statistiques Tower Run"><span>TowerRun</span></button>
-	                	</div>
+                        <div class="six columns">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
 	                </div>
                 </div>
             </div>
@@ -114,5 +99,6 @@
     <!-- Main content fin -->
 
     {% include 'macros/sidebar.twig' %}
+    <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9e472db79400bd"></script>
 
 {% endblock %}
