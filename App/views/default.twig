@@ -110,9 +110,9 @@
 <div class="header">
     <div class="container">
         <div class="header-container">
-            <div class="header-logo-container no-link" title="Accueil BadBlock">
-                <a href="{{ path_for('home') }}">
-                   <img src="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo BadBlock" alt="Logo BadBlock" class="header-logo">
+            <div class="header-logo-container no-link">
+                <a title="Serveur Minecraft BadBlock" href="{{ path_for('home') }}">
+                   <img src="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo du serveur Minecraft BadBlock" alt="Logo BadBlock" class="header-logo">
                 </a>
                 <div class="">
                     {% if h2 is not defined %}
@@ -126,17 +126,17 @@
                 <div class="header-login">
                     {% if user is not defined %}
                         <!-- href="{{ forum_url }}/login"!-->
-                        <a class="button button-primary" onclick="login()" title="Connexion"><i
+                        <a class="button button-primary" onclick="login()" title="Se connecter au serveur Minecraft"><i
                                     class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                         <span class="margin"></span>
-                        <a class="button button-primary" href="{{ forum_url }}/inscription/" title="Inscription"><i
+                        <a class="button button-primary" href="{{ forum_url }}/inscription/" title="S'inscrire sur le serveur minecraft"><i
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
                     {% endif %}
                     {% if user is defined %}
-                        <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord"><i
+                        <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord du serveur minecraft"><i
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
                         <span class="margin"></span>
-                        <a class="button button-danger" href="{{ path_for('logout') }}" title="Déconnexion"><i
+                        <a class="button button-danger" href="{{ path_for('logout') }}" title="Se déconnecter du serveur Minecraft"><i
                                     class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
                     {% endif %}
                 </div>
@@ -149,37 +149,37 @@
 <div class="topnav" id="myTopnav">
     <div class="container">
             <a href="{{ path_for('home') }}"
-           class="{% if active_page == 'home' %}actived{% endif %} home" title="Accueil">
+           class="{% if active_page == 'home' %}actived{% endif %} home" title="Serveur Minecraft BadBlock">
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
         {% if eula == true %}
             <a href="/shop"
-               class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique">
+               class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique du serveur Minecraft BadBlock">
                 <i class="shopping_basket-colored-icon colored-icon"></i>
                 Boutique
             </a>
         {% endif %}
         <a href="{{ path_for('stats.home') }}"
-           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques">
+           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
             <i class="stats-colored-icon colored-icon"></i>
             {{ 'stats.title'|trans }}
         </a>
         <a href="{{ path_for('play-adwords') }}"
-           class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer">
+           class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
 
         <a href="{{ path_for('vote.home') }}"
-            class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter">
+            class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter pour le serveur Minecraft BadBlock">
             <i class="star-colored-icon colored-icon"></i>
             Voter
         </a>
         <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
             <div class="dropdown">
-                <a title="Menu extensible" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
+                <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
                     <!--<li>
                         <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
@@ -192,7 +192,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe">
+                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe du serveur BadBlock">
                             <i class="id-colored-icon colored-icon"></i>Équipe
                         </a>
                     </li>
@@ -202,7 +202,7 @@
                         </a>
                     </li>!-->
                     <li>
-                        <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}" title="Image">
+                        <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}" title="Héberger une image">
                             <i class="art_palette-colored-icon colored-icon"></i>Images
                         </a>
                     </li>
@@ -294,7 +294,7 @@
     <div class="container">
         <div class="four columns">
             <div class="footer-title-container">
-                <img src="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo">
+                <img src="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo du serveur Minecraft BadBlock" alt="Logo du serveur Minecraft BadBlock" class="footer-logo">
                 <h4 class="footer-title">BadBlock</h4>
             </div>
             <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un serveur Minecraft créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
@@ -309,10 +309,10 @@
                 </h5>
             </div>
             <ul class="footer-links footer-social-links">
-                <li><a href="https://twitter.com/BadBlockGame" title="Twitter BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
-                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Discord BadBlock"><img src="//cdn.badblock.fr/images/discord.png" title="Discord BadBlock" alt="BadBlock" width="31" style="margin-top: 3px"></a></li>
+                <li><a href="https://twitter.com/BadBlockGame" title="Twitter du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
+                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
+                <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Accéder au Discord du Serveur Minecraft"><img src="//cdn.badblock.fr/images/discord.png" title="Accéder au Discord du Serveur Minecraft" alt=""Accéder au Discord du Serveur Minecraft"" width="31" style="margin-top: 3px"></a></li>
             </ul>
         </div>
         {% if h2 is not defined %}
