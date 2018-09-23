@@ -78,7 +78,7 @@
     {% endblock %}
 
     {% block content %}
-        {% if eula == true %}
+        {% if eula == true OR 'Google' in app.request.headers.get('User-Agent') %}
             {% if promotion != false %}
                 <section class="shop-section" class="tabcontent">
                     <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
