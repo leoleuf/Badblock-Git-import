@@ -67,7 +67,7 @@ class ErrorMiddleware
         $html = '<!doctype html>
 <title>BadBlock</title>
 <body style="background-color:#dcdde1">
-<link rel="icon" type="image/png" href="https://cdn.badblock.fr/images/logo-badblock.png" title="Logo BadBlock" title="Logo BadBlock"/>
+<link rel="icon" type="image/png" href="https://cdn.badblock.fr/images/serveur-minecraft.png" title="Serveur Minecraft BadBlock" title="Serveur Minecraft BadBlock"/>
 <style>
   body { text-align: center; padding: 150px; }
   h1 { font-size: 25px; }
@@ -77,17 +77,18 @@ class ErrorMiddleware
   a:hover { color: #333; text-decoration: none; }
 </style>
 <style type="text/css">.cfmessage{visibility: hidden;}</style>
+<meta name="robots" content="noindex, nofollow">
 
 <article>
         <div class="cfmessage"></div>
-        <center><img src="https://cdn.badblock.fr/images/logo-badblock.png" alt="Logo BadBlock" title="Logo BadBlock"></center>
+        <center><img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="Serveur Minecraft BadBlock" title="Serveur Minecraft BadBlock"></center>
         <center><h1>Code d\'erreur : '. $requestCode .'</h1></center>
         <center><h1>Merci de conserver ce code pour une meilleure asistance !</h1></center>
         <center>                        <p>Discord de BadBlock : <a href="https://badblock.fr/discord">Rejoindre !</a></p></center>
 
         <div>
                 <center>
-                <br><br><a href="mailto:sysadmin@badblock.fr" target="_top" title="Abus BadBlock">ABUS</a> | <a href="https://status.badblock.fr" target="_top" title="État BadBlock">ÉTAT DE SERVICE</a>
+                <br><br><a rel="nofollow" href="mailto:sysadmin@badblock.fr" target="_top" title="Abus BadBlock">ABUS</a> | <a href="https://status.badblock.fr" target="_top" title="État BadBlock">ÉTAT DE SERVICE</a>
                 </center>
     </div>
 </article>';

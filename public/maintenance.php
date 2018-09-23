@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex, nofollow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="icon" type="image/ico" href="https://static.badblock.fr/images/favicon.png" />
 
@@ -13,12 +14,12 @@
 </head>
 <body>
 <div class="cover">
-	<h1><img src="https://static.badblock.fr/images/logo-badblock.png"></h1>
+	<h1><img alt="Serveur Minecraft BadBlock" title="Serveur Minecraft BadBlock" src="https://static.badblock.fr/images/serveur-minecraft.png"></h1>
 	<h1>De retour bientôt</h1>
 	<p class="lead">Nos services sont en maintenance</p>
 	<footer style="height: 80px">
-		<p>Contact Technique: <a href="mailto:sysadmin@badblock.fr">sysadmin@badblock.fr</a></p>
-		<p>Notre Twitter: <a href="https://twitter.com/BadBlockGame" rel="nofollow">BadBlockGame</a></p>
+		<p>Contact Technique: <a rel="nofollow" title="Email de contact Serveur BadBlock" href="mailto:sysadmin@badblock.fr">sysadmin@badblock.fr</a></p>
+		<p>Notre Twitter: <a rel="nofollow" title="Twitter du Serveur Minecraft BadBlock" href="https://twitter.com/BadBlockGame">BadBlockGame</a></p>
 	</footer>
 </div>
 </body>
