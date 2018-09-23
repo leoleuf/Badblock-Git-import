@@ -529,6 +529,7 @@
 
 <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
 
+{% if active_page != "home" %}
 <script type="application/ld+json">
 {
     "@context": "http://schema.org/",
@@ -544,6 +545,35 @@
     "ratingCount": "{{ voteCount }}"
 }
 </script>
+{% else %}
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "BadBlock - Serveur Minecraft Gratuit",
+        "url": "https://badblock.fr",
+        "logo": "https://cdn.badblock.fr/images/logo-badblock.png",
+        "contactPoint": [
+            {
+                "@type": "ContactPoint",
+                "telephone": "+33651786124",
+                "contactType": "Service client",
+                "email": "contact@badblock.fr",
+                "areaServed": [
+                    "MG, BE, FR, CA"
+                ],
+                "availableLanguage": [
+                    "French"
+                ]
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/BadBlockGame/",
+            "https://twitter.com/badblockgame"
+        ]
+    }
+</script>
+{% endif %}
 
 </body>
 </html>
