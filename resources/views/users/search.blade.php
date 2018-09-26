@@ -83,9 +83,6 @@
                     </div><!-- end col-->
                 </div>
             </div> <!-- content -->
-            <footer class="footer text-right">
-                2017 - 2018 © BadBlock.
-            </footer>
         </div>
     </div>
 

@@ -14,17 +14,23 @@
 
     @yield('content')
 
+    @if(Auth::check())
+        @include('layouts.notif')
+    @endif
+
+
+    <script>
+        var resizefunc = [];
+    </script>
+
     @include('layouts.script')
 
     @yield('before_scripts')
 
 
 
-    <script src="{{ asset('vendor/adminlte') }}/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/plugins/fastclick/fastclick.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/dist/js/app.min.js"></script>
 
     @yield('after_scripts')
 
@@ -73,8 +79,6 @@
             location.hash = e.target.hash.replace("#tab_", "#");
         });
     </script>
-
-    @include('backpack::inc.alerts')
 
 
     </body>

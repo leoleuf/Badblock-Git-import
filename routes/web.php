@@ -22,6 +22,9 @@ Route::group([
     Route::get('/', function () {return view('welcome');});
     Route::get('/home', 'HomeController@index')->name('home');
 
+    //Notificaiton link redirect
+    Route::get('/notif-link/{id}', 'NotificationController@index');
+
 
     Route::get('/players', 'profile\IndexController@index');
     Route::get('/profile/{uuid}', 'profile\IndexController@profile');
@@ -38,9 +41,20 @@ Route::group([
 
 
     //Gestion section
-    Route::get('/section/forum', 'section\ForumController@index');
-    Route::get('/section/paid/{section}', 'section\PaidController@index');
-    Route::post('/section/paid/{section}', 'section\PaidController@save');
+    Route::group([
+        'prefix'     => "section",
+        'middleware' => ['auth'],
+    ], function () {
+        //Gestion avertissement
+        Route::get('/avertissement', 'section\ForumController@index');
+        Route::post('/avertissement', 'section\ForumController@index');
+
+        //Gestion section forum
+        Route::get('/forum', 'section\ForumController@index');
+        Route::get('/paid/{section}', 'section\PaidController@index');
+        Route::post('/paid/{section}', 'section\PaidController@save');
+    });
+
     Route::get('/paid', 'website\PaidController@index');
     Route::get('/paid/{uuid}', 'website\PaidController@view');
 
@@ -66,10 +80,13 @@ Route::group([
         //Website
         Route::get('/', 'website\IndexController@index');
 
-        Route::get('//achat/{uuid}', 'website\AchatController@index');
+        Route::get('/achat/{uuid}', 'website\AchatController@index');
 
         Route::get('/vote', 'website\VoteController@index');
         Route::post('vote', 'website\VoteController@save');
+
+        Route::get('/prefix', 'website\PrefixController@index');
+        Route::post('/prefix', 'website\PrefixController@save');
 
         Route::get('/compta', 'website\IndexController@compta');
         Route::get('/compta/{date}', 'website\IndexController@compta');

@@ -140,7 +140,7 @@ tps / ram / processeur / nb de joueurs
             },
 
                 MorrisCharts.prototype.init = function() {
-                    
+
                     var $data  = [
                             @foreach($data['op_chart'] as $row)
                         { y: '{{ $row['date'] }}', a: {{ $row['result'] }}, b: {{ $row['result_last'] }} },
