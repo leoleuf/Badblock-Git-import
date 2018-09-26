@@ -98,11 +98,7 @@ class PaypalController extends Controller
         $produit['Paypal']['Url'] = 'https://badblock.fr';
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
-
-
-        if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
-            return $this->redirect($response, '/shop/recharge/cancel#3');
-        }
+        
 
         $paypal = new Paypal();
         $resp = $paypal->request('GetExpressCheckoutDetails', array(
