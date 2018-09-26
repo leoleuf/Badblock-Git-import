@@ -15,7 +15,7 @@ class MinecraftApiController extends \App\Controllers\Controller
 	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response){
 
         if ($this->container->redis->exists('api.mc.player')){
-            return $response->withJson(["players" => ['now' => $this->container->redis->get('api.mc.player')]]);
+            return $response->withJson(["players" => ['now' => intval($this->container->redis->get('api.mc.player'))]]);
         }else{
             try
             {
@@ -23,11 +23,10 @@ class MinecraftApiController extends \App\Controllers\Controller
 
                 $online = $Query->Query()["players"]["online"];
 
-                $this->container->redis->set('api.mc.player', $online);
+                $this->container->redis->set('api.mc.player', intval($online));
                 $this->container->redis->expire('api.mc.player', 10);
 
                 return $response->withJson(["players" => ['now' => $online]]);
-
             }
             catch( MinecraftPingException $e )
             {

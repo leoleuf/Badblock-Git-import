@@ -27,15 +27,20 @@ function menu() {
 }
 
 function players() {
+    var trans = {
+        'noPlayers': "Aucun joueurs connectés",
+        'onePlayer': "joueur",
+        'manyPlayers': "joueurs"
+    }
     //Get players
     $.getJSON('/api/minecraft/players', function(data) {
-        if (data.now == 0){
+        if (data.players.now == 0){
             var message = trans.noPlayers
         }
-        if (data.now == 1){
+        if (data.players.now == 1){
             var message = data.players.now + ' ' + trans.onePlayer
         }
-        if (data.now > 1){
+        if (data.players.now > 1){
             var message = data.players.now + ' ' + trans.manyPlayers
         }
         $('#players').html(message);
@@ -73,11 +78,7 @@ $(document).ready(function () {
 
     var endpoint = ""
     var mcHost = "eu.badblock.fr"
-    var trans = {
-        'noPlayers': "Aucun joueurs connectés",
-        'onePlayer': "joueur",
-        'manyPlayers': "joueurs"
-    }
+
 
     function login() {
         $('[data-remodal-id=login]').remodal().open();

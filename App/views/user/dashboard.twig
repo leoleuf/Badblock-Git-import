@@ -281,6 +281,9 @@
                         {% if custom['prefix_state'] == true %}
                             <span class="badge badge-default">Accepté</span>
                             Préfix : {{ custom['prefix'] }}
+                        {% elseif custom['prefix_state'] == 'refused' %}
+                            <span class="badge badge-default">Refusée</span>
+                            Préfix : {{ custom['prefix_new'] }}
                         {% else %}
                             <span class="badge badge-admin">En attente</span>
                             Préfix : {{ custom['prefix_new'] }}
