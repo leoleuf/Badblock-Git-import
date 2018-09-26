@@ -47,7 +47,7 @@ function players() {
 
         console.log('%c' + message + " connecté!", 'background: #222; font-size: 2em; color: #9b59b6');
 
-        setTimeout(players, 3000);
+        setTimeout(players, 10000);
     });
 }
 
