@@ -117,11 +117,6 @@ $app->get('/store', function($request, $response)
     return $response->withRedirect('https://badblock.fr/shop', 301);
 });
 
-$app->get('/store/', function($request, $response)
-{
-    return $response->withRedirect('https://badblock.fr/store', 301);
-});
-
 $app->get('/nous-rejoindre', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
