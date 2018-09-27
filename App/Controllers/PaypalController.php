@@ -99,7 +99,7 @@ class PaypalController extends Controller
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
 
-        return var_dump($_GET['token']);
+        return var_dump($_GET);
 
         $paypal = new Paypal();
         $resp = $paypal->request('GetExpressCheckoutDetails', array(
