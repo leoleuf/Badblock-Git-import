@@ -92,7 +92,7 @@ class Paypal {
             }else{
                 $this->errors = ($responseArray);
                 curl_close($curl);
-                return false;
+                return "dd";
             }
         }
     }
