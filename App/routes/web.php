@@ -143,7 +143,7 @@ $app->get('/launcher-minecraft/linux', function($request, $response)
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
 });
 
-$app->get('/store', function($request, $response)
+$app->get('/store/', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/shop', 301);
 });
