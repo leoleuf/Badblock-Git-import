@@ -98,12 +98,14 @@ class PaypalController extends Controller
         $produit['Paypal']['Url'] = 'https://badblock.fr';
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
-        
+
 
         $paypal = new Paypal();
         $resp = $paypal->request('GetExpressCheckoutDetails', array(
             'TOKEN' => $_GET['token']
         ));
+
+        return var_dump($resp);
 
         if($resp){
             if($resp['CHECKOUTSTATUS'] !== 'PaymentActionNotInitiated'){
