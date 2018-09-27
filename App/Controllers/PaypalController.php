@@ -115,7 +115,7 @@ class PaypalController extends Controller
                 return $this->redirect($response, '/shop/recharge/cancel#1');
             }
         }else{
-            return $this->redirect($response, '/shop/recharge/cancel#2');
+            return $this->redirect($response, '/shop/recharge/cancel#22');
         }
 
         $params = array(
