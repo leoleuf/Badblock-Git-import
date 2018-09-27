@@ -74,6 +74,9 @@ class PaypalController extends Controller
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
+        if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
+            return $this->redirect($response, '/shop/recharge/cancel#4');
+        }
 
         if (!$this->container->session->exist('recharge-username'))
         {
@@ -88,20 +91,24 @@ class PaypalController extends Controller
         }
 
         $produit = array();
-        $produit['Paypal']['Prix'] = $request->getParam('Prix');
-        $produit['Paypal']['OfferID'] = $request->getParam('offer');
-        $produit['Paypal']['Offer'] = $request->getParam('Offer');
-        $produit['Paypal']['Offer_desc'] = $request->getParam('Offer_desc');
-        $produit['Paypal']['Currency'] = $request->getParam('Currency');
-        $produit['Paypal']['QTY'] = $request->getParam('QTY');
+        $produit['Paypal']['Prix'] = $_GET['Prix'];
+        $produit['Paypal']['OfferID'] = $_GET['offer'];
+        $produit['Paypal']['Offer'] = $_GET['Offer'];
+        $produit['Paypal']['Offer_desc'] = $_GET['Offer_desc'];
+        $produit['Paypal']['Currency'] = $_GET['Currency'];
+        $produit['Paypal']['QTY'] = $_GET['QTY'];
         $produit['Paypal']['Url'] = 'https://badblock.fr';
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
 
 
+        if(!isset($_GET['token']) || empty($_GET['token']) || !isset($_GET['PayerID']) || empty($_GET['PayerID'])){
+            return $this->redirect($response, '/shop/recharge/cancel#3');
+        }
+
         $paypal = new Paypal();
         $resp = $paypal->request('GetExpressCheckoutDetails', array(
-            'TOKEN' => $request->getParam('token')
+            'TOKEN' => $_GET['token']
         ));
 
         if($resp){
@@ -114,8 +121,8 @@ class PaypalController extends Controller
         }
 
         $params = array(
-            'TOKEN' => $request->getParam('token'),
-            'PAYERID' => $request->getParam('PayerID'),
+            'TOKEN' => $_GET['token'],
+            'PAYERID' => $_GET['PayerID'],
             'PAYMENTACTION' => 'Sale',
 
             'RETURNURL' => $produit['Paypal']['Url'].$produit['Paypal']['Process'].'?offer='.$produit['Paypal']['OfferID'].'&Prix='.$produit['Paypal']['Prix'].'&Offer='.$produit['Paypal']['Offer'].'&Offer_desc='.$produit['Paypal']['Offer_desc'].'&Currency='.$produit['Paypal']['Currency'].'&QTY='.$produit['Paypal']['QTY'],
