@@ -80,7 +80,10 @@ class Paypal {
         $response = curl_exec($curl);
         $responseArray = array();
         parse_str($response, $responseArray);
-        
+
+
+        return var_dump($responseArray);
+
         if(curl_errno($curl)){
             $this->errors = curl_error($curl);
             curl_close($curl);
