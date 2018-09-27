@@ -82,17 +82,19 @@ class Paypal {
         parse_str($response, $responseArray);
 
 
+        return var_dump($responseArray['ACK']);
+
         if(curl_errno($curl)){
             $this->errors = curl_error($curl);
             curl_close($curl);
-            return "Error";
+            return false;
         }else{
             if($responseArray['ACK'] == "Success"){
                 return $responseArray;
             }else{
                 $this->errors = ($responseArray);
                 curl_close($curl);
-                return "dd";
+                return false;
             }
         }
     }
