@@ -74,7 +74,10 @@ class PaypalController extends Controller
 
 
     public function process(RequestInterface $request, ResponseInterface $response){
-        
+
+        return var_dump($_GET);
+
+
 
         if (!$this->container->session->exist('recharge-username'))
         {
@@ -99,7 +102,6 @@ class PaypalController extends Controller
         $produit['Paypal']['Process'] = '/shop/recharge/paypal-process';
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';
 
-        return var_dump($_GET);
 
         $paypal = new Paypal();
         $resp = $paypal->request('GetExpressCheckoutDetails', array(
