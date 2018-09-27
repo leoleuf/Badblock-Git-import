@@ -105,9 +105,7 @@ class PaypalController extends Controller
             'TOKEN' => $_GET['token']
         ));
 
-        if (!$resp){
-            return var_dump($resp);
-        }
+        return var_dump($resp);
 
         if($resp){
             if($resp['CHECKOUTSTATUS'] !== 'PaymentActionNotInitiated'){

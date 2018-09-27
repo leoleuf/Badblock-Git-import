@@ -85,7 +85,7 @@ class Paypal {
         if(curl_errno($curl)){
             $this->errors = curl_error($curl);
             curl_close($curl);
-            return false;
+            return "Error";
         }else{
             if($responseArray['ACK'] == "Success"){
                 return $responseArray;
