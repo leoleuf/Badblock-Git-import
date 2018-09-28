@@ -103,7 +103,7 @@ class VoteController extends Controller
         $API_url2 = "https://serveur-prive.net/api/stats/$API_id2/$API_da2";
         $API_call2 = @file_get_contents($API_url2);
 
-        if ($API_call2 + 27 > $API_call)
+        if ($API_call2 + 2300 > $API_call)
         {
             header("Location: https://serveur-prive.net/vote.php?c=198");
             exit;
