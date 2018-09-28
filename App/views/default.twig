@@ -241,7 +241,6 @@
 {% endif %}#}
 <!-------page-navbar-user fin------->
 <!------Menu fin ------->
-
 <!-- COVER  -->
 {% if block('cover') is defined %}
     {{ block('cover') }}
@@ -255,6 +254,15 @@
 {% endif %}
 
 <div class="container content">
+
+    <div class="alert alert-success" style="background-color: #FCF3CF;">
+        French Day Bons plan Vendredi et Samedi !<br />
+        <strong><span style="font-size: 18px;">+25%</span> sur les points boutique rechargés.<br /><br />
+            <div id="time-left" style="font-size: 18px;">Calcul du temps restant...</div></strong>
+        <br />
+        <a class="button button-danger" href="https://badblock.fr/shop/recharge" title="Profiter du Bon Plan FrenchDays BadBlock"><i class="far fa-arrow-alt-circle-right"></i> J'en profite</a>
+    </div>
+
     {{ block('content') }}
     <div id="pub-margin">
 
@@ -268,6 +276,37 @@
     </div>
 </div>
 <!-- fin CONTENT -->
+
+<script async>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Sep 30, 2018 00:00:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("time-left").innerHTML = "Fin dans " + days + " jour " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("time-left").innerHTML = "Terminé !";
+        }
+    }, 1000);
+</script>
 
 <!-- Statistiques -->
 <div class="stats-back">
