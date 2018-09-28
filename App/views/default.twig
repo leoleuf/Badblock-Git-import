@@ -253,12 +253,7 @@
     {{ block('skyscrapers') }}
 {% endif %}
 
-<div class="container content">
-
-    {{ block('content') }}
-    <div id="pub-margin">
-
-    </div>
+<div class="container">
 
     <div class="alert alert-success" style="background-color: #FCF3CF;">
         French Day Bons plan Vendredi et Samedi !<br />
@@ -267,13 +262,20 @@
         <br />
         <a class="button button-danger" href="https://badblock.fr/shop/recharge" title="Profiter du Bon Plan FrenchDays BadBlock"><i class="far fa-arrow-alt-circle-right"></i> J'en profite</a>
     </div>
-    
+    <div class="content">
+    {{ block('content') }}
+    <div id="pub-margin">
+
+    </div>
+
     <div class="pub-large">
+
 
         <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+    </div>
     </div>
 </div>
 <!-- fin CONTENT -->
