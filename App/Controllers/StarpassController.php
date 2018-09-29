@@ -161,10 +161,7 @@ class StarpassController extends Controller
 
             $v = $value['receiver'];
 
-            $otherUser = $this->container->mongoServer->players->find(["uniqueId" => $v]);
-            var_dump($otherUser);
-            exit;
-            return;
+            $otherUser = $this->container->mongoServer->players->findOne(["uniqueId" => $v]);
             if ($otherUser != null)
             {
                 $data = [
