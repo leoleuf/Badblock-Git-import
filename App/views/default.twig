@@ -256,12 +256,16 @@
 <div class="container">
 
     <br /><br />
-    <div class="alert alert-success" style="background-color: #FCF3CF;">
-        French Day Bons plan Vendredi et Samedi !<br />
-        <strong><span style="font-size: 18px;">+25%</span> sur les points boutique rechargés.<br /><br />
-            <div id="time-left" style="font-size: 18px;">Calcul du temps restant...</div></strong>
-        <br />
-        <a class="button button-danger" href="https://badblock.fr/shop/recharge" title="Profiter du Bon Plan FrenchDays BadBlock"><i class="far fa-arrow-alt-circle-right"></i> J'en profite</a>
+    <div class="alert alert-success" style="background-color: #3498db !important;">
+        <div class="five-colmuns">
+            French Day Bons plan jusqu'à Lundi !
+            <strong><span style="font-size: 18px;">+25%</span> sur les points boutique rechargés.
+                <div id="time-left" style="font-size: 18px;">Calcul du temps restant...</div></strong>
+            <br />
+        </div>
+        <div class="five-colmuns">
+           <a class="button button-danger" href="https://badblock.fr/shop/recharge" title="Profiter du Bon Plan FrenchDays BadBlock"><i class="far fa-arrow-alt-circle-right"></i> J'en profite</a>
+        </div>
     </div>
     <div class="content">
     {{ block('content') }}
@@ -283,7 +287,7 @@
 
 <script async>
     // Set the date we're counting down to
-    var countDownDate = new Date("Sep 30, 2018 00:00:00").getTime();
+    var countDownDate = new Date("Oct 1, 2018 00:00:00").getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
