@@ -93,9 +93,9 @@ class ShopController extends Controller
                 '164.132.200.198'
             );
 
-            if (!in_array($ip, $whitelist)) {
+           /* if (!in_array($ip, $whitelist)) {
                 return 'Lolnope.';
-            }
+            }*/
 
             $ingame = true;
             $playerName = $_POST['playerName'];
