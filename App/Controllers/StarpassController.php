@@ -154,10 +154,6 @@ class StarpassController extends Controller
         foreach ($refers as $key => $value)
         {
 
-            var_dump($value['state']);
-            exit;
-            return;
-
             if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
             {
                 continue;
@@ -170,7 +166,7 @@ class StarpassController extends Controller
                     'uniqueId' => $otherUser['uniqueId'],
                     'date' => date('Y-m-d H:i:s'),
                     'price' => 0,
-                    'gateway' => 'Gain de la part de '.$value->receiver,
+                    'gateway' => 'Gain de la part de '.$value['receiver'],
                     'pseudo' => $otherUser['name'],
                     'points' => $doups
                 ];
@@ -219,7 +215,7 @@ class StarpassController extends Controller
                     $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                     $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                     $mail = new \App\Mail(true);
-                    $mail->sendMail($user["email"], "Vous avez reçu de l'argent", $mailContent);
+                    $mail->sendMail($otherUser_xen["email"], "Vous avez reçu de l'argent", $mailContent);
                 }
 
                 $mailContent = $name." gagne +".$doups." pts boutique (par ".$user['name'].")";
