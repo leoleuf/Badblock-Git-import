@@ -52,6 +52,9 @@ class ShopController extends Controller
         $ingame = false;
         $playerName = "";
 
+        var_dump($_POST);
+        return;
+        exit;
         if (isset($_POST['playerName'])) {
             $ip = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : $_SERVER['REMOTE_ADDR'];
             $whitelist = array(
