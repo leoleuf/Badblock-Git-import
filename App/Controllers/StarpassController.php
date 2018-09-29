@@ -157,7 +157,7 @@ class StarpassController extends Controller
             var_dump($value);
             exit;
             return;
-            
+
             if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
             {
                 continue;

@@ -480,9 +480,9 @@ class UserController extends Controller
             // Get the mail base content
             $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-received.html");
             // Replace the applicant's username
-            $mailContent = str_replace("(username)", $user['name'], $mailContent);
+            $mailContent = str_replace("(username)", $userB['name'], $mailContent);
             // Replace the receiver's username
-            $mailContent = str_replace("(other-username)", $userB['name'], $mailContent);
+            $mailContent = str_replace("(other-username)", $user['name'], $mailContent);
             // Update the date
             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
             // Instanciate the email object
