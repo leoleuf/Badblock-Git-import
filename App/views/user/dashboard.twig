@@ -27,7 +27,7 @@
                         <li><i class="icon icon-bookmarkalt"></i> {{ user.game.level|number_format(0, '', ' ') }} <span>Levels</span></li>
                         <li><i class="fas fa-bolt"></i> {{ user.game.xp|number_format(0, '', ' ') }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ user.game.badcoins|number_format(0, '', ' ') }} <span>BadCoins</span></li>
-                        <li><i class="icon icon-paperboat"></i> {{ vote|number_format(0, '', ' ') }} <span>Vote(s)</span></li>
+                        <li><i class="icon icon-paperboat"></i> {{ vote|number_format(0, '', ' ') }} <span>Vote(s)*</span></li>
                     </ul>
                 </div>
             </div>
@@ -99,13 +99,14 @@
                         <li>Niveau : <span>{{ user.game.level|number_format(0, '', ' ') }} niveau(x)</span></li>
                         <li>Point(s) d'expérience : <span>{{ user.game.xp|number_format(0, '', ' ') }} point(s)</span></li>
                         <li>Nombre de BadCoin(s) : <span>{{ user.game.badcoins|number_format(0, '', ' ') }} BC</span></li>
-                        <li>Nombre de vote(s) : <span>{{ vote|number_format(0, '', ' ') }} vote(s)</span></li>
+                        <li>Nombre de vote(s)* : <span>{{ vote|number_format(0, '', ' ') }} vote(s)</span></li>
                     </ul>
                 </div>
                 <div class="six columns">
                     <img src="https://minotar.net/body/{{ user.name }}/150.png" title="Avatar de {{ user.name }}" alt="Avatar de {{ user.name }}" class="avatar-player">
                 </div>
             </div>
+            * : Le nombre de votes depuis l'apparition du nouveau site web (Août 2018)
         </section>
     </div>
     <div id="2" class="tabcontent" style="display: none;">
@@ -704,8 +705,6 @@
             </script>
         {% endfor %}
     {% endif %}
-
-
 
 {% endblock %}
 

@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-3">
                     <h3>{{ stats['message_forum']|number_format(0, '', ' ') }}</h3>
-                        <p>Messages sur le Forum</p>
+                        <p>Messages sur le Forum*</p>
                 </div>
                 <div class="col-3">
                     <h3>{{ c_ts|number_format(0, '', ' ') }}</h3>
@@ -111,6 +111,7 @@
             <h3>{{ stats['banGuardian']|number_format(0, '', ' ') }}</h3>
                 <p>Joueurs suspendus par le Guardian</p>
         </div>
+        * : Le total des messages du forum inclut aussi ceux non-accessible par l'ensemble des joueurs, il peut donc différer du nombre affiché sur le forum.
     </div>
 {% endblock %}
 {% block scripts %}
