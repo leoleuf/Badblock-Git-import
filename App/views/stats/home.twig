@@ -111,9 +111,11 @@
             <h3>{{ stats['banGuardian']|number_format(0, '', ' ') }}</h3>
                 <p>Joueurs suspendus par le Guardian</p>
         </div>
+
+        * : Le total inclut aussi ceux non-accessible par l'ensemble des joueurs.
+
     </div>
 
-    * : Le total inclut aussi ceux non-accessible par l'ensemble des joueurs.
 
 {% endblock %}
 {% block scripts %}
