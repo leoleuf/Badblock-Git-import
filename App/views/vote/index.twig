@@ -289,6 +289,12 @@
         }
 
         function award(type) {
+            $("#lot1").addClass("disabled");
+            $("#lot2").addClass("disabled");
+            $("#lot3").addClass("disabled");
+            $("#lot4").addClass("disabled");
+            $("#lot5").addClass("disabled");
+
             //requet if user have vote
             var request = $.ajax({
                 url: "/vote/award",
@@ -299,11 +305,6 @@
                 },
                 dataType: "html",
                 success: function (data) {
-                    $("#lot1").addClass("disabled");
-                    $("#lot2").addClass("disabled");
-                    $("#lot3").addClass("disabled");
-                    $("#lot4").addClass("disabled");
-                    $("#lot5").addClass("disabled");
                     $("#pleasewait").hide();
 
                     $("#err-alert").hide();
