@@ -63,7 +63,7 @@
     <div class="user-menu">
         <ul>
             <li class="user-tab">
-                <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i> Compte</a>
+                <a class="no-link" onclick="opentab(event, '1')"><i class="fas fa-info"></i> Infos</a>
             </li>
             <li class="user-tab">
                 <a class="no-link" onclick="opentab(event, '2')"><i class="fas fa-archive"></i> Casier</a>
@@ -85,7 +85,7 @@
             </li>
             
             <li class="user-tab">
-                <a class="no-link" onclick="window.open('https://badblock.fr/forum/mon-compte', 'name');"><i class="far fa-file-alt"></i> Forum</a>
+                <a class="no-link" onclick="opentab(event, '9')"><i class="fas fa-handshake"></i> Parrainage</a>
             </li>
         </ul>
     </div>
@@ -553,10 +553,10 @@
     <div id="8" class="tabcontent" style="display: none;">
         <section class="shop-section-1" class="tabcontent">
             <br>
-                <h4 class="heading heading-bar"><span>Gagnez une récompense</span></h4>
-                Gagne des récompenses gratuitement en effectuant certaines actions assez rapidement pour t'acheter des objets, des grades ou des items.<br />
+            <h4 class="heading heading-bar"><span>Gagnez une récompense</span></h4>
+            Gagne des récompenses gratuitement en effectuant certaines actions assez rapidement pour t'acheter des objets, des grades ou des items.<br />
             <br />
-           <div class="five columns">
+            <div class="five columns">
                 <div class="span">
                     <h5 class="top0">Action Twitter 1 (50 points boutique)</h5>
                     <h6 class="top0"><b>Étape 1 : Effectuer l'action</b></h6>
@@ -602,7 +602,77 @@
         <br />
         <br />
     </div>
+    <div id="9" class="tabcontent" style="display: none;">
+        <section class="shop-section-1" class="tabcontent">
+            {% if (rfr is not empty) %}
+                Vous avez été parrainé par <strong>{{ rfr }}</strong>. Vous avez donc reçu <strong>100 points boutique</strong> à un moment.
+            {% else %}
+                Vous n'avez été parrainé par personne. Vous n'avez donc pas reçu <strong>100 points boutique</strong>. Si une demande pour vous faire parrainée est toujours en cours, veuillez patienter.
+            {% endif %}
+            <br /><br />
+            Vous pouvez parrainer jusqu'à <strong>trois personnes</strong>. Lorsqu'un joueur veut que vous soyez son parrain (et que vous acceptez), vous gagnez <strong>10% de points boutique en + à chaque rechargement par un de vos parrains</strong>. Le parrainé gagne <strong>100 points boutique</strong>. Vous receverez vos demandes de parrainage directement dans un des trois slots en dessous. <span style="color: red;">Attention : Une fois que vous acceptez quelqu'un, vous ne pouvez pas le retirer pour éviter les abus.</span><br />
+            <br>
+            <div class="mosaic" style="width: 75%; margin: 0 auto;">
+                {% set k = 3 %}
+                {% for i in range(1, k) %}
+                    <a class="card card-second card-plus no-link" style="border-color: black;" href="#">
+                        <div class="card-plus-text" style="text-align: center;">Parrainé n°{{ i }}<br />
+                            {% if (rf[i-1] is not defined) %}
+                                <span style="color: green;"><i class="far fa-check-circle"></i> Slot disponible</span>
+                            {% elseif (rf[i-1]['state'] == "PENDING") %}
+                                <span style="color: orange;"><i class="far fa-check-circle"></i> En attente<br />
+                                    {{ rf[i-1]['sponsor'] }}
+                            </span><br /><br />
+                                <form action="/dashboard/refer/manage" method="post" name="refer">
+                                    <input type="text" style="display: none;" name="id" value="{{ i-1 }}" hidden />
+                                    <button class="button button-success" type="submit" name="yes">Accepter</button>
+                                    <button class="button button-danger" type="submit" name="no">Refuser</button>
+                                </form>
+                            {% elseif (rf[i-1]['state'] == "CONFIRMED") %}
+                                <span style="color: dodgerblue;"><i class="far fa-check-circle"></i> Accepté
+
+                            </span><br /><br />{{ rf[i-1]['sponsor'] }}
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+        <br />
+        <br />
+    </div>
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-you-accepted">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous avez accepté cette demande de parrainage.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-you-refused">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous avez refusé cette demande de parrainage.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-unknown-request">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Cette demande de parrainage n'existe pas.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-not-pending">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Ce parrainage n'est pas en attente.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-unknown-user">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Cette demande de parrainage contient un utilisateur invalide.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="sponsor-cantfind-id">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Ce numéro de parrainage est invalide.</h1>
+    </div>
 
     {% if flash('setting_error') %}
         {% for flash in flash('setting_error') %}

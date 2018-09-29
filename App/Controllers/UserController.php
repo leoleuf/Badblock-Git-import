@@ -21,6 +21,11 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
+        if (!isset($user['refer']) OR !$user['refer'])
+        {
+            return $this->redirect($response, '/dashboard/refer');
+        }
+
         $check = false;
 
         foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
@@ -152,11 +157,54 @@ class UserController extends Controller
             $user["shoppoints"] = 0;
         }
 
+        // We get the people sponsored by this person
+        $rfr = $this->container->mongoServer->refers->findOne(['uniqueId' => $user['uniqueId']]);
+
+        if ($rfr != null)
+        {
+            if (isset($rfr['state']) && $rfr['state'] == "CONFIRMED") {
+                $usrnm = $this->container->mongoServer->players->findOne(['uniqueId' => $rfr['receiver']]);
+
+                if ($usrnm != null && isset($usrnm['name'])) {
+                    $rfr = $usrnm['name'];
+                } else {
+                    $rfr = "";
+                }
+            }else{
+                $rfr = "";
+            }
+        }else
+        {
+            $rfr = "";
+        }
+
+        $refer = $this->container->mongoServer->refers->find(['receiver' => $user['uniqueId']]);
+        $rf = array();
+
+        $i = 0;
+        foreach ($refer as $key => $value)
+        {
+            $usrnm = $this->container->mongoServer->players->findOne(['uniqueId' => $value['uniqueId']]);
+
+            if ($usrnm != null && isset($usrnm['name']))
+            {
+                $usrnm = $usrnm['name'];
+                $usrnm = htmlspecialchars($usrnm);
+
+                $data = [
+                    'sponsor' => $usrnm,
+                    'state' => $value['state']
+                ];
+                $rf[$i] = $data;
+                $i++;
+            }
+        }
+
         $collection_vote = $this->container->mongo->votes_logs;
         $vote = $collection_vote->count(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
         //Return view
-        return $this->render($response, 'user.dashboard', ['connection' => $connection,'buys' => $buys,'user' => $user, 'vote' => $vote, 'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
+        return $this->render($response, 'user.dashboard', ['connection' => $connection, 'rfr' => $rfr, 'rf' => $rf, 'buys' => $buys,'user' => $user, 'vote' => $vote, 'custom' => $custom,'factures' => $factures, 'sanctions' => $sanctions]);
 
 
 	}
@@ -309,6 +357,365 @@ class UserController extends Controller
     }
 
 
+    public function refer(RequestInterface $request, ResponseInterface $response)
+    {
+        $n = $this->session->getProfile('username')['username'];
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        if ($user == null)
+        {
+            return;
+        }
+
+        if (isset($user['refer']) && $user['refer'])
+        {
+            return $this->redirect($response, "/dashboard");
+        }
+
+        return $this->render($response, 'user.refer');
+    }
+
+    public function referSubmit(RequestInterface $request, ResponseInterface $response)
+    {
+        // Get the username
+        $n = $this->session->getProfile('username')['username'];
+        // Fetch data
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        // If we couldn't find data
+        if ($user == null) {
+            // So we stop
+            return;
+        }
+
+        // If he skiped the step
+        if (!isset($_POST['refer'])) {
+            // We put that he did have this step
+            $this->container->mongoServer->players->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ["refer" => true]]);
+            // And we send him back on his request
+            return $this->redirect($response, "/dashboard");
+        }
+
+        // In the other case where he entered a nickname, we check the referrals
+        $refer = $this->container->mongoServer->refers->count(['uniqueId' => $user['uniqueId']]);
+
+        // If he's already someone's referral
+        if ($refer != false && $refer > 0) {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#already');
+        }
+
+        // In the other case, we check the username
+        $nb = strtolower(htmlspecialchars($_POST['refer']));
+        // Fetch data
+        $userB = $this->container->mongoServer->players->findOne(['name' => strtolower($nb)]);
+
+        // If we couldn't find data
+        if ($userB == null) {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#username-error');
+        }
+
+        // If the guy is schizophrenic
+        if ($userB['uniqueId'] == $user['uniqueId']) {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#ctsponsor-yourself');
+        }
+
+        // We get the people sponsored by this person
+        $referB = $this->container->mongoServer->refers->count(['receiver' => $userB['uniqueId']]);
+
+        // Too many sponsored people
+        if ($referB != false && $referB > 2) {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#toomany-refers');
+        }
+
+        // Create data object (for the request)
+        $data = [
+            'uniqueId' => $user['uniqueId'],
+            'receiver' => $userB['uniqueId'],
+            'state' => "PENDING"
+        ];
+
+        // Insert the pending request in the collection
+        $this->container->mongoServer->refers->InsertOne($data);
+
+        // We put that he did have this step
+        $this->container->mongoServer->players->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ["refer" => true]]);
+
+        /** BASE MAIL => SEND TO THE APPLICANT */
+
+        try {
+            $user_xen = $this->xenforo->getUser($n);
+        } catch (\Exception $e) {
+            $user_xen = null;
+        }
+
+        if ($user_xen != null) {
+            // Get the mail base content
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-pending.html");
+            // Replace the applicant's username
+            $mailContent = str_replace("(username)", $user['name'], $mailContent);
+            // Replace the receiver's username
+            $mailContent = str_replace("(other-username)", $userB['name'], $mailContent);
+            // Update the date
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            // Instanciate the email object
+            $mail = new \App\Mail(true);
+            // Send the mail
+            $mail->sendMail($user_xen["email"], "Vous avez demandé un parrainage", $mailContent);
+        }
+
+        /** BASE MAIL => SEND TO THE RECEIVER */
+
+        try {
+            $userB_xen = $this->xenforo->getUser($nb);
+        } catch (\Exception $e) {
+            $userB_xen = null;
+        }
+
+        if ($userB_xen != null)
+        {
+            // Get the mail base content
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-received.html");
+            // Replace the applicant's username
+            $mailContent = str_replace("(username)", $user['name'], $mailContent);
+            // Replace the receiver's username
+            $mailContent = str_replace("(other-username)", $userB['name'], $mailContent);
+            // Update the date
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            // Instanciate the email object
+            $mail = new \App\Mail(true);
+            // Send the mail
+            $mail->sendMail($userB_xen["email"], "Vous avez reçu une demande de parrainage", $mailContent);
+        }
+
+        /** DEBUG */
+        $mailContent = $user['name']." => ".$userB['name']." => en attente";
+        $mail = new \App\Mail(true);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Parrainage", $mailContent);
+
+        // Tell him
+        $this->flash->addMessage('setting_error', "Votre demande de parrainage a été envoyée. Vous receverez 100 points boutique quand la personne aura acceptée votre demande. Vous receverez un mail.");
+
+        // And we send him back on his request
+        return $this->redirect($response, "/dashboard");
+    }
+
+    public function referManage(RequestInterface $request, ResponseInterface $response)
+    {
+        //yes / no / id
+        // Get the username
+        $n = $this->session->getProfile('username')['username'];
+        // Fetch data
+        $user = $this->container->mongoServer->players->findOne(['name' => strtolower($n)]);
+
+        // If we couldn't find data
+        if ($user == null) {
+            // So we stop
+            return;
+        }
+
+        // If we can't find ID
+        if (!isset($_POST['id'])) {
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-cantfind-id');
+        }
+
+        $id = intval($_POST['id']);
+
+        // In the other case where he entered a nickname, we check the referrals
+        $refer = $this->container->mongoServer->refers->find(['receiver' => $user['uniqueId']]);
+
+        $i = 0;
+
+        $request = null;
+
+        foreach ($refer as $key => $value)
+        {
+            if ($i == $id)
+            {
+                $request = [
+                    'id' => $value['_id'],
+                    'uniqueId' => $value['uniqueId'],
+                    'state' => $value['state']
+                ];
+                break;
+            }
+            $i++;
+        }
+
+        if ($request == null)
+        {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-unknown-request');
+        }
+
+        if ($request['state'] != "PENDING")
+        {
+            // We tell him
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-not-pending');
+        }
+
+        $nB = $request['uniqueId'];
+        // Fetch data
+        $userB = $this->container->mongoServer->players->findOne(['uniqueId' => strtolower($nB)]);
+
+        if ($userB == null)
+        {
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-unknown-user');
+        }
+
+        $nB = strtolower($userB['name']);
+
+        if (isset($_POST['no']))
+        {
+            // We put that he did have this step
+            $this->container->mongoServer->refers->deleteOne(['_id' => new \MongoDB\BSON\ObjectID($request['id'])]);
+
+            /** BASE MAIL => SEND TO THE APPLICANT */
+
+            try {
+
+                $userB_xen = $this->xenforo->getUser($nB);
+            } catch (\Exception $e) {
+                $userB_xen = null;
+            }
+
+            if ($userB_xen != null) {
+                // Get the mail base content
+                $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-he-refused.html");
+                // Replace the applicant's username
+                $mailContent = str_replace("(username)", $user['name'], $mailContent);
+                // Update the date
+                $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                // Instanciate the email object
+                $mail = new \App\Mail(true);
+                // Send the mail
+                $mail->sendMail($userB_xen["email"], "Votre demande de parrainage a été refusée", $mailContent);
+            }
+
+            /** BASE MAIL => SEND TO THE RECEIVER */
+
+            try {
+                $user_xen = $this->xenforo->getUser($n);
+            } catch (\Exception $e) {
+                $user_xen = null;
+            }
+
+            if ($user_xen != null && $nB != null)
+            {
+                // Get the mail base content
+                $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-you-refused.html");
+                // Replace the applicant's username
+                $mailContent = str_replace("(username)", $nB, $mailContent);
+                // Update the date
+                $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                // Instanciate the email object
+                $mail = new \App\Mail(true);
+                // Send the mail
+                $mail->sendMail($userB_xen["email"], "Vous avez refusé une demande de parrainage", $mailContent);
+            }
+
+            /** DEBUG */
+            $mailContent = $userB['name']." => ".$user['name']." => refusé";
+            $mail = new \App\Mail(true);
+            $mail->sendMail("xmalware2@gmail.com", "BadBlock - Parrainage", $mailContent);
+
+            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-you-refused');
+        }
+
+        // We put that he did have this step
+        $this->container->mongoServer->refers->updateOne(['_id' => new \MongoDB\BSON\ObjectID($request['id'])], ['$set' => ["state" => "CONFIRMED"]]);
+
+        $data = [
+            'uniqueId' => $userB['uniqueId'],
+            'date' => date('Y-m-d H:i:s'),
+            'price' => 0,
+            'gateway' => 'parrainage',
+            'pseudo' => $userB['name'],
+            'points' => 100
+        ];
+
+        $this->container->mongoUltra->funds->insertOne($data);
+
+        $resp = [
+            'name' => $userB['name'],
+            'date' => date("Y-m-d H:i:s")
+        ];
+
+        $this->container->mongoUltra->funds_logs->insertOne($resp);
+
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $userB['uniqueId']]);
+
+        if ($money == null)
+        {
+            $data = [
+                "uniqueId" => $userB['uniqueId'],
+                "points" => 100
+            ];
+            $this->container->mongo->fund_list->insertOne($data);
+            $this->container->session->set('points', 100);
+        }
+        else {
+            $money['points'] = $money['points'] + 100;
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $userB['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            $this->container->session->set('points', $money['points']);
+        }
+
+        $this->container->mongoServer->players->updateOne(['uniqueId' => $request['uniqueId']], ['$set' => ["state" => "CONFIRMED"]]);
+
+
+        /** BASE MAIL => SEND TO THE APPLICANT */
+
+        try {
+            $userB_xen = $this->xenforo->getUser($nB);
+        } catch (\Exception $e) {
+            $userB_xen = null;
+        }
+
+        if ($userB_xen != null) {
+            // Get the mail base content
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-he-accepted.html");
+            // Replace the applicant's username
+            $mailContent = str_replace("(username)", $user['name'], $mailContent);
+            // Update the date
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            // Instanciate the email object
+            $mail = new \App\Mail(true);
+            // Send the mail
+            $mail->sendMail($userB_xen["email"], "Votre demande de parrainage a été acceptée", $mailContent);
+        }
+
+        /** BASE MAIL => SEND TO THE RECEIVER */
+
+        try {
+            $user_xen = $this->xenforo->getUser($n);
+        } catch (\Exception $e) {
+            $user_xen = null;
+        }
+
+        if ($user_xen != null && $nB != null)
+        {
+            // Get the mail base content
+            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-you-accepted.html");
+            // Replace the applicant's username
+            $mailContent = str_replace("(username)", $nB, $mailContent);
+            // Update the date
+            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+            // Instanciate the email object
+            $mail = new \App\Mail(true);
+            // Send the mail
+            $mail->sendMail($userB_xen["email"], "Vous avez accepté une demande de parrainage", $mailContent);
+        }
+
+        /** DEBUG */
+        $mailContent = $userB['name']." => ".$user['name']." => accepté";
+        $mail = new \App\Mail(true);
+        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Parrainage", $mailContent);
+
+        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#sponsor-you-accepted');
+    }
 
     public function changeconnectmode(RequestInterface $request, ResponseInterface $response)
     {

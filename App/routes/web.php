@@ -171,6 +171,9 @@ $app->get('/info', \App\Controllers\PagesController::class . ':getInfo')->setNam
 
 $app->group('/dashboard', function (){
     $this->get('', \App\Controllers\UserController::class . ':getDashboard')->setName('dashboard');
+    $this->get('/refer', \App\Controllers\UserController::class . ':refer')->setName('dashboard:refer');
+    $this->post('/refer/submit', \App\Controllers\UserController::class . ':referSubmit')->setName('dashboard:referSubmit');
+    $this->post('/refer/manage', \App\Controllers\UserController::class . ':referManage')->setName('dashboard:referManage');
     $this->get('/facture/{uid}', \App\Controllers\UserController::class . ':facture')->setName('dashboard-facture');
 
     $this->post('/changeserverpassword', \App\Controllers\UserController::class . ':changepassserv')->setName('dashboard:passserv');
