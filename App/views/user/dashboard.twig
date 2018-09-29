@@ -99,7 +99,7 @@
                         <li>Niveau : <span>{{ user.game.level|number_format(0, '', ' ') }} niveau(x)</span></li>
                         <li>Point(s) d'expérience : <span>{{ user.game.xp|number_format(0, '', ' ') }} point(s)</span></li>
                         <li>Nombre de BadCoin(s) : <span>{{ user.game.badcoins|number_format(0, '', ' ') }} BC</span></li>
-                        <li>Nombre de vote(s) : <span>{{ vote|number_format(0, '', ' ') }} vote(s)</span></li>
+                        <li>Nombre de vote(s)* : <span>{{ vote|number_format(0, '', ' ') }} vote(s)</span></li>
                     </ul>
                 </div>
                 <div class="six columns">
@@ -705,7 +705,7 @@
         {% endfor %}
     {% endif %}
 
-
+*: Le nombre de votes depuis l'appartition du nouveau site web (Août 2018)
 
 {% endblock %}
 
