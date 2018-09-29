@@ -148,7 +148,7 @@ class StarpassController extends Controller
             $this->container->session->set('points', $money['points']);
         }
 
-        $doups = $virtual_currency * 0.1;
+        $doups = intval($virtual_currency * 0.1);
         $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
 
         foreach ($refers as $key => $value)

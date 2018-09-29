@@ -187,7 +187,7 @@ class PaypalController extends Controller
                 $this->container->session->set('points', $money['points']);
             }
 
-            $doups = $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'] * 0.1;
+            $doups = intval($this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'] * 0.1);
             $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
 
             foreach ($refers as $key => $value)

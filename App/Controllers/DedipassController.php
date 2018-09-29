@@ -79,7 +79,7 @@ class DedipassController extends Controller
                     $this->container->session->set('points', $money['points']);
                 }
 
-                $doups = $dedipass->virtual_currency * 0.1;
+                $doups = intval($dedipass->virtual_currency * 0.1);
                 $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
 
                 foreach ($refers as $key => $value)
@@ -243,7 +243,7 @@ class DedipassController extends Controller
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                 }
 
-                $doups = $dedipass->virtual_currency * 0.1;
+                $doups = intval($dedipass->virtual_currency * 0.1);
                 $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
 
                 foreach ($refers as $key => $value)
