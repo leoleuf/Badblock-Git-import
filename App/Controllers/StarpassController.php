@@ -154,7 +154,7 @@ class StarpassController extends Controller
         foreach ($refers as $key => $value)
         {
 
-            var_dump($value['value']);
+            var_dump($value['state']);
             exit;
             return;
 
