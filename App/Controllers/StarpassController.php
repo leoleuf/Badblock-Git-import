@@ -153,12 +153,17 @@ class StarpassController extends Controller
 
         foreach ($refers as $key => $value)
         {
-            if (!isset($value->state) OR $value->state != "CONFIRMED")
+
+            var_dump($value);
+            exit;
+            return;
+            
+            if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
             {
                 continue;
             }
 
-            $otherUser = $this->container->mongoServer->players->find(["uniqueId" => $value->receiver]);
+            $otherUser = $this->container->mongoServer->players->find(["uniqueId" => $value['receiver']]);
             if ($otherUser != null)
             {
                 $data = [
