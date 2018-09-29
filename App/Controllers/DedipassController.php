@@ -84,12 +84,15 @@ class DedipassController extends Controller
 
                 foreach ($refers as $key => $value)
                 {
+
                     if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
                     {
                         continue;
                     }
 
-                    $otherUser = $this->container->mongoServer->players->find(["uniqueId" => $value['receiver']]);
+                    $v = $value['receiver'];
+
+                    $otherUser = $this->container->mongoServer->players->findOne(["uniqueId" => $v]);
                     if ($otherUser != null)
                     {
                         $data = [
@@ -145,7 +148,7 @@ class DedipassController extends Controller
                             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                             $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                             $mail = new \App\Mail(true);
-                            $mail->sendMail($user["email"], "Vous avez reçu de l'argent", $mailContent);
+                            $mail->sendMail($otherUser_xen["email"], "Vous avez reçu de l'argent", $mailContent);
                         }
 
                         $mailContent = $name." gagne +".$doups." pts boutique (par ".$user['name'].")";
@@ -245,12 +248,15 @@ class DedipassController extends Controller
 
                 foreach ($refers as $key => $value)
                 {
+
                     if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
                     {
                         continue;
                     }
 
-                    $otherUser = $this->container->mongoServer->players->find(["uniqueId" => $value['receiver']]);
+                    $v = $value['receiver'];
+
+                    $otherUser = $this->container->mongoServer->players->findOne(["uniqueId" => $v]);
                     if ($otherUser != null)
                     {
                         $data = [
@@ -306,7 +312,7 @@ class DedipassController extends Controller
                             $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
                             $mailContent = str_replace("(lien)", $insertedId, $mailContent);
                             $mail = new \App\Mail(true);
-                            $mail->sendMail($user["email"], "Vous avez reçu de l'argent", $mailContent);
+                            $mail->sendMail($otherUser_xen["email"], "Vous avez reçu de l'argent", $mailContent);
                         }
 
                         $mailContent = $name." gagne +".$doups." pts boutique (par ".$user['name'].")";
