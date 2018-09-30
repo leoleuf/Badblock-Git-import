@@ -79,6 +79,84 @@ class DedipassController extends Controller
                     $this->container->session->set('points', $money['points']);
                 }
 
+                $doups = intval($dedipass->virtual_currency * 0.1);
+                $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
+
+                foreach ($refers as $key => $value)
+                {
+
+                    if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
+                    {
+                        continue;
+                    }
+
+                    $v = $value['receiver'];
+
+                    $otherUser = $this->container->mongoServer->players->findOne(["uniqueId" => $v]);
+                    if ($otherUser != null)
+                    {
+                        $data = [
+                            'uniqueId' => $otherUser['uniqueId'],
+                            'date' => date('Y-m-d H:i:s'),
+                            'price' => 0,
+                            'gateway' => 'Gain de la part de '.$value['receiver'],
+                            'pseudo' => $otherUser['name'],
+                            'points' => $doups
+                        ];
+
+                        $this->container->mongoUltra->funds->insertOne($data);
+
+                        $resp = [
+                            'name' => $otherUser['name'],
+                            'date' => date("Y-m-d H:i:s")
+                        ];
+
+                        $this->container->mongoUltra->funds_logs->insertOne($resp);
+
+                        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $otherUser['uniqueId']]);
+
+                        if ($money == null)
+                        {
+                            $data = [
+                                "uniqueId" => $otherUser['uniqueId'],
+                                "points" => $doups
+                            ];
+                            $this->container->mongo->fund_list->insertOne($data);
+                            $this->container->session->set('points', $doups);
+                        }
+                        else {
+                            $money['points'] = $money['points'] + $doups;
+                            $this->container->mongo->fund_list->updateOne(["uniqueId" => $otherUser['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                            $this->container->session->set('points', $money['points']);
+                        }
+
+
+                        try
+                        {
+                            $otherUser_xen = $this->xenforo->getUser($otherUser['name']);
+                        }
+                        catch (\Exception $e)
+                        {
+                            $otherUser_xen = null;
+                        }
+
+                        if ($otherUser_xen != null)
+                        {
+                            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-gain.html");
+                            $mailContent = str_replace("(username)", $otherUser['name'], $mailContent);
+                            $mailContent = str_replace("(gain)", $doups, $mailContent);
+                            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                            $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+                            $mail = new \App\Mail(true);
+                            $mail->sendMail($otherUser_xen["email"], "Vous avez reçu de l'argent", $mailContent);
+                        }
+
+                        $mailContent = $name." gagne +".$doups." pts boutique (par ".$user['name'].")";
+                        $mail = new \App\Mail(true);
+                        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Gain Parrainage", $mailContent);
+                    }
+                }
+
                 try {
                     $user = $this->xenforo->getUser($name);
                 }catch (\Exception $e){
@@ -163,6 +241,84 @@ class DedipassController extends Controller
                 }else{
                     $money['points'] = $money['points'] + $dedipass->virtual_currency;
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                }
+
+                $doups = intval($dedipass->virtual_currency * 0.1);
+                $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
+
+                foreach ($refers as $key => $value)
+                {
+
+                    if (!isset($value['state']) OR $value['state'] != "CONFIRMED")
+                    {
+                        continue;
+                    }
+
+                    $v = $value['receiver'];
+
+                    $otherUser = $this->container->mongoServer->players->findOne(["uniqueId" => $v]);
+                    if ($otherUser != null)
+                    {
+                        $data = [
+                            'uniqueId' => $otherUser['uniqueId'],
+                            'date' => date('Y-m-d H:i:s'),
+                            'price' => 0,
+                            'gateway' => 'Gain de la part de '.$value['receiver'],
+                            'pseudo' => $otherUser['name'],
+                            'points' => $doups
+                        ];
+
+                        $this->container->mongoUltra->funds->insertOne($data);
+
+                        $resp = [
+                            'name' => $otherUser['name'],
+                            'date' => date("Y-m-d H:i:s")
+                        ];
+
+                        $this->container->mongoUltra->funds_logs->insertOne($resp);
+
+                        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $otherUser['uniqueId']]);
+
+                        if ($money == null)
+                        {
+                            $data = [
+                                "uniqueId" => $otherUser['uniqueId'],
+                                "points" => $doups
+                            ];
+                            $this->container->mongo->fund_list->insertOne($data);
+                            $this->container->session->set('points', $doups);
+                        }
+                        else {
+                            $money['points'] = $money['points'] + $doups;
+                            $this->container->mongo->fund_list->updateOne(["uniqueId" => $otherUser['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                            $this->container->session->set('points', $money['points']);
+                        }
+
+
+                        try
+                        {
+                            $otherUser_xen = $this->xenforo->getUser($otherUser['name']);
+                        }
+                        catch (\Exception $e)
+                        {
+                            $otherUser_xen = null;
+                        }
+
+                        if ($otherUser_xen != null)
+                        {
+                            $mailContent = file_get_contents("https://cdn.badblock.fr/wd/mails/mail-sponsor-gain.html");
+                            $mailContent = str_replace("(username)", $otherUser['name'], $mailContent);
+                            $mailContent = str_replace("(gain)", $doups, $mailContent);
+                            $mailContent = str_replace("(date)", date('Y-m-d H:i:s'), $mailContent);
+                            $mailContent = str_replace("(lien)", $insertedId, $mailContent);
+                            $mail = new \App\Mail(true);
+                            $mail->sendMail($otherUser_xen["email"], "Vous avez reçu de l'argent", $mailContent);
+                        }
+
+                        $mailContent = $name." gagne +".$doups." pts boutique (par ".$user['name'].")";
+                        $mail = new \App\Mail(true);
+                        $mail->sendMail("xmalware2@gmail.com", "BadBlock - Gain Parrainage", $mailContent);
+                    }
                 }
 
                 $user = $this->xenforo->getUser($name);

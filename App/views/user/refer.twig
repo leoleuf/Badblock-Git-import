@@ -1,0 +1,59 @@
+{% extends "default.twig" %}
+{% set show_title = true %}
+{% set active_page = "dashboard" %}
+{% set title = "Parrainage" %}
+{% set sub_title = "Parrainer quelqu'un" %}
+{% set description = "Si vous souhatiez être le parrain de quelqu'un, vous pouvez le faire. " %}
+{% block content %}
+
+<div class="recharge-content">
+    <h4 class="heading heading-bar"><span>As-tu découvert BadBlock par l'intermédiaire d'un joueur en particulier ?</span></h4>
+</div>
+    <h6>Si oui, tu peux alors le parrainer. Tu gagneras <strong>100 points boutique</strong> et ton parrain recevera <strong>10% en plus sur chacun de tes rechargements</strong>.<br />Une fois le choix fait, vous ne receverez plus cette demande et vous accéderez directement à votre <strong>tableau de bord</strong>.</h6>
+    <span style="color: red;">Attention : Afin d'éviter les abus, choisissez une personne qui vous a vraiment fait découvrir BadBlock et demandez-lui d'abord. Vous ne pourrez pas effectuer une deuxième demande de parrainage.</span>
+    <br /><br />
+    <section class="shop-section-1" class="tabcontent" style="margin-left: 10%;">
+        <div class="six columns">
+            <div class="span">
+                <h4 class="top0">Oui</h4>
+                <form action="/dashboard/refer/submit" method="post" name="refer">
+                    <label for="refer">Entrez le pseudo du parrain</label><input type="text" name="refer" id="refer" placeholder="Pseudo du parrain" />
+                    <br />
+                    <input type="submit" name="ok" class="button-primary espace-valider"></input>
+                    </input>
+                </form>
+            </div>
+        </div>
+
+        <div class="six columns">
+            <div class="span">
+                <h4 class="top0">Non</h4>
+                <form action="/dashboard/refer/submit" method="post" name="refer">
+                    <button class="button button-danger" type="submit">Passer cette étape</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="remodal modal-remodal" data-remodal-id="already">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Vous avez déjà effectué une demande de parrainage. Passez donc cette étape.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="username-error">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Pseudo du parrain inconnu. Réessayez.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="ctsponsor-yourself">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Il est impossible de vous parrainer vous-même.</h1>
+    </div>
+
+    <div class="remodal modal-remodal" data-remodal-id="toomany-refers">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <h1>Cette personne a trop de demandes de parrainage.</h1>
+    </div>
+
+{% endblock %}
+
