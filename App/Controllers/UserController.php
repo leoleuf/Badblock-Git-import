@@ -655,12 +655,10 @@ class UserController extends Controller
                 "points" => 100
             ];
             $this->container->mongo->fund_list->insertOne($data);
-            $this->container->session->set('points', 100);
         }
         else {
             $money['points'] = $money['points'] + 100;
             $this->container->mongo->fund_list->updateOne(["uniqueId" => $request['uniqueId']], ['$set' => ["points" => $money['points']]]);
-            $this->container->session->set('points', $money['points']);
         }
 
         $this->container->mongoServer->players->updateOne(['uniqueId' => $request['uniqueId']], ['$set' => ["state" => "CONFIRMED"]]);
