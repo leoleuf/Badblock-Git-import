@@ -644,21 +644,19 @@ class UserController extends Controller
 
         $this->container->mongoUltra->funds_logs->insertOne($resp);
 
-        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $userB['uniqueId']]);
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $request['uniqueId']]);
 
         if ($money == null)
         {
             $data = [
-                "uniqueId" => $userB['uniqueId'],
+                "uniqueId" => $request['uniqueId'],
                 "points" => 100
             ];
             $this->container->mongo->fund_list->insertOne($data);
-            $this->container->session->set('points', 100);
         }
         else {
             $money['points'] = $money['points'] + 100;
-            $this->container->mongo->fund_list->updateOne(["uniqueId" => $userB['uniqueId']], ['$set' => ["points" => $money['points']]]);
-            $this->container->session->set('points', $money['points']);
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $request['uniqueId']], ['$set' => ["points" => $money['points']]]);
         }
 
         $this->container->mongoServer->players->updateOne(['uniqueId' => $request['uniqueId']], ['$set' => ["state" => "CONFIRMED"]]);
@@ -704,7 +702,7 @@ class UserController extends Controller
             // Instanciate the email object
             $mail = new \App\Mail(true);
             // Send the mail
-            $mail->sendMail($userB_xen["email"], "Vous avez accepté une demande de parrainage", $mailContent);
+            $mail->sendMail($user_xen["email"], "Vous avez accepté une demande de parrainage", $mailContent);
         }
 
         /** DEBUG */
