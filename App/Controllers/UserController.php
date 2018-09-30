@@ -646,12 +646,12 @@ class UserController extends Controller
 
         $this->container->mongoUltra->funds_logs->insertOne($resp);
 
-        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $userB['uniqueId']]);
+        $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $request['uniqueId']]);
 
         if ($money == null)
         {
             $data = [
-                "uniqueId" => $userB['uniqueId'],
+                "uniqueId" => $request['uniqueId'],
                 "points" => 100
             ];
             $this->container->mongo->fund_list->insertOne($data);
@@ -659,7 +659,7 @@ class UserController extends Controller
         }
         else {
             $money['points'] = $money['points'] + 100;
-            $this->container->mongo->fund_list->updateOne(["uniqueId" => $userB['uniqueId']], ['$set' => ["points" => $money['points']]]);
+            $this->container->mongo->fund_list->updateOne(["uniqueId" => $request['uniqueId']], ['$set' => ["points" => $money['points']]]);
             $this->container->session->set('points', $money['points']);
         }
 
