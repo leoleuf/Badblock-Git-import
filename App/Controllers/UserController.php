@@ -706,7 +706,7 @@ class UserController extends Controller
             // Instanciate the email object
             $mail = new \App\Mail(true);
             // Send the mail
-            $mail->sendMail($userB_xen["email"], "Vous avez accepté une demande de parrainage", $mailContent);
+            $mail->sendMail($user_xen["email"], "Vous avez accepté une demande de parrainage", $mailContent);
         }
 
         /** DEBUG */
