@@ -3,9 +3,7 @@
 # Crontab
 
 while true; do
-cd /home/web/dev-web/badblock-website
-php pull.php
 
-curl https://dev-web.badblock.fr/api/update-server-graph -u fluor:paypal
+curl https://badblock.fr/api/update-server-graph
 sleep 5
 done
