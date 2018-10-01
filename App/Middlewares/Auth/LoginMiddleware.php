@@ -122,7 +122,7 @@ class LoginMiddleware
                         }
                     }
 
-                    //staff group
+                    //staff groupgit pu
                     foreach ($staff as $g => $gr){
                         if ($k === $g){
                             //Tout est réussi on update le forum
