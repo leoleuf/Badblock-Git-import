@@ -19,9 +19,9 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($data as $row)
+                                            @foreach($data as $k => $row)
                                                 <tr class="gradeX">
-                                                    <td>{{ $row['name'] }}
+                                                    <td>#{{ $k +1 }} {{ $row['name'] }}
                                                         <input type="hidden" name="list[]" value="{{ $row['name'] }}">
                                                     </td>
                                                     <td>

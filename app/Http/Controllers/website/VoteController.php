@@ -42,7 +42,7 @@ class VoteController extends Controller
         return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
         '));
 
-        $data = array_slice($data, 0, 29);
+        $data = array_slice($data, 0, 30);
 
         foreach ($data as $k => $row){
             if ($k < 3){

@@ -76,7 +76,7 @@
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-globe"></i> <span>Website </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
-                            <li><a href="/website/prefix" class="waves-effect"><i class="fa fa-envelope-open"></i><span> Préfix</span></a></li>
+                            <li><a href="/website/prefix" class="waves-effect"><i class="fa fa-eye"></i><span> Préfix</span></a></li>
                             <li><a href="/website/vote" class="waves-effect"><i class="fa fa-envelope-open"></i><span> Votes</span></a></li>
                             <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i><span> Administration</span></a></li>
                         </ul>

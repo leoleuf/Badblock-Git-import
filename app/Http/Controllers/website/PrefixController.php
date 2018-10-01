@@ -25,7 +25,7 @@ class PrefixController extends Controller
 
         return view('website.prefix')->with('data', $data);
     }
-    
+
     public function save(){
         foreach ($_POST['list'] as $k => $row){
             if ($_POST['val'][$k] == "true"){
