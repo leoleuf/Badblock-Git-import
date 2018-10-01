@@ -95,5 +95,78 @@ class VoteController extends Controller
         return redirect('/');
     }
 
+    public function down(){
+        //Search mongoDB data
+        $date = date("Y-m");
+
+
+        $date = new \DateTime(date("Y-m-d", strtotime("-1 month")));
+
+        //Search data
+        $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();
+
+        if ($data['give'] == true){
+            return redirect('/');
+        }
+
+        //Lecture du classement
+        $data = (array) $data['players'];
+        usort($data, create_function('$a, $b', '
+        $a = $a["vote"];
+        $b = $b["vote"];
+
+        if ($a == $b) return 0;
+
+        $direction = strtolower(trim("desc"));
+
+        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
+        '));
+
+        $data = array_slice($data, 0, 30);
+
+        foreach ($data as $k => $row){
+            if ($k < 3){
+                $data[$k]['pb'] = 4875;
+            }elseif ($k < 10){
+                $data[$k]['pb'] = 2625;
+            }elseif ($k < 20){
+                $data[$k]['pb'] = 1500;
+            }else{
+                $data[$k]['pb'] = 750;
+            }
+        }
+
+
+        $array = Array (
+            0 => Array (
+                0 => "Votes BadBlock "
+            ),
+            1 => Array (
+                0 => "Pseudo",
+                1 => "Points"
+            )
+        );
+        foreach ($data as $row){
+            array_push($array, [$row['name'],$row['pb']]);
+        }
+
+        $date = date("Y-m");
+
+
+        header("Content-Disposition: attachment; filename=\"badblock-vote-" . $date .".xls\"");
+        header("Content-Type: application/vnd.ms-excel;");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        $out = fopen("php://output", 'w');
+        foreach ($array as $data)
+        {
+            fputcsv($out, $data,"\t");
+        }
+        fclose($out);
+
+
+
+    }
+
 
 }

@@ -82,6 +82,7 @@ Route::group([
 
         Route::get('/achat/{uuid}', 'website\AchatController@index');
 
+        Route::get('/vote-download', 'website\VoteController@down');
         Route::get('/vote', 'website\VoteController@index');
         Route::post('vote', 'website\VoteController@save');
 
