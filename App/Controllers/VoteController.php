@@ -288,26 +288,26 @@ class VoteController extends Controller
 
             $this->sendRabbitData($pseudo, $product);
             $collection->insertOne($insert);
+
+            $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1537027800 - 86400)]]);
+
+            $total = max($total, 1);
+            $proba = round(($dbh / $total) * 100, 2);
+            $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
+            $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
+            $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
+
+            $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+            $data = $this->container->mysql_forum->fetchRow($query);
+
+            if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true){
+                $this->top($displayPseudo, 1);
+            }
         }
         else
         {
             // oust les tricheurs
             $awardName = "Rien";
-        }
-
-        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1537027800 - 86400)]]);
-
-        $total = max($total, 1);
-        $proba = round(($dbh / $total) * 100, 2);
-        $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
-        $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
-        $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
-
-        $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
-        $data = $this->container->mysql_forum->fetchRow($query);
-
-        if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true){
-            $this->top($displayPseudo, 1);
         }
 
         return $response->write("Ton vote a été pris en compte. Tu as gagné ".$awardName .
