@@ -23,8 +23,6 @@ class GroupMiddleware
 		if ($this->container->session->exist('user')){
             if ($this->container->session->exist('grade')){
                 return $next($request, $response);
-            }else{
-                $this->container->session->set('grade', true);
             }
 
 		    $username = $this->container->session->getProfile('username')['username'];
@@ -100,6 +98,9 @@ class GroupMiddleware
                 }
 
             }
+
+            $this->container->session->set('grade', true);
+
 
             return $next($request, $response);
         }else{
