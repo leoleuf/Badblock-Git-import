@@ -66,6 +66,7 @@ class Paypal {
             'PWD' => $this->pwd,
         ));
         $params = http_build_query($params);
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => $this->endpoint,
@@ -80,7 +81,6 @@ class Paypal {
         $response = curl_exec($curl);
         $responseArray = array();
         parse_str($response, $responseArray);
-
 
         if(curl_errno($curl)){
             $this->errors = curl_error($curl);

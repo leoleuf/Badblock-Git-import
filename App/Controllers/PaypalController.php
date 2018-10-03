@@ -38,8 +38,8 @@ class PaypalController extends Controller
         $produit['Paypal']['Cancel'] = '/shop/recharge/cancel';              // Redirection en cas d'annulation
         $produit['Paypal']['Prix'] = $offer['price'];                                // Prix de votre produit (doit etre en format XX.X, ex: 60.0 ou 19.99)
         $produit['Paypal']['OfferID'] = $id;                        // Donnez un id unique à votre offre sans espaces
-        $produit['Paypal']['Offer'] = $name  . ' - Rechargement Points Boutique ' . $offer['points'];                    // Nom de votre produit( sera afficher sur paypal )
-        $produit['Paypal']['Offer_desc'] = 'Rechargement de '. $offer['points'] . 'points boutique';    // Offre de votre produit.
+        $produit['Paypal']['Offer'] = 'FluorL';
+        $produit['Paypal']['Offer_desc'] = 'Fluorl';
         $produit['Paypal']['Currency'] = 'EUR';                           // Code de votre monnaie( en majuscule ).
         $produit['Paypal']['QTY'] = 1;                                    // Quantité( 1 par défault )( Le prix sera multiplié par la quantité).
 
@@ -51,21 +51,20 @@ class PaypalController extends Controller
 
             'PAYMENTREQUEST_0_AMT' => $produit['Paypal']['Prix'],
             'PAYMENTREQUEST_0_CURRENCYCODE' => $produit['Paypal']['Currency'],
-            'PAYMENTREQUEST_0_SHIPPINGAMT' => 0.0,
-            'PAYMENTREQUEST_0_IMTEMAMT' => $produit['Paypal']['Prix'],
+            'PAYMENTREQUEST_0_SHIPPINGAMT' => $produit['Paypal']['Prix'],
+            'PAYMENTREQUEST_0_SOFTDESCRIPTOR' => $produit['Paypal']['Offer_desc'],
+            'PAYMENTREQUEST_0_DESC' => $name . ' - Rechargement PB - ' . $offer['points'],
+            'PAYMENTREQUEST_0_CUSTOM' => $name . ' - Rechargement PB - ' . $offer['points'],
 
-            'L_PAYMENT_PAYMENTREQUEST_0_NAME' => $produit['Paypal']['Offer'],
-            'L_PAYMENT_PAYMENTREQUEST_0_DESC' => $produit['Paypal']['Offer_desc'],
-            'L_PAYMENT_PAYMENTREQUEST_0_AMT' => $produit['Paypal']['Prix'],
-            'L_PAYMENT_PAYMENTREQUEST_0_QTY' => $produit['Paypal']['QTY']
-
+            'NOTETOBUYER' => 'Vos points boutique seront livrés en moins de 5 minutes, en cas de problème lors du paiement merci d\'ouvrir un ticket sur https://badblock.fr/forum/support/open'
         );
+
 
         $resp = $paypal->request('SetExpressCheckout', $params);
 
         if($resp){
             // Remplacer www.paypal.com par www.sandbox.paypal.com pour utiliser la sandbox
-            $link = 'https://www.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
+            $link = 'https://www.sandbox.paypal.com/websrc?cmd=_express-checkout&useraction=commit&token='.$resp['TOKEN'];
             return $this->redirect($response, $link);
         }else{
             return $this->redirect($response, '/shop/recharge/cancel#6');
@@ -76,6 +75,12 @@ class PaypalController extends Controller
     public function process(RequestInterface $request, ResponseInterface $response){
         if(!isset($_GET['offer']) || !isset($_GET['Prix']) || !isset($_GET['Offer']) || !isset($_GET['Offer_desc']) || !isset($_GET['Currency']) || !isset($_GET['QTY'])){
             return $this->redirect($response, '/shop/recharge/cancel#4');
+        }
+
+        if (!isset($this->container->config['paiement'][0]['offer'][$_GET['offer']])){
+            return $this->redirect($response, '/shop/recharge/cancel#5');
+        }else{
+            $offer = $this->container->config['paiement'][0]['offer'][$_GET['offer']];
         }
 
         if (!$this->container->session->exist('recharge-username'))
@@ -93,8 +98,8 @@ class PaypalController extends Controller
         $produit = array();
         $produit['Paypal']['Prix'] = $_GET['Prix'];
         $produit['Paypal']['OfferID'] = $_GET['offer'];
-        $produit['Paypal']['Offer'] = $_GET['Offer'];
-        $produit['Paypal']['Offer_desc'] = $_GET['Offer_desc'];
+        $produit['Paypal']['Offer'] = 'FluorL';                    // Nom de votre produit( sera afficher sur paypal )
+        $produit['Paypal']['Offer_desc'] = 'Fluorl';
         $produit['Paypal']['Currency'] = $_GET['Currency'];
         $produit['Paypal']['QTY'] = $_GET['QTY'];
         $produit['Paypal']['Url'] = 'https://badblock.fr';
@@ -130,15 +135,12 @@ class PaypalController extends Controller
 
             'PAYMENTREQUEST_0_AMT' => $produit['Paypal']['Prix'],
             'PAYMENTREQUEST_0_CURRENCYCODE' => $produit['Paypal']['Currency'],
-            'PAYMENTREQUEST_0_SHIPPINGAMT' => 0.0,
-            'PAYMENTREQUEST_0_IMTEMAMT' => $produit['Paypal']['Prix'],
+            'PAYMENTREQUEST_0_SHIPPINGAMT' => $produit['Paypal']['Prix'],
             'PAYMENTREQUEST_0_SOFTDESCRIPTOR' => $produit['Paypal']['Offer_desc'],
+            'PAYMENTREQUEST_0_DESC' => $name . ' - Rechargement PB - ' . $offer['points'],
+            'PAYMENTREQUEST_0_CUSTOM' => $name . ' - Rechargement PB - ' . $offer['points'],
 
-            'L_PAYMENT_PAYMENTREQUEST_0_NAME' => $produit['Paypal']['Offer'],
-            'L_PAYMENT_PAYMENTREQUEST_0_DESC' => $produit['Paypal']['Offer_desc'],
-            'L_PAYMENT_PAYMENTREQUEST_0_AMT' => $produit['Paypal']['Prix'],
-            'L_PAYMENT_PAYMENTREQUEST_0_QTY' => $produit['Paypal']['QTY']
-
+            'NOTETOBUYER' => 'Vos points boutique seront livrés en moins de 5 minutes, en cas de problème lors du paiement merci d\'ouvrir un ticket sur https://badblock.fr/forum/support/open'
         );
 
         $resp = $paypal->request('DoExpressCheckoutPayment', $params);
