@@ -101,7 +101,6 @@ class GroupMiddleware
 
             $this->container->session->set('grade', true);
 
-
             return $next($request, $response);
         }else{
             return $next($request, $response);
