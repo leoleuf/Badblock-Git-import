@@ -81,6 +81,13 @@
                             <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i><span> Administration</span></a></li>
                         </ul>
                     </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-setting"></i> <span>Settings </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="/settings/sharex" class="waves-effect"><i class="fa fa-eye"></i><span> ShareX</span></a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

@@ -14,7 +14,12 @@
 //A ne pas delete rout d'Auth AP
 Auth::routes();
 
-
+Route::group([
+    'prefix'     => "api"
+], function () {
+    //Website
+    Route::post('/upload', 'Api\ScreenController@upload');
+});
 
 Route::group([
     'middleware' => ['auth'],
@@ -97,6 +102,16 @@ Route::group([
         Route::resource('/crud/items', 'website\crud\ItemsController');
     });
 
+    Route::group([
+        'prefix'     => "settings",
+        'middleware' => ['auth'],
+    ], function () {
+        //Website
+        Route::get('/sharex', 'settings\SharexController@index');
+        Route::get('/sharex-reg', 'settings\SharexController@new');
+        Route::get('/sharex-down', 'settings\SharexController@down');
+
+    });
 
 
 
