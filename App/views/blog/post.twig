@@ -1,6 +1,7 @@
 {% extends "default.twig" %}
 {% set title = post.title %}
 {% set subtitle = post.summary %}
+{% set h2 = false %}
 {% set description = post.content|raw  %}
 {% block cover %}
     <!------Cover------>
@@ -8,7 +9,7 @@
         <div class="cover cover-profile">
             <div class="container">
                 <div class="one-half column animated bounceInLeft">
-                    <h2 class="cover-heading">{{ post.title }}</h2>
+                    <h1 class="cover-heading">{{ post.title }}</h1>
                 </div>
             </div>
             <div class="profile-info">

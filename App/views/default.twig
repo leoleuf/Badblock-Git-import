@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <link rel="canonical" href="{{ currentUrl }}" />
 
-    <title>{% if hide_title is not defined %}BadBlock - {% endif %}{{ title }}</title>
+    <title>{{ title }}{% if hide_title is not defined %} - BadBlock{% endif %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="robots" content="index, follow">
@@ -181,11 +181,11 @@
             <div class="dropdown">
                 <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
-                    <!--<li>
+                    <li>
                         <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
                             <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
                         </a>
-                    </li>!-->
+                    </li>
                     <li>
                         <a href="https://badblock.fr/forum/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
                             <i class="edit-colored-icon colored-icon"></i>Recrutements
@@ -335,8 +335,6 @@
 
 <div class="remodal modal-remodal" data-remodal-id="login">
     <button data-remodal-action="close" class="remodal-close"></button>
-    <h2>Connexion</h2>
-    <br />
     <form action="https://badblock.fr/forum/connexion/login" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1" method="post">
         <table style="width: 100%;">
             <tr>
