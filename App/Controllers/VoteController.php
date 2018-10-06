@@ -236,9 +236,9 @@ class VoteController extends Controller
 
 
         $collection = $this->container->mongo->votes_logs;
-        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
         // 2 sites de vote, 3 sites à venir?
-        if ($dbh == null || $dbh <= 1) {
+        if ($dbh == null) {
             $collection = $this->container->mongo->votes_awards;
             $cursor = $collection->find(['type' => intval($type)]);
 
