@@ -12,7 +12,7 @@ return [
 	'blog.summary' => "Toutes les dernières fraiches news du serveur",
 	'blog.comments_disable' => "Commentaires désactivé sur cet article",
 	'blog.comments_empty' => "Aucuns commentaires de disponible",
-    'play.title_meta' => "Télécharger Launcher Minecraft Gratuit BadBlock LifeCraft",
+    'play.title_meta' => "Télécharger Launcher Minecraft Gratuit LifeCraft Crack 1.8 à 1.13.1",
     'play.title' => "Jouer",
     'launcher.title' => "Launcher",
 	'play.sub_title' => "Découvrez Badblock sur toutes ses formes",
