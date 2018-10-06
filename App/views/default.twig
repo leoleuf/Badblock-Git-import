@@ -404,47 +404,7 @@
     }
 </script>!-->
 <script async defer src="/dist/js/app.js"></script>
-<!--<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
-
-{% set randomPassword = [] %}
-{% set alpha = 'abcdefghijklmnopqrstuvwxyz' %}
-{% set numbers = '0123456789' %}
-
-{% for i in 1..random(32) %}
-    {% set randomCharacter = random(alpha ~ alpha|upper ~ numbers ~ '-_') %}
-    {% set randomPassword = randomPassword|merge([randomCharacter]) %}
-{% endfor %}
-{% set randomPassword = randomPassword|join %}
-
-<div class="remodal" data-remodal-id="{{ randomPassword }}"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
-
-    <div style="font-size: 21px;">Veuillez désactiver AdBlock</div>
-    <p>
-        Vous devez désactiver AdBlock pour accéder à cette page afin d'obtenir des statistiques claires sur notre évolution.<br />
-        <br />
-    </p>
-    <br>
-    <a href="" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>
-
-<script async defer>
-    $(document).ready(function () {
-
-        if (window.canRunAds === undefined) {
-            $('[data-remodal-id={{ randomPassword }}]').remodal().open();
-            $('.container').fadeTo("slow",0.0);
-            $('.container').empty();
-            $('.cover-back').empty();
-            $('.cover').empty();
-            $('.stats-back').empty();
-            $('.footer').empty();
-            $('.footer').fadeTo("slow",0.0);
-            return;
-        }
-
-    });
-</script>!-->
+<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}
