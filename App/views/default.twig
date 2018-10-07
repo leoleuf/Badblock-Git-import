@@ -411,7 +411,6 @@
         'manyPlayers': "{{ 'many_players'|trans }}"
     }
 </script>!-->
-<script async defer src="/dist/js/app.js"></script>
 
 {% if noads is not defined %}
     <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
@@ -455,12 +454,15 @@
 
 
 <!-- très très très très très très expérimental !-->
+{% if noads is not defined %}
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
-{% if noads is not defined %}
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-{% endif %}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+{% else %}
+<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/lc.css">
+{% endif %}
+<script async defer src="/dist/js/app.js"></script>
 <script async defer>
     function showMenu(y)
     {
