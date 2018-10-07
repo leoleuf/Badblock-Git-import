@@ -66,16 +66,19 @@ class MinifyMiddleware
 
         $oldBody = $response->getBody();
 
-        $minifiedBodyContent = $this->minifyHTML((string)$oldBody);
+        if ($oldBody != null && $oldBody->getSize() > 0) {
+            $minifiedBodyContent = $this->minifyHTML((string)$oldBody);
 
 
-        $newBody = new Body(fopen('php://temp', 'r+'));
+            $newBody = new Body(fopen('php://temp', 'r+'));
 
-        //write the minified html content to the new \Slim\Http\Body instance
-        $newBody->write($minifiedBodyContent);
+            //write the minified html content to the new \Slim\Http\Body instance
+            $newBody->write($minifiedBodyContent);
 
-        return $response->withBody($newBody);
+            return $response->withBody($newBody);
+        }
 
+        return $next($request, $response);
     }
 }
 
