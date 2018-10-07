@@ -35,6 +35,8 @@ $whoopsGuard->install();
 */
 $app->add(new \App\Middlewares\IpGeneratorMiddleware($container));
 $app->add(new \App\Middlewares\VoteCountMiddleware($container));
+$app->add(new \App\Middlewares\MinifyMiddleware($container));
+
 
 $app->add(new \App\Middlewares\Auth\LoginMiddleware($container));
 $app->add(new \App\Middlewares\GroupMiddleware($container));
