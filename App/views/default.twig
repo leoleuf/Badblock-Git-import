@@ -12,7 +12,11 @@
     <title>{{ title }}{% if hide_title is not defined %} - BadBlock{% endif %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    {% if dev %}
+        <meta name="robots" content="noindex, nofollow">
+    {% else %}
     <meta name="robots" content="index, follow">
+    {% endif %}
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="msapplication-tap-highlight" content="no" />

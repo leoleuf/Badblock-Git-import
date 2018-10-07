@@ -142,6 +142,8 @@ class IpGeneratorMiddleware
         $twig->addGlobal('points', $shoppoints);
         $twig->addGlobal('isOnline', $this->container->session->exist('user'));
         $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        $dev = getenv('APP_DEBUG') == 1;
+        $twig->addGlobal('dev', $dev);
 
         // If the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {
