@@ -454,7 +454,9 @@
 <!-- très très très très très très expérimental !-->
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
+{% if noads is not defined %}
 <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
+{% endif %}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <script async defer>
     function showMenu(y)
@@ -480,7 +482,9 @@
     }
 </script>
 
+{% if noads is not defined %}
 <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+{% endif %}
 <script async defer src="/gtag/js?id=UA-104430841-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -509,9 +513,11 @@
 
 </script>
 
+{% if noads is not defined %}
 <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
+{% endif %}
 
-{% if active_page != "home" %}
+{% if active_page != "home" and noads is not defined %}
 <script type="application/ld+json">
 {
     "@context": "http://schema.org/",
@@ -520,6 +526,22 @@
         "@type": "GameServer",
         "name": "BadBlock",
         "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
+        "playersOnline": "",
+        "url": "https://badblock.fr/launcher-minecraft"
+    },
+    "ratingValue": "5",
+    "ratingCount": "{{ voteCount }}"
+}
+</script>
+{% elseif noads is defined %}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org/",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+        "@type": "GameServer",
+        "name": "Launcher Minecraft",
+        "description": "Télécharger le nouveau launcher minecraft et lifecraft gratuit, pour les versions Crack et Premium sur PC, de la version 1.8 à la 1.13.2.",
         "playersOnline": "",
         "url": "https://badblock.fr/launcher-minecraft"
     },
