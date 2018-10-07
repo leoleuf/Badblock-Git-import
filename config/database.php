@@ -121,6 +121,21 @@ return [
             'engine' => null,
         ],
 
+        'mysql_casier' => [
+            'driver' => 'mysql',
+            'host' => env('MYSQL_CASIER_HOST', '127.0.0.1'),
+            'port' => env('MYSQL_CASIER_PORT', '3306'),
+            'database' => env('MYSQL_CASIER_DATABASE', 'forge'),
+            'username' => env('MYSQL_CASIER_USERNAME', 'forge'),
+            'password' => env('MYSQL_CASIER_PASSWORD', ''),
+            'unix_socket' => env('', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
     ],
 
     /*

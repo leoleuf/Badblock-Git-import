@@ -30,6 +30,17 @@ Route::group([
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
 
+    //Screenshort list
+    Route::get('/screen', 'profile\ScreenController@index');
+    Route::get('/screen/{id}', 'profile\ScreenController@page');
+
+    //Modération
+    Route::get('/moderation', 'section\ModerationController@index');
+    Route::get('/moderation/screen', 'section\ModerationController@screen');
+    Route::get('/moderation/sanction', 'section\ModerationController@sanction');
+    Route::get('/moderation/union', 'section\ModerationController@union');
+
+
 
     Route::get('/players', 'profile\IndexController@index');
     Route::get('/profile/{uuid}', 'profile\IndexController@profile');

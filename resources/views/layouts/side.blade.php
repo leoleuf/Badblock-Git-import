@@ -33,16 +33,18 @@
             <!--- Sidemenu -->
             <div id="sidebar-menu">
                 <ul>
-                    <li class="text-muted menu-title">Navigation</li>
-
-                    <li>
-                        <a href="/" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Dashboard </span> </a>
-                    </li>
                     <li>
                         <a href="/players" class="waves-effect">
                             <i class="fa  fa-search"></i>
                             <span> Rechercher</span>
                         </a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-black-tie"></i> <span>Profile </span> <span class="menu-arrow"></span></a>
+                        <ul class="list-unstyled">
+                            <li><a href="/settings/sharex" class="waves-effect"><i class="fa fa-eye"></i><span> ShareX</span></a></li>
+                            <li><a href="/screen" class="waves-effect"><i class="fa fa-eye"></i><span> Ma gallerie</span></a></li>
+                        </ul>
                     </li>
 
                     <li class="has_sub">
@@ -79,13 +81,6 @@
                             <li><a href="/website/prefix" class="waves-effect"><i class="fa fa-eye"></i><span> Préfix</span></a></li>
                             <li><a href="/website/vote" class="waves-effect"><i class="fa fa-envelope-open"></i><span> Votes</span></a></li>
                             <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i><span> Administration</span></a></li>
-                        </ul>
-                    </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-setting"></i> <span>Settings </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="/settings/sharex" class="waves-effect"><i class="fa fa-eye"></i><span> ShareX</span></a></li>
                         </ul>
                     </li>
                 </ul>
