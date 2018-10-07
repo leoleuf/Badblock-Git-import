@@ -256,18 +256,21 @@
 <div class="container">
     <div class="content">
     {{ block('content') }}
-    <div id="pub-margin">
 
-    </div>
+    {% if noads is not defined %}
+        <div id="pub-margin">
 
-    <div class="pub-large">
+        </div>
+
+        <div class="pub-large">
 
 
-        <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    {% endif %}
     </div>
 </div>
 <!-- fin CONTENT -->
@@ -319,7 +322,7 @@
                 <li><a href="https://discordapp.com/invite/kxRzxQJ" rel="nofollow" title="Accéder au Discord du Serveur Minecraft"><img src="//cdn.badblock.fr/images/discord.png" title="Accéder au Discord du Serveur Minecraft" alt=""Accéder au Discord du Serveur Minecraft"" width="31" style="margin-top: 3px"></a></li>
             </ul>
         </div>
-        {% if active_page != "launcher-minecraft" %}
+        {% if noads is not defined %}
             <div class="four columns">
                 <div class="footer-links-title-container">
                     <h5 class="footer-links-title">
@@ -388,7 +391,9 @@
     </form>
 </div>
 
+{% if noads is not defined %}
 <script async defer src="/pagead/js/adsbygoogle.js"></script>
+{% endif %}
 
 <!-- Fin footer -->
 
@@ -404,19 +409,22 @@
     }
 </script>!-->
 <script async defer src="/dist/js/app.js"></script>
-<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
-<div class="remodal" data-remodal-id="blc"
-     data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+{% if noads is not defined %}
+    <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
-    <div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
-    <p>
-        Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br />
-        <br />
-    </p>
-    <br>
-    <a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>
+    <div class="remodal" data-remodal-id="blc"
+         data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+
+        <div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
+        <p>
+            Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br />
+            <br />
+        </p>
+        <br>
+        <a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+    </div>
+{% endif %}
 
 {% if block("scripts") is defined %}
     {{ block('scripts') }}

@@ -3,6 +3,7 @@
 {% set show_title = false %}
 {% set hide_title = true %}
 {% set h2 = true %}
+{% set noads = true %}
 {% set description = "Télécharger le nouveau launcher minecraft et lifecraft gratuit, pour les versions Crack et Premium sur PC, de la version 1.8 à la 1.13.2." %}
 {% block skyscrapers %}
     <div class="cover-back">
@@ -18,7 +19,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><!--
 <div class="pub-skyscraper-left">
     <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
     <script async defer>
@@ -29,7 +30,7 @@
 <div class="pub-skyscraper-right">
     <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
     <script async defer>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
+</div>!-->
 {% endblock %}
 
 {% set title = 'play.title_meta'|trans %}
@@ -211,24 +212,12 @@
                 </div>
             </div>
         </div>
-        <br />
+        <div id="join-badblock-margin"></div>
         <h4 class="heading-bar"><span>Télécharger Minecraft PC</span></h4>
         <p>
             Ce <strong>Launcher Minecraft</strong> (Lifecraft et BadBlock) est propulsé par launcher-minecraft.com, launcher <strong>LifeCraft</strong> et BadBlock qui ne détiennent aucun droit de modification sur celui-ci. L'utilisateur, le joueur peut le partager gratuitement à d'autres joueurs, à ses amis par exemple, afin de jouer à plusieurs. Il n'a cependant pas le droit de revendre le logiciel. LifeCraft n'est pas affilié à ce launcher, il est proposé en remplacement à leur launcher populaire qui n'existe plus dorénavant.
             <br /><i>notre* : BadBlock ne détient aucune responsabilité sur le Launcher minecraft en question. Pour plus d'informations, vous serez invité à contacter directement les personnes à l'origine du projet de launcher minecraft. En cas de problème avec le launcher (s'il ne s'ouvre pas par exemple), vous pouvez les contacter sur le site Internet du partenaire. Minecraft n'est pas à l'origine de ce Launcher mais le jeu lui appartient.</i>
         </p>
-        <br />
-        <h4 class="heading-bar"><span>Rejoindre notre Serveur Minecraft</span></h4>
-        <div class="twelve columns played">
-            <form class="offset-by-three eight columns play-form">
-                <label>Nom du serveur</label>
-                <input type="text" class="form-control" id="" value="BadBlock" readonly="">
-                <label>IP du serveur</label>
-                <input type="text" class="form-control" id="to-copy" value="{{ mc_ip }}" readonly="">
-            </form>
-            <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i> Copier l'IP</button>
-        </div>
-        <div id="join-badblock-margin"></div>
     
     </div>
     <!--
@@ -258,15 +247,5 @@ for (i = 0; i < acc.length; i++) {
         }
     });
 }
-    </script>
-    <script async>
-        var toCopy  = document.getElementById( 'to-copy' ),
-            btnCopy = document.getElementById( 'copy' );
-
-        btnCopy.addEventListener( 'click', function(){
-            toCopy.select();
-            document.execCommand( 'copy' );
-            return false;
-        } );
     </script>
 {% endblock %}
