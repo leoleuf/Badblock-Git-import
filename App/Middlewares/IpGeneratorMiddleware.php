@@ -143,50 +143,6 @@ class IpGeneratorMiddleware
         $twig->addGlobal('isOnline', $this->container->session->exist('user'));
         $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
-        $bkln = "";
-        $OpenInNewWindow = "1";
-        $BLKey = "X3JF-1ZS7-1K6Z";
-
-        if(isset($_SERVER['SCRIPT_URI']) && strlen($_SERVER['SCRIPT_URI'])){
-            $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_URI'].((strlen($_SERVER['QUERY_STRING']))?'?'.$_SERVER['QUERY_STRING']:'');
-        }
-
-        if(!isset($_SERVER['REQUEST_URI']) || !strlen($_SERVER['REQUEST_URI'])){
-            $_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'].((isset($_SERVER['QUERY_STRING']) && strlen($_SERVER['QUERY_STRING']))?'?'.$_SERVER['QUERY_STRING']:'');
-        }
-
-        $QueryString  = "LinkUrl=".urlencode(((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on')?'https://':'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        $QueryString .= "&Key=" .urlencode($BLKey);
-        $QueryString .= "&OpenInNewWindow=" .urlencode($OpenInNewWindow);
-
-
-        if(intval(get_cfg_var('allow_url_fopen')) && function_exists('readfile')) {
-            ob_start();
-            @readfile("http://www.backlinks.com/engine.php?".$QueryString);
-            $bkln = ob_get_clean();
-        }
-        elseif(intval(get_cfg_var('allow_url_fopen')) && function_exists('file')) {
-            if($content = @file("http://www.backlinks.com/engine.php?".$QueryString))
-            {
-                $bkln = @join('', $content);
-            }
-        }
-        elseif(function_exists('curl_init')) {
-            $ch = curl_init ("http://www.backlinks.com/engine.php?".$QueryString);
-            curl_setopt ($ch, CURLOPT_HEADER, 0);
-            curl_exec ($ch);
-
-            if(curl_error($ch))
-                $bkln = "Erreur?";
-
-            curl_close ($ch);
-        }
-        else {
-            $bkln = "Erreur2";
-        }
-
-        $twig->addGlobal('bkln', $bkln);
-
         // If the key doesn't exist in cache
         if (!$this->container->session->exist('mcIp')) {
             $result = [];
