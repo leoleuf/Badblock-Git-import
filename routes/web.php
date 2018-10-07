@@ -38,7 +38,7 @@ Route::group([
     Route::get('/moderation', 'section\ModerationController@index');
     Route::get('/moderation/screen', 'section\ModerationController@screen');
     Route::get('/moderation/sanction', 'section\ModerationController@sanction');
-    Route::get('/moderation/union', 'section\ModerationController@union');
+    Route::post('/moderation/union', 'section\ModerationController@union');
 
 
 
