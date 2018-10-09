@@ -59,7 +59,7 @@
                             <h5 class="text-center">Choisissez un Site</h5>
                             <a title="Choisir le site" class="button button-primary" id="btm-msf" onclick="vote('/vote/redirect')" rel="nofollow" target="_blank" style="width: 95%;">Serveur-Prive.net (1H30)</a>
                             {% if eula %}
-                            <!--<a title="Serveur Minecraft" class="button button-primary" id="btm-msf" onclick="vote('https://serveur-minecraft.net/serv/93/info')" target="_blank" style="width: 95%;">Serveur-Minecraft.net (1H30)</a>!-->
+                            <a title="Liste des serveur minecraft" class="button button-primary" id="btm-msf" href="https://serveur-minecraft.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur-Minecraft.net (1H30)</a>!-->
                             {% endif %}
                             <div id="pleasewait" style="display: none;">
 
@@ -251,6 +251,11 @@
                     success: function (data) {
                         $("#step1").addClass("disabled");
                         $("#step2").removeClass("disabled");
+                        $("#lot1").removeClass("disabled");
+                        $("#lot2").removeClass("disabled");
+                        $("#lot3").removeClass("disabled");
+                        $("#lot4").removeClass("disabled");
+                        $("#lot5").removeClass("disabled");
                         $("#pleasewait").hide();
                     }
                 });
@@ -267,6 +272,11 @@
                     {
                         $("#step1").addClass("disabled");
                         $("#step2").removeClass("disabled");
+                        $("#lot1").removeClass("disabled");
+                        $("#lot2").removeClass("disabled");
+                        $("#lot3").removeClass("disabled");
+                        $("#lot4").removeClass("disabled");
+                        $("#lot5").removeClass("disabled");
                         $("#pleasewait").html(jqXHR.responseText);
                         $("#pleasewait").show();
                     }
@@ -276,14 +286,14 @@
 
         function vote(wb)
         {
+            $("#lot1").removeClass("disabled");
+            $("#lot2").removeClass("disabled");
+            $("#lot3").removeClass("disabled");
+            $("#lot4").removeClass("disabled");
+            $("#lot5").removeClass("disabled");
             window.open(wb, '_blank');
             $("#step2").addClass("disabled");
             setTimeout(function () {
-                $("#lot1").removeClass("disabled");
-                $("#lot2").removeClass("disabled");
-                $("#lot3").removeClass("disabled");
-                $("#lot4").removeClass("disabled");
-                $("#lot5").removeClass("disabled");
                 $("#pleasewait").hide();
             }, 5000);
         }
