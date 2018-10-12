@@ -206,13 +206,13 @@
                                 <td><span>{{ k + 1 }}</span></td>
                                 <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
                                 {% if k < 3 %}
-                                    <td>4500 points boutique</td>
+                                    <td>2250 points boutique</td>
                                 {% elseif k < 10 %}
-                                    <td>1500 points boutique</td>
-                                {% elseif k < 20 %}
-                                    <td>1250 points boutique</td>
-                                {% elseif k < 30 %}
                                     <td>750 points boutique</td>
+                                {% elseif k < 20 %}
+                                    <td>625 points boutique</td>
+                                {% elseif k < 30 %}
+                                    <td>250 points boutique</td>
                                 {% else %}
                                     <td></td>
                                 {% endif %}
