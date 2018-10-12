@@ -500,12 +500,12 @@
 </script>
 <script async defer>
     $(".dropdown-link").on('mouseover', function () {
-        $(".dropdown-dropdown").show()
+        $(".dropdown-dropdown").show();
         $(".dropdown-dropdown").css('display', 'flex')
     });
     $("body").on('mouseover', function () {
         if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-            $(".dropdown-dropdown").fadeOut()
+            $(".dropdown-dropdown").fadeOut();
         }
     });
 </script>
