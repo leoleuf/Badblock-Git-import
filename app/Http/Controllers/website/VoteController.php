@@ -20,7 +20,7 @@ class VoteController extends Controller
 {
 
     public function index(){
-        $date = new \DateTime(date("Y-m-d", strtotime("-1 month")));
+        $date = new \DateTime(date("Y-m-d"));
 
         //Search data
         $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();
@@ -100,7 +100,7 @@ class VoteController extends Controller
         $date = date("Y-m");
 
 
-        $date = new \DateTime(date("Y-m-d", strtotime("-1 month")));
+        $date = new \DateTime(date("Y-m-d"));
 
         //Search data
         $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();

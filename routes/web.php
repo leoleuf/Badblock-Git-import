@@ -22,7 +22,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['auth'],
+    'middleware' => ["auth"],
 ], function () {
     Route::get('/', function () {return view('welcome');});
     Route::get('/home', 'HomeController@index')->name('home');
@@ -35,10 +35,10 @@ Route::group([
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
     //Modération
-    Route::get('/moderation', 'section\ModerationController@index');
-    Route::get('/moderation/screen', 'section\ModerationController@screen');
-    Route::get('/moderation/sanction', 'section\ModerationController@sanction');
-    Route::post('/moderation/union', 'section\ModerationController@union');
+    Route::get('/moderation', 'mod\ModerationController@index');
+    Route::get('/moderation/screen', 'mod\ModerationController@screen');
+    Route::get('/moderation/sanction', 'mod\ModerationController@sanction');
+    Route::post('/moderation/union', 'mod\ModerationController@union');
 
 
 
@@ -84,14 +84,14 @@ Route::group([
     //TeamSpeak
     Route::group([
         'prefix'     => "teamspeak",
-        'middleware' => ['auth'],
+        'middleware' => ["auth"],
     ], function () {
         Route::get('/banlist', 'mod\TeamspeakController@banList');
     });
 
     Route::group([
         'prefix'     => "website",
-        'middleware' => ['auth'],
+        'middleware' => ["auth"],
     ], function () {
         //Website
         Route::get('/', 'website\IndexController@index');
