@@ -39,6 +39,10 @@ Route::group([
     Route::get('/moderation/screen', 'mod\ModerationController@screen');
     Route::get('/moderation/sanction', 'mod\ModerationController@sanction');
     Route::post('/moderation/union', 'mod\ModerationController@union');
+    //Modération casier
+    Route::get('/moderation/casier/{player}', 'mod\CasierController@case');
+    Route::get('/moderation/mcasier/{player}', 'mod\CasierController@minicase');
+
 
 
 
