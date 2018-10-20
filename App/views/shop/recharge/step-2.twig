@@ -66,6 +66,11 @@
     </div>
     <br>
     <h5 id="mode">Comment veux-tu recharger ton compte ?</h5>
+    {% if (codepromo is not empty) %}
+        <div class="alert alert-success" role="alert" id="success-alert" style="font-size: 19px;">
+            Vous utilisez le code promotionnel {{ codepromo }}. +{{ percentpromo }}% de points boutique sur votre rechargement. Valable 15 minutes.
+        </div>
+    {% endif %}
     Il suffit de cliquer sur la méthode par laquelle tu veux passer pour obtenir plus de points boutique. Si tu souhaites obtenir des points boutique par <strong>carte bancaire</strong>, c'est possible en cliquant sur <strong>PayPal</strong>. Envoyer un code ou appeler directement est la méthode la plus rapide, mais tu n'auras pas les Bonus que PayPal peut offrir.<br />
     Descends un peu la page pour voir la liste de tous les moyens de recharger ton compte.<br /><br />
     <div class="row center">

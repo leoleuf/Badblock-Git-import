@@ -41,7 +41,24 @@ class CreditController extends Controller
 
             $this->render($response, 'shop.recharge.step-1', ['player' => $player]);
         }elseif($id['id'] == 2){
-            $this->render($response, 'shop.recharge.step-2');
+            $cp = 1;
+            $codepromo = "";
+            $percentpromo = "";
+            if ($this->container->session->exist('recharge-codepromo')) {
+                $cp = $this->session->get('recharge-codepromo');
+                $cp = strtolower($cp);
+                if (isset($this->container->codepromo[$cp]))
+                {
+                    $codepromo = strtoupper($cp);
+                    $percentpromo = intval($this->container->codepromo[$cp]);
+                    $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
+                }
+                else
+                {
+                    $cp = 1;
+                }
+            }
+            $this->render($response, 'shop.recharge.step-2', ['cp' => $cp, 'codepromo' => $codepromo, 'percentpromo' => $percentpromo]);
         }elseif($id['id'] == "paypal"){
             return $this->paypal($request,$response);
         }
@@ -54,8 +71,9 @@ class CreditController extends Controller
             if ($data != null){
                 $this->container->session->set('recharge-username', $_POST['pseudo']);
                 if (isset($_POST['codepromo']) && !empty($_POST['codepromo'])){
-                    $codepromo = strtolower($_POST['codepromo']);
-                    if (!isset($this->container->codepromo[$codepromo]))
+                    $codepromo = strtoupper($_POST['codepromo']);
+                    $percentpromo = intval($this->container->codepromo[strtolower($codepromo)]);
+                    if (!isset($this->container->codepromo[strtolower($_POST['codepromo'])]))
                     {
                         $this->render($response, 'shop.recharge.step-1', ['error' => 'Code promotionnel invalide']);
                         return;
@@ -66,7 +84,7 @@ class CreditController extends Controller
                 {
                     $this->container->session->set('recharge-codepromo', '');
                 }
-                $this->render($response, 'shop.recharge.step-2');
+                $this->render($response, 'shop.recharge.step-2', ['codepromo' => $codepromo, 'percentpromo' => $percentpromo]);
             }else{
                 $this->render($response, 'shop.recharge.step-1', ['error' => $_POST['pseudo'] . ' ne s\'est jamais connecté sur le serveur !']);
             }
@@ -76,11 +94,15 @@ class CreditController extends Controller
     public function paypal(RequestInterface $request, ResponseInterface $response)
     {
         $cp = 1;
+        $codepromo = "";
+        $percentpromo = "";
         if ($this->container->session->exist('recharge-codepromo')) {
             $cp = $this->session->get('recharge-codepromo');
             $cp = strtolower($cp);
             if (isset($this->container->codepromo[$cp]))
             {
+                $codepromo = strtoupper($cp);
+                $percentpromo = intval($this->container->codepromo[$cp]);
                 $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
             }
             else
@@ -88,7 +110,7 @@ class CreditController extends Controller
                 $cp = 1;
             }
         }
-        $this->render($response, 'shop.recharge.paypal', ['cp' => $cp]);
+        $this->render($response, 'shop.recharge.paypal', ['cp' => $cp, 'codepromo' => $codepromo, 'percentpromo' => $percentpromo]);
     }
 
 

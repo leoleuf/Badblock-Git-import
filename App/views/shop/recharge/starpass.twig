@@ -70,6 +70,11 @@
     <br>
 
     <h5 id="somme">Combien de points boutique souhaites-tu ?</h5>
+    {% if (codepromo is not empty) %}
+        <div class="alert alert-success" role="alert" id="success-alert" style="font-size: 19px;">
+            Vous utilisez le code promotionnel {{ codepromo }}. +{{ percentpromo }}% de points boutique sur votre rechargement. Valable 15 minutes.
+        </div>
+    {% endif %}
     <div class="row center">
         <div class="three columns small-offer">
             <h6 class="h6-small">{% if (cp > 1) %}<i><strike>1500</strike></i>{% else %}<br />{% endif %} {{ cp*1500 }} points boutique<br></h6>

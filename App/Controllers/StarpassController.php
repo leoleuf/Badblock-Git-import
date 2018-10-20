@@ -17,11 +17,15 @@ class StarpassController extends Controller
 
     public function index(RequestInterface $request, ResponseInterface $response){
         $cp = 1;
+        $codepromo = "";
+        $percentpromo = "";
         if ($this->container->session->exist('recharge-codepromo')) {
             $cp = $this->session->get('recharge-codepromo');
             $cp = strtolower($cp);
             if (isset($this->container->codepromo[$cp]))
             {
+                $codepromo = strtoupper($cp);
+                $percentpromo = intval($this->container->codepromo[$cp]);
                 $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
             }
             else
@@ -29,7 +33,7 @@ class StarpassController extends Controller
                 $cp = 1;
             }
         }
-        $this->render($response,'shop.recharge.starpass', ['cp' => $cp]);
+        $this->render($response,'shop.recharge.starpass', ['cp' => $cp, 'codepromo' => $codepromo, 'percentpromo' => $percentpromo]);
     }
 
     public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
