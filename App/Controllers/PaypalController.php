@@ -174,22 +174,41 @@ class PaypalController extends Controller
 
             $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
 
+            $cp = 1;
+            $codepromo = "NULL";
+            if ($this->container->session->exist('recharge-codepromo')) {
+                $cp = $this->session->get('recharge-codepromo');
+                $cp = strtolower($cp);
+                if (isset($this->container->codepromo[$cp]))
+                {
+                    $codepromo = $cp;
+                    $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
+                }
+                else
+                {
+                    $cp = 1;
+                }
+            }
+
+            $ptstoadd = $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'];
+            $ptstoadd *= $cp;
+
             if ($money == null){
                 $data = [
                     "uniqueId" => $user['uniqueId'],
-                    "points" => $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']
+                    "points" => $ptstoadd
                 ];
 
-                $this->container->session->set('points', $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']);
+                $this->container->session->set('points', $ptstoadd);
                 $this->container->mongo->fund_list->insertOne($data);
 
             }else{
-                $money['points'] = $money['points'] + $this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'];
+                $money['points'] = $money['points'] + $ptstoadd;
                 $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                 $this->container->session->set('points', $money['points']);
             }
 
-            $doups = intval($this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points'] * 0.1);
+            $doups = intval($ptstoadd * 0.1);
             $refers = $this->container->mongoServer->refers->find(["uniqueId" => $user['uniqueId']]);
 
             foreach ($refers as $key => $value)
@@ -282,7 +301,7 @@ class PaypalController extends Controller
                 $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
             }
 
-            $mailContent = $this->session->get('recharge-username')." recharge +".$this->container->config['paiement'][0]['offer'][$produit['Paypal']['OfferID']]['points']." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal)";
+            $mailContent = $this->session->get('recharge-username')." recharge +".$ptstoadd." pts boutique (".$resp["PAYMENTINFO_0_AMT"]." € - paypal - Code promo : ".$codepromo.")";
             $mail = new \App\Mail($this->container);
             $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 

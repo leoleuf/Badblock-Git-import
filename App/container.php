@@ -15,6 +15,10 @@ $container['session'] = function ($container) use ($config) {
 	return new \App\Session();
 };
 
+$container['codepromo'] = array(
+    'vacances' => 40
+);
+
 $container['redis_client'] = function ($container) {
 	$client = new Predis\Client(
 		[

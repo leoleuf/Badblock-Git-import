@@ -16,7 +16,20 @@ class StarpassController extends Controller
 
 
     public function index(RequestInterface $request, ResponseInterface $response){
-        $this->render($response,'shop.recharge.starpass', []);
+        $cp = 1;
+        if ($this->container->session->exist('recharge-codepromo')) {
+            $cp = $this->session->get('recharge-codepromo');
+            $cp = strtolower($cp);
+            if (isset($this->container->codepromo[$cp]))
+            {
+                $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
+            }
+            else
+            {
+                $cp = 1;
+            }
+        }
+        $this->render($response,'shop.recharge.starpass', ['cp' => $cp]);
     }
 
     public function showDocument(RequestInterface $request, ResponseInterface $response, $documentId){
@@ -101,6 +114,24 @@ class StarpassController extends Controller
         }
 
         $virtual_currency = $offer['points'];
+
+        $codepromo = "NULL";
+        $cp = 1;
+        if ($this->container->session->exist('recharge-codepromo')) {
+            $cp = $this->session->get('recharge-codepromo');
+            $cp = strtolower($cp);
+            if (isset($this->container->codepromo[$cp]))
+            {
+                $codepromo = $cp;
+                $cp = 1 + (intval($this->container->codepromo[$cp]) / 100);
+            }
+            else
+            {
+                $cp = 1;
+            }
+        }
+
+        $virtual_currency *= $cp;
 
         $name = $this->container->session->get('recharge-username');
         // Sauvegarde dans mongoDB
@@ -245,7 +276,7 @@ class StarpassController extends Controller
             $mail->sendMail($user["email"], "BadBlock - Paiement effectué", $mailContent);
         }
 
-        $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - codes : ".$ccodes.")";
+        $mailContent = $name." recharge +".$virtual_currency." pts boutique (".$offer['price']." € - starpass - code promo : ".$codepromo." - codes : ".$ccodes.")";
         $mail = new \App\Mail(true);
         $mail->sendMail("xmalware2@gmail.com", "BadBlock - Rechargement", $mailContent);
 

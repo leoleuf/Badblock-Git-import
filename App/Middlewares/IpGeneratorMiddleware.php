@@ -140,7 +140,8 @@ class IpGeneratorMiddleware
         $twig->addGlobal('spider', isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']));
         $twig->addGlobal('onlineCount', $onlineCount);
         $twig->addGlobal('points', $shoppoints);
-        $twig->addGlobal('country', $_SERVER['HTTP_CF_IPCOUNTRY']);
+        $cfCountry = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? $_SERVER['HTTP_CF_IPCOUNTRY'] : 'fr';
+        $twig->addGlobal('country', $cfCountry);
         $twig->addGlobal('isOnline', $this->container->session->exist('user'));
         $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $dev = getenv('APP_DEBUG') == 1;

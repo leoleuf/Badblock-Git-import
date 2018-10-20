@@ -72,23 +72,23 @@
     * Les bonus incluent également l'augmentation exponentielle du nombre de points boutique par achat pour les plus grosses offres.<br /><br />
     <div class="row center">
        <div class="three columns small-offer">
-           <h6 class="h6-small"><i><strike>1 500</strike></i> 1 875 points boutique<br></h6><br>
+           <h6 class="h6-small">{% if (cp > 1) %}<i><strike>1500</strike></i>{% else %}<br />{% endif %} {{ cp*1500 }} points boutique<br></h6><br>
            <span class="info hidden-text"><br>Équivalent de 5€<br></span>
            <a href="/shop/recharge/paypal/0" class="button button-primary small-offer-btn" target="_blank" title="Choisir (1 500 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
         <div class="three columns small-offer">
-            <h6 class="h6-small"><i><strike>3 000</strike></i> 3 750 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>3000</strike></i>{% else %}<br />{% endif %} {{ cp*3000 }} points boutique<br></h6><br>
              <span class="info hidden-text"><br>Équivalent de 10€<br></span>
             <a href="/shop/recharge/paypal/1" class="button button-primary small-offer-btn" target="_blank" title="Choisir (3 000 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
         <div class="three columns small-offer">
-            <h6 class="h6-small"><i><strike>5 400</strike></i> 6 750 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>5400</strike></i>{% else %}<br />{% endif %} {{ cp*5400 }} points boutique<br></h6><br>
             Bonus +2 250<br>
             <span class="info hidden-text">Bonus inclus - Équivalent de 15€</span>
             <a href="/shop/recharge/paypal/2" class="button button-primary small-offer-btn" target="_blank" title="Choisir (5 400 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
         <div class="three columns small-offer">
-            <h6 class="h6-small"><i><strike>7 800</strike></i> 9 750 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>7800</strike></i>{% else %}<br />{% endif %} {{ cp*7800 }} points boutique<br></h6><br>
             Bonus +3 750<br>
             <span class="info hidden-text">Bonus inclus - Équivalent de 20€</span>
             <a href="/shop/recharge/paypal/3" class="button button-primary small-offer-btn" target="_blank" title="Choisir (7 800 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
@@ -96,26 +96,26 @@
     </div>
     <div class="row center top-medium">
         <div class="four columns medium-offer">
-            <h6 class="h6-small"><i><strike>11 400</strike></i> 14 250 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>11 400</strike></i>{% else %}<br />{% endif %} {{ cp*11400 }} points boutique<br></h6><br>
             Bonus +5 250<br>
             <span class="info hidden-text">Bonus inclus - Équivalent de 30€</span>
             <a href="/shop/recharge/paypal/4" class="button button-primary medium-offer-btn" target="_blank" title="Choisir (11 400 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
         <div class="four columns medium-offer">
-            <h6 class="h6-small"><i><strike>18 300</strike></i> 22 875 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>18 300</strike></i>{% else %}<br />{% endif %} {{ cp*18300 }} points boutique<br></h6><br>
             Bonus +7 875<br>
             <span class="info hidden-text">Bonus inclus - Équivalent de 50€</span>
             <a href="/shop/recharge/paypal/5" class="button button-primary medium-offer-btn" target="_blank" title="Choisir (18 300 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
         <div class="four columns medium-offer">
-            <h6 class="h6-small"><i><strike>34 200</strike></i> 42 750 points boutique<br></h6><br>
+            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>34 200</strike></i>{% else %}<br />{% endif %} {{ cp*34200 }} points boutique<br></h6><br>
             Bonus +12 750<br>
             <span class="info hidden-text">Bonus inclus - Équivalent de 100€</span>
             <a href="/shop/recharge/paypal/6" class="button button-primary medium-offer-btn" target="_blank" title="Choisir (34 200 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
         </div>
     </div>
     <div class="row center big-offer promotion-border top-big">
-        <h6 class="h6-small"><i><strike>85 000</strike></i> 106 250 points boutique<br></h6>
+        <h6 class="h6-small">{% if (cp > 1) %}<i><strike>85 200</strike></i>{% else %}<br />{% endif %} {{ cp*85200 }} points boutique<br></h6>
         <br>Bonus +51 250<br></span>
         <span class="info hidden-text">Bonus inclus - Équivalent de 250€</span>
         <a href="/shop/recharge/paypal/7" class="button button-primary big-offer-btn" target="_blank" title="Choisir (85 000 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
