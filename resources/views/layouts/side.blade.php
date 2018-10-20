@@ -46,20 +46,20 @@
                             <li><a href="/screen" class="waves-effect"><i class="fa fa-eye"></i><span> Ma gallerie</span></a></li>
                         </ul>
                     </li>
+                    @can('mod')
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span>Modération </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="/moderation" class="waves-effect"><i class="fa fa-bolt"></i><span> Mod Center</span></a></li>
+                                <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i><span>TeamSpeak BanList</span></a></li>
+                            </ul>
+                        </li>
+                    @endcan
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span>Sections </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="/section/forum" class="waves-effect"><i class="fa fa-comment-o"></i><span> Forum</span></a></li>
-                        </ul>
-                    </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="fa  fa-spotify"></i> <span>TeamSpeak </span> <span class="menu-arrow"></span></a>
-                        <ul class="list-unstyled">
-                            <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i><span> BanList</span></a></li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-address-book"></i><span> Utilisateur</span></a></li>
-                            <li><a href="#" class="waves-effect"><i class="fa fa-list-ol"></i><span> Groupes</span></a></li>
                         </ul>
                     </li>
 
