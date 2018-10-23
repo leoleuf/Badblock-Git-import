@@ -13,8 +13,7 @@ class MinecraftApiController extends \App\Controllers\Controller
 {
 
 	public function getPlayers(ServerRequestInterface $request, ResponseInterface $response){
-
-        if ($this->container->redis->exists('api.mc.player')){
+        if (!$this->container->redis->exists('api.mc.player')){
             return $response->withJson(["players" => ['now' => intval($this->container->redis->get('api.mc.player'))]]);
         }else{
             try
@@ -24,7 +23,7 @@ class MinecraftApiController extends \App\Controllers\Controller
                 $online = $Query->Query()["players"]["online"];
 
                 if (intval($online) != 0){
-                    $this->container->redis->set('api.mc.player', intval($online));
+                    $this->container->redis->set('api.mc.player', $online);
                     $this->container->redis->expire('api.mc.player', 10);
                 }
 
