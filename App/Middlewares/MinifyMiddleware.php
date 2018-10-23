@@ -61,14 +61,13 @@ class MinifyMiddleware
      */
     public function __invoke(Request $request, Response $response,callable $next)
     {
-        $next($request,$response);
-
-
         $oldBody = $response->getBody();
 
-        if ($oldBody != null && $oldBody->getSize() > 0) {
-            $minifiedBodyContent = $this->minifyHTML((string)$oldBody);
-
+        $EX = explode("/", $request->getUri()->getPath());
+        if ($EX[0] == 'shop' || $EX[1] == 'shop'){
+            return $next($request, $response);
+        }elseif ($oldBody != null && $oldBody->getSize() > 0) {
+            $minifiedBodyContent = $this->minifyHTML($response->getBody()->__toString());
 
             $newBody = new Body(fopen('php://temp', 'r+'));
 
@@ -76,9 +75,9 @@ class MinifyMiddleware
             $newBody->write($minifiedBodyContent);
 
             return $response->withBody($newBody);
+        }else{
+            return $next($request, $response);
         }
-
-        return $next($request, $response);
     }
 }
 
