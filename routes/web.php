@@ -42,8 +42,8 @@ Route::group([
     });
 
     //Screenshort list
-    Route::get('/screen', '\profile\ScreenController@index');
-    Route::get('/screen/{id}', '\profile\ScreenController@page');
+    Route::get('/screen', 'profile\ScreenController@index');
+    Route::get('/screen/{id}', 'profile\ScreenController@page');
 
     Route::group([
         'prefix'     => "moderation",
