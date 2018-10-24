@@ -30,20 +30,34 @@ Route::group([
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
 
+    Route::group([
+        'prefix'     => "settings",
+        'middleware' => ['auth'],
+    ], function () {
+        //Website
+        Route::get('/sharex', 'settings\SharexController@index');
+        Route::get('/sharex-reg', 'settings\SharexController@new');
+        Route::get('/sharex-down', 'settings\SharexController@down');
+
+    });
+
     //Screenshort list
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
-    //Modération
-    Route::get('/moderation', 'mod\ModerationController@index');
-    Route::get('/moderation/screen', 'mod\ModerationController@screen');
-    Route::get('/moderation/sanction', 'mod\ModerationController@sanction');
-    Route::post('/moderation/union', 'mod\ModerationController@union');
-    //Modération casier
-    Route::get('/moderation/casier/{player}', 'mod\CasierController@case');
-    Route::get('/moderation/mcasier/{player}', 'mod\CasierController@minicase');
-
-
+    Route::group([
+        'prefix'     => "moderation",
+        'middleware' => ['auth','can:mod_index'],
+    ], function () {
+        //Modération
+        Route::get('/', 'mod\ModerationController@index');
+        Route::get('/screen', 'mod\ModerationController@screen');
+        Route::get('/sanction', 'mod\ModerationController@sanction');
+        Route::post('/union', 'mod\ModerationController@union');
+        //Modération casier
+        Route::get('/casier/{player}', 'mod\CasierController@case');
+        Route::get('/mcasier/{player}', 'mod\CasierController@minicase');
+    });
 
 
     Route::get('/players', 'profile\IndexController@index');
@@ -54,34 +68,29 @@ Route::group([
     Route::post('/api/stats/searchip', 'profile\IndexController@searchip');
 
 
-    Route::get('/players/search', 'stats\StatsController@playersStats');
-    Route::get('/players/search/json/{text}', 'stats\StatsController@search');
-    Route::get('/players/edit/{id}', 'stats\StatsController@editPlayer');
-    Route::resource('/players/crud', 'crud\PlayersController');
-
-
     //Gestion section
     Route::group([
         'prefix'     => "section",
         'middleware' => ['auth'],
     ], function () {
         //Gestion avertissement
-        Route::get('/avertissement', 'section\ForumController@index');
-        Route::post('/avertissement', 'section\ForumController@index');
+        Route::get('/avertissement', 'section\ForumController@index')->middleware('can:gestion_warn');
+        Route::post('/avertissement', 'section\ForumController@index')->middleware('can:gestion_warn');
 
         //Gestion section forum
         Route::get('/forum', 'section\ForumController@index');
-        Route::get('/paid/{section}', 'section\PaidController@index');
-        Route::post('/paid/{section}', 'section\PaidController@save');
+        Route::get('/paid/{section}', 'section\PaidController@index')->middleware('can:gestion_paid');
+        Route::post('/paid/{section}', 'section\PaidController@save')->middleware('can:gestion_paid');
+
+        Route::get('/paid', 'website\PaidController@index')->middleware('can:gestion_paid');
+        Route::get('/paidv/{uuid}', 'website\PaidController@view')->middleware('can:gestion_paid');
+
+        //List all staff
+        Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:gestion_tfalist');
+        Route::get('/allstaff', 'section\StaffController@index')->middleware('can:gestion_tfalist');
     });
 
-    Route::get('/paid', 'website\PaidController@index');
-    Route::get('/paid/{uuid}', 'website\PaidController@view');
 
-    Route::get('/tfacheck', 'section\TfaController@index');
-
-    //List all staff
-    Route::get('/allstaff', 'section\StaffController@index');
 
 
 
@@ -95,39 +104,25 @@ Route::group([
 
     Route::group([
         'prefix'     => "website",
-        'middleware' => ["auth"],
+        'middleware' => ["auth", "can:website"],
     ], function () {
         //Website
         Route::get('/', 'website\IndexController@index');
 
-        Route::get('/achat/{uuid}', 'website\AchatController@index');
+        Route::get('/achat/{uuid}', 'website\AchatController@index')->middleware('can:website_buy');
 
-        Route::get('/vote-download', 'website\VoteController@down');
-        Route::get('/vote', 'website\VoteController@index');
-        Route::post('vote', 'website\VoteController@save');
+        Route::get('/vote-download', 'website\VoteController@down')->middleware('can:website_vote');
+        Route::get('/vote', 'website\VoteController@index')->middleware('can:website_vote');
+        Route::post('vote', 'website\VoteController@save')->middleware('can:website_vote');
 
-        Route::get('/prefix', 'website\PrefixController@index');
-        Route::post('/prefix', 'website\PrefixController@save');
+        Route::get('/prefix', 'website\PrefixController@index')->middleware('can:website_prefix');
+        Route::post('/prefix', 'website\PrefixController@save')->middleware('can:website_prefix');
 
-        Route::get('/compta', 'website\IndexController@compta');
-        Route::get('/compta/{date}', 'website\IndexController@compta');
-        Route::resource('/crud/server', 'website\crud\ServerController');
-        Route::resource('/crud/category', 'website\crud\CategoryController');
-        Route::resource('/crud/product', 'website\crud\ProductController');
-        Route::resource('/crud/items', 'website\crud\ItemsController');
+        Route::get('/compta', 'website\IndexController@compta')->middleware('can:website_admin');
+        Route::get('/compta/{date}', 'website\IndexController@compta')->middleware('can:website_admin');
+        Route::resource('/crud/server', 'website\crud\ServerController')->middleware('can:website_admin');
+        Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
+        Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
+        Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
     });
-
-    Route::group([
-        'prefix'     => "settings",
-        'middleware' => ['auth'],
-    ], function () {
-        //Website
-        Route::get('/sharex', 'settings\SharexController@index');
-        Route::get('/sharex-reg', 'settings\SharexController@new');
-        Route::get('/sharex-down', 'settings\SharexController@down');
-
-    });
-
-
-
 });

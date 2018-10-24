@@ -18,6 +18,12 @@
                             <div class="m-b-30">
                                 <h1>Paies des sections :</h1>
                                 <a href="/website" class="btn btn-primary waves-effect waves-light">Retour <i class="fa fa-long-arrow-left"></i></a>
+
+                                @foreach($sec as $r)
+                                    <a href="/section/paid/{{ $r }}" class="btn btn-danger">
+                                        {{ $r }}
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -39,7 +45,7 @@
                                     <td>{{ $value['section'] }}</td>
                                     <td>{{ $value['total'] }}</td>
                                     <td>
-                                        <a href="/paid/{{ $value['_id'] }}" class="btn btn-success">
+                                        <a href="/paidv/{{ $value['_id'] }}" class="btn btn-success">
                                             <span class="fa fa-eye"></span>
                                             Voir
                                         </a>

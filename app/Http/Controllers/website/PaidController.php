@@ -24,7 +24,9 @@ class PaidController extends Controller
         //Search data
         $data = DB::connection('mongodb')->collection('section_paid')->orderBy('date', 'DESC')->get();
 
-        return view('website.section')->with('data', $data);
+        $sec = ["forum","redaction","moderation","graphisme","animation","developpement","construction"];
+
+        return view('website.section')->with('data', $data)->with('sec', $sec);
     }
 
     public function view($uuid){
