@@ -35,9 +35,9 @@ Route::group([
         'middleware' => ['auth'],
     ], function () {
         //Website
-        Route::get('/sharex', 'settings\SharexController@index');
-        Route::get('/sharex-reg', 'settings\SharexController@new');
-        Route::get('/sharex-down', 'settings\SharexController@down');
+        Route::get('/sharex', 'Settings\SharexController@index');
+        Route::get('/sharex-reg', 'Settings\SharexController@new');
+        Route::get('/sharex-down', 'Settings\SharexController@down');
 
     });
 
