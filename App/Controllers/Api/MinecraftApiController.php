@@ -21,6 +21,8 @@ class MinecraftApiController extends \App\Controllers\Controller
                 $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
                 $online = $Query->Query()["players"]["online"];
 
+
+                //REGARDE MIRO
                 if (intval($online) != 0 && intval($online) != null){
                     $this->container->redis->set('api.mc.players', $online);
                     $this->container->redis->expire('api.mc.players', 5);
