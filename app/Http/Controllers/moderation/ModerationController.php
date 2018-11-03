@@ -6,7 +6,7 @@
  * Time: 18:49
  */
 
-namespace App\Http\Controllers\mod;
+namespace App\Http\Controllers\moderation;
 
 
 use App\Http\Controllers\Controller;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\mod;
+namespace App\Http\Controllers\moderation;
 
 use Adams\TeamSpeak3;
 use App\Http\Controllers\Controller;
