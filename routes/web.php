@@ -68,7 +68,7 @@ Route::group([
         Route::get('/item', 'Animation\GiveController@item');
 
         Route::post('/pb', 'Animation\GiveController@savepoints');
-        Route::post('/item', 'Animation\GiveController@item');
+        Route::post('/item', 'Animation\GiveController@saveitem');
     });
 
 
