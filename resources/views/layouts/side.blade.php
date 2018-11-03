@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-black-tie"></i> <span>Profile </span> <span class="menu-arrow"></span></a>
+                        <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user"></i> <span>Profile </span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="/settings/sharex" class="waves-effect"><i class="fa fa-eye"></i><span> ShareX</span></a></li>
                             <li><a href="/screen" class="waves-effect"><i class="fa fa-eye"></i><span> Ma gallerie</span></a></li>
@@ -58,9 +58,22 @@
                             </ul>
                         </li>
                     @endcan
+                    @can('animation')
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-bomb"></i> <span>Animation </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                @can('animation_give')
+                                    <li><a href="/animation/item" class="waves-effect"><i class="fa fa-gift"></i><span> Récompense(s)</span></a></li>
+                                @endcan
+                                @can('animation_givepb')
+                                    <li><a href="/animation/pb" class="waves-effect"><i class="fa fa-coins"></i><span> Give PB</span></a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcan
                     @can('gestion_index')
                         <li class="has_sub">
-                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span>Sections </span> <span class="menu-arrow"></span></a>
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-project-diagram"></i> <span>Gestion </span> <span class="menu-arrow"></span></a>
                             @can('gestion_forum')
                                 <ul class="list-unstyled">
                                     <li><a href="/section/forum" class="waves-effect"><i class="fa fa-comment-o"></i><span> Forum</span></a></li>

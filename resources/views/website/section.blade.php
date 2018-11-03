@@ -45,7 +45,7 @@
                                     <td>{{ $value['section'] }}</td>
                                     <td>{{ $value['total'] }}</td>
                                     <td>
-                                        <a href="/paidv/{{ $value['_id'] }}" class="btn btn-success">
+                                        <a href="/section/paidv/{{ $value['_id'] }}" class="btn btn-success">
                                             <span class="fa fa-eye"></span>
                                             Voir
                                         </a>

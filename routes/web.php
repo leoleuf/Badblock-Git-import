@@ -50,14 +50,27 @@ Route::group([
         'middleware' => ['auth','can:mod_index'],
     ], function () {
         //Modération
-        Route::get('/', 'mod\ModerationController@index');
-        Route::get('/screen', 'mod\ModerationController@screen');
-        Route::get('/sanction', 'mod\ModerationController@sanction');
-        Route::post('/union', 'mod\ModerationController@union');
+        Route::get('/', 'moderation\ModerationController@index');
+        Route::get('/screen', 'moderation\ModerationController@screen');
+        Route::get('/sanction', 'moderation\ModerationController@sanction');
+        Route::post('/union', 'moderation\ModerationController@union');
         //Modération casier
-        Route::get('/casier/{player}', 'mod\CasierController@case');
-        Route::get('/mcasier/{player}', 'mod\CasierController@minicase');
+        Route::get('/casier/{player}', 'moderation\CasierController@case');
+        Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
     });
+
+    Route::group([
+        'prefix'     => "animation",
+        'middleware' => ['auth','can:animation'],
+    ], function () {
+        //Aniamtion
+        Route::get('/pb', 'Animation\GiveController@points');
+        Route::get('/item', 'Animation\GiveController@item');
+
+        Route::post('/pb', 'Animation\GiveController@savepoints');
+        Route::post('/item', 'Animation\GiveController@item');
+    });
+
 
 
     Route::get('/players', 'profile\IndexController@index');
@@ -99,7 +112,7 @@ Route::group([
         'prefix'     => "teamspeak",
         'middleware' => ["auth"],
     ], function () {
-        Route::get('/banlist', 'mod\TeamspeakController@banList');
+        Route::get('/banlist', 'moderation\TeamspeakController@banList');
     });
 
     Route::group([
@@ -109,7 +122,7 @@ Route::group([
         //Website
         Route::get('/', 'website\IndexController@index');
 
-        Route::get('/achat/{uuid}', 'website\AchatController@index')->middleware('can:website_buy');
+        Route::get('/achat/{uuid}', 'website\AchatController@index');
 
         Route::get('/vote-download', 'website\VoteController@down')->middleware('can:website_vote');
         Route::get('/vote', 'website\VoteController@index')->middleware('can:website_vote');
