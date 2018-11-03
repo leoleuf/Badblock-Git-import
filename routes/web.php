@@ -57,6 +57,7 @@ Route::group([
         //Modération casier
         Route::get('/casier/{player}', 'moderation\CasierController@case');
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
+        Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
     });
 
     Route::group([

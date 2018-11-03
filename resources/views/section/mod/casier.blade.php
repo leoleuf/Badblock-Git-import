@@ -36,7 +36,11 @@
                                                 @endif
                                             </td>
                                             <td>{{ $row->reason }}</td>
-                                            <td><a href="/moderation/preuve/{{ $row->id }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-eye"></i> </a></td>
+                                            <td>
+
+                                                <a onClick="window.open('/moderation/preuve/{{ $row->id }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                    <i class="fa fa-eye"></i> </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

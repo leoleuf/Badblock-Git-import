@@ -35,4 +35,11 @@ class CasierController extends Controller
         return view('section.mod.minicasier', ['pseudo' => $pseudo, 'sanction' => $Sanctions]);
     }
 
+    public function preuve($id){
+        $Preuve = DB::connection('mongodb')->collection('sanctions')->where('sanction_id', '=', $id)->first();
+
+        return view('section.mod.preuve', ['data' => $Preuve]);
+
+    }
+
 }
