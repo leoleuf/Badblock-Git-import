@@ -28,7 +28,7 @@
                                                             @foreach($item as $row)
                                                                 <option value="{{ $row['_id'] }}">
                                                                     @if(isset($row['queue']))
-                                                                        {{ $row['queue'] }} - 
+                                                                        {{ $row['queue'] }} -
                                                                     @endif
                                                                     {{ $row['name'] }}</option>
                                                             @endforeach
@@ -76,7 +76,7 @@
                 "                                                        <select name=\"give[]\" class=\"form-control select2\">\n" +
                 "                                                            <option>Produit</option>\n" +
                 "                                                            @foreach($item as $row)\n" +
-                "                                                                <option value=\"{{ $row['_id'] }}\">{{ $row['name'] }}</option>\n" +
+                "                                                                <option value=\"{{ $row['_id'] }}\">@if(isset($row['queue'])) {{ $row['queue'] }} - @endif{{ $row['name'] }}</option>\n" +
                 "                                                            @endforeach\n" +
                 "                                                        </select>\n" +
                 "                                                    </td>\n" +
