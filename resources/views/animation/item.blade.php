@@ -26,7 +26,11 @@
                                                         <select name="give[]" class="form-control select2">
                                                             <option>Produit</option>
                                                             @foreach($item as $row)
-                                                                <option value="{{ $row['_id'] }}">{{ $row['name'] }}</option>
+                                                                <option value="{{ $row['_id'] }}">
+                                                                    @if(isset($row['queue']))
+                                                                        {{ $row['queue'] }} - 
+                                                                    @endif
+                                                                    {{ $row['name'] }}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>
