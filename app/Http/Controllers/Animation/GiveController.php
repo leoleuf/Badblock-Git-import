@@ -76,7 +76,7 @@ class GiveController extends Controller
             'data' => $logg
         ]);
 
-        return redirect('/');
+        return redirect('/animation/pb');
     }
 
     public function saveitem()
@@ -105,7 +105,7 @@ class GiveController extends Controller
             'data' => $logg
         ]);
 
-        return redirect('/');
+        return redirect('/animation/item');
 
     }
 }
