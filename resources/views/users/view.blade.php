@@ -25,7 +25,7 @@
 
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a href="#0" data-toggle="tab" aria-expanded="false" class="nav-link active show">
+                                            <a href="#x" data-toggle="tab" aria-expanded="false" class="nav-link active show">
                                                 Skin
                                             </a>
                                         </li>
@@ -67,10 +67,8 @@
                                     </ul>
 
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade active show" id="0">
-                                            <div class="col">
-                                                <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
-                                            </div>
+                                        <div role="tabpanel" class="tab-pane fade active show" id="x">
+                                            <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade active show" id="1">
                                             <div class="container">

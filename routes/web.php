@@ -58,6 +58,10 @@ Route::group([
         Route::get('/casier/{player}', 'moderation\CasierController@case');
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
+
+        Route::get('/sanction-tx', 'moderation\SanctionController@index');
+        Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
+
     });
 
     Route::group([

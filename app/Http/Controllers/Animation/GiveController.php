@@ -87,9 +87,10 @@ class GiveController extends Controller
             if (!empty($row)){
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL,"https://badblock.fr/shop/achat/" . $_POST['give'][$k]);
+                curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (compatible; BadBlock/1.0; +https://badblock.fr/)');
                 curl_setopt($ch, CURLOPT_POST, 1);
                 curl_setopt($ch, CURLOPT_POSTFIELDS,
-                    http_build_query(array('playerName' => $row)));
+                    http_build_query(array('playerName' => $row, 'animation' => "oui")));
 
                 $server_output = curl_exec($ch);
 

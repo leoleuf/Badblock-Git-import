@@ -19,7 +19,7 @@
                                 <h1>Paies de la section : {{ $data['section'] }}</h1>
                                 <h2>Date : {{ $data['date'] }}</h2>
                                 <h2>Total : {{ $data['total'] }}</h2>
-                                <a href="/website/section" class="btn btn-primary waves-effect waves-light">Retour <i class="fa fa-long-arrow-left"></i></a>
+                                <a href="/" class="btn btn-primary waves-effect waves-light">Retour <i class="fa fa-long-arrow-left"></i></a>
                             </div>
                         </div>
                     </div>

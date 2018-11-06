@@ -54,7 +54,7 @@
                                 <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i><span>TeamSpeak BanList</span></a></li>
                                 <li><a disabled="" href="/" class="waves-effect"><i class="fa fa-legal"></i><span>Répartition</span></a></li>
                                 <li><a disabled="" href="/" class="waves-effect"><i class="fa fa-legal"></i><span>Guardianer</span></a></li>
-                                <li><a disabled="" href="/" class="waves-effect"><i class="fa fa-legal"></i><span>TX sanction</span></a></li>
+                                <li><a disabled="" href="/moderation/sanction-tx" class="waves-effect"><i class="fa fa-legal"></i><span>TX sanction</span></a></li>
                             </ul>
                         </li>
                     @endcan
