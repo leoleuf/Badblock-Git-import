@@ -11,7 +11,7 @@
                             <div class="panel-body">
                                 {{ Form::open(array('url' => "/section/paid/" . $name ,'class'=>'form_inline')) }}
                                     <div class="">
-                                        <table class="table table-striped" id="datatable">
+                                        <table class="table table-striped">
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
@@ -58,11 +58,5 @@
 <!-- init -->
 <script src="/assets/pages/datatables.editable.init.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Default Datatable
-        $('#datatable').DataTable();
-    });
-</script>
 
 @endsection
