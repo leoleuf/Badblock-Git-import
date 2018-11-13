@@ -1,5 +1,7 @@
 package fr.badblock.ladder.http.players;
 
+import java.util.Map;
+
 import com.google.gson.JsonObject;
 
 import fr.badblock.ladder.api.Ladder;
@@ -13,16 +15,16 @@ public class PagePlayerSendServerMessage extends LadderPage {
 	}
 
 	@Override
-	public JsonObject call(JsonObject input) {
+	public JsonObject call(Map<String, String> input) {
 		JsonObject object = new JsonObject();
-		if (!input.has("name")) {
+		if (!input.containsKey("name")) {
 			object.addProperty("error", "Aucun pseudo!");
-		} else if (!input.has("message")) {
+		} else if (!input.containsKey("message")) {
 			object.addProperty("error", "Aucun message!");
 		} else {
-			Player player = Ladder.getInstance().getPlayer(input.get("name").getAsString());
+			Player player = Ladder.getInstance().getPlayer(input.get("name"));
 			if (player == null || player.getBukkitServer() == null) return object;
-			player.getBukkitServer().broadcast(ChatColor.replaceColor(input.get("message").getAsString()));
+			player.getBukkitServer().broadcast(ChatColor.replaceColor(input.get("message")));
 		}
 		
 		return object;

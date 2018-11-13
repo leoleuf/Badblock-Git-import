@@ -2,6 +2,7 @@ package fr.badblock.ladder.data;
 
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Pattern;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -11,6 +12,8 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.client.model.Collation;
+import com.mongodb.client.model.CollationStrength;
 import com.mongodb.util.JSON;
 
 import fr.badblock.ladder.Proxy;
@@ -33,7 +36,7 @@ public abstract class LadderDataHandler implements DataHandler {
 	public LadderDataHandler(String table, String key)
 	{
 		this.table = table;
-		this.key = key;
+		this.key = key.toLowerCase();
 		this.player = key.toLowerCase();
 		reloadData();
 	}
@@ -114,10 +117,11 @@ public abstract class LadderDataHandler implements DataHandler {
 		DB db = mongoService.getDb();
 		DBCollection collection = db.getCollection(table);
 		BasicDBObject query = new BasicDBObject();
-
-		query.put("name", this.player);
-
-		DBCursor cursor = collection.find(query); 
+		
+		query.put("name", this.player.toLowerCase());
+		
+		DBCursor cursor = collection.find(query);
+		
 		boolean find = cursor.hasNext();
 
 		if (!find)
@@ -175,9 +179,9 @@ public abstract class LadderDataHandler implements DataHandler {
 		DBCollection collection = db.getCollection(table);
 		BasicDBObject query = new BasicDBObject();
 
-		query.put("name", this.player);
+		query.put("name", this.player.toLowerCase());
 
-		DBCursor cursor = collection.find(query); 
+		DBCursor cursor = collection.find(query);
 		boolean find = cursor.hasNext();
 		cursor.close();
 
@@ -186,6 +190,9 @@ public abstract class LadderDataHandler implements DataHandler {
 			return;
 		}
 		saving.set(true);
+		
+		data.remove("name");
+		data.addProperty("name", player.toLowerCase());
 
 		String message = data.toString().length() > 128 ? data.toString().substring(0, 128) : data.toString().substring(0, data.toString().length() - 1);
 		System.out.println("1 Sending data : " + this.getKey() + " : " + message);
@@ -209,14 +216,15 @@ public abstract class LadderDataHandler implements DataHandler {
 		}
 		
 		// Fix
-		data.addProperty("name", getKey().toLowerCase());
+		data.remove("name");
+		data.addProperty("name", player.toLowerCase());
 		
 		String message = data.toString().length() > 256 ? data.toString().substring(0, 256) : data.toString().substring(0, data.toString().length() - 1);
-		System.out.println("2 Sending data : " + this.getKey() + " : " + message);
+		System.out.println("2 Sending data : " + this.getKey().toLowerCase() + " : " + message);
 
-		query.put("name", this.player);
+		query.put("name", this.player.toLowerCase());
 
-		DBCursor cursor = collection.find(query); 
+		DBCursor cursor = collection.find(query);
 		boolean find = cursor.hasNext();
 
 		cursor.close();
@@ -231,7 +239,8 @@ public abstract class LadderDataHandler implements DataHandler {
 			if (find)
 			{
 				Proxy.getInstance().getConsoleCommandSender().sendMessage("§eSaving data: " + key + " exists in the player table. Updated data.");
-				collection.update(query, (DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
+				DBObject updateData = new BasicDBObject("$set", (DBObject) JSON.parse(GsonUtils.getGson().toJson(data)));
+				collection.update(query, updateData);
 			}
 			else
 			{

@@ -84,10 +84,7 @@ public class LadderHttpHandler extends AbstractHandler
 
 			baseRequest.setHandled(true);
 			
-			BufferedReader reader = new BufferedReader(new InputStreamReader( request.getInputStream(), "UTF-8" ));
-			JsonObject object = gson.fromJson(reader, JsonObject.class);
-
-			/*BufferedReader bufferedReader = request.getReader();
+			BufferedReader bufferedReader = request.getReader();
 			String line = "";
 			Map<String, String> maps = new HashMap<>();
 			while ((line = bufferedReader.readLine()) != null) {
@@ -101,9 +98,9 @@ public class LadderHttpHandler extends AbstractHandler
 					String data = StringUtils.join(o.split("="), "=", 1);
 					maps.put(o.split("=")[0], new String(data.getBytes("ISO-8859-1"), "UTF-8"));
 				}
-			}*/
+			}
 
-			response.getWriter().println(pages.get(target).call(object));
+			response.getWriter().println(pages.get(target).call(maps));
 		}
 		else
 		{

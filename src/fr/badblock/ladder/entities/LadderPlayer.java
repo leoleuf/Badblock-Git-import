@@ -42,7 +42,7 @@ import lombok.Setter;
 	private List<UUID>			    playersWithHim;
 	
 	public LadderPlayer(BungeeCord server, PacketPlayerLogin packet){
-		super(packet.getPlayerName(), packet.getAddress().getAddress());
+		super(packet.getPlayerName().toLowerCase(), packet.getAddress().getAddress());
 		
 		boolean first = !getData().has("lastIp");
 		

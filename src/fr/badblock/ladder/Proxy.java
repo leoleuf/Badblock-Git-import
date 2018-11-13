@@ -191,6 +191,7 @@ public class Proxy extends Ladder {
 
 		if(reconnectionInvitations.containsKey(name)){
 			reconnectionInvitations.remove(name);
+			this.getRabbitServiced().sendAyncPacket("removeReconnectionInvitations", player.getName().toLowerCase(), Encodage.UTF8, RabbitPacketType.PUBLISHER);
 
 			if(punish){
 				//TODO LeaverBuster :o
@@ -204,6 +205,7 @@ public class Proxy extends Ladder {
 
 	public void invite(OfflinePlayer player, Bukkit bukkit){
 		reconnectionInvitations.put(player.getName().toLowerCase(), bukkit);
+		this.getRabbitServiced().sendAyncPacket("reconnectionInvitations", player.getName().toLowerCase() + ";" + bukkit.getName(), Encodage.UTF8, RabbitPacketType.PUBLISHER);
 	}
 
 	@Override

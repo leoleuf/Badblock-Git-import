@@ -1,5 +1,7 @@
 package fr.badblock.ladder.http;
 
+import java.util.Map;
+
 import com.google.gson.JsonObject;
 
 import lombok.Data;
@@ -11,5 +13,5 @@ import lombok.Data;
 		this.path = path;
 	}
 	
-	public abstract JsonObject call(JsonObject object);
+	public abstract JsonObject call(Map<String, String> input);
 }
