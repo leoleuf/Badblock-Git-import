@@ -34,7 +34,7 @@ public class CommandDispatcher extends Command implements TabExecutor {
 
 		Packet packet = null;
 
-		String name = !(sender instanceof ProxiedPlayer) ? null : ((ProxiedPlayer) sender).getName();
+		String name = !(sender instanceof ProxiedPlayer) ? null : ((ProxiedPlayer) sender).getName().toLowerCase();
 		packet = new PacketPlayerChat(name, ChatAction.LADDER_COMMAND, command);
 
 		LadderBungee.getInstance().getClient().sendPacket(packet);

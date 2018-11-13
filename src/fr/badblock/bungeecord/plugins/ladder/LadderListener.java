@@ -61,7 +61,7 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onJoin(AsyncDataLoadRequest e){
-		String player = e.getPlayer();
+		String player = e.getPlayer().toLowerCase();
 		int count = player.length();
 
 		// Mini anti bot
@@ -87,7 +87,7 @@ public class LadderListener implements Listener {
 				String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
 				AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
 				e.getDone().done(new Result(null, ChatColor.RED + 
-						"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes."), null);
+						"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes. #ID-1"), null);
 				return;
 			}
 		}
@@ -110,7 +110,7 @@ public class LadderListener implements Listener {
 						String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
 						AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
 						e.getDone().done(new Result(null, ChatColor.RED + 
-								"Vous avez été bloqué temporairement suite à un comportement de connexion suspect! Réessayez dans cinq minutes."), null);
+								"Vous avez été bloqué temporairement suite à un comportement de connexion suspect! Réessayez dans cinq minutes. #ID-2"), null);
 						return;
 					}
 				}else if (q.size() >= 5)
@@ -120,13 +120,11 @@ public class LadderListener implements Listener {
 					String address = config.getListeners().iterator().next().getHost().getAddress().getHostAddress();
 					AntiBotData.tempBlocks.put(address, System.currentTimeMillis() + 30000);
 					e.getDone().done(new Result(null, ChatColor.RED + 
-							"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes."), null);
+							"Vous avez été bloqué temporairement suite à un comportement de connexion suspect. Réessayez dans cinq minutes. #ID-3"), null);
 					return;
 				}
 
-				boolean f = false;
 				if(e.getPlayer().contains("/") || e.getPlayer().contains("'")){
-					f = true;
 					e.getDone().done(new Result(null, ChatColor.RED + "Votre pseudonyme est invalide !"), null);
 					return;
 				}
@@ -139,14 +137,13 @@ public class LadderListener implements Listener {
 						break;
 					}
 				}
-				if (f)
-				{
-					PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer(), null);
-					LadderBungee.getInstance().handle(quitPacket);
-					LadderBungee.getInstance().getClient().sendPacket(quitPacket);
-				}
+
+				PacketPlayerQuit quitPacket = new PacketPlayerQuit(e.getPlayer().toLowerCase(), null);
+				LadderBungee.getInstance().handle(quitPacket);
+				LadderBungee.getInstance().getClient().sendPacket(quitPacket);
+
 				System.out.println("Connecting " + e.getPlayer() + " : A");
-				PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer(), e.getHandler().getAddress());
+				PacketPlayerLogin packet = new PacketPlayerLogin(e.getPlayer().toLowerCase(), e.getHandler().getAddress());
 				LadderBungee.getInstance().handle(packet, e.getDone());
 				LadderBungee.getInstance().getClient().sendPacket(packet);
 	}
@@ -198,7 +195,7 @@ public class LadderListener implements Listener {
 	@EventHandler
 	public void onJoin(PostLoginEvent e){
 		System.out.println("Connecting " + e.getPlayer() + " : D");
-		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName(), e.getPlayer().getName(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
+		PacketPlayerJoin packet = new PacketPlayerJoin(e.getPlayer().getName().toLowerCase(), e.getPlayer().getName().toLowerCase(), e.getPlayer().getUniqueId(), e.getPlayer().getAddress());
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 
@@ -209,14 +206,14 @@ public class LadderListener implements Listener {
 
 	@EventHandler
 	public void onQuit(LoginFailEvent e){
-		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName(), null);
+		PacketPlayerQuit packet = new PacketPlayerQuit(e.getHandler().getName().toLowerCase(), null);
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 	}
 
 	@EventHandler
 	public void onQuit(PlayerDisconnectEvent e){
-		PacketPlayerQuit packet = new PacketPlayerQuit(e.getPlayer().getName(), null);
+		PacketPlayerQuit packet = new PacketPlayerQuit(e.getPlayer().getName().toLowerCase(), null);
 		LadderBungee.getInstance().handle(packet, true);
 		LadderBungee.getInstance().getClient().sendPacket(packet);
 	}
@@ -225,12 +222,12 @@ public class LadderListener implements Listener {
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerConnected(ServerConnectedEvent e)
 	{
-		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getServer().getInfo().getName()));
+		LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName().toLowerCase(), e.getServer().getInfo().getName()));
 	}
 
 	@EventHandler(priority=EventPriority.HIGHEST)
 	public void onServerSwitch(ServerConnectEvent e){
-		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName());
+		Player player = LadderBungee.getInstance().getPlayer(e.getPlayer().getName().toLowerCase());
 		if (player != null) {
 			try {
 				ProxiedPlayer proxiedPlayer = BungeeCord.getInstance().getPlayer(player.getName());
@@ -245,7 +242,7 @@ public class LadderListener implements Listener {
 			}
 		}
 		if(e.getPlayer().getServer() == null){
-			String playerName = e.getPlayer().getName();
+			String playerName = e.getPlayer().getName().toLowerCase();
 			String server = e.getTarget().getName();
 
 			new Thread(){
@@ -254,7 +251,7 @@ public class LadderListener implements Listener {
 					try {
 						int i = 0;
 
-						while(LadderBungee.getInstance().getPlayer(player.getName()) == null){
+						while(LadderBungee.getInstance().getPlayer(player.getName().toLowerCase()) == null){
 							Thread.sleep(2L);
 							i++;
 
@@ -265,7 +262,7 @@ public class LadderListener implements Listener {
 					} catch (InterruptedException e){
 						return;
 					} finally {		
-						LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(playerName, server));
+						LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(playerName.toLowerCase(), server));
 					}
 				}
 			}.start();
@@ -278,7 +275,7 @@ public class LadderListener implements Listener {
 	@EventHandler
 	public void onFail(ServerConnectionFailEvent e){
 		if(!e.isKick()){
-			LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName(), e.getFallback().getName()));
+			LadderBungee.getInstance().getClient().sendPacket(new PacketPlayerPlace(e.getPlayer().getName().toLowerCase(), e.getFallback().getName()));
 		}
 	}
 
@@ -337,7 +334,7 @@ public class LadderListener implements Listener {
 	public void onPermissionCheck(PermissionCheckEvent e){
 		if(e.getSender() instanceof ProxiedPlayer) {
 			ProxiedPlayer bPlayer = (ProxiedPlayer) e.getSender();
-			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName());
+			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName().toLowerCase());
 
 			if(lPlayer != null && lPlayer.getPermissions() != null){
 				e.setHasPermission(lPlayer.getPermissions().hasPermission(new Permission(e.getPermission())));
@@ -357,7 +354,7 @@ public class LadderListener implements Listener {
 				bPlayer.disconnect();
 			}
 
-			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName());
+			Player 		  lPlayer = LadderBungee.getInstance().getPlayer(bPlayer.getName().toLowerCase());
 
 			if(lPlayer == null){
 				e.getSender().disconnect(); return;
