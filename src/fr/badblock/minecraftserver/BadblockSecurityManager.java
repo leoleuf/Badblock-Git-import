@@ -33,13 +33,13 @@ public class BadblockSecurityManager extends SecurityManager {
 	
 	private boolean isConcerned()
 	{
-		Class<?>[] context = getClassContext();
+		/*Class<?>[] context = getClassContext();
 		
 		for(int i = 2; i < context.length; i++)
 			if(loaders.contains( context[i].getClassLoader() ))
 				return true;
 			else if(allowed.contains( context[i].getClassLoader() ) && i > 2)
-				return false;
+				return false;*/
 		return false;
 	}
 	
