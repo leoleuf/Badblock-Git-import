@@ -20,7 +20,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.bungeecord.plugins.ladder.LadderBungee;
-import fr.badblock.bungeecord.plugins.ladder.LadderListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.BungeePlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.ladder.listeners.PlayersUpdateListener;
 import fr.badblock.bungeecord.plugins.others.commands.BListCommand;
@@ -34,7 +33,6 @@ import fr.badblock.bungeecord.plugins.others.commands.CodeCommand;
 import fr.badblock.bungeecord.plugins.others.commands.DoneCommand;
 import fr.badblock.bungeecord.plugins.others.commands.FKickCommand;
 import fr.badblock.bungeecord.plugins.others.commands.GNickCommand;
-import fr.badblock.bungeecord.plugins.others.commands.LinkCommand;
 import fr.badblock.bungeecord.plugins.others.commands.ModoCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RCCommand;
 import fr.badblock.bungeecord.plugins.others.commands.RNickCommand;
@@ -44,7 +42,6 @@ import fr.badblock.bungeecord.plugins.others.commands.VoteCommand;
 import fr.badblock.bungeecord.plugins.others.database.BadblockDatabase;
 import fr.badblock.bungeecord.plugins.others.database.Request;
 import fr.badblock.bungeecord.plugins.others.database.Request.RequestType;
-import fr.badblock.bungeecord.plugins.others.database.WebDatabase;
 import fr.badblock.bungeecord.plugins.others.discord.TemmieWebhook;
 import fr.badblock.bungeecord.plugins.others.listeners.ChatListener;
 import fr.badblock.bungeecord.plugins.others.listeners.PlayerQuitListener;
@@ -146,31 +143,7 @@ public class BadBlockBungeeOthers extends Plugin {
 		String user = configuration.getString("db.user");
 		String pass = configuration.getString("db.pass");
 		String db = configuration.getString("db.db");
-		String webhost = configuration.getString("webdb.host");
-		int webport = configuration.getInt("webdb.port");
-		String webuser = configuration.getString("webdb.user");
-		String webpass = configuration.getString("webdb.pass");
-		String webdb = configuration.getString("webdb.db");
-		WebDatabase.getInstance().connect(webhost, webport, webuser, webpass, webdb);
 		BadblockDatabase.getInstance().connect(host, port, user, pass, db);
-		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
-				+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-		BadblockDatabase.getInstance()
-				.addSyncRequest(new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
-					@Override
-					public void done(ResultSet resultSet) {
-						try {
-							if (resultSet.next()) {
-								maxPlayers = resultSet.getInt("slots");
-								LadderBungee.getInstance().countEnvironment = resultSet.getInt("countEnvironment");
-								new PlayersUpdateListener();
-								new BungeePlayersUpdateListener();
-							}
-						} catch (Exception errora) {
-							errora.printStackTrace();
-						}
-					}
-				});
 		rabbitService = RabbitConnector.getInstance().newService("default", configuration.getString("rabbit.hostname"),
 				configuration.getInt("rabbit.port"), configuration.getString("rabbit.username"),
 				configuration.getString("rabbit.password"), configuration.getString("rabbit.virtualhost"));
@@ -211,7 +184,6 @@ public class BadBlockBungeeOthers extends Plugin {
 		pluginManager.registerCommand(this, new CheatCommand());
 		pluginManager.registerCommand(this, new RCCommand());
 		pluginManager.registerCommand(this, new CLCommand());
-		pluginManager.registerCommand(this, new LinkCommand());
 		pluginManager.registerCommand(this, new BORemoveInsultCommand());
 		proxy.getPlayers().forEach(player -> Player.get(player));
 
@@ -225,6 +197,14 @@ public class BadBlockBungeeOthers extends Plugin {
 		proxy.registerChannel("GuardianReport");
 		proxy.registerChannel("GuardianKick");
 		proxy.registerChannel("GuardianBan");
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
+				LadderBungee.getInstance().countEnvironment = 1;
+				new PlayersUpdateListener();
+				new BungeePlayersUpdateListener();
+			}
+		}, 1000);
 		timerTask2 = new TimerTask() {
 			@Override
 			public void run() {
@@ -257,50 +237,10 @@ public class BadBlockBungeeOthers extends Plugin {
 		};
 		new Timer().schedule(timerTask2, 1000, 1000);
 
+
 		timerTask3 = new TimerTask() {
 			@Override
 			public void run() {
-				boolean d = !finished ? done : false;
-				long bungeeTimestamp = !finished ? System.currentTimeMillis() + 60000 : 0;
-				String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
-						.getHostString() + ":"
-						+ ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-				BadblockDatabase.getInstance()
-						.addSyncRequest(new Request("UPDATE absorbances SET done = '" + d + "', players = '"
-								+ LadderBungee.getInstance().bungeePlayerList.size() + "', bungeeTimestamp = '"
-								+ bungeeTimestamp + "' WHERE ip = '" + a + "'", RequestType.SETTER));
-				BadblockDatabase.getInstance().addSyncRequest(
-						new Request("SELECT * FROM absorbances WHERE `ip` = '" + a + "';", RequestType.GETTER) {
-							@Override
-							public void done(ResultSet resultSet) {
-								try {
-									if (resultSet.next()) {
-										maxPlayers = resultSet.getInt("slots");
-									}
-								} catch (Exception errora) {
-									errora.printStackTrace();
-								}
-							}
-						});
-				BadblockDatabase.getInstance().addSyncRequest(
-						new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
-							@Override
-							public void done(ResultSet resultSet) {
-								try {
-									if (resultSet.next()) {
-										String o = resultSet.getString("value");
-										try {
-											int p = Integer.parseInt(o);
-											LadderListener.timestampMax = p;
-										} catch (Exception error) {
-											error.printStackTrace();
-										}
-									}
-								} catch (Exception errora) {
-									errora.printStackTrace();
-								}
-							}
-						});
 				BadblockDatabase.getInstance().addSyncRequest(
 						new Request("SELECT `value` FROM keyValues WHERE `key` = 'slots';", RequestType.GETTER) {
 							@Override
@@ -312,47 +252,6 @@ public class BadBlockBungeeOthers extends Plugin {
 											int p = Integer.parseInt(o);
 											LadderBungee.getInstance().slots = p;
 										} catch (Exception error) {
-											try {
-												BadblockDatabase.getInstance().addSyncRequest(new Request(
-														"SELECT slots FROM absorbances WHERE `bungeeTimestamp` > "
-																+ System.currentTimeMillis()
-																+ " AND countEnvironment = '"
-																+ LadderBungee.getInstance().countEnvironment
-																+ "' AND done = 'false';",
-														RequestType.GETTER) {
-													@Override
-													public void done(ResultSet result) {
-														try {
-															int slots = 0;
-															while (result.next())
-																slots += result.getInt("slots");
-															LadderBungee.getInstance().slots = slots;
-														} catch (Exception errorb) {
-															errorb.printStackTrace();
-														}
-													}
-												});
-											} catch (Exception errore) {
-												errore.printStackTrace();
-											}
-										}
-									}
-								} catch (Exception errora) {
-									errora.printStackTrace();
-								}
-							}
-						});
-				BadblockDatabase.getInstance().addSyncRequest(
-						new Request("SELECT `value` FROM keyValues WHERE `key` = 'timestampMax';", RequestType.GETTER) {
-							@Override
-							public void done(ResultSet resultSet) {
-								try {
-									if (resultSet.next()) {
-										String o = resultSet.getString("value");
-										try {
-											int p = Integer.parseInt(o);
-											LadderListener.timestampMax = p;
-										} catch (Exception error) {
 											error.printStackTrace();
 										}
 									}
@@ -363,143 +262,10 @@ public class BadBlockBungeeOthers extends Plugin {
 						});
 			}
 		};
-		new Timer().schedule(timerTask3, 1000, 5000);
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {
-				BadblockDatabase database = BadblockDatabase.getInstance();
-				database.addSyncRequest(
-						new Request("SELECT pseudo FROM friends ORDER BY id DESC LIMIT 10000;", RequestType.GETTER) {
-							@Override
-							public void done(ResultSet resultSet) {
-								try {
-									while (resultSet.next()) {
-										String o = resultSet.getString("pseudo");
-										if (o != null) {
-											if (LadderBungee.getInstance() != null
-													&& LadderBungee.getInstance().totalPlayers != null) {
-												LadderBungee.getInstance().totalPlayers.add(o);
-											}
-										}
-									}
-								} catch (Exception error) {
-									error.printStackTrace();
-								}
-							}
-						});
-			}
-		}, 2500);
-		timerTask4 = new TimerTask() {
-			@Override
-			public void run() {
-				Map<String, Integer> map = new HashMap<>();
-				for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers())
-					map.put(player.getName(), player.getPing());
-				BadBlockBungeeOthers.getInstance().getRabbitService().sendPacket("playerPing", gson.toJson(map),
-						Encodage.UTF8, RabbitPacketType.PUBLISHER, 5000, false);
-			}
-		};
-		new Timer().schedule(timerTask4, 1000, 5000);
-		new Timer().schedule(new TimerTask() {
-			@Override
-			public void run() {
-				BadblockDatabase database = BadblockDatabase.getInstance();
-				for (ProxiedPlayer plo : BungeeCord.getInstance().getPlayers())
-					if (plo.isConnected())
-						database.addSyncRequest(new Request(
-								"UPDATE cheatReports SET lastLogin = '" + (System.currentTimeMillis() + 600000)
-										+ "' WHERE pseudo = '" + database.mysql_real_escape_string(plo.getName())
-										+ "' AND timestamp > '" + System.currentTimeMillis() + "'",
-								RequestType.SETTER));
-			}
-		}, 5000, 5000);
-		if (configuration.getBoolean("dns")) {
-			timerTask = new TimerTask() {
-				@Override
-				public void run() {
-					double o = LadderBungee.getInstance().bungeePlayerList.size() / maxPlayers * 100;
-					if (done && BungeeCord.getInstance().getOnlineCount() <= 0) {
-						marginDelete++;
-						if (marginDelete >= 60) {
-							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-BYEBUNGEE!/" + o + "%/"
-									+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
-									+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-							finished = true;
-							String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
-									.getHostString() + ":"
-									+ ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost()
-											.getPort();
-							if (BadblockDatabase.getInstance().isConnected())
-								BadblockDatabase.getInstance().addSyncRequest(new Request(
-										"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a
-												+ "'",
-										RequestType.SETTER));
-							System.exit(-1);
-						} else {
-							System.out.println("/!\\ BUNGEE-MANAGER!<EVENT-MARGINDELETE!/" + o + "%/" + marginDelete
-									+ "/" + LadderBungee.getInstance().bungeePlayerList.size() + "/"
-									+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-						}
-					} else if (done) {
-						marginDelete = 0;
-						System.out.println("/!\\ BUNGEE-MANAGER<DONE-WAIT-FOR-PLAYERS-UNFILL/" + o + "%/" + time + "/"
-								+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
-								+ BadBlockBungeeOthers.getInstance().getConnections() + "> /!\\");
-					} else {
-						marginDelete = 0;
-						System.out.println("/!\\ BUNGEE-MANAGER<RUNNING/" + o + "%/"
-								+ LadderBungee.getInstance().bungeePlayerList.size() + "/"
-								+ LadderBungee.getInstance().bungeePlayerList.size() + "> /!\\");
-					}
-					if (done) {
-						time--;
-						if (time >= 0) {
-							if (time == 0) {
-								BungeeCord.getInstance()
-										.broadcast("§f[§cAbsorbance§f] §eDéconnexion de cette absorbance...");
-								for (ProxiedPlayer player : BungeeCord.getInstance().getPlayers()) {
-									player.disconnect(
-											"§cDéconnexion de l'aborsbance. Vous pouvez vous reconnecter au serveur.");
-								}
-								try {
-									Thread.sleep(1000);
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
-								finished = true;
-								String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next()
-										.getHost().getHostString() + ":"
-										+ ProxyServer.getInstance().getConfig().getListeners().iterator().next()
-												.getHost().getPort();
-								if (BadblockDatabase.getInstance().isConnected())
-									BadblockDatabase.getInstance().addSyncRequest(new Request(
-											"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '"
-													+ a + "'",
-											RequestType.SETTER));
-								System.exit(-1);
-							} else if (time % 60 == 0 && ((time % 900 == 0 && time <= 3600)
-									|| (time % 600 == 0 && time <= 1800) || (time % 300 == 0 && time <= 900))) {
-								BungeeCord.getInstance().broadcast(
-										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
-												+ (time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-							} else if (time % 60 == 0 && time % 900 == 0 && time <= 3600) {
-								BungeeCord.getInstance().broadcast(
-										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
-												+ (time / 60) + " minute" + (time > 60 ? "s" : "") + ".");
-							} else if (time > 0 && time < 60 && time % 15 == 0) {
-								BungeeCord.getInstance().broadcast(
-										"§f[§cAbsorbance§f] §eVous allez être déconnecté de cette absorbance dans "
-												+ time + " seconde" + (time > 1 ? "s" : "") + ".");
-							}
-						}
-					}
-				}
-			};
-			new Timer().schedule(timerTask, 1000L, 1000L);
-		}
+		new Timer().schedule(timerTask3, 1000, 30000);
+
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onDisable() {
 		filters.forEach(filter -> filter.reset());
@@ -511,14 +277,6 @@ public class BadBlockBungeeOthers extends Plugin {
 			timerTask3.cancel();
 		if (timerTask4 != null)
 			timerTask4.cancel();
-		finished = true;
-		String a = ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getHostString()
-				+ ":" + ProxyServer.getInstance().getConfig().getListeners().iterator().next().getHost().getPort();
-		if (BadblockDatabase.getInstance().isConnected())
-			BadblockDatabase.getInstance()
-					.addSyncRequest(new Request(
-							"UPDATE absorbances SET done = 'false', bungeeTimestamp = '0' WHERE ip = '" + a + "'",
-							RequestType.SETTER));
 	}
 
 	public String getMessage(List<String> list) {
