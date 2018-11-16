@@ -1,0 +1,64 @@
+@section('title', 'Liste des serveurs partenaires - Serveur MultiGames')
+@section('description', 'Vous pouvez voir la liste de tous les serveurs partenaires francophones à partir de cette page.')
+@section('logometa', 'https://serveur-multigames.net/img/logo.png')
+@section('canonical', 'https://serveur-multigames.net/partenaires')
+@section('jquery', 'async defer')
+@section('robots', 'noindex, nofollow')
+@extends('front.index')
+@section('content')
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Partenaire Serveur
+                    </h1>
+                    <h2 class="text-white">
+                        Serveurs MultiGames
+                    </h2><br />
+                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a>  <span class="lnr lnr-arrow-right"></span>  <a title="Classement partenaire" href="/partenaires">Liste des partenaires</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="whole-wrap">
+        <div class="container">
+            <div class="section-top-border">
+                <h3 class="mb-30">Serveur de nos partenaires</h3>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p><strong>Serveur MultiGames</strong> est un classement de <strong>serveur Minecraft</strong> et d'autres serveurs francophones.<br /></p>
+                        <blockquote class="generic-blockquote">
+                            <strong>Nos partenaires</strong><br /><br />
+                            <A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />
+                            <a href="http://www.net-liens.com" target="_blank"><img src="http://www.net-liens.com/img/media/nl1.jpg" alt="Net Liens - L'annuaire Internet" title="Net Liens - L'annuaire Internet" /></a>
+                            <br />
+                            <a href="http://www.annuaire-web-france.com/vote-annuaire-web-france.php?id_site_vote=91615" target="_blank"><img src="http://www.annuaire-web-france.com/images/logo-annuaire-web-france.gif" width="120" height="35" border="0" alt="Annuaire Web France"></a><noscript><a href="http://www.annuaire-web-france.com/annuaire-jeux-pc.php">Annuaire PC</a> <a href="http://www.annuaire-web-france.com">Annuaire Web</a></noscript>
+                            <br />
+                            <a href="https://www.ladenise.com/">www.ladenise.com</a><br />
+                            <a href="https://domestiquette.net/aspirateur-balai-rowenta/">Aspirateur balai Rowenta</a><br />
+                            <a href="http://www.jng-web.com/ref-auto/">Optannu</a><br />
+                            <a href="http://www.jng-web.com/ref-auto/webmasters-et-annuaires-c12-p1.html">Optannu - Webmasters et Annuaires</a><br />
+                            <a href="https://meilleure-centrale-vapeur.com/">https://meilleure-centrale-vapeur.com/</a><br />
+                            <a href="http://www.annuaire-liens-durs.com/jeux/">Annuaire généraliste référencement de sites internet - Jeux</a><br />
+                            <a href="https://tout-high-tech.fr/">https://tout-high-tech.fr/</a><br />
+                            <a href="http://www.ot-loiresillon.fr/">Ot-loiresillon.fr</a><br />
+                            <a href="http://www.ot-loiresillon.fr/jeux-c77-p1.html">Ot-loiresillon.fr - Jeux</a><br />
+                            <a href="http://www.technospeed.com/">Technospeed.com - Annuaire internet de sites web francophones</a><br />
+                            <a href="http://www.technospeed.com/annuaires-c44-p1.html">Technospeed.com - Annuaire internet de sites web francophones - Annuaires</a><br />
+                            <a href="http://www.1morelink.com/">1morelink.com - Annuaire de sites internet</a><br />
+                            <a href="http://www.1morelink.com/top-c43-p1.html">1morelink.com - Annuaire de sites internet - Top</a><br />
+                            <a href="https://www.gralon.net/annuaire/internet-et-webmaster/referencement/annuaire-web.htm" target=_blank><img src="https://www.gralon.net/plogo-gralon-174774.gif" border=0 alt="Annuaire web"></a><br />
+                            <a href="http://www.urlagogo.com">Urlagogo</a><br />
+                            <a href="http://www.urlagogo.com/jeux/">Urlagogo - Jeux</a>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="section-top-border">
+            </div>
+        </div>
+    </div>
+@endsection

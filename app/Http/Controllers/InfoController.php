@@ -1,0 +1,118 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
+
+
+class InfoController extends Controller
+{
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public static function info($cat, $id, $erreur = null)
+    {
+        $catName = encname($cat);
+        $l = array();
+        foreach (config('tag.cat') as $k)
+        {
+            $l[encname($k)] = 0;
+        }
+
+        $l = array_keys($l);
+
+        if (!in_array($catName, $l))
+        {
+            abort(404);
+        }
+
+        $id = encname($id);
+
+        if (Redis::exists('server:' . encname($id))){
+            $data = json_decode(Redis::get('server:' . encname($id)));
+
+            if (encname($data->cat) != encname($catName))
+            {
+                abort(404);
+            }
+
+            $playerstats = '';
+
+            if (Redis::exists('playerstats:'.$data->id))
+            {
+                $playerstats = Redis::get('playerstats:'.$data->id);
+            }
+
+            $tagsInfo = json_decode(Redis::get('tags:'.$catName));
+
+            if (Session::exists('vote'))
+            {
+                Session::remove('vote');
+                Session::put('votelistok', time() + 10);
+                return view('front.info', ['vote' => true, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'erreur' => $erreur, 'playerstats' => $playerstats]);
+            }
+
+            return view('front.info', ['tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'erreur' => $erreur, 'playerstats' => $playerstats]);
+        }else{
+            abort(404);
+        }
+
+    }
+
+    public static function ip($cat, $id)
+    {
+        $catName = encname($cat);
+
+        $id = encname($id);
+
+        if (Redis::exists('server:' . encname($id))){
+            $data = json_decode(Redis::get('server:' . encname($id)));
+
+            if (encname($data->cat) != encname($catName))
+            {
+                abort(404);
+            }
+
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+            {
+                $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+            }
+
+            if (VoteController::isGoodIp($ip)){
+                if (!Redis::exists($data->id.':copy:' . $ip)) {
+                    Redis::set($data->id . ':copy:' . $ip, true);
+                    Redis::expire($data->id . ':copy:' . $ip, 86400);
+                    $data->copy = $data->copy + 1;
+
+                    DB::table('server_list')
+                        ->where('id', '=', $data->id)
+                        ->update(
+                            ['copy' => $data->copy]);
+
+                    // Put the click in logs
+                    DB::table('copy_logs')->insert([
+                        'date' => date("Y-m-d H:i:s"),
+                        'ip' => $ip,
+                        'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                        'server_id' => $data->id
+                    ]);
+
+                    Redis::set('server:' . $id, json_encode($data));
+                }
+            }
+
+            return 'ok';
+        }else{
+            abort(404);
+        }
+
+    }
+
+}

@@ -1,0 +1,1 @@
+@include('front.header')@yield('content')@include('front.footer')@yield('after_script') </html>

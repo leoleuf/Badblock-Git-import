@@ -1,0 +1,314 @@
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+41.60.1.102 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+122.155.222.98 : Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.7 (KHTML, like Gecko) Iron/7.0.520.1 Chrome/7.0.520.1 Safari/534.7 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+189.204.152.145 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+5.20.255.82 : iTunes/9.1.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+181.129.148.138 : Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1b1pre) Gecko/20080913185648 Minefield/3.1b1pre : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2a01:e0a:b4:6930:ad10:ff3d:6a0:ad7d : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/badblock/vote
+176.165.51.245 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=82.245.114.24
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+85.11.124.195 : Opera/9.61 (Windows NT 6.0; U; ru) Presto/2.1.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+89.170.77.91 : Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+41.139.147.34 : Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.10) Gecko/20100928 Namoroka/3.6.10 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:1004:14b0:: : curl/7.52.1 : /cache
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+82.245.114.24 : Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:2:d36:: : NULL : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+176.165.51.245 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+81.25.20.235 : Mozilla/5.0 (Windows; U; Win 9x 4.90; de-DE; rv:0.9.4) Gecko/20011128 Netscape6/6.2.1 : /minecraft
+2a01:e0a:b4:6930:ad10:ff3d:6a0:ad7d : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/badblock/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+82.245.114.24 : Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+186.148.168.91 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+103.19.37.3 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+203.80.170.87 : Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/534.14 (KHTML, like Gecko) Chrome/9.0.601.0 Safari/534.14 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+163.47.36.90 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+187.33.82.126 : iTunes/9.1.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+136.243.127.66 : iTunes/9.1.1 : /minecraft
+177.72.165.6 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2a01:e0a:b4:6930:ad10:ff3d:6a0:ad7d : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/badblock/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:a:5b29:: : Mozilla/5.0 (X11; U; Linux i686; pl-PL; rv:1.8.1.2) Gecko/20060601 Firefox/2.0.0.2 (Ubuntu-edgy) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+89.87.207.123 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+212.19.9.25 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+41.139.232.118 : Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.0.9) Gecko/2009041500 SUSE/3.0.9-2.2 Firefox/3.0.9 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+77.247.249.164 : Opera/9.21 (Windows NT 5.2; U; en) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+152.171.137.47 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+186.46.92.83 : iTunes/9.1.1 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2a01:e0a:b4:6930:ad10:ff3d:6a0:ad7d : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/badblock/vote
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+205.169.145.130 : Opera/9.21 (Windows NT 5.1; U; MEGAUPLOAD 1.0; en) : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+89.87.207.123 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+43.228.222.114 : iTunes-AppleTV/4.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+140.82.35.203 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+154.73.65.130 : NSPlayer/4.1.0.3856 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+189.112.49.69 : iTunes-AppleTV/4.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+164.132.200.176 : curl/7.52.1 : /cache
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+190.157.247.65 : Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.0.1) Gecko/20020919 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+81.66.107.43 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.52 : /minecraft/vikicraft/vote
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+80.94.30.234 : iTunes/9.1.1 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+217.182.10.106 : iTunes-AppleTV/4.1 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+89.87.207.123 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=89.87.207.123
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+164.160.7.46 : Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.1) Gecko/20090624 Firefox/3.5 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+89.87.207.123 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+177.200.83.238 : iTunes/9.1.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+78.26.154.121 : NSPlayer/7.10.0.3059 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+190.214.13.90 : Mozilla/5.0 (Windows; U; Windows NT 6.1; it; rv:1.9.2.6) Gecko/20100625 Firefox/3.6.6 ( .NET CLR 3.5.30729) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+207.46.13.212 : Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+128.0.179.234 : iTunes/9.1.1 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+31.193.90.131 : iTunes-AppleTV/4.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+62.105.52.10 : iTunes-AppleTV/4.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2a01:cb0c:85fa:9200:f0b4:c586:f6d:cec8 : Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/skylord
+186.46.94.18 : Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.17) Gecko/20110303 SeaMonkey/2.0.12 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+81.66.107.43 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.52 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=81.66.107.43
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+81.66.107.43 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.52 : /minecraft
+176.165.51.245 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/vikicraft/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:303:29e:: : NULL : /api/vikicraft/?ip=176.165.51.245
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+170.81.247.4 : Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.7) Gecko/20050427 Red Hat/1.7.7-1.1.3.4 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+202.129.251.39 : WinampMPEG/5.55, Ultravox/2.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+129.205.96.45 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+203.189.142.23 : Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/530.5 (KHTML, like Gecko) Chrome/2.0.172.40 Safari/530.5 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+91.218.47.128 : iTunes/9.1.1 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+200.206.70.162 : Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.2 (KHTML, like Gecko) Chrome/4.0.222.6 Safari/532.2 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+105.27.171.234 : Mozilla/5.0 (compatible; Konqueror/3.1-rc3; i686 Linux; 20020607) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+117.232.98.206 : Mozilla/5.0 (compatible; Konqueror/3.0; i686 Linux; 20020825) : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+86.67.24.78 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/anarchynetwork/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+108.18.182.149 : Mozilla/5.0 (Windows NT 5.2; rv:7.0a1) Gecko/20110618 SeaMonkey/2.4a1 : /minecraft
+84.53.238.49 : Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.1b4pre) Gecko/20090311 Shiretoko/3.1b4pre : /minecraft
+197.232.63.200 : Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.2) Gecko/20040803 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+186.232.48.9 : Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9a3pre) Gecko/20070317 SeaMonkey/1.5a : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:1004:14b0:: : curl/7.52.1 : /cache
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+86.67.24.78 : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 : /minecraft/anarchynetwork/vote
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+201.150.255.185 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+94.73.217.125 : NSPlayer/4.1.0.3856 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+94.180.106.94 : Windows-Media-Player/11.0.6002.18311 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+103.240.161.59 : Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/418.9 (KHTML, like Gecko, Safari) Safari/419.3 Cheshire/1.0.ALPHA : /minecraft
+149.202.89.72 : Mozilla/5.0 : /minecraft
+2001:41d0:8:5cde:: : NULL : /api/anarchynetwork/?ip=86.67.24.78
