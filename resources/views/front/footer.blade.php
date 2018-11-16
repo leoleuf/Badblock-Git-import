@@ -90,8 +90,8 @@ if ($date != $creationDate)
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
 @endif
-<script async src="/js/gjs.js"></script>
-<script async src="/gtag.js"></script>
+<script async defer src="/js/gjs.js"></script>
+<script async defer src="/gtag.js"></script>
 <script async defer>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
