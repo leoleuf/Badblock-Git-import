@@ -1,6 +1,6 @@
 <?php
 
-$d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+$d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://serveur-multigames.net/".$_SERVER["REQUEST_URI"];
 
 ?><!DOCTYPE html>
 <html lang="fr" class="no-js">
