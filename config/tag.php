@@ -37,7 +37,7 @@ return [
             '1.13',
             '1.13.1',
             '1.13.2',
-            'crack',
+            'cracké',
             'uhc',
             'pvp',
             'hardcore',
