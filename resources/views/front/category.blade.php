@@ -334,6 +334,3 @@
     </script>
 
 @endsection
-@section('after_script')
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-@endsection
