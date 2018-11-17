@@ -58,7 +58,8 @@
                             <a href="http://www.durwebannu.com" title="www.durwebannu.com" target="_blank">www.durwebannu.com</a><br />
                             <a href="http://www.liendurweb.com" title="www.liendurweb.com" target="_blank">www.liendurweb.com</a><br />
                             <a href="http://www.lebonannuaire.net" title="www.lebonannuaire.net" target="_blank">www.lebonannuaire.net</a><br />
-                            <a href="http://www.webclics.net" title="www.webclics.net" target="_blank">www.webclics.net</a>
+                            <a href="http://www.webclics.net" title="www.webclics.net" target="_blank">www.webclics.net</a><br />
+                            <a href="http://autoentreprises.fr"><img src="http://autoentreprises.fr/autoentreprises.jpg" width="113" height="36" border="0"></a>
                         </blockquote>
                     </div>
                 </div>
