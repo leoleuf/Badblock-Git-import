@@ -21,7 +21,7 @@
 
                     Veuillez placer le code suivant dans la page {{ $data->name }} pour vérifier que vous possédez bien ce serveur :<br />
                     <code style="background-color: #ecf0f1;">
-                        &lt;a title=&quot;Serveur {{ seocat($data->cat) }}&quot; href=&quot;https://serveur-multigames.net/{{ encname($server->cat) }}&quot;&gt;Serveur {{ seocat($data->cat) }}&lt;/a&gt;
+                        &lt;a title=&quot;Serveur {{ seocat($data->cat) }}&quot; href=&quot;https://serveur-multigames.net/{{ encname($data->cat) }}&quot;&gt;Serveur {{ seocat($data->cat) }}&lt;/a&gt;
                     </code><br /><br />
 
                     Une fois le code placé sur cette page, cliquez sur le bouton de validation de la propriété.<br />
