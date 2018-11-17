@@ -69,10 +69,19 @@ class VerifyController extends Controller
                 )
             ]);
 
-            return view('panel.verify', ['data' => $server[0]]);
+            return redirect('/dashboard/verify/'.$id)->withInput();
         }
 
-        $t = @file_get_contents($server[0]->website);
+        $options = array(
+            'http'=>array(
+                'method'=>"GET",
+                'header'=>"Accept-language: en\r\n" .
+                    "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n" // i.e. An iPad
+            )
+        );
+
+        $context = stream_context_create($options);
+        $t = @file_get_contents($server[0]->website, false, $context);
 
         if (strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
         {
@@ -94,7 +103,7 @@ class VerifyController extends Controller
             )
         ]);
 
-        return view('panel.verify', ['data' => $server[0]]);
+        return redirect('/dashboard/verify/'.$id)->withInput();
     }
 
 }
