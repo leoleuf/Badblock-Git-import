@@ -195,7 +195,6 @@
                         @endif
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
-                            <br />
                             <div class="active-relatedjob-carusel">
                                 <div class="single-rated">
                                     <p class="inftop">
