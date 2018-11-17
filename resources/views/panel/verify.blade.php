@@ -19,7 +19,7 @@
                     <h4 class="card-title">Vérifier la propriété {{ $data->name }}</h4>
                     Afin d'accéder à cette fonctionnalité, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
 
-                    Veuillez placer le code suivant dans la page {{ $data->name }} pour vérifier que vous possédez bien ce serveur :<br />
+                    Veuillez placer le code suivant dans la page {{ $data->website }} pour vérifier que vous possédez bien ce serveur :<br />
                     <code style="background-color: #ecf0f1;">
                         &lt;a title=&quot;Serveur {{ seocat($data->cat) }}&quot; href=&quot;https://serveur-multigames.net/{{ encname($data->cat) }}&quot;&gt;Serveur {{ seocat($data->cat) }}&lt;/a&gt;
                     </code><br /><br />
