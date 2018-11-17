@@ -61,15 +61,7 @@ class VerifyController extends Controller
 
         if (filter_var($server[0]->website, FILTER_VALIDATE_URL) === FALSE)
         {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Le site Internet doit être valide.',
-                    'important' => true
-                )
-            ]);
-
-            return redirect('/dashboard/verify/'.$id)->withInput();
+            return view('panel.verify', ['data' => $server[0], 'err' => 'Le site Internet doit être valide.']);
         }
 
         $options = array(
@@ -95,15 +87,7 @@ class VerifyController extends Controller
             return view('panel.verify', ['data' => $server[0]]);
         }
 
-        $request->session()->flash('flash', [
-            array(
-                'level' => 'danger',
-                'message' => 'Code introuvable. Veuillez bien mettre le code exactement comme demandé sur la page.',
-                'important' => true
-            )
-        ]);
-
-        return redirect('/dashboard/verify/'.$id)->withInput();
+        return view('panel.verify', ['data' => $server[0], 'err' => 'Code introuvable. Veuillez bien mettre le code exactement comme demandé sur la page.']);
     }
 
 }
