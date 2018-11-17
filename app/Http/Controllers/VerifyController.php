@@ -39,6 +39,7 @@ class VerifyController extends Controller
 
     public function verify(Request $request, $id)
     {
+        $id = intval($id);
         $server = DB::select('select * from server_list where id = ? LIMIT 1', [$id]);
 
         if (empty($server))
@@ -92,6 +93,8 @@ class VerifyController extends Controller
                 'important' => true
             )
         ]);
+
+        return view('panel.verify', ['data' => $server[0]]);
     }
 
 }
