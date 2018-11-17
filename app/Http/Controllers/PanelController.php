@@ -118,7 +118,7 @@ class PanelController extends Controller
             }
 
             $input = $request->all();
-            
+
             $p = null;
 
             if (isset($_POST['group4'])) {
@@ -345,12 +345,37 @@ class PanelController extends Controller
             try {
                 if ($request->file('image') != null) {
 
-                    $f = $request->file('image');
-                    $path = $f->storeAs(
+                    $f = @$request->file('image');
+
+                    if ($f == null)
+                    {
+                        $request->session()->flash('flash', [
+                            array(
+                                'level' => 'danger',
+                                'message' => 'Veuillez mettre un logo.',
+                                'important' => true
+                            )
+                        ]);
+                        return redirect('/dashboard/add-server')->withInput();
+                    }
+
+                    $path = @$f->storeAs(
                         'public/icone', "icon" . $id . ".jpg"
                     );
 
-                    $slider = Image::make($f->getRealPath());
+                    $slider = @Image::make($f->getRealPath());
+
+                    if ($slider == null)
+                    {
+                        $request->session()->flash('flash', [
+                            array(
+                                'level' => 'danger',
+                                'message' => 'Veuillez mettre un logo valide.',
+                                'important' => true
+                            )
+                        ]);
+                        return redirect('/dashboard/add-server')->withInput();
+                    }
 
                     $slider->fit(190, 190);
 
@@ -360,7 +385,14 @@ class PanelController extends Controller
 
                 }
             } catch (Exception $e) {
-
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez mettre un logo.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
             }
 
             try {
