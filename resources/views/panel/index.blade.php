@@ -41,9 +41,9 @@
                                     </td>
                                     @if (!$row->verified)
                                         <td style="display: flex;">
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-10">
                                                 <button title="Vérifier le serveur {{ $row->name }}" onclick="location.href = '/dashboard/verify/{{ $row->id }}';" type="button" role="button" class="btn btn-primary" style="width: 100%; height:50px;">
-                                                    <i class="mdi mdi-border-color"></i> Vérifier le serveur
+                                                    <i class="mdi mdi-checkbox-marked-circle-outline"></i> Vérifier le serveur
                                                 </button>
                                             </div>
                                         </td>
