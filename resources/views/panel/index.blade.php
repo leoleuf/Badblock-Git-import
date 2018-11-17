@@ -34,7 +34,7 @@
                                             <span style="background-color: #ff100b" class="badge badge-dark">En attente de validation</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="row">
                                         <!--<button title="Supprimer le serveur {{ $row->name }}" onclick="location.href = '/dashboard/del-server/{{ $row->id }}';" type="button" role="button" class="btn btn-danger">
                                             <i class="mdi mdi-close-circle"></i>
                                         </button>!-->
@@ -45,19 +45,19 @@
                                                 </button>
                                             </div>
                                             &nbsp;
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-5">
                                                 <button title="Intégrer à votre site" onclick="location.href = '/dashboard/api/{{ $row->id }}';" type="button" role="button" class="btn btn-default">
                                                     <i class="mdi mdi-code-tags-check"></i> Intégrer le vote<br />à votre serveur
                                                 </button>
                                             </div>
                                             &nbsp;
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-5">
                                                 <button title="Statistiques du serveur" onclick="location.href = '/dashboard/stats/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
                                                     <i class="mdi mdi mdi-gauge"></i> Statistiques du serveur
                                                 </button>
                                             </div>
                                             &nbsp;
-                                            <div class="col-lg-3">
+                                            <div class="col-lg-5">
                                                 <button title="Accéder à la fiche du serveur" onclick="location.href = '/{{ encname($row->cat) }}/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
                                                     <i class="mdi mdi-newspaper"></i> Fiche du serveur
                                                 </button>
