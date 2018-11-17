@@ -23,11 +23,11 @@
                         </div>
                     @endif
                     @if (empty($data->website) OR strlen($data->website) < 3)
-                        Pour accéder à cette fonctionnalité, votre serveur doit posséder un site Internet.<br />
+                        Pour accéder à toutes les fonctionnalités des créateurs, votre serveur doit posséder un site Internet.<br />
                         Veuillez renseigner le site directement depuis les informations du serveur.<br />
                         <a class="btn btn-primary" title="Éditer mon serveur" href="/edit-server/{{ $data->id }}">Éditer mon serveur</a>
                     @else
-                        Afin d'accéder à cette fonctionnalité, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
+                        Afin d'accéder à toutes les fonctionnalités des créateurs, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
 
                         Veuillez placer le code suivant dans la page {{ $data->website }} pour vérifier que vous possédez bien ce serveur :<br />
                         <code style="background-color: #ecf0f1;">
