@@ -246,8 +246,6 @@
                         <div class="active-relatedjob-carusel">
                             <div class="single-rated">
                                 Plus de {{ $data->clicks }} personnes ont découvert le serveur {{ seocat($catName) }} {{ $data->name }} ce mois-ci et {{ $data->votes }} votes ont été effectués sur ce serveur {{ seocat($catName) }}.
-
-                                <div id="container"></div>
                             </div>
                         </div>
                     </div>
