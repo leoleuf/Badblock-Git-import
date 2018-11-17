@@ -214,7 +214,11 @@
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <h2 class="text-uppercase">Statistiques des joueurs</h2><br />
-                                <div id="container"></div>
+                                @if (!$data->verified)
+                                    <span style="color: red">La propriété doit être validée depuis le tableau de bord du propriétaire du serveur afin que la fonctionnalité des statistiques du serveur puisse fonctionner.</span>
+                                @else
+                                    <div id="container"></div>
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -232,7 +236,6 @@
                                     @if (!empty($data->website))<li><a class="justify-content-between d-flex" title="Jouer à {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}/go" target="_blank"><span class="lnr lnr-earth"></span> Accéder au site</a></li>@endif
                                     @if (strlen(trim(strtolower($data->ip))) > 0)<li><a class="justify-content-between d-flex" title="Copier l'IP de {{ $data->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $data->name }}', '{{ encname($data->name) }}');" class="ipcopy"><span class="lnr lnr-magic-wand"></span> Copier l'adresse IP</a></li>@endif
                                 </ul>
-                                <div id="container"></div>
                             </div>
                         </div>
                     </div>
