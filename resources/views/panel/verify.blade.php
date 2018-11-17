@@ -17,17 +17,23 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Vérifier la propriété {{ $data->name }}</h4>
-                    Afin d'accéder à cette fonctionnalité, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
+                    @if (empty($data->website) OR strlen($data->website) < 3)
+                        Pour accéder à cette fonctionnalité, votre serveur doit posséder un site Internet.<br />
+                        Veuillez renseigner le site directement depuis les informations du serveur.<br />
+                        <a title="Éditer mon serveur" href="/edit-server/{{ $data->id }}">Éditer mon serveur</a>
+                    @else
+                        Afin d'accéder à cette fonctionnalité, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
 
-                    Veuillez placer le code suivant dans la page {{ $data->website }} pour vérifier que vous possédez bien ce serveur :<br />
-                    <code style="background-color: #ecf0f1;">
-                        &lt;a title=&quot;Serveur {{ seocat($data->cat) }}&quot; href=&quot;https://serveur-multigames.net/{{ encname($data->cat) }}&quot;&gt;Serveur {{ seocat($data->cat) }}&lt;/a&gt;
-                    </code><br /><br />
+                        Veuillez placer le code suivant dans la page {{ $data->website }} pour vérifier que vous possédez bien ce serveur :<br />
+                        <code style="background-color: #ecf0f1;">
+                            &lt;a title=&quot;Serveur {{ seocat($data->cat) }}&quot; href=&quot;https://serveur-multigames.net/{{ encname($data->cat) }}&quot;&gt;Serveur {{ seocat($data->cat) }}&lt;/a&gt;
+                        </code><br /><br />
 
-                    Une fois le code placé sur cette page, cliquez sur le bouton de validation de la propriété.<br />
-                    <form method="post">
-                        <button type="submit" class="btn btn-primary">Valider la propriété</button>
-                    </form>
+                        Une fois le code placé sur cette page, cliquez sur le bouton de validation de la propriété.<br />
+                        <form method="post">
+                            <button type="submit" class="btn btn-primary">Valider la propriété</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
