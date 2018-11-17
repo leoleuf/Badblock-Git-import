@@ -66,30 +66,34 @@
                                         <div class="titles">
                                             <a title="Serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ encname($catName) }}/{{ encname($data->name) }}">@if (trim($__env->yieldContent('banner')))<h1 style="font-size: 16px;">{{ $data->name }}</h1>@else<span style="font-size: 16px;">{{ $data->name }}</span>@endif</a>
                                             <div class="rate">
-                                                @if($data->note >= 1)
-                                                    <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                @if (!$data->verified)
+                                                    <span style="color: red;">Note : Propriété non validée</span>
                                                 @else
-                                                    <span style="color: #7e7e7e" class="fa fa-star-o"></span>
-                                                @endif
-                                                @if($data->note > 2 || $data->note == 2)
-                                                    <span class="fa fa-star" style="color: #ffa205;"></span>
-                                                @else
-                                                    <span style="color: #7e7e7e" class="fa fa-star-o"></span>
-                                                @endif
-                                                @if($data->note > 3 || $data->note == 3)
-                                                    <span class="fa fa-star" style="color: #ffa205;"></span>
-                                                @else
-                                                    <span style="color: #7e7e7e" class="fa fa-star-o"></span>
-                                                @endif
-                                                @if($data->note > 4 || $data->note == 4)
-                                                    <span class="fa fa-star" style="color: #ffa205;"></span>
-                                                @else
-                                                    <span style="color: #7e7e7e" class="fa fa-star-o"></span>
-                                                @endif
-                                                @if($data->note == 5)
-                                                    <span class="fa fa-star" style="color: #ffa205;"></span>
-                                                @else
-                                                    <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @if($data->note >= 1)
+                                                        <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                    @else
+                                                        <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @endif
+                                                    @if($data->note > 2 || $data->note == 2)
+                                                        <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                    @else
+                                                        <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @endif
+                                                    @if($data->note > 3 || $data->note == 3)
+                                                        <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                    @else
+                                                        <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @endif
+                                                    @if($data->note > 4 || $data->note == 4)
+                                                        <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                    @else
+                                                        <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @endif
+                                                    @if($data->note == 5)
+                                                        <span class="fa fa-star" style="color: #ffa205;"></span>
+                                                    @else
+                                                        <span style="color: #7e7e7e" class="fa fa-star-o"></span>
+                                                    @endif
                                                 @endif
                                             </div>
                                             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fserveur-multigames.net%2F{{ $catName }}&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
@@ -115,7 +119,11 @@
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <h5 class="text-uppercase">Statistiques</h5><br />
-                                <div id="container"></div>
+                                @if (!$data->verified)
+                                    <span style="color: red">La propriété doit être validée depuis le tableau de bord du propriétaire du serveur afin que la fonctionnalité des statistiques du serveur puisse fonctionner.</span>
+                                @else
+                                    <div id="container"></div>
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -123,6 +131,7 @@
                         <div class="single-post d-flex flex-row">
                                 <div class="details">
                                     <h5 class="text-uppercase">Avis sur {{ $data->name }}</h5><br />
+                                    @if ($data->verified)
                                 <form method="post" class="col-lg-12">
                                     <div class="mt-10">
                                         <div class="rate"><fieldset class="rate3">
@@ -209,6 +218,9 @@
                                 </div>
                                 <br />
                             @endforeach
+                                    @else
+                                        <span style="color: red">La propriété doit être validée depuis le tableau de bord du propriétaire du serveur afin que la fonctionnalité des Avis du serveur puisse fonctionner.</span>
+                                    @endif
                                 </div>
                         </div>
                 </div>
