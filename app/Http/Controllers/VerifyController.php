@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 
-class PubController extends Controller
+class VerifyController extends Controller
 {
     /**
      * Create a new controller instance.
