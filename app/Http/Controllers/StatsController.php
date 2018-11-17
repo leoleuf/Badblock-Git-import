@@ -38,7 +38,6 @@ class StatsController extends Controller
         return view('panel.stats-index',['server' => $server]);
     }
 
-
     public function stats($id)
     {
         $id = encname($id);

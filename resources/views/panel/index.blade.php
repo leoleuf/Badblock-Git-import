@@ -61,7 +61,7 @@
                                             &nbsp;
                                             <div class="col-lg-5">
                                                 <button title="Intégrer à votre site" onclick="location.href = '/dashboard/api/{{ $row->id }}';" type="button" role="button" class="btn btn-default" style="width: 100%; height:50px;">
-                                                    <i class="mdi mdi-code-tags-check"></i> Intégrer le vote<br />à votre serveur
+                                                    <i class="mdi mdi-code-tags-check"></i> Intégrer le système de vote
                                                 </button>
                                             </div>
 
