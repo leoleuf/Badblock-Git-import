@@ -59,7 +59,7 @@ class VerifyController extends Controller
                 ]
             );
 
-        if (filter_var($server->website, FILTER_VALIDATE_URL) === FALSE)
+        if (filter_var($server[0]->website, FILTER_VALIDATE_URL) === FALSE)
         {
             $request->session()->flash('flash', [
                 array(
