@@ -194,6 +194,19 @@
                             </div>
                         @endif
                         <div class="single-slidebar">
+                            <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
+                            <br />
+                            <div class="active-relatedjob-carusel">
+                                <div class="single-rated">
+                                    <p class="inftop">
+                                        Vous souhaitez donner plus de visibilité à votre serveur {{ seocat($catName) }} sans plus tarder ? Serveur MultiGames vous propose de rejoindre plus de 100 créateurs de serveurs de jeu différents sur la plateforme pour faire découvrir votre serveur à la communauté francophone.
+                                        <br /><br />
+                                        Les joueurs peuvent ainsi voter pour le serveur qu'ils préfèrent afin qu'il soit plus visible dans notre classement pour attirer de nouveaux joueurs tous les jours.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-slidebar">
                             <h3>Autres classements par tag</h3>
                             <br />
                             <ul class="cat-list">
