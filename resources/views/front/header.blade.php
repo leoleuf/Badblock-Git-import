@@ -84,7 +84,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
 
 <header>
     <div class="container" style="position: absolute; min-width:100%; z-index:90;">
-        <div class="row align-items-center justify-content-between" style="margin: 0 auto; margin-top: 10px; width: 50%;">
+        <div class="row align-items-center justify-content-between" style="margin: 0 auto; margin-top: 10px; width: 80%;">
             <div id="logo">
                 <a title="Serveur MultiGames" href="/"><img src="/img/logo.png" alt="Logo Serveur MultiGames" /></a>
             </div>
