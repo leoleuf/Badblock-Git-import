@@ -21,7 +21,6 @@
                             <thead>
                             <tr>
                                 <th>Serveur</th>
-                                <th>Type</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
