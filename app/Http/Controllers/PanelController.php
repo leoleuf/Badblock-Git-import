@@ -59,345 +59,340 @@ class PanelController extends Controller
     public function addServerSave(Request $request)
     {
 
-        if (isset($_POST['category'])) {
+        try {
+            if (isset($_POST['category'])) {
 
-            if (!in_array($_POST['category'], config('tag.cat'))) {
-                $request->session()->flash('flash', [
-                    array(
-                        'level' => 'danger',
-                        'message' => 'Catégorie inconnue. Veuillez sélectionner une catégorie valide.',
-                        'important' => true
-                    )
-                ]);
-                return redirect('/dashboard/add-server')->withInput();
-            }
-
-            if (isset($_POST['tags']) && !empty($_POST['tags'])) {
-                $_POST['tags'] = strtolower($_POST['tags']);
-                if (json_decode("[" . $_POST['tags'] . "]") == null) {
+                if (!in_array($_POST['category'], config('tag.cat'))) {
                     $request->session()->flash('flash', [
                         array(
                             'level' => 'danger',
-                            'message' => 'Impossible de décoder la liste des tags, veuillez séparer les tags par une virgule.',
+                            'message' => 'Catégorie inconnue. Veuillez sélectionner une catégorie valide.',
                             'important' => true
                         )
                     ]);
                     return redirect('/dashboard/add-server')->withInput();
                 }
 
-                $tag = array_values(config('tag.tag')[$_POST['category']]);
-                $tags = json_decode("[" . $_POST['tags'] . "]");
-
-
-                foreach ($tags as $k => $v) {
-                    if (!in_array($v, $tag)) {
+                if (isset($_POST['tags']) && !empty($_POST['tags'])) {
+                    $_POST['tags'] = strtolower($_POST['tags']);
+                    if (json_decode("[" . $_POST['tags'] . "]") == null) {
                         $request->session()->flash('flash', [
                             array(
                                 'level' => 'danger',
-                                'message' => 'Tag inconnu pour la catégorie ' . htmlspecialchars($_POST['category']) . ' : ' . htmlspecialchars($v) . '. Restez cohérent sur les tags.',
+                                'message' => 'Impossible de décoder la liste des tags, veuillez séparer les tags par une virgule.',
                                 'important' => true
                             )
                         ]);
                         return redirect('/dashboard/add-server')->withInput();
                     }
+
+                    $tag = array_values(config('tag.tag')[$_POST['category']]);
+                    $tags = json_decode("[" . $_POST['tags'] . "]");
+
+
+                    foreach ($tags as $k => $v) {
+                        if (!in_array($v, $tag)) {
+                            $request->session()->flash('flash', [
+                                array(
+                                    'level' => 'danger',
+                                    'message' => 'Tag inconnu pour la catégorie ' . htmlspecialchars($_POST['category']) . ' : ' . htmlspecialchars($v) . '. Restez cohérent sur les tags.',
+                                    'important' => true
+                                )
+                            ]);
+                            return redirect('/dashboard/add-server')->withInput();
+                        }
+                    }
+                } else {
+                    $tags = array();
+                }
+
+            } else {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez choisir une catégorie valide.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
+
+            $input = $request->all();
+
+            dd($input);
+
+            $p = null;
+
+            if (isset($_POST['group4'])) {
+                $p = strtoupper(htmlspecialchars($_POST['group4']));
+                if ($p != "TRUE" && $p != "JSON" && $p != "CALLBACK" && $p != "VOTIFIER") {
+                    $request->session()->flash('flash', [
+                        array(
+                            'level' => 'danger',
+                            'message' => 'Veuillez sélectionner une méthode de vérification des votes valide.',
+                            'important' => true
+                        )
+                    ]);
+                    return redirect('/dashboard/add-server')->withInput();
                 }
             } else {
-                $tags = array();
-            }
-
-        } else {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez choisir une catégorie valide.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        $input = $request->all();
-
-        dd($input);
-
-        $p = null;
-
-        if (isset($_POST['group4'])) {
-            $p = strtoupper(htmlspecialchars($_POST['group4']));
-            if ($p != "TRUE" && $p != "JSON" && $p != "CALLBACK" && $p != "VOTIFIER") {
                 $request->session()->flash('flash', [
                     array(
                         'level' => 'danger',
-                        'message' => 'Veuillez sélectionner une méthode de vérification des votes valide.',
-                        'important' => true
-                    )
-                ]);
-                return redirect('/dashboard/add-server')->withInput();
-            }
-        } else {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez sélectionner une méthode de vérification des votes.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        if (!isset($input['name']) OR empty($input['name'])) {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez saisir un nom de serveur.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        if (strlen($input['name']) < 4) {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Le nom du serveur doit contenir au minimum 4 caractères.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        if (!isset($input['text']) OR strlen($input['text']) < 500) {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez fournir une description courte UNIQUE pour l\'affichage sur le classement d\'au moins 500 caractères.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        if (!isset($input['desc']) OR strlen($input['desc']) < 1000) {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez fournir une description complète UNIQUE d\'au moins 1000 caractères pour l\'affichage sur le classement.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        $cbk = "";
-        if ($p != null && $p == "CALLBACK" && (!isset($input['callback_url']) OR empty($input['callback_url']))) {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Vous avez sélectionné la méthode CALLBACK. Veuillez saisir une URL CallBack valide.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
-
-        if ($p != null && $p == "VOTIFIER") {
-            if (!isset($input['votifier_servername']) OR empty($input['votifier_servername']) OR
-                !isset($input['votifier_serverip']) OR empty($input['votifier_serverip']) OR
-                !isset($input['votifier_serverport']) OR empty($input['votifier_serverport']) OR
-                !isset($input['votifier_publickey']) OR empty($input['votifier_publickey'])) {
-                $request->session()->flash('flash', [
-                    array(
-                        'level' => 'danger',
-                        'message' => 'Vous avez sélectionné la méthode VOTIFIER. Veuillez saisir le nom du serveur, l\'IP, le port et la clé publique Votifier.',
-                        'important' => true
-                    )
-                ]);
-                return redirect('/dashboard/add-server')->withInput();
-            }
-        }
-
-        if ($p != null && $p == "CALLBACK")
-        {
-            if (!filter_var($input['callback_url'], FILTER_VALIDATE_URL))
-            {
-                $request->session()->flash('flash', [
-                    array(
-                        'level' => 'danger',
-                        'message' => 'URL de CallBack invalide.',
+                        'message' => 'Veuillez sélectionner une méthode de vérification des votes.',
                         'important' => true
                     )
                 ]);
                 return redirect('/dashboard/add-server')->withInput();
             }
 
-            $cbk = htmlspecialchars($input['callback_url']);
-        }
+            if (!isset($input['name']) OR empty($input['name'])) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez saisir un nom de serveur.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
 
-        if ($request->file('image') == null)
-        {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Veuillez fournir une image valide pour l\'affichage de votre serveur sur le classement.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
+            if (strlen($input['name']) < 4) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Le nom du serveur doit contenir au minimum 4 caractères.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
 
-        $count = DB::table('server_list')
-            ->where('name', '=', encname($input['name']))
-            ->count();
+            if (!isset($input['text']) OR strlen($input['text']) < 500) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez fournir une description courte UNIQUE pour l\'affichage sur le classement d\'au moins 500 caractères.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
 
-        if ($count > 0)
-        {
-            $request->session()->flash('flash', [
-                array(
-                    'level' => 'danger',
-                    'message' => 'Le nom de ce serveur existe déjà sur notre classement. Veuillez saisir un autre nom.',
-                    'important' => true
-                )
-            ]);
-            return redirect('/dashboard/add-server')->withInput();
-        }
+            if (!isset($input['desc']) OR strlen($input['desc']) < 1000) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez fournir une description complète UNIQUE d\'au moins 1000 caractères pour l\'affichage sur le classement.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
 
-        $adress = !isset($input['adress']) ? '' : $input['adress'];
-        $website = !isset($input['website']) ? '' : $input['website'];
+            $cbk = "";
+            if ($p != null && $p == "CALLBACK" && (!isset($input['callback_url']) OR empty($input['callback_url']))) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Vous avez sélectionné la méthode CALLBACK. Veuillez saisir une URL CallBack valide.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
 
-        $votifierArray = array();
-
-        if ($p == "VOTIFIER" && isset($input['votifier_servername']) && count($input['votifier_servername']) > 0)
-        {
-            foreach ($input['votifier_servername'] as $k => $row)
-            {
-
-                if (strlen($k) == 0 || !is_numeric($k))
-                {
-                    continue;
-                }
-
-                if (!isset($input['votifier_serverip'][$k]))
-                {
+            if ($p != null && $p == "VOTIFIER") {
+                if (!isset($input['votifier_servername']) OR empty($input['votifier_servername']) OR
+                    !isset($input['votifier_serverip']) OR empty($input['votifier_serverip']) OR
+                    !isset($input['votifier_serverport']) OR empty($input['votifier_serverport']) OR
+                    !isset($input['votifier_publickey']) OR empty($input['votifier_publickey'])) {
                     $request->session()->flash('flash', [
                         array(
                             'level' => 'danger',
-                            'message' => 'Vous avez oublié d\'entrer l\'IP du Serveur Votifier #' + $k.'.',
+                            'message' => 'Vous avez sélectionné la méthode VOTIFIER. Veuillez saisir le nom du serveur, l\'IP, le port et la clé publique Votifier.',
+                            'important' => true
+                        )
+                    ]);
+                    return redirect('/dashboard/add-server')->withInput();
+                }
+            }
+
+            if ($p != null && $p == "CALLBACK") {
+                if (!filter_var($input['callback_url'], FILTER_VALIDATE_URL)) {
+                    $request->session()->flash('flash', [
+                        array(
+                            'level' => 'danger',
+                            'message' => 'URL de CallBack invalide.',
                             'important' => true
                         )
                     ]);
                     return redirect('/dashboard/add-server')->withInput();
                 }
 
-                if (!isset($input['votifier_serverport'][$k]))
-                {
-                    $request->session()->flash('flash', [
-                        array(
-                            'level' => 'danger',
-                            'message' => 'Vous avez oublié d\'entrer le port du Serveur Votifier #' + $k.'.',
-                            'important' => true
-                        )
-                    ]);
-                    return redirect('/dashboard/add-server')->withInput();
+                $cbk = htmlspecialchars($input['callback_url']);
+            }
+
+            if ($request->file('image') == null) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Veuillez fournir une image valide pour l\'affichage de votre serveur sur le classement.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
+
+            $count = DB::table('server_list')
+                ->where('name', '=', encname($input['name']))
+                ->count();
+
+            if ($count > 0) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Le nom de ce serveur existe déjà sur notre classement. Veuillez saisir un autre nom.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/add-server')->withInput();
+            }
+
+            $adress = !isset($input['adress']) ? '' : $input['adress'];
+            $website = !isset($input['website']) ? '' : $input['website'];
+
+            $votifierArray = array();
+
+            if ($p == "VOTIFIER" && isset($input['votifier_servername']) && count($input['votifier_servername']) > 0) {
+                foreach ($input['votifier_servername'] as $k => $row) {
+
+                    if (strlen($k) == 0 || !is_numeric($k)) {
+                        continue;
+                    }
+
+                    if (!isset($input['votifier_serverip'][$k])) {
+                        $request->session()->flash('flash', [
+                            array(
+                                'level' => 'danger',
+                                'message' => 'Vous avez oublié d\'entrer l\'IP du Serveur Votifier #' + $k . '.',
+                                'important' => true
+                            )
+                        ]);
+                        return redirect('/dashboard/add-server')->withInput();
+                    }
+
+                    if (!isset($input['votifier_serverport'][$k])) {
+                        $request->session()->flash('flash', [
+                            array(
+                                'level' => 'danger',
+                                'message' => 'Vous avez oublié d\'entrer le port du Serveur Votifier #' + $k . '.',
+                                'important' => true
+                            )
+                        ]);
+                        return redirect('/dashboard/add-server')->withInput();
+                    }
+
+                    if (!isset($input['votifier_publickey'][$k])) {
+                        $request->session()->flash('flash', [
+                            array(
+                                'level' => 'danger',
+                                'message' => 'Vous avez oublié d\'entrer la clé publique du Serveur Votifier #' + $k . '.',
+                                'important' => true
+                            )
+                        ]);
+                        return redirect('/dashboard/add-server')->withInput();
+                    }
+
+                    $votifierArray[$k] = array(
+                        'name' => $row,
+                        'ip' => $input['votifier_serverip'][$k],
+                        'port' => $input['votifier_serverport'][$k],
+                        'key' => $input['votifier_publickey'][$k]
+                    );
                 }
+            }
 
-                if (!isset($input['votifier_publickey'][$k]))
-                {
-                    $request->session()->flash('flash', [
-                        array(
-                            'level' => 'danger',
-                            'message' => 'Vous avez oublié d\'entrer la clé publique du Serveur Votifier #' + $k.'.',
-                            'important' => true
-                        )
-                    ]);
-                    return redirect('/dashboard/add-server')->withInput();
+            $votifierArray = json_encode($votifierArray);
+
+            $id = DB::table('server_list')->insertGetId(
+                [
+                    'name' => $input['name'],
+                    'user_id' => Auth::user()->id,
+                    'description' => $input['desc'],
+                    'short_desc' => $input['text'],
+                    'ip' => $adress,
+                    'website' => $website,
+                    'callback_url' => $cbk,
+                    'votetype' => $p,
+                    'cat' => $input['category'],
+                    'api_key' => $this->generateRandomString(),
+                    'tag' => json_encode($tags),
+                    'created_at' => date("Y-m-d H:i:s"),
+                    'actived' => false,
+                    'votifierdata' => $votifierArray
+                ]
+            );
+
+            DB::table('logs')->insert(
+                [
+                    'user_id' => Auth::user()->id,
+                    'action' => 'Ajout du serveur ' . $input['name'],
+                    'date' => date("Y-m-d H:i:s"),
+                    'ip' => $_SERVER['REMOTE_ADDR'],
+                    'success' => true
+                ]
+            );
+
+            try {
+                if ($request->file('image') != null) {
+
+                    $f = $request->file('image');
+                    $path = $f->storeAs(
+                        'public/icone', "icon" . $id . ".jpg"
+                    );
+
+                    $slider = Image::make($f->getRealPath());
+
+                    $slider->fit(190, 190);
+
+                    $v = public_path('storage/icone/icon' . $id . '.jpg');
+
+                    $slider->save($v);
+
                 }
+            } catch (Exception $e) {
 
-                $votifierArray[$k] = array(
-                    'name' => $row,
-                    'ip' => $input['votifier_serverip'][$k],
-                    'port' => $input['votifier_serverport'][$k],
-                    'key' => $input['votifier_publickey'][$k]
-                );
             }
+
+            try {
+                if ($request->file('banner') != null) {
+
+                    $f = $request->file('banner');
+                    $path = $f->storeAs(
+                        'public/banner', "banner" . $id . ".jpg"
+                    );
+
+                    $slider = Image::make($f->getRealPath());
+
+                    $slider->fit(1903, 448);
+
+                    $v = public_path('storage/banner/banner' . $id . '.jpg');
+
+                    $slider->save($v);
+
+                }
+            } catch (Exception $e) {
+
+            }
+
+            return redirect("/dashboard");
         }
-
-        $votifierArray = json_encode($votifierArray);
-
-        $id = DB::table('server_list')->insertGetId(
-            [
-                'name' => $input['name'],
-                'user_id' => Auth::user()->id,
-                'description' => $input['desc'],
-                'short_desc' => $input['text'],
-                'ip' => $adress,
-                'website' => $website,
-                'callback_url' => $cbk,
-                'votetype' => $p,
-                'cat' => $input['category'],
-                'api_key' => $this->generateRandomString(),
-                'tag' => json_encode($tags),
-                'created_at' => date("Y-m-d H:i:s"),
-                'actived' => false,
-                'votifierdata' => $votifierArray
-            ]
-        );
-
-        DB::table('logs')->insert(
-            [
-                'user_id' => Auth::user()->id,
-                'action' => 'Ajout du serveur ' . $input['name'],
-                'date' => date("Y-m-d H:i:s"),
-                'ip' => $_SERVER['REMOTE_ADDR'],
-                'success' => true
-            ]
-        );
-
-        try {
-            if ($request->file('image') != null) {
-
-                $f = $request->file('image');
-                $path = $f->storeAs(
-                    'public/icone', "icon" . $id . ".jpg"
-                );
-
-                $slider = Image::make($f->getRealPath());
-
-                $slider->fit(190, 190);
-
-                $v = public_path('storage/icone/icon' . $id . '.jpg');
-
-                $slider->save($v);
-
-            }
-        } catch (Exception $e)
+        catch (Exception $e)
         {
-
+            exit($e);
+            return;
         }
-
-        try {
-            if ($request->file('banner') != null) {
-
-                $f = $request->file('banner');
-                $path = $f->storeAs(
-                    'public/banner', "banner" . $id . ".jpg"
-                );
-
-                $slider = Image::make($f->getRealPath());
-
-                $slider->fit(1903, 448);
-
-                $v = public_path('storage/banner/banner' . $id . '.jpg');
-
-                $slider->save($v);
-
-            }
-        } catch (Exception $e)
-        {
-
-        }
-
-        return redirect("/dashboard");
     }
 
    /* public function delServer($id){
