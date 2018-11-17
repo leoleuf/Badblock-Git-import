@@ -33,7 +33,7 @@
                                             @if($row->verified)
                                                 <span style="background-color: #0fff21" class="badge badge-dark">Serveur vérifié</span>
                                             @else
-                                                <span style="background-color: red;" class="badge badge-dark">Serveur non vérifié<br /><br /><a title="Vérifier le serveur" href="/dashboard/verify/{{ $row->id }}">Régler</a></span>
+                                                <span style="background-color: red;" class="badge badge-dark">Serveur non vérifié<br /><br /><a title="Vérifier le serveur" href="/dashboard/verify/{{ $row->id }}" style="color: white;"><u>Régler</u></a></span>
                                             @endif
                                         @else
                                             <span style="background-color: #ff100b" class="badge badge-dark">En attente de validation<br />par la modération</span>
