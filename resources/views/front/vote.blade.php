@@ -160,7 +160,7 @@
 
                                         <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="width: 100%; height: 100px;">
+                                                data-callback="onSubmit" style="width: 100%; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
