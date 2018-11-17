@@ -25,7 +25,7 @@
                     @if (empty($data->website) OR strlen($data->website) < 3)
                         Pour accéder à toutes les fonctionnalités des créateurs, votre serveur doit posséder un site Internet.<br />
                         Veuillez renseigner le site directement depuis les informations du serveur.<br />
-                        <a class="btn btn-primary" title="Éditer mon serveur" href="/edit-server/{{ $data->id }}">Éditer mon serveur</a>
+                        <a class="btn btn-primary" title="Éditer mon serveur" href="/dashboard/edit-server/{{ $data->id }}">Éditer mon serveur</a>
                     @else
                         Afin d'accéder à toutes les fonctionnalités des créateurs, nos systèmes doivent vérifier la propriété du serveur. Cela ne prend que quelques secondes.<br /><br />
 
