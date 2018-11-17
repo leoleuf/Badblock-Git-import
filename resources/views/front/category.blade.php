@@ -207,12 +207,12 @@
                             </div>
                         </div>
                         <div class="single-slidebar">
-                            <h3>Autres classements par tag</h3>
+                            <h3>Autres classements par catégorie</h3>
                             <br />
                             <ul class="cat-list">
                                 @foreach($tags as $k => $v)
                                     @if ($v > 0)
-                                        <li><a title="{{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ encname($k) }}">{{ ucfirst($k) }}</a></li>
+                                        <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ encname($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
                                     @endif
                                 @endforeach
                             </ul>
@@ -229,15 +229,6 @@
                                     </script>
                                 </div>
                             </div>
-                        </div>
-                        <div class="single-slidebar">
-                            <h3>Classement par jeu</h3>
-                            <br />
-                            <ul class="cat-list">
-                                @foreach(config('tag.cat') as $k)
-                                    <li><a title="Serveur {{ $k }}" class="justify-content-between d-flex" href="/{{ encname($k) }}">{{ ucfirst($k) }} <img alt="Serveur {{ $k }}" src="/img/{{ encname($k) }}.png" width="24" height="24" class="ialign" /> </a></li>
-                                @endforeach
-                            </ul>
                         </div>
                         <div class="single-slidebar">
                             <strong>Partenaires</strong><br /><br />
