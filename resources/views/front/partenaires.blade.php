@@ -55,7 +55,8 @@
                             <a href="http://www.urlagogo.com/jeux/">Urlagogo - Jeux</a><br />
                             <a href="http://www.annuaire.boutiquedebook.com" title="www.annuaire.boutiquedebook.com" target="_blank">www.annuaire.boutiquedebook.com</a><br />
                             <a href="http://www.myannuaires.com" title="www.myannuaires.com" target="_blank">www.myannuaires.com</a><br />
-                            <a href="http://www.durwebannu.com" title="www.durwebannu.com" target="_blank">www.durwebannu.com</a>
+                            <a href="http://www.durwebannu.com" title="www.durwebannu.com" target="_blank">www.durwebannu.com</a><br />
+                            <a href="http://www.liendurweb.com" title="www.liendurweb.com" target="_blank">www.liendurweb.com</a>
                         </blockquote>
                     </div>
                 </div>
