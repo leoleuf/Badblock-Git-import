@@ -39,6 +39,15 @@
                                             <span style="background-color: #ff100b" class="badge badge-dark">En attente de validation<br />par la modération</span>
                                         @endif
                                     </td>
+                                    @if (!$row->verified)
+                                        <td style="display: flex;">
+                                            <div class="col-lg-8">
+                                                <button title="Vérifier le serveur {{ $row->name }}" onclick="location.href = '/dashboard/verify/{{ $row->id }}';" type="button" role="button" class="btn btn-primary" style="width: 100%; height:50px;">
+                                                    <i class="mdi mdi-border-color"></i> Vérifier le serveur
+                                                </button>
+                                            </div>
+                                        </td>
+                                    @endif
                                     <td style="display: flex;">
                                         <!--<button title="Supprimer le serveur {{ $row->name }}" onclick="location.href = '/dashboard/del-server/{{ $row->id }}';" type="button" role="button" class="btn btn-danger">
                                             <i class="mdi mdi-close-circle"></i>
