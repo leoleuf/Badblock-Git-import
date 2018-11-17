@@ -72,7 +72,7 @@ class VerifyController extends Controller
             return view('panel.verify', ['data' => $server[0]]);
         }
 
-        $t = @file_get_contents($server->website);
+        $t = @file_get_contents($server[0]->website);
 
         if (strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
         {
