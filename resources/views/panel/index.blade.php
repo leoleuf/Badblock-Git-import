@@ -27,11 +27,11 @@
                             <tbody>
                             @foreach($server as $row)
                                 <tr>
-                                    <td>{{ $row->name }}<br /><br />
+                                    <td>{{ $row->name }}<br />
                                         @if($row->actived)
-                                            <span style="background-color: #0fff21" class="badge badge-dark">Actif</span>
+                                            <span style="background-color: #0fff21" class="badge badge-dark">Serveur affiché</span>
                                         @else
-                                            <span style="background-color: #ff100b" class="badge badge-dark">En attente</span>
+                                            <span style="background-color: #ff100b" class="badge badge-dark">En attente de validation</span>
                                         @endif
                                     </td>
                                     <td>
@@ -39,21 +39,29 @@
                                             <i class="mdi mdi-close-circle"></i>
                                         </button>!-->
                                         &nbsp;
-                                        <button title="Modifier le serveur {{ $row->name }}" onclick="location.href = '/dashboard/edit-server/{{ $row->id }}';" type="button" role="button" class="btn btn-default">
-                                            <i class="mdi mdi-border-color"></i> Modifier mon serveur
-                                        </button>
+                                            <div class="col-lg-3">
+                                                <button title="Modifier le serveur {{ $row->name }}" onclick="location.href = '/dashboard/edit-server/{{ $row->id }}';" type="button" role="button" class="btn btn-default">
+                                                    <i class="mdi mdi-border-color"></i> Modifier mon serveur
+                                                </button>
+                                            </div>
                                             &nbsp;
-                                            <button title="Intégrer à votre site" onclick="location.href = '/dashboard/api/{{ $row->id }}';" type="button" role="button" class="btn btn-default">
-                                                <i class="mdi mdi-code-tags-check"></i> Intégrer le vote<br />à votre serveur
-                                            </button>
+                                            <div class="col-lg-3">
+                                                <button title="Intégrer à votre site" onclick="location.href = '/dashboard/api/{{ $row->id }}';" type="button" role="button" class="btn btn-default">
+                                                    <i class="mdi mdi-code-tags-check"></i> Intégrer le vote<br />à votre serveur
+                                                </button>
+                                            </div>
                                             &nbsp;
-                                            <button title="Statistiques du serveur" onclick="location.href = '/dashboard/stats/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
-                                                <i class="mdi mdi mdi-gauge"></i> Statistiques du serveur
-                                            </button>
+                                            <div class="col-lg-3">
+                                                <button title="Statistiques du serveur" onclick="location.href = '/dashboard/stats/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
+                                                    <i class="mdi mdi mdi-gauge"></i> Statistiques du serveur
+                                                </button>
+                                            </div>
                                             &nbsp;
-                                            <button title="Accéder à la fiche du serveur" onclick="location.href = '/{{ encname($row->cat) }}/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
-                                                <i class="mdi mdi-newspaper"></i> Fiche du serveur
-                                            </button>
+                                            <div class="col-lg-3">
+                                                <button title="Accéder à la fiche du serveur" onclick="location.href = '/{{ encname($row->cat) }}/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default">
+                                                    <i class="mdi mdi-newspaper"></i> Fiche du serveur
+                                                </button>
+                                            </div>
                                     </td>
                                 </tr>
                             @endforeach
