@@ -136,6 +136,11 @@
                                             </div>
                                             <ul class="btns">
                                                 <li id="vote"><span class="lnr lnr-heart"></span>&nbsp;<a title="Voter pour {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/vote">Voter</a> ({{ $row->votes }})</li>@if (!empty($row->website))&nbsp;<li><span class="lnr lnr-rocket"></span>&nbsp;<a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go">Jouer</a></li>@endif @if (strlen(trim(strtolower($row->ip))) > 0) &nbsp;<li><span class="lnr lnr-magic-wand"></span>&nbsp;<a title="Copier l'IP de {{ $row->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $row->name }}', '{{ encname($row->name) }}');" class="ipcopy">IP</a></li>@endif
+                                                @if (!$row->verified)
+                                                    <span class="verify-yes"><span class="lnr lnr-checkmark-circle" title="Serveur certifié"></span></span>
+                                                @else
+                                                    <span class="verify-no"><span class="lnr lnr-cross-circle" title="Serveur non certifié"></span></span>
+                                                @endif
                                             </ul>
                                         </div>
                                         <p @if (isset($row->ad)) class="serveur-ad" @else class="serveur-normal" @endif><br />
