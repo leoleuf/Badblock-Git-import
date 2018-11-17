@@ -28,6 +28,7 @@
                             @foreach($server as $row)
                                 <tr>
                                     <td>{{ $row->name }}<br />
+                                        <i>Serveur {{ $row->cat }}</i><br /><br />
                                         @if($row->actived)
                                             <span style="background-color: #0fff21" class="badge badge-dark">Serveur affiché</span>
                                         @else
