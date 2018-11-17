@@ -52,7 +52,8 @@
                             <a href="http://www.1morelink.com/top-c43-p1.html">1morelink.com - Annuaire de sites internet - Top</a><br />
                             <a href="https://www.gralon.net/annuaire/internet-et-webmaster/referencement/annuaire-web.htm" target=_blank><img src="https://www.gralon.net/plogo-gralon-174774.gif" border=0 alt="Annuaire web"></a><br />
                             <a href="http://www.urlagogo.com">Urlagogo</a><br />
-                            <a href="http://www.urlagogo.com/jeux/">Urlagogo - Jeux</a>
+                            <a href="http://www.urlagogo.com/jeux/">Urlagogo - Jeux</a><br />
+                            <a href="http://www.annuaire.boutiquedebook.com" title="www.annuaire.boutiquedebook.com" target="_blank">www.annuaire.boutiquedebook.com</a>
                         </blockquote>
                     </div>
                 </div>
