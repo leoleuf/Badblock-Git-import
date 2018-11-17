@@ -84,7 +84,8 @@ class VerifyController extends Controller
                         'verified' => 1
                     ]
                 );
-            return view('panel.verify', ['data' => $server[0]]);
+            exit('ok');
+            return;
         }
 
         return view('panel.verify', ['data' => $server[0], 'err' => 'Code introuvable. Veuillez bien mettre le code exactement comme demandé sur la page.']);
