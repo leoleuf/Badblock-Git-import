@@ -78,6 +78,12 @@
                     @if (trim($__env->yieldContent('banner')))
                         <p class="link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a> &nbsp; <span class="lnr lnr-arrow-right"></span> &nbsp;&nbsp; <a title="Serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}"> &nbsp; {{ $data -> name}} </a>  <span class="lnr lnr-arrow-right"></span> &nbsp; <a title="Voter pour le serveur {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}/vote"> Voter </a></p>
                     @endif
+
+                        @if (!$data->verified)
+                            <blockquote class="generic-blockquote" style="font-size: 16px; border-left: 4px solid #e67e22;">
+                                <strong>Attention</strong> Cette propriété n'est pas encore validée par le propriétaire du serveur. Pour la valider, l'administrateur du serveur doit la valider depuis son tableau de bord. <a title="Connexion au classement de serveur {{ seocat($catName) }}" href="/login">Se connecter au Tableau de Bord</a>.
+                            </blockquote>
+                        @endif
                     <div class="single-post d-flex flex-row">
                         <div class="thumb">
                             <img alt="Serveur {{ seocat($catName) }} {{ $data->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $data->id }}.jpg" style="border-radius: 10px;" height="69" width="69">
