@@ -51,7 +51,9 @@ class StatsController extends Controller
             }
         }
 
-        $srv = DB::select('select * from server_list where id = ?', [intval($id)]);
+        $sr = json_decode(Redis::get('server:' . $id));
+
+        $srv = DB::select('select * from server_list where id = ?', [intval($sr->id)]);
 
         if ($srv == null || !isset($srv[0]))
         {
@@ -60,10 +62,8 @@ class StatsController extends Controller
 
         if (!$srv[0]->verified)
         {
-            return redirect("/dashboard/verify/".intval($id));
+            return redirect("/dashboard/verify/".intval($sr->id));
         }
-
-        $sr = json_decode(Redis::get('server:' . $id));
 
         if (Redis::exists('stats:' . $id)){
             $data = json_decode(Redis::get('stats:' . $id));
