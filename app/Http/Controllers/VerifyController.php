@@ -21,7 +21,7 @@ class VerifyController extends Controller
         $this->middleware('auth');
     }
 
-    public function pleaseverify(Request $request)
+    public function pleaseverify($id)
     {
         $server = DB::select('select * from server_list where id = ? LIMIT 1', [$id]);
 
