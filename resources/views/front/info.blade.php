@@ -51,6 +51,11 @@
                     @if (trim($__env->yieldContent('banner')))
                         <p class="link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a> &nbsp; <span class="lnr lnr-arrow-right"></span>  &nbsp;<a title="Serveur {{ seocat($catName) }} {{ encname($data->name) }}" href="/{{ $catName }}/{{ encname($data->name) }}">{{ $data->name }}</a></p>
                     @endif
+                    @if (!$data->verified)
+                            <blockquote class="generic-blockquote">
+                                <strong>Attention</strong> Cette propriété n'est pas encore validée par le propriétaire de la fiche du serveur. Pour la valider, le propriétaire doit la valider depuis le tableau de bord.
+                            </blockquote>
+                        @endif
                     <div class="single-post d-flex flex-row">
                                 <div class="thumb">
                                     <img alt="Serveur {{ seocat($catName) }} {{ $data->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $data->id }}.jpg" style="border-radius: 10px;" height="69" width="69">
