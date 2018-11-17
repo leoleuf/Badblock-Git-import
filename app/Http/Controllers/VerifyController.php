@@ -55,7 +55,7 @@ class VerifyController extends Controller
             ->where('id', '=', $id)
             ->update(
                 [
-                    'verified' => 0
+                    'verified' => '0'
                 ]
             );
 
@@ -81,11 +81,10 @@ class VerifyController extends Controller
                 ->where('id', '=', $id)
                 ->update(
                     [
-                        'verified' => 1
+                        'verified' => '1'
                     ]
                 );
-            exit('ok');
-            return;
+            return view('panel.verify', ['data' => $server[0]]);
         }
 
         return view('panel.verify', ['data' => $server[0], 'err' => 'Code introuvable. Veuillez bien mettre le code exactement comme demandé sur la page.']);
