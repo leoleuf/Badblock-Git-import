@@ -60,7 +60,8 @@
                             <a href="http://www.lebonannuaire.net" title="www.lebonannuaire.net" target="_blank">www.lebonannuaire.net</a><br />
                             <a href="http://www.webclics.net" title="www.webclics.net" target="_blank">www.webclics.net</a><br />
                             <a href="http://autoentreprises.fr"><img src="http://autoentreprises.fr/autoentreprises.jpg" width="113" height="36" border="0"></a><br />
-                            <a href="http://autoentreprises.fr">Annuaire des auto-entrepreneurs</a>
+                            <a href="http://autoentreprises.fr">Annuaire des auto-entrepreneurs</a><br />
+                            <a rel="nofollow" href="http://limonads.com/jeux-video/">Guide de sites jeux vidéo</a>
                         </blockquote>
                     </div>
                 </div>
