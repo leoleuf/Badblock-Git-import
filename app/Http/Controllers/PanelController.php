@@ -118,6 +118,8 @@ class PanelController extends Controller
 
         $input = $request->all();
 
+        dd($input);
+
         $p = null;
 
         if (isset($_POST['group4'])) {
