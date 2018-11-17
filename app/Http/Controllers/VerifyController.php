@@ -37,4 +37,61 @@ class VerifyController extends Controller
         }
     }
 
+    public function verify(Request $request, $id)
+    {
+        $server = DB::select('select * from server_list where id = ? LIMIT 1', [$id]);
+
+        if (empty($server))
+        {
+            return redirect('/dashboard');
+        }
+
+        if ($server[0]->user_id != Auth::user()->id) {
+            return redirect("/dashboard");
+        }
+
+        DB::table('server_list')
+            ->where('id', '=', $id)
+            ->update(
+                [
+                    'verified' => 0
+                ]
+            );
+
+        if (filter_var($server->website, FILTER_VALIDATE_URL) === FALSE)
+        {
+            $request->session()->flash('flash', [
+                array(
+                    'level' => 'danger',
+                    'message' => 'Le site Internet doit être valide.',
+                    'important' => true
+                )
+            ]);
+
+            return view('panel.verify', ['data' => $server[0]]);
+        }
+
+        $t = @file_get_contents($server->website);
+
+        if (strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
+        {
+            DB::table('server_list')
+                ->where('id', '=', $id)
+                ->update(
+                    [
+                        'verified' => 1
+                    ]
+                );
+            return view('panel.verify', ['data' => $server[0]]);
+        }
+
+        $request->session()->flash('flash', [
+            array(
+                'level' => 'danger',
+                'message' => 'Code introuvable. Veuillez bien mettre le code exactement comme demandé sur la page.',
+                'important' => true
+            )
+        ]);
+    }
+
 }
