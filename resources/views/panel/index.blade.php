@@ -50,8 +50,10 @@
                                                     <i class="mdi mdi-code-tags-check"></i> Intégrer le vote<br />à votre serveur
                                                 </button>
                                             </div>
-                                            &nbsp;<br />
-                                            
+
+                                    </td>
+
+                                    <td class="row">
                                             <div class="col-lg-5">
                                                 <button title="Statistiques du serveur" onclick="location.href = '/dashboard/stats/{{ encname($row->name) }}';" type="button" role="button" class="btn btn-default" style="width: 100%; height:50px;">
                                                     <i class="mdi mdi mdi-gauge"></i> Statistiques du serveur
