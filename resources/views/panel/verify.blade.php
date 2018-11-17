@@ -17,6 +17,17 @@
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title">Vérifier la propriété {{ $data->name }}</h4>
+                    @if (session()->has('flash'))
+                        @foreach(session('flash') as $messageData)
+                            <div class="alert alert-{{ $messageData['level'] }} {{ $messageData['important'] ? 'alert-important' : '' }}">
+                                @if(!$messageData['important'])
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @endif
+
+                                {!! trans($messageData['message']) !!}
+                            </div>
+                        @endforeach
+                    @endif
                     @if (empty($data->website) OR strlen($data->website) < 3)
                         Pour accéder à cette fonctionnalité, votre serveur doit posséder un site Internet.<br />
                         Veuillez renseigner le site directement depuis les informations du serveur.<br />

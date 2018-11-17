@@ -134,7 +134,7 @@
                                     </script>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Lien du site du serveur (optionnel)</label>
+                                    <label for="exampleInputPassword1">Lien du site du serveur (RECOMMANDÉ)</label>
                                     <input name="website" class="form-control" placeholder="https://mon-serveur.fr" value="{{ $data->website }}">
                                 </div>
                                 <div class="form-group">
