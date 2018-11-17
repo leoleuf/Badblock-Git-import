@@ -71,6 +71,7 @@ Route::group([
     //Route::get('/del-server/{id}', 'PanelController@delServer')->name('delserver');
     Route::get('/votes/{id}', 'PanelController@votes')->name('votes');
     Route::get('/verify/{id}', 'VerifyController@pleaseverify')->name('verify');
+    Route::post('/verify/{id}', 'VerifyController@verify')->name('verifyp');
 
     Route::get('/edit-server/{id}', 'PanelController@editServer')->name('editserver');
     Route::Post('/edit-server/{id}', 'PanelController@editServerSave')->name('editserverPost');
