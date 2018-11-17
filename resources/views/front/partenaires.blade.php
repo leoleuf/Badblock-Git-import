@@ -57,7 +57,8 @@
                             <a href="http://www.myannuaires.com" title="www.myannuaires.com" target="_blank">www.myannuaires.com</a><br />
                             <a href="http://www.durwebannu.com" title="www.durwebannu.com" target="_blank">www.durwebannu.com</a><br />
                             <a href="http://www.liendurweb.com" title="www.liendurweb.com" target="_blank">www.liendurweb.com</a><br />
-                            <a href="http://www.lebonannuaire.net" title="www.lebonannuaire.net" target="_blank">www.lebonannuaire.net</a>
+                            <a href="http://www.lebonannuaire.net" title="www.lebonannuaire.net" target="_blank">www.lebonannuaire.net</a><br />
+                            <a href="http://www.webclics.net" title="www.webclics.net" target="_blank">www.webclics.net</a>
                         </blockquote>
                     </div>
                 </div>
