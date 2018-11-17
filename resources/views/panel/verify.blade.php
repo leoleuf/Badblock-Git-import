@@ -19,9 +19,8 @@
                     <h4 class="card-title">Vérifier la propriété {{ $data->name }}</h4>
                     @if (isset($err))
                         <div class="alert alert-danger">
-                                {!! $err !!}
-                            </div>
-                        @endforeach
+                            {!! $err !!}
+                        </div>
                     @endif
                     @if (empty($data->website) OR strlen($data->website) < 3)
                         Pour accéder à cette fonctionnalité, votre serveur doit posséder un site Internet.<br />
