@@ -107,10 +107,5 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
             </nav><!-- #nav-menu-container -->
         </div>
     </div>
+    @yield('hdr')
 </header><!-- #header -->
-
-@if (isset($_SERVER['MOBILE']) && $_SERVER['MOBILE'])
-<amp-auto-ads type="adsense"
-              data-ad-client="ca-pub-1905923613312160">
-</amp-auto-ads>
-@endif

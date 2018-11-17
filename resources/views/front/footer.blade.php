@@ -107,3 +107,9 @@ if ($date != $creationDate)
     godefer.parentNode.insertBefore(giftofspeed, godefer);
 </script>
 
+@if (isset($_SERVER['MOBILE']) && $_SERVER['MOBILE'])
+    <amp-auto-ads type="adsense"
+                  data-ad-client="ca-pub-1905923613312160">
+    </amp-auto-ads>
+@endif
+

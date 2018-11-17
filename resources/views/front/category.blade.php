@@ -60,38 +60,41 @@
 
 @section('jquery', 'async defer')
 @extends('front.index')
+@section('hdr')
+    <section class="banner-area-{{ $catName }} relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    @if (isset($tag))
+                        <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
+                        <h2 class="text-white">Liste de serveurs</h2>
+                    @else
+                        <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
+                        <h2 class="text-white">Liste de serveurs</h2>
+                    @endif
+                    @if (isset($tag) or (isset($current_page) && $current_page > 1))
+                        <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ encname($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ encname($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
 @section('content')
 
     <main role="main">
         <!-- start banner Area -->
-        <section class="banner-area-{{ $catName }} relative" id="home">
-            <div class="overlay overlay-bg"></div>
-            <div class="container">
-                <div class="row d-flex align-items-center justify-content-center">
-                    <div class="about-content col-lg-12">
-                        @if (isset($tag))
-                            <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
-                            <h2 class="text-white">Liste de serveurs</h2>
-                        @else
-                            <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
-                            <h2 class="text-white">Liste de serveurs</h2>
-                        @endif
-                        @if (isset($tag) or (isset($current_page) && $current_page > 1))
-                            <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ encname($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ encname($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- End banner Area -->
 
         <!-- Start feature-cat Area -->
         <section class="post-area section-gap">
             <div class="container">
                 @if (isset($votelistok) && $votelistok)
-                    <a title="Serveur {{ $catName }}" href="/{{ $catName }}" class="genric-btn success" id="explicitbtn">
+                    <a title="{{ $catName }}" href="/{{ $catName }}" class="genric-btn success" id="explicitbtn">
                         <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
-                        Vous pouvez continuer de consulter le classement des meilleurs Serveurs {{ seocat($catName) }}.
+                        Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                     </a><br /><br />
                 @endif
                 <div class="row justify-content-center d-flex">
@@ -99,7 +102,7 @@
                         @if (isset($tag))
                             <blockquote class="generic-blockquote">
                                 <p>
-                                    Vous êtes sur la liste des serveurs {{ seocat($catName) }} {{ $tag }}. La liste est composée des tags {{ $tag }}, qui sont les seuls à être présentés dans ce classement. Vous pouvez voter ou découvrir de nouvelles expériences sur le jeu. Vous souhaitez ajouter votre serveur {{ $tag }} ? <a title="Ajouter mon serveur {{ seocat($catName) }} {{ $tag }}" href="/add-server">Ajoutez-le</a> dès maintenant sur notre classement, gratuitement.
+                                    Vous êtes sur la liste {{ seocat($catName) }} {{ $tag }}. La liste est composée des tags {{ $tag }}, qui sont les seuls à être présentés dans ce classement. Vous pouvez voter ou découvrir de nouvelles expériences sur le jeu. Vous souhaitez ajouter votre serveur {{ $tag }} ? <a title="Ajouter mon serveur {{ seocat($catName) }} {{ $tag }}" href="/add-server">Ajoutez-le</a> dès maintenant sur notre classement, gratuitement.
                                 </p>
                             </blockquote>
                         @else
