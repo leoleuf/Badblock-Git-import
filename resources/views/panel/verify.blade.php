@@ -31,6 +31,7 @@
 
                         Une fois le code placé sur cette page, cliquez sur le bouton de validation de la propriété.<br />
                         <form method="post">
+                            {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary">Valider la propriété</button>
                         </form>
                     @endif
