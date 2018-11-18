@@ -35,11 +35,15 @@ class OptimizeMiddleware
     {
         $response = $next($request);
 
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $ip = "";
 
         if (isset($_SERVER['CF_CONNECTING_IP']))
         {
             $ip = $_SERVER['CF_CONNECTING_IP'];
+        }
+        else if (isset($_SERVER['REMOTE_ADDR']))
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
         }
 
         Redis::set('online:'.$ip, $ip);
