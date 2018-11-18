@@ -383,7 +383,7 @@
         <script async>
             $(document).ready(function ()
             {
-                function flexo()
+                function flex()
                 {
                     $("#vote_button").hide();
                     $("#blox").show();
@@ -395,7 +395,7 @@
                 {
                     $("#vote_button").show();
                 }
-                
+
                 if (window.canRunAds === undefined)
                 {
                     $("#wait").hide();
@@ -407,7 +407,7 @@
                     $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flexo, 1000);
+                    setTimeout(flex, 1000);
                 }
             });
 
