@@ -160,7 +160,7 @@
                                         @endif
 
                                             <div id="bma" style="display: none;">
-                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 50px;">
+                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 80px; width: 100%;">
                                                     Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité.
                                                 </a>
                                             </div>
