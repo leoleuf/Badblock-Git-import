@@ -399,6 +399,7 @@
                 function flexo()
                 {
                     $("#vote_button").show();
+                    $("#ad2").html("");
                 }
 
                 if (window.canRunAds === undefined)
