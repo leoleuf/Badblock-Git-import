@@ -90,18 +90,15 @@ class OptimizeMiddleware
             if ($this->isMobile())
             {
                 $request->session()->put('mobile', 'true');
-                $request->session()->flush();
             }
             else
             {
                 $request->session()->forget('mobile');
-                $request->session()->flush();
             }
         }
         else
         {
             $request->session()->forget('mobile');
-            $request->session()->flush();
         }
 
         return $response;
