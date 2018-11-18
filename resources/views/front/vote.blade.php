@@ -168,7 +168,7 @@
                                             <div id="blox" class="col-12" style="display: none; height: 80px; z-index: 100;"></div>
                                         <button class="g-recaptcha btn btn-success col-12" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; height: 80px; margin-top: -50px;" disabled>
+                                                data-callback="onSubmit" style="display: none; height: 80px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
@@ -398,6 +398,7 @@
 
                 function flexo()
                 {
+                    $('#vote_button').css('margin-top',"-50px");
                     $("#vote_button").show();
                     $("#ad2").html("");
                 }
