@@ -154,21 +154,21 @@
                                         @endif
 
                                             <div id="bma" style="display: none;">
-                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 70px; width: 100%;">
+                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger col-12" style="height: 70px;">
                                                     Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité.
                                                 </a>
                                             </div>
 
                                             <div id="wait">
-                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary" style="width: 100%; height: 50px;">
+                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary col-12" style="height: 50px;">
                                                     Chargement en cours du système de vote...
                                                 </a>
                                             </div>
 
                                             <div id="blox" style="display: none; width: 100%; height: 50px;"></div>
-                                        <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha"
+                                        <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha col-12"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; width: 100%; height: 50px;" disabled>
+                                                data-callback="onSubmit" style="display: none; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
