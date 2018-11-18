@@ -155,7 +155,7 @@
 
                                             <div id="bma" style="display: none;">
                                                 <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger col-12" style="height: 70px;">
-                                                    Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité.
+                                                    Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité pour voter.
                                                 </a>
                                             </div>
 
