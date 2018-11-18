@@ -33,6 +33,19 @@ class OptimizeMiddleware
     {
         $response = $next($request);
 
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        if (isset($_SERVER['CF_CONNECTING_IP']))
+        {
+            $ip = $_SERVER['CF_CONNECTING_IP'];
+        }
+
+        Redis::set('online:'.$ip, $ip);
+        Redis::expire('online:'.$ip, 600);
+
+        $onlineCount = count(Redis::keys('*online*'));
+        $_SERVER['ONLINE_COUNT'] = $onlineCount;
+
         if ($this->isResponseObject($response) && $this->isHtmlResponse($response)) {
                 $replace = [
                      '/\>[^\S ]+/s'                                                      => '>',
