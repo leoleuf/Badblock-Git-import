@@ -386,8 +386,8 @@
                 function flex()
                 {
                     $("#vote_button").hide();
-                    $("#blox").show();
                     $("#blox").append($("#ad2").html());
+                    $("#blox").show();
                     setTimeout(flexo, 2000);
                 }
 
