@@ -87,13 +87,21 @@ class OptimizeMiddleware
                 $response->setContent($response->getContent() . $mlpl);
             }
 
-            $_SERVER['MOBILE'] = $this->isMobile();
-            $_SERVER['BOT'] = $this->_bot_detected();
+            if ($this->isMobile())
+            {
+                $request->session()->put('mobile', 'true');
+                $request->session()->flush();
+            }
+            else
+            {
+                $request->session()->forget('mobile');
+                $request->session()->flush();
+            }
         }
         else
         {
-            $_SERVER['MOBILE'] = false;
-            $_SERVER['BOT'] = true;
+            $request->session()->forget('mobile');
+            $request->session()->flush();
         }
 
         return $response;

@@ -88,7 +88,7 @@ if ($date != $creationDate)
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 @endif
-@if (isset($_SERVER['MOBILE']) && $_SERVER['MOBILE'])
+@if (session()->has('mobile'))
     <script custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
@@ -110,9 +110,12 @@ if ($date != $creationDate)
     godefer.parentNode.insertBefore(giftofspeed, godefer);
 </script>
 
-@if (isset($_SERVER['MOBILE']) && $_SERVER['MOBILE'])
+@if (session()->has('mobile'))
     <amp-auto-ads type="adsense"
                   data-ad-client="ca-pub-1905923613312160">
     </amp-auto-ads>
 @endif
 
+@if (!isset($classement))
+    (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});
+@endif
