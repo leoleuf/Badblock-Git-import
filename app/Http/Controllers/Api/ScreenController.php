@@ -30,7 +30,7 @@ class ScreenController extends Controller
         // Mise en place d'une connexion basique
         $conn_id = ftp_connect(getenv('FTP_IP'), 19728);
 
-        $filename = date("Y-m-d-h-i") . uniqid() . ".png";
+        $filename = date("Y-m-d-H-i") . uniqid() . ".png";
 
         // Identification avec un nom d'utilisateur et un mot de passe
         $login_result = ftp_login($conn_id, getenv('FTP_USER'), getenv('FTP_PASSWORD')) or die("Erreur serveur !");;
@@ -40,7 +40,7 @@ class ScreenController extends Controller
         fclose($handle);
 
         DB::table('shareX')->where('token', '=', $_POST['token'])->update([
-            'last_used' => date("Y-m-d h:i:s"),
+            'last_used' => date("Y-m-d H:i:s"),
             'last_ip' => $_SERVER['REMOTE_ADDR']
         ]);
 
@@ -48,7 +48,7 @@ class ScreenController extends Controller
         $data = [
             'ip' => $_SERVER['REMOTE_ADDR'],
             'user' => $Data->user_id,
-            'date' => date("Y-m-d h:i:s"),
+            'date' => date("Y-m-d H:i:s"),
             'file_name' => $filename
         ];
         DB::connection('mongodb')->collection('log_upload')->insert($data);
