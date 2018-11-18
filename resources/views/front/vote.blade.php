@@ -161,7 +161,7 @@
 
                                             <div id="bma" style="display: none;">
                                                 <a href="/minecraft/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 50px;">
-                                                    Afin de fournir des informations précises aux créateurs, veuillez désactiver votre bloqueur de publicité.
+                                                    Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité.
                                                 </a>
                                             </div>
 
