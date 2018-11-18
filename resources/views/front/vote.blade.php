@@ -158,9 +158,21 @@
                                             @endif
                                         @endif
 
+                                            <div id="bma" style="display: none;">
+                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ enc($data->name) }}/vote" class="btn btn-error" style="width: 100%; height: 50px;">
+                                                    Afin de fournir des informations précises aux créateurs, veuillez désactiver votre bloqueur de publicité.
+                                                </a>
+                                            </div>
+
+                                            <div id="wait">
+                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ enc($data->name) }}/vote" class="btn btn-primary" style="width: 100%; height: 50px;">
+                                                    Chargement en cours du système de vote...
+                                                </a>
+                                            </div>
+
                                         <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="width: 100%; height: 50px;" disabled>
+                                                data-callback="onSubmit" style="display: none; width: 100%; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
@@ -283,7 +295,23 @@
 @section('after_script')
 
         <script src="/js/ads.js"></script>
-        <script async> $(document).ready(function () { if (window.canRunAds === undefined) { $("#groba").hide(); $("#bma").show(); $("#bma").prop("display", "block"); $("#vote_button").hide(); return;  } else  {  $("#groba").hide(); $("#vote-form").prop("display", "block"); $("#vote_button").prop("disabled", false); $("#bma").hide(); $("#vote-form").show(); } });
+        <script async>
+            $(document).ready(function ()
+            {
+                if (window.canRunAds === undefined)
+                {
+                    $("#wait").hide();
+                    $("#bma").show();
+                    $("#bma").prop("display", "block");
+                }
+                else
+                {
+                    $("#wait").hide();
+                    $("#vote-form").prop("display", "block");
+                    $("#vote_button").prop("disabled", false);
+                    $("#vote-form").show();
+                }
+            });
         </script>
     @if (strlen(trim(strtolower($data->ip))) > 0 and strlen(trim(strtolower($playerstats))) > 0)
         <script async src="https://code.highcharts.com/highcharts.js"></script>
