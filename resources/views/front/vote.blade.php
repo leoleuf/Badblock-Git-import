@@ -3,6 +3,7 @@
 @section('logometa', 'https://serveur-multigames.net/storage/icone/icon'.$data->id.'.jpg')
 @section('jquery', 'async defer')
 @section('canonical', 'https://serveur-multigames.net/'.encname($catName).'/'.encname($data->name).'/vote')
+@section('gjs-normal', 'true')
 @extends('front.index')
 @section('content')
 
@@ -295,24 +296,6 @@
 @section('after_script')
 
         <script src="/js/ads.js"></script>
-        <script async>
-            $(document).ready(function ()
-            {
-                if (window.canRunAds === undefined)
-                {
-                    $("#wait").hide();
-                    $("#bma").show();
-                    $("#bma").prop("display", "block");
-                }
-                else
-                {
-                    $("#wait").hide();
-                    $("#vote-form").prop("display", "block");
-                    $("#vote_button").prop("disabled", false);
-                    $("#vote-form").show();
-                }
-            });
-        </script>
     @if (strlen(trim(strtolower($data->ip))) > 0 and strlen(trim(strtolower($playerstats))) > 0)
         <script async src="https://code.highcharts.com/highcharts.js"></script>
         <script async src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -401,5 +384,23 @@
                     document.getElementById("vote-form").submit();
                 }
             }
+        </script>
+        <script async>
+            $(document).ready(function ()
+            {
+                if (window.canRunAds === undefined)
+                {
+                    $("#wait").hide();
+                    $("#bma").show();
+                    $("#bma").prop("display", "block");
+                }
+                else
+                {
+                    $("#wait").hide();
+                    $("#vote-form").prop("display", "block");
+                    $("#vote_button").prop("disabled", false);
+                    $("#vote-form").show();
+                }
+            });
         </script>
 @endsection
