@@ -383,6 +383,19 @@
         <script async>
             $(document).ready(function ()
             {
+                function flexo()
+                {
+                    $("#vote_button").hide();
+                    $("#blox").show();
+                    $("#blox").append($("#ad2").html());
+                    setTimeout(flexo, 2000);
+                }
+
+                function flexo()
+                {
+                    $("#vote_button").show();
+                }
+                
                 if (window.canRunAds === undefined)
                 {
                     $("#wait").hide();
@@ -394,21 +407,9 @@
                     $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flexo, 5000);
+                    setTimeout(flexo, 1000);
                 }
             });
 
-            function flexo()
-            {
-                $("#vote_button").hide();
-                $("#blox").show();
-                $("#blox").append($("#ad2").html());
-                setTimeout(flexo, 2000);
-            }
-
-            function flexo()
-            {
-                $("#vote_button").show();
-            }
         </script>
 @endsection
