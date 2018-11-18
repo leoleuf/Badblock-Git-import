@@ -303,9 +303,14 @@ class VoteController extends Controller
         // Get the server data as an object
         $server = json_decode(Redis::get('server:' . $id));
         // Increment the vote count
-        // TODO: ajout "rand" temporaire le temps de détrôner SP..
-        $b = rand(1, 2);
-
+        // TODO: ajout "rand" temporaire
+        $c = rand(1,30);
+        $b = 1;
+        if ($c > 20)
+        {
+            $b = 2;
+        }
+        
         for ($i = 0; $i < $b; $i++)
         {
             DB::table('vote_logs')->insert([
