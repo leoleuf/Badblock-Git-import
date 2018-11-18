@@ -180,7 +180,7 @@
 
                     </div>
 
-                        <ins class="adsbygoogle" id="ad2" style="display: block; max-height: 300px; max-width: 620px;"
+                        <ins class="adsbygoogle col-12" id="ad2" style="display: block; height: 80px; max-height: 300px;"
                              data-ad-client="ca-pub-1905923613312160"
                              data-ad-slot="1434308007"
                              data-ad-format="auto"
