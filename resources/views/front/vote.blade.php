@@ -161,7 +161,9 @@
 
                                             <div id="wait">
                                                 <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary col-12" style="height: 50px;">
-                                                    Chargement en cours du système de vote...
+                                                    Chargement en cours du système de vote...<br />
+                                                    Si les votes ne chargent pas, vérifiez que vous acceptez<br />
+                                                    les scripts JavaScript dans votre navigateur.
                                                 </a>
                                             </div>
 
@@ -290,7 +292,7 @@
 @endsection
 @section('after_script')
 
-        <script src="/js/ads.js"></script>
+        <script data-pagespeed-no-defer src="/js/ads.js"></script>
     @if (strlen(trim(strtolower($data->ip))) > 0 and strlen(trim(strtolower($playerstats))) > 0)
         <script async src="https://code.highcharts.com/highcharts.js"></script>
         <script async src="https://code.highcharts.com/modules/series-label.js"></script>
@@ -366,7 +368,7 @@
     <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         
-        <script data-pagespeed-no-defer>
+        <script async defer>
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
@@ -379,8 +381,8 @@
                     document.getElementById("vote-form").submit();
                 }
             }
-        </script>
-        <script async>
+        </script async defer>
+        <script async defer>
             $(document).ready(function ()
             {
                 function flex()
