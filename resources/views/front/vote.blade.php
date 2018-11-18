@@ -160,13 +160,13 @@
                                         @endif
 
                                             <div id="bma" style="display: none;">
-                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 70px; width: 100%;">
+                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger" style="height: 70px; width: 100%;">
                                                     Afin de fournir des informations précises aux créateurs,<br />veuillez désactiver votre bloqueur de publicité.
                                                 </a>
                                             </div>
 
                                             <div id="wait">
-                                                <a href="/minecraft/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary" style="width: 100%; height: 50px;">
+                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary" style="width: 100%; height: 50px;">
                                                     Chargement en cours du système de vote...
                                                 </a>
                                             </div>
