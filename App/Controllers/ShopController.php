@@ -156,7 +156,7 @@ class ShopController extends Controller
             return $response->write("Product doesn't exist !")->withStatus(404);
         }
 
-        if (isset($product->buy_one))
+        if (isset($product->buy_one) && $givean == false)
         {
             if ($product->buy_one == true)
             {
@@ -226,6 +226,10 @@ class ShopController extends Controller
         if (!isset($product->depend_name))
         {
             $product->depend_name = $product->name;
+        }
+
+        if ($givean == true){
+            $product->price = 0;
         }
 
         $data = [
