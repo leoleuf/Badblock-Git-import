@@ -165,7 +165,7 @@
                                                 </a>
                                             </div>
 
-                                            <div id="blox" style="display: none; width: 100%; height: 50px;"></div>
+                                            <div id="blox" class="col-12" style="display: none; height: 50px;"></div>
                                         <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha col-12"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; height: 50px;" disabled>
