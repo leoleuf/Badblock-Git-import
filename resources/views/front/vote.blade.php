@@ -131,12 +131,6 @@
                                     @if (!empty($data->website))&nbsp;<li><span class="lnr lnr-rocket"></span> <a title="Jouer à {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}/go" target="_blank">JOUER</a></li>@endif
                                 </ul>
                             </div>
-                            <!--<div id="groba">
-                                <a title="Actualiser la page" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn danger" style="background-color: #3498db; width: 100%;">Chargement du système de vote...<br />Si le système de vote ne se charge pas, vérifiez que vous acceptez les scripts JavaScript.</a>
-                            </div>
-                            <div id="bma" style="display: none;">
-                                <a title="Actualiser la page" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn danger">Vous devez désactiver votre bloqueur de publicités pour pouvoir Voter. Cliquez ici une fois que vous aurez désactivé votre bloqueur de publicités</a>
-                            </div>!-->
                                 <div id="advert">
                                 </div>
                                 @if (isset($redirect))
@@ -171,6 +165,7 @@
                                                 </a>
                                             </div>
 
+                                            <div id="blox" style="display: none; width: 100%; height: 50px;"></div>
                                         <button class="g-recaptcha btn btn-success" id="vote_button" class="g-recaptcha"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; width: 100%; height: 50px;" disabled>
@@ -398,7 +393,22 @@
                 {
                     $("#wait").hide();
                     $("#vote_button").show();
+                    document.getElementById("vote_button").disabled = false;
+                    setTimeout(flexo, 5000);
                 }
             });
+
+            function flexo()
+            {
+                $("#vote_button").hide();
+                $("#blox").show();
+                $("#blox").append($("#ad2").html());
+                setTimeout(flexo, 2000);
+            }
+
+            function flexo()
+            {
+                $("#vote_button").show();
+            }
         </script>
 @endsection
