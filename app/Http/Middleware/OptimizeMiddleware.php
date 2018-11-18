@@ -45,8 +45,7 @@ class OptimizeMiddleware
         Redis::expire('online:'.$ip, 600);
 
         $onlineCount = count(Redis::keys('*online*'));
-        $_SERVER['ONLINE_COUNT'] = $onlineCount;
-
+        $request->attributes->add(['online_count' => $onlinecount)]);
         if ($this->isResponseObject($response) && $this->isHtmlResponse($response)) {
                 $replace = [
                      '/\>[^\S ]+/s'                                                      => '>',
