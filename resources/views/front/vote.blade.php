@@ -386,6 +386,11 @@
                 function flex()
                 {
                     $("#blox").append($("#ad2").html());
+                    setTimeout(flexar, 1000);
+                }
+
+                function flexar()
+                {
                     $("#blox").show();
                     $("#vote_button").hide();
                     setTimeout(flexo, 2000);
