@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\View;
 
 class OptimizeMiddleware
 {
@@ -45,7 +46,7 @@ class OptimizeMiddleware
         Redis::expire('online:'.$ip, 600);
 
         $onlineCount = count(Redis::keys('*online*'));
-        Illuminate\Support\Facades\View::share('online_count', $onlineCount);
+        View::share('online_count', $onlineCount);
         if ($this->isResponseObject($response) && $this->isHtmlResponse($response)) {
                 $replace = [
                      '/\>[^\S ]+/s'                                                      => '>',
