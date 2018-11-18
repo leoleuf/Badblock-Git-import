@@ -397,8 +397,7 @@
                 else
                 {
                     $("#wait").hide();
-                    $("#vote_button").prop("display", "block");
-                    $("#vote_button").prop("disabled", false);
+                    $("#vote_button").show();
                 }
             });
         </script>
