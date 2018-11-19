@@ -170,7 +170,7 @@
             <i class="stats-colored-icon colored-icon"></i>
             {{ 'stats.title'|trans }}
         </a>
-        <a href=""
+        <a href="/play"
            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
@@ -187,7 +187,7 @@
                 <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
                 <ul class="dropdown-dropdown">
                     <li>
-                        <a href="{{ path_for('play') }}" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+                        <a href="/launcher-minecraft" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
                             <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
                         </a>
                     </li>
