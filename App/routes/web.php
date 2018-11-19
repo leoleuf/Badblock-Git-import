@@ -122,6 +122,11 @@ $app->get('/nous-rejoindre', function($request, $response)
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
 });
 
+$app->get('/play', function($request, $response)
+{
+    return $response->withRedirect('https://badblock.fr/jouer', 301);
+});
+
 $app->get('/nous-rejoindre/', function($request, $response)
 {
     return $response->withRedirect('https://badblock.fr/launcher-minecraft', 301);
