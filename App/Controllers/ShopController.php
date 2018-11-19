@@ -50,6 +50,7 @@ class ShopController extends Controller
     function buy(RequestInterface $request, ResponseInterface $response, $argument)
     {
         $ingame = false;
+        $givean = false;
         $playerName = "";
 
         if (isset($_POST['playerName'])) {
@@ -90,6 +91,7 @@ class ShopController extends Controller
                 '91.134.165.88',
                 '164.132.200.110',
                 '164.132.200.198',
+                '149.91.82.150',
                 '164.132.200.198'
             );
 
@@ -100,6 +102,22 @@ class ShopController extends Controller
             $ingame = true;
             $playerName = $_POST['playerName'];
         }
+
+        if (isset($_POST['animation'])) {
+            $give = array(
+                '127.0.0.1',
+                '149.91.82.150',
+                '78.124.116.135'
+            );
+            $ip = isset($_SERVER['HTTP_CF_CONNECTING_IP']) ? $_SERVER['HTTP_CF_CONNECTING_IP'] : $_SERVER['REMOTE_ADDR'];
+            if (!in_array($ip, $give)) {
+                return 'Lolnope.';
+            }else{
+                $givean = true;
+                $playerName = $_POST['playerName'];
+            }
+        }
+
 
         if (!$ingame)
         {
@@ -138,7 +156,7 @@ class ShopController extends Controller
             return $response->write("Product doesn't exist !")->withStatus(404);
         }
 
-        if (isset($product->buy_one))
+        if (isset($product->buy_one) && $givean == false)
         {
             if ($product->buy_one == true)
             {
@@ -151,7 +169,7 @@ class ShopController extends Controller
         }
 
         //Check depend
-        if($product->depend)
+        if($product->depend && $givean == false)
         {
             $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
             $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product_depend->depend_name]);
@@ -197,7 +215,7 @@ class ShopController extends Controller
         }
 
         //Check if player have money
-        if(!$this->haveMoney(strtolower($playerName), $product->price))
+        if(!$this->haveMoney(strtolower($playerName), $product->price) && $givean == false)
         {
             return $response->write("Fond insuffisant")->withStatus(405);
         }
@@ -208,6 +226,10 @@ class ShopController extends Controller
         if (!isset($product->depend_name))
         {
             $product->depend_name = $product->name;
+        }
+
+        if ($givean == true){
+            $product->price = 0;
         }
 
         $data = [
@@ -260,9 +282,11 @@ class ShopController extends Controller
             }
         }
 
+        if ($givean == false){
+            //Subtract points
+            $this->subtract(strtolower($playerName), $product->price);
+        }
 
-        //Subtract points
-        $this->subtract(strtolower($playerName), $product->price);
 
         return "";
     }
