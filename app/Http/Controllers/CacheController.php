@@ -120,6 +120,30 @@ class CacheController extends Controller
                 $comment = DB::select("select * from comments WHERE server_id =" . $row->id . " ORDER by date LIMIT 10");
                 $row->comment = $comment;
                 $row->description = nl2br(htmlspecialchars($row->description));
+
+                if (filter_var($row->website, FILTER_VALIDATE_URL)) {
+                    $options = array(
+                        'http' => array(
+                            'method' => "GET",
+                            'header' => "Accept-language: en\r\n" .
+                                "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n"
+                        )
+                    );
+
+                    $context = stream_context_create($options);
+                    $t = @file_get_contents($row->website, false, $context);
+
+                    if (!(strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)) {
+                        DB::table('server_list')
+                            ->where('id', '=', $row->id)
+                            ->update(
+                                [
+                                    'verified' => '0'
+                                ]
+                            );
+                    }
+                }
+
                 if ($k == "minecraft" && $row->ip != null && !Redis::exists('playerstats:'.$row->id.':cache'))
                 {
                     $o = explode(":", $row->ip);

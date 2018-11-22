@@ -68,7 +68,7 @@ class VerifyController extends Controller
             'http'=>array(
                 'method'=>"GET",
                 'header'=>"Accept-language: en\r\n" .
-                    "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n" // i.e. An iPad
+                    "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n"
             )
         );
 
