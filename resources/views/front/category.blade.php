@@ -11,8 +11,12 @@
     @php($pDesc = '')
 @endif
 @php($classement = 'true')
-@section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' Francophones Gratuit - Liste Serveur MultiGames')
-@section('description', 'Découvre la liste de serveur '.seocat($catName).$shownTag.$pTitle.' pour trouver celui qui te correspond le mieux et ainsi jouer à '.seocat($catName).$shownTag.' en français. Rejoins dès maintenant ton serveur de jeu français favori.')
+@section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
+@if (encname($catName) == "minecraft")
+    @section('description', 'Découvre la liste de serveur Minecraft gratuit complète. Joue à '.$about->serveurCount.' serveurs français, du serveur cracké, Survie, PVP Faction, Moddé, Premium et plus.')
+@else
+    @section('description', 'Découvre la liste de serveur '.seocat($catName).' gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement. Des serveurs de toutes les catégories pour tous les goûts sont à rejoindre dès maintenant.')
+@endif
 @if (encname($catName) == "minecraft")
     @section('logometa', 'https://serveur-multigames.net/img/minecraft/minecraft.png')
 @else
@@ -61,31 +65,30 @@
 @section('jquery', 'async defer')
 @extends('front.index')
 @section('hdr')
-    <section class="banner-area-{{ $catName }} relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    @if (isset($tag))
-                        <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
-                        <h2 class="text-white">Liste de serveurs</h2>
-                    @else
-                        <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
-                        <h2 class="text-white">Liste de serveurs</h2>
-                    @endif
-                    @if (isset($tag) or (isset($current_page) && $current_page > 1))
-                        <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ encname($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ encname($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </section>
 @endsection
 @section('content')
 
     <main role="main">
         <!-- start banner Area -->
-
+        <section class="banner-area-{{ $catName }} relative" id="home">
+            <div class="overlay overlay-bg"></div>
+            <div class="container">
+                <div class="row d-flex align-items-center justify-content-center">
+                    <div class="about-content col-lg-12">
+                        @if (isset($tag))
+                            <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
+                            <h2 class="text-white">Liste de serveurs</h2>
+                        @else
+                            <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
+                            <h2 class="text-white">Liste de serveurs</h2>
+                        @endif
+                        @if (isset($tag) or (isset($current_page) && $current_page > 1))
+                            <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ encname($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ encname($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- End banner Area -->
 
         <!-- Start feature-cat Area -->
@@ -100,42 +103,43 @@
                 <div class="row justify-content-center d-flex">
                     <div class="col-lg-8 post-list">
                         @if (isset($tag))
-                            <blockquote class="generic-blockquote">
+                            <div class="single-post">
                                 <p>
                                     Vous êtes sur la liste {{ seocat($catName) }} {{ $tag }}. La liste est composée des tags {{ $tag }}, qui sont les seuls à être présentés dans ce classement. Vous pouvez voter ou découvrir de nouvelles expériences sur le jeu. Vous souhaitez ajouter votre serveur {{ $tag }} ? <a title="Ajouter mon serveur {{ seocat($catName) }} {{ $tag }}" href="/add-server">Ajoutez-le</a> dès maintenant sur notre classement, gratuitement.
                                 </p>
-                            </blockquote>
+                            </div>
                         @else
-                            <blockquote class="generic-blockquote">
-                                <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" /> @endif Classement de serveur {{ seocat($catName) }}</h3><br />
-                                Vous êtes sur la liste des serveurs. Découvrez de nouvelles expériences de jeu gratuitement à partir de ce classement. Cette liste est ordonnée par rapport aux nombre de votes. Les tags permettent aux joueurs de trouver ce qui leur correspondent le mieux.
-                            </blockquote>
+                            <div class="single-post">
+                                <p>
+                                    <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" /> @endif Liste serveur {{ seocat($catName) }}</h3><br />
+                                La liste de serveur Minecraft est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs Minecraft</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur Minecraft avec tes amis.
+                                </p>
+                            </div>
                         @endif
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif">
                                 @if (isset($row->ad))
-                                    <div id="mise-avant"><a id="buttonmise" title="Mettez vous aussi votre serveur en avant" href="https://serveur-multigames.net/mise-en-avant">Serveur mis en avant</a>
+                                    <div id="mise-avant">
+                                        <a id="buttonmise" title="Mettez vous aussi votre serveur en avant" href="https://serveur-multigames.net/mise-en-avant">Serveur mis en avant</a>
                                     </div>
                                 @endif
                                 <div class="d-flex flex-row">
                                     <div class="thumb">
-                                        <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}">
-                                            <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
-                                        </a>
+                                        <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     </div>
                                     <div class="details">
                                         <div class="title d-flex flex-row justify-content-between">
                                             <div class="titles">
-                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}"><h4 class="serveur-name">{{ $row->name }}</h4></a><br />
+                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a><br />
                                                 <div class="rate">
                                                     @if (strlen(trim(strtolower($row->ip))) > 0)
-                                                        <div id="ip-{{ encname($row->name) }}">IP du serveur : {{ trim(strtolower($row->ip)) }}</div>
+                                                        <div id="ip-{{ encname($row->name) }}" class="hidden-ip">{{ trim(strtolower($row->ip)) }}</div>
                                                     @endif
                                                     Note : @if($row->note >= 1)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 2 || $row->note == 2)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 3 || $row->note == 3)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 4 || $row->note == 4)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note == 5)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif
                                                 </div>
                                             </div>
                                             <ul class="btns">
-                                                <li id="vote"><span class="lnr lnr-heart"></span>&nbsp;<a title="Voter pour {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/vote">Voter</a> ({{ $row->votes }})</li>@if (!empty($row->website))&nbsp;<li><span class="lnr lnr-rocket"></span>&nbsp;<a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go">Jouer</a></li>@endif @if (strlen(trim(strtolower($row->ip))) > 0) &nbsp;<li><span class="lnr lnr-magic-wand"></span>&nbsp;<a title="Copier l'IP de {{ $row->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $row->name }}', '{{ encname($row->name) }}');" class="ipcopy">IP</a></li>@endif
+                                                <li id="vote"><span class="lnr lnr-heart"></span>&nbsp;<a title="Voter pour {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/vote">Voter</a> ({{ $row->votes }})</li>@if (!empty($row->website))&nbsp;<li><span class="lnr lnr-rocket"></span>&nbsp;<a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" rel="noopener" target="_blank">Jouer</a></li>@endif @if (strlen(trim(strtolower($row->ip))) > 0) &nbsp;<li><span class="lnr lnr-magic-wand"></span>&nbsp;<a title="Copier l'IP de {{ $row->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $row->name }}', '{{ encname($row->name) }}');" class="ipcopy">IP</a></li>@endif
                                                 @if ($row->verified)
                                                     <span class="verify-yes"><span class="lnr lnr-checkmark-circle" title="Serveur certifié"></span></span>
                                                 @else
@@ -171,7 +175,7 @@
                                         <div class="col-md-4">
                                             <div class="single-defination">
                                                 <h4 class="mb-20">Serveur dans le classement</h4>
-                                                <p><br />Nous disposons d'un large panel de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
+                                                <p><br />Nous disposons d'une large liste complète de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -195,7 +199,7 @@
                                 <div class="active-relatedjob-carusel">
                                     <div class="single-rated">
                                         <p class="inftop">
-                                            Minecraft est un jeu bac à sable populaire pour son attractivité et le monde libre qu'il propose, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre classement propose aux joueurs de découvrir un large choix d'opportunités.
+                                            Minecraft est un jeu bac à sable populaire, notamment pour son attractivité et le monde libre qu'il propose, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations (comme un serveur Minecraft)
                                         </p>
                                     </div>
                                 </div>
@@ -238,7 +242,7 @@
                             </div>
                         </div>
                         <div class="single-slidebar">
-                            <strong>Partenaires</strong><br /><br />
+                            <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
 
                             Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
                             <div id="partenaire-list">
@@ -249,10 +253,11 @@
                             </div>
                         </div>
                         <div class="single-slidebar">
-                            <strong>L'importance de votre serveur {{ seocat($catName) }} sur nos classements</strong><br /><br />
+                            <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel">
                                 <div class="single-rated">
-                                    Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}
+                                    Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
+                                    Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.
                                 </div>
                             </div>
                         </div>
@@ -271,7 +276,7 @@
                         </div>
                         @if (encname($catName) == "minecraft")
                             <div class="single-slidebar">
-                                <strong>Vous n'avez pas le jeu Minecraft gratuit ?</strong><br /><br />
+                                <h3>Vous n'avez pas le jeu Minecraft gratuit ?</h3><br /><br />
                                 <div class="active-relatedjob-carusel">
                                     <div class="single-rated">
                                         Beaucoup de personnes ne possèdent pas Minecraft et Serveur MultiGames est partenaire avec
@@ -286,7 +291,7 @@
                             </div>
                         @endif
                         <div class="single-slidebar">
-                            <strong>Conseils pour bien lancer un serveur {{ seocat($catName) }}</strong><br /><br />
+                            <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
                             <div class="active-relatedjob-carusel">
                                 <div class="single-rated">
                                     Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
