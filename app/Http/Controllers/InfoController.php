@@ -147,7 +147,7 @@ class InfoController extends Controller
             return true;
         }
     }
-    
+
     public function pickInArray($arr, $num = 1) {
         shuffle($arr);
 
