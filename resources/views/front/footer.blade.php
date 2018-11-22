@@ -117,5 +117,6 @@ if ($date != $creationDate)
 @endif
 
 @if (!isset($classement))
-    (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});
+ <script>   (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});</script>
 @endif
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>

@@ -11,8 +11,8 @@
     @php($pDesc = '')
 @endif
 @php($classement = 'true')
-@section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' Francophones Gratuit - Liste Serveur MultiGames')
-@section('description', 'Découvre la liste de serveur '.seocat($catName).$shownTag.$pTitle.' pour trouver celui qui te correspond le mieux et ainsi jouer à '.seocat($catName).$shownTag.' en français. Rejoins dès maintenant ton serveur de jeu français favori.')
+@section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
+@section('description', 'Viens trouver ton serveur '.seocat($catName).$shownTag.$pTitle.' pour jouer sur celui qui te correspond le mieux. PLUS DE '.$about->serveurCount.' serveurs de jeu à rejoindre dès maintenant et de tout type dans cette Liste complète.')
 @if (encname($catName) == "minecraft")
     @section('logometa', 'https://serveur-multigames.net/img/minecraft/minecraft.png')
 @else
@@ -171,7 +171,7 @@
                                         <div class="col-md-4">
                                             <div class="single-defination">
                                                 <h4 class="mb-20">Serveur dans le classement</h4>
-                                                <p><br />Nous disposons d'un large panel de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
+                                                <p><br />Nous disposons d'une large liste complète de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
