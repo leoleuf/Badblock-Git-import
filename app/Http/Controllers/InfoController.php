@@ -64,7 +64,91 @@ class InfoController extends Controller
 
     }
 
-    public static function ip($cat, $id)
+    public function isGoodIp($ip)
+    {
+        try
+        {
+            $apiKey = getenv('IP_DETECTOR_KEY');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://api.ipdetector.info/' . $ip);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('API-Key: ' . $apiKey));
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 2); //timeout in seconds
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            if ($result == null) {
+                return true;
+            }
+
+            $result = trim($result);
+
+            $obj = json_decode($result, true);
+
+            if ($obj == null) {
+                return true;
+            }
+            if (isset($obj['error'])) {
+                return true;
+            }
+
+            return $obj['goodIp'] == '1';
+        }
+        catch (Exception $v)
+        {
+            return true;
+        }
+    }
+
+    public function isGoodIp2($ip)
+    {
+        try
+        {
+            $apiKeys = [
+                'MzU1MzpZcThLVk9OeTZOR0dxOUtybzJ4RDhncEY4WkMwNEUwUQ==',
+                'MzYxNTpBeGJvWXFnbGNKMnYxTWxYRE00RDR5M1FFeUs5amo1MQ==',
+                'MzYxNjo2cW1SZ2xKa01LWmpsSnNMUDFuck9JNXJoVWFoZk1OUA=='
+            ];
+
+            $apiKey = $this->pickInArray($apiKeys);
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://v2.api.iphub.info/ip/'.$ip);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('X-Key: ' . $apiKey));
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 2); //timeout in seconds
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            if ($result == null) {
+                return true;
+            }
+
+            $result = trim($result);
+
+            $obj = json_decode($result, true);
+
+            if ($obj == null) {
+                return true;
+            }
+
+            if (!isset($obj['block'])) {
+                return true;
+            }
+
+            return $obj['block'] == '0';
+        }
+        catch (Exception $v)
+        {
+            return true;
+        }
+    }
+
+    public function ip($cat, $id)
     {
         $catName = encname($cat);
 
@@ -85,7 +169,7 @@ class InfoController extends Controller
                 $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
             }
 
-            if (VoteController::isGoodIp($ip)){
+            if ($this->isGoodIp($ip) && $this->isGoodIp2($ip)){
                 if (!Redis::exists($data->id.':copy:' . $ip)) {
                     Redis::set($data->id . ':copy:' . $ip, true);
                     Redis::expire($data->id . ':copy:' . $ip, 86400);
