@@ -13,9 +13,9 @@
 @php($classement = 'true')
 @section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
 @if (encname($catName) == "minecraft")
-    @section('description', 'Découvre la liste de serveur Minecraft gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement, du serveur cracké, Survie, PVP Faction, moddé et bien plus encore, à rejoindre dès maintenant.')
 @else
-    @section('description', 'Découvre la liste de serveur '.seocat($catName).' gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement. Des serveurs de toutes les catégories pour tous les goûts sont à rejoindre dès maintenant.')
+    @section('description', 'Découvre la liste de serveur Minecraft gratuit la plus complète. Joue à '.$about->serveurCount.' serveurs français proposés dans le classement, du serveur cracké, Survie, PVP Faction, Moddé, Premium et bien plus.')
+@section('description', 'Découvre la liste de serveur '.seocat($catName).' gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement. Des serveurs de toutes les catégories pour tous les goûts sont à rejoindre dès maintenant.')
 @endif
 @if (encname($catName) == "minecraft")
     @section('logometa', 'https://serveur-multigames.net/img/minecraft/minecraft.png')
