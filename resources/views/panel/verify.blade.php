@@ -35,6 +35,8 @@
                         </code><br /><br />
 
                         Une fois le code placé sur cette page, cliquez sur le bouton de validation de la propriété.<br />
+                        <font color="red">Attention : Ce lien peut être placé n'importe où sur la page, il permet de vérifier votre propriété mais également de nous sounteir.<br />
+                        Afin que votre propriété reste valide, nous vous invitons à garder le lien.</font>
                         <form method="post">
                             {{ csrf_field() }}
                             <button type="submit" class="btn btn-primary">Valider la propriété</button>
