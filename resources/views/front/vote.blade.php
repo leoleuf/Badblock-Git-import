@@ -400,7 +400,6 @@
 
                 function flexo()
                 {
-                    $('#vote_button').css('margin-top',"-50px");
                     $("#vote_button").show();
                     $("#ad2").html("");
                 }
