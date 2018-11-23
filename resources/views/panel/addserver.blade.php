@@ -87,19 +87,19 @@
                                     <div class="row">
                                         <div class="col-2">
                                             <label for="votifier_servername">Nom serveur</label>
-                                            <input name="votifier_servername[]" class="form-control" value="{{ old('votifier_servername') }}">
+                                            <input name="votifier_servername[]" class="form-control">
                                         </div>
                                         <div class="col-3">
                                             <label for="votifier_serverip">IP Votifier <a title="Implémenter la méthode Votifier" href="/add-server/votifier" target="_blank">(?)</a></label>
-                                            <input name="votifier_serverip[]" class="form-control" value="{{ old('votifier_serverip') }}">
+                                            <input name="votifier_serverip[]" class="form-control">
                                         </div>
                                         <div class="col-3">
                                             <label for="votifier_serverport">Port Votifier <a title="Implémenter la méthode Votifier" href="/add-server/votifier" target="_blank">(?)</a></label>
-                                            <input name="votifier_serverport[]" class="form-control" value="{{ old('votifier_serverport') }}">
+                                            <input name="votifier_serverport[]" class="form-control">
                                         </div>
                                         <div class="col-4">
                                             <label for="votifier_publickey">Clé publique <a title="Implémenter la méthode Votifier" href="/add-server/votifier" target="_blank">(?)</a></label>
-                                            <textarea name="votifier_publickey[]" class="form-control" placeholder="Contenu du fichier public.key dans le dossier rsa du plugin Votifier">{{ old('votifier_publickey') }}</textarea>
+                                            <textarea name="votifier_publickey[]" class="form-control" placeholder="Contenu du fichier public.key dans le dossier rsa du plugin Votifier"></textarea>
                                         </div>
                                         <br /><br />
                                     </div>
