@@ -162,7 +162,7 @@
                             @endif
                         @endfor
                             <br />
-                            <div class="single-post d-flex flex-row">
+                            <div class="single-post" id="liste-information">
                                 <div class="details">
                                     <h3 class="text-uppercase">A propos de la liste de serveur {{ seocat($catName) }}{{ $shownTag }}</h3><br />
                                     <div class="row">
