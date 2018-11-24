@@ -49,7 +49,7 @@ return [
             'practice',
             'cache cache',
             'hideandseek',
-            'PE'
+            'pe'
         ],
         'Dofus' =>
             [
