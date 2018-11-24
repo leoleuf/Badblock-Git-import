@@ -204,7 +204,18 @@
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
+                        @else
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         @endif
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-format="autorelaxed"
+                             data-ad-client="ca-pub-1905923613312160"
+                             data-ad-slot="4273456239"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
 
                         <div class="single-post d-flex flex-row">
                             <div class="details">
