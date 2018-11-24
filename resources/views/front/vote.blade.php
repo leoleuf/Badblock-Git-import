@@ -120,7 +120,7 @@
                                             <span style="color: #7e7e7e" class="fa fa-star-o"></span>
                                         @endif
                                     </div>
-                                    @if (!isset($_SESSION['MOBILE']))
+                                    @if (!session()->has('mobile'))
                                         <div>
                                             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fserveur-multigames.net%2F{{ $catName }}&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
                                             <br />
