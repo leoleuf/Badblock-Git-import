@@ -257,7 +257,7 @@
                             </div>
                         </div>
                     </div>
-                    @if (count(json_decode($data->tag)) > 0)
+                   <!-- @if (count(json_decode($data->tag)) > 0)
                         <div class="single-slidebar">
                             <h4>Serveurs {{ seocat($catName) }} similaires</h4>
                             <ul class="cat-list">
@@ -265,7 +265,7 @@
                                     <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ $k }}"><p>{{ ucfirst($k) }}</p><span>{{ ((array) $tags)[$k] }}</span></a></li>
                                 @endforeach
                             </ul>
-                        </div>
+                        </div>!-->
                     @endif
                 </div>
         </div>
