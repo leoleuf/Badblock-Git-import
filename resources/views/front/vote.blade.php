@@ -162,13 +162,20 @@
                                             </div>
 
                                             <div id="wait">
+                                                <noscript>
+                                                    <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger col-12" style="height: 70px;">
+                                                        Veuillez activer les scripts JavaScript pour voter.
+                                                    </a>
+                                                </noscript>
                                                 <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary col-12" style="height: 50px;">
-                                                    Chargement en cours du système de vote...<br />
-                                                    Si les votes ne chargent pas, vérifiez que vous acceptez<br />
-                                                    les scripts JavaScript dans votre navigateur.
+                                                    Chargement en cours du système de vote...
                                                 </a>
                                             </div>
-
+                                            @if (session()->has('mobile'))
+                                                <div class="btn btn-danger">
+                                                    Problème de vote sur Mobile réglé.
+                                                </div>
+                                            @endif
                                         @if (!session()->has('mobile'))
                                             <div id="blox" class="col-12" style="display: none; height: 80px; z-index: 100;"></div>
                                         @else
