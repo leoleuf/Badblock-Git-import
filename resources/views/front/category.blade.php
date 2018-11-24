@@ -109,7 +109,7 @@
                                 </p>
                             </div>
                         @else
-                            <div class="single-post d-flex flex-row">
+                            <div class="single-post">
                                 <p>
                                     <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" /> @endif Liste serveur {{ seocat($catName) }}</h3><br />
                                 La liste de serveur Minecraft est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs Minecraft</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur Minecraft avec tes amis.
@@ -228,9 +228,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="single-slidebar pubpost">
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
+                        <div class="pubpost active-relatedjob-carusel single-rated">
                                     <ins class="adsbygoogle"
                                          id="pbblock"
                                          data-ad-format="autorelaxed"
@@ -239,8 +237,6 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </div>
-                            </div>
                         </div>
                         <div class="single-slidebar">
                             <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
