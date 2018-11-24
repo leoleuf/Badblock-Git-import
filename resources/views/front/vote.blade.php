@@ -169,7 +169,11 @@
                                                 </a>
                                             </div>
 
+                                        @if (!session()->has('mobile'))
                                             <div id="blox" class="col-12" style="display: none; height: 80px; z-index: 100;"></div>
+                                        @else
+                                        @endif
+
                                         <button class="g-recaptcha btn btn-success col-12" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; height: 80px;" disabled>
@@ -184,14 +188,16 @@
 
                     </div>
 
-                        <ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="1434308007"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+                        @if (!session()->has('mobile'))
+                            <ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="1434308007"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        @endif
 
                         <div class="single-post d-flex flex-row">
                             <div class="details">
@@ -383,7 +389,7 @@
                     document.getElementById("vote-form").submit();
                 }
             }
-        </script async defer>
+        </script>
         <script async defer>
             $(document).ready(function ()
             {
@@ -417,7 +423,9 @@
                     $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flex, 300);
+                    @if (!session()->has('mobile'))
+                        setTimeout(flex, 300);
+                    @endif
                 }
             });
 
