@@ -216,7 +216,7 @@
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
-
+                        <br />
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <div class="title d-flex flex-row justify-content-between">
