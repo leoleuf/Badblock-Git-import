@@ -124,6 +124,7 @@ class CacheController extends Controller
                 if (filter_var($row->website, FILTER_VALIDATE_URL)) {
                     $options = array(
                         'http' => array(
+                            'timeout' => 3,
                             'method' => "GET",
                             'header' => "Accept-language: en\r\n" .
                                 "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n"
