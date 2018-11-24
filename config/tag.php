@@ -48,8 +48,7 @@ return [
             'hungergames',
             'practice',
             'cache cache',
-            'hideandseek',
-            'pe'
+            'hideandseek'
         ],
         'Dofus' =>
             [

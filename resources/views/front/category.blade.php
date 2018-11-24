@@ -166,23 +166,17 @@
                                 <div class="details">
                                     <h3 class="text-uppercase">A propos de la liste de serveur {{ seocat($catName) }}{{ $shownTag }}</h3><br />
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="single-defination">
+                                        <div class="col-md-4 single-defination">
                                                 <h4 class="mb-20"> Votes de serveur</h4>
                                                 <p><br />Ce mois-ci, {{ $about->voteCount }} ont été effectués pour des serveurs {{ seocat($catName) }}. Vote pour ton serveur préféré depuis le classement des meilleurs serveurs {{ seocat($catName) }}{{$shownTag}} sans plus hésiter.</p>
-                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="single-defination">
+                                        <div class="col-md-4 single-defination">
                                                 <h4 class="mb-20">Serveur dans le classement</h4>
                                                 <p><br />Nous disposons d'une large liste complète de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
-                                            </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="single-defination">
+                                        <div class="col-md-4 single-defination">
                                                 <h4 class="mb-20">Avis sur {{ seocat($catName) }}</h4>
                                                 <p><br />Il y a eu plus de {{ intval($about->clickCount)+intval($about->copyCount) }} personnes qui ont découvert un serveur {{ seocat($catName) }}{{$shownTag}} depuis le début du mois. Nous travaillons sur la visibilité des créateurs tous les jours et cela n'est pas prêt de s'arrêter.</p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
