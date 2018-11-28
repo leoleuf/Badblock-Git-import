@@ -121,7 +121,7 @@ class CacheController extends Controller
                 $row->comment = $comment;
                 $row->description = nl2br(htmlspecialchars($row->description));
 
-                if (filter_var($row->website, FILTER_VALIDATE_URL)) {
+                if (filter_var($row->website, FILTER_VALIDATE_URL) && intval($row->verified) == 1) {
                     $options = array(
                         'http' => array(
                             'timeout' => 3,
