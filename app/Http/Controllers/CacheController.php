@@ -135,11 +135,34 @@ class CacheController extends Controller
                     $t = @file_get_contents($row->website, false, $context);
 
                     if (!(strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)) {
+                        if (intval($row->retries) < 5)
+                        {
+                            DB::table('server_list')
+                                ->where('id', '=', $row->id)
+                                ->update(
+                                    [
+                                        'retries' => intval($row->retries) + 1
+                                    ]
+                                );
+                        }
+                        else
+                        {
+                            DB::table('server_list')
+                                ->where('id', '=', $row->id)
+                                ->update(
+                                    [
+                                        'verified' => '0'
+                                    ]
+                                );
+                        }
+                    }
+                    else
+                    {
                         DB::table('server_list')
                             ->where('id', '=', $row->id)
                             ->update(
                                 [
-                                    'verified' => '0'
+                                    'retries' => 0
                                 ]
                             );
                     }
