@@ -73,13 +73,6 @@ return [
                 'fun',
                 'fivem'
             ],
-        'Rétro Habbo' =>
-            [
-                'fun',
-                'roleplay',
-                'old school',
-                'strictrp'
-            ],
         'World of Warcraft' =>
             [
                 // TODO
@@ -93,7 +86,6 @@ return [
     'cat' => [
         'Minecraft',
         'Dofus',
-        'Rétro Habbo',
         'Grand Theft Auto',
         'World of Warcraft',
         'ARK: Survival Evolved',
@@ -104,7 +96,6 @@ return [
     [
         'minecraft' => 'Minecraft',
         'dofus' => 'Dofus',
-        'retro-habbo' => 'Rétro Habbo',
         'grand-theft-auto' => 'Grand Theft Auto',
         'world-of-warcraft' => 'World Of Warcraft',
         'arma-3' => 'Arma 3',
