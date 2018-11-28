@@ -73,31 +73,40 @@ return [
                 'fun',
                 'fivem'
             ],
-        'World of Warcraft' =>
+        /*'World of Warcraft' =>
             [
                 // TODO
-            ],
+            ],*/
         'ARK: Survival Evolved' =>
             [
                 // TODO
+            ],
+        'Discord' =>
+            [
+                // TODO
+                'bot',
+                'musique'
             ]
     ],
 
     'cat' => [
         'Minecraft',
         'Dofus',
+        'Discord',
         'Grand Theft Auto',
-        'World of Warcraft',
+        // 'World of Warcraft',
         'ARK: Survival Evolved',
-        'Clash Of Clans'
+        'Clash Of Clans',
+        'Discord'
     ],
 
     'seocat' =>
     [
+        'discord' => 'Discord',
         'minecraft' => 'Minecraft',
         'dofus' => 'Dofus',
         'grand-theft-auto' => 'Grand Theft Auto',
-        'world-of-warcraft' => 'World Of Warcraft',
+       // 'world-of-warcraft' => 'World Of Warcraft',
         'arma-3' => 'Arma 3',
         'ark-survival-evolved' => 'ARK: Survival Evolved',
         'clash-of-clans' => 'Clash Of Clans'
