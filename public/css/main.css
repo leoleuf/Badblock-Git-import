@@ -2431,6 +2431,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   background-size: cover;
 }
 
+.banner-area-clash-of-clans{background:url(/img/header-bg-clash-of-clans.jpg) center;background-size:cover;}
+
+.banner-area-discord{background:url(/img/header-bg-discord.jpg) center;background-size:cover;}
+
 .banner-area-ark-survival-evolved .overlay-bg {
   opacity: .06;
 }
