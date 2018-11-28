@@ -62,6 +62,9 @@ return [
                 'cheat',
                 'héroïque'
             ],
+        'Clash Of Clans' =>
+            [
+            ],
         'Grand Theft Auto' =>
             [
                 'roleplay',
@@ -93,7 +96,8 @@ return [
         'Rétro Habbo',
         'Grand Theft Auto',
         'World of Warcraft',
-        'ARK: Survival Evolved'
+        'ARK: Survival Evolved',
+        'Clash Of Clans'
     ],
 
     'seocat' =>
@@ -104,7 +108,8 @@ return [
         'grand-theft-auto' => 'Grand Theft Auto',
         'world-of-warcraft' => 'World Of Warcraft',
         'arma-3' => 'Arma 3',
-        'ark-survival-evolved' => 'ARK: Survival Evolved'
+        'ark-survival-evolved' => 'ARK: Survival Evolved',
+        'clash-of-clans' => 'Clash Of Clans'
     ]
 
 ];
