@@ -162,7 +162,7 @@ class CacheController extends Controller
                             ->where('id', '=', $row->id)
                             ->update(
                                 [
-                                    'retries' => 0
+                                    'retries' => '0'
                                 ]
                             );
                     }
