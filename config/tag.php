@@ -92,7 +92,6 @@ return [
     'cat' => [
         'Minecraft',
         'Dofus',
-        'Discord',
         'Grand Theft Auto',
         // 'World of Warcraft',
         'ARK: Survival Evolved',
