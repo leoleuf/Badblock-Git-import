@@ -125,15 +125,13 @@
                                 @endif
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
-                                        <div class="title d-flex justify-content-between">
+                                        <div class="d-flex justify-content-between">
                                             <div class="titles">
-                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a><br />
-                                                <div class="rate">
+                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a>
                                                     @if (strlen(trim(strtolower($row->ip))) > 0)
                                                         <div id="ip-{{ encname($row->name) }}" class="hidden-ip">{{ trim(strtolower($row->ip)) }}</div>
                                                     @endif
                                                     Note : @if($row->note >= 1)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 2 || $row->note == 2)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 3 || $row->note == 3)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 4 || $row->note == 4)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note == 5)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif
-                                                </div>
                                             </div>
                                             <ul class="btns">
                                                 <li id="vote"><span class="lnr lnr-heart"></span>&nbsp;<a title="Voter pour {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/vote">Voter</a> ({{ $row->votes }})</li>@if (!empty($row->website))&nbsp;<li><span class="lnr lnr-rocket"></span>&nbsp;<a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" rel="noopener" target="_blank">Jouer</a></li>@endif @if (strlen(trim(strtolower($row->ip))) > 0) &nbsp;<li><span class="lnr lnr-magic-wand"></span>&nbsp;<a title="Copier l'IP de {{ $row->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $row->name }}', '{{ encname($row->name) }}');" class="ipcopy">IP</a></li>@endif
