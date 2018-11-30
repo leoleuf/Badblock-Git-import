@@ -16,8 +16,7 @@ $container['session'] = function ($container) use ($config) {
 };
 
 $container['codepromo'] = array(
-    'vacances' => 40,
-    'blockfriday' => 40
+
 );
 
 $container['redis_client'] = function ($container) {
