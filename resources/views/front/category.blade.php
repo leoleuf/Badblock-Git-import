@@ -124,9 +124,7 @@
                                     </div>
                                 @endif
                                 <div class="d-flex flex-row">
-                                    <div class="thumb">
-                                        <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
-                                    </div>
+                                    <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
                                         <div class="title d-flex flex-row justify-content-between">
                                             <div class="titles">
