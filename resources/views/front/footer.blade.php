@@ -93,15 +93,14 @@ if ($date != $creationDate)
     gtag('js', new Date());
 
     gtag('config', 'UA-122426050-1');
-</script>
-<!--
+
     var giftofspeed = document.createElement('link');
     giftofspeed.rel = 'stylesheet';
     giftofspeed.href = '/css/df.css';
     giftofspeed.type = 'text/css';
     var godefer = document.getElementsByTagName('link')[0];
     godefer.parentNode.insertBefore(giftofspeed, godefer);
-!-->
+</script>
 
 @if (session()->has('mobile'))
     <amp-auto-ads type="adsense"

@@ -77,7 +77,8 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/main.css">
     @else
-    <link rel="stylesheet" href="/css/classement.css">
+        <link rel="preload" href="/css/classement.class" as="style">
+        <link rel="preload" href="/css/df.class" as="style">
     @endif
 
     <link rel="preload" href="/js/gjs.js" as="script">
@@ -113,3 +114,4 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     </div>
     @yield('hdr')
 </header><!-- #header -->
+<link rel="stylesheet" href="/css/classement.css">
