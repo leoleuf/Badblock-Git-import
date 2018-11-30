@@ -79,6 +79,10 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     @else
     <link rel="stylesheet" href="/css/classement.css">
     @endif
+
+    <link rel="preload" href="/js/gjs.js" as="script">
+    <link rel="preload" href="/gtag.js" as="script">
+    <link rel="preload" href="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0" as="script">
 </head>
 <body>
 
