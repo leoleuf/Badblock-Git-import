@@ -123,10 +123,10 @@
                                         <a id="buttonmise" title="Mettez vous aussi votre serveur en avant" href="https://serveur-multigames.net/mise-en-avant">Serveur mis en avant</a>
                                     </div>
                                 @endif
-                                <div class="d-flex flex-row">
+                                <div class="d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
-                                        <div class="title d-flex flex-row justify-content-between">
+                                        <div class="title d-flex justify-content-between">
                                             <div class="titles">
                                                 <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a><br />
                                                 <div class="rate">
