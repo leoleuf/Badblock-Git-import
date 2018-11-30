@@ -117,7 +117,7 @@
                             </div>
                         @endif
                         @foreach($data as $row)
-                            <div class="single-post@if (isset($row->ad)) ad-serveur @endif d-flex">
+                            <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                 @if (isset($row->ad))
                                     <div id="mise-avant">
                                         <a id="buttonmise" title="Mettez vous aussi votre serveur en avant" href="https://serveur-multigames.net/mise-en-avant">Serveur mis en avant</a>
