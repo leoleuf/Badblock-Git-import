@@ -13,18 +13,15 @@ if ($date != $creationDate)
 <footer class="footer-area section-gap">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3  col-md-12">
-                <div class="single-footer-widget">
+            <div class="col-lg-3 col-md-12 single-footer-widget">
                     <span class="ft">Serveur MultiGames</span><br /><br />
                     Serveur MultiGames est un site Internet de liste et de classement des serveurs de jeux. Ajoutez gratuitement un serveur ou trouvez votre serveur préféré.<br />
                     <img alt="Logo de serveur" SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" WIDTH="77" HEIGHT="15" BORDER="0"> / <a title="information serveur minecraft" href="https://serveur-minecraft-gratuit.blogspot.com/2018/11/votre-serveur-minecraft-gratuit.html">Informations minecraft</a><br />
                     @if (session()->has('online_count'))
                         {{ session()->get('online_count') }} utilisateurs en ligne
                     @endif
-                </div>
             </div>
-            <div class="col-lg-3  col-md-12">
-                <div class="single-footer-widget">
+            <div class="col-lg-3 col-md-12 single-footer-widget">
                     <span class="ft">Créateurs</span>
                     <ul class="footer-nav">
                         <li><a title="Ajouter mon serveur sur Serveur-MultiGames" href="/add-server">Ajouter votre serveur</a></li>
@@ -37,21 +34,17 @@ if ($date != $creationDate)
                             <li><a title="Se déconnecter" href="/logout">Se déconnecter</a></li>
                         @endif
                     </ul>
-                </div>
             </div>
-            <div class="col-lg-3  col-md-12">
-                <div class="single-footer-widget">
-                    <span class="ft">Nos différents jeux</span>
+            <div class="col-lg-3 col-md-12 single-footer-widget">
+                <span class="ft">Nos différents jeux</span>
                     <ul class="footer-nav">
                         @foreach(config('tag.cat') as $k)
                             <li><img alt="Serveur {{ $k }}" src="/img/{{ encname($k) }}.png" width="24" height="24" class="ialign" /> &nbsp; <a title="Liste des serveurs {{ $k }}" href="/{{ encname($k) }}">{{ ucfirst($k) }}</a></li>
                         @endforeach
                     </ul>
-                </div>
             </div>
-            <div class="col-lg-3  col-md-12">
-                <div class="single-footer-widget">
-                    <span class="ft">Informations légales</span>
+            <div class="col-lg-3 col-md-12 single-footer-widget">
+                <span class="ft">Informations légales</span>
                     <ul class="footer-nav">
                         <li><a title="Conditions d'utilisation" href="/tos">Conditions d'Utilisation</a></li>
                         <li><a title="Foire aux questions" href="/faq">Foire aux Questions</a></li>
@@ -60,15 +53,14 @@ if ($date != $creationDate)
                         <li><a title="VPN detect" href="https://ipdetector.info">Detect vpn</a></li>
                         <li></li>
                     </ul>
-                </div>
             </div>
-            <div class="col-lg-6  col-md-12">
+            <!--<div class="col-lg-6  col-md-12">
             </div>
             <div class="col-lg-3  col-md-12">
                 <div class="single-footer-widget mail-chimp">
-                    <!-- pub ? -->
                 </div>
             </div>
+            !-->
         </div>
 
         <div class="row footer-bottom d-flex justify-content-between">
@@ -89,7 +81,7 @@ if ($date != $creationDate)
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 @endif
 @if (session()->has('mobile'))
-    <script custom-element="amp-auto-ads"
+    <script async custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
 @endif
@@ -114,9 +106,10 @@ if ($date != $creationDate)
     <amp-auto-ads type="adsense"
                   data-ad-client="ca-pub-1905923613312160">
     </amp-auto-ads>
+@else
+    <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
 @endif
 
 @if (!isset($classement))
  <script>   (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});</script>
 @endif
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>

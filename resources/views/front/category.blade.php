@@ -141,9 +141,9 @@
                                             <ul class="btns">
                                                 <li id="vote"><span class="lnr lnr-heart"></span>&nbsp;<a title="Voter pour {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/vote">Voter</a> ({{ $row->votes }})</li>@if (!empty($row->website))&nbsp;<li><span class="lnr lnr-rocket"></span>&nbsp;<a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" rel="noopener" target="_blank">Jouer</a></li>@endif @if (strlen(trim(strtolower($row->ip))) > 0) &nbsp;<li><span class="lnr lnr-magic-wand"></span>&nbsp;<a title="Copier l'IP de {{ $row->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $row->name }}', '{{ encname($row->name) }}');" class="ipcopy">IP</a></li>@endif
                                                 @if ($row->verified)
-                                                    <span class="verify-yes"><span class="lnr lnr-checkmark-circle" title="Serveur certifié"></span></span>
+                                                    <span class="verify-yes lnr lnr-checkmark-circle" title="Serveur certifié"></span>
                                                 @else
-                                                    <span class="verify-no"><span class="lnr lnr-cross-circle" title="Serveur non certifié"></span></span>
+                                                    <span class="verify-no lnr lnr-cross-circle" title="Serveur non certifié"></span>
                                                 @endif
                                             </ul>
                                         </div>
@@ -162,8 +162,7 @@
                             @endif
                         @endfor
                             <br />
-                            <div class="single-post" id="liste-information">
-                                <div class="details">
+                            <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase">A propos de la liste de serveur {{ seocat($catName) }}{{ $shownTag }}</h3><br />
                                     <div class="row">
                                         <div class="col-md-4 single-defination">
@@ -179,7 +178,6 @@
                                                 <p><br />Il y a eu plus de {{ intval($about->clickCount)+intval($about->copyCount) }} personnes qui ont découvert un serveur {{ seocat($catName) }}{{$shownTag}} depuis le début du mois. Nous travaillons sur la visibilité des créateurs tous les jours et cela n'est pas prêt de s'arrêter.</p>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                     </div>
                     <div class="col-lg-4 sidebar">
@@ -190,25 +188,21 @@
                                 @if (encname($catName) == "minecraft")
                                     <img alt="Serveur minecraft" src="/img/minecraft/serveur-minecraft.png" height="76" class="justify-content-between d-flex imgc" />
                                 @endif
-                                <div class="active-relatedjob-carusel">
-                                    <div class="single-rated">
+                                <div class="active-relatedjob-carusel single-rated">
                                         <p class="inftop">
                                             Minecraft est un jeu bac à sable populaire, notamment pour son attractivité et le monde libre qu'il propose, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations (comme un serveur Minecraft)
                                         </p>
-                                    </div>
                                 </div>
                             </div>
                         @endif
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
+                            <div class="active-relatedjob-carusel single-rated">
                                     <p class="inftop">
                                         Vous souhaitez donner plus de visibilité à votre serveur {{ seocat($catName) }} sans plus tarder ? Serveur MultiGames vous propose de rejoindre plus de 100 créateurs de serveurs de jeu différents sur la plateforme pour faire découvrir votre serveur à la communauté francophone.
                                         <br /><br />
                                         Les joueurs peuvent ainsi voter pour le serveur qu'ils préfèrent afin qu'il soit plus visible dans notre classement pour attirer de nouveaux joueurs tous les jours.
                                     </p>
-                                </div>
                             </div>
                         </div>
                         <div class="single-slidebar">
@@ -245,31 +239,26 @@
                         </div>
                         <div class="single-slidebar">
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
+                            <div class="active-relatedjob-carusel single-rated">
                                     Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
                                     Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.
-                                </div>
                             </div>
                         </div>
                         <div class="single-slidebar">
                             <strong>Pourquoi voulons-nous faire vivre la communauté des jeux ?</strong><br /><br />
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
+                            <div class="active-relatedjob-carusel single-rated">
                                     Serveur MultiGames s'engage à l'unification des communautés des serveurs privés de jeu pour
                                     développer la notoriété des projets provenant des créateurs dans un but commun de développement
                                     de la communauté de {{ seocat($catName) }}. Ce jeu se développe énormément par la communauté
                                     qui s'y trouve et les serveurs francophones sont très intéressants à lister pour contribuer à
                                     ce but final de divertissement. C'est l'engagement que nous tenons et la raison principale
                                     du développement de nos multiples classements.
-                                </div>
                             </div>
                         </div>
                         @if (encname($catName) == "minecraft")
                             <div class="single-slidebar">
                                 <h3>Vous n'avez pas le jeu Minecraft gratuit ?</h3><br /><br />
-                                <div class="active-relatedjob-carusel">
-                                    <div class="single-rated">
+                                <div class="active-relatedjob-carusel single-rated">
                                         Beaucoup de personnes ne possèdent pas Minecraft et Serveur MultiGames est partenaire avec
                                         Launcher-Minecraft.com, qui permet à de nombreux joueurs de disposer du jeu
                                         <a title="Minecraft gratuit" href="/partenaires/launcher-minecraft">minecraft gratuit</a>.<br />
@@ -277,14 +266,12 @@
                                         par des personnes reconnues dans la communauté francophone de Minecraft, c'est un avantage
                                         qui permet aux joueurs ne pouvant pas se procurer le jeu de quand-même pouvoir avoir une
                                         expérience de jeu sur des serveurs hors normes !
-                                    </div>
                                 </div>
                             </div>
                         @endif
                         <div class="single-slidebar">
                             <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
+                            <div class="active-relatedjob-carusel single-rated">
                                     Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
                                     Avec de la créativité, une motivation hors du commun et une passion pour le jeu,
                                     il est possible d'en faire un. Après avoir trouvé un concept attirant envers les
@@ -303,7 +290,6 @@
                                     développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
                                     la mise en place et l'hébergement de son serveur privé peut être fatalement
                                     contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
-                                </div>
                             </div>
                         </div>
                         <!--
