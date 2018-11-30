@@ -280,5 +280,6 @@
             </div>
         </div>
     </section>
+    <span style="font-size:9px;text-decoration:none;font-weight:normal;"> <a href="https://csiki.hoki.rocks/wiki/csikszeredai-sport-club/" title="Csíkszeredai Sport Club">Csíkszeredai Sport Club</a> történelem</span><br />
     <!-- End calto-action Area -->
 @endsection
