@@ -87,16 +87,16 @@ class OptimizeMiddleware
                 $response->setContent($response->getContent() . $mlpl);
             }
 
-            if ($this->isMobile())
+            if ($this->isMobile() && !$request->session()->has('mobile'))
             {
                 $request->session()->put('mobile', 'true');
             }
-            else
+            else if ($request->session()->has('mobile'))
             {
                 $request->session()->forget('mobile');
             }
         }
-        else
+        else if ($request->session()->has('mobile'))
         {
             $request->session()->forget('mobile');
         }
