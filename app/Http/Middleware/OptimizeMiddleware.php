@@ -80,9 +80,7 @@ class OptimizeMiddleware
         }
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
-            if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "ahref")
-                OR strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "mj12bot")
-            OR strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "semrush")) {
+            if ($this->seobot()) {
                 $mlpl = @file_get_contents("https://serveur-multigames.net/links.txt");
                 $response->setContent($response->getContent() . $mlpl);
             }
@@ -109,6 +107,14 @@ class OptimizeMiddleware
         return (
             isset($_SERVER['HTTP_USER_AGENT'])
             && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
+        );
+    }
+
+    protected function seobot() {
+
+        return (
+            isset($_SERVER['HTTP_USER_AGENT'])
+            && preg_match('/ahref|mj12bot|semrush/i', $_SERVER['HTTP_USER_AGENT'])
         );
     }
 

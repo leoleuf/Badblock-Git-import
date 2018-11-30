@@ -78,6 +78,14 @@ class HomeController extends Controller
         );
     }
 
+    protected function seobot() {
+
+        return (
+            isset($_SERVER['HTTP_USER_AGENT'])
+            && preg_match('/ahref|mj12bot|semrush/i', $_SERVER['HTTP_USER_AGENT'])
+        );
+    }
+
     public function category($cat)
     {
 
@@ -110,6 +118,16 @@ class HomeController extends Controller
             return view('front.nowebsite', ['catName' => $catName, 'current_page' => 1]);
         }
 
+        $addon = '';
+        if ($this->seobot()) {
+            foreach ($data as $srv) {
+                if (isset($srv->website) && !empty($srv->website))
+                {
+                    $addon .= '<a title="'.htmlspecialchars(htmlentities($srv->name)).'" href="'.htmlspecialchars(htmlentities($srv->website)).'">'.htmlspecialchars(htmlentities($srv->name)).'</a><br />';
+                }
+            }
+        }
+
         $tagsInfo = json_decode(Redis::get('tags:'.$catName));
         $tagsInfo = (array) $tagsInfo;
         arsort($tagsInfo);
@@ -126,10 +144,10 @@ class HomeController extends Controller
 
         if ($this->isABot())
         {
-            return view('front.category', ['about' => $about, 'bot' => true, 'votelistok' => $votelistok, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'current_page' => 1 ,'page_number' => $nb, 'lnk' => '']);
+            return view('front.category', ['addon' => $addon, 'about' => $about, 'bot' => true, 'votelistok' => $votelistok, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'current_page' => 1 ,'page_number' => $nb, 'lnk' => '']);
         }
 
-        return view('front.category', ['about' => $about, 'votelistok' => $votelistok, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'current_page' => 1 ,'page_number' => $nb, 'lnk' => '']);
+        return view('front.category', ['addon' => $addon, 'about' => $about, 'votelistok' => $votelistok, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'current_page' => 1 ,'page_number' => $nb, 'lnk' => '']);
     }
 
     public function faq()
