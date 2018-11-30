@@ -76,7 +76,7 @@ class OptimizeMiddleware
                     $response->setContent($c);
                 }*/
 
-                 $response->setContent(preg_replace(array_keys($replace), array_values($replace), $c));
+                 //response->setContent(preg_replace(array_keys($replace), array_values($replace), $c));
         }
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
