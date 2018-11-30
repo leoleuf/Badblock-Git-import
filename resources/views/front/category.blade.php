@@ -117,13 +117,12 @@
                             </div>
                         @endif
                         @foreach($data as $row)
-                            <div class="single-post @if (isset($row->ad)) ad-serveur @endif">
+                            <div class="single-post@if (isset($row->ad)) ad-serveur @endif d-flex">
                                 @if (isset($row->ad))
                                     <div id="mise-avant">
                                         <a id="buttonmise" title="Mettez vous aussi votre serveur en avant" href="https://serveur-multigames.net/mise-en-avant">Serveur mis en avant</a>
                                     </div>
                                 @endif
-                                <div class="d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
                                         <div class="title d-flex justify-content-between">
@@ -149,7 +148,6 @@
                                             {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                         </p>
                                     </div>
-                                </div>
                             </div>
                         @endforeach
                         @for($i = 1;$page_number +1 > $i;$i++)
