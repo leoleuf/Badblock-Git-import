@@ -293,7 +293,7 @@
                         <h3>Serveurs {{ seocat($catName) }} similaires</h3>
                         <ul class="cat-list margc">
                             @foreach(json_decode($data->tag) as $k)
-                                <li><a title="{{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ $k }}">{{ ucfirst($k) }}</a></li>
+                                <li><a title="{{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }}</a></li>
                              @endforeach
                         </ul>
                     </div>

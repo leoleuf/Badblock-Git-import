@@ -75,7 +75,7 @@
                         {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 301, "...")) }}<br /><br />
                         <ul class="tags">
                             <span class="lnr lnr lnr-tag"></span> &nbsp;
-                            @foreach(json_decode($row->tag) as $key)<a id="tag-{{ $key }}" title="Serveur {{ seocat($row->cat) }} {{ $key }}" href="/{{ encname($row->cat)  }}/tag/{{ $key }}">{{ ucfirst($key) }}</a>&nbsp;@endforeach
+                            @foreach(json_decode($row->tag) as $key)<a id="tag-{{ $key }}" title="Serveur {{ seocat($row->cat) }} {{ $key }}" href="/{{ encname($row->cat)  }}/tag/{{ enctag($key) }}">{{ ucfirst($key) }}</a>&nbsp;@endforeach
                         </ul>
                         @if (strlen(trim(strtolower($row->ip))) > 0)<div class="hidden-ip" id="ip-{{ encname($row->name) }}">{{ trim(strtolower($row->ip)) }}</div>@endif
                         </p>

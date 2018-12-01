@@ -108,7 +108,7 @@
                                         {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->description, 0, 5000, "...")) !!}<br /><br />
                                     <ul class="tags">
                                         <span class="lnr lnr lnr-tag"></span> &nbsp;
-                                        @foreach(json_decode($data->tag) as $key)<a id="tag-{{ $key }}" title="Serveur {{ seocat($catName) }} {{ $key }}" href="/{{ $catName }}/tag/{{ $key }}">{{ ucfirst($key) }}</a>&nbsp;@endforeach
+                                        @foreach(json_decode($data->tag) as $key)<a id="tag-{{ $key }}" title="Serveur {{ seocat($catName) }} {{ $key }}" href="/{{ $catName }}/tag/{{ enctag($key) }}">{{ ucfirst($key) }}</a>&nbsp;@endforeach
                                     </ul>
                                     @if (strlen(trim(strtolower($data->ip))) > 0)<div class="hidden-ip" id="ip-{{ encname($data->name) }}">{{ trim(strtolower($data->ip)) }}</div>@endif
                                     </p>
