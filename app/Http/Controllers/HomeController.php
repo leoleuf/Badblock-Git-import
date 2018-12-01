@@ -284,6 +284,9 @@ class HomeController extends Controller
             }
             $tags[enctag($k)] = 0;
         }
+
+        var_dump($id);
+        var_dump(in_array($id, $tags));
         
         dd($tags);
 
