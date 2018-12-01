@@ -59,12 +59,11 @@ class CalendrierController extends Controller
             $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
             $channel = $connection->channel();
             $sanction = (object) [
-                'dataType' => 'CHRISTMAS',
+                'dataType' => 'BUY',
                 'playerName' => $user,
                 'displayName' => $Recomp->name,
                 'command' => $Recomp->command,
                 'ingame' => false,
-				'forceCommand' => false,
                 'price' => 0
             ];
             $message = (object) [
