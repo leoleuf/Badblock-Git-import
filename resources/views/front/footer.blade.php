@@ -15,8 +15,7 @@ if ($date != $creationDate)
         <div class="row">
             <div class="col-lg-3 col-md-12 single-footer-widget">
                     <span class="ft">Serveur MultiGames</span><br /><br />
-                    Serveur MultiGames est un site Internet de liste et de classement des serveurs de jeux. Ajoutez gratuitement un serveur ou trouvez votre serveur préféré.<br />
-                    <img alt="Logo de serveur" SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" WIDTH="77" HEIGHT="15" BORDER="0"> / <a title="information serveur minecraft" href="https://serveur-minecraft-gratuit.blogspot.com/2018/11/votre-serveur-minecraft-gratuit.html">Informations minecraft</a><br />
+                    Serveur MultiGames est un site Internet de liste et de classement des serveurs de jeux. Ajoutez gratuitement un serveur ou trouvez votre serveur préféré.
                     @if (session()->has('online_count'))
                         {{ session()->get('online_count') }} utilisateurs en ligne
                     @endif
