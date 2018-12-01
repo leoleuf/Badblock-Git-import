@@ -19,7 +19,7 @@
         $s = stripAccents($s);
         $s = strtolower($s);
         $s = str_replace(' ', '-', $s);
-       // $s = str_replace( '.', '-', $s);
+        $s = str_replace( '.', '-', $s);
         $s = preg_replace('/[^ \w.-]/','', $s);
         return $s;
     }
