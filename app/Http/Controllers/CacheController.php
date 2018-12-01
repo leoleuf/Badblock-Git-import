@@ -207,7 +207,7 @@ class CacheController extends Controller
                 $tag = config('tag.tag')[$tg];
 
                 foreach ($tag as $row) {
-                    $row = encname($row);
+                    $row = enctag($row);
                     $data = DB::select("select * from server_list WHERE actived = 1 AND cat = '" . $k . "' AND hidden = 0 AND tag LIKE '%" . $row . "%' ORDER by votes DESC");
 
 

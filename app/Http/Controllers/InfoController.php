@@ -21,7 +21,7 @@ class InfoController extends Controller
         $l = array();
         foreach (config('tag.cat') as $k)
         {
-            $l[encname($k)] = 0;
+            $l[enctag($k)] = 0;
         }
 
         $l = array_keys($l);

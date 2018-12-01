@@ -62,7 +62,7 @@ class HomeController extends Controller
             ->orWhere('short_desc', 'LIKE', '%'.encname($searchTerm).'%')
             ->orWhere('ip', 'LIKE', '%'.encname($searchTerm).'%')
             ->orWhere('website', 'LIKE', '%'.encname($searchTerm).'%')
-            ->orWhere('tag', 'LIKE', '%'.encname($searchTerm).'%')
+            ->orWhere('tag', 'LIKE', '%'.enctag($searchTerm).'%')
             ->orWhere('cat', 'LIKE', '%'.encname($searchTerm).'%')
             ->get();
 
@@ -93,7 +93,7 @@ class HomeController extends Controller
         $l = array();
         foreach (config('tag.cat') as $k)
         {
-            $l[encname($k)] = 0;
+            $l[enctag($k)] = 0;
         }
 
         $l = array_keys($l);
@@ -234,7 +234,7 @@ class HomeController extends Controller
         $l = array();
         foreach (config('tag.cat') as $k)
         {
-            $l[encname($k)] = 0;
+            $l[enctag($k)] = 0;
         }
 
         $l = array_keys($l);
@@ -264,7 +264,7 @@ class HomeController extends Controller
         $l = array();
         foreach (config('tag.cat') as $k)
         {
-            $l[encname($k)] = 0;
+            $l[enctag($k)] = 0;
         }
 
         $l = array_keys($l);
@@ -274,7 +274,7 @@ class HomeController extends Controller
             abort(404);
         }
 
-        $id = encname($id);
+        $id = enctag($id);
         if (!isset($id)) {
             abort(404);
         }
@@ -283,11 +283,11 @@ class HomeController extends Controller
         $tags = array();
         foreach (config('tag.tag')[seocat($catName)] as $k)
         {
-            if (encname($k) == $id)
+            if (enctag($k) == $id)
             {
                 $shownTag = $k;
             }
-            $tags[encname($k)] = 0;
+            $tags[enctag($k)] = 0;
         }
 
         if (!in_array($id, $tags)) {

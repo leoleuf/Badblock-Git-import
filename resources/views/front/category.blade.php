@@ -25,9 +25,9 @@
 
 @if (isset($tag))
     @if ($current_page > 1)
-        @php($next_canonical = '/tag/'.encname($tag).'/'.$current_page)
+        @php($next_canonical = '/tag/'.enctag($tag).'/'.$current_page)
     @else
-        @php($next_canonical = '/tag/'.encname($tag))
+        @php($next_canonical = '/tag/'.enctag($tag))
     @endif
 @elseif ($current_page > 1)
     @php($next_canonical = '/page/'.$current_page)
@@ -39,7 +39,7 @@
 
 @if ($current_page > 1)
     @if (isset($tag))
-        @php($prev = 'https://serveur-multigames.net/'.$catName.'/tag/'.encname($tag).'/'.($current_page - 1))
+        @php($prev = 'https://serveur-multigames.net/'.$catName.'/tag/'.enctag($tag).'/'.($current_page - 1))
     @elseif ($current_page < 3)
         @php($prev = 'https://serveur-multigames.net/'.$catName)
     @else
@@ -51,7 +51,7 @@
 
 @if ($page_number > $current_page)
     @if (isset($tag))
-        @php($next = 'https://serveur-multigames.net/'.$catName.'/tag/'.encname($tag).'/'.($current_page + 1))
+        @php($next = 'https://serveur-multigames.net/'.$catName.'/tag/'.enctag($tag).'/'.($current_page + 1))
     @else
         @php($next = 'https://serveur-multigames.net/'.$catName.'/page/'.($current_page + 1))
     @endif
@@ -83,7 +83,7 @@
                             <h2 class="text-white">Liste de serveurs</h2>
                         @endif
                         @if (isset($tag) or (isset($current_page) && $current_page > 1))
-                            <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ encname($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ encname($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
+                            <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ enctag($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ enctag($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
                         @endif
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                                     <div class="details">
                                         <div class="d-flex justify-content-between">
                                             <div class="titles">
-                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a>
+                                                <a title="{{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a>
                                                     @if (strlen(trim(strtolower($row->ip))) > 0)
                                                         <div id="ip-{{ encname($row->name) }}" class="hidden-ip">{{ trim(strtolower($row->ip)) }}</div>
                                                     @endif
@@ -208,7 +208,7 @@
                             <ul class="cat-list">
                                 @foreach($tags as $k => $v)
                                     @if ($v > 0)
-                                        <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ encname($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
+                                        <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
                                     @endif
                                 @endforeach
                             </ul>
