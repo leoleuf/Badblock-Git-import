@@ -193,7 +193,7 @@
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Tags disponibles : </label>
                                 @foreach($tag as $row)
-                                    <span style="background-color: #1200fa" class="badge badge-dark">{{ $row }}</span>
+                                    <span style="background-color: #1200fa" class="badge badge-dark">{{ seotag($row) }}</span>
                                 @endforeach
                             </div>
 
