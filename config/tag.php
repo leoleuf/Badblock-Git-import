@@ -48,8 +48,7 @@ return [
             'survie',
             'hungergames',
             'practice',
-            'cache cache',
-            'hideandseek'
+            'cache cache'
         ],
         'Dofus' =>
             [
