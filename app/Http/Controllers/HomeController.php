@@ -287,10 +287,8 @@ class HomeController extends Controller
 
         var_dump(enctag($id));
         var_dump(isset($tags[$id]));
-        
-        dd($tags);
 
-        if (!in_array($id, $tags)) {
+        if (!isset($tags[$id])) {
             abort(404);
         }
 
