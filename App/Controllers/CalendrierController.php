@@ -82,7 +82,7 @@ class CalendrierController extends Controller
             $channel->basic_publish($msg, '', 'guardian.broadcast');
             $message = (object) [
                 'expire' => (time() + 604800) * 1000,
-                'message' => '&d⇝ Go vite sur https://badblock.fr/calendrier/'
+                'message' => '&d⇝ Go vite sur https://badblock.fr/calendrier'
             ];
             $msg = new AMQPMessage(json_encode($message));
             $channel->basic_publish($msg, '', 'guardian.broadcast');
