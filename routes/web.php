@@ -102,8 +102,8 @@ Route::get('/recherche/{term}', 'HomeController@search')->name('search');
 
 Route::get('/{cat}', 'HomeController@category')->name('category');
 
-Route::get('/{cat}/tag/{id}', 'HomeController@tag')->name('page-tag');
-Route::get('/{cat}/tag/{id}/{page}', 'HomeController@tag')->name('page-tag-p');
+Route::get('/{cat}/tag/{id}', 'HomeController@tag')->name('page-tag')->where('id', '(.*)');;
+Route::get('/{cat}/tag/{id}/{page}', 'HomeController@tag')->name('page-tag-p')->where('id', '(.*)');;
 
 Route::get('/{cat}/page/{id}', 'HomeController@page')->name('page-page');
 Route::get('/{cat}/page/{id}', 'HomeController@page')->name('page-page-p');
