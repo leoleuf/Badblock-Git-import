@@ -264,18 +264,13 @@ class HomeController extends Controller
         $l = array();
         foreach (config('tag.cat') as $k)
         {
-            $l[enctag($k)] = 0;
+            $l[encname($k)] = 0;
         }
 
         $l = array_keys($l);
-
+        
         if (!in_array($catName, $l))
         {
-            abort(404);
-        }
-
-        $id = enctag($id);
-        if (!isset($id)) {
             abort(404);
         }
 
