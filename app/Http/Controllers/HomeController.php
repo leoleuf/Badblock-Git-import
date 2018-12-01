@@ -284,6 +284,8 @@ class HomeController extends Controller
             }
             $tags[enctag($k)] = 0;
         }
+        
+        dd($tags);
 
         if (!in_array($id, $tags)) {
             abort(404);
