@@ -9,6 +9,10 @@ $app->get('/accueil', function($request, $response)
     return $response->withRedirect('https://badblock.fr/', 301);
 });
 
+$app->get('/calendrier', \App\Controllers\CalendrierController::class . ':index')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->post('/calendrier-get', \App\Controllers\CalendrierController::class . ':get')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+
+
 $app->get('/mentions-legales', \App\Controllers\PagesController::class . ':getMT');
 $app->get('/cgu', \App\Controllers\PagesController::class . ':getCgu');
 $app->get('/cgv', \App\Controllers\PagesController::class . ':getCgv');
