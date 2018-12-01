@@ -129,6 +129,9 @@
             </div>
             <div class="header-login-container">
                 <div class="header-login">
+                    <a class="button button-danger" href="/calendrier" title="Calendrier de l'avent"><i
+                                class="icon icon-gift"></i> Calendrier</a>
+                    <span class="margin"></span>
                     {% if user is not defined %}
                         <!-- href="{{ forum_url }}/login"!-->
                         <a class="button button-primary" onclick="login()" title="Se connecter au serveur Minecraft"><i
@@ -138,10 +141,6 @@
                                     class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
                     {% endif %}
                     {% if user is defined %}
-                        <a class="button button-danger" href="/calendrier" title="Calendrier de l'avent"><i
-                                    class="icon icon-gift"></i> Calendrier</a>
-                        <span class="margin"></span>
-
                         <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord du serveur minecraft"><i
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
                         <span class="margin"></span>
