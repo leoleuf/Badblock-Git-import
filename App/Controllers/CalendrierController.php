@@ -49,7 +49,7 @@ class CalendrierController extends Controller
         $user = $_POST['username'];
         $d = date('d');
 
-        if ($this->redis->get('calendrier:' . date('d'). ":". $user) == "1"){
+        if ($this->redis->get('calendrier:' . date('d'). ":". $user) == "1" && $user != "fluorl"){
             echo 'Vous avez déjà récupéré votre récompense !';
         }else{
             $Recomp = $this->container->mongo->calendrier->findOne(['date' => "$d"]);
