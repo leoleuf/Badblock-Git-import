@@ -64,6 +64,7 @@ class CalendrierController extends Controller
                 'displayName' => $Recomp->name,
                 'command' => $Recomp->command,
                 'ingame' => false,
+				'forceCommand' => false,
                 'price' => 0
             ];
             $message = (object) [
