@@ -285,8 +285,6 @@ class HomeController extends Controller
             $tags[enctag($k)] = 0;
         }
 
-        var_dump(enctag($id));
-        var_dump(isset($tags[$id]));
 
         if (!isset($tags[$id])) {
             abort(404);
