@@ -78,6 +78,19 @@ class IndexController extends Controller
             return redirect('/');
         }
 
+        //Get if connected
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL,            "http://node01-int.clusprv.badblock-network.fr:8080/players/isConnected/" );
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt($ch, CURLOPT_POST,           1 );
+        curl_setopt($ch, CURLOPT_POSTFIELDS,     "name=". $Player['name']);
+        curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
+
+        $result = curl_exec ($ch);
+
+        $Player['online'] = json_decode($result)->connected;
+
         return view('users.view')->with('Player', $Player);
     }
 

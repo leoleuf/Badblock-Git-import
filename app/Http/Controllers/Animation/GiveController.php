@@ -94,6 +94,7 @@ class GiveController extends Controller
 
                 $server_output = curl_exec($ch);
 
+
                 curl_close ($ch);
                 array_push($logg, ['Pseudo' => $row, 'items' => $_POST['give'][$k]]);
             }

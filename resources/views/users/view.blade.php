@@ -5,13 +5,79 @@
             <div class="container">
                 <div class="row">
                     <br>
-                    <div class="col-lg-6">
+                    <div class="col-lg-2">
                         <div class="card-box">
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
                                         <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
                                     </div>
+                                    @if($Player['online'] == true)
+                                        <h2>Online</h2>
+                                    @else
+                                        <h2>Offline</h2>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card-box">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h4>
+                                            <li>
+                                                Nom : {{ $Player['name'] }}
+                                            </li>
+                                            @if(isset($Player['realName']))
+                                                <li>
+                                                    Nom réel : {{ $Player['realName'] }}
+                                                </li>
+                                            @endif
+                                            <li>
+                                                Adresse IP : {{ $Player['lastIp'] }}
+                                            </li>
+                                            <li>
+                                                Groupe principal : {{ $Player['permissions']['group'] }}
+                                            </li>
+                                            <li>
+                                                Durée du group principal : {{ $Player['permissions']['end'] }}
+                                            </li>
+                                            <li>
+                                                Groupe(s) secondaire(s) :
+                                                <ul>
+                                                    @foreach($Player['permissions']['alternateGroups'] as $k => $row)
+                                                        <li>
+                                                            Groupe : {{ $k }} Time : {{ $row }}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <div class="container">
+                                <div class="row">
+                                    <button type="button" class="btn btn-danger btn-lg">Reset Password</button>
+                                    <button type="button" class="btn btn-warning btn-lg">Reset TFA</button>
+                                    <button type="button" class="btn btn-info btn-lg">Offline Mode</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card-box">
+                            <div class="container">
+                                <div class="row">
+                                    <button type="button" class="btn btn-danger btn-lg">Un ban</button>
+                                    <button type="button" class="btn btn-warning btn-lg">Un mute</button>
+                                    <button type="button" class="btn btn-info btn-lg">Kick</button>
                                 </div>
                             </div>
                         </div>
