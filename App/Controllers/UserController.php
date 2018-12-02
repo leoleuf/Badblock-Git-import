@@ -307,8 +307,36 @@ class UserController extends Controller
 
             $user['friends'] = $friends_valid;
 
+            //Plots
+            $Plots = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM freebuildplot WHERE owner = '" . $user["uniqueId"] ."' LIMIT 100");
+            foreach ($Plots as $k => $Plot){
+                $Plots[$k]['x'] = 262 * $Plot['plot_id_x'] - 132;
+                $Plots[$k]['z'] = 262 * $Plot['plot_id_z'] - 132;
+
+                //Search trusted
+                $Trust_list = [];
+                $Trust = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM `freebuildplot_helpers` WHERE `plot_plot_id` = " . $Plot['id']);
+                if ($Trust != null){
+                    foreach ($Trust as $user){
+                        $In = $this->container->mongoServer->players->findOne(['uniqueId' => $user['user_uuid']]);
+                        if ($In != null){
+                            array_push($Trust_list, $In['realName']);
+                        }
+                    }
+                    $Plots[$k]['trust'] = $Trust_list;
+                }else{
+                    $Plots[$k]['trust'] = false;
+                }
+            }
+
+            if (count($Plots) == 0){
+                $user['plots'] = false;
+            }else{
+                $user['plots'] = $Plots;
+            }
+
             $this->redis->setJson('profile:'.$args["pseudo"], $user);
-            $this->redis->expire('profile:'.$args["pseudo"], 300);
+            $this->redis->expire('profile:'.$args["pseudo"], 1);
 
             //return view
             return $this->render($response, 'user.profile', ['joueur' => $user]);

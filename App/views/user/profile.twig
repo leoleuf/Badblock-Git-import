@@ -39,7 +39,9 @@
                             <h2 class="cover-heading">{{ joueur.realName }}</h2>
                             <span class="badge badge-{{ joueur.permissions.group }}">{{ ucfirst(joueur.permissions.group) }}</span>
                             {% for key, permission in joueur.permissions.alternateGroups %}
-                                <span class="badge badge-{{ permission }}">{{ ucfirst(permission) }}</span>
+                                <div style="padding-right: 6px;">
+                                    <span class="badge badge-{{ permission }}">{{ ucfirst(permission) }}</span>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
@@ -95,7 +97,58 @@
             Cet Utilisateur est suspendu jusqu'au {{ joueur.punish.banEnd }} pour {{ joueur.punish.banReason }}.
         </div>
     {% endif %}
-    <div class="profile-stats">
+<script>
+    function opentab(evt, serv) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("no-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(serv).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+    <div class="user-menu">
+        <ul>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '1')">
+                    <i class="fas fa-info"></i>
+                    MiniJeux
+                </a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '2')">
+                    <i class="fas fa-cubes"></i>
+                    FreeBuild
+                </a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '3')">
+                    <i class="fas fa-tree"></i>
+                    SkyBlock
+                </a>
+            </li>
+            <li class="user-tab">
+                <a class="no-link" onclick="opentab(event, '3')">
+                    <i class="fas fa-dollar-sign"></i>
+                    Faction
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div id="1" class="tabcontent">
+        <div class="profile-stats">
         <h2>Statistiques</h2>
         <div class="row">
             <div class="four columns">
@@ -227,6 +280,43 @@
                 </table>
             </div>
         </div>
-
+        </div>
     </div>
+    <div id="2" class="tabcontent" style="display: none">
+        <div class="profile-stats">
+            <h2>Le(s) plot(s) du joueur :</h2>
+            <div class="row">
+                {% for plot in joueur.plots %}
+                    <div class="four columns">
+                        <div class="game-title"><h4>Plot n°{{ plot.id }} <a href="https://dmap-freebuild.badblock.fr/?worldname={{ plot.world }}&mapname=flat&zoom=4&x={{  plot.x }}&y=64&z={{ plot.z }}" title="Classement du SpaceBalls"><span class="badge badge-primary">Voir</span></a></h4></div>
+                        <table class="u-full-width">
+                            <tbody>
+                            <tr>
+                                <td>Coordonnées</td>
+                                <td> {{ plot.x }}/64/{{ plot.z }}</td>
+                            </tr>
+                            <tr>
+                                <td>Le(s) membre(s)</td>
+                                <td>
+                                    {% if plot.trust == false %}
+                                        Aucun membre
+                                    {% else %}
+                                        {% for player in plot.trust %}
+                                            {{ player }}
+                                        {% endfor %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="3" class="tabcontent" style="display: none">
+        <h2>Soon...</h2>
+    </div>
+
 {% endblock %}
