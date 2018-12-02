@@ -336,7 +336,7 @@ class UserController extends Controller
             }
 
             $this->redis->setJson('profile:'.$args["pseudo"], $user);
-            $this->redis->expire('profile:'.$args["pseudo"], 1);
+            $this->redis->expire('profile:'.$args["pseudo"], 200);
 
             //return view
             return $this->render($response, 'user.profile', ['joueur' => $user]);
