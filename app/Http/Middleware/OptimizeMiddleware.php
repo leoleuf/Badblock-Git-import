@@ -70,13 +70,13 @@ class OptimizeMiddleware
                  ];
 
                  $c = $this->sanitize_output($response->getContent());
-
-               /* if (!$request->is('api/*') && !$request->is('partenaires/*')) {
+/*
+                if (!$request->is('api/*') && !$request->is('partenaires/*')) {
                     $c = $response->getContent()."<a href=\"http://www.megavisites.com/\" title=\"Doubler les visites de son site internet\" target=\"_blank\">MegaVisites</a>";
                     $response->setContent($c);
-                }*/
-
-                 //response->setContent(preg_replace(array_keys($replace), array_values($replace), $c));
+                }
+*/
+                $response->setContent(preg_replace(array_keys($replace), array_values($replace), $c));
         }
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
