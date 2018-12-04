@@ -203,44 +203,33 @@
                             </div>
                         </div>
                         <div class="single-slidebar">
-                            <h3>Autres classements par catégorie</h3>
-                            <br />
-                            <ul class="cat-list">
-                                @foreach($tags as $k => $v)
-                                    @if ($v > 0)
-                                        <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="pubpost active-relatedjob-carusel single-rated">
-                                    <ins class="adsbygoogle"
-                                         id="pbblock"
-                                         data-ad-format="autorelaxed"
-                                         data-ad-client="ca-pub-1905923613312160"
-                                         data-ad-slot="4273456239"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
-                        </div>
-                        <div class="single-slidebar">
-                            <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
-
-                            Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
-                            <div id="partenaire-list">
-                                <a title="Partenaire Clawnity" href="/partenaires/clawnity"><img alt="Partenaire Clawnity de Serveur MultiGames" src="/img/partenaires/minecraft-clawnity.png" /></a>
-                                @if (isset($lnk) && !empty($lnk))
-                                    {{ $lnk }}
-                                @endif
-                            </div>
-                        </div>
-                        <div class="single-slidebar">
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
                                     Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
                                     Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.
                             </div>
                         </div>
+                            <div class="single-slidebar">
+                                <h3>Autres classements par catégorie</h3>
+                                <br />
+                                <ul class="cat-list">
+                                    @foreach($tags as $k => $v)
+                                        @if ($v > 0)
+                                            <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="pubpost active-relatedjob-carusel single-rated">
+                                <ins class="adsbygoogle"
+                                     id="pbblock"
+                                     data-ad-format="autorelaxed"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="4273456239"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
                         <div class="single-slidebar">
                             <strong>Pourquoi voulons-nous faire vivre la communauté des jeux ?</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
@@ -287,6 +276,16 @@
                                     développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
                                     la mise en place et l'hébergement de son serveur privé peut être fatalement
                                     contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
+                            </div>
+                        </div>
+                        <div class="single-slidebar">
+                            <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
+                            Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
+                            <div id="partenaire-list">
+                                <a title="Partenaire Clawnity" href="/partenaires/clawnity"><img alt="Partenaire Clawnity de Serveur MultiGames" src="/img/partenaires/minecraft-clawnity.png" /></a>
+                                @if (isset($lnk) && !empty($lnk))
+                                    {{ $lnk }}
+                                @endif
                             </div>
                         </div>
                         <!--
