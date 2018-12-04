@@ -296,16 +296,20 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="single-slidebar">
-                            <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
-                            Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
-                            <div id="partenaire-list">
-                                <a title="Partenaire Clawnity" href="/partenaires/clawnity"><img alt="Partenaire Clawnity de Serveur MultiGames" src="/img/partenaires/minecraft-clawnity.png" /></a>
-                                @if (isset($lnk) && !empty($lnk))
-                                    {{ $lnk }}
-                                @endif
+                            <div class="single-slidebar">
+                                <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
+                                Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
+                                <div id="partenaire-list">
+                                    <a title="Partenaire Clawnity" href="/partenaires/clawnity"><img alt="Partenaire Clawnity de Serveur MultiGames" src="/img/partenaires/minecraft-clawnity.png" /></a>
+                                    @if (isset($lnk) && !empty($lnk))
+                                        {{ $lnk }}
+                                    @endif
+                                </div>
                             </div>
-                        </div>
+                            <div class="single-slidebar">
+                                <strong>Serveur gratuit sur notre classement</strong><br /><br />
+                                L'objectif du classement proposé ici est de lister le maximum de serveurs gratuits pour que les joueurs n'aient pas besoin de payer pour venir sur la majorité des serveurs, afin d'avoir une expérience fluide et sans compromis. En cas de problème ou de suggestion, il est possible de passer par le formulaire de contact du site pour contacter l'équipe du site en quelques clics seulement.
+                            </div>
                         <!--
                                         <div class="single-slidebar">
                                             <h4>Publicité</h4>
