@@ -168,7 +168,8 @@
                                                     </a>
                                                 </noscript>
                                                 <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary col-12" style="height: 50px;">
-                                                    Chargement en cours du système de vote...
+                                                    Chargement en cours<br />
+                                                    du système de vote...
                                                 </a>
                                             </div>
                                             @if (session()->has('mobile'))
