@@ -248,7 +248,12 @@ class HomeController extends Controller
 
         if ($id < ($nb +1)){
             $data = json_decode(Redis::get('page:'.$catName.':data:'.$id));
+
             $tagsInfo = json_decode(Redis::get('tags:'.$catName));
+            $tagsInfo = (array) $tagsInfo;
+            arsort($tagsInfo);
+
+            $tagsInfo = array_slice($tagsInfo, 0, 5);
 
             $about = json_decode(Redis::get('about'));
             return view('front.category', ['about' => $about, 'tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'current_page' => $id ,'page_number' => $nb]);
@@ -297,7 +302,12 @@ class HomeController extends Controller
 
         $nb = Redis::get('page:number');
         $about = json_decode(Redis::get('about'));
+
         $tagsInfo = json_decode(Redis::get('tags:'.$catName));
+        $tagsInfo = (array) $tagsInfo;
+        arsort($tagsInfo);
+
+        $tagsInfo = array_slice($tagsInfo, 0, 5);
 
         // show good tag name
         if ($shownTag != null)
