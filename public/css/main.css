@@ -2769,7 +2769,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #ajout-serveur {
-  background-color: #f44a40; border-radius: 5px; padding: 4px;
+  background-color: #f44a40; border-radius: 5px;
+}
+
+#serveur-plus
+{
+  padding: 4px;
 }
 
 .serveur-ad {
