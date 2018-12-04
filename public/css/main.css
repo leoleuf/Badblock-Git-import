@@ -2455,6 +2455,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #49e4fa;
 }
 
+.ajout-serveur{padding:4px;}
+
 @media (max-width: 991.98px) {
   .banner-content h1 {
     font-size: 36px;
