@@ -188,9 +188,10 @@
                                 <div class="active-relatedjob-carusel single-rated">
                                         <p class="inftop">
                                             Minecraft est un jeu bac à sable populaire, notamment pour son attractivité et le monde libre qu'il propose, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations (comme un serveur Minecraft)
+                                           <br />
                                             <a class="ticker-btn" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/dashboard/add-server"><span class="lnr lnr-plus-circle"></span> &nbsp;Ajouter mon serveur Minecraft</a>
-                                    </p>
-                                </div>
+                                </p>
+                            </div>
                             </div>
                         @endif
                         <div class="single-slidebar">
