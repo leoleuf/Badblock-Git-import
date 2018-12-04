@@ -98,7 +98,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                     <li class="menu-active"><a title="Serveur MultiGames" href="/"><span class="lnr lnr-home"></span> &nbsp;Accueil</a>
                     <li>
                         <form method="post" action="https://serveur-multigames.net/recherche" class="recherche">
-                            <input type="text" name="serveur" placeholder="&nbsp;&nbsp&nbsp&nbsp;Rechercher..." required class="single-input" id="barre-recherche">&nbsp;<div class="genric-btn success circle arrow" id="bouton-recherche"><span class="lnr lnr-magnifier" id="nomargin"></span></div>
+                            <input type="text" name="serveur" placeholder="&nbsp;&nbsp&nbsp&nbsp;Rechercher..." required class="single-input" id="barre-recherche"><div class="genric-btn success circle arrow" id="bouton-recherche"><span class="lnr lnr-magnifier" id="nomargin"></span></div>
                             {{ csrf_field() }}
                         </form>
                     </li>
@@ -106,7 +106,8 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                         <li><a class="ticker-btn" title="Tableau de Bord" href="/dashboard">Tableau de Bord</a></li>
                         <li><a class="ticker-btn" title="Se déconnecter" href="/logout/{{ csrf_token() }}">Déconnexion</a></li>
                     @else
-                        <li><a class="ticker-btn" id="ajout-serveur" title="Ajouter son serveur MultiGames" href="/login"><span class="lnr lnr-plus-circle"></span> &nbsp;Ajouter mon serveur</a></li>
+                        <li><a class="ticker-btn" title="Se connecter" href="/login">Connexion</a></li>
+                        <li><a class="ticker-btn" title="S'inscrire" href="/register">Inscription</a></li>
                     @endif
                 </ul>
             </nav><!-- #nav-menu-container -->
