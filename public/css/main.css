@@ -2455,8 +2455,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   color: #49e4fa;
 }
 
-.ajout-serveur{padding:4px;}
-
 @media (max-width: 991.98px) {
   .banner-content h1 {
     font-size: 36px;
@@ -2771,7 +2769,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #ajout-serveur {
-  background-color: #f44a40; border-radius: 5px;
+  background-color: #f44a40; border-radius: 5px; padding: 4px;
 }
 
 .serveur-ad {
