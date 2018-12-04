@@ -206,9 +206,50 @@
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
                                     Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
-                                    Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.
+                                    Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.<br /><br />L'ajout d'un serveur sur nos plateformes est un processus très simple. Il y est possible de faire certifier son serveur en validant sa propriété facilement à l'aide d'un lien
+                                    pour respecter au maximum les règles de notre classement, notamment le fait de n'ajouter que son serveur de jeu et éviter d'ajouter ceux qui n'appartiennent pas aux personnes qui ajoutent le serveur en question, pour des questions de sécurité, de droits sur le contenu textuel, le logo et la bannière. En quelques clics, l'ajout peut se faire et votre visibilité peut se multiplier par dix en seulement quelques minutes !<br /><br />La présence de Serveur MultiGames sur les sites et les moteurs permet ainsi de donner de la visibilité à tous ces créateurs qui le méritent par le biais de vote. Notre classement se démarque par le bouton "Jouer" qui permet aux joueurs de découvrir un serveur en seulement quelques clics, sans avoir à payer quoi que ce soit.
                             </div>
                         </div>
+                            <div class="single-slidebar">
+                                <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
+                                <div class="active-relatedjob-carusel single-rated">
+                                    Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
+                                    Avec de la créativité, une motivation hors du commun et une passion pour le jeu,
+                                    il est possible d'en faire un. Après avoir trouvé un concept attirant envers les
+                                    joueurs, il est nécessaire de commencer dans l'ordre des choses. Les connaissances
+                                    en hébergement et en stabilité du réseau, des outils nécessaires à la conception sont
+                                    utiles pour bien se lancer. Après avoir trouvé l'hébergeur qui convient et avoir mis
+                                    en place son serveur, les réseaux sociaux sont très importants à développer pour l'image
+                                    du projet, cela devient de plus en plus obligatoire de communiquer à travers les nouveaux
+                                    médias sociaux pour populariser son serveur de jeu.<br /><br />
+                                    Une fois que votre serveur est approuvé par plusieurs personnes et après avoir eu un
+                                    point de vue sur l'ensemble, le lancement du serveur peut être fait si les conditions
+                                    de stabilité de la plateforme et du contenu suffisant sont remplies. Ainsi, la dernière
+                                    étape consiste à se positionner dans les classements des serveurs comme Serveur MultiGames
+                                    pour attirer une visibilité, se faire un nom et avoir de nouveaux joueurs.<br /><br />
+                                    Un conseil très important à appliquer est la structuration et le temps consacré au
+                                    développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
+                                    la mise en place et l'hébergement de son serveur privé peut être fatalement
+                                    contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
+                                </div>
+                            </div>
+                            <div class="single-slidebar">
+                                <h3>Autres classements par catégorie</h3>
+                                <br />
+                                <ul class="cat-list">
+                                    @foreach($tags as $k => $v)
+                                        @if ($v > 0)
+                                            <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="single-slidebar">
+                                <h3>Facilitez votre sélection de serveur</h3><br /><br />
+                                <div class="active-relatedjob-carusel single-rated">
+                                    La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
+                                </div>
+                            </div>
                             <div class="single-slidebar">
                                 <h3>Autres classements par catégorie</h3>
                                 <br />
@@ -255,29 +296,6 @@
                                 </div>
                             </div>
                         @endif
-                        <div class="single-slidebar">
-                            <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
-                            <div class="active-relatedjob-carusel single-rated">
-                                    Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
-                                    Avec de la créativité, une motivation hors du commun et une passion pour le jeu,
-                                    il est possible d'en faire un. Après avoir trouvé un concept attirant envers les
-                                    joueurs, il est nécessaire de commencer dans l'ordre des choses. Les connaissances
-                                    en hébergement et en stabilité du réseau, des outils nécessaires à la conception sont
-                                    utiles pour bien se lancer. Après avoir trouvé l'hébergeur qui convient et avoir mis
-                                    en place son serveur, les réseaux sociaux sont très importants à développer pour l'image
-                                    du projet, cela devient de plus en plus obligatoire de communiquer à travers les nouveaux
-                                    médias sociaux pour populariser son serveur de jeu.<br /><br />
-                                    Une fois que votre serveur est approuvé par plusieurs personnes et après avoir eu un
-                                    point de vue sur l'ensemble, le lancement du serveur peut être fait si les conditions
-                                    de stabilité de la plateforme et du contenu suffisant sont remplies. Ainsi, la dernière
-                                    étape consiste à se positionner dans les classements des serveurs comme Serveur MultiGames
-                                    pour attirer une visibilité, se faire un nom et avoir de nouveaux joueurs.<br /><br />
-                                    Un conseil très important à appliquer est la structuration et le temps consacré au
-                                    développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
-                                    la mise en place et l'hébergement de son serveur privé peut être fatalement
-                                    contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
-                            </div>
-                        </div>
                         <div class="single-slidebar">
                             <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
                             Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
