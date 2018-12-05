@@ -45,14 +45,20 @@ class VoteController extends Controller
         $data = array_slice($data, 0, 30);
 
         foreach ($data as $k => $row){
-            if ($k < 3){
-                $data[$k]['pb'] = 4875;
-            }elseif ($k < 10){
-                $data[$k]['pb'] = 2625;
-            }elseif ($k < 20){
+            if ($k == 0){
+                $data[$k]['pb'] = 3000;
+            }elseif ($k == 1){
+                $data[$k]['pb'] = 2250;
+            }elseif ($k == 2){
+                $data[$k]['pb'] = 2000;
+            }elseif ($k < 6){
                 $data[$k]['pb'] = 1500;
-            }else{
+            }elseif ($k < 10){
                 $data[$k]['pb'] = 750;
+            }elseif ($k < 20){
+                $data[$k]['pb'] = 625;
+            }else{
+                $data[$k]['pb'] = 250;
             }
         }
 
@@ -125,14 +131,20 @@ class VoteController extends Controller
         $data = array_slice($data, 0, 30);
 
         foreach ($data as $k => $row){
-            if ($k < 3){
-                $data[$k]['pb'] = 4875;
-            }elseif ($k < 10){
-                $data[$k]['pb'] = 2625;
-            }elseif ($k < 20){
+            if ($k == 0){
+                $data[$k]['pb'] = 3000;
+            }elseif ($k == 1){
+                $data[$k]['pb'] = 2250;
+            }elseif ($k == 2){
+                $data[$k]['pb'] = 2000;
+            }elseif ($k < 6){
                 $data[$k]['pb'] = 1500;
-            }else{
+            }elseif ($k < 10){
                 $data[$k]['pb'] = 750;
+            }elseif ($k < 20){
+                $data[$k]['pb'] = 625;
+            }else{
+                $data[$k]['pb'] = 250;
             }
         }
 
