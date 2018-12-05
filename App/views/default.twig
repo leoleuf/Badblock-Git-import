@@ -162,6 +162,11 @@
             <i class="home-colored-icon colored-icon"></i>
             {{ 'home'|trans }}
         </a>
+        <a href="{{ path_for('stats.home') }}"
+           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
+            <i class="stats-colored-icon colored-icon"></i>
+            {{ 'stats.title'|trans }}
+        </a>
         {% if eula == true %}
             <a href="/shop"
                class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique du serveur Minecraft BadBlock">
@@ -169,11 +174,6 @@
                 Boutique
             </a>
         {% endif %}
-        <a href="{{ path_for('stats.home') }}"
-           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
-            <i class="stats-colored-icon colored-icon"></i>
-            {{ 'stats.title'|trans }}
-        </a>
         <a href="/jouer"
            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
             <i class="game-colored-icon colored-icon"></i>

@@ -25,11 +25,9 @@ $app->get('/accueil/', function($request, $response)
 });
 
 $app->get('/bbnews', \App\Controllers\PagesController::class . ':bbnews');
-
 $app->get('/bbnew/{uuid}', \App\Controllers\RedirectController::class . ':link');
 
 
-$app->get('/don', \App\Controllers\PagesController::class . ':getDon')->setName('don');
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
 
 $app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
@@ -98,19 +96,21 @@ $app->group('/vote', function (){
     $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
 });
 
-$app->group('/decouvrez', function (){
-    $this->get('', \App\Controllers\DiscoverController::class . ':getHome')->setName('discover.home');
-    $this->get('/', \App\Controllers\DiscoverController::class . ':getHome')->setName('discover.home2');
+$app->group('/jeux', function (){
+
+    $this->get('/', function($request, $response)
+    {
+        return $response->withRedirect('/stats', 301);
+    });
+
+    $this->get('', function($request, $response)
+    {
+        return $response->withRedirect('/stats', 301);
+    });
+
     $this->get('/skyblock', \App\Controllers\DiscoverController::class . ':skyblock')->setName('discover.skyblock');
-    $this->get('/tower', \App\Controllers\DiscoverController::class . ':tower')->setName('discover.tower');
     $this->get('/freebuild', \App\Controllers\DiscoverController::class . ':freebuild')->setName('discover.freebuild');
-    $this->get('/spaceballs', \App\Controllers\DiscoverController::class . ':spaceballs')->setName('discover.spaceballs');
-    $this->get('/uhcspeed', \App\Controllers\DiscoverController::class . ':uhcspeed')->setName('discover.uhcspeed');
-    $this->get('/pvpbox', \App\Controllers\DiscoverController::class . ':pvpbox')->setName('discover.pvpbox');
-    $this->get('/bedwars', \App\Controllers\DiscoverController::class . ':bedwars')->setName('discover.bedwars');
-    $this->get('/rush', \App\Controllers\DiscoverController::class . ':rush')->setName('discover.rush');
-    $this->get('/faction', \App\Controllers\DiscoverController::class . ':faction')->setName('discover.faction');
-    $this->get('/towerrun', \App\Controllers\DiscoverController::class . ':towerrun')->setName('discover.towerrun');
+
 });
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('play');

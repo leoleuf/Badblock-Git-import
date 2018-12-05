@@ -51,10 +51,7 @@ class PagesController extends Controller
         $this->render($response, 'pages.play-mac');
     }
 
-	public function getTest(ServerRequestInterface $request, ResponseInterface $response)
-	{
-		$this->render($response, 'pages.play');
-	}
+
 
 
     public function shuffle_assoc($array) {
@@ -101,11 +98,6 @@ class PagesController extends Controller
         return $this->render($response, 'pages.info');
     }
 
-
-    public function getDon(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        return $this->render($response, 'pages.don');
-    }
 	
 	public function bbnews(ServerRequestInterface $request, ResponseInterface $response)
     {
