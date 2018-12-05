@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('header')
+    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -64,9 +68,10 @@
                         <div class="card-box">
                             <div class="container">
                                 <div class="row">
-                                    <button type="button" class="btn btn-danger btn-lg">Reset Password</button>
-                                    <button type="button" class="btn btn-warning btn-lg">Reset TFA</button>
-                                    <button type="button" class="btn btn-info btn-lg">Offline Mode</button>
+                                    <button type="button" class="btn btn-danger btn-lg" onclick="resetPassword()">Reset Password</button>
+                                    <button type="button" class="btn btn-warning btn-lg" onclick="resetTfa()">Reset TFA</button>
+                                    <button type="button" class="btn btn-info btn-lg" onclick="resetOm()" >Offline Mode</button>
+                                    <button type="button" class="btn btn-sucess btn-lg" onclick="resetOl()" >Online Mode</button>
                                 </div>
                             </div>
                         </div>
@@ -91,68 +96,58 @@
 
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a href="#x" data-toggle="tab" aria-expanded="false" class="nav-link active show">
+                                            <a href="#1" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Skin
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#1" data-toggle="tab" aria-expanded="false" class="nav-link active show">
-                                                Statistiques
+                                            <a href="#2" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                Information G.
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#2" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                            <a href="#3" data-toggle="tab" aria-expanded="true" class="nav-link">
                                                 Casier
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#3" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                            <a href="#4" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Logs Guardian
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#4" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                            <a href="#5" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Achats
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#5" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                            <a href="#6" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Paiements
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#6" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                            <a href="#7" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Groupes & Permissions
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#7" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                            <a href="#8" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Authentification
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#9" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                Logs
                                             </a>
                                         </li>
                                     </ul>
 
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade active show" id="x">
+                                        <div role="tabpanel" class="tab-pane fade" id="1">
                                             <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
                                         </div>
-                                        <div role="tabpanel" class="tab-pane fade active show" id="1">
+                                        <div role="tabpanel" class="tab-pane fade" id="2">
                                             <div class="container">
-                                                <ul>
-                                                    <li>
-                                                        Niveau : {{ $Player['game']['level'] }}
-                                                    </li>
-                                                    <li>
-                                                        Xp : {{ $Player['game']['xp'] }}
-                                                    </li>
-                                                    <li>
-                                                        Badcoins : {{ $Player['game']['badcoins'] }}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="6">
-                                                <h3>Informations générales :</h3>
                                                 <ul>
                                                     <li>
                                                         Nom : {{ $Player['name'] }}
@@ -182,34 +177,50 @@
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                        </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="7">
-                                            <h3>Options générales</h3>
-                                            <div class="container">
-                                                <form action="#" method="POST">
-                                                    {{ csrf_field() }}
-                                                    <div class="row">
-                                                        <h5>Changer le mot de passe :</h5>
-                                                        <input type="password" name="password" class="form-control" placeholder="******">
-                                                        <h5>Mode premium :</h5>
-                                                        <select name="onlinemode" class="custom-select mt-3">
-                                                            <option selected="">Selectionné le mode</option>
-                                                            <option value="true">Mode premium</option>
-                                                            <option value="false">Mode cracké</option>
-                                                        </select>
-                                                        <h5>Double authentification : (Vider pour supprimer)</h5>
-                                                        @if(isset($Player['authKey']))
-                                                            <input type="text" name="authKey" class="form-control" placeholder="******" value="{{ $Player['authKey'] }}">
-                                                        @else
-                                                            <input type="text" name="authKey" class="form-control" placeholder="******" value="">
-                                                        @endif
-                                                        <br>
-                                                        <div class="col-auto center-block">
-                                                            <center><button type="submit" class="btn btn-primary mb-2">Valider</button></center>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                <ul>
+                                                    <li>
+                                                        Niveau : {{ $Player['game']['level'] }}
+                                                    </li>
+                                                    <li>
+                                                        Xp : {{ $Player['game']['xp'] }}
+                                                    </li>
+                                                    <li>
+                                                        Badcoins : {{ $Player['game']['badcoins'] }}
+                                                    </li>
+                                                </ul>
                                             </div>
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="7">
+
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="9">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Utilisateur</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($Logs as $Log)
+                                                    <tr
+                                                    @if($Log['action'] == "Actived online mode")
+                                                    class="bg-success text-white"
+                                                    @elseif($Log['action'] == "Actived offline mode")
+                                                    class="bg-warning text-white"
+                                                    @else
+                                                    class="bg-danger text-white"
+                                                    @endif
+                                                    >
+                                                        <td>{{ $Log['date'] }}</td>
+                                                        <td>{{ $Log['user'] }}</td>
+                                                        <td>{{ $Log['action'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div><!-- end col -->
@@ -220,4 +231,83 @@
             </div>
         </div>
     </div>
+@endsection
+@section('after_scripts')
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
+
+    <script>
+        
+        function resetPassword() {
+            $.ajax({
+                type: "POST",
+                url: "/profile-api/{{ $Player['uniqueId'] }}/resetpassword",
+                success:function(data)
+                {
+                    toastr.success('Succès !', "Le mot de passe à bien était reset !");
+                    console.log('Valider !');
+                },
+                error:function(data)
+                {
+                    toastr.error('Erreur !', 'Un problème s\'est produit ou vos permissions sont insuffisantes !');
+                    console.log('Erreur !');
+                }
+            });
+        }
+        
+        function resetTfa() {
+            $.ajax({
+                type: "POST",
+                url: "/profile-api/{{ $Player['uniqueId'] }}/resettfa",
+                success:function(data)
+                {
+                    toastr.success('Succès !', "La TFA est bien désactivée !");
+                    console.log('Valider !');
+                },
+                error:function(data)
+                {
+                    toastr.error('Erreur !', 'Un problème s\'est produit ou vos permissions sont insuffisantes !');
+                    console.log('Erreur !');
+                }
+            });
+        }
+        
+        function resetOm() {
+            $.ajax({
+                type: "POST",
+                url: "/profile-api/{{ $Player['uniqueId'] }}/resetom",
+                success:function(data)
+                {
+                    toastr.success('Succès !', "L'offline mode est activé !");
+                    console.log('Valider !');
+                },
+                error:function(data)
+                {
+                    toastr.error('Erreur !', 'Un problème s\'est produit ou vos permissions sont insuffisantes !');
+                    console.log('Erreur !');
+                }
+            });
+        }
+
+        function resetOl() {
+            $.ajax({
+                type: "POST",
+                url: "/profile-api/{{ $Player['uniqueId'] }}/resetol",
+                success:function(data)
+                {
+                    toastr.success('Succès !', "L'online est activé !");
+                    console.log('Valider !');
+                },
+                error:function(data)
+                {
+                    toastr.error('Erreur !', 'Un problème s\'est produit ou vos permissions sont insuffisantes !');
+                    console.log('Erreur !');
+                }
+            });
+        }
+
+        
+        
+    </script>
+    
+
 @endsection

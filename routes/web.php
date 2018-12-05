@@ -80,7 +80,17 @@ Route::group([
 
     Route::get('/players', 'profile\IndexController@index');
     Route::get('/profile/{uuid}', 'profile\IndexController@profile');
-    Route::post('/profile/{uuid}', 'profile\IndexController@save');
+
+    Route::group([
+        'prefix'     => "profile-api"
+    ], function () {
+        Route::post('/{uuid}/resetpassword', 'profile\ActionController@resetPassword')->middleware("can:profile_password");
+        Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:profile_tfa");
+        Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:profile_om");
+        Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:profile_om");
+
+    });
+
 
     Route::post('/api/stats/search', 'profile\IndexController@search');
     Route::post('/api/stats/searchip', 'profile\IndexController@searchip');
