@@ -1,4 +1,4 @@
-@section('title', $data->name.' - Informations sur ce Serveur '.seocat($catName).' | Serveur-MultiGames.net')
+@section('title', $data->name.' | Serveur '.seocat($catName).' A Découvrir - Serveur MultiGames')
 @section('description', 'Découvrez le serveur '.seocat($catName).' '.$data->name.' gratuit français. Déjà plus de '.$data->votes.' votes pour ce serveur '.seocat($catName).' et '.$data->clicks.' visites pour ce serveur ce mois-ci. Laissez un avis pour ce serveur MultiGames.')
 @section('logometa', 'https://serveur-multigames.net/storage/icone/icon'.$data->id.'.jpg')
 @section('jquery', '')
