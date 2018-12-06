@@ -333,8 +333,8 @@
                                 <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
                                 Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
                                 <div id="partenaire-list">
-                                    <a title="Partenaire Clawnity" href="/partenaires/clawnity"><img alt="Partenaire Clawnity de Serveur MultiGames" src="/img/partenaires/minecraft-clawnity.png" /></a>
-                                    @if (isset($lnk) && !empty($lnk))
+                                    Envie de devenir Partenaire ? Que vous soyez un site de communauté de jeux-vidéos ou dans des catégories plus larges qui pourraient intéresser nos utilisateurs, contactez-nous directement.
+                                     @if (isset($lnk) && !empty($lnk))
                                         {{ $lnk }}
                                     @endif
                                 </div>
