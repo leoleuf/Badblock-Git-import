@@ -136,7 +136,7 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                            @endif
+                            @else
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                 <!--@if (isset($row->ad))
