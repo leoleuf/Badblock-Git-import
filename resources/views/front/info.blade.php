@@ -117,7 +117,7 @@
                             @if (isset($data->description) && $data->description != $data->short_desc)
                             <div class="single-post d-flex flex-row">
                                 <div class="details">
-                                    <h5 class="text-uppercase">Description complète</h5><br />
+                                    <h3 class="text-uppercase">Informations sur le serveur {{ $data->name }}</h3><br />
                                     {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->description, 0, 5000, "...")) !!}
                                 </div>
                             </div>
