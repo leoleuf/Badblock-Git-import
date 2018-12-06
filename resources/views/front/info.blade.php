@@ -105,16 +105,33 @@
                                         </ul>
                                     </div>
                                     <p style="margin-left: 10px; padding: 3px;">
-                                        {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->description, 0, 5000, "...")) !!}<br /><br />
+                                        {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->short_desc, 0, 5000, "...")) !!}<br /><br />
                                     <ul class="tags">
-                                        <span class="lnr lnr lnr-tag"></span> &nbsp;
+                                        Type de serveur <span class="lnr lnr lnr-tag"></span> &nbsp;
                                         @foreach(json_decode($data->tag) as $key)<a id="tag-{{ $key }}" title="Serveur {{ seocat($catName) }} {{ $key }}" href="/{{ $catName }}/tag/{{ enctag($key) }}">{{ ucfirst($key) }}</a>&nbsp;@endforeach
                                     </ul>
                                     @if (strlen(trim(strtolower($data->ip))) > 0)<div class="hidden-ip" id="ip-{{ encname($data->name) }}">{{ trim(strtolower($data->ip)) }}</div>@endif
                                     </p>
                                 </div>
                             </div>
-
+                            @if (isset($data->description) && $data->description != $data->short_desc)
+                            <div class="single-post d-flex flex-row">
+                                <div class="details">
+                                    <h5 class="text-uppercase">Description complète</h5><br />
+                                    {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->description, 0, 5000, "...")) !!}
+                                </div>
+                            </div>
+                            @endif
+                            <div class="single-post d-flex flex-row">
+                                <div class="details">
+                                    <h5 class="text-uppercase">Statistiques</h5><br />
+                                    @if (!$data->verified)
+                                        <span style="color: red">La propriété doit être validée depuis le tableau de bord du propriétaire du serveur afin que la fonctionnalité des statistiques du serveur puisse fonctionner.</span>
+                                    @else
+                                        <div id="container"></div>
+                                    @endif
+                                </div>
+                            </div>
                     @if (strlen(trim(strtolower($data->ip))) > 0 and strlen(trim(strtolower($playerstats))) > 0)
                         <div class="single-post d-flex flex-row">
                             <div class="details">
