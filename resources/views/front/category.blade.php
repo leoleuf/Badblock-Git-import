@@ -138,11 +138,11 @@
                                      data-full-width-responsive="true"></ins>
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+                                </script><br />
                                 <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase">Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
                                     <div class="row">
-                                        <div class="col-md-4 single-defination">
+                                        <div class="col-md-12 single-defination">
                                             Vous pouvez télécharger votre serveur privé Clash Of Clans favori par le Play Store, Apple Store ou toutes les plateformes légales et légitimes sans plus hésiter. Il est possible de promouvoir votre serveur Clash Of Clans directement sur cette page.
                                         </div>
                                     </div>
