@@ -100,7 +100,7 @@
         }
 
         function bat(dns) {
-            window.location = 'file.doc';
+            window.location = '/infra/vrack-bat/' + dns;
         }
     </script>
 
