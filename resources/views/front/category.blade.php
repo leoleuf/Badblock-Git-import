@@ -139,6 +139,14 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
+                                <div class="single-post details" id="liste-information">
+                                    <h3 class="text-uppercase">Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
+                                    <div class="row">
+                                        <div class="col-md-4 single-defination">
+                                            Vous pouvez télécharger votre serveur privé Clash Of Clans favori par le Play Store, Apple Store ou toutes les plateformes légales et légitimes sans plus hésiter. Il est possible de promouvoir votre serveur Clash Of Clans directement sur cette page.
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
