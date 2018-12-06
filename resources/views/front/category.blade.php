@@ -126,6 +126,8 @@
                                 </p>
                             </div>
                         @endif
+                        @if (isset($catName) && $catName == "clash-of-clans")
+                            @else
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                 <!--@if (isset($row->ad))
@@ -158,6 +160,7 @@
                                     </div>
                             </div>
                         @endforeach
+                            @endif
                         @for($i = 1;$page_number +1 > $i;$i++)
                             @if($i == $current_page)
                                 <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn success">{{ $i }}</a>&nbsp;
