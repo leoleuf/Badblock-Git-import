@@ -283,17 +283,6 @@
                                     La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
                                 </div>
                             </div>
-                            <div class="single-slidebar">
-                                <h3>Autres classements par catégorie</h3>
-                                <br />
-                                <ul class="cat-list">
-                                    @foreach($tags as $k => $v)
-                                        @if ($v > 0)
-                                            <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
-                            </div>
                             <div class="pubpost active-relatedjob-carusel single-rated">
                                 <ins class="adsbygoogle"
                                      id="pbblock"
