@@ -267,10 +267,10 @@
                         </div>
                     </div>
                     <div class="single-slidebar">
-                        <h4>Serveur MultiGames</h4>
+                        <h4>A propos de ce Serveur MultiGames</h4>
                         <div class="active-relatedjob-carusel">
                             <div class="single-rated">
-                                Serveur MultiGames classe les meilleurs serveurs {{ seocat($catName) }} francophones, le serveur {{ seocat($catName) }} y est inscrit. Découvrez un large choix de serveurs ajoutés par les créateurs. Postez également votre expérience sur ce serveur, ({{ $data->reviews }} avis sont actuellemet publiés. Si {{ $data->name  }} est votre serveur et que vous ne l'avez pas ajouté, veuillez nous en informer.
+                                Serveur MultiGames classe les meilleurs serveurs {{ seocat($catName) }} francophones, le serveur {{ seocat($catName) }} y est inscrit. Découvrez un large choix de serveurs ajoutés par les créateurs. Postez également votre expérience sur ce serveur, {{ $data->reviews }} avis sont actuellemet publiés. Si {{ $data->name  }} est votre serveur et que vous ne l'avez pas ajouté, veuillez nous en informer.
                             </div>
                         </div>
                     </div>
