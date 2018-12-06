@@ -127,7 +127,16 @@
                             </div>
                         @endif
                         @if (isset($catName) && $catName == "clash-of-clans")
-                            @else
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="autorelaxed"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="4273456239"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            @endif
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                 <!--@if (isset($row->ad))
@@ -160,7 +169,6 @@
                                     </div>
                             </div>
                         @endforeach
-                            @endif
                         @for($i = 1;$page_number +1 > $i;$i++)
                             @if($i == $current_page)
                                 <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn success">{{ $i }}</a>&nbsp;
@@ -168,6 +176,7 @@
                                 <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn primary">{{ $i }}</a>&nbsp;
                             @endif
                         @endfor
+                            @endif
                             <br />
                             <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase">A propos de la liste de serveur {{ seocat($catName) }}{{ $shownTag }}</h3><br />
