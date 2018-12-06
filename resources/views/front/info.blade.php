@@ -122,16 +122,6 @@
                                 </div>
                             </div>
                             @endif
-                            <div class="single-post d-flex flex-row">
-                                <div class="details">
-                                    <h5 class="text-uppercase">Statistiques</h5><br />
-                                    @if (!$data->verified)
-                                        <span style="color: red">La propriété doit être validée depuis le tableau de bord du propriétaire du serveur afin que la fonctionnalité des statistiques du serveur puisse fonctionner.</span>
-                                    @else
-                                        <div id="container"></div>
-                                    @endif
-                                </div>
-                            </div>
                     @if (strlen(trim(strtolower($data->ip))) > 0 and strlen(trim(strtolower($playerstats))) > 0)
                         <div class="single-post d-flex flex-row">
                             <div class="details">
