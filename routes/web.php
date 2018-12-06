@@ -19,6 +19,7 @@ Route::group([
 ], function () {
     //Website
     Route::post('/upload', 'Api\ScreenController@upload');
+    Route::post('/vrack', 'Infra\VrackController@api');
 });
 
 Route::group([
@@ -152,5 +153,15 @@ Route::group([
         Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
         Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
         Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
+    });
+
+
+    Route::group([
+        'prefix'     => "infra"
+    ], function () {
+        Route::get('/vrack', 'Infra\VrackController@index')->middleware('can:vrack');
+        Route::get('/vrack-update/{dns}', 'Infra\VrackController@update')->middleware('can:vrack');
+        Route::get('/vrack-down/{dns}', 'Infra\VrackController@disable')->middleware('can:vrack');
+        Route::get('/vrack-bat/{dns}', 'Infra\VrackController@bat')->middleware('can:vrack');
     });
 });

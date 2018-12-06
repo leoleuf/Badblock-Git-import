@@ -114,6 +114,14 @@
                             </ul>
                         </li>
                     @endcan
+                    @can('vrack')
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-network-wired"></i> <span>Infrastructure </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled">
+                                <li><a href="/infra/vrack" class="waves-effect"><i class="fa fa-project-diagram"></i><span> DDNS Vrack</span></a></li>
+                            </ul>
+                        </li>
+                    @endcan
                 </ul>
                 <div class="clearfix"></div>
             </div>
