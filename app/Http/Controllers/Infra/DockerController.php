@@ -28,8 +28,10 @@ class DockerController extends Controller
             array_push($Data_cluster, ['name' => $Cluster, 'data' => $Cluster_Data]);
         }
 
+        //dd($Data_cluster);
 
-        return view('Infra.docker');
+
+        return view('Infra.docker')->with('Clusters', $Data_cluster);
 
     }
 
