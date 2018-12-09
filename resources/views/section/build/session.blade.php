@@ -49,6 +49,6 @@
     <script src="/assets/pages/datatables.editable.init.js"></script>
 
 
-    
+
 
 @endsection
