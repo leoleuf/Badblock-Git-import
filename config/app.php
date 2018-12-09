@@ -179,7 +179,7 @@ return [
         Backpack\PermissionManager\PermissionManagerServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Adams\TeamSpeak3\TeamSpeak3ServiceProvider::class,
-
+        Mookofe\Tail\ServiceProvider::class,
 
 
     ],
@@ -230,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Tail' => Mookofe\Tail\Facades\Tail::class,
 
     ],
 

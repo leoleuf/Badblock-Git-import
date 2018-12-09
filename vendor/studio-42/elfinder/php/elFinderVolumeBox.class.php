@@ -1,7 +1,5 @@
 <?php
 
-elFinder::$netDrivers['box'] = 'Box';
-
 /**
  * Simple elFinder driver for BoxDrive
  * Box.com API v2.0.
@@ -820,6 +818,9 @@ class elFinderVolumeBox extends elFinderVolumeDriver
         // 'lsPlSleep' minmum 10 sec
         $this->options['lsPlSleep'] = max(10, $this->options['lsPlSleep']);
 
+        // enable command archive
+        $this->options['useRemoteArchive'] = true;
+
         return true;
     }
 
@@ -836,9 +837,6 @@ class elFinderVolumeBox extends elFinderVolumeDriver
         if (!$this->tmp && $this->tmbPathWritable) {
             $this->tmp = $this->tmbPath;
         }
-
-        $this->disabled[] = 'archive';
-        $this->disabled[] = 'extract';
     }
 
     /*********************************************************************/
@@ -957,6 +955,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
     protected function copy($src, $dst, $name)
     {
         if ($res = $this->_copy($src, $dst, $name)) {
+            $this->added[] = $this->stat($res);
             return $res;
         } else {
             return $this->setError(elFinder::ERROR_COPY, $this->_path($src));

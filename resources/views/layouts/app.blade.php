@@ -15,11 +15,16 @@
 
     @yield('header')
     <br>
-    <div class="wrapper">
-        <div class="container-fluid">
-            @yield('content')
+    @if(Auth::check())
+        <div class="wrapper">
+            <div class="container-fluid">
+                @yield('content')
+            </div>
         </div>
-    </div>
+    @else
+        @yield('content')
+    @endif
+
 
     @if(Auth::check())
         @include('layouts.notif')

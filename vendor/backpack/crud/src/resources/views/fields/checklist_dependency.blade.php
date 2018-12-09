@@ -83,7 +83,7 @@
 
     @foreach ($primary_dependency['model']::all() as $connected_entity_entry)
         <div class="col-sm-{{ isset($primary_dependency['number_columns']) ? intval(12/$primary_dependency['number_columns']) : '4'}}">
-            <div class="checkbox checkbox-primary">
+            <div class="checkbox">
                 <label>
                     <input type="checkbox"
                         data-id = "{{ $connected_entity_entry->id }}"

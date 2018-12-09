@@ -17,7 +17,7 @@ class UserCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel(config('backpack.permissionmanager.user_model'));
-        $this->crud->setEntityNameStrings("Utilisateur", "Utilisateurs");
+        $this->crud->setEntityNameStrings(trans('backpack::permissionmanager.user'), trans('backpack::permissionmanager.users'));
         $this->crud->setRoute(config('backpack.base.route_prefix').'/user');
         $this->crud->enableAjaxTable();
 
@@ -74,10 +74,6 @@ class UserCrudController extends CrudController
                 'type'  => 'password',
             ],
             [
-                'name'  => 'instance_nb',
-                'label' => "Nombre d'instances Maximum",
-                'type'  => 'number',
-            ],[
             // two interconnected entities
             'label'             => trans('backpack::permissionmanager.user_role_permission'),
             'field_unique_name' => 'user_role_permission',
@@ -100,7 +96,7 @@ class UserCrudController extends CrudController
                         'entity'         => 'permissions', // the method that defines the relationship in your Model
                         'entity_primary' => 'roles', // the method that defines the relationship in your Model
                         'attribute'      => 'name', // foreign key attribute that is shown to user
-                        'model'          => "Backpack\PermissionManager\app\Models\Permission", // foreign key model
+                        'model'          => config('laravel-permission.models.permission'), // foreign key model
                         'pivot'          => true, // on create&update, do you need to add/delete pivot table entries?]
                         'number_columns' => 3, //can be 1,2,3,4,6
                     ],

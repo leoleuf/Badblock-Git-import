@@ -11,7 +11,8 @@ namespace App\Http\Controllers\Infra;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
-
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
 
 class DockerController extends Controller
@@ -32,6 +33,20 @@ class DockerController extends Controller
 
 
         return view('Infra.docker')->with('Clusters', $Data_cluster);
+
+    }
+
+    public function send(){
+
+        $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
+        $channel = $connection->channel();
+        $channel->exchange_declare('docker.instance.stop', 'fanout', false, false, false, false);
+
+
+        $msg = new AMQPMessage('Hello World!');
+        $channel->basic_publish($msg, '', 'docker.instance.stop');
+
+        echo " [x] Sent 'Hello World!'\n";
 
     }
 

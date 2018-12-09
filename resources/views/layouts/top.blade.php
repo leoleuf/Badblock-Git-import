@@ -7,8 +7,8 @@
             <div class="logo">
 
                 <a href="/" class="logo">
-                    <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="26" class="logo-small">
-                    <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="26" class="logo-large">
+                    <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="40" class="logo-small">
+                    <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="40" class="logo-large">
                 </a>
             </div>
 

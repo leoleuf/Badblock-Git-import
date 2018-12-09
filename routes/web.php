@@ -170,6 +170,8 @@ Route::group([
 
         Route::get('/docker', 'Infra\DockerController@index')->middleware('can:docker_index');
 
+        Route::get('/docker-send', 'Infra\DockerController@send')->middleware('can:docker_index');
+
         Route::get('/mongodb', 'Infra\MongoDBController@index')->middleware('can:mongodb');
         Route::get('/mongodb-ajax', 'Infra\MongoDBController@mongoStat')->middleware('can:mongodb');
 

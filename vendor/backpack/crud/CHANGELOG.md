@@ -18,8 +18,106 @@ All Notable changes to `Backpack CRUD` will be documented in this file
 
 ### Security
 - Nothing
-
 -----------
+
+## [3.3.17] - 2018-03-21
+
+## Fixed
+- changed Sluggable traits declarations to PHP 7+; merges #1084;
+
+
+## [3.3.16] - 2018-03-21
+
+## Added
+- JSON response if the create/update action is triggered through AJAX; merges #1249;
+- ```view``` filter type and ```view``` column type;
+
+## Fixed
+- Romanian translation;
+- image field did not show proper image if validation failed; merges #1294;
+
+## [3.3.15] - 2018-03-21
+
+## Fixed
+- ```select2_multiple``` filter triggered an error when the entire selection was removed - merges #824;
+- fr translation;
+- zh-hant translation;
+
+
+## [3.3.14] - 2018-03-16
+
+## Added
+- ```select_all``` option to the ```select2_multiple``` field - merged #1206;
+- ```browse_multiple``` field type, thanks to [chancezeus](https://github.com/chancezeus) - merged #1034;
+
+## Fixed
+- ```date_range``` filter methods now have custom names, so that more than one ```date_range``` filter can be included in one CRUD list;
+- Romanian translation;
+- Create/Update form will not show certain buttons, if that operation is disabled - merged #679;
+
+## [3.3.13] - 2018-03-15
+
+## Fixed
+- ```checkbox``` field was using the default value over the DB value on edit; merges #1239;
+- CrudTrait uses ```Config``` facade to get DB_CONNECTION instead of ```env()``` helper;
+- Fake fields can now be casted, as well as 'extras' - merged #1116;
+
+## [3.3.12] - 2018-03-09
+
+## Fixed
+- ```text``` column had a broken ```suffix``` attribute; fixed by merging #1261;
+- not calling trans() in the config file; merges #1270;
+
+## [3.3.11] - 2018-02-23
+
+## Added
+- ```allows_null``` option to ```datetime_picker``` field type;
+- #1099 - added ```$this->crud->setPageLengthMenu();``` API call;
+- added ```config('backpack.crud.page_length_menu')``` config variable;
+- ```summernote``` field ```options``` parameter, for easy customization;
+- probot to automatically invite contributors to the ```Community Members``` team, after their first PR gets merged;
+- ```default``` option to ```select_from_array``` and ```select2_from_array``` field types; merges #1168;
+- ```disk``` option to ```image``` field type;
+
+## Fixed
+- click on a column header now ignores the previous ```orderBy``` rules; fixes #1181; merges #1246;
+- ```date_range``` field bug, whereby it threw a ```Cannot redeclare formatDate()``` exception when two fields of this type were present in one form; merges #1240;
+- ```image``` column type didn't use the prefix for the image link; merges #1174;
+- no broken image on ```image``` field type, when no image is present; merges #444;
+
+## [3.3.10] - 2018-02-21
+
+## Added
+- ```number``` column type, with prefix, suffix and decimals options;
+- prefix, suffix and limit to ```text``` column type;
+- setLabeller($callable) method to change how labels are made; merges #688;
+- support Github probot that automatically closes issues tagged ```Ask-It-On-Stack-Overflow```, writes a nice redirect message and gives them the proper link;
+
+## Fixed
+- #638 and #1207 - using flexbox for equal height rows for prettier inline errors;
+
+
+## [3.3.9] - 2018-02-14
+
+### Added
+- (Github only) probot auto-replies for first issue, first PR and first PR merged;
+
+## Fixed
+- double-click on create form created two entries; fixes #1229;
+
+### Deprecated
+- CrudRequest; Since it does nothing, CrudController now extends Illuminate\Http\Request instead; merged #1129; fixes #1119;
+
+## [3.3.8] - 2018-02-08
+
+## Removed
+- laravelcollective/html dependecy;
+
+
+## [3.3.6] - 2018-01-16
+
+## Fixed
+- base64_image field triggered an error when using the src parameter - merged #1192;
 
 
 ## [3.3.5] - 2018-01-10

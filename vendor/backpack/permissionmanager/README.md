@@ -17,7 +17,7 @@ An admin interface to easily add/edit/remove users, roles and permissions, using
 
 
 > ### Security updates and breaking changes
-> Please **[subscribe to the Backpack Newsletter](http://eepurl.com/bUEGjf)** so you can find out about any security updates, breaking changes or major features. We send an email every 1-2 months.
+> Please **[subscribe to the Backpack Newsletter](http://backpackforlaravel.com/newsletter)** so you can find out about any security updates, breaking changes or major features. We send an email every 1-2 months.
 
 
 ## Install
@@ -35,8 +35,8 @@ Backpack\PermissionManager\PermissionManagerServiceProvider::class,
 
 3) Publish the config file & run the migrations
 ```bash
-$ php artisan vendor:publish --provider="Backpack\PermissionManager\PermissionManagerServiceProvider" #publish config files and migrations
-$ php artisan migrate #create the role and permission tables
+php artisan vendor:publish --provider="Backpack\PermissionManager\PermissionManagerServiceProvider" #publish config files and migrations
+php artisan migrate #create the role and permission tables
 ```
 
 4) Use the following traits on your User model:
@@ -201,7 +201,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 If you discover any security related issues, please email hello@tabacitu.ro instead of using the issue tracker.
 
-Please **[subscribe to the Backpack Newsletter](http://eepurl.com/bUEGjf)** so you can find out about any security updates, breaking changes or major features. We send an email every 1-2 months.
+Please **[subscribe to the Backpack Newsletter](http://backpackforlaravel.com/newsletter)** so you can find out about any security updates, breaking changes or major features. We send an email every 1-2 months.
 
 ## Credits
 

@@ -1,13 +1,26 @@
-@extends('layouts.app')
+@extends('backpack::layout')
+
+@section('header')
+	<section class="content-header">
+	  <h1>
+	    <span class="text-capitalize">{{ $crud->entity_name_plural }}</span>
+	    <small>{{ trans('backpack::crud.all') }} <span>{{ $crud->entity_name_plural }}</span> {{ trans('backpack::crud.in_the_database') }}.</small>
+	  </h1>
+	  <ol class="breadcrumb">
+	    <li><a href="{{ url(config('backpack.base.route_prefix'), 'dashboard') }}">{{ trans('backpack::crud.admin') }}</a></li>
+	    <li><a href="{{ url($crud->route) }}" class="text-capitalize">{{ $crud->entity_name_plural }}</a></li>
+	    <li class="active">{{ trans('backpack::crud.list') }}</li>
+	  </ol>
+	</section>
+@endsection
 
 @section('content')
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container">
+<!-- Default box -->
+  <div class="row">
 
-                <div class="row">
-                    <div class="col-sm-12">
+    <!-- THE ACTUAL CONTENT -->
+    <div class="col-md-12">
+      <div class="box">
         <div class="box-header {{ $crud->hasAccess('create')?'with-border':'' }}">
 
           @include('crud::inc.button_stack', ['stack' => 'top'])
@@ -15,18 +28,15 @@
           <div id="datatable_button_stack" class="pull-right text-right"></div>
         </div>
 
-          <div class="card-box table-responsive">
-              <h4 class="header-title m-t-0 m-b-30">{{ $crud->entity_name_plural }}</h4>
+        <div class="box-body table-responsive">
 
-
-              {{-- Backpack List Filters --}}
+        {{-- Backpack List Filters --}}
         @if ($crud->filtersEnabled())
           @include('crud::inc.filters_navbar')
         @endif
 
-              <table id="crudTable" class="table table-striped table-bordered">
-
-              <thead>
+        <table id="crudTable" class="table table-striped table-hover display">
+            <thead>
               <tr>
                 @if ($crud->details_row)
                   <th data-orderable="false"></th> <!-- expand/minimize button column -->
@@ -71,8 +81,6 @@
       </div><!-- /.box -->
     </div>
 
-  </div>
-  </div>
   </div>
 
 @endsection
@@ -136,7 +144,7 @@
 
 	  	var table = $("#crudTable").DataTable({
         "pageLength": {{ $crud->getDefaultPageLength() }},
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "{{ trans('backpack::crud.all') }}"]],
+        "lengthMenu": @json($crud->getPageLengthMenu()),
         /* Disable initial sort */
         "aaSorting": [],
         "language": {

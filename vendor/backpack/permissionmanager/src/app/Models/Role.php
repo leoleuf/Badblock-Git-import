@@ -9,5 +9,5 @@ class Role extends OriginalRole
 {
     use CrudTrait;
 
-    protected $fillable = ['name', 'forum_role_id', 'teamspeak_role_id','server_group','updated_at', 'created_at'];
+    protected $fillable = ['name', 'updated_at', 'created_at'];
 }

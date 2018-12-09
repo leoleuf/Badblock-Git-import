@@ -67,6 +67,7 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 		$this->options['detectDirIcon'] = '';         // file name that is detected as a folder icon e.g. '.diricon.png'
 		$this->options['keepTimestamp'] = array('copy', 'move'); // keep timestamp at inner filesystem allowed 'copy', 'move' and 'upload'
 		$this->options['substituteImg'] = true;       // support substitute image with dim command
+		$this->options['statCorrector'] = null;       // callable to correct stat data `function(&$stat, $path, $statOwner, $volumeDriveInstance){}`
 	}
 	
 	/*********************************************************************/
@@ -117,7 +118,11 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 		if (is_null($this->options['syncCheckFunc'])) {
 			$this->options['syncCheckFunc'] = array($this, 'localFileSystemInotify');
 		}
-		
+		// check 'statCorrector'
+		if (empty($this->options['statCorrector']) || !is_callable($this->options['statCorrector'])) {
+			$this->options['statCorrector'] = null;
+		}
+
 		return true;
 	}
 	
@@ -482,16 +487,21 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 			$stat['alias'] = $this->_path($target);
 			$stat['target'] = $target;
 		}
-		$size = sprintf('%u', filesize($path));
-		$stat['ts'] = filemtime($path);
-		if ($this->statOwner) {
-			$fstat = stat($path);
-			$uid = $fstat['uid'];
-			$gid = $fstat['gid'];
-			$stat['perm'] = substr((string)decoct($fstat['mode']), -4);
-			$stat = array_merge($stat, $this->getOwnerStat($uid, $gid));
-		}
+
+		$readable = is_readable($path);
 		
+		if ($readable) {
+			$size = sprintf('%u', filesize($path));
+			$stat['ts'] = filemtime($path);
+			if ($this->statOwner) {
+				$fstat = stat($path);
+				$uid = $fstat['uid'];
+				$gid = $fstat['gid'];
+				$stat['perm'] = substr((string)decoct($fstat['mode']), -4);
+				$stat = array_merge($stat, $this->getOwnerStat($uid, $gid));
+			}
+		}
+
 		if (($dir = is_dir($path)) && $this->options['detectDirIcon']) {
 			$favicon = $path . DIRECTORY_SEPARATOR . $this->options['detectDirIcon'];
 			if ($this->URL && file_exists($favicon)) {
@@ -503,13 +513,21 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 			$stat['mime'] = $dir ? 'directory' : $this->mimetype($path);
 		}
 		//logical rights first
-		$stat['read'] = ($linkreadable || is_readable($path))? null : false;
+		$stat['read'] = ($linkreadable || $readable)? null : false;
 		$stat['write'] = is_writable($path)? null : false;
 
 		if (is_null($stat['read'])) {
-			$stat['size'] = $dir ? 0 : $size;
+			if ($dir) {
+				$stat['size'] = 0;
+			} else if (isset($size)) {
+				$stat['size'] = $size;
+			}
 		}
 		
+		if ($this->options['statCorrector']) {
+			call_user_func_array($this->options['statCorrector'], array(&$stat, $path, $this->statOwner, $this));
+		}
+
 		return $stat;
 	}
 	
@@ -729,6 +747,9 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 						$stat['size'] = $dir ? 0 : $size;
 					}
 					
+					if ($this->options['statCorrector']) {
+						call_user_func_array($this->options['statCorrector'], array(&$stat, $fpath, $this->statOwner, $this));
+					}
 				}
 				
 				$cache[] = array($fpath, $stat);
@@ -1137,10 +1158,10 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 * @return array
 	 */
 	protected function isNameExists($path) {
-		$res = file_exists($this->convEncIn($path));
+		$exists = file_exists($this->convEncIn($path));
 		// restore locale
 		$this->convEncOut();
-		return $res;
+		return $exists? $this->stat($path) : false;
 	}
 
 	/******************** Over write (Optimized) functions *************************/
@@ -1156,8 +1177,8 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 * @author Naoki Sawada
 	 **/
 	protected function doSearch($path, $q, $mimes) {
-		if ($this->encoding || ! class_exists('FilesystemIterator', false)) {
-			// non UTF-8 use elFinderVolumeDriver::doSearch()
+		if (!empty($this->doSearchCurrentQuery['matchMethod']) || $this->encoding || ! class_exists('FilesystemIterator', false)) {
+			// has custom match method or non UTF-8, use elFinderVolumeDriver::doSearch()
 			return parent::doSearch($path, $q, $mimes);
 		}
 		
