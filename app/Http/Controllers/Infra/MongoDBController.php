@@ -18,7 +18,7 @@ class MongoDBController extends Controller
 {
     public function index(){
 
-        return view('Infra.mongodb');
+        return view('infra.mongodb');
 
     }
 

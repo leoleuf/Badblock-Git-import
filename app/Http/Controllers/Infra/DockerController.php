@@ -32,7 +32,7 @@ class DockerController extends Controller
         //dd($Data_cluster);
 
 
-        return view('Infra.docker')->with('Clusters', $Data_cluster);
+        return view('infra.docker')->with('Clusters', $Data_cluster);
 
     }
 
