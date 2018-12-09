@@ -6,24 +6,27 @@
     <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
     <title>BadBlock - Admin - Manager</title>
-    <!--Morris Chart CSS -->
+
     <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
 
     <link href="/assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
 
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+    <!--Morris Chart CSS -->
+    <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
+
     <!-- App css -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/pages.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/menu.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css" />
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" />
 
     <script src="/assets/js/modernizr.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 
 </head>

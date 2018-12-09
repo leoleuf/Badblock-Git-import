@@ -175,6 +175,13 @@ return [
             'database' => 0,
         ],
 
+        'docker' => [
+            'host' => env('REDIS_INT_HOST', 'localhost'),
+            'password' => env('REDIS_INT_PASSWORD', null),
+            'port' => env('REDIS_INT_PORT', 6379),
+            'database' => 0,
+        ],
+
     ],
 
 ];

@@ -5,14 +5,15 @@
     <body class="fixed-left">
     @if(Auth::check())
         @include('layouts.top')
-        @include('layouts.side')
     @endif
 
-
-
     @yield('header')
-
-    @yield('content')
+    <br>
+    <div class="wrapper">
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+    </div>
 
     @if(Auth::check())
         @include('layouts.notif')

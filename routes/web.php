@@ -108,6 +108,9 @@ Route::group([
 
         //Gestion section forum
         Route::get('/forum', 'section\ForumController@index');
+
+        Route::get('/build', 'section\BuildController@index')->middleware('can:gestion_build');
+
         Route::get('/paid/{section}', 'section\PaidController@index')->middleware('can:gestion_paid');
         Route::post('/paid/{section}', 'section\PaidController@save')->middleware('can:gestion_paid');
 
@@ -163,5 +166,9 @@ Route::group([
         Route::get('/vrack-update/{dns}', 'Infra\VrackController@update')->middleware('can:vrack');
         Route::get('/vrack-down/{dns}', 'Infra\VrackController@disable')->middleware('can:vrack');
         Route::get('/vrack-bat/{dns}', 'Infra\VrackController@bat')->middleware('can:vrack');
+
+
+        Route::get('/docker', 'Infra\DockerController@index')->middleware('can:docker_index');
+
     });
 });

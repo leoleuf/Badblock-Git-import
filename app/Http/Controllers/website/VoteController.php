@@ -22,8 +22,14 @@ class VoteController extends Controller
     public function index(){
         $date = new \DateTime(date("Y-m-d"));
 
+        if ($date->format('d') == "1"){
+            $date = date("Y-m", strtotime("-1 months"));
+        }else{
+            $date = date("Y-m");
+        }
+
         //Search data
-        $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();
+        $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date)->first();
 
         if ($data['give'] == true){
             return redirect('/');
