@@ -15,6 +15,7 @@
         "lukasz-adamski/laravel-teamspeak3": "^1.0",
         "mongodb/mongodb": "^1.2",
         "mookofe/tail": "1.*",
+        "laravelcollective/html": "~5.0",
         "predis/predis": "^1.1",
         "php-amqplib/php-amqplib": ">=2.6.1"
     },

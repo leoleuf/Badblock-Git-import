@@ -180,6 +180,7 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Adams\TeamSpeak3\TeamSpeak3ServiceProvider::class,
         Mookofe\Tail\ServiceProvider::class,
+        'Collective\Html\HtmlServiceProvider',
 
 
     ],
@@ -231,6 +232,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Tail' => Mookofe\Tail\Facades\Tail::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
 
     ],
 

@@ -41,6 +41,21 @@ class PrefixController extends Controller
             }
         }
 
+        //Discord WebHook notif
+
+        $data = array("username" => "Grade Custom","embeds" => array(0 => array(
+            "url" => "http://badblock.fr",
+            "title" => "Manager",
+            "description" => "Tout les préfix sont validés !",
+            "color" => 5788507
+        )));
+
+        $curl = curl_init("https://canary.discordapp.com/api/webhooks/409778028802080769/51kS0SGaE_OrkfFbJig0Wuth1u_bHLnMjpSQ6_TJjAipUaMx-ESo7laD_YjpIj6-xQpz");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+
 
         return redirect('/website/prefix');
     }

@@ -7,11 +7,6 @@
         @include('layouts.top')
     @endif
 
-    <style>
-        body{
-            background-color: #bdc3c7;
-        }
-    </style>
 
     @yield('header')
     <br>

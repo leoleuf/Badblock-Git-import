@@ -1,9 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="content-page">
-        <!-- Start content -->
-        <div class="content">
-            <div class="container">
                 <h1>Statistiques de connection & productvité builder :</h1>
                 <div class="row">
                     <div class="col-sm-12">
@@ -39,9 +35,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
 @section("after_scripts")
 
@@ -54,11 +48,5 @@
     <!-- init -->
     <script src="/assets/pages/datatables.editable.init.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // Default Datatable
-            $('#datatable').DataTable();
-        });
-    </script>
 
 @endsection
