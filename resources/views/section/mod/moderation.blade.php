@@ -40,9 +40,9 @@
                         <div class="card-box">
                             <h4 class="m-t-0 header-title">Vos Screenshots  -  Status du lien : <span id="screen_state" class="badge badge-danger">Inactif</span></h4>
                         </div>
-                        <div id="screen_list">
+                    </div>
+                    <div id="screen_list">
 
-                        </div>
                     </div>
                 </div>
             </div>
