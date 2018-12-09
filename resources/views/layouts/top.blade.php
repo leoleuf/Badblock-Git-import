@@ -186,13 +186,14 @@
                                 @can('docker_index')
                                     <li><a href="/infra/docker" class="waves-effect"><i class="fab fa-docker"></i>  Docker </a></li>
                                 @endcan
+                                @can('mongodb')
+                                    <li><a href="/infra/mongodb" class="waves-effect"><i class="fas fa-database"></i>  MongoDB </a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
                 </ul>
-                <!-- End navigation menu -->
-            </div> <!-- end #navigation -->
-        </div> <!-- end container -->
-    </div> <!-- end navbar-custom -->
+            </div>
+        </div>
+    </div>
 </header>
-<!-- End Navigation Bar-->
