@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-                <h1>Statistiques de connection & productvité builder :</h1>
+                <h1>Statistiques de vue du blog :</h1>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="panel">
