@@ -27,7 +27,11 @@ class BuildController extends Controller
             )
             ->where('date', '>=', date('Y-m'))
             ->groupBy('username')
+            ->orderBy('loginTime', 'DESC')
             ->get();
+
+
+
 
         return view('section.build.session')->with('Top', $Top);
     }
