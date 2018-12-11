@@ -32,14 +32,14 @@ class TwitterApiController extends \App\Controllers\Controller
 
             if ($content != null && $content->errors != null)
             {
-                sleep(1);
+                sleep(2);
                 echo 'ERR '.$value['name'].PHP_EOL;
                 continue;
             }
 
             $connection->post("favorites/create", array('id' => '1072435177928962048'));
             echo 'OK '.$value['name'].PHP_EOL;
-            sleep(1);
+            sleep(2);
         }
 
         echo 'DONE!';
