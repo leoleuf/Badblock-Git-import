@@ -116,6 +116,12 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
+        if ($this->redis->exists('vote:' .$_POST['pseudo'])){
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Ne spam pas.")->withStatus(405);
+        }else{
+            $this->redis->set('vote:' .$_POST['pseudo'], "nop");
+            $this->redis->expire('vote:' .$_POST['pseudo'], 2);
+        }
 
         if (!isset($_POST['pseudo']) && !isset($_POST['type']))
         {

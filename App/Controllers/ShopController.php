@@ -238,6 +238,7 @@ class ShopController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'ingame' => false,
+            'ip' => $_SERVER['REMOTE_ADDR'],
             'date' => date('Y-m-d H:i:s')
         ];
         $this->container->mongo->buy_logs->InsertOne($data);

@@ -19,6 +19,13 @@ return [
         'password' => getenv('MYSQL_CASIER_PASSWORD'),
         'database' => getenv('MYSQL_CASIER_DATABASE'),
     ],
+    'mysql_freebuild' => [
+        'host' => getenv('MYSQL_FREEBUILD_HOST'),
+        'user' => getenv('MYSQL_FREEBUILD_USERNAME'),
+        'port' => getenv('MYSQL_FREEBUILD_PORT'),
+        'password' => getenv('MYSQL_FREEBUILD_PASSWORD'),
+        'database' => getenv('MYSQL_FREEBUILD_DATABASE'),
+    ],
     'mysql_guardian' => [
         'host' => getenv('MYSQL_GUARDIAN_HOST'),
         'user' => getenv('MYSQL_GUARDIAN_USERNAME'),

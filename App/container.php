@@ -16,7 +16,7 @@ $container['session'] = function ($container) use ($config) {
 };
 
 $container['codepromo'] = array(
-    'vacances' => 40
+
 );
 
 $container['redis_client'] = function ($container) {
@@ -130,6 +130,21 @@ $container['mysql_rankeds'] = function ($container) {
 	$dbConn = new \Simplon\Mysql\Mysql($pdoConn);
 
 	return $dbConn;
+};
+
+$container['mysql_freebuild'] = function ($container) {
+    $pdo = new \Simplon\Mysql\PDOConnector(
+        $container->config['mysql_freebuild']['host']. ':' . $container->config['mysql_freebuild']['port'], // server
+        $container->config['mysql_freebuild']['user'],     // user
+        $container->config['mysql_freebuild']['password'],      // password
+        $container->config['mysql_freebuild']['database']   // database
+    );
+
+    $pdoConn = $pdo->connect('utf8', []); // charset, options
+
+    $dbConn = new \Simplon\Mysql\Mysql($pdoConn);
+
+    return $dbConn;
 };
 
 
