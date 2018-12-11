@@ -23,7 +23,7 @@ class PubController extends Controller
 
     public function recharge(Request $request)
     {
-        return redirect('/dashboard/recharge')->withInput();
+        return view('panel.recharge',[]);
     }
 
     public function push(Request $request)
