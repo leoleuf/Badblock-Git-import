@@ -27,6 +27,81 @@ class PubController extends Controller
         return view('panel.recharge', ['data' => $data[0]]);
     }
 
+    public function rechargevalidate(Request $request)
+    {
+        $data = DB::select('select * from users where id = ? LIMIT 1', [Auth::user()->id]);
+        $data = $data[0];
+        $code = isset($_POST['code']) ? preg_replace('/[^a-zA-Z0-9]+/', '', $_POST['code']) : '';
+        if( empty($code) ) {
+            $request->session()->flash('flash', [
+                array(
+                    'level' => 'danger',
+                    'message' => 'Veuillez saisir un code.',
+                    'important' => true
+                )
+            ]);
+            return redirect('/dashboard/recharge')->withInput();
+        }
+        else {
+            try {
+                $dedipass = @file_get_contents('http://api.dedipass.com/v1/pay/?public_key=c7ff246fcf018c193859f4a52650f73a&private_key=6461584e39e299431b6b99920187e7dcdace9d5f&code=' . $code);
+                $dedipass = json_decode($dedipass);
+                if ($dedipass->status == 'success') {
+                    $virtual_currency = intval($dedipass->virtual_currency);
+                    $jour = array("Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi");
+                    $mois = array("", "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre");
+
+                    $stime = time();
+                    $shownDate = $jour[date("w", $stime)] . " " . date("d", $stime) . " " . $mois[date("n", $stime)] . " " . date("Y", $stime);
+                    DB::table('logs')->insert(
+                        [
+                            'user_id' => Auth::user()->id,
+                            'action' => 'Rechargement le ' . $shownDate . ' de ' . $virtual_currency . ' points',
+                            'date' => date("Y-m-d H:i:s"),
+                            'ip' => $_SERVER['REMOTE_ADDR'],
+                            'success' => true
+                        ]
+                    );
+
+                    $afterCredit = $data->credit + $virtual_currency;
+                    DB::table('users')
+                        ->where('id', '=', $data->id)
+                        ->update(
+                            [
+                                'credit' => $afterCredit
+                            ]
+                        );
+                    $request->session()->flash('flash', [
+                        array(
+                            'level' => 'success',
+                            'message' => 'Votre recharge a été validée. Vous avez reçu ' . $virtual_currency . ' crédits.',
+                            'important' => true
+                        )
+                    ]);
+                    return redirect('/dashboard/mise-en-avant')->withInput();
+                } else {
+                    $request->session()->flash('flash', [
+                        array(
+                            'level' => 'danger',
+                            'message' => 'Nous sommes désolé. Le code que vous avez entré est invalide. Réessayez ou contactez-nous en cas de problème.',
+                            'important' => true
+                        )
+                    ]);
+                    return redirect('/dashboard/recharge')->withInput();
+                }
+            } catch (Exception $e) {
+                $request->session()->flash('flash', [
+                    array(
+                        'level' => 'danger',
+                        'message' => 'Une erreur est survenue lors de votre rechargement. Veuillez contacter un administrateur.',
+                        'important' => true
+                    )
+                ]);
+                return redirect('/dashboard/recharge')->withInput();
+            }
+        }
+    }
+
     public function push(Request $request)
     {
         if (!isset($_POST['server']))
