@@ -9,7 +9,8 @@ $app->group('/api', function(){
     $this->get('/ip', \App\Controllers\Api\IpApiController::class . ':ip');
 	$this->get('/getip', \App\Controllers\IpController::class . ':getIp');
     $this->group('/cache', function() {
-		$this->get('/shop', \App\Controllers\Api\ShopApiController::class . ':upCache');
+        $this->get('/shop', \App\Controllers\Api\ShopApiController::class . ':upCache');
+        $this->get('/twitter', \App\Controllers\Api\TwitterApiController::class . ':upCache');
 		$this->get('/all-posts', \App\Controllers\Api\BlogApiController::class . ':getCreateCacheAllPosts');
 		$this->get('/all-staff', \App\Controllers\Api\StaffApiController::class . ':getCreateCacheAllStaff');
 		$this->get('/stats-list', \App\Controllers\Api\StatsApiController::class . ':getCreateCacheStats');
