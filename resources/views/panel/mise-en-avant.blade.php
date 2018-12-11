@@ -26,16 +26,6 @@
                         @endforeach
         </div>
         @endif
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title" style="color: red;">Important, à lire</h4>
-                    Pour le moment, il n'est pas possible de recharger son solde pour mettre en avant un serveur. Nous mettons gratuitement des serveurs de jeu en avant sous simple demande
-                    des créateurs. Nous comptons mettre en avant les personnes <strong>qui nous soutiennent</strong> gratuitement ces prochains jours.<br /><br />
-                    Il sera possible de mettre en avant son serveur avec un rechargement de solde quand notre classement sera suffisamment visible sur les moteurs de recherche.
-                </div>
-            </div>
-        </div>
         <div class="col-lg-4 col-md-5">
             <div class="card">
                 <div class="card-block">
@@ -47,7 +37,7 @@
                 </div>
                 <div class="card-block text-center ">
                     <h1> {{ $data->credit }} points</h1>
-                    <!--<button type="submit" class="btn btn-primary">+ Recharger</button>!-->
+                    <a href="/dashboard/recharge" class="btn btn-primary">+ Recharger</a>
                 </div>
             </div>
                     <div class="card">

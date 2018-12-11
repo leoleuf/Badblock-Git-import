@@ -87,6 +87,8 @@ Route::group([
     //Pub
     Route::get('/mise-en-avant', 'PubController@index')->name('pub-index');
     Route::post('/mise-en-avant', 'PubController@push')->name('pub-push');
+    Route::get('/recharge', 'PubController@recharge')->name('pub-recharge');
+    Route::post('/recharge-validate', 'PubController@rechargevalidate')->name('pub-recharge-validate');
 
 
     //Login log
