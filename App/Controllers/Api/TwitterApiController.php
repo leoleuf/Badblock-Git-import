@@ -37,7 +37,7 @@ class TwitterApiController extends \App\Controllers\Controller
                 continue;
             }
 
-            $connection->post("favorites/create", array('id' => '1072374168967135238'));
+            $connection->post("favorites/create", array('id' => '1072435177928962048'));
             echo 'OK '.$value['name'].PHP_EOL;
             sleep(1);
         }
