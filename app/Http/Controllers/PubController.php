@@ -23,7 +23,8 @@ class PubController extends Controller
 
     public function recharge(Request $request)
     {
-        return view('panel.recharge');
+        $data = DB::select('select * from users where id = ? LIMIT 1', [Auth::user()->id]);
+        return view('panel.recharge', ['data' => $data[0]]);
     }
 
     public function push(Request $request)
