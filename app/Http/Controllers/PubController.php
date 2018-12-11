@@ -202,7 +202,7 @@ class PubController extends Controller
         $days = array();
 
         // TODO : COEFFICIENT A GERER AVEC LE TRAFIC
-        $coeff = 9;
+        $coeff = 12;
 
         $daysCoef = array(
             0 => 15, // Dimanche
@@ -214,7 +214,7 @@ class PubController extends Controller
             6 => 17 // Samedi
         );
 
-        for ($i = 0; $i < 15; $i++)
+        for ($i = 0; $i < 30; $i++)
         {
             $date = date("Y-m-d", strtotime("+".$i." days"));
             $free = true;
