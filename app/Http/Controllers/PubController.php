@@ -21,6 +21,11 @@ class PubController extends Controller
         $this->middleware('auth');
     }
 
+    public function recharge(Request $request)
+    {
+        return redirect('/dashboard/recharge')->withInput();
+    }
+
     public function push(Request $request)
     {
         if (!isset($_POST['server']))
