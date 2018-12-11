@@ -1,6 +1,6 @@
 package net.md_5.bungee.api.event;
 
-import com.google.gson.JsonObject;
+import com.mongodb.BasicDBObject;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,7 +39,7 @@ public class AsyncDataLoadRequest extends Event implements Cancellable
 	
 	@AllArgsConstructor
 	public static class Result {
-		public JsonObject object;
-		public String 	  	kickReason;
+		public BasicDBObject object;
+		public String 	  		  kickReason;
 	}
 }
