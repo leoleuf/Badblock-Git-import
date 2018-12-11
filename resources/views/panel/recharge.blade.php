@@ -13,6 +13,19 @@
 @section('content')
         <!-- column -->
 
+        @if (session()->has('flash'))
+            <div class="col-lg-12">
+                @foreach(session('flash') as $messageData)
+                    <div class="alert alert-{{ $messageData['level'] }} {{ $messageData['important'] ? 'alert-important' : '' }}">
+                        @if(!$messageData['important'])
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @endif
+
+                        {!! trans($messageData['message']) !!}
+                    </div>
+                @endforeach
+            </div>
+        @endif
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-block">
