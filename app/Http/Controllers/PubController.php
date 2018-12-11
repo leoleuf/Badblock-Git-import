@@ -283,16 +283,16 @@ class PubController extends Controller
         $days = array();
 
         // TODO : COEFFICIENT A GERER AVEC LE TRAFIC
-        $coeff = 12;
+        $coeff = 18;
 
         $daysCoef = array(
-            0 => 15, // Dimanche
-            1 => 7, // Lundi
-            2 => 8, // Mardi
-            3 => 13, // Mercredi
-            4 => 6, // Jeudi
-            5 => 12, // Vendredi
-            6 => 17 // Samedi
+            0 => 27, // Dimanche
+            1 => 13, // Lundi
+            2 => 15, // Mardi
+            3 => 25, // Mercredi
+            4 => 14, // Jeudi
+            5 => 23, // Vendredi
+            6 => 34 // Samedi
         );
 
         for ($i = 0; $i < 30; $i++)
