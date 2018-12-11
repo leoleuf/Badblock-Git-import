@@ -13,21 +13,7 @@
 @section('content')
         <!-- column -->
 
-        <div class="col-lg-4 col-md-5">
-            <div class="card">
-                <div class="card-block">
-                    <h3 class="card-title">Mon solde</h3>
-                    <h6 class="card-subtitle">Solde restant exprimé en points</h6>
-                </div>
-                <div>
-                    <hr class="m-t-0 m-b-0">
-                </div>
-                <div class="card-block text-center ">
-                    <h1> {{ $data->credit }} points</h1>
-                </div>            </div>
-        </div>
-
-            <div class="col-lg-8 col-md-7">
+        <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-block">
                     <h3 class="card-title">Rechargez votre compte</h3>
@@ -45,5 +31,6 @@
                 </div>
             </div>
         </div>
+
             <script src="//api.dedipass.com/v1/pay.js"></script>
 @endsection
