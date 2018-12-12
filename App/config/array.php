@@ -18,18 +18,14 @@ return [
     ],
 
     'colorChat' => [
-        "&a" => "Vert clair",
         "&b" => "Bleu clair",
-        "&c" => "Rouge clair",
         "&d" => "Rose",
         "&e" => "Jaune",
         "&f" => "Blanc",
         "&1" => "Bleu foncé",
         "&2" => "Vert foncé",
         "&3" => "Bleu/Aqua",
-        "&4" => "Rouge foncé",
         "&5" => "Violet",
-        "&6" => "Orange/Gold",
         "&7" => "Gris",
         "&8" => "Gris foncé",
         "&9" => "Bleu",
