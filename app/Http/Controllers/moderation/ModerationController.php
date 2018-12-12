@@ -36,6 +36,7 @@ class ModerationController extends Controller
                 $query->where('type', '=', "ban")
                     ->orWhere('type', '=', "mute")
                     ->orWhere('type', '=', "warn")
+                    ->orWhere('type', '=', "kick")
                     ->orWhere('type', '=', "tempbanip")
                     ->orWhere('type', '=', "tempban");
             })

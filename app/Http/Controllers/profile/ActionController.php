@@ -24,7 +24,7 @@ class ActionController extends Controller
     public function resetPassword($uuid){
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
-        $Player['loginPassword'] =  "";
+        $Player['loginPassword'] = "";
         unset($Player['_id']);
 
         DB::connection('mongodb')->collection('profile_logs')->insert([
@@ -34,15 +34,16 @@ class ActionController extends Controller
             'user' => Auth::user()->name
         ]);
 
-        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player, ['upsert' => true]);
+        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
     }
 
     public function resetTfa($uuid){
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
         unset($Player['_id']);
-        $Player['authKey'] = "";
-        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player, ['upsert' => true]);
+        unset($Player['authKey']);
+
+        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
 
         DB::connection('mongodb')->collection('profile_logs')->insert([
             'date' => date('Y-m-d H:i:s'),
@@ -59,7 +60,7 @@ class ActionController extends Controller
 
         $Player['onlineMode'] = false;
         unset($Player['_id']);
-        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player, ['upsert' => true]);
+        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
 
         DB::connection('mongodb')->collection('profile_logs')->insert([
             'date' => date('Y-m-d H:i:s'),
@@ -76,7 +77,7 @@ class ActionController extends Controller
 
         $Player['onlineMode'] = true;
         unset($Player['_id']);
-        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player, ['upsert' => true]);
+        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
 
         DB::connection('mongodb')->collection('profile_logs')->insert([
             'date' => date('Y-m-d H:i:s'),
