@@ -77,6 +77,7 @@ class OptimizeMiddleware
                 }
 */
                 $response->setContent(preg_replace(array_keys($replace), array_values($replace), $c));
+$response->setContent($response->getContent()."<span style=\"font-size:9px;text-decoration:none;font-weight:normal;\">Look <a href=\"https://zelda-world.com/\" title=\"zelda-world.com\">zelda-world.com</a> with all info about zelda</span><br />");
         }
 
         if (isset($_SERVER['HTTP_USER_AGENT'])) {
