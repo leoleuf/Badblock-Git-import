@@ -169,7 +169,7 @@
                                                 @endif
                                             </ul>
                                         </div>
-                                        <p @if (isset($row->ad)) class="serveur-ad" @else class="serveur-normal" @endif><br />
+                                        <p class="serveur-normal"><br />
                                             {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                         </p>
                                     </div>
