@@ -2806,7 +2806,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .serveur-name
 {
-  font-size: 15px;font-weight: 500;color: black;
+  font-size: 15px;font-weight: 500;color: black;display: inline-block;
 }
 
 #buttonmise
