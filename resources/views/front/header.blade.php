@@ -105,9 +105,6 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                     @if(Auth::user())
                         <li><a class="ticker-btn" title="Tableau de Bord" href="/dashboard">Tableau de Bord</a></li>
                         <li><a class="ticker-btn" title="Se déconnecter" href="/logout/{{ csrf_token() }}">Déconnexion</a></li>
-                    @else
-                        <li><a class="ticker-btn" title="Se connecter" href="/login">Connexion</a></li>
-                        <li><a class="ticker-btn" title="S'inscrire" href="/register">Inscription</a></li>
                     @endif
                 </ul>
             </nav><!-- #nav-menu-container -->
