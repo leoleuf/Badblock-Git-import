@@ -104,13 +104,13 @@
                 <div class="row justify-content-center d-flex">
                     <div class="col-lg-8 post-list">
                         @if (isset($tag))
-                            <div class="single-post">
+                            <div class="serveur-infos">
                                 <p>
                                     Vous êtes sur la liste {{ seocat($catName) }} {{ $tag }}. La liste est composée des tags {{ $tag }}, qui sont les seuls à être présentés dans ce classement. Vous pouvez voter ou découvrir de nouvelles expériences sur le jeu. Vous souhaitez ajouter votre serveur {{ $tag }} ? <a title="Ajouter mon serveur {{ seocat($catName) }} {{ $tag }}" href="/add-server">Ajoutez-le</a> dès maintenant sur notre classement, gratuitement.
                                 </p>
                             </div>
                         @else
-                            <div class="single-post">
+                            <div class="serveur-infos">
                                 <p>
                                     <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" />
                                     @elseif (isset($catName) && $catName == "clash-of-clans")<img alt="Serveur Clash Of clans" src="/img/clash-of-clans.png" height="16" class="ialign" />
