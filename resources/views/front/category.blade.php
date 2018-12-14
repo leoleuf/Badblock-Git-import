@@ -11,10 +11,14 @@
     @php($pDesc = '')
 @endif
 @php($classement = 'true')
-@section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
 @if (encname($catName) == "minecraft")
-    @section('description', 'Découvre la liste de serveur Minecraft gratuit complète. Joue à '.$about->serveurCount.' serveurs français, du serveur cracké, Survie, PVP Faction, Moddé, Premium et plus.')
+    @section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
+    @section('description', 'Découvre la liste de serveur Minecraft'.$shownTag.' gratuit complète. Joue à '.$about->serveurCount.' serveurs'.$shownTag.' français, du serveur cracké, Survie, PVP Faction, Moddé, Premium et plus.')
+@elseif (encname($catName) == "clash-of-clans")
+    @section('title', 'Liste de Serveur privé Clash Of Clans : Sur Android PC iOS et bien plus')
+    @section('description', 'Découvre ton serveur privé Clash Of Clan 2018 gratuit préféré. Depuis un fichier APK Android ou des serveurs Clash Royale hdv 12 iOS possibles à télécharger avec code, découvre sur PC le jeu COC dès maintenant.')
 @else
+    @section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
     @section('description', 'Découvre la liste de serveur '.seocat($catName).' gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement. Des serveurs de toutes les catégories pour tous les goûts sont à rejoindre dès maintenant.')
 @endif
 @if (encname($catName) == "minecraft")
