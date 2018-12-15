@@ -160,6 +160,15 @@
                                                 </a>
                                             </div>
 
+                                            @if (isMobile())
+                                                <ins class="adsbygoogle"
+                                                     style="display:inline-block;width:336px;height:280px"
+                                                     data-ad-client="ca-pub-1905923613312160"
+                                                     data-ad-slot="1240880006"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
+                                            @endif
                                             <div id="wait">
                                                 <noscript>
                                                     <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger col-12" style="height: 70px;">
