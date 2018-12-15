@@ -172,6 +172,7 @@
                                                 @else
                                                     <span class="verify-no lnr lnr-cross-circle" title="Serveur non certifié"></span>
                                                 @endif
+                                                    
                                             </ul>
                                         </div>
                                         <p class="serveur-normal"><br />
