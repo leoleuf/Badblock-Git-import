@@ -179,7 +179,7 @@
                                         </p>
                                         @if (isset($row->ad))
                                             @php($ad = 'ok')
-                                            <div class="serveur-avant"><a title="Mettre en avant mon serveur" href="/mise-en-avant">Envie de passer premier ?</a></div>
+                                            <div class="serveur-avant"><a title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-star"></span> Envie de passer premier ?</a></div>
                                         @endif
                                     </div>
                             </div>
