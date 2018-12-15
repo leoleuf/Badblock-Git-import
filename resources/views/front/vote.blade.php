@@ -388,7 +388,7 @@
     <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         
-        <script async defer>
+        <script>
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
