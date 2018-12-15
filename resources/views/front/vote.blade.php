@@ -28,7 +28,7 @@
                         </h1>
                         <h2 class="text-white">
                             Voter pour ce serveur {{ seocat($catName) }}
-                        </h2><br />
+                        </h2>
                         <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>  <span class="lnr lnr-arrow-right"></span> <a title="Serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}">  {{ $data -> name}} </a>  <span class="lnr lnr-arrow-right"></span>  <a title="Voter pour le serveur {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}/vote"> Voter </a></p>
                     @endif
                 </div>
