@@ -171,8 +171,7 @@
                                                     <span class="verify-yes lnr lnr-checkmark-circle" title="Serveur certifié"></span>
                                                 @else
                                                     <span class="verify-no lnr lnr-cross-circle" title="Serveur non certifié"></span>
-                                                @endif
-                                                    
+                                                @endif &nbsp;&nbsp;&nbsp;
                                             </ul>
                                         </div>
                                         <p class="serveur-normal"><br />
