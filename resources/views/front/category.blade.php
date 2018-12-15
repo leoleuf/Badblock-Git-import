@@ -153,6 +153,15 @@
                                     </div>
                                 </div>
                             @else
+                            @if (!_bot_detected())
+                                    <ins class="adsbygoogle"
+                                         style="display:inline-block;width:728px;height:15px"
+                                         data-ad-client="ca-pub-1905923613312160"
+                                         data-ad-slot="2735469666"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script>
+                                @endif
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">

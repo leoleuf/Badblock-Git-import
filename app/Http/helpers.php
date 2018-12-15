@@ -13,6 +13,18 @@
         return $s;
     }
 
+    function _bot_detected() {
+        if (!isset($_SERVER['HTTP_USER_AGENT']))
+        {
+            return true;
+        }
+
+        return (
+            isset($_SERVER['HTTP_USER_AGENT'])
+            && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
+        );
+    }
+
     function isMobile() {
         if (!isset($_SERVER['HTTP_USER_AGENT']))
         {

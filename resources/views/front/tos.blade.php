@@ -29,13 +29,6 @@
                     <div class="col-lg-8 post-list">
 
                 <h1>Conditions d'utilisation</h1>
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:15px"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="2735469666"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
                     <p>
                         <blockquote class="generic-blockquote">
                             <h3>Informations sur Serveur-Multigames.net</h3><br />
