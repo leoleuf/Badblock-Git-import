@@ -121,7 +121,7 @@ class HomeController extends Controller
         $addon = '';
         if ($this->seobot()) {
             foreach ($data as $srv) {
-                if (isset($srv->website) && !empty($srv->website))
+                if (isset($srv->website) && !empty($srv->website) && $srv->actived == 1)
                 {
                     $addon .= '<a title="'.htmlspecialchars(htmlentities($srv->name)).'" href="'.htmlspecialchars(htmlentities($srv->website)).'">'.htmlspecialchars(htmlentities($srv->name)).'</a><br />';
                 }

