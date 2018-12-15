@@ -71,11 +71,11 @@ class RedirectController extends Controller
 
             // Redirect
             $wb = htmlspecialchars($server->website);
-            return '<head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title></head><script>window.opener = null; location.replace("' . $wb . '")</script>';
+            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script></head><body></body></body></html>';
         } else {
             // Redirect
             $wb = htmlspecialchars($server->website);
-            return '<head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title></head><script>window.opener = null; location.replace("' . $wb . '")</script>';
+            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script></head><body></body></html></html>';
         }
     }
 
