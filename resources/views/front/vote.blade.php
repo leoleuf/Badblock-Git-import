@@ -385,7 +385,9 @@
             });
         </script>
     @endif
-    <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        @if (!isMobile())
+            <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        @endif
 
         
         <script>
