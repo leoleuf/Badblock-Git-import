@@ -200,10 +200,8 @@
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
-                        @else
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         @endif
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <ins class="adsbygoogle"
                              style="display:block"
                              data-ad-format="autorelaxed"
