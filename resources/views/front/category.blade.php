@@ -326,8 +326,9 @@
                                 <h3>Vous n'avez pas le jeu Minecraft gratuit ?</h3><br /><br />
                                 <div class="active-relatedjob-carusel single-rated">
                                         Beaucoup de personnes ne possèdent pas Minecraft et Serveur MultiGames est partenaire avec
-                                        Launcher-Minecraft.com, qui permet à de nombreux joueurs de disposer du jeu
-                                        <a title="Minecraft gratuit" href="/partenaires/launcher-minecraft">minecraft gratuit</a>.<br />
+                                        Launcher-Minecraft.com, qui permet à de nombreux joueurs de disposer du jeu Minecraft à partir
+                                        d'un <a title="Launcher minecraft gratuit PC" href="https://launcher-minecraft.com/fr/telecharger">launcher minecraft</a>
+                                        <br />
                                         En aidant la communauté à se développer et à utiliser un launcher de qualité développé
                                         par des personnes reconnues dans la communauté francophone de Minecraft, c'est un avantage
                                         qui permet aux joueurs ne pouvant pas se procurer le jeu de quand-même pouvoir avoir une
