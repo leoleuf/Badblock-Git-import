@@ -177,6 +177,9 @@
                                         <p class="serveur-normal"><br />
                                             {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                         </p>
+                                        @if (isset($row->ad))
+                                            <div class="opal"><a title="Mettre en avant mon serveur" href="/mise-en-avant">Envie de passer premier ?</a></div>
+                                        @endif
                                     </div>
                             </div>
                         @endforeach
