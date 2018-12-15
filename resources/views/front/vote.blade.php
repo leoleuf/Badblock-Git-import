@@ -172,11 +172,6 @@
                                                     du système de vote...
                                                 </a>
                                             </div>
-                                            @if (isMobile())
-                                                <div class="btn btn-danger">
-                                                    Problème de vote sur Mobile réglé.
-                                                </div>
-                                            @endif
                                         @if (!isMobile())
                                             <div id="blox" class="col-12" style="display: none; height: 80px; z-index: 100;"></div>
                                         @else
