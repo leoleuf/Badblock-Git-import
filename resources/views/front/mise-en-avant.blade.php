@@ -45,4 +45,30 @@
         </div>
     </section>
 
+    <section class="feature-area">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3 feat-img no-padding">
+                    <img alt="Mettre en avant son serveur" class="img-fluid" src="img/pages/f1.jpg">
+                </div>
+                <div class="col-lg-3 no-padding feat-txt">
+                    <h6 class="text-uppercase text-white">AVANTAGES DE LA MISE EN AVANT</h6>
+                    <h1>FAITES VOUS CONNAÎTRE</h1>
+                    <p>Vous souhaitez avoir plus de visibilité ?<br /><br />Mettre en avant son serveur sur Serveur MultiGames est le meilleur moyen d'assurer votre visibilité sur le court comme sur le long terme.
+                    </p>
+                </div>
+                <div class="col-lg-3 feat-img no-padding">
+                    <img alt="Visibilité pour votre serveur de jeu" class="img-fluid" src="img/pages/f2.jpg">
+                </div>
+                <div class="col-lg-3 no-padding feat-txt">
+                    <h6 class="text-uppercase text-white">VOTRE IMAGE EN TANT QUE SERVEUR</h6>
+                    <h1>PRENEZ LA PREMIERE PLACE</h1>
+                    <p>
+                        Nos classements sont consultés par plus <br />de 5 000 utilisateurs tous les jours, qui recherchent le serveur qui leur<br />correspond.<br /><br />Donnez de la visibilité à votre serveur dès maintenant.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 @endsection
