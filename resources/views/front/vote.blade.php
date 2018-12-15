@@ -39,7 +39,7 @@
 
     <!-- Start feature-cat Area -->
 
-<script async defer src="https://www.google.com/recaptcha/api.js"></script>
+<script data-pagespeed-no-defer src="https://www.google.com/recaptcha/api.js"></script>
     <section class="post-area">
     <br />
         <div class="container">
