@@ -80,7 +80,7 @@ if ($date != $creationDate)
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 @endif
 @if (isMobile())
-    <script async custom-element="amp-auto-ads"
+    <script async defer custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
 @endif
