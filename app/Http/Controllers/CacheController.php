@@ -122,22 +122,51 @@ class CacheController extends Controller
                 $row->description = nl2br(htmlspecialchars($row->description));
 
                 if (filter_var($row->website, FILTER_VALIDATE_URL) && intval($row->verified) == 1) {
-                    $options = array(
-                        'http' => array(
-                            'timeout' => 3,
-                            'method' => "GET",
-                            'header' => "Accept-language: en\r\n" .
-                                "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n"
-                        )
-                    );
+                    try {
+                        $options = array(
+                            'http' => array(
+                                'timeout' => 10,
+                                'method' => "GET",
+                                'header' => "Accept-language: en\r\n" .
+                                    "User-Agent: Mozilla/5.0 (SMG, https://serveur-multigames.net/minecraft)\r\n"
+                            )
+                        );
 
-                    $context = stream_context_create($options);
-                    $t = @file_get_contents($row->website, false, $context);
+                        $context = stream_context_create($options);
+                        $t = @file_get_contents($row->website, false, $context);
 
-                    if (!(strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
-                    && !(strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="Serveur Minecraft">Serveur Minecraft</a>')) !== false) {
-                        if (intval($row->retries) < 5)
-                        {
+                        if (!(strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
+                            && !(strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="Serveur Minecraft">Serveur Minecraft</a>')) !== false) {
+                            if (intval($row->retries) < 10) {
+                                DB::table('server_list')
+                                    ->where('id', '=', $row->id)
+                                    ->update(
+                                        [
+                                            'retries' => intval($row->retries) + 1
+                                        ]
+                                    );
+                            } else {
+                                DB::table('server_list')
+                                    ->where('id', '=', $row->id)
+                                    ->update(
+                                        [
+                                            'verified' => '0'
+                                        ]
+                                    );
+                            }
+                        } else {
+                            DB::table('server_list')
+                                ->where('id', '=', $row->id)
+                                ->update(
+                                    [
+                                        'retries' => '0'
+                                    ]
+                                );
+                        }
+                    }
+                    catch (Exception $e)
+                    {
+                        if (intval($row->retries) < 10) {
                             DB::table('server_list')
                                 ->where('id', '=', $row->id)
                                 ->update(
@@ -145,9 +174,7 @@ class CacheController extends Controller
                                         'retries' => intval($row->retries) + 1
                                     ]
                                 );
-                        }
-                        else
-                        {
+                        } else {
                             DB::table('server_list')
                                 ->where('id', '=', $row->id)
                                 ->update(
@@ -156,16 +183,6 @@ class CacheController extends Controller
                                     ]
                                 );
                         }
-                    }
-                    else
-                    {
-                        DB::table('server_list')
-                            ->where('id', '=', $row->id)
-                            ->update(
-                                [
-                                    'retries' => '0'
-                                ]
-                            );
                     }
                 }
 
