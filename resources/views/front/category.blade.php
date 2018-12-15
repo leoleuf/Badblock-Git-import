@@ -240,6 +240,7 @@
                                                 @endif
                                             @endif
                                         </p>
+                                </div>
                             </div>
                         @endif
                         <div class="single-slidebar">
