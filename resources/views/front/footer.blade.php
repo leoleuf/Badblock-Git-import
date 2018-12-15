@@ -79,11 +79,6 @@ if ($date != $creationDate)
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 @endif
-@if (isMobile())
-    <script async defer custom-element="amp-auto-ads"
-            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-@endif
 <script @if(!trim($__env->yieldContent('gjs-normal')))async defer @endif src="/js/gjs.js"></script>
 <script async defer src="/gtag.js"></script>
 <script async defer>
@@ -101,11 +96,7 @@ if ($date != $creationDate)
     godefer.parentNode.insertBefore(giftofspeed, godefer);
 </script>
 
-@if (isMobile())
-    <amp-auto-ads type="adsense"
-                  data-ad-client="ca-pub-1905923613312160">
-    </amp-auto-ads>
-@else
+@if (!isMobile())
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
 @endif
 
