@@ -96,6 +96,11 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a title="Serveur MultiGames" href="/"><span class="lnr lnr-home"></span> &nbsp;Accueil</a>
+                    @if(Auth::user())
+                        <li class="menu-active"><a title="Mise en avant de serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star"></span> &nbsp;Mise en avant</a>
+                    @else
+                        <li class="menu-active"><a title="Mise en avant de serveur" href="/mise-en-avant"><span class="fa fa-start"></span> &nbsp;Mise en avant</a>
+                    @endif
                     <li>
                         <form method="post" action="https://serveur-multigames.net/recherche" class="recherche">
                             <input type="text" name="serveur" placeholder="&nbsp;&nbsp&nbsp&nbsp;Rechercher..." required class="single-input" id="barre-recherche"><div class="genric-btn success circle arrow" id="bouton-recherche"><span class="lnr lnr-magnifier" id="nomargin"></span></div>

@@ -178,6 +178,7 @@
                                             {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                         </p>
                                         @if (isset($row->ad))
+                                            @php($ad = 'ok')
                                             <div class="serveur-avant"><a title="Mettre en avant mon serveur" href="/mise-en-avant">Envie de passer premier ?</a></div>
                                         @endif
                                     </div>
@@ -225,8 +226,14 @@
                                         <p>
                                             @if(Auth::user())
                                                 <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                                @if (!isset($ad))
+                                                    <a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/dashboard/mise-en-avant"><span class="fa fa-starr" id="serveur-plus"></span> Mettre en avant mon serveur</a>
+                                                @endif
                                             @else
                                                 <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                                @if (!isset($ad))
+                                                    <a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-starr" id="serveur-plus"></span> Mettre en avant mon serveur</a>
+                                                @endif
                                             @endif
                                         </p>
                             </div>
