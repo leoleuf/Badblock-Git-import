@@ -99,7 +99,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                     @if(Auth::user())
                         <li class="menu-active"><a title="Mise en avant de serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star"></span> &nbsp;Mise en avant</a>
                     @else
-                        <li class="menu-active"><a title="Mise en avant de serveur" href="/mise-en-avant"><span class="fa fa-start"></span> &nbsp;Mise en avant</a>
+                        <li class="menu-active"><a title="Mise en avant de serveur" href="/mise-en-avant"><span class="fa fa-star"></span> &nbsp;Mise en avant</a>
                     @endif
                     <li>
                         <form method="post" action="https://serveur-multigames.net/recherche" class="recherche">
