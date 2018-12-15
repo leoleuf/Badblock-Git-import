@@ -39,7 +39,6 @@
 
     <!-- Start feature-cat Area -->
 
-<script data-pagespeed-no-defer src="https://www.google.com/recaptcha/api.js"></script>
     <section class="post-area">
     <br />
         <div class="container">
@@ -389,7 +388,8 @@
             <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         @endif
 
-        
+
+        <script defer async src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
