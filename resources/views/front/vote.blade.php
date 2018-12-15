@@ -410,14 +410,12 @@
                 function flex()
                 {
                     $("#blox").append($("#ad2").html());
-                    setTimeout(flexar, 1000);
                 }
 
                 function flexar()
                 {
                     $("#blox").show();
                     $("#vote_button").hide();
-                    setTimeout(flexo, 2000);
                 }
 
                 function flexo()
@@ -437,9 +435,6 @@
                     $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    @if (!isMobile())
-                        setTimeout(flex, 300);
-                    @endif
                 }
             });
 
