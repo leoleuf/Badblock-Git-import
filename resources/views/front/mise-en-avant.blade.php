@@ -24,28 +24,23 @@
 
     <section class="submit-area section-gap">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="submit-left">
-                        <h4>Inscrivez votre serveur de jeu</h4>
-                        <p>
-                            Inscrivez votre serveur de jeu sur notre classement dans un premier temps.
+            <div class="section-top-border">
+                <h3 class="mb-30">Mettre en avant son serveur</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="img/elements/d.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-9 mt-sm-20">
+                        <p>Envie de <strong>gagner plus de visibilité</strong> et plus de joueurs sur ton serveur de jeu privé ? Avec Serveur MultiGames, il est possible de mettre en avant ton serveur en quelques clics seulement depuis le Tableau de Bord afin d'intéresser la communauté du jeu et de la rediriger vers ton serveur pour le <strong>faire connaître un maximum</strong> en seulement quelques étapes. <strong>Prends la première place</strong> sans plus hésiter.<br />
+                            @if(Auth::user())
+                                <a title="Mettre en avant mon serveur" href="/dashboard/mise-en-avant" class="genric-btn danger circle arrow">Mettre en avant mon serveur<span class="lnr lnr-arrow-right"></span></a>
+                            @else
+                                <a title="Se connecter" href="/login" class="genric-btn danger circle arrow">Mettre en avant mon serveur<span class="lnr lnr-arrow-right"></span></a>
+                            @endif
                         </p>
-                        <a title="Inscrire un serveur de jeu sur le classement" href="/dashboard/add-server" class="primary-btn header-btn">Inscrire mon serveur de jeu</a>
                     </div>
                 </div>
-                <div class="col-lg-6 ">
-                    <div class="submit-right">
-                        <h4>Mettez en avant votre serveur</h4>
-                        <p>
-                            Mettez en avant votre serveur et prenez la première position dans nos classements depuis le Tableau de Bord.
-                        </p>
-                        <a title="Mettre en avant un serveur de jeu sur le classement" href="/dashboard/mise-en-avant" class="primary-btn header-btn">Mettre en avant mon serveur</a>
-                    </div>
-                </div>
-
             </div>
-        </div>
     </section>
 
     <section class="feature-area">
