@@ -28,7 +28,7 @@
                 <h3 class="mb-30">Mettre en avant son serveur</h3>
                 <div class="row">
                     <div class="col-md-3">
-                        <img alt="Mise en avant" src="img/grow.jpg" class="img-fluid">
+                        <img alt="Mise en avant" src="img/grow.png" class="img-fluid">
                     </div>
                     <div class="col-md-9 mt-sm-20">
                         <p>Envie de <strong>gagner plus de visibilité</strong> et plus de joueurs sur ton serveur de jeu privé ? Avec Serveur MultiGames, il est possible de mettre en avant ton serveur en quelques clics seulement depuis le Tableau de Bord afin d'intéresser la communauté du jeu et de la rediriger vers ton serveur pour le <strong>faire connaître un maximum</strong> en seulement quelques étapes. <strong>Prends la première place</strong> sans plus hésiter.<br />
