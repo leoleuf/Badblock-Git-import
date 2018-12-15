@@ -39,7 +39,7 @@
 
     <!-- Start feature-cat Area -->
 
-<script @if (!session()->has('mobile')) data-pagespeed-nodefer @endif src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
     <section class="post-area">
     <br />
         <div class="container">
