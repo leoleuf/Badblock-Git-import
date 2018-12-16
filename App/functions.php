@@ -8,7 +8,12 @@
 |
 */
 if ($config['app_debug']) {
-	Tracy\Debugger::enable();
+
+    include '../ip.php';
+
+    if (in_array($_SERVER['REMOTE_ADDR'], $ip)){
+        Tracy\Debugger::enable();
+    }
 
 }
 

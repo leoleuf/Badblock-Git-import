@@ -43,6 +43,12 @@ include '../App/functions.php';
 |
 */
 
+include '../ip.php';
+
+if (!in_array($_SERVER['REMOTE_ADDR'], $ip)){
+    $config['app_debug'] = 0;
+}
+
 $app = new \Slim\App([
 	'settings' => [
 		'debug' => $config['app_debug'],
