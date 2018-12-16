@@ -9,6 +9,7 @@
 */
 if ($config['app_debug']) {
 	Tracy\Debugger::enable();
+
 }
 
 /*
