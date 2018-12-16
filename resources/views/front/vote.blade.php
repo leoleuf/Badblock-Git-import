@@ -200,14 +200,24 @@
                     </div>
 
                         @if (!isMobile())
-                            <ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
+                            <!--<ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
                                  data-ad-client="ca-pub-1905923613312160"
                                  data-ad-slot="1434308007"
                                  data-ad-format="auto"
                                  data-full-width-responsive="true"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
+                            </script>!-->
+
+                                <ins class="adsbygoogle"
+                                     style="display:block;max-width: 600px; max-height: 300px;" id="ad2"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="1557301122"
+                                     data-ad-format="link"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
                         @endif
                         <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <ins class="adsbygoogle"
