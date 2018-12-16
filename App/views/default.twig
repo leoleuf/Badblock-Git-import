@@ -13,7 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     {% if dev %}
-        <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow">
     {% else %}
     <meta name="robots" content="index, follow">
     {% endif %}
@@ -49,28 +49,28 @@
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id=%27+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5WSQ9FB');</script>
-    <!-- End Google Tag Manager -->
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id=%27+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5WSQ9FB');</script>
+<!-- End Google Tag Manager -->
 
-    <!-- Favicon meta -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/icons/favicon-16x16.png">
-    <link rel="manifest" href="https://cdn.badblock.fr/wd/icons/site.webmanifest">
-    <link rel="mask-icon" href="https://cdn.badblock.fr/wd/icons/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="shortcut icon" href="https://cdn.badblock.fr/wd/icons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="https://cdn.badblock.fr/wd/icons/browserconfig.xml">
+<!-- Favicon meta -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/icons/favicon-16x16.png">
+<link rel="manifest" href="https://cdn.badblock.fr/wd/icons/site.webmanifest">
+<link rel="mask-icon" href="https://cdn.badblock.fr/wd/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="https://cdn.badblock.fr/wd/icons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="https://cdn.badblock.fr/wd/icons/browserconfig.xml">
 
-    <link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
+<link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
 
 
-    {% if block("meta") is defined %}
-        {{ block('meta') }}
-    {% endif %}
+{% if block("meta") is defined %}
+{{ block('meta') }}
+{% endif %}
 
     <!--<script>
         var cssdefer = document.createElement('link');
@@ -106,113 +106,117 @@
         deferl.parentNode.insertBefore(cssdefer, deferl);
     </script>
 
-   <!-- <link rel="stylesheet" href="/dist/css/app.css">
-    <link rel="stylesheet" href="dist/css/global.css">
+   <link rel="stylesheet" href="/dist/css/app.css">
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-!-->
+    !-->
 
+    <link rel="stylesheet" href="dist/css/global.css">
 
     {% if block("style") is defined %}
-        {{ block('style') }}
+    {{ block('style') }}
     {% endif %}
 </head>
 <body>
 
 
-<!-- Header -->
-<div class="header">
-    <div class="container">
-        <div class="header-container">
-            <div class="header-logo-container no-link">
-                <a title="Serveur Minecraft BadBlock" href="{{ path_for('home') }}">
-                   <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" title="Serveur Minecraft BadBlock" alt="Serveur Minecraft BadBlock" class="header-logo">
-                </a>
-                <div class="">
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-container">
+                <a class="header-logo-container no-link" title="Serveur Minecraft BadBlock" href="{{ path_for('home') }}">
+                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Serveur Minecraft BadBlock" alt="Serveur Minecraft BadBlock" class="header-logo">
+                 <div>
                     {% if h2 is not defined %}
-                        <h1 class="header-title">BadBlock</h1><h2 class="header-sub-title">{{ mc_ip }}</h2>
+                    <h3 class="header-title">BadBlock</h3>
+                    <h5 class="header-sub-title">{{ mc_ip }}</h5>
                     {% else %}
-                        <div class="header-title">BadBlock</div><div class="header-sub-title">{{ mc_ip }}</div>
+                    <h3 class="header-title">BadBlock</h3>
+                    <h5 class="header-sub-title">{{ mc_ip }}</h5>
                     {% endif %}
                 </div>
-            </div>
+            </a>
             <div class="header-login-container">
                 <div class="header-login">
                     <a class="button button-danger" href="/calendrier" title="Calendrier de l'avent"><i
-                                class="icon icon-gift"></i> Calendrier</a>
-                    <span class="margin"></span>
-                    {% if user is not defined %}
+                        class="icon icon-gift"></i> Calendrier</a>
+                        <span class="margin"></span>
+                        {% if user is not defined %}
                         <!-- href="{{ forum_url }}/login"!-->
                         <a class="button button-primary" onclick="login()" title="Se connecter au serveur Minecraft"><i
-                                    class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
-                        <span class="margin"></span>
-                        <a class="button button-primary" href="{{ forum_url }}/inscription/" title="S'inscrire sur le serveur minecraft"><i
-                                    class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
-                    {% endif %}
-                    {% if user is defined %}
-                        <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord du serveur minecraft"><i
+                            class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
+                            <span class="margin"></span>
+                            <a class="button button-primary" href="{{ forum_url }}/inscription/" title="S'inscrire sur le serveur minecraft"><i
+                                class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
+                                {% endif %}
+                                {% if user is defined %}
+                                <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord du serveur minecraft"><i
                                     class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
-                        <span class="margin"></span>
+                                    <span class="margin"></span>
 
-                        <a class="button button-danger" href="{{ path_for('logout') }}" title="Se déconnecter du serveur Minecraft"><i
-                                    class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
-                    {% endif %}
+                                    <a class="button button-danger" href="{{ path_for('logout') }}" title="Se déconnecter du serveur Minecraft"><i
+                                        class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fin Header -->
+                
+                
+                <!-- Fin Header -->
 
-<div class="topnav" id="myTopnav">
-    <div class="container">
-            <a href="{{ path_for('home') }}"
-           class="{% if active_page == 'home' %}actived{% endif %} home" title="Serveur Minecraft BadBlock">
-            <i class="home-colored-icon colored-icon"></i>
-            {{ 'home'|trans }}
-        </a>
-        <a href="{{ path_for('stats.home') }}"
-           class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
-            <i class="stats-colored-icon colored-icon"></i>
-            {{ 'stats.title'|trans }}
-        </a>
-        {% if eula == true %}
-            <a href="/shop"
-               class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique du serveur Minecraft BadBlock">
+                <div class="topnav" id="myTopnav">
+                    <div class="container">
+                        <a href="{{ path_for('home') }}"
+                        class="{% if active_page == 'home' %}actived{% endif %} home" title="Serveur Minecraft BadBlock">
+                        <i class="home-colored-icon colored-icon"></i>
+                        {{ 'home'|trans }}
+                    </a>
+                    <a href="{{ path_for('stats.home') }}"
+                    class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
+                    <i class="stats-colored-icon colored-icon"></i>
+                    {{ 'stats.title'|trans }}
+                </a>
+                {% if eula == true %}
+                <a href="/shop"
+                class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique du serveur Minecraft BadBlock">
                 <i class="shopping_basket-colored-icon colored-icon"></i>
                 Boutique
             </a>
-        {% endif %}
-        <a href="/jouer"
-           class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
+            {% endif %}
+            <a href="/jouer"
+            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
             <i class="game-colored-icon colored-icon"></i>
             {{ 'play.title'|trans }}
         </a>
 
         <a href="{{ path_for('vote.home') }}"
-            class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter pour le serveur Minecraft BadBlock">
-            <i class="star-colored-icon colored-icon"></i>
-            Voter
-        </a>
-        <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
+        class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter pour le serveur Minecraft BadBlock">
+        <i class="star-colored-icon colored-icon"></i>
+        Voter
+    </a>
+    <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
-            <div class="dropdown">
-                <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
-                <ul class="dropdown-dropdown">
-                    <li>
-                        <a href="/launcher-minecraft" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-                            <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://badblock.fr/forum/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
-                            <i class="edit-colored-icon colored-icon"></i>Recrutements
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe du serveur BadBlock">
-                            <i class="id-colored-icon colored-icon"></i>Équipe
-                        </a>
-                    </li>
+    <div class="dropdown">
+        <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
+        <ul class="dropdown-dropdown">
+            <li>
+                <a href="/launcher-minecraft" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
+                    <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
+                </a>
+            </li>
+            <li>
+                <a href="https://badblock.fr/forum/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
+                    <i class="edit-colored-icon colored-icon"></i>Recrutements
+                </a>
+            </li>
+            <li>
+                <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe du serveur BadBlock">
+                    <i class="id-colored-icon colored-icon"></i>Équipe
+                </a>
+            </li>
                     <!--<li>
                         <a href="{{ path_for('info') }}" class="{% if active_page == 'info' %}actived{% endif %}" title="Développement">
                             <i class="gear-colored-icon colored-icon"></i>Développement
@@ -241,12 +245,12 @@
                             <i class="user-colored-icon colored-icon"></i>BadblockNews
                         </a>
                     </li> !-->
-                    </div>
-                </ul>
-            </div>
-            <a href="javascript:void(0);" title="Accéder au menu" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
+                </div>
+            </ul>
         </div>
+        <a href="javascript:void(0);" title="Accéder au menu" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
+</div>
 </div>
 <!-------page-navbar-user------->
 {#{% if user is defined %}
@@ -265,21 +269,21 @@
 <!------Menu fin ------->
 <!-- COVER  -->
 {% if block('cover') is defined %}
-    {{ block('cover') }}
+{{ block('cover') }}
 {% endif %}
 <!-- END COVER -->
 
 <!-- CONTENT -->
 
 {% if block("skyscrapers") is defined %}
-    {{ block('skyscrapers') }}
+{{ block('skyscrapers') }}
 {% endif %}
 
 <div class="container">
     <div class="content">
-    {{ block('content') }}
+        {{ block('content') }}
 
-    {% if noads is not defined %}
+        {% if noads is not defined %}
         <div id="pub-margin">
 
         </div>
@@ -289,10 +293,10 @@
 
             <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
             <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
+            (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-    {% endif %}
+        {% endif %}
     </div>
 </div>
 <!-- fin CONTENT -->
@@ -344,15 +348,15 @@
             </ul>
         </div>
         {% if noads is not defined %}
-            <div class="four columns">
-                <div class="footer-links-title-container">
-                    <h5 class="footer-links-title">
-                        <span>Publicité</span>
-                    </h5>
-                </div>
-                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
-                <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <div class="four columns">
+            <div class="footer-links-title-container">
+                <h5 class="footer-links-title">
+                    <span>Publicité</span>
+                </h5>
             </div>
+            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
+            <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
         {% endif %}
     </div>
 </div>
@@ -431,23 +435,23 @@
 </script>!-->
 
 {% if noads is not defined %}
-    <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
+<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
 
-    <div class="remodal" data-remodal-id="blc"
-         data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+<div class="remodal" data-remodal-id="blc"
+data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
 
-        <div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
-        <p>
-            Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br />
-            <br />
-        </p>
-        <br>
-        <a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-    </div>
+<div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
+<p>
+    Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br />
+    <br />
+</p>
+<br>
+<a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+</div>
 {% endif %}
 
 {% if block("scripts") is defined %}
-    {{ block('scripts') }}
+{{ block('scripts') }}
 {% endif %}
 
   <!--  <script>
@@ -471,17 +475,17 @@
     </script> !-->
 
 
-<!-- très très très très très très expérimental !-->
-{% if noads is not defined %}
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/global.css">
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-{% else %}
-<link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/lc.css">
-{% endif %}
-<script src="/dist/js/app.js"></script>
-<script async defer>
+    <!-- très très très très très très expérimental !-->
+    {% if noads is not defined %}
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
+    <link rel="stylesheet" href="public/dist/css/global.css">
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    {% else %}
+    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/lc.css">
+    {% endif %}
+    <script src="/dist/js/app.js"></script>
+    <script async defer>
     function showMenu(y)
     {
         var x = document.getElementById('navbar');
@@ -503,20 +507,20 @@
             y.classList.toggle("change");
         }
     }
-</script>
+    </script>
 
-{% if noads is not defined %}
-<script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-{% endif %}
-<script async defer src="/gtag/js?id=UA-104430841-1"></script>
-<script>
+    {% if noads is not defined %}
+    <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    {% endif %}
+    <script async defer src="/gtag/js?id=UA-104430841-1"></script>
+    <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'UA-104430841-1');
-</script>
-<script async defer>
+    </script>
+    <script async defer>
     $(".dropdown-link").on('mouseover', function () {
         $(".dropdown-dropdown").show();
         $(".dropdown-dropdown").css('display', 'flex')
@@ -526,55 +530,55 @@
             $(".dropdown-dropdown").fadeOut();
         }
     });
-</script>
+    </script>
 
-<script async>
+    <script async>
 
     function login() {
         $('[data-remodal-id=login]').remodal().open();
     }
 
-</script>
+    </script>
 
 
-{% if noads is not defined %}
-<script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
-{% endif %}
+    {% if noads is not defined %}
+    <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
+    {% endif %}
 
-{% if active_page != "home" and noads is not defined %}
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org/",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-        "@type": "GameServer",
-        "name": "BadBlock",
-        "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
-        "playersOnline": "",
-        "url": "https://badblock.fr/launcher-minecraft"
-    },
-    "ratingValue": "5",
-    "ratingCount": "{{ voteCount }}"
-}
-</script>
-{% elseif noads is defined %}
-<script type="application/ld+json">
-{
-    "@context": "http://schema.org/",
-    "@type": "AggregateRating",
-    "itemReviewed": {
-        "@type": "GameServer",
-        "name": "Launcher Minecraft",
-        "description": "Télécharger le nouveau launcher minecraft et lifecraft gratuit, pour les versions Crack et Premium sur PC, de la version 1.8 à la 1.13.2.",
-        "playersOnline": "",
-        "url": "https://badblock.fr/launcher-minecraft"
-    },
-    "ratingValue": "5",
-    "ratingCount": "{{ voteCount }}"
-}
-</script>
-{% else %}
-<script type="application/ld+json">
+    {% if active_page != "home" and noads is not defined %}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "AggregateRating",
+        "itemReviewed": {
+            "@type": "GameServer",
+            "name": "BadBlock",
+            "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
+            "playersOnline": "",
+            "url": "https://badblock.fr/launcher-minecraft"
+        },
+        "ratingValue": "5",
+        "ratingCount": "{{ voteCount }}"
+    }
+    </script>
+    {% elseif noads is defined %}
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org/",
+        "@type": "AggregateRating",
+        "itemReviewed": {
+            "@type": "GameServer",
+            "name": "Launcher Minecraft",
+            "description": "Télécharger le nouveau launcher minecraft et lifecraft gratuit, pour les versions Crack et Premium sur PC, de la version 1.8 à la 1.13.2.",
+            "playersOnline": "",
+            "url": "https://badblock.fr/launcher-minecraft"
+        },
+        "ratingValue": "5",
+        "ratingCount": "{{ voteCount }}"
+    }
+    </script>
+    {% else %}
+    <script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "Organization",
@@ -582,32 +586,32 @@
         "url": "https://badblock.fr",
         "logo": "https://cdn.badblock.fr/images/logo-badblock.png",
         "contactPoint": [
-            {
-                "@type": "ContactPoint",
-                "telephone": "+33651786124",
-                "contactType": "customer support",
-                "email": "contact@badblock.fr",
-                "areaServed": [
-                    "MG, BE, FR, CA"
-                ],
-                "availableLanguage": [
-                    "French"
-                ]
-            }
+        {
+            "@type": "ContactPoint",
+            "telephone": "+33651786124",
+            "contactType": "customer support",
+            "email": "contact@badblock.fr",
+            "areaServed": [
+            "MG, BE, FR, CA"
+            ],
+            "availableLanguage": [
+            "French"
+            ]
+        }
         ],
         "sameAs": [
-            "https://www.facebook.com/BadBlockGame/",
-            "https://twitter.com/badblockgame"
+        "https://www.facebook.com/BadBlockGame/",
+        "https://twitter.com/badblockgame"
         ]
     }
-</script>
-{% endif %}
+    </script>
+    {% endif %}
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-</body>
-</html>
-{% endspaceless %}
+    </body>
+    </html>
+    {% endspaceless %}
