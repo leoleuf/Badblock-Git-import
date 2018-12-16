@@ -89,9 +89,6 @@ $app->group('/vote', function (){
     $this->get('', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home');
     $this->get('/', \App\Controllers\VoteController::class . ':getHome')->setName('vote.home2');
     $this->get('/redirect', \App\Controllers\VoteController::class . ':voteRedirect')->setName('vote.redirect');
-    $this->get('/redirect/sp', function ($req, $res, $args) {
-        return $res->withStatus(302)->withHeader('Location', 'https://ipv6.serveur-prive.net/minecraft/badblock-nouveau-skyblock--198/vote');
-    });
     $this->post('/award', \App\Controllers\VoteController::class . ':award')->setName('vote.award');
     $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
 });
