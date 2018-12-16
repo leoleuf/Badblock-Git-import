@@ -273,6 +273,21 @@
                 </div>
 
                 <div class="col-lg-4 sidebar">
+                    <div class="single-slidebar" style="background-color: white;">
+                        <div class="active-relatedjob-carusel">
+                            <div class="single-rated">
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="1434308007"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                    </div>
                     <div class="single-slidebar">
                         <h3>Serveur ajouté le {{ date_format(date_create($data->created_at), "d/m/Y") }}</h3>
                         <div class="active-relatedjob-carusel">
@@ -284,19 +299,6 @@
                                     @if (!empty($data->website))<li><a class="justify-content-between d-flex" title="Jouer à {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}/go" target="_blank"><span class="lnr lnr-earth"></span> Accéder au site</a></li>@endif
                                     @if (strlen(trim(strtolower($data->ip))) > 0)<li><a class="justify-content-between d-flex" title="Copier l'IP de {{ $data->name }}"  onclick="copy('{{ encname($catName) }}', '{{ seocat($catName) }}', '{{ $data->name }}', '{{ encname($data->name) }}');" class="ipcopy"><span class="lnr lnr-magic-wand"></span> Copier l'adresse IP</a></li>@endif
                                 </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slidebar" style="background-color: white;">
-                        <div class="active-relatedjob-carusel">
-                            <div class="single-rated">
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:300px;height:600px"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="2719469514"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
                             </div>
                         </div>
                     </div>
