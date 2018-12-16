@@ -93,23 +93,6 @@ class VoteController extends Controller
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
     {
-        $API_id = 198; // ID du serveur
-        $API_da = 'clic'; // vote,clic,commentaire ou note
-        $API_url = "https://serveur-prive.net/api/stats/$API_id/$API_da";
-        $API_call = @file_get_contents($API_url);
-
-        $API_id2 = 265; // ID du serveur
-        $API_da2 = 'clic'; // vote,clic,commentaire ou note
-        $API_url2 = "https://serveur-prive.net/api/stats/$API_id2/$API_da2";
-        $API_call2 = @file_get_contents($API_url2);
-
-        if ($API_call2 + 2300 > $API_call)
-        {
-            header("Location: https://serveur-prive.net/vote.php?c=198");
-            exit;
-            return;
-        }
-
         header("Location: https://badblock.fr/jouer");
         exit;
     }
@@ -177,7 +160,6 @@ class VoteController extends Controller
 
        // return $response->write("test")->withStatus(200);
 
-        $API_id = 198; // ID de votre serveur
         if ($dev)
         {
             $API_ip = $_SERVER['REMOTE_ADDR'];
@@ -192,24 +174,11 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        $API_id = 198; // ID du serveur
-        $API_url = "https://serveur-prive.net/api/vote/$API_id/$API_ip";
-        $API_call = @file_get_contents($API_url);
-
-        if ($API_call != 1)
-        {
             // looking for sm
             $API_id = "badblock"; // ID du serveur
-            $API_key = "ePwvH8vBvcVUthJettUe9SW0fKsZ0V"; // Clé API
-            $API_url = "https://serveur-multigames.net/api/$API_id/?ip=$API_ip";
+            $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
 
             $API_call = @file_get_contents($API_url);
-            $API_call = ($API_call == 'true') ? true : false;
-        }
-        else
-        {
-            $API_call = true;
-        }
 
         // voted?
         if (!$dev && $API_call != true)
