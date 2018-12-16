@@ -545,23 +545,7 @@ data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnCo
     <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/53b6406c5522c84dfd0a01478f4a44c7_1.js" async defer></script>
     {% endif %}
 
-    {% if active_page != "home" and noads is not defined %}
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org/",
-        "@type": "AggregateRating",
-        "itemReviewed": {
-            "@type": "GameServer",
-            "name": "BadBlock",
-            "description": "Serveur Minecraft gratuit accès Premium et Crack. Télécharge le jeu gratuitement. Rejoins nous.",
-            "playersOnline": "",
-            "url": "https://badblock.fr/launcher-minecraft"
-        },
-        "ratingValue": "5",
-        "ratingCount": "{{ voteCount }}"
-    }
-    </script>
-    {% elseif noads is defined %}
+    {% if noads is  defined %}
     <script type="application/ld+json">
     {
         "@context": "http://schema.org/",
@@ -577,39 +561,10 @@ data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnCo
         "ratingCount": "{{ voteCount }}"
     }
     </script>
-    {% else %}
-    <script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "Organization",
-        "name": "BadBlock - Serveur Minecraft Gratuit",
-        "url": "https://badblock.fr",
-        "logo": "https://cdn.badblock.fr/images/logo-badblock.png",
-        "contactPoint": [
-        {
-            "@type": "ContactPoint",
-            "telephone": "+33651786124",
-            "contactType": "customer support",
-            "email": "contact@badblock.fr",
-            "areaServed": [
-            "MG, BE, FR, CA"
-            ],
-            "availableLanguage": [
-            "French"
-            ]
-        }
-        ],
-        "sameAs": [
-        "https://www.facebook.com/BadBlockGame/",
-        "https://twitter.com/badblockgame"
-        ]
-    }
-    </script>
     {% endif %}
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     </body>

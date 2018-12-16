@@ -1,6 +1,12 @@
 <?php
 return [
-	'app_name' => getenv('APP_NAME'),
+    'debug_blacklist' => [
+        '_COOKIE' => array_keys($_COOKIE),
+        '_SERVER' => array_keys($_SERVER),
+        '_ENV' => array_keys($_ENV),
+    ],
+
+    'app_name' => getenv('APP_NAME'),
 	'app_debug' => (getenv('APP_DEBUG') ? true : false),
 	'env_name' => getenv('APP_ENV_NAME'),
 	'base_url' => getenv('BASE_URL'),
