@@ -92,6 +92,8 @@ class LinkController extends Controller
     }
 
 
+    
+
 
     public function generateRandomString($length = 10)
     {
