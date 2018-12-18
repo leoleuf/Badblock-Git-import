@@ -7,35 +7,32 @@
 @section('content')
     @foreach($Clusters as $Cluster)
         <a href="/" class="btn btn-icon btn-warning waves-light"  data-toggle="modal" data-target="#openInstance"> <i class="fas fa-plus-square"></i> New Instance</a>
-        <a href="/" class="btn btn-icon btn-danger"> <i class="fas fa-minus-square"></i> Stop Instance</a>
+        <a href="/" class="btn btn-icon btn-danger waves-light" data-toggle="modal" data-target="#closeInstance"> <i class="fas fa-minus-square"></i> Stop Instance</a>
+        <div class="pull-right">
+            <a href="/" class="btn btn-icon btn-info waves-light" onclick="viewcluster();"> <i class="fas fa-network-wired"></i> Vue Cluster</a>
+            <a href="/" class="btn btn-icon btn-info waves-light" onclick="viewinstance();"> <i class="fas fa-server"></i> Vue Instances</a>
+        </div>
         <br>
         <br>
-        <div class="col-xl-3 col-md-6">
-            <div class="card-box">
-                <h4 class="header-title mt-0 m-b-30">Cluster : {{ $Cluster['name'] }}</h4>
-
-                <p class="font-600 m-b-5">Cpu <span class="text-primary pull-right">{{ round($Cluster['data']->status->currentCpu * 100, 2) }}%</span></p>
-                <div class="progress progress-bar-danger-alt progress-sm m-b-20">
-                    <div class="progress-bar progress-bar-danger progress-animated wow animated animated" role="progressbar"
-                         aria-valuenow="{{ round($Cluster['data']->status->currentCpu * 100, 2) }}" aria-valuemin="0" aria-valuemax="100"
-                         style="width: {{ round($Cluster['data']->status->currentCpu * 100, 2) }}%; visibility: visible; animation-name: animationProgress;">
-                    </div>
-                </div>
-                <p class="font-600 m-b-5">Ram <span class="text-primary pull-right">{{ round(($Cluster['data']->status->totalMemory - $Cluster['data']->status->freeMemory) / $Cluster['data']->status->totalMemory * 100, 2) }}%</span></p>
-                <div class="progress progress-bar-primary-alt progress-sm m-b-20">
-                    <div class="progress-bar progress-bar-primary progress-animated wow animated animated"
-                         role="progressbar" aria-valuenow="{{ round(($Cluster['data']->status->totalMemory - $Cluster['data']->status->freeMemory) / $Cluster['data']->status->totalMemory * 100, 2) }}" aria-valuemin="0" aria-valuemax="100"
-                         style="width: {{ round(($Cluster['data']->status->totalMemory - $Cluster['data']->status->freeMemory) / $Cluster['data']->status->totalMemory * 100, 2) }}%; visibility: visible; animation-name: animationProgress;">
-                    </div>
-                </div>
-                <center>
-                    <a href="/" class="btn btn-icon btn-warning"> <i class="fa fa-wrench"></i> </a>
-                </center>
-            </div>
+        <div id="cluster">
+            @include('infra.cluster')
+        </div>
+        <div id="instances">
+            @include('infra.instances')
         </div>
     @endforeach
 @endsection
 @section('after_scripts')
+    <script>
+        function viewcluster() {
+            $('#instances').hide();
+            $('#cluster').show();
+        }
+        function viewinstance() {
+            $('#cluster').hide();
+            $('#instances').show();
+        }
+    </script>
 
 
     <div id="openInstance" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
@@ -76,6 +73,20 @@
                         </center>
 
                     </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div id="closeInstance" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title mt-0" id="myLargeModalLabel">Stoper Instance :</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

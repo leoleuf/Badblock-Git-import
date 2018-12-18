@@ -29,6 +29,12 @@ class DockerController extends Controller
             array_push($Data_cluster, ['name' => $Cluster, 'data' => $Cluster_Data]);
         }
 
+        foreach ($Data_cluster as $Cluster){
+            $Name = explode(":", $Cluster['name']);
+            $Instances_type = DB::connection('mongodb_server')->collection('docker_' . strtolower($Name[1]))->get();
+            dd($Instances_type);
+        }
+
         //dd($Data_cluster);
 
 
