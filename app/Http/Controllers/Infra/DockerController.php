@@ -40,13 +40,22 @@ class DockerController extends Controller
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
         $channel = $connection->channel();
-        $channel->exchange_declare('docker.instance.stop', 'fanout', false, false, false, false);
+        $channel->exchange_declare('docker.instance.open_DEV', 'fanout', false, false, false, false);
 
+        $InstanceOpenRequest = [
+            "worldSystemName" => "tower2v2",
+            "owner" => "flofydech",
+            "target" => ""
+        ];
 
-        $msg = new AMQPMessage('Hello World!');
-        $channel->basic_publish($msg, '', 'docker.instance.stop');
+        $SendRequest = [
+            "expire" => -1,
+            "message" => json_encode($InstanceOpenRequest)
+        ];
+        $msg = new AMQPMessage(json_encode($SendRequest));
+        $channel->basic_publish($msg, '', 'docker.instance.open_DEV');
 
-        echo " [x] Sent 'Hello World!'\n";
+        echo " [x] Sent ";
 
     }
 
