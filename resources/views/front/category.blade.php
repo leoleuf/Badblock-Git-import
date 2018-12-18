@@ -388,7 +388,7 @@
             "url": "@yield('canonical')"
             },
             "ratingValue": "5",
-            "ratingCount": "{{ count($data) }}"
+            "ratingCount": "{{ intval($about->clickCount)+intval($about->copyCount) }}"
         }
     </script>
 
