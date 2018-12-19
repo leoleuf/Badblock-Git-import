@@ -88,7 +88,6 @@ class DockerController extends Controller
             "owner" => Auth::user()->name,
             "target" => ""
         ];
-
         $SendRequest = [
             "expire" => -1,
             "message" => json_encode($InstanceOpenRequest)
