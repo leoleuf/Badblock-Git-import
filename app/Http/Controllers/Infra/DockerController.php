@@ -21,36 +21,71 @@ class DockerController extends Controller
 
         //Connect to INT & Get data from json
         $All_clusters = Redis::connection('docker')->scan("0");
-
         $Data_cluster = [];
         foreach($All_clusters[1] as $Cluster){
-            $Cluster_Data = Redis::connection('docker')->get($Cluster);
-            $Cluster_Data = json_decode($Cluster_Data);
-            array_push($Data_cluster, ['name' => $Cluster, 'data' => $Cluster_Data]);
+            if (explode(":", $Cluster)[0] == "clusters"){
+                $Cluster_Data = Redis::connection('docker')->get($Cluster);
+                $Cluster_Data = json_decode($Cluster_Data);
+                array_push($Data_cluster, ['name' => $Cluster, 'data' => $Cluster_Data]);
+            }
         }
 
+
+        //Push all instance type
+        $Type_list = [];
         foreach ($Data_cluster as $Cluster){
             $Name = explode(":", $Cluster['name']);
             $Instances_type = DB::connection('mongodb_server')->collection('docker_' . strtolower($Name[1]))->get();
-            dd($Instances_type);
+            foreach ($Instances_type as $Int){
+                foreach ($Int['worlds'] as $world){
+                    if (!in_array($world['name'], $Type_list)){
+                        array_push($Type_list, $world['name']);
+                    }
+                }
+            }
         }
 
-        //dd($Data_cluster);
+        //Check all server running with this Type
+        $Type_Server = [];
+        foreach ($Type_list as $Type){
+            foreach($All_clusters[1] as $Cluster){
+                if (explode(":", $Cluster)[0] == "clusters"){
+                    $Cluster_Data = Redis::connection('docker')->get($Cluster);
+                    $Cluster_Data = json_decode($Cluster_Data);
+                    foreach ($Cluster_Data->data->entities as $k => $T){
+                        if ($k == $Type){
+                            if (!isset($Type_Server[$Type])){
+                                $Type_Server[$Type] = [];
+                            }
+                            foreach ($T as $s){
+                                if ($s->state == "RUNNING"){
+                                    array_push($Type_Server[$Type], $s);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
-
-        return view('infra.docker')->with('Clusters', $Data_cluster);
+        return view('infra.docker')
+            ->with('Clusters', $Data_cluster)
+            ->with('Type_List', $Type_list)
+            ->with('Servers', $Type_Server);
 
     }
 
-    public function send(){
+
+    public function openInstance(){
+        //TODO add cluster target
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
         $channel = $connection->channel();
         $channel->exchange_declare('docker.instance.open_DEV', 'fanout', false, false, false, false);
 
         $InstanceOpenRequest = [
-            "worldSystemName" => "tower2v2",
-            "owner" => "flofydech",
+            "worldSystemName" => $_POST['WorldSystemName'],
+            "owner" => Auth::user()->name,
             "target" => ""
         ];
 
@@ -61,7 +96,10 @@ class DockerController extends Controller
         $msg = new AMQPMessage(json_encode($SendRequest));
         $channel->basic_publish($msg, '', 'docker.instance.open_DEV');
 
-        echo " [x] Sent ";
+        return "ok";
+    }
+
+    public function closeInstance(){
 
     }
 
