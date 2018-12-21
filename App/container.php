@@ -16,7 +16,7 @@ $container['session'] = function ($container) use ($config) {
 };
 
 $container['codepromo'] = array(
-    'CHRISTMAS' => 25
+    'christmas' => 25
 );
 
 $container['redis_client'] = function ($container) {
