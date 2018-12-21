@@ -117,11 +117,6 @@ class BlogApiController extends \App\Controllers\Controller
 				//transformer en json
 				$postInfo = json_decode($postInfoJson, 1);
 
-                var_dump(isset($postInfo['thumb_url']));
-                var_dump(isset($postInfo['summary']));
-                var_dump(isset($postInfo['pined']));
-                var_dump(isset($postInfo['comments']));
-
 				//on verifie le json si il conporte bien le patern par default
 				if (isset($postInfo['thumb_url'], $postInfo['summary'], $postInfo['pined'], $postInfo['comments'])) {
 					//valide
