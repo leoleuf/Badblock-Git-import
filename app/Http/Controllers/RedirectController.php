@@ -29,7 +29,7 @@ class RedirectController extends Controller
             abort(404);
         }
 
-        return '<head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $partenaires[$name] . '"></noscript><title>Redirection</title></head><script>window.opener = null; location.replace("' . $partenaires[$name] . '")</script>';
+        return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $partenaires[$name] . '"></noscript><title>Redirection</title></head><script>window.opener = null; location.replace("' . $partenaires[$name] . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
     }
 
     public function redirect($cat, $id)
@@ -71,11 +71,11 @@ class RedirectController extends Controller
 
             // Redirect
             $wb = htmlspecialchars($server->website);
-            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script></head><body></body></body></html>';
+            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
         } else {
             // Redirect
             $wb = htmlspecialchars($server->website);
-            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script></head><body></body></html></html>';
+            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
         }
     }
 
