@@ -78,7 +78,7 @@
                                         <i>Créé le {{ $row->created_at }}</i><br /><br />
                                         <a title="Valider le serveur" href="/dashboard/admin/validate/{{ $row->id }}" style="color: white;"><u>Valider</u></a></span>
                                     </td>
-                                    <td style="display: flex;">
+                                    <td>
                                         <strong>Tags :</strong> {{ $row->tag }}<br />
                                         <strong>Site Internet :</strong> <a rel="nofollow noreferer external" href="{{ $row->website }}">{{ $row->website }}</a><br />
                                         <strong>IP du serveur :</strong> {{ $row->ip }}<br />
