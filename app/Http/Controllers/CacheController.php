@@ -36,15 +36,13 @@ class CacheController extends Controller
             );
             DB::table("server_list")->update(['votes' => 0, 'clicks' => 0, 'copy' => 0]);
         }
+
+        $topServers = DB::table('pub')
+            ->where('date', '=', $currentDate)
+            ->get()->toArray();
+
         foreach (config('tag.cat') as $tg) {
             $k = encname($tg);
-
-            $topServers = DB::table('pub')
-                ->where('date', '=', $currentDate)
-                ->where('cat', '=', $k)
-                ->orderBy('id', 'ASC')
-                ->get()->toArray();
-
 
             //Gestion du nombre de pages
             //10 Seveur par page
@@ -82,8 +80,19 @@ class CacheController extends Controller
             $topServer = array();
             $io = 0;
             foreach($topServers as $p => $o) {
-                $topServer[$io] = $o;
-                $topServer[$io]->ad = true;
+                var_dump('ok');
+                $ts = DB::table('server_list')
+                    ->where('id', '=', $o->server)
+                    ->where('cat', '=', $k)
+                    ->orderBy('id', 'ASC')
+                    ->get();
+                if ($ts != null) {
+                    $ts = $ts->toArray();
+                    var_dump($ts);
+                    echo '<br /><br />';
+                    $topServer[$io] = $ts[0];
+                    $topServer[$io]->ad = true;
+                }
                 $io++;
             }
 
