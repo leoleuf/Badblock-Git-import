@@ -89,7 +89,7 @@ class CacheController extends Controller
                     var_dump($ts);
                     echo '<br /><br />';
                     if (count($ts) > 0) {
-                        for ($io = 0; $io < count($ts); $io++)
+                        for ($io = 0; $io < count($ts); $io = $io + 1)
                         {
                             var_dump($io);
                             echo '<br /><br />';
