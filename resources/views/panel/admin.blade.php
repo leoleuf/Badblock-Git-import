@@ -44,42 +44,43 @@
         <div class="card">
             <div class="card-block">
                 <h4 class="card-title">Serveurs à valider</h4>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Serveur</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($server as $row)
-                            <tr>
-                                <td>{{ $row->name }}<br />
-                                    <i>Serveur {{ $row->cat }}</i><br /><br />
-                                    <i>Créé le {{ $row->created_at }}</i><br /><br />
-                                    <a title="Valider le serveur" href="/dashboard/admin/{{ $row->id }}/validate" style="color: white;"><u>Valider</u></a></span>
-                                </td>
-                                <td style="display: flex;">
-                                    <strong>Tags :</strong> {{ $row->tag }}<br />
-                                    <strong>Site Internet :</strong> <a rel="nofollow noreferer external" href="{{ $row->website }}">{{ $row->website }}</a><br />
-                                    <strong>IP du serveur :</strong> {{ $row->ip }}<br />
-                                    <strong>Type de votes :</strong> {{ $row->votetype }}<br />
-                                    <strong>Description courte :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}<br />
-                                    <strong>Description longue :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->description, 0, 1000, "...")) }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    @if (count($server) == 0)
-                        <div class="col-lg-12">
-                                <div class="alert alert-danger}">
-                                    Aucun serveur en attente pour le moment.
-                                </div>
+                @if (count($server) == 0)
+                    <div class="col-lg-12">
+                        <div class="alert alert-danger">
+                            Aucun serveur en attente pour le moment.
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @else
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Serveur</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($server as $row)
+                                <tr>
+                                    <td>{{ $row->name }}<br />
+                                        <i>Serveur {{ $row->cat }}</i><br /><br />
+                                        <i>Créé le {{ $row->created_at }}</i><br /><br />
+                                        <a title="Valider le serveur" href="/dashboard/admin/{{ $row->id }}/validate" style="color: white;"><u>Valider</u></a></span>
+                                    </td>
+                                    <td style="display: flex;">
+                                        <strong>Tags :</strong> {{ $row->tag }}<br />
+                                        <strong>Site Internet :</strong> <a rel="nofollow noreferer external" href="{{ $row->website }}">{{ $row->website }}</a><br />
+                                        <strong>IP du serveur :</strong> {{ $row->ip }}<br />
+                                        <strong>Type de votes :</strong> {{ $row->votetype }}<br />
+                                        <strong>Description courte :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}<br />
+                                        <strong>Description longue :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->description, 0, 1000, "...")) }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
