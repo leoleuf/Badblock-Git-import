@@ -92,10 +92,10 @@ class CacheController extends Controller
                         {
                             $topServer[$io] = $oo;
                             $topServer[$io]->ad = true;
+                            $io++;
                         }
                     }
                 }
-                $io++;
             }
 
             $i = 0;
