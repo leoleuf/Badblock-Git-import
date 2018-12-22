@@ -81,6 +81,7 @@ Route::group([
     Route::get('/stats/{id}', 'StatsController@stats')->name('addserver');
 
     Route::get('/admin', 'PanelController@adming')->name('admin');
+    Route::get('/admin/validate/{id}', 'PanelController@adminvalidate')->name('admin-validate');
 
     //Api
     Route::get('/api/{id}', 'ApiController@index')->name('api');

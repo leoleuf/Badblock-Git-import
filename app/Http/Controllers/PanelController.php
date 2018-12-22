@@ -41,6 +41,57 @@ class PanelController extends Controller
         return view('panel.index',['server' => $server]);
     }
 
+    public function adminvalidate(Request $request, $id)
+    {
+        if (Auth::user()->is_admin != 1) {
+            return redirect('/dashboard')->withInput();
+        }
+
+        $id = intval($id);
+        $server = DB::select('select * from server_list where id = ?', [$id]);
+
+        if ($server == null || count($server) == 0)
+        {
+            $request->session()->flash('flash', [
+                array(
+                    'level' => 'danger',
+                    'message' => 'Serveur inconnu.',
+                    'important' => true
+                )
+            ]);
+            return redirect('/dashboard/admin')->withInput();
+        }
+
+        if ($server->actived == 1)
+        {
+            $request->session()->flash('flash', [
+                array(
+                    'level' => 'danger',
+                    'message' => 'Serveur déjà validé.',
+                    'important' => true
+                )
+            ]);
+            return redirect('/dashboard/admin')->withInput();
+        }
+
+        DB::table('server_list')
+            ->where('id', '=', $id)
+            ->update(
+                [
+                    'actived' => 1,
+                ]
+            );
+
+        $request->session()->flash('flash', [
+            array(
+                'level' => 'success',
+                'message' => 'Serveur validé avec succès.',
+                'important' => true
+            )
+        ]);
+        return redirect('/dashboard/admin')->withInput();
+    }
+
     public function adming()
     {
         if(Auth::user()->is_admin != 1) {

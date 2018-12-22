@@ -41,6 +41,17 @@
 @endsection
 @section('content')
     <div class="col-lg-12">
+        @if (session()->has('flash'))
+            @foreach(session('flash') as $messageData)
+                <div class="alert alert-{{ $messageData['level'] }} {{ $messageData['important'] ? 'alert-important' : '' }}">
+                    @if(!$messageData['important'])
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    @endif
+
+                    {!! trans($messageData['message']) !!}
+                </div>
+            @endforeach
+        @endif
         <div class="card">
             <div class="card-block">
                 <h4 class="card-title">Serveurs à valider</h4>
@@ -65,7 +76,7 @@
                                     <td>{{ $row->name }}<br />
                                         <i>Serveur {{ $row->cat }}</i><br /><br />
                                         <i>Créé le {{ $row->created_at }}</i><br /><br />
-                                        <a title="Valider le serveur" href="/dashboard/admin/{{ $row->id }}/validate" style="color: white;"><u>Valider</u></a></span>
+                                        <a title="Valider le serveur" href="/dashboard/admin/validate/{{ $row->id }}" style="color: white;"><u>Valider</u></a></span>
                                     </td>
                                     <td style="display: flex;">
                                         <strong>Tags :</strong> {{ $row->tag }}<br />
