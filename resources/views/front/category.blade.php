@@ -190,6 +190,7 @@
                                             @if (intval($dozpa) > 4)
                                                 {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                             @else
+                                                {!! nl2br(htmlentities(htmlspecialchars(mb_strimwidth($row->short_desc, 0, 501, "...")))) !!}
                                             @endif
                                             - {{ $dozpa }}
                                         </p>
