@@ -80,7 +80,6 @@ class CacheController extends Controller
             $topServer = array();
             $io = 0;
             foreach($topServers as $p => $o) {
-                var_dump('ok');
                 $ts = DB::table('server_list')
                     ->where('id', '=', $o->server)
                     ->where('cat', '=', $k)
@@ -88,8 +87,6 @@ class CacheController extends Controller
                     ->get();
                 if ($ts != null) {
                     $ts = $ts->toArray();
-                    var_dump($ts);
-                    echo '<br /><br />';
                     $topServer[$io] = $ts[0];
                     $topServer[$io]->ad = true;
                 }
