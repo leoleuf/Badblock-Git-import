@@ -79,6 +79,7 @@ class CacheController extends Controller
 
             $topServer = array();
             foreach($topServers as $p => $o) {
+                var_dump('ok');
                 $ts = DB::table('server_list')
                     ->where('id', '=', $o->server)
                     ->where('cat', '=', $k)
