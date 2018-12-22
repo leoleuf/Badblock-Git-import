@@ -131,7 +131,7 @@ class PanelController extends Controller
 
         $datam = [];
         $start = strtotime('-80 days');
-        $end = strtotime('now');
+        $end = strtotime("midnight tomorrow");
 
         while($end > $start)
         {
