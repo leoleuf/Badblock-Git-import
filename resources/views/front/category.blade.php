@@ -192,6 +192,7 @@
                                             @else
                                                 {{ mb_strimwidth($row->short_desc, 0, 501, "...") }}
                                             @endif
+                                            - {{ $dozpa }}
                                         </p>
                                         @if (isset($row->ad))
                                             @php($ad = 'ok')
