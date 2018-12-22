@@ -76,14 +76,14 @@
                                     <td>{{ $row->name }}<br />
                                         <i>Serveur {{ $row->cat }}</i><br /><br />
                                         <i>Créé le {{ $row->created_at }}</i><br /><br />
-                                        <a title="Valider le serveur" href="/dashboard/admin/validate/{{ $row->id }}" style="color: white;"><u>Valider</u></a></span>
+                                        <a title="Valider le serveur" href="/dashboard/admin/validate/{{ $row->id }}" class="btn btn-primary"><u>Valider</u></a>
                                     </td>
                                     <td>
-                                        <strong>Tags :</strong> {{ $row->tag }}<br />
-                                        <strong>Site Internet :</strong> <a rel="nofollow noreferer external" href="{{ $row->website }}">{{ $row->website }}</a><br />
-                                        <strong>IP du serveur :</strong> {{ $row->ip }}<br />
-                                        <strong>Type de votes :</strong> {{ $row->votetype }}<br />
-                                        <strong>Description courte :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}<br />
+                                        <strong>Tags :</strong> {{ $row->tag }}<br /><br />
+                                        <strong>Site Internet :</strong> <a rel="nofollow noreferer external" href="{{ $row->website }}">{{ $row->website }}</a><br /><br />
+                                        <strong>IP du serveur :</strong> {{ $row->ip }}<br /><br />
+                                        <strong>Type de votes :</strong> {{ $row->votetype }}<br /><br />
+                                        <strong>Description courte :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}<br /><br />
                                         <strong>Description longue :</strong> {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->description, 0, 1000, "...")) }}
                                     </td>
                                 </tr>
