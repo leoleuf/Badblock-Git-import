@@ -269,7 +269,7 @@ class PubController extends Controller
     public function index()
     {
         $currentDate = date("Y-m-d");
-        $op = DB::select('select * from pub where date >= ?', [$currentDate]);
+        $op = DB::select('select * from pub where date >= ? ORDER BY date ASC;', [$currentDate]);
 
         $data = DB::select('select * from users where id = ? LIMIT 1', [Auth::user()->id]);
         $servers = DB::select('select * from server_list where user_id = ?', [Auth::user()->id]);
@@ -283,7 +283,7 @@ class PubController extends Controller
         $days = array();
 
         // TODO : COEFFICIENT A GERER AVEC LE TRAFIC
-        $coeff = 21;
+        $coeff = 16;
 
         $daysCoef = array(
             0 => 21, // Dimanche
@@ -295,23 +295,10 @@ class PubController extends Controller
             6 => 23 // Samedi
         );
 
-        for ($i = 0; $i < 30; $i++)
+        for ($i = 0; $i < 60; $i++)
         {
             $date = date("Y-m-d", strtotime("+".$i." days"));
-            $free = true;
-            foreach ($op as $k => $v)
-            {
-                if ($v->date == $date)
-                {
-                    $free = false;
-                    break;
-                }
-            }
 
-            $points = 0;
-
-            if ($free)
-            {
                 $dw = date('w', strtotime($date));
                 $points = 0;
                 $dt = DB::select('select pts from pbs where date = ?', [$date]);
@@ -333,10 +320,8 @@ class PubController extends Controller
                 {
                     $points = $dt[0]->pts;
                 }
-            }
 
             $o = [
-                'free' => $free,
                 'points' => $points
             ];
             $days[$date] = $o;

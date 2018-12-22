@@ -209,7 +209,7 @@
                                 <div class="row">
                                     <div class="col-md-4 single-defination">
                                         <h4 class="mb-20"> Votes de serveur</h4>
-                                        <p><br />Ce mois-ci, {{ $about->voteCount }} ont été effectués pour des serveurs {{ seocat($catName) }}. Vote pour ton serveur préféré depuis le classement des meilleurs serveurs {{ seocat($catName) }}{{$shownTag}} sans plus hésiter.</p>
+                                        <p><br />Ce mois-ci, {{ $about->voteCount }} votes ont été effectués pour des serveurs {{ seocat($catName) }}. Vote pour ton serveur préféré depuis le classement des meilleurs serveurs {{ seocat($catName) }}{{$shownTag}} sans plus hésiter.</p>
                                     </div>
                                     <div class="col-md-4 single-defination">
                                         <h4 class="mb-20">Serveur dans le classement</h4>
