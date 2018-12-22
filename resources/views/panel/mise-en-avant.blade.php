@@ -64,7 +64,7 @@
                                         <label>Choisissez la date de mise en avant</label>
                                         <select name="date" class="form-control">
                                             @foreach($days as $k => $v)
-                                            <option value="{{ $k }}">{{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }} @if ($k == $currentDate) (aujourd'hui) @endif ({{ $v['points'] }} points)</option>
+                                            <option value="{{ $k }}">{{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }} @if ($k == $currentDate) (aujourd'hui) @endif - {{ $v['points'] }} points</option>
                                             @endforeach
                                         </select>
                                     </div>
