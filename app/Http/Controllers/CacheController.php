@@ -37,6 +37,24 @@ class CacheController extends Controller
             DB::table("server_list")->update(['votes' => 0, 'clicks' => 0, 'copy' => 0]);
         }
 
+
+        //Quelques chiffres
+        $server = DB::select('select count(id) AS count from server_list');
+        $votes = DB::select('select sum(votes) AS votes, sum(clicks) AS clicks, sum(copy) as copy from server_list');
+        $serverCount = number_format($server[0]->count, 0, ',', ' ');
+        $voteCount = number_format($votes[0]->votes, 0, ',', ' ');
+        $clickCount = number_format($votes[0]->clicks, 0, ',', ' ');
+        $copyCount = number_format($votes[0]->copy, 0, ',', ' ');
+
+        $data = [
+            'serveurCount' => $serverCount,
+            'voteCount' => $voteCount,
+            'clickCount' => $clickCount,
+            'copyCount' => $copyCount
+        ];
+
+        Redis::set("about", json_encode($data));
+        
         $topServers = DB::table('pub')
             ->where('date', '=', $currentDate)
             ->get()->toArray();
@@ -275,23 +293,6 @@ class CacheController extends Controller
 
             Redis::set('tags:'.$k, json_encode($tags));
         }
-
-        //Quelques chiffres
-        $server = DB::select('select count(id) AS count from server_list');
-        $votes = DB::select('select sum(votes) AS votes, sum(clicks) AS clicks, sum(copy) as copy from server_list');
-        $serverCount = number_format($server[0]->count, 0, ',', ' ');
-        $voteCount = number_format($votes[0]->votes, 0, ',', ' ');
-        $clickCount = number_format($votes[0]->clicks, 0, ',', ' ');
-        $copyCount = number_format($votes[0]->copy, 0, ',', ' ');
-
-        $data = [
-            'serveurCount' => $serverCount,
-            'voteCount' => $voteCount,
-            'clickCount' => $clickCount,
-            'copyCount' => $copyCount
-        ];
-
-        Redis::set("about", json_encode($data));
 
     }
 
