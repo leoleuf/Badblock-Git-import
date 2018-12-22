@@ -187,7 +187,7 @@
                                         </div>
                                         <p class="serveur-normal"><br />
                                             @php($dozpa = substr_count($row->short_desc, "\r") + substr_count($row->short_desc, "\n"))
-                                            @if (intval($dozpa) > 2)
+                                            @if (intval($dozpa) > 4)
                                                 {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                             @else
                                                 {{ mb_strimwidth($row->short_desc, 0, 501, "...") }}
