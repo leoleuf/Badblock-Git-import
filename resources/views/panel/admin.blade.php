@@ -13,88 +13,33 @@
             <div class="d-flex m-t-10 justify-content-end">
                 <div class="d-flex m-r-20 m-l-10 hidden-md-down">
                     <div class="chart-text m-r-10">
-                        <h6 class="m-b-0"><small>THIS MONTH</small></h6>
-                        <h4 class="m-t-0 text-info">$58,356</h4>
-                    </div>
-                    <div class="spark-chart">
-                        <div id="monthchart"><canvas width="60" height="35" style="display: inline-block; width: 60px; height: 35px; vertical-align: top;"></canvas></div>
+                        <h6 class="m-b-0"><small>Serveurs inscrits</small></h6>
+                        <h4 class="m-t-0 text-info">{{ $about->serveurCount }}</h4>
                     </div>
                 </div>
                 <div class="d-flex m-r-20 m-l-10 hidden-md-down">
                     <div class="chart-text m-r-10">
-                        <h6 class="m-b-0"><small>LAST MONTH</small></h6>
-                        <h4 class="m-t-0 text-primary">$48,356</h4>
-                    </div>
-                    <div class="spark-chart">
-                        <div id="lastmonthchart"><canvas width="60" height="35" style="display: inline-block; width: 60px; height: 35px; vertical-align: top;"></canvas></div>
+                        <h6 class="m-b-0"><small>Votes ce mois-ci</small></h6>
+                        <h4 class="m-t-0 text-primary">{{ $about->voteCount }}</h4>
                     </div>
                 </div>
-                <div class="">
-                    <button class="right-side-toggle waves-effect waves-light btn-success btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                    <div class="chart-text m-r-10">
+                        <h6 class="m-b-0"><small>Clics externes ce mois-ci</small></h6>
+                        <h4 class="m-t-0 text-primary">{{ $about->clickCount }}</h4>
+                    </div>
+                </div>
+                <div class="d-flex m-r-20 m-l-10 hidden-md-down">
+                    <div class="chart-text m-r-10">
+                        <h6 class="m-b-0"><small>IP copiées ce mois-ci</small></h6>
+                        <h4 class="m-t-0 text-primary">{{ $about->copyCount }}</h4>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @section('content')
-    <div class="row">
-        <!-- Column -->
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row">
-                        <div class="round round-lg align-self-center round-info"><i class="ti-wallet"></i></div>
-                        <div class="m-l-10 align-self-center">
-                            <h3 class="m-b-0 font-light">{{ $about->serveurCount }}</h3>
-                            <h5 class="text-muted m-b-0">Serveurs inscrits</h5></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Column -->
-        <!-- Column -->
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row">
-                        <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cellphone-link"></i></div>
-                        <div class="m-l-10 align-self-center">
-                            <h3 class="m-b-0 font-light">{{ $about->voteCount }}</h3>
-                            <h5 class="text-muted m-b-0">Votes ce mois-ci</h5></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Column -->
-        <!-- Column -->
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row">
-                        <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-cart-outline"></i></div>
-                        <div class="m-l-10 align-self-center">
-                            <h3 class="m-b-0 font-lgiht">{{ $about->clickCount }}</h3>
-                            <h5 class="text-muted m-b-0">Clics externes</h5></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Column -->
-        <!-- Column -->
-        <div class="col-lg-3 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex flex-row">
-                        <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-bullseye"></i></div>
-                        <div class="m-l-10 align-self-center">
-                            <h3 class="m-b-0 font-lgiht">{{ $about->copyCount }}</h3>
-                            <h5 class="text-muted m-b-0">IP copiées</h5></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Column -->
-    </div>
     <div class="col-lg-12 col-md-7">
         <div class="card">
             <div class="card-block">
