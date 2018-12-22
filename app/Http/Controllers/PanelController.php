@@ -40,7 +40,72 @@ class PanelController extends Controller
         return view('panel.index',['server' => $server]);
     }
 
+    public function adming()
+    {
+        if(Auth::user()->is_admin != 1) {
+            return redirect('/dashboard')->withInput();
+        }
 
+        $server = DB::select('select * from server_list WHERE actived = 0 ORDER BY id DESC;');
+        $server = DB::select('select * from server_list WHERE actived = 0 ORDER BY id DESC;');
+
+        $data = [];
+        $hour = -1;
+        while($hour++ < 24)
+        {
+            $time1 = date('Y-m-d H:i:s',mktime($hour,0,0));
+            $time2 = date('Y-m-d H:i:s',mktime($hour + 1,0,0));
+
+            $count = DB::table('vote_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            $count2 = DB::table('click_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            $count3 = DB::table('copy_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            array_push($data, [date('H',mktime($hour,0,0)), $count, $count2, $count3]);
+        }
+
+        $datam = [];
+        $start = strtotime('last month');
+        $end = strtotime('now');
+
+        while($end > $start)
+        {
+            $time1 = date('Y-m-d H:i:s',$start);
+
+            $time2 = date('Y-m-d H:i:s',$start + 86400);
+
+            $count = DB::table('vote_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            $count2 = DB::table('click_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            $count3 = DB::table('copy_logs')
+                ->where('date', '>=', $time1)
+                ->where('date', '<=', $time2)
+                ->count();
+
+            array_push($datam, [$time1,$time2, $count, $count2, $count3]);
+
+            $start = $start + 86400;
+        }
+
+        return view('panel.index', ['server' => $server, 'data' => $data, 'datam' => $datam]);
+    }
 
     public function addServer()
     {
