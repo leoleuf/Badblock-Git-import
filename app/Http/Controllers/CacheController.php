@@ -96,10 +96,6 @@ class CacheController extends Controller
                 $io++;
             }
 
-            var_dump($topServer);
-            exit;
-            return;
-
             $i = 0;
             $c = 0;
             //Split en 10 par 10
