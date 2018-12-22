@@ -84,14 +84,17 @@ class CacheController extends Controller
                     ->where('cat', '=', $k)
                     ->orderBy('id', 'ASC')
                     ->get();
-                $io = 0;
                 if ($ts != null) {
                     $ts = $ts->toArray();
                     var_dump($ts);
                     echo '<br /><br />';
+                    $io = 0;
                     if (count($ts) > 0) {
                         foreach ($ts as $po => $oo)
                         {
+                            $ts = $ts->toArray();
+                            var_dump($io);
+                            echo '<br /><br />';
                             $topServer[$io] = $oo;
                             $topServer[$io]->ad = true;
                             $io++;
