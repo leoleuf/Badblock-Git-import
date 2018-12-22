@@ -47,7 +47,6 @@ class PanelController extends Controller
         }
 
         $server = DB::select('select * from server_list WHERE actived = 0 ORDER BY id DESC;');
-        $server = DB::select('select * from server_list WHERE actived = 0 ORDER BY id DESC;');
 
         $data = [];
         $hour = -1;
@@ -104,7 +103,7 @@ class PanelController extends Controller
             $start = $start + 86400;
         }
 
-        return view('panel.index', ['server' => $server, 'data' => $data, 'datam' => $datam]);
+        return view('panel.admin', ['server' => $server, 'data' => $data, 'datam' => $datam]);
     }
 
     public function addServer()
