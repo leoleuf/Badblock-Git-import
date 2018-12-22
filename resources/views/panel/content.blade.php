@@ -71,7 +71,11 @@
                     <li>
                         <a title="Logs" class="waves-effect waves-dark" href="/dashboard/logs" aria-expanded="false"><i class="mdi mdi-database-plus"></i><span class="hide-menu">Logs</span></a>
                     </li>
-
+                    @if (Auth::user()->is_admin == 1)
+                        <li>
+                            <a title="Admin" class="waves-effect waves-dark" href="/dashboard/admin" aria-expanded="false"><i class="mdi mdi-database-plus"></i><span class="hide-menu">Admin</span></a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
         </div>
