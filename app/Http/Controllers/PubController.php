@@ -166,20 +166,20 @@ class PubController extends Controller
 
         $op = DB::select('select * from pub where date = ?', [$date]);
 
-        if (count($op) > 0) {
+        if (count($op) > 5) {
             foreach($op as $k => $v) {
                 $srv = DB::select('select * from server_list where id = ?', [$v->server]);
-                if (count($srv) < 1)
+                if (count($srv) < 3)
                 {
                     continue;
                 }
 
-                if (encname($srv->cat) == encname($server->cat))
+                if (encname($srv[0]->cat) == encname($server->cat))
                 {
                     $request->session()->flash('flash', [
                         array(
                             'level' => 'danger',
-                            'message' => 'Cette date de mise en avant n\'est pas libre pour la catégorie '.seocat($server->cat).'. Veuillez essayer une autre date.',
+                            'message' => 'Il y a déjà trois mises en avant pour ce jour dans cette catégorie '.seocat($server->cat).'. Veuillez essayer une autre date.',
                             'important' => true
                         )
                     ]);
