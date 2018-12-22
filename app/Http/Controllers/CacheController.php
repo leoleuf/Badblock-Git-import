@@ -87,6 +87,8 @@ class CacheController extends Controller
                 $io = 0;
                 if ($ts != null) {
                     $ts = $ts->toArray();
+                    var_dump($ts);
+                    echo '<br /><br />';
                     if (count($ts) > 0) {
                         foreach ($ts as $po => $oo)
                         {
