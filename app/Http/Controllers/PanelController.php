@@ -130,7 +130,7 @@ class PanelController extends Controller
         }
 
         $datam = [];
-        $start = strtotime('last month');
+        $start = strtotime('-80 days');
         $end = strtotime('now');
 
         while($end > $start)

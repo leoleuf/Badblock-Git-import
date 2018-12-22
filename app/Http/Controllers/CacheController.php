@@ -54,7 +54,7 @@ class CacheController extends Controller
         ];
 
         Redis::set("about", json_encode($data));
-        
+
         $topServers = DB::table('pub')
             ->where('date', '=', $currentDate)
             ->get()->toArray();
