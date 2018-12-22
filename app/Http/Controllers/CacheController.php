@@ -88,15 +88,13 @@ class CacheController extends Controller
                     $ts = $ts->toArray();
                     var_dump($ts);
                     echo '<br /><br />';
-                    $io = 0;
                     if (count($ts) > 0) {
-                        foreach ($ts as $po => $oo)
+                        for ($io = 0; $io < count($ts); $io++)
                         {
                             var_dump($io);
                             echo '<br /><br />';
-                            $topServer[$io] = $oo;
+                            $topServer[$io] = $ts[$io];
                             $topServer[$io]->ad = true;
-                            $io++;
                         }
                     }
                 }
