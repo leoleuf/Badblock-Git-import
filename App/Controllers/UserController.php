@@ -1177,11 +1177,10 @@ class UserController extends Controller
 
         //vérifiaction s'il n'y a pas deja un doc
         $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
+        $check = false;
         foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
-            }else{
-                $check = false;
             }
         }
 
