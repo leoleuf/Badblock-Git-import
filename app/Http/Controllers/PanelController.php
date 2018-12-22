@@ -62,6 +62,8 @@ class PanelController extends Controller
             return redirect('/dashboard/admin')->withInput();
         }
 
+        $server = $server[0];
+
         if ($server->actived == 1)
         {
             $request->session()->flash('flash', [
