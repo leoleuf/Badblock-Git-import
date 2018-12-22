@@ -77,19 +77,25 @@ class CacheController extends Controller
             //Set nb page Redis
             Redis::set('page:'.$k.':number', $page);
 
-            $topServer = null;
+            $topServer = array();
             foreach($topServers as $p => $o) {
                 $ts = DB::table('server_list')
                     ->where('id', '=', $o->server)
                     ->where('cat', '=', $k)
+                    ->orderBy('id', 'ASC')
                     ->get();
+                $io = 0;
                 if ($ts != null) {
                     $ts = $ts->toArray();
                     if (count($ts) > 0) {
-                        $topServer = $ts[0];
-                        $topServer->ad = true;
+                        foreach ($ts as $po => $oo)
+                        {
+                            $topServer[$io] = $oo;
+                            $topServer[$io]->ad = true;
+                        }
                     }
                 }
+                $io++;
             }
 
             $i = 0;
@@ -99,9 +105,14 @@ class CacheController extends Controller
 
                 $data = array_slice($sArray, $c, (max($i, 1) * 35));
                 $v = array();
-                if ($topServer != null)
+                if ($topServer != null && count($topServer) > 0)
                 {
-                    $v[0] = $topServer;
+                    $istrk = 0;
+                    foreach ($topServer as $po => $oo)
+                    {
+                        $v[$istrk] = $oo;
+                        $istrk++;
+                    }
                 }
 
                 $data = array_merge($v, $data);
