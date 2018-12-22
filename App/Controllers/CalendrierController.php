@@ -52,42 +52,100 @@ class CalendrierController extends Controller
         if ($this->redis->get('calendrier:' . date('d'). ":". $user) == "1" && $user != "fluorl"){
             echo 'Vous avez déjà récupéré votre récompense !';
         }else{
-            $Recomp = $this->container->mongo->calendrier->findOne(['date' => "$d"]);
-            echo $Recomp->name;
+            if ($d == 24){
+                $ptstoadd = 400;
+                $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->get('recharge-username'))]);
+                $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+                if ($money == null){
+                    $data = [
+                        "uniqueId" => $user['uniqueId'],
+                        "points" => $ptstoadd
+                    ];
 
-            //Connection to rabbitMQ server
-            $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
-            $channel = $connection->channel();
-            $sanction = (object) [
-                'dataType' => 'BUY',
-                'playerName' => $user,
-                'displayName' => $Recomp->name,
-                'command' => $Recomp->command,
-                'ingame' => false,
-                'price' => 0
-            ];
-            $message = (object) [
-                'expire' => (time() + 604800) * 1000,
-                'message' => json_encode($sanction)
-            ];
-            $msg = new AMQPMessage(json_encode($message));
-            $channel->basic_publish($msg, 'shopLinker.'.$Recomp->queue);
-            $channel = $connection->channel();
-            $channel->queue_declare('guardian.broadcast', false, false, false, false);
-            $message = (object) [
-                'expire' => (time() + 604800) * 1000,
-                'message' => '&6[Info] &b'.$user.' &aa gagné '.$Recomp->name.' &aen ouvrant son calendrier de l\'avent.'
-            ];
-            $msg = new AMQPMessage(json_encode($message));
-            $channel->basic_publish($msg, '', 'guardian.broadcast');
-            $message = (object) [
-                'expire' => (time() + 604800) * 1000,
-                'message' => '&d⇝ Go vite sur https://badblock.fr/calendrier'
-            ];
-            $msg = new AMQPMessage(json_encode($message));
-            $channel->basic_publish($msg, '', 'guardian.broadcast');
+                    $this->container->session->set('points', $ptstoadd);
+                    $this->container->mongo->fund_list->insertOne($data);
 
-            $this->redis->set('calendrier:' . date('d'). ":". $user, 1);
+                }else{
+                    $money['points'] = $money['points'] + $ptstoadd;
+                    $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                    $this->container->session->set('points', $money['points']);
+                }
+                echo '400 points boutique';
+            }elseif ($d == 25){
+                $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
+                $check = false;
+                foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
+                    if ($k == "vip"){
+                        $check = true;
+                    }
+                }
+                if ($user['permissions']['group'] != "vip" || $check == false){
+                    //pas vip on continue
+                    //Ladder rankup
+                    ////Connection to rabbitMQ server
+                    $username = strtolower($this->session->getProfile('username')['username']);
+                    $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
+                    $channel = $connection->channel();
+
+                    $channel->exchange_declare('shopLinker.ladder', 'fanout', false, false, false, false);
+                    $sanction = (object) [
+                        'dataType' => 'BUY',
+                        'playerName' => $username,
+                        'displayName' => "Vip noël",
+                        'command' => "perms user $username group add vip 1d",
+                        'ingame' => false,
+                        'price' => 0
+                    ];
+
+                    $message = (object) [
+                        'expire' => (time() + 604800) * 1000,
+                        'message' => json_encode($sanction)
+                    ];
+                    $msg = new AMQPMessage(json_encode($message));
+                    $channel->basic_publish($msg, 'shopLinker.ladder');
+
+
+                    $channel->close();
+                    $connection->close();
+                }
+            }else{
+                $Recomp = $this->container->mongo->calendrier->findOne(['date' => "$d"]);
+                echo $Recomp->name;
+
+                //Connection to rabbitMQ server
+                $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
+                $channel = $connection->channel();
+                $sanction = (object) [
+                    'dataType' => 'BUY',
+                    'playerName' => $user,
+                    'displayName' => $Recomp->name,
+                    'command' => $Recomp->command,
+                    'ingame' => false,
+                    'price' => 0
+                ];
+                $message = (object) [
+                    'expire' => (time() + 604800) * 1000,
+                    'message' => json_encode($sanction)
+                ];
+                $msg = new AMQPMessage(json_encode($message));
+                $channel->basic_publish($msg, 'shopLinker.'.$Recomp->queue);
+                $channel = $connection->channel();
+                $channel->queue_declare('guardian.broadcast', false, false, false, false);
+                $message = (object) [
+                    'expire' => (time() + 604800) * 1000,
+                    'message' => '&6[Info] &b'.$user.' &aa gagné '.$Recomp->name.' &aen ouvrant son calendrier de l\'avent.'
+                ];
+                $msg = new AMQPMessage(json_encode($message));
+                $channel->basic_publish($msg, '', 'guardian.broadcast');
+                $message = (object) [
+                    'expire' => (time() + 604800) * 1000,
+                    'message' => '&d⇝ Go vite sur https://badblock.fr/calendrier'
+                ];
+                $msg = new AMQPMessage(json_encode($message));
+                $channel->basic_publish($msg, '', 'guardian.broadcast');
+
+                $this->redis->set('calendrier:' . date('d'). ":". $user, 1);
+            }
         }
 
     }
