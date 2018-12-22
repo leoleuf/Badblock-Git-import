@@ -254,9 +254,14 @@ class CacheController extends Controller
                     while ($i < $page) {
                         $data = array_slice($data, $c, (($i + 1) * 20));
                         $v = array();
-                        if ($topServer != null)
+                        if ($topServer != null && count($topServer) > 0)
                         {
-                            $v[0] = $topServer;
+                            $istrk = 0;
+                            foreach ($topServer as $po => $oo)
+                            {
+                                $v[$istrk] = $oo;
+                                $istrk++;
+                            }
                         }
 
                         $data = array_merge($v, $data);
