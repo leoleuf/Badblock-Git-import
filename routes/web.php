@@ -80,7 +80,7 @@ Route::group([
     Route::get('/stats', 'StatsController@index')->name('addserver');
     Route::get('/stats/{id}', 'StatsController@stats')->name('addserver');
 
-    Route::get('/admin', 'StatsController@adming')->name('admin');
+    Route::get('/admin', 'PanelController@adming')->name('admin');
 
     //Api
     Route::get('/api/{id}', 'ApiController@index')->name('api');
