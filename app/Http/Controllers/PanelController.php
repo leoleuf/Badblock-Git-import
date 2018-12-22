@@ -46,6 +46,8 @@ class PanelController extends Controller
             return redirect('/dashboard')->withInput();
         }
 
+        $about = json_decode(Redis::get('about'));
+
         $server = DB::select('select * from server_list WHERE actived = 0 ORDER BY id DESC;');
 
         $data = [];
@@ -103,7 +105,7 @@ class PanelController extends Controller
             $start = $start + 86400;
         }
 
-        return view('panel.admin', ['server' => $server, 'data' => $data, 'datam' => $datam]);
+        return view('panel.admin', ['about' => $about, 'server' => $server, 'data' => $data, 'datam' => $datam]);
     }
 
     public function addServer()
