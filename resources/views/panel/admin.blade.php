@@ -73,7 +73,9 @@
                             <tbody>
                             @foreach($server as $row)
                                 <tr>
-                                    <td>{{ $row->name }}<br />
+                                    <td>
+                                        <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" height="69" width="69">
+                                        <br />{{ $row->name }}<br />
                                         <i>Serveur {{ $row->cat }}</i><br /><br />
                                         <i>Créé le {{ $row->created_at }}</i><br /><br />
                                         <a title="Valider le serveur" href="/dashboard/admin/validate/{{ $row->id }}" class="btn btn-primary"><u>Valider</u></a>
