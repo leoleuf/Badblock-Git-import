@@ -77,7 +77,6 @@
                                 <div class="alert alert-danger}">
                                     Aucun serveur en attente pour le moment.
                                 </div>
-                            @endforeach
                         </div>
                     @endif
                 </div>
