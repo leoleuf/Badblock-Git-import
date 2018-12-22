@@ -186,7 +186,12 @@
                                             </ul>
                                         </div>
                                         <p class="serveur-normal"><br />
-                                            {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
+                                            @php($dozpa = substr_count($row->short_desc, '\r') + substr_count($row->short_desc, '\n'))
+                                            @if (intval($dozpa) > 2)
+                                                {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
+                                            @else
+                                                {{ mb_strimwidth($row->short_desc, 0, 501, "...") }}
+                                            @endif
                                         </p>
                                         @if (isset($row->ad))
                                             @php($ad = 'ok')
