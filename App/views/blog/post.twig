@@ -53,7 +53,7 @@
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
                 // Display the result in the element with id="demo"
-                document.getElementById("demo").innerHTML = hours + " heures "
+                document.getElementById("demo").innerHTML = days + " jours " + hours + " heures "
                     + minutes + " minutes " + seconds + " secondes";
 
                 // If the count down is finished, write some text
@@ -63,7 +63,7 @@
                 }
             }, 1000);
         </script>
-        <h2 style="text-align: center;">Tirage du concours dans <div id="demo" style="display: inline;">Chargement...</div></h2>
+        <h2 style="text-align: center; color: red;">Tirage du concours dans <div id="demo" style="display: inline;">Chargement...</div></h2>
         {{ post.content | raw }}
         <!-- Display the countdown timer in an element -->
 
