@@ -1,0 +1,5 @@
+name: ModuleStaff
+author: xMalware
+version: 1.0
+description: :o
+main: fr.badblock.bungee.modules.staff.ModuleStaff
