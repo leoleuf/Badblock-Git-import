@@ -33,10 +33,6 @@
 {% endblock %}
 {% block content %}
     <div class="article-content">
-        <h2 style="text-align: center;">Tirage du concours dans <div id="demo" style="display: inline;"></div></h2>
-        {{ post.content | raw }}
-        <!-- Display the countdown timer in an element -->
-
         <script>
             // Set the date we're counting down to
             var countDownDate = new Date("Jan 5, 2019 18:00:00").getTime();
@@ -67,6 +63,10 @@
                 }
             }, 1000);
         </script>
+        <h2 style="text-align: center;">Tirage du concours dans <div id="demo" style="display: inline;">Chargement...</div></h2>
+        {{ post.content | raw }}
+        <!-- Display the countdown timer in an element -->
+
     </div>
     <div class="pub-large">
         <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
