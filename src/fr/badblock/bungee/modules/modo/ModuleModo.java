@@ -1,7 +1,5 @@
 package fr.badblock.bungee.modules.modo;
 
-import fr.badblock.bungee.modules.modo.commands.ConnectPlayerCommand;
-import fr.badblock.bungee.modules.modo.commands.ConnectServerCommand;
 import fr.badblock.bungee.modules.modo.commands.MCommand;
 import fr.badblock.bungee.modules.modo.commands.ModoCommand;
 import fr.badblock.bungee.modules.modo.commands.objects.PunishmentReasons;
@@ -23,8 +21,6 @@ public class ModuleModo extends Plugin
 		
 		new MCommand(this);
 		new ModoCommand(this);
-		new ConnectPlayerCommand(this);
-		new ConnectServerCommand(this);
 
 		new ModoSessionStartListener(this);
 		new ModoSessionStopListener(this);

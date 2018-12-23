@@ -7,6 +7,8 @@ import java.util.List;
 import fr.badblock.bungee.modules.commands.BadCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.BanCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.BanIpCommand;
+import fr.badblock.bungee.modules.modo.commands.subcommands.ConnectPlayerCommand;
+import fr.badblock.bungee.modules.modo.commands.subcommands.ConnectServerCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.KickCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.MuteCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.SanctionCommand;
@@ -57,6 +59,8 @@ public class MCommand extends BadCommand {
 		moderationCommands.add(new WarnCommand());
 		moderationCommands.add(new TrackCommand());
 		moderationCommands.add(new SanctionCommand());
+		moderationCommands.add(new ConnectPlayerCommand());
+		moderationCommands.add(new ConnectServerCommand());
 	}
 
 	/**
@@ -66,7 +70,32 @@ public class MCommand extends BadCommand {
 	 */
 	private void help(CommandSender sender) {
 		// Send help
-		I19n.sendMessage(sender, prefix + "help", null);
+		I19n.sendMessage(sender, prefix + "help.intro", null);
+		List<AbstractModCommand> greenCommands = new ArrayList<>();
+		List<AbstractModCommand> redCommands = new ArrayList<>();
+		
+		for (AbstractModCommand aCommand : moderationCommands) {
+			if (sender.hasPermission(aCommand.getPermission()))
+			{
+				greenCommands.add(aCommand);
+			}
+			else
+			{
+				redCommands.add(aCommand);
+			}
+		}
+		
+		for (AbstractModCommand c : greenCommands)
+		{
+			I19n.sendMessage(sender, prefix + "help." + c.getName() + "_g", null);
+		}
+		
+		for (AbstractModCommand c : redCommands)
+		{
+			I19n.sendMessage(sender, prefix + "help." + c.getName() + "_r", null);
+		}
+		
+		I19n.sendMessage(sender, prefix + "help.outro", null);
 	}
 
 	/**
