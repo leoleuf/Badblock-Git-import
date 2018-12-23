@@ -85,7 +85,7 @@ class DockerController extends Controller
 
         $InstanceOpenRequest = [
             "worldSystemName" => $_POST['WorldSystemName'],
-            "owner" => Auth::user()->name,
+            "owner" => $_POST['owner'],
             "target" => ""
         ];
         $SendRequest = [
@@ -99,6 +99,19 @@ class DockerController extends Controller
     }
 
     public function closeInstance(){
+
+        $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
+        $channel = $connection->channel();
+        $channel->exchange_declare('docker.instance.stop', 'fanout', false, false, false, false);
+
+        $SendRequest = [
+            "expire" => -1,
+            "message" => $_POST['InstanceName']
+        ];
+        $msg = new AMQPMessage(json_encode($SendRequest));
+        $channel->basic_publish($msg, '', 'docker.instance.open_DEV');
+
+        return "ok close";
 
     }
 

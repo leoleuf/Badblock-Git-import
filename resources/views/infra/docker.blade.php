@@ -110,8 +110,6 @@
             });
             e.preventDefault();
         });
-        
-        
     </script>
     
 
@@ -123,10 +121,44 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 </div>
                 <div class="modal-body">
-
+                    <form id="closeInst">
+                        <div class="form-group row">
+                            <label class="col-2 col-form-label">Instance Name</label>
+                            <div class="col-10">
+                                <input id="owner" name="InstanceName" class="form-control" placeholder="tower2v2_011">
+                            </div>
+                        </div>
+                        <center>
+                            <button type="submit" class="btn btn-icon btn-success"><i class="fas fa-check-square"></i>
+                                Valider
+                            </button>
+                        </center>
+                    </form>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    <script>
+        $("#closeInst").submit(function(e) {
+            var form = $(this);
+
+            $.ajax({
+                type: "POST",
+                url: "/infra/docker/ajax/close",
+                data: form.serialize(),
+                success: function(data)
+                {
+                    toastr.success("L'Envoie de l'ordre de fermeture à bien était envoyé !", "Succès !");
+                    console.log('Valider !');
+                },
+                error: function(data)
+                {
+                    toastr.error('Un problème s\'est produit ou vos permissions sont insuffisantes !', 'Erreur !');
+                    console.log('Erreur !');
+                }
+            });
+            e.preventDefault();
+        });
+    </script>
 
 @endsection

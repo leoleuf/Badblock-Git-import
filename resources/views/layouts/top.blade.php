@@ -189,6 +189,9 @@
                                 @can('docker_index')
                                     <li><a href="/infra/docker" class="waves-effect"><i class="fab fa-docker"></i>  Docker </a></li>
                                 @endcan
+                                    @can('docker_index')
+                                        <li><a href="/infra/console" class="waves-effect"><i class="fa fa-gear"></i>  Console </a></li>
+                                    @endcan
                                 @can('mongodb')
                                     <li><a href="/infra/mongodb" class="waves-effect"><i class="fas fa-database"></i>  MongoDB </a></li>
                                 @endcan

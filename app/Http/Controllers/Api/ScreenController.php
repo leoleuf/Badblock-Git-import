@@ -20,6 +20,9 @@ class ScreenController extends Controller
             return "Nop";
         }
 
+        $User = DB::table('users')->where('id', '=', $Data->user_id)->first();
+
+
         //Upload file
         $data = file_get_contents($_FILES['image']['tmp_name']);
         $base64 = 'data:image/' . "png" . ';base64,' . base64_encode($data);
@@ -47,7 +50,7 @@ class ScreenController extends Controller
         //Save dans MongoDB
         $data = [
             'ip' => $_SERVER['REMOTE_ADDR'],
-            'user' => $Data->user_id,
+            'user' => $User->name,
             'date' => date("Y-m-d H:i:s"),
             'file_name' => $filename
         ];
