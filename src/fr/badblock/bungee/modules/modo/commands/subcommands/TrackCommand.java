@@ -1,12 +1,12 @@
 package fr.badblock.bungee.modules.modo.commands.subcommands;
 
+import fr.badblock.api.common.minecraft.PMPrivacy;
 import fr.badblock.api.common.minecraft.friends.FriendListable;
 import fr.badblock.api.common.minecraft.party.Party;
 import fr.badblock.api.common.minecraft.party.Partyable;
 import fr.badblock.api.common.utils.data.Callback;
 import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.link.bungee.BungeeManager;
-import fr.badblock.bungee.modules.commands.basic.msg.PMPrivacy;
 import fr.badblock.bungee.modules.modo.commands.AbstractModCommand;
 import fr.badblock.bungee.players.BadIP;
 import fr.badblock.bungee.players.BadPlayer;
