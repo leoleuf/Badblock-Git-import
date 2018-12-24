@@ -18,7 +18,7 @@ foreach ($Players as $player){
     $I++;
     $Grade = [];
 
-    if (isset($player['game']) && isset($player['loginPassword'])){
+    if (isset($player['game']) && isset($player['loginPassword']) && isset($player['permissions'])){
         //Traitement grade
         foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso" || $k == "noel"){
@@ -43,7 +43,6 @@ foreach ($Players as $player){
 
         $Data = [
             "name" => $player['name'],
-            "lastIp" => $player['lastIp'],
             "loginPassword" => $player['loginPassword'],
             "nickname" => "",
             "uniqueId" => $player['uniqueId'],
@@ -78,6 +77,10 @@ foreach ($Players as $player){
 
         if (isset($player['refer'])){
             $Data['refer'] = $player['refer'];
+        }
+
+        if (isset($player['lastIp'])){
+            $Data['lastIp'] = $player['lastIp'];
         }
 
         if (isset($player['realName'])){
