@@ -14,7 +14,6 @@
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
-                                                <th>Grade</th>
                                                 <th>Mode premium</th>
                                                 <th>TFA</th>
                                                 <th>Action</th>
@@ -24,7 +23,6 @@
                                             @foreach($user as $row)
                                                 <tr class="gradeX">
                                                     <td>{{ $row['name'] }}</td>
-                                                    <td>{{ $row['permissions']['group'] }}</td>
                                                     <td>
                                                         @if($row['onlineMode'] == true)
                                                             <i class="fa fa-check"></i>
@@ -49,17 +47,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-</div>
-<!-- end: panel body -->
-
-</div> <!-- end panel -->
-</div> <!-- end col-->
-</div>
-<!-- end row -->
-
-</div>
-</div>
-</div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
 @endsection
 @section("after_scripts")
 
@@ -72,11 +66,6 @@
 <!-- init -->
 <script src="/assets/pages/datatables.editable.init.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Default Datatable
-        $('#datatable').DataTable();
-    });
-</script>
+
 
 @endsection

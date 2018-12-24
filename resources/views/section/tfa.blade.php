@@ -14,7 +14,6 @@
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
-                                                <th>Grade</th>
                                                 <th>Mode premium</th>
                                                 <th>Action</th>
                                             </tr>
@@ -24,7 +23,6 @@
                                                 @if(!isset($row['authKey']) || empty($row['authKey']))
                                                     <tr class="gradeX">
                                                         <td>{{ $row['name'] }}</td>
-                                                        <td>{{ $row['permissions']['group'] }}</td>
                                                         <td>
                                                             @if($row['onlineMode'] == true)
                                                                 <i class="fa fa-check"></i>
@@ -57,13 +55,5 @@
 @endsection
 @section("after_scripts")
 
-<!-- Editable js -->
-<script src="/assets/plugins/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-<script src="/assets/plugins/jquery-datatables-editable/jquery.dataTables.js"></script>
-<script src="/assets/plugins/datatables/dataTables.bootstrap.js"></script>
-<script src="/assets/plugins/tiny-editable/mindmup-editabletable.js"></script>
-<script src="/assets/plugins/tiny-editable/numeric-input-example.js"></script>
-<!-- init -->
-<script src="/assets/pages/datatables.editable.init.js"></script>
 
 @endsection

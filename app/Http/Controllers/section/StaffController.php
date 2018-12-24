@@ -22,39 +22,25 @@ class StaffController extends Controller
         //Alternate group
         $alt = ['$or' =>
             [
-                ['permissions.alternateGroups.superviseur' => ['$exists' => true]],
-                ['permissions.alternateGroups.helper' => ['$exists' => true]],
-                ['permissions.alternateGroups.admin' => ['$exists' => true]],
-                ['permissions.alternateGroups.modo' => ['$exists' => true]],
-                ['permissions.alternateGroups.supermodo' => ['$exists' => true]],
-                ['permissions.alternateGroups.responsable' => ['$exists' => true]],
-                ['permissions.alternateGroups.builder' => ['$exists' => true]],
-                ['permissions.alternateGroups.animateur' => ['$exists' => true]],
+                ['permissions.groups.bungee.superviseur' => ['$exists' => true]],
+                ['permissions.groups.bungee.helper' => ['$exists' => true]],
+                ['permissions.groups.bungee.admin' => ['$exists' => true]],
+                ['permissions.groups.bungee.modo' => ['$exists' => true]],
+                ['permissions.groups.bungee.supermodo' => ['$exists' => true]],
+                ['permissions.groups.bungee.responsable' => ['$exists' => true]],
+                ['permissions.groups.bungee.builder' => ['$exists' => true]],
+                ['permissions.groups.bungee.animateur' => ['$exists' => true]],
                 ['permissions.alternateGroups.modoforum' => ['$exists' => true]],
                 ['permissions.alternateGroups.graphiste' => ['$exists' => true]],
                 ['permissions.alternateGroups.redacteur' => ['$exists' => true]],
+                ['permissions.alternateGroups.modocheat' => ['$exists' => true]],
+                ['permissions.alternateGroups.manager' => ['$exists' => true]],
                 ['permissions.alternateGroups.staff' => ['$exists' => true]]
             ]
         ];
 
-        $group = ['$or' =>
-            [
-                ['permissions.group' => 'superviseur'],
-                ['permissions.group' => 'helper'],
-                ['permissions.group' => 'admin'],
-                ['permissions.group' => 'modo'],
-                ['permissions.group' => 'supermodo'],
-                ['permissions.group' => 'responsable'],
-                ['permissions.group' => 'builder'],
-                ['permissions.group' => 'animateur'],
-                ['permissions.group' => 'modoforum'],
-                ['permissions.group' => 'graphiste'],
-                ['permissions.group' => 'redacteur'],
-                ['permissions.group' => 'staff']
-            ]
-        ];
 
-        $data = DB::connection('mongodb_server')->collection('players')->where($alt)->orWhere($group)->orderby('permissions.group')->get();
+        $data = DB::connection('mongodb_server')->collection('players')->where($alt)->orderby('permissions.group')->get();
 
         return view('section.staff')->with('user', $data);
     }
