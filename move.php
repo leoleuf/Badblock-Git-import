@@ -10,7 +10,7 @@ $client = new \MongoDB\Client(
 $client->selectDatabase("admin");
 $collection = $client->selectCollection("admin","players");
 
-$Players = $collection->find([])->toArray();
+$Players = $collection->find([]);
 
 $I = 0;
 
@@ -43,7 +43,6 @@ foreach ($Players as $player){
 
         $Data = [
             "name" => $player['name'],
-            "realName" => $player['realName'],
             "lastIp" => $player['lastIp'],
             "onlineMode" => $player['onlineMode'],
             "loginPassword" => $player['loginPassword'],
@@ -68,17 +67,29 @@ foreach ($Players as $player){
                 ],
                 "permissions" => []
             ],
-            "authKey" => $player['authKey'],
-            "refer" => $player['refer'],
-            "state" => $player['state'],
             "game" => $player['game'],
         ];
+
+        if (isset($player['authKey'])){
+            $Data['authKey'] = $player['authKey'];
+        }
+        if (isset($player['state'])){
+            $Data['state'] = $player['state'];
+        }
+
+        if (isset($player['refer'])){
+            $Data['refer'] = $player['refer'];
+        }
+
+        if (isset($player['realName'])){
+            $Data['realName'] = $player['realName'];
+        }
 
         $c = $client->selectCollection("admin","players_new");
         $c->insertOne($Data);
 
 
-        echo $player['name'] . " => " . $I;
+        echo $I . " / " .$player['name'] .  " \n";
     }
 
 
