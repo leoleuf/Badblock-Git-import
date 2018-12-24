@@ -18,64 +18,68 @@ foreach ($Players as $player){
     $I++;
     $Grade = [];
 
-    //Traitement grade
-    foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
-        if ($k == "gradeperso" || $k == "noel"){
-            $expire = $row;
+    if (isset($player['game']) && isset($player['loginPassword'])){
+        //Traitement grade
+        foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+            if ($k == "gradeperso" || $k == "noel"){
+                $expire = $row;
+            }
+            array_push($Grade, $k);
         }
-        array_push($Grade, $k);
-    }
 
-    if ($player['permissions']['group'] == "gradeperso" || $player['permissions']['group'] == "noel"){
-        $expire = $player['permissions']['end'];
-    }
-    array_push($Grade, $player['permissions']['group']);
-
-    $Grades = [];
-    foreach ($Grade as $g){
-        if ($g == "gradeperso" || $g == "noel"){
-            $Grades[$g] = $expire;
-        }else{
-            $Grades[$g] = -1;
+        if ($player['permissions']['group'] == "gradeperso" || $player['permissions']['group'] == "noel"){
+            $expire = $player['permissions']['end'];
         }
-    }
+        array_push($Grade, $player['permissions']['group']);
 
-    $Data = [
-        "name" => $player['name'],
-        "realName" => $player['realName'],
-        "lastIp" => $player['lastIp'],
-        "onlineMode" => $player['onlineMode'],
-        "loginPassword" => $player['loginPassword'],
-        "nickname" => "",
-        "uniqueId" => $player['uniqueId'],
-        "settings" => [
-            "partyable" => "WITH_EVERYONE",
-            "friendListable" => "YES",
-        ],
-        "punish" => [
-            "ban" => null,
-            "mute" => null,
-            "warn" => null
-        ],
-        "permissions" => [
-            "groups" => [
-                "bungee" => $Grades,
-                "minigames" => $Grades,
-                "pvpbox" => $Grades,
-                "skyblock" => $Grades,
-                "freebuild" => $Grades
+        $Grades = [];
+        foreach ($Grade as $g){
+            if ($g == "gradeperso" || $g == "noel"){
+                $Grades[$g] = $expire;
+            }else{
+                $Grades[$g] = -1;
+            }
+        }
+
+        $Data = [
+            "name" => $player['name'],
+            "realName" => $player['realName'],
+            "lastIp" => $player['lastIp'],
+            "onlineMode" => $player['onlineMode'],
+            "loginPassword" => $player['loginPassword'],
+            "nickname" => "",
+            "uniqueId" => $player['uniqueId'],
+            "settings" => [
+                "partyable" => "WITH_EVERYONE",
+                "friendListable" => "YES",
             ],
-            "permissions" => []
-        ],
-        "authKey" => $player['authKey'],
-        "refer" => $player['refer'],
-        "state" => $player['state'],
-        "game" => $player['game'],
-    ];
+            "punish" => [
+                "ban" => null,
+                "mute" => null,
+                "warn" => null
+            ],
+            "permissions" => [
+                "groups" => [
+                    "bungee" => $Grades,
+                    "minigames" => $Grades,
+                    "pvpbox" => $Grades,
+                    "skyblock" => $Grades,
+                    "freebuild" => $Grades
+                ],
+                "permissions" => []
+            ],
+            "authKey" => $player['authKey'],
+            "refer" => $player['refer'],
+            "state" => $player['state'],
+            "game" => $player['game'],
+        ];
 
-    $c = $client->selectCollection("admin","players_new");
-    $c->insertOne($Data);
+        $c = $client->selectCollection("admin","players_new");
+        $c->insertOne($Data);
 
 
-    echo $player['name'] . " => " . $I;
+        echo $player['name'] . " => " . $I;
+    }
+
+
 }
