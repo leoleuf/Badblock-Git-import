@@ -97,8 +97,12 @@ foreach ($Players as $player){
             unset($player['game']['other']['hub']['mountConfigs']);
         }
 
-        $c = $client->selectCollection("admin","players_new");
-        $c->insertOne($Data);
+        try{
+            $c = $client->selectCollection("admin","players_new");
+            $c->insertOne($Data);
+        }catch (ErrorException $e){
+            echo "Error > " . $I;
+        }
 
 
     }
