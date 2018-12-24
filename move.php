@@ -10,7 +10,7 @@ $client = new \MongoDB\Client(
 $client->selectDatabase("admin");
 $collection = $client->selectCollection("admin","players");
 
-$Players = $collection->find([])->sort(['_id' => -1])->limit(236052);
+$Players = $collection->find([]);
 
 $I = 0;
 
