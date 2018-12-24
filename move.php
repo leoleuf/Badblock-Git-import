@@ -100,7 +100,7 @@ foreach ($Players as $player){
         try{
             $c = $client->selectCollection("admin","players_new");
             $c->insertOne($Data);
-        }catch (ErrorException $e){
+        }catch (MongoException $e){
             echo "Error > " . $I;
         }
 
