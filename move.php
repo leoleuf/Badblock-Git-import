@@ -44,7 +44,6 @@ foreach ($Players as $player){
         $Data = [
             "name" => $player['name'],
             "lastIp" => $player['lastIp'],
-            "onlineMode" => $player['onlineMode'],
             "loginPassword" => $player['loginPassword'],
             "nickname" => "",
             "uniqueId" => $player['uniqueId'],
@@ -83,6 +82,10 @@ foreach ($Players as $player){
 
         if (isset($player['realName'])){
             $Data['realName'] = $player['realName'];
+        }
+
+        if (isset($player['onlineMode'])){
+            $Data['onlineMode'] = $player['onlineMode'];
         }
 
         $c = $client->selectCollection("admin","players_new");
