@@ -25,20 +25,20 @@
                                 <tbody id="sanction_list">
                                     @foreach($sanction as $row)
                                         <tr>
-                                            <td>{{ $row->id }}</td>
-                                            <td>{{ $row->type }}</td>
-                                            <td>{{ $row->banner }}</td>
+                                            <td>{{ $row['uuid'] }}</td>
+                                            <td>{{ $row['type'] }}</td>
+                                            <td>{{ $row['punisher'] }}</td>
                                             <td>
-                                                @if($row->expire == -1)
+                                                @if($row['expire'] == -1)
                                                     Infinis
                                                 @else
-                                                    {{ date('d-m-Y', $row->expire / 1000) }}
+                                                    {{ date('d-m-Y', $row['expire'] / 1000) }}
                                                 @endif
                                             </td>
-                                            <td>{{ $row->reason }}</td>
+                                            <td>{{ $row['reason'] }}</td>
                                             <td>
 
-                                                <a onClick="window.open('/moderation/preuve/{{ $row->id }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                <a onClick="window.open('/moderation/preuve/{{ $row['proof'] }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
                                                     <i class="fa fa-eye"></i> </a>
                                             </td>
                                         </tr>

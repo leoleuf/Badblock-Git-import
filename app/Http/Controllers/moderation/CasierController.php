@@ -16,21 +16,29 @@ use Illuminate\Support\Facades\DB;
 class CasierController extends Controller
 {
     public function case($pseudo){
-        $Sanctions = DB::connection('mysql_casier')->table('sanctions')
-            ->where('pseudo', '=', $pseudo)
+        $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where('punishedUuid', '=', $pseudo)
             ->orderBy('timestamp', 'DESC')
-            ->take(10)
+            ->take(100)
             ->get();
+
+        $pseudo = DB::connection('mongodb_server')->collection('players')
+            ->where('uniqueId', '=', $pseudo)
+            ->first()['name'];
 
         return view('section.mod.casier', ['pseudo' => $pseudo, 'sanction' => $Sanctions]);
     }
 
     public function minicase($pseudo){
-        $Sanctions = DB::connection('mysql_casier')->table('sanctions')
-            ->where('pseudo', '=', $pseudo)
+        $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where('punishedUuid', '=', $pseudo)
             ->orderBy('timestamp', 'DESC')
             ->take(100)
             ->get();
+
+        $pseudo = DB::connection('mongodb_server')->collection('players')
+            ->where('uniqueId', '=', $pseudo)
+            ->first()['name'];
 
         return view('section.mod.minicasier', ['pseudo' => $pseudo, 'sanction' => $Sanctions]);
     }

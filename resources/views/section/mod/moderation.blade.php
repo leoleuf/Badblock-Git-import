@@ -126,12 +126,12 @@
                         for (sanction in obj){
                             console.log(obj[sanction]);
 
-                            $('#sanction_list').append("<tr id='"+ obj[sanction]['id'] +"'>\n" +
-                                "                                    <th scope=\"row\">" + obj[sanction]['id'] +"</th>\n" +
+                            $('#sanction_list').append("<tr id='"+ obj[sanction]['uuid'] +"'>\n" +
+                                "                                    <th scope=\"row\">" + obj[sanction]['uuid'] +"</th>\n" +
                                 "                                    <td>" + obj[sanction]['type'] +"</td>\n" +
                                 "                                    <td>" + obj[sanction]['pseudo'] +"</td>\n" +
                                 "                                    <td>" + obj[sanction]['reason'] +"</td>\n" +
-                                "                                    <td><button type=\"button\" class=\"btn btn-info btn-bordred waves-effect w-md waves-light m-b-5\" onclick=\"union(" + obj[sanction]['id'] +")\">Preuves</button></td>\n" +
+                                "                                    <td><button type=\"button\" class=\"btn btn-info btn-bordred waves-effect w-md waves-light m-b-5\" onclick=\"union('" + obj[sanction]['uuid'] +"')\">Preuves</button></td>\n" +
                                 "                                    <td><button onClick=\"window.open('/moderation/mcasier/" + obj[sanction]['pseudo'] +"','Sanctions','resizable,height=450,width=700'); return false;\" class=\"btn btn-icon waves-effect waves-light btn-danger m-b-5\"> <i class=\"fa fa-vcard\"></i> </button></td>\n" +
                                 "                                </tr>");
 

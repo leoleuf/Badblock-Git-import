@@ -29,20 +29,25 @@ class ModerationController extends Controller
     }
 
     public function sanction(){
-        $Sanctions = DB::connection('mysql_casier')->table('sanctions')
-            ->where('banner', '=', strtolower(Auth::user()->name))
-            ->where('proof', '=', NULL)
+        $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where('punisher', '=', strtolower(Auth::user()->name))
+            ->where('proof', '=', [])
             ->where(function ($query) {
-                $query->where('type', '=', "ban")
-                    ->orWhere('type', '=', "mute")
-                    ->orWhere('type', '=', "warn")
-                    ->orWhere('type', '=', "kick")
-                    ->orWhere('type', '=', "tempbanip")
-                    ->orWhere('type', '=', "tempban");
+                $query->where('type', '=', "MUTE")
+                    ->orWhere('type', '=', "KICK")
+                    ->orWhere('type', '=', "UNBAN")
+                    ->orWhere('type', '=', "BAN")
+                    ->orWhere('type', '=', "WARN");
             })
             ->orderBy('timestamp', 'DESC')
             ->take(10)
-            ->get();
+            ->get()
+            ->toArray();
+
+        foreach ($Sanctions as $k => $san){
+            $user = DB::connection('mongodb_server')->collection('players')->where('uniqueId' ,'=', $san['punishedUuid'])->first();
+            $Sanctions[$k]['pseudo'] = $user['name'];
+        }
 
         return json_encode($Sanctions);
     }
@@ -72,8 +77,8 @@ class ModerationController extends Controller
 
         $Id = DB::connection('mongodb')->collection('sanctions')->where('sanction_id','=', $_POST['sanc_id'])->first();
 
-        DB::connection('mysql_casier')->table('sanctions')
-            ->where('id', '=', $_POST['sanc_id'])
+        DB::connection('mongodb_server')->collection('punishments')
+            ->where('uuid', '=', $_POST['sanc_id'])
             ->update([
                 'proof' => $Id['_id']
             ]);
