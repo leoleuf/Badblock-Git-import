@@ -19,6 +19,8 @@ foreach ($Players as $player){
     $Grade = [];
 
     if (isset($player['game']) && isset($player['loginPassword']) && isset($player['permissions'])){
+        echo $I . " / " .$player['name'] .  " \n";
+
         //Traitement grade
         foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
             if ($k == "gradeperso" || $k == "noel"){
@@ -95,7 +97,6 @@ foreach ($Players as $player){
         $c->insertOne($Data);
 
 
-        echo $I . " / " .$player['name'] .  " \n";
     }
 
 
