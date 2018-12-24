@@ -93,6 +93,10 @@ foreach ($Players as $player){
             $Data['onlineMode'] = $player['onlineMode'];
         }
 
+        if (isset($player['game']['other']['hub']['mountConfigs'])){
+            unset($player['game']['other']['hub']['mountConfigs']);
+        }
+
         $c = $client->selectCollection("admin","players_new");
         $c->insertOne($Data);
 
