@@ -248,9 +248,9 @@ class VoteController extends Controller
 
             $total = max($total, 1);
             $proba = round(($dbh / $total) * 100, 2);
-            $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
+           /* $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
             $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
-            $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');
+            $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');*/
 
             $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
