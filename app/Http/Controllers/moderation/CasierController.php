@@ -44,7 +44,7 @@ class CasierController extends Controller
     }
 
     public function preuve($id){
-        $Preuve = DB::connection('mongodb')->collection('sanctions')->where('sanction_id', '=', $id)->first();
+        $Preuve = DB::connection('mongodb')->collection('sanctions')->where('_id', '=', $id)->first();
 
         return view('section.mod.preuve', ['data' => $Preuve]);
 

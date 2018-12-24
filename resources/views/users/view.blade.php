@@ -16,11 +16,6 @@
                                     <div class="col">
                                         <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
                                     </div>
-                                    @if($Player['online'] == true)
-                                        <h2>Online</h2>
-                                    @else
-                                        <h2>Offline</h2>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -32,31 +27,23 @@
                                     <div class="col">
                                         <h4>
                                             <li>
-                                                Nom : {{ $Player['name'] }}
+                                                Pseudo : {{ $Player['name'] }}
                                             </li>
                                             @if(isset($Player['realName']))
                                                 <li>
-                                                    Nom réel : {{ $Player['realName'] }}
+                                                    Pseudo réel : {{ $Player['realName'] }}
                                                 </li>
+                                            @endif
+                                            @if($Player['online'] == true)
+                                                <li>Online</li>
+                                            @else
+                                                <li>Offline</li>
                                             @endif
                                             <li>
                                                 Adresse IP : {{ $Player['lastIp'] }}
                                             </li>
                                             <li>
-                                                Groupe principal : {{ $Player['permissions']['group'] }}
-                                            </li>
-                                            <li>
-                                                Durée du group principal : {{ $Player['permissions']['end'] }}
-                                            </li>
-                                            <li>
-                                                Groupe(s) secondaire(s) :
-                                                <ul>
-                                                    @foreach($Player['permissions']['alternateGroups'] as $k => $row)
-                                                        <li>
-                                                            Groupe : {{ $k }} Time : {{ $row }}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
+                                                Mode premium : {{ $Player['onlineMode'] }}
                                             </li>
                                         </h4>
                                     </div>
@@ -159,20 +146,17 @@
                                                         Adresse IP : {{ $Player['lastIp'] }}
                                                     </li>
                                                     <li>
-                                                        Groupe principal : {{ $Player['permissions']['group'] }}
-                                                    </li>
-                                                    <li>
-                                                        Durée du group principal : {{ $Player['permissions']['end'] }}
-                                                    </li>
-                                                    <li>
                                                         Groupe(s) secondaire(s) :
-                                                        <ul>
-                                                            @foreach($Player['permissions']['alternateGroups'] as $k => $row)
-                                                                <li>
-                                                                    Groupe : {{ $k }} Time : {{ $row }}
-                                                                </li>
-                                                            @endforeach
-                                                        </ul>
+
+                                                        @foreach($Player['permissions']['groups'] as $k => $row)
+                                                            <ul> {{ $k }}
+                                                                @foreach($row as $p => $h)
+                                                                    <li>
+                                                                        Groupe : {{ $p }} Time : {{ $h }}
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endforeach
                                                     </li>
                                                 </ul>
                                                 <ul>
@@ -188,6 +172,75 @@
                                                 </ul>
                                             </div>
                                         </div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="3">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Type</th>
+                                                    <th>Banner</th>
+                                                    <th>Fin</th>
+                                                    <th>Raison</th>
+                                                    <th>Details</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="sanction_list">
+                                                @foreach($Sanctions as $row)
+                                                    <tr>
+                                                        <td>{{ $row['uuid'] }}</td>
+                                                        <td>{{ $row['type'] }}</td>
+                                                        <td>{{ $row['punisher'] }}</td>
+                                                        <td>
+                                                            @if($row['expire'] == -1)
+                                                                Infinis
+                                                            @else
+                                                                {{ date('d-m-Y', $row['expire'] / 1000) }}
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $row['reason'] }}</td>
+                                                        <td>
+
+                                                            <a onClick="window.open('/moderation/preuve/{{ $row['proof'] }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                                <i class="fa fa-eye"></i> </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="4">
+                                            <h4 class="header-title m-t-0 m-b-30">Logs guardian du joueur</h4>
+                                            <table class="table">
+                                                <thead class="thead-light">
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Nom du serveur</th>
+                                                    <th>Cheat</th>
+                                                    <th>Type</th>
+                                                    <th>#</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($Guardian as $row)
+                                                    <tr>
+                                                        <th scope="row">{{ $row->date }}</th>
+                                                        <td>{{ $row->serverName }}</td>
+                                                        <td>{{ $row->cheat }}</td>
+                                                        <td>{{ $row->type }}</td>
+                                                        <td>
+                                                            <a target="_blank" href="/moderation/guardian/{{ $row->id }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                                <i class="fa fa-eye"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
 
                                         <div role="tabpanel" class="tab-pane fade" id="5">
                                             <h4 class="header-title m-t-0 m-b-30">Achat(s) du joueur</h4>

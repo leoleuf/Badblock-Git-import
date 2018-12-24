@@ -60,6 +60,8 @@ Route::group([
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
 
+        Route::get('/guardian/{id}', 'moderation\GuardianController@view');
+
         Route::get('/sanction-tx', 'moderation\SanctionController@index');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 

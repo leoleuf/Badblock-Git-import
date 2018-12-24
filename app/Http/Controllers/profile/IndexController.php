@@ -78,23 +78,27 @@ class IndexController extends Controller
             return redirect('/');
         }
 
+        $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where('punishedUuid', '=', $Player['uniqueId'])
+            ->orderBy('timestamp', 'DESC')
+            ->take(100)
+            ->get();
+
         $Player['buy'] = DB::connection('mongodb')->collection('buy_logs')->where('uniqueId', $uuid)->orderby('date','DESC')->get();
         $Player['funds'] = DB::connection('mongodb')->collection('funds')->where('uniqueId', $uuid)->orderby('date','DESC')->get();
 
 
-        //Get if connected
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,            "http://node01-int.clusprv.badblock-network.fr:8080/players/isConnected/" );
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt($ch, CURLOPT_POST,           1 );
-        curl_setopt($ch, CURLOPT_POSTFIELDS,     "name=". $Player['name']);
-        curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Content-Type: application/json'));
-        $result = curl_exec ($ch);
-        $Player['online'] = json_decode($result)->connected;
+        $Player['online'] = true;
 
         $Logs = DB::connection('mongodb')->collection('profile_logs')->where('uniqueId', $Player['uniqueId'])->orderBy('data', 'ASC')->get();
 
-        return view('users.view')->with('Player', $Player)->with('Logs', $Logs);
+        $Guardian = DB::connection('mysql_guardian')->table('logs')->where('uuid', '=', $Player['uniqueId'])->orderBy("date", 'DESC')->limit(20)->get();
+
+        return view('users.view')
+            ->with('Player', $Player)
+            ->with('Sanctions', $Sanctions)
+            ->with('Logs', $Logs)
+            ->with('Guardian', $Guardian);
     }
 
 
