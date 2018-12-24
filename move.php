@@ -10,7 +10,7 @@ $client = new \MongoDB\Client(
 $client->selectDatabase("admin");
 $collection = $client->selectCollection("admin","players");
 
-$Players = $collection->find(["name" => "flofydech"])->toArray();
+$Players = $collection->find([])->toArray();
 
 $I = 0;
 
