@@ -684,7 +684,12 @@ class UserController extends Controller
 
             $id_ts = explode("//", $_POST['idts']);
             $id_ts = explode("/", $id_ts[1]);
-            $id_ts = explode("=", $id_ts[1]);
+            if (count($id_ts) > 3){
+                $id_ts = $id_ts[1] . "/" . $id_ts[2];
+            }else{
+                $id_ts = $id_ts[1];
+            }
+            $id_ts = explode("=", $id_ts);
 
             $id_ts = $id_ts[0] . "=";
 
@@ -700,7 +705,73 @@ class UserController extends Controller
             if ($count == 0) {
                 $this->container->mongo->teamspeak_uid->InsertOne($data);
             } else {
-                $this->container->mongo->teamspeak_uid->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ["teamspeak_uid" => $_POST['idts']]]);
+                $this->container->mongo->teamspeak_uid->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ["teamspeak_uid" => $id_ts]]);
+            }
+
+            //Add all grades
+            //Vérif grade Legend
+            $check = false;
+            $count = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
+            foreach ((array)$user['permissions']->groups->bungee as $k => $row) {
+                if ($k == "gradeperso") {
+                    $check = true;
+                }
+            }
+
+            //Other grade
+            foreach ((array)$user['permissions']->groups->bungee as $k => $row) {
+                if ($k == "mvp+") {
+                    $this->container->teamspeak->addtogroup($id_ts, 53);
+                }elseif ($k == "mvp") {
+                    $this->container->teamspeak->addtogroup($id_ts, 202);
+                }elseif ($k == "vip+") {
+                    $this->container->teamspeak->addtogroup($id_ts, 52);
+                }elseif ($k == "vip") {
+                    $this->container->teamspeak->addtogroup($id_ts, 203);
+                }
+            }
+
+
+            if($check == true){
+                //Check groups
+                $count = $this->container->mongo->teamspeak_groups->count(['uniqueId' => $user['uniqueId']]);
+                $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
+
+                if ($count < 1){
+                    //Duplicate wtf ??
+                    if ($custom['prefix'] == "&dLegend"){
+                        $custom['prefix'] = "Legend ". $user['name'];
+                    }
+
+                    //Create group
+                    $Id = $this->container->teamspeak->customGroup($custom['prefix']);
+                    //add user to group
+                    $this->container->teamspeak->addtogroup($id_ts, $Id);
+
+                    $data = [
+                        'uniqueId' => $user['uniqueId'],
+                        'teamspeak_uid' => $id_ts,
+                        'group_id' => $Id
+                    ];
+
+                    $this->container->mongo->teamspeak_groups->insertOne($data);
+                }else{
+                    $Id = $this->container->mongo->teamspeak_groups->findOne(['uniqueId' => $user['uniqueId']]);
+                    $this->container->teamspeak->removeGroup($Id['group_id']);
+
+                    //Create group
+                    $Id = $this->container->teamspeak->customGroup($custom['prefix']);
+                    //add user to group
+                    $this->container->teamspeak->addtogroup($id_ts, $Id);
+
+                    $data = [
+                        'uniqueId' => $user['uniqueId'],
+                        'teamspeak_uid' => $id_ts,
+                        'group_id' => $Id
+                    ];
+                    $this->container->mongo->teamspeak_groups->deleteOne(['uniqueId' => $user['uniqueId']]);
+                    $this->container->mongo->teamspeak_groups->insertOne($data);
+                }
             }
 
             $this->flash->addMessage('setting_error', "Compte TeamSpeak linké !");

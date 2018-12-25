@@ -37,8 +37,10 @@ class Teamspeak
                 throw new Exception('TeamSpeak : Bad Login');
             }
         }else{
-             $this->container->log->error('"App/TeamSpeak"',' Connection could not be established to ' . $this->ip);
-            throw new Exception('Connection could not be established to ' . $this->ip);
+            $login = $this->client->login($this->username, $this->password);
+            if ($login['success'] == true){
+                $this->client->selectServer($this->port);
+            }
         }
     }
 
@@ -59,7 +61,7 @@ class Teamspeak
 
         $ChannelId = $this->client->channelCreate($data);
 
-        $ClientId = $this->client->clientGetDbIdFromUid("67mblK4o5+9BFuZjFcD2+yihwsc=");
+        $ClientId = $this->client->clientGetDbIdFromUid($Uid);
         //Proprio du canal
         $this->client->channelGroupAddClient(5, $ChannelId['data']['cid'], $ClientId['data']['cldbid']);
 
@@ -71,5 +73,27 @@ class Teamspeak
         $Del = $this->client->channelDelete($Uid, 1);
         return $Del;
     }
+
+    public function customGroup($Name){
+        $this->connection();
+        $Id = $this->client->serverGroupAdd($Name, 0);
+
+
+        return $Id['data']['sgid'];
+    }
+
+    public function removeGroup($Name){
+        $this->connection();
+        $Id = $this->client->serverGroupDelete($Name, 1);
+        return $Id;
+    }
+
+    public function addtogroup($Uid, $GroupId){
+        $this->connection();
+        $ClientId = $this->client->clientGetDbIdFromUid($Uid);
+        $Id = $this->client->serverGroupAddClient($GroupId, $ClientId['data']['cldbid']);
+        return true;
+    }
+
 
 }
