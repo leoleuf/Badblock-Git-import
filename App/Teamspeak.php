@@ -47,4 +47,23 @@ class Teamspeak
         return $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
     }
 
+    //Create channel Teamspeak
+    public function createChannel($Uid, $Name, $Password){
+        $this->connection();
+        $data = array();
+        $data['CHANNEL_NAME'] = $Name;
+        $data['CHANNEL_PASSWORD'] = $Password;
+        $data['CHANNEL_FLAG_PERMANENT'] = 1;
+        $data['CPID'] = 230;
+        $data['CHANNEL_DESCRIPTION'] = "";
+
+        $ChannelId = $this->client->channelCreate($data);
+
+        $ClientId = $this->client->clientGetDbIdFromUid("67mblK4o5+9BFuZjFcD2+yihwsc=");
+        //Proprio du canal
+        $this->client->channelGroupAddClient(5, $ChannelId['data']['cid'], $ClientId['data']['cldbid']);
+
+        return $ChannelId;
+    }
+
 }

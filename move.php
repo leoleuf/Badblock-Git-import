@@ -8,7 +8,7 @@ $client = new \MongoDB\Client(
 );
 
 $client->selectDatabase("admin");
-$collection = $client->selectCollection("admin","players");
+$collection = $client->selectCollection("admin","players_old");
 
 $Players = $collection->find([]);
 
@@ -21,7 +21,7 @@ foreach ($Players as $player){
     if (isset($player['game']) && isset($player['loginPassword']) && isset($player['permissions'])){
         echo $I . " / " .$player['name'] .  " \n";
 
-        if ($I > 875477){
+        if (true){
             //Traitement grade
             foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
                 if ($k == "gradeperso" || $k == "noel"){

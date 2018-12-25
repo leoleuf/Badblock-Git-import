@@ -27,20 +27,7 @@ class ShopController extends Controller
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
-        if ($this->session->exist('user'))
-        {
-            $username = $this->session->getProfile('username')['username'];
-            if ($this->obsipromo($username))
-            {
-                $promo = true;
-            }
-            else
-            {
-                $promo = false;
-            }
-        }else{
-            $promo = false;
-        }
+        $promo = false;
 
         $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
 
@@ -188,23 +175,7 @@ class ShopController extends Controller
             $product->price = $product->promotion_new_price;
         }
 
-        //Remove after
-        if ($this->session->exist('user'))
-        {
-            $username = $this->session->getProfile('username')['username'];
-            if ($this->obsipromo($username))
-            {
-                $promo = true;
-            }
-            else
-            {
-                $promo = false;
-            }
-        }
-        else
-        {
-            $promo = false;
-        }
+
 
         if ($product->depend_name == 'vip' || $product->depend_name == 'vip+')
         {
@@ -455,31 +426,5 @@ class ShopController extends Controller
    }
 
 
-   public function obsipromo($pseudo)
-   {
-
-       //Search data player
-       $player = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
-
-       if ($player == null)
-       {
-           return false;
-       }
-
-       if ($player['permissions']['group'] == "obsidienne")
-       {
-           return true;
-       }
-
-       foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-       {
-           if ($k == "obsidienne")
-           {
-               return true;
-           }
-       }
-
-       return false;
-   }
 
 }
