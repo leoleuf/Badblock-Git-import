@@ -64,6 +64,9 @@
 
         <link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+
+
 
         {% if block("meta") is defined %}
             {{ block('meta') }}
@@ -429,7 +432,6 @@
     {% if block("scripts") is defined %}
         {{ block('scripts') }}
     {% endif %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
     <script src="/dist/js/app.js"></script>
     <script async defer>
         function showMenu(y) {
