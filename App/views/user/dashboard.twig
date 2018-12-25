@@ -116,7 +116,6 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Pseudonyme</td>
                                 <td>Date</td>
                                 <td>Type</td>
                                 <td>Auteur</td>
@@ -126,10 +125,9 @@
 
                             {% for key in sanctions %}
                                 <tr>
-                                    <td>{{ key["pseudo"] }}</td>
                                     <td>{{ key["date"] }}</td>
                                     <td><span class="label label-danger">{{ key["type"] }}</span></td>
-                                    <td><a href="/profile/{{ key["banner"] }}" title="Profil de {{ key['banner'] }}">{{ key["banner"] }}</a></td>
+                                    <td><a href="/profile/{{ key["punisher"] }}" title="Profil de {{ key['punisher'] }}">{{ key["punisher"] }}</a></td>
                                     {% if key["expire"] == -1 %}
                                         <td>Aucune</td>
                                     {% else %}
@@ -524,15 +522,13 @@
                     <tr>
                         <td>Pseudo</td>
                         <td>Date</td>
-                        <td>Heure</td>
                         <td>Adresse IP</td>
                     </tr>
                     {% for k,val in connection %}
                         <tr>
                             <td>{{ user.realName }}</td>
                             <td>{{ val.date }}</td>
-                            <td>{{ val.time }}</td>
-                            <td>{{ val.ip }}</td>
+                            <td>{{ val.lastIp }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

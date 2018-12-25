@@ -21,22 +21,16 @@ class UserController extends Controller
         $collection = $this->container->mongoServer->players;
         $user = $collection->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
-        if (!isset($user['refer']) OR !$user['refer'])
-        {
-            return $this->redirect($response, '/dashboard/refer');
-        }
-
         $check = false;
 
-        foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
+        foreach ((array) $user['permissions']->groups->bungee as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
             }
         }
 
-        if ($user['permissions']['group'] == "gradeperso" || $check == true){
-
-            //vérifiaction s'il n'y a pas deja un doc
+        if ($check == true){
+            //Vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
 
             //Création du document si inexistant
@@ -76,78 +70,10 @@ class UserController extends Controller
         }
 
         //Recherche des connections
-        try{
-            $connection = $this->container->mysql_casier->fetchRowMany('SELECT logs from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
-            $connection = json_decode($connection[0]['logs']);
-            if (count($connection) > 0){
-                $connection = array_slice($connection, (count($connection) - 10));
+        $connection = $this->container->mongoServer->connectionLogs->find(['username' => $user['name']], ['limit' => 20,'sort'  => [ 'date' => -1 ],]);
 
-                foreach ($connection as $k => $row){
-                    $row->ip = substr($row->log, strpos($row->log, "(IP:"),strpos($row->log, ")"));
-                    $row->ip = str_replace("(IP: ", "", $row->ip);
-                    $row->ip = str_replace(")", "", $row->ip);
-                    $row->date = str_replace("[", "", $row->date);
-                    $row->date = str_replace("]", "", $row->date);
-                    $datetime = \DateTime::createFromFormat('d/m/Y H:i:s', $row->date, new \DateTimeZone('Europe/Paris'));
-                    $timestamp = $datetime->getTimestamp();
-                    $timestamp = $timestamp - (86400 * 365);
-                    $timestamp = $timestamp + (86400 * 30);
-                    $connection[$k]->date = date("d/m/Y", $timestamp);
-                    $connection[$k]->time = date("H:i:s", $timestamp);
-                    $connection[$k]->ip = $row->ip;
-                }
-            }else{
-                $connection = false;
-            }
-        }catch (\mysqli_sql_exception $e){
-            $connection = false;
-        }
-
-
-        try{
-            //Récupération des sanctions
-            $array = $this->container['config']['punishTypes'];
-            $sanctions = $this->container->mysql_casier->fetchRowMany('SELECT * from sanctions WHERE pseudo = "' . $user["name"] . '" ORDER BY DATE LIMIT 10');
-            if (count($sanctions) > 0){
-                foreach ($sanctions as $k => $row){
-                    $sanctions[$k]['type'] = $array[$row['type']];
-                    if ($sanctions[$k]['expire'] != -1){
-                        $sanctions[$k]['expire'] = $sanctions[$k]['expire'] / 1000;
-                        $sanctions[$k]['expire'] =  round($sanctions[$k]['expire'], 0);
-                    }
-                }
-            }else{
-                $sanctions = false;
-            }
-        }catch (\mysqli_sql_exception $e){
-            $sanctions = false;
-        }
-
-        try{
-            // Récupération des dernières connexions
-            $lastLogins = array();
-            $lq = $this->container->mysql_casier->fetchRow('SELECT logs from friends WHERE pseudo = "' . $user["name"] . '" ORDER BY id LIMIT 1');
-            if (count($lq) > 0){
-                $i = 0;
-                $brq = json_decode($lq['logs'], true);
-                foreach ($brq as $k => $v){
-                    $i++;
-                    $v = $v['date'];
-                    $v = str_replace("]", "", $v);
-                    $v = str_replace("[", "", $v);
-                    $datetime = \DateTime::createFromFormat( 'd/m/Y H:i:s', $v, new \DateTimeZone('Europe/Paris'));
-                    $timestamp = $datetime->getTimestamp();
-                    $timestamp = $timestamp - (86400 * 365);
-                    $timestamp = $timestamp + (86400 * 30);
-                    $v = date("d/m/Y à H:i:s", $timestamp);
-                    $lastLogins[$i] = $v;
-                }
-            }else{
-                $sanctions = false;
-            }
-        }catch (\mysqli_sql_exception $e){
-            $sanctions = false;
-        }
+        //Récupération des sanctions
+        $sanctions = $this->container->mongoServer->punishments->find(['punishedUuid' => $user['uniqueId']], ['limit' => 20,'sort'  => [ 'date' => -1 ],]);
 
 
         //On affiche 0 pts boutiques si le joueur a pas sous
@@ -1178,14 +1104,14 @@ class UserController extends Controller
         //vérifiaction s'il n'y a pas deja un doc
         $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
         $check = false;
-        foreach ((array) $user['permissions']['alternateGroups'] as $k => $row){
+
+        foreach ((array) $user['permissions']->groups->bungee as $k => $row){
             if ($k == "gradeperso"){
                 $check = true;
             }
         }
 
-        if ($user['permissions']['group'] == "gradeperso" || $check == true){
-        }else{
+        if ($check != true){
             $this->flash->addMessage('setting_error', "Erreur interne !");
             //redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
