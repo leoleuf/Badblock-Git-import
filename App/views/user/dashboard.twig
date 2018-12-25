@@ -241,11 +241,11 @@
                     <h4 class="top0">Changer mon mode de connexion</h4>
                     <form action="/dashboard/changeserverconnect" method="post" name="confirm-mdp">
                         {% if user.onlineMode %}
-                            <input type="radio" name="selectmode" value="premium" id="rb" checked>Connexion premium
-                            <input type="radio" name="selectmode" value="crack" id="rb">Connexion cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb1" checked>Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb2">Connexion cracké
                         {% else %}
-                            <input type="radio" name="selectmode" value="premium" id="rb">Connexion premium
-                            <input type="radio" name="selectmode" value="crack" id="rb" checked>Connexion cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb3">Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb4" checked>Connexion cracké
                         {% endif %}
                         <br />
                         <input type="submit" class="button-primary espace-valider">
@@ -629,8 +629,6 @@
         <br />
         <br />
     </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 
     <div class="remodal modal-remodal" data-remodal-id="sponsor-you-accepted">
         <button data-remodal-action="close" class="remodal-close"></button>
