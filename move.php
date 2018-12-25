@@ -14,7 +14,7 @@ $Players = $collection->find([]);
 
 $I = 0;
 
-foreach ($result as $player){
+foreach ($Players as $player){
     $I++;
     $Grade = [];
 
