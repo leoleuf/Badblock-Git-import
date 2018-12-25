@@ -180,21 +180,15 @@ class UserController extends Controller
             //Nouveau cache
             //sans cache
             $collection = $this->container->mongoServer->players;
-
             $user = $collection->findOne(['name' => $args['pseudo']]);
 
-            if ($user["punish"]["mute"]) {
-                $user["punish"]["muteEnd"] = round($user["punish"]["muteEnd"] / 1000);
-            }
-            if ($user["punish"]["ban"]) {
-                $user["punish"]["banEnd"] = date("m/d/Y à H:i:s", intval(round($user["punish"]["banEnd"] / 1000)));
+            if ($user == null){
+                return $this->container['notFoundHandler']($request, $response);
             }
 
-
-            $user['permissions']['alternateGroups'] = (array)$user['permissions']['alternateGroups'];
             //Replace stylé
             $group = [];
-            foreach ($user['permissions']['alternateGroups'] as $k => $row) {
+            foreach ($user['permissions']->groups->bungee as $k => $row) {
                 if (strpos($k, 'pmanage_') !== false) {
                     array_push($group, str_replace('pmanage_', 'Manager ', $k));
                 } else if (strcasecmp($k, 'gradeperso') == 0) {
@@ -209,40 +203,45 @@ class UserController extends Controller
 
 
             //Search friends
-            $friends = $this->container->mysql_casier->fetchRowMany('SELECT friends from friends WHERE pseudo = "' . $user["realName"] . '" LIMIT 10');
-            $friends_valid = [];
-
-            if (count((array)json_decode($friends[0]['friends'])) > 0) {
-                foreach (json_decode($friends[0]['friends']) as $k => $friend) {
-                    if ($friend->status == "OK") {
-                        array_push($friends_valid, $k);
-                    }
-                }
-            }
-
-
-            $user['friends'] = $friends_valid;
-
-            //Plots
-            $Plots = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM freebuildplot WHERE owner = '" . $user["uniqueId"] . "' LIMIT 100");
-            foreach ($Plots as $k => $Plot) {
-                $Plots[$k]['x'] = 262 * $Plot['plot_id_x'] - 132;
-                $Plots[$k]['z'] = 262 * $Plot['plot_id_z'] - 132;
-
-                //Search trusted
-                $Trust_list = [];
-                $Trust = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM `freebuildplot_helpers` WHERE `plot_plot_id` = " . $Plot['id']);
-                if ($Trust != null) {
-                    foreach ($Trust as $user) {
-                        $In = $this->container->mongoServer->players->findOne(['uniqueId' => $user['user_uuid']]);
-                        if ($In != null) {
-                            array_push($Trust_list, $In['realName']);
+            $user['friends'] = [];
+            $ufriends = $this->container->mongoServer->friendlist->findOne(["_owner" => $user['uniqueId']]);
+            if ($ufriends != null){
+                foreach ($ufriends["players"] as $friend){
+                    if ($friend["state"] == "ACCEPTED"){
+                        $name = $this->container->mongoServer->players->findOne(["uniqueId" => $friend['uuid']]);
+                        if ($name != null){
+                            array_push($user['friends'], $name['realName']);
                         }
                     }
-                    $Plots[$k]['trust'] = $Trust_list;
-                } else {
-                    $Plots[$k]['trust'] = false;
                 }
+            }else{
+                $user['friends'] = [];
+            }
+
+            //Plots
+            try{
+                $Plots = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM freebuildplot WHERE owner = '" . $user["uniqueId"] . "' LIMIT 100");
+                foreach ($Plots as $k => $Plot) {
+                    $Plots[$k]['x'] = 262 * $Plot['plot_id_x'] - 132;
+                    $Plots[$k]['z'] = 262 * $Plot['plot_id_z'] - 132;
+
+                    //Search trusted
+                    $Trust_list = [];
+                    $Trust = $this->container->mysql_freebuild->fetchRowMany("SELECT * FROM `freebuildplot_helpers` WHERE `plot_plot_id` = " . $Plot['id']);
+                    if ($Trust != null) {
+                        foreach ($Trust as $user) {
+                            $In = $this->container->mongoServer->players->findOne(['uniqueId' => $user['user_uuid']]);
+                            if ($In != null) {
+                                array_push($Trust_list, $In['realName']);
+                            }
+                        }
+                        $Plots[$k]['trust'] = $Trust_list;
+                    } else {
+                        $Plots[$k]['trust'] = false;
+                    }
+                }
+            }catch (Exception $exception){
+
             }
 
             if (count($Plots) == 0) {
@@ -1163,13 +1162,14 @@ class UserController extends Controller
 
             $ts_uid = $this->container->mongo->teamspeak_uid->findOne(['uniqueId' => $user['uniqueId']]);
             $count = $this->container->mongo->teamspeak_channel->count(['uniqueId' => $user['uniqueId']]);
+            $Channel = $this->container->mongo->teamspeak_channel->findOne(['uniqueId' => $user['uniqueId']]);
 
             if ($ts_uid['teamspeak_uid'] == null) {
                 $this->flash->addMessage('setting_error', "Relier votre compte Teamspeak avant de créer votre canal !");
                 return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
             }
 
-            if (true) {
+            if ($count < 1) {
                 $Password = rand(10, 30) + rand(10, 30);
                 $Id = $this->container->teamspeak->createChannel($ts_uid['teamspeak_uid'], "Channel privé de " . $user['name'], $Password);
 
@@ -1185,20 +1185,11 @@ class UserController extends Controller
                 return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
             } else {
                 //Delete omd channel
-                $this->container->teamspeak->channelDelete($ts_uid['channel_id'], 1);
+                $this->container->teamspeak->deleteChannel(intval($Channel['channel_id']), 1);
 
-                $Password = rand(10, 30) + rand(10, 30);
-                $Id = $this->container->teamspeak->createChannel($ts_uid['teamspeak_uid'], "Channel privé de " . $user['name'], $Password);
+                $this->container->mongo->teamspeak_channel->deleteOne(['uniqueId' => $user['uniqueId']]);
 
-                //Création du document si inexistant
-                $data = [
-                    'uniqueId' => $user['uniqueId'],
-                    'ts_owner_uid' => $ts_uid['teamspeak_uid'],
-                    'channel_id' => $Id['data']['cid'],
-                ];
-
-                $this->container->mongo->teamspeak_channel->InsertOne($data);
-                $this->flash->addMessage('setting_error', "Canal créer avec succès le mot de passe est $Password !");
+                $this->flash->addMessage('setting_error', "Canal supprimé avec succès !");
                 return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
             }
         } elseif ($method == "icone") {

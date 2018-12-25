@@ -26,6 +26,9 @@ $app->group('/api', function(){
 		$this->get('/sta', \App\Controllers\Api\MinecraftApiController::class . ':getStats');
 	});
 
+    $this->get('/clearts', \App\Controllers\Api\TeamspeakApiController::class . ':index');
+
+
     $this->group('/discord', function() {
         $this->get('/support/{id}/{title}/{user}/{type}', \App\DiscordHandler::class . ':sendForum');
     });

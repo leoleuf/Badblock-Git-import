@@ -66,4 +66,10 @@ class Teamspeak
         return $ChannelId;
     }
 
+    public function deleteChannel($Uid){
+        $this->connection();
+        $Del = $this->client->channelDelete($Uid, 1);
+        return $Del;
+    }
+
 }

@@ -176,15 +176,6 @@ class ShopController extends Controller
         }
 
 
-
-        if ($product->depend_name == 'vip' || $product->depend_name == 'vip+')
-        {
-            if ($promo == true)
-            {
-                $product->price = $product->price / 2;
-            }
-        }
-
         //Check if player have money
         if(!$this->haveMoney(strtolower($playerName), $product->price) && $givean == false)
         {
