@@ -95,5 +95,17 @@ class Teamspeak
         return true;
     }
 
+    public function removeClient($Uid){
+        $this->connection();
+        $ClientId = $this->client->clientGetDbIdFromUid($Uid);
+
+        $ID = [52, 53, 202, 203];
+        foreach ($ID as $k => $row){
+            $this->client->serverGroupDeleteClient($ClientId['data']['cldbid'], $row);
+        }
+
+        return true;
+    }
+
 
 }

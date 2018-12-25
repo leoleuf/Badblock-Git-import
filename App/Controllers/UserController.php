@@ -705,6 +705,10 @@ class UserController extends Controller
             if ($count == 0) {
                 $this->container->mongo->teamspeak_uid->InsertOne($data);
             } else {
+                $Pl = $this->container->mongo->teamspeak_uid->findOne(['uniqueId' => $user['uniqueId']]);
+                if ($Pl['teamspeak_uid'] != $id_ts){
+                    $this->container->teamspeak->removeClient($Pl['teamspeak_uid']);
+                }
                 $this->container->mongo->teamspeak_uid->updateOne(['uniqueId' => $user['uniqueId']], ['$set' => ["teamspeak_uid" => $id_ts]]);
             }
 
