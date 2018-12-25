@@ -1177,24 +1177,28 @@ class UserController extends Controller
                 $data = [
                     'uniqueId' => $user['uniqueId'],
                     'ts_owner_uid' => $ts_uid['teamspeak_uid'],
-                    'channel_id' => $Id,
+                    'channel_id' => $Id['data']['cid'],
                 ];
 
                 $this->container->mongo->teamspeak_channel->InsertOne($data);
                 $this->flash->addMessage('setting_error', "Canal créer avec succès le mot de passe est $Password !");
                 return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
             } else {
-                $this->container->mongo->teamspeak_channel->updateOne(['uniqueId' => $user['uniqueId']], ['$set' =>
-                    [
-                        'uniqueId' => $user['uniqueId'],
-                        'ts_owner_uid' => $ts_uid['teamspeak_uid'],
-                        'channel_name' => $_POST['canal_name'],
-                        'channel_pwd' => $_POST['canal_psw'],
-                        'state' => false
-                    ]
-                ]);
-                $this->flash->addMessage('setting_error', "Paramètre de canal changé !");
-                //redirect to last page
+                //Delete omd channel
+                $this->container->teamspeak->channelDelete($ts_uid['channel_id'], 1);
+
+                $Password = rand(10, 30) + rand(10, 30);
+                $Id = $this->container->teamspeak->createChannel($ts_uid['teamspeak_uid'], "Channel privé de " . $user['name'], $Password);
+
+                //Création du document si inexistant
+                $data = [
+                    'uniqueId' => $user['uniqueId'],
+                    'ts_owner_uid' => $ts_uid['teamspeak_uid'],
+                    'channel_id' => $Id['data']['cid'],
+                ];
+
+                $this->container->mongo->teamspeak_channel->InsertOne($data);
+                $this->flash->addMessage('setting_error', "Canal créer avec succès le mot de passe est $Password !");
                 return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
             }
         } elseif ($method == "icone") {
