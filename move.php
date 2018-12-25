@@ -9,8 +9,8 @@ $client = new \MongoDB\Client(
 
 $client->selectDatabase("admin");
 
-$Players = $client->players;
-$Players = $Players->find([])->toArray();
+$collection = $client->selectCollection("admin","players");
+$Players = $collection->find([])->toArray();
 
 $I = 0;
 
@@ -73,7 +73,9 @@ foreach ($Players as $player){
                 "skyblock" => $Grades,
                 "freebuild" => $Grades
             ],
-            "permissions" => []
+            "permissions" => [
+                "bungee" => $Grades,
+            ]
         ],
         "authKey" => $player['authKey'],
         "refer" => $player['refer'],
