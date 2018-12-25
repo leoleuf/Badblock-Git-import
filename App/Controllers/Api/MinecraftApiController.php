@@ -50,8 +50,6 @@ class MinecraftApiController extends \App\Controllers\Controller
 
     public function teamspeak(ServerRequestInterface $request, ResponseInterface $response)
     {
-        dd($this->container->teamspeak->online());
-
         if (!$this->redis->exists('api.teamspeak.online'))
         {
             $data = $this->container->teamspeak->online();

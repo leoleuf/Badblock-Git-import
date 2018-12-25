@@ -44,7 +44,7 @@ class Teamspeak
 
     public function online(){
         $this->connection();
-        $data = $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
+        return $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
     }
 
     public function onlineNC(){

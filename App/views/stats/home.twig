@@ -224,6 +224,23 @@
 
             playerAj();
         });
+
+        $( document ).ready(function() {
+            function playerTs() {
+                $.ajax({
+                    url: '/api/minecraft/teamspeak',
+                    success: function(data) {
+                        if (data != null){
+                            var n = parseInt(data);
+                            $("#players-count").text(n);
+                        }
+                        setTimeout(playerAj, 3000);
+                    }
+                });
+            };
+
+            playerTs();
+        });
     </script>
     <script>
             Highcharts.setOptions({
