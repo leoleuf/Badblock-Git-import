@@ -22,7 +22,7 @@
                         @endif
                     </th>
                     <td>
-                        <a href="/" class="btn btn-icon btn-warning"> <i class="fa fa-wrench"></i> </a>
+                        <a href="/" class="btn btn-icon btn-default"> <i class="fa fa-wrench"></i> </a>
                     </td>
                 </tr>
             @endforeach
