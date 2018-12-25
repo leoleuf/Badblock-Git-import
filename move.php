@@ -11,8 +11,6 @@ $client->selectDatabase("admin");
 $collection = $client->selectCollection("admin","players");
 
 $Players = $collection->find([]);
-$Players->sort( array( 'name' => 1 ) );
-$result = $Players->getNext();
 
 $I = 0;
 
