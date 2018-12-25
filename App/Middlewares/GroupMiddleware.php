@@ -55,12 +55,9 @@ class GroupMiddleware
                     'partenaire' => 37,
                     'badfriend' => 38
                 );
-                $player['permissions']['alternateGroups'] = (array) $player['permissions']['alternateGroups'];
-
-                $player['permissions']['alternateGroups'][$player['permissions']['group']] = $player['permissions']['end'];
 
                 //Search
-                foreach ($player['permissions']['alternateGroups'] as $k => $row){
+                foreach ((array) $player['permissions']->groups->bungee as $k => $row){
                     //Regular group
                     foreach ($group as $g => $gr){
                         if ($k === $g){

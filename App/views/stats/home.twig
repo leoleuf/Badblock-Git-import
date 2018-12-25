@@ -200,9 +200,7 @@
 
 
     <script>
-
-
-        $(function(){
+        $( document ).ready(function() {
             function playerAj() {
                 $.ajax({
                     url: '/api/minecraft/players',
@@ -213,6 +211,7 @@
                                 'fr-FR',
                                 { minimumFractionDigits: 0 }
                             );
+                            console.log(data.players.now);
                             $("#players-count").text(value);
                         }
                         setTimeout(playerAj, 3000);
