@@ -13,10 +13,16 @@
                 <tr>
                     <th scope="row">
                         {{ $k }}_{{ $srv->id }}
+                        @if($srv->gameState == "WAITING")
+                            <span class="badge badge-warning">Waiting...</span>
+                        @elseif($srv->gameState == "RUNNING")
+                            <span class="badge badge-success">Running</span>
+                        @else
+                            <span class="badge badge-danger">Offline</span>
+                        @endif
                     </th>
                     <td>
                         <a href="/" class="btn btn-icon btn-warning"> <i class="fa fa-wrench"></i> </a>
-
                     </td>
                 </tr>
             @endforeach

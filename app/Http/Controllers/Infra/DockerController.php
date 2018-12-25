@@ -58,7 +58,7 @@ class DockerController extends Controller
                                 $Type_Server[$Type] = [];
                             }
                             foreach ($T as $s){
-                                if ($s->state == "RUNNING"){
+                                if ($s->state == "RUNNING" && round(($s->lastKeepAlive / 1000), 0) >= time()){
                                     array_push($Type_Server[$Type], $s);
                                 }
                             }
@@ -81,7 +81,7 @@ class DockerController extends Controller
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
         $channel = $connection->channel();
-        $channel->exchange_declare('docker.instance.open_PROD', 'fanout', false, false, false, false);
+        $channel->exchange_declare('docker.instance.open_PROD.node02-game', 'fanout', false, false, false, false);
 
         $InstanceOpenRequest = [
             "worldSystemName" => $_POST['WorldSystemName'],
