@@ -24,8 +24,6 @@ class Teamspeak
         $this->password = $config->password;
         $this->query_port = $config->query_port;
         $this->client = new ts3admin($this->ip, $this->query_port);
-        //Check de connection + login avant éxecution de commandes
-        //$this->online();
     }
 
     public function connection(){
@@ -36,22 +34,17 @@ class Teamspeak
                 $this->client->selectServer($this->port);
             }else{
                 $this->container->log->error('"App/TeamSpeak"',' Bad login ! User : ' . $this->username);
-                //throw new Exception('TeamSpeak : Bad Login');
+                throw new Exception('TeamSpeak : Bad Login');
             }
         }else{
              $this->container->log->error('"App/TeamSpeak"',' Connection could not be established to ' . $this->ip);
-            //throw new Exception('Connection could not be established to ' . $this->ip);
+            throw new Exception('Connection could not be established to ' . $this->ip);
         }
     }
 
     public function online(){
-        if (!$this->redis->exists('api.teamspeak.online'))
-        {
-            $this->connection();
-            $data = $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
-            $this->redis->setJson('api.teamspeak.online', $data);
-            $this->redis->expire('api.teamspeak.online', 300);
-        }
+        $this->connection();
+        $data = $this->client->serverInfo()["data"]['virtualserver_clientsonline'];
     }
 
     public function onlineNC(){
