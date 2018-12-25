@@ -47,26 +47,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-        <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/lc.css">
-
         <link rel="stylesheet" href="/dist/css/global.css">
         <link rel="stylesheet" href="/dist/css/app.css">
         <link rel="stylesheet" href="/dist/css/xmalware.css">
 
-        <!-- Google Tag Manager -->
-        <script>(function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    'gtm.start':
-                        new Date().getTime(), event: 'gtm.js'
-                });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                j.async = true;
-                j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=%27+i+dl;f.parentNode.insertBefore(j,f);
-            })(window, document, 'script', 'dataLayer', 'GTM-5WSQ9FB');</script>
-        <!-- End Google Tag Manager -->
 
         <!-- Favicon meta -->
         <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
@@ -238,22 +222,7 @@
         </div>
     </div>
     </div>
-    <!-------page-navbar-user------->
-    {#{% if user is defined %}
-    <div class="nav-profil">
-        <div class="container">
-            <a href="#"><img src="https://cdn.badblock.fr/head/{{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
-            <a href="#"><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Points Boutique</span></a>
-            <a href="#"><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Votes</span></a>
 
-            <a href="{{ path_for('logout') }}" class="right"> {{ 'user.logout'|trans }}</a>
-            <a href="{{ path_for('dashboard') }}" class="right">Paramètres</a>
-        </div>
-    </div>
-    {% endif %}#}
-    <!-------page-navbar-user fin------->
-    <!------Menu fin ------->
-    <!-- COVER  -->
     {% if block('cover') is defined %}
         {{ block('cover') }}
     {% endif %}
@@ -488,17 +457,7 @@
                 integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
                 crossorigin="anonymous"></script>
     {% endif %}
-    <script async defer src="/gtag/js?id=UA-104430841-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'UA-104430841-1');
-    </script>
     <script async defer>
         $(".dropdown-link").on('mouseover', function () {
             $(".dropdown-dropdown").show();
@@ -541,12 +500,6 @@
         </script>
     {% endif %}
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB" height="0" width="0"
-                style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     </body>
     </html>
