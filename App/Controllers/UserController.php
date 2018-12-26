@@ -683,14 +683,8 @@ class UserController extends Controller
             $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
 
             $id_ts = explode("//", $_POST['idts']);
-            $id_ts = explode("/", $id_ts[1]);
-            if (count($id_ts) > 3){
-                $id_ts = $id_ts[1] . "/" . $id_ts[2];
-            }else{
-                $id_ts = $id_ts[1];
-            }
+            $id_ts = substr($id_ts[1], 3);
             $id_ts = explode("=", $id_ts);
-
             $id_ts = $id_ts[0] . "=";
 
 
