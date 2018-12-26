@@ -17,7 +17,7 @@
                             <a href="https://images.badblock.fr/i/{{ $row['file_name'] }}" class="image-popup" title="Screenshot-1">
                                 <img src="https://images.badblock.fr/i/{{ $row['file_name'] }}" class="thumb-img" alt="work-thumbnail">
                             </a>
-                            <h5>{{ $row['file_name'] }} - {{ $row['date'] }} - {{ $row['ip'] }}</h5>
+                            <h5>{{ $row['file_name'] }} - {{ $row['date'] }} </h5>
                         </div>
                     </div>
                 @endforeach

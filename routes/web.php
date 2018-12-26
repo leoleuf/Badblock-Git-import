@@ -173,6 +173,8 @@ Route::group([
 
 
         Route::get('/docker', 'Infra\DockerController@index')->middleware('can:docker_index');
+        Route::get('/docker/{ajax}', 'Infra\DockerController@index')->middleware('can:docker_index');
+
         Route::get('/docker-send', 'Infra\DockerController@send')->middleware('can:docker_index');
 
         Route::post('/docker/ajax/open', 'Infra\DockerController@openInstance')->middleware('can:docker_open');

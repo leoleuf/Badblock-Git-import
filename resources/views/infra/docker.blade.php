@@ -22,11 +22,7 @@
             </div>
         </div>
         <div id="instances" style="display: none">
-            <div class="row">
-                @foreach($Servers as $k => $server)
-                    @include('infra.instances')
-                @endforeach
-            </div>
+            @include('infra.instances')
         </div>
 @endsection
 @section('after_scripts')
@@ -159,6 +155,13 @@
             });
             e.preventDefault();
         });
+    </script>
+
+    <script>
+        setInterval(function(){
+            $("#instances").load("/infra/docker/ajax","");
+        }, 5000);
+
     </script>
 
 @endsection

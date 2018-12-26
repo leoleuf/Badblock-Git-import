@@ -30,17 +30,17 @@ class CasierController extends Controller
     }
 
     public function minicase($pseudo){
+        $pseudo = DB::connection('mongodb_server')->collection('players')
+            ->where('name', '=', $pseudo)
+            ->first();
+
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
-            ->where('punishedUuid', '=', $pseudo)
+            ->where('punishedUuid', '=', $pseudo['uniqueId'])
             ->orderBy('timestamp', 'DESC')
             ->take(100)
             ->get();
 
-        $pseudo = DB::connection('mongodb_server')->collection('players')
-            ->where('uniqueId', '=', $pseudo)
-            ->first()['name'];
-
-        return view('section.mod.minicasier', ['pseudo' => $pseudo, 'sanction' => $Sanctions]);
+        return view('section.mod.minicasier', ['pseudo' => $pseudo['name'], 'sanction' => $Sanctions]);
     }
 
     public function preuve($id){

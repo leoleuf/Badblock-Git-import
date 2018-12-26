@@ -127,7 +127,7 @@
                                 <li><a href="/section/blog" class="waves-effect"><i class="fas fa-write"></i>  Stats Articles</a></li>
                             @endcan
                             <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i>  Paies Sections</a></li>
-                            <li><a href="/section/tfacheck" class="waves-effect"><i class="zmdi zmdi-shield-security"></i> /!\ Controle TFA</a></li>
+                            <li><a href="/section/tfacheck" class="waves-effect"><i class="fa fa-security"></i> /!\ Controle TFA</a></li>
                             <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i> Liste Staff</a></li>
                             <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i>  Utilisateur</a></li>
                             <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i>  Groupes</a></li>

@@ -37,9 +37,10 @@
                                             </td>
                                             <td>{{ $row['reason'] }}</td>
                                             <td>
-
-                                                <a onClick="window.open('/moderation/preuve/{{ $row['proof'] }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
-                                                    <i class="fa fa-eye"></i> </a>
+                                                @if(!is_array($row['proof']))
+                                                    <a onClick="window.open('/moderation/preuve/{{ $row['proof'] }}','Sanctions','resizable,height=450,width=700'); return false;" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                        <i class="fa fa-eye"></i> </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

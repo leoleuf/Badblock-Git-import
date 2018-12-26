@@ -17,7 +17,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 
 class DockerController extends Controller
 {
-    public function index(){
+    public function index($ajax = false){
 
         //Connect to INT & Get data from json
         $All_clusters = Redis::connection('docker')->scan("0");
@@ -68,10 +68,17 @@ class DockerController extends Controller
             }
         }
 
-        return view('infra.docker')
-            ->with('Clusters', $Data_cluster)
-            ->with('Type_List', $Type_list)
-            ->with('Servers', $Type_Server);
+        if ($ajax != false){
+            return view('infra.instances')
+                ->with('Clusters', $Data_cluster)
+                ->with('Type_List', $Type_list)
+                ->with('Servers', $Type_Server);
+        }else{
+            return view('infra.docker')
+                ->with('Clusters', $Data_cluster)
+                ->with('Type_List', $Type_list)
+                ->with('Servers', $Type_Server);
+        }
 
     }
 
