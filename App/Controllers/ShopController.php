@@ -169,6 +169,11 @@ class ShopController extends Controller
             }
         }
 
+        if ($product->queue == "survie")
+        {
+            return $response->write("Service temporairement désactivé !")->withStatus(400);
+        }
+
         //Check promotion
         if (isset($product->promotion) && $product->promotion)
         {
@@ -210,39 +215,7 @@ class ShopController extends Controller
             $this->sendRabbitData($playerName, $product);
         }elseif ($product->mode == "webladder")
         {
-            $this->hybrid(strtolower($playerName), $product['command'], $product->price, -1);
-        }elseif ($product->mode == "hybrid")
-        {
-            foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-            {
-                if ($k == "gradeperso")
-                {
-                    $check = true;
-                }
-                else
-                {
-                    $check = false;
-                }
-            }
-
-            if ($player['permissions']['group'] == "gradeperso")
-            {
-                $time = $player['permissions']['end'] + ($product['duration'] * 1000);
-                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
-            }
-            else
-            {
-                $expireC = 0;
-                foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-                {
-                    if ($k == "gradeperso")
-                    {
-                        $expireC = $row;
-                    }
-                }
-                $time = $expireC + ((time() + $product['duration']) * 1000);
-                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
-            }
+            return $response->write("Service temporairement désactivé !")->withStatus(400);
         }
 
         if ($givean == false){
@@ -343,78 +316,6 @@ class ShopController extends Controller
         $connection->close();
 
     }
-
-   public function hybrid($username, $grade, $price, $duration)
-   {
-        //Big game server rank
-       $server_list = [
-           'skyb',
-           'fb',
-           'faction'
-       ];
-
-       if ($duration != -1)
-       {
-           $duration = (60*60*24*31);
-       }
-       else
-       {
-           $duration = -1;
-       }
-
-       foreach ($server_list as $row)
-       {
-           $p = new \stdClass();
-           $p->name = "§6" . $grade;
-           $p->queue = $row;
-           $p->price = $price;
-           if ($duration != -1)
-           {
-               $p->command = "pex user %player% group add ". $grade .' "" '. $duration;
-           }
-           else
-           {
-               $p->command = "pex user %player% group add " . $grade;
-           }
-           $this->sendRabbitData($username, $p);
-       }
-
-       if ($grade == "legend")
-       {
-           $grade = "gradeperso";
-       }
-
-       //Ladder rankup
-       ////Connection to rabbitMQ server
-       $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
-       $channel = $connection->channel();
-
-       $channel->exchange_declare('shopLinker.ladder', 'fanout', false, false, false, false);
-       $sanction = (object) [
-           'dataType' => 'BUY',
-           'playerName' => $username,
-           'displayName' => $grade,
-           'command' => "perms user $username group add $grade",
-           'ingame' => false,
-           'price' => $price
-       ];
-
-       if ($duration != -1)
-       {
-           $sanction->command = "perms user $username group add $grade 31d";
-       }
-
-       $message = (object) [
-           'expire' => (time() + 604800) * 1000,
-           'message' => json_encode($sanction)
-       ];
-       $msg = new AMQPMessage(json_encode($message));
-       $channel->basic_publish($msg, 'shopLinker.ladder');
-
-
-       $channel->close();
-       $connection->close();
-   }
 
 
 

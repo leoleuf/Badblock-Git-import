@@ -36,7 +36,7 @@
                     {% for key,value in serverlist %}
                         <li class="shop-menu-active">
                             <a class="no-link" onclick="opentab(event, '{{ key }}', this.id)" id="no-link" title="Menu boutique {{ value["server"]["name"] }}">
-                                <i class="{{ value["server"]["icon"] }}"></i>{{ value["server"]["name"] }}</a>
+                                <i class="{{ value["server"]["icon"] }}"></i> {{ value["server"]["name"] }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -189,7 +189,7 @@
                 {% endif %}
             {% endfor %}
 
-        {#<div id="0" class="tabcontent" style="display: none;">
+        <div id="0" class="tabcontent" style="display: none;">
             <div class="panel-tr">
                 <table width="100%" style="text-align: center !important;" class="center">
                     <tr class="d" id="top-td">
@@ -724,7 +724,7 @@
 
             ** : Le terme "Dépendance" indique que vous devez posséder l'article précédent pour obtenir cet article, par exemple l'achat du VIP+ demande l'achat du VIP en premier et ainsi de suite.
 
-        </div>#}
+        </div>
 
 
         <!-- Shop Modal -->
