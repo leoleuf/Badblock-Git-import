@@ -682,11 +682,12 @@ class UserController extends Controller
             //vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongo->teamspeak_uid->count(['uniqueId' => $user['uniqueId']]);
 
-            $id_ts = explode("//", $_POST['idts']);
-            $id_ts = substr($id_ts[1], 3);
-            $id_ts = explode("=", $id_ts);
-            $id_ts = $id_ts[0] . "=";
-
+            $id_ts = $_POST['idts'];
+            $reg = "/(?:\\d+\\/)([^~]+)/";
+            $id_ts = preg_match($reg, $id_ts, $matches);
+            $id_ts = $matches[0];
+            $Pos = strpos($id_ts, "/");
+            $id_ts = substr($id_ts, $Pos + 1);
 
             $data = [
                 'uniqueId' => $user['uniqueId'],
@@ -726,6 +727,8 @@ class UserController extends Controller
                     $this->container->teamspeak->addtogroup($id_ts, 52);
                 }elseif ($k == "vip") {
                     $this->container->teamspeak->addtogroup($id_ts, 203);
+                }elseif ($k == "gradeperso") {
+                    $this->container->teamspeak->addtogroup($id_ts, 61);
                 }
             }
 
@@ -743,6 +746,7 @@ class UserController extends Controller
 
                     //Create group
                     $Id = $this->container->teamspeak->customGroup($custom['prefix']);
+
                     //add user to group
                     $this->container->teamspeak->addtogroup($id_ts, $Id);
 
@@ -759,8 +763,9 @@ class UserController extends Controller
 
                     //Create group
                     $Id = $this->container->teamspeak->customGroup($custom['prefix']);
+
                     //add user to group
-                    $this->container->teamspeak->addtogroup($id_ts, $Id);
+                    $Su = $this->container->teamspeak->addtogroup($id_ts, $Id);
 
                     $data = [
                         'uniqueId' => $user['uniqueId'],
