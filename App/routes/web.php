@@ -192,6 +192,7 @@ $app->group('/dashboard', function (){
 
 
 $app->get('/link', \App\Controllers\LinkController::class . ':step1')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->get('/link/{step}', \App\Controllers\LinkController::class . ':poststep')->setName('link-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setName('link-post');
 
 $app->get('/move', \App\Controllers\MoveController::class . ':step1')->setName('move-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));

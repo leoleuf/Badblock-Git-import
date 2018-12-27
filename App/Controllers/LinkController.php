@@ -23,11 +23,11 @@ class LinkController extends Controller
     }
 
     //fonction qui gère les form en POST
-    public function poststep(RequestInterface $request, ResponseInterface $response)
+    public function poststep(RequestInterface $request, ResponseInterface $response, $step = null)
     {
         $username = $this->session->getProfile('username')['username'];
 
-        if ($_POST['step'] == 1) {
+        if (isset($_POST['step'])) {
             $collection = $this->container->mongoServer->players;
             $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
@@ -54,42 +54,37 @@ class LinkController extends Controller
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
             }
 
-        }elseif($_POST['step'] == 2){
+        } else {
             //On vérifie si le code de linkage est le bon
-            if (strtoupper($_POST["code"]) == $this->redis->get('link:'.$username)){
+            if (strtoupper($step['step']) == $this->redis->get('link:' . $username)) {
                 //Tout est réussi on update le forum
-                $this->xenforo->addGroup($username,17);
+                $this->xenforo->addGroup($username, 17);
 
                 $old = $this->session->getProfile('user');
                 array_push($old['secondary_group_ids'], 17);
                 $this->session->set('user', $old);
 
-                return $this->render($response, 'user.link.step3', ["width" => 100,"step" => 3]);
+                return $this->render($response, 'user.link.step3', ["width" => 100, "step" => 3]);
+            }else{
+                //Message erreur
+                $this->flash->addMessage('link_error', 'Code invalide !');
+                return $this->render($response, 'user.link.step2', ["width" => 66, "step" => 2]);
             }
+        }
 
-else{
-    return $this->render($response, 'user.link.step2', ["width" => 66, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
-}
-}else{
-    //Erreur qui doit jamais arriver
-    return $response->write("Invalid STEP !")->withStatus(500);
-}
-}
-
-
-
-
-
-public
-function generateRandomString($length = 10)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
+        return "";
     }
-    return $randomString;
-}
+
+
+    public function generateRandomString($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
 
 }

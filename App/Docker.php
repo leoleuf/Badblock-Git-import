@@ -59,11 +59,4 @@ class Docker
         $this->sendData("bungee.punishment", $Object);
     }
 
-    public function banPlayer($Username, $Duration){
-
-    }
-
-
-
-
 }
