@@ -231,6 +231,10 @@ $container['ladder'] = function ($container) {
 	]);
 };
 
+$container['docker'] = function ($container) {
+    return new App\Docker($container);
+};
+
 $container['teamspeak'] = function ($container) {
    return new App\Teamspeak($container, (object) [
         'ip' => $container->config['teamspeak']['ip'],
