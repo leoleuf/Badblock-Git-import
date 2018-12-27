@@ -51,12 +51,23 @@ public class PunishmentMutedListener extends BadListener {
 		ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 		// We get the BadPlayer object
 		BadPlayer badPlayer = BadPlayer.get(proxiedPlayer);
+		
+		if (badPlayer == null)
+		{
+			return;
+		}
+		
 		// We get punishment information
 		Punished punished = badPlayer.getPunished();
 
 		// If there is no punishment data
 		if (punished == null) {
 			// We stop there
+			return;
+		}
+		
+		if (event.getMessage() != null && event.getMessage().startsWith("/"))
+		{
 			return;
 		}
 

@@ -43,7 +43,7 @@ public class MCommand extends BadCommand {
 	 */
 	public MCommand(Plugin plugin) {
 		// Super!
-		super(plugin, "m", "bungee.command.mod", "md");
+		super(plugin, "m", null, "md");
 
 		moderationCommands = new ArrayList<>();
 		moderationCommands.add(new BanIpCommand());
@@ -103,6 +103,22 @@ public class MCommand extends BadCommand {
 	 */
 	@Override
 	public void run(CommandSender sender, String[] args) {
+		boolean perm = false;
+		for (AbstractModCommand aCommand : moderationCommands)
+		{
+			if (sender.hasPermission(aCommand.getPermission()))
+			{
+				perm = true;
+				break;
+			}
+		}
+		
+		if (!perm)
+		{
+			I19n.sendMessage(sender, prefix + "notenoughpermissions", null);
+			return;
+		}
+		
 		// If no argument has been entered
 		if (args.length <= 0) {
 			// We give him help.

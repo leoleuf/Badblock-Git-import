@@ -33,6 +33,12 @@ public class PunishmentBannedIPListener extends BadListener {
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
 		// Getting the BadPlayer object
 		BadPlayer badPlayer = event.getBadPlayer();
+		
+		if (badPlayer == null)
+		{
+			return;
+		}
+		
 		BadIP badIp = BadIP.get(badPlayer.getLastIp());
 
 		if (badIp == null) {

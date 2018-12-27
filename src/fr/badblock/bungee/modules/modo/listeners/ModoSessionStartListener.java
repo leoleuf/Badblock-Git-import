@@ -30,6 +30,11 @@ public class ModoSessionStartListener extends BadListener {
 		// We get the BadPlayer object
 		BadPlayer badPlayer = event.getBadPlayer();
 
+		if (badPlayer == null)
+		{
+			return;
+		}
+		
 		if (!badPlayer.hasPermission("modo.sessions")) {
 			return;
 		}

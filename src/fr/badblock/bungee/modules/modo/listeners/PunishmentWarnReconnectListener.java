@@ -30,7 +30,12 @@ public class PunishmentWarnReconnectListener extends BadListener {
 	public void onPlayerJoinEvent(PlayerLoggedEvent event) {
 		// Getting the BadPlayer object
 		BadPlayer badPlayer = event.getBadPlayer();
-
+		
+		if (badPlayer == null)
+		{
+			return;
+		}
+		
 		Punished punished = badPlayer.getPunished();
 
 		if (punished == null) {

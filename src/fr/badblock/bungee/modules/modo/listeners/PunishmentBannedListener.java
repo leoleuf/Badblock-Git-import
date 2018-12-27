@@ -32,6 +32,12 @@ public class PunishmentBannedListener extends BadListener {
 	public void onPlayerJoinEvent(PlayerJoinEvent event) {
 		// Getting the BadPlayer object
 		BadPlayer badPlayer = event.getBadPlayer();
+
+		if (badPlayer == null)
+		{
+			return;
+		}
+		
 		// Getting punishment information
 		Punished punished = badPlayer.getPunished();
 
