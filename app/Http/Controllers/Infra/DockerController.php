@@ -88,19 +88,19 @@ class DockerController extends Controller
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
         $channel = $connection->channel();
-        $channel->exchange_declare('docker.instance.open_PROD.node02-game', 'fanout', false, false, false, false);
+        $channel->exchange_declare('docker.instance.open_PROD', 'fanout', false, false, false, false);
 
         $InstanceOpenRequest = [
             "worldSystemName" => $_POST['WorldSystemName'],
             "owner" => $_POST['owner'],
-            "target" => ""
+            "target" => "node01-dkr"
         ];
         $SendRequest = [
             "expire" => -1,
             "message" => json_encode($InstanceOpenRequest)
         ];
         $msg = new AMQPMessage(json_encode($SendRequest));
-        $channel->basic_publish($msg, '', 'docker.instance.open_DEV');
+        $channel->basic_publish($msg, '', 'docker.instance.open_PROD');
 
         return "ok";
     }

@@ -50,13 +50,13 @@ class ScreenController extends Controller
         //Save dans MongoDB
         $data = [
             'ip' => $_SERVER['REMOTE_ADDR'],
-            'user' => $User->name,
+            'user' => strtolower($User->name),
             'date' => date("Y-m-d H:i:s"),
             'file_name' => $filename
         ];
         DB::connection('mongodb')->collection('log_upload')->insert($data);
 
-        return redirect('https://images.badblock.fr/i/' . $filename);
+        return redirect('https://cdn.badblock.fr/upload/' . $filename);
     }
 
 }
