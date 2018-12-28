@@ -117,10 +117,8 @@
                             @can('gestion_forum')
                                 <li><a href="/section/forum" class="waves-effect"><i class="fab fa-pied-piper"></i>  Forum</a></li>
                             @endcan
-                            @can('gestion_mod')
                                 <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-shield-alt"></i>  Preuves</a></li>
                                 <li><a href="/section/mod" class="waves-effect"><i class="fas fa-shield-alt"></i>  Modération</a></li>
-                            @endcan
                             @can('gestion_build')
                                 <li><a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>  Builders</a></li>
                             @endcan

@@ -125,6 +125,9 @@ Route::group([
         Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:gestion_tfalist');
         Route::get('/allstaff', 'section\StaffController@index')->middleware('can:gestion_tfalist');
 
+        //Check sanctions sans preuves
+        Route::get('/preuves', 'section\ModController@preuves')->middleware('can:gestion_index');
+
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:gestion_index');
         Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:gestion_index');
