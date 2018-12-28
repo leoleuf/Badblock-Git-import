@@ -26,7 +26,7 @@ class Docker
 	}
 
 	public function sendData($queue , $message){
-        $this->channel->queue_declare($queue, false, false, false, false);
+        $this->channel->exchange_declare($queue, false, false, false, false);
         $obj = (object)[
             'expire' => (time() + 604800 * 1000),
             'message' => $message
