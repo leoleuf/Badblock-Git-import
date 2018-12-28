@@ -169,7 +169,7 @@ class ShopController extends Controller
             }
         }
 
-        if ($product->queue == "survie" || $product->queue == "faction" || $product->mode == "webladder")
+        if ($product->queue == "faction" || $product->mode == "webladder")
         {
             return $response->write("Service temporairement désactivé !")->withStatus(400);
         }

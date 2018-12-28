@@ -26,14 +26,14 @@ class Docker
 	}
 
 	public function sendData($queue , $message){
-        $this->channel->exchange_declare($queue, false, false, false, false);
+        $this->channel->exchange_declare($queue, 'fanout', false, false, false, false);
+
         $obj = (object)[
             'expire' => (time() + 604800 * 1000),
             'message' => $message
         ];
-
         $msg = new AMQPMessage(json_encode($obj));
-        $this->channel->basic_publish($msg, '',$queue);
+        $this->channel->basic_publish($msg, '', $queue);
 
         return true;
     }

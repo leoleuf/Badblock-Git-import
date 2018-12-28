@@ -758,6 +758,9 @@ class UserController extends Controller
 
                     $this->container->mongo->teamspeak_groups->insertOne($data);
                 }else{
+                    $reg = "/[&](.{1})/";
+                    $custom['prefix'] = preg_replace($reg, "",$custom['prefix']);
+                    
                     $Id = $this->container->mongo->teamspeak_groups->findOne(['uniqueId' => $user['uniqueId']]);
                     $this->container->teamspeak->removeGroup($Id['group_id']);
 
