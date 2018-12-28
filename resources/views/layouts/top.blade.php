@@ -118,7 +118,8 @@
                                 <li><a href="/section/forum" class="waves-effect"><i class="fab fa-pied-piper"></i>  Forum</a></li>
                             @endcan
                             @can('gestion_mod')
-                                <li><a href="/" class="waves-effect"><i class="fas fa-shield-alt"></i>  Modération</a></li>
+                                <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-shield-alt"></i>  Preuves</a></li>
+                                <li><a href="/section/mod" class="waves-effect"><i class="fas fa-shield-alt"></i>  Modération</a></li>
                             @endcan
                             @can('gestion_build')
                                 <li><a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>  Builders</a></li>
@@ -132,6 +133,8 @@
                             <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i>  Utilisateur</a></li>
                             <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i>  Groupes</a></li>
                             <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i>  Permissions</a></li>
+
+                            <li><a href="/section/permission-serv" class="waves-effect"><i class="fa fa-gear fa-spin"></i>  Permissions Serveur</a></li>
                         </ul>
                     </li>
                     @endcan

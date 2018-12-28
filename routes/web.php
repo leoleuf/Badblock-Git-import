@@ -124,6 +124,11 @@ Route::group([
         //List all staff
         Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:gestion_tfalist');
         Route::get('/allstaff', 'section\StaffController@index')->middleware('can:gestion_tfalist');
+
+        //Permissions serveur
+        Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:gestion_index');
+        Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:gestion_index');
+        Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:gestion_index');
     });
 
 
