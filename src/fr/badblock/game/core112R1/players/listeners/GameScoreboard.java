@@ -22,6 +22,7 @@ import com.google.common.collect.Maps;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
+import fr.badblock.api.common.utils.permissions.PermissionsManager;
 import fr.badblock.game.core112R1.players.GameBadblockPlayer;
 import fr.badblock.game.core112R1.players.ingamedata.VoteInGameData;
 import fr.badblock.gameapi.BadListener;
@@ -38,8 +39,6 @@ import fr.badblock.gameapi.utils.i18n.TranslatableString;
 import fr.badblock.gameapi.utils.itemstack.CustomInventory;
 import fr.badblock.gameapi.utils.itemstack.ItemAction;
 import fr.badblock.gameapi.utils.itemstack.ItemEvent;
-import fr.badblock.permissions.PermissibleGroup;
-import fr.badblock.permissions.PermissionManager;
 
 public class GameScoreboard extends BadListener implements BadblockScoreboard {
 	public static GameScoreboard gsb	   = null;
@@ -61,7 +60,6 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 
 		if(doGroupsPrefix){
 			p.setVisible(false, player -> true);
-			sendTeams(p);
 			customRanks.entrySet().forEach((entry) -> {
 				if (entry.getKey() == null)
 				{
@@ -93,8 +91,8 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 	public void onDataReceive(PlayerLoadedEvent e){
 		if(!doGroupsPrefix) return;
 		GameBadblockPlayer gbp = (GameBadblockPlayer) e.getPlayer();
-		if (groups.get(gbp.getFakeMainGroup()) != null && !gbp.getFakeMainGroup().equalsIgnoreCase("gradeperso")) {
-			getHandler().getTeam( groups.get(gbp.getFakeMainGroup()) ).addEntry(e.getPlayer().getName());
+		if (groups.get(gbp.getMainGroup()) != null && !gbp.getMainGroup().equalsIgnoreCase("gradeperso")) {
+			getHandler().getTeam( groups.get(gbp.getMainGroup()) ).addEntry(e.getPlayer().getName());
 		}
 
 		new BukkitRunnable() {
@@ -114,14 +112,14 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 
 		Team team = getHandler().getEntryTeam(e.getPlayer().getName());
 		GameBadblockPlayer gbp = (GameBadblockPlayer) e.getPlayer();
-		if (team != null && !gbp.getFakeMainGroup().equalsIgnoreCase("gradeperso")) {
-			if(!team.getName().equals(groups.get(gbp.getFakeMainGroup()))) {
+		if (team != null && !gbp.getMainGroup().equalsIgnoreCase("gradeperso")) {
+			if(!team.getName().equals(groups.get(gbp.getMainGroup()))) {
 				team.removeEntry(e.getPlayer().getName());
 
 				new BukkitRunnable() {
 					@Override
 					public void run() {
-						getHandler().getTeam( groups.get(gbp.getFakeMainGroup()) ).addEntry(e.getPlayer().getName());
+						getHandler().getTeam( groups.get(gbp.getMainGroup()) ).addEntry(e.getPlayer().getName());
 					}
 				}.runTaskLater(GameAPI.getAPI(), 5L);
 			}
@@ -211,21 +209,6 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 
 	}
 
-	public void sendTeams(BadblockPlayer player){
-		for(PermissibleGroup group : PermissionManager.getInstance().getGroups()){
-			String display = "§c";
-			if (group.getName().startsWith("gradeperso"))
-			{
-				display = "§c";
-			}
-			else
-			{
-				display = new TranslatableString("permissions.tab." + group.getName()).getAsLine(player);
-			}
-			sendTeamData(groups.get( group.getName() ), display, player);
-		}
-	}
-
 	public static Map<String, String> groups = new HashMap<>();
 	public static Map<String, Entry<String, String>> customRanks = new HashMap<>();
 
@@ -267,7 +250,7 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 
 		doGroupsPrefix = true;
 		i = 0;
-		PermissionManager.getInstance().getGroups().stream().sorted((a, b) -> {
+		PermissionsManager.getManager().getGroups().stream().sorted((a, b) -> {
 			return Integer.compare(b.getPower(), a.getPower());
 		}).forEach(group -> {
 			String id = generateForId(i) + "";
@@ -278,6 +261,8 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 			}
 
 			groups.put(group.getName(), id);
+			
+			System.out.println("Group : " + group.getName() + " : " + GameAPI.getAPI().getI18n().get(Locale.FRENCH_FRANCE, "permissions.tab." + group.getName())[0]);
 
 			if(getHandler().getTeam(id) == null){
 				getHandler().registerNewTeam(id);
@@ -383,7 +368,7 @@ public class GameScoreboard extends BadListener implements BadblockScoreboard {
 				public boolean call(ItemAction action, BadblockPlayer player) {
 					VoteInGameData data = player.inGameData(VoteInGameData.class);
 
-					Integer o = player.getPermissionValue("votesCountAs", Integer.class);
+					Integer o = player.getPermissionValue("votesCountAs");
 					o = o == null || o < 1 ? 1 : o;
 					if(data.getElement() != null && votes.containsKey(data.getElement())){
 						votes.put(data.getElement(), votes.get(data.getElement()) - o);

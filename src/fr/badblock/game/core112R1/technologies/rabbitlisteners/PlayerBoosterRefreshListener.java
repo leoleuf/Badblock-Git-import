@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
 import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.databases.SQLRequestType;
@@ -11,14 +13,12 @@ import fr.badblock.gameapi.game.rankeds.RankedManager;
 import fr.badblock.gameapi.players.data.boosters.PlayerBooster;
 import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.utils.general.Callback;
-import fr.badblock.rabbitconnector.RabbitConnector;
-import fr.badblock.rabbitconnector.RabbitListener;
-import fr.badblock.rabbitconnector.RabbitListenerType;
 
 public class PlayerBoosterRefreshListener extends RabbitListener {
 
 	public PlayerBoosterRefreshListener() {
-		super(RabbitConnector.getInstance().getService("default"), "boosterRefresh", false, RabbitListenerType.SUBSCRIBER);
+		super(GameAPI.getAPI().getRabbitService(), "boosterRefresh", RabbitListenerType.SUBSCRIBER, false);
+		load();
 	}
 
 	@Override

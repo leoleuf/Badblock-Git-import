@@ -8,9 +8,9 @@ import java.util.Map.Entry;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import fr.badblock.rabbitconnector.RabbitConnector;
-import fr.badblock.rabbitconnector.RabbitListener;
-import fr.badblock.rabbitconnector.RabbitListenerType;
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
+import fr.badblock.gameapi.GameAPI;
 
 public class PlayerPingListener extends RabbitListener {
 
@@ -19,7 +19,8 @@ public class PlayerPingListener extends RabbitListener {
 	public static final Type collectionType = new TypeToken<Map<String, Integer>>() {}.getType();
 
 	public PlayerPingListener() {
-		super(RabbitConnector.getInstance().getService("default"), "playerPing", false, RabbitListenerType.SUBSCRIBER);
+		super(GameAPI.getAPI().getRabbitService(), "playerPing", RabbitListenerType.SUBSCRIBER, false);
+		load();
 	}
 
 	@Override

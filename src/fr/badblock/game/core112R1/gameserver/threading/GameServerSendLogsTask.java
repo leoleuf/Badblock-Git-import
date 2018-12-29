@@ -19,6 +19,8 @@ import org.bukkit.Bukkit;
 
 import fr.badblock.game.core112R1.jsonconfiguration.data.FTPConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.GameServerConfig;
+import fr.badblock.gameapi.GameAPI;
+import fr.badblock.gameapi.run.RunType;
 
 public class GameServerSendLogsTask extends GameServerTask {
 
@@ -44,7 +46,7 @@ public class GameServerSendLogsTask extends GameServerTask {
 
 	public void doLog() {
 		// Remove logs if it's a lobby
-		//if (GameAPI.getAPI().getRunType().equals(RunType.LOBBY)) return;
+		if (GameAPI.getAPI().getRunType().equals(RunType.LOBBY)) return;
 		if (Bukkit.getServer().getIp().equals("127.0.0.1")) return;
 		File file = new File("./logs/latest.log");
 		if (file.exists()) {

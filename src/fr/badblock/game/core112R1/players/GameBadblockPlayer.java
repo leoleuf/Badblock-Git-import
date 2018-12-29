@@ -1,18 +1,18 @@
 package fr.badblock.game.core112R1.players;
 
 import java.lang.reflect.Type;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,6 +26,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -40,15 +42,27 @@ import com.google.gson.reflect.TypeToken;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 
+import fr.badblock.api.common.minecraft.matchmaking.MatchmakingEnterRequest;
+import fr.badblock.api.common.minecraft.party.Party;
+import fr.badblock.api.common.minecraft.party.PartyPlayer;
+import fr.badblock.api.common.minecraft.party.PartyPlayerRole;
+import fr.badblock.api.common.minecraft.party.PartyPlayerState;
+import fr.badblock.api.common.utils.data.Callback;
+import fr.badblock.api.common.utils.permissions.Permissible;
+import fr.badblock.api.common.utils.permissions.Permission;
+import fr.badblock.api.common.utils.permissions.Permission.PermissionResult;
+import fr.badblock.api.common.utils.permissions.PermissionSet;
+import fr.badblock.api.common.utils.permissions.PermissionUser;
+import fr.badblock.api.common.utils.permissions.PermissionsManager;
 import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.game.core112R1.listeners.CustomProjectileListener;
 import fr.badblock.game.core112R1.players.data.GamePlayerData;
+import fr.badblock.game.core112R1.players.ingamedata.CommandInGameData;
 import fr.badblock.game.core112R1.players.ingamedata.GameOfflinePlayer;
 import fr.badblock.game.core112R1.players.utils.PlayerLoginWorkers;
+import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerDataReceiver;
 import fr.badblock.gameapi.GameAPI;
-import fr.badblock.gameapi.databases.SQLRequestType;
 import fr.badblock.gameapi.game.result.Result;
-import fr.badblock.gameapi.particles.ParticleEffect;
 import fr.badblock.gameapi.players.BadblockPlayer;
 import fr.badblock.gameapi.players.BadblockTeam;
 import fr.badblock.gameapi.players.RankedPlayer;
@@ -57,10 +71,8 @@ import fr.badblock.gameapi.players.bossbars.BossBarStyle;
 import fr.badblock.gameapi.players.data.InGameData;
 import fr.badblock.gameapi.players.scoreboard.CustomObjective;
 import fr.badblock.gameapi.run.RunType;
-import fr.badblock.gameapi.utils.general.Callback;
 import fr.badblock.gameapi.utils.general.StringUtils;
 import fr.badblock.gameapi.utils.i18n.I18n;
-import fr.badblock.gameapi.utils.i18n.Locale;
 import fr.badblock.gameapi.utils.i18n.TranslatableString;
 import fr.badblock.gameapi.utils.i18n.messages.GameMessages;
 import fr.badblock.gameapi.utils.itemstack.ItemStackUtils;
@@ -69,9 +81,6 @@ import fr.badblock.gameapi.utils.reflection.Reflector;
 import fr.badblock.gameapi.utils.selections.CuboidSelection;
 import fr.badblock.gameapi.utils.selections.Vector3f;
 import fr.badblock.gameapi.utils.threading.TaskManager;
-import fr.badblock.permissions.PermissibleGroup;
-import fr.badblock.permissions.PermissiblePlayer;
-import fr.badblock.permissions.PermissionManager;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -90,10 +99,12 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	@Getter
 	private GamePlayerData 				 playerData 		  = null;
 	@Getter
-	public PermissiblePlayer 			 permissions 		  = null;
+	private PermissionUser				permissions;
 
 	@Getter
 	private Map<Class<?>, InGameData> 	 inGameData  		  = null;
+
+	private List<String>	tempPermissions = new ArrayList<>();
 
 	private GameMode 					 gamemodeBefJail 	  = null;
 
@@ -111,7 +122,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	@Getter@Setter
 	private boolean						 onlineMode			  = false;
 	@Getter@Setter
-	JsonObject					 object				  = null;
+	JsonObject									 object				  = null;
 
 	@Getter@Setter
 	private Vector3f					 firstVector, secondVector;
@@ -156,6 +167,8 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	private int							totalRank = -1;
 	@Getter@Setter
 	private int							totalPoints = -1;
+	@Getter@Setter
+	private boolean						load;
 
 	public GameBadblockPlayer(CraftServer server, EntityPlayer entity, GameOfflinePlayer offlinePlayer) {
 		super(server, entity);
@@ -165,7 +178,10 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		this.playerData  = offlinePlayer == null ? new GamePlayerData() : offlinePlayer.getPlayerData(); // On initialise pour ne pas provoquer de NullPointerException, mais sera recr�� � la r�c�ptions des donn�es
 		this.playerData.setGameBadblockPlayer(this);
 
-		this.permissions = PermissionManager.getInstance().createPlayer(getName(), offlinePlayer == null ? new JsonObject() : offlinePlayer.getObject());
+		if (this.permissions == null)
+		{
+			this.permissions = new PermissionUser();
+		}
 
 		if(offlinePlayer != null) {
 			object = offlinePlayer.getObject();
@@ -178,6 +194,26 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		{
 			PlayerLoginWorkers.workAsync(this);
 		}
+	}
+
+	@Override
+	public PermissionAttachment addAttachment(Plugin plugin, String permission, boolean enable)
+	{
+		if (tempPermissions == null)
+		{
+			tempPermissions = new ArrayList<>();
+		}
+
+		if (enable && !tempPermissions.contains(permission))
+		{
+			tempPermissions.add(permission);
+		}
+		else if (!enable && tempPermissions.contains(permission))
+		{
+			tempPermissions.remove(permission);
+		}
+
+		return null;
 	}
 
 	public void updateData(JsonObject object)
@@ -194,7 +230,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		// Game
 		if (object.has("game"))
 		{
-			JsonObject game = object.get("game").getAsJsonObject();
+			JsonObject game = object.getAsJsonObject("game");
 			this.object.add("game", game);
 			playerData = GameAPI.getGson().fromJson(game, GamePlayerData.class);
 			playerData.setData(game);
@@ -245,7 +281,25 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		if (object.has("permissions"))
 		{
 			this.object.add("permissions", object.get("permissions"));
-			permissions = PermissionManager.getInstance().createPlayer(getRealName() != null ? getRealName() : getName(), object);
+			this.permissions = new PermissionUser(object.getAsJsonObject("permissions"));
+			if (!permissions.getGroups().containsKey(GamePlugin.getInstance().getPermissionPlace()))
+			{
+				Map<String, Long> md = new HashMap<>();
+				md.put("default", -1L);
+				permissions.getGroups().put(GamePlugin.getInstance().getPermissionPlace(), md);
+			}
+			else if (permissions.getGroups().get(GamePlugin.getInstance().getPermissionPlace()).isEmpty())
+			{
+				Map<String, Long> md = new HashMap<>();
+				md.put("default", -1L);
+				permissions.getGroups().put(GamePlugin.getInstance().getPermissionPlace(), md);
+			}
+		}
+
+		// Aura
+		if(!isGhostConnect())
+		{
+			inGameData(CommandInGameData.class).vanish = true;
 		}
 
 		// Result
@@ -322,21 +376,6 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	}
 
 	@Override
-	public void setReducedDebugInfo(boolean reducedDebugInfo) {
-
-	}
-
-	@Override
-	public void playRain(boolean rain) {
-
-	}
-
-	@Override
-	public void showDemoScreen() {
-
-	}
-
-	@Override
 	public void heal() {
 		setFireTicks(0);
 		setArrowsInBody((byte) 0);
@@ -394,13 +433,9 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		playSound(location, sound, 3.0f, 1.0f);
 	}
 
-	protected Locale getBadLocale() {
-		return playerData.getLocale() == null ? Locale.FRENCH_FRANCE : playerData.getLocale();
-	}
-
 	@Override
 	public String[] getTranslatedMessage(String key, Object... args) {
-		return getI18n().get(getBadLocale(), key, args);
+		return getI18n().get(getLocale(), key, args);
 	}
 
 	@Override
@@ -408,121 +443,30 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	{
 		JsonObject jsonObject = new JsonObject();
 		jsonObject.addProperty("onlineMode", isOnlineMode());
-		GameAPI.getAPI().getLadderDatabase().updatePlayerData(this, jsonObject);
+		PlayerDataReceiver.send(this);
 	}
 
 	@Override
 	public void saveGameData() {
 		if (isDataFetch()) {
-			GameAPI.getAPI().getLadderDatabase().updatePlayerData(this, getPlayerData().saveData());
+			PlayerDataReceiver.send(this);
+		}
+	}
+
+	@Override
+	public void saveGameData(JsonObject jsonObject) {
+		if (isDataFetch()) {
+			PlayerDataReceiver.send(this, jsonObject);
 		}
 	}
 
 	@Override
 	public void postResult(Result ztoPost) {
-		/*long   id	    = new SecureRandom().nextLong();
-		long   party    = GamePlugin.getInstance().getGameServer().getGameId();
-		String player   = getName().toLowerCase();
-		UUID   playerId = getUniqueId();
-		String gameType = GameAPI.getGameName();
-		String server   = Bukkit.getServerName();*/
-		//String result   = GameAPI.getGson().toJson(toPost);
-
-
-		//	PreparedStatement statement = null;
-
-		try {
-			/*statement = GameAPI.getAPI().getSqlDatabase().preparedStatement("INSERT INTO parties(id, party, player, playerId, gametype, servername, day, result)"
-					+ " VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)");
-			statement.setLong(1, id);
-			statement.setLong(2, party);
-			statement.setString(3, player);
-			statement.setString(4, playerId.toString());
-			statement.setString(5, gameType);
-			statement.setString(6, server);
-			statement.setString(7, result);
-
-			statement.executeUpdate();*/
-
-			if (!resultDone) {
-				int percent = (int) Math.round(((double)getPlayerData().getXp() / (double)getPlayerData().getXpUntilNextLevel()) * 100);
-
-				String line = "&a";
-
-				for(int i=0;i<100;i++){
-					if(i == percent)
-						line += "&8";
-					line += "|";
-				}
-				sendTranslatedMessage("game.result", 
-						getPlayerData().getBadcoins(), getPlayerData().getLevel(), percent, getPlayerData().getXp(),
-						getPlayerData().getXpUntilNextLevel(), line, "", getPlayerData().getAddedBadcoins(), 
-						getPlayerData().getAddedLevels(), getPlayerData().getAddedXP(), getPlayerData().getAddedShopPoints());
-
-				resultDone = true;
-			}
-
-			saveGameData();
-		} catch(Exception e){
-			e.printStackTrace();
-		} finally {
-			/*if(statement != null)
-				try {
-					statement.close();
-				} catch (SQLException e){}*/
-		}
-
-	}
-	
-	private long bl;
-
-	@Override
-	public void sendMessage(String message)
-	{
-		if (message != null)
-		{
-			if (message.contains("§f[§b"))
-			{
-				super.sendMessage(message);
-				return;
-			}
-			
-			if (message.toLowerCase().contains("multiverse"))
-			{
-				return;
-			}
-			
-			if (message.toLowerCase().contains("pas la permission")
-					|| message.toLowerCase().contains("tu ne peux pas")
-					|| message.toLowerCase().contains("required permission")
-					|| message.toLowerCase().contains("tu ne peux ")
-					|| message.toLowerCase().contains("not permitted")
-					|| message.toLowerCase().contains("have permission")
-					|| message.toLowerCase().contains("/region "))
-			{
-				if (bl > System.currentTimeMillis())
-				{
-					return;
-				}
-				
-				bl = System.currentTimeMillis() + 1000;
-				super.sendMessage("§fCommande inconnue.");
-				return;
-			}
-		}
-		super.sendMessage(message);
 	}
 
 	@Override
 	public void sendTranslatedMessage(String key, Object... args) {
-		System.out.println("Key GameBadblockPlayer->sendTranslatedMessage() 0 : " + key);
 		sendMessage(getTranslatedMessage(key, args));
-	}
-
-	@Override
-	public void sendActionBar(String message) {
-		// TODO
-		//super.sendAc(message);
 	}
 
 	@Override
@@ -535,20 +479,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public void addBossBar(String key, String message, float life, BossBarColor color, BossBarStyle style) {
-		message = getI18n().replaceColors(message);
 
-		if(bossBars.containsKey(key.toLowerCase())){
-			changeBossBar(key, message);
-			changeBossBarStyle(key, life, color, style);
-
-			return;
-		}
-
-		ViaBossBar bar = new ViaBossBar(message, life, us.myles.ViaVersion.api.boss.BossColor.valueOf(color.name()), us.myles.ViaVersion.api.boss.BossStyle.valueOf(style.name()));
-		bar.addPlayer(this);
-
-		bossBars.put(key.toLowerCase(), bar);
-		lastBossBar = bar;
 	}
 
 	@Override
@@ -635,7 +566,6 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public void sendTabHeader(String header, String footer) {
-
 	}
 
 	@Override
@@ -645,17 +575,16 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public void showFloatingText(String text, Location location, long lifeTime, double offset) {
-		// TODO
+
 	}
 
 	@Override
 	public void showTranslatedFloatingText(Location location, long lifeTime, double offset, String key, Object... args) {
-		showFloatingText(getTranslatedMessage(key, args)[0], location, lifeTime, offset);
+
 	}
 
 	@Override
 	public void jailPlayerAt(Location location) {
-		// TODO
 	}
 
 	@Getter private Location centerJail = null;
@@ -678,23 +607,16 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	}
 
 	@Override
-	public void playChestAnimation(Block block, boolean open) {
-
-	}
-
-	@Override
 	public void setEntityCollision(boolean collision) {
-		getHandle().collides = collision;
+		super.setCollidable(collision);
 	}
 
 	@Override
 	public void setArrowsInBody(byte amount) {
-		//super.setArrowsStuck(amount);
 	}
 
 	@Override
 	public void changePlayerDimension(Environment world) {
-
 	}
 
 	@Override
@@ -707,11 +629,6 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void sendParticle(Location location, ParticleEffect effect) {
-
 	}
 
 	@Override
@@ -738,15 +655,21 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public boolean hasPermission(GamePermission permission) {
-		return permission.getPermission() == null ? true : hasPermission(permission.getPermission());
+		return permission.getPermission() == null ? true : hasPermission(permission.getPermission()) || (tempPermissions != null && tempPermissions.contains(permission.getPermission()));
 	}
 
 	@Override
 	public boolean hasPermission(String permission) {
-		if(GameAPI.getAPI().getRunType() == RunType.DEV && permissions.hasPermission("devserver"))
+		if(GameAPI.getAPI().getRunType() == RunType.DEV && permissions.hasPermission(GamePlugin.getInstance().getPermissionPlace(), "devserver"))
 			return true;
-		return permission == null ? true : permissions.hasPermission(permission);
+		return permission == null ? true : permissions.hasPermission(GamePlugin.getInstance().getPermissionPlace(), permission) || (tempPermissions != null && tempPermissions.contains(permission));
 	}
+	
+	@Override
+	public boolean hasPermission(org.bukkit.permissions.Permission pm) {
+		return hasPermission(pm.getName());
+	}
+		
 
 	@Override
 	public TranslatableString getGroupPrefix() {
@@ -756,7 +679,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customRank);
 			return result;
 		}
-		return new TranslatableString("permissions.chat." + getFakeMainGroup());
+		return new TranslatableString("permissions.chat." + getMainGroup());
 	}
 
 	@Override
@@ -767,7 +690,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customColor);
 			return result;
 		}
-		return new TranslatableString("permissions.chat_suffix." + getFakeMainGroup());
+		return new TranslatableString("permissions.chat_suffix." + getMainGroup());
 	}
 
 	@Override
@@ -778,46 +701,21 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customRank);
 			return result;
 		}
-		return new TranslatableString("permissions.tab." + getFakeMainGroup());
-	}
-
-	public String getFakeMainGroup()
-	{
-		String rankName = permissions.getParent().getName();
-		if (getRealName() != null)
-		{
-			if (rankName.equalsIgnoreCase("gradeperso"))
-			{
-				return rankName;
-			}
-			List<String> groups = new ArrayList<>(permissions.getAlternateGroups().keySet());
-			groups.add(permissions.getSuperGroup());
-			rankName = "default";
-			int rankLevel = 0;
-			for (String group : groups)
-			{
-				PermissibleGroup g = PermissionManager.getInstance().getGroup(group);
-				if (!g.isStaff())
-				{
-					if (g.getPower() > rankLevel)
-					{
-						rankName = g.getName();
-						rankLevel = g.getPower();
-					}
-				}
-			}
-		}
-		return rankName;
+		return new TranslatableString("permissions.tab." + getMainGroup());
 	}
 
 	@Override
 	public String getMainGroup() {
-		return permissions.getSuperGroup();
+		return permissions.
+				getHighestRank(
+						GamePlugin.getInstance().getPermissionPlace()
+						, false).
+				getName();
 	}
 
 	@Override
 	public Collection<String> getAlternateGroups() {
-		return permissions.getAlternateGroups().keySet();
+		return permissions.getValidRanks(GamePlugin.getInstance().getPermissionPlace());
 	}
 
 	@Override
@@ -914,16 +812,6 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	@Override
 	public boolean hasAdminMode(){
 		return adminMode;
-	}
-
-	@Override
-	public boolean isDisguised(){
-		return false;
-	}
-
-	@Override
-	public void undisguise() {
-
 	}
 
 	@Override
@@ -1090,16 +978,35 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 	}
 
 	@Override
-	public <T> T getPermissionValue(String key, Class<T> clazz) {
-		JsonElement el = permissions.getValue(key);
+	public int getPermissionValue(String key) {
+		List<PermissionSet> perm = permissions.getPermissions(GamePlugin.getInstance().getPermissionPlace());
 
-		return el == null ? null : GameAPI.getGson().fromJson(permissions.getValue(key), clazz);
+		int a = 0;
+		for (PermissionSet permissionSet : perm)
+		{
+			JsonElement jsonElement = permissionSet.getValue(key);
+			if (jsonElement.isJsonObject())
+			{
+				JsonObject jsonObject = jsonElement.getAsJsonObject();
+				if (jsonObject.entrySet().isEmpty())
+				{
+					continue;
+				}
+			}
+
+			if (a < jsonElement.getAsInt())
+			{
+				a = jsonElement.getAsInt();
+			}
+		}
+
+		return a;
 	}
 
 	@Override
 	public int getVipLevel() {
-		Integer res = getPermissionValue("badblock.viplevel", Integer.class);
-		return res == null ? 0 : (int) res;
+		int res = getPermissionValue("badblock.viplevel");
+		return res;
 	}
 
 	@Override
@@ -1160,8 +1067,6 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	public void updatePlayerSkin()
 	{
-		resetPlayerView();
-
 		for(BadblockPlayer player : GameAPI.getAPI().getOnlinePlayers())
 		{
 			if(player == this || !player.canSee(this))
@@ -1172,9 +1077,87 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		}
 	}
 
-	public void resetPlayerView()
+	@Override
+	public void addIntoMatchmaking(String worldSystem)
 	{
+		GamePlugin.getInstance().getPartyManager().getParty(getName(), new Callback<Party>()
+		{
+			@Override
+			public void done(Party result, Throwable error)
+			{
+				String[] extraPlayers = new String[] {};
 
+				if (result != null && result.getPlayers().containsKey(getName().toLowerCase()))
+				{
+					PartyPlayer player = result.getPlayers().get(getName().toLowerCase());
+					if (PartyPlayerRole.ADMIN.equals(player.getRole()) && player.isFollow())
+					{
+						List<String> extra = new ArrayList<>();
+						for (PartyPlayer partyPlayer : result.getPlayers().values())
+						{
+							if (partyPlayer.isFollow() && !player.getName().equalsIgnoreCase(partyPlayer.getName())
+									&& PartyPlayerState.ACCEPTED.equals(partyPlayer.getState()))
+							{
+								extra.add(partyPlayer.getName());
+							}
+						}
+						extraPlayers = new String[extra.size()];
+						extraPlayers = extra.toArray(extraPlayers);
+					}
+				}
+
+				new MatchmakingEnterRequest(getName().toLowerCase(), GamePlugin.getInstance().getCluster(), worldSystem, extraPlayers, System.currentTimeMillis())
+				.send(
+						GamePlugin.getInstance().getRabbitService()
+						);
+			}
+		});
 	}
+
+	@Override
+	public void sendActionBar(String message) {
+		
+	}
+	
+	@Override
+	public Set<PermissionAttachmentInfo> getEffectivePermissions()
+	{
+		Set<PermissionAttachmentInfo> s = new HashSet<>();
+		List<Permission> pms = new ArrayList<>();
+		List<String> ranks = permissions.getValidRanks(GamePlugin.getInstance().getPermissionPlace());
+		for (String rank : ranks)
+		{
+			Permissible permissible = PermissionsManager.getManager().getGroup(rank);
+			for (PermissionSet set : permissible.getPermissions())
+			{
+				if (set.getPlaces() == null || !set.getPlaces().contains(GamePlugin.getInstance().getPermissionPlace()))
+				{
+					continue;
+				}
+				
+				pms.addAll(set.getPermissions());
+			}
+		}
+		for (Permission pm : pms)
+		{
+			String pmString = pm.isAll() ? pm.getPermission() + "*" : pm.getPermission();
+			s.add(new PermissionAttachmentInfo(this, pmString, null, PermissionResult.YES.equals(pm.getResult())));
+		}
+        return s;
+    }
+	
+	@Override
+	public boolean isPermissionSet(String perm)
+	{
+		return hasPermission(perm);
+	}
+	
+	@Override
+	public boolean isPermissionSet(org.bukkit.permissions.Permission perm)
+	{
+		return hasPermission(perm.getName());
+	}
+	
+	
 
 }

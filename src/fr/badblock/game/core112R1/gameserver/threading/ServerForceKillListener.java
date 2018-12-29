@@ -5,15 +5,15 @@ import java.lang.management.ManagementFactory;
 
 import org.bukkit.Bukkit;
 
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
 import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.run.RunType;
-import fr.badblock.rabbitconnector.RabbitListener;
-import fr.badblock.rabbitconnector.RabbitListenerType;
 
 public class ServerForceKillListener extends RabbitListener {
 	public ServerForceKillListener() {
-		super(GamePlugin.getInstance().getRabbitSpeaker().getRabbitService(), "forcekill", false, RabbitListenerType.SUBSCRIBER);
+		super(GamePlugin.getInstance().getRabbitSpeaker().getRabbitService(), "forcekill", RabbitListenerType.SUBSCRIBER, false);
 	}
 
 	@Override

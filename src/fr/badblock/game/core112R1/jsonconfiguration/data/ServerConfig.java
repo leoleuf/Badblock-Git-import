@@ -13,5 +13,11 @@ public class ServerConfig {
 
 	// Selected i18n work folder
 	public String i18nPath;
+
+	// Permission place
+	public String permissionPlace;
+	
+	// Cluster
+	public String cluster;
 	
 }

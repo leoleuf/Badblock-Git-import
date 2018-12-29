@@ -7,14 +7,13 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
+import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.players.BadblockPlayer;
 import fr.badblock.gameapi.players.BadblockPlayer.BadblockMode;
 import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.utils.BukkitUtils;
-import fr.badblock.rabbitconnector.RabbitConnector;
-import fr.badblock.rabbitconnector.RabbitListener;
-import fr.badblock.rabbitconnector.RabbitListenerType;
 
 public class VanishTeleportListener extends RabbitListener {
 
@@ -22,7 +21,8 @@ public class VanishTeleportListener extends RabbitListener {
 	public static Map<String, String[]> splitters = new HashMap<>();
 
 	public VanishTeleportListener() {
-		super(RabbitConnector.getInstance().getService("default"), "vanishTeleport", false, RabbitListenerType.SUBSCRIBER);
+		super(GameAPI.getAPI().getRabbitService(), "vanishTeleport", RabbitListenerType.SUBSCRIBER, false);
+		load();
 	}
 
 	@Override

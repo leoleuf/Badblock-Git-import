@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -33,14 +34,22 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.gson.JsonArray;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
+import fr.badblock.api.common.minecraft.party.PartySyncManager;
 import fr.badblock.api.common.tech.mongodb.MongoConnector;
 import fr.badblock.api.common.tech.mongodb.setting.MongoSettings;
-import fr.badblock.game.core112R1.chest.GameChestGenerator;
-import fr.badblock.game.core112R1.commands.PortalCommand;
+import fr.badblock.api.common.tech.rabbitmq.RabbitService;
+import fr.badblock.api.common.tech.rabbitmq.setting.RabbitSettings;
+import fr.badblock.api.common.utils.permissions.Permissible;
+import fr.badblock.api.common.utils.permissions.PermissionsManager;
 import fr.badblock.game.core112R1.configuration.GameConfiguration;
 import fr.badblock.game.core112R1.gameserver.GameServer;
 import fr.badblock.game.core112R1.gameserver.GameServerManager;
@@ -54,11 +63,9 @@ import fr.badblock.game.core112R1.itemstack.QrCodeMap;
 import fr.badblock.game.core112R1.jsonconfiguration.data.FTPConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.GameServerConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.LadderConfig;
-import fr.badblock.game.core112R1.jsonconfiguration.data.RabbitMQConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.RankedConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.SQLConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.ServerConfig;
-import fr.badblock.game.core112R1.ladder.GameLadderSpeaker;
 import fr.badblock.game.core112R1.listeners.ChatListener;
 import fr.badblock.game.core112R1.listeners.PortalListener;
 import fr.badblock.game.core112R1.listeners.mapprotector.DefaultMapProtector;
@@ -75,6 +82,7 @@ import fr.badblock.game.core112R1.tasks.AntiAFKTask;
 import fr.badblock.game.core112R1.tasks.GameStatisticsTask;
 import fr.badblock.game.core112R1.technologies.RabbitSpeaker;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerBoosterRefreshListener;
+import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerDataReceiver;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerPingListener;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.VanishTeleportListener;
 import fr.badblock.gameapi.GameAPI;
@@ -95,6 +103,7 @@ import fr.badblock.gameapi.players.kits.PlayerKitContentManager;
 import fr.badblock.gameapi.players.scoreboard.CustomObjective;
 import fr.badblock.gameapi.portal.Portal;
 import fr.badblock.gameapi.run.RunType;
+import fr.badblock.gameapi.servers.ChestGenerator;
 import fr.badblock.gameapi.servers.JoinItems;
 import fr.badblock.gameapi.servers.MapProtector;
 import fr.badblock.gameapi.utils.BukkitUtils;
@@ -107,7 +116,6 @@ import fr.badblock.gameapi.utils.itemstack.ItemStackFactory;
 import fr.badblock.gameapi.utils.reflection.Reflector;
 import fr.badblock.gameapi.utils.selections.CuboidSelection;
 import fr.badblock.gameapi.utils.threading.TaskManager;
-import fr.badblock.permissions.PermissionManager;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -168,9 +176,6 @@ public class GamePlugin extends GameAPI {
 	private File						portalFolder	= null;
 
 	@Getter
-	private GameChestGenerator			chestGenerator;
-
-	@Getter
 	private RunType						runType;
 	@Getter@Setter
 	private boolean						compassSelectNearestTarget;
@@ -199,6 +204,20 @@ public class GamePlugin extends GameAPI {
 	public boolean						antiAfk;
 	@Getter
 	private Meteor						meteor;
+	@Getter
+	private String							permissionPlace;
+	@Getter
+	private String							cluster;
+
+	// TODO remove : c'est pour le nouveau backend
+	@Getter
+	private boolean					newbackend;
+	
+	@Getter@Setter
+	private RabbitService			rabbitService;
+	
+	@Getter@Setter
+	private PartySyncManager	partyManager;
 
 	@Override
 	public void onEnable() {
@@ -236,12 +255,60 @@ public class GamePlugin extends GameAPI {
 			GameServerConfig gameServerConfig = JsonUtils.load(new File(configFolder, "gameServer.json"), GameServerConfig.class);
 			RankedConfig rankedConfig = JsonUtils.load(new File(configFolder, "ranked.json"), RankedConfig.class);
 			LadderConfig ladderConfig = JsonUtils.load(new File(configFolder, "ladder.json"), LadderConfig.class);
-			RabbitMQConfig rabbitMQConfig = JsonUtils.load(new File(configFolder, "rabbitmq.json"), RabbitMQConfig.class);
+			RabbitSettings rabbitSettings = JsonUtils.load(new File(configFolder, "rabbitmq.json"), RabbitSettings.class);
 			ServerConfig serverConfig = JsonUtils.load(new File(configFolder, "server.json"), ServerConfig.class);
 			SQLConfig sqlConfig = JsonUtils.load(new File(configFolder, "sql.json"), SQLConfig.class);
 			SQLConfig webConfig = JsonUtils.load(new File(configFolder, "web.json"), SQLConfig.class);
 			MongoSettings mongoSettings = JsonUtils.load(new File(configFolder, "mongosettings.json"), MongoSettings.class);
 			setMongoService(MongoConnector.getInstance().createService("default", mongoSettings));
+
+			this.cluster = serverConfig.getCluster();
+			
+			GameAPI.logColor("§b[GameAPI] §aFetching permission data from MongoDB...");
+			this.permissionPlace = serverConfig.getPermissionPlace();
+			GameAPI.logColor("§b[GameAPI] §aPermission place: §e" + serverConfig.getPermissionPlace());
+
+			partyManager = new PartySyncManager(getMongoService());
+			
+			// Get the database object
+			DB db = getMongoService().getDb();
+			// Get the permissions collection
+			DBCollection collection = db.getCollection("permissions");
+			// Create an empty query
+			BasicDBObject query = new BasicDBObject();
+			// Fetch everything with the empty query
+			DBCursor cursor = collection.find(query);
+			// Create a new permission map
+			Map<String, Permissible> groups = new HashMap<>();
+			// For each data
+			Gson gs = new Gson();
+			while (cursor.hasNext()) {
+				// Get the data
+				DBObject dbObject = cursor.next();
+				// Deserialize the data object
+				String json = gs.toJson(dbObject);
+				// Serialize the data as a Permissible object
+				Permissible permissible = gs.fromJson(json, Permissible.class);
+				// Put the object in the groups map
+				groups.put(dbObject.get("name").toString(), permissible);
+			}
+			// Create a permission manager, with the server place
+			PermissionsManager.createPermissionManager(groups, serverConfig.getPermissionPlace());
+
+			if(!GameAPI.TEST_MODE) {
+				if(runType != RunType.DEV)
+					GameAPI.logColor("&b[GameAPI] &a=> SQL : " + sqlConfig.sqlIp + ":" + sqlConfig.sqlPort);
+				GameAPI.logColor("&b[GameAPI] &aConnecting to SQL...");
+
+				sqlDatabase = new GameSQLDatabase(sqlConfig.sqlIp, Integer.toString(sqlConfig.sqlPort), sqlConfig.sqlUser, sqlConfig.sqlPassword, sqlConfig.sqlDatabase);
+				((GameSQLDatabase) sqlDatabase).openConnection();
+
+				rabbitSpeaker = new RabbitSpeaker(rabbitSettings);
+				setRabbitService(rabbitSpeaker.getRabbitService());
+				new ServerForceKillListener();
+			} else {
+				sqlDatabase = new FakeSQLDatabase();
+			}
 			
 			i18nFolder = serverConfig.getI18nPath();
 			if (i18nFolder == null || i18nFolder.isEmpty()) i18nFolder = getDataFolder().getAbsolutePath() + "/i18n/";
@@ -252,32 +319,7 @@ public class GamePlugin extends GameAPI {
 			GameAPI.logColor("&b[GameAPI] &aLoading databases configuration...");
 
 			runType = gameServerConfig.runType;
-
-			if(runType != RunType.DEV) {
-				ladderIp = ladderConfig.ladderIp;
-				ladderPort = ladderConfig.ladderPort;
-				GameAPI.logColor("&b[GameAPI] &a=> Ladder : " + ladderConfig.ladderIp + ":" + ladderConfig.ladderPort);
-			}
-			GameAPI.logColor("&b[GameAPI] &aConnecting to Ladder...");
-
-			new PermissionManager(new JsonArray());
-			ladderDatabase = new GameLadderSpeaker(ladderConfig.ladderIp, ladderConfig.ladderPort);
-			ladderDatabase.askForPermissions();
-
-			if(!GameAPI.TEST_MODE) {
-				if(runType != RunType.DEV)
-					GameAPI.logColor("&b[GameAPI] &a=> SQL : " + sqlConfig.sqlIp + ":" + sqlConfig.sqlPort);
-				GameAPI.logColor("&b[GameAPI] &aConnecting to SQL...");
-
-				sqlDatabase = new GameSQLDatabase(sqlConfig.sqlIp, Integer.toString(sqlConfig.sqlPort), sqlConfig.sqlUser, sqlConfig.sqlPassword, sqlConfig.sqlDatabase);
-				((GameSQLDatabase) sqlDatabase).openConnection();
-
-				rabbitSpeaker = new RabbitSpeaker(rabbitMQConfig);
-				new ServerForceKillListener();
-			} else {
-				sqlDatabase = new FakeSQLDatabase();
-			}
-
+			
 			GameAPI.logColor("&b[GameAPI] &aRegistering listeners and commands...");
 			/**
 			 * Chargement des Listeners
@@ -285,7 +327,6 @@ public class GamePlugin extends GameAPI {
 			BukkitUtils.instanciateListenersAndCommandsFrom(this, "fr.badblock.game.core112R1.listeners", "fr.badblock.game.core112R1.commands");
 
 			joinItems = new GameJoinItems();    // Items donn� � l'arriv�e du joueur
-			chestGenerator = new GameChestGenerator();
 
 			meteor = new Meteor(new Location(Bukkit.getWorld("world"), 0, 100, 0));
 			
@@ -295,6 +336,7 @@ public class GamePlugin extends GameAPI {
 
 			new VanishTeleportListener();
 			new PlayerPingListener();
+			new PlayerDataReceiver();
 			new PlayerBoosterRefreshListener();
 
 			//AntiCheat.load();
@@ -710,7 +752,6 @@ public class GamePlugin extends GameAPI {
 		this.portalFolder = folder;
 
 		// On charge commandes/listeners qu'on avait pas load pour �conomiser sur les serveurs ou inutiles
-		new PortalCommand();
 		new PortalListener();
 
 		for(File file : folder.listFiles()){
@@ -890,6 +931,12 @@ public class GamePlugin extends GameAPI {
 	public ItemStack generateGoogleAuthQrCode(BadblockPlayer player, String googleAuthKey, String image)
 	{
 		return generateQrCode(player.getWorld(), "otpauth://totp/BadBlock%20(" + player.getName() + ")?secret=" + googleAuthKey + "&image=" + image);
+	}
+
+	@Override
+	public ChestGenerator getChestGenerator() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

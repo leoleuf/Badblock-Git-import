@@ -486,16 +486,16 @@ public class GamePlayerData implements PlayerData {
 		// Boost appliqué par le grade du joueur
 		if (this.getGameBadblockPlayer() != null)
 		{
-			Double playerBoostObject = this.getGameBadblockPlayer().getPermissionValue("badcoinsboost", Double.class);
+			int playerBoostObject = this.getGameBadblockPlayer().getPermissionValue("badcoinsboost");
 			// Boost inconnu, on le met à x1 par défaut
-			if (playerBoostObject == null)
+			if (playerBoostObject < 1)
 			{
-				playerBoostObject = 1D;
+				playerBoostObject = 1;
 			}
 			else
 			{
 				// Boost existant, on le prend en valeur primitive
-				double playerBoost = playerBoostObject.doubleValue();
+				double playerBoost = playerBoostObject;
 				// Si le bonus est > que le x1 de base, on l'applique
 				if (playerBoost > 1)
 				{
@@ -549,16 +549,16 @@ public class GamePlayerData implements PlayerData {
 		// Boost appliqué par le grade du joueur
 		if (this.getGameBadblockPlayer() != null)
 		{
-			Double playerBoostObject = this.getGameBadblockPlayer().getPermissionValue("xpboost", Double.class);
+			int playerBoostObject = this.getGameBadblockPlayer().getPermissionValue("xpboost");
 			// Boost inconnu, on le met à x1 par défaut
-			if (playerBoostObject == null)
+			if (playerBoostObject < 1)
 			{
-				playerBoostObject = 1D;
+				playerBoostObject = 1;
 			}
 			else
 			{
 				// Boost existant, on le prend en valeur primitive
-				double playerBoost = playerBoostObject.doubleValue();
+				double playerBoost = playerBoostObject;
 				// Si le bonus est > que le x1 de base, on l'applique
 				if (playerBoost > 1)
 				{

@@ -2,12 +2,15 @@ package fr.badblock.game.core112R1.players.utils;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Map.Entry;
+import java.util.Optional;
 
 import org.bukkit.Bukkit;
 
 import com.google.gson.JsonObject;
 
 import fr.badblock.game.core112R1.players.GameBadblockPlayer;
+import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerDataReceiver;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.events.PartyJoinEvent;
 import fr.badblock.gameapi.events.api.PlayerLoadedEvent;
@@ -98,30 +101,48 @@ public class PlayerLoginWorkers
 
 	public static void loadPlayerData(GameBadblockPlayer player)
 	{
-		GameAPI.getAPI().getLadderDatabase().getPlayerData(player.getRealName() != null ? player.getRealName() : player.getName(), new Callback<JsonObject>() {
+		String name = player.getRealName() != null ? player.getRealName() : player.getName();
+		new Thread("loader-" + name)
+		{
+			@SuppressWarnings("deprecation")
 			@Override
-			public void done(JsonObject result, Throwable error) {
-				new Thread() {
-					@Override
-					public void run() {
-						player.setObject(result);
-						player.updateData(result);
-
-						while (!player.isHasJoined())
-							try {
-								Thread.sleep(10L);
-							} catch (InterruptedException unused) {}
-
+			public void run()
+			{
+				for (int i = 0; i < 100; i++)
+				{
+					Optional<Entry<String, JsonObject>> optional = PlayerDataReceiver.objectsToSet.entrySet().parallelStream().filter(entry ->
+					{
+						return entry.getValue().get("name").getAsString().equalsIgnoreCase(name) ||  
+								(entry.getValue().has("nickname") && entry.getValue().get("nickname").getAsString().equalsIgnoreCase(name));
+					}).findFirst();
+					
+					if (optional.isPresent())
+					{
+						Entry<String, JsonObject> entry = optional.get();
+						entry.getValue().addProperty("name", name.toLowerCase());
+						entry.getValue().addProperty("uniqueId", player.getUniqueId().toString());
+						player.setObject(entry.getValue());
+						player.setLoad(true);
+						player.updateData(entry.getValue());
+						PlayerDataReceiver.objectsToSet.remove(entry.getKey());
 						player.setDataFetch(true);
 						synchronized (Bukkit.getServer()) {
 							if (player.getPlayersWithHim() != null && !player.getPlayersWithHim().isEmpty())
 								Bukkit.getPluginManager().callEvent(new PartyJoinEvent(player, player.getPlayersWithHim()));
 							Bukkit.getPluginManager().callEvent(new PlayerLoadedEvent(player));
 						}
+						
+						stop();
 					}
-				}.start();
+					
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-		});
+		}.start();
 	}
 
 }

@@ -4,14 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
-import fr.badblock.docker.factories.GameAliveFactory;
+import fr.badblock.api.common.minecraft.DockerRabbitQueues;
+import fr.badblock.api.common.minecraft.GameState;
+import fr.badblock.api.common.minecraft.InstanceKeepAlive;
 import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.game.core112R1.gameserver.DevAliveFactory;
 import fr.badblock.game.core112R1.gameserver.GameServerManager;
 import fr.badblock.game.core112R1.jsonconfiguration.data.GameServerConfig;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.game.GameServer;
-import fr.badblock.gameapi.game.GameState;
 import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.utils.BukkitUtils;
 import fr.badblock.gameapi.utils.threading.TaskManager;
@@ -35,7 +36,7 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 
 	private long 		joinTime;
 	private boolean 	lastJoinable = true;
-	private GameState	gameState;
+	private String	gameState;
 
 	public GameServerKeeperAliveTask(GameServerConfig apiConfig) {
 		this.incrementJoinTime();
@@ -54,9 +55,12 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 			@Override
 			public void run()
 			{
-				if (lastJoinable != isJoinable() || gameState != GameAPI.getAPI().getGameServer().getGameState())
+				String gms = gameState != null ? gameState : "";
+				String strati = GameAPI.getAPI().getGameServer().getGameState() != null ? GameAPI.getAPI().getGameServer().getGameState().name() : "";
+				
+				if (lastJoinable != isJoinable() || !gms.equalsIgnoreCase(strati))
 				{
-					if (GameAPI.getAPI().getGameServer().getGameState().equals(GameState.RUNNING) && (gameState == null || gameState.equals(GameState.WAITING)))
+					if ("RUNNING".equals(strati) && (gameState == null || gameState.equals("WAITING")))
 					{
 						TaskManager.runTask(new Runnable()
 						{
@@ -73,7 +77,7 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 						});
 					}
 					lastJoinable = isJoinable();
-					gameState = GameAPI.getAPI().getGameServer().getGameState();
+					gameState = GameAPI.getAPI().getGameServer().getGameState().name();
 					GameAPI.getAPI().getGameServer().keepAlive();
 				}
 			}
@@ -81,8 +85,8 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 	}
 
 	private boolean isJoinable() {
-		GameState gameState = GamePlugin.getInstance().getGameServer().getGameState();
-		if (gameState.equals(GameState.RUNNING) && GameAPI.getAPI().getGameServer().isJoinableWhenRunning()) {
+		String gameState = GamePlugin.getInstance().getGameServer().getGameState().name();
+		if (gameState.equals("RUNNING") && GameAPI.getAPI().getGameServer().isJoinableWhenRunning()) {
 			if (!GameAPI.getAPI().getTeams().isEmpty()) {
 				// team pas full mais team avec > 0
 				long count = GameAPI.getAPI().getTeams().stream().filter(team -> team.playersCurrentlyOnline() < team.getMaxPlayers() && team.playersCurrentlyOnline() > 0 && !team.isDead()).count();
@@ -91,14 +95,14 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 			}
 			return GameAPI.isJoinable();
 		}
-		return GameAPI.getAPI().getRunType().equals(RunType.GAME) ? gameState.equals(GameState.WAITING) : !GameAPI.getAPI().isFinished();
+		return GameAPI.getAPI().getRunType().equals(RunType.GAME) ? gameState.equals("WAITING") : !GameAPI.getAPI().isFinished();
 	}
 
 	public void keepAlive(int addedPlayers) {
-		keepAlive(GameAPI.getAPI().getGameServer().getGameState(), addedPlayers);
+		keepAlive(GameAPI.getAPI().getGameServer().getGameState().name(), addedPlayers);
 	}
 
-	public void keepAlive(GameState gameState, int addedPlayers) {
+	public void keepAlive(String gameState, int addedPlayers) {
 		sendKeepAlivePacket(gameState, addedPlayers);
 	}
 
@@ -113,15 +117,15 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 		this.keepAlive(0);
 	}
 
-	private void sendKeepAlivePacket(GameState gameState, int addedPlayers) {
+	private void sendKeepAlivePacket(String gameState, int addedPlayers) {
 		GameAPI gameApi = GameAPI.getAPI();
 		GameServerManager gameServerManager = this.getGameServerManager();
 		// ServerConfigurationFactory serverConfigurationFactory =
 		// gameServerManager.getServerConfigurationFactory();
-		GameServer gameServer = gameApi.getGameServer();
-		GameAliveFactory gameAliveFactory = new GameAliveFactory(gameApi.getServer().getServerName(), fr.badblock.docker.GameState.getStatus(gameServer.getGameState().getId()), isJoinable(), Bukkit.getOnlinePlayers().size() + addedPlayers, gameServer.getMaxPlayers());
+		InstanceKeepAlive gameAliveFactory = new InstanceKeepAlive(gameApi.getServer().getServerName(), isJoinable(), GameState.getStatus(gameState), Bukkit.getOnlinePlayers().size() + addedPlayers);
 		sendDevSignal(true, addedPlayers);
-		gameApi.getRabbitSpeaker().sendAsyncUTF8Publisher("networkdocker.instance.keepalive", gameServerManager.getGson().toJson(gameAliveFactory), 5000, false);
+		String queue = GamePlugin.getInstance().isNewbackend() ? DockerRabbitQueues.INSTANCE_KEEPALIVE.getQueue() : "networkdocker.instance.keepalive";
+		gameApi.getRabbitSpeaker().sendAsyncUTF8Publisher(queue, gameServerManager.getGson().toJson(gameAliveFactory), 5000, false);
 	}
 
 	public void sendStopPacket() {
@@ -129,8 +133,8 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 		// ServerConfigurationFactory serverConfigurationFactory =
 		// gameServerManager.getServerConfigurationFactory();
 		sendDevSignal(false, 0);
-		gameApi.getRabbitSpeaker().sendSyncUTF8Publisher("networkdocker.instance.stop", gameApi.getServer().getServerName(), 5000, false);
-		gameApi.getRabbitSpeaker().cut();
+		String queue = GamePlugin.getInstance().isNewbackend() ? DockerRabbitQueues.INSTANCE_STOP.getQueue() : "networkdocker.instance.stop";
+		gameApi.getRabbitSpeaker().sendSyncUTF8Publisher(queue, gameApi.getServer().getServerName(), 5000, false);
 	}
 
 	public static void sendDevSignal(boolean open, int addedPlayers)
