@@ -59,8 +59,14 @@ public class OnlineStaffCommand extends BadCommand {
 				} else {
 					first = false;
 				}
-				data.append(I19n.getMessage(sender, prefix + "player", null, badPlayer.getName(),
-						badPlayer.getLastServer()));
+				
+				String lastServer = "";
+				if (sender.hasPermission("bungee.command.onlinestaff.servers"))
+				{
+					lastServer = badPlayer.getLastServer();
+				}
+				
+				data.append(I19n.getMessage(sender, prefix + "player", null, badPlayer.getName(), lastServer));
 			}
 			sender.sendMessage(data.toString());
 		});
