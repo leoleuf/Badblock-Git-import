@@ -177,21 +177,20 @@ public class BanCommand extends AbstractModCommand {
 		// two args
 		if (args.length <= 2) {
 
-			// If the sender is a player
+			/*	// If the sender is a player
 			if (isPlayer) {
 				// Send the message
 				badPlayer.sendTranslatedOutgoingMessage(getPrefix("select_intro"), null, playerName);
 			} else
-			// If the sender isn't a player
+				// If the sender isn't a player
 			{
 				// Send the message
 				I19n.sendMessage(sender, getPrefix("select_intro"), null, playerName);
-			}
+			}*/
 
 			// Has reason
 			boolean hasReason = false;
 
-			// For each reason type
 			for (Entry<String, PunishmentReason> entry : PunishmentReasons.getInstance().getBanReasons().entrySet()) {
 				// If the sender doesn't have the permission to ban for this reason
 				if (!sender.hasPermission(getPermission() + "." + entry.getKey())) {
@@ -217,13 +216,13 @@ public class BanCommand extends AbstractModCommand {
 					// Send the message
 					badPlayer.sendTranslatedOutgoingMCJson(json);
 				} else
-				// If the sender isn't a player
+					// If the sender isn't a player
 				{
 					// Send the reason message
 					I19n.sendMessage(sender, getPrefix("reason." + entry.getKey()), null);
 				}
 			}
-
+			
 			// If we don't have reasons
 			if (!hasReason) {
 				// Send a message

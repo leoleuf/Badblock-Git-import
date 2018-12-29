@@ -9,6 +9,7 @@ import fr.badblock.bungee.modules.modo.listeners.PunishmentBannedIPListener;
 import fr.badblock.bungee.modules.modo.listeners.PunishmentBannedListener;
 import fr.badblock.bungee.modules.modo.listeners.PunishmentMutedListener;
 import fr.badblock.bungee.modules.modo.listeners.PunishmentWarnReconnectListener;
+import fr.xmalware.bungeepackets.BungeePacketLoader;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class ModuleModo extends Plugin
@@ -28,6 +29,8 @@ public class ModuleModo extends Plugin
 		new PunishmentBannedListener(this);
 		new PunishmentMutedListener(this);
 		new PunishmentWarnReconnectListener(this);
+		
+		new BungeePacketLoader(this);
 	}
 	
 }

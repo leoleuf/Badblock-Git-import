@@ -23,7 +23,11 @@ import fr.badblock.bungee.players.BadPlayer;
 import fr.badblock.bungee.utils.i18n.I19n;
 import fr.badblock.bungee.utils.mcjson.McJson;
 import fr.badblock.bungee.utils.mcjson.McJsonFactory;
+import fr.xmalware.bungeepackets.inventory.Inventory;
+import fr.xmalware.bungeepackets.inventory.Inventory.ClickHandler;
+import fr.xmalware.bungeepackets.item.ItemStack;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /**
@@ -182,18 +186,16 @@ public class MuteCommand extends AbstractModCommand {
 				// Send the message
 				badPlayer.sendTranslatedOutgoingMessage(getPrefix("select_intro"), null, playerName);
 			} else
-			// If the sender isn't a player
+				// If the sender isn't a player
 			{
 				// Send the message
 				I19n.sendMessage(sender, getPrefix("select_intro"), null, playerName);
 			}
 
-			// Has reason
 			boolean hasReason = false;
 
-			// For each reason type
 			for (Entry<String, PunishmentReason> entry : PunishmentReasons.getInstance().getMuteReasons().entrySet()) {
-				// If the sender doesn't have the permission to mute for this reason
+				// If the sender doesn't have the permission to ban for this reason
 				if (!sender.hasPermission(getPermission() + "." + entry.getKey())) {
 					// So continue
 					continue;
@@ -217,7 +219,7 @@ public class MuteCommand extends AbstractModCommand {
 					// Send the message
 					badPlayer.sendTranslatedOutgoingMCJson(json);
 				} else
-				// If the sender isn't a player
+					// If the sender isn't a player
 				{
 					// Send the reason message
 					I19n.sendMessage(sender, getPrefix("reason." + entry.getKey()), null);
