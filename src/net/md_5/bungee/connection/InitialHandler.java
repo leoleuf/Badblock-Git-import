@@ -406,17 +406,12 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 				}
 
 				BungeeCord.getInstance().getPluginManager().callEvent(new AsyncDataLoadRequest(getName(), InitialHandler.this, new Callback<Result>(){
-					boolean good = false;
 
-					@SuppressWarnings("deprecation")
 					@Override
 					public void done(Result result, Throwable error) {
-						if(good) return;
-						good = true;
-
 						if(result.object == null){
 							if(result.kickReason == null)
-								disconnect();
+								disconnect("§cAucune donnée renvoyée. Veuillez réessayer (IH4)");
 							else disconnect(result.kickReason);
 
 							return;
