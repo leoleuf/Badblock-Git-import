@@ -41,6 +41,7 @@ public class OnlineStaffCommand extends BadCommand {
 						&& player.getPermissions().getHighestRank("bungee", true) != null)
 				.parallelStream().map(player -> player.getPermissions().getHighestRank("bungee", true))
 				.sorted(new Comparator<Permissible>() {
+					
 					public int compare(Permissible o1, Permissible o2) {
 						return Integer.valueOf(o1.getPower()).compareTo(o2.getPower());
 					}
