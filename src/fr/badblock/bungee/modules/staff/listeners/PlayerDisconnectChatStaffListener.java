@@ -11,7 +11,7 @@ import net.md_5.bungee.event.EventPriority;
 
 public class PlayerDisconnectChatStaffListener extends BadListener
 {
-	
+
 	public PlayerDisconnectChatStaffListener(Plugin plugin)
 	{
 		super(plugin);
@@ -25,7 +25,7 @@ public class PlayerDisconnectChatStaffListener extends BadListener
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerDisconnect(PlayerDisconnectEvent event) {
 		ProxiedPlayer player = event.getPlayer();
-		
+
 		// We get the BadPlayer object
 		BadPlayer badPlayer = BadPlayer.get(player);
 
@@ -41,8 +41,23 @@ public class PlayerDisconnectChatStaffListener extends BadListener
 		// Set raw prefix
 		String rawChatPrefix = badPlayer.getRawChatPrefix();
 
-		BungeeManager.getInstance().targetedTranslatedBroadcast("bungee.command.chatstaff",
-				"bungee.commands.chatstaff.messageoffline", new int[] { 0 }, rawChatPrefix, badPlayer.getName());
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(1000);
+				}
+				catch (Exception error)
+				{
+					error.printStackTrace();
+				}
+				BungeeManager.getInstance().targetedTranslatedBroadcast("bungee.command.chatstaff",
+						"bungee.commands.chatstaff.messageoffline", new int[] { 0 }, rawChatPrefix, badPlayer.getName());
+			}
+		}.start();
 
 	}
 
