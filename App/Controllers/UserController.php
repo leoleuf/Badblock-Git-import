@@ -760,7 +760,7 @@ class UserController extends Controller
                 }else{
                     $reg = "/[&](.{1})/";
                     $custom['prefix'] = preg_replace($reg, "",$custom['prefix']);
-                    
+
                     $Id = $this->container->mongo->teamspeak_groups->findOne(['uniqueId' => $user['uniqueId']]);
                     $this->container->teamspeak->removeGroup($Id['group_id']);
 

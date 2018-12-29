@@ -169,7 +169,8 @@ class ShopController extends Controller
             }
         }
 
-        if ($product->queue == "faction" || $product->mode == "webladder")
+
+        if ($product->queue == "faction" || $product->queue == "survie")
         {
             return $response->write("Service temporairement désactivé !")->withStatus(400);
         }
@@ -213,16 +214,12 @@ class ShopController extends Controller
         if ($product->mode == "rabbitmq")
         {
             $this->sendRabbitData($playerName, $product);
-        }elseif ($product->mode == "webladder")
-        {
-            return $response->write("Service temporairement désactivé !")->withStatus(400);
         }
 
         if ($givean == false){
             //Subtract points
             $this->subtract(strtolower($playerName), $product->price);
         }
-
 
         return "";
     }
@@ -240,7 +237,6 @@ class ShopController extends Controller
 
         //Refresh points cache
         $this->container->session->set('points', $points);
-
 
     }
 
@@ -316,7 +312,4 @@ class ShopController extends Controller
         $connection->close();
 
     }
-
-
-
 }
