@@ -42,7 +42,7 @@ public class PlayerDisconnectChatStaffListener extends BadListener
 		String rawChatPrefix = badPlayer.getRawChatPrefix();
 
 		BungeeManager.getInstance().targetedTranslatedBroadcast("bungee.command.chatstaff",
-				"bungee.commands.chatstaff.messageoffline", new int[] { 0, 2 }, rawChatPrefix, badPlayer.getName());
+				"bungee.commands.chatstaff.messageoffline", new int[] { 0 }, rawChatPrefix, badPlayer.getName());
 
 	}
 
