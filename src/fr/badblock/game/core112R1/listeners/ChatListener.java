@@ -31,7 +31,7 @@ public class ChatListener extends BadListener {
 	public static String  custom  = null;
 	public static Map<Integer, ChatData> messages = new HashMap<>();
 
-	public static Map<UUID, Long> levels = new HashMap<>();
+	public static Map<UUID, String> levels = new HashMap<>();
 	
 	private Set<String> gg = new HashSet<>();
 
@@ -73,7 +73,7 @@ public class ChatListener extends BadListener {
 		}
 
 		if(player.getBadblockMode() == BadblockMode.SPECTATOR){
-			long level = player.getPlayerData().getLevel();
+			String level = Integer.toString(player.getPlayerData().getLevel());
 			if (levels.containsKey(player.getUniqueId()))
 			{
 				level = levels.get(player.getUniqueId());
@@ -145,7 +145,7 @@ public class ChatListener extends BadListener {
 				i = new Random().nextInt(Integer.MAX_VALUE);
 			}
 			messages.put(i, new ChatData(player.getName(), e.getMessage()));
-			long points = player.getPlayerData().getLevel();
+			String points = Integer.toString(player.getPlayerData().getLevel());
 			if (levels.containsKey(player.getUniqueId()))
 			{
 				points = levels.get(player.getUniqueId());
@@ -221,7 +221,7 @@ public class ChatListener extends BadListener {
 						i = new Random().nextInt(Integer.MAX_VALUE);
 					}
 					messages.put(i, new ChatData(player.getName(), e.getMessage()));
-					long points = player.getPlayerData().getLevel();
+					String points = Integer.toString(player.getPlayerData().getLevel());
 					if (levels.containsKey(player.getUniqueId()))
 					{
 						points = levels.get(player.getUniqueId());
