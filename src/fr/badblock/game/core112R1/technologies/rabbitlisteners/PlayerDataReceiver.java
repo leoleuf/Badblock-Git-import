@@ -31,7 +31,7 @@ public class PlayerDataReceiver extends RabbitListener
 
 	public PlayerDataReceiver()
 	{
-		super(GameAPI.getAPI().getRabbitService(), BadBungeeQueues.BUNGEE_DATA_PLAYERS + Bukkit.getServerName(), RabbitListenerType.SUBSCRIBER, true);
+		super(GameAPI.getAPI().getRabbitService(), BadBungeeQueues.BUNGEE_DATA_PLAYERS + Bukkit.getServerName(), RabbitListenerType.SUBSCRIBER, false);
 		load();
 	}
 
@@ -86,7 +86,7 @@ public class PlayerDataReceiver extends RabbitListener
 		}
 		jsonObject.add("data", dat);
 		RabbitPacketMessage packetMessage = new RabbitPacketMessage(60000, GameAPI.getGson().toJson(jsonObject));
-		RabbitPacket rabbitPacket = new RabbitPacket(packetMessage, "bungee.data.receivers.update", true, RabbitPacketEncoder.UTF8,
+		RabbitPacket rabbitPacket = new RabbitPacket(packetMessage, "bungee.data.receivers.update", false, RabbitPacketEncoder.UTF8,
 				RabbitPacketType.PUBLISHER);
 		rabbitService.sendPacket(rabbitPacket);
 	}
