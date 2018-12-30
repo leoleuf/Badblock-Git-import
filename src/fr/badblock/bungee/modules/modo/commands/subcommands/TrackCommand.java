@@ -1,5 +1,7 @@
 package fr.badblock.bungee.modules.modo.commands.subcommands;
 
+import java.util.concurrent.TimeUnit;
+
 import fr.badblock.api.common.minecraft.PMPrivacy;
 import fr.badblock.api.common.minecraft.friends.FriendListable;
 import fr.badblock.api.common.minecraft.party.Party;
@@ -86,7 +88,7 @@ public class TrackCommand extends AbstractModCommand {
 						currentServer, bungeeGroups, getPrefix("mute_" + rawMute),
 						getPrefix("friendlistable_" + friendlistable.name()),
 						getPrefix("partyable_" + partyable.name()), getPrefix("pmprivacy_" + pmPrivacy.name()),
-						"locale." + locale, getPrefix("party_" + rawParty), "country." + countryName);
+						"locale." + locale, getPrefix("party_" + rawParty), "country." + countryName, TimeUnit.MILLISECONDS.convert(System.currentTimeMillis() - badOnlinePlayer.getLoginTimestamp(), TimeUnit.SECONDS), badOnlinePlayer.getPing());
 			}
 
 		});

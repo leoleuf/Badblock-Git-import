@@ -23,11 +23,7 @@ import fr.badblock.bungee.players.BadPlayer;
 import fr.badblock.bungee.utils.i18n.I19n;
 import fr.badblock.bungee.utils.mcjson.McJson;
 import fr.badblock.bungee.utils.mcjson.McJsonFactory;
-import fr.xmalware.bungeepackets.inventory.Inventory;
-import fr.xmalware.bungeepackets.inventory.Inventory.ClickHandler;
-import fr.xmalware.bungeepackets.item.ItemStack;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /**
@@ -171,7 +167,7 @@ public class MuteCommand extends AbstractModCommand {
 
 		// He's a player?
 		boolean isPlayer = sender instanceof ProxiedPlayer;
-		// Get the proxied player
+
 		ProxiedPlayer proxiedPlayer = isPlayer ? (ProxiedPlayer) sender : null;
 		// Get the bad player
 		BadPlayer badPlayer = BadPlayer.get(proxiedPlayer);

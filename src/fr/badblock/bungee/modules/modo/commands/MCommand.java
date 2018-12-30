@@ -9,6 +9,7 @@ import fr.badblock.bungee.modules.modo.commands.subcommands.BanCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.BanIpCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.ConnectPlayerCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.ConnectServerCommand;
+import fr.badblock.bungee.modules.modo.commands.subcommands.GhostCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.KickCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.MuteCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.SanctionCommand;
@@ -59,6 +60,7 @@ public class MCommand extends BadCommand {
 		moderationCommands.add(new WarnCommand());
 		moderationCommands.add(new TrackCommand());
 		moderationCommands.add(new SanctionCommand());
+		moderationCommands.add(new GhostCommand());
 		moderationCommands.add(new ConnectPlayerCommand());
 		moderationCommands.add(new ConnectServerCommand());
 	}
