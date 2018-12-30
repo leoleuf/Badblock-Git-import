@@ -227,7 +227,7 @@ class ShopController extends Controller
                     $temp = $temp - time();
                     $duration = $temp + $product->duration;
                     $product->command = $product->command . " " . $duration;
-                    $Date = date('d-m', time() + $duration);
+                    $Date = date('d/m', time() + $duration);
                     $p = (object) "";
                     $p->command = "adm perms user %player% groups remove * gradeperso";
                     $p->queue = "paymentserver";
