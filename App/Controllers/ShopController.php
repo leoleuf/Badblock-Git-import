@@ -11,6 +11,7 @@ namespace App\Controllers;
 use function DI\object;
 use function GuzzleHttp\Psr7\str;
 use MongoDB\Exception\Exception;
+use PhpParser\Node\Expr\Cast\Object_;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -211,6 +212,36 @@ class ShopController extends Controller
         ];
         $this->container->mongo->buy_logs->InsertOne($data);
 
+        //Add on month
+        if (isset($product->depend_name)){
+            if ($product->depend_name == "legend") {
+                $check = false;
+                foreach ((array)$player['permissions']->groups->bungee as $k => $row) {
+                    if ($k == "gradeperso") {
+                        $check = true;
+                        $temp = $row;
+                    }
+                }
+                if ($check == true) {
+                    $temp = round($temp / 1000,0);
+                    $temp = $temp - time();
+                    $duration = $temp + $product->duration;
+                    $product->command = $product->command . " " . $duration;
+                    $Date = date('d-m', time() + $duration);
+                    $p = (object) "";
+                    $p->command = "adm perms user %player% groups remove * gradeperso";
+                    $p->queue = "paymentserver";
+                    $p->price = 0;
+                    $p->name = "Legend";
+
+                    $this->sendRabbitData($playerName, $p);
+                    $prolong = true;
+                }else{
+                    $product->command = $product->command . " " . $product->duration;
+                }
+            }
+        }
+
         if ($product->mode == "rabbitmq")
         {
             $this->sendRabbitData($playerName, $product);
@@ -221,7 +252,12 @@ class ShopController extends Controller
             $this->subtract(strtolower($playerName), $product->price);
         }
 
-        return "";
+        if (isset($prolong)){
+            return $response->write("Vous avez prolongé votre grade Legend j'usqu'au : " . $Date)->withStatus(400);
+        }else{
+            return "";
+        }
+
     }
 
 
