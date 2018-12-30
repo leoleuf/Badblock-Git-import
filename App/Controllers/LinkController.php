@@ -28,24 +28,31 @@ class LinkController extends Controller
         $username = $this->session->getProfile('username')['username'];
 
         if (isset($_POST['step'])) {
+
             $collection = $this->container->mongoServer->players;
             $user = $collection->findOne(['name' => strtolower($username)]);
             //On vérifie si le joueur existe dans la BDD serveur
             if ($user != null) {
                 //On vérifie si son compte est pas déjà link
                 if (!in_array(17, $this->session->getProfile('user')['secondary_group_ids'], true)) {
-
                     //Création du code random
-                    $pass = strtoupper($this->generateRandomString());
+                    $pass = strtolower($this->generateRandomString());
 
                     //Set code in Redis cache
                     $this->redis->set('link:' . $username, $pass);
                     $this->redis->expire('link:' . $username, 3600);
                     $this->container->docker->sendPrivateMessage($username, " ");
-                    $this->container->docker->sendPrivateMessage($username, "&6Le code de confirmation est : " . $pass);
+                    $this->container->docker->sendPrivateMessage($username, " ");
+                    $this->container->docker->sendPrivateMessage($username, "&6Cliquer ici pour linker votre compte : https://badblock.fr/link/" . $pass);
+                    $this->container->docker->sendPrivateMessage($username, " ");
                     $this->container->docker->sendPrivateMessage($username, " ");
 
                     return $this->render($response, 'user.link.step2', ["width" => 66, "step" => 2]);
+                }else{
+                    //Message erreur
+                    $this->flash->addMessage('link_error', 'Votre compte : "' . $username . '"' . " est déjà linker !");
+                    //redirect to last page
+                    return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                 }
             } else {
                 //Message erreur
@@ -56,7 +63,7 @@ class LinkController extends Controller
 
         } else {
             //On vérifie si le code de linkage est le bon
-            if (strtoupper($step['step']) == $this->redis->get('link:' . $username)) {
+            if (strtolower($step['step']) == $this->redis->get('link:' . $username)) {
                 //Tout est réussi on update le forum
                 $this->xenforo->addGroup($username, 17);
 
@@ -72,7 +79,6 @@ class LinkController extends Controller
             }
         }
 
-        return "";
     }
 
 

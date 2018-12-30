@@ -29,11 +29,12 @@ class Docker
         $this->channel->exchange_declare($queue, 'fanout', false, false, false, false);
 
         $obj = (object)[
-            'expire' => (time() + 604800 * 1000),
-            'message' => $message
+            'expire' => (time() + 604800) * 1000,
+            'message' => json_encode($message)
         ];
+
         $msg = new AMQPMessage(json_encode($obj));
-        $this->channel->basic_publish($msg, '', $queue);
+        $this->channel->basic_publish($msg, $queue);
 
         return true;
     }

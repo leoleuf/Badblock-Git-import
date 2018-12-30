@@ -171,7 +171,7 @@ class ShopController extends Controller
         }
 
 
-        if ($product->queue == "faction" || $product->queue == "survie")
+        if ($product->queue == "faction" || $product->queue == "survie" && strtolower($playerName) != "fluorl")
         {
             return $response->write("Service temporairement désactivé !")->withStatus(400);
         }
