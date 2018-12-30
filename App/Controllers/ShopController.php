@@ -162,6 +162,18 @@ class ShopController extends Controller
             $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
             $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product_depend->depend_name]);
 
+            //Check grade
+            $check = false;
+            foreach ((array)$player['permissions']->groups->bungee as $k => $row) {
+                if ($k == $product->depend) {
+                    $check = true;
+                    $temp = $row;
+                }
+            }
+            if ($check == true) {
+                $depend = 1;
+            }
+
             if ($depend == 0)
             {
                 //Search depend produc pour proposer a la vente
