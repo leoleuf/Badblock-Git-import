@@ -40,6 +40,15 @@
         <!-- end Articles pined -->
         <!-- Articles -->
         <div class="articles-home">
+            <h4 class="heading heading-bar"><span>Dernières vidéos sur BadBlock</span></h4>
+                <!-- Première ligne de card -->
+                <div class="mosaic">
+                    <article class="card {{ card_special_class }}">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/-k4yTBXzK-w?rel=0&mute=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </article>
+                </div>
+        </div>
+        <div class="articles-home">
             <h4 class="heading heading-bar"><span>{{ 'home.last_posts'|trans }}</span></h4>
             {% if posts_count > 0 %}
                 <!-- Première ligne de card -->
