@@ -21,7 +21,6 @@ class MinecraftApiController extends \App\Controllers\Controller
                 $Query = new MinecraftPing( 'play.badblock.fr', 25565 );
                 $online = $Query->Query()["players"]["online"];
 
-
                 //REGARDE MIRO
                 if (intval($online) != 0 && intval($online) != null){
                     $this->container->redis->set('api.mc.players', $online);
@@ -47,6 +46,20 @@ class MinecraftApiController extends \App\Controllers\Controller
             }
         }
 	}
+
+
+    public function teamspeak(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        if (!$this->redis->exists('api.teamspeak.online'))
+        {
+            $data = $this->container->teamspeak->online();
+            $this->redis->setJson('api.teamspeak.online', $data);
+            $this->redis->expire('api.teamspeak.online', 300);
+            return $data;
+        }else{
+            return $this->redis->get('api.teamspeak.online');
+        }
+    }
 
     public function getStats(ServerRequestInterface $request, ResponseInterface $response)
     {

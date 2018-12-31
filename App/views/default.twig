@@ -1,229 +1,201 @@
 {% spaceless %}
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="canonical" href="{{ currentUrl }}"/>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <!-- Meta -->
-    <!-- bases url : serveur-prive / badblock / serveur-minecraft !-->
-    
-    <meta charset="UTF-8" />
-    <link rel="canonical" href="{{ currentUrl }}" />
+        <title>{{ title }}{% if hide_title is not defined %} - BadBlock{% endif %}</title>
 
-    <title>{{ title }}{% if hide_title is not defined %} - BadBlock{% endif %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+        {% if dev %}
+            <meta name="robots" content="noindex, nofollow">
+        {% else %}
+            <meta name="robots" content="index, follow">
+        {% endif %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    {% if dev %}
-    <meta name="robots" content="noindex, nofollow">
-    {% else %}
-    <meta name="robots" content="index, follow">
-    {% endif %}
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <meta name="description"
+              content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Télécharge le jeu gratuitement. Rejoins ton serveur Minecraft. IP : play.badblock.fr{% endif %}"/>
+        <meta name="author" content="BadBlock developers"/>
+        <meta name="keywords"
+              content="{% if keywords is defined %}{{ keywords }}, {% endif %}badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france"/>
 
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="description" content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Télécharge le jeu gratuitement. Rejoins ton serveur Minecraft. IP : play.badblock.fr{% endif %}" />
-    <meta name="author" content="BadBlock developers" />
-    <meta name="keywords" content="{% if keywords is defined %}{{ keywords }}, {%  endif %}badblock, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:image" content="https://cdn.badblock.fr/images/serveur-minecraft.png"/>
+        <meta name="twitter:url" content="https://badblock.fr/"/>
+        <meta name="twitter:site" content="@BadBlockGame">
+        <meta name="twitter:creator" content="@BadBlockGame"/>
+        <meta name="twitter:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}"/>
+        <meta name="twitter:description"
+              content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr{% endif %}"/>
 
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:image" content="https://cdn.badblock.fr/images/serveur-minecraft.png" />
-    <meta name="twitter:url" content="https://badblock.fr/" />
-    <meta name="twitter:site" content="@BadBlockGame">
-    <meta name="twitter:creator" content="@BadBlockGame" />
-    <meta name="twitter:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
-    <meta name="twitter:description" content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr{% endif %}" />
+        <meta property="og:image:width" content="177"/>
+        <meta property="og:image:height" content="177"/>
+        <meta property="og:site_name" content="BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)"/>
+        <meta property="og:locale" content="fr"/>
+        <meta property="og:url" content="{{ currentUrl }}"/>
+        <meta property="og:description"
+              content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr{% endif %}"/>
+        <meta property="og:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}"/>
+        <meta property="og:image" content="https://cdn.badblock.fr/wd/icons/og-image.jpg"/>
+        <meta property="og:type" content="website"/>
 
-    <meta property="og:image:width" content="177" />
-    <meta property="og:image:height" content="177" />
-    <meta property="og:site_name" content="BadBlock - Serveur Minecraft Francophone (Launcher Gratuit)" />
-    <meta property="og:locale" content="fr" />
-    <meta property="og:url" content="{{ currentUrl }}" />
-    <meta property="og:description" content="{% if description is defined %}{{ description }}{% else %}Jouez au meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr{% endif %}" />
-    <meta property="og:title" content="{% if hide_title is not defined %}BadBlock | {% endif %}{{ title }}" />
-    <meta property="og:image" content="https://cdn.badblock.fr/wd/icons/og-image.jpg" />
-    <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#2d94cc"/>
 
-    <meta name="theme-color" content="#2d94cc" />
-    <!--<meta name="google-site-verification" content="oJ7Q1qwlvr9LlHl-a-d0F4gOuC6wd40R-MDzYcQCtqo" />!-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id=%27+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5WSQ9FB');</script>
-<!-- End Google Tag Manager -->
-
-<!-- Favicon meta -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/icons/favicon-16x16.png">
-<link rel="manifest" href="https://cdn.badblock.fr/wd/icons/site.webmanifest">
-<link rel="mask-icon" href="https://cdn.badblock.fr/wd/icons/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="https://cdn.badblock.fr/wd/icons/favicon.ico">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-config" content="https://cdn.badblock.fr/wd/icons/browserconfig.xml">
-
-<link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <link rel="stylesheet" href="/dist/css/global.css">
+        <link rel="stylesheet" href="/dist/css/app.css">
+        <link rel="stylesheet" href="/dist/css/xmalware.css">
 
 
-{% if block("meta") is defined %}
-{{ block('meta') }}
-{% endif %}
+        <!-- Favicon meta -->
+        <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.badblock.fr/wd/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.badblock.fr/wd/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.badblock.fr/wd/icons/favicon-16x16.png">
+        <link rel="manifest" href="https://cdn.badblock.fr/wd/icons/site.webmanifest">
+        <link rel="mask-icon" href="https://cdn.badblock.fr/wd/icons/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="https://cdn.badblock.fr/wd/icons/favicon.ico">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="msapplication-config" content="https://cdn.badblock.fr/wd/icons/browserconfig.xml">
 
-    <!--<script>
-        var cssdefer = document.createElement('link');
-        cssdefer.rel = 'stylesheet';
-        cssdefer.href = 'https://cdn.badblock.fr/wd/css/app.css';
-        cssdefer.type = 'text/css';
+        <link rel="manifest" href="https://cdn.badblock.fr/wd/manifest.json">
 
-        var deferl = document.getElementsByTagName('link')[0];
-        deferl.parentNode.insertBefore(cssdefer, deferl);
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 
-        var cssdefer = document.createElement('link');
-        cssdefer.rel = 'stylesheet';
-        cssdefer.href = 'https://cdn.badblock.fr/wd/css/global.css';
-        cssdefer.type = 'text/css';
 
-        var deferl = document.getElementsByTagName('link')[0];
-        deferl.parentNode.insertBefore(cssdefer, deferl);
 
-        var cssdefer = document.createElement('link');
-        cssdefer.rel = 'stylesheet';
-        cssdefer.href = 'https://cdn.badblock.fr/wd/css/xmalware.css';
-        cssdefer.type = 'text/css';
+        {% if block("meta") is defined %}
+            {{ block('meta') }}
+        {% endif %}
 
-        var deferl = document.getElementsByTagName('link')[0];
-        deferl.parentNode.insertBefore(cssdefer, deferl);
 
-        var cssdefer = document.createElement('link');
-        cssdefer.rel = 'stylesheet';
-        cssdefer.href = 'https://use.fontawesome.com/releases/v5.3.1/css/all.css';
-        cssdefer.type = 'text/css';
-
-        var deferl = document.getElementsByTagName('link')[0];
-        deferl.parentNode.insertBefore(cssdefer, deferl);
-    </script>
-
-   <link rel="stylesheet" href="/dist/css/app.css">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    !-->
-
-    <link rel="stylesheet" href="dist/css/global.css">
-
-    {% if block("style") is defined %}
-    {{ block('style') }}
-    {% endif %}
-</head>
-<body>
+        {% if block("style") is defined %}
+            {{ block('style') }}
+        {% endif %}
+    </head>
+    <body>
 
 
     <!-- Header -->
     <div class="header">
         <div class="container">
             <div class="header-container">
-                <a class="header-logo-container no-link" title="Serveur Minecraft BadBlock" href="{{ path_for('home') }}">
-                 <img src="https://cdn.badblock.fr/images/logo_small.png" title="Serveur Minecraft BadBlock" alt="Serveur Minecraft BadBlock" class="header-logo">
-                 <div>
-                    {% if h2 is not defined %}
-                    <h3 class="header-title">BadBlock</h3>
-                    <h5 class="header-sub-title">{{ mc_ip }}</h5>
-                    {% else %}
-                    <h3 class="header-title">BadBlock</h3>
-                    <h5 class="header-sub-title">{{ mc_ip }}</h5>
-                    {% endif %}
-                </div>
-            </a>
-            <div class="header-login-container">
-                <div class="header-login">
-                    <a class="button button-danger" href="/calendrier" title="Calendrier de l'avent"><i
-                        class="icon icon-gift"></i> Calendrier</a>
+                <a class="header-logo-container no-link" title="Serveur Minecraft BadBlock"
+                   href="{{ path_for('home') }}">
+                    <img src="https://cdn.badblock.fr/images/logo_small.png" title="Serveur Minecraft BadBlock"
+                         alt="Serveur Minecraft BadBlock" class="header-logo">
+                    <div>
+                        {% if h2 is not defined %}
+                            <h3 class="header-title">BadBlock</h3>
+                            <h5 class="header-sub-title">{{ mc_ip }}</h5>
+                        {% else %}
+                            <h3 class="header-title">BadBlock</h3>
+                            <h5 class="header-sub-title">{{ mc_ip }}</h5>
+                        {% endif %}
+                    </div>
+                </a>
+                <div class="header-login-container">
+                    <div class="header-login">
                         <span class="margin"></span>
                         {% if user is not defined %}
-                        <!-- href="{{ forum_url }}/login"!-->
-                        <a class="button button-primary" onclick="login()" title="Se connecter au serveur Minecraft"><i
-                            class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
+                            <a class="button button-primary" onclick="login()"
+                               title="Se connecter au serveur Minecraft"><i
+                                        class="icon icon-lock"></i> {{ 'login.login'|trans }}</a>
                             <span class="margin"></span>
-                            <a class="button button-primary" href="{{ forum_url }}/inscription/" title="S'inscrire sur le serveur minecraft"><i
-                                class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
-                                {% endif %}
-                                {% if user is defined %}
-                                <a class="button button-primary" href="{{ path_for('dashboard') }}" title="Tableau de bord du serveur minecraft"><i
-                                    class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
-                                    <span class="margin"></span>
+                            <a class="button button-primary" href="{{ forum_url }}/inscription/"
+                               title="S'inscrire sur le serveur minecraft"><i
+                                        class="icon icon-pencil"></i> {{ 'login.register'|trans }}</a>
+                        {% endif %}
+                        {% if user is defined %}
+                            <a class="button button-primary" href="{{ path_for('dashboard') }}"
+                               title="Tableau de bord du serveur minecraft"><i
+                                        class="icon icon-user"></i> {{ 'user.dashboard_title'|trans }}</a>
+                            <span class="margin"></span>
 
-                                    <a class="button button-danger" href="{{ path_for('logout') }}" title="Se déconnecter du serveur Minecraft"><i
+                            <a class="button button-danger" href="{{ path_for('logout') }}"
+                               title="Se déconnecter du serveur Minecraft"><i
                                         class="icon icon-enter"></i> {{ 'user.logout'|trans }}</a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endif %}
                     </div>
                 </div>
-                
-                
-                <!-- Fin Header -->
+            </div>
+        </div>
+    </div>
+    </div>
 
-                <div class="topnav" id="myTopnav">
-                    <div class="container">
-                        <a href="{{ path_for('home') }}"
-                        class="{% if active_page == 'home' %}actived{% endif %} home" title="Serveur Minecraft BadBlock">
-                        <i class="home-colored-icon colored-icon"></i>
-                        {{ 'home'|trans }}
-                    </a>
-                    <a href="{{ path_for('stats.home') }}"
-                    class="{% if active_page == 'stats' %}actived{% endif %}" title="Statistiques du Serveur minecraft BadBlock">
-                    <i class="stats-colored-icon colored-icon"></i>
-                    {{ 'stats.title'|trans }}
-                </a>
-                {% if eula == true %}
-                <a href="/shop"
-                class="{% if active_page == 'shop' %}actived{% endif %}" title="Boutique du serveur Minecraft BadBlock">
-                <i class="shopping_basket-colored-icon colored-icon"></i>
-                Boutique
+
+    <!-- Fin Header -->
+
+    <div class="topnav" id="myTopnav">
+        <div class="container">
+            <a href="{{ path_for('home') }}"
+               class="{% if active_page == 'home' %}actived{% endif %} home" title="Serveur Minecraft BadBlock">
+                <i class="home-colored-icon colored-icon"></i>
+                {{ 'home'|trans }}
             </a>
+            <a href="{{ path_for('stats.home') }}"
+               class="{% if active_page == 'stats' %}actived{% endif %}"
+               title="Statistiques du Serveur minecraft BadBlock">
+                <i class="stats-colored-icon colored-icon"></i>
+                {{ 'stats.title'|trans }}
+            </a>
+            {% if eula == true %}
+                <a href="/shop"
+                   class="{% if active_page == 'shop' %}actived{% endif %}"
+                   title="Boutique du serveur Minecraft BadBlock">
+                    <i class="shopping_basket-colored-icon colored-icon"></i>
+                    Boutique
+                </a>
             {% endif %}
             <a href="/jouer"
-            class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
-            <i class="game-colored-icon colored-icon"></i>
-            {{ 'play.title'|trans }}
-        </a>
+               class="{% if active_page == 'play' %}actived{% endif %}" title="Jouer au serveur Minecraft BadBlock">
+                <i class="game-colored-icon colored-icon"></i>
+                {{ 'play.title'|trans }}
+            </a>
 
-        <a href="{{ path_for('vote.home') }}"
-        class="{% if active_page == 'vote' %}actived{% endif %}" title="Voter pour le serveur Minecraft BadBlock">
-        <i class="star-colored-icon colored-icon"></i>
-        Voter
-    </a>
-    <a href="{{ forum_url }}" title="Forum"><i class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
+            <a href="{{ path_for('vote.home') }}"
+               class="{% if active_page == 'vote' %}actived{% endif %}"
+               title="Voter pour le serveur Minecraft BadBlock">
+                <i class="star-colored-icon colored-icon"></i>
+                Voter
+            </a>
+            <a href="{{ forum_url }}" title="Forum"><i
+                        class="forum-colored-icon colored-icon"></i>{{ 'forum.title'|trans }}</a>
 
-    <div class="dropdown">
-        <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i class="attachment-colored-icon colored-icon"></i> Infos</a>
-        <ul class="dropdown-dropdown">
-            <li>
-                <a href="/launcher-minecraft" class="{% if active_page == 'launcher' %}actived{% endif %}" title="Launcher Minecraft">
-                    <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
-                </a>
-            </li>
-            <li>
-                <a href="https://badblock.fr/forum/recrutement-badblock.f86/" title="Recrutements BadBlock" class="">
-                    <i class="edit-colored-icon colored-icon"></i>Recrutements
-                </a>
-            </li>
-            <li>
-                <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}" title="Équipe du serveur BadBlock">
-                    <i class="id-colored-icon colored-icon"></i>Équipe
-                </a>
-            </li>
+            <div class="dropdown">
+                <a title="Informations sur le serveur Minecraft BadBlock" href='#' class="dropdown-link"><i
+                            class="attachment-colored-icon colored-icon"></i> Infos</a>
+                <ul class="dropdown-dropdown">
+                    <li>
+                        <a href="/launcher-minecraft" class="{% if active_page == 'launcher' %}actived{% endif %}"
+                           title="Launcher Minecraft">
+                            <i class="user-colored-icon colored-icon"></i>{{ 'launcher.title'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://badblock.fr/forum/recrutement-badblock.f86/" title="Recrutements BadBlock"
+                           class="">
+                            <i class="edit-colored-icon colored-icon"></i>Recrutements
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path_for('staff') }}" class="{% if active_page == 'staff' %}actived{% endif %}"
+                           title="Équipe du serveur BadBlock">
+                            <i class="id-colored-icon colored-icon"></i>Équipe
+                        </a>
+                    </li>
                     <!--<li>
                         <a href="{{ path_for('info') }}" class="{% if active_page == 'info' %}actived{% endif %}" title="Développement">
                             <i class="gear-colored-icon colored-icon"></i>Développement
                         </a>
                     </li>!-->
                     <li>
-                        <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}" title="Héberger une image">
+                        <a href="/screenshot" class="{% if active_page == 'screenshot' %}actived{% endif %}"
+                           title="Héberger une image">
                             <i class="art_palette-colored-icon colored-icon"></i>Images
                         </a>
                     </li>
@@ -238,308 +210,272 @@
                         </a>
                     </li>
                     <div class="disabled">
-                   <!-- quand la page sera dispo
+                        <!-- quand la page sera dispo
                    (ça fait un mauvais netlinking si la page est pas ok
                    <li>
                         <a href="/bbnews" class="{% if active_page == 'bbnews' %}actived{% endif %}" title="Image">
                             <i class="user-colored-icon colored-icon"></i>BadblockNews
                         </a>
                     </li> !-->
-                </div>
-            </ul>
+                    </div>
+                </ul>
+            </div>
+            <a href="javascript:void(0);" title="Accéder au menu" class="icon menu-button" onclick="menu()"><i
+                        class="icon-menu"></i></a>
         </div>
-        <a href="javascript:void(0);" title="Accéder au menu" class="icon menu-button" onclick="menu()"><i class="icon-menu"></i></a>
     </div>
-</div>
-</div>
-<!-------page-navbar-user------->
-{#{% if user is defined %}
-<div class="nav-profil">
-    <div class="container">
-        <a href="#"><img src="https://cdn.badblock.fr/head/{{ user.name }}/18.png" title="Tête du skin"><span>{{user.name}}</span></a>
-        <a href="#"><i class="icon icon-value-coins"></i> {{ user.shoppoints }} <span>Points Boutique</span></a>
-        <a href="#"><i class="icon icon-paperboat"></i> {{ user.website.vote }} <span>Votes</span></a>
+    </div>
 
-        <a href="{{ path_for('logout') }}" class="right"> {{ 'user.logout'|trans }}</a>
-        <a href="{{ path_for('dashboard') }}" class="right">Paramètres</a>
-    </div>
-</div>
-{% endif %}#}
-<!-------page-navbar-user fin------->
-<!------Menu fin ------->
-<!-- COVER  -->
-{% if block('cover') is defined %}
-{{ block('cover') }}
-{% endif %}
-<!-- END COVER -->
-  <br />  <center><a href="https://badblock.fr/shop/recharge"><img alt="Promotion BadBlock Boutique" title="Cliquez pour profiter de la promotion de -25% limitée au 05/01 !" src="https://cdn.badblock.fr/images/badblock_promo_noel_2018.png"></a></center>
+    {% if block('cover') is defined %}
+        {{ block('cover') }}
+    {% endif %}
+    <!-- END COVER -->
+    <br/>
+    <center><a href="https://badblock.fr/shop/recharge"><img alt="Promotion BadBlock Boutique"
+                                                             title="Cliquez pour profiter de la promotion de -25% limitée au 05/01 !"
+                                                             src="https://cdn.badblock.fr/images/badblock_promo_noel_2018.png"></a>
+    </center>
 
 
     <!-- CONTENT -->
 
-{% if block("skyscrapers") is defined %}
-{{ block('skyscrapers') }}
-{% endif %}
+    {% if block("skyscrapers") is defined %}
+        {{ block('skyscrapers') }}
+    {% endif %}
 
-<div class="container">
-    <div class="content">
-        {{ block('content') }}
+    <div class="container">
+        <div class="content">
+            {{ block('content') }}
 
-        {% if noads is not defined %}
-        <div id="pub-margin">
+            {% if noads is not defined %}
+                <div id="pub-margin">
 
+                </div>
+
+                <div class="pub-large">
+
+
+                    <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+                         data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+            {% endif %}
         </div>
-
-        <div class="pub-large">
-
-
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        {% endif %}
     </div>
-</div>
-<!-- fin CONTENT -->
+    <!-- fin CONTENT -->
 
-<!-- Statistiques -->
-<div class="stats-back">
-    <div class="stats">
+    <!-- Statistiques -->
+    <div class="stats-back">
+        <div class="stats">
+            <div class="container">
+                <div class="four columns">
+                    <i class="colored-icon game-colored-icon"></i>
+                    play.badblock.fr
+                </div>
+                <div class="four columns">
+                    <i class="colored-icon user-colored-icon"></i>
+                    <span id="players"></span>
+                </div>
+                <div class="four columns">
+                    <i class="colored-icon tchat-colored-icon"></i>
+                    ts.badblock.fr
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Statistiques -->
+    <!-- Footer -->
+    <div class="footer">
         <div class="container">
             <div class="four columns">
-                <i class="colored-icon game-colored-icon"></i>
-                play.badblock.fr
+                <div class="footer-title-container">
+                    <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" title="Serveur Minecraft BadBlock"
+                         alt="Serveur Minecraft BadBlock" class="footer-logo">
+                    <h4 class="footer-title">BadBlock</h4>
+                </div>
+                <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un serveur Minecraft créé en mars 2013
+                dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br/>
+                <a rel="nofollow" href="https://badblock.fr/legals/MentionsLegales.pdf"
+                   title="Mentions légales BadBlock">Mentions légales</a>, <a rel="nofollow"
+                                                                              href="https://badblock.fr/legals/"
+                                                                              title="Documents légaux BadBlock">Documents
+                    légaux</a>.<br/><br/>BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposée.
+                <br/>
+                <br/>
+                {{ onlineCount }} utilisateurs connectés sur le site.<br/>Partenaires : <a title="Serveur Minecraft"
+                                                                                           href="https://serveur-multigames.net/minecraft">Serveur
+                    Minecraft</a></a> - <a title="Launcher Minecraft"
+                                           href="https://launcher-minecraft.com/fr/telecharger">Launcher Minecraft</a>
             </div>
             <div class="four columns">
-                <i class="colored-icon user-colored-icon"></i>
-                <span id="players"></span>
+                <div class="footer-links-title-container">
+                    <h5 class="footer-links-title">
+                        <span>Réseaux sociaux</span>
+                    </h5>
+                </div>
+                <ul class="footer-links footer-social-links">
+                    <li><a href="https://twitter.com/BadBlockGame" title="Twitter du serveur Minecraft BadBlock"
+                           rel="nofollow"><i class="icon-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook du serveur Minecraft BadBlock"
+                           rel="nofollow"><i class="icon-facebook"></i></a></li>
+                    <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw"
+                           title="YouTube du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-youtube"></i></a>
+                    </li>
+                    <li><a href="https://badblock.fr/discord" rel="nofollow"
+                           title="Accéder au Discord du Serveur Minecraft"><img
+                                    src="//cdn.badblock.fr/images/discord.png"
+                                    title="Accéder au Discord du Serveur Minecraft"
+                                    alt="Accéder au Discord du Serveur Minecraft" width="31"
+                                    style="margin-top: 3px"></a></li>
+                </ul>
             </div>
-            <div class="four columns">
-                <i class="colored-icon tchat-colored-icon"></i>
-                ts.badblock.fr
-            </div>
+            {% if noads is not defined %}
+                <div class="four columns">
+                    <div class="footer-links-title-container">
+                        <h5 class="footer-links-title">
+                            <span>Publicité</span>
+                        </h5>
+                    </div>
+                    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px"
+                         data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
+                    <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+            {% endif %}
         </div>
     </div>
-</div>
-<!-- Fin Statistiques -->
-<!-- Footer -->
-<div class="footer">
-    <div class="container">
-        <div class="four columns">
-            <div class="footer-title-container">
-                <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" title="Serveur Minecraft BadBlock" alt="Serveur Minecraft BadBlock" class="footer-logo">
-                <h4 class="footer-title">BadBlock</h4>
-            </div>
-            <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un serveur Minecraft créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
-            <a rel="nofollow" href="https://badblock.fr/legals/MentionsLegales.pdf" title="Mentions légales BadBlock">Mentions légales</a>, <a rel="nofollow" href="https://badblock.fr/legals/" title="Documents légaux BadBlock">Documents légaux</a>.<br /><br />BadBlock n'est pas affilié avec Mojang AB. Mojang AB est une marque déposée. <br />
-            <br />
-            {{ onlineCount }} utilisateurs connectés sur le site.<br />Partenaires : <a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a></a> - <a title="Launcher Minecraft" href="https://launcher-minecraft.com/fr/telecharger">Launcher Minecraft</a>
-        </div>
-        <div class="four columns">
-            <div class="footer-links-title-container">
-                <h5 class="footer-links-title">
-                    <span>Réseaux sociaux</span>
-                </h5>
-            </div>
-            <ul class="footer-links footer-social-links">
-                <li><a href="https://twitter.com/BadBlockGame" title="Twitter du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/BadBlockGame" title="Facebook du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-facebook"></i></a></li>
-                <li><a href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube du serveur Minecraft BadBlock" rel="nofollow"><i class="icon-youtube"></i></a></li>
-                <li><a href="https://badblock.fr/discord" rel="nofollow" title="Accéder au Discord du Serveur Minecraft"><img src="//cdn.badblock.fr/images/discord.png" title="Accéder au Discord du Serveur Minecraft" alt="Accéder au Discord du Serveur Minecraft" width="31" style="margin-top: 3px"></a></li>
-            </ul>
-        </div>
-        {% if noads is not defined %}
-        <div class="four columns">
-            <div class="footer-links-title-container">
-                <h5 class="footer-links-title">
-                    <span>Publicité</span>
-                </h5>
-            </div>
-            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:280px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="4710723291"></ins>
-            <script async>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        {% endif %}
+
+    <div class="remodal modal-remodal" data-remodal-id="login">
+        <button data-remodal-action="close" class="remodal-close"></button>
+        <form action="https://badblock.fr/forum/connexion/login" id="choix-pseudo" name="choix-pseudo"
+              class="recharge-step-1" method="post">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <label for="playerName" style="margin-top: -10px;">
+                            Pseudonyme :
+                        </label>
+                    </td>
+                    <td>
+                        <input type="text" name="login" id="playerName" class="form-pseudo" value=""/>
+                    </td>
+                </tr>
+                <tr style="width: 100%;">
+                    <td>
+                        <label for="password" style="margin-top: -10px;">
+                            Mot de passe :
+                        </label>
+                    </td>
+                    <td style="width: 80%;">
+                        <input type="password" name="password" id="password" class="form-pseudo" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <label class="check-recharge">
+                            <input type="checkbox" name="remember">
+                            <span class="label-body article-checkbox">Se souvenir de moi</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr style="width: 100%;">
+                    <td style="width: 50%;">
+                        <a href="https://badblock.fr/forum/lost-password" class="button button-danger"
+                           style="width: 100%;" title="Mot de passe oublié sur BadBlock">
+                            Mot de passe oublié ?
+                        </a>
+                    </td>
+                    <td style="width: 50%;">
+                        <button class="button button-success" style="width: 100%;">Se connecter</button>
+                    </td>
+                </tr>
+            </table>
+            <a href="https://badblock.fr/forum/inscription/" class="button button-primary" style="width: 100%;"
+               title="S'inscrire sur BadBlock">
+                Pas encore inscrit ? S'inscrire !
+            </a>
+            <input type="hidden" name="cookie_check" value="1"/>
+            <input type="hidden" name="_xfToken" value=""/>
+            <input type="hidden" name="redirect"
+                   value="https://badblock.fr/forum/redirect.php?redirect={{ currentUrl }}"/>
+        </form>
     </div>
-</div>
-
-<div class="remodal modal-remodal" data-remodal-id="login">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <form action="https://badblock.fr/forum/connexion/login" id="choix-pseudo" name="choix-pseudo" class="recharge-step-1" method="post">
-        <table style="width: 100%;">
-            <tr>
-                <td>
-                    <label for="playerName" style="margin-top: -10px;">
-                        Pseudonyme :
-                    </label>
-                </td>
-                <td>
-                    <input type="text" name="login" id="playerName" class="form-pseudo" value="" />
-                </td>
-            </tr>
-            <tr style="width: 100%;">
-                <td>
-                    <label for="password" style="margin-top: -10px;">
-                        Mot de passe :
-                    </label>
-                </td>
-                <td style="width: 80%;">
-                    <input type="password" name="password" id="password" class="form-pseudo" value="" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-                    <label class="check-recharge">
-                        <input type="checkbox" name="remember">
-                        <span class="label-body article-checkbox">Se souvenir de moi</span>
-                    </label>
-                </td>
-            </tr>
-            <tr style="width: 100%;">
-                <td style="width: 50%;">
-                    <a href="https://badblock.fr/forum/lost-password" class="button button-danger" style="width: 100%;" title="Mot de passe oublié sur BadBlock">
-                        Mot de passe oublié ?
-                    </a>
-                </td>
-                <td style="width: 50%;">
-                    <button class="button button-success" style="width: 100%;">Se connecter</button>
-                </td>
-            </tr>
-        </table>
-        <a href="https://badblock.fr/forum/inscription/" class="button button-primary" style="width: 100%;" title="S'inscrire sur BadBlock">
-            Pas encore inscrit ? S'inscrire !
-        </a>
-        <input type="hidden" name="cookie_check" value="1" />
-        <input type="hidden" name="_xfToken" value="" />
-        <input type="hidden" name="redirect" value="https://badblock.fr/forum/redirect.php?redirect={{ currentUrl }}" />
-    </form>
-</div>
-
-{% if noads is not defined %}
-<script async defer src="/pagead/js/adsbygoogle.js"></script>
-{% endif %}
-
-<!-- Fin footer -->
-
-<!-- JS -->
-<!-- Var js -->
-<!--<script async defer>
-    var endpoint = "{{ base_url() }}"
-    var mcHost = "eu.badblock.fr"
-    var trans = {
-        'noPlayers': "{{ 'no_player'|trans }}",
-        'onePlayer': "{{ 'one_player'|trans }}",
-        'manyPlayers': "{{ 'many_players'|trans }}"
-    }
-</script>!-->
-
-{% if noads is not defined %}
-<script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
-
-<div class="remodal" data-remodal-id="blc"
-data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
-
-<div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
-<p>
-    Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br />
-    <br />
-</p>
-<br>
-<a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm" class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
-</div>
-{% endif %}
-
-{% if block("scripts") is defined %}
-{{ block('scripts') }}
-{% endif %}
-
-  <!--  <script>
-        $( document ).ready(function() {
-            setTimeout(function () {
-                var vidDefer = document.getElementsByTagName('iframe');
-                for (var i=0; i<vidDefer.length; i++) {
-                    if(vidDefer[i].getAttribute('data-src')) {
-                        vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
-                    }
-                }
-                var script = document.createElement('script');
-                script.onload = function () {
-                    //do stuff with the script
-                };
-                script.src = "/dist/js/syndication.js";
-
-                document.head.appendChild(script);
-            }, 2000);
-        });
-    </script> !-->
 
 
-    <!-- très très très très très très expérimental !-->
     {% if noads is not defined %}
-    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/app.css">
-    <link rel="stylesheet" href="public/dist/css/global.css">
-    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/xmalware.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
-    {% else %}
-    <link rel="stylesheet" href="https://cdn.badblock.fr/wd/css/lc.css">
+        <script async defer src="/pagead/js/adsbygoogle.js"></script>
+    {% endif %}
+
+    <!-- Fin footer -->
+
+    {% if noads is not defined %}
+        <script src="https://cdn.badblock.fr/wd/js/ads.js"></script>
+
+        <div class="remodal" data-remodal-id="blc"
+             data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnConfirm: false, closeOnEscape: false">
+
+            <div style="font-size: 21px;">Veuillez désactiver votre bloqueur de publicité</div>
+            <p>
+                Vous devez désactiver votre bloqueur de publicité pour pouvoir voter.<br/>
+                <br/>
+            </p>
+            <br>
+            <a rel="nofollow" href="/vote" title="Rafraichir la page" data-remodal-action="confirm"
+               class="remodal-confirm">&nbsp;&nbsp;&nbsp;<i class="icon-repeat"></i> J'ai désactivé mon bloqueur&nbsp;&nbsp;&nbsp;</a>
+        </div>
+    {% endif %}
+
+    {% if block("scripts") is defined %}
+        {{ block('scripts') }}
     {% endif %}
     <script src="/dist/js/app.js"></script>
     <script async defer>
-    function showMenu(y)
-    {
-        var x = document.getElementById('navbar');
+        function showMenu(y) {
+            var x = document.getElementById('navbar');
 
-        if(x.style.display === "none")
-        {
-            x.style.display = "block";
-            x.classList.remove("showOut");
-            x.classList.add("showIn");
-            y.classList.toggle("change");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                x.classList.remove("showOut");
+                x.classList.add("showIn");
+                y.classList.toggle("change");
+            }
+            else {
+                setTimeout(function () {
+                    x.style.display = "none";
+                }, 350);
+                x.classList.remove("showIn");
+                x.classList.add("showOut");
+                y.classList.toggle("change");
+            }
         }
-        else
-        {
-            setTimeout(function(){
-                x.style.display = "none";
-            }, 350);
-            x.classList.remove("showIn");
-            x.classList.add("showOut");
-            y.classList.toggle("change");
-        }
-    }
     </script>
 
     {% if noads is not defined %}
-    <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+        <script async defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+                integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+                crossorigin="anonymous"></script>
     {% endif %}
-    <script async defer src="/gtag/js?id=UA-104430841-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'UA-104430841-1');
-    </script>
     <script async defer>
-    $(".dropdown-link").on('mouseover', function () {
-        $(".dropdown-dropdown").show();
-        $(".dropdown-dropdown").css('display', 'flex')
-    });
-    $("body").on('mouseover', function () {
-        if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
-            $(".dropdown-dropdown").fadeOut();
-        }
-    });
+        $(".dropdown-link").on('mouseover', function () {
+            $(".dropdown-dropdown").show();
+            $(".dropdown-dropdown").css('display', 'flex')
+        });
+        $("body").on('mouseover', function () {
+            if ($('.dropdown-dropdown').is(':hover') === false && $('.dropdown-link').is(':hover') === false) {
+                $(".dropdown-dropdown").fadeOut();
+            }
+        });
     </script>
 
     <script async>
-
-    function login() {
-        $('[data-remodal-id=login]').remodal().open();
-    }
-
+        function login() {
+            $('[data-remodal-id=login]').remodal().open();
+        }
     </script>
 
 
@@ -548,7 +484,7 @@ data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnCo
     {% endif %}
 
     {% if noads is  defined %}
-    <script type="application/ld+json">
+        <script type="application/ld+json">
     {
         "@context": "http://schema.org/",
         "@type": "AggregateRating",
@@ -562,13 +498,11 @@ data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnCo
         "ratingValue": "5",
         "ratingCount": "{{ voteCount }}"
     }
-    </script>
+
+        </script>
     {% endif %}
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5WSQ9FB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     </body>
     </html>
-    {% endspaceless %}
+{% endspaceless %}

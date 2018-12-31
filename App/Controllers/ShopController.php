@@ -11,6 +11,7 @@ namespace App\Controllers;
 use function DI\object;
 use function GuzzleHttp\Psr7\str;
 use MongoDB\Exception\Exception;
+use PhpParser\Node\Expr\Cast\Object_;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -27,20 +28,7 @@ class ShopController extends Controller
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
-        if ($this->session->exist('user'))
-        {
-            $username = $this->session->getProfile('username')['username'];
-            if ($this->obsipromo($username))
-            {
-                $promo = true;
-            }
-            else
-            {
-                $promo = false;
-            }
-        }else{
-            $promo = false;
-        }
+        $promo = false;
 
         $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
 
@@ -174,6 +162,18 @@ class ShopController extends Controller
             $product_depend = $this->container->mongo->product_list->findOne(['_id' => $product->depend_to]);
             $depend = $this->container->mongo->buy_logs->count(['uniqueId' => $player['uniqueId'], 'offer' => $product_depend->depend_name]);
 
+            //Check grade
+            $check = false;
+            foreach ((array)$player['permissions']->groups->bungee as $k => $row) {
+                if ($k == $product->depend) {
+                    $check = true;
+                    $temp = $row;
+                }
+            }
+            if ($check == true) {
+                $depend = 1;
+            }
+
             if ($depend == 0)
             {
                 //Search depend produc pour proposer a la vente
@@ -182,37 +182,18 @@ class ShopController extends Controller
             }
         }
 
+
+        if ($product->queue == "faction" || $product->queue == "survie" && strtolower($playerName) != "fluorl")
+        {
+            return $response->write("Service temporairement désactivé !")->withStatus(400);
+        }
+
         //Check promotion
         if (isset($product->promotion) && $product->promotion)
         {
             $product->price = $product->promotion_new_price;
         }
 
-        //Remove after
-        if ($this->session->exist('user'))
-        {
-            $username = $this->session->getProfile('username')['username'];
-            if ($this->obsipromo($username))
-            {
-                $promo = true;
-            }
-            else
-            {
-                $promo = false;
-            }
-        }
-        else
-        {
-            $promo = false;
-        }
-
-        if ($product->depend_name == 'vip' || $product->depend_name == 'vip+')
-        {
-            if ($promo == true)
-            {
-                $product->price = $product->price / 2;
-            }
-        }
 
         //Check if player have money
         if(!$this->haveMoney(strtolower($playerName), $product->price) && $givean == false)
@@ -243,44 +224,39 @@ class ShopController extends Controller
         ];
         $this->container->mongo->buy_logs->InsertOne($data);
 
+        //Add on month
+        if (isset($product->depend_name)){
+            if ($product->depend_name == "legend") {
+                $check = false;
+                foreach ((array)$player['permissions']->groups->bungee as $k => $row) {
+                    if ($k == "gradeperso") {
+                        $check = true;
+                        $temp = $row;
+                    }
+                }
+                if ($check == true) {
+                    $temp = round($temp / 1000,0);
+                    $temp = $temp - time();
+                    $duration = $temp + $product->duration;
+                    $product->command = $product->command . " " . $duration;
+                    $Date = date('d/m', time() + $duration);
+                    $p = (object) "";
+                    $p->command = "adm perms user %player% groups remove * gradeperso";
+                    $p->queue = "paymentserver";
+                    $p->price = 0;
+                    $p->name = "Legend";
+
+                    $this->sendRabbitData($playerName, $p);
+                    $prolong = true;
+                }else{
+                    $product->command = $product->command . " " . $product->duration;
+                }
+            }
+        }
+
         if ($product->mode == "rabbitmq")
         {
             $this->sendRabbitData($playerName, $product);
-        }elseif ($product->mode == "webladder")
-        {
-            $this->hybrid(strtolower($playerName), $product['command'], $product->price, -1);
-        }elseif ($product->mode == "hybrid")
-        {
-            foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-            {
-                if ($k == "gradeperso")
-                {
-                    $check = true;
-                }
-                else
-                {
-                    $check = false;
-                }
-            }
-
-            if ($player['permissions']['group'] == "gradeperso")
-            {
-                $time = $player['permissions']['end'] + ($product['duration'] * 1000);
-                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
-            }
-            else
-            {
-                $expireC = 0;
-                foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-                {
-                    if ($k == "gradeperso")
-                    {
-                        $expireC = $row;
-                    }
-                }
-                $time = $expireC + ((time() + $product['duration']) * 1000);
-                $this->hybrid(strtolower($playerName), $product['command'], $product->price, $time);
-            }
         }
 
         if ($givean == false){
@@ -288,8 +264,12 @@ class ShopController extends Controller
             $this->subtract(strtolower($playerName), $product->price);
         }
 
+        if (isset($prolong)){
+            return $response->write("Vous avez prolongé votre grade Legend j'usqu'au : " . $Date)->withStatus(400);
+        }else{
+            return "";
+        }
 
-        return "";
     }
 
 
@@ -305,7 +285,6 @@ class ShopController extends Controller
 
         //Refresh points cache
         $this->container->session->set('points', $points);
-
 
     }
 
@@ -381,105 +360,4 @@ class ShopController extends Controller
         $connection->close();
 
     }
-
-   public function hybrid($username, $grade, $price, $duration)
-   {
-        //Big game server rank
-       $server_list = [
-           'skyb',
-           'fb',
-           'faction'
-       ];
-
-       if ($duration != -1)
-       {
-           $duration = (60*60*24*31);
-       }
-       else
-       {
-           $duration = -1;
-       }
-
-       foreach ($server_list as $row)
-       {
-           $p = new \stdClass();
-           $p->name = "§6" . $grade;
-           $p->queue = $row;
-           $p->price = $price;
-           if ($duration != -1)
-           {
-               $p->command = "pex user %player% group add ". $grade .' "" '. $duration;
-           }
-           else
-           {
-               $p->command = "pex user %player% group add " . $grade;
-           }
-           $this->sendRabbitData($username, $p);
-       }
-
-       if ($grade == "legend")
-       {
-           $grade = "gradeperso";
-       }
-
-       //Ladder rankup
-       ////Connection to rabbitMQ server
-       $connection = new AMQPStreamConnection($this->container->config['rabbit']['ip'], $this->container->config['rabbit']['port'], $this->container->config['rabbit']['username'], $this->container->config['rabbit']['password'], $this->container->config['rabbit']['virtualhost']);
-       $channel = $connection->channel();
-
-       $channel->exchange_declare('shopLinker.ladder', 'fanout', false, false, false, false);
-       $sanction = (object) [
-           'dataType' => 'BUY',
-           'playerName' => $username,
-           'displayName' => $grade,
-           'command' => "perms user $username group add $grade",
-           'ingame' => false,
-           'price' => $price
-       ];
-
-       if ($duration != -1)
-       {
-           $sanction->command = "perms user $username group add $grade 31d";
-       }
-
-       $message = (object) [
-           'expire' => (time() + 604800) * 1000,
-           'message' => json_encode($sanction)
-       ];
-       $msg = new AMQPMessage(json_encode($message));
-       $channel->basic_publish($msg, 'shopLinker.ladder');
-
-
-       $channel->close();
-       $connection->close();
-   }
-
-
-   public function obsipromo($pseudo)
-   {
-
-       //Search data player
-       $player = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
-
-       if ($player == null)
-       {
-           return false;
-       }
-
-       if ($player['permissions']['group'] == "obsidienne")
-       {
-           return true;
-       }
-
-       foreach ((array) $player['permissions']['alternateGroups'] as $k => $row)
-       {
-           if ($k == "obsidienne")
-           {
-               return true;
-           }
-       }
-
-       return false;
-   }
-
 }

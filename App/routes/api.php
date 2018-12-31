@@ -22,8 +22,12 @@ $app->group('/api', function(){
 	$this->get('/post/comments/{uuid}', \App\Controllers\Api\BlogApiController::class . ':getPostComments');
 	$this->group('/minecraft', function() {
 		$this->get('/players', \App\Controllers\Api\MinecraftApiController::class . ':getPlayers');
+		$this->get('/teamspeak', \App\Controllers\Api\MinecraftApiController::class . ':teamspeak');
 		$this->get('/sta', \App\Controllers\Api\MinecraftApiController::class . ':getStats');
 	});
+
+    $this->get('/clearts', \App\Controllers\Api\TeamspeakApiController::class . ':index');
+
 
     $this->group('/discord', function() {
         $this->get('/support/{id}/{title}/{user}/{type}', \App\DiscordHandler::class . ':sendForum');

@@ -61,16 +61,6 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        // Vérification si le joueur est pas au login
-        $server = $this->ladder->playerGetConnectedServer($username)->server;
-        $data = explode("_",$server);
-
-        if ($data[0] == "login")
-        {
-            $this->flash->addMessage('move_error', "Votre devez vous authentifier sur le serveur !");
-            // Redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-        }
 
         // Création du code random
         $pass = $this->generateRandomString(8);
@@ -78,9 +68,11 @@ class MoveController extends Controller
         $this->session->set('move:1', $username);
         $this->redis->set('move:1:'.$username,strtoupper($pass));
         $this->redis->expire('move:1:'.$username, 3600);
-        $this->ladder->playerSendMessage($username," ");
-        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". strtoupper($pass));
-        $this->ladder->playerSendMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username,"&6 Le code de confirmation est : ". strtoupper($pass));
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
 
         return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2]);
     }
@@ -150,9 +142,11 @@ class MoveController extends Controller
         $this->session->set('move:2', $username);
         $this->redis->set('move:2:'.$username, strtoupper($pass));
         $this->redis->expire('move:2:'.$username, 3600);
-        $this->ladder->playerSendMessage($username," ");
-        $this->ladder->playerSendMessage($username,"Le code de confirmation est : ". $pass);
-        $this->ladder->playerSendMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username,"&6 Le code de confirmation est : ". $pass);
+         $this->container->docker->sendPrivateMessage($username," ");
+         $this->container->docker->sendPrivateMessage($username," ");
 
         return $this->render($response, 'user.move.step4', ["width" => 75,"step" => 4]);
     }

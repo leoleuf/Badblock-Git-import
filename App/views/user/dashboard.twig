@@ -116,7 +116,6 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Pseudonyme</td>
                                 <td>Date</td>
                                 <td>Type</td>
                                 <td>Auteur</td>
@@ -126,10 +125,9 @@
 
                             {% for key in sanctions %}
                                 <tr>
-                                    <td>{{ key["pseudo"] }}</td>
                                     <td>{{ key["date"] }}</td>
                                     <td><span class="label label-danger">{{ key["type"] }}</span></td>
-                                    <td><a href="/profile/{{ key["banner"] }}" title="Profil de {{ key['banner'] }}">{{ key["banner"] }}</a></td>
+                                    <td><a href="/profile/{{ key["punisher"] }}" title="Profil de {{ key['punisher'] }}">{{ key["punisher"] }}</a></td>
                                     {% if key["expire"] == -1 %}
                                         <td>Aucune</td>
                                     {% else %}
@@ -243,11 +241,11 @@
                     <h4 class="top0">Changer mon mode de connexion</h4>
                     <form action="/dashboard/changeserverconnect" method="post" name="confirm-mdp">
                         {% if user.onlineMode %}
-                            <input type="radio" name="selectmode" value="premium" id="rb" checked>Connexion premium
-                            <input type="radio" name="selectmode" value="crack" id="rb">Connexion cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb1" checked>Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb2">Connexion cracké
                         {% else %}
-                            <input type="radio" name="selectmode" value="premium" id="rb">Connexion premium
-                            <input type="radio" name="selectmode" value="crack" id="rb" checked>Connexion cracké
+                            <input type="radio" name="selectmode" value="premium" id="rb3">Connexion premium
+                            <input type="radio" name="selectmode" value="crack" id="rb4" checked>Connexion cracké
                         {% endif %}
                         <br />
                         <input type="submit" class="button-primary espace-valider">
@@ -369,14 +367,9 @@
                 </div>
                 <div class="six columns">
                     <div class="span">
-                        <h4 class="top0">Créer mon canal TeamSpeak :</h4>
+                        <h4 class="top0">Générer mon canal TeamSpeak :</h4>
                         <form action="/dashboard/custom/teamspeak_canal" method="post" name="confirm-mdp">
-                            <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères !</label>
-                            <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !" />
-                            <label for="newpassword">Entrer le mot de passe de votre canal !</label>
-                            <input type="password" name="canal_psw" id="canal_psw" placeholder="" />
-                            <br />
-                            <input type="submit" class="button-primary espace-valider"></input>
+                            <input type="submit" class="button-primary"></input>
                             </input>
                         </form>
                     </div>
@@ -524,15 +517,13 @@
                     <tr>
                         <td>Pseudo</td>
                         <td>Date</td>
-                        <td>Heure</td>
                         <td>Adresse IP</td>
                     </tr>
                     {% for k,val in connection %}
                         <tr>
                             <td>{{ user.realName }}</td>
                             <td>{{ val.date }}</td>
-                            <td>{{ val.time }}</td>
-                            <td>{{ val.ip }}</td>
+                            <td>{{ val.lastIp }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -638,8 +629,6 @@
         <br />
         <br />
     </div>
-
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 
     <div class="remodal modal-remodal" data-remodal-id="sponsor-you-accepted">
         <button data-remodal-action="close" class="remodal-close"></button>
