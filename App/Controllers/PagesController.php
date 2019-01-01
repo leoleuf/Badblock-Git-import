@@ -31,6 +31,11 @@ class PagesController extends Controller
         $this->render($response, 'pages.play');
     }
 
+    public function getYoutube(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $this->render($response, 'pages.youtube');
+    }
+
     public function getPlayAdwords(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->render($response, 'pages.play-adwords');
