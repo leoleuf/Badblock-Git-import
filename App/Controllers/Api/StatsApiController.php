@@ -19,7 +19,7 @@ class StatsApiController extends \App\Controllers\Controller
 
 
     public function getCreateCacheStats(RequestInterface $request, ResponseInterface $response)
-    {
+        {
 
         //Lecture du classement
         $query = "show tables;";
