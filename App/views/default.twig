@@ -230,11 +230,13 @@
         {{ block('cover') }}
     {% endif %}
     <!-- END COVER -->
-    <br/>
+    {% if nopromo is not defined %}
+        <br/>
     <center><a href="https://badblock.fr/shop/recharge"><img alt="Promotion BadBlock Boutique"
                                                              title="Cliquez pour profiter de la promotion de -25% limitée au 05/01 !"
                                                              src="https://cdn.badblock.fr/images/badblock_promo_noel_2018.png"></a>
     </center>
+    {% endif %}
 
 
     <!-- CONTENT -->

@@ -2,6 +2,7 @@
 {% set description = "Mettez en avant votre vidéo YouTube dès aujourd'hui sur notre site sans plus attendre et gratuitement, sans aucun frais ni paiement." %}
 {% set show_title = false %}
 {% set hide_title = true %}
+{% set noads = true %}
 {% extends "default.twig" %}
 {% set active_page = "youtube" %}
 {% block skyscrapers %}
@@ -18,20 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="pub-skyscraper-left">
-        <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <div class="pub-skyscraper-right">
-        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
+    
 {% endblock %}
 {% block content %}
 
