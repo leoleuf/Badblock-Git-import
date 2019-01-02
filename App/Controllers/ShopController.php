@@ -183,9 +183,10 @@ class ShopController extends Controller
         }
 
 
+
         if ($product->queue == "faction" || $product->queue == "paymentserver" && $product->name != "VIP" && $product->depend == false && strtolower($playerName) != "xmalware" && strtolower($playerName) != "fluorl")
         {
-            return $response->write("Service temporairement désactivé !")->withStatus(400);
+            return $response->write("Service temporairement désactivé.")->withStatus(400);
         }
 
         //Check promotion
