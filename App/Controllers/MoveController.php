@@ -54,13 +54,6 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-        if ($this->ladder->playerOnline($username)->connected != true)
-        {
-            $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
-            //redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-        }
-
 
         // Création du code random
         $pass = $this->generateRandomString(8);
@@ -119,13 +112,6 @@ class MoveController extends Controller
         }
 
 
-
-        if ($this->ladder->playerOnline($username)->connected != true)
-        {
-            $this->flash->addMessage('move_error', "Votre compte n'est pas connecté sur le serveur !");
-            // Redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-        }
 
         // Vérification si le joueur est pas au login
         $server = $this->ladder->playerGetConnectedServer($username)->server;

@@ -22,7 +22,7 @@ class LoginApiDevController extends \App\Controllers\Controller
                  'username' => $user['username'],
                  'email' => $user['email'],
                  'user_group_id' => $user['user_group_id'],
-                 'secondary_group_ids' => [],
+                 'secondary_group_ids' => [17],
                  'custom_title' => $user['custom_title'],
                  'is_admin' => $user['is_admin'],
                  'is_banned' => $user['is_banned'],

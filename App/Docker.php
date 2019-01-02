@@ -60,4 +60,14 @@ class Docker
         $this->sendData("bungee.punishment", $Object);
     }
 
+    public function banPlayer($Username, $Reason, $Time){
+        $Object = [
+            'playerName' => $Username,
+            'type' => "BAN",
+            'content' => $Reason
+        ];
+
+        $this->sendData("bungee.punishment", $Object);
+    }
+
 }
