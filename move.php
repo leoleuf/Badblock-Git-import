@@ -8,7 +8,7 @@ $client = new \MongoDB\Client(
 );
 
 $client->selectDatabase("admin");
-$collection = $client->selectCollection("admin","players_old");
+$collection = $client->selectCollection("admin","players");
 
 $Players = $collection->find([]);
 
@@ -23,18 +23,13 @@ foreach ($Players as $player){
 
         if (true){
             //Traitement grade
-            foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+            foreach ((array) $player['permissions']['groups']['bungee'] as $k => $row){
                 if ($k == "gradeperso" || $k == "noel"){
                     $expire = $row;
                 }
                 array_push($Grade, $k);
             }
-
-            if ($player['permissions']['group'] == "gradeperso" || $player['permissions']['group'] == "noel"){
-                $expire = $player['permissions']['end'];
-            }
-            array_push($Grade, $player['permissions']['group']);
-
+            
             $Grades = [];
             foreach ($Grade as $g){
                 if ($g == "gradeperso" || $g == "noel"){
@@ -64,7 +59,9 @@ foreach ($Players as $player){
                         "minigames" => $Grades,
                         "pvpbox" => $Grades,
                         "skyblock" => $Grades,
-                        "freebuild" => $Grades
+                        "freebuild" => $Grades,
+                        "survie" => $Grades,
+                        "faction" => $Grades
                     ],
                     "permissions" => [
                         "bungee" => $Grades
@@ -101,7 +98,7 @@ foreach ($Players as $player){
             }
 
             try{
-                $c = $client->selectCollection("admin","players_new");
+                $c = $client->selectCollection("admin","players_new_grade");
                 $c->insertOne($Data);
             }catch (InvalidArgumentException $e){
                 echo "Error > " . $I;
