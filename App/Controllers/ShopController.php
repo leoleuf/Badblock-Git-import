@@ -184,8 +184,7 @@ class ShopController extends Controller
 
 
 
-        if ($product->queue == "faction" || $product->queue == "paymentserver" && $product->name != "VIP" && $product->depend == false && strtolower($playerName) != "xmalware" && strtolower($playerName) != "fluorl")
-        {
+        if ($product->queue == "faction"){
             return $response->write("Service temporairement désactivé.")->withStatus(400);
         }
 
