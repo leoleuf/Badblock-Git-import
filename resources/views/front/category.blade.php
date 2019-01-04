@@ -172,7 +172,6 @@
                                             <div class="titles">
                                                 <a title="{{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener" target="_blank"><h4 class="serveur-name">{{ $row->name }}</h4></a>
                                                 <br />Note : @if($row->note >= 1)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 2 || $row->note == 2)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 3 || $row->note == 3)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note > 4 || $row->note == 4)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif @if($row->note == 5)<span class="fa fa-star fex"></span>@else<span class="fa fa-star-o fexo"></span>@endif
-                                                <br />Visites : {{ $row->clicks }}
                                                 @if (strlen(trim(strtolower($row->ip))) > 0)
                                                     <div id="ip-{{ encname($row->name) }}" class="hidden-ip">{{ trim(strtolower($row->ip)) }}</div>
                                                 @endif
