@@ -281,7 +281,7 @@ class VoteController extends Controller
                     $this->container->session->set('points', $money['points']);
                 }
             }
-            
+
             $this->container->docker->broadcast("&7(Vote) &e".$displayPseudo." &7gagne &e".$awardName);
         }
         else

@@ -50,7 +50,7 @@ class Docker
         $this->sendData("bungee.processing.players.linkQueue", $Object);
     }
 
-    public function broadcast($Username, $message){
+    public function broadcast($message){
         $Object = [
             'type' => "BROADCAST",
             'content' => $message
