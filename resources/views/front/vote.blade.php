@@ -74,7 +74,15 @@
                 </a><br /><br />
             @endif
                 <div class="row justify-content-left d-flex" style="float: left;">
-                    _
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-1905923613312160"
+                         data-ad-slot="1434308007"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             <div class="row justify-content-center d-flex">
                 <div class="col-lg-8 post-list">
@@ -280,15 +288,7 @@
                     <div class="single-slidebar" style="background-color: white;">
                         <div class="active-relatedjob-carusel">
                             <div class="single-rated">
-                                <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="1434308007"
-                                     data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+
                             </div>
                         </div>
                     </div>
