@@ -317,7 +317,7 @@
                                     La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
                                 </div>
                             </div>
-                            <div class="pubpost active-relatedjob-carusel single-rated single-slidebar">
+                            <div class="active-relatedjob-carusel single-rated single-slidebar pubpost">
                                 <ins class="adsbygoogle"
                                      id="pbblock" style="display:inline-block;width:300px;height:600px"
                                      data-ad-client="ca-pub-1905923613312160"
