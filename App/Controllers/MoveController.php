@@ -111,19 +111,6 @@ class MoveController extends Controller
             }
         }
 
-
-
-        // Vérification si le joueur est pas au login
-        $server = $this->ladder->playerGetConnectedServer($username)->server;
-        $data = explode("_",$server);
-
-        if ($data[0] == "login")
-        {
-            $this->flash->addMessage('move_error', "Votre devez vous authentifier sur le serveur !");
-            // Redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
-        }
-
         $pass = strtoupper($this->generateRandomString(8));
         $this->session->set('move:2', $username);
         $this->redis->set('move:2:'.$username, strtoupper($pass));
