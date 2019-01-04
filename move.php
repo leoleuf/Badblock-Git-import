@@ -19,6 +19,14 @@ $alt = ['$or' =>
         ['permissions.groups.bungee.mvp+' => ['$exists' => true]]
     ]];
 
+$Count = $collection->count($alt);
+
+echo "";
+echo "";
+echo "$Count player have groups";
+echo "";
+echo "";
+
 $Players = $collection->find($alt);
 
 $I = 0;
@@ -64,7 +72,7 @@ foreach ($Players as $player){
 
             try{
                 $collection = $client->selectCollection("admin","players_save");
-                $end = $collection->updateOne(["name" => $player['name']], ['$set' => ["permissions" => $Data]]);
+                $end = $collection->updateOne(["_id" => $player['_id']], ['$set' => ["permissions" => $Data]]);
 
             }catch (InvalidArgumentException $e){
                 echo "Error > " . $I;
