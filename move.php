@@ -8,7 +8,7 @@ $client = new \MongoDB\Client(
 );
 
 $client->selectDatabase("admin");
-$collection = $client->selectCollection("admin","players");
+$collection = $client->selectCollection("admin","players_save");
 
 $Players = $collection->find([]);
 
@@ -40,64 +40,23 @@ foreach ($Players as $player){
             }
 
             $Data = [
-                "name" => $player['name'],
-                "loginPassword" => $player['loginPassword'],
-                "nickname" => "",
-                "uniqueId" => $player['uniqueId'],
-                "settings" => [
-                    "partyable" => "WITH_EVERYONE",
-                    "friendListable" => "YES",
+                "groups" => [
+                    "bungee" => $Grades,
+                    "minigames" => $Grades,
+                    "pvpbox" => $Grades,
+                    "skyblock" => $Grades,
+                    "freebuild" => $Grades,
+                    "survie" => $Grades,
+                    "faction" => $Grades
                 ],
-                "punish" => [
-                    "ban" => null,
-                    "mute" => null,
-                    "warn" => null
-                ],
-                "permissions" => [
-                    "groups" => [
-                        "bungee" => $Grades,
-                        "minigames" => $Grades,
-                        "pvpbox" => $Grades,
-                        "skyblock" => $Grades,
-                        "freebuild" => $Grades,
-                        "survie" => $Grades,
-                        "faction" => $Grades
-                    ],
-                    "permissions" => $player['permissions']['permissions']
-                ],
-                "game" => $player['game'],
+                "permissions" => $player['permissions']['permissions']
             ];
 
-            if (isset($player['authKey'])){
-                $Data['authKey'] = $player['authKey'];
-            }
-            if (isset($player['state'])){
-                $Data['state'] = $player['state'];
-            }
-
-            if (isset($player['refer'])){
-                $Data['refer'] = $player['refer'];
-            }
-
-            if (isset($player['lastIp'])){
-                $Data['lastIp'] = $player['lastIp'];
-            }
-
-            if (isset($player['realName'])){
-                $Data['realName'] = $player['realName'];
-            }
-
-            if (isset($player['onlineMode'])){
-                $Data['onlineMode'] = $player['onlineMode'];
-            }
-
-            if (isset($player['game']['other']['hub']['mountConfigs'])){
-                unset($player['game']['other']['hub']['mountConfigs']);
-            }
 
             try{
-                $c = $client->selectCollection("admin","players_new_grade");
-                $c->insertOne($Data);
+                $collection = $client->selectCollection("admin","players_save");
+                $end = $collection->updateOne(["name" => $player['name']], ['$set' => ["permissions" => $Data]]);
+
             }catch (InvalidArgumentException $e){
                 echo "Error > " . $I;
             }
