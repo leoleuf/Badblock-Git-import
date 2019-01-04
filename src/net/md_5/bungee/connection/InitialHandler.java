@@ -119,6 +119,8 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 	@Getter
 	private boolean onlineInfo;
 	@Getter
+	private boolean legacyPlayer;
+	@Getter
 	private String authKey;
 
 	@Override
@@ -514,6 +516,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 					} else
 					{
 						disconnect( bungee.getTranslation( "mojang_fail" ) );
+						
 						bungee.getLogger().log( Level.SEVERE, "Error authenticating " + getName() + " with minecraft.net", error );
 					}
 				}
