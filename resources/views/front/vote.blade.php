@@ -73,6 +73,7 @@
                     <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour voter !
                 </a><br /><br />
             @endif
+                <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <div class="row justify-content-left d-flex" style="float: left;">
                     <ins class="adsbygoogle"
                          style="display:block"
@@ -230,7 +231,6 @@
                                 </script>
                         @endif
                         @if ($data->noredirect == 0)
-                            <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <ins class="adsbygoogle"
                                  style="display:block"
                                  data-ad-format="autorelaxed"
