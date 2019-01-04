@@ -40,7 +40,7 @@ class Docker
     }
 
 
-	public function sendPrivateMessage($Username, $message){
+    public function sendPrivateMessage($Username, $message){
         $Object = [
             'playerName' => $Username,
             'type' => "SEND_MESSAGE",
@@ -48,6 +48,15 @@ class Docker
         ];
 
         $this->sendData("bungee.processing.players.linkQueue", $Object);
+    }
+
+    public function broadcast($Username, $message){
+        $Object = [
+            'type' => "BROADCAST",
+            'content' => $message
+        ];
+
+        $this->sendData("bungee.processing.bungee.linkQueue", $Object);
     }
 
 	public function kickPlayer($Username, $Reason){

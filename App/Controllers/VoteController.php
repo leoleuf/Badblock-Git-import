@@ -249,6 +249,7 @@ class VoteController extends Controller
 
             $total = max($total, 1);
             $proba = round(($dbh / $total) * 100, 2);
+            $this->container->docker->broadcast("&7(Vote) &e".$displayPseudo." &7gagne &e".$awardName);
            /* $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
             $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
             $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');*/
