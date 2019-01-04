@@ -63,9 +63,7 @@ foreach ($Players as $player){
                         "survie" => $Grades,
                         "faction" => $Grades
                     ],
-                    "permissions" => [
-                        $player['permissions']['permissions']
-                    ]
+                    "permissions" => $player['permissions']['permissions']
                 ],
                 "game" => $player['game'],
             ];
