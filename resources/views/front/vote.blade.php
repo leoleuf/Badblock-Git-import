@@ -73,6 +73,9 @@
                     <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour voter !
                 </a><br /><br />
             @endif
+                <div class="row justify-content-left d-flex" style="float: left;">
+                    _
+                </div>
             <div class="row justify-content-center d-flex">
                 <div class="col-lg-8 post-list">
                     @if (trim($__env->yieldContent('banner')))
