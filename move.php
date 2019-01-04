@@ -10,7 +10,16 @@ $client = new \MongoDB\Client(
 $client->selectDatabase("admin");
 $collection = $client->selectCollection("admin","players_save");
 
-$Players = $collection->find([]);
+//Alternate group
+$alt = ['$or' =>
+    [
+        ['permissions.groups.bungee.vip' => ['$exists' => true]],
+        ['permissions.groups.bungee.vip+' => ['$exists' => true]],
+        ['permissions.groups.bungee.mvp' => ['$exists' => true]],
+        ['permissions.groups.bungee.mvp+' => ['$exists' => true]]
+    ]];
+
+$Players = $collection->find($alt);
 
 $I = 0;
 
