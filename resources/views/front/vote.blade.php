@@ -187,7 +187,7 @@
 
                                         <button class="g-recaptcha btn btn-success col-12" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; height: 80px;" disabled>
+                                                data-callback="onSubmit" style="display: none; height: 10px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
@@ -303,15 +303,15 @@
                             </div>
                         </div>
                     </div>
-                    @if (count(json_decode($data->tag)) > 0)
-                    <div class="single-slidebar">
-                        <h3>Serveurs {{ seocat($catName) }} similaires</h3>
-                        <ul class="cat-list margc">
-                            @foreach(json_decode($data->tag) as $k)
-                                <li><a title="{{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }}</a></li>
-                             @endforeach
-                        </ul>
-                    </div>
+                    @if (count(json_decode($data->tag)) > 0 && $data->noredirect == 0)
+                        <div class="single-slidebar">
+                            <h3>Serveurs {{ seocat($catName) }} similaires</h3>
+                            <ul class="cat-list margc">
+                                @foreach(json_decode($data->tag) as $k)
+                                    <li><a title="{{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }}</a></li>
+                                 @endforeach
+                            </ul>
+                        </div>
                     @endif
                     <div class="single-slidebar">
                         <strong>Pourquoi des publicités lors du vote ?</strong>
