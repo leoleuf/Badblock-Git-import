@@ -41,6 +41,7 @@ class Docker
 
 
     public function sendPrivateMessage($Username, $message){
+        $message = str_replace("&", "§", $message);
         $Object = [
             'playerName' => $Username,
             'type' => "SEND_MESSAGE",
@@ -51,6 +52,7 @@ class Docker
     }
 
     public function broadcast($message){
+        $message = str_replace("&", "§", $message);
         $Object = [
             'type' => "BROADCAST",
             'content' => $message
