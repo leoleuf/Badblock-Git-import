@@ -29,7 +29,7 @@ foreach ($Players as $player){
                 }
                 array_push($Grade, $k);
             }
-            
+
             $Grades = [];
             foreach ($Grade as $g){
                 if ($g == "gradeperso" || $g == "noel"){
@@ -64,7 +64,7 @@ foreach ($Players as $player){
                         "faction" => $Grades
                     ],
                     "permissions" => [
-                        "bungee" => $Grades
+                        $player['permissions']['permissions']
                     ]
                 ],
                 "game" => $player['game'],
