@@ -170,10 +170,6 @@ class ShopController extends Controller
                     $temp = $row;
                 }
             }
-            if ($check == true) {
-                $depend = 1;
-            }
-
             if ($depend == 0)
             {
                 //Search depend produc pour proposer a la vente
@@ -183,8 +179,8 @@ class ShopController extends Controller
         }
 
 
-        if ($product->queue == "faction" || $product->queue == "paymentserver") /*&& (strtolower($playerName) != "xmalware" && strtolower($playerName) != "fluorl")*/
-        {
+
+        if ($product->queue == "faction"){
             return $response->write("Service temporairement désactivé.")->withStatus(400);
         }
 

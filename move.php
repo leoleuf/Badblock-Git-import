@@ -8,9 +8,26 @@ $client = new \MongoDB\Client(
 );
 
 $client->selectDatabase("admin");
-$collection = $client->selectCollection("admin","players_old");
+$collection = $client->selectCollection("admin","players");
 
-$Players = $collection->find([]);
+//Alternate group
+$alt = ['$or' =>
+    [
+        ['permissions.groups.bungee.vip' => ['$exists' => true]],
+        ['permissions.groups.bungee.vip+' => ['$exists' => true]],
+        ['permissions.groups.bungee.mvp' => ['$exists' => true]],
+        ['permissions.groups.bungee.mvp+' => ['$exists' => true]]
+    ]];
+
+$Count = $collection->count($alt);
+
+echo "";
+echo "";
+echo "$Count player have groups";
+echo "";
+echo "";
+
+$Players = $collection->find($alt);
 
 $I = 0;
 
@@ -23,17 +40,12 @@ foreach ($Players as $player){
 
         if (true){
             //Traitement grade
-            foreach ((array) $player['permissions']['alternateGroups'] as $k => $row){
+            foreach ((array) $player['permissions']['groups']['bungee'] as $k => $row){
                 if ($k == "gradeperso" || $k == "noel"){
                     $expire = $row;
                 }
                 array_push($Grade, $k);
             }
-
-            if ($player['permissions']['group'] == "gradeperso" || $player['permissions']['group'] == "noel"){
-                $expire = $player['permissions']['end'];
-            }
-            array_push($Grade, $player['permissions']['group']);
 
             $Grades = [];
             foreach ($Grade as $g){
@@ -45,64 +57,23 @@ foreach ($Players as $player){
             }
 
             $Data = [
-                "name" => $player['name'],
-                "loginPassword" => $player['loginPassword'],
-                "nickname" => "",
-                "uniqueId" => $player['uniqueId'],
-                "settings" => [
-                    "partyable" => "WITH_EVERYONE",
-                    "friendListable" => "YES",
+                "groups" => [
+                    "bungee" => $Grades,
+                    "minigames" => $Grades,
+                    "pvpbox" => $Grades,
+                    "skyblock" => $Grades,
+                    "freebuild" => $Grades,
+                    "survie" => $Grades,
+                    "faction" => $Grades
                 ],
-                "punish" => [
-                    "ban" => null,
-                    "mute" => null,
-                    "warn" => null
-                ],
-                "permissions" => [
-                    "groups" => [
-                        "bungee" => $Grades,
-                        "minigames" => $Grades,
-                        "pvpbox" => $Grades,
-                        "skyblock" => $Grades,
-                        "freebuild" => $Grades
-                    ],
-                    "permissions" => [
-                        "bungee" => $Grades
-                    ]
-                ],
-                "game" => $player['game'],
+                "permissions" => $player['permissions']['permissions']
             ];
 
-            if (isset($player['authKey'])){
-                $Data['authKey'] = $player['authKey'];
-            }
-            if (isset($player['state'])){
-                $Data['state'] = $player['state'];
-            }
-
-            if (isset($player['refer'])){
-                $Data['refer'] = $player['refer'];
-            }
-
-            if (isset($player['lastIp'])){
-                $Data['lastIp'] = $player['lastIp'];
-            }
-
-            if (isset($player['realName'])){
-                $Data['realName'] = $player['realName'];
-            }
-
-            if (isset($player['onlineMode'])){
-                $Data['onlineMode'] = $player['onlineMode'];
-            }
-
-            if (isset($player['game']['other']['hub']['mountConfigs'])){
-                unset($player['game']['other']['hub']['mountConfigs']);
-            }
 
             try{
-                $c = $client->selectCollection("admin","players_new");
-                $c->insertOne($Data);
+                $collection = $client->selectCollection("admin","players");
+                $end = $collection->updateOne(["_id" => $player['_id']], ['$set' => ["permissions" => $Data]]);
+
             }catch (InvalidArgumentException $e){
                 echo "Error > " . $I;
             }
