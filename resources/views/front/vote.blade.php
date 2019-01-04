@@ -187,7 +187,7 @@
 
                                         <button class="g-recaptcha btn btn-success col-12" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; height: 30px;" disabled>
+                                                data-callback="onSubmit" style="display: none; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
