@@ -218,16 +218,18 @@
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
                         @endif
-                        <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="autorelaxed"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="4273456239"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        <br />
+                        @if ($data->noredirect == 0)
+                            <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-format="autorelaxed"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="4273456239"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                            <br />
+                        @endif
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <div class="title d-flex flex-row justify-content-between">

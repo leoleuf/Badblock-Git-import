@@ -41,10 +41,16 @@
                 </a><br /><br />
             @endif
             @if (isset($vote))
-                <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
-                <a title="Information de vote" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn success" id="explicitbtn">
-                    <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="img/loading.gif" width="64" height="64" /> <strong>Patientez quelques instants</strong> Nous prenons en compte votre vote.. Vous serez redirigé.
-                </a><br /><br />
+                @if ($data->noredirect == 1)
+                    <a title="Information de vote" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn success" id="explicitbtn">
+                        <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
+                    </a>
+                @else
+                        <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
+                        <a title="Information de vote" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn success" id="explicitbtn">
+                            <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="img/loading.gif" width="64" height="64" /> <strong>Patientez quelques instants</strong> Nous prenons en compte votre vote.. Vous serez redirigé.
+                        </a><br /><br />
+                @endif
             @endif
             <div class="row justify-content-center d-flex">
                 <div class="col-lg-8 post-list">
