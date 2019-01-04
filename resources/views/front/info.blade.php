@@ -44,7 +44,7 @@
                 @if ($data->noredirect == 1)
                     <a title="Information de vote" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn success" id="explicitbtn">
                         <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
-                    </a>
+                    </a><br />
                 @else
                         <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
                         <a title="Information de vote" href="/{{ $catName }}/{{ encname($data->name) }}/vote" class="genric-btn success" id="explicitbtn">
