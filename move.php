@@ -8,7 +8,7 @@ $client = new \MongoDB\Client(
 );
 
 $client->selectDatabase("admin");
-$collection = $client->selectCollection("admin","players_save");
+$collection = $client->selectCollection("admin","players");
 
 //Alternate group
 $alt = ['$or' =>
@@ -71,7 +71,7 @@ foreach ($Players as $player){
 
 
             try{
-                $collection = $client->selectCollection("admin","players_save");
+                $collection = $client->selectCollection("admin","players");
                 $end = $collection->updateOne(["_id" => $player['_id']], ['$set' => ["permissions" => $Data]]);
 
             }catch (InvalidArgumentException $e){
