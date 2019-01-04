@@ -73,9 +73,8 @@
                     <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour voter !
                 </a><br /><br />
             @endif
-                <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <div class="row justify-content-left d-flex" style="float: left;">
-                    test<ins class="adsbygoogle"
+                    <ins class="adsbygoogle"
                          style="display:block"
                          data-ad-client="ca-pub-1905923613312160"
                          data-ad-slot="1434308007"
@@ -231,6 +230,7 @@
                                 </script>
                         @endif
                         @if ($data->noredirect == 0)
+                            <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <ins class="adsbygoogle"
                                  style="display:block"
                                  data-ad-format="autorelaxed"
@@ -288,7 +288,13 @@
                     <div class="single-slidebar" style="background-color: white;">
                         <div class="active-relatedjob-carusel">
                             <div class="single-rated">
-
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:300px;height:600px"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="2719469514"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
                             </div>
                         </div>
                     </div>
