@@ -664,12 +664,12 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			return true;
 		return permission == null ? true : permissions.hasPermission(GamePlugin.getInstance().getPermissionPlace(), permission) || (tempPermissions != null && tempPermissions.contains(permission));
 	}
-	
+
 	@Override
 	public boolean hasPermission(org.bukkit.permissions.Permission pm) {
 		return hasPermission(pm.getName());
 	}
-		
+
 
 	@Override
 	public TranslatableString getGroupPrefix() {
@@ -1116,9 +1116,9 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public void sendActionBar(String message) {
-		
+
 	}
-	
+
 	@Override
 	public Set<PermissionAttachmentInfo> getEffectivePermissions()
 	{
@@ -1134,30 +1134,40 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 				{
 					continue;
 				}
-				
+
 				pms.addAll(set.getPermissions());
 			}
 		}
+
+		List<PermissionSet> customPerms = permissions.getPermissions(GamePlugin.getInstance().getPermissionPlace());
+		if (customPerms != null)
+		{
+			for (PermissionSet permission : customPerms)
+			{
+				pms.addAll(permission.getPermissions());
+			}
+		}
+
 		for (Permission pm : pms)
 		{
 			String pmString = pm.isAll() ? pm.getPermission() + "*" : pm.getPermission();
 			s.add(new PermissionAttachmentInfo(this, pmString, null, PermissionResult.YES.equals(pm.getResult())));
 		}
-        return s;
-    }
-	
+		return s;
+	}
+
 	@Override
 	public boolean isPermissionSet(String perm)
 	{
 		return hasPermission(perm);
 	}
-	
+
 	@Override
 	public boolean isPermissionSet(org.bukkit.permissions.Permission perm)
 	{
 		return hasPermission(perm.getName());
 	}
-	
-	
+
+
 
 }

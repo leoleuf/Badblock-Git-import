@@ -3,16 +3,15 @@ package fr.badblock.game.core112R1.technologies.rabbitlisteners;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Player;
 
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.players.BadblockPlayer;
 import fr.badblock.gameapi.players.BadblockPlayer.BadblockMode;
-import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.utils.BukkitUtils;
 
 public class VanishTeleportListener extends RabbitListener {
@@ -21,7 +20,7 @@ public class VanishTeleportListener extends RabbitListener {
 	public static Map<String, String[]> splitters = new HashMap<>();
 
 	public VanishTeleportListener() {
-		super(GameAPI.getAPI().getRabbitService(), "vanishTeleport", RabbitListenerType.SUBSCRIBER, false);
+		super(GameAPI.getAPI().getRabbitService(), "gameapi.ghost", RabbitListenerType.SUBSCRIBER, false);
 		load();
 	}
 
@@ -38,17 +37,19 @@ public class VanishTeleportListener extends RabbitListener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void manage(BadblockPlayer player, String[] splitter) {
 		if (player == null) return;
-		if (GameAPI.getAPI().getRunType().equals(RunType.LOBBY)) return;
 		player.closeInventory();
-		player.getInventory().addItem(new ItemStack(Material.FISHING_ROD));
 		player.setBadblockMode(BadblockMode.SPECTATOR);
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setAllowFlight(true);
 		player.setFlying(true);
-		player.setVisible(false, pl -> !pl.hasPermission("others.mod.ghostconnect"));
-		player.setVisible(true, pl -> pl.hasPermission("others.mod.ghostconnect"));
+		player.setVisible(false, pl -> !pl.hasPermission("gameapi.ghost"));
+		for (Player plo : Bukkit.getOnlinePlayers())
+		{
+			plo.hidePlayer(player);
+		}
 		if (splitter == null) return;
 		if (splitter.length > 1 && splitter[1] != null && !splitter[1].isEmpty()) {
 			BadblockPlayer otherPlayer = BukkitUtils.getPlayer(splitter[1]);

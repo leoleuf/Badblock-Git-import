@@ -45,7 +45,7 @@ public class GameServerSendLogsTask extends GameServerTask {
 	}
 
 	public void doLog() {
-		// Remove logs if it's a lobby
+	/*	// Remove logs if it's a lobby
 		if (GameAPI.getAPI().getRunType().equals(RunType.LOBBY)) return;
 		if (Bukkit.getServer().getIp().equals("127.0.0.1")) return;
 		File file = new File("./logs/latest.log");
@@ -93,12 +93,12 @@ public class GameServerSendLogsTask extends GameServerTask {
 			}
 		} else {
 			System.out.println("Unknown log file. (" + file.getAbsolutePath() + ")");
-		}
+		}*/
 	}
 
 	@Override
 	public void run() {
-		doLog();
+		//doLog();
 	}
 
 }

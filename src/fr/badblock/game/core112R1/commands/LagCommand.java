@@ -1,128 +1,59 @@
 package fr.badblock.game.core112R1.commands;
 
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
 
-import fr.badblock.game.core112R1.players.GameBadblockPlayer;
-import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerPingListener;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.command.AbstractCommand;
 import fr.badblock.gameapi.players.BadblockPlayer;
 import fr.badblock.gameapi.players.BadblockPlayer.GamePermission;
 import fr.badblock.gameapi.utils.general.MathsUtils;
 import fr.badblock.gameapi.utils.i18n.TranslatableString;
-import net.md_5.bungee.api.ChatColor;
 
-public class LagCommand extends AbstractCommand
-{
-	
-	public static List<String> plugins = new ArrayList<>();
-
-	public LagCommand()
-	{
-		super("lag", new TranslatableString("commands.lag.usage"), GamePermission.PLAYER, "tps", "gc", "bug");
+public class LagCommand extends AbstractCommand {
+	public LagCommand() {
+		super("lag", new TranslatableString("commands.lag.usage"), GamePermission.PLAYER.getPermission(), "tps", "gc", "bug");
 	}
 
 	private static SimpleDateFormat		simpleDateFormat			= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-	public static void send(CommandSender sender)
-	{
+	
+	public static void send(CommandSender sender) {
 		double lagPercent = (GameAPI.getAPI().getGameServer().getPassmarkTps() / 20.0D * 100.0D);
 		double speed = MathsUtils.round(lagPercent, 2);
 		String rapidity = speed >= 90 ? "&a" + speed : speed >= 80 ? "&b" + speed : speed >= 50 ? "&e" + speed : speed >= 30 ? "&c" + speed : speed >= 20 ? "&4" + speed : "&4&l" + speed;
 		String ms = "0";
-
-		if (sender instanceof BadblockPlayer)
-		{
-			GameBadblockPlayer player = (GameBadblockPlayer) sender;
-			String realName = player.getRealName() != null ? player.getRealName() : player.getName();
-			int ping = PlayerPingListener.ping.containsKey(realName) ? PlayerPingListener.ping.get(realName) : -1;
+		
+		if (sender instanceof BadblockPlayer) {
+			BadblockPlayer player = (BadblockPlayer) sender;
+			int ping = player.getPing();
 			ms = ping < 80 ? "&a" + ping : ping <= 100 ? "&b" + ping : ping < 200 ? "&e" + ping : ping < 300 ? "&c" + ping : ping < 500 ? "&4" + ping : "&4&l" + ping; 
 		}
-
-		StringBuilder versioning = new StringBuilder();
-		for (Plugin plugin : Bukkit.getPluginManager().getPlugins())
-		{
-			if (plugin == null)
-			{
-				continue;
-			}
-			if (!plugin.getName().toLowerCase().contains("bad"))
-			{
-				continue;
-			}
-			String version = getManifestInfo(plugin.getClass());
-			String commitName = "?";
-			if (version != null && version.contains(";"))
-			{
-				String[] splitter = version.split(";");
-				version = splitter[0].length() > 8 ? splitter[0].substring(0, 7) : splitter[0];
-				commitName = splitter[1];
-			}
-			versioning.append(GameAPI.i18n().get(sender, "commands.lag.plugin", plugin.getName(), version, commitName)[0] + System.lineSeparator());
-		}
 		
-		for (String pl : plugins)
-		{
-			String commitName = "?";
-			versioning.append(GameAPI.i18n().get(sender, "commands.lag.plugin", pl, "unknown", commitName)[0] + System.lineSeparator());
+		GameAPI.i18n().sendMessage(sender, "commands.lag.message", Bukkit.getServerName(), simpleDateFormat.format(new Date()), rapidity, ms);
+		/*sender.sendMessage("&8&l«&b&l-&8&l»&m------&f&8&l«&b&l-&8&l»&b &b&lLag &8&l«&b&l-&8&l»&m------&f&8&l«&b&l-&8&l»");
+		sender.sendMessage("&c> &7Nom du serveur: &b" + Bukkit.getServerName());
+		sender.sendMessage("&c> &7Heure: &b" + simpleDateFormat.format(new Date()));
+		double lagPercent = (getPassMarkTps() / 20.0D * 100.0D);
+		double speed = round(lagPercent, 2);
+		String rapidity = speed >= 90 ? "&a" + speed : speed >= 80 ? "&b" + speed : speed >= 50 ? "&e" + speed : speed >= 30 ? "&c" + speed : speed >= 20 ? "&4" + speed : "&4&l" + speed; 
+		sender.sendMessage("&c> &7Fluidité: " + rapidity + " %");
+		if (sender instanceof Player) {
+			Player player = (Player) sender;
+			int ping = ((CraftPlayer) player).getHandle().ping;
+			String ms = ping < 80 ? "&a" + ping : ping <= 100 ? "&b" + ping : ping < 200 ? "&e" + ping : ping < 300 ? "&c" + ping : ping < 500 ? "&4" + ping : "&4&l" + ping; 
+			sender.sendMessage("&c> &7Ping: " + ms + " &7ms");
 		}
-
-		GameAPI.i18n().sendMessage(sender, "commands.lag.message", 
-				Bukkit.getServerName(),
-				simpleDateFormat.format(new Date()),
-				rapidity,
-				ms,
-				Bukkit.getVersion());
-
-		String string = versioning.toString();
-		if (!string.isEmpty())
-		{
-			String[] s = string.split(System.lineSeparator());
-			GameAPI.i18n().sendMessage(sender, "commands.lag.plugins", s.length);
-			for (String m : s)
-			{
-				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', m));
-			}
-			sender.sendMessage(
-					ChatColor.translateAlternateColorCodes('&', "&8&l&m---------------------------------------------")
-					);
-		}
+		sender.sendMessage("&8&l«&b&l-&8&l»&m----------------------&f&8&l«&b&l-&8&l»&b");*/
 	}
 
 	@Override
-	public boolean executeCommand(CommandSender sender, String[] args)
-	{
+	public boolean executeCommand(CommandSender sender, String[] args) {
 		send(sender);
 		return true;
 	}
-
-	public static String getManifestInfo(Class<?> mainClass)
-	{
-		try
-		{
-			String className = mainClass.getSimpleName() + ".class";
-			String classPath = mainClass.getResource(className).toString();
-			String manifestPath = classPath.substring(0, classPath.lastIndexOf("!") + 1) + 
-					"/META-INF/MANIFEST.MF";
-			Manifest manifest = new Manifest(new URL(manifestPath).openStream());
-			Attributes attr = manifest.getMainAttributes();
-			String value = attr.getValue("Implementation-Version");
-			return value == null ? "unknown" : value;
-		}
-		catch (Exception error)
-		{
-			return "unknown";
-		}
-	}
-
+	
+	
 }

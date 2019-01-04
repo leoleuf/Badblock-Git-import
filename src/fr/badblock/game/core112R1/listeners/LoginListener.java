@@ -147,13 +147,39 @@ public class LoginListener extends BadListener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void whenLoaded(PlayerLoadedEvent event) {
 		GameBadblockPlayer player = (GameBadblockPlayer) event.getPlayer();
+		
+		for (Player pla : Bukkit.getOnlinePlayers())
+		{
+			if (pla.getName().equalsIgnoreCase(player.getName()))
+			{
+				continue;
+			}
+			
+			GameBadblockPlayer otherPlayer = (GameBadblockPlayer) pla;
+			if (!otherPlayer.isGhostConnect())
+			{
+				continue;
+			}
+			
+			player.hidePlayer(pla);
+			pla.showPlayer(player);
+		}
+		
 		if (player.isGhostConnect() || (VanishTeleportListener.time.containsKey(player.getName().toLowerCase()) && VanishTeleportListener.time.get(player.getName().toLowerCase()) > System.currentTimeMillis())) {
-			player.setVisible(false, pl -> !pl.hasPermission("others.mod.ghostconnect"));
-			player.setVisible(true, pl -> pl.hasPermission("others.mod.ghostconnect"));
-			player.sendTranslatedMessage("game.youjoinedinvanish");
+			player.setVisible(false, pl -> !pl.hasPermission("gameapi.ghost"));
+			for (Player plo : Bukkit.getOnlinePlayers())
+			{
+				if (plo.getName().equalsIgnoreCase(player.getName()))
+				{
+					continue;
+				}
+				plo.hidePlayer(player);
+				player.showPlayer(plo);
+			}
 		}
 	}
 
@@ -170,6 +196,7 @@ public class LoginListener extends BadListener {
 		
 		if (VanishTeleportListener.time.containsKey(p.getName().toLowerCase()) && VanishTeleportListener.time.get(p.getName().toLowerCase()) > System.currentTimeMillis()) {
 			p.setGhostConnect(true);
+			e.setJoinMessage("");
 			VanishTeleportListener.manage(p, VanishTeleportListener.splitters.get(p.getName().toLowerCase()));
 		}else if(offlinePlayer != null){
 			p.changePlayerDimension(offlinePlayer.getFalseDimension());

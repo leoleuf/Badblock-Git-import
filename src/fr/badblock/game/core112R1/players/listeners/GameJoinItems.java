@@ -72,6 +72,11 @@ public class GameJoinItems extends BadListener implements JoinItems {
 	@EventHandler
 	public void onPlayerDataLoaded(PlayerLoadedEvent e){
 		if(ended) return;
+		if (kitItemSlot == -1 && achieItemSlot == -1 && teamItemSlot == -1 && teamItemSlot == -1 && !shop
+				&& voteItemSlot == -1 & vipItemSlot == -1 && leaveItemSlot == -1 && groupItemSlot == -1)
+		{
+			return;
+		}
 		
 		Locale         locale = e.getPlayer().getPlayerData().getLocale();
 		CustomInventory inv   = GameAPI.getAPI().createCustomInventory(1, new TranslatableString("joinitems.groupinv", GameAPI.getGameName()).getAsLine(locale));
