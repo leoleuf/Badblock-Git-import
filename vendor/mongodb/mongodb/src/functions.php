@@ -23,7 +23,6 @@ use MongoDB\Driver\Server;
 use MongoDB\Driver\WriteConcern;
 use MongoDB\Exception\InvalidArgumentException;
 use stdClass;
-use ReflectionClass;
 
 /**
  * Applies a type map to a document.
@@ -112,7 +111,7 @@ function is_first_key_operator($document)
 /**
  * Return whether the aggregation pipeline ends with an $out operator.
  *
- * This is used for determining whether the aggregation pipeline must be
+ * This is used for determining whether the aggregation pipeline msut be
  * executed against a primary server.
  *
  * @internal
@@ -133,37 +132,22 @@ function is_last_pipeline_operator_out(array $pipeline)
 }
 
 /**
- * Return whether the "out" option for a mapReduce operation is "inline".
- *
- * This is used to determine if a mapReduce command requires a primary.
+ * Converts a ReadConcern instance to a stdClass for use in a BSON document.
  *
  * @internal
- * @see https://docs.mongodb.com/manual/reference/command/mapReduce/#output-inline
- * @param string|array|object $out Output specification
- * @return boolean
- * @throws InvalidArgumentException
+ * @see https://jira.mongodb.org/browse/PHPC-498
+ * @param ReadConcern $readConcern Read concern
+ * @return stdClass
  */
-function is_mapreduce_output_inline($out)
+function read_concern_as_document(ReadConcern $readConcern)
 {
-    if ( ! is_array($out) && ! is_object($out)) {
-        return false;
+    $document = [];
+
+    if ($readConcern->getLevel() !== null) {
+        $document['level'] = $readConcern->getLevel();
     }
 
-    if ($out instanceof Serializable) {
-        $out = $out->bsonSerialize();
-    }
-
-    if (is_object($out)) {
-        $out = get_object_vars($out);
-    }
-
-    if ( ! is_array($out)) {
-        throw InvalidArgumentException::invalidType('$out', $out, 'array or object');
-    }
-
-    reset($out);
-
-    return key($out) === 'inline';
+    return (object) $document;
 }
 
 /**
@@ -196,30 +180,28 @@ function is_string_array($input) {
 }
 
 /**
- * Performs a deep copy of a value.
- *
- * This function will clone objects and recursively copy values within arrays.
+ * Converts a WriteConcern instance to a stdClass for use in a BSON document.
  *
  * @internal
- * @see https://bugs.php.net/bug.php?id=49664
- * @param mixed $element Value to be copied
- * @return mixed
+ * @see https://jira.mongodb.org/browse/PHPC-498
+ * @param WriteConcern $writeConcern Write concern
+ * @return stdClass
  */
-function recursive_copy($element) {
-    if (is_array($element)) {
-        foreach ($element as $key => $value) {
-            $element[$key] = recursive_copy($value);
-        }
-        return $element;
+function write_concern_as_document(WriteConcern $writeConcern)
+{
+    $document = [];
+
+    if ($writeConcern->getW() !== null) {
+        $document['w'] = $writeConcern->getW();
     }
 
-    if ( ! is_object($element)) {
-        return $element;
+    if ($writeConcern->getJournal() !== null) {
+        $document['j'] = $writeConcern->getJournal();
     }
 
-    if ( ! (new ReflectionClass($element))->isCloneable()) {
-        return $element;
+    if ($writeConcern->getWtimeout() !== 0) {
+        $document['wtimeout'] = $writeConcern->getWtimeout();
     }
 
-    return clone $element;
+    return (object) $document;
 }

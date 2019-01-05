@@ -29,7 +29,7 @@ use MongoDB\Exception\UnsupportedException;
  * @see \MongoDB\Collection::findOneAndDelete()
  * @see http://docs.mongodb.org/manual/reference/command/findAndModify/
  */
-class FindOneAndDelete implements Executable, Explainable
+class FindOneAndDelete implements Executable
 {
     private $findAndModify;
 
@@ -48,10 +48,6 @@ class FindOneAndDelete implements Executable, Explainable
      *
      *  * projection (document): Limits the fields to return for the matching
      *    document.
-     *
-     *  * session (MongoDB\Driver\Session): Client session.
-     *
-     *    Sessions are not supported for server versions < 3.6.
      *
      *  * sort (document): Determines which document the operation modifies if
      *    the query selects multiple documents.
@@ -104,10 +100,5 @@ class FindOneAndDelete implements Executable, Explainable
     public function execute(Server $server)
     {
         return $this->findAndModify->execute($server);
-    }
-
-    public function getCommandDocument(Server $server)
-    {
-        return $this->findAndModify->getCommandDocument($server);
     }
 }
