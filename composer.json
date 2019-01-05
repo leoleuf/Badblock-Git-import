@@ -13,12 +13,13 @@
         "jenssegers/mongodb": "^3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "~5.0",
         "lukasz-adamski/laravel-teamspeak3": "^1.0",
         "mongodb/mongodb": "^1.2",
         "mookofe/tail": "1.*",
-        "laravelcollective/html": "~5.0",
+        "php-amqplib/php-amqplib": ">=2.6.1",
         "predis/predis": "^1.1",
-        "php-amqplib/php-amqplib": ">=2.6.1"
+        "psy/psysh": "^0.9.9"
     },
     "require-dev": {
         "backpack/generators": "^1.1",
