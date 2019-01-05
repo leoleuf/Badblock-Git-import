@@ -134,6 +134,7 @@ Route::group([
         Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:gestion_index');
 
         Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:gestion_index');
+        Route::post('/notifications', 'section\NotificationsController@send')->middleware('can:gestion_index');
 
     });
 

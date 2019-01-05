@@ -14,11 +14,9 @@ use App\Http\Controllers\Controller;
 class AvertissementController extends Controller
 {
 
-
     public function index(){
 
         return view('section.forum.index');
-
 
     }
 

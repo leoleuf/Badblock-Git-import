@@ -42,10 +42,14 @@
                                     <a href="javascript:void(0);" class="right-bar-toggle">
                                         <i class="mdi mdi-bell-outline noti-icon"></i>
                                     </a>
-                                    <div class="noti-dot">
-                                        <span class="dot"></span>
-                                        <span class="pulse"></span>
-                                    </div>
+
+                                    @if (DB::table('notifications')->where('user_id', "=", Auth::user()->id)->where('active', '=', '1')->count() != 0)
+                                      <div class="noti-dot">
+                                          <span class="dot"></span>
+                                          <span class="pulse"></span>
+                                      </div>
+                                    @endif
+
                                 </li>
                             </ul>
                         </div>
