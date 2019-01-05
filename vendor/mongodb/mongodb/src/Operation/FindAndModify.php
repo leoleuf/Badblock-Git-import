@@ -19,7 +19,6 @@ namespace MongoDB\Operation;
 
 use MongoDB\Driver\Command;
 use MongoDB\Driver\Server;
-use MongoDB\Driver\Session;
 use MongoDB\Driver\WriteConcern;
 use MongoDB\Driver\Exception\RuntimeException as DriverRuntimeException;
 use MongoDB\Exception\InvalidArgumentException;
@@ -35,9 +34,8 @@ use MongoDB\Exception\UnsupportedException;
  * @internal
  * @see http://docs.mongodb.org/manual/reference/command/findAndModify/
  */
-class FindAndModify implements Executable, Explainable
+class FindAndModify implements Executable
 {
-    private static $wireVersionForArrayFilters = 6;
     private static $wireVersionForCollation = 5;
     private static $wireVersionForDocumentLevelValidation = 4;
     private static $wireVersionForWriteConcern = 4;
@@ -50,12 +48,6 @@ class FindAndModify implements Executable, Explainable
      * Constructs a findAndModify command.
      *
      * Supported options:
-     *
-     *  * arrayFilters (document array): A set of filters specifying to which
-     *    array elements an update should apply.
-     *
-     *    This is not supported for server versions < 3.6 and will result in an
-     *    exception at execution time if used.
      *
      *  * collation (document): Collation specification.
      *
@@ -82,10 +74,6 @@ class FindAndModify implements Executable, Explainable
      *
      *  * remove (boolean): When true, removes the matched document. This option
      *    cannot be true if the update option is set. The default is false.
-     *
-     *  * session (MongoDB\Driver\Session): Client session.
-     *
-     *    Sessions are not supported for server versions < 3.6.
      *
      *  * sort (document): Determines which document the operation modifies if
      *    the query selects multiple documents.
@@ -117,10 +105,6 @@ class FindAndModify implements Executable, Explainable
             'upsert' => false,
         ];
 
-        if (isset($options['arrayFilters']) && ! is_array($options['arrayFilters'])) {
-            throw InvalidArgumentException::invalidType('"arrayFilters" option', $options['arrayFilters'], 'array');
-        }
-
         if (isset($options['bypassDocumentValidation']) && ! is_bool($options['bypassDocumentValidation'])) {
             throw InvalidArgumentException::invalidType('"bypassDocumentValidation" option', $options['bypassDocumentValidation'], 'boolean');
         }
@@ -147,10 +131,6 @@ class FindAndModify implements Executable, Explainable
 
         if ( ! is_bool($options['remove'])) {
             throw InvalidArgumentException::invalidType('"remove" option', $options['remove'], 'boolean');
-        }
-
-        if (isset($options['session']) && ! $options['session'] instanceof Session) {
-            throw InvalidArgumentException::invalidType('"session" option', $options['session'], 'MongoDB\Driver\Session');
         }
 
         if (isset($options['sort']) && ! is_array($options['sort']) && ! is_object($options['sort'])) {
@@ -193,15 +173,11 @@ class FindAndModify implements Executable, Explainable
      * @param Server $server
      * @return array|object|null
      * @throws UnexpectedValueException if the command response was malformed
-     * @throws UnsupportedException if array filters, collation, or write concern is used and unsupported
+     * @throws UnsupportedException if collation or write concern is used and unsupported
      * @throws DriverRuntimeException for other driver errors (e.g. connection errors)
      */
     public function execute(Server $server)
     {
-        if (isset($this->options['arrayFilters']) && ! \MongoDB\server_supports_feature($server, self::$wireVersionForArrayFilters)) {
-            throw UnsupportedException::arrayFiltersNotSupported();
-        }
-
         if (isset($this->options['collation']) && ! \MongoDB\server_supports_feature($server, self::$wireVersionForCollation)) {
             throw UnsupportedException::collationNotSupported();
         }
@@ -210,10 +186,21 @@ class FindAndModify implements Executable, Explainable
             throw UnsupportedException::writeConcernNotSupported();
         }
 
-        $cursor = $server->executeWriteCommand($this->databaseName, new Command($this->createCommandDocument($server)), $this->createOptions());
+        $cursor = $server->executeCommand($this->databaseName, $this->createCommand($server));
         $result = current($cursor->toArray());
 
         if ( ! isset($result->value)) {
+            return null;
+        }
+
+        /* Prior to 3.0, findAndModify returns an empty document instead of null
+         * when an upsert is performed and the pre-modified document was
+         * requested.
+         */
+        if ($this->options['upsert'] && ! $this->options['new'] &&
+            isset($result->lastErrorObject->updatedExisting) &&
+            ! $result->lastErrorObject->updatedExisting) {
+
             return null;
         }
 
@@ -228,17 +215,13 @@ class FindAndModify implements Executable, Explainable
         return $result->value;
     }
 
-    public function getCommandDocument(Server $server)
-    {
-        return $this->createCommandDocument($server);
-    }
-
     /**
-     * Create the findAndModify command document.
+     * Create the findAndModify command.
      *
-     * @return array
+     * @param Server $server
+     * @return Command
      */
-    private function createCommandDocument(Server $server)
+    private function createCommand(Server $server)
     {
         $cmd = ['findAndModify' => $this->collectionName];
 
@@ -255,10 +238,6 @@ class FindAndModify implements Executable, Explainable
             }
         }
 
-        if (isset($this->options['arrayFilters'])) {
-            $cmd['arrayFilters'] = $this->options['arrayFilters'];
-        }
-
         if (isset($this->options['maxTimeMS'])) {
             $cmd['maxTimeMS'] = $this->options['maxTimeMS'];
         }
@@ -267,27 +246,10 @@ class FindAndModify implements Executable, Explainable
             $cmd['bypassDocumentValidation'] = $this->options['bypassDocumentValidation'];
         }
 
-        return $cmd;
-    }
-
-    /**
-     * Create options for executing the command.
-     *
-     * @see http://php.net/manual/en/mongodb-driver-server.executewritecommand.php
-     * @return array
-     */
-    private function createOptions()
-    {
-        $options = [];
-
-        if (isset($this->options['session'])) {
-            $options['session'] = $this->options['session'];
-        }
-
         if (isset($this->options['writeConcern'])) {
-            $options['writeConcern'] = $this->options['writeConcern'];
+            $cmd['writeConcern'] = \MongoDB\write_concern_as_document($this->options['writeConcern']);
         }
 
-        return $options;
+        return new Command($cmd);
     }
 }

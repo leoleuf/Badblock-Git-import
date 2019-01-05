@@ -2,24 +2,25 @@
 
 namespace MongoDB\Tests\Operation;
 
-use MongoDB\Exception\InvalidArgumentException;
 use MongoDB\Operation\Aggregate;
 
 class AggregateTest extends TestCase
 {
+    /**
+     * @expectedException MongoDB\Exception\InvalidArgumentException
+     * @expectedExceptionMessage $pipeline is not a list (unexpected index: "1")
+     */
     public function testConstructorPipelineArgumentMustBeAList()
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('$pipeline is not a list (unexpected index: "1")');
         new Aggregate($this->getDatabaseName(), $this->getCollectionName(), [1 => ['$match' => ['x' => 1]]]);
     }
 
     /**
+     * @expectedException MongoDB\Exception\InvalidArgumentException
      * @dataProvider provideInvalidConstructorOptions
      */
     public function testConstructorOptionTypeChecks(array $options)
     {
-        $this->expectException(InvalidArgumentException::class);
         new Aggregate($this->getDatabaseName(), $this->getCollectionName(), [['$match' => ['x' => 1]]], $options);
     }
 
@@ -43,22 +44,6 @@ class AggregateTest extends TestCase
             $options[][] = ['collation' => $value];
         }
 
-        foreach ($this->getInvalidStringValues() as $value) {
-            $options[][] = ['comment' => $value];
-        }
-
-        foreach ($this->getInvalidHintValues() as $value) {
-            $options[][] = ['hint' => $value];
-        }
-
-        foreach ($this->getInvalidBooleanValues() as $value) {
-            $options[][] = ['explain' => $value];
-        }
-
-        foreach ($this->getInvalidIntegerValues() as $value) {
-            $options[][] = ['maxAwaitTimeMS' => $value];
-        }
-
         foreach ($this->getInvalidIntegerValues() as $value) {
             $options[][] = ['maxTimeMS' => $value];
         }
@@ -69,10 +54,6 @@ class AggregateTest extends TestCase
 
         foreach ($this->getInvalidReadPreferenceValues() as $value) {
             $options[][] = ['readPreference' => $value];
-        }
-
-        foreach ($this->getInvalidSessionValues() as $value) {
-            $options[][] = ['session' => $value];
         }
 
         foreach ($this->getInvalidArrayValues() as $value) {
@@ -90,10 +71,12 @@ class AggregateTest extends TestCase
         return $options;
     }
 
+    /**
+     * @expectedException MongoDB\Exception\InvalidArgumentException
+     * @expectedExceptionMessage "batchSize" option should not be used if "useCursor" is false
+     */
     public function testConstructorBatchSizeOptionRequiresUseCursor()
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('"batchSize" option should not be used if "useCursor" is false');
         new Aggregate(
             $this->getDatabaseName(),
             $this->getCollectionName(),
@@ -102,8 +85,17 @@ class AggregateTest extends TestCase
         );
     }
 
-    private function getInvalidHintValues()
+    /**
+     * @expectedException MongoDB\Exception\InvalidArgumentException
+     * @expectedExceptionMessage "typeMap" option should not be used if "useCursor" is false
+     */
+    public function testConstructorTypeMapOptionRequiresUseCursor()
     {
-        return [123, 3.14, true];
+        new Aggregate(
+            $this->getDatabaseName(),
+            $this->getCollectionName(),
+            [['$match' => ['x' => 1]]],
+            ['typeMap' => ['root' => 'array'], 'useCursor' => false]
+        );
     }
 }

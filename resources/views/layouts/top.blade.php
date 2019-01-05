@@ -117,22 +117,21 @@
                             @can('gestion_forum')
                                 <li><a href="/section/forum" class="waves-effect"><i class="fab fa-pied-piper"></i>  Forum</a></li>
                             @endcan
-                                <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-shield-alt"></i>  Preuves</a></li>
+                                <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-camera-retro"></i>  Preuves</a></li>
                                 <li><a href="/section/mod" class="waves-effect"><i class="fas fa-shield-alt"></i>  Modération</a></li>
                             @can('gestion_build')
                                 <li><a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>  Builders</a></li>
                             @endcan
                             @can('gestion_redac')
-                                <li><a href="/section/blog" class="waves-effect"><i class="fas fa-write"></i>  Stats Articles</a></li>
+                                <li><a href="/section/blog" class="waves-effect"><i class="fas fa-chart-bar"></i>  Stats Articles</a></li>
                             @endcan
                             <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i>  Paies Sections</a></li>
-                            <li><a href="/section/tfacheck" class="waves-effect"><i class="fa fa-security"></i> /!\ Controle TFA</a></li>
+                            <li><a href="/section/tfacheck" class="waves-effect"><i class="fas fa-lock"></i> Controle TFA</a></li>
                             <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i> Liste Staff</a></li>
                             <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i>  Utilisateur</a></li>
                             <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i>  Groupes</a></li>
                             <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i>  Permissions</a></li>
-
-                            <li><a href="/section/permission-serv" class="waves-effect"><i class="fa fa-gear fa-spin"></i>  Permissions Serveur</a></li>
+                            <li><a href="/section/permission-serv" class="waves-effect"><i class="fas fa-terminal"></i>  Permissions Serveur</a></li>
                         </ul>
                     </li>
                     @endcan

@@ -21,7 +21,6 @@ use MongoDB\Driver\Command;
 use MongoDB\Driver\ReadConcern;
 use MongoDB\Driver\ReadPreference;
 use MongoDB\Driver\Server;
-use MongoDB\Driver\Session;
 use MongoDB\Driver\Exception\RuntimeException as DriverRuntimeException;
 use MongoDB\Exception\InvalidArgumentException;
 use MongoDB\Exception\UnexpectedValueException;
@@ -34,7 +33,7 @@ use MongoDB\Exception\UnsupportedException;
  * @see \MongoDB\Collection::count()
  * @see http://docs.mongodb.org/manual/reference/command/count/
  */
-class Count implements Executable, Explainable
+class Count implements Executable
 {
     private static $wireVersionForCollation = 5;
     private static $wireVersionForReadConcern = 4;
@@ -69,10 +68,6 @@ class Count implements Executable, Explainable
      *    exception at execution time if used.
      *
      *  * readPreference (MongoDB\Driver\ReadPreference): Read preference.
-     *
-     *  * session (MongoDB\Driver\Session): Client session.
-     *
-     *    Sessions are not supported for server versions < 3.6.
      *
      *  * skip (integer): The number of documents to skip before returning the
      *    documents.
@@ -113,10 +108,6 @@ class Count implements Executable, Explainable
             throw InvalidArgumentException::invalidType('"readPreference" option', $options['readPreference'], 'MongoDB\Driver\ReadPreference');
         }
 
-        if (isset($options['session']) && ! $options['session'] instanceof Session) {
-            throw InvalidArgumentException::invalidType('"session" option', $options['session'], 'MongoDB\Driver\Session');
-        }
-
         if (isset($options['skip']) && ! is_integer($options['skip'])) {
             throw InvalidArgumentException::invalidType('"skip" option', $options['skip'], 'integer');
         }
@@ -151,7 +142,9 @@ class Count implements Executable, Explainable
             throw UnsupportedException::readConcernNotSupported();
         }
 
-        $cursor = $server->executeReadCommand($this->databaseName, new Command($this->createCommandDocument()), $this->createOptions());
+        $readPreference = isset($this->options['readPreference']) ? $this->options['readPreference'] : null;
+
+        $cursor = $server->executeCommand($this->databaseName, $this->createCommand(), $readPreference);
         $result = current($cursor->toArray());
 
         // Older server versions may return a float
@@ -162,17 +155,12 @@ class Count implements Executable, Explainable
         return (integer) $result->n;
     }
 
-    public function getCommandDocument(Server $server)
-    {
-        return $this->createCommandDocument();
-    }
-
     /**
-     * Create the count command document.
+     * Create the count command.
      *
-     * @return array
+     * @return Command
      */
-    private function createCommandDocument()
+    private function createCommand()
     {
         $cmd = ['count' => $this->collectionName];
 
@@ -194,31 +182,10 @@ class Count implements Executable, Explainable
             }
         }
 
-        return $cmd;
-    }
-
-    /**
-     * Create options for executing the command.
-     *
-     * @see http://php.net/manual/en/mongodb-driver-server.executereadcommand.php
-     * @return array
-     */
-    private function createOptions()
-    {
-        $options = [];
-
         if (isset($this->options['readConcern'])) {
-            $options['readConcern'] = $this->options['readConcern'];
+            $cmd['readConcern'] = \MongoDB\read_concern_as_document($this->options['readConcern']);
         }
 
-        if (isset($this->options['readPreference'])) {
-            $options['readPreference'] = $this->options['readPreference'];
-        }
-
-        if (isset($this->options['session'])) {
-            $options['session'] = $this->options['session'];
-        }
-
-        return $options;
+        return new Command($cmd);
     }
 }
