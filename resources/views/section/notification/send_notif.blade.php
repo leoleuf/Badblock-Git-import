@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-12">
     <div class="card-box">
-      <h4 class="m-t-0 header-title">Input Types</h4>
+      <h4 class="m-t-0 header-title">Envoyer une notification</h4>
       <div class="row">
         <div class="col-12">
           <div class="p-20">
