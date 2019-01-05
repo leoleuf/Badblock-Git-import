@@ -14,12 +14,12 @@
         <div class="wrapper">
             <div class="container-fluid">
                 @include('layouts.notif')
+                @yield('content')
             </div>
         </div>
     @else
         @yield('content')
     @endif
-
 
     <script>
         var resizefunc = [];

@@ -132,6 +132,9 @@ Route::group([
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:gestion_index');
         Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:gestion_index');
         Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:gestion_index');
+
+        Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:gestion_index');
+
     });
 
 
