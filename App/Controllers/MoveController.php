@@ -19,8 +19,9 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
-        if ($this->container->session->getProfile('username')['is_staff'] == true
-        && $this->container->config['app_debug'] != 1)
+        $this->container->docker->banPlayer($this->container->session->getProfile('username'), "Website - Username change", 5000);
+
+        if ($this->container->session->getProfile('username')['is_staff'] == true && $this->container->config['app_debug'] != 1)
         {
             return $this->render($response, 'user.move.staff');
         }
