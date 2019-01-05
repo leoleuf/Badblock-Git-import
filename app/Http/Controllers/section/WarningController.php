@@ -33,10 +33,17 @@ class WarningController extends Controller
       return view('section.warning.display', ['user' => $user]);
     }
 
+    public function delete($id)
+    {
+      DB::table('warning')->where('id', '=', $id)->delete();
+      return redirect('/section/avertissement-list');
+    }
+
     public function send(Request $request)
     {
 
-      DB::insert('INSERT INTO warning (pseudo, title, text, created_at, updated_at) VALUES (?, ?, ?, ?, ?)', [
+      DB::insert('INSERT INTO warning (warn_by, pseudo, title, text, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)', [
+        $request->input('warn_by'),
         $request->input('pseudo'),
         $request->input('title'),
         $request->input('text'),

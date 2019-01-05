@@ -8,7 +8,7 @@
       <h4 class="m-t-0 header-title">Avertissement de {{ $data->pseudo }}</h4>
       <div class="row">
         <div class="col-12">
-          Date : {{ $data->created_at }} / Raison : 
+          Date : {{ $data->created_at }} / Avertis par : {{ $data->warn_by }} / Raison : 
           <br />
           {{ $data->text }}
           <div class="p-20">

@@ -10,6 +10,7 @@
           <div class="p-20">
             <form class="form-horizontal" method="POST" action="{!! url('/section/avertissement') !!}" accept-charset="UTF-8">
               {!! csrf_field() !!}
+              <input type="hidden" name="warn_by" value="{{ Auth::user()->name }}">
               <div class="form-group row">
                 <label class="col-2 col-form-label">Titre</label>
                 <div class="col-10">

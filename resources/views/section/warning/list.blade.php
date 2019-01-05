@@ -9,9 +9,11 @@
         <div class="col-12">
           <div class="p-20">
             <table class="table">
+              <a class="btn btn-danger" href="/section/avertissement" style="margin-bottom: 1em;">Avertir un joueur</a>
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Avertis par</th>
                   <th>Pseudo</th>
                   <th>Titre</th>
                   <th>Date</th>
@@ -22,10 +24,11 @@
                 @foreach (DB::table('warning')->get() as $key => $data)
                   <tr>
                     <th scope="row">{{ $key + 1 }}</th>
+                    <td>{{ $data->warn_by }}</td>
                     <td>{{ $data->pseudo }}</td>
                     <td>{{ $data->title }}</td>
-                    <td>{{ $data->created_at}}</td>
-                    <td><a href="/section/avertissement/{{ $data->id }}">En savoir plus</a></td>
+                    <td>{{ $data->created_at }}</td>
+                    <td><a class="btn btn-success" href="/section/avertissement/{{ $data->id }}" style="margin-right: 10px;">En savoir plus</a><a class="btn btn-danger" href="/section/avertissement/delete/{{ $data->id }}">Supprimer</a></td>
                   </tr>
                 @endforeach
               </tbody>

@@ -130,7 +130,8 @@
                                 <li><a href="/section/blog" class="waves-effect"><i class="fas fa-chart-bar"></i>  Stats Articles</a></li>
                             @endcan
                             @can('gestion_index')
-                                <li><a href="/section/notifications"><i class="fas fa-exclamation-triangle"></i>  Notifications</a></li>
+                                <li><a href="/section/notifications"><i class="fas fa-concierge-bell"></i>  Notifications</a></li>
+                                <li><a href="/section/avertissement-list"><i class="fas fa-exclamation-triangle"></i>  Avertissements</a></li>
                             @endcan
                             <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i>  Paies Sections</a></li>
                             <li><a href="/section/tfacheck" class="waves-effect"><i class="fas fa-lock"></i> Controle TFA</a></li>
