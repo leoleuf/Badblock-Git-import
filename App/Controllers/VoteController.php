@@ -133,7 +133,8 @@ class VoteController extends Controller
           4 => 'faction',
           5 => 'box',
           6 => 'skyb2',
-          7 => 'survie'
+          7 => 'survie',
+          8 => 'faction'
         );
 
        /* if ($type == 6)
