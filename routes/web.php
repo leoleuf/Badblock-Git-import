@@ -104,9 +104,6 @@ Route::group([
         'prefix'     => "section",
         'middleware' => ['auth'],
     ], function () {
-        //Gestion avertissement
-        Route::get('/avertissement', 'section\ForumController@index')->middleware('can:gestion_warn');
-        Route::post('/avertissement', 'section\ForumController@index')->middleware('can:gestion_warn');
 
         //Gestion section forum
         Route::get('/forum', 'section\ForumController@index');
@@ -136,6 +133,11 @@ Route::group([
         Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:gestion_index');
         Route::post('/notifications', 'section\NotificationsController@send')->middleware('can:gestion_index');
 
+
+        Route::get('/avertissement-list', 'section\WarningController@list')->middleware('can:gestion_index');
+        Route::get('/avertissement', 'section\WarningController@index')->middleware('can:gestion_index');
+        Route::get('/avertissement/{id}', 'section\WarningController@display')->middleware('can:gestion_index');
+        Route::post('/avertissement', 'section\WarningController@send')->middleware('can:gestion_index');
     });
 
 
