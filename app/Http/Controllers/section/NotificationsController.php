@@ -34,7 +34,7 @@ class NotificationsController extends Controller
         date('Y:m:d H:m:s'),
         date('Y:m:d H:m:s')
       ]);
-      return $this->index();
+      return redirect('/');
     }
 
     private function convertPseudoId($pseudo)

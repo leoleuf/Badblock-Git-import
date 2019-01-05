@@ -129,6 +129,9 @@
                             @can('gestion_redac')
                                 <li><a href="/section/blog" class="waves-effect"><i class="fas fa-chart-bar"></i>  Stats Articles</a></li>
                             @endcan
+                            @can('gestion_index')
+                                <li><a href="/section/notifications"><i class="fas fa-exclamation-triangle"></i>  Notifications</a></li>
+                            @endcan
                             <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i>  Paies Sections</a></li>
                             <li><a href="/section/tfacheck" class="waves-effect"><i class="fas fa-lock"></i> Controle TFA</a></li>
                             <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i> Liste Staff</a></li>
