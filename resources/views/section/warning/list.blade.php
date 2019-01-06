@@ -13,8 +13,8 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Avertis par</th>
                   <th>Pseudo</th>
+                  <th>Avertis par</th>
                   <th>Titre</th>
                   <th>Date</th>
                   <th>Action</th>
@@ -24,10 +24,10 @@
                 @foreach (DB::table('warning')->get() as $key => $data)
                   <tr>
                     <th scope="row">{{ $key + 1 }}</th>
-                    <td>{{ $data->warn_by }}</td>
                     <td>{{ $data->pseudo }}</td>
+                    <td>{{ $data->warn_by }}</td>
                     <td>{{ $data->title }}</td>
-                    <td>{{ $data->created_at }}</td>
+                    <td>{{ \App\Http\Controllers\section\WarningController::convertTime($data->created_at) }}</td>
                     <td><a class="btn btn-success" href="/section/avertissement/{{ $data->id }}" style="margin-right: 10px;">En savoir plus</a><a class="btn btn-danger" href="/section/avertissement/delete/{{ $data->id }}">Supprimer</a></td>
                   </tr>
                 @endforeach

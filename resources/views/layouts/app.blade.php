@@ -14,11 +14,15 @@
         <div class="wrapper">
             <div class="container-fluid">
                 @include('layouts.notif')
-                @yield('content')
+                <div class="container-fluid">
+                  @yield('content')
+                </div>
             </div>
         </div>
     @else
-        @yield('content')
+        <div class="container-fluid">
+          @yield('content')
+        </div>
     @endif
 
     <script>

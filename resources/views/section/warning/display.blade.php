@@ -8,7 +8,10 @@
       <h4 class="m-t-0 header-title">Avertissement de {{ $data->pseudo }}</h4>
       <div class="row">
         <div class="col-12">
-          Date : {{ $data->created_at }} / Avertis par : {{ $data->warn_by }} / Raison : 
+          <br />
+          <p>Date : {{ \App\Http\Controllers\section\WarningController::convertTime($data->created_at) }}</p>
+          <p>Avertis par : <span class="text-success">{{ $data->warn_by }}</span></p>
+          Raison :
           <br />
           {{ $data->text }}
           <div class="p-20">

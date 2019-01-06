@@ -28,6 +28,14 @@ File: Core
 /* =============
    Common
 ============= */
+
+/* BE HOOKI */
+
+.mg-10 {
+  margin: 1em;
+}
+
+/**/
 body {
   background: #253138;
   font-family: "Roboto", sans-serif;

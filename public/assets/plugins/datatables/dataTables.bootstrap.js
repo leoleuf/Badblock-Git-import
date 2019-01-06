@@ -15,22 +15,11 @@
 var factory = function( $, DataTable ) {
 "use strict";
 
-
-/* Set the defaults for DataTables initialisation */
-$.extend( true, DataTable.defaults, {
-	dom:
-		"<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-		"<'row'<'col-sm-12'tr>>" +
-		"<'row'<'col-sm-6'i><'col-sm-6'p>>",
-	renderer: 'bootstrap'
-} );
-
-
 /* Default class modification */
 $.extend( DataTable.ext.classes, {
 	sWrapper:      "dataTables_wrapper form-inline dt-bootstrap",
-	sFilterInput:  "form-control input-sm",
-	sLengthSelect: "form-control input-sm"
+	sFilterInput:  "form-control input-sm mg-10",
+	sLengthSelect: "form-control input-sm mg-10"
 } );
 
 
@@ -183,4 +172,3 @@ else if ( jQuery ) {
 
 
 })(window, document);
-

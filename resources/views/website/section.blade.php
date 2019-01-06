@@ -14,7 +14,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="m-b-30">
                                 <h1>Paies des sections :</h1>
                                 <a href="/website" class="btn btn-primary waves-effect waves-light">Retour <i class="fa fa-long-arrow-left"></i></a>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="">
+                    <div class="col-md-12">
                         <table class="table table-striped" id="datatable">
                             <thead>
                             <tr>
