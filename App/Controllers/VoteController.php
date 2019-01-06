@@ -133,7 +133,8 @@ class VoteController extends Controller
           4 => 'faction',
           5 => 'box',
           6 => 'skyb2',
-          7 => 'survie'
+          7 => 'survie',
+          8 => 'faction'
         );
 
        /* if ($type == 6)
@@ -281,6 +282,8 @@ class VoteController extends Controller
                     $this->container->session->set('points', $money['points']);
                 }
             }
+
+            $this->container->docker->broadcast("&7(Vote) &e".$displayPseudo." &7gagne &e".$awardName);
         }
         else
         {

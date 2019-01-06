@@ -43,14 +43,15 @@ class LinkController extends Controller
                     $this->redis->expire('link:' . $username, 3600);
                     $this->container->docker->sendPrivateMessage($username, " ");
                     $this->container->docker->sendPrivateMessage($username, " ");
-                    $this->container->docker->sendPrivateMessage($username, "&6Cliquer ici pour linker votre compte : https://badblock.fr/link/" . $pass);
+                    $this->container->docker->sendPrivateMessage($username, "&6Cliquez ici pour linker votre compte");
+                    $this->container->docker->sendPrivateMessage($username, "&b&nhttps://badblock.fr/link/" . $pass);
                     $this->container->docker->sendPrivateMessage($username, " ");
                     $this->container->docker->sendPrivateMessage($username, " ");
 
                     return $this->render($response, 'user.link.step2', ["width" => 66, "step" => 2]);
                 }else{
                     //Message erreur
-                    $this->flash->addMessage('link_error', 'Votre compte : "' . $username . '"' . " est déjà linker !");
+                    $this->flash->addMessage('link_error', 'Votre compte : "' . $username . '"' . " est déjà lié !");
                     //redirect to last page
                     return $this->redirect($response, $_SERVER['HTTP_REFERER']);
                 }

@@ -80,6 +80,11 @@
                                     Survie
                                 </button>
                             </div>
+                            <div class="tooltip">
+                                <button class="button button-primary disabled" id="lot8" onclick="award('8')" href="" style="display: none; width: 95%;">
+                                    Ne pas cliquer
+                                </button>
+                            </div>
                             {#<div class="tooltip">
                                 <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
                                     Faction
@@ -202,6 +207,7 @@
                         $("#lot5").removeClass("disabled");
                         $("#lot6").removeClass("disabled");
                         $("#lot7").removeClass("disabled");
+                        $("#lot8").removeClass("disabled");
                         $("#pleasewait").hide();
                     }
                 });
@@ -225,6 +231,7 @@
                         $("#lot5").removeClass("disabled");
                         $("#lot6").removeClass("disabled");
                         $("#lot7").removeClass("disabled");
+                        $("#lot8").removeClass("disabled");
                         $("#pleasewait").html(jqXHR.responseText);
                         $("#pleasewait").show();
                     }
@@ -241,6 +248,7 @@
             $("#lot5").removeClass("disabled");
             $("#lot6").removeClass("disabled");
             $("#lot7").removeClass("disabled");
+            $("#lot8").removeClass("disabled");
             window.open(wb, '_blank');
             $("#step2").addClass("disabled");
             setTimeout(function () {
@@ -256,6 +264,7 @@
             $("#lot5").addClass("disabled");
             $("#lot6").addClass("disabled");
             $("#lot7").addClass("disabled");
+            $("#lot8").addClass("disabled");
 
             var request = $.ajax({
                 url: "/vote/award",
