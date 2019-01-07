@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class ScreenController extends Controller
 {
     public function index(){
-        $User = Auth::user()->id;
+        $User = strtolower(Auth::user()->name);
         $Count = DB::connection('mongodb')->collection('log_upload')->where('user', '=', $User)->count();
 
         $Screen = DB::connection('mongodb')->collection('log_upload')->where('user', '=', $User)->orderBy('date', 'DESC')->take(20)->get();
@@ -35,7 +35,7 @@ class ScreenController extends Controller
         $Page = $id;
         $Skip = $Page * 20;
 
-        $User = Auth::user()->id;
+        $User = strtolower(Auth::user()->name);
         $Count = DB::connection('mongodb')->collection('log_upload')->where('user', '=', $User)->count();
 
         $Screen = DB::connection('mongodb')->collection('log_upload')->where('user', '=', $User)->orderBy('date', 'DESC')->skip($Skip)->take(20)->get();
