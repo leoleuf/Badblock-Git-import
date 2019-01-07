@@ -29,6 +29,7 @@ Route::group([
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/profil', 'ProfilController@index');
+    Route::post('/profil', 'ProfilController@reset');
 
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
@@ -138,12 +139,12 @@ Route::group([
 
         Route::get('/avertissement-list', 'section\WarningController@list')->middleware('can:gestion_index');
         Route::get('/avertissement', 'section\WarningController@index')->middleware('can:gestion_index');
-        Route::get('/avertissement/{id}', 'section\WarningController@display');
         Route::post('/avertissement', 'section\WarningController@send')->middleware('can:gestion_index');
         Route::get('/avertissement/delete/{id}', 'section\WarningController@delete')->middleware('can:gestion_index');
     });
 
-
+    // Voir ses propres avertissements
+    Route::get('/avertissement/{id}', 'section\WarningController@display');
 
 
 

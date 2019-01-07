@@ -57,7 +57,7 @@
                     </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" href="/profil"
                            aria-haspopup="false" aria-expanded="false">
                             <img src="https://guiria.badblock.fr/head/{{ Auth::user()->name}}/84.png" alt="user" class="rounded-circle">
                         </a>
