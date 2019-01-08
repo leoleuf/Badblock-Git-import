@@ -12,6 +12,7 @@ namespace App\Http\Controllers\section;
 use App\Models\Funds;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PermissionsController extends Controller
@@ -46,6 +47,7 @@ class PermissionsController extends Controller
             ->collection('permissions_backup')
             ->insert([
                 'date' => date('Y-m-d H:m:i'),
+                'user' => Auth::user()->name,
                 'content' => $Perm
             ]);
 
