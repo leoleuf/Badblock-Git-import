@@ -28,7 +28,7 @@ class ModController extends Controller
                     ->orWhere('type', '=', "WARN");
             })
             ->orderBy('timestamp', 'DESC')
-            ->take(10)
+            ->take(100)
             ->get()
             ->toArray();
 
