@@ -24,6 +24,7 @@ class VrackController extends Controller
             "7c75rNgB-xmalware",
             "r9i8j5TP-latitchips",
             "d8ApT62z-lelann",
+            "d8P3Fklm-gamercrow",
             "hgb85W7M-sulfique",
             "W2a8B6kb-flofydech",
             "7s8MBa6z-snowice"
@@ -46,7 +47,8 @@ class VrackController extends Controller
             "APt2aUkKE87DyyVqna45wbQ8jEn5HE47t3W5P7PZZxid77ka73Cfx627NZCK677x" => "hgb85W7M-sulfique",
             "reBJzN7SZ7Z3c272M7Si9seAU2m852WVWsV6nyBsHXS4LE74s4ga3hXc26fgs49r" => "W2a8B6kb-flofydech",
             "HSaG8Vkf5VtqM83N4ZZ36in4725euntv8uF3YC5eHVcWb4iT2i3K476tBt8EhUD6" => "u5nPg92T-fluorl",
-            "TAr7qm3c8VCrqCQ9UVwt3m2tm7Gnr9ig6D6aRjU382A472pS8NL9bm8X2D35JyBH" => "7s8MBa6z-snowice"
+            "TAr7qm3c8VCrqCQ9UVwt3m2tm7Gnr9ig6D6aRjU382A472pS8NL9bm8X2D35JyBH" => "7s8MBa6z-snowice",
+            "zz" => "d8P3Fklm-gamercrow"
         );
 
 
