@@ -69,7 +69,7 @@ class ModerationController extends Controller
             'sanction_id' => $_POST['sanc_id'],
             'date' => date('Y-m-d H:i:s'),
             'screens' => $Parse_Src,
-            'note' => ''
+            'note' => $_POST['notes']
         ];
 
         DB::connection('mongodb')->collection('sanctions')->insert($Insert);
@@ -86,6 +86,32 @@ class ModerationController extends Controller
 
         return "[]";
 
+    }
+
+    public function share(){
+        //POST rename
+        $Username = strtolower($_POST['username']);
+        $Screens = json_decode($_POST["screens"]);
+
+        //Parse screen after duplicate
+        $Parse_Src = [];
+        foreach ($Screens as $src){
+            $Img = DB::connection('mongodb')->collection('log_upload')->find($src);
+            if ($Img != null){
+                array_push($Parse_Src, $Img);
+                //Save dans MongoDB
+                $data = [
+                    'ip' => $_SERVER['REMOTE_ADDR'],
+                    'user' => strtolower($Username),
+                    'date' => date("Y-m-d H:i:s"),
+                    'file_name' => $Img['file_name'],
+                    'shared' => true,
+                ];
+                DB::connection('mongodb')->collection('log_upload')->insert($data);
+            }
+        }
+
+        return "[]";
     }
 
 }
