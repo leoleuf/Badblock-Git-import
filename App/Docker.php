@@ -73,9 +73,11 @@ class Docker
 
     public function banPlayer($Username, $Reason, $Time){
         $Object = [
+            'punishmentType' => "BAN",
             'playerName' => $Username,
-            'type' => "BAN",
-            'content' => $Reason
+            'reason' => $Reason,
+            'isKey' => false,
+            'time' => $Time
         ];
 
         $this->sendData("bungee.punishment", $Object);
