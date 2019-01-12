@@ -92,8 +92,8 @@ class IndexController extends Controller
 
         $Logs = DB::connection('mongodb')->collection('profile_logs')->where('uniqueId', $Player['uniqueId'])->orderBy('data', 'ASC')->get();
 
-        $Guardian = DB::connection('mysql_guardian')->table('logs')->where('uuid', '=', $Player['uniqueId'])->orderBy("date", 'DESC')->limit(20)->get();
-
+        $Guardian = [];
+        
         return view('users.view')
             ->with('Player', $Player)
             ->with('Sanctions', $Sanctions)

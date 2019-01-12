@@ -41,7 +41,7 @@ class ActionController extends Controller
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
         unset($Player['_id']);
-        unset($Player['authKey']);
+        $Player['authKey'] = "";
 
         DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
 
