@@ -120,7 +120,7 @@ iframe {
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 0px;
-  color: #fff;
+  color: #fff !important;
   transition: all .2s;
   border: none;
   /* Red button */
@@ -452,7 +452,7 @@ iframe {
       z-index: 2;
       left: 0;
       background-color: #333;
-      width: calc(100% - 11px);
+      width: calc(100% - 15px);
       list-style-type: none;
       padding: 0px; }
       .stats-player-search .stats-search-content .stats-search-result li {
@@ -761,7 +761,13 @@ iframe {
           height: 50px;
           color: #fff;
           text-decoration: none;
-          z-index: 100; }
+          z-index: 100; 
+          cursor: pointer;
+          transition: .2s;
+          }
+          .shop-ranks .shop-ranks-header ul .ranks-card-header a:hover {
+            transform: scale(1.05);
+          }
           .shop-ranks .shop-ranks-header ul .ranks-card-header a span {
             color: #edfc00; }
           .shop-ranks .shop-ranks-header ul .ranks-card-header a i {
