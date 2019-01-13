@@ -874,8 +874,11 @@ iframe {
   .shop-package img {
     transform: scale(0.9); }
   .shop-package .shop-package-desc {
+    text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     display: block;
-    width: 50%;
+    width: 40%;
     float: left;
     margin-top: 7px;
     font-weight: 600; }
@@ -883,7 +886,7 @@ iframe {
     display: block;
     float: right;
     margin-top: 7px;
-    width: calc(50% - 20px);
+    width: calc(60% - 20px);
     margin-left: 20px;
     text-align: center;
     background-color: #E95E3E;

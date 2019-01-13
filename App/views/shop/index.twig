@@ -14,20 +14,20 @@
                         <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
                         <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
                         <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire"
-                                 alt="Carte bancaire">
+                        alt="Carte bancaire">
                         <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire"
-                                 alt="Carte bancaire">
+                        alt="Carte bancaire">
                         <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa">
-                        </div>
+                    </div>
                     </div>
                     {% if (isOnline) %}
                     <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i
-                                    class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                    class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                     <a class="button button-success" href="/shop/recharge" title="Recharger mon compte"><i
-                                    class="far fa-gem"></i> Obtenir + de points boutique</a>
+                        class="far fa-gem"></i> Obtenir + de points boutique</a>
                     {% else %}
                     <a class="button button-primary" onclick="login()" title="Se connecter"><i
-                                    class="fas fa-user"></i> Se connecter</a>&nbsp;&nbsp;
+                            class="fas fa-user"></i> Se connecter</a>&nbsp;&nbsp;
                     {% endif %}
                 </div>
             </div>
@@ -37,84 +37,55 @@
         <div class="container">
             <ul class="nav justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#infos" role="tab" aria-controls="infos" aria-selected="true">Grades</a>
+                    <a class="nav-link active" id="grade-tab" data-toggle="tab" href="#grade" role="tab" aria-controls="grade">Grade</a>
                 </li>
+                {% for key,value in serverlist %}
+                {% if key != 0 %}
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="false">Skyblock</a>
+                    <a class="nav-link" id="{{ value['server']['name'] }}-tab" data-toggle="tab" href="#{{ value['server']['name'] }}" role="tab" aria-controls="{{ value['server']['name'] }}">{{ value['server']['name'] }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#casier" role="tab" aria-controls="casier" aria-selected="false">Casier</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#shop" role="tab" aria-controls="shop" aria-selected="false">Achats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#param" role="tab" aria-controls="param" aria-selected="false">Paramètres</a>
-                </li>
+                {% endif %}
+                {% endfor %}
             </ul>
         </div>
     </nav>
     {% endblock %}
     {% block content %}
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="infos" role="tabpanel" aria-labelledby="home-tab">
-            {% include "shop.rank.twig" %}
+        <div class="tab-pane fade show active" id="grade" role="tabpanel" aria-labelledby="grade-tab">
+            {% include "shop/rank.twig" %}
         </div>
-        <div class="tab-pane fade" id="stats" role="tabpanel" aria-labelledby="profile-tab">
+        {% set i = 0 %}
+        {% for key, value in serverlist %}
+        {% if key != 0 %}
+        <div class="tab-pane fade" id="{{ value['server']['name'] }}" role="tabpanel" aria-labelledby="{{ value['server']['name'] }}-tab">
             <div class="row">
-                <div class="col-12 col-md-9">
+                <div class="col-12">
                     <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="shop-package">
-                                <h3>Clé Ultimate</h3>
-                                <div class="shop-package-content">
-                                    <img src="https://images.badblock.fr/i/medium%20chest.png" title="Produit Clé Ultimate">
-                                    </div>
-                                    <div class="shop-package-desc">Clé Ultimate x 1 <br> Utilisable au Spawn survie</div>
-                                    <a href="#" data-toggle="modal" data-target="#modalItem">Acheter (600)</a>
-                                </div>
+                        {% for category in value['cat'] %}
+                            <div class="col-12">
+                                <h4 class="heading heading-bar"><span>{{ category['name'] }}</span></h4>
                             </div>
-                            <div class="col-12 col-md-6">
-                                <div class="shop-package" id="prd-302">
-                                    <h3>Clé Épic</h3>
+                            {% for products in category['items'] %}
+                            <div class="col-12 col-md-4">
+                                <div class="shop-package" id="prd-30{{ i }}">
+                                    <h3>{{ products['name'] }}</h3>
                                     <div class="shop-package-content">
-                                        <img src="https://images.badblock.fr/i/small%20chest.png" title="Produit Clé Epic">
-                                    </div>
-                                        <div class="shop-package-desc">Clé Épic x 1 <br> Utilisable au Spawn survie</div>
-                                        <a href="#">Acheter (1000)</a>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <h4 class="heading heading-bar"><span>Sous catégorie</span></h4>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="shop-package" id="prd-303">
-                                        <h3>Clé Ultimate</h3>
-                                        <div class="shop-package-content">
-                                            <img src="https://images.badblock.fr/i/booster_mythique.png" title="Produit Booster - Pack Mythique">
-                                    </div>
-                                            <div class="shop-package-desc">Zone Hyper Farm<br> Accéssible pendant 30mn</div>
-                                            <a href="#">Acheter (600)</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="shop-package" id="prd-304">
-                                            <h3>Clé Epic</h3>
-                                            <div class="shop-package-content">
-                                                <img src="https://images.badblock.fr/i/booster_deluxe.png" title="Produit Booster - Pack Deluxe">
-                                    </div>
-                                                <div class="shop-package-desc">Accès Coopération x 1<br></div>
-                                                <a href="#">Acheter (1000)</a>
-                                            </div>
-                                        </div>
+                                        <img src="{{ products['image'] }}" title="Produit Clé Ultimate" width="190" height="190">
+                                                </div>
+                                        <div class="shop-package-desc">{{ products['name'] }} x 1 <br> {{ products['description'] }}</div>
+                                        <a href="/shop#product-{{ products['_id']['$oid'] }}" data-toggle="modal" data-target="#modalItem">Acheter ({{ products['price'] }})</a>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <h3 class="shop-header-title">Le Survie</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat tellus et pellentesque consequat. Curabitur commodo imperdiet arcu, et aliquam est sollicitudin non. Integer pulvinar, mi in aliquet porttitor, nisl arcu dapibus orci, vitae accumsan purus nisl at libero. Phasellus vel leo at ex efficitur elementum.</p>
-                                    <p class="ita">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin placerat tellus et pellentesque consequat. Curabitur commodo imperdiet arcu, et aliquam est sollicitudin non. Integer pulvinar, mi in aliquet porttitor, nisl arcu dapibus orci, vitae accumsan purus nisl at libero. Phasellus vel leo at ex efficitur elementum.</p>
-                                </div>
-                            </div>
+                            {% endfor %}
+                            {% set i = i + 1 %}
+                            {% endfor %}
                         </div>
                     </div>
-                    {% endblock %}
+                </div>
+            </div>
+            {% endif %}
+            {% set i = i + 1 %}
+            {% endfor %}
+        </div>
+        {% endblock %}
