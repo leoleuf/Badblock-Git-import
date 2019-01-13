@@ -14,9 +14,9 @@
             </div>
             <div class="profile-info">
                 <div class="container">
-                    <ul>
-                        <li><i class="icon icon-calendarthree"></i> {{ timeago(post.created_at) }}</li>
-                        <li><i class="icon icon-user"></i><span>Écrit par </span> <a href="/profile/{{ post.author.name }}" title="Profil de {{ post.author.name }}" style="color: white;">{{ post.author.name }}</a></li>
+                    <ul style="list-style-type: none" class="w-100 d-flex justify-content-start">
+                        <li style="margin-right: 10px"><i class="icon icon-calendarthree"></i> {{ timeago(post.created_at) }}</li>
+                        <li><i class="icon icon-user"></i><span> Écrit par </span> <a href="/profile/{{ post.author.name }}" title="Profil de {{ post.author.name }}" style="color: white;">{{ post.author.name }}</a></li>
                         <!--<li><i class="fa fa-eye"></i><span> Lecture(s) </span> {{ post.view|number_format(0, '', ' ') }}</li>!-->
                     </ul>
                 </div>
