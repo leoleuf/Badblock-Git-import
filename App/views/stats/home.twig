@@ -119,138 +119,20 @@
             <div class="col-12 col-md-4">
                 <h4 class="heading heading-bar"><span>Membres de l'équipe</span></h4>
                 <div class="staff-content">
+                    {% for k, key in staff %}
                     <div class="staff-content-main">
-                        <h3 class="staff-content-title">Administrateurs <span>(6)</span></h3>
+                        <h3 class="staff-content-title">{{ key['name'] }} <span>({{ key["data"]|length }})</span></h3>
                         <div class="staff-content-group">
+                            {% for ft in key['data'] %}
                             <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Latitchips/64.png" class="staff-img">
-                                <span class="popup name">Latitchips</span>
+                                <a href="/profile/{{ ft[0] }}" title="Profil de {{ ft[0] }}"><img src="https://cdn.badblock.fr/head/{{ ft[0] }}/64.png" class="staff-img">
+                                <!--<span class="popup name">{{ ft[0] }}</span>-->
+                                </a>
                             </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Pigloo/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/micro_maniaque/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/sulfique/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/xMalware/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Sizas/64.png">
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-manager">Manager <span>(1)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/flofydech/64.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-resp">Résponsables <span>(5)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/FluorL/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Snowice/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Lordthom/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Gamercrow/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/MEKZYYY/64.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-sup">Superviseurs <span>(2)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/anto11_03/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Dowix/64.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-dev">Développeurs <span>(1)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Hooki_/64.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-sm">Super-Modérateur <span>(2)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Klead/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/ViViCoubar/64.png">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="staff-content-main">
-                        <h3 class="staff-content-title group-modo">Modérateur <span>(13)</span></h3>
-                        <div class="staff-content-group">
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/OverG_Shawn/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/STG_Ex0/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/ustan26/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/iTz_WoKiwiq/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/JuztFiire_/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/meggan/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/AllahBanque/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Bananier24/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Davidmairy/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/iXaryl/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Mellisen/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/MisterFe/64.png">
-                            </div>
-                            <div class="staff-content-member">
-                                <img src="https://cdn.badblock.fr/head/Wizzye/64.png">
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
