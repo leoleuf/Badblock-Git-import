@@ -69,6 +69,10 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->command = $request->input('command');
         $Product->image = $request->input('image');
 
+        $Product->ig_name = $request->input('ig_name');
+        $Product->ig_item = $request->input('ig_item');
+        $Product->ig_lore = $request->input('ig_lore');
+
 
 
         if ($request->input('promotion') == "on"){
@@ -146,6 +150,10 @@ class ProductController extends \App\Http\Controllers\Controller {
         $Product->queue = $request->input('queue');
         $Product->command = $request->input('command');
         $Product->image = $request->input('image');
+
+        $Product->ig_name = $request->input('ig_name');
+        $Product->ig_item = $request->input('ig_item');
+        $Product->ig_lore = $request->input('ig_lore');
 
 
 

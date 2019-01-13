@@ -112,13 +112,25 @@
                         <br>
                         Image du produit :
                         {{ Form::text('image', $Product['image'], array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
-
                         <br>
                         Description du produit (HTML) :
                         <br>
                         <textarea class="form-control" name="desc"
                                   rows="10" cols="50">{{ $Product['description'] }}
                         </textarea>
+                        <br>
+
+                        <br>
+                        Item pour boutique Ingame :
+                        {{ Form::text('ig_item', $Product['ig_item'], array('class' => 'form-control','placeholder'=>"")) }}
+                        <br>
+                        <br>
+                        Display Name boutique Ingame :
+                        {{ Form::text('ig_name', $Product['ig_name'], array('class' => 'form-control','placeholder'=>"")) }}
+                        <br>
+                        <br>
+                        Description (Lore) boutique Ingame :
+                        {{ Form::text('ig_lore', $Product['ig_lore'], array('class' => 'form-control','placeholder'=>"")) }}
                         <br>
 
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Save</button>
