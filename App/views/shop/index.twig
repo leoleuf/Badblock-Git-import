@@ -54,9 +54,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Faction</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">FreeBuild</a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -64,55 +61,6 @@
 
     {% block content %}
     {% if eula == true or spider == true %}
-    {% if promotion != false %}
-        <section class="shop-section" class="tabcontent">
-            <h4 class="heading heading-bar"><span>Les Promotions </span></h4>
-            <div class="product-list">
-                {% for k,prod in promotion %}
-                    <a href="/shop#product-{{ prod['_id']["$oid"] }}"
-                       style="color: #fb3f00; text-decoration: none;">
-                        <div class="product-item product-item-promotion">
-                            <div class="promotion-coef">
-                                {{ prod['promotion_coef'] }}%
-                            </div>
-                            <div class="product-header">
-                                <h5 class="product-title">{{ prod['name'] }}</h5>
-                            </div>
-                            <div class="product-image">
-                                <img src="{{ prod['image'] }}">
-                            </div>
-                            <div class="product-price product-promotion"><span
-                                        class="promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</span>
-                                <div class="product-old-price">
-                                    <span class="promotion-reduction">{{ prod['price']|number_format(0, '', ' ') }}</span>
-                                </div>
-                            </div>
-                            <div class="promotion-reduction"></div>
-                            <div class="product-footer">
-                                <div class="product-action">
-                                    <button idpro="{{ prod['_id']["$oid"] }}"
-                                            class="button button-primary achat">
-                                        <i class="fas fa-shopping-cart"></i>
-
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        </section>
-    {% endif %}
-    {% if flash('shop_error') %}
-        {% for flash in flash('shop_error') %}
-            <div class="alert alert-error">
-                {{ flash }}
-                <i class="icon icon-remove"></i>
-            </div>
-        {% endfor %}
-    {% endif %}
-    <!-- Menu shop -->
-
 
     {% for key,value in serverlist %}
         {% if key != 0 %}
@@ -199,28 +147,28 @@
                             <img src="https://cdn.badblock.fr/boutique/vip.png" title="Grade VIP" alt="Grade VIP">
                             <h3>VIP</h3>
                             <a href="#" data-toggle="modal" data-target="#modalRank">Obtenir <span>1050</span> points <i
-                                        class="far fa-arrow-circle-right"></i></a>
+                                        class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </li>
                     <li>
                         <div class="ranks-card-header" id="rank-3020392">
                             <img src="https://cdn.badblock.fr/boutique/vip+.png" title="Grade VIP+" alt="Grade VIP+">
                             <h3>VIP+</h3>
-                            <a href="#">Obtenir <span>2250</span> points <i class="far fa-arrow-circle-right"></i></a>
+                            <a href="#">Obtenir <span>2250</span> points <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </li>
                     <li>
                         <div class="ranks-card-header" id="rank-3020415">
                             <img src="https://cdn.badblock.fr/boutique/mvp.png" title="Grade MVP" alt="Grade MVP">
                             <h3>MVP</h3>
-                            <a href="#">Obtenir <span>4350</span> points <i class="far fa-arrow-circle-right"></i></a>
+                            <a href="#">Obtenir <span>4350</span> points <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </li>
                     <li>
                         <div class="ranks-card-header" id="rank-3026513">
                             <img src="https://cdn.badblock.fr/boutique/mvp+.png" title="Grade MVP+" alt="Grade MVP+">
                             <h3>MVP+</h3>
-                            <a href="#">Obtenir <span>6900</span> points <i class="far fa-arrow-circle-right"></i></a>
+                            <a href="#">Obtenir <span>6900</span> points <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </li>
                     <li>
@@ -228,11 +176,13 @@
                             <img src="https://cdn.badblock.fr/boutique/legend.png" title="Grade Legend"
                                  alt="Grade Legend">
                             <h3>Legend</h3>
-                            <a href="#">Obtenir <span>2100</span> points <i class="far fa-arrow-circle-right"></i></a>
+                            <a href="#">Obtenir <span>2100</span> points <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </li>
                 </ul>
             </div>
+            <div class="shop-rank-list">
+
             <div class="shop-rank-category">
                 <div class="ranks-separator">
                     Détails du grade
@@ -247,7 +197,7 @@
                 </ul>
                 <ul>
                     <li class="details-two">Dépendances</li>
-                    <li><i class="far fa-times"></i></li>
+                    <li><i class="fas fa-times"></i></li>
                     <li>VIP</li>
                     <li>VIP+</li>
                     <li>MVP</li>
@@ -265,35 +215,6 @@
                     <li>A vie</li>
                     <li>A vie</li>
                     <li>1 mois</li>
-                </ul>
-                <ul>
-                    <li class="details-four">Dépendances</li>
-                    <li><i class="far fa-times"></i></li>
-                    <li>VIP</li>
-                    <li>VIP+</li>
-                    <li>MVP</li>
-                    <li>MVP+</li>
-                </ul>
-            </div>
-            <div class="shop-rank-category">
-                <div class="ranks-separator">
-                    Avantages survie
-                </div>
-                <ul class="right">
-                    <li class="details-five">Durée du grade</li>
-                    <li>A vie</li>
-                    <li>A vie</li>
-                    <li>A vie</li>
-                    <li>A vie</li>
-                    <li>1 mois</li>
-                </ul>
-                <ul>
-                    <li class="details-six">Dépendances</li>
-                    <li><i class="far fa-times"></i></li>
-                    <li>VIP</li>
-                    <li>VIP+</li>
-                    <li>MVP</li>
-                    <li>MVP+</li>
                 </ul>
                 <ul>
                     <li class="details-six"><i class="fas fa-id-card"></i> Préfixe</li>
@@ -383,14 +304,11 @@
                     <li class="center"><i class="fas fa-check"></i></li>
                     <li class="center"><i class="fas fa-check"></i></li>
                 </ul>
-                <ul class="line-ul">
-                    <li class="header-li">Avantages Hub</li>
-                    <li class="center" style="color: white;">VIP</li>
-                    <li class="center" style="color: white;">VIP+</li>
-                    <li class="center" style="color: white;">MVP</li>
-                    <li class="center" style="color: white;">MVP+</li>
-                    <li class="center" style="color: white;">LEGEND</li>
-                </ul>
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Avantages Hub
+                </div>
                 <ul>
                     <li class="header-li"><i class="fas fa-dove"></i> Fly au Hub</li>
                     <li class="center"><i class="fas fa-times"></i></li>
@@ -455,94 +373,11 @@
                     <li class="center"><i class="fas fa-check"></i></li>
                     <li class="center"><i class="fas fa-check"></i></li>
                 </ul>
-                <ul class="line-ul">
-                    <li class="header-li">Avantages SkyBlock</li>
-                    <li class="center" style="color: white;">VIP</li>
-                    <li class="center" style="color: white;">VIP+</li>
-                    <li class="center" style="color: white;">MVP</li>
-                    <li class="center" style="color: white;">MVP+</li>
-                    <li class="center" style="color: white;">LEGEND</li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-credit-card"></i> Shop VIP</li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-list"></i> FarmZone VIP</li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-plane"></i> /fly</li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-backward"></i> /back</li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-map-pin"></i> /tpahere</li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-hands-helping"></i> /craft</li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-plus"></i> Maximum sur l'île</li>
-                    <li class="center">5</li>
-                    <li class="center">6</li>
-                    <li class="center">7</li>
-                    <li class="center">8</li>
-                    <li class="center">10</li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-search"></i> /near</li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul>
-                    <li class="header-li"><i class="fas fa-forward"></i> /enderchest</li>
-                    <li class="center"><i class="fas fa-times"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                    <li class="center"><i class="fas fa-check"></i></li>
-                </ul>
-                <ul class="line-ul">
-                    <li class="header-li">Avantages Survie</li>
-                    <li class="center">&nbsp;</li>
-                    <li class="center">&nbsp;</li>
-                    <li class="center">&nbsp;</li>
-                    <li class="center">&nbsp;</li>
-                    <li class="center">&nbsp;</li>
-                </ul>
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Avantages Survie
+                </div>
                 <ul>
                     <li class="header-li"><i class="fas fa-plus-square"></i> Chunks Maximum</li>
                     <li class="center">36</li>
@@ -615,7 +450,88 @@
                     <li class="center">Kit MVP+</li>
                     <li class="center">Kit Légend</li>
                 </ul>
-
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Avantages Skyblock
+                </div>
+                <ul>
+                    <li class="header-li"><i class="fas fa-credit-card"></i> Shop VIP</li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-list"></i> FarmZone VIP</li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-plane"></i> /fly</li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-backward"></i> /back</li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-map-pin"></i> /tpahere</li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-hands-helping"></i> /craft</li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-plus"></i> Maximum sur l'île</li>
+                    <li class="center">5</li>
+                    <li class="center">6</li>
+                    <li class="center">7</li>
+                    <li class="center">8</li>
+                    <li class="center">10</li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-search"></i> /near</li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+                <ul>
+                    <li class="header-li"><i class="fas fa-forward"></i> /enderchest</li>
+                    <li class="center"><i class="fas fa-times"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                    <li class="center"><i class="fas fa-check"></i></li>
+                </ul>
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Avantages Freebuild
+                </div>
                 <ul class="line-ul">
                     <li class="header-li">Avantages FreeBuild</li>
                     <li class="center" style="color: white;">VIP</li>
@@ -657,23 +573,18 @@
                     <li class="center"><i class="fas fa-check"></i></li>
                 </ul>
                 <ul>
-                    <li class="header-li"><i class="fas fa-flag"></i> Auules</li>
+                    <li class="header-li"><i class="fas fa-flag"></i> Autres</li>
                     <li class="center"><i class="fas fa-times"></i></li>
                     <li class="center"><i class="fas fa-times"></i></li>
                     <li class="center">VoxelSniper</li>
                     <li class="center"><i class="fas fa-times"></i></li>
                     <li class="center">GoPaint / GoBrush</li>
                 </ul>
-
-
-                <ul class="line-ul">
-                    <li class="header-li">Avantages PvPBox</li>
-                    <li class="center" style="color: white;">VIP</li>
-                    <li class="center" style="color: white;">VIP+</li>
-                    <li class="center" style="color: white;">MVP</li>
-                    <li class="center" style="color: white;">MVP+</li>
-                    <li class="center" style="color: white;">LEGEND</li>
-                </ul>
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Avantages Pvpbox
+                </div>
                 <ul>
                     <li class="header-li"><i class="fas fa-angle-right"></i> Kit Tanky II</li>
                     <li class="center"><i class="fas fa-check"></i></li>
@@ -714,14 +625,11 @@
                     <li class="center"><i class="fas fa-check"></i></li>
                     <li class="center"><i class="fas fa-check"></i></li>
                 </ul>
-                <ul class="line-ul">
-                    <li class="header-li">Auules avantages</li>
-                    <li class="center" style="color: white;">VIP</li>
-                    <li class="center" style="color: white;">VIP+</li>
-                    <li class="center" style="color: white;">MVP</li>
-                    <li class="center" style="color: white;">MVP+</li>
-                    <li class="center" style="color: white;">LEGEND</li>
-                </ul>
+            </div>
+            <div class="shop-rank-category">
+                <div class="ranks-separator">
+                    Autres Avantages
+                </div>
                 <ul>
                     <li class="header-li"><i class="fas fa-id-card-alt"></i> Grade Forum</li>
                     <li class="center"><i class="fas fa-check"></i></li>
@@ -788,7 +696,7 @@
                 </ul>
             </div>
         </div>
-    </div>
+        </div>
     </div>
 </main>
 
