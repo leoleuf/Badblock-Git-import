@@ -1,31 +1,19 @@
-
-<div class="four columns">
-    <div class="side-bar sidetexte">
-        <div class="side-item">
-            <h2 class="heading-bar"><span> Serveur Minecraft</span></h2>
-            <a title="Télécharger le Launcher Minecraft Gratuit" href="/launcher-minecraft" class="button button-success"><i class="fas fa-download"></i>   Télécharger le launcher</a>
-            <a title="Jouer au Serveur Minecraft BadBlock" class="button button-primary button-play" href="/jouer">
-                    <i class="fas fa-gamepad"></i>  Jouer au Serveur Minecraft</button>
-            </a>
-            <input type="hidden" >
-        </div>
-        <div class="side-item">
-            <h4 class="heading-bar"><span>Communauté</span></h4>
-            <a class="button button-primary button-teamspeak" href="{{ ts3_query }}" title="Accéder au serveur TeamSpeak du serveur Minecraft"><i
-                        class="fas fa-microphone"></i>  ts.badblock.fr</a>
-            <iframe src="https://discordapp.com/widget?id=344112762722451456&theme=dark" width="300" height="500" allowtransparency="true" frameborder="0"></iframe>
-        </div>
-        <div class="side-item">
-            <h4 class="heading-bar"><span>{{ 'socials_network'|trans }}</span></h4>
-            <a title="Suivre BadBlock sur Twitter" href="https://twitter.com/BadBlockGame?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="normal" data-lang="fr" data-show-screen-name="false" data-show-count="true">Suivre</a>&nbsp;&nbsp;&nbsp;<iframe src="http://www.facebook.com/plugins/like.php?href=https://badblock.fr&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe>
-            <a class="button button-primary button-twitter" href="https://twitter.com/BadblockGame" title="Twitter du serveur Minecraft"><i class="icon-twitter"></i>Notre Twitter</a>
-            <!--<a class="twitter-timeline" data-height="350" href="https://twitter.com/BadBlockGame?ref_src=twsrc%5Etfw" rel="nofollow" title="Tweets de BadBlock">Tweets de BadBlockGame</a>!-->
-            <!--<script async defer src="" charset="utf-8"></script>!-->
-            <a class="button button-primary button-facebook" href="https://facebook.com/BadblockGame" title="Facebook du serveur Minecraft"><i class="icon-facebook"></i>Notre Facebook</a>
-            <!--<iframe src="" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBadblockGame&tabs=timeline&width=350&height=350&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="350" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
- !-->           <a class="button button-primary button-youtube" href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube du serveur Minecraft"><i class="icon-youtube"></i>Notre chaîne Youtube</a>
-        </div>
-    </div>
-</div>
-
-<script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div class="sidebar">
+                        <h4 class="heading heading-bar"><span>Serveur Minecraft</span></h4>
+                        <a title="Télécharger le Launcher Minecraft Gratuit" href="/launcher-minecraft" class="button button-success"><i class="fas fa-download"></i>Télécharger le launcher</a>
+                        <a title="Jouer au Serveur Minecraft BadBlock" class="button button-info" href="/jouer"><i class="fas fa-gamepad"></i>Jouer au Serveur Minecraft</a>
+                        <h4 class="heading heading-bar"><span>Informations</span></h4>
+                        <a class="button button-primary" id="recrutement-button" href="https://badblock.fr/forum/recrutement/" title="Recrutements de BadBlock"><span><i class="far fa-file-alt"></i>Les Recrutements</span></a>
+                        <a class="button button-success" id="staff-button" href="/staff" title="Staff de BadBlock"><span><i class="fas fa-sitemap"></i>Le Staff</span></a>
+                        <a class="button button-info" id="devblog-button" href="https://badblock.fr/forum/devblog/" title="DevBlog de BadBlock"><span><i class="far fa-file-code"></i> Le DevBlog</span></a>
+                        <h4 class="heading heading-bar"><span>Communauté</span></h4>
+                        <a class="button button-primary button-ts" href="ts3server://ts.badblock.fr?port=9987&amp;addbookmark=BadBlock" title="Accéder au serveur TeamSpeak du serveur Minecraft"><i class="fas fa-microphone"></i>ts.badblock.fr</a>
+                        <iframe src="https://discordapp.com/widget?id=344112762722451456&amp;theme=dark" allowtransparency="true" height="500" frameborder="0"></iframe>
+                        <h4 class="heading heading-bar"><span>Réseaux souciaux</span></h4>
+                        <iframe id="twitter-widget-0" scrolling="no" allowtransparency="true" class="twitter-follow-button twitter-follow-button-rendered" style="position: static; visibility: visible; height: 20px;" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.e3b990b7e531827c037f99a1729ae5db.fr.html#dnt=false&amp;id=twitter-widget-0&amp;lang=fr&amp;screen_name=BadBlockGame&amp;show_count=true&amp;show_screen_name=false&amp;size=m&amp;time=1545067257448" data-screen-name="BadBlockGame" frameborder="0"></iframe>
+                        <a class="button button-primary button-twitter" href="https://twitter.com/BadblockGame" title="Twitter du serveur Minecraft"><i class="fab fa-twitter"></i> Notre Twitter</a>
+                        <a class="button button-primary button-facebook" href="https://facebook.com/BadblockGame" title="Facebook du serveur Minecraft"><i class="fab fa-facebook-f"></i>   Notre Facebook</a>
+                        <a class="button button-primary button-youtube" href="https://www.youtube.com/channel/UCQGBfKWLa88_pQVHdCJbuIw" title="YouTube du serveur Minecraft"><i class="fab fa-youtube"></i> Notre chaîne Youtube</a>
+                        <h4 class="heading heading-bar"><span>Partenaires</span></h4>
+                        <h4 class="heading heading-bar"><span>Publicités</span></h4>
+                    </div>

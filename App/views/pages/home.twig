@@ -4,120 +4,67 @@
 {% set h2 = true %}
 {% set title = 'BadBlock – Serveur Minecraft Gratuit Français : MiniJeux, SkyBlock et plus' %}
 {% block cover %}
-
-    <!------Cover------>
+<!------Cover------>
+<section>
     <div class="cover-back">
-        <div class="cover">
+        <div class="cover cover-profile">
             <div class="container">
-            	<div class="animated bounceInLeft">
-	            	<div class="row">
-	                	<div class="four columns">
-	                    	<h1 style="color: white;">Serveur Minecraft Français</h1>
-	                    	<div class="animated bounceInLeft">
-	                        <a title="Launcher Minecraft" class="button button-primary" href="{{ path_for('play') }}"><i class="icon-play icon"></i> Télécharger le jeu</a>
-	                        <a title="Launcher Minecraft" class="button button-primary" href="/jouer"><i class="icon-play icon"></i> Jouer sur Badblock</a>
-	                    	</div>
-	                	</div>
-                        <div class="two columns">
-                            <button class="button-games button-games-home" onclick="location.href='/jeux/skyblock'" title="SkyBlock" id="skyb"><span>SkyBlock</span></button>
-                            <button class="button-games button-games-home" onclick="location.href='/jouer'" id="tower" title="Statistiques Tower"><span>Tower</span></button>
+                <div class="row">
+                    <div class="col-sm-9 col-md-8 col-lg-8">
+                        <h3>Serveur minecraft gratuit</h3>
+                        <div class="rsp-button-center">
+                            <a title="Launcher Minecraft" class="button button-success" href="/launcher-minecraft"><i class="fal fa-gamepad"></i> Jouez dés maintenant !</a>
                         </div>
-                        <div class="two columns">
-                            <button class="button-games button-games-home" onclick="location.href='/jouer'" title="Jouer à BadBlock" id="fb"><span>Freebuild</span></button>
-                            <button class="button-games button-games-home" onclick="location.href='/jouer'" id="spaceballs" title="Statistiques SpaceBalls"><span>SpaceBalls</span></button>
-                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-4 col-lg-4">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!------Cover fin------>
+</section>
+<!------Cover fin------>
 {% endblock %}
 {% block content %}
-    <!-- Main content -->
-    <!-- Articles pined -->
-    <div class="eight columns">
-        <!-- end Articles pined -->
-        <!-- Articles -->
-        <div class="articles-home">
-            <h4 class="heading heading-bar"><span>Dernières vidéos sur BadBlock</span></h4>
-                <!-- Première ligne de card -->
-            <div class="mosaic">
-                <article class="card" style="height: 151px;">
-                    <iframe width="350" src="https://www.youtube.com/embed/jpmVsDi3u7c?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </article>
-                <article class="card" style="height: 151px;">
-                    <iframe width="350" src="https://www.youtube.com/embed/zSFS7aTbbmg" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </article>
-                <article class="card" style="height: 151px;">
-                    <iframe width="350" src="https://www.youtube.com/embed/-k4yTBXzK-w" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </article>
-                <a class="card card-second card-plus no-link" href="/youtube" style="width: 350px; height: 151px;" title="Ajouter ma vidéo YouTube">
-                    <div class="card-plus-text">Ajouter ma vidéo ici</div>
-                    <i class="icon icon-calcplus"></i>
-                </a>
-            </div>
+<!-- Main content -->
+<!-- Articles pined -->
+<div class="row">
+    <div class="col-12 col-md-8">
+        {% if posts_count > 0 %}
+        <div class="mosaic">
+            {% for infos in first_row %}
+            {{ include('macros/card.twig') }}
+            {% endfor %}
         </div>
-        <div class="articles-home">
-            <h4 class="heading heading-bar"><span>{{ 'home.last_posts'|trans }}</span></h4>
-            {% if posts_count > 0 %}
-                <!-- Première ligne de card -->
-                <div class="mosaic">
-                    {% for infos in first_row %}
-                        {{ include('macros/card.twig') }}
-                    {% endfor %}
-                </div>
-                <!-- Fin première ligne de card -->
-                <!-- Seconde ligne de card -->
-                <div class="mosaic">
-                    {% for infos in second_row %}
-                        {% set card_special_class = "card-second" %}
-                        {{ include('macros/card.twig') }}
-                    {% endfor %}
-
-                    <!-- Plus card -->
-                    <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder au post {{ 'home.cards.more_posts'|trans }}">
+        <div class="mosaic">
+            {% for infos in second_row %}
+            {% set card_special_class = "card-second" %}
+            {{ include('macros/card.twig') }}
+            {% endfor %}
+            <!-- Plus card -->
+            <a class="card card-second card-plus no-link" href="{{ path_for('all-posts') }}" title="Accéder au post {{ 'home.cards.more_posts'|trans }}">
                         <div class="card-plus-text">{{ 'home.cards.more_posts'|trans }}</div>
                         <i class="icon icon-calcplus"></i>
                     </a>
-                    <!-- Fin plus card-->
-                </div>
-                <!-- Fin seconde ligne de card -->
-            {% endif %}
-            <!-- Si pas d'articles -->
-            {% if posts_count == 0 %}
-                <div class="no-item-container">
-                    <div class="no-item-content">
-                        <h4><i class="icon-erroralt"></i></h4>
-                        <h4>{{ 'blog.no_posts'|trans }}</h4>
-                    </div>
-                </div>
-            {% endif %}
-            <!-- Fin si pas d'articles -->
+            <!-- Fin plus card-->
         </div>
-        <!-- Articles Fin -->
-        <!-- Informations début -->
-        <div class="side-item">
-            <h4 class="heading-bar"><span>Informations sur le serveur Minecraft BadBlock</span></h4>
-            <a class="button button-primary informations" id="recrutement-button" href="https://badblock.fr/forum/recrutement/" title="Recrutements de BadBlock">
-                <span><i class="far fa-file-alt"></i> Les Recrutements</span>
-                <p class="info-p">Trouvez toutes les informations nécessaires pour rejoindre notre équipe</p>
-            </a>
-            <a class="button button-primary informations" id="staff-button" href="/staff" title="Staff de BadBlock">
-                <span><i class="fas fa-sitemap"></i>  Le Staff</span>
-                <p class="info-p">Découvrez l'équipe de Badblock, sa hiérarchie et son fonctionnement</p>
-            </a>
-            <a class="button button-primary informations" id="devblog-button" href="https://badblock.fr/forum/devblog/" title="DevBlog de BadBlock">
-                <span><i class="far fa-file-code"></i>  Le DevBlog</span>
-                <p class="info-p">Les dernières modifications apportées sur le serveur sont ici !</p>
-            </a>
+        <!-- Fin seconde ligne de card -->
+        {% endif %}
+        {% if posts_count == 0 %}
+        <div class="no-item-container">
+            <div class="no-item-content">
+                <h4><i class="icon-erroralt"></i></h4>
+                <h4>{{ 'blog.no_posts'|trans }}</h4>
+            </div>
         </div>
-        <!-- Informations fin -->
+        {% endif %}
     </div>
-    <!-- Main content fin -->
-
+    <div class="col-12 col-md-4">
+        <!-- Main content fin -->
     {% include 'macros/sidebar.twig' %}
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9e472db79400bd"></script>
-
+    
+    </div>
+    </div>
+</div>
 {% endblock %}
