@@ -4,168 +4,125 @@
 {% set show_title = false %}
 {% set title = 'shop.title'|trans %}
 {% block cover %}
-<!-- Recharger -->
-<div class="cover-back">
-    <div class="cover cover-profile">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-8">
-                    <div class="recharge-info">
-                        <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
-                        <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
-                        <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
-                        <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire"
+    <!-- Recharger -->
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="recharge-info">
+                            <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
+                            <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
+                            <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
+                            <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire"
                                  alt="Carte bancaire">
-                        <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire"
+                            <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire"
                                  alt="Carte bancaire">
-                        <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa">
+                            <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa">
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
-                        {% if (isOnline) %}
-                        <div class="recharge-button">
-                            <a class="button button-primary" title="Solde actuel de mon compte"><i class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
-                            <a class="button button-success" href="/shop/recharge" title="Recharger mon compte"><i class="far fa-gem"></i> Obtenir + de points boutique</a>
-                        </div>
-                        {% else %}
-                        <div class="recharge-button">
-                            <a class="button button-primary" onclick="login()" title="Se connecter"><i class="fas fa-user"></i> Se connecter</a>
-                        </div>
-                        {% endif %}
-                    </div>
+                    {% if (isOnline) %}
+                        <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i
+                                    class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
+                        <a class="button button-success" href="/shop/recharge" title="Recharger mon compte"><i
+                                    class="far fa-gem"></i> Obtenir + de points boutique</a>
+
+                    {% else %}
+                        <a class="button button-primary" onclick="login()" title="Se connecter"><i
+                                    class="fas fa-user"></i> Se connecter</a>&nbsp;&nbsp;
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    <main>
-        <nav class="shop-nav">
-            <div class="container">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Grades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Skyblock</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Survie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mini-jeux</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Faction</a>
-                    </li>
-                </ul>
+<main>
+    <nav class="shop-nav">
+        <div class="container">
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Grades</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Skyblock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Survie</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mini-jeux</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Faction</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+    {% if eula == true or spider == true %}
+
+    {% for key,value in serverlist %}
+    {% if key != 0 %}
+    <div class="content shop" id="shop-{{ key }}">
+        {% for k,cat in value['cat'] %}
+            <div class="col-12">
+                <h4 class="heading heading-bar"{{ cat['name'] }}><span>{{ cat['sub-name'] }}</span></h4>
             </div>
-        </nav>
-        {% endblock %}
-        {% block content %}
-        {% if eula == true or spider == true %}
-        {% for key,value in serverlist %}
-        {% if key != 0 %}
-<<<<<<< HEAD
-        <div class="content shop" id="shop-{{ key }}">
-            {% for k,cat in value['cat'] %}
-                <div class="col-12">
-                    <h4 class="heading heading-bar"{{ cat['name'] }}><span>{{ cat['sub-name'] }}</span></h4>
-                </div>
-                <div class="container">
-                    <div class="content">
-                        <div class="row">
-                            <div class="col-12 col-md-9">
-                                <div class="row">
-                                    {% for prod in cat['items'] %}
-                                        {% if prod['promotion'] %}
-                                            <div class="col-12 col-md-6">
-                                                <div class="shop-package">
-                                                    <h3>Clé Ultimate</h3>
-                                                    <div class="shop-package-content">
-                                                        <img src="https://images.badblock.fr/i/medium%20chest.png"
-                                                             title="Produit Clé Ultimate">
-                                                    </div>
-                                                    <div class="shop-package-desc">Clé Ultimate x 1 <br> Utilisable au Spawn
-                                                        survie
-                                                    </div>
-                                                    <a href="#" data-toggle="modal" data-target="#modalItem">Acheter
-                                                        (600)</a>
-=======
-        <div id="{{ key }}" class="tabcontent" style="display: none;">
-            {% for k,cat in value['cat'] %}
-            <section class="shop-section-{{ k }}" class="tabcontent">
-                <h4 class="heading heading-bar"><span>{{ cat['name'] }}
-                                <small id="very-small">{{ cat['sub-name'] }}</small></span></h4>
-                <div class="product-list">
-                    {% for prod in cat['items'] %}
-                    <a href="/shop#product-{{ prod['_id']["$oid"] }}"
-                                   style="color: #fb3f00; text-decoration: none;"
-                                   title="Produit {{ prod['name'] }}">
+            <div class="container">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-12 col-md-9">
+                            <div class="row">
+                                {% for prod in cat['items'] %}
                                     {% if prod['promotion'] %}
-                                        <div class="product-item product-item-promotion">
-                                            <div class="promotion-coef">
-                                                {{ prod['promotion_coef'] }}%
+                                        <div class="col-12 col-md-6">
+                                            <div class="shop-package">
+                                                <h3>Clé Ultimate</h3>
+                                                <div class="shop-package-content">
+                                                    <img src="https://images.badblock.fr/i/medium%20chest.png"
+                                                         title="Produit Clé Ultimate">
+                                                </div>
+                                                <div class="shop-package-desc">Clé Ultimate x 1 <br> Utilisable au Spawn
+                                                    survie
+                                                </div>
+                                                <a href="#" data-toggle="modal" data-target="#modalItem">Acheter
+                                                    (600)</a>
                                             </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="product-item">
                                             <div class="product-header">
                                                 <h5 class="product-title">{{ prod['name'] }}</h5>
                                             </div>
                                             <div class="product-image">
-                                                <img src="{{ prod['image'] }}">
+                                                <img src="{{ prod['image'] }}"
+                                                     title="Produit {{ prod['name'] }}"
+                                                     title="Produit {{ prod['name'] }}">
                                             </div>
-                                            <div class="product-price product-promotion"><span
-                                                        class="promotion">{{ prod['promotion_new_price']|number_format(0, '', ' ') }}</span>
-                                                <div class="product-old-price">
-                                                    <span class="promotion-reduction">{{ prod['price']|number_format(0, '', ' ') }}</span>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
-                                                </div>
-                                            </div>
-                                        {% else %}
-                                            <div class="product-item">
-                                                <div class="product-header">
-                                                    <h5 class="product-title">{{ prod['name'] }}</h5>
-                                                </div>
-                                                <div class="product-image">
-                                                    <img src="{{ prod['image'] }}"
-                                                         title="Produit {{ prod['name'] }}"
-                                                         title="Produit {{ prod['name'] }}">
-                                                </div>
-                                                <div class="product-price">{{ prod['price']|number_format(0, '', ' ') }}</div>
-                                                <div class="product-footer">
-                                                    <div class="product-action">
-                                                        <button idpro="{{ prod["$oid"] }}"
-                                                                class="button button-primary achat">
-                                                            <i class="fas fa-shopping-cart"></i>
+                                            <div class="product-price">{{ prod['price']|number_format(0, '', ' ') }}</div>
+                                            <div class="product-footer">
+                                                <div class="product-action">
+                                                    <button idpro="{{ prod["$oid"] }}"
+                                                            class="button button-primary achat">
+                                                        <i class="fas fa-shopping-cart"></i>
 
-                                                        </button>
-                                                    </div>
+                                                    </button>
                                                 </div>
                                             </div>
-<<<<<<< HEAD
-                                        {% endif %}
-                                    {% endfor %}
-                                </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-
-        <div class="content shop" id="ranks">
-=======
-                                        </div>
-                                        <br>
-                                    {% endif %}
-                                </a>
-                    {% endfor %}
-                </div>
-            </section>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
         {% endif %}
         {% endfor %}
-        <div class="content shop">
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
+
+        <div class="content shop" id="ranks">
             <div class="shop-ranks">
                 <div class="shop-ranks-header">
                     <ul>
@@ -179,74 +136,47 @@
                                 <img src="https://cdn.badblock.fr/boutique/vip.png" title="Grade VIP" alt="Grade VIP">
                                 <h3>VIP</h3>
                                 <a onclick="confirm('5b71adefb1fe8a85fe31bb4d');">Obtenir <span>1050</span> points <i
-<<<<<<< HEAD
                                             class="fas fa-arrow-circle-right"></i></a>
-=======
-                                        class="fas fa-arrow-circle-right"></i></a>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             </div>
                         </li>
                         <li>
                             <div class="ranks-card-header" id="rank-3020392">
-<<<<<<< HEAD
                                 <img src="https://cdn.badblock.fr/boutique/vip+.png" title="Grade VIP+"
                                      alt="Grade VIP+">
                                 <h3>VIP+</h3>
                                 <a onclick="confirm('5b71af8db1fe8a85fe31bb6d');">Obtenir <span>2250</span> points <i
                                             class="fas fa-arrow-circle-right"></i></a>
-=======
-                                <img src="https://cdn.badblock.fr/boutique/vip+.png" title="Grade VIP+" alt="Grade VIP+">
-                                <h3>VIP+</h3>
-                                <a onclick="confirm('5b71af8db1fe8a85fe31bb6d');">Obtenir <span>2250</span> points <i class="fas fa-arrow-circle-right"></i></a>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             </div>
                         </li>
                         <li>
                             <div class="ranks-card-header" id="rank-3020415">
                                 <img src="https://cdn.badblock.fr/boutique/mvp.png" title="Grade MVP" alt="Grade MVP">
                                 <h3>MVP</h3>
-<<<<<<< HEAD
                                 <a onclick="confirm('5b71afa9b1fe8a85fe31bb70');">Obtenir <span>4350</span> points <i
                                             class="fas fa-arrow-circle-right"></i></a>
-=======
-                                <a onclick="confirm('5b71afa9b1fe8a85fe31bb70');">Obtenir <span>4350</span> points <i class="fas fa-arrow-circle-right"></i></a>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             </div>
                         </li>
                         <li>
                             <div class="ranks-card-header" id="rank-3026513">
-<<<<<<< HEAD
                                 <img src="https://cdn.badblock.fr/boutique/mvp+.png" title="Grade MVP+"
                                      alt="Grade MVP+">
                                 <h3>MVP+</h3>
                                 <a onclick="confirm('5b71afcab1fe8a85fe31bb76');">Obtenir <span>6900</span> points <i
                                             class="fas fa-arrow-circle-right"></i></a>
-=======
-                                <img src="https://cdn.badblock.fr/boutique/mvp+.png" title="Grade MVP+" alt="Grade MVP+">
-                                <h3>MVP+</h3>
-                                <a onclick="confirm('5b71afcab1fe8a85fe31bb76');">Obtenir <span>6900</span> points <i class="fas fa-arrow-circle-right"></i></a>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             </div>
                         </li>
                         <li>
                             <div class="ranks-card-header" id="rank-3026514">
                                 <img src="https://cdn.badblock.fr/boutique/legend.png" title="Grade Legend"
-<<<<<<< HEAD
                                      alt="Grade Legend">
                                 <h3>Legend</h3>
                                 <a onclick="confirm('5b71b062b1fe8a85fe31bb84');">Obtenir <span>2100</span> points <i
                                             class="fas fa-arrow-circle-right"></i></a>
-=======
-                                 alt="Grade Legend">
-                                <h3>Legend</h3>
-                                <a onclick="confirm('5b71b062b1fe8a85fe31bb84');">Obtenir <span>2100</span> points <i class="fas fa-arrow-circle-right"></i></a>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             </div>
                         </li>
                     </ul>
                 </div>
                 <div class="shop-rank-list">
-<<<<<<< HEAD
 
                     <div class="shop-rank-category">
                         <div class="ranks-separator">
@@ -275,14 +205,6 @@
                         </div>
                         <ul class="right">
                             <li class="details-three">Durée du grade</li>
-=======
-                    <div class="shop-rank-category">
-                        <div class="ranks-separator">
-                            Détails du grade
-                        </div>
-                        <ul class="right">
-                            <li class="details-one">Durée du grade</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li>A vie</li>
                             <li>A vie</li>
                             <li>A vie</li>
@@ -290,7 +212,6 @@
                             <li>1 mois</li>
                         </ul>
                         <ul>
-<<<<<<< HEAD
                             <li class="details-six"><i class="fas fa-id-card"></i> Préfixe</li>
                             <li class="center" style="color: #55FFFF"><strong>[VIP]</strong></li>
                             <li class="center" style="color: #55FF55"><strong>[VIP+]</strong></li>
@@ -378,19 +299,10 @@
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
-=======
-                            <li class="details-two">Dépendances</li>
-                            <li><i class="fas fa-times"></i></li>
-                            <li>VIP</li>
-                            <li>VIP+</li>
-                            <li>MVP</li>
-                            <li>MVP+</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                         </ul>
                     </div>
                     <div class="shop-rank-category">
                         <div class="ranks-separator">
-<<<<<<< HEAD
                             Avantages Hub
                         </div>
                         <ul>
@@ -427,118 +339,27 @@
                         </ul>
                         <ul>
                             <li class="details-six"><i class="fas fa-ban"></i> Limite de messages</li>
-=======
-                            Avantages généraux
-                        </div>
-                        <ul class="right">
-                            <li class="details-three">Durée du grade</li>
-                            <li>A vie</li>
-                            <li>A vie</li>
-                            <li>A vie</li>
-                            <li>A vie</li>
-                            <li>1 mois</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-id-card"></i> Préfixe</li>
-                            <li class="center" style="color: #55FFFF"><strong>[VIP]</strong></li>
-                            <li class="center" style="color: #55FF55"><strong>[VIP+]</strong></li>
-                            <li class="center" id="obsi">[MVP]</li>
-                            <li class="center" id="gold">[MVP+]</li>
-                            <li class="promotion center">Personnalisable</li>
-                        </ul>
-                        <ul class="line-ul">
-                            <li class="details-three">Avantages Mini-Jeux</li>
-                            <li class="center" style="color: white;">VIP</li>
-                            <li class="center" style="color: white;">VIP+</li>
-                            <li class="center" style="color: white;">MVP</li>
-                            <li class="center" style="color: white;">MVP+</li>
-                            <li class="center" style="color: white;">LEGEND</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-credit-card"></i> BadCoins & XP</li>
-                            <li class="promotion center">+ 25%</li>
-                            <li class="promotion center">+ 50%</li>
-                            <li class="promotion center">+ 100%</li>
-                            <li class="promotion center">+ 200%</li>
-                            <li class="promotion center">+ 400%</li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-chevron-circle-right"></i> Attente prioritaire</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-users"></i> Accès serveur full</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-angle-double-left"></i> Nouveautés en bêta</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-user-secret"></i> Accès /gnick</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
-<<<<<<< HEAD
                             <li class="center"><i class="fas fa-times"></i></li>
                         </ul>
                         <ul>
                             <li class="details-two"><i class="fas fa-vial"></i> Multiples jump</li>
                             <li class="center"><i class="fas fa-check"></i> x1</li>
-=======
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-certificate"></i> Accès /aura</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-eye-dropper"></i> Personnalisation /aura</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-map-pin"></i> Votes de map</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li class="center"><i class="fas fa-check"></i> x2</li>
                             <li class="center"><i class="fas fa-check"></i> x3</li>
                             <li class="center"><i class="fas fa-check"></i> x4</li>
                             <li class="center"><i class="fas fa-check"></i> x8</li>
                         </ul>
                         <ul>
-<<<<<<< HEAD
                             <li class="details-six"><i class="fas fa-lock-open"></i> Accès zone VIP</li>
                             <li class="center"><i class="fas fa-check"></i></li>
-=======
-                            <li class="details-six"><i class="fas fa-balance-scale"></i> Kit VIP équilibré</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
-<<<<<<< HEAD
                         </ul>
                         <ul>
                             <li class="details-two"><i class="fas fa-arrow-right"></i> Notif de bienvenue</li>
@@ -546,14 +367,11 @@
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
-=======
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li class="center"><i class="fas fa-check"></i></li>
                         </ul>
                     </div>
                     <div class="shop-rank-category">
                         <div class="ranks-separator">
-<<<<<<< HEAD
                             Avantages Survie
                         </div>
                         <ul>
@@ -601,221 +419,11 @@
                             <li class="details-three"><i class="fas fa-chevron-right"></i> Accès /ec</li>
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
-=======
-                            Avantages Hub
-                        </div>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-dove"></i> Fly au Hub</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-comment-alt"></i> Couleur des messages</li>
-                            <li class="center">Blanc</li>
-                            <li class="center">Blanc</li>
-                            <li class="center">Blanc</li>
-                            <li class="center">Blanc</li>
-                            <li class="promotion center">Personnalisable</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-users"></i> Joueurs en groupe</li>
-                            <li class="center">5 max</li>
-                            <li class="center">8 max</li>
-                            <li class="center">12 max</li>
-                            <li class="center">16 max</li>
-                            <li class="center">32 max</li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-user-plus"></i> Nombre d'amis</li>
-                            <li class="center">20 max</li>
-                            <li class="center">40 max</li>
-                            <li class="center">60 max</li>
-                            <li class="center">100 max</li>
-                            <li class="center">500 max</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-ban"></i> Limite de messages</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-vial"></i> Multiples jump</li>
-                            <li class="center"><i class="fas fa-check"></i> x1</li>
-                            <li class="center"><i class="fas fa-check"></i> x2</li>
-                            <li class="center"><i class="fas fa-check"></i> x3</li>
-                            <li class="center"><i class="fas fa-check"></i> x4</li>
-                            <li class="center"><i class="fas fa-check"></i> x8</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-lock-open"></i> Accès zone VIP</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
                             <li class="center"><i class="fas fa-check"></i></li>
                         </ul>
                         <ul>
-<<<<<<< HEAD
-                            <li class="details-six"><i class="fas fa-location-arrow"></i> Téléportation instantanée</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-=======
-                            <li class="details-two"><i class="fas fa-arrow-right"></i> Notif de bienvenue</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-<<<<<<< HEAD
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-location-arrow"></i> Salaires Max</li>
-                            <li class="center">1250$</li>
-                            <li class="center">1500$</li>
-                            <li class="center">1750$</li>
-                            <li class="center">2000$</li>
-                            <li class="center">2500$</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-location-arrow"></i> Kits /24h</li>
-                            <li class="center">Kit VIP</li>
-                            <li class="center">Kit VIP+</li>
-                            <li class="center">Kit MVP</li>
-                            <li class="center">Kit MVP+</li>
-                            <li class="center">Kit Légend</li>
-=======
-                            <li class="center"><i class="fas fa-check"></i></li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
-                        </ul>
-                    </div>
-                    <div class="shop-rank-category">
-                        <div class="ranks-separator">
-<<<<<<< HEAD
-                            Avantages Skyblock
-                        </div>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-credit-card"></i> Shop VIP</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-list"></i> FarmZone VIP</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-plane"></i> /fly</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-backward"></i> /back</li>
-=======
-                            Avantages Survie
-                        </div>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-plus-square"></i> Chunks Maximum</li>
-                            <li class="center">36</li>
-                            <li class="center">45</li>
-                            <li class="center">54</li>
-                            <li class="center">72</li>
-                            <li class="center">100</li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-globe"></i> Propriétées maximum</li>
-                            <li class="center">3</li>
-                            <li class="center">4</li>
-                            <li class="center">6</li>
-                            <li class="center">7</li>
-                            <li class="center">9</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-user"></i> Membres</li>
-                            <li class="center">x4</li>
-                            <li class="center">x5</li>
-                            <li class="center">x6</li>
-                            <li class="center">x8</li>
-                            <li class="center">x10</li>
-                        </ul>
-                        <ul>
-                            <li class="details-three"><i class="fas fa-filter"></i> Taille de l'enderchest augmentée</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center">36 slots</li>
-                            <li class="center">45 slots</li>
-                            <li class="center">54 slots</li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-ulash-alt"></i> Accès /ulash</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-<<<<<<< HEAD
-                            <li class="details-six"><i class="fas fa-map-pin"></i> /tpahere</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-=======
-                            <li class="details-three"><i class="fas fa-chevron-right"></i> Accès /ec</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-times"></i></li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-<<<<<<< HEAD
-                            <li class="details-two"><i class="fas fa-hands-helping"></i> /craft</li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-plus"></i> Maximum sur l'île</li>
-                            <li class="center">5</li>
-                            <li class="center">6</li>
-                            <li class="center">7</li>
-                            <li class="center">8</li>
-                            <li class="center">10</li>
-                        </ul>
-                        <ul>
-                            <li class="details-two"><i class="fas fa-search"></i> /near</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                        </ul>
-                        <ul>
-                            <li class="details-six"><i class="fas fa-forward"></i> /enderchest</li>
-                            <li class="center"><i class="fas fa-times"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-                            <li class="center"><i class="fas fa-check"></i></li>
-=======
                             <li class="details-six"><i class="fas fa-location-arrow"></i> Téléportation instantanée</li>
                             <li class="center"><i class="fas fa-times"></i></li>
                             <li class="center"><i class="fas fa-times"></i></li>
@@ -838,15 +446,10 @@
                             <li class="center">Kit MVP</li>
                             <li class="center">Kit MVP+</li>
                             <li class="center">Kit Légend</li>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                         </ul>
                     </div>
                     <div class="shop-rank-category">
                         <div class="ranks-separator">
-<<<<<<< HEAD
-                            Avantages Freebuild
-                        </div>
-=======
                             Avantages Skyblock
                         </div>
                         <ul>
@@ -926,7 +529,6 @@
                         <div class="ranks-separator">
                             Avantages Freebuild
                         </div>
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
                         <ul class="line-ul">
                             <li class="details-six">Avantages FreeBuild</li>
                             <li class="center" style="color: white;">VIP</li>
@@ -1093,7 +695,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
 </main>
 
 
@@ -1212,40 +813,6 @@
 <!-- Login Modal -->
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true">
-=======
-    </main>
-    <!-- Shop Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="shop-error">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Désolé mais vous n'avez pas les points boutique nécessaires</h1>
-        <div class="recharge-button">
-            <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte"
-               class="button"><i class="icon-value-coins icon"></i>Recharger mon compte</a>
-        </div>
-    </div>
-    <!-- Fin Shop modal -->
-    <!-- Shop Succes Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="shop-succes">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Opération effectuée avec succès.</h1>
-    </div>
-    <!-- Fin Shop Succes modal -->
-    <!-- Shop Error Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="shop-depend">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="textp"></h1>
-    </div>
-    <!-- Fin Shop Succes modal -->
-    <!-- Link Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="link-modal">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vous devez linker votre compte pour ceci</h1>
-        <a class="button button-danger" href="/link" title="Lier mon compte"><i class="icon-repeat"></i>Linker
-            son Compte !</a>
-    </div>
-    <!-- Login Modal -->
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1263,50 +830,51 @@
             </div>
         </div>
     </div>
+
+
     {% for key,value in serverlist %}
-    {% for k,cat in value['cat'] %}
-    {% for prod in cat['items'] %}
-    {% if key[4] %}
-    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>{{ prod['name'] }}</h1>
-        <img src="{{ prod['image'] }}">
-        <p>{{ prod['description'] | raw }}</p>
-        <div class="product-footer">
-            <div class="product-action">
-                <button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i
+        {% for k,cat in value['cat'] %}
+            {% for prod in cat['items'] %}
+                {% if key[4] %}
+                    <div class="remodal modal-remodal modal-promotion"
+                         data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ prod['name'] }}</h1>
+                        <img src="{{ prod['image'] }}">
+                        <p>{{ prod['description'] | raw }}</p>
+                        <div class="product-footer">
+                            <div class="product-action">
+                                <button onclick='achat("{{ prod['_id']["$oid"] }}")'
+                                        class="button button-primary achat"><i
                                             class="icon icon-shopping-cart"></i> Commander
-                </button>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <div class="remodal modal-remodal modal-promotion" data-remodal-id="product-{{ prod['_id']["$oid"] }}">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>{{ prod['name'] }}</h1>
-        <img src="{{ prod['image'] }}">
-        <p>{{ prod['description'] | raw }}</p>
-        <div class="product-footer">
-            <div class="product-action">
-                <button onclick='achat("{{ prod['_id']["$oid"] }}")' class="button button-primary achat"><i
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="remodal modal-remodal modal-promotion"
+                         data-remodal-id="product-{{ prod['_id']["$oid"] }}">
+                        <button data-remodal-action="close" class="remodal-close"></button>
+                        <h1>{{ prod['name'] }}</h1>
+                        <img src="{{ prod['image'] }}">
+                        <p>{{ prod['description'] | raw }}</p>
+                        <div class="product-footer">
+                            <div class="product-action">
+                                <button onclick='achat("{{ prod['_id']["$oid"] }}")'
+                                        class="button button-primary achat"><i
                                             class="icon icon-shopping-cart"></i> Commander
-                </button>
-            </div>
-        </div>
-    </div>
-    {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
     {% endfor %}
-<<<<<<< HEAD
 
 <!-- Modal -->
     <div class="modal fade" id="modalconfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true">
-=======
-    {% endfor %}
-    {% endfor %}
-    <!-- Modal -->
-    <div class="modal fade" id="modalconfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1325,7 +893,6 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 
 
     <script>
@@ -1337,31 +904,20 @@
 
         function achat(idpro) {
             $('#modalconfirm').modal('hide');
-=======
-    <script>
-    function confirm(uuid) {
-        $("#btn-confirme").attr("onclick", "achat('" + uuid + "');");
-        $('#modalconfirm').modal('show');
-    }
 
+            var prod_id = idpro;
 
-    function achat(idpro) {
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
+            var request = $.ajax({
+                url: "/shop/achat/" + prod_id,
+                method: "POST",
+                data: {prod_id: prod_id},
+                dataType: "html"
+            });
 
-        var prod_id = idpro;
+            request.done(function (msg) {
+                $('[data-remodal-id=shop-succes]').remodal().open();
+            });
 
-        var request = $.ajax({
-            url: "/shop/achat/" + prod_id,
-            method: "POST",
-            data: { prod_id: prod_id },
-            dataType: "html"
-        });
-
-        request.done(function(msg) {
-            $('[data-remodal-id=shop-succes]').remodal().open();
-        });
-
-<<<<<<< HEAD
             request.fail(function (jqXHR, textStatus) {
                 if (jqXHR.status == 405) {
                     $('#shop-error').modal('show');
@@ -1376,26 +932,12 @@
                     $('#shop-500').modal('show');
                 }
             });
-=======
-        request.fail(function(jqXHR, textStatus) {
-            if (jqXHR.status == 405) {
-                $('#shop-error').modal('show');
-            } else if (jqXHR.status == 401) {
-                $('#login-modal').modal('show');
-            } else if (jqXHR.status == 405) {
-                $('[data-remodal-id=link-modal]').remodal().open();
-            } else if (jqXHR.status == 400) {
-                $("#textp").text(jqXHR.responseText);
-                $('[data-remodal-id=shop-depend]').remodal().open();
-            }
-        });
->>>>>>> b5e814acd3d69a0dc91b1a943413b3658162bdcc
 
-    }
+        }
     </script>
-    {% else %}
+{% else %}
     <div class="nothing">
         <h5 style="text-align: center;">La page n'existe pas ou n'existe plus.</h5>
     </div>
-    {% endif %}
+        {% endif %}
     {% endblock %}
