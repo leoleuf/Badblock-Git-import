@@ -4,130 +4,81 @@
 {% set hide_title = true %}
 {% extends "default.twig" %}
 {% set active_page = "play" %}
-{% block skyscrapers %}
-<div class="cover-back">
-        <div class="cover">
+{% block cover %}
+<section>
+    <div class="cover-back">
+        <div class="cover cover-profile">
             <div class="container">
-                <div class="animated bounceInLeft">
-                    <div class="row">
-                        <div class="twelve columns">
-                            <h2 class="cover-heading">Jouer et télécharger le Launcher</h2>
-                            <div class="animated bounceInLeft">
-                                <a href="/launcher-minecraft" class="button button-success"><i class="icon-download icon"></i>   Télécharger le launcher Minecraft</a>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3>Serveur minecraft gratuit</h3>
+                        <a href="/launcher-minecraft" class="button button-success"><i class="fas fa-cloud-download-alt"></i> Télécharger le launcher Minecraft</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="pub-skyscraper-left">
-        <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <div class="pub-skyscraper-right">
-        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
+</section>
 {% endblock %}
 {% block content %}
-
-
-    <div class=" content" id="test">
-        <div class="pub-large">
-            <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+<div class="content">
+    <h4 class="heading heading-bar"><span>Nous rejoindre</span></h4>
+    <div class="play-content">
+        <div class="play-content-input">
+            <h3>Rejoingnez nous ! - Badblock</h3>
+            <input class="info-ip" type="text" name="copyIp" id="copyIp" value="{{ mc_ip }}">
+            <button>Cliquez pour copier l'Ip</button>
+            <p class="play-desc">Notre serveur est disponible de la version <strong>1.8</strong> à <strong>1.13</strong></p>
         </div>
-        <h4 class="heading-bar"><span>Notre Serveur</span></h4>
-        <div class="twelve columns played">
-            <form class="offset-by-three eight columns play-form">
-                <label>Nom du serveur</label>
-                <input type="text" class="form-control" id="" value="BadBlock" readonly="">
-                <label>IP du serveur</label>
-                <input type="text" class="form-control" id="to-copy" value="{{ mc_ip }}" readonly="">
-            </form>
-            <button class="copied" id="copy" ><i class="fa fa-clone" aria-hidden="true" onclick="copied()"></i> Copier l'IP</button>
-        </div>
-    <div class="twelve columns play">
-        <div class="six columns play">
-        <section>
-            <h4 class="heading-bar"><span>Comment rejoindre Badblock ?</span></h4>
-            <div class="play-way-ip">
-                <button class="accordion"><i class="fa fa-check" aria-hidden="true"></i>  Version Premium & Version Crackée</button>
-                <div class="panel" style="display: none;">
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h4 class="heading heading-bar"><span>Comment nous rejoindre ?</span></h4>
+            <div class="info-content">
+                <button class="accordion">J'ai déjà mon compte Minecraft (Crack ou Premium)</button>
+                <div class="panel">
                     <p>Lancez Minecraft, rendez-vous dans la partie Multijoueur puis ajoutez un serveur. Indiquez dans les champs à remplir le nom du serveur et l'adresse IP.</p>
                 </div>
-                <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
-                <div class="panel" style="display: none;">
+                <button class="accordion">Je ne sais pas faire...</button>
+                <div class="panel">
                     {% if mc_ip == "eu.badblock.fr" %}
-                        <img src="https://cdn.badblock.fr/wd/i/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/eu.gif');">
+                    <img src="https://cdn.badblock.fr/wd/i/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/eu.gif');" width="100%">
                     {% elseif mc_ip == "na.badblock.fr" %}
-                        <img src="https://cdn.badblock.fr/wd/i/na.gif" alt="Serveur NA BadBlock" title="Serveur NA BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/na.gif');">
+                    <img src="https://cdn.badblock.fr/wd/i/na.gif" alt="Serveur NA BadBlock" title="Serveur NA BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/na.gif');" width="100%">
                     {% else %}
-                        <img src="https://cdn.badblock.fr/wd/i/play.gif" alt="Serveur Play BadBlock" title="Serveur Play BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/play.gif');">
+                    <img src="https://cdn.badblock.fr/wd/i/play.gif" alt="Serveur Play BadBlock" title="Serveur Play BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/play.gif');" width="100%">
                     {% endif %}
                     <br>
-                    <span>Cliquer sur le GIF pour le voir en grand</span>
                 </div>
             </div>
-        </section>
         </div>
-        <div class="six columns play">
-        <section>
-            <h4 class="heading-bar"><span>Nos Ip de connexions</span></h4>
-            <div class="play-list-ip">
-                {% if mc_ip == "eu.badblock.fr" %}
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-play" value="play.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
-                {% elseif mc_ip == "na.badblock.fr" %}
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-play" value="play.badblock.fr">
-                {% else %}
-                    <input type="submit" id="copy-play" value="play.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
-                {% endif %}
-
-            </div>
-        </section>
-        </div>
-
-        <div class="twelve columns play">
-            <div id="about-margin"></div>
-            <section>
-                <h4 class="heading-bar"><span>A propos de badblock</span></h4>
-                <div class="play-list-ip">
-                    <p>
-                        Badblock est un serveur Minecraft crée le 8 mars 2013 par Latitchips. Aujourd'hui, le serveur compte une impressionnante communauté composée de milliers de joueurs de tout âge. Notre équipe est à votre service afin de vous rendre le jeu meilleur et de vous divertir tout au long de votre expérience sur Badblock. Vous pouvez nous contacter par de nombreux moyens comme nos réseaux sociaux, notre Teamspeak, notre Forum ou tout simplement en jeu !
-                        Toute l'équipe vous souhaite un bon moment de divertissement sur nos plateformes.
-                    </p>
-                </div>
-             </section>
+        <div class="col-12 col-md-6">
+            <h4 class="heading heading-bar"><span>Toutes nos IP</span></h4>
+            {% if mc_ip == "eu.badblock.fr" %}
+            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
+            {% elseif mc_ip == "na.badblock.fr" %}
+            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
+            {% else %}
+            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
+            {% endif %}
         </div>
     </div>
-    </div>
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+</div>
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
 
-        for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
         /* Toggle between adding and removing the "active" class,
         to highlight the button that controls the panel */
         this.classList.toggle("active");
@@ -141,15 +92,15 @@
         }
     });
 }
-    </script>
-    <script>
-        var toCopy  = document.getElementById( 'to-copy' ),
-            btnCopy = document.getElementById( 'copy' );
+</script>
+<script>
+var toCopy = document.getElementById('to-copy'),
+    btnCopy = document.getElementById('copy');
 
-        btnCopy.addEventListener( 'click', function(){
-            toCopy.select();
-            document.execCommand( 'copy' );
-            return false;
-        } );
-    </script>
+btnCopy.addEventListener('click', function() {
+    toCopy.select();
+    document.execCommand('copy');
+    return false;
+});
+</script>
 {% endblock %}

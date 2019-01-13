@@ -5,304 +5,244 @@
 {% set description = "Vote gratuitement pour le serveur BadBlock et gagne de nombreuses récompenses gratuitement. Cette action est très rapide." %}
 {% set show_title = false %}
 {% block cover %}
-    <!------Cover------>
+<section>
     <div class="cover-back">
-        <div class="cover">
+        <div class="cover cover-profile">
             <div class="container">
-                <div class="one-half column">
-                    <h4 class="cover-heading">Votez sur différents site de référencement pour soutenir le serveur gratuitement !</h4>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3>Serveur minecraft gratuit</h3>
+                        <a href="/launcher-minecraft" class="button button-success"><i class="fas fa-cloud-download-alt"></i> Télécharger le launcher Minecraft</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!------Cover fin------>
+</section>
 {% endblock %}
 {% block skyscrapers %}
-
-    <div class="pub-skyscraper-left">
-        <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+<div class="pub-skyscraper-left">
+    <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
-
-    <div class="pub-skyscraper-right">
-        <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
+</div>
+<div class="pub-skyscraper-right">
+    <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+</div>
 {% endblock %}
 {% block content %}
-    <section>
-        <div class="vote">
-            <div class="nothing">
-                <div class="alert alert-error" role="alert" id="err-alert" style="display: none; text-align: center; font-size: 19px;">
-                </div>
-                <div class="alert alert-success" role="alert" id="success-alert" style="display: none; text-align: center; font-size: 19px;">
-                </div>
-                <div id="step1" class="step step-two four columns">
-                    <center><h3 class="step-round">I</h3>
-                        <div class="step-contains">
-                            <h5 class="text-center">Entrez votre pseudo</h5>
-                            <input type="text" id="pseudo" name="pseudo" value="{{ player }}"><br>
-                            <a class="button button-primary" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
-                        </div>
-                    </center>
-                </div>
-                <div id="step2" class="step step-first four columns disabled">
-                    <center><h3 class="step-round">II</h3>
-                        <div class="step-contains">
-                            <h5 class="text-center">Choisissez un Site</h5>
-                            <a title="Liste des serveur minecraft" class="button button-primary" id="btm-msf" href="https://serveur-multigames.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur Minecraft (1H30)</a>
-                            <div id="pleasewait" style="display: none;">
-
-                            </div>
-                        </div>
-                    </center>
-                </div>
-                <div class="step step-three four columns">
-                    <center><h3 class="step-round">III</h3>
-                        <div class="step-contains">
-                            <h5 class="text-center">Obtenez votre récompense</h5>
-                            <div class="tooltip">
-                                <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
-                                    SkyBlock
-                                </button>
-                            </div>
-                            <div class="tooltip">
-                                <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
-                                    Mini-Jeux
-                                </button>
-                            </div>
-                            <div class="tooltip">
-                                <button class="button button-primary disabled" id="lot7" onclick="award('7')" href="" style="width: 95%;">
-                                    Survie
-                                </button>
-                            </div>
-                            <div class="tooltip">
-                                <button class="button button-primary disabled" id="lot8" onclick="award('8')" href="" style="width: 95%;">
-                                    PvP/Faction
-                                </button>
-                            </div>
-                            {#<div class="tooltip">
-                                <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
-                                    Faction
-                                </button>
-                            </div>#}
-                            <!--<div class="tooltip">
-                                <button class="button button-primary disabled" id="lot5" onclick="award('5')" href="" style="width: 95%;">
-                                    PvpBox
-                                </button>
-                            </div>!-->
-                        </div>
-                    </center>
-                </div>
-            </div>
-            <center>
-                <h3 style="display: inline-block; text-align: center;" class="text-center">Les meilleurs votants !</h3>
-            </center>
-            <p class="text-center">Prochaine remise à zéro des votes : le 15 ou le 1 du mois !</p>
-            <div class="vote-tr">
-                <table class="votes">
-                    <thead>
-                    <tr>
-                        <td>Rang</td>
-                        <td>Joueur</td>
-                        <td>Récompense</td>
-                        <td>Votes</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if count(top) > 0 %}
-                        {% for k,data in top %}
-                            <tr class="votes-{{ k + 1 }}">
-                                <td><span>{{ k + 1 }}</span></td>
-                                <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
-                                {% if k == 0 %}
-                                    <td>3000 points boutique</td>
-                                {% elseif k == 1 %}
-                                    <td>2250 points boutique</td>
-                                {% elseif k < 3 %}
-                                    <td>2000 points boutique</td>
-                                {% elseif k < 6 %}
-                                    <td>1500 points boutique</td>
-                                {% elseif k < 10 %}
-                                    <td>750 points boutique</td>
-                                {% elseif k < 20 %}
-                                    <td>625 points boutique</td>
-                                {% elseif k < 30 %}
-                                    <td>250 points boutique</td>
-                                {% else %}
-                                    <td></td>
-                                {% endif %}
-                                <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                    </tbody>
-                </table>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <div id="step1" class="step-content">
+            <h3 class="step-round">I</h3>
+            <div class="step-content-main">
+                <h5 class="text-center">Entrez votre pseudo</h5>
+                <input class="info-ip" type="text" id="pseudo" name="pseudo" value="{{ player }}">
+                <a class="button button-info" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
             </div>
         </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div id="step2" class="step-content disabled">
+            <h3 class="step-round">II</h3>
+            <div class="step-content-main">
+                <h5 class="text-center">Choisissez un Site</h5>
+                <a title="Liste des serveur minecraft" class="button button-primary" id="btm-msf" href="https://serveur-multigames.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur Minecraft (1H30)</a>
+                <div id="pleasewait" style="display: none;">
+                </div>
+            </div>
         </div>
-
-    </section>
-    <!-- Reg Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-user">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vous devez vous enregistrer sur le Forum de BadBlock pour voter !</h1>
-        <a class="button button-danger" href="https://badblock.fr/forum/inscription/" title="S'inscrire"><i class="icon-repeat"></i>S'inscrire !</a>
     </div>
-    <!-- Reg modal -->
-    <!-- Time Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-time">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="time-title">Vous devez attendre pour voter !</h1>
-        <a class="button button-danger" data-remodal-action="close" title="Retour"><i class="icon-repeat"></i>Retour</a>
+    <div class="col-12 col-md-4">
+        <div class="step-content">
+            <h3 class="step-round">III</h3>
+            <div class="step-content-main">
+                <h5 class="text-center">Obtenez votre récompense</h5>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
+                        SkyBlock
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
+                        Mini-Jeux
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot7" onclick="award('7')" href="" style="width: 95%;">
+                        Survie
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot8" onclick="award('8')" href="" style="display: none; width: 95%;">
+                        Ne pas cliquer
+                    </button>
+                </div>
+                <div class="tooltip">
+                    <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
+                        Faction
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Time modal -->
-
-    <!-- End Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="vote-end">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Merci de votre soutiens !</h1>
-        <a class="button button-danger" href="#" title="Fermer"><i class="icon-repeat"></i>Fermer</a>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Joueur</th>
+                    <th scope="col">Récompense</th>
+                    <th scope="col">Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if count(top) > 0 %}
+                {% for k,data in top %}
+                <tr class="votes-{{ k + 1 }}">
+                    <td><span>{{ k + 1 }}</span></td>
+                    <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
+                    {% if k == 0 %}
+                    <td>3000 points boutique</td>
+                    {% elseif k == 1 %}
+                    <td>2250 points boutique</td>
+                    {% elseif k < 3 %} <td>2000 points boutique</td>
+                        {% elseif k < 6 %} <td>1500 points boutique</td>
+                            {% elseif k < 10 %} <td>750 points boutique</td>
+                                {% elseif k < 20 %} <td>625 points boutique</td>
+                                    {% elseif k < 30 %} <td>250 points boutique</td>
+                                        {% else %}
+                                        <td></td>
+                                        {% endif %}
+                                        <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
     </div>
+</div>
+<script async>
+var type;
+var pseudo;
+var error = false;
 
-    <!-- Info Modal -->
-    <div class="remodal modal-remodal" data-remodal-id="info-modal">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1 id="title"></h1>
-        <a class="button button-danger" href="#" title="Fermer"><i class="icon-closetab"></i>Fermer</a>
-    </div>
-    <!-- Info modal -->
-
-
-    <script async>
-        var type;
-        var pseudo;
-        var error = false;
-
-        function start() {
-            if( window.canRunAds === undefined )
-            {
-                $('[data-remodal-id=blc]').remodal().open();
-                return;
-            }
-            if($('#pseudo').val() == "" || $('#pseudo').val() == null) {
-            }else{
-                pseudo = $('#pseudo').val();
-                var request = $.ajax({
-                    url: "/vote/playerexists",
-                    method: "POST",
-                    data: {pseudo : pseudo},
-                    dataType: "html",
-                    success: function (data) {
-                        $("#step1").addClass("disabled");
-                        $("#step2").removeClass("disabled");
-                        $("#lot1").removeClass("disabled");
-                        $("#lot2").removeClass("disabled");
-                        $("#lot3").removeClass("disabled");
-                        $("#lot4").removeClass("disabled");
-                        $("#lot5").removeClass("disabled");
-                        $("#lot6").removeClass("disabled");
-                        $("#lot7").removeClass("disabled");
-                        $("#lot8").removeClass("disabled");
-                        $("#pleasewait").hide();
-                    }
-                });
-
-                request.fail(function( jqXHR, msg ) {
-                    if(jqXHR.status == 404)
-                    {
-                        $("#success-alert").hide();
-                        $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
-                        $("#err-alert").show();
-                        $("#pleasewait").hide();
-                    }
-                    else if(jqXHR.status == 405)
-                    {
-                        $("#step1").addClass("disabled");
-                        $("#step2").removeClass("disabled");
-                        $("#lot1").removeClass("disabled");
-                        $("#lot2").removeClass("disabled");
-                        $("#lot3").removeClass("disabled");
-                        $("#lot4").removeClass("disabled");
-                        $("#lot5").removeClass("disabled");
-                        $("#lot6").removeClass("disabled");
-                        $("#lot7").removeClass("disabled");
-                        $("#lot8").removeClass("disabled");
-                        $("#pleasewait").html(jqXHR.responseText);
-                        $("#pleasewait").show();
-                    }
-                });
-            }
-        }
-
-        function vote(wb)
-        {
-            $("#lot1").removeClass("disabled");
-            $("#lot2").removeClass("disabled");
-            $("#lot3").removeClass("disabled");
-            $("#lot4").removeClass("disabled");
-            $("#lot5").removeClass("disabled");
-            $("#lot6").removeClass("disabled");
-            $("#lot7").removeClass("disabled");
-            $("#lot8").removeClass("disabled");
-            window.open(wb, '_blank');
-            $("#step2").addClass("disabled");
-            setTimeout(function () {
+function start() {
+    if (window.canRunAds === undefined) {
+        $('[data-remodal-id=blc]').remodal().open();
+        return;
+    }
+    if ($('#pseudo').val() == "" || $('#pseudo').val() == null) {} else {
+        pseudo = $('#pseudo').val();
+        var request = $.ajax({
+            url: "/vote/playerexists",
+            method: "POST",
+            data: { pseudo: pseudo },
+            dataType: "html",
+            success: function(data) {
+                $("#step1").addClass("disabled");
+                $("#step2").removeClass("disabled");
+                $("#lot1").removeClass("disabled");
+                $("#lot2").removeClass("disabled");
+                $("#lot3").removeClass("disabled");
+                $("#lot4").removeClass("disabled");
+                $("#lot5").removeClass("disabled");
+                $("#lot6").removeClass("disabled");
+                $("#lot7").removeClass("disabled");
+                $("#lot8").removeClass("disabled");
                 $("#pleasewait").hide();
-            }, 5000);
+            }
+        });
+
+        request.fail(function(jqXHR, msg) {
+            if (jqXHR.status == 404) {
+                $("#success-alert").hide();
+                $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
+                $("#err-alert").show();
+                $("#pleasewait").hide();
+            } else if (jqXHR.status == 405) {
+                $("#step1").addClass("disabled");
+                $("#step2").removeClass("disabled");
+                $("#lot1").removeClass("disabled");
+                $("#lot2").removeClass("disabled");
+                $("#lot3").removeClass("disabled");
+                $("#lot4").removeClass("disabled");
+                $("#lot5").removeClass("disabled");
+                $("#lot6").removeClass("disabled");
+                $("#lot7").removeClass("disabled");
+                $("#lot8").removeClass("disabled");
+                $("#pleasewait").html(jqXHR.responseText);
+                $("#pleasewait").show();
+            }
+        });
+    }
+}
+
+function vote(wb) {
+    $("#lot1").removeClass("disabled");
+    $("#lot2").removeClass("disabled");
+    $("#lot3").removeClass("disabled");
+    $("#lot4").removeClass("disabled");
+    $("#lot5").removeClass("disabled");
+    $("#lot6").removeClass("disabled");
+    $("#lot7").removeClass("disabled");
+    $("#lot8").removeClass("disabled");
+    window.open(wb, '_blank');
+    $("#step2").addClass("disabled");
+    setTimeout(function() {
+        $("#pleasewait").hide();
+    }, 5000);
+}
+
+function award(type) {
+    $("#lot1").addClass("disabled");
+    $("#lot2").addClass("disabled");
+    $("#lot3").addClass("disabled");
+    $("#lot4").addClass("disabled");
+    $("#lot5").addClass("disabled");
+    $("#lot6").addClass("disabled");
+    $("#lot7").addClass("disabled");
+    $("#lot8").addClass("disabled");
+
+    var request = $.ajax({
+        url: "/vote/award",
+        method: "POST",
+        data: {
+            pseudo: pseudo,
+            type: type
+        },
+        dataType: "html",
+        success: function(data) {
+            $("#pleasewait").hide();
+
+            $("#err-alert").hide();
+            $("#success-alert").html("<i class=\"fas fa-check-circle\"></i> " + data);
+            $("#success-alert").show();
         }
+    });
 
-        function award(type) {
-            $("#lot1").addClass("disabled");
-            $("#lot2").addClass("disabled");
-            $("#lot3").addClass("disabled");
-            $("#lot4").addClass("disabled");
-            $("#lot5").addClass("disabled");
-            $("#lot6").addClass("disabled");
-            $("#lot7").addClass("disabled");
-            $("#lot8").addClass("disabled");
-
-            var request = $.ajax({
-                url: "/vote/award",
-                method: "POST",
-                data: {
-                    pseudo : pseudo,
-                    type : type
-                },
-                dataType: "html",
-                success: function (data) {
-                    $("#pleasewait").hide();
-
-                    $("#err-alert").hide();
-                    $("#success-alert").html("<i class=\"fas fa-check-circle\"></i> " + data);
-                    $("#success-alert").show();
-                }
-            });
-
-            request.fail(function( jqXHR, msg ) {
-                if(jqXHR.status == 404){
-                    $("#success-alert").hide();
-                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
-                    $("#err-alert").show();
-                    $("#pleasewait").hide();
-                }else if (jqXHR.status == 405){
-                    $("#success-alert").hide();
-                    $("#err-alert").html(jqXHR.responseText);
-                    $("#err-alert").show();
-                    $("#pleasewait").hide();
-                }else if (jqXHR.status == 500){
-                    $("#success-alert").hide();
-                    $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
-                    $("#err-alert").show();
-                    $("#pleasewait").hide();
-                }
-            });
+    request.fail(function(jqXHR, msg) {
+        if (jqXHR.status == 404) {
+            $("#success-alert").hide();
+            $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> As-tu marqué correctement le pseudo ? Il n'existe pas sur le site. Tu peux te créer un compte <a title='Inscription' target='_blank' href='https://badblock.fr/forum/inscription/'>ici</a>.");
+            $("#err-alert").show();
+            $("#pleasewait").hide();
+        } else if (jqXHR.status == 405) {
+            $("#success-alert").hide();
+            $("#err-alert").html(jqXHR.responseText);
+            $("#err-alert").show();
+            $("#pleasewait").hide();
+        } else if (jqXHR.status == 500) {
+            $("#success-alert").hide();
+            $("#err-alert").html("<i class=\"fas fa-exclamation-circle\"></i> Une erreur est survenue lors du vote. Ouvre un ticket sur le Forum.");
+            $("#err-alert").show();
+            $("#pleasewait").hide();
         }
-
-    </script>
+    });
+}
+</script>
 {% endblock %}
-
