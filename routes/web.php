@@ -112,6 +112,8 @@ Route::group([
         //Gestion section forum
         Route::get('/forum', 'section\ForumController@index');
 
+        Route::get('/connection', 'section\StaffController@connection')->middleware('can:gestion_index');
+
         Route::get('/blog', 'section\RedacController@blog')->middleware('can:gestion_redac');
 
         Route::get('/build', 'section\BuildController@index')->middleware('can:gestion_build');

@@ -45,4 +45,33 @@ class StaffController extends Controller
         return view('section.staff')->with('user', $data);
     }
 
+
+    public function connection(){
+
+        $Data = DB::connection('mongodb_server')
+            ->collection('modoSessions')
+            ->where('timestamp', '>=', strtotime(date('Y-m')))
+            ->groupBy('playerName')
+            ->get(['totalTime']);
+
+        $Staff = [];
+
+        foreach ($Data as $player){
+            $Time = DB::connection('mongodb_server')
+                ->collection('modoSessions')
+                ->where('timestamp', '>=', strtotime(date('Y-m')))
+                ->where('playerName', '=', $player['playerName'])
+                ->sum('totalTime');
+            array_push($Staff, ['name' => $player['playerName'], 'time' => $Time]);
+        }
+
+        usort($Staff, function($a, $b) {
+            return $a['time'] <=> $b['time'];
+        });
+
+
+
+        return view('section.timestaff')->with('user', $Staff);
+    }
+
 }
