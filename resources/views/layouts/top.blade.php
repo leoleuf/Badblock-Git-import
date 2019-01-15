@@ -123,6 +123,7 @@
                             @endcan
                                 <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-camera-retro"></i>  Preuves</a></li>
                                 <li><a href="/section/mod" class="waves-effect"><i class="fas fa-shield-alt"></i>  Modération</a></li>
+                                <li><a href="/section/connection" class="waves-effect"><i class="fa fa-eyes"></i>  Temps de connection</a></li>
                             @can('gestion_build')
                                 <li><a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>  Builders</a></li>
                             @endcan
