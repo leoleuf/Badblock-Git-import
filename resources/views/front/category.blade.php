@@ -191,7 +191,7 @@
                                             </ul>
                                         </div>
                                         @php($totalReviews += $row->reviews * 7)
-                                        @php($average += $row->reviews)
+                                        @php($average += ($row->note == 0) ? 5 : $row->note)
                                         @php($averageCount++)
                                         <p class="serveur-normal"><br />
                                             @php($dozpa = substr_count($row->short_desc, "\r") + substr_count($row->short_desc, "\n"))
