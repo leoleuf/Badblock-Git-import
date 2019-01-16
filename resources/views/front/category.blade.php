@@ -399,7 +399,7 @@
             "playersOnline": "",
             "url": "@yield('canonical')"
             },
-            "ratingValue": "{{ round($average / $averageCount, 2)) }}",
+            "ratingValue": "{{ round($average / $averageCount, 2) }}",
             "ratingCount": "{{ $totalReviews }}"
         }
     </script>
