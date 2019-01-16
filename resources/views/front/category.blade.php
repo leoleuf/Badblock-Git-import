@@ -164,6 +164,9 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>!-->
                                 @endif
+                        @php($totalReviews = 0)
+                        @php($average = 0)
+                        @php($averageCount = 0)
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
@@ -185,6 +188,9 @@
                                                 @endif &nbsp;&nbsp;&nbsp;
                                             </ul>
                                         </div>
+                                        @php($totalReviews += $row->reviews * 7;)
+                                        @php($average += $row->reviews;)
+                                        @php($averageCount++;)
                                         <p class="serveur-normal"><br />
                                             @php($dozpa = substr_count($row->short_desc, "\r") + substr_count($row->short_desc, "\n"))
                                             @if (intval($dozpa) > 4)
@@ -391,8 +397,8 @@
             "playersOnline": "",
             "url": "@yield('canonical')"
             },
-            "ratingValue": "5",
-            "ratingCount": "{{ intval($about->clickCount)+intval($about->copyCount) }}"
+            "ratingValue": "@php(echo (round($average / $averageCount, 2)))",
+            "ratingCount": "{{ $totalReviews }}"
         }
     </script>
 
