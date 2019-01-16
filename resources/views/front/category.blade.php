@@ -163,6 +163,8 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>!-->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
                                 @endif
                         @foreach($data as $row)
                             <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">

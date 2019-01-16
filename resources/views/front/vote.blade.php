@@ -172,13 +172,13 @@
                                             </div>
 
                                             @if (isMobile())
-                                                <ins class="adsbygoogle"
+         <!--                                       <ins class="adsbygoogle"
                                                      style="display:inline-block;width:336px;height:280px"
                                                      data-ad-client="ca-pub-1905923613312160"
                                                      data-ad-slot="1240880006"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
+                                                </script>!-->
                                             @endif
                                             <div id="wait">
                                                 <noscript>
@@ -194,6 +194,7 @@
                                         @if (!isMobile())
                                             <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         @else
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                                         @endif
 
                                         <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
