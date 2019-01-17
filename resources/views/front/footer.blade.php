@@ -52,6 +52,9 @@ if ($date != $creationDate)
                         <li><a title="VPN detect" href="https://ipdetector.info">Detect vpn</a></li>
                         <li></li>
                     </ul>
+                @if (!_bot_detected())
+                    <IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="1" HEIGHT="1" BORDER="0" />
+                @endif
             </div>
             <!--<div class="col-lg-6  col-md-12">
             </div>
