@@ -48,10 +48,10 @@ class SharexController extends Controller
         $Data = DB::table('shareX')->where('user_id', '=', Auth::user()->id)->first();
 
         $json = [
-            'Name' => "images.badblock.fr",
+            'Name' => "cdn.badblock.fr",
             'DestinationType' => "ImageUploader",
             'RequestType' => "POST",
-            'RequestURL' => "https://dev-manager.badblock.fr/api/upload",
+            'RequestURL' => "https://manager.badblock.fr/api/upload",
             'FileFormName' => 'image',
             'Arguments' => [
                 'token' => $Data->token
