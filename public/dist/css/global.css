@@ -1,462 +1,667 @@
-/* 
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
+/* Normalize title */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+  letter-spacing: -.1rem;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif; }
 
-CODE CSS DE BADBLOCK
-Le design du site badblock.fr a été fait par LeFuturiste, Hooki et Dreaams.
+/* Normalize a */
+a:hover {
+  text-decoration: none;
+  color: #fff; }
 
-Si quelque chose vous plaît n'hésitez pas à regarder comment cela a été fait, certains de nos modèles viennent
-du site www.w3school.com . Allez y faire un tour !
+header {
+  background-color: #34495e; }
+  header .header-container {
+    padding: 15px 0px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    header .header-container .header-logo-container, header .header-container .header-login-container {
+      display: flex;
+      align-items: center; }
+      header .header-container .header-logo-container img, header .header-container .header-login-container img {
+        width: 70px; }
+      header .header-container .header-logo-container .header-title, header .header-container .header-login-container .header-title {
+        font-size: 2em;
+        margin-left: 20px;
+        margin-bottom: 0;
+        color: #fff; }
+      header .header-container .header-logo-container .header-subtitle, header .header-container .header-login-container .header-subtitle {
+        color: #fff;
+        margin-left: 20px;
+        font-size: 1.3em;
+        opacity: .8; }
+      header .header-container .header-logo-container .header-login .button.button-primary, header .header-container .header-login-container .header-login .button.button-primary {
+        margin-left: 0px; }
+        @media (min-width: 768px) {
+          header .header-container .header-logo-container .header-login .button.button-primary, header .header-container .header-login-container .header-login .button.button-primary {
+            margin-left: 5px; } }
+      @media (max-width: 768px) {
+        header .header-container .header-logo-container .header-login .button, header .header-container .header-login-container .header-login .button {
+          width: 100%; } }
 
-Les commentaires ont été écrits par Hooki,
-pour me contacter en cas de besoin: hooki.kibo@gmail.com ou fragan.fournet@gmail.com (merci d'essayer d'abords sur la 1er).
-
-Version du code : 3.2
-Date de modification majeur: 05/09/2018
-
-LES COMMENTAIRES QUI VONT SUIVRE SONT DES RAPPELS POUR MOI (Hooki, vous n'avez pas besoin d'en tenir compte).
-
-Bug a fix : Responsive;
-Design à faire : Launcheur / Uploads / Staff / Dev;
-
-*/
-
-@import url("https://fonts.googleapis.com/css?family=Bungee");
-@import url("https://fonts.googleapis.com/css?family=Righteous");
-@import url("https://fonts.googleapis.com/css?family=Quicksand");
-
-/* Pour éviter d'avoir moulte ligne de code, j'ai import directement via le fichier. ATTENTION !! LE CDN RISQUE DE NE PAS FONCTIONNER !! */
-
-@import 'dreaams.css';
-@import 'rank.css';
-@import 'xmalware.css';
-@import 'dev-info.css';
-@import 'bbnews.css';
-
-/* VERSION CDN */
-
-/*
-@import url('https://cdn.badblock.fr/css/dreaams.css');
-@import url('https://cdn.badblock.fr/css/rank.css');
-@import url('https://cdn.badblock.fr/css/xmalware.css');
-*/
-
-.header .header-logo-container {
-    margin-top: 1em;
-}
-
-.header .header-logo {
-    margin-bottom: 1em !important;
-    width: 30% !important;
-    margin-right: -15px;
-    margin-left: 15px;
-    margin-top: 0px !important;
-}
-
-.ita {
-    font-style: italic;
-}
-
-.text-center
-{
-    text-align: center;
-}
-
-.bold {
-    text-transform: uppercase; }
-
-    /* PAGE SHOP */
-
-    /* Couleur des icônes de la navbar du shop */
-
-    #sky{color: #40A45B;}
-    #fac{color: #A44040;}
-    #play{color: #E68A01;}
-    #pvp{color: #3997C6;}
-    #free{color:#39C6A0;}
-
-
-    /* Class promotion, permet de faire un effet multi-couleur sur un text*/
-    .promotion { 
-        animation : promotion 1s infinite ease-in-out;
-    }
-
-    /* Cadre des promotions , ne pas modifier l'attribut position. */
-    .product-item {
-        position: relative;
-    }
-
-    /* Bulle avec les -50%, -30% etc... */
-    .product-item .promotion-coef {
-        position: absolute;
-        top: -35px;
-        right: -35px;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        text-align: center;
-        line-height: 55px;
-        padding: 3px;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: #2ecc71;
-        background: #fff;
-        border: 1px solid rgba(216,215,215,0.49);
-        font-size: 20px;
-    }
-
-    /* 2ème bulle avec le nouveau/ancien prix, ne pas modifier l'attribut position.*/
-    .product-promotion {
-        position: relative;
-    }
-
-    /* Ancien prix, la valeur "line-through" permet de barré le texte.*/
-    .product-old-price {
-        position: absolute;
-        bottom: 5px;
-        font-size: 12px;
-        text-decoration: line-through;
-    }
-
-    /* Animation lié à la class "promotion" */
-    @keyframes promotion
-    {
-        0% {
-            color: #40A497;
-        }
-        25% {
-            color: #EABA19;
-        }
-        50% {
-            color: #EA4A19;
-        }
-        75% {
-            color: #2FD505;
-        }
-        100% {
-            color: #D92CCE;
-        }
-    }
-
-    /* FIN PAGE SHOP */
-
-    /* PAGE JOUER */ 
-
-
-/* .accordion, .accordion:after & .panel sont là pour la page jouer, pas la peine d'y toucher, modifier simplement la couleur
-si besoin. Lien de référence : https://www.w3schools.com/howto/howto_js_accordion.asp*/
-.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 20px;
-    transition: 0.4s; }
-
-    .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-        font-size: 20px;
-        margin-top: -5px;
-    }
-
-    .panel {
-        padding: 0 18px;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out; }
-
-        .panel p {
-            padding: 15px; }
-
-            .played {
-                margin: 3em 0em; }
-
-
-                /* Form pour les IP du serveur. */
-                .play-form input {
-                    padding: 20px 30px !important;
-                    background-color: #34495E !important;
-                    border-radius: 0px !important; }
-
-                    /* class générique d'input, définit le style.*/
-                    .form-control {
-                        display: block;
-                        width: 70%;
-                        text-transform: uppercase;
-                        font-weight: 700;
-                        font-size: 20px;
-                        height: 54px;
-                        color: #fff; }
-
-                        /* Class pour l'input copié.*/
-                        .copied {
-                            padding: 12px 50px;
-                            width: 30%;
-                            margin: 0 auto;
-                            display: block;
-                            border: none;
-                            font-weight: 700;
-                            text-transform: uppercase;
-                            font-size: 22px;
-                            background-color: #e74c3c;
-                            color: #fff; }
-
-                            /* FIN PAGE JOUER */
-
-                            /* DEBUT PAGE STATS */
-
-                            /* Ici pour décaler les icônes, je ne me souviens plus lesquelles */
-                            i {
-                                margin-right: 10px; }
-
-/* .col-3 est dérivé du système de bootstrap car skeleton ne me convenait pas. Surtout ne pas les supprimées
-car elles sont utilisés partout ! */
-
-/* Ici les col-3 sont utilisé pour faire les carré des stats "généraux" (nbr de joueur co, inscrits etc...)*/
-.col-3 {
-    width: calc(33.333333333% - 30px);
-    padding: 15px;
-    float: left;
-    transition: 0.3s;
-}
-
-.col-3:hover {
-    transform: scale(1.2);
-    width: calc(33.333333333% - 33px); 
-    cursor: default !important;
-}
-
-/* .stats-home corréspond au carré cités juste au-dessus. */
-
-.stats-home .col-3 {
-    text-align: center; }
-
-    .stats-home .col-3 h3 {
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 45px; }
-
-        .stats-home .col-3 p {
-            font-size: 20px;
-            font-style: italic;
-            margin-top: -20px; }
-
-            .stats-home .col-3 a {
-                text-decoration: none;
-                color: #222; }
-
-                .stats-home {
-                    margin:  15px;
-                }
-
-                .stats-home .heading-bar {
-                    margin-top: 0px;
-                }
-
-                .info-stats {
-                    margin: 15px 0px;
-                }
-
-/* .btn-group est un dérivé de w3school, vous pourrez trouvé la méthode sur le site (je n'ai pas internet au moment où j'écrit ce commentaire)
-Attention !! Le design de la barre de recherche repose sur les px ! ne pas les modifiers !
-*/
-
-.btn-group .button-search {
-    padding: 6px 16px;
-    cursor: pointer;
-    float: left;
-    border: none;
-    height: 38px;
-    text-align: center;
-    color: #fff;
-    background-color: #3498db;
-}
-
-.btn-group .input-search {
-    padding: 9px 24px !important;
-    float: left;
-    border: none;
-    border-radius: 0px;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-}
-
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* .button-games est là pour les différents jeux, vous retrouverez les couleurs juste un peu plus bas. */
-
-.button-games {
-    padding: 10px 16px;
-    margin-right: 10px;
-    border: none;
-    color: white;
-    opacity: 0.9;
-    transition: 0.2s;
-    font-size: 18px;
+nav {
+  background-color: #2c3e50;
+  padding: 0px !important; }
+  nav .navbar-toggler-icon {
+    margin-top: 15px;
+    color: #fff; }
+  nav .nav-item {
+    border-top: 3px solid transparent;
+    padding: .5em .1em;
+    transition: border 0.5s; }
+  nav .nav-item .nav-link {
+    color: #d4d7db;
     text-transform: uppercase;
-}
+    font-weight: 600;
+    padding: 12px 16px;
+    font-size: 15px;
+    margin-right: 20px; }
+    nav .nav-item .nav-link i {
+      margin-right: 10px;
+      width: 35px;
+      height: 35px;
+      background-size: 35px 35px; }
+  nav .nav-item:hover {
+    border-color: #d4d7db; }
 
-.button-games:hover {
-    opacity: 1.3;
-    transform: scale(1.06);
-    border-radius: 7px; }
+@media screen and (max-width: 768px) {
+  .header-logo-container, .header-login-container {
+    flex-direction: column; }
 
-    /* Toutes les couleurs associées au .button-games.*/
+  .header-logo-container, .header-login .button.button-primary, .header-login-container {
+    width: 100%; }
 
-    #bedwars {
-        background-color: #e74c3c !important;
-    }
-    #tower {
-        background-color: #f1c40f !important;
-    }
-    #towerrun {
-        background-color: #ff6348 !important;
-    }
-    #rush {
-        background-color: #bdc3c7 !important;
-    }
-    #uhcspeed {
-        background-color: #34495e !important;
-    }
-    #spaceballs {
-        background-color: #e67e22 !important;
-    }
-    #skyb {
-        background-color: #1abc9c !important;
-    }
-    #fb {
-        background-color: #2ecc71 !important;
-    }
-    #box {
-        background-color: #3498db !important;
-    }
-    #faction {
-        background-color: #9b59b6 !important;
-    }
+  .header-login .button.button-primary {
+    margin: 5px 0px; } }
+.content {
+  margin-top: 2.5em; }
 
-    /* Class Inconnu mais vu le nom elle doit servir, si elle ne sert pas supprimer là ainsi que ce commentaire. */
-    .button-games-home {
-        width: 100%;
-    }
-    /* Class Inconnu mais vu le nom elle doit servir, si elle ne sert pas supprimer là ainsi que ce commentaire. */
-    .u-middle-width {
-        width: 70%; }
+iframe {
+  width: 100%;
+  margin-bottom: 1em; }
 
-        /* Responsive des col-3, pas touche !!!!!!!!! */
-        @media screen and (max-width: 768px) {
-            .col-3 {
-                width: calc(100%);
-                padding: 0px; } }
+/* Cover (header) */
+.cover-back {
+  background-image: url("https://cdn.badblock.fr/wd/i/cover-back-1.png");
+  background-color: #f1f1f1;
+  background-size: cover;
+  background-position: center; }
+  .cover-back .cover {
+    background-color: rgba(78, 101, 135, 0.6);
+    padding-top: 50px;
+    padding-bottom: 60px; }
+    .cover-back .cover h3 {
+      color: #fff; }
 
-/* Cette class sert à fixer le bug du menu déroulant à l'horizontal, si un jour le menu déroulant (dropdown) se place à l'horizontal
-modifier display : flex par display: block.
-Note personnel de l'auteur, skeletoncss pu !*/
-.dropdown-dropdown {
-    flex-direction: column !important;
-    margin-left: 50px;
-    z-index: 999; }
+/* General button */
+.button {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 0px;
+  color: #fff !important;
+  transition: all .2s;
+  border: none;
+  /* Red button */
+  /* Green button */
+  /* Blue button */ }
+  .button.button-primary {
+    background-color: #e74c3c; }
+  .button.button-success {
+    background-color: #2ecc71; }
+    .button.button-success:hover {
+      background-color: #51d88c; }
+  .button.button-info {
+    background-color: #3498db; }
+    .button.button-info:hover {
+      background-color: #5ebeff; }
+  .button.button-ts {
+    background-color: #1d3b5b; }
+  .button.button-twitter {
+    background-color: #00aced; }
+  .button.button-facebook {
+    background-color: #3b5998; }
+  .button.button-youtube {
+    background-color: #b00; }
 
+.sidebar .button {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  width: 100%; }
 
+.stats-button-content {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap; }
+  @media (max-width: 768px) {
+    .stats-button-content {
+      justify-content: center; } }
+  .stats-button-content .button-games {
+    display: block;
+    padding: 12px 20px;
+    margin: 0 1em 1em 0;
+    border-radius: 0px;
+    border: none;
+    color: #fff;
+    transition: 0.2s;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 130px;
+    text-align: center;
+    opacity: .9; }
+    .stats-button-content .button-games:hover {
+      transform: scale(1.05);
+      opacity: 1;
+      border-radius: 5px; }
 
+#bedwars {
+  background-color: #e74c3c; }
 
-    .no-link {
-        cursor: pointer;
-        color: #3b5166 !important; }
+#tower {
+  background-color: #f1c40f; }
 
+#towerrun {
+  background-color: #ff6348; }
 
-/* .search et ce qui en découle corrésponde au menu déroulant qu'y s'ouvre quand vous recherchez un joueur dans la page stats
-Attention !! Ce système est fragile est risque de bugué au moindre changement de pixel, il est normalement stable (04/09/2018.) ne pas toucher !!
-*/
-.search
-{
-    list-style-type: none;
-    margin-left: 17px;
-    margin-top: -15px;
-    background-color: #343434;
-    color: #FFF;
-    position: absolute;
-    cursor: default;
-    width: 36.25%;
-    z-index: 99999999;
-}
+#rush {
+  background-color: #bdc3c7; }
 
-.search li {
-    float: left;
-    margin-bottom: 1px solid #ccc;
-    width: calc(100% - 20px);
-    padding: 10px;
-    display: none;
-}
+#uhcspeed {
+  background-color: #34495e; }
 
-.search li:hover {
-    background-color: #111;
-    cursor: pointer;
-}
+#spaceballs {
+  background-color: #e67e22; }
 
-.search li a {
-    padding: 12px;
-    text-decoration: none;
-    margin: 5px;
-    color: #ccc;
-    line-height: 35px;
+.colored-icon {
+  margin-top: -5.5px;
+  display: block;
+  float: left;
+  width: 48px;
+  height: 48px;
+  background-size: 57px 57px; }
 
-}
+.home-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/home.png) no-repeat; }
 
-.search li img {
-    width: 28px;
-    margin-right: -10px;
-    float: left;
-}
+.shopping_basket-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/shopping_basket.png) no-repeat; }
 
-.ui-autocomplete {
-    list-style-type: none;
-    margin-left: -28px;
-    background-color: #343434;
-    color: #FFF;
-    position: absolute;
-    cursor: default;
-}
+.stats-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/stats_column_chart.png) no-repeat; }
 
-/* FIN PAGE STATS */
+.game-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/games_control.png) no-repeat; }
 
-/* DEBUT PAGE VOTE */
+.star-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/star.png) no-repeat; }
 
-/* Séparateur (section)*/
+.forum-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/forum.png) no-repeat; }
 
-.vote
-{
-    margin: 3% 0px;
-}
+.attachment-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/attachment.png) no-repeat; }
 
-/* .step correspond au 3 grand carré du haut de la page vote , les 3 étapes de vote*/
+.edit-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/edit.png) no-repeat; }
 
-.step
-{
-    position: relative;
-    margin: 50px 15px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    height: 360px;
-}
+.id-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/id.png) no-repeat; }
 
-.step .step-contains
-{
-    margin: 50px 0px;
-}
+.art_palette-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/art_palette.png) no-repeat; }
 
-.step .step-round
-{
+.user-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/user.png) no-repeat; }
+
+.tchat-colored-icon {
+  background: url(https://cdn.badblock.fr/wd/colored-icons/chat_emoticon.png) no-repeat; }
+
+.heading {
+  margin-bottom: 1.2em;
+  font-size: 1.9rem; }
+  .heading.heading-bar {
+    margin: 12px 0 24px;
+    background: rgba(230, 230, 230, 0.7);
+    height: 3px;
+    border-radius: 10px; }
+    @media (max-width: 768px) {
+      .heading.heading-bar {
+        margin-top: 1em; } }
+    .heading.heading-bar span {
+      background: #fff;
+      padding-right: 15px;
+      position: relative;
+      top: -20px; }
+
+.sidebar .heading.heading-bar span {
+  display: block;
+  margin: 0 auto;
+  width: 250px;
+  padding-left: 12px;
+  text-align: center; }
+
+.mosaic {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.card-content {
+  height: 460px;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  margin-bottom: 30px;
+  width: 100%; }
+  @media (min-width: 1100px) {
+    .card-content {
+      width: 350px; } }
+
+.card-content.card-second {
+  width: 230px;
+  height: 380px; }
+  @media (max-width: 900px) {
+    .card-content.card-second {
+      width: 100%; } }
+  .card-content.card-second .card-thumb {
+    height: 150px; }
+  .card-content.card-second .card-subtitle {
+    font-size: 0.9em; }
+  .card-content.card-second .button {
+    margin-top: 1em; }
+.card-content a {
+  color: inherit;
+  text-decoration: none; }
+.card-content:hover {
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); }
+
+.card-content.card-second:hover .card-thumb {
+  height: 80px; }
+
+.card-thumb {
+  height: 235px;
+  overflow: hidden;
+  background-color: #000;
+  transition: height 0.3s; }
+  .card-thumb .img {
+    background-color: #f1f1f1;
+    width: 100%;
+    height: 235px;
+    background-size: 100%; }
+  .card-thumb img {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s,transform 0.3;
+    transform: scale(1); }
+
+.card-content:hover .card-thumb {
+  height: 90px; }
+
+.card-body {
+  position: relative;
+  padding: 20px;
+  height: 185px;
+  transition: height 0.3s; }
+
+.card-content:hover .card-body {
+  height: 330px; }
+
+.card-title {
+  margin: 0;
+  padding: 0 0 10px;
+  font-size: 22px;
+  color: #000;
+  font-weight: 400;
+  transition: all 0.3s; }
+
+.card-content:hover .card-title {
+  animation: titleBlur 0.3s; }
+
+.card-subtitle {
+  margin: 0;
+  padding: 0 0 10px;
+  font-size: 1em;
+  color: #3498db; }
+  .card-subtitle a {
+    margin-right: 8px; }
+    .card-subtitle a .icon {
+      margin-right: 3px; }
+
+.card-content:hover .card-subtitle {
+  animation: subtitleBlur 0.3s; }
+
+.card-description {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  margin: 0;
+  padding: 0;
+  color: #666c74;
+  font-size: 14px;
+  line-height: 27px;
+  opacity: 0;
+  transition: opacity 0.2s,transform 0.2s;
+  transition-delay: 0s;
+  transform: translateY(25px); }
+
+.card-content:hover .card-description {
+  opacity: 1;
+  transition-delay: 0.1s;
+  transform: translateY(0); }
+
+.card-plus {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; }
+  .card-plus .card-plus-text {
+    font-size: 1.5em; }
+    .card-plus .card-plus-text .icon {
+      font-size: 2em; }
+
+@keyframes titleBlur {
+  0% {
+    opacity: 0.6;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.6); }
+  100% {
+    opacity: 1;
+    text-shadow: 0 5px 5px transparent; } }
+@keyframes subtitleBlur {
+  0% {
+    opacity: 0.6;
+    text-shadow: 0 5px 5px rgba(52, 152, 219, 0.6); }
+  100% {
+    opacity: 1;
+    text-shadow: 0 5px 5px transparent; } }
+.dropdown-menu {
+  background-color: #2c3e50;
+  border-radius: 0px;
+  margin-top: -5px;
+  border: none;
+  width: 250px; }
+  .dropdown-menu .dropdown-item {
+    padding: 18px 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #d4d7db;
+    border-top: 2px solid transparent;
+    transition: .5s; }
+    .dropdown-menu .dropdown-item i {
+      margin-right: 10px;
+      width: 35px;
+      height: 35px;
+      background-size: 35px 35px; }
+    .dropdown-menu .dropdown-item:hover {
+      border-top: 3px solid #d4d7db;
+      background-color: transparent; }
+
+.stats-player-search {
+  display: flex;
+  align-items: center;
+  height: 100%; }
+  @media (max-width: 768px) {
+    .stats-player-search {
+      margin-top: 2em; } }
+  .stats-player-search .stats-search-content {
+    margin-top: -1em;
+    width: 100%;
+    position: relative; }
+    .stats-player-search .stats-search-content input {
+      width: calc(100% - 50px);
+      border: none;
+      margin: 0;
+      padding: 6px 9px; }
+    .stats-player-search .stats-search-content button {
+      width: 40px;
+      border: none;
+      margin: 0;
+      padding: 6px 5px;
+      margin-left: -5px;
+      background-color: #3498db;
+      color: #fff; }
+    .stats-player-search .stats-search-content .button {
+      margin-top: 1em; }
+    .stats-player-search .stats-search-content .stats-search-result {
+      display: none;
+      position: absolute;
+      top: 35px;
+      z-index: 2;
+      left: 0;
+      background-color: #333;
+      width: calc(100% - 15px);
+      list-style-type: none;
+      padding: 0px; }
+      .stats-player-search .stats-search-content .stats-search-result li {
+        padding: 1em 12px;
+        transition: .2s; }
+        .stats-player-search .stats-search-content .stats-search-result li:hover {
+          background-color: #222; }
+        .stats-player-search .stats-search-content .stats-search-result li a {
+          padding: 4px 8px;
+          color: #ccc;
+          font-weight: 600;
+          font-size: 1.1em; }
+          .stats-player-search .stats-search-content .stats-search-result li a img {
+            width: 34px;
+            margin-right: 10px; }
+
+.stats-content .stats-content-main {
+  margin: 2em 0px;
+  text-align: center; }
+  .stats-content .stats-content-main .stats-content-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center; }
+  .stats-content .stats-content-main .stats-content-subtitle {
+    font-style: italic;
+    font-weight: 600;
+    color: #545E69;
+    font-size: 1.3em; }
+.stats-content p.ita {
+  font-style: italic;
+  color: #545E69; }
+  @media (max-width: 768px) {
+    .stats-content p.ita {
+      padding: 2px 8px;
+      text-align: center; } }
+
+@media (max-width: 768px) {
+  .staff-content {
+    margin-top: 2em; } }
+.staff-content .staff-content-main:nth-child(2) .staff-content-title {
+  color: #A100B6C0;
+  border-color: #A100B6; }
+.staff-content .staff-content-main:nth-child(3) .staff-content-title {
+  color: #B67F00;
+  border-color: #B67F00; }
+.staff-content .staff-content-main:nth-child(4) .staff-content-title {
+  color: #FA9400;
+  border-color: #FA9400; }
+.staff-content .staff-content-main:nth-child(5) .staff-content-title, .staff-content .staff-content-main:nth-child(6) .staff-content-title {
+  color: #16D438;
+  border-color: #16D438; }
+.staff-content .staff-content-main:nth-child(7) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #E8D72B;
+  border-color: #E8D72B; }
+.staff-content .staff-content-title {
+  font-weight: 400;
+  font-size: 1.5em;
+  color: #e74c3c;
+  margin-bottom: .5em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e74c3c; }
+  .staff-content .staff-content-title span {
+    color: #d4d7db;
+    font-size: .8em;
+    letter-spacing: 2px; }
+.staff-content .staff-content-group {
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  padding-bottom: 1em;
+  padding: 8px; }
+  .staff-content .staff-content-group .staff-content-member {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    position: relative; }
+    .staff-content .staff-content-group .staff-content-member .name {
+      position: absolute;
+      top: -30px;
+      left: -25px;
+      width: 100px;
+      z-index: 100;
+      background-color: #333;
+      text-align: center;
+      color: #fff;
+      border-radius: 5px;
+      display: none;
+      opacity: 0;
+      transition: .2s; }
+      .staff-content .staff-content-group .staff-content-member .name.active {
+        opacity: 1;
+        display: block; }
+    .staff-content .staff-content-group .staff-content-member img {
+      width: 48px;
+      border-radius: 5px; }
+
+.staff-content-member img:hover .name {
+  display: block; }
+
+.play-desc {
+  text-align: center;
+  font-weight: 400;
+  color: #888;
+  width: 100%;
+  margin-bottom: -1em;
+  margin-top: 2em; }
+
+.info-ip {
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  border-radius: 5px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+  pointer-events: none;
+  width: 100%;
+  margin-bottom: 1em;
+  margin-top: 1em; }
+
+.play-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  height: 300px; }
+  .play-content .play-content-input {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    margin-top: 2em; }
+    .play-content .play-content-input h3 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.5em; }
+    .play-content .play-content-input .info-ip {
+      width: calc(100% - 220px);
+      pointer-events: none;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-right: none;
+      margin: 0px; }
+    .play-content .play-content-input button {
+      width: 220px;
+      height: 38px;
+      border: none;
+      border-left: none;
+      background-color: #e74c3c;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      color: #fff;
+      font-weight: 400; }
+
+.info-content .accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s; }
+.info-content .active,
+.info-content .accordion:hover {
+  background-color: #ccc; }
+.info-content .accordion:after {
+  content: '\002B';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px; }
+.info-content .active:after {
+  content: "\2212"; }
+.info-content .panel {
+  padding: 0px 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out; }
+  .info-content .panel img {
+    margin-top: 1em; }
+
+.step-content {
+  position: relative;
+  margin: 50px 15px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  height: 360px; }
+  .step-content button {
+    margin-bottom: 15px;
+  }
+  .step-content .disabled {
+    pointer-events: none;
+    opacity: 0.5; }
+  .step-content .step-round {
     top: -50px;
     left: calc(50% - 50px);
     line-height: 100px;
@@ -467,1225 +672,284 @@ Attention !! Ce système est fragile est risque de bugué au moindre changement 
     text-align: center;
     margin-bottom: 15px;
     position: absolute;
-    color: #fff;
-}
-
-/* class que l'on ajoute pour empêcher l'utilisateur de modifier les infos qu'il a saisi */
-
-.disabled
-{
-    pointer-events: none;
-    opacity: 0.5;
-}
-
-/* Tableau des vote */
-
-.votes
-{
-    text-align: justify;
-    width: 100%;
-}
-
-table.votes tr td:first-child
-{
-    text-align: justify;
-}
-
-/* Pour ce qui ne connaisse pas le pseudo-selecteur :nth-child(n) ou :first-child, il y a un excellent tuto sur mdn de firefox*/
-
-table.votes tr:nth-child(1) {font-size: 32px; color: #EED740;}
-table.votes tr:nth-child(2) {font-size: 28px; color: #A6A6A6;}
-table.votes tr:nth-child(3) {font-size: 24px; color: #CC984D;}
-
-/* .tooltips correspond au infos sur le nombre de bronze donner lors d'un vote */
-
-/* W3school.com >> références */
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    position: absolute;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    z-index: 1;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.tooltip-right {
-    top: 0px;
-    left: 100%;
-}
-
-.tooltip-right::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #555 transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* FIN PAGE VOTE */
-
-/* 05/09/2018 >> Le reste du code est inconnu au batailon, nav-profil doit correspondre à la page profil de l'utilisateur 
-et le reste doit être là pour la barre de navigation refaite par Hooki. */
-
-.nav-profil {
-    background-color: #34495e;
-}
-
-.nav-profil a {
-    padding: 17px 24px;
-    text-decoration: none;
-    float: left;
-    color: #fff;
-    transition: all 0.2s;
-}
-
-.nav-profil a:hover {
-    color: #3498db;
-}
-
-.nav-profil .right {
-    float: right !important;
-}
-
-.nav-profil a img {
-    margin-bottom: 0px;
-}
-
-.table {
-    width: 100%;
-}
-
-.table .btn-primary {
-    text-decoration: none;
-    background-color: #3498db;
-    padding: 7px;
-    color: #fff;
-    transition: all 0.2s;
-}
-
-.table .btn-primary:hover {
-    border-radius: 15px;
-}
-
-.table .btn-disabled {
-    background-color: #e74c3c;
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.7;
-}
-
-.img-anim {
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-.img-anim:hover {
-    transform: scale(1.05);
-}
-
-
-#form-login {
-    display: none;
-    float: left;
-    margin: -0.9px 10px;
-    border-radius: 0;
-    animation: login-enter .7s;
-}
-
-
-.pagination li a {
-    border: none !important;
-    background-color: #3498db !important;
-    padding: 12px 15px !important;
-}
-
-.user-menu {
-    margin-bottom: 10px;
-}
-
-.user-menu ul, .user-info {
-    list-style-type: none;
-}
-
-.user-menu ul .user-tab {
-    display: inline-block;
-    margin: 0px 5px;
-}
-
-.user-menu ul .user-tab:first-child {
-    margin-left: 0px;
-    padding-left: 0px;
-}
-
-.tooltip-right {
-    top: 0px;
-    left: 100%;
-}
-
-.tooltip-right::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 100%;
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent #555 transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
-
-
-#form-login {
-    display: none;
-    float: left;
-    margin: -0.9px 10px;
-    border-radius: 0;
-    animation: login-enter .7s;
-}
-
-
-
-.pagination li a {
-    border: none !important;
-    background-color: #3498db !important;
-    padding: 12px 15px !important;
-}
-
-/*Dreaams*/
-.how-to-gif {
-    height: 300px !important;
-    width: 500px !important;
-}
-
-.how-to-gif:hover {
-    cursor: pointer;
-}
-
-#clic-out-txt {
-    margin-bottom: -2px;
-    margin-top: -20px;
-}
-
-#clic-out {
-    width: calc(100% - 30px);
-    margin-left: 15px;
-}
-
-#clic-out-img {
-    width: 500px !important;
-    height: 365px !important;
-    margin-left: auto;
-}
-
-#rpg-vote {
-    margin-left: 15px;
-}
-
-#vote-link {
-    margin-left: 185px;
-}
-
-#vote-link2 {
-    margin-left: 235px;
-    margin-bottom: 40px;
-}
-
-#outvote {
-    margin-left: 215px;
-}
-
-.align-middle {
-    vertical-align: middle; 
-}
-
-.button-twitter {
-    background-color: #00ACED !important;
-}
-
-.button-facebook {
-    background-color: #3B5998 !important;
-}
-
-.button-youtube {
-    background-color: #BB0000 !important;
-}
-
-.button-discord {
-    background-color: #7289da !important;
-}
-
-.button-teamspeak {
-    background-color: #1d3b5b  !important;
-}
-
-.discord {
-    height: 15px;
-    width: 15px;
-    margin-bottom: -4px;
-}
-
-.informations {
-    width: 100%;
+    color: #fff; }
+  .step-content .step-content-main {
+    margin: 50px 0px;
     display: flex;
-    text-align: center;
+    justify-content: center;
     flex-wrap: wrap;
-    justify-content: center;
-    height: 75px;
-}
-
-.informations span {
-    width: 300px;
-}
-
-#recrutement-button {
-    background-color: #d9534f;
-    width: 100%;
-}
-
-#staff-button {
-    background-color: #5cb85c;
-    width: 100%;
-}
-
-#devblog-button {
-    background-color: #428bca;
-    width: 100%;
-}
-
-.cover-back {
-    background-position: center;
-    background-size: 100%;
-}
-
-.product-price {
-    color: black;
-}
-
-#very-small {
-    font-size: 0.7em;
-}
-
-.product-item:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-}
-
-.shop-menu {
-    display: flex;
-    justify-content: center;
-    border: none;
-    margin-bottom: 0px !important;
-}
-
-.shop-full-w {
-    background-color: #2c3e50;
-    padding: 12px 24px;
-    margin-bottom: 30px;
-}
-
-.shop-menu-active {
-    text-transform: uppercase;
-    font-weight: 700;
-    border-bottom: none !important;
-    transition: all 0.2s;
-    cursor: pointer;
-    margin: 0px !important;
-    padding: 12px 24px !important;
-    font-size: 18px !important;
-}
-
-.shop-menu-active.active {
-    opacity: 1;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(1) a{
-    color: #42b3f4 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(2) a{
-    color: #55FF55 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(3) a{
-    color: #7b4dcb !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(4) a{
-    color: #E19806 !important;
-}
-
-.shop-menu .shop-menu-menu .shop-menu-active:nth-child(5) a{
-    color: #C64F4F !important;
-}
-
-
-
-.shop-menu-active:hover {
-    transform: scale(1.1);
-}
-
-.product-list {
-    display: flex;
-    justify-content: center;
-}
-
-.recharge-back {
-    margin-top: -45px;
-}
-
-.center {
-    text-align: center !important;
-    vertical-align: middle !important;
-}
-
-.recharge-heading {
-    margin-top: 50px;
-}
-
-.link {
-    text-decoration: none;
-    font-style: italic;
-}
-
-.shop-recharge-head {
-    width: 15%;
-    margin-bottom: 10px;
-    margin-top: -20px;
-}
-
-.shop-recharge-validation-pseudo {
-    width: 100%;
-}
-
-.shop-recharge-validation-code {
-    margin-left: 15px;
-    width: 25%;
-}
-
-.recharge-bottom {
-    margin-bottom: -35px;
-}
-
-.article-checkbox  {
-    display: inline !important;
-    font-size: 0.8em;
-}
-
-.paypal {
-    height: 601px;
-    margin-top: 10px;
-    border-style: double;
-    border-color: #42b3f4;
-}
-
-.paypal:hover, .sms:hover, .sms-appel-neosurf:hover, .paysafecard:hover, .btn:hover {
-    transform: scale(1.05);
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.sms {
-    height: 200px;
-    margin-top: 10px;
-    border-style: double;
-    border-color: #55FF55;
-}
-
-.sms-appel-neosurf {
-    height: 195px;
-    margin-top: 25px;
-    border-style: double;
-    border-color: #C64F4F;
-}
-
-.paysafecard {
-    height: 195px;
-    margin-top: 25px;
-    border-style: double;
-    border-color: #8B4FC6;
-}
-
-.form-pseudo {
-    width: 100% !important;
-}
-
-.recharge-step-1 {
-    margin-top: -25px;
-}
-
-.tab-top {
-    width: 90%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    font-size: 1.25em;
-    color: black !important;
-}
-.text-sms {
-    margin-top: 5px;
-}
-.paypal-img {
-    width: 500px;
-    margin-top: 65px;
-    height: 150px;
-}
-
-.master-img {
-    height: 20%;
-}
-
-.cb-img {
-    width: 30px;
-    margin-left: 25px;
-}
-
-#haut-boutique {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-}
-
-.visa-img {
-    width: 500px;
-    height: 200px;
-}
-
-.smsplus-img {
-    height: 60px;
-}
-
-.neosurf-img {
-    width: 200px;
-    height: 75px;
-}
-
-.tel-txt {
-    font-size: 1.9em;
-    font-weight: bold;
-    color: #ff3399;
-    letter-spacing: 4px;
-}
-
-.paysafe-img {
-    width: 525px;
-    height: 90px;
-    margin-top: 5px;
-}
-.sms:hover > .info {
-    display: block;
-}
-
-.small-offer:hover > .info {
-    display: block;
-}
-
-.small-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.medium-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.big-offer:hover > .hidden-text {
-    display: block;
-    margin-bottom: -5px;
-    margin-top: -10px;
-}
-
-.hidden-text {
-    display: none;
-    font-size: 0.7em;
-}
-
-.info {
-    display: none;
-    font-size: 0.7em;
-    margin-top: -20px;
-    margin-bottom: 5px;
-}
-
-.progress-bar {
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 25px, rgba(255,255,255,.5) 25px, rgba(255,255,255,.5) 50px);
-}
-
-.small-offer {
-    height: 150px;
-    padding-top: 8px;
-    border-style: double;
-    border-color: #42b3f4;
-    font-size: 1.2em;
-}
-
-.small-offer:hover {
-    transform: scale(1.02);
-    transition: 0.5s;
-}
-
-.medium-offer:hover {
-    transform: scale(1.04);
-    transition: 0.5s;
-}
-
-.big-offer:hover {
-    transform: scale(1.06);
-    transition: 0.5s;
-}
-
-.success-center {
-    text-align: center;
-}
-
-.small-offer-btn {
-    margin-top: 5px;
-}
-
-.medium-offer {
-    height: 200px;
-    padding-top: 18px;
-    border-style: double;
-    border-color: #55FF55;
-    font-size: 1.5em;
-    border-width: medium;
-}
-
-.top-medium {
-    margin-top: 35px;
-}
-
-.top-big {
-    margin-top: 35px;
-}
-
-.medium-offer-btn {
-    margin-top: 15px;
-    width: 60%
-}
-
-.big-offer-btn {
-    width: 75%
-}
-
-.big-offer {
-    height: 250px;
-    margin-left: 275px;
-    width: 50%;
-    padding-top: 35px;
-    border-style: double;
-    border-width: thick;
-    font-size: 2.3em;
-}
-
-.promotion-border {
-    animation : border-promotion 1.5s infinite ease-in-out;
-}
-
-.h6-small {
-    font-size: 1.2em !important;
-    margin-bottom: -18px !important;
-    line-height: 25px !important;
-}
-
-.h6-medium {
-    font-size: 1.2em !important;
-    margin-bottom: -35px !important;
-    line-height: 35px !important;
-}
-
-.h6-big {
-    font-size: 1.2em !important;
-    margin-bottom: -35px !important;
-    line-height: 50px !important;
-}
-
-
-.players-list-avatar {
-    width: 75px !important;
-    height: 75px !important;
-    border-radius: 3px;
-}
-
-.players-list-twitter {
-    text-decoration: none !important;
-    color: black;
-}
-
-.players-list-twitter:hover {
-    text-decoration: underline !important;
-    color: black;
-}
-
-a {
-    text-decoration:none;
-}
-
-.dev-card:hover {
-    transform: scale(1.015);
-    transition: 0.5s;
-    transition-timing-function: ease;
-}
-
-.players-list-desc {
-    font-size: 1.09em;
-}
-
-.players-list-username {
-    font-size: 1.2em;
-}
-
-.inline {
-    display: inline-flex;
-    justify-content: center;
-    width: 100%;
-    overflow-x: hidden;
-    flex-wrap: wrap;
-}
-
-.staff-width {
-    width: 100%;
-}
-
-.card-staff {
-    margin: 10px 15px;
-    text-align:center;
-}
-
-.card-staff img {
-    display: flex;
-    width: 60px;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    
-}
-
-.card-staff .players-list-name {
-    text-transform: uppercase;
-    font-weight: 700;
-    text-align: center;
-}
-
-.margin-top-small {
-    margin-top: -15px;
-}
-
-.margin {
-    margin-left: 10px;
-}
-
-.info-recrutement {
-    margin-top: 115px !important;
-    width: 100%;
-}
-
-.info-recrutement:hover {
-    background-color: #eb6e60 !important;
-    transform: scale(1.02);
-    transition: 0.5s;
-}
-
-.solde-button {
-    margin-right: 15px;
-    background-color: #2ecc71 !important;
-}
-
-.solde-button:hover {
-    cursor: default;
-}
-
-.footer-success {
-    margin-bottom: -200px !important;
-}
-
-.button-success-recharge {
-    width: 75%;
-    height: 75px;
-    background-color: #2ecc71 !important;
-}
-
-.button-danger-recharge {
-    width: 75%;
-    height: 75px;
-    
-}
-
-.text-success {
-    margin-top: 20px;
-    color: white;
-}
-.img-succes {
-    width: 75%;
-    margin-top: 50px;
-}
-
-.user-tab {
-    margin-right: -2px !important;
-}
-
-.no-decoration {
-    text-decoration: none;
-}
-
-
-.header-too-big {
-    margin-top: -38px;
-}
-
-.table-stats {
-    font-size: 1.09em;
-}
-
-.animation-table:hover {
-    border-bottom-style: groove;
-    transform: scale(1.01);
-    transition: 0.4s;
-    border-width: 2px;
-    cursor: pointer;
-}
-
-.animation-table {
-    border-top-style: groove;
-    border-color: #34495e;
-    border-width: 2px;
-}
-
-.table-stats-head {
-    font-size: 1.1em;
-}
-
-.decoration-thead {
-    font-weight: bold !important;
-    text-align: center;
-    border-bottom-style: double !important;
-    border-width: 3px;
-    border-color: #34495e;
-    font-family: 'Quicksand', sans-serif;
-}
-
-.decoration-td {
-    text-align: center !important;
-    font-family: 'Quicksand', sans-serif;
-}
-.decoration-place:hover {
-    color: #7b4dcb;
-}
-.decoration-nickname {
-    text-align: left !important;
-}
-.decoration-nickname:hover {
-    color: #3498db !important;
-}
-.decoration-class:hover {
-    color: #2ecc71 !important;
-}
-.decoration-kill:hover {
-    color: #E19806;
-}
-.decoration-death:hover {
-    color: #3366cc;
-}
-.decoration-points:hover {
-    color: #C64F4F;
-}
-.decoration-win:hover {
-    color: #66ff66;
-}
-.decoration-lose:hover {
-    color: #ff3333;
-}
-
-.attachment-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/attachment.png') no-repeat;
-}
-
-.star-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/star.png') no-repeat;
-}
-
-.gear-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/gear.png') no-repeat;
-}
-
-.art_palette-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/art_palette.png') no-repeat;
-}
-
-.id-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/id.png') no-repeat;
-}
-
-.calendar_year-colored-icon {
-  background: url('https://cdn.badblock.fr/wd/colored-icons/calendar_year.png') no-repeat;
-}
-
-.button-first-place {
-    background-color: #EED740;
-    padding: 10px;
-    color: white;
-    width: 10%;
-    text-align: center;
-}
-
-.button-first-place:hover {
-    color: white;
-}
-
-.button-second-place {
-    background-color: #A6A6A6;
-}
-
-.button-third-place {
-    background-color: #CC984D;
-}
-
-.btn-info {
-    border: none;
-    cursor: pointer;
-}
-.btn-info:hover {
-}
-.btn-info-dropdown {
-    position: relative;
-    display: inline-block;
-}
-.btn-info-dropdown-child {
-    display: none;
-    min-width: 50px;
-    z-index: 1000;
-}
-.btn-info-dropdown-child a {
-    text-decoration: none;
-    display: block;
-}
-.btn-info-dropdown:hover .btn-info-dropdown-child {
-    display: block;
-}
-
-
-/*CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS CSS POUR LA PAGE BADBLOCKNEWS*/
-@import url("https://fonts.googleapis.com/css?family=Bungee");
-.col-3 {
-  width: calc(33.333333333% - 30px);
-  padding: 15px;
-  float: left;
-  transition: 0.3s; }
-
-  .col-3:hover {
-      transform: scale(1.2);
-      width: calc(33.333333333% - 33px); }
-
-      .stats-home .col-3 {
+    align-items: center; }
+    .step-content .step-content-main a {
+      color: #fff;
+      font-weight: 700; }
+
+.table tbody {
+  text-align: left;
+  vertical-align: middle; }
+  .table tbody tr:nth-child(1) {
+    color: #eed740;
+    font-size: 25px; }
+  .table tbody tr:nth-child(2) {
+    color: #A6A6A6;
+    font-size: 23px; }
+  .table tbody tr:nth-child(3) {
+    color: #CC984D;
+    font-size: 20px; }
+
+.recharge-info img {
+  width: calc(30.33% - 1em);
+  margin-right: 1em;
+  margin-bottom: 1em; }
+  @media (min-width: 768px) {
+    .recharge-info img {
+      width: calc(13% - 18px);
+      margin-bottom: 0; } }
+
+.recharge-button {
+  display: flex;
+  align-items: center;
+  height: 100%; }
+  @media (max-width: 768px) {
+    .recharge-button {
+      margin-top: 1em; } }
+
+.content.shop {
+  display: flex;
+  justify-content: center; }
+
+.shop-ranks {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1500px; }
+  @media (max-width: 1100px) {
+    .shop-ranks {
+      overflow-x: scroll; } }
+  .shop-ranks .shop-ranks-header {
+    height: 200px; }
+    .shop-ranks .shop-ranks-header ul {
+      display: flex;
+      list-style-type: none;
+      width: 100%;
+      height: 200px;
+      margin: 0;
+      padding: 0; }
+      .shop-ranks .shop-ranks-header ul .ranks-card-header {
+        display: flex;
+        flex-wrap: wrap;
+        width: 250px;
+        height: 250px;
+        align-items: center;
+        justify-content: center;
+        padding: 10px; }
+        .shop-ranks .shop-ranks-header ul .ranks-card-header.default {
+          background-color: #f7f7f7;
+          font-size: 20px;
+          font-weight: 500;
+          color: #888;
+          text-transform: uppercase;
           text-align: center; }
+        .shop-ranks .shop-ranks-header ul .ranks-card-header img {
+          width: 55%; }
+        .shop-ranks .shop-ranks-header ul .ranks-card-header h3 {
+          text-transform: uppercase;
+          font-weight: 400;
+          color: #fff;
+          letter-spacing: 1px;
+          width: 100%;
+          text-align: center;
+          margin: .5em 0; }
+        .shop-ranks .shop-ranks-header ul .ranks-card-header a {
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 9px 10px;
+          height: 50px;
+          color: #fff;
+          text-decoration: none;
+          z-index: 100; 
+          cursor: pointer;
+          transition: .2s;
+          }
+          .shop-ranks .shop-ranks-header ul .ranks-card-header a:hover {
+            transform: scale(1.05);
+          }
+          .shop-ranks .shop-ranks-header ul .ranks-card-header a span {
+            color: #edfc00; }
+          .shop-ranks .shop-ranks-header ul .ranks-card-header a i {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 50px;
+            margin-top: -9px;
+            margin-right: -10px;
+            margin-left: 5px;
+            line-height: 50px;
+            padding: 0px 7px; }
+    .shop-ranks .shop-ranks-header #rank-3020312 {
+      background-color: #42b3f4; }
+    .shop-ranks .shop-ranks-header #rank-3020392 {
+      background-color: #5f5; }
+    .shop-ranks .shop-ranks-header #rank-3020415 {
+      background-color: #6937c0; }
+    .shop-ranks .shop-ranks-header #rank-3026513 {
+      background-color: #e19806; }
+    .shop-ranks .shop-ranks-header #rank-3026514 {
+      background-color: #D54537; }
+  .shop-ranks .shop-rank-list {
+    margin-top: 3em;
+    width: 1500px; }
+    .shop-ranks .shop-rank-list .shop-rank-category .ranks-separator {
+      background-color: rgba(83, 83, 83, 0.9);
+      margin-top: 3px;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 8px;
+      color: #fff;
+      font-size: 19px; }
+    .shop-ranks .shop-rank-list .shop-rank-category ul {
+      display: flex;
+      list-style-type: none;
+      height: 50px;
+      width: 100%;
+      padding: 0;
+      margin-bottom: 0px; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul li {
+        width: 250px;
+        height: 50px;
+        text-align: left;
+        line-height: 50px;
+        padding-left: 5px;
+        color: #444;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 15px;
+        background-color: rgba(215, 215, 215, 0.9);
+        text-align: center; }
+        .shop-ranks .shop-rank-list .shop-rank-category ul li:first-of-type {
+          text-align: right;
+          padding-right: 10px;
+          color: #fff; }
+        .shop-ranks .shop-rank-list .shop-rank-category ul li:nth-child(2n+1) {
+          background-color: rgba(215, 215, 215, 0.8); }
+        .shop-ranks .shop-rank-list .shop-rank-category ul li i {
+          font-size: 20px; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul.right li:nth-child(2n+1) {
+        background-color: rgba(215, 215, 215, 0.7); }
+      .shop-ranks .shop-rank-list .shop-rank-category ul.right li:nth-child(2n) {
+        background-color: rgba(215, 215, 215, 0.8); }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-one {
+        background-color: rgba(214, 80, 80, 0.8) !important; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-two {
+        background-color: rgba(214, 80, 80, 0.7) !important; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-three {
+        background-color: rgba(127, 214, 80, 0.8) !important; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-four {
+        background-color: rgba(127, 214, 80, 0.7) !important; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-five {
+        background-color: rgba(214, 200, 80, 0.8) !important; }
+      .shop-ranks .shop-rank-list .shop-rank-category ul .details-six {
+        background-color: rgba(214, 200, 80, 0.7) !important; }
 
-          .stats-home .col-3 h3 {
-              text-transform: uppercase;
-              font-weight: bold;
-              font-size: 45px; }
+.shop-nav .nav .nav-item {
+  margin: 0 1em; }
+  .shop-nav .nav .nav-item .nav-link {
+    text-align: center;
+    margin: 0; }
 
-              .stats-home .col-3 p {
-                  font-size: 20px;
-                  font-style: italic;
-                  margin-top: -20px; }
+.shop-header-title {
+  padding-bottom: 5px;
+  border-bottom: 5px solid #E95E3E; }
 
-                  .stats-home .col-3 a {
-                      text-decoration: none;
-                      color: #222; }
+.ita {
+  font-style: italic; }
 
-                      .search-container label {
-                          font-size: 20px; }
+.shop-package {
+  margin-bottom: 100px; }
+  .shop-package h3,
+  .shop-package .shop-header-title {
+    padding-bottom: 5px;
+    border-bottom: 5px solid #E95E3E; }
+  .shop-package .shop-package-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-image: url(https://static.hivemc.com/BiveCraft/assets/img/package-pattern.png);
+    background-color: #E95E3E;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .shop-package img {
+    transform: scale(0.9); }
+  .shop-package .shop-package-desc {
+    text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    display: block;
+    width: 40%;
+    float: left;
+    margin-top: 7px;
+    font-weight: 600; }
+  .shop-package a {
+    display: block;
+    float: right;
+    margin-top: 7px;
+    width: calc(60% - 20px);
+    margin-left: 20px;
+    text-align: center;
+    background-color: #E95E3E;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff; }
 
-                          .search-container input[type=text] {
-                              border-radius: 0px;
-                              border: none; }
+#prd-302 h3 {
+  border-color: #E9C73E; }
+#prd-302 .shop-package-content,
+#prd-302 a {
+  background-color: #E9C73E; }
 
-                              .search-container .button-search {
-                                  margin-left: -4px;
-                                  padding: 7px;
-                                  border: none;
-                                  padding-right: 15px;
-                                  margin-top: -10px; }
+#prd-303 h3 {
+  border-color: #A33EE9; }
+#prd-303 .shop-package-content,
+#prd-303 a {
+  background-color: #A33EE9; }
 
-                                  .search-container .button-search i {
-                                      margin-left: 7.5px; }
+#prd-304 h3 {
+  border-color: #3E55E9; }
+#prd-304 .shop-package-content,
+#prd-304 a {
+  background-color: #3E55E9; }
 
-                                      .button-games {
-                                          padding: 12px 20px;
-                                          margin-right: 10px;
-                                          border-radius: 0px;
-                                          border: none;
-                                          color: #fff;
-                                          opacity: 0.8;
-                                          transition: 0.2s;
-                                          font-size: 15px;
-                                          text-transform: uppercase;
-                                          font-family: 'Bungee', cursive; }
+.modal-content {
+  border-radius: 0px; }
 
-                                          .button-games:hover {
-                                              opacity: 1.3;
-                                              transform: scale(1.1);
-                                              border-radius: 7px; }
+.stats-back {
+  margin-top: 5em;
+  background-image: url(https://cdn.badblock.fr/wd/i/cover-back-1.png);
+  background-size: cover; }
+  .stats-back .stats {
+    color: #fff;
+    font-size: 1.5em;
+    line-height: 45px;
+    color: #f4f4f4;
+    font-weight: 300;
+    background-color: rgba(78, 101, 135, 0.7);
+    padding-top: 50px;
+    padding-bottom: 50px; }
 
-                                              .info-stats h5 {
-                                                  padding-left: 10px;
-                                                  border-left: 3px solid #222; }
+.footer {
+  display: block;
+  background-color: #34495e;
+  color: #e1e1e1;
+  padding-top: 20px;
+  padding-bottom: 13vh; }
+  .footer .footer-title-container {
+    margin-top: 1.8em;
+    margin-bottom: 3em;
+    display: flex;
+    align-items: center; }
+  .footer .footer-social-links {
+    display: flex;
+    list-style-type: none; }
+    .footer .footer-social-links li {
+      padding: 12px 24px; }
+  .footer a {
+    color: #1eaedb; }
 
-                                                  .bold {
-                                                      text-transform: uppercase; }
-
-                                                      #rush {
-                                                          background: #ac8a2a; }
-
-                                                          #tower {
-                                                              background: #84ac25; }
-
-                                                              #survival {
-                                                                  background: #ac8a2a; }
-
-                                                                  #uhc_speed {
-                                                                      background: #bd402a; }
-
-                                                                      #peal_wars {
-                                                                          background: #347395; }
-
-                                                                          #spaceballs {
-                                                                              background: #806555; }
-
-                                                                              #capture_the_sheep {
-                                                                                  background: #48ac30; }
-
-                                                                                  /*Fin Dreaams*/
-
-                                                                                  .user-menu {
-                                                                                    margin-bottom: 10px;
-                                                                                }
-
-                                                                                .user-menu ul, .user-info {
-                                                                                    list-style-type: none;
-                                                                                }
-
-                                                                                .user-menu ul .user-tab {
-                                                                                    display: inline-block;
-                                                                                    margin: 0px 5px;
-                                                                                }
-
-                                                                                .user-menu ul .user-tab:first-child {
-                                                                                    margin-left: 0px;
-                                                                                    padding-left: 0px;
-                                                                                }
-                                                                                >>>>>>> 9fb5cb759716553233c7a6272de1b72db2b30516
-
-                                                                                .user-menu ul .user-tab:nth-child(7) {
-                                                                                    float: right;
-                                                                                }
-
-                                                                                .user-menu ul .user-tab a {
-                                                                                    padding: 12px 20px;
-                                                                                    font-size: 17px;
-                                                                                    border: 3px solid #ccc;
-                                                                                    border-radius: 20px;
-                                                                                    transition: all 0.4s;
-                                                                                }
-
-                                                                                .espace-valider {
-                                                                                    margin-left: 5px !important;
-                                                                                }
-
-                                                                                .user-menu ul .user-tab a.active {
-                                                                                    border-color: #56d968;
-                                                                                }
-
-                                                                                .user-menu ul .user-tab a:hover {
-                                                                                    border-radius: 0px;
-                                                                                    border-color: #56d968;
-                                                                                }
-
-                                                                                .user-info li {
-                                                                                    padding: 15px 0px;
-                                                                                    margin-bottom: 15px;
-                                                                                    border-bottom: 1px solid #ccc;
-                                                                                    font-size: 20px;
-                                                                                }
-
-                                                                                .user-info li span {
-                                                                                    float: right;
-                                                                                    background-color: #56D968;
-                                                                                    padding: 2px 7px;
-                                                                                    border-radius: 5px;
-                                                                                    color: #fff;
-                                                                                    text-align: center;
-                                                                                }
-
-                                                                                .para .columns {
-                                                                                    margin-left: 0px;
-                                                                                }
-
-                                                                                /* Partie gestion du responsive, ne pas toucher. Si c'est là c'est qu'il y a une raison.*/
-
-                                                                                @media screen and (max-width: 768px) {
-
-                                                                                    .vote-tr {
-                                                                                        overflow-x: scroll;
-                                                                                    }
-
-                                                                                    .col-3 {
-                                                                                        width: calc(100%);
-                                                                                        padding: 0px; }
-
-                                                                                        .header .header-login-container {
-                                                                                            display: block !important; }
-
-                                                                                            .header-container {
-                                                                                                display: inline-block !important; }
-
-                                                                                                .header .header-login-container .header-login .button-primary {
-                                                                                                    width: 310px;
-                                                                                                    margin: 0 auto;
-                                                                                                    margin-bottom: 1em;
-                                                                                                    display: block; }
-
-                                                                                                    .step {margin: 50px 0px 50px 0px;}
-                                                                                                    .search{display: none;}
-
-                                                                                                    .user-menu ul .user-tab {
-                                                                                                        display: block;
-                                                                                                        margin: 40px 0px;
-                                                                                                    }
-
-                                                                                                    .informations {
-                                                                                                        height: inherit;
-                                                                                                    }
-
-                                                                                                    .info-p {
-                                                                                                        display: none;
-                                                                                                    }
-                                                                                                    .button-games {
-                                                                                                        display: none;
-                                                                                                    }
-
-                                                                                                }
-                                                                                                @media screen and (max-width: 400px){
-                                                                                                    .copied {
-                                                                                                        width: 60% !important;
-                                                                                                    }
-                                                                                                    .form-control {
-                                                                                                        margin: 0 auto;
-                                                                                                        text-align: center;
-                                                                                                    }
-                                                                                                    .played {
-                                                                                                        text-align: center !important;
-                                                                                                    }
-                                                                                                }
-
-                                                                                                /* Animation pour l'effet d'apparition de la navbar en mode responsive */
-
-                                                                                                .showOut {
-                                                                                                    animation: out 0.5s ease-in-out;
-                                                                                                }
-
-                                                                                                .showIn {
-                                                                                                    animation: in 0.5s ease-in-out;
-                                                                                                }
-
-                                                                                                @keyframes in {
-                                                                                                    0% {
-                                                                                                        opacity: 0;
-                                                                                                    }
-                                                                                                    100% {
-                                                                                                        opacity: 1;
-                                                                                                    }
-                                                                                                }
-
-                                                                                                @keyframes out {
-                                                                                                    0% {
-                                                                                                        opacity: 1;
-                                                                                                    }
-                                                                                                    100% {
-                                                                                                        opacity: 0;
-                                                                                                    }
-                                                                                                }
-
-
-                                                                                                #dev-infos {
-                                                                                                    padding-top: 15px;
-                                                                                                }
-
-                                                                                                .dev-informations {
-                                                                                                    padding: 12px 24px;
-                                                                                                    margin-top: 50px;   
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil {
-                                                                                                    text-align: center;
-                                                                                                    position: relative;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil header img {
-                                                                                                    border-radius: 50%;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil header .dev-name {
-                                                                                                    text-transform: uppercase;
-                                                                                                    font-weight: 700;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil header span {
-                                                                                                    font-weight: 600;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil .dev-social {
-                                                                                                    padding: 5px 0px;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil .dev-social ul {
-                                                                                                    list-style-type: none;
-                                                                                                    display: flex;
-                                                                                                    justify-content: center;
-                                                                                                    flex-direction: row;
-                                                                                                    flex-wrap: wrap;
-                                                                                                    margin-top: 10px;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil .dev-social ul li {
-                                                                                                    margin: 0px 20px;
-                                                                                                }
-
-                                                                                                .dev-informations .dev-profil .dev-social ul li a {
-                                                                                                    color: #34495e;
-                                                                                                    font-size: 20px;
-                                                                                                }
-
-                                                                                                .dev-second .dev-informations .dev-profil {
-                                                                                                    opacity: 0.75;
-                                                                                                    margin-bottom: 30px;
-                                                                                                }
-
-                                                                                                .dev-second .dev-informations p {
-                                                                                                    margin-top: 50px;
-                                                                                                }
+/*# sourceMappingURL=global.css.map */

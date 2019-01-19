@@ -38,7 +38,15 @@ class StatsController extends Controller
             $playergraph = "";
         }
 
-		$this->render($response, 'stats.home',['c_ts' => $c_ts,'connected' => $connected,'guardian' => $guardian,'gstats' => $gstats,'stats' => $stats, 'playergraph' => $playergraph]);
+        $staff = $this->redis->getJson('staff.list');
+        $nb = $this->redis->getJson('staff.number');
+
+        foreach ($staff as $key => $row){
+            shuffle($staff[$key]['data']);
+        }
+
+		$this->render($response, 'stats.home',['c_ts' => $c_ts,'connected' => $connected,'guardian' => $guardian,'gstats' => $gstats,'stats' => $stats, 'playergraph' => $playergraph, 'staff' => $staff,
+            'nb' => $nb]);
 	}
 
 	public function games(RequestInterface $request, ResponseInterface $response)

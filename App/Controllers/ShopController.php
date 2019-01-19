@@ -28,6 +28,8 @@ class ShopController extends Controller
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
+        
+
         $promo = false;
 
         $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
