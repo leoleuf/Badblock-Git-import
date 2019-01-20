@@ -41,7 +41,8 @@
             <h3 class="step-round">I</h3>
             <div class="step-content-main">
                 <h5 class="text-center">Entrez votre pseudo</h5>
-                <input class="info-ip" type="text" id="pseudo" name="pseudo" value="{{ player }}">
+                <input type="text" id="pseudo" name="pseudo" value="{{ player }}">
+                <br>
                 <a class="button button-info" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
             </div>
         </div>
@@ -62,31 +63,18 @@
             <h3 class="step-round">III</h3>
             <div class="step-content-main">
                 <h5 class="text-center">Obtenez votre récompense</h5>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
-                        SkyBlock
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
-                        Mini-Jeux
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot7" onclick="award('7')" href="" style="width: 95%;">
-                        Survie
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot8" onclick="award('8')" href="" style="display: none; width: 95%;">
-                        Ne pas cliquer
-                    </button>
-                </div>
-                <div class="tooltip">
-                    <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
-                        Faction
-                    </button>
-                </div>
+                <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
+                    SkyBlock
+                </button>
+                <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
+                    Mini-Jeux
+                </button>
+                <button class="button button-primary disabled" id="lot7" onclick="award('7')" href="" style="width: 95%;">
+                    Survie
+                </button>
+                <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
+                    Faction
+                </button>
             </div>
         </div>
     </div>
@@ -132,10 +120,7 @@ var pseudo;
 var error = false;
 
 function start() {
-    if (window.canRunAds === undefined) {
-        $('[data-remodal-id=blc]').remodal().open();
-        return;
-    }
+    
     if ($('#pseudo').val() == "" || $('#pseudo').val() == null) {} else {
         pseudo = $('#pseudo').val();
         var request = $.ajax({
