@@ -127,13 +127,6 @@
                                         <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" />
                                         @endif Liste serveur {{ seocat($catName) }}</h3><div class="serveur-sep"></div>
                                         <p>La liste de serveur {{ seocat($catName) }} est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur {{ seocat($catName) }} avec tes amis.</p>
-                                    @if (isset($catName) && $catName == "clash-of-clans")
-                                        <p>
-                                            Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.<br /><br />
-                                        Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
-                                            8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5. <b>Téléchargez le launcher Clash Of Clans ci-dessous sans plus attendre</b>
-                                        </p>
-                                    @endif
                                         @if (isset($addon))
                                             {!! $addon !!}
                                         @endif
@@ -180,6 +173,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                    <div class="serveur-infos">
+                                        <h3>Liste serveur {{ seocat($catName) }} privé</h3><div class="serveur-sep"></div>
+                                        <p>
+                                            Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.<br /><br />
+                                            Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
+                                            8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5. <b>Téléchargez le launcher Clash Of Clans ci-dessous sans plus attendre</b>
+                                        </p>
+                                        @if (isset($addon))
+                                            {!! $addon !!}
+                                        @endif
+                                    </div>
                             @else
                             @if (!_bot_detected())
                                    <!-- <ins class="adsbygoogle"
@@ -193,19 +197,6 @@
                                     </script>!-->
 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
-                                @endif
-                                @if (isset($catName) && $catName == "clash-of-clans")
-                                    <div class="serveur-infos">
-                                        <h3>Liste serveur {{ seocat($catName) }} privé</h3><div class="serveur-sep"></div>
-                                            <p>
-                                                Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.<br /><br />
-                                                Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
-                                                8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5. <b>Téléchargez le launcher Clash Of Clans ci-dessous sans plus attendre</b>
-                                            </p>
-                                       @if (isset($addon))
-                                            {!! $addon !!}
-                                        @endif
-                                    </div>
                                 @endif
                         @php($totalReviews = 0)
                         @php($average = 0)
