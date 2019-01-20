@@ -15,8 +15,5 @@
 	],
 	"theme_color": "#2ecc71",
 	"background_color": "#ffffff",
-	"display": "standalone",
-	"orientation": "portrait",
-	"start_url": "/minecraft?utm_source=smgpw",
-	"scope": "\/"
+	"display": "standalone"
 }
