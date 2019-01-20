@@ -171,21 +171,7 @@
                                                 </a>
                                             </div>
 
-                                            @if (isMobile())
-         <!--                                       <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:336px;height:280px"
-                                                     data-ad-client="ca-pub-1905923613312160"
-                                                     data-ad-slot="1240880006"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>!-->
-                                            @endif
-                                        @if (!isMobile())
                                             <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
-                                        @else
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-                                        @endif
-
                                         <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="height: 50px;" disabled>
@@ -200,7 +186,6 @@
 
                     </div>
 
-                        @if (!isMobile())
                             <!--<ins class="adsbygoogle" id="ad2" style="display: block; height: 60px; max-width: 600px; max-height: 300px;"
                                  data-ad-client="ca-pub-1905923613312160"
                                  data-ad-slot="1434308007"
@@ -218,7 +203,6 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                        @endif
                         @if ($data->noredirect == 0)
                             <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <ins class="adsbygoogle"
