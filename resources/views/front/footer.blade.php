@@ -78,9 +78,10 @@ if ($date != $creationDate)
 <link rel="stylesheet" href="/css/linearicons.css">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
-@endif
 <script @if(!trim($__env->yieldContent('gjs-normal')))async defer @endif src="/js/gjs.js"></script>
 <script async defer src="/gtag.js"></script>
+@endif
+<script async defer src="/analytics.js"></script>
 <!--<script async defer>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
