@@ -19,38 +19,38 @@
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #777777;
+  color: #555;
   opacity: 1;
   font-weight: 300;
 }
 
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #777777;
+  color: #555;
   opacity: 1;
   font-weight: 300;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
 body {
-  color: #777777;
+  color: #555;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 300;
@@ -825,7 +825,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .typography h1, .typography h2, .typography h3, .typography h4, .typography h5, .typography h6 {
-  color: #777777;
+  color: #555;
 }
 
 .button-area {
@@ -1227,7 +1227,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ordered-list li span {
   font-weight: 300;
-  color: #777777;
+  color: #555;
 }
 
 .ordered-list-alpha li {
@@ -1240,7 +1240,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ordered-list-alpha li span {
   font-weight: 300;
-  color: #777777;
+  color: #555;
 }
 
 .ordered-list-roman li {
@@ -1253,7 +1253,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .ordered-list-roman li span {
   font-weight: 300;
-  color: #777777;
+  color: #555;
 }
 
 .single-input {
@@ -2897,7 +2897,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .post-list .single-post .tags a {
-  color: #777777;
+  color: #555;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -3019,7 +3019,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .sidebar .single-slidebar .cat-list a {
-  color: #777;
+  color: #555;
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -3495,7 +3495,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   background: #fff;
   font-weight: 300;
   border-radius: 20px;
-  color: #777;
+  color: #555;
   padding-left: 20px;
   width: 100%;
 }
@@ -3536,43 +3536,43 @@ body.mobile-nav-active #mobile-nav-toggle {
 .single-footer-widget ::-moz-selection {
   /* Code for Firefox */
   background-color: #49e4fa;
-  color: #777777;
+  color: #555;
 }
 
 .single-footer-widget ::selection {
   background-color: #49e4fa;
-  color: #777777;
+  color: #555;
 }
 
 .single-footer-widget ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
 .single-footer-widget :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #777777;
+  color: #555;
   opacity: 1;
   font-weight: 300;
 }
 
 .single-footer-widget ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #777777;
+  color: #555;
   opacity: 1;
   font-weight: 300;
 }
 
 .single-footer-widget :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
 .single-footer-widget ::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #777777;
+  color: #555;
   font-weight: 300;
 }
 
@@ -4119,7 +4119,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-post .comment-wrap ul li a {
-  color: #777777;
+  color: #555;
 }
 
 .single-post .social-wrap ul {
@@ -4127,7 +4127,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .single-post .social-wrap ul li a i {
-  color: #777777;
+  color: #555;
 }
 
 .single-post .social-wrap ul li a i:hover {
@@ -4360,7 +4360,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .comment-sec-area .comment {
-  color: #777777;
+  color: #555;
 }
 
 .comment-sec-area .btn-reply {
