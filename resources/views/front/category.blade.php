@@ -125,6 +125,7 @@
                                 @if (isset($catName) && $catName == "clash-of-clans")
                                     <p>
                                     Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
+                                    8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5.
                                     </p>
                                 @endif
                                     @if (isset($addon))
@@ -388,20 +389,38 @@
     </main>
     <!-- End calto-action Area -->
 
-    <script type="application/ld+json">
-        {
-            "@context": "http://schema.org/",
-            "@type": "AggregateRating",
-            "itemReviewed": {
-            "@type": "GameServer",
-            "name": "Serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pTitle }}",
-            "description": "Liste de serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pDesc }} gratuit. Ajoutez votre serveur ou votez pour celui-ci.",
-            "playersOnline": "",
-            "url": "@yield('canonical')"
-            },
-            "ratingValue": "{{ round($average / $averageCount, 2) }}",
-            "ratingCount": "{{ count($data) }}"
-        }
-    </script>
+    @if (encname($catName) == "clash-of-clans")
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pTitle }}",
+                "description": "Liste de serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pDesc }} gratuit. Ajoutez votre serveur ou votez pour celui-ci.",
+                "playersOnline": "",
+                "url": "@yield('canonical')"
+                },
+                "ratingValue": "5",
+                "ratingCount": "8"
+            }
+        </script>
+    @else
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pTitle }}",
+                "description": "Liste de serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pDesc }} gratuit. Ajoutez votre serveur ou votez pour celui-ci.",
+                "playersOnline": "",
+                "url": "@yield('canonical')"
+                },
+                "ratingValue": "{{ round($average / $averageCount, 2) }}",
+                "ratingCount": "{{ count($data) }}"
+            }
+        </script>
+    @endif
 
 @endsection
