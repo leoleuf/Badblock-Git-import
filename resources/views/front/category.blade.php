@@ -276,6 +276,7 @@
                                 </div>
                             </div>
                         @endif
+                            @if (isset($catName) && $catName != "clash-of-clans")
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
                             <div class="active-relatedjob-carusel single-rated">
@@ -286,6 +287,16 @@
                                     </p>
                             </div>
                         </div>
+                            @else
+                                <div class="single-slidebar">
+                                    <h3>Télécharger {{ seocat($catName) }}</h3>
+                                    <div class="active-relatedjob-carusel single-rated">
+                                        <p class="inftop">
+                                            Vous souhaitez télécharger ou installer Clash Of Clans directement sur votre smartphone iOS iPhone Apple ou Android pour jouer à votre serveur privé Clash Of Clans préféré ? C'est désormais possible directement sur notre site, en combinaison de nouveaux avantages qui permettent au joueur de passer HDV 12.
+                                        </p>
+                                    </div>
+                                </div>
+                            @endif
                         <div class="single-slidebar">
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
