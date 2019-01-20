@@ -81,7 +81,7 @@ if ($date != $creationDate)
 @endif
 <script @if(!trim($__env->yieldContent('gjs-normal')))async defer @endif src="/js/gjs.js"></script>
 <script async defer src="/gtag.js"></script>
-<script async defer>
+<!--<script async defer>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -94,7 +94,7 @@ if ($date != $creationDate)
     giftofspeed.type = 'text/css';
     var godefer = document.getElementsByTagName('link')[0];
     godefer.parentNode.insertBefore(giftofspeed, godefer);
-</script>
+</script>!-->
 
 @if (!isMobile())
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
