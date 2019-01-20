@@ -180,17 +180,6 @@
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>!-->
                                             @endif
-                                            <div id="wait">
-                                                <noscript>
-                                                    <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-danger col-12" style="height: 70px;">
-                                                        Veuillez activer les scripts JavaScript pour voter.
-                                                    </a>
-                                                </noscript>
-                                                <a title="{{ $data->name }}" href="/{{ encname($data->cat) }}/{{ encname($data->name) }}/vote" class="btn btn-primary col-12" style="height: 50px;">
-                                                    Chargement en cours<br />
-                                                    du système de vote...
-                                                </a>
-                                            </div>
                                         @if (!isMobile())
                                             <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         @else
@@ -199,7 +188,7 @@
 
                                         <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; height: 50px;" disabled>
+                                                data-callback="onSubmit" style="height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
                                         {{ csrf_field() }}
@@ -460,13 +449,11 @@
 
                 if (window.canRunAds === undefined)
                 {
-                    $("#wait").hide();
                     $("#bma").show();
                     $("#bma").prop("display", "block");
                 }
                 else
                 {
-                    $("#wait").hide();
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                     @if (!isMobile())
