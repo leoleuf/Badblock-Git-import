@@ -62,7 +62,13 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     @endif
 
     @if (isset($catName) && $catName == "minecraft")
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/icon32x32-minecraft.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/mc/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/mc/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/mc/favicon-16x16.png">
+        <link rel="manifest" href="/img/mc/site.webmanifest">
+        <link rel="mask-icon" href="/img/mc/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
     @else
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
