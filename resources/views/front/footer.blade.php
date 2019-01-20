@@ -103,3 +103,10 @@ if ($date != $creationDate)
 @if (!isset($classement))
  <script>   (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});</script>
 @endif
+
+<script>
+    /* <![CDATA[ */
+    var superpwa_sw = {"url":"\/js/superpwa-sw.js"};
+    /* ]]> */
+    if ('serviceWorker' in navigator) {window.addEventListener('load', function() {	navigator.serviceWorker.register(superpwa_sw.url) .then(function(registration) { /*console.log('Service worker ready');*/ registration.update(); }) .catch(function(error) { console.log('Registration failed with ' + error); }); });}
+</script>

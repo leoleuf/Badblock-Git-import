@@ -1,6 +1,7 @@
 {
     "name": "Serveur Minecraft",
-    "short_name": "Serveur Minecraft",
+    "short_name": "Minecraft",
+    "description": "Liste de serveur Minecraft français"
     "icons": [
         {
             "src": "/img/mc/android-chrome-192x192.png",
@@ -13,7 +14,10 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
+    "theme_color": "#2ecc71",
     "background_color": "#ffffff",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation":"portrait",
+    "start_url":".\/?utm_source=smgpw",
+    "scope":"\/"
 }
