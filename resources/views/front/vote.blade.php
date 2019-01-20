@@ -198,7 +198,7 @@
                                 </script>
                         @else
                             <ins class="adsbygoogle"
-                                 style="display:block" id="ad2"
+                                 style="display:block; height: 60px; max-width: 600px; max-height: 300px;" id="ad2"
                                  data-ad-client="ca-pub-1905923613312160"
                                  data-ad-slot="1434308007"
                                  data-ad-format="auto"
