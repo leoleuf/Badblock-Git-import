@@ -79,12 +79,17 @@
             <div class="container">
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="about-content col-lg-12">
-                        @if (isset($tag))
-                            <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
-                            <h2 class="text-white">Liste de serveurs</h2>
+                        @if (isset($catName) && $catName != "clash-of-clans")
+                            @if (isset($tag))
+                                <h1 class="text-white">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
+                                <h2 class="text-white">Liste de serveurs</h2>
+                            @else
+                                <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
+                                <h2 class="text-white">Liste de serveurs</h2>
+                            @endif
                         @else
-                            <h1 class="text-white">Serveur {{ seocat($catName) }}</h1>
-                            <h2 class="text-white">Liste de serveurs</h2>
+                            <h1 class="text-white">Télécharger Clash Of Clans iOs Android</h1>
+                            <h2 class="text-white">Liste de serveur privé</h2>
                         @endif
                         @if (isset($tag) or (isset($current_page) && $current_page > 1))
                             <p class="text-white link-nav"><a title="Liste {{ seocat($catName) }}" href="/{{ $catName }}">{{ seocat($catName) }}</a>@if (isset($tag)) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }} {{ $tag }}" href="/{{ $catName }}/tag/{{ enctag($tag) }}">{{ ucfirst($tag) }}</a>@endif @if ($current_page > 1) <span class="lnr lnr-arrow-right"></span>  <a title="Serveur {{ $catName }}@if (isset($tag)) {{ $tag }}@endif page {{ $current_page }}" href="/{{ $catName }}@if (isset($tag))/tag/{{ enctag($tag) }}@endif/page/{{ $current_page }}">Page {{ $current_page }}</a>@endif</p>
@@ -126,7 +131,7 @@
                                 @endif
                                 @if (isset($catName) && $catName == "clash-of-clans")
                                     <p>
-                                        Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.
+                                        Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.<br /><br />
                                     Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
                                     8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5.
                                     </p>
