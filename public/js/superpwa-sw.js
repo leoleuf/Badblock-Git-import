@@ -6,7 +6,7 @@
  * To learn more and add one to your website, visit - https://superpwa.com
  */
 
-const cacheName = 'edgy.app-superpwa-1.9';
+const cacheName = 'smg.app-superpwa-1.9';
 const startPage = 'https://serveur-multigames.net/';
 const offlinePage = 'https://serveur-multigames.net/minecraft';
 const filesToCache = [startPage, offlinePage];
