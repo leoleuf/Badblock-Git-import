@@ -431,7 +431,7 @@
                 function flex()
                 {
                     $("#blox").append($("#ad2").html());
-                    setTimeout(flexar, 1000);
+                    setTimeout(flexar, 3000);
                 }
 
                 function flexar()
