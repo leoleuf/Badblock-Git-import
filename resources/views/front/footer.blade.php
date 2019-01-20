@@ -82,6 +82,7 @@ if ($date != $creationDate)
 <script async defer src="/gtag.js"></script>
 @endif
 <script async defer src="/analytics.js"></script>
+<script async defer src="/pagead/js/adsbygoogle.js"></script>
 <!--<script async defer>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
