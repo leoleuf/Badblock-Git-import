@@ -155,16 +155,16 @@
                         @endif
                         @if (isset($catName) && $catName == "clash-of-clans")
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveur-multigames -->
+                                <!-- telecharger-minecraft-serveur-multigames -->
                                 <ins class="adsbygoogle"
                                      style="display:block"
                                      data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="1434308007"
+                                     data-ad-slot="4846476694"
                                      data-ad-format="auto"
                                      data-full-width-responsive="true"></ins>
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script><br />
+                                </script>
                                 <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase">Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
                                     <div class="row">
