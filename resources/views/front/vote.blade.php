@@ -456,9 +456,7 @@
                 {
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    @if (!isMobile())
-                        setTimeout(flex, 300);
-                    @endif
+                    setTimeout(flex, 300);
                 }
             });
 
