@@ -131,7 +131,6 @@
                                             {!! $addon !!}
                                         @endif
                                 </div>
-                            @else
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- serveur-multigames -->
                                 <ins class="adsbygoogle"
@@ -143,6 +142,7 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script><br />
+                            @else
                                 <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase"><img alt="Télécharger le Serveur privé Clash Of Clans" src="/img/clash-of-clans.png" height="16" class="ialign" /> Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
                                     <div class="row">
