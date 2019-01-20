@@ -15,5 +15,8 @@
 	],
 	"theme_color": "#2ecc71",
 	"background_color": "#ffffff",
-	"display": "standalone"
+	"display": "standalone",
+	"orientation": "portrait",
+	"start_url": "https://serveur-multigames.net/minecraft",
+	"scope": "\/"
 }
