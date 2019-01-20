@@ -197,13 +197,10 @@
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
                         @else
-                            test
                             <ins class="adsbygoogle"
-                                 style="display:block; height: 60px; max-width: 600px; max-height: 300px;" id="ad2"
+                                 style="display:inline-block;width:300px;height:60px"
                                  data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="1434308007"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
+                                 data-ad-slot="4455895770"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
