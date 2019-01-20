@@ -83,20 +83,13 @@ if ($date != $creationDate)
 @endif
 <script async defer src="/analytics.js"></script>
 <script async defer src="/pagead/js/adsbygoogle.js"></script>
-<!--<script async defer>
+<script async defer>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'UA-122426050-1');
-
-    var giftofspeed = document.createElement('link');
-    giftofspeed.rel = 'stylesheet';
-    giftofspeed.href = '/css/df.css';
-    giftofspeed.type = 'text/css';
-    var godefer = document.getElementsByTagName('link')[0];
-    godefer.parentNode.insertBefore(giftofspeed, godefer);
-</script>!-->
+</script>
 
 @if (!isMobile())
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
