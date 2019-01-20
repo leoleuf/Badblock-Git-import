@@ -17,6 +17,6 @@
 	"background_color": "#ffffff",
 	"display": "standalone",
 	"orientation": "portrait",
-	"start_url": "https://serveur-multigames.net/minecraft",
+	"start_url": "/?utm_source=a2hs",
 	"scope": "\/"
 }

@@ -7,7 +7,7 @@
  */
 
 const cacheName = 'edgy.app-superpwa-1.9';
-const startPage = 'https://serveur-multigames.net/minecraft';
+const startPage = 'https://serveur-multigames.net/';
 const offlinePage = 'https://serveur-multigames.net/minecraft';
 const filesToCache = [startPage, offlinePage];
 const neverCacheUrls = [];
