@@ -197,6 +197,7 @@
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
                         @else
+                            test
                             <ins class="adsbygoogle"
                                  style="display:block; height: 60px; max-width: 600px; max-height: 300px;" id="ad2"
                                  data-ad-client="ca-pub-1905923613312160"
