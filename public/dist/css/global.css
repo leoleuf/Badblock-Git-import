@@ -655,6 +655,9 @@ iframe {
   padding: 15px;
   border: 1px solid #ccc;
   height: 360px; }
+  .step-content button {
+    margin-bottom: 15px;
+  }
   .step-content .disabled {
     pointer-events: none;
     opacity: 0.5; }
