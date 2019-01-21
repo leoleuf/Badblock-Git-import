@@ -132,7 +132,7 @@
 
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade" id="1">
-                                            <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
+                                            <img src="https://minotar.net/body/{{ str_replace('-', '', $Player['uniqueId']) }}/150.png">
                                         </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="2">
