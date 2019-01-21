@@ -17,5 +17,16 @@ Remove first indentation for lists into a table
 
 .userinfotable tr td {
     width: 80%;
+}
+
+.color-brighter {
     color: rgba(255,255,255,0.9);
+}
+
+.auth-buttons {
+    margin-left: 40px;
+}
+
+.auth-buttons button+button {
+    margin-left: 20px;
 }

@@ -145,23 +145,23 @@
                                                     @if(isset($Player['realName']))
                                                         <tr>
                                                             <th>Nom réel :</th>
-                                                            <td>{{ $Player['realName'] }}</td>
+                                                            <td class="color-brighter">{{ $Player['realName'] }}</td>
                                                         </tr>
                                                     @endif
                                                     <tr>
                                                         <th>Adresse IP :</th>
-                                                        <td>{{ $Player['lastIp'] }}</td>
+                                                        <td class="color-brighter">{{ $Player['lastIp'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Groupe(s) secondaire(s) :</th>
                                                         <td>
                                                             <ul class="in-table-list">
                                                             @foreach($Player['permissions']['groups'] as $k => $row)
-                                                            <li>
+                                                            <li class="color-brighter">
                                                                 {{ $k }}
                                                                 <ul class="in-table-list">
                                                                     @foreach($row as $p => $h)
-                                                                        <li>
+                                                                        <li class="color-brighter">
                                                                             Groupe : {{ $p }} - Time : {{ $h }}
                                                                         </li>
                                                                     @endforeach
@@ -173,15 +173,15 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Niveau :</th>
-                                                        <td>{{ $Player['game']['level'] }}</td>
+                                                        <td class="color-brighter">{{ $Player['game']['level'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Xp :</th>
-                                                        <td>{{ $Player['game']['xp'] }}</td>
+                                                        <td class="color-brighter">{{ $Player['game']['xp'] }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Badcoins :</th>
-                                                        <td>{{ $Player['game']['badcoins'] }}</td>
+                                                        <td class="color-brighter">{{ $Player['game']['badcoins'] }}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -321,6 +321,56 @@
                                         </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="7"></div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h3>10 dernières connexions</h3>
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Adresse IP</th>
+                                                        </tr>
+                                                        @foreach($ConnectionLogs as $log)
+                                                        <tr>
+                                                            <td>{{ date('d/m/Y à H:i', strtotime($log['date'])) }}</td>
+                                                            <td>{{ $log['lastIp'] }}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <ul class="color-brighter">
+                                                        <!-- Online mode -->
+                                                        @if($Player['onlineMode'])
+                                                        <li>L'utilisateur est premium</li>
+                                                        @else
+                                                        <li>L'utilisateur n'est pas premium</li>
+                                                        @endif
+                                                        <!-- Password -->
+                                                        @if(empty($Player['loginPassword']))
+                                                            <li>L'utilisateur n'a pas défini de mot de passe à la connexion</li>
+                                                        @else
+                                                            <li>L'utilisateur a définit un mot de passe</li>
+                                                        @endif
+                                                        <!-- Auth key -->
+                                                        @if(!isset($Player['authKey']) || empty($Player['authKey']))
+                                                            <li>L'utilisateur n'a pas de clé d'authentification</li>
+                                                        @else
+                                                            <li>Clé d'authentification : {{ $Player['authKey'] }}</li>
+                                                        @endif
+                                                    </ul>
+                                                    <div class="row auth-buttons">
+                                                        <button type="button" class="btn btn-danger btn-lg" onclick="resetPassword()">Reset Password</button>
+                                                        <button type="button" class="btn btn-warning btn-lg" onclick="resetTfa()">Reset TFA</button>
+                                                        <button type="button" class="btn btn-info btn-lg" onclick="resetOm()" >Offline Mode</button>
+                                                        <button type="button" class="btn btn-sucess btn-lg" onclick="resetOl()" >Online Mode</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="9">
                                             <table class="table">
