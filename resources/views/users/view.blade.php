@@ -2,6 +2,9 @@
 @section('header')
     <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
     <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    @section('styles')
+    <link href="/assets/css/custom_styles/userprofile.css" rel="stylesheet" type="text/css" />
+    @endsection
 @endsection
 @section('content')
     <div class="content-page">
@@ -133,43 +136,53 @@
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="2">
                                             <div class="container">
-                                                <ul>
-                                                    <li>
-                                                        Nom : {{ $Player['name'] }}
-                                                    </li>
+                                                <table class="table userinfotable">
+                                                    <tr>
+                                                        <th>Nom :</th>
+                                                        <td>{{ $Player['name'] }}</td>
+                                                    </tr>
                                                     @if(isset($Player['realName']))
-                                                        <li>
-                                                            Nom réel : {{ $Player['realName'] }}
-                                                        </li>
+                                                        <tr>
+                                                            <th>Nom réel :</th>
+                                                            <td>{{ $Player['realName'] }}</td>
+                                                        </tr>
                                                     @endif
-                                                    <li>
-                                                        Adresse IP : {{ $Player['lastIp'] }}
-                                                    </li>
-                                                    <li>
-                                                        Groupe(s) secondaire(s) :
-
-                                                        @foreach($Player['permissions']['groups'] as $k => $row)
-                                                            <ul> {{ $k }}
-                                                                @foreach($row as $p => $h)
-                                                                    <li>
-                                                                        Groupe : {{ $p }} Time : {{ $h }}
-                                                                    </li>
-                                                                @endforeach
+                                                    <tr>
+                                                        <th>Adresse IP :</th>
+                                                        <td>{{ $Player['lastIp'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Groupe(s) secondaire(s) :</th>
+                                                        <td>
+                                                            <ul class="in-table-list">
+                                                            @foreach($Player['permissions']['groups'] as $k => $row)
+                                                            <li>
+                                                                {{ $k }}
+                                                                <ul class="in-table-list">
+                                                                    @foreach($row as $p => $h)
+                                                                        <li>
+                                                                            Groupe : {{ $p }} - Time : {{ $h }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                            @endforeach
                                                             </ul>
-                                                        @endforeach
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        Niveau : {{ $Player['game']['level'] }}
-                                                    </li>
-                                                    <li>
-                                                        Xp : {{ $Player['game']['xp'] }}
-                                                    </li>
-                                                    <li>
-                                                        Badcoins : {{ $Player['game']['badcoins'] }}
-                                                    </li>
-                                                </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Niveau :</th>
+                                                        <td>{{ $Player['game']['level'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Xp :</th>
+                                                        <td>{{ $Player['game']['xp'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Badcoins :</th>
+                                                        <td>{{ $Player['game']['badcoins'] }}</td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
 
@@ -423,7 +436,7 @@
             });
         }
 
-        
+
         
     </script>
     
