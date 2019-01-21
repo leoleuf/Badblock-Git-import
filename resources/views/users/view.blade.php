@@ -483,7 +483,15 @@
             });
         }
 
-
+        $(document).ready(function( ) {
+            const hash = document.location.hash;
+            if(hash.match(/#[0-9]+/)) {
+                $('.nav-item a[href="' + hash + '"]').tab('show');
+            } else {
+                // Show skin tab by default
+                $('.nav-item a[href="#2"]').tab('show');
+            }
+        })
         
     </script>
     
