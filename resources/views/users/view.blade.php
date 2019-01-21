@@ -43,7 +43,7 @@
                                                 Adresse IP : {{ $Player['lastIp'] }}
                                             </li>
                                             <li>
-                                                Mode premium : {{ $Player['onlineMode'] }}
+                                                Mode : {{ $Player['onlineMode'] ? 'premium' : 'cracké' }}
                                             </li>
                                         </h4>
                                     </div>
