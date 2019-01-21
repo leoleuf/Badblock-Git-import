@@ -92,7 +92,7 @@ class IndexController extends Controller
 
         $Logs = DB::connection('mongodb')->collection('profile_logs')->where('uniqueId', $Player['uniqueId'])->orderBy('data', 'ASC')->get();
 
-        $ConnectionLogs = DB::connection('mongodb')->collection('connectionLogs')
+        $ConnectionLogs = DB::connection('mongodb_server')->collection('connectionLogs')
             ->where('username', $Player['name'])
             ->orderBy('date', 'DESC')
             ->limit(10)
