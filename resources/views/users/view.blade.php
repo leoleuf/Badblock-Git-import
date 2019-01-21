@@ -134,6 +134,7 @@
                                         <div role="tabpanel" class="tab-pane fade" id="1">
                                             <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
                                         </div>
+
                                         <div role="tabpanel" class="tab-pane fade" id="2">
                                             <div class="container">
                                                 <table class="table userinfotable">
@@ -254,7 +255,6 @@
 
                                         </div>
 
-
                                         <div role="tabpanel" class="tab-pane fade" id="5">
                                             <h4 class="header-title m-t-0 m-b-30">Achat(s) du joueur</h4>
                                             <table class="table">
@@ -320,11 +320,8 @@
                                             </div>
                                         </div>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="7">
+                                        <div role="tabpanel" class="tab-pane fade" id="7"></div>
 
-
-
-                                        </div>
                                         <div role="tabpanel" class="tab-pane fade" id="9">
                                             <table class="table">
                                                 <thead>
