@@ -34,6 +34,7 @@ public class OnlineStaffCommand extends BadCommand {
 	/**
 	 * Method called when using the command
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public void run(CommandSender sender, String[] args) {
 		Set<Permissible> permissibles = BungeeManager.getInstance()
