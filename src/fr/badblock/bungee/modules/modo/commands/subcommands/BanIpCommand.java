@@ -1,5 +1,8 @@
 package fr.badblock.bungee.modules.modo.commands.subcommands;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map.Entry;
 
 import com.mongodb.BasicDBObject;
@@ -19,13 +22,16 @@ import fr.badblock.bungee.modules.modo.commands.objects.PunishmentIndex;
 import fr.badblock.bungee.modules.modo.commands.objects.PunishmentReason;
 import fr.badblock.bungee.modules.modo.commands.objects.PunishmentReasons;
 import fr.badblock.bungee.modules.modo.commands.punishments.PunishmentType;
+import fr.badblock.bungee.packets.item.ItemStack;
+import fr.badblock.bungee.packets.item.ItemType;
+import fr.badblock.bungee.packets.item.ItemTypes;
+import fr.badblock.bungee.packets.window.impl.ChestWindow;
 import fr.badblock.bungee.players.BadIP;
 import fr.badblock.bungee.players.BadOfflinePlayer;
 import fr.badblock.bungee.players.BadPlayer;
 import fr.badblock.bungee.utils.i18n.I19n;
-import fr.badblock.bungee.utils.mcjson.McJson;
-import fr.badblock.bungee.utils.mcjson.McJsonFactory;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /**
@@ -198,9 +204,7 @@ public class BanIpCommand extends AbstractModCommand {
 				I19n.sendMessage(sender, getPrefix("select_intro"), null, playerName);
 			}
 
-			// Has reason
-			boolean hasReason = false;
-
+			int count = 0;
 			for (Entry<String, PunishmentReason> entry : PunishmentReasons.getInstance().getBanReasons().entrySet()) {
 				// If the sender doesn't have the permission to ban for this reason
 				if (!sender.hasPermission(getPermission() + "." + entry.getKey())) {
@@ -208,23 +212,51 @@ public class BanIpCommand extends AbstractModCommand {
 					continue;
 				}
 
-				// One reason!
-				hasReason = true;
+				count++;
+			}
+
+			int lines = (int) (Math.ceil((double) count / (double) 9) * 9D);
+			if (lines < 9) lines = 9;
+			if (lines > 54) lines = 54;
+			
+			ChestWindow chestWindow = new ChestWindow(lines);
+			chestWindow.setTitle(new TextComponent(badPlayer.getTranslatedMessage(getPrefix("inventory_name"), null, playerName)));
+
+			int i = 0;
+			for (Entry<String, PunishmentReason> entry : PunishmentReasons.getInstance().getBanReasons().entrySet()) {
+				// If the sender doesn't have the permission to ban for this reason
+				if (!sender.hasPermission(getPermission() + "." + entry.getKey())) {
+					// So continue
+					continue;
+				}
 
 				// If the sender is a player
 				if (isPlayer) {
 					// Get the intro message
-					String intro = badPlayer.getTranslatedMessage(getPrefix("reason_intro"), null);
+					//String intro = badPlayer.getTranslatedMessage(getPrefix("reason_intro"), null);
 					// Get the reason message
 					String reason = badPlayer.getTranslatedMessage(getPrefix("reason." + entry.getKey()), null);
 
+					/*
+
 					// Get the McJson
 					McJson json = new McJsonFactory(intro).finaliseComponent().initNewComponent(reason)
-							.setHoverText(reason).setClickCommand("/m banip " + playerName + " " + entry.getKey())
+							.setHoverText(reason).setClickCommand("/m ban " + playerName + " " + entry.getKey())
 							.finaliseComponent().build();
 
 					// Send the message
-					badPlayer.sendTranslatedOutgoingMCJson(json);
+					badPlayer.sendTranslatedOutgoingMCJson(json);*/
+					ItemStack itemStack = new ItemStack(getWool(i));
+					itemStack.setDisplayName(reason);
+					List<String> l = new ArrayList<>();
+					l.addAll(Arrays.asList(badPlayer.getTranslatedMessages(getPrefix("lore_ban"), null, reason)));
+					l.add("");
+					l.add(entry.getKey());
+					
+					itemStack.setLore(l);
+					chestWindow.set(i, itemStack);
+					
+					i++;
 				} else
 					// If the sender isn't a player
 				{
@@ -233,8 +265,10 @@ public class BanIpCommand extends AbstractModCommand {
 				}
 			}
 
+			badPlayer.open(chestWindow);
+
 			// If we don't have reasons
-			if (!hasReason) {
+			if (count < 1) {
 				// Send a message
 				I19n.sendMessage(sender, getPrefix("noreason"), null);
 			}
@@ -348,6 +382,37 @@ public class BanIpCommand extends AbstractModCommand {
 		// Send banned message
 		I19n.sendMessage(sender, getPrefix("banned"), isKey ? new int[] { 2 } : null, badOfflinePlayer.getName(),
 				Time.MILLIS_SECOND.toFrench(time, Time.MINUTE, Time.YEAR), reason);
+	}
+	
+	private ItemType getWool(int id)
+	{
+		ItemType[] types = new ItemType[]
+				{
+						ItemTypes.BLACK_WOOL,
+						ItemTypes.BLUE_WOOL,
+						ItemTypes.BROWN_WOOL,
+						ItemTypes.CYAN_WOOL,
+						ItemTypes.GRAY_WOOL,
+						ItemTypes.GREEN_WOOL,
+						ItemTypes.LIGHT_BLUE_WOOL,
+						ItemTypes.LIME_WOOL,
+						ItemTypes.MAGENTA_WOOL,
+						ItemTypes.ORANGE_WOOL,
+						ItemTypes.PINK_WOOL,
+						ItemTypes.PURPLE_WOOL,
+						ItemTypes.RED_WOOL
+				};
+		if (id < 0)
+		{
+			return types[0];
+		}
+		
+		if (id > types.length - 1)
+		{
+			return types[id % types.length - 1];
+		}
+		
+		return types[id];
 	}
 
 }

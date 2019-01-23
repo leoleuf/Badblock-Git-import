@@ -9,6 +9,9 @@ import fr.badblock.bungee.players.BadOfflinePlayer;
 import fr.badblock.bungee.players.BadPlayer;
 import fr.badblock.bungee.utils.i18n.I19n;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /**
@@ -126,6 +129,17 @@ public class KickCommand extends AbstractModCommand {
 	@Override
 	public void run(CommandSender sender, String[] args) {
 		// If arg length != 3
+		if (args.length == 2 && (sender instanceof ProxiedPlayer))
+		{
+			String autocomplete = I19n.getMessage(sender, getPrefix("autocomplete"), null, args[1]);
+			
+			TextComponent textComponent = new TextComponent(autocomplete);
+			textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] { new TextComponent(autocomplete) }));
+			textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/m kick " + args[1] + " "));
+			sender.sendMessage(textComponent);
+			return;
+		}
+		
 		if (args.length != 3) {
 			// Send the message
 			I19n.sendMessage(sender, getPrefix("usage"), null);
