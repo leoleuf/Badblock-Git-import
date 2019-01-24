@@ -130,6 +130,7 @@ Route::group([
 
         //Check sanctions sans preuves
         Route::get('/preuves', 'section\ModController@preuves')->middleware('can:gestion_index');
+        Route::post('/preuves', 'section\ModController@notif')->middleware('can:gestion_index');
 
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:gestion_index');
