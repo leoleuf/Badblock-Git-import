@@ -46,6 +46,7 @@ class ModController extends Controller
             'link' => '/avertissement/' . DB::table('warning')->max('id'),
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
             'text' => 'Vous venez de recevoir un avertissement.'
+            
         ]);
     }
 
