@@ -439,12 +439,12 @@
                 {
                     document.getElementById("vote_button").disabled = true;
                     document.getElementById("vote_button").display = "none";
+                    $("#vote_button").hide();
                     $("#bma").show();
                     $("#bma").prop("display", "block");
                 }
                 else
                 {
-                    alert('ok');
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                     setTimeout(flex, 300);
