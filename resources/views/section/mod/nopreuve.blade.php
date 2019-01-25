@@ -24,6 +24,11 @@
                                                     <td>{{ $row['punisher'] }}</td>
                                                     <td>{{ $row['reason'] }}</td>
                                                     <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
+                                                    <td>
+                                                        {{ Form::open() }}
+                                                            <input type="button" id="notif" value="Notifier" onclick="" class="btn btn-info" />
+                                                        {{ Form::close() }}
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -43,5 +48,23 @@
 @endsection
 @section("after_scripts")
 
+<script>
+
+    $(function(){
+
+        $('#notif').on('click', function(){
+
+            $.ajax({
+
+                type: 'POST',
+
+                url: ''
+            });
+
+        });
+
+    });
+
+</script>
 
 @endsection
