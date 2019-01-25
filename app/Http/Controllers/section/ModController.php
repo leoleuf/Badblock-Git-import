@@ -38,8 +38,8 @@ class ModController extends Controller
 
     }
 
-    public function notif(Request $request)
-    {
+    public function notif(Request $request) {
+
         DB::table('notifications')->insert([
             'user_id' => NotificationsController::convertPseudoId($request->input('pseudo')),
             'title' => $request->input('title'),
@@ -48,6 +48,7 @@ class ModController extends Controller
             'text' => 'Vous venez de recevoir un avertissement.'
 
         ]);
+
     }
 
 }
