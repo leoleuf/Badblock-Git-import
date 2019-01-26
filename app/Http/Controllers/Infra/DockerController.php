@@ -93,7 +93,7 @@ class DockerController extends Controller
         $InstanceOpenRequest = [
             "worldSystemName" => $_POST['WorldSystemName'],
             "owner" => $_POST['owner'],
-            "target" => "node01-dkr"
+            "target" => ""
         ];
         $SendRequest = [
             "expire" => -1,
