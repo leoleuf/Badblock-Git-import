@@ -41,7 +41,12 @@
             <h3 class="step-round">I</h3>
             <div class="step-content-main">
                 <h5 class="text-center">Entrez votre pseudo</h5>
+<<<<<<< HEAD
+                <input type="text" id="pseudo" name="pseudo" value="{{ player }}">
+                <br>
+=======
                 <input class="info-ip" type="text" id="pseudo" name="pseudo" value="{{ player }}" style="cursor: initial; pointer-events: initial;">
+>>>>>>> 237d15c8a9e6ad7cc02399bd80d9035cf378751d
                 <a class="button button-info" onclick="start()" title="Valider le vote" style="width: 95%;">Valider</a>
             </div>
         </div>
@@ -63,6 +68,19 @@
             <div class="step-content-main">
                 <h5 class="text-center">Obtenez votre récompense</h5>
                 <button class="button button-primary disabled" id="lot2" onclick="award('6')" href="" style="width: 95%;">
+<<<<<<< HEAD
+                    SkyBlock
+                </button>
+                <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
+                    Mini-Jeux
+                </button>
+                <button class="button button-primary disabled" id="lot7" onclick="award('7')" href="" style="width: 95%;">
+                    Survie
+                </button>
+                <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
+                    Faction
+                </button>
+=======
                         SkyBlock
                     </button>
                 <button class="button button-primary disabled" id="lot3" onclick="award('3')" href="" style="width: 95%;">
@@ -77,6 +95,7 @@
                 <button class="button button-primary disabled" id="lot4" onclick="award('4')" href="" style="width: 95%;">
                         Faction
                     </button>
+>>>>>>> 237d15c8a9e6ad7cc02399bd80d9035cf378751d
             </div>
         </div>
     </div>
@@ -122,10 +141,7 @@ var pseudo;
 var error = false;
 
 function start() {
-    if (window.canRunAds === undefined) {
-        $('[data-remodal-id=blc]').remodal().open();
-        return;
-    }
+    
     if ($('#pseudo').val() == "" || $('#pseudo').val() == null) {} else {
         pseudo = $('#pseudo').val();
         var request = $.ajax({

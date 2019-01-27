@@ -19,7 +19,8 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
-        return $this->render($response, 'user.move.staff');
+        return $this->render($response, 'user.move.step1');
+
 
         if ($this->container->session->getProfile('username')['is_staff'] == true && $this->container->config['app_debug'] != 1)
         {
@@ -210,64 +211,8 @@ class MoveController extends Controller
 
     public function banMove($new, $old)
     {
-        //Connection to rabbitMQ server
-        $connection = new AMQPStreamConnection(
-            $this->container->config['rabbit']['ip'],
-            $this->container->config['rabbit']['port'],
-            $this->container->config['rabbit']['username'],
-            $this->container->config['rabbit']['password'],
-            $this->container->config['rabbit']['virtualhost']
-        );
-
-        $channel = $connection->channel();
-
-        $channel->queue_declare('sanction', false, false, false, false);
-        $sanction = (object)
-        [
-            'pseudo' => strtolower($new),
-            'type' => 'tempban',
-            'expire' => (time() + 60) * 1000,
-            'timestamp' => time() * 1000,
-            'reason' => "Changement de pseudo en provenance de => " . $old,
-            'banner' => 'Website',
-            'fromIp' => '127.0.0.1',
-            'proof' => '-',
-            'auto' => false
-        ];
-
-        $message = (object)
-        [
-            'expire' => (time() + 604800) * 1000,
-            'message' => json_encode($sanction)
-        ];
-
-        $msg = new AMQPMessage(json_encode($message));
-        $channel->basic_publish($msg, '', 'sanction');
-
-        $sanction = (object)
-        [
-            'pseudo' => strtolower($old),
-            'type' => 'tempban',
-            'expire' => (time() + 60) * 1000,
-            'timestamp' => time() * 1000,
-            'reason' => "Changement de pseudo vers => " . $new,
-            'banner' => 'Website',
-            'fromIp' => '127.0.0.1',
-            'proof' => '-',
-            'auto' => false
-        ];
-
-        $message = (object)
-        [
-            'expire' => (time() + 604800) * 1000,
-            'message' => json_encode($sanction)
-        ];
-
-        $msg = new AMQPMessage(json_encode($message));
-        $channel->basic_publish($msg, '', 'sanction');
-
-        $channel->close();
-        $connection->close();
+        $this->container->docker->banPlayer($new, 'Changement pseudo', 30);
+        $this->container->docker->banPlayer($old, 'Changement pseudo', 30);
 
         return true;
     }
