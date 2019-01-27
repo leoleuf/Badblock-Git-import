@@ -12,6 +12,7 @@ namespace App\Http\Controllers\section;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\NotificationController;
 
 class ModController extends Controller
 {
@@ -41,11 +42,12 @@ class ModController extends Controller
     public function notif(Request $request) {
 
         DB::table('notifications')->insert([
-            'user_id' => NotificationsController::convertPseudoId($request->input('pseudo')),
-            'title' => $request->input('title'),
+            'user_id' => NotificationsController::convertPseudoId($request->input('punisher')),
+            'title' => "Preuve",
             'link' => '/avertissement/' . DB::table('warning')->max('id'),
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
-            'text' => 'Vous venez de recevoir un avertissement.'
+            'text' => 'Vous venez de recevoir un avertissement.',
+            'active' => 1
 
         ]);
 

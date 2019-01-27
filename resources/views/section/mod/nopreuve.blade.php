@@ -26,7 +26,7 @@
                                                     <td>{{ date('Y-m-d H:i:s', round(($Sanctions[$i]['expire'] / 1000), 0)) }}</td>
                                                     <td>
                                                         {{ Form::open() }}
-                                                            <input type="button" id="notif{{$i}}" value="Notifier" onclick="notif();" class="btn btn-info" />
+                                                            <input type="button" id="notif{{$i}}" value="Notifier" onclick="notif('{{ $Sanctions[$i]['punisher']  }}');" class="btn btn-info" />
                                                         {{ Form::close() }}
                                                     </td>
                                                 </tr>
@@ -50,12 +50,16 @@
 
 <script>
 
-    function notif() {
+    function notif(punisher) {
         $.ajax({
 
             type: 'POST',
 
-            url: '/section/preuves'
+            url: '/section/preuves',
+
+            data: {
+                'punisher': punisher
+            }
         });
     }
 
