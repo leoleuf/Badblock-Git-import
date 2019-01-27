@@ -79,7 +79,12 @@ class GroupMiddleware
                             $this->container->session->set('user', $old);
 
                             //Update database directly
-                            $this->container->mysql_forum->update("xf_user", ['username' => $username],['is_staff' => true]);
+                            try {
+                            	$this->container->mysql_forum->update("xf_user", ['username' => $username],['is_staff' => true]);
+                            } catch (\Exception $e) {
+															
+                            }
+
                         }
                     }
                     //partner group
