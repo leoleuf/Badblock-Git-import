@@ -19,13 +19,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($Sanctions as $row)
+                                            @for($i = 0; $i < count($Sanctions); $i++)
                                                 <tr class="gradeX">
-                                                    <td>{{ $row['punisher'] }}</td>
-                                                    <td>{{ $row['reason'] }}</td>
-                                                    <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
+                                                    <td>{{ $Sanctions[$i]['punisher'] }}</td>
+                                                    <td>{{ $Sanctions[$i]['reason'] }}</td>
+                                                    <td>{{ date('Y-m-d H:i:s', round(($Sanctions[$i]['expire'] / 1000), 0)) }}</td>
+                                                    <td>
+                                                        {{ Form::open() }}
+                                                            <input type="button" id="notif{{$i}}" value="Notifier" onclick="notif();" class="btn btn-info" />
+                                                        {{ Form::close() }}
+                                                    </td>
                                                 </tr>
-                                            @endforeach
+                                            @endfor
                                             </tbody>
                                         </table>
                                     </div>
@@ -43,5 +48,17 @@
 @endsection
 @section("after_scripts")
 
+<script>
+
+    function notif() {
+        $.ajax({
+
+            type: 'POST',
+
+            url: '/section/preuves'
+        });
+    }
+
+</script>
 
 @endsection
