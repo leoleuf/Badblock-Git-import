@@ -19,8 +19,7 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
-        return $this->render($response, 'user.move.step1');
-
+        $this->container->docker->banPlayer("FluorL", 'Changement pseudo', 6000000);
 
         if ($this->container->session->getProfile('username')['is_staff'] == true && $this->container->config['app_debug'] != 1)
         {
@@ -211,8 +210,8 @@ class MoveController extends Controller
 
     public function banMove($new, $old)
     {
-        $this->container->docker->banPlayer($new, 'Changement pseudo', 30);
-        $this->container->docker->banPlayer($old, 'Changement pseudo', 30);
+        $this->container->docker->banPlayer($new, 'Changement pseudo', 60000);
+        $this->container->docker->banPlayer($old, 'Changement pseudo', 60000);
 
         return true;
     }

@@ -25,7 +25,7 @@ class Docker
 
 	}
 
-	public function sendData($queue , $message){
+	public function publishData($queue , $message){
         $this->channel->exchange_declare($queue, 'fanout', false, false, false, false);
 
         $obj = (object)[
@@ -39,6 +39,21 @@ class Docker
         return true;
     }
 
+    public function sendData($queue , $message){
+        $this->channel->queue_declare($queue, false, false, false, false);
+
+        $obj = (object)[
+            'expire' => (time() + 604800) * 1000,
+            'message' => json_encode($message)
+        ];
+
+        $msg = new AMQPMessage(json_encode($obj));
+        $this->channel->basic_publish($msg, '', $queue);
+
+        return true;
+    }
+
+
 
     public function sendPrivateMessage($Username, $message){
         $message = str_replace("&", "§", $message);
@@ -48,7 +63,7 @@ class Docker
             'content' => $message
         ];
 
-        $this->sendData("bungee.processing.players.linkQueue", $Object);
+        $this->publish("bungee.processing.players.linkQueue", $Object);
     }
 
     public function broadcast($message){
@@ -58,7 +73,7 @@ class Docker
             'content' => $message
         ];
 
-        $this->sendData("bungee.processing.bungee.linkQueue", $Object);
+        $this->publish("bungee.processing.bungee.linkQueue", $Object);
     }
 
 	public function kickPlayer($Username, $Reason){
@@ -68,11 +83,11 @@ class Docker
             'content' => $Reason
         ];
 
-        $this->sendData("bungee.punishment", $Object);
+        $this->publish("bungee.processing.players.linkQueue", $Object);
     }
 
     public function banPlayer($Username, $Reason, $Time){
-        $Object = [
+        $message = [
             'punishmentType' => "BAN",
             'playerName' => $Username,
             'reason' => $Reason,
@@ -80,7 +95,7 @@ class Docker
             'time' => $Time
         ];
 
-        $this->sendData("bungee.punishment", $Object);
+        $this->sendData('bungee.punishment', $message);
     }
 
 }
