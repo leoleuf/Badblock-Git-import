@@ -84,7 +84,7 @@ class CreditController extends Controller
                 {
                     $this->container->session->set('recharge-codepromo', '');
                 }
-                $this->render($response, 'shop.recharge.step-2', ['codepromo' => $codepromo, 'percentpromo' => $percentpromo]);
+                $this->render($response, 'shop.recharge.step-2', ['codepromo' => null, 'percentpromo' => 0]);
             }else{
                 $this->render($response, 'shop.recharge.step-1', ['error' => $_POST['pseudo'] . ' ne s\'est jamais connecté sur le serveur !']);
             }
