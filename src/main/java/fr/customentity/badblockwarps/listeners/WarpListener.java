@@ -60,7 +60,7 @@ public class WarpListener implements Listener {
         if(b.getType() == Material.SIGN || b.getType() == Material.WALL_SIGN || b.getType() == Material.SIGN_POST) {
             Warp warp = Warp.getWarpBySign(b.getLocation());
             if(warp != null) {
-                player.sendMessage(BadBlockWarps.getInstance().getMessage("sign-deleted-warp"));
+                player.sendMessage(BadBlockWarps.getInstance().getMessage("sign-deleted-warp").replace("%warp%", warp.getName()));
                 warp.getSigns().remove(b.getLocation());
             }
         }
