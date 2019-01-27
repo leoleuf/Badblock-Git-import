@@ -2,6 +2,7 @@ package fr.customentity.badblockwarps.listeners;
 
 import fr.customentity.badblockwarps.BadBlockWarps;
 import fr.customentity.badblockwarps.data.Warp;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -31,12 +32,20 @@ public class WarpListener implements Listener {
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             Block b = event.getClickedBlock();
             if(b.getType() == Material.SIGN || b.getType() == Material.WALL_SIGN || b.getType() == Material.SIGN_POST) {
-                Sign sign = (Sign)b.getState();
                 if(BadBlockWarps.getInstance().getSelectionHashMap().containsKey(player.getName())) {
                     Warp warp = BadBlockWarps.getInstance().getSelectionHashMap().get(player.getName());
-
+                    if(warp.getSigns().contains(b.getLocation()))return;
+                    warp.getSigns().add(b.getLocation());
+                    player.sendMessage(BadBlockWarps.getInstance().getMessage("sign-created-warp").replace("%warp%", warp.getName()));
+                    BadBlockWarps.getInstance().updateSigns(warp);
+                    BadBlockWarps.getInstance().getSelectionHashMap().remove(player.getName());
                 } else {
-
+                    Warp warp = Warp.getWarpBySign(b.getLocation());
+                    if(warp != null) {
+                        if(!warp.isEnabled())return;
+                        player.teleport(warp.getLocation());
+                        player.sendMessage(BadBlockWarps.getInstance().getMessage("teleport-warp").replace("%warp%", warp.getName()));
+                    }
                 }
             }
         }

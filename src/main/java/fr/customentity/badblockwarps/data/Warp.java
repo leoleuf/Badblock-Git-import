@@ -43,21 +43,18 @@ public class Warp {
     }
 
     public static boolean existWarp(String name) {
-        for(Warp warp : warps) {
-            if(warp.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+        return getWarpByName(name) != null;
     }
 
     public static void createWarp(String name, boolean enabled, List<Location> signs, Location location) {
         warps.add(new Warp(name, enabled, signs, location));
         BadBlockWarps.getInstance().getWarpsConfiguration().get().set("warps." + name, 0);
+        BadBlockWarps.getInstance().getWarpsConfiguration().save();
     }
 
     public static void deleteWarp(Warp warp) {
         BadBlockWarps.getInstance().getWarpsConfiguration().get().set("warps." + warp.getName(), null);
+        BadBlockWarps.getInstance().getWarpsConfiguration().save();
         warps.remove(warp);
     }
 
@@ -79,19 +76,31 @@ public class Warp {
 
     public static void enableWarp(Warp warp) {
         warp.setEnabled(true);
+        BadBlockWarps.getInstance().updateSigns(warp);
     }
 
     public static void disableWarp(Warp warp) {
         warp.setEnabled(false);
+        BadBlockWarps.getInstance().updateSigns(warp);
     }
 
     public void teleportPlayer(Player player) {
         player.teleport(location);
     }
 
+    public static Warp getWarpBySign(Location location) {
+        for(Warp warp : warps) {
+            for(Location locations : warp.getSigns()) {
+                if(location.equals(locations)) {
+                    return warp;
+                }
+            }
+        }
+        return null;
+    }
     public static Warp getWarpByName(String name) {
         for(Warp warp : warps) {
-            if(warp.getName().equals(name)) {
+            if(warp.getName().equalsIgnoreCase(name)) {
                 return warp;
             }
         }

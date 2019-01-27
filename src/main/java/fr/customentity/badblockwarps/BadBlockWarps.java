@@ -1,5 +1,6 @@
 package fr.customentity.badblockwarps;
 
+import fr.customentity.badblockwarps.commands.CEWCommand;
 import fr.customentity.badblockwarps.commands.WarpCommand;
 import fr.customentity.badblockwarps.configuration.WarpsConfiguration;
 import fr.customentity.badblockwarps.data.Warp;
@@ -7,12 +8,14 @@ import fr.customentity.badblockwarps.listeners.WarpListener;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.block.Sign;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 public class BadBlockWarps extends JavaPlugin {
@@ -28,10 +31,16 @@ public class BadBlockWarps extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
+
         getLogger().log(Level.INFO, "BadBlockWarps > Enabled !");
 
         getCommand("warp").setExecutor(new WarpCommand());
         getCommand("warp").setAliases(Arrays.asList("warps"));
+
+        getCommand("createemptyworld").setExecutor(new CEWCommand());
+        getCommand("createemptyworld").setAliases(Arrays.asList("cew"));
 
         warpsConfiguration = new WarpsConfiguration();
         warpsConfiguration.setup();
@@ -41,7 +50,6 @@ public class BadBlockWarps extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new WarpListener(), this);
     }
-
 
     @Override
     public void onDisable() {
@@ -59,7 +67,7 @@ public class BadBlockWarps extends JavaPlugin {
     }
 
     public String getMessage(String path) {
-        return ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages." + path));
+        return ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages." + path).replace("%prefix%", prefix));
     }
 
     public HashMap<String, Warp> getSelectionHashMap() {
@@ -71,39 +79,72 @@ public class BadBlockWarps extends JavaPlugin {
     }
 
     public void updateSigns() {
-        for(Warp warp : Warp.warps) {
-            for(Location location : warp.getSigns()) {
-                //TODO: Update Signs
+        for (Warp warp : Warp.warps) {
+            for (Location location : warp.getSigns()) {
+                boolean isEnabled = location.getWorld() != null && warp.isEnabled();
+                String state = isEnabled ? ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.enabled")) : ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.disabled"));
+                Sign sign = (Sign) location.getBlock().getState();
+                List<String> translated = translateColorInList(getConfig().getStringList("signs"));
+                int i = 0;
+                for (String str : translated) {
+                    sign.setLine(i, str.replace("%state%", state).replace("%warp%", warp.getName()));
+                    i++;
+                }
             }
         }
     }
 
-    public void copyWorld(File source, File target){
-        try {
-            ArrayList<String> ignore = new ArrayList<String>(Arrays.asList("uid.dat", "session.dat"));
-            if(!ignore.contains(source.getName())) {
-                if(source.isDirectory()) {
-                    if(!target.exists())
-                        target.mkdirs();
-                    String files[] = source.list();
-                    for (String file : files) {
-                        File srcFile = new File(source, file);
-                        File destFile = new File(target, file);
-                        copyWorld(srcFile, destFile);
-                    }
-                } else {
-                    InputStream in = new FileInputStream(source);
-                    OutputStream out = new FileOutputStream(target);
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = in.read(buffer)) > 0)
-                        out.write(buffer, 0, length);
-                    in.close();
-                    out.close();
-                }
+    public void updateSigns(Warp warp) {
+        for (Location location : warp.getSigns()) {
+            boolean isEnabled = location.getWorld() != null && warp.isEnabled();
+            String state = isEnabled ? ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.enabled")) : ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.disabled"));
+            Sign sign = (Sign) location.getBlock().getState();
+            List<String> translated = translateColorInList(getConfig().getStringList("signs"));
+            int i = 0;
+            for (String str : translated) {
+                sign.setLine(i, str.replace("%state%", state).replace("%warp%", warp.getName()));
+                i++;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            sign.update();
         }
+    }
+
+
+    public List<String> translateColorInList(List<String> list) {
+        List<String> exportList = new ArrayList<>();
+        for (String str : list) {
+            exportList.add(ChatColor.translateAlternateColorCodes('&', str.replace("%prefix%", prefix)));
+        }
+        return exportList;
+    }
+
+    public String serializeLocation(Location location) {
+        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ();
+    }
+
+    public Location deserializeLocation(String str) {
+        String[] parts = str.split(":");
+        String world = parts[0];
+        int x = Integer.valueOf(parts[1]);
+        int y = Integer.valueOf(parts[2]);
+        int z = Integer.valueOf(parts[3]);
+
+        return new Location(Bukkit.getWorld(world), x, y, z);
+    }
+
+    public String serializeLocationWithEye(Location location) {
+        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ() + ":" + location.getPitch() + ":" + location.getYaw();
+    }
+
+    public Location deserializeLocationWithEye(String str) {
+        String[] parts = str.split(":");
+        String world = parts[0];
+        double x = Double.valueOf(parts[1]);
+        double y = Double.valueOf(parts[2]);
+        double z = Double.valueOf(parts[3]);
+        float pitch = Float.valueOf(parts[4]);
+        float yaw = Float.valueOf(parts[5]);
+
+        return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
 }
