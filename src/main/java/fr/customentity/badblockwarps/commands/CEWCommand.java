@@ -19,6 +19,7 @@ import java.util.Arrays;
 public class CEWCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!sender.hasPermission("badblock.admin")) return true;
         if(args.length == 0) {
             sender.sendMessage(BadBlockWarps.getInstance().getMessage("incorrect-arguments"));
         } else {

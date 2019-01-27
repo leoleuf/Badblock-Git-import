@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -47,6 +48,20 @@ public class WarpListener implements Listener {
                         player.sendMessage(BadBlockWarps.getInstance().getMessage("teleport-warp").replace("%warp%", warp.getName()));
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBreak(BlockBreakEvent event) {
+        Player player = event.getPlayer();
+        Block b = event.getBlock();
+
+        if(b.getType() == Material.SIGN || b.getType() == Material.WALL_SIGN || b.getType() == Material.SIGN_POST) {
+            Warp warp = Warp.getWarpBySign(b.getLocation());
+            if(warp != null) {
+                player.sendMessage(BadBlockWarps.getInstance().getMessage("sign-deleted-warp"));
+                warp.getSigns().remove(b.getLocation());
             }
         }
     }
