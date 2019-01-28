@@ -95,7 +95,7 @@ Route::group([
         Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:profile_tfa");
         Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:profile_om");
         Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:profile_om");
-        Route::post('/{uuid}/addgroup', 'profile\ActionController@addGroup')/*->middleware("can:profile_addgroup")*/;
+        Route::post('/{uuid}/addgroup', 'profile\ActionController@addGroup')->middleware("can:profile_addgroup");
     });
 
 
