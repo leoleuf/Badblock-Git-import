@@ -11,6 +11,7 @@ namespace App\Http\Controllers\profile;
 
 use App\Models\Funds;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Operation;
@@ -87,6 +88,47 @@ class ActionController extends Controller
         ]);
 
         return "OK";
+    }
+
+    public function addGroup(Request $request, $uuid) {
+        $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
+        $groupName = $request->get('groupName');
+
+        $data = $request->all();
+        $place = $data['place'];
+        $group = $data['group'];
+        $expire = $data['expire'];
+
+        // set expire timestamp
+        if(preg_match('/[0-9]{4}(-[0-9]{2}){2}/', $expire)) {
+            $expire = strtotime($expire);
+        } else {
+            $expire = -1;
+        }
+
+        // if the place had no groups, create the array first
+        if(!isset($Player['permissions']['groups'][$place])) {
+            $Player['permissions']['groups'][$place] = [];
+        }
+
+        // add the group
+        $Player['permissions']['groups'][$place][$group] = $expire;
+
+        // update the collection
+        DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);
+
+        // Create profile log entry
+        DB::connection('mongodb')->collection('profile_logs')->insert([
+            'date' => date('Y-m-d H:i:s'),
+            'action' => "Added group <" . $groupName  . "> to user",
+            'uniqueId' => $uuid,
+            'user' => Auth::user()->name
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Groupe ajouté'
+        ]);
     }
 
 }
