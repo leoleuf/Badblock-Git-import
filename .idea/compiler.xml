@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="BadBlockWarps_main" target="1.8" />
       <module name="BadBlockWarps_test" target="1.8" />
+      <module name="badwarpworld_main" target="1.8" />
+      <module name="badwarpworld_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

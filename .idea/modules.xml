@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BadBlockWarps.iml" filepath="$PROJECT_DIR$/BadBlockWarps.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BadBlockWarps_main.iml" filepath="$PROJECT_DIR$/.idea/modules/BadBlockWarps_main.iml" group="BadBlockWarps" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BadBlockWarps_test.iml" filepath="$PROJECT_DIR$/.idea/modules/BadBlockWarps_test.iml" group="BadBlockWarps" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/badwarpworld.iml" filepath="$PROJECT_DIR$/.idea/modules/badwarpworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/badwarpworld_main.iml" filepath="$PROJECT_DIR$/.idea/modules/badwarpworld_main.iml" group="badwarpworld" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/badwarpworld_test.iml" filepath="$PROJECT_DIR$/.idea/modules/badwarpworld_test.iml" group="badwarpworld" />
     </modules>
   </component>
 </project>

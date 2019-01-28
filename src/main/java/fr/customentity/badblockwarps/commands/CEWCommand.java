@@ -28,11 +28,18 @@ public class CEWCommand implements CommandExecutor {
                 sender.sendMessage("§cMonde déjà existant !");
                 return true;
             }
-            File from = new File(Bukkit.getServer().getWorldContainer() + "/MondeVide/");
+            if(name.equalsIgnoreCase("MondeVide")) {
+                sender.sendMessage("§cBien essayé Sulfique mais cette fois ça ne passera pas !");
+                return true;
+            }
+            File from = new File(BadBlockWarps.getInstance().getDataFolder() + "/maps/MondeVide/");
             File to = new File(Bukkit.getServer().getWorldContainer() + "/" + name);
 
             copyWorld(from, to);
             Bukkit.createWorld(new WorldCreator(name));
+            if(Bukkit.getPluginManager().getPlugin("Multiverse-Core") != null) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv import " + name + " normal");
+            }
             ((Player)sender).teleport(new Location(Bukkit.getWorld(name), 0,50,0));
         }
         return false;

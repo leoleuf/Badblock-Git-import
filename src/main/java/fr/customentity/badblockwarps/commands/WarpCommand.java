@@ -2,13 +2,16 @@ package fr.customentity.badblockwarps.commands;
 
 import fr.customentity.badblockwarps.BadBlockWarps;
 import fr.customentity.badblockwarps.data.Warp;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by CustomEntity on 27/01/2019 for BadBlockWarps.
@@ -105,11 +108,15 @@ public class WarpCommand implements CommandExecutor {
                     for (String str : BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.top-message")) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str).replace("%prefix%", BadBlockWarps.getInstance().getPrefix()));
                     }
-                    for (Warp warp : Warp.getEnabledWarps()) {
-                        player.sendMessage(BadBlockWarps.getInstance().getMessage("list-warp.enabled-warps").replace("%warp%", warp.getName()));
+                    List<String> enabledWarps = new ArrayList<>();
+                    List<String> disabledWarps = new ArrayList<>();
+                    Warp.getEnabledWarps().forEach(warp -> enabledWarps.add(warp.getName()));
+                    Warp.getDisabledWarps().forEach(warp -> disabledWarps.add(warp.getName()));
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("list-warp.enabled-warps"))) {
+                        player.sendMessage(str.replace("%warps%", StringUtils.join(enabledWarps, ", ")));
                     }
-                    for (Warp warp : Warp.getDisabledWarps()) {
-                        player.sendMessage(BadBlockWarps.getInstance().getMessage("list-warp.disabled-warps").replace("%warp%", warp.getName()));
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("list-warp.disabled-warps"))) {
+                        player.sendMessage(str.replace("%warps%", StringUtils.join(disabledWarps, ", ")));
                     }
                 } else if (args[0].equalsIgnoreCase("addsigns")) {
                     if (args.length != 2) {

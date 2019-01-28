@@ -22,8 +22,12 @@ messages:
       - "%prefix% Liste des warps"
       - " "
     none-warp: "%prefix% &cAucun warp existant !"
-    enabled-warps: "&7> &6%warp% &f- &6Etat: &aActivé"
-    disabled-warps: "&7> &6%warp% &f- &6Etat: &cDésactivé"
+    enabled-warps:
+      - "Warps &aactivé(s)&f:"
+      - "&r&l%warps%"
+    disabled-warps:
+      - "Warps &cdésactivé(s):&f:"
+      - "&7%warps%"
   help-warp:
     - "&fListe des commandes de warp: "
     - " &7> &6/warp create <name> &f- &7&oCréer un warp"
