@@ -321,7 +321,73 @@
                                             </div>
                                         </div>
 
-                                        <div role="tabpanel" class="tab-pane fade" id="7"></div>
+                                        <div role="tabpanel" class="tab-pane fade" id="7">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h4>Groupes</h4>
+                                                    <ul>
+                                                        @foreach($Player['permissions']['groups'] as $place => $groups)
+                                                            <li>
+                                                                {{ $place }}
+                                                                <ul>
+                                                                    @foreach($groups as $name => $timestamp)
+                                                                        <li>
+                                                                            {{ $name }} {{ $timestamp > 0  ? '- expire le ' . date('d/m à H:i', time()) : '' }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                    <h4>Permissions</h4>
+                                                    <ul>
+                                                        @forelse($Player['permissions']['permissions'] as $place => $permissions)
+                                                            <li>
+                                                                {{ $place }}
+                                                                <ul>
+                                                                    @foreach($permissions as $name => $timestamp)
+                                                                        <li>
+                                                                            {{ $name }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @empty
+                                                            Aucune permission
+                                                        @endforelse
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <form id="addGroupForm">
+                                                        <h4>Ajouter un groupe</h4>
+                                                        <div class="form-group">
+                                                            <label for="groupPlaceInput">Place</label>
+                                                            <select name="group-place" id="groupPlaceInput"
+                                                                    class="form-control">
+                                                                @foreach($Places as $place)
+                                                                    <option value="{{ $place }}">{{ $place }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="groupPlaceInput">Groupe</label>
+                                                            <select name="group-place" id="groupNameInput"
+                                                                    class="form-control">
+                                                                @foreach($AvailablePermissions as $permission)
+                                                                    <option value="{{ $permission['name'] }}">{{ $permission['name'] }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="groupExpireInput">Expiration</label>
+                                                            <small>Si aucune expiration laisser vide</small>
+                                                            <input id="groupExpireInput" type="date" value="" class="form-control">
+                                                        </div>
+                                                        <button role="submit" class="btn btn-info">Ajouter</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="8">
                                             <div class="row">
@@ -484,6 +550,37 @@
             });
         }
 
+        /*
+            Modal 7: Groupes & permissions
+         */
+        $(document).ready(function() {
+            $('#addGroupForm button[role="submit"]').click(function(event) {
+               event.preventDefault();
+               const $button = $(event.target);
+               $button.prop('disabled', true);
+               $button.toggleClass('disabled');
+               const placeInput = $('#groupPlaceInput');
+               const groupeInput = $('#groupNameInput');
+               const expireInput = $('#groupExpireInput');
+
+               $.post("/profile-api/{{ $Player['uniqueId'] }}/addgroup", {
+                   place: placeInput.val(),
+                   group: groupeInput.val(),
+                   expire: expireInput.val(),
+               }, function(response) {
+                   if(response && response.success) {
+                       toastr.success(response.message);
+                   }
+                   $button.prop('disabled', false);
+                   $button.toggleClass('disabled');
+               }, 'json');
+            })
+        });
+
+
+        /*
+            Remember last active tab
+         */
         $(document).ready(function( ) {
             const hash = document.location.hash;
             if(hash.match(/#[0-9]+/)) {
