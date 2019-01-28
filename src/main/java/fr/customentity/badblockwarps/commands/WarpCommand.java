@@ -112,10 +112,10 @@ public class WarpCommand implements CommandExecutor {
                     List<String> disabledWarps = new ArrayList<>();
                     Warp.getEnabledWarps().forEach(warp -> enabledWarps.add(warp.getName()));
                     Warp.getDisabledWarps().forEach(warp -> disabledWarps.add(warp.getName()));
-                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("list-warp.enabled-warps"))) {
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.enabled-warps"))) {
                         player.sendMessage(str.replace("%warps%", StringUtils.join(enabledWarps, ", ")));
                     }
-                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("list-warp.disabled-warps"))) {
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.disabled-warps"))) {
                         player.sendMessage(str.replace("%warps%", StringUtils.join(disabledWarps, ", ")));
                     }
                 } else if (args[0].equalsIgnoreCase("addsigns")) {
