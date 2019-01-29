@@ -122,16 +122,7 @@
                                 </p>
                             </div>
                         @else
-                            @if (isset($catName) && $catName != "clash-of-clans")
-                                <div class="serveur-infos">
-                                        <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" />
-                                        @endif Liste serveur {{ seocat($catName) }}</h3><div class="serveur-sep"></div>
-                                        <p>La liste de serveur {{ seocat($catName) }} est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur {{ seocat($catName) }} avec tes amis.</p>
-                                        @if (isset($addon))
-                                            {!! $addon !!}
-                                        @endif
-                                </div>
-                            @else
+                            @if (isset($catName) && $catName == "clash-of-clans")
                                 <div class="single-post details" id="liste-information">
                                     <h3 class="text-uppercase"><img alt="Télécharger le Serveur privé Clash Of Clans" src="/img/clash-of-clans.png" height="16" class="ialign" /> Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
                                     <div class="row">
@@ -139,6 +130,24 @@
                                             Vous pouvez télécharger votre serveur privé Clash Of Clans favori par le Play Store, Apple Store ou toutes les plateformes légales et légitimes sans plus hésiter. Il est possible de promouvoir votre serveur Clash Of Clans directement sur cette page. A partir des mises à jour de Clash Of Clans, vous pouvez vous tenir au courant des toutes dernières nouveautés par l'éditeur Supercell. Les images Clash Of Clans utilisés sur cette page sont la propriétés de Supercell et sont utilisés dans un cadre complètement informatif. Forum Clash Of Clans et Wiki disponibles également sur plusieurs sites relatifs au jeu PC Mobile.
                                         </div>
                                     </div>
+                                </div>
+                            @elseif (isset($catName) && $catName == "hytale")
+                                <div class="single-post details" id="liste-information">
+                                    <h3 class="text-uppercase"><img alt="Télécharger le Serveur privé Hytale" src="/img/hytale.jpg" height="16" class="ialign" /> Hytale - Liste de serveurs</h3><br />
+                                    <div class="row">
+                                        <div class="col-md-12 single-defination">
+                                            Sur cette page, vous pourrez promouvoir votre serveur privé Hytale quand le jeu sera sorti. Les dernières mises à jour du jeu ainsi que d'autres informations concernant le trailer, le modding ou le système de serveur du jeu seront publiés directement sur cette page.
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="serveur-infos">
+                                    <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" />
+                                        @endif Liste serveur {{ seocat($catName) }}</h3><div class="serveur-sep"></div>
+                                    <p>La liste de serveur {{ seocat($catName) }} est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur {{ seocat($catName) }} avec tes amis.</p>
+                                    @if (isset($addon))
+                                        {!! $addon !!}
+                                    @endif
                                 </div>
                             @endif
                         @endif
