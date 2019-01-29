@@ -13,7 +13,7 @@
         <div class="cover">
             <div class="container">
                 <div class="one-half column">
-                    <h4 class="cover-heading">Votez pour soutenir le serveur !</h4>
+                    <h4 class="cover-heading">Votez pour soutenir le serveur</h4>
                 </div>
             </div>
         </div>
@@ -21,13 +21,6 @@
     <!------Cover fin------>
 {% endblock %}
 {% block skyscrapers %}
-
-    <div class="pub-skyscraper-left">
-        <ins class="adsbygoogle" style="width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
 
     <div class="pub-skyscraper-right">
         <ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3319544517"></ins>
@@ -39,18 +32,9 @@
 {% block content %}
     <section>
         <div class="vote">
-            <div class="pub-large">
-                <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-9979868023188321" data-ad-slot="1757256897"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
     <div class="nothing">
-        <div class="alert alert-primary" role="alert">
-            Les probabilités de gagner l'Accès à l'HyperFarm du Nouveau SkyBlock sont doublés en votant, en ce début de mois. Profite-en dès maintenant en votant et en ouvrant ta clé au coffre du nouveau SkyBlock !
-        </div>
-        <h5 style="text-align: center;">Cliquez <a title="Voter pour BadBlock" href="https://serveur-multigames.net/minecraft/badblock" target="_blank">ici</a> pour voter.<br />
-            Vous allez être redirigé à l'accueil dans quelques secondes si vous ne cliquez pas.
+        <h5 style="text-align: center;">
+            Vous allez être redirigé dans quelques secondes.
         </h5>
 
         <div class="pub-large">
@@ -61,15 +45,15 @@
         </div>
         <h3 class="text-center">Les meilleurs votants</h3>
         <p class="text-center">Retrouvez chaque mois le classement des meilleurs votants de BadBlock !</p>
-        <div class="vote-tr">
-            <table class="votes">
+        <div class="col-12">
+            <table class="table">
                 <thead>
-                    <tr>
-                        <td>Rang</td>
-                        <td>Joueur</td>
-                        <td>Récompense</td>
-                        <td>Votes</td>
-                    </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Joueur</th>
+                    <th scope="col">Récompense</th>
+                    <th scope="col">Votes</th>
+                </tr>
                 </thead>
                 <tbody>
                 {% if count(top) > 0 %}
@@ -77,14 +61,15 @@
                         <tr class="votes-{{ k + 1 }}">
                             <td><span>{{ k + 1 }}</span></td>
                             <td class="img"><a href="/profile/{{ data['name'] }}" title="Profil de {{ data['name'] }}"><img src="https://cdn.badblock.fr/head/{{ data['name'] }}/16.png" class="align-middle" title="Tête de {{ data['name'] }}" alt="Tête de {{ data['name'] }}" /> <span class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
-                            {% if k < 3 %}
-                                <td>15€</td>
-                            {% elseif k < 10 %}
-                                <td>8.50€</td>
-                            {% elseif k < 20 %}
-                                <td>5€</td>
-                            {% elseif k < 30 %}
-                                <td>2.50€</td>
+                            {% if k == 0 %}
+                                <td>3000 points boutique</td>
+                            {% elseif k == 1 %}
+                                <td>2250 points boutique</td>
+                            {% elseif k < 3 %} <td>2000 points boutique</td>
+                            {% elseif k < 6 %} <td>1500 points boutique</td>
+                            {% elseif k < 10 %} <td>750 points boutique</td>
+                            {% elseif k < 20 %} <td>625 points boutique</td>
+                            {% elseif k < 30 %} <td>250 points boutique</td>
                             {% else %}
                                 <td></td>
                             {% endif %}
@@ -93,7 +78,7 @@
                     {% endfor %}
                 {% endif %}
                 </tbody>
-        </table>
+            </table>
         </div>
     </div>
 </div>
@@ -129,6 +114,6 @@
         });
 
     </script>!-->
-    <meta http-equiv="refresh" content="10; URL=https://badblock.fr/badblock">
+    <meta http-equiv="refresh" content="5; URL=https://serveur-multigames.net/minecraft/badblock">
 {% endblock %}
 
