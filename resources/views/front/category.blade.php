@@ -30,6 +30,8 @@
 
 @if (encname($catName) == "minecraft")
     @section('logometa', 'https://serveur-multigames.net/img/minecraft/minecraft.png')
+@elseif (encname($catName) == "hytale")
+    @section('logometa', 'https://serveur-multigames.net/img/hytale.jpg')
 @else
     @section('logometa', 'https://serveur-multigames.net/img/logo.png')
 @endif
