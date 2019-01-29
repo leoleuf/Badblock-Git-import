@@ -102,7 +102,7 @@ class IpGeneratorMiddleware
             $this->container->session->set('eula', true);
             $eula = true;
         }
-        else 
+        else
         {
             $ips = $this->container->mongoServer->ip->count(['ip' => $ip]);
 
@@ -139,6 +139,7 @@ class IpGeneratorMiddleware
         $twig->addGlobal('eula', $eula);
         $twig->addGlobal('spider', isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']));
         $twig->addGlobal('onlineCount', $onlineCount);
+				if(!isset($shoppoints)) $shoppoints = 0;
         $twig->addGlobal('points', $shoppoints);
         $cfCountry = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? $_SERVER['HTTP_CF_IPCOUNTRY'] : 'fr';
         $twig->addGlobal('country', $cfCountry);

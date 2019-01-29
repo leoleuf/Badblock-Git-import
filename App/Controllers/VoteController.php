@@ -99,15 +99,14 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
-        if ($this->redis->exists('vote:' .$_POST['pseudo'])){
+        if ($this->redis->exists('vote:' . $_POST['pseudo'])) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Ne spam pas.")->withStatus(405);
-        }else{
-            $this->redis->set('vote:' .$_POST['pseudo'], "nop");
-            $this->redis->expire('vote:' .$_POST['pseudo'], 2);
+        } else {
+            $this->redis->set('vote:' . $_POST['pseudo'], "nop");
+            $this->redis->expire('vote:' . $_POST['pseudo'], 2);
         }
 
-        if (!isset($_POST['pseudo']) && !isset($_POST['type']))
-        {
+        if (!isset($_POST['pseudo']) && !isset($_POST['type'])) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
@@ -120,71 +119,62 @@ class VoteController extends Controller
 
         $pseudo = strtolower($pseudo);
 
-        if ($type == 2)
-        {
+        if ($type == 2) {
             $type = 6;
         }
 
         // TODO move
         $types = array(
-          1 => 'ptsboutique',
-          2 => 'skyb2',
-          3 => 'hub',
-          4 => 'faction',
-          5 => 'box',
-          6 => 'skyb2',
-          7 => 'survie',
-          8 => 'faction'
+            1 => 'ptsboutique',
+            2 => 'skyb2',
+            3 => 'hub',
+            4 => 'faction',
+            5 => 'box',
+            6 => 'skyb2',
+            7 => 'survie',
+            8 => 'faction'
         );
 
-       /* if ($type == 6)
-        {
-            return $response->write("Le Nouveau SkyBlock arrive Bientôt !")->withStatus(200);
-        }*/
+        /* if ($type == 6)
+         {
+             return $response->write("Le Nouveau SkyBlock arrive Bientôt !")->withStatus(200);
+         }*/
 
         // unknown type
-        if (!isset($types[$type]))
-        {
+        if (!isset($types[$type])) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
-        if (!$dev)
-        {
-            $query = "SELECT username FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+        if (!$dev) {
+            $query = "SELECT username FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
             // user exists?
-            if ($data == false)
-            {
+            if ($data == false) {
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
 
-       // return $response->write("test")->withStatus(200);
+        // return $response->write("test")->withStatus(200);
 
-        if ($dev)
-        {
+        if ($dev) {
             $API_ip = $_SERVER['REMOTE_ADDR'];
-        }
-        else
-        {
+        } else {
             $API_ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
 
-        if (isset($_POST['internal_ip']))
-        {
+        if (isset($_POST['internal_ip'])) {
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-            // looking for sm
-            $API_id = "badblock"; // ID du serveur
-            $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
+        // looking for sm
+        $API_id = "badblock"; // ID du serveur
+        $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
 
-            $API_call = @file_get_contents($API_url);
+        $API_call = @file_get_contents($API_url);
 
         // voted?
-        if (!$dev && $API_call != true)
-        {
+        if (!$dev && $API_call != true) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
         }
 
@@ -193,7 +183,7 @@ class VoteController extends Controller
 
         $collection = $this->container->mongo->votes_logs;
         $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
-        
+
         // 2 sites de vote, 3 sites à venir?
         if ($dbh == null) {
             $collection = $this->container->mongo->votes_awards;
@@ -250,49 +240,40 @@ class VoteController extends Controller
 
             $total = max($total, 1);
             $proba = round(($dbh / $total) * 100, 2);
-           /* $this->broadcast(' &e'.$displayPseudo.' &aa voté. Vote toi aussi en faisant &d/vote');
-            $this->broadcast(' &aRécompense gagnée : &d'.$awardName);
-            $this->broadcast(' &d&lRésultats loterie à 18H ! &b&nhttps://badblock.fr/vote');*/
 
-            $query = "SELECT * FROM xf_user WHERE username = '". $pseudo ."' LIMIT 1";
+
+            $query = "SELECT * FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
 
-            if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true){
+            if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true) {
                 $this->top($displayPseudo, 1);
             }
 
 
-            if ($type == 1)
-            {
+            if ($type == 1) {
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-                if ($money == null)
-                {
+                if ($money == null) {
                     $data = [
                         "uniqueId" => $user['uniqueId'],
                         "points" => 2
                     ];
                     $this->container->session->set('points', 2);
                     $this->container->mongo->fund_list->insertOne($data);
-                }
-                else
-                {
+                } else {
                     $money['points'] = $money['points'] + 2;
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                     $this->container->session->set('points', $money['points']);
                 }
             }
 
-            $this->container->docker->broadcast("&7(Vote) &e".$displayPseudo." &7gagne &e".$awardName);
-        }
-        else
-        {
+            $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &e" . $awardName);
+        } else {
             // oust les tricheurs
             $awardName = "Rien";
         }
 
-        return $response->write("Ton vote a été pris en compte. Tu as gagné ".$awardName .
-            " ainsi qu'une participation à la loterie. Tu es désormais à " . $proba . "% de chance de gagner le lot de la loterie. Tirage ce soir à 18H sur la page de vote.")->withStatus(200);
+        return $response->write("Ton vote a été pris en compte. Tu as gagné " . $awardName);
     }
 
     public function top($player, $vote){
