@@ -80,6 +80,10 @@ return [
             [
                 // TODO
             ],
+        'Hytale' =>
+            [
+                // TODO
+            ],
         'Discord' =>
             [
                 // TODO
@@ -92,6 +96,7 @@ return [
         'Minecraft',
         'Dofus',
         'Grand Theft Auto',
+        'Hytale',
         // 'World of Warcraft',
         'ARK: Survival Evolved',
         'Clash Of Clans',
@@ -100,6 +105,7 @@ return [
 
     'seocat' =>
     [
+        'hytale' => 'Hytale',
         'discord' => 'Discord',
         'minecraft' => 'Minecraft',
         'dofus' => 'Dofus',
