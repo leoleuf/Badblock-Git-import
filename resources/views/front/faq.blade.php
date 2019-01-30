@@ -99,7 +99,7 @@
                             <div class="col-lg-12">
                                 <blockquote class="generic-blockquote">
                                     Nous utilisons aujourd'hui la meilleure API conçue pour vérifier les fraudes ainsi que l'authenticité des actions en bloquant notamment les proxies, les VPN et les hébergeurs.
-                                    Ce service est IPDetector, c'est un <a title="Detect Bad IP" href="https://ipdetector.info" target="_blank">Bad IP detector</a>.
+                                    Ce service est IPWarner, c'est un <a title="Detect VPN" href="https://ipwarner.com" target="_blank">VPN detector</a>.
                                 </blockquote>
                             </div>
                         </div>

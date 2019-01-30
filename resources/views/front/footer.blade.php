@@ -49,7 +49,7 @@ if ($date != $creationDate)
                         <li><a title="Foire aux questions" href="/faq">Foire aux Questions</a></li>
                         <li><a title="Règlement" href="/reglement">Règlement</a></li>
                         <li><a title="Nous contacter" href="/contact">Contact</a></li>
-                        <li><a title="VPN detect" href="https://ipdetector.info">Detect vpn</a></li>
+                        <li><a title="VPN detect" href="https://ipwarner.com">Detect vpn</a></li>
                         <li></li>
                     </ul>
             </div>

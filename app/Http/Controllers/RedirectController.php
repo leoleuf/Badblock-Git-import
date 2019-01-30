@@ -87,7 +87,7 @@ class RedirectController extends Controller
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_URL, 'https://api.ipdetector.info/' . $ip);
+            curl_setopt($ch, CURLOPT_URL, 'https://api.ipwarner.com/' . $ip);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('API-Key: ' . $apiKey));
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
             curl_setopt($ch, CURLOPT_TIMEOUT, 2); //timeout in seconds
