@@ -36,15 +36,15 @@
             </div>
             <div class="row">
                 @foreach (config('tag.cat') as $k)
-                    @if ($k != "clash-of-clans")
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                    <div class="single-fcat">
-                        <a title="Serveur {{ $k }}" href="/{{ encname($k) }}">
-                            <img alt="Serveur {{ $k }}" src="img/{{ encname($k) }}.png" width="50" height="54">
-                        </a>
-                        <p>{{ ucfirst($k) }}</p>
-                    </div>
-                </div>
+                    @if ($k != "Clash Of Clans")
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <div class="single-fcat">
+                                <a title="Serveur {{ $k }}" href="/{{ encname($k) }}">
+                                    <img alt="Serveur {{ $k }}" src="img/{{ encname($k) }}.png" width="50" height="54">
+                                </a>
+                                <p>{{ ucfirst($k) }}</p>
+                            </div>
+                        </div>
                     @endif
                 @endforeach
             </div>
