@@ -47,7 +47,8 @@
                 </div>
                     @php($i = $i + 1)
                     @if ($i == 3)
-                        <br />
+                        </div>
+                        <div class="row">
                     @endif
                 @endforeach
             </div>
