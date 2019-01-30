@@ -997,8 +997,8 @@ public abstract class EntityHuman extends EntityLiving {
 				}
 
 				if (f > 0.0F || f1 > 0.0F) {
-					boolean flag = !world.paperSpigotConfig.disablePlayerCrits && this.fallDistance > 0.0F && !this.onGround && !this.k_() && !this.V() && !this.hasEffect(MobEffectList.BLINDNESS) && this.vehicle == null && entity instanceof EntityLiving; // PaperSpigot
-
+					boolean flag = (this.fallDistance > 0.0F) && (!this.onGround) && (!k_()) && (!V()) && (!hasEffect(MobEffectList.BLINDNESS)) && (this.vehicle == null) && ((entity instanceof EntityLiving));
+				       
 					if (flag && f > 0.0F) {
 						f *= 1.5F;
 					}
