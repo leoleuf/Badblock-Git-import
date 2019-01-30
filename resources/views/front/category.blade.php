@@ -469,7 +469,7 @@
     </main>
     <!-- End calto-action Area -->
 
-    @if (encname($catName) == "clash-of-clans")
+    @if (encname($catName) == "clash-of-clans" OR encname($catName) == "hytale")
         <script type="application/ld+json">
             {
                 "@context": "http://schema.org/",
