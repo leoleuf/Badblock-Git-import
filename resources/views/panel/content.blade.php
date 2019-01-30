@@ -49,7 +49,7 @@
             <div class="navbar-collapse">
                 <ul class="navbar-nav my-lg-0">
                     <li class="nav-item dropdown">
-                        <a title="Menu" class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://guiria.badblock.fr/head/{{ Auth::user()->name }}/64.png" alt="user" class="profile-pic m-r-10" />{{ Auth::user()->name }}</a>
+                        <a title="Menu" class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://minotar.net/avatar/{{ Auth::user()->name }}/64.png" alt="user" class="profile-pic m-r-10" />{{ Auth::user()->name }}</a>
                     </li>
                 </ul>
             </div>

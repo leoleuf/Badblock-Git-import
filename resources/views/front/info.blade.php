@@ -191,7 +191,7 @@
                                 <div class="single-comment justify-content-between d-flex">
                                     <div class="user justify-content-between d-flex">
                                         <div class="thumb">
-                                            <img src="https://guiria.badblock.fr/head/{{ $row->username }}/64.png" alt="Joueur {{ $row->username }}" style="border-radius: 10px;">
+                                            <img src="https://minotar.net/avatar/{{ $row->username }}/64.png" alt="Joueur {{ $row->username }}" style="border-radius: 10px;">
                                         </div>
                                         <div class="desc">
                                             <h5 style="margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;{{ $row->username }}</h5>
