@@ -35,6 +35,7 @@
                 </div>
             </div>
             <div class="row">
+                @php($i = 0)
                 @foreach (config('tag.cat') as $k)
                 <div class="col-lg-2 col-md-4 col-sm-6">
                     <div class="single-fcat">
@@ -44,6 +45,10 @@
                         <p>{{ ucfirst($k) }}</p>
                     </div>
                 </div>
+                    @php($i = $i + 1)
+                    @if ($i == 3)
+                        <br />
+                    @endif
                 @endforeach
             </div>
         </div>
