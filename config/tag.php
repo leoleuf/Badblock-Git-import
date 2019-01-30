@@ -97,7 +97,6 @@ return [
         'Dofus',
         'Grand Theft Auto',
         'Hytale',
-        // 'World of Warcraft',
         'ARK: Survival Evolved',
         'Clash Of Clans',
         'Discord'
