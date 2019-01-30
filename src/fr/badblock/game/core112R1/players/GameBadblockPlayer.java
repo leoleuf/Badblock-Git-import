@@ -8,11 +8,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -38,6 +40,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
@@ -189,6 +192,12 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			inGameData = offlinePlayer.getInGameData();
 			return;
 		}else object = new JsonObject();
+		
+		if (!this.isLoad())
+		{
+			this.setRealName(entity.getName());
+		}
+		
 		// Load async
 		if (!GameAPI.getServerName().startsWith("login"))
 		{
@@ -293,6 +302,50 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 				Map<String, Long> md = new HashMap<>();
 				md.put("default", -1L);
 				permissions.getGroups().put(GamePlugin.getInstance().getPermissionPlace(), md);
+			}
+
+			Map<String, Long> newGroups = new HashMap<>();
+			Map<String, Long> groups = permissions.getGroups().get(GamePlugin.getInstance().getPermissionPlace());
+
+			boolean edit = false;
+			for (Entry<String, Long> entry : groups.entrySet())
+			{
+				if (entry.getValue() > 0 && entry.getValue() < System.currentTimeMillis())
+				{
+					continue;
+				}
+
+				if (GamePlugin.getInstance().getServerConfig().getEquiv() != null)
+				{
+					if (!GamePlugin.getInstance().getServerConfig().getEquiv().containsKey(entry.getKey()))
+					{
+						newGroups.put(entry.getKey(), entry.getValue());
+						continue;
+					}
+
+					edit = true;
+					newGroups.put(GamePlugin.getInstance().getServerConfig().getEquiv().get(entry.getKey()), entry.getValue());
+					continue;
+				}
+				else
+				{
+					newGroups.put(entry.getKey(), entry.getValue());
+				}
+
+			}
+
+			if (edit)
+			{
+				permissions.getGroups().put(GamePlugin.getInstance().getPermissionPlace(), newGroups);
+				this.object.add("permissions", new JsonParser().parse(permissions.getDBObject().toString()));
+				Bukkit.getScheduler().runTaskLater(GamePlugin.getInstance(), new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						saveGameData();
+					}
+				}, 20 * 2);
 			}
 		}
 
@@ -706,11 +759,54 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 
 	@Override
 	public String getMainGroup() {
-		return permissions.
-				getHighestRank(
-						GamePlugin.getInstance().getPermissionPlace()
-						, false).
-				getName();
+		if (getRealName() != null && !getRealName().isEmpty() && !getRealName().equalsIgnoreCase(getName()))
+		{
+			return getHighestNickRank(GamePlugin.getInstance().getPermissionPlace(), false).getName();
+		}
+		
+		return permissions.getHighestRank(GamePlugin.getInstance().getPermissionPlace(), false).getName();
+	}
+
+	private Permissible getHighestNickRank(String place, boolean onlyDisplayables)
+	{
+		List<String> g = getPermissions().getValidRanks(place);
+		if (g == null || g.isEmpty())
+		{
+			return PermissionsManager.getManager().getGroup("default");
+		}
+
+		Permissible result = null;
+		for (String group : g)
+		{
+			Permissible permissible = PermissionsManager.getManager().getGroup(group);
+
+			if (permissible == null)
+			{
+				continue;
+			}
+
+			if (onlyDisplayables && !permissible.isDisplayable())
+			{
+				continue;
+			}
+			
+			if (permissible.hasPermission("bungee.command.gnick.hidemyrank"))
+			{
+				continue;
+			}
+
+			if (result == null || permissible.getPower() > result.getPower())
+			{
+				result = permissible;
+			}
+		}
+
+		if (result == null)
+		{
+			return PermissionsManager.getManager().getGroup("default");
+		}
+
+		return result;
 	}
 
 	@Override
@@ -736,7 +832,7 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 					spectatorRunnable = null;
 				}
 
-				setGameMode(GameMode.SURVIVAL);
+				setGameMode(Bukkit.getDefaultGameMode());
 			} else if (spectatorRunnable == null) {
 				setGameMode(GameMode.SPECTATOR);
 
@@ -765,6 +861,16 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 				if (!able(online))
 					continue;
 
+				if (getLocation() == null || online.getLocation() == null)
+				{
+					continue;
+				}
+				
+				if (getLocation().getWorld().equals(online.getLocation().getWorld()))
+				{
+					continue;
+				}
+				
 				double distance = getLocation().distance(online.getLocation());
 
 				if (distance < minDistance) {
@@ -1128,8 +1234,19 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		for (String rank : ranks)
 		{
 			Permissible permissible = PermissionsManager.getManager().getGroup(rank);
+			
+			if (permissible == null || permissible.getPermissions() == null)
+			{
+				continue;
+			}
+			
 			for (PermissionSet set : permissible.getPermissions())
 			{
+				if (set == null || set.getPermissions() == null)
+				{
+					continue;
+				}
+				
 				if (set.getPlaces() == null || !set.getPlaces().contains(GamePlugin.getInstance().getPermissionPlace()))
 				{
 					continue;
@@ -1144,7 +1261,10 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 		{
 			for (PermissionSet permission : customPerms)
 			{
-				pms.addAll(permission.getPermissions());
+				if (permission.getPermissions() != null)
+				{
+					pms.addAll(permission.getPermissions());
+				}
 			}
 		}
 

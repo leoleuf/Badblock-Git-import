@@ -19,6 +19,7 @@ import fr.badblock.gameapi.game.rankeds.RankedManager;
 import fr.badblock.gameapi.players.RankedPlayer;
 import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.utils.general.Callback;
+import net.md_5.bungee.api.ChatColor;
 
 public class PlayerLoginWorkers
 {
@@ -32,7 +33,7 @@ public class PlayerLoginWorkers
 			{
 				loadNick(player);
 				loadRankeds(player);
-				loadPlayerData(player, true);
+				loadPlayerData(player);
 			}
 		}.start();
 	}
@@ -99,10 +100,10 @@ public class PlayerLoginWorkers
 		});
 		player.setRanked(new RankedPlayer(player, player.getTotalPoints(), player.getTotalRank(), player.getMonthRank()));
 	}
-
-	public static void loadPlayerData(GameBadblockPlayer player, boolean justJoined)
+	
+	public static void loadPlayerData(GameBadblockPlayer player)
 	{
-		String name = player.getRealName() != null ? player.getRealName() : player.getName();
+		String name = player.getName();
 		new Thread("loader-" + name)
 		{
 			@SuppressWarnings("deprecation")
@@ -113,34 +114,52 @@ public class PlayerLoginWorkers
 				{
 					Optional<Entry<String, JsonObject>> optional = PlayerDataReceiver.objectsToSet.entrySet().parallelStream().filter(entry ->
 					{
-						return entry.getValue().get("name").getAsString().equalsIgnoreCase(name) ||  
-								(entry.getValue().has("nickname") && entry.getValue().get("nickname").getAsString().equalsIgnoreCase(name));
+						return entry.getValue().get("name").getAsString().equalsIgnoreCase(name) || entry.getKey().equalsIgnoreCase(name);
 					}).findFirst();
 
 					if (optional.isPresent())
 					{
-						Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
+						Entry<String, JsonObject> entry = optional.get();
+						entry.getValue().addProperty("uniqueId", player.getUniqueId().toString());
+						player.setObject(entry.getValue());
+						player.setLoad(true);
+						
+						if (entry.getValue().has("nickname") && entry.getValue().has("name")
+								&& !entry.getValue().get("nickname").isJsonNull()
+								&& !entry.getValue().get("name").isJsonNull())
 						{
-							@Override
-							public void run()
+							String nickname = entry.getValue().get("nickname").getAsString();
+							String rName = entry.getValue().get("name").getAsString();
+							if (!rName.equalsIgnoreCase(nickname) && !nickname.isEmpty() && !rName.isEmpty())
 							{
-								Entry<String, JsonObject> entry = optional.get();
-								entry.getValue().addProperty("name", name.toLowerCase());
-								entry.getValue().addProperty("uniqueId", player.getUniqueId().toString());
-								player.setObject(entry.getValue());
-								player.setLoad(true);
-								player.updateData(entry.getValue());
-								PlayerDataReceiver.objectsToSet.remove(entry.getKey());
-								player.setDataFetch(true);
-
-								if (justJoined)
+								player.setRealName(rName);
+								GameAPI.logColor(ChatColor.RED + "[NICK] Real name of "+ nickname + " : " + rName);
+							}
+							else
+							{
+								player.setRealName(null);
+							}
+						}
+						else
+						{
+							player.setRealName(null);
+						}
+						
+						player.updateData(entry.getValue());
+						PlayerDataReceiver.objectsToSet.remove(entry.getKey());
+						player.setDataFetch(true);
+						synchronized (Bukkit.getServer()) {
+							Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
+							{
+								@Override
+								public void run()
 								{
 									if (player.getPlayersWithHim() != null && !player.getPlayersWithHim().isEmpty())
 										Bukkit.getPluginManager().callEvent(new PartyJoinEvent(player, player.getPlayersWithHim()));
 									Bukkit.getPluginManager().callEvent(new PlayerLoadedEvent(player));
 								}
-							}
-						});
+							});
+						}
 
 						stop();
 					}

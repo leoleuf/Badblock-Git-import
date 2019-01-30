@@ -67,6 +67,7 @@ import fr.badblock.game.core112R1.jsonconfiguration.data.RankedConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.SQLConfig;
 import fr.badblock.game.core112R1.jsonconfiguration.data.ServerConfig;
 import fr.badblock.game.core112R1.listeners.ChatListener;
+import fr.badblock.game.core112R1.listeners.CrashBookFix;
 import fr.badblock.game.core112R1.listeners.PortalListener;
 import fr.badblock.game.core112R1.listeners.mapprotector.DefaultMapProtector;
 import fr.badblock.game.core112R1.players.GameBadblockPlayer;
@@ -84,6 +85,7 @@ import fr.badblock.game.core112R1.technologies.RabbitSpeaker;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerBoosterRefreshListener;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerDataReceiver;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.PlayerPingListener;
+import fr.badblock.game.core112R1.technologies.rabbitlisteners.SoundReceiver;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.VanishTeleportListener;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.configuration.BadConfiguration;
@@ -218,6 +220,9 @@ public class GamePlugin extends GameAPI {
 	
 	@Getter@Setter
 	private PartySyncManager	partyManager;
+	
+	@Getter@Setter
+	private ServerConfig				serverConfig;
 
 	@Override
 	public void onEnable() {
@@ -262,6 +267,7 @@ public class GamePlugin extends GameAPI {
 			MongoSettings mongoSettings = JsonUtils.load(new File(configFolder, "mongosettings.json"), MongoSettings.class);
 			setMongoService(MongoConnector.getInstance().createService("default", mongoSettings));
 
+			setServerConfig(serverConfig);
 			this.cluster = serverConfig.getCluster();
 			
 			GameAPI.logColor("§b[GameAPI] §aFetching permission data from MongoDB...");
@@ -336,8 +342,10 @@ public class GamePlugin extends GameAPI {
 
 			new VanishTeleportListener();
 			new PlayerPingListener();
+			new SoundReceiver();
 			new PlayerDataReceiver();
 			new PlayerBoosterRefreshListener();
+			CrashBookFix.addListener(this);
 
 			//AntiCheat.load();
 			GamePlugin gamePlugin = this;

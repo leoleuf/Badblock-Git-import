@@ -1,5 +1,8 @@
 package fr.badblock.game.core112R1.jsonconfiguration.data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +22,7 @@ public class ServerConfig {
 	
 	// Cluster
 	public String cluster;
+	
+	public Map<String, String> equiv = new HashMap<>();
 	
 }

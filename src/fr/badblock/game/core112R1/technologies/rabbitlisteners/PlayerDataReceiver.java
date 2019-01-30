@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -22,7 +22,6 @@ import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketMessage;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketType;
 import fr.badblock.api.common.utils.GsonUtils;
 import fr.badblock.game.core112R1.players.GameBadblockPlayer;
-import fr.badblock.game.core112R1.players.utils.PlayerLoginWorkers;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.players.BadblockPlayer;
 
@@ -33,8 +32,7 @@ public class PlayerDataReceiver extends RabbitListener
 
 	public PlayerDataReceiver()
 	{
-		super(GameAPI.getAPI().getRabbitService(), BadBungeeQueues.BUNGEE_DATA_PLAYERS + Bukkit.getServerName(),
-				RabbitListenerType.SUBSCRIBER, false);
+		super(GameAPI.getAPI().getRabbitService(), BadBungeeQueues.BUNGEE_DATA_PLAYERS + Bukkit.getServerName(), RabbitListenerType.SUBSCRIBER, false);
 		load();
 	}
 
@@ -49,45 +47,43 @@ public class PlayerDataReceiver extends RabbitListener
 		}
 
 		String name = databaseObject.getString("name");
+		
+		if (databaseObject.containsField("nickname"))
+		{
+			String nickname = databaseObject.getString("nickname");
+			if (nickname != null && !nickname.isEmpty() && !name.equalsIgnoreCase(nickname))
+			{
+				name = nickname;
+			}
+		}
+		
+		GameAPI.logColor(ChatColor.YELLOW + "[GameAPI DATA] Received " + name + "'s data.");
+		
 		JsonParser jsonParser = new JsonParser();
 		JsonObject jsonObject = jsonParser.parse(databaseObject.toJson()).getAsJsonObject();
-		System.out.println(jsonObject.toString());
 
-		Player player = Bukkit.getPlayer(name);
-		if (player == null)
-		{
-			objectsToSet.put(name, jsonObject);
-			return;
-		}
-
-		GameBadblockPlayer gamePlayer = (GameBadblockPlayer) player;
 		objectsToSet.put(name, jsonObject);
-
-		if (gamePlayer.isLoad() && gamePlayer.isDataFetch())
-		{	
-			PlayerLoginWorkers.loadPlayerData(gamePlayer, false);
-		}
 	}
 
 	public static void send(BadblockPlayer player)
 	{
 		send(player, null);
 	}
-
+	
 	public static void send(BadblockPlayer player, JsonObject data)
 	{
 		if (player.getAddress() == null)
 		{
 			return;
 		}
-
+		
 		GameBadblockPlayer plo = (GameBadblockPlayer) player;
-
+		
 		if (!plo.isLoad())
 		{
 			return;
 		}
-
+		
 		RabbitService rabbitService = GameAPI.getAPI().getRabbitService();
 		JsonObject jsonObject = new JsonObject();
 		String realName = plo.getRealName() != null ? plo.getRealName().toLowerCase() : plo.getName().toLowerCase();
