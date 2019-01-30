@@ -35,8 +35,8 @@
                 </div>
             </div>
             <div class="row">
-                @php($i = 0)
                 @foreach (config('tag.cat') as $k)
+                    @if ($k != "clash-of-clans")
                 <div class="col-lg-2 col-md-4 col-sm-6">
                     <div class="single-fcat">
                         <a title="Serveur {{ $k }}" href="/{{ encname($k) }}">
@@ -45,10 +45,6 @@
                         <p>{{ ucfirst($k) }}</p>
                     </div>
                 </div>
-                    @php($i = $i + 1)
-                    @if ($i == 3)
-                        </div>
-                        <div class="row">
                     @endif
                 @endforeach
             </div>
