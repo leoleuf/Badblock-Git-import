@@ -172,8 +172,12 @@ class Ladder
 	}
 
     public function encryptPassword($password) {
-        return hash('sha-512', $password);
+        $salt = substr(hash('whirlpool', uniqid(rand(), true)), 0, 12);
+        $hash = strtolower(hash('whirlpool', $salt . $password));
+        $saltPos = (strlen($password) >= strlen($hash) ? strlen($hash) - 1 : strlen($password));
+        return substr($hash, 0, $saltPos) . $salt . substr($hash, $saltPos);
     }
+
 
 
 
