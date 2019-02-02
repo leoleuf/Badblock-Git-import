@@ -44,7 +44,7 @@ class ModController extends Controller
         DB::table('notifications')->insert([
             'user_id' => NotificationsController::convertPseudoId($request->input('punisher')),
             'title' => "Preuve",
-            'link' => '/avertissement/' . DB::table('warning')->max('id'),
+            'link' => '/moderation',
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
             'text' => 'Vous venez de recevoir un avertissement.',
             'active' => 1

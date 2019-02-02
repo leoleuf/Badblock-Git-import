@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('header')
+    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -48,6 +52,11 @@
 @endsection
 @section("after_scripts")
 
+
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="/assets/jquery.json-editor.min.js"></script>
+
 <script>
 
     function notif(punisher) {
@@ -59,6 +68,17 @@
 
             data: {
                 'punisher': punisher
+            },
+
+            success: function(data)
+            {
+                toastr.success('La personne a bien été notifiée', 'Merci !');
+                console.log('Notifié !');
+            },
+            error: function(data)
+            {
+                toastr.error('Erreur de l\'envoi !', 'Erreur !');
+                console.log('Erreur !');
             }
         });
     }
