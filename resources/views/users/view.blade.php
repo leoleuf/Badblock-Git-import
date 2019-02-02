@@ -332,7 +332,7 @@
                                                                 <ul>
                                                                     @foreach($groups as $name => $timestamp)
                                                                         <li>
-                                                                            {{ $name }} {{ $timestamp > 0  ? '- expire le ' . date('d/m à H:i', time()) : '' }}
+                                                                            {{ $name }} {{ $timestamp > 0  ? '- expire le ' . date('d/m à H:i', time()) : '- à vie' }}
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
