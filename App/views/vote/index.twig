@@ -52,7 +52,7 @@
             <h3 class="step-round">II</h3>
             <div class="step-content-main">
                 <h5 class="text-center">Choisissez un Site</h5>
-                <a title="Liste des serveur minecraft" class="button button-primary" id="btm-msf" href="https://serveur-multigames.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur Minecraft (1H30)</a>
+                <a title="Voter pour badblock" class="button button-primary" id="btm-msf" href="/vote/redirect" target="_blank" style="width: 95%;">Serveur MultiGames (1H30)</a>
                 <div id="pleasewait" style="display: none;">
                 </div>
             </div>
@@ -78,6 +78,7 @@
             </div>
         </div>
     </div>
+    <a id="blouks" title="Liste des serveur minecraft" class="button button-primary" id="btm-msf" href="https://serveur-multigames.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur Minecraft BadBlock</a>
     <div class="col-12">
         <table class="table table-vote">
             <thead>
@@ -115,6 +116,13 @@
     </div>
 </div>
 <script async>
+
+    window.onload = function(){
+        setTimeout(function() {
+            document.getElementById("blouks").style.display = 'none';
+        }, 500);
+    };
+
 var type;
 var pseudo;
 var error = false;
@@ -229,5 +237,6 @@ function award(type) {
         }
     });
 }
+
 </script>
 {% endblock %}
