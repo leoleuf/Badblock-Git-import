@@ -37,7 +37,13 @@ public class CEWCommand implements CommandExecutor {
 
             copyWorld(from, to);
             Bukkit.createWorld(new WorldCreator(name));
+<<<<<<< HEAD
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv import " + name + " normal");
+=======
+            if(Bukkit.getPluginManager().getPlugin("Multiverse-Core") != null) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv import " + name + " normal");
+            }
+>>>>>>> master
             ((Player)sender).teleport(new Location(Bukkit.getWorld(name), 0,50,0));
         }
         return false;

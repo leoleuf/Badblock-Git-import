@@ -3,13 +3,17 @@ package fr.customentity.badblockwarps.commands;
 import fr.customentity.badblockwarps.BadBlockWarps;
 import fr.customentity.badblockwarps.data.Warp;
 import org.apache.commons.lang.StringUtils;
+<<<<<<< HEAD
 import org.bukkit.Bukkit;
+=======
+>>>>>>> master
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
