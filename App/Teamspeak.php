@@ -143,10 +143,7 @@ class Teamspeak
         $this->connection();
         $ClientId = $this->client->clientGetDbIdFromUid($Uid);
 
-        $ID = [52, 53, 202, 203];
-        foreach ($ID as $k => $row){
-            $this->client->serverGroupDeleteClient($ClientId['data']['cldbid'], $row);
-        }
+        $this->client->clientDbDelete($ClientId['data']['cldbid']);
 
         return true;
     }
