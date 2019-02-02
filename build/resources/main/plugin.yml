@@ -1,0 +1,11 @@
+name: BadBlockWarps
+version: 1.0-SNAPSHOT
+main: fr.customentity.badblockwarps.BadBlockWarps
+authors: [Badblock]
+description: Simple warp plugin
+commands:
+  warp:
+    aliases: [warps]
+    description: warp command
+  createemptyworld:
+    aliases: [cew]
