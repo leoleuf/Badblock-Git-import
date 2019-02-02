@@ -109,10 +109,8 @@ class VoteController extends Controller
 
     public function down(){
         //Search mongoDB data
-        $date = date("Y-m");
 
-
-        $date = new \DateTime(date("Y-m-d"));
+        $date = new \DateTime(date("Y-m-d", strtotime("last day of previous month")));
 
         //Search data
         $data = DB::connection('mongodb')->collection('stats_vote')->where('date', $date->format('Y-m'))->first();
