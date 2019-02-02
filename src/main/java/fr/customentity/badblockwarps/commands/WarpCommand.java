@@ -2,18 +2,22 @@ package fr.customentity.badblockwarps.commands;
 
 import fr.customentity.badblockwarps.BadBlockWarps;
 import fr.customentity.badblockwarps.data.Warp;
+import org.apache.commons.lang.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by CustomEntity on 27/01/2019 for BadBlockWarps.
  */
-public class WarpCommand implements CommandExecutor {
+public class WarpCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("badblock.admin")) return true;
@@ -74,6 +78,10 @@ public class WarpCommand implements CommandExecutor {
                         return true;
                     }
                     Warp warp = Warp.getWarpByName(name);
+                    if(Bukkit.getWorld(warp.getWorld()) == null) {
+                        player.sendMessage(BadBlockWarps.getInstance().getMessage("cantenable-warp").replace("%warp%", warp.getName()));
+                        return true;
+                    }
                     if (warp.isEnabled()) {
                         player.sendMessage(BadBlockWarps.getInstance().getMessage("already-enabled-warp").replace("%warp%", warp.getName()));
                         return true;
@@ -105,11 +113,15 @@ public class WarpCommand implements CommandExecutor {
                     for (String str : BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.top-message")) {
                         player.sendMessage(ChatColor.translateAlternateColorCodes('&', str).replace("%prefix%", BadBlockWarps.getInstance().getPrefix()));
                     }
-                    for (Warp warp : Warp.getEnabledWarps()) {
-                        player.sendMessage(BadBlockWarps.getInstance().getMessage("list-warp.enabled-warps").replace("%warp%", warp.getName()));
+                    List<String> enabledWarps = new ArrayList<>();
+                    List<String> disabledWarps = new ArrayList<>();
+                    Warp.getEnabledWarps().forEach(warp -> enabledWarps.add(warp.getName()));
+                    Warp.getDisabledWarps().forEach(warp -> disabledWarps.add(warp.getName()));
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.enabled-warps"))) {
+                        player.sendMessage(str.replace("%warps%", StringUtils.join(enabledWarps, ", ")));
                     }
-                    for (Warp warp : Warp.getDisabledWarps()) {
-                        player.sendMessage(BadBlockWarps.getInstance().getMessage("list-warp.disabled-warps").replace("%warp%", warp.getName()));
+                    for (String str : BadBlockWarps.getInstance().translateColorInList(BadBlockWarps.getInstance().getConfig().getStringList("messages.list-warp.disabled-warps"))) {
+                        player.sendMessage(str.replace("%warps%", StringUtils.join(disabledWarps, ", ")));
                     }
                 } else if (args[0].equalsIgnoreCase("addsigns")) {
                     if (args.length != 2) {
@@ -145,5 +157,21 @@ public class WarpCommand implements CommandExecutor {
         for (String str : BadBlockWarps.getInstance().getConfig().getStringList("messages.help-warp")) {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', str.replace("%prefix%", BadBlockWarps.getInstance().getPrefix())));
         }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        List<String> warps = new ArrayList<>();
+
+        Warp.warps.forEach(warp -> warps.add(warp.getName()));
+        switch (args[0]) {
+            case "addsigns":
+            case "tp":
+            case "enable":
+            case "disable":
+            case "remove":
+                return warps;
+        }
+        return null;
     }
 }

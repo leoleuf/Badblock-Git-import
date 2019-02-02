@@ -9,9 +9,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Sign;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,7 +41,6 @@ public class BadBlockWarps extends JavaPlugin {
 
         getCommand("createemptyworld").setExecutor(new CEWCommand());
         getCommand("createemptyworld").setAliases(Arrays.asList("cew"));
-
         warpsConfiguration = new WarpsConfiguration();
         warpsConfiguration.setup();
         warpsConfiguration.loadWarps();
@@ -49,6 +48,7 @@ public class BadBlockWarps extends JavaPlugin {
         prefix = ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.prefix-warp"));
 
         Bukkit.getPluginManager().registerEvents(new WarpListener(), this);
+        updateSigns();
     }
 
     @Override
@@ -80,23 +80,13 @@ public class BadBlockWarps extends JavaPlugin {
 
     public void updateSigns() {
         for (Warp warp : Warp.warps) {
-            for (Location location : warp.getSigns()) {
-                boolean isEnabled = location.getWorld() != null && warp.isEnabled();
-                String state = isEnabled ? ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.enabled")) : ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.disabled"));
-                Sign sign = (Sign) location.getBlock().getState();
-                List<String> translated = translateColorInList(getConfig().getStringList("signs"));
-                int i = 0;
-                for (String str : translated) {
-                    sign.setLine(i, str.replace("%state%", state).replace("%warp%", warp.getName()));
-                    i++;
-                }
-            }
+            updateSigns(warp);
         }
     }
 
     public void updateSigns(Warp warp) {
+        boolean isEnabled = warp.getLocation().getWorld() != null && warp.isEnabled();
         for (Location location : warp.getSigns()) {
-            boolean isEnabled = location.getWorld() != null && warp.isEnabled();
             String state = isEnabled ? ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.enabled")) : ChatColor.translateAlternateColorCodes('&', getConfig().getString("signs-state.disabled"));
             Sign sign = (Sign) location.getBlock().getState();
             List<String> translated = translateColorInList(getConfig().getStringList("signs"));
@@ -133,7 +123,11 @@ public class BadBlockWarps extends JavaPlugin {
     }
 
     public String serializeLocationWithEye(Location location) {
-        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ() + ":" + location.getPitch() + ":" + location.getYaw();
+        return location.getWorld().getName() + ":" + location.getBlockX() + ":" + location.getBlockY() + ":" + location.getBlockZ() + ":" + location.getYaw() + ":" + location.getPitch();
+    }
+
+    public String serializeWarpWithEye(Warp location) {
+        return location.getWorld() + ":" + location.getX() + ":" + location.getY() + ":" + location.getZ() + ":" + location.getYaw() + ":" + location.getPitch();
     }
 
     public Location deserializeLocationWithEye(String str) {

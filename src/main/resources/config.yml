@@ -17,13 +17,18 @@ messages:
   doesnt-exist-warp: "%prefix% Ce warp n'existe pas ! -> &6/warp list"
   alreadyexist-warp: "%prefix% Le warp %warp% existe déjà !"
   teleport-warp: "%prefix% Téléportation au warp &6%warp% &fréussi !"
+  cantenable-warp: "%prefix% &cImpossible d'activer le warp car son monde est désactivé !"
   list-warp:
     top-message:
       - "%prefix% Liste des warps"
       - " "
     none-warp: "%prefix% &cAucun warp existant !"
-    enabled-warps: "&7> &6%warp% &f- &6Etat: &aActivé"
-    disabled-warps: "&7> &6%warp% &f- &6Etat: &cDésactivé"
+    enabled-warps:
+      - "Warps &aactivé(s)&f:"
+      - "&r&l%warps%"
+    disabled-warps:
+      - "Warps &cdésactivé(s):&f:"
+      - "&7%warps%"
   help-warp:
     - "&fListe des commandes de warp: "
     - " &7> &6/warp create <name> &f- &7&oCréer un warp"
