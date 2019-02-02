@@ -39,7 +39,7 @@ class Matchmaking implements MessageComponentInterface
 
             foreach ($Data_cluster as $k => $row){
                 $channel->queue_declare('matchmaking.log_' .$row, false, false, false, false);
-                $max_number_messages_to_fetch_per_batch = 10000;
+                $max_number_messages_to_fetch_per_batch = 100;
                 do
                 {
                     $message = $channel->basic_get('matchmaking.log_' .$row, true);
