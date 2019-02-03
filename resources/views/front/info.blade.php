@@ -268,14 +268,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="single-slidebar">
-                        <h4>Live communautaire Minecraft</h4>
-                        <div class="active-relatedjob-carusel">
-                            <div class="single-rated">
-                                <iframe src="https://www.youtube.com/embed/kfqgKwYNqng?rel=0&mute=1&autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
                 </div>
         </div>
         </div>
