@@ -153,7 +153,6 @@ public class BadblockSecurityManager extends SecurityManager {
 				case "accessDeclaredMembers":
 					return;
 				default:
-					System.out.println(perm.getName());
 					throw new SecurityException(perm.getName());
 					
 			
