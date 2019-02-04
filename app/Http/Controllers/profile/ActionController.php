@@ -101,7 +101,7 @@ class ActionController extends Controller
 
         // set expire timestamp
         if(preg_match('/[0-9]{4}(-[0-9]{2}){2}/', $expire)) {
-            $expire = strtotime($expire);
+            $expire = strtotime($expire) * 1000; // *1000 because MongoDB uses millis. timestamps
         } else {
             $expire = -1;
         }
