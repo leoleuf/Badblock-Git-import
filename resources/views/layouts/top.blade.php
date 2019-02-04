@@ -152,7 +152,7 @@
                             <li><a href="/moderation" class="waves-effect"><i class="fa fa-bolt"></i>  Mod Center</a></li>
                             <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i> TeamSpeak BanList</a></li>
                             <li><a disabled="" href="/ert" class="waves-effect"><i class="fa fa-legal"></i> Répartition</a></li>
-                            <li><a disabled="" href="/ert" class="waves-effect"><i class="fa fa-legal"></i> Guardianer</a></li>
+                            <li><a disabled="" href="/moderation/guardian" class="waves-effect"><i class="fa fa-legal"></i> Guardianer</a></li>
                             <li><a disabled="" href="/moderation/sanction-tx" class="waves-effect"><i class="fa fa-legal"></i> TX sanction</a></li>
                         </ul>
                     </li>

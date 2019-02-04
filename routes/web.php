@@ -69,6 +69,13 @@ Route::group([
         Route::get('/sanction-tx', 'moderation\SanctionController@index');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
+        Route::get('/guardian', 'moderation\GuardianController@index');
+
+        /* Ajax routes */
+        Route::get('/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
+        Route::post('/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
+        Route::post('/ajax/mute-message-sender/{messageId}/{duration}', 'moderation\GuardianController@muteMessageSender');
+
     });
 
     Route::group([
