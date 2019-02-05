@@ -3,6 +3,9 @@
     <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
     <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 @endsection
+@section('styles')
+    <link href="/assets/css/custom_styles/guardian.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <div class="content-page">
         <div id="vueapp" class="content">
@@ -27,9 +30,12 @@
                                             <tr v-for="message in messages" v-if="!message.processed">
                                                 <td>@{{ message.playerName }}</td>
                                                 <td>@{{ message.date }}</td>
-                                                <td>@{{ message.message }}</td>
                                                 <td>
-                                                    <div class="row">
+                                                    <p style="max-width: 250px;">
+                                                    @{{ message.message }}
+                                                    </p>
+                                                </td>
+                                                <td class="row messageButtons">
                                                         <button :disabled="disabledButtonsMessages.includes(message)"
                                                                 @click.prevent="messageMute(message)"
                                                                 class="btn btn-warning">Mute</button>
@@ -39,7 +45,6 @@
                                                         <button :disabled="disabledButtonsMessages.includes(message)"
                                                                 @click.prevent="messageOk(message)"
                                                                 class="btn btn-success">OK</button>
-                                                    </div>
                                                 </td>
                                             </tr>
                                             </template>
