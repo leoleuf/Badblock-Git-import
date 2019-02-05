@@ -75,6 +75,7 @@ Route::group([
         Route::get('/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
         Route::post('/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
         Route::post('/ajax/mute-message-sender/{messageId}/{duration}', 'moderation\GuardianController@muteMessageSender');
+        Route::post('/ajax/ban-message-sender/{messageId}/{duration}', 'moderation\GuardianController@banMessageSender');
 
     });
 

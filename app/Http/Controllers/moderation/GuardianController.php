@@ -34,7 +34,7 @@ class GuardianController extends Controller
     public function getUnprocessedMessages(Request $request) {
         $startTimestamp = intval($request->get('startTimestamp') ?? 0);
         $limit = intval($request->get('limit') ?? 50);
-        $messages = self::getMessagesTable()
+        $messages = self::getMessagesCollection()
             ->where([
                 ['processed', false],
                 ['timestamp', '>=', $startTimestamp],
@@ -46,37 +46,59 @@ class GuardianController extends Controller
     }
 
     public function setMessageOk($messageId) {
-        $message = self::getMessagesTable()
+        $message = self::getMessagesCollection()
             ->where('_id', $messageId)
             ->first();
         if($message) {
-            //mark the message as processed
-            $message['processed'] = true;
-            dump($message);
-
-            self::getMessagesTable()->where('_id', $message['_id'])->update($message);
+            $this->processMessage($message, false);
         }
 
     }
 
     public function muteMessageSender($messageId, $duration) {
-        $message = self::getMessagesTable()
+        $message = self::getMessagesCollection()
             ->where('_id', $messageId)
             ->first();
         if($message) {
-            //mark the message as processed
-            $message['processed'] = true;
-            $message['punished'] = true;
-            self::getMessagesTable()->where('_id', $message['_id'])->update($message);
-
-            //TODO : create the proof
-
+            $this->processMessage($message, true);
+            $this->createProof($message, 'mute ' . $duration);
         }
 
     }
 
-    private static function getMessagesTable() {
+    public function banMessageSender($messageId, $duration) {
+        $message = self::getMessagesCollection()
+            ->where('_id', $messageId)
+            ->first();
+        if($message) {
+            $this->processMessage($message, true);
+            $this->createProof($message, 'ban ' . $duration);
+        }
+
+    }
+
+    private function processMessage($message, $punished) {
+        $message['processed'] = true;
+        $message['punished'] = $punished;
+        self::getMessagesCollection()->where('_id', $message['_id'])->update($message);
+    }
+
+    private function createProof($message, $punition) {
+        $proof = [
+            'punishedBy' => Auth::user()->name,
+            'punishedPlayer' => $message['playerName'],
+            'punishedMessage' => $message['message'],
+            'punition' => $punition
+        ];
+        self::getProofsCollection()->insert($proof);
+    }
+
+    private static function getMessagesCollection() {
         return DB::connection('mongodb_server')->collection('reportmessages');
+    }
+
+    private static function getProofsCollection() {
+        return DB::connection('mongodb_server')->collection('chatfilter_proof');
     }
 
 }

@@ -32,7 +32,10 @@
                                                     <div class="row">
                                                         <button :disabled="disabledButtonsMessages.includes(message)"
                                                                 @click.prevent="messageMute(message)"
-                                                                class="btn btn-danger">Mute</button>
+                                                                class="btn btn-warning">Mute</button>
+                                                        <button :disabled="disabledButtonsMessages.includes(message)"
+                                                                @click.prevent="messageBan(message)"
+                                                                class="btn btn-danger">Ban</button>
                                                         <button :disabled="disabledButtonsMessages.includes(message)"
                                                                 @click.prevent="messageOk(message)"
                                                                 class="btn btn-success">OK</button>
@@ -55,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Mute options modal -->
+            <!-- Mute duration modal -->
             <div class="modal" tabindex="-1" role="dialog" id="muteDurationModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -77,6 +80,28 @@
                     </div>
                 </div>
             </div>
+            <!-- Ban duration modal -->
+            <div class="modal" tabindex="-1" role="dialog" id="banDurationModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Ban</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="banDurationInput">Durée du ban</label>
+                                <select name="banDurationInput" class="form-control" id="banDurationInput" v-model="banDuration">
+                                    <option v-for="banDuration in getBanDurations()" :value="banDuration">@{{ banDuration }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="banModalClosed">Fermer</button>
+                            <button type="button" class="btn btn-primary" id="banModalOk">Bannir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -92,7 +117,8 @@
                 lastTimestamp: 0,
                 disabledButtonsMessages: [],
                 loading: true,
-                muteDuration: ''
+                muteDuration: '',
+                banDuration: ''
             },
             methods: {
                 loadUnprocessedMessage: async function(startTimestamp, limit = 50) {
@@ -116,14 +142,27 @@
                 },
                 messageMute: async function(message) {
                     this.disabledButtonsMessages.push(message);
-
-                    // toastr.success('Message traité !');
                     const ok = await this.showMuteDialog();
                     if(ok) {
                         const messageId = message._id.$oid;
                         await axios.post('/moderation/ajax/mute-message-sender/' + messageId + '/' + this.muteDuration);
                         message.processed = true;
                         toastr.success('Utilisateur muté !');
+                    } else {
+                        // re-enable button
+                        this.disabledButtonsMessages.splice(this.disabledButtonsMessages.indexOf(message), 1);
+                    }
+                },
+                messageBan: async function(message) {
+                    this.disabledButtonsMessages.push(message);
+
+                    // toastr.success('Message traité !');
+                    const ok = await this.showBanDialog();
+                    if(ok) {
+                        const messageId = message._id.$oid;
+                        await axios.post('/moderation/ajax/ban-message-sender/' + messageId + '/' + this.banDuration);
+                        message.processed = true;
+                        toastr.success('Utilisateur banni !');
                     } else {
                         // re-enable button
                         this.disabledButtonsMessages.splice(this.disabledButtonsMessages.indexOf(message), 1);
@@ -144,6 +183,21 @@
                       });
                   });
                 },
+                showBanDialog: function() {
+                    return new Promise(function(resolve, reject) {
+                        $('#banDurationModal').modal({
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+                        $('#banModalOk').click(function(e) {
+                            $('#banDurationModal').modal('hide');
+                            resolve(true);
+                        });
+                        $('#banModalClosed').click(function(e) {
+                            resolve(false);
+                        });
+                    });
+                },
                 getMuteDurations: function() {
                     return [
                         '1 heure',
@@ -158,6 +212,14 @@
                         '60 jours',
                     ]
                 },
+                getBanDurations : function() {
+                    return [
+                        '1 heure',
+                        '1 jour',
+                        '3 jours',
+                        '7 jours',
+                    ]
+                }
             },
             mounted() {
                 this.loadUnprocessedMessage(this.lastTimestamp);
