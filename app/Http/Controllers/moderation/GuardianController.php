@@ -10,12 +10,20 @@ namespace App\Http\Controllers\moderation;
 
 
 use App\Http\Controllers\Controller;
+use App\Services\DockerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GuardianController extends Controller
 {
+    private $dockerService;
+
+    public function __construct(DockerService $dockerService)
+    {
+        $this->dockerService = $dockerService;
+    }
+
     public function index() {
         return view('section.mod.guardian.index');
     }
@@ -62,8 +70,9 @@ class GuardianController extends Controller
         if($message) {
             $this->processMessage($message, true);
             $this->createProof($message, 'mute ' . $duration);
+            if($this->dockerService->isConnected())
+                $this->dockerService->mutePlayer($message['playerName'], '', $this->getSanctionExpire($duration));
         }
-
     }
 
     public function banMessageSender($messageId, $duration) {
@@ -73,8 +82,29 @@ class GuardianController extends Controller
         if($message) {
             $this->processMessage($message, true);
             $this->createProof($message, 'ban ' . $duration);
+            if($this->dockerService->isConnected())
+                $this->dockerService->banPlayer($message['playerName'], '', $this->getSanctionExpire($duration));
+        }
+    }
+
+    /**
+     * Retourne le timestamp (en millisecondes) à laquelle une sanction doit expirer en fonction de sa durée
+     *
+     * @param $durationString a string following this format (1 heure, x heures, 1 jour ou x jours
+     * @return int
+     */
+    private function getSanctionExpire($durationString) {
+        $parts = explode(' ', $durationString);
+        $duration = intval($parts[0]);
+        $unit = $parts[1];
+        $multiplier = 60 * 60 * 1000;
+        if(preg_match('/heure/', $unit)) {
+           // nothing to do
+        } else if(preg_match('/jour/', $unit)) {
+            $multiplier = $multiplier * 24;
         }
 
+        return time() * 1000 + $duration * $multiplier;
     }
 
     private function processMessage($message, $punished) {
