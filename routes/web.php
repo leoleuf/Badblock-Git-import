@@ -66,7 +66,9 @@ Route::group([
 
         Route::get('/guardian/{id}', 'moderation\GuardianController@view');
 
+        //TX Sanction
         Route::get('/sanction-tx', 'moderation\SanctionController@index');
+        Route::post('/sanction-tx', 'moderation\SanctionController@postSanction');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
     });
