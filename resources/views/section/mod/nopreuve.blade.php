@@ -1,8 +1,4 @@
 @extends('layouts.app')
-@section('header')
-    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
-    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
-@endsection
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -23,18 +19,18 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @for($i = 0; $i < count($Sanctions); $i++)
+                                            @foreach($Sanctions as $row)
                                                 <tr class="gradeX">
-                                                    <td>{{ $Sanctions[$i]['punisher'] }}</td>
-                                                    <td>{{ $Sanctions[$i]['reason'] }}</td>
-                                                    <td>{{ date('Y-m-d H:i:s', round(($Sanctions[$i]['expire'] / 1000), 0)) }}</td>
+                                                    <td>{{ $row['punisher'] }}</td>
+                                                    <td>{{ $row['reason'] }}</td>
+                                                    <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
                                                     <td>
                                                         {{ Form::open() }}
-                                                            <input type="button" id="notif{{$i}}" value="Notifier" onclick="notif('{{ $Sanctions[$i]['punisher']  }}');" class="btn btn-info" />
+                                                            <input type="button" id="notif" value="Notifier" onclick="notif();" class="btn btn-info" />
                                                         {{ Form::close() }}
                                                     </td>
                                                 </tr>
-                                            @endfor
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -52,33 +48,22 @@
 @endsection
 @section("after_scripts")
 
-
-    <script src="/assets/plugins/toastr/toastr.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
 <script>
 
-    function notif(punisher) {
-        $.ajax({
+    $(function(){
 
-            type: 'POST',
+        $('#notif').on('click', function(){
 
-            url: '/section/preuves',
+            $.ajax({
 
-            data: {
-                'punisher': punisher
-            },
+                type: 'POST',
 
-            success: function(data)
-            {
-                toastr.success('La personne a bien été notifiée', 'Merci !');
-            },
-            error: function(data)
-            {
-                toastr.error('Erreur de l\'envoi !', 'Erreur !');
-            }
+                url: ''
+            });
+
         });
-    }
+
+    });
 
 </script>
 
