@@ -2,6 +2,9 @@
 @section('header')
     <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
     <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    @section('styles')
+    <link href="/assets/css/custom_styles/userprofile.css" rel="stylesheet" type="text/css" />
+    @endsection
 @endsection
 @section('content')
     <div class="content-page">
@@ -43,7 +46,7 @@
                                                 Adresse IP : {{ $Player['lastIp'] }}
                                             </li>
                                             <li>
-                                                Mode premium : {{ $Player['onlineMode'] }}
+                                                Mode : {{ $Player['onlineMode'] ? 'premium' : 'cracké' }}
                                             </li>
                                         </h4>
                                     </div>
@@ -129,47 +132,58 @@
 
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade" id="1">
-                                            <img src="https://cdn.badblock.fr/head/{{ $Player['name'] }}/110.png">
+                                            <img src="https://minotar.net/body/{{ str_replace('-', '', $Player['uniqueId']) }}/150.png">
                                         </div>
+
                                         <div role="tabpanel" class="tab-pane fade" id="2">
                                             <div class="container">
-                                                <ul>
-                                                    <li>
-                                                        Nom : {{ $Player['name'] }}
-                                                    </li>
+                                                <table class="table userinfotable">
+                                                    <tr>
+                                                        <th>Nom :</th>
+                                                        <td>{{ $Player['name'] }}</td>
+                                                    </tr>
                                                     @if(isset($Player['realName']))
-                                                        <li>
-                                                            Nom réel : {{ $Player['realName'] }}
-                                                        </li>
+                                                        <tr>
+                                                            <th>Nom réel :</th>
+                                                            <td class="color-brighter">{{ $Player['realName'] }}</td>
+                                                        </tr>
                                                     @endif
-                                                    <li>
-                                                        Adresse IP : {{ $Player['lastIp'] }}
-                                                    </li>
-                                                    <li>
-                                                        Groupe(s) secondaire(s) :
-
-                                                        @foreach($Player['permissions']['groups'] as $k => $row)
-                                                            <ul> {{ $k }}
-                                                                @foreach($row as $p => $h)
-                                                                    <li>
-                                                                        Groupe : {{ $p }} Time : {{ $h }}
-                                                                    </li>
-                                                                @endforeach
+                                                    <tr>
+                                                        <th>Adresse IP :</th>
+                                                        <td class="color-brighter">{{ $Player['lastIp'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Groupe(s) secondaire(s) :</th>
+                                                        <td>
+                                                            <ul class="in-table-list">
+                                                            @foreach($Player['permissions']['groups'] as $k => $row)
+                                                            <li class="color-brighter">
+                                                                {{ $k }}
+                                                                <ul class="in-table-list">
+                                                                    @foreach($row as $p => $h)
+                                                                        <li class="color-brighter">
+                                                                            Groupe : {{ $p }} - Time : {{ $h }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                            @endforeach
                                                             </ul>
-                                                        @endforeach
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        Niveau : {{ $Player['game']['level'] }}
-                                                    </li>
-                                                    <li>
-                                                        Xp : {{ $Player['game']['xp'] }}
-                                                    </li>
-                                                    <li>
-                                                        Badcoins : {{ $Player['game']['badcoins'] }}
-                                                    </li>
-                                                </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Niveau :</th>
+                                                        <td class="color-brighter">{{ $Player['game']['level'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Xp :</th>
+                                                        <td class="color-brighter">{{ $Player['game']['xp'] }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Badcoins :</th>
+                                                        <td class="color-brighter">{{ $Player['game']['badcoins'] }}</td>
+                                                    </tr>
+                                                </table>
                                             </div>
                                         </div>
 
@@ -242,7 +256,6 @@
 
                                         </div>
 
-
                                         <div role="tabpanel" class="tab-pane fade" id="5">
                                             <h4 class="header-title m-t-0 m-b-30">Achat(s) du joueur</h4>
                                             <table class="table">
@@ -309,10 +322,123 @@
                                         </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="7">
-
-
-
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h4>Groupes</h4>
+                                                    <ul>
+                                                        @foreach($Player['permissions']['groups'] as $place => $groups)
+                                                            <li>
+                                                                {{ $place }}
+                                                                <ul>
+                                                                    @foreach($groups as $name => $timestamp)
+                                                                        <li>
+                                                                            {{ $name }} {{ $timestamp > 0  ? '- expire le ' . date('d/m à H:i', time()) : '- à vie' }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                    <h4>Permissions</h4>
+                                                    <ul>
+                                                        @forelse($Player['permissions']['permissions'] as $place => $permissions)
+                                                            <li>
+                                                                {{ $place }}
+                                                                <ul>
+                                                                    @foreach($permissions as $name => $timestamp)
+                                                                        <li>
+                                                                            {{ $name }}
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </li>
+                                                        @empty
+                                                            Aucune permission
+                                                        @endforelse
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <form id="addGroupForm">
+                                                        <h4>Ajouter un groupe</h4>
+                                                        <div class="form-group">
+                                                            <label for="groupPlaceInput">Place</label>
+                                                            <select name="group-place" id="groupPlaceInput"
+                                                                    class="form-control">
+                                                                @foreach($Places as $place)
+                                                                    <option value="{{ $place }}">{{ $place }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="groupPlaceInput">Groupe</label>
+                                                            <select name="group-place" id="groupNameInput"
+                                                                    class="form-control">
+                                                                @foreach($AvailablePermissions as $permission)
+                                                                    <option value="{{ $permission['name'] }}">{{ $permission['name'] }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="groupExpireInput">Expiration</label>
+                                                            <small>Si aucune expiration laisser vide</small>
+                                                            <input id="groupExpireInput" type="date" value="" class="form-control">
+                                                        </div>
+                                                        <button role="submit" class="btn btn-info">Ajouter</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <div role="tabpanel" class="tab-pane fade" id="8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <h3>10 dernières connexions</h3>
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Date</th>
+                                                            <th>Adresse IP</th>
+                                                        </tr>
+                                                        @foreach($ConnectionLogs as $log)
+                                                        <tr>
+                                                            <td>{{ date('d/m/Y à H:i', strtotime($log['date'])) }}</td>
+                                                            <td>{{ $log['lastIp'] }}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <ul class="color-brighter">
+                                                        <!-- Online mode -->
+                                                        @if($Player['onlineMode'])
+                                                        <li>L'utilisateur est premium</li>
+                                                        @else
+                                                        <li>L'utilisateur n'est pas premium</li>
+                                                        @endif
+                                                        <!-- Password -->
+                                                        @if(empty($Player['loginPassword']))
+                                                            <li>L'utilisateur n'a pas défini de mot de passe à la connexion</li>
+                                                        @else
+                                                            <li>L'utilisateur a définit un mot de passe</li>
+                                                        @endif
+                                                        <!-- Auth key -->
+                                                        @if(!isset($Player['authKey']) || empty($Player['authKey']))
+                                                            <li>L'utilisateur n'a pas de clé d'authentification</li>
+                                                        @else
+                                                            <li>Clé d'authentification : {{ $Player['authKey'] }}</li>
+                                                        @endif
+                                                    </ul>
+                                                    <div class="row auth-buttons">
+                                                        <button type="button" class="btn btn-danger btn-lg" onclick="resetPassword()">Reset Password</button>
+                                                        <button type="button" class="btn btn-warning btn-lg" onclick="resetTfa()">Reset TFA</button>
+                                                        <button type="button" class="btn btn-info btn-lg" onclick="resetOm()" >Offline Mode</button>
+                                                        <button type="button" class="btn btn-sucess btn-lg" onclick="resetOl()" >Online Mode</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div role="tabpanel" class="tab-pane fade" id="9">
                                             <table class="table">
                                                 <thead>
@@ -424,7 +550,46 @@
             });
         }
 
-        
+        /*
+            Modal 7: Groupes & permissions
+         */
+        $(document).ready(function() {
+            $('#addGroupForm button[role="submit"]').click(function(event) {
+               event.preventDefault();
+               const $button = $(event.target);
+               $button.prop('disabled', true);
+               $button.toggleClass('disabled');
+               const placeInput = $('#groupPlaceInput');
+               const groupeInput = $('#groupNameInput');
+               const expireInput = $('#groupExpireInput');
+
+               $.post("/profile-api/{{ $Player['uniqueId'] }}/addgroup", {
+                   place: placeInput.val(),
+                   group: groupeInput.val(),
+                   expire: expireInput.val(),
+               }, function(response) {
+                   if(response && response.success) {
+                       toastr.success(response.message);
+                   }
+                   $button.prop('disabled', false);
+                   $button.toggleClass('disabled');
+               }, 'json');
+            })
+        });
+
+
+        /*
+            Remember last active tab
+         */
+        $(document).ready(function( ) {
+            const hash = document.location.hash;
+            if(hash.match(/#[0-9]+/)) {
+                $('.nav-item a[href="' + hash + '"]').tab('show');
+            } else {
+                // Show skin tab by default
+                $('.nav-item a[href="#2"]').tab('show');
+            }
+        })
         
     </script>
     

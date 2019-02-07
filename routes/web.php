@@ -71,6 +71,14 @@ Route::group([
         Route::post('/sanction-tx', 'moderation\SanctionController@postSanction');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
+        Route::get('/guardian', 'moderation\GuardianController@index');
+
+        /* Ajax routes */
+        Route::get('/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
+        Route::post('/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
+        Route::post('/ajax/mute-message-sender/{messageId}/{duration}', 'moderation\GuardianController@muteMessageSender');
+        Route::post('/ajax/ban-message-sender/{messageId}/{duration}', 'moderation\GuardianController@banMessageSender');
+
     });
 
     Route::group([
@@ -97,7 +105,7 @@ Route::group([
         Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:profile_tfa");
         Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:profile_om");
         Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:profile_om");
-
+        Route::post('/{uuid}/addgroup', 'profile\ActionController@addGroup')->middleware("can:profile_addgroup");
     });
 
 

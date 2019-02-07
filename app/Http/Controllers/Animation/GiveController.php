@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Animation;
 use App\Models\Funds;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GiveController extends Controller
@@ -73,6 +74,7 @@ class GiveController extends Controller
         //Log to mongoDB
         DB::connection('mongodb')->collection('animation_paid')->insert([
             'date' => date("Y-m-d h:i:s"),
+            'user_id' => Auth::user()->id,
             'data' => $logg
         ]);
 

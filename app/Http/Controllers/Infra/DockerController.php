@@ -58,7 +58,7 @@ class DockerController extends Controller
                                 $Type_Server[$Type] = [];
                             }
                             foreach ($T as $s){
-                                if ($s->state == "RUNNING" && round(($s->lastKeepAlive / 1000), 0) >= time()){
+                                if (round(($s->lastKeepAlive / 1000), 0) >= time()){
                                     array_push($Type_Server[$Type], $s);
                                 }
                             }
@@ -93,7 +93,7 @@ class DockerController extends Controller
         $InstanceOpenRequest = [
             "worldSystemName" => $_POST['WorldSystemName'],
             "owner" => $_POST['owner'],
-            "target" => "node01-dkr"
+            "target" => ""
         ];
         $SendRequest = [
             "expire" => -1,

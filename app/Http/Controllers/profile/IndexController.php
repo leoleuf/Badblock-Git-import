@@ -92,16 +92,41 @@ class IndexController extends Controller
 
         $Logs = DB::connection('mongodb')->collection('profile_logs')->where('uniqueId', $Player['uniqueId'])->orderBy('data', 'ASC')->get();
 
+        $ConnectionLogs = DB::connection('mongodb_server')->collection('connectionLogs')
+            ->where('username', $Player['name'])
+            ->orderBy('date', 'DESC')
+            ->limit(10)
+            ->get();
+
+        $AvailablePermissions = DB::connection('mongodb_server')->collection('permissions')
+            ->get();
+
+        $Places = $this->getPlaces();
+
         $Guardian = [];
 
         return view('users.view')
             ->with('Player', $Player)
             ->with('Sanctions', $Sanctions)
             ->with('Logs', $Logs)
-            ->with('Guardian', $Guardian);
+            ->with('Guardian', $Guardian)
+            ->with('ConnectionLogs', $ConnectionLogs)
+            ->with('AvailablePermissions', $AvailablePermissions)
+            ->with('Places', $Places);
     }
 
-
+    private function getPlaces() {
+        return [
+            'bungee',
+            'minigames',
+            'pvpbox',
+            'skyblock',
+            'freebuild',
+            'survie',
+            'faction',
+            'hub',
+        ];
+    }
 
 
 }
