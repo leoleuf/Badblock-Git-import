@@ -43,7 +43,10 @@
                                                 <li>Offline</li>
                                             @endif
                                             <li>
-                                                Adresse IP : {{ $Player['lastIp'] }}
+                                                Adresse IP :
+                                                @can('profile_ip')
+                                                    {{ $Player['lastIp'] }}
+                                                @endcan
                                             </li>
                                             <li>
                                                 Mode : {{ $Player['onlineMode'] ? 'premium' : 'cracké' }}

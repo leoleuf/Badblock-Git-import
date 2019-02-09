@@ -103,7 +103,11 @@ class IndexController extends Controller
 
         $Places = $this->getPlaces();
 
-        $Guardian = [];
+        try {
+            $Guardian = DB::connection('mysql_guardian')->table('logs')->where('uuid', '=', $Player['uniqueId'])->orderBy("date", 'DESC')->limit(20)->get();
+        }catch (\Exception $exception){
+            $Guardian = [];
+        }
 
         return view('users.view')
             ->with('Player', $Player)
