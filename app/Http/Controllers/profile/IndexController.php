@@ -103,7 +103,7 @@ class IndexController extends Controller
 
         $Places = $this->getPlaces();
 
-        $Guardian = [];
+        $Guardian = DB::connection('mysql_guardian')->table('logs')->where('uuid', '=', $Player['uniqueId'])->orderBy("date", 'DESC')->limit(20)->get();
 
         return view('users.view')
             ->with('Player', $Player)
