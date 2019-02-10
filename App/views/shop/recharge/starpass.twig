@@ -73,37 +73,47 @@
             Vous utilisez le code promotionnel {{ codepromo }}. +{{ percentpromo }}% de points boutique sur votre rechargement. Valable 15 minutes.
         </div>
     {% endif %}
-    <div class="row center">
-        <div class="three columns small-offer">
-            <h6 class="h6-small">{% if (cp > 1) %}<i><strike>1500</strike></i>{% else %}<br />{% endif %} {{ cp*1500 }} points boutique<br></h6>
-            <br>Bonus +375<br></span>
-             <span class="info hidden-text">Bonus inclus - Équivalent de 5€</span>
-             <a href="/shop/recharge/starpass/0" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Obtenir</a>
-         </div>
-         <div class="three columns small-offer">
-             <h6 class="h6-small">{% if (cp > 1) %}<i><strike>3000</strike></i>{% else %}<br />{% endif %} {{ cp*3000 }} points boutique<br></h6>
-             <br>Bonus +750<br></span>
-             <span class="info hidden-text">Bonus inclus - Équivalent de 10€</span>
-             <a href="/shop/recharge/starpass/1" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Obtenir</a>
-         </div>
-         <div class="three columns small-offer">
-             <h6 class="h6-small">{% if (cp > 1) %}<i><strike>4500</strike></i>{% else %}<br />{% endif %} {{ cp*4500 }} points boutique<br></h6>
-             <br>Bonus +1 125<br></span>
-             <span class="info hidden-text">Bonus inclus - Équivalent de 15€</span>
-             <a href="/shop/recharge/starpass/2" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Obtenir</a>
-         </div>
-         <div class="three columns small-offer">
-             <h6 class="h6-small">{% if (cp > 1) %}<i><strike>6000</strike></i>{% else %}<br />{% endif %} {{ cp*6000 }} points boutique<br></h6>
-             <br>Bonus +1 500<br></span>
-             <span class="info hidden-text">Bonus inclus - Équivalent de 20€</span>
-             <a href="/shop/recharge/starpass/3" class="button button-primary small-offer-btn" ><i class="fas fa-check"></i>  Obtenir</a>
-         </div>
-     </div>
-     <div class="row center big-offer promotion-border top-big">
-         <h6 class="h6-big">{% if (cp > 1) %}<i><strike>1500</strike></i>{% else %}<br />{% endif %} {{ cp*15000 }} points boutique<br></h6>
-         <br>Bonus +3 750<br></span>
-         <span class="info hidden-text">Bonus inclus - Équivalent de 50€</span>
-         <a href="/shop/recharge/starpass/4" class="button button-primary big-offer-btn" ><i class="fas fa-check"></i>  Obtenir</a>
+    <div class="row shop-offer-col">
+        <div class="col-12 col-md-3">
+            <div class="shop-offer">
+                <h4 class="shop-offer-title">{% if (cp > 1) %}<i><strike>1500</strike></i>{% else %}{% endif %} {{ cp*1500 }} points boutique</h4>
+                <div class="shop-offer-bonus">Bonus de 375 points</div>
+                <div class="shop-offer-desc">Bonus inclus - Équivalent de 5€</div>
+                <a href="/shop/recharge/starpass/0" class="button button-primary small-offer-btn" target="_blank" title="Choisir (1 500 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="shop-offer">
+                <h4 class="shop-offer-title">{% if (cp > 1) %}<i><strike>3000</strike></i>{% else %}{% endif %} {{ cp*3000 }} points boutique</h4>
+                <div class="shop-offer-bonus">Bonus de 750 points</div>
+                <div class="shop-offer-desc">Bonus inclus - Équivalent de 10€</div>
+                <a href="/shop/recharge/starpass/1" class="button button-primary small-offer-btn" target="_blank" title="Choisir (3 000 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="shop-offer">
+                <h4 class="shop-offer-title">{% if (cp > 1) %}<i><strike>4500</strike></i>{% else %}{% endif %} {{ cp*4500 }} points boutique</h4>
+                <div class="shop-offer-bonus">Bonus de 1 125 points</div>
+                <div class="shop-offer-desc">Bonus inclus - Équivalent de 15€</div>
+                <a href="/shop/recharge/starpass/2" class="button button-primary small-offer-btn" target="_blank" title="Choisir (4 500 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="shop-offer">
+                <h4 class="shop-offer-title">{% if (cp > 1) %}<i><strike>6000</strike></i>{% else %}{% endif %} {{ cp*6000 }} points boutique</h4>
+                <div class="shop-offer-bonus">Bonus de 1 500 points</div>
+                <div class="shop-offer-desc">Bonus inclus - Équivalent de 20€</div>
+                <a href="/shop/recharge/starpass/3" class="button button-primary small-offer-btn" target="_blank" title="Choisir (6 000 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="shop-offer">
+                <h4 class="shop-offer-title">{% if (cp > 1) %}<i><strike>15000</strike></i>{% else %}{% endif %} {{ cp*15000 }} points boutique</h4>
+                <div class="shop-offer-bonus">Bonus de 3 750 points</div>
+                <div class="shop-offer-desc">Bonus inclus - Équivalent de 50€</div>
+                <a href="/shop/recharge/starpass/4" class="button button-primary small-offer-btn" target="_blank" title="Choisir (15 000 points boutique)"><i class="fas fa-check"></i>  Obtenir</a>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
