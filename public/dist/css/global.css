@@ -1462,4 +1462,10 @@ iframe {
   margin-bottom: 50px;
 }
 
+.footer-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=global.css.map */
