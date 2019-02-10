@@ -1404,7 +1404,9 @@ iframe {
   height: 100%;
 }
 
-..shop-offer .shop-offer-title
+.shop-offer .shop-offer-title {
+  margin:0;
+}
 
 .shop-offer .shop-offer-desc {
   width: 100%;
