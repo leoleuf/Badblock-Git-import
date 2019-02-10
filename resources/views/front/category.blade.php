@@ -339,6 +339,17 @@
                             </div>
                         @endif
 
+                        <div class="active-relatedjob-carusel single-rated pubpost">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-format="autorelaxed"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="5940869817"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
                             @if (isset($catName) && $catName != "clash-of-clans")
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
@@ -360,18 +371,6 @@
                                     </div>
                                 </div>
                             @endif
-
-                            <div class="active-relatedjob-carusel single-rated pubpost">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-format="autorelaxed"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="5940869817"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
                         <div class="single-slidebar">
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
