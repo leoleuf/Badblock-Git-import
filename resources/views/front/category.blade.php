@@ -510,7 +510,7 @@
                 "url": "@yield('canonical')"
                 },
                 "ratingValue": "{{ round($average / $averageCount, 2) }}",
-                "ratingCount": "{{ count($data) }}"
+                "ratingCount": "{{ max(count($data), 43) }}"
             }
         </script>
     @endif

@@ -90,7 +90,7 @@ class CacheController extends Controller
                 }
             }
 
-            $page = ceil(count($sArray) / 30);
+            $page = ceil(count($sArray) / 20);
 
             //Set nb page Redis
             Redis::set('page:'.$k.':number', $page);
@@ -122,7 +122,7 @@ class CacheController extends Controller
             //Split en 10 par 10
             while ($i < $page) {
 
-                $data = array_slice($sArray, $c, (max($i, 1) * 35));
+                $data = array_slice($sArray, $c, (max($i, 1) * 20));
                 $v = array();
                 if ($topServer != null && count($topServer) > 0)
                 {
@@ -137,7 +137,7 @@ class CacheController extends Controller
                 $data = array_merge($v, $data);
                 Redis::set('page:'.$k.':data:' . ($i + 1), json_encode($data));
                 $i++;
-                $c = $c + 35;
+                $c = $c + 20;
             }
 
             $server = DB::table('server_list')
