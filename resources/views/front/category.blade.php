@@ -338,6 +338,7 @@
                                 </div>
                             </div>
                         @endif
+
                             @if (isset($catName) && $catName != "clash-of-clans")
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
@@ -359,6 +360,18 @@
                                     </div>
                                 </div>
                             @endif
+
+                            <div class="active-relatedjob-carusel single-rated pubpost">
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-format="autorelaxed"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="5940869817"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
                         <div class="single-slidebar">
                             <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
                             <div class="active-relatedjob-carusel single-rated">
@@ -406,15 +419,6 @@
                                 <div class="active-relatedjob-carusel single-rated">
                                     La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
                                 </div>
-                            </div>
-                            <div class="active-relatedjob-carusel single-rated pubpost">
-                                <ins class="adsbygoogle"
-                                     id="pbblock" style="display:inline-block;width:300px;height:600px"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="2719469514"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
                             </div>
                         <div class="single-slidebar">
                             <strong>Pourquoi voulons-nous faire vivre la communauté des jeux ?</strong><br /><br />
