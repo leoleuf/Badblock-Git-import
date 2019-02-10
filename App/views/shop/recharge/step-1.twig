@@ -45,27 +45,22 @@
 <!-- Debut liste paiements -->
 
     <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
-    <div class="row center">
-        <div class="three columns">
+    <div class="row step">
+        <div class="col-12 col-md-3">
             <a href="/shop/recharge">
-                <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+                <input class="tab-top btn btn-recharge btn-actif" type="button" name="bt1" value="Pseudo"/>
             </a>
         </div>
-        <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt2" value="Méthode" />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn-recharge btn disabled" type="button" name="bt2" value="Méthode" />
         </div>
-        <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt3" value="Combien de points"  />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn-recharge btn disabled" type="button" name="bt3" value="Combien de points ?" />
         </div>
-        <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn btn-recharge disabled" type="button" name="bt4" value="Validation"  />
         </div>
-
     </div>
-    <div class="c-progress">
-        <div class="c-progress__bar c-progress__bar--info progress-bar" style="width: 25%;"></div>
-    </div>
-    <br>
     {% if error %}
         <div class="alert alert-error">
             {{ error }}
