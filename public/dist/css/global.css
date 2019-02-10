@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400");
 
+.d-align {
+  align-items: center;
+}
+
 /* Normalize title */
 h1,
 h2,
@@ -207,6 +211,10 @@ iframe {
 
 .button.button-youtube {
   background-color: #b00;
+}
+
+.button.solde-button {
+  color: #fff !important;
 }
 
 .sidebar .button {
@@ -1380,6 +1388,27 @@ iframe {
 
 .footer a {
   color: #1eaedb;
+}
+
+.code-recharge {
+  border: none;
+  height: 38px;
+  margin-top: 10px;
+}
+
+.shop-offer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+..shop-offer .shop-offer-title
+
+.shop-offer .shop-offer-desc {
+  width: 100%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=global.css.map */

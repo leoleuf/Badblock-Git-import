@@ -7,7 +7,7 @@
 <div class="cover-back">
     <div class="cover cover-profile">
         <div class="container">
-            <div class="row">
+            <div class="row d-align">
                 <div class="col-12 col-md-8">
                     <div class="recharge-info">
                         <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
@@ -21,7 +21,7 @@
                     </div>
                     </div>
                     {% if (isOnline) %}
-                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i
+                    <a class="button button-success solde-button" title="Solde actuel de mon compte"><i
                     class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                     <a class="button button-success" href="/shop/recharge" title="Recharger mon compte"><i
                         class="far fa-gem"></i> Obtenir + de points boutique</a>

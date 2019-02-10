@@ -6,31 +6,34 @@
 
 {% block cover %}
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Recharger -->
 
-    <div class="recharge-back">
-        <div class="recharge-container">
-            <div class="recharge-content">
-                <div class="container recharge-flex">
-                    <div class="recharge-info">
-                        <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
-                        <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
-                        <img src="https://images.badblock.fr/i/paysafe.png" title="Paysafecard" alt="Paysafecard">
-                        <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
-                        <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
-                        <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="row d-align">
+                    <div class="col-12 col-md-8">
+                        <div class="recharge-info">
+                            <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
+                            <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
+                            <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
+                            <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire"
+                                 alt="Carte bancaire">
+                            <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire"
+                                 alt="Carte bancaire">
+                            <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa">
+                        </div>
                     </div>
-                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
-                    <div class="recharge-button">
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
-                    </div>
+                    <a class="button button-success solde-button" title="Solde actuel de mon compte"><i
+                                class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Fin recharger -->
 
@@ -40,7 +43,7 @@
 
 {% block content %}
 <!-- Debut liste paiements -->
-    
+
     <h4 class="heading-bar recharge-heading"><span>Obtenir + de points boutique</span></h4>
     <div class="row center">
         <div class="three columns">
@@ -73,28 +76,33 @@
     {% endif %}
     Il suffit de cliquer sur la méthode par laquelle tu veux passer pour obtenir plus de points boutique. Si tu souhaites obtenir des points boutique par <strong>carte bancaire</strong>, c'est possible en cliquant sur <strong>PayPal</strong>. Envoyer un code ou appeler directement est la méthode la plus rapide, mais tu n'auras pas les Bonus que PayPal peut offrir.<br />
     Descends un peu la page pour voir la liste de tous les moyens de recharger ton compte.<br /><br />
-    <div class="row center">
-        <div class="six columns" onclick="window.location='/shop/recharge/step-paypal'" title="Recharger mon compte">
+    <div class="row">
+        <div class="col-12 col-md-6" onclick="window.location='/shop/recharge/step-paypal'" title="Recharger mon compte">
             <div class="paypal">
-                <img class="paypal-img" src="https://cdn.badblock.fr/wd/i/paypal.png" title="PayPal" alt="PayPal"><br>
-                <img class="master-img" src="https://cdn.badblock.fr/wd/i/cb.png" title="Carte bancaire" alt="Carte bancaire">
+                <img class="paypal-img" src="https://cdn.badblock.fr/wd/i/paypal.png" class="img-fluid" title="PayPal" alt="PayPal" width="350"><br>
+                <img class="master-img" src="https://cdn.badblock.fr/wd/i/cb.png" class="img-fluid" title="Carte bancaire" alt="Carte bancaire" width="350">
             </div>
         </div>
-        <div class="six columns">
+        <div class="col-12 col-md-6">
             <div class="sms">
                 <h5 class="text-sms">Envoie CODE par SMS au 83303 et obtiens 1 250 points boutique</h5>
-                <span class="info">Équivalent de 4,50€</span>
+                <small class="info">Équivalent de 4,50€</small><br>
                 <form action="/shop/recharge/dedipass-process" method="post" id="code-recu" name="code-recu" class="form-code">
-                    <input type="text" id="code" name="code" class="form-code" placeholder="Entrer le code reçu ici">
+                    <div class="form-group">
+                        <input type="text" id="code" name="code" class="form-control" placeholder="Entrer le code reçu ici">
+                    </div>
                     <button class="button button-primary shop-recharge-validation-code">Valider</button>
                 </form>
             </div>
-            <div class="sms-appel-neosurf" onclick="window.location='/shop/recharge/dedipass'">
-                <h5 class="tel-txt">Par Appel ou par Téléphone Fixe ou Mobile</h5>
-                <img class="smsplus-img" src="https://cdn.badblock.fr/wd/i/sms.png" title="SMS" alt="SMS">
-            </div>
-            <div class="paysafecard" onclick="window.location='/shop/recharge/starpass'"><br><br>
-                <img class="paysafe-img" src="https://cdn.badblock.fr/wd/i/paysafecard.png" title="PaySafecard" alt="PaySafecard">
+            <br>
+            <div class="d-flex justify-content-start">
+                <div class="sms-appel-neosurf" onclick="window.location='/shop/recharge/dedipass'">
+                    <h5 class="tel-txt">Par Appel ou par Téléphone Fixe ou Mobile</h5>
+                    <img class="smsplus-img" src="https://cdn.badblock.fr/wd/i/sms.png" title="SMS" alt="SMS" width="128">
+                </div>
+                <div class="paysafecard" onclick="window.location='/shop/recharge/starpass'"><br><br>
+                    <img class="paysafe-img" src="https://cdn.badblock.fr/wd/i/paysafecard.png" title="PaySafecard" alt="PaySafecard" width="180">
+                </div>
             </div>
         </div>
     </div>

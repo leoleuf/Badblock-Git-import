@@ -5,37 +5,41 @@
 
 {% block cover %}
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/wd/css/global.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Recharger -->
 
-    <div class="recharge-back">
-        <div class="recharge-container">
-            <div class="recharge-content">
-                <div class="container recharge-flex">
-                    <div class="recharge-info">
-                        <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
-                        <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
-                        <img src="https://images.badblock.fr/i/paysafe.png" title="Paysafecard" alt="Paysafecard">
-                        <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
-                        <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire" alt="Carte bancaire" style="width: 5%">
-                        <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa" style="width: 7%">
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="row d-align">
+                    <div class="col-12 col-md-8">
+                        <div class="recharge-info">
+                            <img src="https://images.badblock.fr/i/paypal.png" alt="PayPal" title="PayPal">
+                            <img src="https://images.badblock.fr/i/smsplus.png" alt="SMS" title="SMS">
+                            <img src="https://images.badblock.fr/i/paysafe.png" title="PaySafecard" alt="PaySafecard">
+                            <img src="https://images.badblock.fr/i/mastercard%20logo.png" title="Carte bancaire"
+                                 alt="Carte bancaire">
+                            <img src="https://images.badblock.fr/i/cb%20logo.png" title="Carte bancaire"
+                                 alt="Carte bancaire">
+                            <img src="https://images.badblock.fr/i/visa%20logo.png" title="Visa" alt="Visa">
+                        </div>
                     </div>
-                    <a class="button button-primary solde-button" title="Solde actuel de mon compte"><i class="fas fa-user"></i>  Solde : {{ points|number_format(0, '', ' ') }} pb</a>
-                    <div class="recharge-button">
-                        <a class="button button-danger" href="{{ path_for('shop.recharge') }}" title="Recharger mon compte" class="button"><i class="icon-value-coins icon"></i>Obtenir + de points boutique</a>
-                    </div>
+                    <a class="button button-success solde-button" title="Solde actuel de mon compte"><i
+                                class="fas fa-user"></i> Solde : {{ points|number_format(0, '', ' ') }} pb</a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Fin recharger -->
 
 
 
 {% endblock %}
+
 
 {% block content %}
 <!-- Debut liste paiements -->
