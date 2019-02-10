@@ -234,14 +234,16 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>!-->
                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                       <!-- serveurmultigames-telecharger-sidebar-installer -->
+                                       <!-- serveurmultigames-headclassement -->
                                        <ins class="adsbygoogle"
-                                            style="display:inline-block;width:300px;height:600px"
+                                            style="display:block"
                                             data-ad-client="ca-pub-1905923613312160"
-                                            data-ad-slot="8169956642"></ins>
+                                            data-ad-slot="8643178484"
+                                            data-ad-format="auto"
+                                            data-full-width-responsive="true"></ins>
                                        <script>
                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                       </script>
+                                       </script><br />
                                 @endif
                         @php($totalReviews = 0)
                         @php($average = 0)
@@ -347,11 +349,11 @@
 
                         <div class="active-relatedjob-carusel single-rated pubpost">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- serveurmultigames-telecharger-sidebar-installer -->
                             <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-format="autorelaxed"
+                                 style="display:inline-block;width:300px;height:600px"
                                  data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="5940869817"></ins>
+                                 data-ad-slot="8169956642"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
