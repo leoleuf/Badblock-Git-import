@@ -1458,6 +1458,8 @@ iframe {
   border: 2px solid #B67F00;
 }
 
-
+.step {
+  margin-bottom: 50px;
+}
 
 /*# sourceMappingURL=global.css.map */
