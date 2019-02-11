@@ -69,11 +69,11 @@
                             {% for products in category['items'] %}
                             <div class="col-12 col-md-4" onclick="openitem('{{ products['_id']['$oid'] }}');">
                                 <div class="shop-package" id="prd-30{{ i }}">
-                                    <h3>{{ products['name'] }}</h3>
+                                    <h3>{{ products['name'] | raw }}</h3>
                                     <div class="shop-package-content">
                                         <img src="{{ products['image'] }}" title="Produit Clé Ultimate" width="190" height="190">
                                     </div>
-                                    <div class="shop-package-desc">{{ products['name'] }} x 1 <br> {{ products['description'] }}</div>
+                                    <div class="shop-package-desc">{{ products['name'] }} <br> {{ products['description'] | raw | slice(0, 35 )}} ...</div>
                                     <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter ({{ products['price'] }})</a>
                                 </div>
                             </div>
