@@ -104,7 +104,6 @@
 @section('after_scripts')
 
     <script src="/assets/plugins/toastr/toastr.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
     <script>
 
@@ -368,7 +367,6 @@
             }
             else if (reasonValue == sanctionReason[5]){
                 muteDurations.push(durations[2], durations[3], durations[4]);
-
             }
             else if (reasonValue == sanctionReason[6]){
                 muteDurations.push(durations[4], durations[5], durations[6]);
