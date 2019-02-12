@@ -139,6 +139,9 @@
                             <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i> Liste Staff</a></li>
                             <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i>  Utilisateur</a></li>
                             <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i>  Groupes</a></li>
+                            @can('todo_list_all')
+                                <li><a href="/section/todo-management" class="wave-effect"><i class="fa fa-list-ol"></i> Todo-List</a></li>
+                            @endcan
                             <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i>  Permissions</a></li>
                             <li><a href="/section/permission-serv" class="waves-effect"><i class="fas fa-terminal"></i>  Permissions Serveur</a></li>
                         </ul>

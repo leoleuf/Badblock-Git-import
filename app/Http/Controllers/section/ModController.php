@@ -11,8 +11,6 @@ namespace App\Http\Controllers\section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Http\Controllers\NotificationController;
 
 class ModController extends Controller
 {

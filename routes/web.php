@@ -155,6 +155,10 @@ Route::group([
         Route::get('/avertissement', 'section\WarningController@index')->middleware('can:gestion_index');
         Route::post('/avertissement', 'section\WarningController@send')->middleware('can:gestion_index');
         Route::get('/avertissement/delete/{id}', 'section\WarningController@delete')->middleware('can:gestion_index');
+
+        //Todo-list
+        Route::get('/todo-management', 'section\TodoListController@index')->middleware('can:todo_list_all');
+        Route::post('/todo-management', 'section\TodoListController@createOrModifyTodo')->middleware('can:todo_list_all');
     });
 
     // Voir ses propres avertissements
