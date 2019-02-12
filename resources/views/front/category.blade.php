@@ -341,6 +341,7 @@
                                                 @if (!isset($ad))
                                                     <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
                                                 @endif
+                                                <br />
                                                 <a class="ticker-btn d-flex" id="telecharger-minecraft" title="Installer Minecraft PC" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-play-circle" id="installer-minecraft"></span> Télécharger Minecraft sur PC</a>
                                             @endif
                                         </p>
