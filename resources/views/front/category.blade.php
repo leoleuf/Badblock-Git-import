@@ -153,7 +153,7 @@
                                 <div class="serveur-infos">
                                     <h3>@if (isset($catName) && $catName == "minecraft")<img alt="Serveur Minecraft" src="/img/minecraft/minecraft.png" height="16" class="ialign" />
                                         @endif Liste serveur {{ seocat($catName) }}</h3><div class="serveur-sep"></div>
-                                    <p>La liste de serveur {{ seocat($catName) }} est composée de <strong>nombreux serveurs</strong> à découvrir. Du serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore, découvrez un <b>large choix de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</b> gratuits, que vous pouvez directement découvrir dans cette liste, qui est ordonnée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur {{ seocat($catName) }} avec tes amis et joue au jeu gratuit sur PC en version 1.8 ou 1.14. Il suffit de télécharger le jeu en version française et de trouver le serveur qui te correspond ci-dessous.</p>
+                                    <p>La liste de serveur {{ seocat($catName) }} est composée de <strong>nombreux serveurs</strong> à découvrir. Vous êtes un joueur de Minecraft ? Un serveur Cracké, PVP Faction, Survie, Moddé, Premium et bien plus encore sont à découvrir, avec un <b>large choix de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</b> gratuits, où vous pouvez vous y connecter à partir de cette liste, pour jouer à Minecraft, qui est classée par rapport au nombre de votes effectués par les joueurs. Trouve le serveur qui te correspond le mieux et part à l'aventure sur {{ seocat($catName) }} avec tes amis et joue au jeu gratuit sur PC en version 1.8 ou 1.14. Il suffit de télécharger et installer le jeu en version française et de trouver le serveur qui te correspond ci-dessous.</p>
                                     @if (isset($addon))
                                         {!! $addon !!}
                                     @endif
@@ -328,7 +328,7 @@
                                 @endif
                                 <div class="active-relatedjob-carusel single-rated">
                                         <p class="inftop">
-                                            Minecraft est un jeu bac à sable populaire, notamment pour son attractivité et le monde libre qu'il propose, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations (comme un serveur Minecraft)
+                                            Minecraft est un jeu bac à sable populaire facile à télécharger et à installer sur PC, connu notamment pour son attractivité et le monde libre qu'il propose, notamment avec le mode multijoueur et mini-jeux, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations.
                                         </p>
                                         <p>
                                             @if(Auth::user())
@@ -341,6 +341,7 @@
                                                 @if (!isset($ad))
                                                     <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
                                                 @endif
+                                                <a class="ticker-btn d-flex" id="telecharger-minecraft" title="Installer Minecraft PC" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-play-circle" id="installer-minecraft"></span> Télécharger Minecraft sur PC</a>
                                             @endif
                                         </p>
                                 </div>
