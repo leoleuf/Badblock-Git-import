@@ -1468,4 +1468,106 @@ iframe {
   align-items: center;
 }
 
+.profile-header {
+  display: flex;
+}
+
+.profile-header .profile-mc-head {
+  margin-right: 10px;
+}
+
+.profile-header .profile-header-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.profile-header .profile-header-content .cover-heading {
+  width: 100%;
+  color: #fff;
+  font-weight: 500;
+}
+
+.profile-header .profile-header-content .cover-heading:first-letter {
+  text-transform: uppercase;
+}
+
+.profil-info ul {
+  list-style-type: none;
+  display: flex;
+  padding: 0;
+  padding-top: 2em;
+}
+
+.profil-info ul li {
+  margin-right: 2em;
+  color: #fff;
+  font-weight: 500;
+}
+
+.profil-info ul li span {
+  opacity: .5;
+}
+
+.profil-info ul li a {
+  font-weight: 700;
+}
+
+.user-menu ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  cursor: pointer;
+}
+.tabcontent h2 {
+  margin: 1em 0px;
+}
+
+.tabcontent h4 {
+  font-weight: 500;
+}
+
+
+.tabcontent .col-md-4 {
+  margin-bottom: 2em;
+}
+
+/*#========= Badge ==========#*/
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 5px;
+  background-color: #2ecc71;
+  color: #fff;
+  font-size: 100%;
+  height: 30px;
+  line-height: 25px;
+  margin-right: 1em;
+}
+
+.badge.badge-vip {
+  background-color: #42b3f4;
+}
+
+.badge.badge-vipd {
+  background-color: #5f5;
+}
+
+.badge.badge-mvp {
+  background-color: #6937c0;
+}
+
+.badge.badge-mvpd {
+  background-color: #e19806;
+}
+
+.badge.badge-legend {
+  background-color: #D54537;
+}
+
+.badge.badge-primary {
+  font-size: 65%;
+  font-weight: 500;
+}
+
 /*# sourceMappingURL=global.css.map */

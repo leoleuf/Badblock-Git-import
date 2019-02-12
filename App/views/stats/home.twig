@@ -120,7 +120,7 @@
                 <h4 class="heading heading-bar"><span>Membres de l'équipe</span></h4>
                 <div class="staff-content">
                     {% for k, key in staff %}
-                    {% if key['name'] != 's' and key['name'] != 'Community Manager' %}
+                    {% if key['name'] != 's' and key['name'] != 'Community Manager' and key['name'] != '' %}
                     <div class="staff-content-main">
                         <h3 class="staff-content-title">{{ key['name'] }} <span>({{ key["data"]|length }})</span></h3>
                         <div class="staff-content-group">
