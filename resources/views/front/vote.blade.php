@@ -189,6 +189,7 @@
 
                     </div>
 
+                        @if (!isMobile())
                                 <ins class="adsbygoogle"
                                      style="display: block; height: 60px; max-width: 600px; max-height: 300px;" id="ad2"
                                      data-ad-client="ca-pub-1905923613312160"
@@ -198,6 +199,17 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
+                        @else
+                            <ins class="adsbygoogle"
+                                 style="display: block; height: 60px; max-width: 75%; max-height: 300px;" id="ad2"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="4687571933"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        @endif
                         @if ($data->noredirect == 0)
                             <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <ins class="adsbygoogle"
@@ -438,7 +450,7 @@
                 {
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flex, 600);
+                    setTimeout(flex, 800);
                 }
             });
 
