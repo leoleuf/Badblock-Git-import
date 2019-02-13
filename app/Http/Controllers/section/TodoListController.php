@@ -35,11 +35,11 @@ class TodoListController
         usort($users, "strnatcasecmp");
 
         //Définit le maximum de caractères affichés dans un card
-        $maxCharacterLength = 200;
+        $maxCharactersLength = 200;
 
         //Utiliser la fonction explode() pour récupérer tous les utilisateurs à qui la todolist à été envoyée
 
-        return view('section.todolist', ["Todolists" => $todoLists, "Users" => $users, "MaxCharacterLength" => $maxCharacterLength]);
+        return view('section.todolist', ["Todolists" => $todoLists, "Users" => $users, "MaxCharactersLength" => $maxCharactersLength]);
     }
 
     /*
@@ -64,7 +64,7 @@ class TodoListController
 
         if(isset($_POST['comesFrom'])){
 
-            if($_POST['comesFrom'] == "create"){
+            if($_POST['comesFrom'] == "create") {
                 DB::table('todolists')->insert([
                     'title' => substr(strip_tags($_POST['title']), 0, 254),
                     'author' => NotificationsController::convertPseudoId(Auth::user()->name),
@@ -74,6 +74,16 @@ class TodoListController
                     'priority' => strip_tags($_POST['priority']),
                     'receivers' => implode(",", $_POST["receivers"])
                 ]);
+
+                foreach ($_POST["receivers"] as $receiver){
+                    DB::table('notifications')->insert([
+                        'user_id' => $receiver,
+                        'title' => "Todolist",
+                        "text" => "Vous avez été affecté à une nouvelle todolist, allez voir votre panel",
+                        "created_at" => NOW(),
+                        "active" => 1
+                    ]);
+                }
             }
 
             elseif($_POST['comesFrom'] == "modify"){

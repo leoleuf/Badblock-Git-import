@@ -111,7 +111,8 @@
                                 <a href="/settings/sharex" class="waves-effect">
                                     <i class="fas fa-camera-retro"></i> ShareX</a>
                             </li>
-                            <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma gallerie</a></li>
+                            <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a></li>
+                            <li><a href="/profil/todolists" class="waves-effect"><i class="fa fa-list-ol"></i> Mes todolists </a> </li>
                         </ul>
                     </li>
                     @can('gestion_index')

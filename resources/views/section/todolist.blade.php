@@ -51,7 +51,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="resetCreateValues();">Annuler</button>
-                                <button type="button" class="btn btn-primary" id="todo_button_valid" onclick="updateTodo('-1')">Créer la todolist</button>
+                                <button type="button" class="btn btn-primary" id="todo_button_valid" data-dismiss="modal" onclick="updateTodo('-1')">Créer la todolist</button>
                             </div>
                         </div>
                     </div>
@@ -60,26 +60,19 @@
                 <br />
                 <br />
 
-                <!--
-                id INT 255 PRIMARY AUTO_INCREMENT
-                author VARCHAR 255
-                title VARCHAR 255
-                content LONGTEXT
-                started_at DATE
-                deadline DATE
-                priority INT 255
-                receivers LONGTEXT
-                */ -->
-
                 <div class="card-columns">
                     @foreach($Todolists as $i => $row)
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h3 class="card-title" id="card_{{ $i }}_title">{{ $row->title }}</h3>
-                                <p class="card-text" id="card_{{ $i }}_content_display">{{ substr($row->content, 0, $MaxCharacterLength) }}...</p>
+                                <p class="card-text" id="card_{{ $i }}_content_display">{{ substr($row->content, 0, $MaxCharactersLength) }}
+                                    @if($row->content != substr($row->content, 0, $MaxCharactersLength))
+                                        ...
+                                    @endif
+                                </p>
                                 <div style="display: none" id="card_{{ $i }}_started_at">{{ $row->started_at }}</div>
-                                <h5 class="card-text" id="card_{{ $i }}_priority_title">Deadline : {{ $row->deadline }}</h5>
-                                <h5 class="card-text" id="card_{{ $i }}_priority_title">Priorité : {{ $row->priority }}</h5>
+                                <h5 class="card-text" id="card_{{ $i }}_priority">Deadline : {{ $row->deadline }}</h5>
+                                <h5 class="card-text" id="card_{{ $i }}_priority">Priorité : {{ $row->priority }}</h5>
 
                                 <button class="btn btn-info"  data-toggle="modal" data-target="#modal_{{ $i }}">Modifier</button>
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#modal_{{ $i }}_deleteConfirm">Supprimer</button>
@@ -87,8 +80,11 @@
                             <div class="card-footer">
                                 <small class="text-muted" id="card_{{ $i }}_author">Créateur : {{ $row->author }}</small><br />
                                 <small class="text-muted" id="card_{{ $i }}_author">Personnes concernées :
-                                @foreach($row->receivers as $receiver)
-                                    {{ $receiver }},
+                                @foreach($row->receivers as $j => $receiver)
+                                        {{ $receiver }}
+                                        @if($j != count($row->receivers)-1)
+                                            ,
+                                        @endif
                                 @endforeach
                                 </small>
                             </div>
