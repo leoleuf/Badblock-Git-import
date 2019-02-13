@@ -310,7 +310,7 @@
                     <div class="col-lg-4 sidebar">
                         @if (isset($catName) && $catName == "minecraft")
                             <div class="single-slidebar">
-                                <h3>Informations sur le jeu Minecraft</h3>
+                                <h3>Informations sur le jeu Minecraft à télécharger / installer</h3>
                                 <br />
                                 @if (encname($catName) == "minecraft")
                                     <img alt="Serveur minecraft" src="/img/minecraft/serveur-minecraft.png" height="76" class="justify-content-between d-flex imgc" />
