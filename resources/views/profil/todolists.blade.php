@@ -1,5 +1,10 @@
 @extends("layouts.app")
 
+@section('header')
+    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -11,7 +16,7 @@
                         <div class="p-20">
                             <div class="card-columns">
                                 @foreach($Todolists as $i => $row)
-                                    @if(in_array($UserID, $row->receivers))
+                                    @if(in_array($UserID, $row->receivers) && !in_array($UserID, $row->receivers_done))
                                     <div class="card" style="width: 18rem;">
                                         <div class="card-body">
                                             <h3 class="card-title" id="card_{{ $i }}_title">{{ $row->title }}</h3>
@@ -22,10 +27,13 @@
                                                 @endif
                                             </p>
                                             <div style="display: none" id="card_{{ $i }}_started_at">{{ $row->started_at }}</div>
+                                            <h5 class="card-text d-inline" id="card_{{ $i }}_deadline">Lancée le <h6 class="d-inline">(YYYY/MM/DD)</h6> : {{ $row->started_at }}</h5>
                                             <h5 class="card-text d-inline" id="card_{{ $i }}_deadline">Deadline <h6 class="d-inline">(YYYY/MM/DD)</h6> : {{ $row->deadline }}</h5>
                                             <h5 class="card-text" id="card_{{ $i }}_priority">Priorité : {{ $row->priority }}</h5>
 
                                             <button class="btn btn-primary" data-toggle="modal" data-target="#modal_{{ $i }}">Voir la todolist</button>
+                                            <br /><br />
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal_{{ $i }}_doneConfirm">Fermer la todolist</button>
                                         </div>
                                         <div class="card-footer">
                                             <small class="text-muted" id="card_{{ $i }}_author">Créateur : {{ $row->author }}</small><br />
@@ -84,6 +92,23 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                        <button class="btn btn-success" data-toggle="modal" data-target="#modal_{{ $i }}_doneConfirm">Fermer la todolist</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal fade" id="modal_{{ $i }}_doneConfirm" tabindex="-1" role="dialog" aria-labelledby="Modal_{{ $i }}_doneConfirm" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Fermer la todolist</h5>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3>Vous avez bien fini votre tâche</h3>
+                                                        <h3>Êtes-vous sûr de vouloir fermer la todolist ?</h3>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-success" data-dismiss="modal" id="todo_button_doneConfirm" onclick="closeTodo('{{ $row->id }}')">Fermer la todolist</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,6 +124,33 @@
 
 @endsection
 
-@section('after_script')
+@section('after_scripts')
+
+
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
+
+    <script>
+
+        function closeTodo(todoID){
+            $.ajax({
+                type: "POST",
+
+                url: '/profil/todolists',
+
+                data: {
+                    'todoID': todoID
+                },
+
+                success: function () {
+                    toastr.success('Vous avez bien fermé la todolist', "Succès !");
+                },
+
+                error: function (jqxhr, status, exception) {
+                    toastr.error("Erreur lors de la validation, merci de contacter un administrateur. Intitulé de l'erreur : " + exception, 'Erreur');
+                }
+            })
+        }
+
+    </script>
 
 @endsection

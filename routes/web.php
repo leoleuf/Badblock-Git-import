@@ -53,6 +53,7 @@ Route::group([
     Route::post('/', 'ProfilController@reset');
 
     Route::get('/todolists', 'profile\TodolistsController@index');
+    Route::post('/todolists', 'profile\TodolistsController@done');
 
     });
 
