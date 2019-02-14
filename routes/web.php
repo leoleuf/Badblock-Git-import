@@ -25,11 +25,10 @@ Route::group([
 Route::group([
     'middleware' => ["auth"],
 ], function () {
-    Route::get('/', function () {return view('welcome');});
-    Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/profil', 'ProfilController@index');
-    Route::post('/profil', 'ProfilController@reset');
+    Route::get('/', 'HomeController@index')->name('home'); ;
+
+
 
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
@@ -42,6 +41,19 @@ Route::group([
         Route::get('/sharex', 'Settings\SharexController@index');
         Route::get('/sharex-reg', 'Settings\SharexController@new');
         Route::get('/sharex-down', 'Settings\SharexController@down');
+
+    });
+
+Route::group([
+    'prefix' => "profil",
+    'middleware' => ["auth"]
+], function(){
+
+    Route::get('/', 'ProfilController@index');
+    Route::post('/', 'ProfilController@reset');
+
+    Route::get('/todolists', 'profile\TodolistsController@index');
+    Route::post('/todolists', 'profile\TodolistsController@done');
 
     });
 
