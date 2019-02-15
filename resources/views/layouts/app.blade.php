@@ -20,9 +20,7 @@
             </div>
         </div>
     @else
-        <div class="container-fluid">
           @yield('content')
-        </div>
     @endif
 
     <script>
