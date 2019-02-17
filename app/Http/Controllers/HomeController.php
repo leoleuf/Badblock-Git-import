@@ -29,7 +29,7 @@ class HomeController extends Controller
         //Check personal stats
         $Stats = Redis::get('stats:user:' . Auth::user()->id);
         if ($Stats != null){
-            return view('home')->with('stats', json_decode($Stats));
+            return view('home')->with('stats', (array) json_decode($Stats));
         }
 
         $player = DB::connection('mongodb_server')->collection('players')->where("name", "=", strtolower(Auth::user()->name))->first();
