@@ -15,13 +15,15 @@
                                             <tr>
                                                 <th>Pseudo</th>
                                                 <th>Temps de connection</th>
+                                                <th>Grade</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($user as $row)
                                                 <tr class="gradeX">
                                                     <td>{{ $row['name'] }}</td>
-                                                    <td>{{ date('H:i:s', $row['time']) }}</td>
+                                                    <td>{{ round(($row['time'] / 60 / 60), 2)}} Heures</td>
+                                                    <td>{{ $row['grade'] }}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
