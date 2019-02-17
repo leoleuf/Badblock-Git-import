@@ -16,8 +16,8 @@
 
                             <div class="widget-box-2">
                                 <div class="widget-detail-2">
-                                    <h2 class="mb-0"> XXX </h2>
-                                    <p class="text-muted m-b-25">Joueurs connectés</p>
+                                    <h2 class="mb-0" id="players"> 0 </h2>
+                                    <p class="text-muted m-b-25">Joueurs connecté(s)</p>
                                 </div>
                                 <div class="progress progress-bar-success-alt progress-sm mb-0">
                                     <div class="progress-bar progress-bar-success" role="progressbar"
@@ -177,6 +177,19 @@
             }
         });
 
+
+    </script>
+    <script>
+
+        function players() {
+            //Get players
+            $.getJSON('https://badblock.fr/api/minecraft/players', function(data) {
+                $('#players').html(data.players.now);
+                console.log('%c' + message + " connecté!", 'background: #222; font-size: 2em; color: #9b59b6');
+                setTimeout(players, 10000);
+            });
+        }
+        players();
 
     </script>
 
