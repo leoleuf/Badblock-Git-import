@@ -14,16 +14,46 @@
                                             <thead>
                                             <tr>
                                                 <th>Pseudo</th>
-                                                <th>Temps de connection</th>
                                                 <th>Grade</th>
+                                                <th>Temps de connection</th>
+                                                <th>Objectif de connection</th>
+                                                <th>Sanction</th>
+                                                <th>Objectif de Sanctions</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($user as $row)
                                                 <tr class="gradeX">
                                                     <td>{{ $row['name'] }}</td>
-                                                    <td>{{ round(($row['time'] / 60 / 60), 2)}} Heures</td>
                                                     <td>{{ $row['grade'] }}</td>
+                                                    <td>{{ round(($row['time'] / 60 / 60), 2) }} Heures</td>
+                                                    <td>
+                                                        <div class="widget-chart-box-1">
+                                                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
+                                                                   data-bgColor="#FFE6BA" value="
+                                                                   @if(round(($row['time'] / 60 / 60), 2) / $row['ntime']  * 100 > 100)
+                                                                    100
+                                                                    @else
+                                                                    {{ round(round(($row['time'] / 60 / 60), 2) / $row['ntime']  * 100, 1) }}
+                                                                    @endif"
+                                                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                                                   data-thickness=".15"/>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ $row['Punish'] }}</td>
+                                                    <td>
+                                                        <div class="widget-chart-box-1">
+                                                            <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
+                                                                   data-bgColor="#FFE6BA" value="
+                                                                   @if(round($row['PunishTime'] / $row['time'], 2) > 0.5)
+                                                                    100
+                                                                    @else
+                                                                    {{ round($row['PunishTime'] / $row['time'], 2) * 2 }}
+                                                                    @endif"
+                                                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                                                   data-thickness=".15"/>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

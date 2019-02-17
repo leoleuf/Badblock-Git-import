@@ -71,22 +71,36 @@ class StaffController extends Controller
                 ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
                 ->where('playerUuid', '=', $player['uniqueId'])
                 ->sum('totalTime');
-            $Detect = false;
-            $Grades = ['supermodo', 'modo', 'modochat', 'helper'];
+            $Punish = DB::connection('mongodb_server')
+                ->collection('modoSessions')
+                ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
+                ->where('playerUuid', '=', $player['uniqueId'])
+                ->sum('punishments');
+            $PunishTime = DB::connection('mongodb_server')
+                ->collection('modoSessions')
+                ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
+                ->where('playerUuid', '=', $player['uniqueId'])
+                ->sum('punishmentTime');
 
-            foreach ($Grades as $G){
+            $Detect = false;
+            $Grades = ['supermodo', 'modocheat','modo', 'modochat', 'helper'];
+            $LTime = [45, 40,40, 35, 25];
+
+            foreach ($Grades as $k => $G){
                 if (!$Detect){
                     if (isset($player['permissions']['groups']['bungee'][$G])){
                         $Grr = $G;
+                        $NTime = $LTime[$k];
                         $Detect = true;
                     }
                 }
             }
-            if (!isset($Grr)){
-                $Grr = "Staff";
+            if ($Time == 0){
+                $Time = 1;
             }
-
-            array_push($Staff, ['name' => $player['name'], 'time' => $Time, 'grade' => $Grr]);
+            if (isset($Grr)){
+                array_push($Staff, ['name' => $player['name'],'ntime' => $NTime,'time' => $Time, "PunishTime" => $PunishTime , 'Punish' => $Punish, 'grade' => $Grr]);
+            }
         }
 
         usort($Staff, create_function('$a, $b', '
