@@ -53,20 +53,10 @@ class StaffController extends Controller
             [
                 ['permissions.groups.bungee.superviseur' => ['$exists' => true]],
                 ['permissions.groups.bungee.helper' => ['$exists' => true]],
-                ['permissions.groups.bungee.admin' => ['$exists' => true]],
                 ['permissions.groups.bungee.modo' => ['$exists' => true]],
                 ['permissions.groups.bungee.supermodo' => ['$exists' => true]],
-                ['permissions.groups.bungee.responsable' => ['$exists' => true]],
                 ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
-                ['permissions.groups.bungee.modochat' => ['$exists' => true]],
-                ['permissions.groups.bungee.builder' => ['$exists' => true]],
-                ['permissions.groups.bungee.animateur' => ['$exists' => true]],
-                ['permissions.groups.bungee.modoforum' => ['$exists' => true]],
-                ['permissions.groups.bungee.graphiste' => ['$exists' => true]],
-                ['permissions.groups.bungee.redacteur' => ['$exists' => true]],
-                ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
-                ['permissions.groups.bungee.manager' => ['$exists' => true]],
-                ['permissions.groups.bungee.staff' => ['$exists' => true]]
+                ['permissions.groups.bungee.modochat' => ['$exists' => true]]
             ]
         ];
 
