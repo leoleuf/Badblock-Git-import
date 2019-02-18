@@ -19,7 +19,8 @@
         "mookofe/tail": "1.*",
         "php-amqplib/php-amqplib": ">=2.6.1",
         "predis/predis": "^1.1",
-        "psy/psysh": "^0.9.9"
+        "psy/psysh": "^0.9.9",
+        "xpaw/php-minecraft-query": "^2.0"
     },
     "require-dev": {
         "backpack/generators": "^1.1",

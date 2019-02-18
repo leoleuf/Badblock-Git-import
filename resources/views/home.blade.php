@@ -35,7 +35,7 @@
 
                             <div class="widget-box-2">
                                 <div class="widget-detail-2">
-                                    <h2 class="mb-0"> XXX </h2>
+                                    <h2 class="mb-0" id="players-ban"> 0 </h2>
                                     <p class="text-muted m-b-25">Joueurs bannis</p>
                                 </div>
                                 <div class="progress progress-bar-danger-alt progress-sm mb-0">
@@ -105,17 +105,9 @@
                 <div class="row">
                     <div class="card-box">
                         <h4 class="header-title mt-0">Joueurs connectés ce mois-ci</h4>
-                        <canvas id="monthlyPlayers" class="morris-chart" width="800" height="450"></canvas>
+                        <canvas id="monthlyPlayers" class="morris-chart" width="900" height="450"></canvas>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="card-box">
-                        <h4 class="header-title mt-0">Objectifs staff (en %)</h4>
-                        <canvas id="staffGoals" width="800" height="450"></canvas>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -156,40 +148,28 @@
             options: {}
         });
 
-        new Chart($("#staffGoals"), {
-            type: 'bar',
-            data: {
-                labels: ["Modérateur1", "Modérateurs 2", "Modérateurs 3", "Modérateurs 4", "Modérateurs 5"],
-                datasets: [
-                    {
-                        label: "Objectifs staff",
-                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
-                        data: [
-                            @for($i = 1; $i <= 5; $i++)
-                            {{ rand(0, 100) }}
-                            @if($i != 5)
-                            ,
-                            @endif
-                            @endfor
-                        ]
-                    }
-                ]
-            }
-        });
-
-
     </script>
     <script>
 
         function players() {
             //Get players
-            $.getJSON('https://badblock.fr/api/minecraft/players', function(data) {
+            $.getJSON('/api/minecraft', function(data) {
                 $('#players').html(data.players.now);
-                console.log('%c' + message + " connecté!", 'background: #222; font-size: 2em; color: #9b59b6');
-                setTimeout(players, 10000);
+                console.log('%c' + message + " connectés !", 'background: #222; font-size: 2em; color: #9b59b6');
+                setTimeout(players, 5000);
             });
         }
         players();
+
+        function ban() {
+            //Get players
+            $.getJSON('/api/ban', function(data) {
+                $('#players-ban').html(data.players.now);
+                console.log('%c' + message + " joueurs bannis!", 'background: #222; font-size: 2em; color: #9b59b6');
+                setTimeout(ban, 10000);
+            });
+        }
+        ban();
 
     </script>
 

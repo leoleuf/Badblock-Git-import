@@ -3470,7 +3470,8 @@
         "keywords": [
             "mock",
             "xunit"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "predis/predis",
@@ -6128,6 +6129,41 @@
             "driver",
             "mongodb",
             "persistence"
+        ]
+    },
+    {
+        "name": "xpaw/php-minecraft-query",
+        "version": "2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xPaw/PHP-Minecraft-Query.git",
+            "reference": "d7184150af24c82341cfe3c34fc8d2c788ef2815"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/xPaw/PHP-Minecraft-Query/zipball/d7184150af24c82341cfe3c34fc8d2c788ef2815",
+            "reference": "d7184150af24c82341cfe3c34fc8d2c788ef2815",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "time": "2016-11-06T08:23:55+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "xPaw\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "PHP library to query Minecraft servers",
+        "keywords": [
+            "minecraft"
         ]
     }
 ]
