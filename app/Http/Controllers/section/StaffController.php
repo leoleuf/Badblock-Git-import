@@ -48,28 +48,71 @@ class StaffController extends Controller
 
     public function connection(){
 
-        $Data = DB::connection('mongodb_server')
-            ->collection('modoSessions')
-            ->where('timestamp', '>=', strtotime(date('Y-m')))
-            ->groupBy('playerName')
-            ->get(['totalTime']);
+        //Alternate group
+        $alt = ['$or' =>
+            [
+                ['permissions.groups.bungee.superviseur' => ['$exists' => true]],
+                ['permissions.groups.bungee.helper' => ['$exists' => true]],
+                ['permissions.groups.bungee.modo' => ['$exists' => true]],
+                ['permissions.groups.bungee.supermodo' => ['$exists' => true]],
+                ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
+                ['permissions.groups.bungee.modochat' => ['$exists' => true]]
+            ]
+        ];
+
+
+        $Data = DB::connection('mongodb_server')->collection('players')->where($alt)->get();
 
         $Staff = [];
 
         foreach ($Data as $player){
             $Time = DB::connection('mongodb_server')
                 ->collection('modoSessions')
-                ->where('timestamp', '>=', strtotime(date('Y-m')))
-                ->where('playerName', '=', $player['playerName'])
+                ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
+                ->where('playerUuid', '=', $player['uniqueId'])
                 ->sum('totalTime');
-            array_push($Staff, ['name' => $player['playerName'], 'time' => $Time]);
+            $Punish = DB::connection('mongodb_server')
+                ->collection('modoSessions')
+                ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
+                ->where('playerUuid', '=', $player['uniqueId'])
+                ->sum('punishments');
+            $PunishTime = DB::connection('mongodb_server')
+                ->collection('modoSessions')
+                ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
+                ->where('playerUuid', '=', $player['uniqueId'])
+                ->sum('punishmentTime');
+
+            $Detect = false;
+            $Grades = ['supermodo', 'modocheat','modo', 'modochat', 'helper'];
+            $LTime = [45, 40,40, 35, 25];
+
+            foreach ($Grades as $k => $G){
+                if (!$Detect){
+                    if (isset($player['permissions']['groups']['bungee'][$G])){
+                        $Grr = $G;
+                        $NTime = $LTime[$k];
+                        $Detect = true;
+                    }
+                }
+            }
+            if ($Time == 0){
+                $Time = 1;
+            }
+            if (isset($Grr)){
+                array_push($Staff, ['name' => $player['name'],'ntime' => $NTime,'time' => $Time, "PunishTime" => $PunishTime , 'Punish' => $Punish, 'grade' => $Grr]);
+            }
         }
 
-        usort($Staff, function($a, $b) {
-            return $a['time'] <=> $b['time'];
-        });
+        usort($Staff, create_function('$a, $b', '
+        $a = $a["time"];
+        $b = $b["time"];
 
+        if ($a == $b) return 0;
 
+        $direction = strtolower(trim("desc"));
+
+        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
+        '));
 
         return view('section.timestaff')->with('user', $Staff);
     }

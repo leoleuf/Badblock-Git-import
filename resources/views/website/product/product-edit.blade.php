@@ -28,7 +28,7 @@
                         Sélectionner la catégorie :
                         <select name="category" class="form-control select2">
                             @foreach($cat as $key => $value)
-                                @if($Product['cat'] == $value->_id)
+                                @if($Product['cat_id'] == $value->_id)
                                     <option value="{{ $value->_id }}" selected>{{ $value->name }}</option>
                                 @else
                                     <option value="{{ $value->_id }}">{{ $value->name }}</option>

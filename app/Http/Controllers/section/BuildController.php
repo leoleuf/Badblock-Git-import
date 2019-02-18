@@ -27,8 +27,9 @@ class BuildController extends Controller
             )
             ->where('date', '>=', date('Y-m'))
             ->groupBy('username')
-            ->orderBy('loginTime', 'DESC')
+            ->orderBy('login', 'DESC')
             ->get();
+
 
 
 

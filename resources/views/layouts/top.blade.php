@@ -28,8 +28,8 @@
                         <!-- End mobile menu toggle-->
                     </li>
                     <li class="hide-phone">
-                        <form class="app-search" action="/players">
-                            <input type="text" placeholder="Search..."
+                        <form class="app-search" action="/players" method="get">
+                            <input name="name" type="text" placeholder="Search..."
                                    class="form-control">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
@@ -57,15 +57,15 @@
                     </li>
 
                     <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" href="/profil"
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user"
                            aria-haspopup="false" aria-expanded="false">
-                            <img src="https://guiria.badblock.fr/head/{{ Auth::user()->name}}/84.png" alt="user" class="rounded-circle">
+                            <img src="https://cdn.badblock.fr/head/{{ Auth::user()->name}}/48.png" alt="user" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-user m-r-5"></i> Profile
+                            <a href="/profil" class="dropdown-item notify-item">
+                                <i class="ti-user m-r-5"></i> Mot de passe
                             </a>
 
                             <!-- item-->
@@ -107,6 +107,7 @@
                     <li class="has-submenu">
                         <a href="#"><i class="fa fa-user"></i><span> Profile </span> </a>
                         <ul class="submenu">
+                            <li><a href="/profil" class="waves-effect"><i class="fas fa-setting"></i> Password</a></li>
                             <li>
                                 <a href="/settings/sharex" class="waves-effect">
                                     <i class="fas fa-camera-retro"></i> ShareX</a>
