@@ -4,7 +4,7 @@
             <!-- User -->
             <div class="user-box">
                 <div class="user-img">
-                    <img src="https://guiria.badblock.fr/head/{{ Auth::user()->name}}/84.png" alt="user-img" title="{{ Auth::user()->name}}" class="img-circle img-thumbnail img-responsive">
+                    <img src="https://cdn.badblock.fr/head/{{ Auth::user()->name}}/48.png" alt="user-img" title="{{ Auth::user()->name}}" class="img-circle img-thumbnail img-responsive">
                     <div class="user-status offline"><i class="zmdi zmdi-dot-circle"></i></div>
                 </div>
                 <h5><a href="#">{{ Auth::user()->name}}</a> </h5>
