@@ -36,6 +36,8 @@
                         <p><strong>Serveur MultiGames</strong> est un classement de <strong>serveur Minecraft</strong> et d'autres serveurs francophones.<br /></p>
                         <blockquote class="generic-blockquote">
                             <strong>Nos partenaires</strong><br /><br />
+                            <iframe width="350" src="https://www.youtube.com/embed/Q6jRjvjOa1A?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
                             <script data-pagespeed-nodefer type="text/javascript" src="http://www.hebdotop.com/cgi-bin/hebdotop.eur?id=305732"></script>
                             <A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />
                             <a href="http://www.net-liens.com" target="_blank"><img src="http://www.net-liens.com/img/media/nl1.jpg" alt="Net Liens - L'annuaire Internet" title="Net Liens - L'annuaire Internet" /></a>
