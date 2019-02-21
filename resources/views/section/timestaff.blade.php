@@ -59,13 +59,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section("after_scripts")
 
