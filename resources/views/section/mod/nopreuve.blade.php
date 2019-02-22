@@ -16,6 +16,7 @@
                                             <th>Banner</th>
                                             <th>Raison</th>
                                             <th>Temps</th>
+                                            <th>#</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -51,12 +52,15 @@
 
 @endsection
 @section("after_scripts")
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 
     <script>
 
         function notiff(k) {
-            $("#form" + k).ajaxSubmit({url: '/section/preuves', type: 'post'})
+            toastr.success('Preuve(s) ajoutée(s)', "Utilisateur notifié !");
+            $("#form" + k).ajaxSubmit({url: '/section/preuves', type: 'post'});
         }
 
     </script>

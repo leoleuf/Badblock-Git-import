@@ -65,7 +65,7 @@
     </div>
 @endsection
 @section('after_scripts')
-    <script src="assets/plugins/toastr/toastr.min.js"></script>
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
 
     <script type="application/javascript">
 
