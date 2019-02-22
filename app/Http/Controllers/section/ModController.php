@@ -21,6 +21,7 @@ class ModController extends Controller
 
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
             ->where('proof', '=', [])
+            ->where('punisher', '!=', "Console")
             ->where(function ($query) {
                 $query->where('type', '=', "MUTE")
                     ->orWhere('type', '=', "KICK")
@@ -29,7 +30,7 @@ class ModController extends Controller
                     ->orWhere('type', '=', "WARN");
             })
             ->orderBy('timestamp', 'DESC')
-            ->take(100)
+            ->take(200)
             ->get()
             ->toArray();
 

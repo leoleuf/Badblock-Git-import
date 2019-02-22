@@ -9,63 +9,57 @@
                     <div class="col-sm-12">
                         <div class="panel">
                             <div class="panel-body">
-                                    <div class="">
-                                        <table class="table table-striped" id="datatable-editable">
-                                            <thead>
-                                            <tr>
-                                                <th>Banner</th>
-                                                <th>Raison</th>
-                                                <th>Temps</th>
+                                <div class="">
+                                    <table class="table table-striped" id="datatable-editable">
+                                        <thead>
+                                        <tr>
+                                            <th>Banner</th>
+                                            <th>Raison</th>
+                                            <th>Temps</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($Sanctions as $k => $row)
+                                            <tr class="gradeX">
+                                                <td>{{ $row['punisher'] }}</td>
+                                                <td>{{ $row['reason'] }}</td>
+                                                <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
+                                                <td>
+                                                    <form id="form{{ $k }}">
+                                                        <input name="banner" value="{{ $row['punisher'] }}"
+                                                               type="hidden">
+                                                        <input type="button" id="notif" value="Notifier"
+                                                               onclick="notiff('{{ $k }}');" class="btn btn-info"/>
+                                                    </form>
+                                                </td>
                                             </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($Sanctions as $row)
-                                                <tr class="gradeX">
-                                                    <td>{{ $row['punisher'] }}</td>
-                                                    <td>{{ $row['reason'] }}</td>
-                                                    <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
-                                                    <td>
-                                                        {{ Form::open() }}
-                                                            <input name="banner" value="{{ $row['punisher'] }}">
-                                                            <input type="button" id="notif" value="Notifier" onclick="notif();" class="btn btn-info" />
-                                                        {{ Form::close() }}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-</div>
-<!-- end: panel body -->
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- end: panel body -->
 
-</div> <!-- end panel -->
-</div> <!-- end col-->
-</div>
-<!-- end row -->
+                        </div> <!-- end panel -->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row -->
 
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 @section("after_scripts")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 
-<script>
+    <script>
 
-    $(function(){
+        function notiff(k) {
+            $("#form" + k).ajaxSubmit({url: '/section/preuves', type: 'post'})
+        }
 
-        $('#notif').on('click', function(){
+    </script>
 
-            $.ajax({
-
-                type: 'POST',
-
-                url: ''
-            });
-
-        });
-
-    });
-
-</script>
 
 @endsection
