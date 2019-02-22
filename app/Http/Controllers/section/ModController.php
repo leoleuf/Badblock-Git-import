@@ -11,6 +11,7 @@ namespace App\Http\Controllers\section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Psr\Http\Message\RequestInterface;
 
 class ModController extends Controller
 {
@@ -37,16 +38,15 @@ class ModController extends Controller
 
     }
 
-    public function notif(Request $request) {
+    public function notif() {
 
         DB::table('notifications')->insert([
-            'user_id' => NotificationsController::convertPseudoId($request->input('punisher')),
-            'title' => "Preuve",
+            'user_id' => NotificationsController::convertPseudoId($_POST['banner']),
+            'title' => "Preuve(s) !",
             'link' => '/moderation',
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
-            'text' => 'Vous venez de recevoir un avertissement.',
+            'text' => 'Oublie de preuve. Merci de corriger.',
             'active' => 1
-
         ]);
 
     }

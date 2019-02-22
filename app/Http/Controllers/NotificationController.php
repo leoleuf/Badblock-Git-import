@@ -30,7 +30,7 @@ class NotificationController extends Controller
 
             return redirect($data->link);
         }
-
+        return redirect('/');
     }
 
 

@@ -17,7 +17,7 @@
                                     <th>#</th>
                                     <th>Type</th>
                                     <th>Banner</th>
-                                    <th>Fin</th>
+                                    <th>Début / Fin</th>
                                     <th>Raison</th>
                                     <th>Details</th>
                                 </tr>
@@ -29,6 +29,7 @@
                                             <td>{{ $row['type'] }}</td>
                                             <td>{{ $row['punisher'] }}</td>
                                             <td>
+                                                {{ date('d-m-Y', $row['timestamp'] / 1000) }} /
                                                 @if($row['expire'] == -1)
                                                     Infinis
                                                 @else

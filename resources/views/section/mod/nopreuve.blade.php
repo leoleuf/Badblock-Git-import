@@ -26,6 +26,7 @@
                                                     <td>{{ date('Y-m-d H:i:s', round(($row['expire'] / 1000), 0)) }}</td>
                                                     <td>
                                                         {{ Form::open() }}
+                                                            <input name="banner" value="{{ $row['punisher'] }}">
                                                             <input type="button" id="notif" value="Notifier" onclick="notif();" class="btn btn-info" />
                                                         {{ Form::close() }}
                                                     </td>

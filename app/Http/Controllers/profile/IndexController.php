@@ -86,7 +86,13 @@ class IndexController extends Controller
 
         $Player['buy'] = DB::connection('mongodb')->collection('buy_logs')->where('uniqueId', $uuid)->orderby('date','DESC')->get();
         $Player['funds'] = DB::connection('mongodb')->collection('funds')->where('uniqueId', $uuid)->orderby('date','DESC')->get();
+        $Player['shop'] = DB::connection('mongodb')->collection('fund_list')->where('uniqueId', $uuid)->first();
 
+        if ($Player['shop'] != null){
+            $Player['shop'] = $Player['shop']['points'];
+        }else{
+            $Player['shop'] = 0;
+        }
 
         $Player['online'] = true;
 
@@ -94,7 +100,7 @@ class IndexController extends Controller
 
         $ConnectionLogs = DB::connection('mongodb_server')->collection('connectionLogs')
             ->where('username', $Player['name'])
-            ->orderBy('date', 'DESC')
+            ->orderBy('timestamp', -1)
             ->limit(10)
             ->get();
 

@@ -63,6 +63,9 @@ Route::group([
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
+    Route::get('/moderation/casier/{player}', 'moderation\CasierController@case');
+
+
     Route::group([
         'prefix'     => "moderation",
         'middleware' => ['auth','can:mod_index'],
@@ -74,7 +77,6 @@ Route::group([
         Route::post('/union', 'moderation\ModerationController@union');
         Route::post('/share', 'moderation\ModerationController@share');
         //Modération casier
-        Route::get('/casier/{player}', 'moderation\CasierController@case');
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
 
@@ -157,9 +159,9 @@ Route::group([
         Route::post('/preuves', 'section\ModController@notif')->middleware('can:gestion_index');
 
         //Permissions serveur
-        Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:gestion_index');
-        Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:gestion_index');
-        Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:gestion_index');
+        Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:bungee_perms');
+        Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:bungee_perms');
+        Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:bungee_perms');
 
         Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:gestion_index');
         Route::post('/notifications', 'section\NotificationsController@send')->middleware('can:gestion_index');
