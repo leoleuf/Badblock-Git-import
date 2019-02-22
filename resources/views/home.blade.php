@@ -101,13 +101,6 @@
 
 
                 </div>
-
-                <div class="row">
-                    <div class="card-box">
-                        <h4 class="header-title mt-0">Joueurs connectés ce mois-ci</h4>
-                        <canvas id="monthlyPlayers" class="morris-chart" width="900" height="450"></canvas>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -115,40 +108,6 @@
 @endsection
 
 @section('after_scripts')
-
-    <script src="/assets/js/chart.min.js"></script>
-
-    <script>
-        new Chart($("#monthlyPlayers"), {
-            type: 'line',
-            data: {
-                labels: [
-                    @for($i = 1; $i <= date("t"); $i++)
-                    {{ $i }}
-                    @if($i != date("t"))
-                    ,
-                    @endif
-                    @endfor
-                ],
-                datasets: [{
-                    data: [
-                        @for($i = 1; $i <= date("t"); $i++)
-                        {{ rand(0, 2500) }}
-                        @if($i != date("t"))
-                        ,
-                        @endif
-                        @endfor
-                    ],
-                    label: "Nombre de joueurs connectés ce mois-ci",
-                    borderColor: "#3e95cd",
-                    fill: false
-                }
-                ]
-            },
-            options: {}
-        });
-
-    </script>
     <script>
 
         function players() {

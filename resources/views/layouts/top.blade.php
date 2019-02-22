@@ -155,11 +155,16 @@
                     <li class="has-submenu">
                         <a href="#"><i class="fa fa-briefcase"></i><span> Modération </span> </a>
                         <ul class="submenu">
-                            <li><a href="/moderation" class="waves-effect"><i class="fa fa-bolt"></i>  Mod Center</a></li>
-                            <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i> TeamSpeak BanList</a></li>
+                            @can("mod_center")
+                                <li><a href="/moderation" class="waves-effect"><i class="fa fa-bolt"></i>  Mod Center</a></li>
+                            @endcan
+                            @can('mod_ts')
+                                    <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i> TeamSpeak BanList</a></li>
+                                @endcan
                             <li><a disabled="" href="/ert" class="waves-effect"><i class="fa fa-legal"></i> Répartition</a></li>
-                            <li><a disabled="" href="/moderation/guardian" class="waves-effect"><i class="fa fa-legal"></i> Guardianer</a></li>
-                            <li><a disabled="" href="/moderation/sanction-tx" class="waves-effect"><i class="fa fa-legal"></i> TX sanction</a></li>
+                            @can('mod_guardianer')
+                                    <li><a disabled="" href="/moderation/guardian" class="waves-effect"><i class="fa fa-legal"></i> Guardianer</a></li>
+                                @endcan
                         </ul>
                     </li>
                     @endcan

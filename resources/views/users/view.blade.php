@@ -37,11 +37,6 @@
                                                     Pseudo réel : {{ $Player['realName'] }}
                                                 </li>
                                             @endif
-                                            @if($Player['online'] == true)
-                                                <li>Online</li>
-                                            @else
-                                                <li>Offline</li>
-                                            @endif
                                             <li>
                                                 Adresse IP :
                                                 @can('profile_ip')
@@ -68,16 +63,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card-box">
-                            <div class="container">
-                                <div class="row">
-                                    <button type="button" class="btn btn-danger btn-lg">Un ban</button>
-                                    <button type="button" class="btn btn-warning btn-lg">Un mute</button>
-                                    <button type="button" class="btn btn-info btn-lg">Kick</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -101,31 +86,41 @@
                                                 Casier
                                             </a>
                                         </li>
+                                        @can('profile_guardian')
                                         <li class="nav-item">
                                             <a href="#4" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Logs Guardian
                                             </a>
                                         </li>
+                                        @endcan
+                                        @can('profile_achat')
                                         <li class="nav-item">
                                             <a href="#5" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Achats
                                             </a>
                                         </li>
+                                        @endcan
+                                        @can('profile_fund')
                                         <li class="nav-item">
                                             <a href="#6" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Paiements
                                             </a>
                                         </li>
+                                        @endcan
+                                        @can('profile_grade')
                                         <li class="nav-item">
                                             <a href="#7" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Groupes & Permissions
                                             </a>
                                         </li>
+                                        @endcan
+                                        @can('profile_auth')
                                         <li class="nav-item">
                                             <a href="#8" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Authentification
                                             </a>
                                         </li>
+                                        @endcan
                                         <li class="nav-item">
                                             <a href="#9" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Logs
@@ -153,7 +148,11 @@
                                                     @endif
                                                     <tr>
                                                         <th>Adresse IP :</th>
-                                                        <td class="color-brighter">{{ $Player['lastIp'] }}</td>
+                                                        <td class="color-brighter">
+                                                            @can('profile_ip')
+                                                                {{ $Player['lastIp'] }}
+                                                            @endcan
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Groupe(s) secondaire(s) :</th>
@@ -197,7 +196,7 @@
                                                     <th>#</th>
                                                     <th>Type</th>
                                                     <th>Banner</th>
-                                                    <th>Fin</th>
+                                                    <th>Début / Fin</th>
                                                     <th>Raison</th>
                                                     <th>Details</th>
                                                 </tr>
@@ -209,7 +208,8 @@
                                                         <td>{{ $row['type'] }}</td>
                                                         <td>{{ $row['punisher'] }}</td>
                                                         <td>
-                                                            @if($row['expire'] == -1)
+                                                            {{ date('d-m-Y', $row['timestamp'] / 1000) }} /
+                                                        @if($row['expire'] == -1)
                                                                 Infinis
                                                             @else
                                                                 {{ date('d-m-Y', $row['expire'] / 1000) }}
@@ -241,6 +241,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
+                                                @can('profile_guardian')
                                                 @foreach($Guardian as $row)
                                                     <tr>
                                                         <th scope="row">{{ $row->date }}</th>
@@ -254,6 +255,7 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
+                                                @endcan
                                                 </tbody>
                                             </table>
 
@@ -272,29 +274,31 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($Player['buy'] as $row)
-                                                    <tr>
-                                                        <th scope="row">{{ $row['date'] }}</th>
-                                                        <td>{{ $row['name'] }}</td>
-                                                        <td>{{ $row['price'] }}</td>
-                                                        <td>
-                                                            @if($row['ingame'])
-                                                                <i class="fa fa-check"></i>
-                                                            @else
-                                                                <i class="fa fa-remove"></i>
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                @can('profile_achat')
+                                                    @foreach($Player['buy'] as $row)
+                                                        <tr>
+                                                            <th scope="row">{{ $row['date'] }}</th>
+                                                            <td>{{ $row['name'] }}</td>
+                                                            <td>{{ $row['price'] }}</td>
+                                                            <td>
+                                                                @if($row['ingame'])
+                                                                    <i class="fa fa-check"></i>
+                                                                @else
+                                                                    <i class="fa fa-remove"></i>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endcan
                                                 </tbody>
                                             </table>
                                         </div>
 
                                         <div role="tabpanel" class="tab-pane fade" id="6">
                                             <div class="card-box">
-                                                <h4 class="header-title m-t-0 m-b-30">Rechargement(s) du joueur</h4>
+                                                <h4 class="header-title m-t-0 m-b-30">Rechargement(s) du joueur / Solde {{ $Player["shop"] }}</h4>
                                                 <table class="table">
                                                     <thead class="thead-light">
                                                     <tr>
@@ -306,7 +310,9 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @foreach($Player['funds'] as $row)
+                                                    @can('profile_fund')
+
+                                                        @foreach($Player['funds'] as $row)
                                                         <tr>
                                                             <th scope="row">{{ $row['date'] }}</th>
                                                             <td>{{ $row['gateway'] }}</td>
@@ -319,6 +325,7 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
+                                                        @endcan
                                                     </tbody>
                                                 </table>
                                             </div>

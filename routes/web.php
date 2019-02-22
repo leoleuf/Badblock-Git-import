@@ -63,6 +63,9 @@ Route::group([
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
+    Route::get('/moderation/casier/{player}', 'moderation\CasierController@case');
+
+
     Route::group([
         'prefix'     => "moderation",
         'middleware' => ['auth','can:mod_index'],
@@ -74,7 +77,6 @@ Route::group([
         Route::post('/union', 'moderation\ModerationController@union');
         Route::post('/share', 'moderation\ModerationController@share');
         //Modération casier
-        Route::get('/casier/{player}', 'moderation\CasierController@case');
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
 
