@@ -173,6 +173,10 @@ Route::group([
         //Todo-list
         Route::get('/todo-management', 'section\TodoListController@index')->middleware('can:todo_list_all');
         Route::post('/todo-management', 'section\TodoListController@createOrModifyTodo')->middleware('can:todo_list_all');
+
+        //URL Shortener Management
+        Route::get('/url-shortener', 'section\URLShortenerManagerController@index');
+        Route::post('/url-shortener', 'section\URLShortenerManagerController@post');
     });
 
     // Voir ses propres avertissements

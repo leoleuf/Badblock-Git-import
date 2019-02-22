@@ -41,9 +41,6 @@
                             <label id="sanction_div_kick" class="radio-inline btn btn-info waves-effect w-md waves-light m-b-5" style="display: none">
                                 <input type="radio" name="sanction" id="sanction_kick" value="Kick" onclick="displayPseudoDiv()"> Kick
                             </label>
-                            <label id="sanction_div_clearPlot" class="radio-inline btn btn-danger waves-effect w-md waves-light m-b-5" style="display: none">
-                                <input type="radio" name="sanction" id="sanction_clearPlot" value="Clear_Plot" onclick="displayPseudoDiv()"> Clear Plot
-                            </label>
                             <label id="sanction_div_ban" class="radio-inline btn btn-warning waves-effect w-md waves-light m-b-5" style="display: none">
                                 <input type="radio" name="sanction" id="sanction_ban" value="Ban" onclick="displayPseudoDiv()"> Ban
                             </label>
@@ -173,7 +170,6 @@
             var warn = false;
             var kick = false;
             var mute = false;
-            var clearPlot = false;
             var ban = false;
             var ban_ban_ip = false;
 
@@ -183,14 +179,12 @@
             var sanctionDivKick = $("#sanction_div_kick");
             var sanctionDivBan = $("#sanction_div_ban");
             var sanctionDivBanBanIp = $("#sanction_div_ban_ban_ip");
-            var sanctionDivClearPlot = $("#sanction_div_clearPlot");
 
             sanctionTypeDiv.css('display', 'none');
             sanctionDivWarn.css('display', 'none');
             sanctionDivMute.css('display', 'none');
             sanctionDivKick.css('display', 'none');
             sanctionDivBan.css('display', 'none');
-            sanctionDivClearPlot.css('display', 'none');
             sanctionDivBanBanIp.css('display', 'none');
             $("#pseudo_form").css("display", "none");
             $("#time_form").css("display", "none");
@@ -241,7 +235,7 @@
                 ban_ban_ip = true;
             }
             else if (reasonValue == sanctionReason[13]){
-                clearPlot = true;
+                //Clear Plot, rien à mettre ici
             }
             else if (reasonValue == sanctionReason[14]){
                 ban = true;
@@ -262,7 +256,6 @@
             else if (reasonValue == sanctionReason[19]){
                 warn = true;
                 kick = true;
-                clearPlot = true;
                 mute = true;
                 ban = true;
                 ban_ban_ip = true;
@@ -278,13 +271,9 @@
                 toastr.error("Erreur dans la raison entrée", 'Erreur !');
             }
 
-            if(warn == true || kick == true || mute == true || clearPlot == true || ban == true || ban_ban_ip == true) {
+            if(warn == true || kick == true || mute == true || ban == true || ban_ban_ip == true) {
 
                 sanctionTypeDiv.css('display', 'block');
-
-                if(clearPlot == true){
-                    sanctionDivClearPlot.css('display', 'block');
-                }
 
                 if (warn == true) {
                     sanctionDivWarn.css('display', 'block');
@@ -337,7 +326,6 @@
 
             var kick = false;
             var warn = false;
-            var clearPlot = false;
             var specialSanction = false;
 
             timeForm.find('[name=\"sanction_time\"]:checked').val('undefined');
@@ -392,7 +380,7 @@
                 ban_ban_ipDurations.push(durations[8], durations[12], durations[13]);
             }
             else if (reasonValue == sanctionReason[13]){
-                clearPlot = true;
+                //Clear Plot, rien à mettre ici
             }
             else if (reasonValue == sanctionReason[14]){
                 banDurations.push(durations[13]);
@@ -435,10 +423,6 @@
                 displaySubmitButton();
             }
 
-            if(clearPlot == true && choosenSanction == 'sanction_clearPlot'){
-                displaySubmitButton();
-            }
-
             if(banDurations.length > 0 && choosenSanction == 'sanction_ban'){
                 displaySanctionTime(banDurations);
             }
@@ -452,7 +436,7 @@
                     displaySanctionTimeChooser();
                 }
 
-                else if(choosenSanction == 'sanction_warn' || choosenSanction == 'sanction_kick' || choosenSanction == 'sanction_clearPlot'){
+                else if(choosenSanction == 'sanction_warn' || choosenSanction == 'sanction_kick'){
                     $("#sanction_time_5").val("");
                     displaySubmitButton();
                 }
@@ -494,7 +478,7 @@
                 sanctionTime = $("#sanction_time_5").val();
                 console.log(selectedSanction);
 
-                if(selectedSanction != 'Kick' && selectedSanction != 'Warn' && selectedSanction != 'Clear_Plot') {
+                if(selectedSanction != 'Kick' && selectedSanction != 'Warn') {
                     if (sanctionTime == "" || sanctionTime == 'undefined') {
                         specialSanctionTimeFilled = false;
                     }
@@ -552,7 +536,6 @@
                 }
 
                 else {
-                    console.log("Test");
                     toastr.error("Merci de compléter tout le formulaire", "Erreur !");
                 }
 
