@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class TodoListController
 {
 
-    private $tableName_todolists_personal = "todolists_personnal";
+    private $tableName_todolists_personal = "todolists_personal";
     private $tableName_todolists_section = "todolists_section";
 
     public function index(){

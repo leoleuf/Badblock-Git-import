@@ -9,33 +9,99 @@
 namespace App\Http\Controllers\profile;
 
 
+use App\Http\Controllers\ConverterController;
+use App\Http\Controllers\section\NotificationsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\section\NotificationsController;
 
 class TodolistsController
 {
 
+
+    private $tableName_todolists_personal = "todolists_personal";
+    private $tableName_todolists_section = "todolists_section";
+
     public function index(){
 
-        $todolists = DB::table('todolists')->get();
         $user_name = Auth::user()->name;
+        $user_section = DB::table('section_users')->where('user_id', NotificationsController::convertPseudoId($user_name))->get();
+        $user_section = ConverterController::convertIDSection($user_section[0]->section_id);
+
+        $todolists_personal = $this->getTodolists($this->tableName_todolists_personal);
+        $todolists_sections = $this->getTodolists($this->tableName_todolists_section);
+
+        //Définit le maximum de caractères affichés dans un card
         $maxCharactersLength = 200;
 
-        for($i = 0; $i < count($todolists); $i++) {
-            $todolists[$i]->author = NotificationsController::convertIDPseudo($todolists[$i]->author);
-            $todolists[$i]->receivers = explode(',', $todolists[$i]->receivers);
-            for($j = 0; $j < count($todolists[$i]->receivers); $j++){
-                $todolists[$i]->receivers[$j] = NotificationsController::convertIDPseudo($todolists[$i]->receivers[$j]);
+        //Définit le nombre d'entrées maximales à afficher pour les todolists personnelles
+        $maxTodolistsEntries_Personal = 20;
+
+        //Définit le nombre d'entrées maximales à afficher pour les todolists de section
+        $maxTodolistsEntries_Section = 20;
+
+        return view('profil.todolists', [
+            "Todolists_Personal" => $todolists_personal,
+            "Todolists_Section" => $todolists_sections,
+            "UserID" => $user_name,
+            "UserSection" => $user_section,
+            "MaxTodolistsEntries_Personal" => $maxTodolistsEntries_Personal,
+            "MaxTodolistsEntries_Section" => $maxTodolistsEntries_Section,
+            "MaxCharactersLength" => $maxCharactersLength
+        ]);
+
+    }
+
+    private function getTodolists($Personal_OR_Section){
+
+        $todoLists = DB::table($Personal_OR_Section)->orderBy('id', 'desc')->get();
+
+        $todoList = array();
+
+        foreach ($todoLists as $i => $row) {
+            $row->author = ConverterController::convertIDPseudo($row->author);
+            $row->receivers = explode(',', $row->receivers);
+            $row->receivers_done = explode(',', $row->receivers_done);
+
+            $todoList[$i]['id'] = $row->id;
+            $todoList[$i]['author'] = $row->author;
+            $todoList[$i]['title'] = $row->title;
+            $todoList[$i]['content'] = $row->content;
+            $todoList[$i]['started_at'] = $row->started_at;
+            $todoList[$i]['deadline'] = $row->deadline;
+            $todoList[$i]['priority'] = $row->priority;
+            $todoList[$i]['receivers'] = $row->receivers;
+            $todoList[$i]['receivers_done'] = $row->receivers_done;
+
+            if($todoList[$i]['receivers_done'] == null){
+                $todoList[$i]['receivers_done'][0] = 0;
             }
-            $todolists[$i]->receivers_done = explode(',', $todolists[$i]->receivers_done);
-            for($j = 0; $j < count($todolists[$i]->receivers_done); $j++){
-                $todolists[$i]->receivers_done[$j] = NotificationsController::convertIDPseudo($todolists[$i]->receivers_done[$j]);
+
+            foreach($todoList[$i]['receivers'] as $j => $row2) {
+                if ($Personal_OR_Section == $this->tableName_todolists_personal){
+                    $row2 = ConverterController::convertIDPseudo($row2);
+                }
+
+                elseif($Personal_OR_Section == $this->tableName_todolists_section){
+                    $row2 = ConverterController::convertIDSection($row2);
+                }
+
+                $todoList[$i]['receivers'][$j] = $row2;
+            }
+
+            foreach($todoList[$i]['receivers_done'] as $j => $row3) {
+                if ($Personal_OR_Section == $this->tableName_todolists_personal){
+                    $row3 = ConverterController::convertIDPseudo($row3);
+                }
+
+                elseif($Personal_OR_Section == $this->tableName_todolists_section){
+                    $row3 = ConverterController::convertIDSection($row3);
+                }
+
+                $todoList[$i]['receivers_done'][$j] = $row3;
             }
         }
 
-        return view('profil.todolists', ["Todolists" => $todolists, "UserID" => $user_name, "MaxCharactersLength" => $maxCharactersLength]);
-
+        return $todoList;
     }
 
     public function done(){
