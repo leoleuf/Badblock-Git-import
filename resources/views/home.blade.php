@@ -114,7 +114,7 @@
             //Get players
             $.getJSON('/api/minecraft', function(data) {
                 $('#players').html(data.players.now);
-                console.log('%c' + message + " connectés !", 'background: #222; font-size: 2em; color: #9b59b6');
+                console.log('%c' + data.players.now + " connectés !", 'background: #222; font-size: 2em; color: #9b59b6');
                 setTimeout(players, 5000);
             });
         }
@@ -124,7 +124,7 @@
             //Get players
             $.getJSON('/api/ban', function(data) {
                 $('#players-ban').html(data.players.now);
-                console.log('%c' + message + " joueurs bannis!", 'background: #222; font-size: 2em; color: #9b59b6');
+                console.log('%c' + data.players.now + " joueurs bannis!", 'background: #222; font-size: 2em; color: #9b59b6');
                 setTimeout(ban, 10000);
             });
         }

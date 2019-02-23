@@ -87,6 +87,11 @@ Route::group([
         Route::post('/sanction-tx', 'moderation\SanctionController@postSanction');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
+        //Serach double account
+        Route::get('/seenaccount/', 'moderation\SeenController@index')->middleware("can:mod_dbaccount");
+        Route::post('/seenaccount/speed', 'moderation\SeenController@speedsearch')->middleware("can:mod_dbaccount");
+        Route::post('/seenaccount/long', 'moderation\SeenController@longsearch')->middleware("can:mod_dbaccount");
+
         Route::get('/guardian', 'moderation\GuardianController@index');
 
         /* Ajax routes */

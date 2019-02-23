@@ -63,8 +63,8 @@ class McController extends Controller
             return json_encode(["players" => ['now' => intval($Cache)]]);
         }else{
             $Data = DB::connection('mongodb_server')->collection('players')->where('punish.ban.expire', '>', time() * 1000)->count();
-            Redis::set('api.mc.players', intval($Data));
-            Redis::expire('api.mc.players', 30);
+            Redis::set('api.mc.ban', intval($Data));
+            Redis::expire('api.mc.ban', 30);
             return json_encode(["players" => ['now' => intval($Data)]]);
         }
     }
