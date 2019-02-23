@@ -34,7 +34,7 @@
     <meta property="og:image" content="https://cdn.badblock.fr/wd/icons/og-image.jpg" />
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#2d94cc" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/dist/css/global.css">
     <!-- Favicon meta -->
@@ -75,12 +75,12 @@
                 <div class="header-login-container">
                     <div class="header-login">
                         {% if user is not defined %}
-                        <a class="button button-info" href="#login-modal"><i class="far fa-lock-alt"></i> Connexion</a>
-                        <a class="button button-primary" href="{{ forum_url }}/inscription/"><i class="far fa-pen"></i> Inscription</a>
+                        <button class="button button-info" type="button" data-toggle="modal" data-target="#modalLogin"><i class="fas fa-lock"></i> Connexion</button>
+                        <a class="button button-primary" href="{{ forum_url }}/inscription/"><i class="fas fa-pen"></i> Inscription</a>
                         {% endif %}
                         {% if user is defined %}
-                        <a class="button button-info" href="{{ path_for('dashboard') }}"><i class="far fa-lock-alt"></i> Mon compte</a>
-                        <a class="button button-primary" href="{{ path_for('logout') }}"><i class="far fa-pen"></i> Déconnexion</a>
+                        <a class="button button-info" href="{{ path_for('dashboard') }}"><i class="far fa-clock"></i> Mon compte</a>
+                        <a class="button button-primary" href="{{ path_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                         {% endif %}
                     </div>
                 </div>
@@ -195,6 +195,34 @@
                             <span>Publicité</span>
                         </h5>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Me connecter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form style="width: 100%;">
+                        <div class="form-group">
+                            <label><strong>Pseudonyme :</strong></label>
+                            <input type="text" class="form-control" placeholder="Ex : Hooki">
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Mot de passe :</strong></label>
+                            <input type="password" class="form-control" placeholder="********">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button button-success">Se connecter</button>
+                    <a class="button button-primary" href="https://badblock.fr/forum/lost-password">Mot de passe oublié ?</a>
                 </div>
             </div>
         </div>

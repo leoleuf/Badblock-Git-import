@@ -1,0 +1,47 @@
+{% extends "default.twig" %}
+{% set active_page = "youtubeur" %}
+{% set h2 = true %}
+{% set title = 'BadBlock – Serveur Minecraft Gratuit Français : MiniJeux, SkyBlock et plus - Nos Youtubeurs' %}
+{% set description = "Liste de nos Youtubeurs partenaires. Rejoins dès maintenant notre équipe de vidéastes en faisant une candidature." %}
+{% block cover %}
+    <!------Cover------>
+    <section>
+        <div class="cover-back">
+            <div class="cover cover-profile">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-8 col-lg-8">
+                            <h3>Serveur minecraft gratuit</h3>
+                            <div class="rsp-button-center">
+                                <a title="Jouer Minecraft" class="button button-success" href="/jouer"><i class="fal fa-gamepad"></i> Jouez dés maintenant !</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-4 col-lg-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------Cover fin------>
+{% endblock %}
+{% block content %}
+    <div class="youtubeur-content">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="heading heading-bar"><span>Nos Youtubeurs</span></h4>
+            </div>
+            <div class="col-12 col-md-4">
+                {{ data }}
+                <!--https://www.youtube.com/channel/UCLrKooc93isJCtR8R_QPqaw
+                https://www.youtube.com/channel/UCYnTsw53vtZoGzLfsmaVbog
+                https://www.youtube.com/channel/UClZ4fjzTkwq2OBEg5lNYUpg
+                https://www.youtube.com/channel/UCjpwkoMzhPpofZnvw6U8zJw
+                https://www.youtube.com/channel/UCQpjw27nBD7gPbJQBmWgZyw
+                https://www.youtube.com/channel/UCjI3xx4Uq6hXeImeAWTm84Q
+                https://www.youtube.com/channel/UCEqcSK-ZkZ2e6K9cmuFDltQ
+                https://www.youtube.com/channel/UCScJfUTftG77iBdIg6bmTPw-->
+            </div>
+        </div>
+    </div>
+{% endblock %}

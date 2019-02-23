@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Controllers\Api\YoutubeApi;
 use HansOtt\PSR7Cookies\SetCookie;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -34,6 +35,12 @@ class PagesController extends Controller
     public function getYoutube(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->render($response, 'pages.youtube');
+    }
+
+    public function getYoutubeurs(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        //$this->render($response, 'pages.youtubeur', ['data' => YoutubeApi::getChannel("UCLrKooc93isJCtR8R_QPqaw")]);
+        var_dump(YoutubeApi::getChannel("UCLrKooc93isJCtR8R_QPqaw"));
     }
 
     public function getPlayAdwords(ServerRequestInterface $request, ResponseInterface $response)

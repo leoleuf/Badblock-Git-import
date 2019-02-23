@@ -28,6 +28,8 @@ $app->get('/bbnew/{uuid}', \App\Controllers\RedirectController::class . ':link')
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
 $app->get('/youtube', \App\Controllers\PagesController::class . ':getYoutube')->setName('youtube-info');
 
+$app->get('/youtubeur', \App\Controllers\PagesController::class . ':getYoutubeurs')->setName('youtubeurs');
+
 $app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
 $app->post('/article/{slug}/{uuid}/comment', \App\Controllers\BlogController::class . ':postComment')->setName('post-comment');
