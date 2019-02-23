@@ -41,8 +41,4 @@ class NotificationsController extends Controller
       return DB::table('users')->where('name', $pseudo)->value('id');
     }
 
-    public static function convertIDPseudo($id){
-        return DB::table('users')->where('id', $id)->value('name');
-    }
-
 }
