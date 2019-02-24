@@ -1195,7 +1195,7 @@ class UserController extends Controller
                             "color" => 5788507
                         )));
 
-                        $curl = curl_init("https://canary.discordapp.com/api/webhooks/409778028802080769/51kS0SGaE_OrkfFbJig0Wuth1u_bHLnMjpSQ6_TJjAipUaMx-ESo7laD_YjpIj6-xQpz");
+                        $curl = curl_init("https://canary.discordapp.com/api/webhooks/547052320605601803/qDOcNUYtYxDHHG4n7Jy6KoIw_jhwi16qgnZmsQ6ktBXGb9LsgOOM34j51AyEuEYeggpv");
                         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
                         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
                         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

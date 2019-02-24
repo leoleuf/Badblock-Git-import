@@ -15,7 +15,7 @@ class ShopApiController extends \App\Controllers\Controller
 
     public function upCache(RequestInterface $request, ResponseInterface $response){
 
-        $filter  = [];
+        $filter  = ['visibility' => true];
         $options = ['sort' => ['power' => -1]];
         $data = [];
         $key = 0;
