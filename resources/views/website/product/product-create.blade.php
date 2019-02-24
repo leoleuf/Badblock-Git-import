@@ -114,17 +114,12 @@
                         <br>
                         <br>
                         Item pour boutique Ingame :
-                        {{ Form::text('ig_item', "", array('class' => 'form-control','placeholder'=>"")) }}
+                        {{ Form::text('ig_material', "", array('class' => 'form-control','placeholder'=>"")) }}
                         <br>
                         <br>
-                        Display Name boutique Ingame :
-                        {{ Form::text('ig_name', "", array('class' => 'form-control','placeholder'=>"")) }}
+                        Ingame data :
+                        {{ Form::text('ig_data', "", array('class' => 'form-control','placeholder'=>"")) }}
                         <br>
-                        <br>
-                        Description (Lore) boutique Ingame :
-                        {{ Form::text('ig_lore', "", array('class' => 'form-control','placeholder'=>"")) }}
-                        <br>
-
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Save</button>
 
                         {{ Form::close() }}

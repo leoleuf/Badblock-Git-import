@@ -207,8 +207,18 @@ class GuardianController extends Controller
                     ->where('punishedUuid', $Player['uniqueId'])
                     ->where('date', ">", date('d-m-Y H:i:s', strtotime('-2 months')))
                     ->where('isReasonKey', true)
-                    ->where('reason', "bungee.commands.mod.mute.reason." . $Fet['name'])
+                    ->where('reason', "bungee.commands.mod.warn.reason." . $Fet['name'])
                     ->count();
+
+                if($Count > 0){
+                    $Count = DB::connection('mongodb_server')
+                        ->collection('punishments')
+                        ->where('punishedUuid', $Player['uniqueId'])
+                        ->where('date', ">", date('d-m-Y H:i:s', strtotime('-2 months')))
+                        ->where('isReasonKey', true)
+                        ->where('reason', "bungee.commands.mod.mute.reason." . $Fet['name'])
+                        ->count();
+                }
 
                 $Conb = $Count;
                 $Count = $Count - 1;
@@ -327,6 +337,8 @@ class GuardianController extends Controller
         DB::connection('mongodb_server')
             ->collection('chatfilter_proof')
             ->insert($proof);
+
+        $Data['reason'] = "bungee.commands.mod."  . $Data['type'] . "." . $Data['reason'];
 
         if (!$message['processed']){
             if ($Data['type'] == "mute"){
