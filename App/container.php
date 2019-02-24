@@ -96,7 +96,7 @@ $container['view'] = function ($container) use ($app) {
 };
 
 $container['guzzle'] = function ($container) {
-	$client = new GuzzleHttp\Client();
+	$client = new GuzzleHttp\Client(['http_errors' => false]);
 
 	return $client;
 };
