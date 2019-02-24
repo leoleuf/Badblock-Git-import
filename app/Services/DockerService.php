@@ -113,8 +113,19 @@ class DockerService {
             'punishmentType' => "MUTE",
             'playerName' => $Username,
             'reason' => $Reason,
-            'isKey' => false,
+            'isKey' => true,
             'time' => $Time
+        ];
+
+        $this->sendData('bungee.punishment', $message);
+    }
+
+    public function warnPlayer($Username, $Reason){
+        $message = [
+            'punishmentType' => "WARN",
+            'playerName' => $Username,
+            'reason' => $Reason,
+            'isKey' => true
         ];
 
         $this->sendData('bungee.punishment', $message);

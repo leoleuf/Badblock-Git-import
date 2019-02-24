@@ -95,10 +95,14 @@ Route::group([
         Route::get('/guardian', 'moderation\GuardianController@index');
 
         /* Ajax routes */
-        Route::get('/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
-        Route::post('/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
-        Route::post('/ajax/mute-message-sender/{messageId}/{duration}', 'moderation\GuardianController@muteMessageSender');
-        Route::post('/ajax/ban-message-sender/{messageId}/{duration}', 'moderation\GuardianController@banMessageSender');
+        Route::get('/guardian/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
+        Route::get('/guardian/ajax/sanc-message/{messageId}', 'moderation\GuardianController@determineSanction');
+        Route::get('/guardian/ajax/jsonsanc-message/{messageId}', 'moderation\GuardianController@jsonSanction');
+
+        Route::get('/guardian/ajax/sancsend-message/{messageId}', 'moderation\GuardianController@sanction');
+
+
+        Route::get('/guardian/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
 
     });
 

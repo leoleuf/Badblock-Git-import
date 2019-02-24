@@ -51,7 +51,7 @@ class SeenController extends Controller
             }
 
             $Data = DB::connection('mongodb_server')->collection('connectionsLogs')->where('lastIp', '=', $Player['lastIp'])->get();
-            
+
             foreach ($Data as $p){
                 $Sp = DB::connection('mongodb_server')->collection('players')->where('name', '=', strtolower($p['username']))->first();
                 //Check if is alredy checked
