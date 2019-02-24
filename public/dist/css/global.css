@@ -728,6 +728,46 @@ iframe {
   border-color: #E8D72B;
 }
 
+.staff-content .staff-content-main:nth-child(8) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+   color: #4d79ff;
+   border-color: #4d79ff;
+}
+
+.staff-content .staff-content-main:nth-child(9) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #3399ff;
+  border-color: #3399ff;
+}
+
+.staff-content .staff-content-main:nth-child(10) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #00ffcc;
+  border-color: #00ffcc;
+}
+
+.staff-content .staff-content-main:nth-child(11) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #ff66a3;
+  border-color: #ff66a3;
+}
+
+.staff-content .staff-content-main:nth-child(12) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #e6e600;
+  border-color: #e6e600;
+}
+
+.staff-content .staff-content-main:nth-child(13) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #ff6666;
+  border-color: #ff6666;
+}
+
+.staff-content .staff-content-main:nth-child(14) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #3399ff;
+  border-color: #3399ff;
+}
+
+.staff-content .staff-content-main:nth-child(15) .staff-content-title, .staff-content .staff-content-main:nth-child(8) .staff-content-title {
+  color: #9933ff;
+  border-color: #9933ff;
+}
+
 .staff-content .staff-content-title {
   font-weight: 400;
   font-size: 1.5em;
@@ -1605,7 +1645,6 @@ h6.cover-heading {
     display: flex;
     justify-content: center;
 }
-
 
 /*#========= Youtubeur ==========#*/
 

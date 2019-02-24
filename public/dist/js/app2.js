@@ -75,3 +75,20 @@ function players() {
 }
 
 players();
+
+$('#searchPlayer').keyup(function(){
+
+	var player = encodeURIComponent($(this).val());
+
+    $.ajax({
+
+		url: "/api/stats/search",
+		type: "POST",
+		data: "search_player=" + player,
+		success: function(data) {
+			console.log(data);
+		}
+
+	});
+
+});
