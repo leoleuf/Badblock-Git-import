@@ -48,3 +48,30 @@ for (i = 0; i < acc.length; i++) {
 		} 
 	});
 }
+
+function players() {
+    var trans = {
+        'noPlayers': "Aucun joueurs connectés",
+        'onePlayer': "joueur",
+        'manyPlayers': "joueurs"
+    }
+    //Get players
+    $.getJSON('/api/minecraft/players', function(data) {
+        if (data.players.now == 0){
+            var message = trans.noPlayers
+        }
+        if (data.players.now == 1){
+            var message = data.players.now + ' ' + trans.onePlayer
+        }
+        if (data.players.now > 1){
+            var message = data.players.now + ' ' + trans.manyPlayers
+        }
+        $('#players').html(message);
+
+        console.log('%c' + message + " connecté!", 'background: #222; font-size: 2em; color: #9b59b6');
+
+        setTimeout(players, 10000);
+    });
+}
+
+players();
