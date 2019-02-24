@@ -17,18 +17,18 @@
             <i class="icon icon-remove"></i>
         </div>
     {% endif %}
-    <div class="row center">
-        <div class="three columns">
-            <input class="tab-top btn btn-actif" type="button" name="bt1" value="Pseudo"/>
+    <div class="row step">
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn-recharge btn btn-actif disabled" type="button" name="bt1" value="Pseudo"/>
         </div>
-        <div class="three columns">
-            <input class="tab-top" type="button" name="bt2" value="Vérification n°1" />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn btn-recharge" type="button" name="bt2" value="Vérification n°1" />
         </div>
-        <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt3" value="Vérification n°2"  />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn-recharge btn disabled" type="button" name="bt3" value="Vérification n°2"  />
         </div>
-        <div class="three columns">
-            <input class="tab-top btn disabled" type="button" name="bt4" value="Validation"  />
+        <div class="col-12 col-md-3">
+            <input class="tab-top btn-recharge btn disabled" type="button" name="bt4" value="Validation"  />
         </div>
     </div>
     <div class="c-progress">
@@ -41,8 +41,10 @@
         <input type="hidden" name="step" value="2">
 
         <label for="code">Code :</label>
-        <input name="code" class="u-full-width" type="text" placeholder="FLUORLEBG"
-               id="code" required>
+        <div class="form-group">
+            <input name="code" class="form-control" type="text" placeholder="FLUORLEBG"
+                   id="code" required>
+        </div>
         <div class="c-input-group">
             <button class="button button-danger" type="submit">Valider</button>
         </div>
