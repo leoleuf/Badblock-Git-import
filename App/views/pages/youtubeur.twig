@@ -32,16 +32,24 @@
                 <h4 class="heading heading-bar"><span>Nos Youtubeurs</span></h4>
             </div>
             <div class="col-12 col-md-4">
-                {{ data }}
-                <!--https://www.youtube.com/channel/UCLrKooc93isJCtR8R_QPqaw
-                https://www.youtube.com/channel/UCYnTsw53vtZoGzLfsmaVbog
-                https://www.youtube.com/channel/UClZ4fjzTkwq2OBEg5lNYUpg
-                https://www.youtube.com/channel/UCjpwkoMzhPpofZnvw6U8zJw
-                https://www.youtube.com/channel/UCQpjw27nBD7gPbJQBmWgZyw
-                https://www.youtube.com/channel/UCjI3xx4Uq6hXeImeAWTm84Q
-                https://www.youtube.com/channel/UCEqcSK-ZkZ2e6K9cmuFDltQ
-                https://www.youtube.com/channel/UCScJfUTftG77iBdIg6bmTPw-->
+                <div class="youtubeur-item">
+                    <img src="{{ data['img'] }}" title="Chaîne de {{ data['title'] }}" class="rounded-circle">
+                    <div class="youtubeur-item-info">
+                        <strong class="youtubeur-item-title">{{ data['title'] }}</strong>
+                        <p class="youtubeur-item-sub">{{ data['sub'] }} abonnés</p>
+                    </div>
+                    <a href="{{ data['link'] }}" target="_blank" class="button button-success">s'abonner</a>
+                </div>
             </div>
         </div>
     </div>
+    <!--https://www.youtube.com/channel/UCLrKooc93isJCtR8R_QPqaw
+               https://www.youtube.com/channel/UCYnTsw53vtZoGzLfsmaVbog
+               https://www.youtube.com/channel/UClZ4fjzTkwq2OBEg5lNYUpg
+               https://www.youtube.com/channel/UCjpwkoMzhPpofZnvw6U8zJw
+               https://www.youtube.com/channel/UCQpjw27nBD7gPbJQBmWgZyw
+               https://www.youtube.com/channel/UCjI3xx4Uq6hXeImeAWTm84Q
+               https://www.youtube.com/channel/UCEqcSK-ZkZ2e6K9cmuFDltQ
+               https://www.youtube.com/channel/UCScJfUTftG77iBdIg6bmTPw-->
 {% endblock %}
+

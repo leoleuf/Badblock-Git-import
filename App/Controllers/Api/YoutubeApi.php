@@ -15,7 +15,25 @@ class YoutubeApi
 
     public static function getChannel($channelID)
     {
-        return \GuzzleHttp\json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=".$channelID."&key=".self::$API_KEY))->items[0]->snippet;
+
+        $INFO = \GuzzleHttp\json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=".$channelID."&key=".self::$API_KEY))->items[0];
+
+        return [
+
+            'sub' => $INFO->statistics->subscriberCount,
+            'img' => $INFO->snippet->thumbnails->default->url,
+            'link' => "https://www.youtube.com/channel/".$channelID."/?sub_confirmation=1",
+            'title' => $INFO->snippet->title
+
+        ];
     }
+
+    public static function getTChannel($channelID)
+    {
+        return \GuzzleHttp\json_decode(file_get_contents("https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=".$channelID."&key=".self::$API_KEY))->items[0];
+
+    }
+
+
 
 }

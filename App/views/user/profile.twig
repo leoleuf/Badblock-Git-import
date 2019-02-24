@@ -1,4 +1,4 @@
-{% set title = 'Profil de ' ~ joueur.realName ~ ' - BadBlock'%}
+{% set title = 'Profil de ' ~ ucfirst(joueur.realName) ~ ' - BadBlock'%}
 {% set hide_title = true %}
 {% extends "default.twig" %}
 {% set active_page = "stats" %}
@@ -20,12 +20,14 @@
 {% endif %}
 
 {% if ban == true %}
-    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.banReason ~ ". Fin de la suspension le " ~ joueur.punish.banEnd|date("m/d/Y") ~ "."  %}
+    {% set description = "Profil de " ~ ucfirst(joueur.realName) ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.banReason ~ ". Fin de la suspension le " ~ joueur.punish.banEnd|date("m/d/Y") ~ "."  %}
 {% elseif mute == true %}
-    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.muteReason ~ ". Fin du bâillonnement le " ~ joueur.punish.muteEnd|date("m/d/Y") ~ "."  %}
+    {% set description = "Profil de " ~ ucfirst(joueur.realName) ~ " sur BadBlock. Cet Utilisateur est suspendu pour " ~ joueur.punish.muteReason ~ ". Fin du bâillonnement le " ~ joueur.punish.muteEnd|date("m/d/Y") ~ "."  %}
 {% else %}
-    {% set description = "Profil de " ~ joueur.realName ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
+    {% set description = "Profil de " ~ ucfirst(joueur.realName) ~ " sur BadBlock. Joueur de niveau " ~ joueur.game.level|number_format(0, '', ' ') ~ " et " ~ joueur.permissions.group ~ ". Cet Utilisateur a " ~ count(joueur.friends) ~ " amis. Dernière connexion le XXX." %}
 {% endif %}
+
+{% set date = joueur.lastLogin / 1000 %}
 
 {% block cover %}
     <!------Cover------>
@@ -74,9 +76,11 @@
             <div class="profil-info">
                 <div class="container">
                     <ul>
+                        <li><img src="https://cdn.badblock.fr/images/fr.jpg" class="img-country" alt="{{ joueur.game.lang }}" title="{{ joueur.game.lang }}"></li>
                         <li><i class="icon icon-bookmarkalt"></i> {{ joueur.game.level|number_format(0, '', ' ') }} <span>Levels</span></li>
                         <li><i class="icon icon-bookmarkalt"></i> {{ joueur.game.xp|number_format(0, '', ' ') }} <span>Xp</span></li>
                         <li><i class="icon icon-value-coins"></i> {{ joueur.game.badcoins|number_format(0, '', ' ') }} <span>BadCoins</span></li>
+                        <li>Dernière connexion le <strong>{{ date.number_format|date("d/m/Y à H:m") }}</strong></li>
                         <li><i class="fas fa-user"></i> <a rel="nofollow" href="https://fr.namemc.com/search?q={{ joueur.realName }}" target="_blank" class="text-success">&nbsp;Profil NameMC</a></li>
                     </ul>
                 </div>
@@ -275,6 +279,29 @@
                     <tr>
                         <td>Morts</td>
                         <td>{{ joueur.game.stats.spaceballs.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="game-title"><h4>UHC DoubleRun <!--<a href="/stats/all/UHCSpeed/" title="Classement du UHCSpeed"><span class="badge badge-primary">Classement</span></a>--></h4></div>
+                <table class="table u-full-width">
+                    <tbody>
+                    <tr>
+                        <td>Exécutions</td>
+                        <td>{{ joueur.game.stats.uhcdoublerun.kills|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Morts</td>
+                        <td>{{ joueur.game.stats.uhcdoublerun.deaths|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties gagnés</td>
+                        <td>{{ joueur.game.stats.uhcdoublerun.wins|number_format(0, '', ' ') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Parties perdus</td>
+                        <td>{{ joueur.game.stats.uhcdoublerun.looses|number_format(0, '', ' ') }}</td>
                     </tr>
                     </tbody>
                 </table>
