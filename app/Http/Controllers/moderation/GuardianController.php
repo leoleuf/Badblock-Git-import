@@ -158,6 +158,7 @@ class GuardianController extends Controller
                     }
                 }
                 //Start second regex
+                $E = 0;
                 if ($F > 0){
                     $Exword = [];
                     foreach ($fetch['complementary_words'] as $word){
@@ -175,7 +176,7 @@ class GuardianController extends Controller
                         $trmessage = str_replace(' ', '', $trmessage);
                     }
 
-                    $E = 0;
+
                     foreach ($Exword as $wrd){
                         preg_match($wrd, $trmessage, $matches);
                         $E = $E + count($matches);
