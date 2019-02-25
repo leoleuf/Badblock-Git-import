@@ -113,6 +113,8 @@ class GuardianController extends Controller
             ->where('_id', $messageId)
             ->first();
 
+        $original = $message['message'];
+
         $Player = DB::connection('mongodb_server')
             ->collection('players')
             ->where('name', strtolower($message['playerName']))
@@ -328,7 +330,7 @@ class GuardianController extends Controller
                 "time" => $DefTime,
                 "reason" => $DefReason,
                 "fetcher" => $Fetchvalid,
-                "message" => $trmessage
+                "message" => $original
             ];
         }else{
             return false;
