@@ -95,7 +95,7 @@ class GuardianController extends Controller
             if (!isset($fetch['complementary_words'])){
                 $Exword = [];
                 foreach ($fetch['words_base'] as $word){
-                    array_push($Exword, '/\b$' . preg_quote($word) . "\b");
+                    array_push($Exword, '/\b$' . preg_quote($word) . "\b/");
                 }
 
                 $Enword = [];
@@ -132,7 +132,7 @@ class GuardianController extends Controller
                 //Two regex
                 $Exword = [];
                 foreach ($fetch['words_base'] as $word){
-                    array_push($Exword, '/\b$' . preg_quote($word) . "\b");
+                    array_push($Exword, '/\b$' . preg_quote($word) . "\b/");
                 }
 
                 $Enword = [];
