@@ -263,7 +263,7 @@ class GuardianController extends Controller
                 }
             }
         }
-        if ($DefType != null){
+        if (isset($DefType)){
             return [
                 "type" => $DefType,
                 "time" => $DefTime,
