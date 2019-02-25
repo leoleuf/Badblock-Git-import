@@ -226,6 +226,18 @@ class GuardianController extends Controller
                     foreach ($fetch['complementary_words'] as $word){
                         array_push($Enword, $word);
                     }
+
+                    $Excluword = [];
+                    foreach ($Pexclude['words_base'] as $word){
+                        array_push($Excluword, $word);
+                    }
+
+                    foreach ($Excluword as $wrd){
+                        if (strpos($trmessage,$wrd) !== false){
+                            $F = $F -1;
+                        }
+                    }
+                    
                     //Use staff name
                     foreach ($Staff_list as $t){
                         array_push($Enword, $t);
