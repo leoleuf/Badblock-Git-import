@@ -214,6 +214,7 @@ class GuardianController extends Controller
                 //Start second regex
                 $E = 0;
                 if ($F > 0){
+                    $F = 1;
                     $Exword = [];
                     foreach ($fetch['complementary_words'] as $word){
                         array_push($Exword, '/^' . $word . "/");
