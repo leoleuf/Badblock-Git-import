@@ -318,10 +318,8 @@ class GuardianController extends Controller
             }
 
         }else{
-            return "";
+            return "{}";
         }
-
-
 
     }
 
