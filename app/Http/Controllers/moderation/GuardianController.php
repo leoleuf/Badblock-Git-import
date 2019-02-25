@@ -72,6 +72,41 @@ class GuardianController extends Controller
     }
 
     public function determineSanction($messageId) {
+        //Get all staff
+        $Staff = Redis::get('guardianer:staff');
+        if ($Staff == null){
+            $alt = ['$or' =>
+                [
+                    ['permissions.groups.bungee.superviseur' => ['$exists' => true]],
+                    ['permissions.groups.bungee.helper' => ['$exists' => true]],
+                    ['permissions.groups.bungee.admin' => ['$exists' => true]],
+                    ['permissions.groups.bungee.modo' => ['$exists' => true]],
+                    ['permissions.groups.bungee.supermodo' => ['$exists' => true]],
+                    ['permissions.groups.bungee.responsable' => ['$exists' => true]],
+                    ['permissions.groups.bungee.builder' => ['$exists' => true]],
+                    ['permissions.groups.bungee.animateur' => ['$exists' => true]],
+                    ['permissions.groups.bungee.modoforum' => ['$exists' => true]],
+                    ['permissions.groups.bungee.graphiste' => ['$exists' => true]],
+                    ['permissions.groups.bungee.redacteur' => ['$exists' => true]],
+                    ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
+                    ['permissions.groups.bungee.manager' => ['$exists' => true]],
+                    ['permissions.groups.bungee.staff' => ['$exists' => true]]
+                ]
+            ];
+
+            $Staff = DB::connection('mongodb_server')->collection('players')->where($alt)->orderby('permissions.group')->get();
+            $Staff_list = [];
+            foreach ($Staff as $r){
+                array_push($Staff_list, $r['name']);
+            }
+
+            Redis::set('guardianer:staff', json_encode($Staff_list));
+            Redis::expire('guardianer:staff', 20000);
+        }else{
+            $Staff_list = json_decode($Staff);
+        }
+
+
         //Get message for proced
         $message = DB::connection('mongodb_server')
             ->collection('reportmessages')
@@ -85,7 +120,13 @@ class GuardianController extends Controller
 
         $Ptable = DB::connection('mongodb_server')
             ->collection('guardian_fetcher')
+            ->where('type_top', '!=', null)
             ->get();
+
+        $Pexclude = DB::connection('mongodb_server')
+            ->collection('guardian_fetcher')
+            ->where('type', '=', "words_exclude")
+            ->first();
 
         $Fetchvalid = [];
         //For all fetcher
@@ -118,6 +159,19 @@ class GuardianController extends Controller
                 foreach ($Enword as $wrd){
                     if (strpos($trmessage,$wrd) !== false){
                         $F++;
+                    }
+                }
+
+                if ($F > 0){
+                    $Excluword = [];
+                    foreach ($Pexclude['words_base'] as $word){
+                        array_push($Excluword, $word);
+                    }
+
+                    foreach ($Excluword as $wrd){
+                        if (strpos($trmessage,$wrd) !== false){
+                            $F = $F -1;
+                        }
                     }
                 }
 
@@ -168,6 +222,10 @@ class GuardianController extends Controller
                     $Enword = [];
                     foreach ($fetch['complementary_words'] as $word){
                         array_push($Enword, $word);
+                    }
+                    //Use staff name
+                    foreach ($Staff_list as $t){
+                        array_push($Enword, $t);
                     }
 
                     //Str to lower
