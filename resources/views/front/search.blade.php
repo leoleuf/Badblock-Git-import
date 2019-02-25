@@ -33,7 +33,7 @@
                 @foreach($data as $row)
                 <div class="single-post d-flex flex-row">
                     <div class="thumb">
-                        <img alt="Serveur {{ seocat($row->cat) }} {{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.png" style="border-radius: 10px;" height="69" width="69">
+                        <img alt="Serveur {{ seocat($row->cat) }} {{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" style="border-radius: 10px;" height="69" width="69">
                     </div>
                     <div class="details">
                         <div class="title d-flex flex-row justify-content-between">
