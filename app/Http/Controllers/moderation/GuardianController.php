@@ -271,6 +271,8 @@ class GuardianController extends Controller
                 "fetcher" => $Fetchvalid,
                 "message" => $trmessage
             ];
+        }else{
+            return false;
         }
     }
 
@@ -293,26 +295,33 @@ class GuardianController extends Controller
 
         $Data = $this->determineSanction($messageId);
 
-        if ($Data['time'] > 12){
-            $Data['time'] = $Data['time'] / 24;
-            $Data['time'] = $Data['time'] . 'Jour(s)';
+        if ($Data != false){
+            if ($Data['time'] > 12){
+                $Data['time'] = $Data['time'] / 24;
+                $Data['time'] = $Data['time'] . 'Jour(s)';
+            }else{
+                $Data['time'] = $Data['time'] . 'heure(s)';
+            }
+
+            $return = json_encode([
+                "type" => $type[$Data['type']],
+                "time" => $Data['time'],
+                "reason" => $reason[$Data['reason']],
+                "fetcher" => $Data['fetcher'],
+                "message" => $Data['message']
+            ]);
+
+            if ($return == false){
+                return "";
+            }else{
+                return $return;
+            }
+
         }else{
-            $Data['time'] = $Data['time'] . 'heure(s)';
-        }
-
-        $return = json_encode([
-            "type" => $type[$Data['type']],
-            "time" => $Data['time'],
-            "reason" => $reason[$Data['reason']],
-            "fetcher" => $Data['fetcher'],
-            "message" => $Data['message']
-        ]);
-
-        if ($return == false){
             return "";
-        }else{
-            return $return;
         }
+
+
 
     }
 
