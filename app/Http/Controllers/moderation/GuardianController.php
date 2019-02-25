@@ -263,16 +263,15 @@ class GuardianController extends Controller
                 }
             }
         }
-
-
-        return [
-            "type" => $DefType,
-            "time" => $DefTime,
-            "reason" => $DefReason,
-            "fetcher" => $Fetchvalid,
-            "message" => $trmessage
-        ];
-
+        if ($DefType != null){
+            return [
+                "type" => $DefType,
+                "time" => $DefTime,
+                "reason" => $DefReason,
+                "fetcher" => $Fetchvalid,
+                "message" => $trmessage
+            ];
+        }
     }
 
     function jsonSanction($messageId){
