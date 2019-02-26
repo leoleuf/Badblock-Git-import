@@ -339,7 +339,7 @@ class GuardianController extends Controller
 
         //Check if is an private message or respons
         $msg = substr( $original, 0, 4 ) === "/msg";
-        $r = substr( $original, 0, 2 ) === "/r";
+        $r = substr( $original, 0, 2 ) === "/  r";
 
 
         if (isset($DefType) && !$r && !$msg){
