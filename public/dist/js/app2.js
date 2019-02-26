@@ -90,10 +90,10 @@ $('#searchPlayer').keyup(function () {
         data: {search_player: filter},
         success: function (data) {
             data = JSON.parse(data);
-            $("#search_down").empty();
+            $("searchResult").empty();
             for (i = 0; i < data.length; i++) {
                 if (data[i] != last) {
-                    $("#search_down").append('<li><a href="/profile/' + data[i]["username"] + '"><img src="https://cdn.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
+                    $("searchResult").append('<li><a href="/profile/' + data[i]["username"] + '"><img src="https://cdn.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
 
                     last = data[i];
                     console.log(data[i]);
