@@ -163,8 +163,6 @@ iframe {
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
-  background-color: transparent;
-  border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
   background-color: #fff;
@@ -453,7 +451,7 @@ iframe {
 .card-thumb img {
   display: block;
   opacity: 1;
-  transition: opacity 0.3s, transform 0.3;
+  transition: opacity 0.3s;
   transform: scale(1);
 }
 
