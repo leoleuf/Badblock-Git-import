@@ -12,7 +12,8 @@
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <h3>Serveur minecraft gratuit</h3>
-                            <a href="/launcher-minecraft" class="button button-success"><i class="fas fa-cloud-download-alt"></i> Télécharger le launcher Minecraft</a>
+                            <a href="/launcher-minecraft" class="button button-success"><i
+                                        class="fas fa-cloud-download-alt"></i> Télécharger le launcher Minecraft</a>
                         </div>
                     </div>
                 </div>
@@ -23,598 +24,735 @@
 {% endblock %}
 {% block content %}
     <div class="row">
-    <div class="col-12 col-md-9">
-        <div class="profil-nav">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="param-tab" data-toggle="tab" href="#param" role="tab" aria-controls="home" aria-selected="true">Paramètres</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab" aria-controls="profile" aria-selected="false">Achats</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="connexion-tab" data-toggle="tab" href="#connexion" role="tab" aria-controls="contact" aria-selected="false">Connexions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="parainage-tab" data-toggle="tab" href="#parainage" role="tab" aria-controls="contact" aria-selected="false">Parrainage</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="rank-tab" data-toggle="tab" href="#rank" role="tab" aria-controls="contact" aria-selected="false">Mon grade</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="gift-tab" data-toggle="tab" href="#gift" role="tab" aria-controls="contact" aria-selected="false">Récompenses</a>
-                </li>
-            </ul>
-            <div class="tab-content dashboard" id="myTabContent">
-                <div class="tab-pane fade show active" id="param" role="tabpanel" aria-labelledby="home-tab">
-                    <h4 class="heading heading-bar" style="margin-top: 50px;">
-              <span>Mes paramètres
-              </span>
-                    </h4>
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="span">
-                                <h4 class="top0">Changer mon mot de passe serveur</h4>
-                                <form action="/dashboard/changeserverpassword" method="post" name="confirm-mdp">
-                                    <div class="form-group">
-                                        <label for="newpassword">Entrez votre nouveau mot de passe</label>
-                                        <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="Nouveau mot de passe"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="newpassword">Entrez votre nouveau mot de passe</label>
-                                        <input class="form-control" type="password" name="newpasswordverif" id="newpasswordverif" placeholder="Nouveau mot de passe"/>
-                                    </div>
-                                    <button type="submit" class="button button-success">Modifier</button>
-                                    </input>
-                                </form>
-                            </div>
-                            <div class="span">
-                                <h4 class="top0">Relier son Compte TeamSpeak
-                                </h4>
-                                <form action="/dashboard/teamspeak" method="post" name="confirm-mdp">
-                                    <div class="form-group">
-                                        <label for="newpassword">Entrez votre ID TeamSpeak</label>
-                                        <input type="text" class="form-control" name="idts" id="idts" placeholder="[URL=client]...[/URL]"/>
-                                    </div>
-                                    <button type="submit" class="button button-success">Valider</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="span">
-                                <h4 class="top0">Changer mon mode de connexion</h4>
-                                <form action="/dashboard/changeserverconnect" method="post" name="confirm-mdp">
-                                    {% if user.onlineMode %}
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" name="selectmode" value="premium" id="rb1" checked="checked">
-                                            <label class="form-check-label" for="inlineRadio1">Connexion premium</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="selectmode" value="crack" id="rb2">
-                                            <label class="form-check-label" for="inlineRadio1">Connexion cracké</label>
-                                        </div>
-
-                                    {% else %}
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" class="form-check-input" name="selectmode" value="premium" id="rb3">
-                                            <label class="form-check-label" for="inlineRadio1">Connexion premium</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input type="radio" name="selectmode" value="crack" id="rb4" checked="checked">
-                                            <label class="form-check-label" for="inlineRadio1">Connexion cracké</label>
-                                        </div>
-                                    {% endif %}
-                                    <br>
-                                    <button type="submit" class="button button-success">Valider</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="span">
-                                <br>
-                                <h4 class="top0">Changer mon Pseudo</h4>
-                                <a class="button button-primary button-play" href="/move" title="Changer de pseudo">Changer mon pseudo !</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
-                    {% if factures != false %}
-                        <br>
-                        <h4 class="heading heading-bar">
-                            <span>Mes Rechargement(s)</span></h4>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <td>Pseudo</td>
-                                <td>Date</td>
-                                <td>Montant</td>
-                                <td>Crédits €</td>
-                                <td></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for key in factures %}
-                                <tr>
-                                    <td>{{ key["pseudo"] }}</td>
-                                    <td>{{ key["date"] }}</td>
-                                    <td>{{ key["price"] }}</td>
-                                    <td>{{ key["points"] }}</td>
-                                    <td>
-                                        <a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}">
-                                            Consulter</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <div class="no-item-container">
-                            <div class="no-item-content">
-                                <h4 class="flex-center">
-                                    <i class="icon-erroralt"></i>
-                                </h4>
-                                <h4>Aucun rechargement</h4>
-                            </div>
-                        </div>
-                    {% endif %}
-                    {% if buys != false %}
-                        <br>
-                        <h4 class="heading heading-bar">
-                            <span>Mes achats</span></h4>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <td>Offre</td>
-                                <td>Date</td>
-                                <td>Points</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for key in buys %}
-                                <tr>
-                                    <td>Achat de
-                                        {{ key["name"] }}</td>
-                                    <td>{{ key["date"] }}</td>
-                                    <td>{{ key["price"] }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    {% else %}
-                        <div class="no-item-container">
-                            <div class="no-item-content">
-                                <h4 class="flex-center">
-                                    <i class="icon-erroralt"></i>
-                                </h4>
-                                <h4>Aucun achat sur la boutique</h4>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-                <div class="tab-pane fade" id="connexion" role="tabpanel" aria-labelledby="contact-tab">
-                    <br>
-                    <h4 class="heading heading-bar">
-                        <span>Mes dernière connection(s)</span></h4>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <td>Pseudo</td>
-                            <td>Date</td>
-                            <td>Ip</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for con in connection %}
-                            <tr>
-                                <td>{{ con['username'] }}</td>
-                                <td>{{ con['date']|date("d/m/Y H:i:s") }}</td>
-                                <td>{{ con['lastIp'] }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="parainage" role="tabpanel" aria-labelledby="contact-tab">
-                    <section class="shop-section-1" class="tabcontent">
-                        {% if (rfr is not empty) %}
-                            Vous avez été parrainé par <strong>{{ rfr }}</strong>. Vous avez donc reçu <strong>100 points boutique</strong> à un moment.
-                        {% else %}
-                            Vous n'avez été parrainé par personne. Vous n'avez donc pas reçu <strong>100 points boutique</strong>. Si une demande pour vous faire parrainée est toujours en cours, veuillez patienter.
-                        {% endif %}
-                        <br /><br />
-                        Vous pouvez parrainer jusqu'à <strong>trois personnes</strong>. Lorsqu'un joueur veut que vous soyez son parrain (et que vous acceptez), vous gagnez <strong>10% de points boutique en + à chaque rechargement par un de vos parrains</strong>. Le parrainé gagne <strong>100 points boutique</strong>. Vous receverez vos demandes de parrainage directement dans un des trois slots en dessous. <span style="color: red;">Attention : Une fois que vous acceptez quelqu'un, vous ne pouvez pas le retirer pour éviter les abus.</span><br />
-                        <br>
-                        <div class="mosaic" style="width: 75%; margin: 0 auto;">
-                            {% set k = 3 %}
-                            {% for i in range(1, k) %}
-                                <a class="card card-second card-plus no-link" style="border-color: black;" href="#">
-                                    <div class="card-plus-text" style="text-align: center;">Parrainé n°{{ i }}<br />
-                                        {% if (rf[i-1] is not defined) %}
-                                            <span style="color: green;"><i class="far fa-check-circle"></i> Slot disponible</span>
-                                        {% elseif (rf[i-1]['state'] == "PENDING") %}
-                                            <span style="color: orange;"><i class="far fa-check-circle"></i> En attente<br />
-                                    {{ rf[i-1]['sponsor'] }}
-                            </span><br /><br />
-                                            <form action="/dashboard/refer/manage" method="post" name="refer">
-                                                <input type="text" style="display: none;" name="id" value="{{ i-1 }}" hidden />
-                                                <button class="button button-success" type="submit" name="yes">Accepter</button>
-                                                <button class="button button-danger" type="submit" name="no">Refuser</button>
-                                            </form>
-                                        {% elseif (rf[i-1]['state'] == "CONFIRMED") %}
-                                            <span style="color: dodgerblue;"><i class="far fa-check-circle"></i> Accepté
-
-                            </span><br /><br />{{ rf[i-1]['sponsor'] }}
-                                        {% endif %}
-                                    </div>
-                                </a>
-                            {% endfor %}
-                        </div>
-                    </section>
-                </div>
-                <div class="tab-pane fade" id="rank" role="tabpanel" aria-labelledby="rank-tab">
-                    {% if custom != false %}
+        <div class="col-12 col-md-9">
+            <div class="profil-nav">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="param-tab" data-toggle="tab" href="#param" role="tab"
+                           aria-controls="home" aria-selected="true">Paramètres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="shop-tab" data-toggle="tab" href="#shop" role="tab"
+                           aria-controls="profile" aria-selected="false">Achats</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="connexion-tab" data-toggle="tab" href="#connexion" role="tab"
+                           aria-controls="contact" aria-selected="false">Connexions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="parainage-tab" data-toggle="tab" href="#parainage" role="tab"
+                           aria-controls="contact" aria-selected="false">Parrainage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="rank-tab" data-toggle="tab" href="#rank" role="tab"
+                           aria-controls="contact" aria-selected="false">Mon grade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="gift-tab" data-toggle="tab" href="#gift" role="tab"
+                           aria-controls="contact" aria-selected="false">Récompenses</a>
+                    </li>
+                </ul>
+                <div class="tab-content dashboard" id="myTabContent">
+                    <div class="tab-pane fade show active" id="param" role="tabpanel" aria-labelledby="home-tab">
                         <h4 class="heading heading-bar" style="margin-top: 50px;">
-              <span>Mon Grade Legend
+              <span>Mes paramètres
               </span>
                         </h4>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="span">
-                                    <h4 class="top0">État de ma demande :</h4>
-                                    État :
-                                    {% if custom['prefix_state'] == true %}
-                                        <span class="badge badge-default">Accepté</span>
-                                        Préfix :
-                                        {{ custom['prefix'] }}
-                                    {% elseif custom['prefix_state'] == 'refused' %}
-                                        <span class="badge badge-default">Refusée</span>
-                                        Préfix :
-                                        {{ custom['prefix_new'] }}
-                                    {% else %}
-                                        <span class="badge badge-admin">En attente</span>
-                                        Préfix :
-                                        {{ custom['prefix_new'] }}
-                                    {% endif %}
+                                    <h4 class="top0">Changer mon mot de passe serveur</h4>
+                                    <form action="/dashboard/changeserverpassword" method="post" name="confirm-mdp">
+                                        <div class="form-group">
+                                            <label for="newpassword">Entrez votre nouveau mot de passe</label>
+                                            <input type="password" class="form-control" name="newpassword"
+                                                   id="newpassword" placeholder="Nouveau mot de passe"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="newpassword">Entrez votre nouveau mot de passe</label>
+                                            <input class="form-control" type="password" name="newpasswordverif"
+                                                   id="newpasswordverif" placeholder="Nouveau mot de passe"/>
+                                        </div>
+                                        <button type="submit" class="button button-success">Modifier</button>
+                                        </input>
+                                    </form>
                                 </div>
                                 <div class="span">
-                                    <h4 class="top0">Choisir mon préfixe :</h4>
-                                    <form action="/dashboard/custom/prefix" method="post" name="confirm-mdp">
+                                    <h4 class="top0">Relier son Compte TeamSpeak
+                                    </h4>
+                                    <form action="/dashboard/teamspeak" method="post" name="confirm-mdp">
                                         <div class="form-group">
-                                            <label for="newpassword">Entrez votre préfixe, entre 1 & 15 caractères.</label>
-                                            <input type="text" class="form-control" name="prefix" id="prefix" placeholder="&bHooki_"/>
+                                            <label for="newpassword">Entrez votre ID TeamSpeak</label>
+                                            <input type="text" class="form-control" name="idts" id="idts"
+                                                   placeholder="[URL=client]...[/URL]"/>
                                         </div>
-                                        <button type="submit" class="button button-success" name="button">Modifier</button>
+                                        <button type="submit" class="button button-success">Valider</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="span">
+                                    <h4 class="top0">Changer mon mode de connexion</h4>
+                                    <form action="/dashboard/changeserverconnect" method="post" name="confirm-mdp">
+                                        {% if user.onlineMode %}
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" name="selectmode"
+                                                       value="premium" id="rb1" checked="checked">
+                                                <label class="form-check-label" for="inlineRadio1">Connexion
+                                                    premium</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="selectmode" value="crack" id="rb2">
+                                                <label class="form-check-label" for="inlineRadio1">Connexion
+                                                    cracké</label>
+                                            </div>
+
+                                        {% else %}
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" class="form-check-input" name="selectmode"
+                                                       value="premium" id="rb3">
+                                                <label class="form-check-label" for="inlineRadio1">Connexion
+                                                    premium</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input type="radio" name="selectmode" value="crack" id="rb4"
+                                                       checked="checked">
+                                                <label class="form-check-label" for="inlineRadio1">Connexion
+                                                    cracké</label>
+                                            </div>
+                                        {% endif %}
+                                        <br>
+                                        <button type="submit" class="button button-success">Valider</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="span">
+                                    <br>
+                                    <h4 class="top0">Changer mon Pseudo</h4>
+                                    <a class="button button-primary button-play" href="/move" title="Changer de pseudo">Changer
+                                        mon pseudo !</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+                        {% if factures != false %}
+                            <br>
+                            <h4 class="heading heading-bar">
+                                <span>Mes Rechargement(s)</span></h4>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <td>Pseudo</td>
+                                    <td>Date</td>
+                                    <td>Montant</td>
+                                    <td>Crédits €</td>
+                                    <td></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key in factures %}
+                                    <tr>
+                                        <td>{{ key["pseudo"] }}</td>
+                                        <td>{{ key["date"] }}</td>
+                                        <td>{{ key["price"] }}</td>
+                                        <td>{{ key["points"] }}</td>
+                                        <td>
+                                            <a class="button button-primary" href="/dashboard/facture/{{ key['_id'] }}">
+                                                Consulter</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <div class="no-item-container">
+                                <div class="no-item-content">
+                                    <h4 class="flex-center">
+                                        <i class="icon-erroralt"></i>
+                                    </h4>
+                                    <h4>Aucun rechargement</h4>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if buys != false %}
+                            <br>
+                            <h4 class="heading heading-bar">
+                                <span>Mes achats</span></h4>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <td>Offre</td>
+                                    <td>Date</td>
+                                    <td>Points</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for key in buys %}
+                                    <tr>
+                                        <td>Achat de
+                                            {{ key["name"] }}</td>
+                                        <td>{{ key["date"] }}</td>
+                                        <td>{{ key["price"] }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <div class="no-item-container">
+                                <div class="no-item-content">
+                                    <h4 class="flex-center">
+                                        <i class="icon-erroralt"></i>
+                                    </h4>
+                                    <h4>Aucun achat sur la boutique</h4>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="connexion" role="tabpanel" aria-labelledby="contact-tab">
+                        <br>
+                        <h4 class="heading heading-bar">
+                            <span>Mes dernière connection(s)</span></h4>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>Pseudo</td>
+                                <td>Date</td>
+                                <td>Ip</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for con in connection %}
+                                <tr>
+                                    <td>{{ con['username'] }}</td>
+                                    <td>{{ con['date']|date("d/m/Y H:i:s") }}</td>
+                                    <td>{{ con['lastIp'] }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="parainage" role="tabpanel" aria-labelledby="contact-tab">
+                        <section class="shop-section-1" class="tabcontent">
+                            {% if (rfr is not empty) %}
+                                Vous avez été parrainé par <strong>{{ rfr }}</strong>. Vous avez donc reçu <strong>100
+                                points boutique</strong> à un moment.
+                            {% else %}
+                                Vous n'avez été parrainé par personne. Vous n'avez donc pas reçu <strong>100 points
+                                boutique</strong>. Si une demande pour vous faire parrainée est toujours en cours, veuillez patienter.
+                            {% endif %}
+                            <br/><br/>
+                            Vous pouvez parrainer jusqu'à <strong>trois personnes</strong>. Lorsqu'un joueur veut que
+                            vous soyez son parrain (et que vous acceptez), vous gagnez <strong>10% de points boutique en
+                                + à chaque rechargement par un de vos parrains</strong>. Le parrainé gagne <strong>100
+                                points boutique</strong>. Vous receverez vos demandes de parrainage directement dans un
+                            des trois slots en dessous. <span style="color: red;">Attention : Une fois que vous acceptez quelqu'un, vous ne pouvez pas le retirer pour éviter les abus.</span><br/>
+                            <br>
+                            <div class="mosaic" style="width: 75%; margin: 0 auto;">
+                                {% set k = 3 %}
+                                {% for i in range(1, k) %}
+                                    <a class="card card-second card-plus no-link" style="border-color: black;" href="#">
+                                        <div class="card-plus-text" style="text-align: center;">Parrainé n°{{ i }}<br/>
+                                            {% if (rf[i-1] is not defined) %}
+                                                <span style="color: green;"><i class="far fa-check-circle"></i> Slot disponible</span>
+                                            {% elseif (rf[i-1]['state'] == "PENDING") %}
+                                                <span style="color: orange;"><i class="far fa-check-circle"></i> En attente<br/>
+                                                    {{ rf[i-1]['sponsor'] }}
+                            </span><br/><br/>
+                                                <form action="/dashboard/refer/manage" method="post" name="refer">
+                                                    <input type="text" style="display: none;" name="id"
+                                                           value="{{ i-1 }}" hidden/>
+                                                    <button class="button button-success" type="submit" name="yes">
+                                                        Accepter
+                                                    </button>
+                                                    <button class="button button-danger" type="submit" name="no">
+                                                        Refuser
+                                                    </button>
+                                                </form>
+                                            {% elseif (rf[i-1]['state'] == "CONFIRMED") %}
+                                                <span style="color: dodgerblue;"><i class="far fa-check-circle"></i> Accepté
+
+                            </span><br/><br/>{{ rf[i-1]['sponsor'] }}
+                                            {% endif %}
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane fade" id="rank" role="tabpanel" aria-labelledby="rank-tab">
+                        {% if custom != false %}
+                            <h4 class="heading heading-bar" style="margin-top: 50px;">
+              <span>Mon Grade Legend
+              </span>
+                            </h4>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="span">
+                                        <h4 class="top0">État de ma demande :</h4>
+                                        État :
+                                        {% if custom['prefix_state'] == true %}
+                                            <span class="badge badge-default">Accepté</span>
+                                            Préfix :
+                                            {{ custom['prefix'] }}
+                                        {% elseif custom['prefix_state'] == 'refused' %}
+                                            <span class="badge badge-default">Refusée</span>
+                                            Préfix :
+                                            {{ custom['prefix_new'] }}
+                                        {% else %}
+                                            <span class="badge badge-admin">En attente</span>
+                                            Préfix :
+                                            {{ custom['prefix_new'] }}
+                                        {% endif %}
+                                    </div>
+                                    <div class="span">
+                                        <h4 class="top0">Choisir mon préfixe :</h4>
+                                        <form action="/dashboard/custom/prefix" method="post" name="confirm-mdp">
+                                            <div class="form-group">
+                                                <label for="newpassword">Entrez votre préfixe, entre 1 & 15
+                                                    caractères.</label>
+                                                <input type="text" class="form-control" name="prefix" id="prefix"
+                                                       placeholder="&bHooki_"/>
+                                            </div>
+                                            <button type="submit" class="button button-success" name="button">Modifier
+                                            </button>
+                                            </input>
+                                        </form>
+                                    </div>
+                                    <div class="span">
+                                        <h4 class="top0">Choisir la couleur de mes messages</h4>
+                                        <form action="/dashboard/custom/textcolor" method="post" name="confirm-mdp">
+                                            <div class="form-group">
+                                                <label for="newpassword">Choissisez</label>
+                                                <select class="form-control" name="color">
+                                                    <option value="Bleu clair">Bleu clair</option>
+                                                    <option value="Rose">Rose</option>
+                                                    <option value="Jaune">Jaune</option>
+                                                    <option value="Blanc">Blanc</option>
+                                                    <option value="Bleu foncé">Bleu foncé</option>
+                                                    <option value="Vert foncé">Vert foncé</option>
+                                                    <option value="Bleu/Aqua">Bleu/Aqua</option>
+                                                    <option value="Violet">Violet</option>
+                                                    <option value="Gris">Gris</option>
+                                                    <option value="Gris foncé">Gris foncé</option>
+                                                    <option value="Bleu">Bleu</option>
+                                                    <option value="Vert clair souligné">Vert clair souligné</option>
+                                                    <option value="Bleu clair souligné">Bleu clair souligné</option>
+                                                    <option value="Rouge clair souligné">Rouge clair souligné</option>
+                                                    <option value="Rose souligné">Rose souligné</option>
+                                                    <option value="Jaune souligné">Jaune souligné</option>
+                                                    <option value="Blanc souligné">Blanc souligné</option>
+                                                    <option value="Bleu foncé souligné">Bleu foncé souligné</option>
+                                                    <option value="Vert foncé souligné">Vert foncé souligné</option>
+                                                    <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
+                                                    <option value="Rouge foncé souligné">Rouge foncé souligné</option>
+                                                    <option value="Violet souligné">Violet souligné</option>
+                                                    <option value="Orange/Gold souligné">Orange/Gold souligné</option>
+                                                    <option value="Gris souligné">Gris souligné</option>
+                                                    <option value="Gris foncé souligné">Gris foncé souligné</option>
+                                                    <option value="Bleu souligné">Bleu souligné</option>
+                                                    <option value="Vert clair gras">Vert clair gras</option>
+                                                    <option value="Bleu clair gras">Bleu clair gras</option>
+                                                    <option value="Rouge clair gras">Rouge clair gras</option>
+                                                    <option value="Rose gras">Rose gras</option>
+                                                    <option value="Jaune gras">Jaune gras</option>
+                                                    <option value="Blanc gras">Blanc gras</option>
+                                                    <option value="Bleu foncé gras">Bleu foncé gras</option>
+                                                    <option value="Vert foncé gras">Vert foncé gras</option>
+                                                    <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
+                                                    <option value="Rouge foncé gras">Rouge foncé gras</option>
+                                                    <option value="Violet gras">Violet gras</option>
+                                                    <option value="Orange/Gold gras">Orange/Gold gras</option>
+                                                    <option value="Gris gras">Gris gras</option>
+                                                    <option value="Gris foncé gras">Gris foncé gras</option>
+                                                    <option value="Bleu gras">Bleu gras</option>
+                                                    <option value="Vert clair italique">Vert clair italique</option>
+                                                    <option value="Bleu clair italique">Bleu clair italique</option>
+                                                    <option value="Rouge clair italique">Rouge clair italique</option>
+                                                    <option value="Rose italique">Rose italique</option>
+                                                    <option value="Jaune italique">Jaune italique</option>
+                                                    <option value="Blanc italique">Blanc italique</option>
+                                                    <option value="Bleu foncé italique">Bleu foncé italique</option>
+                                                    <option value="Vert foncé italique">Vert foncé italique</option>
+                                                    <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
+                                                    <option value="Rouge foncé italique">Rouge foncé italique</option>
+                                                    <option value="Violet italique">Violet italique</option>
+                                                    <option value="Orange/Gold italique">Orange/Gold italique</option>
+                                                    <option value="Gris italique">Gris italique</option>
+                                                    <option value="Gris foncé italique">Gris foncé italique</option>
+                                                    <option value="Bleu italique">Bleu italique</option>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="button button-success" name="button">Modifier
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="six columns">
+                                <div class="span">
+                                    <h4 class="top0">Générer mon canal TeamSpeak :</h4>
+                                    <form action="/dashboard/custom/teamspeak_canal" method="post" name="confirm-mdp">
+                                        <button type="submit" class="button button-success" name="button">Générer
+                                        </button>
+                                        </input>
+                                    </form>
+                                </div>
+                                <div class="span">
+                                    <h4 class="top0">Changer d'icône TeamSpeak :</h4>
+                                    <form action="/dashboard/custom/icone" method="post" name="confirm-mdp">
+                                        <label for="newpassword">Vous devez envoyer votre fichier sur
+                                            https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la
+                                            largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre
+                                            icône ne s'affiche pas, veuillez vérifier
+                                            que tous les critères soient bons avant de nous contacter. Une fois cela
+                                            fait, insérez le lien vers l'image ici :</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="url_icone" id="canal_psw"
+                                                   placeholder=""/>
+                                        </div>
+                                        <button type="submit" class="button button-success" name="button">Envoyer
+                                        </button>
+                                        </input>
+                                    </form>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="twelve columns play">
+                                <section>
+                                    <h4 class="heading-bar">
+                                        <span>Mon Grade Legend</span></h4>
+                                    <p class="play-list-ip">
+                                    <p class="alert alert-error">
+                                        <strong>Erreur</strong>
+                                        Pour pouvoir profiter pleinement des options du Grade Legend, vous devez
+                                        acquérir le grade Legend disponible sur
+                                        <a href="/shop" style="color: yellow;">la boutique</a>
+                                    </p>
+                                    </p>
+                                </section>
+                            </div>
+                            <div class="six columns disabled">
+                                <div class="span">
+                                    <h4 class="top0">Choisir mon préfixe</h4>
+                                    <form action="/" method="post" name="confirm-mdp">
+                                        <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
+                                        <input type="text" name="prefix" id="prefix" placeholder="&bFluor"/>
+                                        <br/>
+                                        <input type="submit" class="button-primary espace-valider"></input>
                                         </input>
                                     </form>
                                 </div>
                                 <div class="span">
                                     <h4 class="top0">Choisir la couleur de mes messages</h4>
-                                    <form action="/dashboard/custom/textcolor" method="post" name="confirm-mdp">
-                                        <div class="form-group">
-                                            <label for="newpassword">Choissisez</label>
-                                            <select class="form-control" name="color">
-                                                <option value="Bleu clair">Bleu clair</option>
-                                                <option value="Rose">Rose</option>
-                                                <option value="Jaune">Jaune</option>
-                                                <option value="Blanc">Blanc</option>
-                                                <option value="Bleu foncé">Bleu foncé</option>
-                                                <option value="Vert foncé">Vert foncé</option>
-                                                <option value="Bleu/Aqua">Bleu/Aqua</option>
-                                                <option value="Violet">Violet</option>
-                                                <option value="Gris">Gris</option>
-                                                <option value="Gris foncé">Gris foncé</option>
-                                                <option value="Bleu">Bleu</option>
-                                                <option value="Vert clair souligné">Vert clair souligné</option>
-                                                <option value="Bleu clair souligné">Bleu clair souligné</option>
-                                                <option value="Rouge clair souligné">Rouge clair souligné</option>
-                                                <option value="Rose souligné">Rose souligné</option>
-                                                <option value="Jaune souligné">Jaune souligné</option>
-                                                <option value="Blanc souligné">Blanc souligné</option>
-                                                <option value="Bleu foncé souligné">Bleu foncé souligné</option>
-                                                <option value="Vert foncé souligné">Vert foncé souligné</option>
-                                                <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
-                                                <option value="Rouge foncé souligné">Rouge foncé souligné</option>
-                                                <option value="Violet souligné">Violet souligné</option>
-                                                <option value="Orange/Gold souligné">Orange/Gold souligné</option>
-                                                <option value="Gris souligné">Gris souligné</option>
-                                                <option value="Gris foncé souligné">Gris foncé souligné</option>
-                                                <option value="Bleu souligné">Bleu souligné</option>
-                                                <option value="Vert clair gras">Vert clair gras</option>
-                                                <option value="Bleu clair gras">Bleu clair gras</option>
-                                                <option value="Rouge clair gras">Rouge clair gras</option>
-                                                <option value="Rose gras">Rose gras</option>
-                                                <option value="Jaune gras">Jaune gras</option>
-                                                <option value="Blanc gras">Blanc gras</option>
-                                                <option value="Bleu foncé gras">Bleu foncé gras</option>
-                                                <option value="Vert foncé gras">Vert foncé gras</option>
-                                                <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
-                                                <option value="Rouge foncé gras">Rouge foncé gras</option>
-                                                <option value="Violet gras">Violet gras</option>
-                                                <option value="Orange/Gold gras">Orange/Gold gras</option>
-                                                <option value="Gris gras">Gris gras</option>
-                                                <option value="Gris foncé gras">Gris foncé gras</option>
-                                                <option value="Bleu gras">Bleu gras</option>
-                                                <option value="Vert clair italique">Vert clair italique</option>
-                                                <option value="Bleu clair italique">Bleu clair italique</option>
-                                                <option value="Rouge clair italique">Rouge clair italique</option>
-                                                <option value="Rose italique">Rose italique</option>
-                                                <option value="Jaune italique">Jaune italique</option>
-                                                <option value="Blanc italique">Blanc italique</option>
-                                                <option value="Bleu foncé italique">Bleu foncé italique</option>
-                                                <option value="Vert foncé italique">Vert foncé italique</option>
-                                                <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
-                                                <option value="Rouge foncé italique">Rouge foncé italique</option>
-                                                <option value="Violet italique">Violet italique</option>
-                                                <option value="Orange/Gold italique">Orange/Gold italique</option>
-                                                <option value="Gris italique">Gris italique</option>
-                                                <option value="Gris foncé italique">Gris foncé italique</option>
-                                                <option value="Bleu italique">Bleu italique</option>
-                                            </select>
-                                        </div>
-                                        <button type="submit" class="button button-success" name="button">Modifier</button>
+                                    <form action="/ " method="post" name="confirm-mdp">
+                                        <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères</label>
+                                        <select name="color">
+                                            <option value="Vert clair">Vert clair</option>
+                                            <option value="Bleu clair">Bleu clair</option>
+                                            <option value="Rouge clair">Rouge clair</option>
+                                            <option value="Rose">Rose</option>
+                                            <option value="Jaune">Jaune</option>
+                                            <option value="Blanc">Blanc</option>
+                                            <option value="Bleu foncé">Bleu foncé</option>
+                                            <option value="Vert foncé">Vert foncé</option>
+                                            <option value="Bleu/Aqua">Bleu/Aqua</option>
+                                            <option value="Rouge foncé">Rouge foncé</option>
+                                            <option value="Violet">Violet</option>
+                                            <option value="Orange/Gold">Orange/Gold</option>
+                                            <option value="Gris">Gris</option>
+                                            <option value="Gris foncé">Gris foncé</option>
+                                            <option value="Bleu">Bleu</option>
+                                            <option value="Vert clair souligné">Vert clair souligné</option>
+                                            <option value="Bleu clair souligné">Bleu clair souligné</option>
+                                            <option value="Rouge clair souligné">Rouge clair souligné</option>
+                                            <option value="Rose souligné">Rose souligné</option>
+                                            <option value="Jaune souligné">Jaune souligné</option>
+                                            <option value="Blanc souligné">Blanc souligné</option>
+                                            <option value="Bleu foncé souligné">Bleu foncé souligné</option>
+                                            <option value="Vert foncé souligné">Vert foncé souligné</option>
+                                            <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
+                                            <option value="Rouge foncé souligné">Rouge foncé souligné</option>
+                                            <option value="Violet souligné">Violet souligné</option>
+                                            <option value="Orange/Gold souligné">Orange/Gold souligné</option>
+                                            <option value="Gris souligné">Gris souligné</option>
+                                            <option value="Gris foncé souligné">Gris foncé souligné</option>
+                                            <option value="Bleu souligné">Bleu souligné</option>
+                                            <option value="Vert clair gras">Vert clair gras</option>
+                                            <option value="Bleu clair gras">Bleu clair gras</option>
+                                            <option value="Rouge clair gras">Rouge clair gras</option>
+                                            <option value="Rose gras">Rose gras</option>
+                                            <option value="Jaune gras">Jaune gras</option>
+                                            <option value="Blanc gras">Blanc gras</option>
+                                            <option value="Bleu foncé gras">Bleu foncé gras</option>
+                                            <option value="Vert foncé gras">Vert foncé gras</option>
+                                            <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
+                                            <option value="Rouge foncé gras">Rouge foncé gras</option>
+                                            <option value="Violet gras">Violet gras</option>
+                                            <option value="Orange/Gold gras">Orange/Gold gras</option>
+                                            <option value="Gris gras">Gris gras</option>
+                                            <option value="Gris foncé gras">Gris foncé gras</option>
+                                            <option value="Bleu gras">Bleu gras</option>
+                                            <option value="Vert clair italique">Vert clair italique</option>
+                                            <option value="Bleu clair italique">Bleu clair italique</option>
+                                            <option value="Rouge clair italique">Rouge clair italique</option>
+                                            <option value="Rose italique">Rose italique</option>
+                                            <option value="Jaune italique">Jaune italique</option>
+                                            <option value="Blanc italique">Blanc italique</option>
+                                            <option value="Bleu foncé italique">Bleu foncé italique</option>
+                                            <option value="Vert foncé italique">Vert foncé italique</option>
+                                            <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
+                                            <option value="Rouge foncé italique">Rouge foncé italique</option>
+                                            <option value="Violet italique">Violet italique</option>
+                                            <option value="Orange/Gold italique">Orange/Gold italique</option>
+                                            <option value="Gris italique">Gris italique</option>
+                                            <option value="Gris foncé italique">Gris foncé italique</option>
+                                            <option value="Bleu italique">Bleu italique</option>
+                                        </select>
+                                        <br/>
+                                        <input type="submit" class="button-primary espace-valider"></input>
+                                        </input>
                                     </form>
                                 </div>
                             </div>
-                        </div>
-                        <div class="six columns">
-                            <div class="span">
-                                <h4 class="top0">Générer mon canal TeamSpeak :</h4>
-                                <form action="/dashboard/custom/teamspeak_canal" method="post" name="confirm-mdp">
-                                    <button type="submit" class="button button-success" name="button">Générer</button>
-                                    </input>
-                                </form>
+                            <div class="six columns disabled">
+                                <div class="span">
+                                    <h4 class="top0">Créer mon canal TeamSpeak</h4>
+                                    <form action="/" method="post" name="confirm-mdp">
+                                        <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères
+                                            !</label>
+                                        <input type="text" name="canal_name" id="canal_name"
+                                               placeholder="Canal génial !"/>
+                                        <label for="newpassword">Entrer le mot de passe de votre canal !</label>
+                                        <input type="password" name="canal_psw" id="canal_psw" placeholder=""/>
+                                        <br/>
+                                        <input type="submit" class="button-primary espace-valider"></input>
+                                        </input>
+                                    </form>
+                                </div>
+                                <div class="span">
+                                    <h4 class="top0">Changer d'icône TeamSpeak</h4>
+                                    <form action="/" method="post" name="confirm-mdp">
+                                        <label for="newpassword">Vous devez envoyer votre fichier sur
+                                            https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la
+                                            largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre
+                                            icône ne s'affiche pas, veuillez vérifier
+                                            que tous les critères soient bons avant de nous contacter. Une fois cela
+                                            fait, insérez le lien vers l'image ici :</label>
+                                        <input type="text" name="url_icone" id="canal_psw" placeholder=""/>
+                                        <br/>
+                                        <input type="submit" class="button-primary espace-valider"></input>
+                                        </input>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="span">
-                                <h4 class="top0">Changer d'icône TeamSpeak :</h4>
-                                <form action="/dashboard/custom/icone" method="post" name="confirm-mdp">
-                                    <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier
-                                        que tous les critères soient bons avant de nous contacter. Une fois cela fait, insérez le lien vers l'image ici :</label>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="url_icone" id="canal_psw" placeholder=""/>
-                                    </div>
-                                    <button type="submit" class="button button-success" name="button">Envoyer</button>
-                                    </input>
-                                </form>
+                        {% endif %}
+                    </div>
+                    <div class="tab-pane fade" id="gift" role="tabpanel" aria-labelledby="rank-tab">
+                        <section class="shop-section-1" class="tabcontent">
+                            <br>
+                            <h4 class="heading heading-bar"><span>Gagnez une récompense</span></h4>
+                            Gagne des récompenses gratuitement en effectuant certaines actions assez rapidement pour
+                            t'acheter des objets, des grades ou des items.<br/>
+                            <br/>
+                            <div class="col">
+                                <div class="span">
+                                    <h5 class="top0">Action Twitter 1 (50 points boutique)</h5>
+                                    <h6 class="top0"><b>Étape 1 : Effectuer l'action</b></h6>
+                                    <a href="https://twitter.com/intent/tweet?text=Rejoins-moi%20sur%20le%20Serveur%20Minecraft%20BadBlock%20d%C3%A8s%20maintenant%20!%20https://badblock.fr/launcher-minecraft%20@BadBlockGame"
+                                       rel="nofollow" title="Effectuer l'action" target="_blank"
+                                       class="button button-primary button-play"/>
+                                    Clique pour effectuer l'action
+                                    </a>
+                                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                                    <a title="Récupérer ta récompense" href="/dashboard/reward/twitter-1"
+                                       class="button button-success button-play">
+                                        Récupérer ta récompense
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    {% else %}
-                        <div class="twelve columns play">
-                            <section>
-                                <h4 class="heading-bar">
-                                    <span>Mon Grade Legend</span></h4>
-                                <p class="play-list-ip">
-                                <p class="alert alert-error">
-                                    <strong>Erreur</strong>
-                                    Pour pouvoir profiter pleinement des options du Grade Legend, vous devez acquérir le grade Legend disponible sur
-                                    <a href="/shop" style="color: yellow;">la boutique</a>
-                                </p>
-                                </p>
-                            </section>
-                        </div>
-                        <div class="six columns disabled">
-                            <div class="span">
-                                <h4 class="top0">Choisir mon préfixe</h4>
-                                <form action="/" method="post" name="confirm-mdp">
-                                    <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères !</label>
-                                    <input type="text" name="prefix" id="prefix" placeholder="&bFluor"/>
-                                    <br/>
-                                    <input type="submit" class="button-primary espace-valider"></input>
-                                    </input>
-                                </form>
+                            <div class="col">
+                                <div class="span">
+                                    <h5 class="top0">Action NameMC (50 points boutique)</h5>
+                                    <h6 class="top0"><b>Étape 1 : Aimer le serveur</b></h6>
+                                    <a href="https://fr.namemc.com/server/badblock.fr" rel="nofollow"
+                                       title="Effectuer l'action" target="_blank"
+                                       class="button button-primary button-play"/>
+                                    Aller sur la page pour aimer le serveur
+                                    </a>
+                                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                                    <a title="Récupérer ta récompense" href="/dashboard/reward/namemc"
+                                       class="button button-success button-play">
+                                        Récupérer ta récompense
+                                    </a>
+                                </div>
                             </div>
-                            <div class="span">
-                                <h4 class="top0">Choisir la couleur de mes messages</h4>
-                                <form action="/ " method="post" name="confirm-mdp">
-                                    <label for="newpassword">Entrez votre préfix, entre 1 & 15 caractères</label>
-                                    <select name="color">
-                                        <option value="Vert clair">Vert clair</option>
-                                        <option value="Bleu clair">Bleu clair</option>
-                                        <option value="Rouge clair">Rouge clair</option>
-                                        <option value="Rose">Rose</option>
-                                        <option value="Jaune">Jaune</option>
-                                        <option value="Blanc">Blanc</option>
-                                        <option value="Bleu foncé">Bleu foncé</option>
-                                        <option value="Vert foncé">Vert foncé</option>
-                                        <option value="Bleu/Aqua">Bleu/Aqua</option>
-                                        <option value="Rouge foncé">Rouge foncé</option>
-                                        <option value="Violet">Violet</option>
-                                        <option value="Orange/Gold">Orange/Gold</option>
-                                        <option value="Gris">Gris</option>
-                                        <option value="Gris foncé">Gris foncé</option>
-                                        <option value="Bleu">Bleu</option>
-                                        <option value="Vert clair souligné">Vert clair souligné</option>
-                                        <option value="Bleu clair souligné">Bleu clair souligné</option>
-                                        <option value="Rouge clair souligné">Rouge clair souligné</option>
-                                        <option value="Rose souligné">Rose souligné</option>
-                                        <option value="Jaune souligné">Jaune souligné</option>
-                                        <option value="Blanc souligné">Blanc souligné</option>
-                                        <option value="Bleu foncé souligné">Bleu foncé souligné</option>
-                                        <option value="Vert foncé souligné">Vert foncé souligné</option>
-                                        <option value="Bleu/Aqua souligné">Bleu/Aqua souligné</option>
-                                        <option value="Rouge foncé souligné">Rouge foncé souligné</option>
-                                        <option value="Violet souligné">Violet souligné</option>
-                                        <option value="Orange/Gold souligné">Orange/Gold souligné</option>
-                                        <option value="Gris souligné">Gris souligné</option>
-                                        <option value="Gris foncé souligné">Gris foncé souligné</option>
-                                        <option value="Bleu souligné">Bleu souligné</option>
-                                        <option value="Vert clair gras">Vert clair gras</option>
-                                        <option value="Bleu clair gras">Bleu clair gras</option>
-                                        <option value="Rouge clair gras">Rouge clair gras</option>
-                                        <option value="Rose gras">Rose gras</option>
-                                        <option value="Jaune gras">Jaune gras</option>
-                                        <option value="Blanc gras">Blanc gras</option>
-                                        <option value="Bleu foncé gras">Bleu foncé gras</option>
-                                        <option value="Vert foncé gras">Vert foncé gras</option>
-                                        <option value="Bleu/Aqua gras">Bleu/Aqua gras</option>
-                                        <option value="Rouge foncé gras">Rouge foncé gras</option>
-                                        <option value="Violet gras">Violet gras</option>
-                                        <option value="Orange/Gold gras">Orange/Gold gras</option>
-                                        <option value="Gris gras">Gris gras</option>
-                                        <option value="Gris foncé gras">Gris foncé gras</option>
-                                        <option value="Bleu gras">Bleu gras</option>
-                                        <option value="Vert clair italique">Vert clair italique</option>
-                                        <option value="Bleu clair italique">Bleu clair italique</option>
-                                        <option value="Rouge clair italique">Rouge clair italique</option>
-                                        <option value="Rose italique">Rose italique</option>
-                                        <option value="Jaune italique">Jaune italique</option>
-                                        <option value="Blanc italique">Blanc italique</option>
-                                        <option value="Bleu foncé italique">Bleu foncé italique</option>
-                                        <option value="Vert foncé italique">Vert foncé italique</option>
-                                        <option value="Bleu/Aqua italique">Bleu/Aqua italique</option>
-                                        <option value="Rouge foncé italique">Rouge foncé italique</option>
-                                        <option value="Violet italique">Violet italique</option>
-                                        <option value="Orange/Gold italique">Orange/Gold italique</option>
-                                        <option value="Gris italique">Gris italique</option>
-                                        <option value="Gris foncé italique">Gris foncé italique</option>
-                                        <option value="Bleu italique">Bleu italique</option>
-                                    </select>
-                                    <br/>
-                                    <input type="submit" class="button-primary espace-valider"></input>
-                                    </input>
-                                </form>
+                            <div class="col">
+                                <div class="span">
+                                    <h5 class="top0">Action les pages Twitter (50 points boutique)</h5>
+                                    <h6 class="top0"><b>Étape 1 : Aimez les pages Twitter du Serveur et Admins</b></h6>
+                                    <a href="https://twitter.com/BadBlockGame?ref_src=twsrc%5Etfw"
+                                       class="twitter-follow-button" data-show-count="true">Suivre
+                                        @BadBlockGame</a><br/>
+                                    <a href="https://twitter.com/xMalwareMC?ref_src=twsrc%5Etfw"
+                                       class="twitter-follow-button" data-show-count="true">Suivre @xMalwareMC</a><br/>
+                                    <a href="https://twitter.com/micro_maniaque?ref_src=twsrc%5Etfw"
+                                       class="twitter-follow-button" data-show-count="true">Suivre
+                                        @micro_maniaque</a><br/>
+                                    <a href="https://twitter.com/Latitchips?ref_src=twsrc%5Etfw"
+                                       class="twitter-follow-button" data-show-count="true">Suivre @Latitchips</a><br/>
+                                    <a href="https://twitter.com/DreaamsMC?ref_src=twsrc%5Etfw"
+                                       class="twitter-follow-button" data-show-count="true">Suivre @DreaamsMC</a>
+                                    <script async src="https://platform.twitter.com/widgets.js"
+                                            charset="utf-8"></script>
+                                    <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
+                                    <a title="Récupérer ta récompense" href="/dashboard/reward/twitter-2"
+                                       class="button button-success button-play">
+                                        Récupérer ta récompense
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="six columns disabled">
-                            <div class="span">
-                                <h4 class="top0">Créer mon canal TeamSpeak</h4>
-                                <form action="/" method="post" name="confirm-mdp">
-                                    <label for="newpassword">Entrez votre nom de canal entre 1 & 25 caractères !</label>
-                                    <input type="text" name="canal_name" id="canal_name" placeholder="Canal génial !"/>
-                                    <label for="newpassword">Entrer le mot de passe de votre canal !</label>
-                                    <input type="password" name="canal_psw" id="canal_psw" placeholder=""/>
-                                    <br/>
-                                    <input type="submit" class="button-primary espace-valider"></input>
-                                    </input>
-                                </form>
-                            </div>
-                            <div class="span">
-                                <h4 class="top0">Changer d'icône TeamSpeak</h4>
-                                <form action="/" method="post" name="confirm-mdp">
-                                    <label for="newpassword">Vous devez envoyer votre fichier sur https://s.badblock.fr/. L'icône doit être un carré (hauteur similaire à la largeur) et doit faire 8 Ko au maximum. Elle doit être en png. Si votre icône ne s'affiche pas, veuillez vérifier
-                                        que tous les critères soient bons avant de nous contacter. Une fois cela fait, insérez le lien vers l'image ici :</label>
-                                    <input type="text" name="url_icone" id="canal_psw" placeholder=""/>
-                                    <br/>
-                                    <input type="submit" class="button-primary espace-valider"></input>
-                                    </input>
-                                </form>
-                            </div>
-                        </div>
-                    {% endif %}
+                        </section>
+                        <br/>
+                        <br/>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="gift" role="tabpanel" aria-labelledby="rank-tab">
-                    <section class="shop-section-1" class="tabcontent">
-                        <br>
-                        <h4 class="heading heading-bar"><span>Gagnez une récompense</span></h4>
-                        Gagne des récompenses gratuitement en effectuant certaines actions assez rapidement pour t'acheter des objets, des grades ou des items.<br />
-                        <br />
-                        <div class="col">
-                            <div class="span">
-                                <h5 class="top0">Action Twitter 1 (50 points boutique)</h5>
-                                <h6 class="top0"><b>Étape 1 : Effectuer l'action</b></h6>
-                                <a href="https://twitter.com/intent/tweet?text=Rejoins-moi%20sur%20le%20Serveur%20Minecraft%20BadBlock%20d%C3%A8s%20maintenant%20!%20https://badblock.fr/launcher-minecraft%20@BadBlockGame" rel="nofollow" title="Effectuer l'action" target="_blank" class="button button-primary button-play" />
-                                Clique pour effectuer l'action
-                                </a>
-                                <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
-                                <a title="Récupérer ta récompense" href="/dashboard/reward/twitter-1" class="button button-success button-play">
-                                    Récupérer ta récompense
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="span">
-                                <h5 class="top0">Action NameMC (50 points boutique)</h5>
-                                <h6 class="top0"><b>Étape 1 : Aimer le serveur</b></h6>
-                                <a href="https://fr.namemc.com/server/badblock.fr" rel="nofollow" title="Effectuer l'action" target="_blank" class="button button-primary button-play" />
-                                Aller sur la page pour aimer le serveur
-                                </a>
-                                <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
-                                <a title="Récupérer ta récompense" href="/dashboard/reward/namemc" class="button button-success button-play">
-                                    Récupérer ta récompense
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="span">
-                                <h5 class="top0">Action les pages Twitter (50 points boutique)</h5>
-                                <h6 class="top0"><b>Étape 1 : Aimez les pages Twitter du Serveur et Admins</b></h6>
-                                <a href="https://twitter.com/BadBlockGame?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @BadBlockGame</a><br />
-                                <a href="https://twitter.com/xMalwareMC?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @xMalwareMC</a><br />
-                                <a href="https://twitter.com/micro_maniaque?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @micro_maniaque</a><br />
-                                <a href="https://twitter.com/Latitchips?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @Latitchips</a><br />
-                                <a href="https://twitter.com/DreaamsMC?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="true">Suivre @DreaamsMC</a>
-                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                                <h6 class="top0"><b>Étape 2 : Récupérer la récompense</b></h6>
-                                <a title="Récupérer ta récompense" href="/dashboard/reward/twitter-2" class="button button-success button-play">
-                                    Récupérer ta récompense
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                    <br />
-                    <br />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="profil-right">
+                <div class="profil-cover">
+                    <img src="https://cdn.badblock.fr/head/{{ user.name }}/110.png" alt="Profil de {{ user.name }}"
+                         title="Profil de {{ user.name }}">
+                    <div class="profil-cover-name">
+                        <h3>{{ ucfirst(user.name) }}</h3>
+                        <h5>{{ ucfirst(user.permissions.group) }}</h5>
+                        <!--{% for key, permission in user.permissions.alternateGroups %} <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span> {% endfor %}-->
+                    </div>
+                </div>
+                <div class="profil-content profil-stats">
+                    <ul>
+                        <li>Niveaux :
+                            <span>{{ user.game.level|number_format(0, '', ' ') }}</span></li>
+                        <li>Expérience :
+                            <span>{{ user.game.xp|number_format(0, '', ' ') }}</span></li>
+                        <li>BadCoins :
+                            <span>{{ user.game.badcoins|number_format(0, '', ' ') }}</span></li>
+                        <li>Vote(s) :
+                            <span>{{ vote|number_format(0, '', ' ') }}</span></li>
+                    </ul>
+                </div>
+                <div class="profil-content profil-info">
+                    <img src="https://minotar.net/body/{{ user.name }}/150.png" title="Avatar de {{ user.name }}"
+                         alt="Avatar de {{ user.name }}" class="avatar-player">
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="profil-right">
-            <div class="profil-cover">
-                <img src="https://cdn.badblock.fr/head/{{ user.name }}/110.png" alt="Profil de {{ user.name }}" title="Profil de {{ user.name }}">
-                <div class="profil-cover-name">
-                    <h3>{{ ucfirst(user.name) }}</h3>
-                    <h5>{{ ucfirst(user.permissions.group) }}</h5>
-                    <!--{% for key, permission in user.permissions.alternateGroups %} <span class="badge badge-{{ key }}">{{ ucfirst(key) }}</span> {% endfor %}-->
+
+    <div class="modal fade" id="sponsorYouAccepted" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="profil-content profil-stats">
-                <ul>
-                    <li>Niveaux :
-                        <span>{{ user.game.level|number_format(0, '', ' ') }}</span></li>
-                    <li>Expérience :
-                        <span>{{ user.game.xp|number_format(0, '', ' ') }}</span></li>
-                    <li>BadCoins :
-                        <span>{{ user.game.badcoins|number_format(0, '', ' ') }}</span></li>
-                    <li>Vote(s) :
-                        <span>{{ vote|number_format(0, '', ' ') }}</span></li>
-                </ul>
-            </div>
-            <div class="profil-content profil-info">
-                <img src="https://minotar.net/body/{{ user.name }}/150.png" title="Avatar de {{ user.name }}" alt="Avatar de {{ user.name }}" class="avatar-player">
+                <div class="modal-body">
+                    Vous avez accepté cette demande de parrainage.
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="sponsorYouRefused" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Vous avez refusé cette demande de parrainage.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-you-accepted">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vous avez accepté cette demande de parrainage.</h1>
+    <div class="modal fade" id="sponsorUnknowRequest" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Cette demande de parrainage n'existe pas.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-you-refused">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Vous avez refusé cette demande de parrainage.</h1>
+    <div class="modal fade" id="sponsorNotPending" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Ce parrainage n'est pas en attente.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-unknown-request">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Cette demande de parrainage n'existe pas.</h1>
+    <div class="modal fade" id="sponsorUnknowUser" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Cette demande de parrainage contient un utilisateur invalide.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-not-pending">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Ce parrainage n'est pas en attente.</h1>
+    <div class="modal fade" id="sponsorCantfindId" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Parrainage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Ce numéro de parrainage est invalide.
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-unknown-user">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Cette demande de parrainage contient un utilisateur invalide.</h1>
-    </div>
-
-    <div class="remodal modal-remodal" data-remodal-id="sponsor-cantfind-id">
-        <button data-remodal-action="close" class="remodal-close"></button>
-        <h1>Ce numéro de parrainage est invalide.</h1>
-    </div>
 
     {% if flash('setting_error') %}
         {% for flash in flash('setting_error') %}
@@ -623,7 +761,7 @@
                 <h1>{{ flash }}</h1>
             </div>
             <script>
-                $( document ).ready(function() {
+                $(document).ready(function () {
 
                     $('[data-remodal-id=errormodal]').remodal().open();
                 })
@@ -639,7 +777,7 @@
                 <h1>{{ flash }}</h1>
             </div>
             <script>
-                $( document ).ready(function() {
+                $(document).ready(function () {
 
                     $('[data-remodal-id=errormodal]').remodal().open();
                 })
