@@ -208,19 +208,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form style="width: 100%;">
+                    <form style="width: 100%;" action="https://badblock.fr/forum/connexion/login" id="choix-pseudo" name="choix-pseudo" method="post">
                         <div class="form-group">
                             <label><strong>Pseudonyme :</strong></label>
-                            <input type="text" class="form-control" placeholder="Ex : Hooki">
+                            <input type="text" class="form-control" name="login" id="playerName" placeholder="Ex : Hooki">
                         </div>
                         <div class="form-group">
                             <label><strong>Mot de passe :</strong></label>
-                            <input type="password" class="form-control" placeholder="********">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="********">
                         </div>
+                        <button type="submit" class="button button-success">Se connecter</button>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="button button-success">Se connecter</button>
+                    <a class="button button-info" href="https://badblock.fr/forum/lost-password">Pas encore inscrit ?</a>
                     <a class="button button-primary" href="https://badblock.fr/forum/lost-password">Mot de passe oublié ?</a>
                 </div>
             </div>
