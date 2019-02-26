@@ -77,12 +77,12 @@ players();
 
 $('#searchPlayer').keyup(function () {
 
-    input = document.getElementById("searchPlayer");
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("searchResult");
-    li = ul.getElementsByTagName("li");
+    var input = document.getElementById("searchPlayer");
+    var filter = input.value.toUpperCase();
+    var ul = document.getElementById("searchResult");
+    var li = ul.getElementsByTagName("li");
 
-    last = "";
+    var last = "";
 
     $.ajax({
         url: '/api/stats/search',
