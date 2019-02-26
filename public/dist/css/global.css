@@ -998,6 +998,12 @@ a.card-plus:hover  {
   cursor: auto;
 }
 
+@media (max-width: 768px) {
+  .table-scroll-table-vote {
+    overflow-x: scroll;
+  }
+}
+
 .table.table-vote tbody {
   text-align: left;
   vertical-align: middle;

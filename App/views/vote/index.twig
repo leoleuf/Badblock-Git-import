@@ -92,49 +92,51 @@
            href="https://serveur-multigames.net/minecraft/badblock" target="_blank" style="width: 95%;">Serveur
             Minecraft BadBlock</a>
         <div class="col-12">
-            <table class="table table-vote">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Joueur</th>
-                    <th scope="col">Récompense</th>
-                    <th scope="col">Votes</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% if count(top) > 0 %}
-                    {% for k,data in top %}
-                        <tr class="votes-{{ k + 1 }}">
-                            <td><span>{{ k + 1 }}</span></td>
-                            <td class="img"><a href="/profile/{{ data['name'] }}"
-                                               title="Profil de {{ data['name'] }}"><img
-                                            src="https://cdn.badblock.fr/head/{{ data['name'] }}/32.png"
-                                            class="align-middle" title="Tête de {{ data['name'] }}"
-                                            alt="Tête de {{ data['name'] }}"/> <span
-                                            class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
-                            {% if k == 0 %}
-                                <td>3000 points boutique</td>
-                            {% elseif k == 1 %}
-                                <td>2250 points boutique</td>
-                            {% elseif k < 3 %}
-                                <td>2000 points boutique</td>
-                            {% elseif k < 6 %}
-                                <td>1500 points boutique</td>
-                            {% elseif k < 10 %}
-                                <td>750 points boutique</td>
-                            {% elseif k < 20 %}
-                                <td>625 points boutique</td>
-                            {% elseif k < 30 %}
-                                <td>250 points boutique</td>
-                            {% else %}
-                                <td></td>
-                            {% endif %}
-                            <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
-                        </tr>
-                    {% endfor %}
-                {% endif %}
-                </tbody>
-            </table>
+            <div class="table-scroll-table-vote">
+                <table class="table table-vote">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Joueur</th>
+                        <th scope="col">Récompense</th>
+                        <th scope="col">Votes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if count(top) > 0 %}
+                        {% for k,data in top %}
+                            <tr class="votes-{{ k + 1 }}">
+                                <td><span>{{ k + 1 }}</span></td>
+                                <td class="img"><a href="/profile/{{ data['name'] }}"
+                                                   title="Profil de {{ data['name'] }}"><img
+                                                src="https://cdn.badblock.fr/head/{{ data['name'] }}/32.png"
+                                                class="align-middle" title="Tête de {{ data['name'] }}"
+                                                alt="Tête de {{ data['name'] }}"/> <span
+                                                class="align-middle"> &nbsp;{{ data['name'] }}</span></a></td>
+                                {% if k == 0 %}
+                                    <td>3000 points boutique</td>
+                                {% elseif k == 1 %}
+                                    <td>2250 points boutique</td>
+                                {% elseif k < 3 %}
+                                    <td>2000 points boutique</td>
+                                {% elseif k < 6 %}
+                                    <td>1500 points boutique</td>
+                                {% elseif k < 10 %}
+                                    <td>750 points boutique</td>
+                                {% elseif k < 20 %}
+                                    <td>625 points boutique</td>
+                                {% elseif k < 30 %}
+                                    <td>250 points boutique</td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                                <td>{{ data['vote']|number_format(0, '', ' ') }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script async>
