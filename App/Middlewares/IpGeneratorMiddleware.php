@@ -113,6 +113,11 @@ class IpGeneratorMiddleware
             }else{
                 $eula = $this->container->session->get('eula');
             }
+
+            if ($this->container->session->exist('user') == true){
+                $eula = true;
+                $this->container->session->set('eula', $eula);
+            }
         }
 
         // Ajout de l'EULA aux variables globales twig
