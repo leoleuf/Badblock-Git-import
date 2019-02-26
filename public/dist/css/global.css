@@ -171,6 +171,7 @@ iframe {
   transition: all .2s;
   border: none;
   margin-right: 10px;
+  max-width: 320px;
   /* Red button */
   /* Green button */
   /* Blue button */
@@ -529,6 +530,12 @@ iframe {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: .2s;
+}
+
+a.card-plus:hover  {
+  opacity: .8;
+  color: #333;
 }
 
 .card-plus .card-plus-text {
