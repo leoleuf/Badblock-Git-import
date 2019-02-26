@@ -27,12 +27,12 @@
                                 <button type="button" name="search"><i class="fas fa-search"></i></button>
                                 <a class="button button-info" href="#"><i class="fas fa-gamepad"></i> Jouer</a>
                                 <ul class="stats-search-result" id="searchResult">
-                                    <li>
+                                    <!--<li>
                                         <a href="#" title="Profil de Hooki"><img src="https://cdn.badblock.fr/head/Hooki_/64.png" alt="Profil Hooki" title="Tête de Hooki"> Hooki_</a>
                                     </li>
                                     <li>
                                         <a href="#" title="Profil de FluorL"><img src="https://cdn.badblock.fr/head/FluorL/64.png" alt="Profil Hooki" title="Tête de FluorL"> FluorL</a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>
@@ -144,50 +144,6 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-    <script>
-        function searchPlayer() {
-
-            input = document.getElementById("player_search");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("search_down");
-            li = ul.getElementsByTagName("li");
-
-            last = "";
-
-            $.ajax({
-                url: '/api/stats/search',
-                type: "POST",
-                data: { search_player : filter},
-                success: function(data) {
-                    data = JSON.parse(data);
-                    $("#search_down").empty();
-                    for (i = 0; i < data.length; i++) {
-                        if (data[i] != last){
-                            $("#search_down").append('<li><a href="/profile/' + data[i]["username"] +'"><img src="https://cdn.badblock.fr/head/' + data[i]["username"] + '/64.png">' + data[i]["username"] + '</a></li>');
-
-                            last = data[i];
-                            console.log(data[i]);
-
-                            for (i = 0; i < li.length; i++) {
-                                a = li[i].getElementsByTagName("a")[0];
-                                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                    li[i].style.display = "block";
-                                } else {
-                                    li[i].style.display = "none";
-
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-
-
-        }
-    </script>
-
 
     <script>
         $( document ).ready(function() {
