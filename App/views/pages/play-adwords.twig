@@ -27,7 +27,7 @@
         <div class="play-content-input">
             <h3>Rejoingnez nous ! - Badblock</h3>
             <input class="info-ip" type="text" name="copyIp" id="copyIp" value="{{ mc_ip }}">
-            <button>Cliquez pour copier l'Ip</button>
+            <button id="copy">Cliquez pour copier l'Ip</button>
             <p class="play-desc">Notre serveur est disponible de la version <strong>1.8</strong> à <strong>1.13</strong></p>
         </div>
     </div>
@@ -94,7 +94,7 @@ for (i = 0; i < acc.length; i++) {
 }
 </script>
 <script>
-var toCopy = document.getElementById('to-copy'),
+var toCopy = document.getElementById('copyIp'),
     btnCopy = document.getElementById('copy');
 
 btnCopy.addEventListener('click', function() {
