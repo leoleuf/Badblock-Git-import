@@ -167,6 +167,7 @@ class UserController extends Controller
 
     public function getProfile(RequestInterface $request, ResponseInterface $response, $args)
     {
+
         if (empty($args['pseudo'])) {
             //if user not found
             return $this->container['notFoundHandler']($request, $response);
