@@ -237,7 +237,7 @@ class GuardianController extends Controller
                             $F = $F -1;
                         }
                     }
-                    
+
                     //Use staff name
                     foreach ($Staff_list as $t){
                         array_push($Enword, $t);
@@ -336,7 +336,13 @@ class GuardianController extends Controller
                 }
             }
         }
-        if (isset($DefType)){
+
+        //Check if is an private message or respons
+        $msg = substr( $original, 0, 4 ) === "/msg";
+        $r = substr( $original, 0, 2 ) === "/r";
+
+
+        if (isset($DefType) && !$r && !$msg){
             return [
                 "type" => $DefType,
                 "time" => $DefTime,
@@ -405,18 +411,20 @@ class GuardianController extends Controller
             ->where('_id', $uuid)
             ->first();
 
-        $proof = [
-            'punishedBy' => Auth::user()->name,
-            'punishedPlayer' => $message['playerName'],
-            'punishedMessage' => $message['message'],
-            'punishType' => $Data['type'],
-            'punishReason' => $Data['reason'],
-            'punishTime' => $Data['time']
-        ];
-        //Create proof
-        DB::connection('mongodb_server')
-            ->collection('chatfilter_proof')
-            ->insert($proof);
+        if ($Data['type'] == "mute" || $Data['type'] == "warn"){
+            $proof = [
+                'punishedBy' => Auth::user()->name,
+                'punishedPlayer' => $message['playerName'],
+                'punishedMessage' => $message['message'],
+                'punishType' => $Data['type'],
+                'punishReason' => $Data['reason'],
+                'punishTime' => $Data['time']
+            ];
+            //Create proof
+            DB::connection('mongodb_server')
+                ->collection('chatfilter_proof')
+                ->insert($proof);
+        }
 
         $Data['reason'] = "bungee.commands.mod."  . $Data['type'] . "." . $Data['reason'];
 
