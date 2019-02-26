@@ -24,7 +24,6 @@ class ShopController extends Controller
 
     function index(RequestInterface $request, ResponseInterface $response)
     {
-
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 

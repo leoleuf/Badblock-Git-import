@@ -73,7 +73,7 @@ class Docker
             'content' => $message
         ];
 
-        $this->sendData("bungee.processing.bungee.linkQueue", $Object);
+        $this->publishData("bungee.processing.bungee.linkQueue", $Object);
     }
 
 	public function kickPlayer($Username, $Reason){
