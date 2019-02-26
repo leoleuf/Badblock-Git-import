@@ -10,56 +10,55 @@ namespace App\Middlewares;
  */
 class IpGeneratorMiddleware
 {
-	/**
-	 * The default server ip
-	 *
-	 * @var string
-	 */
-	private $defaultServerIp = "play.badblock.fr";
+    /**
+     * The default server ip
+     *
+     * @var string
+     */
+    private $defaultServerIp = "play.badblock.fr";
 
-	/**
-	 * The north american server ip
-	 *
-	 * @var string
-	 */
-	private $naServerIp = "play.badblock.fr";
+    /**
+     * The north american server ip
+     *
+     * @var string
+     */
+    private $naServerIp = "play.badblock.fr";
 
-	/**
-	 * The europeans server ip
-	 *
-	 * @var string
-	 */
-	private $euServerIp = "eu.badblock.fr";
+    /**
+     * The europeans server ip
+     *
+     * @var string
+     */
+    private $euServerIp = "eu.badblock.fr";
 
-	/**
-	 * List of europeans countries allowed for europeans server ip
-	 *
-	 * @var array
-	 */
-	private $euAllowed = ["FR", "ES", "PT", "GB", "IE", "BE", "NL", "LU", "DE", "IT", "DK", "SE", "CZ", "AT", "SI", "HR", "BA", "ME", "PL", "SK", "HU", "HR", "RS", "BG", "MK", "AL", "GR", "TR", "CY", "MT", "EE", "LV", "LT", "FI"];
+    /**
+     * List of europeans countries allowed for europeans server ip
+     *
+     * @var array
+     */
+    private $euAllowed = ["FR", "ES", "PT", "GB", "IE", "BE", "NL", "LU", "DE", "IT", "DK", "SE", "CZ", "AT", "SI", "HR", "BA", "ME", "PL", "SK", "HU", "HR", "RS", "BG", "MK", "AL", "GR", "TR", "CY", "MT", "EE", "LV", "LT", "FI"];
 
-	/**
-	 * List of north american countries allowed for north american server ip
-	 *
-	 * @var array
-	 */
-	private $naAllowed = ["US", "CA", "MX"];
+    /**
+     * List of north american countries allowed for north american server ip
+     *
+     * @var array
+     */
+    private $naAllowed = ["US", "CA", "MX"];
 
-	/**
-	 * Slim container object
-	 */
-	private $container;
+    /**
+     * Slim container object
+     */
+    private $container;
 
-	public function __construct($container)
-	{
-		$this->container = $container;
-	}
+    public function __construct($container)
+    {
+        $this->container = $container;
+    }
 
-	public function __invoke($request, $response, $next)
-	{
-        if ($this->container->session->exist('user'))
-        {
-            if (!$this->container->session->exist('points')){
+    public function __invoke($request, $response, $next)
+    {
+        if ($this->container->session->exist('user')) {
+            if (!$this->container->session->exist('points')) {
                 //Search data player
                 $player = $this->container->mongoServer->players->findOne(['name' => strtolower($this->container->session->getProfile('username')['username'])]);
                 if ($player != null) {
@@ -72,66 +71,48 @@ class IpGeneratorMiddleware
                     }
                     $this->container->session->set('points', $shoppoints);
                 }
-            }else{
+            } else {
                 $shoppoints = $this->container->session->get('points');
             }
-        }else{
+        } else {
             $shoppoints = "0";
         }
 
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
-        if (isset($_SERVER['CF_CONNECTING_IP']))
-        {
+        if (isset($_SERVER['CF_CONNECTING_IP'])) {
             $ip = $_SERVER['CF_CONNECTING_IP'];
         }
 
-        $this->container->redis->set('online:'.$ip, $ip);
-        $this->container->redis->expire('online:'.$ip, 600);
+        $this->container->redis->set('online:' . $ip, $ip);
+        $this->container->redis->expire('online:' . $ip, 600);
 
         $onlineCount = count($this->container->redis->keys('*online*'));
 
-        if ($ip == "127.0.0.1")
-        {
+        if ($ip == "127.0.0.1") {
             $this->container->session->set('eula', true);
             $eula = true;
-        }
-        else if ($ip == "::1")
-        {
+        } else if ($ip == "::1") {
             $this->container->session->set('eula', true);
             $eula = true;
-        }
-        else
-        {
-            $ips = $this->container->mongoServer->ip->count(['ip' => $ip]);
+        } else {
+            $ips = $this->container->mongoServer->ips->count(['ip' => $ip]);
 
-
-           /* if (!$this->container->session->exist('eula'))
-            {*/
-
-                if ($ips < 1)
-                {
-                    if ($this->container->session->exist('user'))
-                    {
+            if (!$this->container->session->exist('eula')){
+                if ($ips < 1) {
+                    if ($this->container->session->exist('user')) {
                         $eula = true;
-                    }
-                    else
-                    {
+                    } else {
                         $eula = false;
                     }
-                }
-                else
-                {
+                } else {
                     $eula = true;
                 }
-
                 $this->container->session->set('eula', $eula);
-           // }
-            /*else
-            {
+            }else{
                 $eula = $this->container->session->get('eula');
-            }*/
+            }
         }
 
         // Ajout de l'EULA aux variables globales twig
@@ -139,12 +120,12 @@ class IpGeneratorMiddleware
         $twig->addGlobal('eula', $eula);
         $twig->addGlobal('spider', isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']));
         $twig->addGlobal('onlineCount', $onlineCount);
-				if(!isset($shoppoints)) $shoppoints = 0;
+        if (!isset($shoppoints)) $shoppoints = 0;
         $twig->addGlobal('points', $shoppoints);
         $cfCountry = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? $_SERVER['HTTP_CF_IPCOUNTRY'] : 'fr';
         $twig->addGlobal('country', $cfCountry);
         $twig->addGlobal('isOnline', $this->container->session->exist('user'));
-        $twig->addGlobal('currentUrl', "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        $twig->addGlobal('currentUrl', "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
         $dev = getenv('APP_DEBUG') == 1;
         $twig->addGlobal('dev', $dev);
 
@@ -202,6 +183,6 @@ class IpGeneratorMiddleware
         $twig->addGlobal('mc_ip', $generatedIp);
 
         //return next
-		return $next($request, $response);
-	}
+        return $next($request, $response);
+    }
 }
