@@ -172,7 +172,7 @@ class ShopController extends Controller
                     $temp = $row;
                 }
             }
-            if ($depend == 0)
+            if ($depend == 0 && $check == false)
             {
                 //Search depend produc pour proposer a la vente
                 $product_depend = $product_depend->name;
