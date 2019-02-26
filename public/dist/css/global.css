@@ -1671,3 +1671,27 @@ h6.cover-heading {
   text-align: center;
   margin-bottom: 0;
 }
+
+/* #======== Dev Info ========# */
+
+.dev-info {
+  padding-top: 50px;
+}
+
+.dev-info .dev-info-item {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dev-info .dev-info-item .dev-info-title {
+  flex-basis: 100%;
+  text-align: center;
+  margin: .5em 0;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.dev-info .dev-info-item .dev-info-desc {
+  font-style: italic;
+}
