@@ -181,11 +181,6 @@ class ShopController extends Controller
         }
 
 
-
-        if ($product->queue == "faction"){
-            return $response->write("Service temporairement désactivé.")->withStatus(400);
-        }
-
         //Check promotion
         if (isset($product->promotion) && $product->promotion)
         {
