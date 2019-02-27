@@ -63,22 +63,21 @@
 
             <div class="comments-container">
                 {% if user is defined %}
-                    <form class="comments-form" action="{{ path_for('post-comment', {uuid: post.uuid, slug: post.slug}) }}" method="post">
-                        <div class="comments-item">
-                            <div class="comments-author-avatar">
-                                <img src="https://cdn.badblock.fr/head/{{ user.username }}/64.png" title="Tête de {{ user.username }}" alt="Tête de {{ user.username }}">
+                <div class="comments-form">
+                    <form action="{{ path_for('post-comment', {uuid: post.uuid, slug: post.slug}) }}" method="post" >
+                        <div class="comments-form-content">
+                            <div class="comments-form-author">
+                                <img src="https://cdn.badblock.fr/head/{{ user.username }}/64.png" class="img-fluid" title="Tête de {{ user.username }}" alt="Tête de {{ user.username }}">
                             </div>
-                            <div class="comments-content">
-                                <div class="comments-title">
-                                    <span class="comments-author-username">Ecrivez un commentaire</span>
-                                </div>
-                                <div class="comments-text-box">
-                                    <textarea name="content"></textarea>
-                                    <button type="submit" class="button button-primary">Envoyer</button>
-                                </div>
+                            <div class="comments-form-area">
+                                <div class="comments-form-title"><span>Ecrivez votre commentaire</span></div>
+                                <textarea name="comments"></textarea>
+                                <button type="submit" name="Poster" class="button button-success">Envoyer</button>
                             </div>
                         </div>
                     </form>
+                </div>
+
                 {% endif %}
                 {% if user is not defined %}
                     <p>Vous devez être connecté pour poster un commentaire</p>
