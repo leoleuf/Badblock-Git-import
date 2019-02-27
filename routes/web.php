@@ -57,6 +57,9 @@ Route::group([
     Route::get('/todolists', 'profile\TodolistsController@index');
     Route::post('/todolists', 'profile\TodolistsController@done');
 
+    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index');
+    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload');
+
     });
 
     //Screenshort list
