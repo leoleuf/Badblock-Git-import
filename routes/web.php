@@ -57,10 +57,10 @@ Route::group([
     Route::get('/todolists', 'profile\TodolistsController@index');
     Route::post('/todolists', 'profile\TodolistsController@done');
 
-    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index');
-    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload');
+    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index')->middleware("can:build_upload");
+    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload')->middleware("can:build_upload");
 
-    });
+});
 
     //Screenshort list
     Route::get('/screen', 'profile\ScreenController@index');

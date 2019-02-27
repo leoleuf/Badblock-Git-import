@@ -62,10 +62,6 @@
 
                         console.log(exception);
 
-                        if(exception == "Conflict"){
-                            exception = Object.values($.parseJSON(Object.values(jqxhr)["16"]))["0"];
-                        }
-
                         toastr.error("Erreur lors de l'envoi, merci de contacter un administrateur. Intitulé de l'erreur : " + exception, 'Erreur');
                     }
                 });
