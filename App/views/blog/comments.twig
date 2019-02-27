@@ -1,18 +1,21 @@
 {% for comment in comments %}
-    <div class="comments-item">
-        <span class="comments-author-avatar">
-            <a href="/profile/{{ comment.username }}" title="Profil de {{ comment.username }}">
-                <img src="https://cdn.badblock.fr/head/{{ comment.username }}/64.png" alt="Tête de {{ comment.username }}" title="Tête de {{ comment.username }}">
-            </a>
-        </span>
+    <div class="comments">
         <div class="comments-content">
-            <div class="comments-title">
-                <span class="comments-author-username">{{ comment.username }}</span>
-                <span class="comments-info">{{ timeago(timestampToTime(comment.post_date)) }}</span>
+            <div class="comments-author-head">
+                <a href="/profile/{{ comment.username }}" title="Profil de {{ comment.username }}">
+                    <img src="https://cdn.badblock.fr/head/{{ comment.username }}/64.png" class="img-fluid"
+                         alt="Tête de {{ comment.username }}" title="Tête de {{ comment.username }}">
+                </a>
             </div>
             <div class="comments-text">
-                {{ comment.message }}
+                <span class="comments-author">{{ comment.username }}</span>
+                <small>{{ timeago(timestampToTime(comment.post_date)) }}</small>
+                <p>{{ comment.message }}</p>
             </div>
+
         </div>
     </div>
 {% endfor %}
+
+
+
