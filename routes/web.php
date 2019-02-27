@@ -57,10 +57,10 @@ Route::group([
     Route::get('/todolists', 'profile\TodolistsController@index');
     Route::post('/todolists', 'profile\TodolistsController@done');
 
-    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index');
-    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload');
+    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index')->middleware("can:build_upload");
+    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload')->middleware("can:build_upload");
 
-    });
+});
 
     //Screenshort list
     Route::get('/screen', 'profile\ScreenController@index');
@@ -90,13 +90,22 @@ Route::group([
         Route::post('/sanction-tx', 'moderation\SanctionController@postSanction');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
+        //Serach double account
+        Route::get('/seenaccount/', 'moderation\SeenController@index')->middleware("can:mod_dbaccount");
+        Route::post('/seenaccount/speed', 'moderation\SeenController@speedsearch')->middleware("can:mod_dbaccount");
+        Route::post('/seenaccount/long', 'moderation\SeenController@longsearch')->middleware("can:mod_dbaccount");
+
         Route::get('/guardian', 'moderation\GuardianController@index');
 
         /* Ajax routes */
-        Route::get('/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
-        Route::post('/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
-        Route::post('/ajax/mute-message-sender/{messageId}/{duration}', 'moderation\GuardianController@muteMessageSender');
-        Route::post('/ajax/ban-message-sender/{messageId}/{duration}', 'moderation\GuardianController@banMessageSender');
+        Route::get('/guardian/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
+        Route::get('/guardian/ajax/sanc-message/{messageId}', 'moderation\GuardianController@determineSanction');
+        Route::get('/guardian/ajax/jsonsanc-message/{messageId}', 'moderation\GuardianController@jsonSanction');
+
+        Route::get('/guardian/ajax/sancsend-message/{messageId}', 'moderation\GuardianController@sanction');
+
+
+        Route::get('/guardian/ajax/set-message-ok/{messageId}', 'moderation\GuardianController@setMessageOk');
 
     });
 

@@ -182,6 +182,10 @@
                                     <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i>
                                             TeamSpeak BanList</a></li>
                                 @endcan
+                                @can('mod_dbaccount')
+                                    <li><a disabled="" href="/moderation/seenaccount" class="waves-effect">
+                                            <i class="fas fa-user-circle"></i> Account Seen</a></li>
+                                @endcan
                                 @can('mod_guardianer')
                                     <li><a disabled="" href="/moderation/guardian" class="waves-effect"><i
                                                     class="fa fa-legal"></i> Guardianer</a></li>

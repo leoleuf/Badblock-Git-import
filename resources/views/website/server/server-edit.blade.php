@@ -44,6 +44,14 @@
 
                         <br>
                         <br>
+                        Item pour boutique Ingame :
+                        {{ Form::text('ig_material',  $server['ig_material'], array('class' => 'form-control','placeholder'=>"")) }}
+                        <br>
+                        <br>
+                        Ingame data :
+                        {{ Form::text('ig_data', $server['ig_data'], array('class' => 'form-control','placeholder'=>"")) }}
+                        <br>
+                        <br>
 
                         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Save</button>
 

@@ -23,38 +23,30 @@ class BuilderFileUploaderController
         $file_dest = "/";
 
         $file = $_FILES['uploadedFile'];
-        $remote_file = $file_dest.$file['name'];
-
-        $extensions = array("application/octet-stream");
-
-        if(in_array($file['type'],$extensions) == false){
-            return response()->json(['error' => "Extension non permise, merci de ne téléverser qu'un .schematic"]);
-        }
-
-        $conn_id = ftp_connect(env("FTP_IP"));
-
-        if($conn_id == false){
-            response()->json(['error' => "Erreur lors de la connection FTP, merci de contacter un administrateur"], 409);
-        }
 
         // Identification avec un nom d'utilisateur et un mot de passe
-        if (ftp_login($conn_id, env("FTP_USER"), env("FTP_PASSWORD"))){
+        $server = env('FTP_BUILD_IP');
+        $port = env('FTP_BUILD-PORT');
+        $username = env('FTP_BUILD_USER');
+        $passwd = env('FTP_BUILD_PASSWORD');
 
-            if (ftp_put($conn_id, $remote_file, $file, FTP_ASCII)) {
+// connect
+        $connection = ssh2_connect($server, $port);
+        if (ssh2_auth_password($connection, $username, $passwd)) {
+// initialize sftp
+            $sftp = ssh2_sftp($connection);
 
-                ftp_close($conn_id);
-                response()->json(["success" => "Le fichier " . $file['name'] . " a été chargé avec succès\n"], 200);
-            } else {
-                ftp_close($conn_id);
-                response()->json(["error" => "Il y a eu un problème lors du chargement du fichier " . $file['name']], 409);
-            }
+// Upload file
+            echo "Connection successful, uploading file now..."."n";
+
+            $name = $file["name"];
+            $contents = file_get_contents($file['tmp_name']);
+            file_put_contents("ssh2.sftp://{$sftp}/plugins/WorldEdit/schematics/{$name}", $contents);
+
+        } else {
+            exit("Unable to authenticate with server");
         }
 
-        else {
-            ftp_close($conn_id);
-            response()->json(['error' => "Erreur lors de la connection FTP, merci de contacter un administrateur"], 409);
-        }
-
-
+        return "ok";
     }
 }

@@ -46,6 +46,9 @@ class ServerController extends \App\Http\Controllers\Controller {
         $server->icon = $request->input('icon');
         $server->power = $request->input('power');
 
+        $server->ig_material = $request->input('ig_material');
+        $server->ig_data = $request->input('ig_data');
+
         if ($request->input('visibility') == "on"){
             $server->visibility = true;
         }else{

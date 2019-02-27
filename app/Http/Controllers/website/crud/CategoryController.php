@@ -62,6 +62,9 @@ class CategoryController extends \App\Http\Controllers\Controller {
         $Category->server_id = new \MongoDB\BSON\ObjectId($request->input('server'));
         $Category->power = $request->input('power');
 
+        $Category->ig_material = $request->input('ig_material');
+        $Category->ig_data = $request->input('ig_data');
+
         if ($request->input('visibility') == "on"){
             $Category->visibility = true;
         }else{
@@ -111,6 +114,9 @@ class CategoryController extends \App\Http\Controllers\Controller {
         $Category->subname = $request->input('sub-name');
         $Category->server_id = new \MongoDB\BSON\ObjectId($request->input('server'));
         $Category->power = $request->input('power');
+
+        $Category->ig_material = $request->input('ig_material');
+        $Category->ig_data = $request->input('ig_data');
 
         if ($request->input('visibility') == "on"){
             $Category->visibility = true;
