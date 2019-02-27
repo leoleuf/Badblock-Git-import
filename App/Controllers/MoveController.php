@@ -53,20 +53,23 @@ class MoveController extends Controller
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
-
         // Création du code random
         $pass = $this->generateRandomString(8);
         // Set code in Redis cache
         $this->session->set('move:1', $username);
         $this->redis->set('move:1:'.$username,strtoupper($pass));
         $this->redis->expire('move:1:'.$username, 3600);
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username,"&6 Le code de confirmation est : ". strtoupper($pass));
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username," ");
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, "&6Cliquez ici pour confirmer votre compte");
+        $this->container->docker->sendPrivateMessage($username, "&b&nhttps://badblock.fr/move/1/" . strtoupper($pass));
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, " ");
 
-        return $this->render($response, 'user.move.step2', ["width" => 50,"step" => 2]);
+        // Message erreur
+        $this->flash->addMessage('move_error', "Cliquer sur le lien qui vous a était envoyé sur le serveur !");
+        // Redirect to last page
+        return $this->redirect($response, $_SERVER['HTTP_REFERER']);
     }
 
     public function process_step2(RequestInterface $request, ResponseInterface $response)

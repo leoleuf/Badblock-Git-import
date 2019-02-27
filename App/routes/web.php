@@ -199,6 +199,8 @@ $app->get('/link/{step}', \App\Controllers\LinkController::class . ':poststep')-
 $app->post('/link', \App\Controllers\LinkController::class . ':poststep')->setName('link-post');
 
 $app->get('/move', \App\Controllers\MoveController::class . ':step1')->setName('move-1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->get('/move/1/{uuid}', \App\Controllers\MoveController::class . ':process_step2')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
+$app->get('/move/2/{uuid}', \App\Controllers\MoveController::class . ':step1')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->post('/move', \App\Controllers\MoveController::class . ':poststep')->setName('move-post')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 
 

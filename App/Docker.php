@@ -63,7 +63,7 @@ class Docker
             'content' => $message
         ];
 
-        $this->publish("bungee.processing.players.linkQueue", $Object);
+        $this->publishData("bungee.processing.players.linkQueue", $Object);
     }
 
     public function broadcast($message){
