@@ -24,13 +24,12 @@ class ShopController extends Controller
 
     function index(RequestInterface $request, ResponseInterface $response)
     {
-
         $data_shop = $this->redis->getJson('shop');
         $data_promo = $this->redis->getJson('shop.promotion');
 
         $promo = false;
 
-        if ($this->container->session->get('eula') == true || $this->container->session->exist('user')){
+        if ($this->container->session->get('eula') == true || $this->container->session->exist('user') == true){
             $this->render($response, 'shop.index',['serverlist' => $data_shop, 'promotion' => $data_promo, 'promo' => $promo]);
         }else{
             return $this->redirect($response, '/');

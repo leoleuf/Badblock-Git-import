@@ -101,11 +101,14 @@ class StatsApiController extends \App\Controllers\Controller
         $this->redis->setJson('stats:guardian', $guardian);
 
         //Ban total guardian
-        $nmban = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban'")["COUNT(*)"];
+        $nmban = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN"]);
         //Ban total du moi guardian
-        $nmbanM = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("m/y") ."%'")["COUNT(*)"];
+
+        $regex = new \MongoRegex("/^" . date('m-Y') ."/i");
+        $nmbanM = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
         //Ban total du jour guardian
-        $nmbanJ = $this->container->mysql_guardian->fetchRow("SELECT COUNT(*) FROM logs WHERE type LIKE 'ban' AND date like '%". date("d/m/y") ."%'")["COUNT(*)"];
+        $regex = new \MongoRegex("/^" . date('d-m-Y') ."/i");
+        $nmbanJ = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
 
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),
@@ -138,9 +141,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         $this->redis->setJson('stats:stats_general', $stats);
 
-
-
-
+        return "ok";
     }
 
 
