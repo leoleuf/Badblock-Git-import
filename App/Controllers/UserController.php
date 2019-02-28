@@ -71,8 +71,8 @@ class UserController extends Controller
         }
 
         //Recherche des connections
-        $connection = $this->container->mongoServer->connectionLogs->find(['username' => $user['name']], ['limit' => 20, 'sort' => ['date' => -1],]);
-
+        $connection = $this->container->mongoServer->connectionLogs->find(['username' => $user['name']], ['sort' => ['timestamp' => -1], 'limit' => 20])->toArray();
+        dd($connection);
         //Récupération des sanctions
         $sanctions = $this->container->mongoServer->punishments->find(['punishedUuid' => $user['uniqueId']], ['limit' => 20, 'sort' => ['date' => -1],]);
 
