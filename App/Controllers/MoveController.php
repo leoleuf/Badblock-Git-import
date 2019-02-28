@@ -72,13 +72,14 @@ class MoveController extends Controller
         return $this->redirect($response, $_SERVER['HTTP_REFERER']);
     }
 
-    public function process_step2(RequestInterface $request, ResponseInterface $response)
+    public function process_step2(RequestInterface $request, ResponseInterface $response, $Uuid)
     {
+        $Uuid = $Uuid['uuid'];
         // On vérifie si le code de linkage est le bon
-        if (strtoupper($_POST["code"]) != $this->redis->get('move:1:' . $this->session->get('move:1'))) {
-
-            return $this->render($response, 'user.move.step2', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
+        if (strtoupper($Uuid) != $this->redis->get('move:1:' . $this->session->get('move:1'))) {
+            return $this->render($response, 'user.move.step1', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
+
         $this->redis->set('move:1:' . $this->session->get('move:1'), true);
         $this->redis->expire('move:1:' . $this->session->get('move:1'), 3600);
 
@@ -113,25 +114,31 @@ class MoveController extends Controller
             }
         }
 
-        $pass = strtoupper($this->generateRandomString(8));
+        // Création du code random
+        $pass = $this->generateRandomString(8);
+        // Set code in Redis cache
         $this->session->set('move:2', $username);
-        $this->redis->set('move:2:'.$username, strtoupper($pass));
+        $this->redis->set('move:2:'.$username,strtoupper($pass));
         $this->redis->expire('move:2:'.$username, 3600);
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username,"&6 Le code de confirmation est : ". $pass);
-         $this->container->docker->sendPrivateMessage($username," ");
-         $this->container->docker->sendPrivateMessage($username," ");
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, "&6Cliquez ici pour confirmer votre compte");
+        $this->container->docker->sendPrivateMessage($username, "&b&nhttps://badblock.fr/move/2/" . strtoupper($pass));
+        $this->container->docker->sendPrivateMessage($username, " ");
+        $this->container->docker->sendPrivateMessage($username, " ");
 
-        return $this->render($response, 'user.move.step4', ["width" => 75,"step" => 4]);
+        // Redirect to last page
+        return $this->render($response, 'user.move.step3', ["width" => 75,"step" => 4,"error" => "Cliquer sur le lien qui vous a était envoyé sur le serveur !"]);
     }
 
-    public function process_step4(RequestInterface $request, ResponseInterface $response)
+    public function process_step4(RequestInterface $request, ResponseInterface $response, $Uuid)
     {
         $username = $this->session->get('move:2');
+        $Uuid = $Uuid['uuid'];
+
         // On vérifie si le code de linkage est le bon
-        if(strtoupper($_POST["code"]) != $this->redis->get('move:2:' . $username)){
-          return $this->render($response, 'user.move.step4', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
+        if(strtoupper($Uuid) != $this->redis->get('move:2:' . $username)){
+          return $this->render($response, 'user.move.step3', ["width" => 50, "step" => 2, "error" => "Code invalide ! Veuillez vérifier."]);
         }
 
         $this->redis->set('move:2:' . $username, true);

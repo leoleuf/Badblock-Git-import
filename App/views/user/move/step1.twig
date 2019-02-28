@@ -8,13 +8,10 @@
 
 {% endblock %}
 {% block content %}
-    <!-- Debut liste paiements -->
-
     <h4 class="heading-bar recharge-heading"><span>Changer votre pseudo</span></h4>
     {% if error %}
-        <div class="alert alert-error">
+        <div id="err-alert" class="alert alert-danger" role="alert">
             {{ error }}
-            <i class="icon icon-remove"></i>
         </div>
     {% endif %}
     <div class="row step">
@@ -37,9 +34,8 @@
     <br>
     {% if flash('move_error') %}
          {% for flash in flash('move_error') %}
-             <div class="alert alert-error">
+             <div id="err-alert" class="alert alert-danger" role="alert">
                  {{ flash }}
-                 <i class="icon icon-remove"></i>
              </div>
          {% endfor %}
     {% endif %}

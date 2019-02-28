@@ -30,9 +30,8 @@
     </div>
     <br>
     {% if error %}
-        <div class="alert alert-error">
+        <div id="err-alert" class="alert alert-danger" role="alert">
             {{ error }}
-            <i class="icon icon-remove"></i>
         </div>
     {% endif %}
 
