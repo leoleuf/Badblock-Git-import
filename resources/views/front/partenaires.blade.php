@@ -30,23 +30,14 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-<br />
                         <p><strong>Serveur MultiGames</strong> est un classement de <strong>serveur Minecraft</strong> et d'autres serveurs francophones.<br /></p>
                         <blockquote class="generic-blockquote">
                             <strong>Nos partenaires</strong><br /><br />
-                            <iframe width="350" src="https://www.youtube.com/embed/rLQ9tSs4AGU?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
                             <script data-pagespeed-nodefer type="text/javascript" src="http://www.hebdotop.com/cgi-bin/hebdotop.eur?id=305732"></script>
                             <A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />
                             <a href="http://www.net-liens.com" target="_blank"><img src="http://www.net-liens.com/img/media/nl1.jpg" alt="Net Liens - L'annuaire Internet" title="Net Liens - L'annuaire Internet" /></a>
                             <br />
 
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1905923613312160" data-ad-slot="1434308007" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
-                            <br />
                             <a href="http://www.annuaire-web-france.com/vote-annuaire-web-france.php?id_site_vote=91615" target="_blank"><img src="http://www.annuaire-web-france.com/images/logo-annuaire-web-france.gif" width="120" height="35" border="0" alt="Annuaire Web France"></a><noscript><a href="http://www.annuaire-web-france.com/annuaire-jeux-pc.php">Annuaire PC</a> <a href="http://www.annuaire-web-france.com">Annuaire Web</a></noscript>
                             <br />
                             <a href="https://www.ladenise.com/">www.ladenise.com</a><br />
