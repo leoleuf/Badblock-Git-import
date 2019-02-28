@@ -223,22 +223,28 @@
                                         @endif
                                     </div>
                                 @else
-                                       <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                       <!-- serveurmultigames-headclassement -->
-                                       <ins class="adsbygoogle"
-                                            style="display:block"
-                                            data-ad-client="ca-pub-1905923613312160"
-                                            data-ad-slot="8643178484"
-                                            data-ad-format="auto"
-                                            data-full-width-responsive="true"></ins>
-                                       <script>
-                                           (adsbygoogle = window.adsbygoogle || []).push({});
-                                       </script><br />
                         @php($totalReviews = 0)
                         @php($average = 0)
                         @php($averageCount = 0)
+                        @php($ads = 1)
                         @foreach($data as $row)
-                            <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
+                            @if(isset($row->ad) && $ads == 1)
+                                @php($ads = 0)
+                                        @if (!_bot_detected())
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- serveurmultigames-headclassement -->
+                                            <ins class="adsbygoogle"
+                                                 style="display:block"
+                                                 data-ad-client="ca-pub-1905923613312160"
+                                                 data-ad-slot="8643178484"
+                                                 data-ad-format="auto"
+                                                 data-full-width-responsive="true"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script><br />
+                                        @endif
+                                    @endif
+                                    <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
                                         <div class="d-flex justify-content-between">
@@ -338,17 +344,6 @@
                             </div>
                         @endif
 
-                        <div class="active-relatedjob-carusel single-rated pubpost">
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveurmultigames-telecharger-sidebar-installer -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:300px;height:600px"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="8169956642"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
                             @if (isset($catName) && $catName != "clash-of-clans")
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
@@ -378,6 +373,20 @@
                                     pour respecter au maximum les règles de notre classement, notamment le fait de n'ajouter que son serveur de jeu et éviter d'ajouter ceux qui n'appartiennent pas aux personnes qui ajoutent le serveur en question, pour des questions de sécurité, de droits sur le contenu textuel, le logo et la bannière. En quelques clics, l'ajout peut se faire et votre visibilité peut se multiplier par dix en seulement quelques minutes !<br /><br />La présence de Serveur MultiGames sur les sites et les moteurs permet ainsi de donner de la visibilité à tous ces créateurs qui le méritent par le biais de vote. Notre classement se démarque par le bouton "Jouer" qui permet aux joueurs de découvrir un serveur en seulement quelques clics, sans avoir à payer quoi que ce soit.
                             </div>
                         </div>
+
+                            @if (!_bot_detected())
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- serveurmultigames-headclassement -->
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="8643178484"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script><br />
+                            @endif
                             <div class="single-slidebar">
                                 <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
                                 <div class="active-relatedjob-carusel single-rated">
