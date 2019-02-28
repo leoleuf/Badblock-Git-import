@@ -228,7 +228,7 @@
                         @php($averageCount = 0)
                         @php($ads = 1)
                         @foreach($data as $row)
-                            @if(isset($row->ad) && $ads == 1)
+                            @if(!isset($row->ad) && $ads == 1)
                                 @php($ads = 0)
                                         @if (!_bot_detected())
                                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
