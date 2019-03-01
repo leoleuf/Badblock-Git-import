@@ -233,9 +233,10 @@
                                         @if (!_bot_detected())
                                             <ins class="adsbygoogle"
                                                  style="display:block"
-                                                 data-ad-format="autorelaxed"
                                                  data-ad-client="ca-pub-1905923613312160"
-                                                 data-ad-slot="4273456239"></ins>
+                                                 data-ad-slot="1434308007"
+                                                 data-ad-format="auto"
+                                                 data-full-width-responsive="true"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script>
@@ -372,17 +373,15 @@
                         </div>
 
                             @if (!_bot_detected())
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveurmultigames-headclassement -->
                                 <ins class="adsbygoogle"
                                      style="display:block"
                                      data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="8643178484"
+                                     data-ad-slot="1434308007"
                                      data-ad-format="auto"
                                      data-full-width-responsive="true"></ins>
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script><br />
+                                </script>
                             @endif
                             <div class="single-slidebar">
                                 <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
