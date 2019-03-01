@@ -32,6 +32,7 @@ Route::get('/page/{id}', 'HomeController@page')->name('page');
 
 Route::get('/tos', 'HomeController@tos')->name('tos');
 Route::get('/partenaires', 'HomeController@partenaires')->name('partenaires');
+Route::get('/partenaires2', 'HomeController@partenaires2')->name('partenaires2');
 Route::get('/partenaires/{name}', 'RedirectController@partenaires')->name('paredirect');
 
 Route::get('/faq', 'HomeController@faq')->name('faq');
