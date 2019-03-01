@@ -94,9 +94,12 @@ if ($date != $creationDate)
 @if (!isMobile())
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
 @endif
-
- <script>   (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});</script>
-
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1905923613312160",
+        enable_page_level_ads: true
+    });
+</script>
 <script>
     /* <![CDATA[ */
     var superpwa_sw = {"url":"\/js/superpwa-sw.js"};
