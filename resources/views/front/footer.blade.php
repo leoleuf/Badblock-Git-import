@@ -79,11 +79,11 @@ if ($date != $creationDate)
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 <script @if(!trim($__env->yieldContent('gjs-normal')))async defer @endif src="/js/gjs.js"></script>
-<script async defer src="/gtag.js"></script>
 @endif
-<script async defer src="/analytics.js"></script>
-<script async defer src="/pagead/js/adsbygoogle.js"></script>
-<script async defer>
+<script src="/gtag.js"></script>
+<script src="/analytics.js"></script>
+<script src="/pagead/js/adsbygoogle.js"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -95,9 +95,7 @@ if ($date != $creationDate)
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
 @endif
 
-@if (!isset($classement))
  <script>   (adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-1905923613312160",enable_page_level_ads:!0});</script>
-@endif
 
 <script>
     /* <![CDATA[ */
