@@ -343,14 +343,6 @@
                         @endif
 
                             @if (isset($catName) && $catName != "clash-of-clans")
-                                <div class="single-slidebar">
-                                    <h3>Live communautaire Minecraft</h3>
-                                    <div class="active-relatedjob-carusel single-rated">
-                                        <p class="inftop">
-                                            <iframe width="350" src="https://www.youtube.com/embed/iOM0bq4E0OA?autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                        </p>
-                                    </div>
-                                </div>
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
                             <div class="active-relatedjob-carusel single-rated">
