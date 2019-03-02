@@ -125,7 +125,7 @@
                                 <div class="details">
                                     <h3 class="text-uppercase">Informations sur le serveur {{ $data->name }}</h3><br />
                                     @if ($data->name == "BadBlock")
-                                        <iframe width="350" src="https://www.youtube.com/embed/rLQ9tSs4AGU?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe width="350" src="https://www.youtube.com/embed/RnWUMxMRqok?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     @endif
                                     {!! preg_replace( "/\r|\n/", "", mb_strimwidth($data->description, 0, 5000, "...")) !!}
                                 </div>
