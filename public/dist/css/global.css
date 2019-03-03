@@ -1137,6 +1137,7 @@ a.card-plus:hover {
 }
 
 .shop-ranks .shop-ranks-header #rank-3020312 {
+<<<<<<< HEAD
     background-color: #42b3f4;
 }
 
@@ -1154,6 +1155,25 @@ a.card-plus:hover {
 
 .shop-ranks .shop-ranks-header #rank-3026514 {
     background-color: #D54537;
+=======
+  background-color: #3498db;
+}
+
+.shop-ranks .shop-ranks-header #rank-3020392 {
+  background-color: #2ecc71;
+}
+
+.shop-ranks .shop-ranks-header #rank-3020415 {
+  background-color: #9b59b6;
+}
+
+.shop-ranks .shop-ranks-header #rank-3026513 {
+  background-color: #f1c40f;
+}
+
+.shop-ranks .shop-ranks-header #rank-3026514 {
+  background-color: #e74c3c;
+>>>>>>> d88c65ece87d03fb0c961b0ed5d5065210e5679e
 }
 
 .shop-ranks .shop-rank-list {
@@ -1672,6 +1692,7 @@ h6.cover-heading {
 }
 
 .youtubeur-content .youtubeur-item .youtubeur-item-sub {
+<<<<<<< HEAD
     color: #999;
     flex-basis: 100%;
     text-align: center;
@@ -1764,3 +1785,17 @@ h6.cover-heading {
     text-transform: uppercase;
     font-weight: 700;
 }
+=======
+  color: #999;
+  flex-basis: 100%;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/** Shop **/
+
+.img-def {
+  width: 190px;
+  height: 190px;
+}
+>>>>>>> d88c65ece87d03fb0c961b0ed5d5065210e5679e
