@@ -1127,23 +1127,23 @@ iframe {
 }
 
 .shop-ranks .shop-ranks-header #rank-3020312 {
-  background-color: #42b3f4;
+  background-color: #3498db;
 }
 
 .shop-ranks .shop-ranks-header #rank-3020392 {
-  background-color: #5f5;
+  background-color: #2ecc71;
 }
 
 .shop-ranks .shop-ranks-header #rank-3020415 {
-  background-color: #6937c0;
+  background-color: #9b59b6;
 }
 
 .shop-ranks .shop-ranks-header #rank-3026513 {
-  background-color: #e19806;
+  background-color: #f1c40f;
 }
 
 .shop-ranks .shop-ranks-header #rank-3026514 {
-  background-color: #D54537;
+  background-color: #e74c3c;
 }
 
 .shop-ranks .shop-rank-list {
@@ -1667,4 +1667,9 @@ h6.cover-heading {
   flex-basis: 100%;
   text-align: center;
   margin-bottom: 0;
+}
+
+.img-def {
+  width: 190px;
+  height: 190px;
 }
