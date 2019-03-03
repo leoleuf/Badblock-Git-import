@@ -1785,12 +1785,6 @@ h6.cover-heading {
     text-transform: uppercase;
     font-weight: 700;
 }
-=======
-  color: #999;
-  flex-basis: 100%;
-  text-align: center;
-  margin-bottom: 0;
-}
 
 /** Shop **/
 
@@ -1798,4 +1792,3 @@ h6.cover-heading {
   width: 190px;
   height: 190px;
 }
->>>>>>> d88c65ece87d03fb0c961b0ed5d5065210e5679e
