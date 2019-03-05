@@ -65,6 +65,7 @@ if ($date != $creationDate)
         <div class="row footer-bottom d-flex justify-content-between">
             <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
                 Copyright &copy; <?php echo $date; ?> Serveur MultiGames. Liste des meilleurs serveurs de jeu. Tous droits réservés
+                <IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" style="display: none;">
             </p>
         </div>
     </div>
