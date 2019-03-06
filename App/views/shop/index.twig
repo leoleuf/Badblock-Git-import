@@ -82,7 +82,7 @@
                                                          onclick="openitem('{{ products['_id']['$oid'] }}');">
                                                         <img src="{{ products['image'] }}"
                                                              title="Produit {{ products['name'] | raw }}" width="190"
-                                                             height="190">
+                                                             height="190" class="img-fluid img-def">
                                                     </div>
                                                     <div class="shop-package-desc">{{ products['name'] }}
                                                         <br> {{ products['description'] | raw | slice(0, 15 ) }} ...
@@ -125,7 +125,7 @@
                                         <div class="modal-body-img">
                                             <img src="{{ products['image'] }}"
                                                  title="Produit {{ products['name'] | raw }}" width="190" height="190"
-                                                 class="img-fluid">
+                                                 class="img-fluid img-def">
                                         </div>
                                         <strong>{{ products['name'] | raw }}</strong>
                                         <p>{{ products['description'] }}</p>

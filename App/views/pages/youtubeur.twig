@@ -13,7 +13,8 @@
                         <div class="col-sm-9 col-md-8 col-lg-8">
                             <h3>Serveur minecraft gratuit</h3>
                             <div class="rsp-button-center">
-                                <a title="Jouer Minecraft" class="button button-success" href="/jouer"><i class="fal fa-gamepad"></i> Jouez dés maintenant !</a>
+                                <a title="Jouer Minecraft" class="button button-success" href="/jouer"><i
+                                            class="fal fa-gamepad"></i> Jouez dés maintenant !</a>
                             </div>
                         </div>
                         <div class="col-sm-3 col-md-4 col-lg-4">
@@ -31,25 +32,19 @@
             <div class="col-12">
                 <h4 class="heading heading-bar"><span>Nos Youtubeurs</span></h4>
             </div>
-            <div class="col-12 col-md-4">
-                <div class="youtubeur-item">
-                    <img src="{{ data['img'] }}" title="Chaîne de {{ data['title'] }}" class="rounded-circle">
-                    <div class="youtubeur-item-info">
-                        <strong class="youtubeur-item-title">{{ data['title'] }}</strong>
-                        <p class="youtubeur-item-sub">{{ data['sub'] }} abonnés</p>
+            {% for value in data %}
+                <div class="col-12 col-md-4">
+                    <div class="youtubeur-item">
+                        <img src="{{ value['img'] }}" title="Chaîne de {{ value['title'] }}" class="rounded-circle">
+                        <div class="youtubeur-item-info">
+                            <strong class="youtubeur-item-title">{{ value['title'] }}</strong>
+                            <p class="youtubeur-item-sub">{{ value['sub'] }} abonnés</p>
+                        </div>
+                        <a href="{{ value['link'] }}" target="_blank" class="button button-success">s'abonner</a>
                     </div>
-                    <a href="{{ data['link'] }}" target="_blank" class="button button-success">s'abonner</a>
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
-    <!--https://www.youtube.com/channel/UCLrKooc93isJCtR8R_QPqaw
-               https://www.youtube.com/channel/UCYnTsw53vtZoGzLfsmaVbog
-               https://www.youtube.com/channel/UClZ4fjzTkwq2OBEg5lNYUpg
-               https://www.youtube.com/channel/UCjpwkoMzhPpofZnvw6U8zJw
-               https://www.youtube.com/channel/UCQpjw27nBD7gPbJQBmWgZyw
-               https://www.youtube.com/channel/UCjI3xx4Uq6hXeImeAWTm84Q
-               https://www.youtube.com/channel/UCEqcSK-ZkZ2e6K9cmuFDltQ
-               https://www.youtube.com/channel/UCScJfUTftG77iBdIg6bmTPw-->
 {% endblock %}
 
