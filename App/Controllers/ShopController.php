@@ -210,7 +210,7 @@ class ShopController extends Controller
             'uniqueId' => $player['uniqueId'],
             'offer' => $product->depend_name,
             'name' => $product->name,
-            'price' => $product->price,
+            'price' => intval($product->price),
             'ingame' => false,
             'ip' => $_SERVER['REMOTE_ADDR'],
             'date' => date('Y-m-d H:i:s')
