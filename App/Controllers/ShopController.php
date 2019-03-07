@@ -174,7 +174,7 @@ class ShopController extends Controller
             }
             if ($depend == 0 && $check == false)
             {
-                //Search depend produc pour proposer a la vente
+                //Search depend product pour proposer a la vente
                 $product_depend = $product_depend->name;
                 return $response->write("Vous devez acheter l'offre $product_depend avant d'acheter celle-ci !")->withStatus(400);
             }
