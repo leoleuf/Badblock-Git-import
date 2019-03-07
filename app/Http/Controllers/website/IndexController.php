@@ -18,29 +18,6 @@ use App\Models\Product;
 class IndexController extends Controller
 {
     public function index(){
-        $period = new \DatePeriod(
-            new \DateTime(date("y-m-d", strtotime("-1 month"))),
-            new \DateInterval('P1D'),
-            new \DateTime(date("y-m-d", strtotime("+1 days")))
-        );
-        $revenu_chart = [];
-        foreach ($period as $date){
-            $date1 = $date;
-            $data = Funds::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
-            $date2 = $date->sub(new \DateInterval('P1M'));
-            $data2 = Funds::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
-            array_push($revenu_chart, ["date" => $date->format("Y-m-d"),"result" => $data,"result_last" => $data2]);
-        }
-
-        $operation_chart = [];
-        foreach ($period as $date){
-            $date1 = $date;
-            $data = Operation::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
-            $date2 = $date->sub(new \DateInterval('P1M'));
-            $data2 = Operation::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
-            array_push($operation_chart, ["date" => $date->format("Y-m-d"),"result" => $data,"result_last" => $data2]);
-        }
-
 
         //décaissement du jour
         $decai_day = Operation::where('date', 'like', '%'. date("Y-m-d") .'%')->sum('price');
