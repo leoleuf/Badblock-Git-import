@@ -57,8 +57,8 @@ Route::group([
     Route::get('/todolists', 'profile\TodolistsController@index');
     Route::post('/todolists', 'profile\TodolistsController@done');
 
-    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index')->middleware("can:build_upload");
-    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload')->middleware("can:build_upload");
+    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index');
+    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload');
 
 });
 
@@ -191,6 +191,10 @@ Route::group([
         //URL Shortener Management
         Route::get('/url-shortener', 'section\URLShortenerManagerController@index');
         Route::post('/url-shortener', 'section\URLShortenerManagerController@post');
+
+        //Youtubers management
+        Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:gestion_index');
+        Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:gestion_index');
     });
 
     // Voir ses propres avertissements
