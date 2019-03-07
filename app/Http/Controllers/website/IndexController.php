@@ -19,6 +19,30 @@ class IndexController extends Controller
 {
     public function index(){
 
+        $period = new \DatePeriod(
+            new \DateTime(date("y-m-d", strtotime("-1 month"))),
+            new \DateInterval('P1D'),
+            new \DateTime(date("y-m-d", strtotime("+1 days")))
+        );
+        $revenu_chart = [];
+        foreach ($period as $date){
+            $date1 = $date;
+            $data = Funds::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
+            $date2 = $date->sub(new \DateInterval('P1M'));
+            $data2 = Funds::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
+            array_push($revenu_chart, ["date" => $date->format("Y-m-d"),"result" => $data,"result_last" => $data2]);
+        }
+
+        $operation_chart = [];
+        foreach ($period as $date){
+            $date1 = $date;
+            $data = Operation::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
+            $date2 = $date->sub(new \DateInterval('P1M'));
+            $data2 = Operation::where('date', 'like', '%'. $date->format("Y-m-d") .'%')->sum('price');
+            array_push($operation_chart, ["date" => $date->format("Y-m-d"),"result" => $data,"result_last" => $data2]);
+        }
+
+
         //décaissement du jour
         $decai_day = Operation::where('date', 'like', '%'. date("Y-m-d") .'%')->sum('price');
         $decai_last = Operation::where('date', 'like', '%'. date("Y-m-d", strtotime("-1 days")) .'%')->sum('price');
@@ -26,8 +50,6 @@ class IndexController extends Controller
         //décaissement du moi
         $decai_month = Operation::where('date', 'like', '%'. date("Y-m") .'%')->sum('price');
         $decai_mlast = Operation::where('date', 'like', '%'. date("Y-m", strtotime("-1 month")) .'%')->sum('price');
-
-
 
         //CA du moi
         $ca_month = Funds::where('date', 'like', '%'. date("Y-m") .'%')->sum('price');
@@ -38,7 +60,7 @@ class IndexController extends Controller
         $data = [
             "ca_m" => $ca_month,
             "ca_d" => $ca_day,
-            "ca_d_last" => $decai_last,
+            "dec_d_last" => $decai_last,
             "dec_d" => $decai_day,
             "dec_m_last" => $decai_mlast,
             "dec_m" => $decai_month,
@@ -52,7 +74,7 @@ class IndexController extends Controller
             }
         }
 
-        return view('website.index')->with('date', $period)->with('data', $data);
+        return view('website.index')->with('data', $data);
     }
 
 
