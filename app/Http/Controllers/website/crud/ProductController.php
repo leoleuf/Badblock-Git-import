@@ -7,6 +7,8 @@ use App\Models\Server;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductController extends \App\Http\Controllers\Controller {
@@ -98,7 +100,30 @@ class ProductController extends \App\Http\Controllers\Controller {
             $Product->visibility = false;
         }
 
+        //Log to mongoDB
+        DB::connection('mongodb')->collection('shop_update')->insert([
+            'date' => date("Y-m-d h:i:s"),
+            'user' => Auth::user()->name,
+            'data' => ['new' => $Product]
+        ]);
+
         $Product->save();
+
+        //Discord WebHook notif
+
+        $data = array("username" => "Boutique","embeds" => array(0 => array(
+            "url" => "http://badblock.fr/shop",
+            "title" => "Ajout Boutique",
+            "description" => "Article : " . $Product->name . "
+            User : " . Auth::user()->name,
+            "color" => 5788507
+        )));
+
+        $curl = curl_init(env('DISCORD_MONI'));
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
 
         return redirect('/website/crud/product/');
     }
@@ -134,7 +159,6 @@ class ProductController extends \App\Http\Controllers\Controller {
      */
     public function update($id,Request $request)
     {
-
         $Product = Product::findOrFail($id);
 
         $Product->name = $request->input('name');
@@ -179,7 +203,35 @@ class ProductController extends \App\Http\Controllers\Controller {
             $Product->visibility = false;
         }
 
+        //Log to mongoDB
+        $Product_origi = Product::find($id)->toArray();
         $Product->save();
+        $Product_nw = Product::find($id)->toArray();
+
+        DB::connection('mongodb')->collection('shop_update')->insert([
+            'date' => date("Y-m-d h:i:s"),
+            'user' => Auth::user()->name,
+            'data' => ['old' => $Product_origi, 'new' => $Product_nw]
+        ]);
+
+
+
+        //Discord WebHook notif
+
+        $data = array("username" => "Boutique","embeds" => array(0 => array(
+            "url" => "http://badblock.fr/shop",
+            "title" => "Update Boutique",
+            "description" => "Article : " . $Product->name . "
+            User : " . Auth::user()->name,
+            "color" => 5788507
+        )));
+
+        $curl = curl_init(env('DISCORD_MONI'));
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($curl);
+
 
         return redirect('/website/crud/product/');
 
