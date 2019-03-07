@@ -31,7 +31,7 @@ class ActionController extends Controller
                 $check = true;
             }
         }
-        if ($check == false){
+        if ($check == true){
             exit('Permissions insuffisante');
         }
 
