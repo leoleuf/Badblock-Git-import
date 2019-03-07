@@ -11,7 +11,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
 
-class ConverterController
+class ConverterController extends Controller
 {
 
     public static function convertIDPseudo($id){

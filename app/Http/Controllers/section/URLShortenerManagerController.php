@@ -8,10 +8,11 @@
 
 namespace App\Http\Controllers\section;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 
-class URLShortenerManagerController
+class URLShortenerManagerController extends Controller
 {
 
     private $URLShortener_domain = "https://bblock.pw/";
