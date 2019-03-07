@@ -25,6 +25,16 @@ class ActionController extends Controller
     public function resetPassword($uuid){
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
+        $check = false;
+        foreach ((array)$Player['permissions']->groups->bungee as $k => $row) {
+            if ($k != "default" || $k != "vip" || $k != "vip+" || $k != "mvp" || $k != "mvp+" || $k != "gradeperso" || $k != "noel") {
+                $check = true;
+            }
+        }
+        if ($check == false){
+            exit('Permissions insuffisante');
+        }
+
         $Player['loginPassword'] = "";
         unset($Player['_id']);
 

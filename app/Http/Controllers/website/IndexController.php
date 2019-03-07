@@ -115,5 +115,10 @@ class IndexController extends Controller
 
     }
 
+    public function registre(){
+
+
+    }
+
 
 }

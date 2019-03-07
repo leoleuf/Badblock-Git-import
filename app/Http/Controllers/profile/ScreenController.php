@@ -27,7 +27,7 @@ class ScreenController extends Controller
             $Page = 0;
         }
 
-        return view('profile.screen')->with('Screen', $Screen)->with('Page', $Page);
+        return view('profil.screen')->with('Screen', $Screen)->with('Page', $Page);
     }
 
     public function page($id){
@@ -46,7 +46,7 @@ class ScreenController extends Controller
             $Page = 0;
         }
 
-        return view('profile.screen')->with('Screen', $Screen)->with('Page', $Page);
+        return view('profil.screen')->with('Screen', $Screen)->with('Page', $Page);
     }
 
 

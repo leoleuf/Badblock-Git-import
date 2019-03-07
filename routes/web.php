@@ -217,10 +217,12 @@ Route::group([
 
         Route::get('/vote-download', 'website\VoteController@down')->middleware('can:website_vote');
         Route::get('/vote', 'website\VoteController@index')->middleware('can:website_vote');
-        Route::post('vote', 'website\VoteController@save')->middleware('can:website_vote');
+        Route::post('/vote', 'website\VoteController@save')->middleware('can:website_vote');
 
         Route::get('/prefix', 'website\PrefixController@index')->middleware('can:website_prefix');
         Route::post('/prefix', 'website\PrefixController@save')->middleware('can:website_prefix');
+
+        Route::get('/registre', 'website\IndexController@registre')->middleware('can:website_admin');
 
         Route::get('/compta', 'website\IndexController@compta')->middleware('can:website_admin');
         Route::get('/compta/{date}', 'website\IndexController@compta')->middleware('can:website_admin');
@@ -228,6 +230,7 @@ Route::group([
         Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
         Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
         Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
+
     });
 
 

@@ -30,7 +30,10 @@ class ModerationController extends Controller
 
     public function sanction(){
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
-            ->where('punisher', '=', strtolower(Auth::user()->name))
+            ->where(function ($query) {
+                $query->where('punisher', '=', strtolower(Auth::user()->name))
+                    ->orWhere('punisher', '=', Auth::user()->name);
+            })
             ->where('proof', '=', [])
             ->where(function ($query) {
                 $query->where('type', '=', "MUTE")
@@ -40,7 +43,7 @@ class ModerationController extends Controller
                     ->orWhere('type', '=', "WARN");
             })
             ->orderBy('timestamp', 'DESC')
-            ->take(10)
+            ->take(1000)
             ->get()
             ->toArray();
 
