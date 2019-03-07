@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Operation;
 use App\Models\Product;
+use Illuminate\Support\Facades\Response;
 
 
 class ActionController extends Controller
@@ -26,13 +27,18 @@ class ActionController extends Controller
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
         $check = false;
-        foreach ((array)$Player['permissions']->groups->bungee as $k => $row) {
+        foreach ($Player['permissions']['groups']['bungee'] as $k => $row) {
             if ($k != "default" || $k != "vip" || $k != "vip+" || $k != "mvp" || $k != "mvp+" || $k != "gradeperso" || $k != "noel") {
                 $check = true;
             }
         }
-        if ($check == true){
-            exit('Permissions insuffisante');
+
+        if ($check){
+            $returnData = array(
+                'status' => 'error',
+                'message' => 'An error occurred!'
+            );
+            return Response::json($returnData, 500);
         }
 
         $Player['loginPassword'] = "";
