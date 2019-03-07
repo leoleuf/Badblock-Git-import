@@ -28,7 +28,7 @@ class ActionController extends Controller
 
         $check = false;
         foreach ($Player['permissions']['groups']['bungee'] as $k => $row) {
-            if ($k != "default" || $k != "vip" || $k != "vip+" || $k != "mvp" || $k != "mvp+" || $k != "gradeperso" || $k != "noel") {
+            if ($k != "default" && $k != "vip" && $k != "vip+" && $k != "mvp" && $k != "mvp+" && $k != "gradeperso" && $k != "noel") {
                 $check = true;
             }
         }
