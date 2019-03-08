@@ -138,7 +138,7 @@ class ActionController extends Controller
             );
             return Response::json($returnData, 500);
         }
-        
+
         $Player['onlineMode'] = true;
         unset($Player['_id']);
         DB::connection('mongodb_server')->collection('players')->where('name', $Player['name'])->update($Player);

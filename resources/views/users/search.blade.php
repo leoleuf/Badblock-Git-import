@@ -162,7 +162,7 @@
                     $("#search_down_IP").empty();
                     for (i = 0; i < data.length; i++) {
                         if (data[i] != last){
-                            $("#search_down_IP").append('<tr><th scope="row">' + data[i]["name"] +'</th><td><a href="/moderation/casier/' + data[i]["name"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/website/achat/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/profile/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td></tr>');
+                            $("#search_down_IP").append('<tr><th scope="row">' + data[i]["name"] +'</th><td><a href="/moderation/casier/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/website/achat/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/profile/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td></tr>');
                             console.log(data[i]);
                         }
                     }
