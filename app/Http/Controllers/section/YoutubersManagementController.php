@@ -36,9 +36,10 @@ class YoutubersManagementController extends Controller
 
                         DB::connection($this->db)->collection($this->collection)->insert([
                             "youtuber_name" => strip_tags($_POST['youtuber_name']),
-                            "youtuber_uuid" => str_replace('https://youtube.com/channel/', '',
+                            "youtuber_uuid" => str_replace('/', '',
+                                str_replace('https://youtube.com/channel/', '',
                                 str_replace('https://youtu.be/channel/', '',
-                                    str_replace('www.', '', $_POST['youtuber_url']))),
+                                    str_replace('www.', '', $_POST['youtuber_url'])))),
                             "youtuber_power" => strip_tags($_POST['youtuber_power'])
                         ]);
 
