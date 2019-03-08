@@ -8,12 +8,13 @@
 
 namespace App\Http\Controllers\section;
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\ConverterController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
-class TodoListController
+class TodoListController extends Controller
 {
 
     private $tableName_todolists_personal = "todolists_personal";

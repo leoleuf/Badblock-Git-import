@@ -20,8 +20,6 @@ class BuilderFileUploaderController
     public function upload()
     {
 
-        $file_dest = "/";
-
         $file = $_FILES['uploadedFile'];
 
         // Identification avec un nom d'utilisateur et un mot de passe
@@ -30,8 +28,16 @@ class BuilderFileUploaderController
         $username = env('FTP_BUILD_USER');
         $passwd = env('FTP_BUILD_PASSWORD');
 
+        $extensions = array("application/octet-stream");
+        $response = array();
+
+        if(!in_array($file['type'], $extensions)){
+            array_push($response,  ["error", "Merci d'uploader un .schematic"]);
+        }
+
 // connect
         $connection = ssh2_connect($server, $port);
+
         if (ssh2_auth_password($connection, $username, $passwd)) {
 // initialize sftp
             $sftp = ssh2_sftp($connection);
@@ -44,9 +50,11 @@ class BuilderFileUploaderController
             file_put_contents("ssh2.sftp://{$sftp}/plugins/WorldEdit/schematics/{$name}", $contents);
 
         } else {
-            exit("Unable to authenticate with server");
+            array_push($response, ["error", "Impossible de se connecter au serveur SFTP, merci de contacter un administrateur"]);
         }
 
-        return "ok";
+        array_push($response,  ["success", "Fichier envoyé au serveur SFTP"]);
+        return view('profil.builderFileUploader', ['response' => $response]);
+
     }
 }

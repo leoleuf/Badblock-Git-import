@@ -155,6 +155,9 @@
                                         Liste Staff</a></li>
                                 <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i> Utilisateur</a>
                                 </li>
+                                @can('gestion_index')
+                                    <li><a href="/section/youtubers" class="waves-effect"><i class="fab fa-youtube"></i> Youtubers</a> </li>
+                                @endcan
                                 <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i> Groupes</a></li>
                                 @can('todo_list_all')
                                     <li><a href="/section/todo-management" class="wave-effect"><i
