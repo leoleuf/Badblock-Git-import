@@ -192,6 +192,7 @@
                                 @endif
                             </div>
                         @elseif (isset($catName) && $catName == "hytale")
+                                @if (!_bot_detected())
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <!-- telecharger-minecraft-serveur-multigames -->
                                     <ins class="adsbygoogle"
@@ -202,7 +203,8 @@
                                          data-full-width-responsive="true"></ins>
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script>
+                                    </script><br />
+                                @endif
                                     <div class="single-post details" id="liste-information">
                                         <h3 class="text-uppercase">Télécharger {{ seocat($catName) }} sans plus attendre ?</h3><br />
                                         <div class="row">
@@ -362,6 +364,21 @@
                         @endif
 
                             @if (isset($catName) && $catName != "clash-of-clans")
+                                @if (!_bot_detected())
+                                    <div class="single-slidebar" style="background-color: white;">
+                                        <div class="active-relatedjob-carusel">
+                                            <div class="single-rated">
+                                                <ins class="adsbygoogle"
+                                                     style="display:inline-block;width:300px;height:600px"
+                                                     data-ad-client="ca-pub-1905923613312160"
+                                                     data-ad-slot="2719469514"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                         <div class="single-slidebar">
                             <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
                             <div class="active-relatedjob-carusel single-rated">
