@@ -226,6 +226,13 @@
                         @php($totalReviews = 0)
                         @php($average = 0)
                         @php($averageCount = 0)
+                                <div class="button-group-area">
+                                    @foreach($tags as $k => $v)
+                                        @if ($v > 0)
+                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn default" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
+                                        @endif
+                                    @endforeach
+                                </div>
                                         @if (!_bot_detected())
                                             <ins class="adsbygoogle"
                                                  style="display:block"
@@ -417,17 +424,6 @@
                                     la mise en place et l'hébergement de son serveur privé peut être fatalement
                                     contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
                                 </div>
-                            </div>
-                            <div class="single-slidebar">
-                                <h3>Autres classements par catégorie</h3>
-                                <br />
-                                <ul class="cat-list">
-                                    @foreach($tags as $k => $v)
-                                        @if ($v > 0)
-                                            <li><a title="Serveur {{ seocat($catName) }} {{ $k }}" class="justify-content-between d-flex" href="/{{ $catName }}/tag/{{ enctag($k) }}">Serveur {{ seocat($catName) }} {{ ucfirst($k) }}</a></li>
-                                        @endif
-                                    @endforeach
-                                </ul>
                             </div>
                             <div class="single-slidebar">
                                 <h3>Facilitez votre sélection de serveur</h3><br /><br />
