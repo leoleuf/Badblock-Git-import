@@ -131,7 +131,7 @@
                                         <p>{{ products['description'] }}</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="btn-achat" class="button button-success">Acheter
+                                        <button type="button" id="btn-achat" class="button button-success" onclick="achat('{{ products['_id']['$oid'] }}')">Acheter
                                         </button>
                                         <button type="button" class="button button-primary" data-dismiss="modal">
                                             Fermer
