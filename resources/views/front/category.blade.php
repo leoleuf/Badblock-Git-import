@@ -325,7 +325,6 @@
                                             </div>
                                         </div>
                                     @endif
-                            @endif
                             <div class="single-slidebar">
                                 <h3>Informations sur le jeu Minecraft à télécharger</h3>
                                 <br />
