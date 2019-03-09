@@ -310,16 +310,21 @@
                     <div class="col-lg-4 sidebar">
                         @if (isset($catName) && $catName == "minecraft")
 
-                            @if (!_bot_detected())
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveur-multigames-skyscraper -->
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:300px;height:600px"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="2719469514"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+                                    @if (!_bot_detected())
+                                        <div class="single-slidebar" style="background-color: white;">
+                                            <div class="active-relatedjob-carusel">
+                                                <div class="single-rated">
+                                                    <ins class="adsbygoogle"
+                                                         style="display:inline-block;width:300px;height:600px"
+                                                         data-ad-client="ca-pub-1905923613312160"
+                                                         data-ad-slot="2719469514"></ins>
+                                                    <script>
+                                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                             @endif
                             <div class="single-slidebar">
                                 <h3>Informations sur le jeu Minecraft à télécharger</h3>
