@@ -31,7 +31,11 @@
 <div class="row">
     <div class="col-12 col-md-8">
         {% if posts_count > 0 %}
+
         <div class="mosaic">
+            <article class="card-content" style="height: 151px;">
+                <iframe width="350" src="https://www.youtube.com/embed/zSFS7aTbbmg?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </article>
             {% for infos in first_row %}
             {{ include('macros/card.twig') }}
             {% endfor %}
