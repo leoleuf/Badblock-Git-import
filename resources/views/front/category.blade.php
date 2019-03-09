@@ -301,7 +301,7 @@
                             @if($i == $current_page)
                                 <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn success">{{ $i }}</a>&nbsp;
                             @else
-                                <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn primary">{{ $i }}</a>&nbsp;
+                                <a title="{{ seocat($catName) }}@if ($i > 1) page {{ $i }}@endif" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif" class="genric-btn info">{{ $i }}</a>&nbsp;
                             @endif
                         @endfor
                             @endif
