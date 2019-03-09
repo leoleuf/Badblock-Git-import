@@ -137,7 +137,7 @@ class HomeController extends Controller
         $tagsInfo = (array) $tagsInfo;
         arsort($tagsInfo);
 
-        $tagsInfo = array_slice($tagsInfo, 0, 28);
+        $tagsInfo = array_slice($tagsInfo, 0, 27);
 
         $votelistok = false;
         if (Session::exists('votelistok')) {
