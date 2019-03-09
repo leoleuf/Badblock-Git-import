@@ -146,12 +146,14 @@ class CacheController extends Controller
                 ->orderByRaw('votes DESC')
                 ->get();
 
+            var_dump("cat: ".$k." : ".count($server)." servers");
+
             foreach ($server as $row) {
                 $comment = DB::select("select * from comments WHERE server_id =" . $row->id . " ORDER by date LIMIT 10");
                 $row->comment = $comment;
                 $row->description = nl2br(htmlspecialchars($row->description));
 
-                if (filter_var($row->website, FILTER_VALIDATE_URL) && intval($row->verified) == 1) {
+               /* if (filter_var($row->website, FILTER_VALIDATE_URL) && intval($row->verified) == 1) {
                     try {
                         $options = array(
                             'http' => array(
@@ -214,7 +216,7 @@ class CacheController extends Controller
                                 );
                         }
                     }
-                }
+                }*/
 
                 if ($k == "minecraft" && $row->ip != null && !Redis::exists('playerstats:'.$row->id.':cache'))
                 {
