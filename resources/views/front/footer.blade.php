@@ -80,10 +80,21 @@ if ($date != $creationDate)
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet" />
 <script @if(!trim($__env->yieldContent('gjs-normal')))async defer @endif src="/js/gjs.js"></script>
+
+@if (!isMobile())
+    <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
+@endif
+<script src="/pagead/js/adsbygoogle.js"></script>
+
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1905923613312160",
+        enable_page_level_ads: true
+    });
+</script>
 @endif
 <script src="/gtag.js"></script>
 <script src="/analytics.js"></script>
-<script src="/pagead/js/adsbygoogle.js"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -92,15 +103,6 @@ if ($date != $creationDate)
     gtag('config', 'UA-122426050-1');
 </script>
 
-@if (!isMobile())
-    <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
-@endif
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-1905923613312160",
-        enable_page_level_ads: true
-    });
-</script>
 <script>
     /* <![CDATA[ */
     var superpwa_sw = {"url":"\/js/superpwa-sw.js"};

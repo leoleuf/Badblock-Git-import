@@ -309,6 +309,18 @@
                     </div>
                     <div class="col-lg-4 sidebar">
                         @if (isset($catName) && $catName == "minecraft")
+
+                            @if (!_bot_detected())
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- serveur-multigames-skyscraper -->
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:300px;height:600px"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="2719469514"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            @endif
                             <div class="single-slidebar">
                                 <h3>Informations sur le jeu Minecraft à télécharger</h3>
                                 <br />
@@ -336,18 +348,6 @@
                                         </p>
                                 </div>
                             </div>
-
-                            @if (!_bot_detected())
-                                <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="1434308007"
-                                     data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            @endif
                         @endif
 
                             @if (isset($catName) && $catName != "clash-of-clans")
