@@ -457,7 +457,8 @@
                                     Un conseil très important à appliquer est la structuration et le temps consacré au
                                     développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
                                     la mise en place et l'hébergement de son serveur privé peut être fatalement
-                                    contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur.
+                                    contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur. Les communautés de jeu sont présentes souvent sur Steam et cela permet ainsi
+                                    de regrouper les différentes personnes, n'hésitez pas à installer le gestionnaire de jeux Steam.
                                 </div>
                             </div>
                             <div class="single-slidebar">
