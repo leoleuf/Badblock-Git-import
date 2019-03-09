@@ -142,7 +142,7 @@ class CacheController extends Controller
                 $data = array_merge($v, $data);
                 Redis::set('page:'.$k.':data:' . ($i + 1), json_encode($data));
                 $i++;
-                $c = $c + 20;
+                $c = $c + 30;
             }
 
             $server = DB::table('server_list')
