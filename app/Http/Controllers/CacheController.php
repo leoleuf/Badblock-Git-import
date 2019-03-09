@@ -92,6 +92,11 @@ class CacheController extends Controller
 
             $page = ceil(count($sArray) / 20);
 
+            if (count($sArray) < 20)
+            {
+                $page = 1;
+            }
+
             //Set nb page Redis
             Redis::set('page:'.$k.':number', $page);
 
