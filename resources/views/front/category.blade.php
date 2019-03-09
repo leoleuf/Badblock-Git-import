@@ -118,7 +118,7 @@
                     Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                 </a><br />
             @endif
-            <div class="container justify-content-center d-flex">
+            <div class="container justify-content-center d-flex section-gap">
                 <div class="col-lg-4 sidebar">
                     @if (isset($catName) && $catName == "minecraft")
 
