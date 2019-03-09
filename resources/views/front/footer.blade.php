@@ -84,7 +84,6 @@ if ($date != $creationDate)
 @if (!isMobile())
     <script async defer type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0"></script>
 @endif
-<script src="/pagead/js/adsbygoogle.js"></script>
 
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({
