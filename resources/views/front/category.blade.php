@@ -229,12 +229,24 @@
                         @php($average = 0)
                         @php($averageCount = 0)
                                 <div class="button-group-area">
+                                    @php($bro = 0)
                                     @foreach($tags as $k => $v)
                                         @if ($v > 0)
-                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn info circle" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
+                                            @php($bro = $bro + 1)
+                                            <a @if($bro > 3) style="display: none;" @endif title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn info circle serveurs" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
                                         @endif
                                     @endforeach
+                                    <a id="show-more" class="genric-btn info circle" onclick="showmore();" href="#s">Afficher plus</a></li>
                                 </div>
+                            <script>
+                                function showmore() {
+                                    var cusid_ele = document.getElementsByClassName('serveurs');
+                                    for (var i = 0; i < cusid_ele.length; ++i) {
+                                        var item = cusid_ele[i];
+                                        item.display = 'inline';
+                                    }
+                                }
+                            </script>
                                         @if (!_bot_detected())
                                             <ins class="adsbygoogle"
                                                  style="display:block"
