@@ -246,9 +246,8 @@
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script><br />
                                         @endif
-                        @foreach($data as $row)
-                                    <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
-                                    <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
+                        @foreach($data as $row)<div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
+                                    <a title="Informations du serveur Minecraft {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69"></a>
                                     <div class="details">
                                         <div class="d-flex justify-content-between">
                                             <div class="titles">
