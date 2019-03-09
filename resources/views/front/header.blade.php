@@ -79,7 +79,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <meta name="google" content="notranslate">
 
     <script src="/pagead/js/adsbygoogle.js"></script>
-    
+
     @if (!isset($classement))
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/main.css">
