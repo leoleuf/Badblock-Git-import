@@ -229,7 +229,7 @@
                                 <div class="button-group-area">
                                     @foreach($tags as $k => $v)
                                         @if ($v > 0)
-                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn default" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
+                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn info circle" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
                                         @endif
                                     @endforeach
                                 </div>
