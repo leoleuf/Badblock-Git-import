@@ -391,17 +391,19 @@
                         </div>
                             @else
                                 @if (!_bot_detected())
-                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                    <!-- telecharger-minecraft-serveur-multigames -->
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-1905923613312160"
-                                         data-ad-slot="4846476694"
-                                         data-ad-format="auto"
-                                         data-full-width-responsive="true"></ins>
-                                    <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                    </script><br />
+                                    <div class="single-slidebar" style="background-color: white;">
+                                        <div class="active-relatedjob-carusel">
+                                            <div class="single-rated">
+                                                <ins class="adsbygoogle"
+                                                     style="display:inline-block;width:300px;height:600px"
+                                                     data-ad-client="ca-pub-1905923613312160"
+                                                     data-ad-slot="2719469514"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endif
                                 <div class="single-slidebar">
                                     <h3>Télécharger {{ seocat($catName) }}</h3>
@@ -421,21 +423,6 @@
                             </div>
                         </div>
 
-                            @if (!_bot_detected())
-                                <div class="single-slidebar" style="background-color: white;">
-                                    <div class="active-relatedjob-carusel">
-                                        <div class="single-rated">
-                                            <ins class="adsbygoogle"
-                                                 style="display:inline-block;width:300px;height:600px"
-                                                 data-ad-client="ca-pub-1905923613312160"
-                                                 data-ad-slot="2719469514"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
                             <div class="single-slidebar">
                                 <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
                                 <div class="active-relatedjob-carusel single-rated">
