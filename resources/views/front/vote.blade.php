@@ -189,7 +189,7 @@
 
                     </div>
 
-                        @if (!isMobile())
+                       <!-- @if (!isMobile())
                                 <ins class="adsbygoogle"
                                      style="display: block; height: 60px; max-width: 600px; max-height: 300px;" id="ad2"
                                      data-ad-client="ca-pub-1905923613312160"
@@ -209,7 +209,7 @@
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
-                        @endif
+                        @endif!-->
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <div class="title d-flex flex-row justify-content-between">
@@ -392,7 +392,7 @@
         @endif
 
 
-        <script defer async src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
@@ -441,7 +441,7 @@
                 {
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flex, 800);
+                    // setTimeout(flex, 800);
                 }
             });
 
