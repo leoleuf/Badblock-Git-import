@@ -127,6 +127,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                         <li><a class="ticker-btn" title="Tableau de Bord" href="/dashboard">Tableau de Bord</a></li>
                         <li><a class="ticker-btn" title="Se déconnecter" href="/logout/{{ csrf_token() }}">Déconnexion</a></li>
                     @endif
+                    <IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" id="flexx" data-pagespeed-no-transform>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
