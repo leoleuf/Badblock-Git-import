@@ -210,18 +210,6 @@
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
                         @endif
-                        @if ($data->noredirect == 0)
-                            <script async defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-format="autorelaxed"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="4273456239"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                            <br />
-                        @endif
                         <div class="single-post d-flex flex-row">
                             <div class="details">
                                 <div class="title d-flex flex-row justify-content-between">
@@ -285,7 +273,8 @@
                         <h3>Serveur ajouté le {{ date_format(date_create($data->created_at), "d/m/Y") }}</h3>
                         <div class="active-relatedjob-carusel">
                             <div class="single-rated"><br />
-                                Utilisez les actions rapides ci-dessous pour accéder plus efficacement aux informations du serveur {{ seocat($catName) }} en question.<br /><br />
+                                Utilisez les actions rapides ci-dessous pour accéder plus efficacement aux informations du serveur {{ seocat($catName) }} en question.<br />
+                                Téléchargez le jeu gratuitement sur PC sans plus attendre et accédez à ce serveur de jeu.<br />
 
                                 <ul class="cat-list">
                                     <li><a class="justify-content-between d-flex" title="Informations sur le serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ $catName }}/{{ encname($data->name) }}"><span class="lnr lnr lnr-eye"></span> Fiche du serveur</a></li>
