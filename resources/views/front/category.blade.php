@@ -226,10 +226,6 @@
                         @php($totalReviews = 0)
                         @php($average = 0)
                         @php($averageCount = 0)
-                        @php($ads = 1)
-                        @foreach($data as $row)
-                            @if(!isset($row->ad) && $ads == 1)
-                                @php($ads = 0)
                                         @if (!_bot_detected())
                                             <ins class="adsbygoogle"
                                                  style="display:block"
@@ -241,7 +237,7 @@
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script>
                                         @endif
-                                    @endif
+                        @foreach($data as $row)
                                     <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
                                     <img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="rimg" height="69" width="69">
                                     <div class="details">
@@ -314,7 +310,7 @@
                     <div class="col-lg-4 sidebar">
                         @if (isset($catName) && $catName == "minecraft")
                             <div class="single-slidebar">
-                                <h3>Informations sur le jeu Minecraft à télécharger / installer</h3>
+                                <h3>Informations sur le jeu Minecraft à télécharger</h3>
                                 <br />
                                 @if (encname($catName) == "minecraft")
                                     <img alt="Serveur minecraft" src="/img/minecraft/serveur-minecraft.png" height="76" class="justify-content-between d-flex imgc" />
@@ -340,6 +336,18 @@
                                         </p>
                                 </div>
                             </div>
+
+                            @if (!_bot_detected())
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="1434308007"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            @endif
                         @endif
 
                             @if (isset($catName) && $catName != "clash-of-clans")
