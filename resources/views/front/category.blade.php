@@ -233,7 +233,7 @@
                                     @foreach($tags as $k => $v)
                                         @if ($v > 0)
                                             @php($bro = $bro + 1)
-                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="genric-btn info circle @if($bro > 3) serveurs2 @endif" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
+                                            <a title="Serveur {{ seocat($catName) }} {{ $k }}" class="@if($bro > 3) serveurs2 @endif genric-btn info circle" href="/{{ $catName }}/tag/{{ enctag($k) }}">{{ ucfirst($k) }} ({{ $v }})</a></li>
                                         @endif
                                     @endforeach
                                     <a id="show-more" class="genric-btn info circle" onclick="showmore();">Afficher plus</a></li>
