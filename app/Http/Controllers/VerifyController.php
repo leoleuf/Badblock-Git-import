@@ -77,7 +77,7 @@ class VerifyController extends Controller
         $t = strtolower($t);
 
         if (strpos($t, '<a title="serveur minecraft" href="https://serveur-multigames.net/minecraft">serveur minecraft</a>') !== false
-            OR strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="serveur minecraft">serveur minecraft</a>') !== false) {
+            OR strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="serveur minecraft">serveur minecraft</a>') !== false)
         {
             DB::table('server_list')
                 ->where('id', '=', $id)
