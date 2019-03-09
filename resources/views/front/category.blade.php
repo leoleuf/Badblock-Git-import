@@ -112,14 +112,14 @@
 
         <!-- Start feature-cat Area -->
         <section class="post-area section-gap">
-            <div class="container">
+            <div class="container justify-content-center d-flex">
                 @if (isset($votelistok) && $votelistok)
                     <a title="{{ $catName }}" href="/{{ $catName }}" class="genric-btn success" id="explicitbtn">
                         <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
                         Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                     </a><br /><br />
                 @endif
-                <div class="col-lg-4 sidebar">
+                <div class="col-lg-3 sidebar">
                     @if (isset($catName) && $catName == "minecraft")
 
                         @if (!_bot_detected())
@@ -305,7 +305,6 @@
                                     </div>
                     !-->
                 </div>
-                <div class="row justify-content-center d-flex">
                     <div class="col-lg-8 post-list">
                         @if (isset($tag))
                             <div class="serveur-infos">
@@ -521,7 +520,6 @@
                                 L'objectif du classement proposé ici est de lister le maximum de serveurs gratuits pour que les joueurs n'aient pas besoin de payer pour venir sur la majorité des serveurs, afin d'avoir une expérience fluide et sans compromis. En cas de problème ou de suggestion, il est possible de passer par le formulaire de contact du site pour contacter l'équipe du site en quelques clics seulement.
                             </div>
                     </div>
-                </div>
             </div>
         </section>
 
