@@ -241,11 +241,11 @@
                             <script>
                                 function showmore() {
                                     var cusid_ele = document.getElementsByClassName('serveurs2');
-                                    console.log(cusid_ele);
                                     for (var i = 0; i < cusid_ele.length; ++i) {
                                         var item = cusid_ele[i];
-                                        item.display = 'inline';
+                                        item.classList.remove("serveurs2");
                                     }
+                                    document.getElementById('show-more').remove();
                                 }
                             </script>
                                         @if (!_bot_detected())
