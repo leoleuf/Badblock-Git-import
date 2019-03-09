@@ -101,7 +101,7 @@ if ($date != $creationDate)
     gtag('config', 'UA-122426050-1');
     function flexx()
     {
-        document.getElementById("flexx").display = "none";
+        window.document.getElementById("flexx").display = "none";
     }
     setTimeout(flexx, 1000);
 </script>
