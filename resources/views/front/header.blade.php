@@ -89,6 +89,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     @else
         @if (isset($tag) or (isset($current_page) && $current_page > 1))
             <link rel="stylesheet" href="/css/main.css">
+            <link rel="stylesheet" href="/css/linearicons.css">
         @endif
         <link rel="preload" href="/css/classement.css" as="style">
         <link rel="preconnect" href="https://adservice.google.com">
