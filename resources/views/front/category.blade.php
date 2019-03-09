@@ -119,6 +119,192 @@
                         Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                     </a><br /><br />
                 @endif
+                <div class="col-lg-4 sidebar">
+                    @if (isset($catName) && $catName == "minecraft")
+
+                        @if (!_bot_detected())
+                            <div class="single-slidebar" style="background-color: white;">
+                                <div class="active-relatedjob-carusel">
+                                    <div class="single-rated">
+                                        <ins class="adsbygoogle"
+                                             style="display:inline-block;width:300px;height:600px"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="2719469514"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="single-slidebar">
+                            <h3>Informations sur le jeu Minecraft à télécharger</h3>
+                            <br />
+                            @if (encname($catName) == "minecraft")
+                                <img alt="Serveur minecraft" src="/img/minecraft/serveur-minecraft.png" height="76" class="justify-content-between d-flex imgc" />
+                            @endif
+                            <div class="active-relatedjob-carusel single-rated">
+                                <p class="inftop">
+                                    Minecraft est un jeu bac à sable populaire facile à télécharger et à installer sur PC, connu notamment pour son attractivité et le monde libre qu'il propose, notamment avec le mode multijoueur et mini-jeux, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations.
+                                    <br />
+                                    Il est d'ailleurs possible d'intégrer Minecraft à Steam
+                                </p>
+                                <p>
+                                    @if(Auth::user())
+                                        <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                        @if (!isset($ad))
+                                            <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
+                                        @endif
+                                    @else
+                                        <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                        @if (!isset($ad))
+                                            <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
+                                        @endif
+                                        <br />
+                                        <a class="ticker-btn d-flex" id="telecharger-minecraft" title="Installer Minecraft PC" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-play-circle" id="installer-minecraft"></span> Télécharger Minecraft sur PC</a>
+                                    @endif
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (isset($catName) && $catName != "clash-of-clans")
+                        @if (!_bot_detected())
+                            <div class="single-slidebar" style="background-color: white;">
+                                <div class="active-relatedjob-carusel">
+                                    <div class="single-rated">
+                                        <ins class="adsbygoogle"
+                                             style="display:inline-block;width:300px;height:600px"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="2719469514"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="single-slidebar">
+                            <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
+                            <div class="active-relatedjob-carusel single-rated">
+                                <p class="inftop">
+                                    Vous souhaitez donner plus de visibilité à votre serveur {{ seocat($catName) }} sans plus tarder ? Serveur MultiGames vous propose de rejoindre plus de 100 créateurs de serveurs de jeu différents sur la plateforme pour faire découvrir votre serveur à la communauté francophone.
+                                    <br /><br />
+                                    Les joueurs peuvent ainsi voter pour le serveur qu'ils préfèrent afin qu'il soit plus visible dans notre classement pour attirer de nouveaux joueurs tous les jours.
+                                </p>
+                            </div>
+                        </div>
+                    @else
+                        @if (!_bot_detected())
+                            <div class="single-slidebar" style="background-color: white;">
+                                <div class="active-relatedjob-carusel">
+                                    <div class="single-rated">
+                                        <ins class="adsbygoogle"
+                                             style="display:inline-block;width:300px;height:600px"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="2719469514"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="single-slidebar">
+                            <h3>Télécharger {{ seocat($catName) }}</h3>
+                            <div class="active-relatedjob-carusel single-rated">
+                                <p class="inftop">
+                                    Vous souhaitez télécharger ou installer Clash Of Clans directement sur votre smartphone iOS iPhone Apple ou Android pour jouer à votre serveur privé Clash Of Clans préféré ? C'est désormais possible directement sur notre site, en combinaison de nouveaux avantages qui permettent au joueur de passer HDV 12.
+                                </p>
+                            </div>
+                        </div>
+                    @endif
+                    <div class="single-slidebar">
+                        <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
+                        <div class="active-relatedjob-carusel single-rated">
+                            Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
+                            Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.<br /><br />L'ajout d'un serveur sur nos plateformes est un processus très simple. Il y est possible de faire certifier son serveur en validant sa propriété facilement à l'aide d'un lien
+                            pour respecter au maximum les règles de notre classement, notamment le fait de n'ajouter que son serveur de jeu et éviter d'ajouter ceux qui n'appartiennent pas aux personnes qui ajoutent le serveur en question, pour des questions de sécurité, de droits sur le contenu textuel, le logo et la bannière. En quelques clics, l'ajout peut se faire et votre visibilité peut se multiplier par dix en seulement quelques minutes !<br /><br />La présence de Serveur MultiGames sur les sites et les moteurs permet ainsi de donner de la visibilité à tous ces créateurs qui le méritent par le biais de vote. Notre classement se démarque par le bouton "Jouer" qui permet aux joueurs de découvrir un serveur en seulement quelques clics, sans avoir à payer quoi que ce soit.
+                        </div>
+                    </div>
+
+                    <div class="single-slidebar">
+                        <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
+                        <div class="active-relatedjob-carusel single-rated">
+                            Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
+                            Avec de la créativité, une motivation hors du commun et une passion pour le jeu,
+                            il est possible d'en faire un. Après avoir trouvé un concept attirant envers les
+                            joueurs, il est nécessaire de commencer dans l'ordre des choses. Les connaissances
+                            en hébergement et en stabilité du réseau, des outils nécessaires à la conception sont
+                            utiles pour bien se lancer. Après avoir trouvé l'hébergeur qui convient et avoir mis
+                            en place son serveur, les réseaux sociaux sont très importants à développer pour l'image
+                            du projet, cela devient de plus en plus obligatoire de communiquer à travers les nouveaux
+                            médias sociaux pour populariser son serveur de jeu.<br /><br />
+                            Une fois que votre serveur est approuvé par plusieurs personnes et après avoir eu un
+                            point de vue sur l'ensemble, le lancement du serveur peut être fait si les conditions
+                            de stabilité de la plateforme et du contenu suffisant sont remplies. Ainsi, la dernière
+                            étape consiste à se positionner dans les classements des serveurs comme Serveur MultiGames
+                            pour attirer une visibilité, se faire un nom et avoir de nouveaux joueurs.<br /><br />
+                            Un conseil très important à appliquer est la structuration et le temps consacré au
+                            développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
+                            la mise en place et l'hébergement de son serveur privé peut être fatalement
+                            contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur. Les communautés de jeu sont présentes souvent sur Steam et cela permet ainsi
+                            de regrouper les différentes personnes, n'hésitez pas à installer le gestionnaire de jeux Steam.
+                        </div>
+                    </div>
+                    <div class="single-slidebar">
+                        <h3>Facilitez votre sélection de serveur</h3><br /><br />
+                        <div class="active-relatedjob-carusel single-rated">
+                            La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
+                        </div>
+                    </div>
+                    <div class="single-slidebar">
+                        <strong>Pourquoi voulons-nous faire vivre la communauté des jeux ?</strong><br /><br />
+                        <div class="active-relatedjob-carusel single-rated">
+                            Serveur MultiGames s'engage à l'unification des communautés des serveurs privés de jeu pour
+                            développer la notoriété des projets provenant des créateurs dans un but commun de développement
+                            de la communauté de {{ seocat($catName) }}. Ce jeu se développe énormément par la communauté
+                            qui s'y trouve et les serveurs francophones sont très intéressants à lister pour contribuer à
+                            ce but final de divertissement. C'est l'engagement que nous tenons et la raison principale
+                            du développement de nos multiples classements.
+                        </div>
+                    </div>
+                    @if (encname($catName) == "minecraft")
+                        <div class="single-slidebar">
+                            <h3>Vous n'avez pas le jeu Minecraft gratuit ?</h3><br /><br />
+                            <div class="active-relatedjob-carusel single-rated">
+                                Beaucoup de personnes ne possèdent pas Minecraft et Serveur MultiGames est partenaire avec
+                                Launcher-Minecraft.com, qui permet à de nombreux joueurs de disposer du jeu Minecraft à partir
+                                d'un <a title="Launcher minecraft gratuit PC" href="https://launcher-minecraft.com/fr/telecharger">launcher minecraft</a>
+                                <br />
+                                En aidant la communauté à se développer et à utiliser un launcher de qualité développé
+                                par des personnes reconnues dans la communauté francophone de Minecraft, c'est un avantage
+                                qui permet aux joueurs ne pouvant pas se procurer le jeu de quand-même pouvoir avoir une
+                                expérience de jeu sur des serveurs hors normes !
+                            </div>
+                        </div>
+                    @endif
+                    <div class="single-slidebar">
+                        <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
+                        Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
+                        <div id="partenaire-list">
+                            Envie de devenir Partenaire ? Que vous soyez un site de communauté de jeux-vidéos ou dans des catégories plus larges qui pourraient intéresser nos utilisateurs, contactez-nous directement.
+                            @if (isset($lnk) && !empty($lnk))
+                                {{ $lnk }}
+                            @endif
+                        </div>
+                    </div>
+                    <!--
+                                    <div class="single-slidebar">
+                                        <h4>Publicité</h4>
+                                        <div class="active-relatedjob-carusel">
+                                            <div class="single-rated">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                    !-->
+                </div>
                 <div class="row justify-content-center d-flex">
                     <div class="col-lg-8 post-list">
                         @if (isset($tag))
@@ -259,192 +445,6 @@
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script><br />
                                         @endif
-                                <div class="col-lg-4 sidebar">
-                                    @if (isset($catName) && $catName == "minecraft")
-
-                                        @if (!_bot_detected())
-                                            <div class="single-slidebar" style="background-color: white;">
-                                                <div class="active-relatedjob-carusel">
-                                                    <div class="single-rated">
-                                                        <ins class="adsbygoogle"
-                                                             style="display:inline-block;width:300px;height:600px"
-                                                             data-ad-client="ca-pub-1905923613312160"
-                                                             data-ad-slot="2719469514"></ins>
-                                                        <script>
-                                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        <div class="single-slidebar">
-                                            <h3>Informations sur le jeu Minecraft à télécharger</h3>
-                                            <br />
-                                            @if (encname($catName) == "minecraft")
-                                                <img alt="Serveur minecraft" src="/img/minecraft/serveur-minecraft.png" height="76" class="justify-content-between d-flex imgc" />
-                                            @endif
-                                            <div class="active-relatedjob-carusel single-rated">
-                                                <p class="inftop">
-                                                    Minecraft est un jeu bac à sable populaire facile à télécharger et à installer sur PC, connu notamment pour son attractivité et le monde libre qu'il propose, notamment avec le mode multijoueur et mini-jeux, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations.
-                                                    <br />
-                                                    Il est d'ailleurs possible d'intégrer Minecraft à Steam
-                                                </p>
-                                                <p>
-                                                    @if(Auth::user())
-                                                        <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
-                                                        @if (!isset($ad))
-                                                            <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
-                                                        @endif
-                                                    @else
-                                                        <a class="ticker-btn d-flex" id="ajout-serveur" title="Ajouter son serveur Minecraft" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
-                                                        @if (!isset($ad))
-                                                            <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
-                                                        @endif
-                                                        <br />
-                                                        <a class="ticker-btn d-flex" id="telecharger-minecraft" title="Installer Minecraft PC" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-play-circle" id="installer-minecraft"></span> Télécharger Minecraft sur PC</a>
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                    @if (isset($catName) && $catName != "clash-of-clans")
-                                        @if (!_bot_detected())
-                                            <div class="single-slidebar" style="background-color: white;">
-                                                <div class="active-relatedjob-carusel">
-                                                    <div class="single-rated">
-                                                        <ins class="adsbygoogle"
-                                                             style="display:inline-block;width:300px;height:600px"
-                                                             data-ad-client="ca-pub-1905923613312160"
-                                                             data-ad-slot="2719469514"></ins>
-                                                        <script>
-                                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        <div class="single-slidebar">
-                                            <h3>Ajouter mon serveur {{ seocat($catName) }}</h3>
-                                            <div class="active-relatedjob-carusel single-rated">
-                                                <p class="inftop">
-                                                    Vous souhaitez donner plus de visibilité à votre serveur {{ seocat($catName) }} sans plus tarder ? Serveur MultiGames vous propose de rejoindre plus de 100 créateurs de serveurs de jeu différents sur la plateforme pour faire découvrir votre serveur à la communauté francophone.
-                                                    <br /><br />
-                                                    Les joueurs peuvent ainsi voter pour le serveur qu'ils préfèrent afin qu'il soit plus visible dans notre classement pour attirer de nouveaux joueurs tous les jours.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @else
-                                        @if (!_bot_detected())
-                                            <div class="single-slidebar" style="background-color: white;">
-                                                <div class="active-relatedjob-carusel">
-                                                    <div class="single-rated">
-                                                        <ins class="adsbygoogle"
-                                                             style="display:inline-block;width:300px;height:600px"
-                                                             data-ad-client="ca-pub-1905923613312160"
-                                                             data-ad-slot="2719469514"></ins>
-                                                        <script>
-                                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                                        </script>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        <div class="single-slidebar">
-                                            <h3>Télécharger {{ seocat($catName) }}</h3>
-                                            <div class="active-relatedjob-carusel single-rated">
-                                                <p class="inftop">
-                                                    Vous souhaitez télécharger ou installer Clash Of Clans directement sur votre smartphone iOS iPhone Apple ou Android pour jouer à votre serveur privé Clash Of Clans préféré ? C'est désormais possible directement sur notre site, en combinaison de nouveaux avantages qui permettent au joueur de passer HDV 12.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    @endif
-                                    <div class="single-slidebar">
-                                        <strong>L'importance de votre serveur {{ seocat($catName) }} sur notre liste</strong><br /><br />
-                                        <div class="active-relatedjob-carusel single-rated">
-                                            Ajouter son serveur sur nos classements est une tâche aussi importante que de trouver le bon nom du serveur que vous souhaitez mettre en avant. Sans visibilité, il n'est pas utile de créer un serveur {{ seocat($catName) }} public, sans limite. C'est pour cela qu'un site {{ strtolower(seocat($catName)) }} est intéressant pour référencer son serveur privé pour le faire découvrir aux joueurs de la communauté.<br /><br />Serveur MultiGames offre un panel pour y ajouter son propre serveur et consulter les statistiques de votre présence dans le top {{ strtolower(seocat($catName)) }}.<br />
-                                            Une trentaine de serveurs de ce type constatent déjà une amélioration de leur visibilité ainsi que de leur rendements. C'est tout l'objectif de Serveur MultiGames, qui est de proposer gratuitement cette plateforme de découverte communautaire gratuitement, en échange d'un soutien envers le travail effectué comme en parler autour de vous, pour développer encore plus les communautés et rendre la meilleure expérience de jeu possible pour l'utilisateur final.<br /><br />L'ajout d'un serveur sur nos plateformes est un processus très simple. Il y est possible de faire certifier son serveur en validant sa propriété facilement à l'aide d'un lien
-                                            pour respecter au maximum les règles de notre classement, notamment le fait de n'ajouter que son serveur de jeu et éviter d'ajouter ceux qui n'appartiennent pas aux personnes qui ajoutent le serveur en question, pour des questions de sécurité, de droits sur le contenu textuel, le logo et la bannière. En quelques clics, l'ajout peut se faire et votre visibilité peut se multiplier par dix en seulement quelques minutes !<br /><br />La présence de Serveur MultiGames sur les sites et les moteurs permet ainsi de donner de la visibilité à tous ces créateurs qui le méritent par le biais de vote. Notre classement se démarque par le bouton "Jouer" qui permet aux joueurs de découvrir un serveur en seulement quelques clics, sans avoir à payer quoi que ce soit.
-                                        </div>
-                                    </div>
-
-                                    <div class="single-slidebar">
-                                        <h3>Conseils pour bien lancer un serveur {{ seocat($catName) }}</h3><br /><br />
-                                        <div class="active-relatedjob-carusel single-rated">
-                                            Créer un serveur {{ seocat($catName) }} n'est pas une tâche facile.
-                                            Avec de la créativité, une motivation hors du commun et une passion pour le jeu,
-                                            il est possible d'en faire un. Après avoir trouvé un concept attirant envers les
-                                            joueurs, il est nécessaire de commencer dans l'ordre des choses. Les connaissances
-                                            en hébergement et en stabilité du réseau, des outils nécessaires à la conception sont
-                                            utiles pour bien se lancer. Après avoir trouvé l'hébergeur qui convient et avoir mis
-                                            en place son serveur, les réseaux sociaux sont très importants à développer pour l'image
-                                            du projet, cela devient de plus en plus obligatoire de communiquer à travers les nouveaux
-                                            médias sociaux pour populariser son serveur de jeu.<br /><br />
-                                            Une fois que votre serveur est approuvé par plusieurs personnes et après avoir eu un
-                                            point de vue sur l'ensemble, le lancement du serveur peut être fait si les conditions
-                                            de stabilité de la plateforme et du contenu suffisant sont remplies. Ainsi, la dernière
-                                            étape consiste à se positionner dans les classements des serveurs comme Serveur MultiGames
-                                            pour attirer une visibilité, se faire un nom et avoir de nouveaux joueurs.<br /><br />
-                                            Un conseil très important à appliquer est la structuration et le temps consacré au
-                                            développement de son serveur. En effet, vouloir aller trop vite dans la conception et dans
-                                            la mise en place et l'hébergement de son serveur privé peut être fatalement
-                                            contraignant par la suite puisque ce sont les fondamenteaux d'un bon serveur. Les communautés de jeu sont présentes souvent sur Steam et cela permet ainsi
-                                            de regrouper les différentes personnes, n'hésitez pas à installer le gestionnaire de jeux Steam.
-                                        </div>
-                                    </div>
-                                    <div class="single-slidebar">
-                                        <h3>Facilitez votre sélection de serveur</h3><br /><br />
-                                        <div class="active-relatedjob-carusel single-rated">
-                                            La liste {{ seocat($catName) }} proposée vous permet de sélectionner facilement un serveur en filtrant les listes par les catégories, aussi appelés "tags", qui sont ajoutables par les propriétaires. La navigation est plus facile, une liste de nombreux serveurs sont disponibles avec les boutons sur le dessus, vous pouvez filtrer en fonction de votre mode de jeu (si vous n'avez pas le jeu complet par exemple, pour vous connecter à ces serveurs en question). Nos classements sont visités par une bonne partie de la communauté de {{ seocat($catName) }} et nous vous encouragons à inscrire votre serveur sans plus tarder.
-                                        </div>
-                                    </div>
-                                    <div class="single-slidebar">
-                                        <strong>Pourquoi voulons-nous faire vivre la communauté des jeux ?</strong><br /><br />
-                                        <div class="active-relatedjob-carusel single-rated">
-                                            Serveur MultiGames s'engage à l'unification des communautés des serveurs privés de jeu pour
-                                            développer la notoriété des projets provenant des créateurs dans un but commun de développement
-                                            de la communauté de {{ seocat($catName) }}. Ce jeu se développe énormément par la communauté
-                                            qui s'y trouve et les serveurs francophones sont très intéressants à lister pour contribuer à
-                                            ce but final de divertissement. C'est l'engagement que nous tenons et la raison principale
-                                            du développement de nos multiples classements.
-                                        </div>
-                                    </div>
-                                    @if (encname($catName) == "minecraft")
-                                        <div class="single-slidebar">
-                                            <h3>Vous n'avez pas le jeu Minecraft gratuit ?</h3><br /><br />
-                                            <div class="active-relatedjob-carusel single-rated">
-                                                Beaucoup de personnes ne possèdent pas Minecraft et Serveur MultiGames est partenaire avec
-                                                Launcher-Minecraft.com, qui permet à de nombreux joueurs de disposer du jeu Minecraft à partir
-                                                d'un <a title="Launcher minecraft gratuit PC" href="https://launcher-minecraft.com/fr/telecharger">launcher minecraft</a>
-                                                <br />
-                                                En aidant la communauté à se développer et à utiliser un launcher de qualité développé
-                                                par des personnes reconnues dans la communauté francophone de Minecraft, c'est un avantage
-                                                qui permet aux joueurs ne pouvant pas se procurer le jeu de quand-même pouvoir avoir une
-                                                expérience de jeu sur des serveurs hors normes !
-                                            </div>
-                                        </div>
-                                    @endif
-                                    <div class="single-slidebar">
-                                        <strong>Partenaires {{ seocat($catName) }}</strong><br /><br />
-                                        Nos listes de serveurs restent entièrement indépendantes, mais nous sommes partenaires avec plusieurs structures communautaires de jeux.<br /><br />
-                                        <div id="partenaire-list">
-                                            Envie de devenir Partenaire ? Que vous soyez un site de communauté de jeux-vidéos ou dans des catégories plus larges qui pourraient intéresser nos utilisateurs, contactez-nous directement.
-                                            @if (isset($lnk) && !empty($lnk))
-                                                {{ $lnk }}
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <!--
-                                                    <div class="single-slidebar">
-                                                        <h4>Publicité</h4>
-                                                        <div class="active-relatedjob-carusel">
-                                                            <div class="single-rated">
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                    !-->
-                                </div>
                             @php($currentAds = array())
                         @foreach($data as $row)
                                     @if (isset($row->ad))
