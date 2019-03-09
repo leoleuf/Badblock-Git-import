@@ -13,6 +13,11 @@
     margin-top: 10px;
 }
 
+.button-group-area {
+    margin-bottom: 20px;
+    margin-left: 5%;
+}
+
 .button-group-area .genric-btn:last-child {
     margin-right: 0;
 }
