@@ -235,7 +235,7 @@
                                                  data-full-width-responsive="true"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
+                                            </script><br />
                                         @endif
                         @foreach($data as $row)
                                     <div class="single-post @if (isset($row->ad)) ad-serveur @endif d-flex">
