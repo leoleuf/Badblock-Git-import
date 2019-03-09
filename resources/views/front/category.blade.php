@@ -171,7 +171,7 @@
                                  data-full-width-responsive="true"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
+                            </script><br />
                             <div class="single-post details" id="liste-information">
                                 <h3 class="text-uppercase">Télécharger {{ seocat($catName) }} sans plus attendre</h3><br />
                                 <div class="row">
@@ -390,6 +390,19 @@
                             </div>
                         </div>
                             @else
+                                @if (!_bot_detected())
+                                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                    <!-- telecharger-minecraft-serveur-multigames -->
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-client="ca-pub-1905923613312160"
+                                         data-ad-slot="4846476694"
+                                         data-ad-format="auto"
+                                         data-full-width-responsive="true"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script><br />
+                                @endif
                                 <div class="single-slidebar">
                                     <h3>Télécharger {{ seocat($catName) }}</h3>
                                     <div class="active-relatedjob-carusel single-rated">
