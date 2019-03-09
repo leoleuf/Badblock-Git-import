@@ -119,7 +119,7 @@
                         Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                     </a><br /><br />
                 @endif
-                <div class="col-lg-3 sidebar">
+                <div class="col-lg-4 sidebar">
                     @if (isset($catName) && $catName == "minecraft")
 
                         @if (!_bot_detected())
