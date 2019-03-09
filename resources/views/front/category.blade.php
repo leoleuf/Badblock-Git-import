@@ -111,14 +111,14 @@
         <!-- End banner Area -->
 
         <!-- Start feature-cat Area -->
-        <section class="post-area section-gap">
+        <section class="post-area">
+            @if (isset($votelistok) && $votelistok)
+                <a title="{{ $catName }}" href="/{{ $catName }}" class="genric-btn success" id="explicitbtn">
+                    <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
+                    Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
+                </a><br />
+            @endif
             <div class="container justify-content-center d-flex">
-                @if (isset($votelistok) && $votelistok)
-                    <a title="{{ $catName }}" href="/{{ $catName }}" class="genric-btn success" id="explicitbtn">
-                        <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
-                        Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
-                    </a><br /><br />
-                @endif
                 <div class="col-lg-4 sidebar">
                     @if (isset($catName) && $catName == "minecraft")
 
