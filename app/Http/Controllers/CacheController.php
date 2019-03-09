@@ -171,9 +171,10 @@ class CacheController extends Controller
 
                         $context = stream_context_create($options);
                         $t = @file_get_contents($row->website, false, $context);
+                        $t = strtolower($t);
 
-                        if (!(strpos($t, '<a title="Serveur Minecraft" href="https://serveur-multigames.net/minecraft">Serveur Minecraft</a>') !== false)
-                            && !(strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="Serveur Minecraft">Serveur Minecraft</a>')) !== false) {
+                        if (!(strpos($t, '<a title="serveur minecraft" href="https://serveur-multigames.net/minecraft">serveur minecraft</a>') !== false)
+                            && !(strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="serveur minecraft">serveur minecraft</a>')) !== false) {
                             if (intval($row->retries) < 10) {
                                 DB::table('server_list')
                                     ->where('id', '=', $row->id)
