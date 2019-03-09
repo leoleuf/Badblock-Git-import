@@ -382,7 +382,7 @@
 
                             @if (!_bot_detected())
                                 <ins class="adsbygoogle"
-                                     style="display:block"
+                                     style="display:block; margin-left: 5%; margin-top: 10px;"
                                      data-ad-client="ca-pub-1905923613312160"
                                      data-ad-slot="1434308007"
                                      data-ad-format="auto"
