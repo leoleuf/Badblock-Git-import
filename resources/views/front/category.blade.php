@@ -355,6 +355,8 @@
                                 <div class="active-relatedjob-carusel single-rated">
                                         <p class="inftop">
                                             Minecraft est un jeu bac à sable populaire facile à télécharger et à installer sur PC, connu notamment pour son attractivité et le monde libre qu'il propose, notamment avec le mode multijoueur et mini-jeux, ce qui permet à de nombreux créateurs d'imaginer de nouveaux concepts. Notre liste propose ainsi aux joueurs de découvrir un large choix d'opportunités et de créations.
+                                            <br />
+                                            Il est d'ailleurs possible d'intégrer Minecraft à Steam
                                         </p>
                                         <p>
                                             @if(Auth::user())
