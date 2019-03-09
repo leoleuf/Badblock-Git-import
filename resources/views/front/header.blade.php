@@ -78,13 +78,14 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <meta name="theme-color" content="#2ecc71" />
     <meta name="google" content="notranslate">
 
+    <script src="/pagead/js/adsbygoogle.js"></script>
+    
     @if (!isset($classement))
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/main.css">
         <link rel="preload" href="/js/gjs.js" as="script">
         <link rel="preload" href="/gtag.js" as="script">
         <link rel="preload" href="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0" as="script">
-        <script src="/pagead/js/adsbygoogle.js"></script>
     @else
         <link rel="preload" href="/css/classement.css" as="style">
         <link rel="preconnect" href="https://adservice.google.com">
