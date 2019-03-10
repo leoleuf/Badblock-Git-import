@@ -21,18 +21,20 @@ class TeamspeakApiController extends \App\Controllers\Controller
 
             $check = false;
 
-            foreach ((array)$User['permissions']->groups->bungee as $k => $row) {
-                if ($k == "gradeperso") {
-                    $check = true;
+            if ($User != null){
+                foreach ((array)$User['permissions']->groups->bungee as $k => $row) {
+                    if ($k == "gradeperso") {
+                        $check = true;
+                    }
                 }
-            }
-            //Il est déjà Legend
-            if ($check == false){
-                $this->container->mongoServer->players->deleteOne(["uniqueId" => $channel['uniqueId']]);
-                $Groups = $this->container->mongo->teamspeak_groups->find(["uniqueId" => $channel['uniqueId']]);
-                $this->container->teamspeak->removeGroup($Groups['group_id']);
-                $this->container->teamspeak->deleteChannel(intval($channel['channel_id']), 1);
-                $I++;
+                //Il est déjà Legend
+                if ($check == false){
+                    $this->container->mongoServer->players->deleteOne(["uniqueId" => $channel['uniqueId']]);
+                    $Groups = $this->container->mongo->teamspeak_groups->find(["uniqueId" => $channel['uniqueId']]);
+                    $this->container->teamspeak->removeGroup($Groups['group_id']);
+                    $this->container->teamspeak->deleteChannel(intval($channel['channel_id']), 1);
+                    $I++;
+                }
             }
         }
 
