@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Boostez vos gains de BadCoins",
+      "&7et d'XP pour gagner plus de",
+      "&7niveaux dans les jeux !"
+    ]
+  ],
+  "unknown": false
+}

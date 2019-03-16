@@ -1,0 +1,2717 @@
+hats_anubis:
+  name: '&9Anubis'
+  type: HATS
+  badcoinsNeeded: 400
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_apple:
+  name: '&cApple'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 5
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_articuno:
+  name: '&bArticuno'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_blaze:
+  name: '&eBlaze'
+  type: HATS
+  badcoinsNeeded: 250
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_blueghost:
+  name: '&bGhost'
+  type: HATS
+  badcoinsNeeded: 200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_blueorb:
+  name: '&bOrbe'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 25
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_bluesheep:
+  name: '&7Sheeeeeep'
+  type: HATS
+  badcoinsNeeded: 300
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_cactus:
+  name: '&2Kaktus'
+  type: HATS
+  badcoinsNeeded: 100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_cavespider:
+  name: '&9CaveSpider'
+  type: HATS
+  badcoinsNeeded: 2000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_chest:
+  name: '&6Chest'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 10
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_chick:
+  name: '&eChick'
+  type: HATS
+  badcoinsNeeded: 1000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_chicken:
+  name: '&fChicken'
+  type: HATS
+  badcoinsNeeded: 1000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_chinesedragon:
+  name: '&5ChineseDragon'
+  type: HATS
+  badcoinsNeeded: 100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_chorusplant:
+  name: '&dChorusPlant'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_colorfulcreeper:
+  name: '&dColor&2Creep'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_commandblock:
+  name: '&6CommandBlock'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 15
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_cow:
+  name: '&eMeuh'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 100
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_crazyprofessor:
+  name: '&dProfou'
+  type: HATS
+  badcoinsNeeded: 100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_creeper:
+  name: '&2Creepy'
+  type: HATS
+  badcoinsNeeded: 75
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_cryptonit:
+  name: '&aCryptonit'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_deadpool:
+  name: '&cDeadPool'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 50
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_demon:
+  name: '&5Demon'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 50
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_diamondore:
+  name: '&bDiamond'
+  type: HATS
+  badcoinsNeeded: 320
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_dispenser:
+  name: '&eDispenser'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_dreadlord:
+  name: '&cDreadlord'
+  type: HATS
+  badcoinsNeeded: 2750
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_emeraldblock:
+  name: '&aBloc d''Émeraude'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_emeraldsteve:
+  name: '&aEmerald&7Steve'
+  type: HATS
+  badcoinsNeeded: 1800
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_empoleon:
+  name: '&3Empoleon'
+  type: HATS
+  badcoinsNeeded: 2100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_endercrystal:
+  name: '&3Ender&6Crystal'
+  type: HATS
+  badcoinsNeeded: 3200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_enderlord:
+  name: '&6Enderlord'
+  type: HATS
+  badcoinsNeeded: 1750
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_enderman:
+  name: '&5Enderman'
+  type: HATS
+  badcoinsNeeded: 0
+  shopPointsNeeded: 100
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_enderpearl:
+  name: '&dEnderPearl'
+  type: HATS
+  badcoinsNeeded: 600
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_enderzombie:
+  name: '&dEnder&2Zombie'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_espeon:
+  name: '&6Espeon'
+  type: HATS
+  badcoinsNeeded: 2750
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_exclamation:
+  name: '&cExclamation'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_evileye:
+  name: '&6Evil Eye'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_fancycube:
+  name: '&cFancy&dCube'
+  type: HATS
+  badcoinsNeeded: 5000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_fish:
+  name: '&3Fish'
+  type: HATS
+  badcoinsNeeded: 3250
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_firecreeper:
+  name: '&cFire&aCreeper'
+  type: HATS
+  badcoinsNeeded: 2900
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_ghast:
+  name: '&fGhast'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_ghost:
+  name: '&7Ghost'
+  type: HATS
+  badcoinsNeeded: 8000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_glaceon:
+  name: '&bGlaceon'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_golem:
+  name: '&6Golem'
+  type: HATS
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_goldcow:
+  name: '&6Gold&bCow'
+  type: HATS
+  badcoinsNeeded: 100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_goldsteve:
+  name: '&6Gold&3Steve'
+  type: HATS
+  badcoinsNeeded: 100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_greencoconut:
+  name: '&2Green&dCoconut'
+  type: HATS
+  badcoinsNeeded: 700
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_grimreaper:
+  name: '&9GrimReaper'
+  type: HATS
+  badcoinsNeeded: 600
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_ironman:
+  name: '&bIron Man'
+  type: HATS
+  badcoinsNeeded: 1200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_herobrine:
+  name: '&fHerobrine'
+  type: HATS
+  badcoinsNeeded: 10000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_lion:
+  name: '&6Lion'
+  type: HATS
+  badcoinsNeeded: 2400
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_lava:
+  name: '&cLave'
+  type: HATS
+  badcoinsNeeded: 3800
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_lavaslime:
+  name: '&cLava&aSlime'
+  type: HATS
+  badcoinsNeeded: 2400
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_melon:
+  name: '&6Melon'
+  type: HATS
+  badcoinsNeeded: 1850
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_mushroom:
+  name: '&cMushroom'
+  type: HATS
+  badcoinsNeeded: 2000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_ocelot:
+  name: '&eOcelot'
+  type: HATS
+  badcoinsNeeded: 2750
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_orangesheep:
+  name: '&6Orange&fSheep'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_orangesquid:
+  name: '&6Orange&3Squid'
+  type: HATS
+  badcoinsNeeded: 2100
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_penguin:
+  name: '&bPenguin'
+  type: HATS
+  badcoinsNeeded: 2215
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pig:
+  name: '&dPig'
+  type: HATS
+  badcoinsNeeded: 666
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pikachu:
+  name: '&ePikachu'
+  type: HATS
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pinkpotion:
+  name: '&dPink&fPotion'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pinksheep:
+  name: '&dPink&fSheep'
+  type: HATS
+  badcoinsNeeded: 3500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pokeball:
+  name: '&cPokeball'
+  type: HATS
+  badcoinsNeeded: 15000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_pumpkin:
+  name: '&6Pumpkin'
+  type: HATS
+  badcoinsNeeded: 4200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_purpleorb:
+  name: '&5Purple&dOrb'
+  type: HATS
+  badcoinsNeeded: 3900
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_question:
+  name: '&eQuestion'
+  type: HATS
+  badcoinsNeeded: 5000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_rainbowslime:
+  name: '&dRainbow&2Slime'
+  type: HATS
+  badcoinsNeeded: 2400
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_redsquid:
+  name: '&cRed&3Squid'
+  type: HATS
+  badcoinsNeeded: 6000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_rubixcube:
+  name: '&eRubix&cCube'
+  type: HATS
+  badcoinsNeeded: 7000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_samurai:
+  name: '&eSamurai'
+  type: HATS
+  badcoinsNeeded: 6505
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_shark:
+  name: '&3Shark'
+  type: HATS
+  badcoinsNeeded: 6666
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_sheep:
+  name: '&fSheep'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_shrek:
+  name: '&2Shrek'
+  type: HATS
+  badcoinsNeeded: 2250
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_slime:
+  name: '&2Slime'
+  type: HATS
+  badcoinsNeeded: 2400
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_soldier:
+  name: '&7Soldier'
+  type: HATS
+  badcoinsNeeded: 2300
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_spider:
+  name: '&6Spider'
+  type: HATS
+  badcoinsNeeded: 1850
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_tnt:
+  name: '&cTNT'
+  type: HATS
+  badcoinsNeeded: 1550
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_toxicwaste:
+  name: '&9Toxicwaste'
+  type: HATS
+  badcoinsNeeded: 3200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_vaporeon:
+  name: '&3Vaporeon'
+  type: HATS
+  badcoinsNeeded: 6800
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_venom:
+  name: '&7Venom'
+  type: HATS
+  badcoinsNeeded: 10000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_villager:
+  name: '&eVillager'
+  type: HATS
+  badcoinsNeeded: 5000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_werewolf:
+  name: '&6Werewolf'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_witherskeleton:
+  name: '&6Wither&dSkeleton'
+  type: HATS
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_wolverine:
+  name: '&9Wolverine'
+  type: HATS
+  badcoinsNeeded: 7000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_yellowslime:
+  name: '&eYellow&2Slime'
+  type: HATS
+  badcoinsNeeded: 6000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_zombie:
+  name: '&2Zombie'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_solider:
+  name: '&7Solider'
+  type: HATS
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_squid:
+  name: '&3Squid'
+  type: HATS
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_turtle:
+  name: '&7Turtle'
+  type: HATS
+  badcoinsNeeded: 4000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_firegun:
+  name: '&c&lFiregun'
+  type: GADGET
+  badcoinsNeeded: 2250
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_paintballgun:
+  name: '&6&lPaintball &a&lGun'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 700
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_chickengun:
+  name: '&eChicken&6&lGun'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_enderpearlgun:
+  name: '&2EnderPearl &6&lGun'
+  type: GADGET
+  badcoinsNeeded: 2000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_colorboot:
+  name: '&dColor&6Boot'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 100
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_creeperexploser:
+  name: '&aCreeper&c&lExploder'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_animalchest:
+  name: '&aAnimal&dChest'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 1000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_nuke:
+  name: '&c&lNuke'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_rocketlauncher:
+  name: '&6&lRocket&eLauncher'
+  type: GADGET
+  badcoinsNeeded: 15000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_cloner:
+  name: '&9Cloner'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 750
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_pool:
+  name: '&b&lPiscine'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 1000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_trampoline:
+  name: '&9&lTrampoline'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 800
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_sandcastle:
+  name: '&e&lSandCastle'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_bbqgrill:
+  name: '&c&lBBQ&6Grill'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 150
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_catapult:
+  name: '&aCataaa&6pulte'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_rocket:
+  name: '&6&lRocket'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 3000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_discoball:
+  name: '&5&lDisco&3Ball'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 750
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_dj:
+  name: '&cDJ'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 1500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_diamondshower:
+  name: '&bDiamond&lShower'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 750
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_ghosts:
+  name: '&7Ghost'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_tntfountain:
+  name: '&cTNT&bFontaine'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_poopbomb:
+  name: '&9Duplicateur'
+  type: GADGET
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_batlauncher:
+  name: '&6Lanceur de Chauve-Souris'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_explodingsheep:
+  name: '&7Lanceur de mouton'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_creeperastronaut:
+  name: '&cBob l''Astronaute'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 150
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_goldshower:
+  name: '&6Gold&6&lShower'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 150
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_partypopper:
+  name: '&7Spawneur à laine'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 150
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+gadget_cookiefountain:
+  name: '&8Fontaine à Cookies'
+  type: GADGET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 100
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_babyocelot:
+  name: '&b&lBabyOcelot'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_blaze:
+  name: '&6&lBlaze'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 700
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_cavespider:
+  name: '&7&lCaveSpider'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_chicken:
+  name: '&e&lPoulet'
+  type: PET
+  badcoinsNeeded: 20000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_cow:
+  name: '&9&lVache'
+  type: PET
+  badcoinsNeeded: 30000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_creeper:
+  name: '&2&lCreeper'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 650
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_discosheep:
+  name: '&d&lDisco&f&lMouton'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 1000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_enderman:
+  name: '&9&lEnderman'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 600
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_endermite:
+  name: '&e&lEndermite'
+  type: PET
+  badcoinsNeeded: 15000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_giant:
+  name: '&a&lZombie géant'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 2000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_guardian:
+  name: '&b&lGuardian'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 1000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_horse:
+  name: '&3&lCheval'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_irongolem:
+  name: '&6&lIronGolem'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 600
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_magmacube:
+  name: '&c&lMagma&6&lCube'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_ocelot:
+  name: '&e&lOcelot'
+  type: PET
+  badcoinsNeeded: 10000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_pig:
+  name: '&d&lCochon'
+  type: PET
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_rabbit:
+  name: '&e&lLapin'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_sheep:
+  name: '&f&lMouton'
+  type: PET
+  badcoinsNeeded: 12050
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_silverfish:
+  name: '&7&lSilverfish'
+  type: PET
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_skeleton:
+  name: '&6&lSquelette'
+  type: PET
+  badcoinsNeeded: 25600
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_slime:
+  name: '&a&lSlime'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_snowman:
+  name: '&f&lSnowman'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_spider:
+  name: '&7&lAraignée'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 450
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_squid:
+  name: '&3&lPoulpe'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_villager:
+  name: '&e&lVillageois'
+  type: PET
+  badcoinsNeeded: 15000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_witch:
+  name: '&5&lSorcière'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 700
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_wolf:
+  name: '&b&lLoup'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_zombie:
+  name: '&a&lZombie'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+pet_zombiepigman:
+  name: '&d&lCochon&a&lZombie'
+  type: PET
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_animatedball:
+  name: '&6&lBalle &a&lAnimée'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_arc:
+  name: '&eArc'
+  type: PARTICLE
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_atom:
+  name: '&aAtome'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 700
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_bleed:
+  name: '&cSang'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_circle:
+  name: '&dCercle'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_cloud:
+  name: '&bNuages'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_cone:
+  name: '&aCône'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 420
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_cube:
+  name: '&6Cubisme'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_cylinder:
+  name: '&3Cylindre'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_discoball:
+  name: '&d&lDisco&e&lBall'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_dna:
+  name: '&c&lADN'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 700
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_donut:
+  name: '&6&lDonuts'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_dragon:
+  name: '&6&lDragon'
+  type: PARTICLE
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_earth:
+  name: '&a&lTerre'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 600
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_equation:
+  name: '&5&lEquation'
+  type: PARTICLE
+  badcoinsNeeded: 1000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_flame:
+  name: '&e&lFlames'
+  type: PARTICLE
+  badcoinsNeeded: 6500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_fountain:
+  name: '&b&lCharmante fontaine'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 400
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_grid:
+  name: '&9&lGrille'
+  type: PARTICLE
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_heart:
+  name: '&c&lCoeur'
+  type: PARTICLE
+  badcoinsNeeded: 1000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_helix:
+  name: '&2&lSpirale'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 570
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_hill:
+  name: '&b&lColline'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_jump:
+  name: '&e&lJump'
+  type: PARTICLE
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_line:
+  name: '&9&lLigne'
+  type: PARTICLE
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_music:
+  name: '&6&lMusique'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_shield:
+  name: '&3&lBouclier'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 350
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_skyrocket:
+  name: '&b&lEnvoler'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 320
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_smoke:
+  name: '&7&lFumée'
+  type: PARTICLE
+  badcoinsNeeded: 2000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_sphere:
+  name: '&e&lSphère'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_star:
+  name: '&e&lMaître l''Étoile'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 600
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_tornado:
+  name: '&c&lTornade'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 3000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_trace:
+  name: '&e&lTrace'
+  type: PARTICLE
+  badcoinsNeeded: 700
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_turn:
+  name: '&6&lTournée'
+  type: PARTICLE
+  badcoinsNeeded: 1500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_vortex:
+  name: '&b&lVortex'
+  type: PARTICLE
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_wave:
+  name: '&b&lVagues'
+  type: PARTICLE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 450
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+particle_warp:
+  name: '&5&lWarp'
+  type: PARTICLE
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_bat:
+  name: '&7Chauve-Souris'
+  type: DISGUISE
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_blaze:
+  name: '&8Blaze'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_boat:
+  name: '&6Bateau'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_cavespider:
+  name: '&cCave&c&lSpider'
+  type: DISGUISE
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_chicken:
+  name: '&9Poulet'
+  type: DISGUISE
+  badcoinsNeeded: 7000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_cow:
+  name: '&2Vache'
+  type: DISGUISE
+  badcoinsNeeded: 10000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_creeper:
+  name: '&5Creeper'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_endercrystal:
+  name: '&6EnderCrystal'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_enderman:
+  name: '&6Enderman'
+  type: DISGUISE
+  badcoinsNeeded: 30000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_ghast:
+  name: '&8Ghast'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 2500
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_golem:
+  name: '&7Golem de fer'
+  type: DISGUISE
+  badcoinsNeeded: 28000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_guardian:
+  name: '&1Guardian'
+  type: DISGUISE
+  badcoinsNeeded: 26000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_horse:
+  name: '&2Cheval'
+  type: DISGUISE
+  badcoinsNeeded: 23000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_magmacube:
+  name: '&4Magmacube'
+  type: DISGUISE
+  badcoinsNeeded: 24000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_minecart:
+  name: '&8Minecart'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_mushroom:
+  name: '&3Vache à Champignon'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_pig:
+  name: '&3Cochon'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 0
+  levelNeeded: 5
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_pigman:
+  name: '&5Zombie Cochon'
+  type: DISGUISE
+  badcoinsNeeded: 6000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_sheep:
+  name: '&fMouton'
+  type: DISGUISE
+  badcoinsNeeded: 9000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_silverfish:
+  name: '&7Silverfish'
+  type: DISGUISE
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_skeleton:
+  name: '&6Skeleton'
+  type: DISGUISE
+  badcoinsNeeded: 17000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_snowman:
+  name: '&fBonhomme de neige'
+  type: DISGUISE
+  badcoinsNeeded: 13000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_spider:
+  name: '&5Araignée'
+  type: DISGUISE
+  badcoinsNeeded: 12000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_squid:
+  name: '&4Poulpe'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_villager:
+  name: '&9Villageois'
+  type: DISGUISE
+  badcoinsNeeded: 10000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_witch:
+  name: '&6Sorcière'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_witherskull:
+  name: '&cTête de Wither'
+  type: DISGUISE
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_wolf:
+  name: '&fLoup'
+  type: DISGUISE
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_zombie:
+  name: '&6Zombie'
+  type: DISGUISE
+  badcoinsNeeded: 15000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+disguise_endermite:
+  name: '&4Endermite'
+  type: DISGUISE
+  badcoinsNeeded: 3000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_bat:
+  name: '&7Chauve-Souris'
+  type: MOUNT
+  badcoinsNeeded: 8000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_blaze:
+  name: '&eBlaze'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 250
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_cavespider:
+  name: '&9Araignée des Cavernes'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 100
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_chicken:
+  name: '&ePoulet'
+  type: MOUNT
+  badcoinsNeeded: 7500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_cow:
+  name: '&9Vache'
+  type: MOUNT
+  badcoinsNeeded: 25000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_creeper:
+  name: '&2Creeper'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_discosheep:
+  name: '&dDisco&fSheep'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_silverfish:
+  name: '&7Silverfish'
+  type: MOUNT
+  badcoinsNeeded: 500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_sheep:
+  name: '&fMouton'
+  type: MOUNT
+  badcoinsNeeded: 12000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_enderman:
+  name: '&aEnderman'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 200
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_endermite:
+  name: '&5Endermite'
+  type: MOUNT
+  badcoinsNeeded: 2500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_horse:
+  name: '&3Cheval'
+  type: MOUNT
+  badcoinsNeeded: 33333
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_irongolem:
+  name: '&7Golem de fer'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 300
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_magmacube:
+  name: '&cCube de Magma'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 320
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_mooshroom:
+  name: '&cChampimeuh'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 128
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_pig:
+  name: '&dCochon'
+  type: MOUNT
+  badcoinsNeeded: 16500
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_rabbit:
+  name: '&3Lapin'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_skeleton:
+  name: '&7Squelette'
+  type: MOUNT
+  badcoinsNeeded: 40000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_slime:
+  name: '&aSlime'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 229
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_snowman:
+  name: '&fBonhomme de neige'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_spider:
+  name: '&eAraignée'
+  type: MOUNT
+  badcoinsNeeded: 19000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_squid:
+  name: '&bPoulpe'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 222
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_villager:
+  name: '&eVillageois'
+  type: MOUNT
+  badcoinsNeeded: 17000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_witch:
+  name: '&5Sorcière'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 120
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_wither:
+  name: '&7Wither'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 3000
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_wolf:
+  name: '&fLoup'
+  type: MOUNT
+  badcoinsNeeded: 0
+  shopPointsNeeded: 175
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_zombie:
+  name: '&9Zombie'
+  type: MOUNT
+  badcoinsNeeded: 14423
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_zombiepigman:
+  name: '&cCochon Zombie'
+  type: MOUNT
+  badcoinsNeeded: 21212
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+mount_ocelot:
+  name: '&3Ocelot'
+  type: MOUNT
+  badcoinsNeeded: 3700
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_goldencow:
+  name: '&6Golden&3Cow'
+  type: HATS
+  badcoinsNeeded: 1250
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_goldensteve:
+  name: '&6GoldenSteve'
+  type: HATS
+  badcoinsNeeded: 3200
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_helmet:
+  name: '&9Helmet'
+  type: HATS
+  badcoinsNeeded: 1700
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_mushroomcow:
+  name: '&cMushroomCow'
+  type: HATS
+  badcoinsNeeded: 5000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_obsidian:
+  name: '&5Obsidian'
+  type: HATS
+  badcoinsNeeded: 4133
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_piston:
+  name: '&2Piston'
+  type: HATS
+  badcoinsNeeded: 3712
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []
+hats_rubikscube:
+  name: '&eRubiks&dCube'
+  type: HATS
+  badcoinsNeeded: 7000
+  shopPointsNeeded: 0
+  levelNeeded: 0
+  expire: -1
+  needed:
+    buyable: true
+    everyoneHaveThis: false
+    permissions: []

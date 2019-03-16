@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &7Vous masquez toujours les joueurs. Pour réafficher les joueurs, cliquez sur la poudre grise dans votre inventaire." 
+    ]
+  ],
+  "unknown": false
+}

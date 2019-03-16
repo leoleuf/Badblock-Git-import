@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&c&lMasquer les joueurs &f(clic droit)"
+    ]
+  ],
+  "unknown": false
+}

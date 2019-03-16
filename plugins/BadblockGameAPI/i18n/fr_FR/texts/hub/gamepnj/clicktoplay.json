@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&d&l>> &a&lJouer &d&l<<"
+    ]
+  ],
+  "unknown": false
+}

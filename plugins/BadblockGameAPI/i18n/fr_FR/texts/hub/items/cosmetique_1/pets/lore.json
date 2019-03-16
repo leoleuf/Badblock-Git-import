@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Activez un compagnon qui vous",
+      "&7suit partout et développez avec",
+      "&7une véritable affection."
+    ]
+  ],
+  "unknown": false
+}

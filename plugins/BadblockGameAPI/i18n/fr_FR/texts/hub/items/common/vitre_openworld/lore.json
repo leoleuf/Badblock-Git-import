@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Les jeux monde ouvert sont disponibles",
+      "&7où tu peux faire part de ta créativité",
+      "&7dans des modes sans PvP obligatoire."
+    ]
+  ],
+  "unknown": false
+}

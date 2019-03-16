@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &cVeuillez patienter avant de réutiliser ceci."
+    ]
+  ],
+  "unknown": false
+}

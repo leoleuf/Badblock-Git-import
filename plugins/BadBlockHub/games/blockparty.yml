@@ -1,0 +1,27 @@
+#Fichier de config du block party
+#Le cuboid doit être des laines blanches
+Cuboid:
+  Loc1:
+    world: world
+    x: -14
+    y: 94
+    z: -104
+  Loc2:
+    world: world
+    x: 14
+    y: 94
+    z: -139
+
+#Portillons pour rejoindre le BlockParty (doit etre un dark_oak_fence_gate)
+Gate:
+  world: world
+  x: 0
+  y: 95
+  z: -103
+
+#Point de téléportation quand il clique sur ce-dernier
+Teleport:
+  world: world
+  x: 0
+  y: 95
+  z: -112

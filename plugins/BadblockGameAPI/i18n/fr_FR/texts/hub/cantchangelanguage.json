@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cSeule la langue française est disponible pour le moment.",
+      "&cOnly the French language is currently available."
+    ]
+  ],
+  "unknown": true
+}

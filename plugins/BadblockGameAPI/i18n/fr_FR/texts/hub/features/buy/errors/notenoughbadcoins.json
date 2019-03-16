@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVous devez posséder &a%1 BadCoins &cpour obtenir le cosmétique %0&c. Vous ne possédez que &a%2 BadCoins &cpour le moment.",
+      "&cContinuez de jouer pour pouvoir vous permettre de l'obtenir, ou obtenez des BadCoins sur la boutique de BadBlock."
+    ]
+  ],
+  "unknown": false
+}

@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Modifiez vos préférences du lobby"
+    ]
+  ],
+  "unknown": false
+}

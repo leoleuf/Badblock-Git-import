@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour annuler",
+      "&7l'achat de %0",
+      "&7en toute sécurité."
+    ]
+  ],
+  "unknown": false
+}

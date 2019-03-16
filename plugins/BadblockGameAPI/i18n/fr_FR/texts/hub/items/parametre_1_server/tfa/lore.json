@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour activer ou désactiver",
+      "&7la double authentification sur le serveur",
+      "&7afin de mieux protéger votre compte.",
+      "",
+      "&eStatut : {state_tfa}"
+    ]
+  ],
+  "unknown": false
+}

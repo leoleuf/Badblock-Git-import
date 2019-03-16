@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour désactiver",
+      "&7votre pet."
+    ]
+  ],
+  "unknown": false
+}

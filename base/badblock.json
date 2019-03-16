@@ -1,0 +1,27 @@
+{
+  "tileEntities": {
+    "tickBeacon": true,
+    "tickBrewingStand": true,
+    "tickFurnace": true,
+    "tickHopper": true,
+    "tickLightDetector": true,
+    "tickMobSpawner": true,
+    "tickPiston": true
+  },
+  "entities": {
+    "tickArmorStand": true,
+    "tickEnderCrystal": true,
+    "tickEnderSignal": true,
+    "tickExperienceOrb": true,
+    "tickFishingHook": true,
+    "tickHanging": true
+  },
+  "severTick": {
+    "tickWeather": false,
+    "checkEntityInactives": true
+  },
+  "shutdown": {
+    "savePlayers": false,
+    "saveWorld": false
+  }
+}

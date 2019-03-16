@@ -1,0 +1,15 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7PvP contre les autres avec un stuff",
+      "&7aléatoire dans une map aléatoire.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVous n'avez pas ce cosmétique"
+    ]
+  ],
+  "unknown": false
+}

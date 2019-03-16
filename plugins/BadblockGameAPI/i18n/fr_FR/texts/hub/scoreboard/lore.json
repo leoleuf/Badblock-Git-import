@@ -1,0 +1,22 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&6┌ &b&n{PlayerName}",
+      "&6│    ",
+      "&6├ &7Rang: &f{Group_Prefix}",
+      "&6├ &7Niveau: &f{levels}",
+      "&6├ &7Ping: &f{Ping}",
+      "&6├ &aBadCoins: &f{badcoins}",
+      "&6├ &ePoints boutique: &f{shopPoints}",
+      "&6│ ",
+      "&6├ &7Connectés: &f{Network_OnlinePlayers}",
+      "&6├ &7Lobby: &fn°{Server_Id}",
+      "&6│        ",
+      "§6└ &bBad&6Block&f&o.fr"
+    ]
+  ],
+  "unknown": false
+}

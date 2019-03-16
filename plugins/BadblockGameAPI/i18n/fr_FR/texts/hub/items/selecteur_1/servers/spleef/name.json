@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "§chub.items.selecteur_1.servers.spleef.name"
+    ]
+  ],
+  "unknown": true
+}

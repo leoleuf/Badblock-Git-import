@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Viens affronter des joueurs en PvP",
+      "&7et mettre des points contre l'équipe",
+      "&7adverse rapidement.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

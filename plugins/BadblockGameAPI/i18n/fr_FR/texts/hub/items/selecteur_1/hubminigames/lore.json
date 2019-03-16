@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Liste des mini-jeux du lobby",
+      "&7pour se détendre à plusieurs."
+    ]
+  ],
+  "unknown": false
+}

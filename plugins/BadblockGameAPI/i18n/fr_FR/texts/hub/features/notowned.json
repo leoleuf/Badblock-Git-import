@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVous ne possédez pas le %0&c.",
+      "&eFaites un clic droit dessus pour l'acheter."
+    ]
+  ],
+  "unknown": false
+}

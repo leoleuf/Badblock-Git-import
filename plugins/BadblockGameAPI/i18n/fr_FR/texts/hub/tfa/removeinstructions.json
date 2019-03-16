@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &ePour désactiver votre double authentification,",
+	  " &eveuillez récupérer le code temporaire affiché",
+	  " &esur votre application et tapez",
+	  " &b/authremove CODE &een remplaçant CODE",
+	  " &epar celui que vous avez.",
+	  " &cSi vous n'avez plus votre code temporaire, contactez le support par ticket sur &bhttps://badblock.fr/forum"
+    ]
+  ],
+  "unknown": false
+}

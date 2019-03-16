@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cAucune partie personnalisée"
+    ]
+  ],
+  "unknown": false
+}

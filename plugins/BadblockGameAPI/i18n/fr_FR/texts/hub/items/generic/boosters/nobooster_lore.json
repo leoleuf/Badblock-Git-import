@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Vous ne possédez aucun booster",
+      "&7pour le moment.",
+      "",
+      "&eVous pouvez en acquérir dès",
+      "&emaintenant en cliquant ici."
+    ]
+  ],
+  "unknown": false
+}

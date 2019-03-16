@@ -1,0 +1,17 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour passer Premium ou Crack",
+      "&7sur le serveur afin de ne plus avoir à",
+      "&7taper un mot de passe si vous",
+      "&7avez acheté le jeu Minecraft.",
+      "",
+      "&eStatut : {state_mode}"
+    ]
+  ],
+  "unknown": false
+}

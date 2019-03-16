@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cTu dois avoir &e%1 points boutique &cpour obtenir le cosmétique %0&c. Tu n'en as que &e%2 points boutique &cpour le moment.",
+      "&6Recharge ton compte sur le site pour obtenir plus de points boutique :",
+      "&b&nhttps://badblock.fr/shop/recharge"
+    ]
+  ],
+  "unknown": false
+}

@@ -1,0 +1,15 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour &aafficher les joueurs",
+      "",
+      "&7Recommandé si vous avez un ordinateur",
+      "&7qui supporte correctement Minecraft."
+    ]
+  ],
+  "unknown": false
+}

@@ -1,0 +1,18 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Fabrique ta parcelle et construis",
+      "&7avec tous les objets de Minecraft",
+      "&7une parcelle à ta manière.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅",
+      "",
+      "&7{Game_OnlinePlayers} joueurs en jeu"
+    ]
+  ],
+  "unknown": false
+}

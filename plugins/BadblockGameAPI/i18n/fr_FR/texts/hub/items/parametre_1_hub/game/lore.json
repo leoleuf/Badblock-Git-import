@@ -1,0 +1,18 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour afficher ou cacher",
+      "&7les annonces de lancement de partie.",
+      "",
+      "&7Ne s'applique pas pour les hosts",
+      "&7effectués par les YouTubers",
+      "",
+      "&eStatut : {hide_gamemessages}"
+    ]
+  ],
+  "unknown": false
+}

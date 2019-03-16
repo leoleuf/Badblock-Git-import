@@ -1,0 +1,1012 @@
+# 
+#  pearlswar: world,-110.5,80.0,-62.5,0,-90
+worldspawn: world,0.5,82.5,18.5,0,0
+vipzone: world,0.5,94.0,-17.5,-2.3,179.6
+groupsOrder:
+- A:Fondateur
+- B:Admin
+- C:SysAdmin
+- D:CTO
+- E:Responsable
+- F:ModoCheat
+- G:Modo
+- H:Animateur
+- I:Anim-Test
+- J:ModoChat
+- K:Developpeur
+- L:Architecte
+- M:ModoForum
+- N:Youtuber
+christmas_stars:
+- world,-37.50,115.5,14.5,0.0,0.0
+- world,-38.50,115.5,-9.5,0.0,0.0
+- world,39.50,115.5,-14.5,0.0,0.0
+- world,35.50,115.5,9.5,0.0,0.0
+- world,-63.50,94.5,-42.5,0.0,0.0
+christmas_snow:
+- world,-52.50,75.5,-41.5,0.0,0.0
+- world,-67.50,75.5,0.5,0.0,0.0
+- world,-56.50,75.5,22.5,0.0,0.0
+- world,2.50,75.5,38.5,0.0,0.0
+- world,41.50,75.5,37.5,0.0,0.0
+christmas_creepers:
+- world,-52.50,75.5,-41.5,0.0,0.0
+- world,-67.50,75.5,0.5,0.0,0.0
+- world,-56.50,75.5,22.5,0.0,0.0
+- world,2.50,75.5,38.5,0.0,0.0
+- world,41.50,75.5,37.5,0.0,0.0
+limit:
+  loc1: world,500.69999998807907,0.0,-500.30000001192093,9,-266
+  loc2: world,-500.69353702850637,256.0,500.27335118724213,-10,-90
+cuboid:
+  loc1: world,500.0,0.0,-500.0,9,-266
+  loc2: world,-500.0,256.0,500.0,-10,-90
+gamepnj:
+  tower: world,-10.5,82.0,41.5,-0.6,-165.0
+  towerf: world,0.5,81.0,26.5,0.0,-180.0
+  rush: world,-14.5,82.0,39.5,-0.6,-159.2
+  speeduhc: world,-17.5,82.0,36.5,-0.6,-152.3
+  skyb: world,11.5,82.0,41.5,-0.6,165.6
+  fb: world,15.5,82.0,39.5,-0.6,159.7
+  survie: world,3.5,81.5,43.5,1.2,-207.0
+  faction: world,-2.5,81.5,43.5,-0.70,-155.72
+#  tower: world,-10.5,82.0,41.5,-0.6,-165.0
+#  towerrun: world,-14.5,82.0,39.5,-0.6,-159.2
+#  rush: world,-17.5,82.0,36.5,-0.6,-152.3
+#  spaceballs: world,-20.5,82.0,33.5,-0.6,-145.8
+# speeduhc: world,-22.5,82.0,29.5,-0.6,29.5
+#  skyb: world,11.5,82.0,41.5,-0.6,165.6
+#  faction: world,15.5,82.0,39.5,-0.6,159.7
+#  box: world,18.5,82.0,36.5,-0.6,153.1
+#  fb: world,21.5,82.0,33.5,-0.6,146.5
+#  bedwars: world,0.5,81.5,43.5,-1.5,180.0
+mounts:
+  pegasus:
+    badcoins: -1
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: true
+    buyable: false
+  bunny:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  bat:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  blaze:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  cavespider:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  chicken:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  cow:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  snowman:
+    badcoins: 5000
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: true
+  enderdragon:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  enderman:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  ghast:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  giant:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  guardian:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  irongolem:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  magmacube:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  mushroomcow:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  ocelot:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  pig:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  pigzombie:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  sheep:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  silverfish:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  skeleton:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  slime:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  spider:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  squid:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  villager:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  witch:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  wolf:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  wither:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+  zombie:
+    badcoins: 50
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: false
+disguises:
+  bunny:
+    badcoins: 50
+    permission: false
+    buyable: false
+  zombie:
+    badcoins: 50
+    permission: false
+    buyable: false
+  bat:
+    badcoins: 50
+    permission: false
+    buyable: false
+  blaze:
+    badcoins: 50
+    permission: false
+    buyable: false
+  cavespider:
+    badcoins: 50
+    permission: false
+    buyable: false
+  chicken:
+    badcoins: 50
+    permission: false
+    buyable: false
+  cow:
+    badcoins: 50
+    permission: false
+    buyable: false
+  snowman:
+    badcoins: 5000
+    hasResizableMode: true
+    hasFunmode: true
+    hasReverseMode: true
+    hasPegasus: true
+    permission: false
+    buyable: true
+  endercrystal:
+    badcoins: 50
+    permission: false
+    buyable: false
+  enderdragon:
+    badcoins: 50
+    permission: false
+    buyable: false
+  enderman:
+    badcoins: 50
+    permission: false
+    buyable: false
+  ghast:
+    badcoins: 50
+    permission: false
+    buyable: false
+  giant:
+    badcoins: 50
+    permission: false
+    buyable: false
+  guardian:
+    badcoins: 50
+    permission: false
+    buyable: false
+  horse:
+    badcoins: 50
+    permission: false
+    buyable: false
+  irongolem:
+    badcoins: 50
+    permission: false
+    buyable: false
+  magmacube:
+    badcoins: 50
+    permission: false
+    buyable: false
+  mushroomcow:
+    badcoins: 50
+    permission: false
+    buyable: false
+  ocelot:
+    badcoins: 50
+    permission: false
+    buyable: false
+  pig:
+    badcoins: 50
+    permission: false
+    buyable: false
+  pigzombie:
+    badcoins: 50
+    permission: false
+    buyable: false
+  rabbit:
+    badcoins: 50
+    permission: false
+    buyable: false
+  sheep:
+    badcoins: 50
+    permission: false
+    buyable: false
+  silverfish:
+    badcoins: 50
+    permission: false
+    buyable: false
+  skeleton:
+    badcoins: 50
+    permission: false
+    buyable: false
+  slime:
+    badcoins: 50
+    permission: false
+    buyable: false
+  spider:
+    badcoins: 50
+    permission: false
+    buyable: false
+  squid:
+    badcoins: 50
+    permission: false
+    buyable: false
+  villager:
+    badcoins: 50
+    permission: false
+    buyable: false
+  witch:
+    badcoins: 50
+    permission: false
+    buyable: false
+  wither:
+    badcoins: 50
+    permission: false
+    buyable: false
+  witherskull:
+    badcoins: 50
+    permission: false
+    buyable: false
+  quartz_block:
+    badcoins: 50
+    permission: false
+    buyable: false
+  wolf:
+    badcoins: 50
+    permission: false
+    buyable: false
+  chosenmaterials:
+  - '1:0'
+  - '2:0'
+  - '4:0'
+  - '5:1'
+  - '5:2'
+  - '17:0'
+  - '17:1'
+  - '18:0'
+  - '18:3'
+  - '24:0'
+  - '41:0'
+  - '45:0'
+  - '46:0'
+  - '47:0'
+  - '48:0'
+  - '49:0'
+  - '54:0'
+  - '56:0'
+  - '58:0'
+  - '61:0'
+  - '91:0'
+  - '98:0'
+  - '103:0'
+  - '110:0'
+  - '121:0'
+  - '145:0'
+  - '146:0'
+  - '153:0'
+  - '155:0'
+  - '159:9'
+  - '159:11'
+  - '162:1'
+  - '170:0'
+  - '173:0'
+  stained_clay:
+    permission: false
+    buyable: false
+    badcoins: 50
+  tnt:
+    permission: false
+    buyable: false
+    badcoins: 50
+  log_2:
+    permission: false
+    buyable: false
+    badcoins: 50
+  sandstone:
+    permission: false
+    buyable: false
+    badcoins: 50
+  hay_block:
+    permission: false
+    buyable: false
+    badcoins: 50
+  gold_block:
+    permission: false
+    buyable: false
+    badcoins: 50
+  coal_block:
+    permission: false
+    buyable: false
+    badcoins: 50
+  obsidian:
+    permission: false
+    buyable: false
+    badcoins: 50
+  furnace:
+    permission: false
+    buyable: false
+    badcoins: 50
+  chest:
+    permission: false
+    buyable: false
+    badcoins: 50
+  pumpkin:
+    permission: false
+    buyable: false
+    badcoins: 50
+  diamond_ore:
+    permission: false
+    buyable: false
+    badcoins: 50
+  diamond_block:
+    permission: false
+    buyable: false
+    badcoins: 50
+  bookshelf:
+    permission: false
+    buyable: false
+    badcoins: 50
+  workbench:
+    permission: false
+    buyable: false
+    badcoins: 50
+  mossy_cobblestone:
+    permission: false
+    buyable: false
+    badcoins: 50
+  wood:
+    permission: false
+    buyable: false
+    badcoins: 50
+  cobblestone:
+    permission: false
+    buyable: false
+    badcoins: 50
+  log:
+    permission: false
+    buyable: false
+    badcoins: 50
+  stone:
+    permission: false
+    buyable: false
+    badcoins: 50
+  leaves:
+    permission: false
+    buyable: false
+    badcoins: 50
+  grass:
+    permission: false
+    buyable: false
+    badcoins: 50
+  anvil:
+    permission: false
+    buyable: false
+    badcoins: 50
+  melon_block:
+    permission: false
+    buyable: false
+    badcoins: 50
+  trapped_chest:
+    permission: false
+    buyable: false
+    badcoins: 50
+  quartz_ore:
+    permission: false
+    buyable: false
+    badcoins: 50
+  ender_stone:
+    permission: false
+    buyable: false
+    badcoins: 50
+  mycel:
+    permission: false
+    buyable: false
+    badcoins: 50
+  brick:
+    permission: false
+    buyable: false
+    badcoins: 50
+  jack_o_lantern:
+    permission: false
+    buyable: false
+    badcoins: 50
+  smooth_brick:
+    permission: false
+    buyable: false
+    badcoins: 50
+particles:
+  animatedBall:
+    material: ENDER_PEARL
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 2800
+  atom:
+    material: FIREBALL
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 8220
+  bleed:
+    material: REDSTONE
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 2000
+  cloud:
+    material: INK_SACK
+    data: 15
+    permission: false
+    buyable: true
+    badcoins: 4000
+  cube:
+    material: REDSTONE_BLOCK
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 7000
+  cylinder:
+    material: REDSTONE_TORCH_ON
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 8000
+  discoball:
+    material: SLIME_BALL
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 4000
+  dna:
+    material: BONE
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 9000
+  donut:
+    material: COOKIE
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 7500
+  dragon:
+    material: DRAGON_EGG
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 8400
+  earth:
+    material: INK_SACK
+    data: 12
+    permission: false
+    buyable: true
+    badcoins: 6100
+  flame:
+    material: BLAZE_POWDER
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 3400
+  fountain:
+    material: WATER_BUCKET
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 12000
+  helix:
+    material: WEB
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 11000
+  hill:
+    material: CARPET
+    data: 14
+    permission: false
+    buyable: true
+    badcoins: 9200
+  love:
+    material: INK_SACK
+    data: 1
+    permission: false
+    buyable: true
+    badcoins: 1500
+  music:
+    material: JUKEBOX
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 2800
+  shield:
+    material: BEACON
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 4500
+  sphere:
+    material: COAL
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 13000
+  star:
+    material: NETHER_STAR
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 15000
+  vortex:
+    material: ENDER_PORTAL_FRAME
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 16000
+  warp:
+    material: SUGAR
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 12000
+  wave:
+    material: BOAT
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 11000
+  text:
+    material: BOOK
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 19000
+  tornado:
+    material: FEATHER
+    data: 0
+    permission: false
+    buyable: true
+    badcoins: 30000
+  arc:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 12000
+  circle:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 14000
+  coloredimage:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: -1
+  cone:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 13000
+  equation:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 11000
+  grid:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 18000
+  heart:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 3000
+  icon:
+    material: STONE
+    data: 0
+    buyable: false
+    badcoins: -1
+  image:
+    material: STONE
+    data: 0
+    buyable: false
+    badcoins: -1
+  jump:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 7000
+  line:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 4000
+  skyrocket:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 23000
+  smoke:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 3000
+  trace:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 4000
+  turn:
+    material: STONE
+    data: 0
+    buyable: true
+    badcoins: 9000
+booster:
+  inventory:
+    lines: 5
+  data:
+    '1':
+      item:
+        material: EXP_BOTTLE
+        data: 0
+        amount: 1
+        slot: 21
+      servers:
+      - '*'
+      packId: 1
+      effectiveTime: 3600
+      multipliers:
+        badcoins: 3.0
+        xp: 3.0
+      price:
+        buyable: false
+        badcoins: 400
+      thanks:
+        maxxp: 500
+        maxbadcoins: 250
+      random_earn:
+        minXp: 4
+        maxXp: 8
+        minBadcoins: 2
+        maxBadcoins: 4
+    '2':
+      item:
+        material: EXP_BOTTLE
+        data: 0
+        amount: 1
+        slot: 22
+      servers:
+      - '*'
+      packId: 1
+      effectiveTime: 3600
+      multipliers:
+        badcoins: 6.0
+        xp: 6.0
+      price:
+        buyable: false
+        badcoins: 400
+      thanks:
+        maxxp: 1500
+        maxbadcoins: 500
+      random_earn:
+        minXp: 4
+        maxXp: 8
+        minBadcoins: 2
+        maxBadcoins: 4
+    '3':
+      item:
+        material: EXP_BOTTLE
+        data: 0
+        amount: 1
+        slot: 23
+      servers:
+      - '*'
+      packId: 1
+      effectiveTime: 3600
+      multipliers:
+        badcoins: 11.0
+        xp: 11.0
+      price:
+        buyable: false
+        badcoins: 400
+      thanks:
+        maxxp: 2500
+        maxbadcoins: 500
+      random_earn:
+        minXp: 4
+        maxXp: 8
+        minBadcoins: 2
+        maxBadcoins: 4
+npc:
+  xmalware:
+    turnback: world,-76.5,75.0,-1.5,-1.4554312,-39.579956
+    normal: world,-76.5,75.0,-1.5,2.355247,-66.527954
+  lelann:
+    turnback: world,-76.5,75.0,2.5,-4.449467,-229.84094
+    normal: world,-76.5,75.0,2.5,5.077131,-122.326416
+viplimit:
+  portal:
+    loc1: world,-16,92,-27
+    loc2: world,17,116,-30
+  push:
+    loc1: world,-17,92,-20
+    loc2: world,17,116,-26
+boosters:
+  '1':
+    permission: false
+race:
+  minPlayers: 2
+  front: world,-89.5,72,33.5,8.343414,-0.22110596
+  line:
+    loc1: world,-84,55,145,0,0
+    loc2: world,-97,61,152,0,0
+  notifySeconds:
+  - 120
+  - 90
+  - 60
+  - 30
+  - 15
+  - 10
+  - 5
+  - 4
+  - 3
+  - 2
+  - 1
+  cells:
+    '1':
+      blockLocation: world,-86,69,41,0,0
+      cellLocation: world,-85.5,69,42.5,0.4499,-1.0375
+      aheadLocation: world,-85.5,69,40.5,3.71,180.24
+      breakableBlockLocation: world,-86,70,43,0,0
+    '2':
+      blockLocation: world,-88,69,41,0,0
+      cellLocation: world,-87.5,69,42.5,1.2665,1.35555
+      aheadLocation: world,-87.5,69,40.5,-0.0944,180.18336
+      breakableBlockLocation: world,-88,70,43,0,0
+    '3':
+      blockLocation: world,-90,69,41,0,0
+      cellLocation: world,-89.5,69,42.5,4.532,0.91638184
+      aheadLocation: world,-89.5,69,40.5,-1.72755,180.01697
+      breakableBlockLocation: world,-90,70,43,0,0
+    '4':
+      blockLocation: world,-92,69,41,0,0
+      cellLocation: world,-91.5,69,42.5,0.9943252,0.64486694
+      aheadLocation: world,-85.5,69,40.5,3.71,180.24
+      breakableBlockLocation: world,-92,70,43,0,0
+    '5':
+      blockLocation: world,-94,69,41,0,0
+      cellLocation: world,-93.5,69,42.5,2.0830808,1.1894836
+      aheadLocation: world,-91.5,69,40.5,0.7221359,179.47266
+      breakableBlockLocation: world,-94,70,43,0,0
+  voids:
+    '1':
+      location1: world,-96,59,69,0,0
+      location2: world,-84,57,82,0,0
+    '2':
+      location1: world,-83,55,130,0,0
+      location2: world,-96,54,140,0,0
+  launchCountdownConfig: 10
+  waitingCountdownConfig: 30
+  finishedCountdownConfig: 10
+  runningCountdownConfig: 90
+battle:
+  playerslimit: 5
+  mobs:
+    '1':
+      type: GIANT
+      location: world,-113.5,50.0,-34.5,-90,0.0
+  arena:
+    location1: world,-99,46,-46
+    location2: world,-129,67,-24
+  teleportLocations:
+  - world,-127.5,50,-34.5,0.0,-90.0
+  - world,-99.5,50,-34.5,0.0,-270.0
+  npc:
+    location: world,-85.5,73.0,-34.5,0.0,90.0
+    entitytype: VILLAGER
+  items:
+    '0':
+      slot: 0
+      amount: 1
+      name: '&b&ltank'
+      material: IRON_SWORD
+      data: 0
+      enchantments:
+      - DAMAGE_ALL:2
+chests:
+  winitem:
+    badcoins:
+      type: GOLD_INGOT
+      amount: 1
+      data: 0
+    xp:
+      type: EXP_BOTTLE
+      amount: 1
+      data: 0
+timebetweenmessage: 0

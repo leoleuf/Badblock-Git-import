@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Fermer cet inventaire"
+    ]
+  ],
+  "unknown": false
+}

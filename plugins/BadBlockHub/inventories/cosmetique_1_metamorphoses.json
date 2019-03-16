@@ -1,0 +1,1085 @@
+{
+	"i18name": "hub.items.cosmetique_1_metamorphoses.name",
+	"lines": 6,
+	"items": [{
+			"place": 0,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 1,
+			"i18name": "hub.items.cosmetique_1.boosters.name",
+			"i18lore": "hub.items.cosmetique_1.boosters.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1"
+				}
+			],
+			"type": "384:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 2,
+			"i18name": "hub.items.cosmetique_1.pets.name",
+			"i18lore": "hub.items.cosmetique_1.pets.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_pets"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_pets"
+				}
+			],
+			"type": "383:90",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 3,
+			"i18name": "hub.items.cosmetique_1.effects.name",
+			"i18lore": "hub.items.cosmetique_1.effects.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_effects"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_effects"
+				}
+			],
+			"type": "399:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 4,
+			"i18name": "hub.items.cosmetique_1.metamorphoses.name",
+			"i18lore": "hub.items.cosmetique_1.metamorphoses.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_metamorphoses"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_metamorphoses"
+				}
+			],
+			"type": "86:0",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 5,
+			"i18name": "hub.items.cosmetique_1.gadgets.name",
+			"i18lore": "hub.items.cosmetique_1.gadgets.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_gadgets"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_gadgets"
+				}
+			],
+			"type": "369:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 6,
+			"i18name": "hub.items.cosmetique_1.hats.name",
+			"i18lore": "hub.items.cosmetique_1.hats.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_hats"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_hats"
+				}
+			],
+			"type": "397:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 7,
+			"i18name": "hub.items.cosmetique_1.mount.name",
+			"i18lore": "hub.items.cosmetique_1.mount.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_mounts"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_mounts"
+				}
+			],
+			"type": "386:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 8,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 9,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 10,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 11,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 12,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 13,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:14",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 14,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 15,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 16,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 17,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 18,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 19,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_bat"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_bat"
+				}
+			],
+			"type": "383:65",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 20,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_blaze"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_blaze"
+				}
+			],
+			"type": "383:61",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+				{
+			"place": 21,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_boat"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_boat"
+				}
+			],
+			"type": "333",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 22,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_cavespider"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_cavespider"
+				}
+			],
+			"type": "383:59",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 23,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_chicken"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_chicken"
+				}
+			],
+			"type": "383:93",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 24,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_cow"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_cow"
+				}
+			],
+			"type": "383:92",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 25,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_creeper"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_creeper"
+				}
+			],
+			"type": "383:50",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 28,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_endercrystal"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_endercrystal"
+				}
+			],
+			"type": "368",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 29,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_enderman"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_enderman"
+				}
+			],
+			"type": "383:58",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 30,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_endermite"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_endermite"
+				}
+			],
+			"type": "383:67",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 31,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_ghast"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_ghast"
+				}
+			],
+			"type": "383:56",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 32,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_golem"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_golem"
+				}
+			],
+			"type": "42",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 33,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_guardian"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_guardian"
+				}
+			],
+			"type": "383:68",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 34,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_horse"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_horse"
+				}
+			],
+			"type": "383:100",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 37,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_magmacube"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_magmacube"
+				}
+			],
+			"type": "383:62",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 38,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_minecart"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_minecart"
+				}
+			],
+			"type": "328",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 39,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_mushroom"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_mushroom"
+				}
+			],
+			"type": "383:96",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 40,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_pig"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_pig"
+				}
+			],
+			"type": "383:90",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 41,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_pigman"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_pigman"
+				}
+			],
+			"type": "383:57",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 42,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_sheep"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_sheep"
+				}
+			],
+			"type": "383:91",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 43,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_silverfish"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_silverfish"
+				}
+			],
+			"type": "383:60",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 45,
+			"i18name": "hub.items.remove_disguise.name",
+			"i18lore": "hub.items.remove_disguise.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "REMOVE_DISGUISE",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "REMOVE_DISGUISE",
+					"actionData" : ""
+				}
+			],
+			"type": "347",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 46,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_skeleton"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_skeleton"
+				}
+			],
+			"type": "383:51",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 47,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_snowman"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_snowman"
+				}
+			],
+			"type": "383:97",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 48,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_spider"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_spider"
+				}
+			],
+			"type": "383:52",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 49,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_squid"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_squid"
+				}
+			],
+			"type": "383:94",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 50,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_villager"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_villager"
+				}
+			],
+			"type": "383:120",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 51,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "BUY_FEATURE",
+					"actionData" : "disguise_witch"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "USE_FEATURE",
+					"actionData" : "disguise_witch"
+				}
+			],
+			"type": "383:66",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 52,
+			"i18name": "hub.items.cosmetique_1_metamorphoses.next_page2.name",
+			"i18lore": "hub.items.cosmetique_1_metamorphoses.next_page2.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_metamorphoses_2"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1_metamorphoses_2"
+				}
+			],
+			"type": "262",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 26,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 27,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 35,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 36,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 44,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 53,
+			"i18name": "hub.items.common.return.name",
+			"i18lore": "hub.items.common.return.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				}
+			],
+			"type": "166",
+			"amount": 1,
+			"fakeEnchant": false
+		}
+	]
+}

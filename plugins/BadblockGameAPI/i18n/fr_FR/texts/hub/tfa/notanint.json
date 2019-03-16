@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cLe code temporaire doit être un nombre. Vérifiez ce que vous avez entré (et ne mettez pas d'espaces)."
+    ]
+  ],
+  "unknown": false
+}

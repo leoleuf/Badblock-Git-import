@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Les jeux PvP sont disponibles",
+      "&7où tu peux faire part de ton skill",
+      "&7et dominer le serveur."
+    ]
+  ],
+  "unknown": false
+}

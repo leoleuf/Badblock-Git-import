@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &cVous possédez déjà le cosmetique %0"
+    ]
+  ],
+  "unknown": false
+}

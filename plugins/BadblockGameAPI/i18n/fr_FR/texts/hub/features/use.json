@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &eVous utilisez %0"
+    ]
+  ],
+  "unknown": false
+}

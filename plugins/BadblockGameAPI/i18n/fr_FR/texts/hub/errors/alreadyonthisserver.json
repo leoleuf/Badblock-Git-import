@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVous êtes déjà connecté sur ce serveur."
+    ]
+  ],
+  "unknown": false
+}

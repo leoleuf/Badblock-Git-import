@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&a&lAfficher les joueurs &f(clic droit)"
+    ]
+  ],
+  "unknown": false
+}

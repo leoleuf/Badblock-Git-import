@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Changez de lobby pour retrouver",
+      "&7vos amis plus facilement."
+    ]
+  ],
+  "unknown": false
+}

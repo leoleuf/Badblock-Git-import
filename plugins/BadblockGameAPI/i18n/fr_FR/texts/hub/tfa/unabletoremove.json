@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cImpossible de désactiver votre double authentification. Le code temporaire que vous avez entré est invalide."
+    ]
+  ],
+  "unknown": false
+}

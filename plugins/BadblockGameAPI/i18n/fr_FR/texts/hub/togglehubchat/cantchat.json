@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cImpossible d'envoyer un message car vous avez désactivé le t'chat du hub.",
+      "&eRéactivez-le depuis vos paramètres."
+    ]
+  ],
+  "unknown": false
+}

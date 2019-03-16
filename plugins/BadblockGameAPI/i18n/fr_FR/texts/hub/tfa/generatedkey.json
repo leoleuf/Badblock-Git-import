@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &aVotre clé a générée : &e%0",
+      " &fVeuillez entrer votre clé ou prenez le QRCode en photo avec votre compte de double authentification.",
+      " &fUne fois cela fait, effectuez &b/authcheck CODE &fen remplaçant CODE par le code temporaire affichée par l'application."
+    ]
+  ],
+  "unknown": false
+}

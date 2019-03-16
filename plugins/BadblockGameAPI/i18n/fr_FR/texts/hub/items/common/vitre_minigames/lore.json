@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Les mini-jeux sont disponibles",
+      "&7où tu peux faire part de ton skill",
+      "&7et gagner en un temps imparti."
+    ]
+  ],
+  "unknown": false
+}

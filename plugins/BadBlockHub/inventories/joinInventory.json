@@ -1,0 +1,120 @@
+{
+    "i18name": "hub.items.joinInventory.name",
+    "lines": 1,
+    "items": [
+        {
+            "place": 0,
+			"i18name": "hub.items.joinInventory.item_0.name",
+			"i18lore": "hub.items.joinInventory.item_0.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1"
+				}
+			],
+            "type": "345",
+			"amount": 1
+        },
+        {
+            "place": 1,
+			"i18name": "hub.items.joinInventory.item_1.name",
+			"i18lore": "hub.items.joinInventory.item_1.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "store"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "store"
+				}
+			],
+            "type": "266",
+			"amount": 1
+        },
+        {
+            "place": 2,
+			"i18name": "hub.items.joinInventory.item_2.name",
+			"i18lore": "hub.items.joinInventory.item_2.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "host"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "host"
+				}
+			],
+            "type": "399",
+			"amount": 1
+        },
+        {
+            "place": 6,
+			"i18name": "hub.items.joinInventory.item_6.name",
+			"i18lore": "hub.items.joinInventory.item_6.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TOGGLE_PLAYERS",
+					"actionData" : "_"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TOGGLE_PLAYERS",
+					"actionData" : "_"
+				}
+			],
+            "type": "351:10",
+			"amount": 1
+        },
+        {
+            "place": 7,
+			"i18name": "hub.items.joinInventory.item_7.name",
+			"i18lore": "hub.items.joinInventory.item_7.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "cosmetique_1"
+				}
+			],
+            "type": "369",
+			"amount": 1
+        },
+        {
+            "place": 8,
+			"i18name": "hub.items.joinInventory.item_8.name",
+			"i18lore": "hub.items.joinInventory.item_8.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1"
+				}
+			],
+            "type": "356",
+			"amount": 1
+        }
+    ]
+}

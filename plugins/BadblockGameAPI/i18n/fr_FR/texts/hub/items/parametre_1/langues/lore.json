@@ -1,0 +1,22 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Changez votre langue",
+      "&7de jeu sur le serveur.",
+      "",
+      "&7Langue actuelle : &b{Language}",
+      "",
+      "&f----------------",
+      "",
+      "&7Change your game language",
+      "&7on the server.",
+      "",
+      "&7Current language: &b{Language}"
+    ]
+  ],
+  "unknown": false
+}

@@ -1,0 +1,20 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Joue avec les sons de Minecraft",
+      "&7et termine sur le bloc d'Or",
+      "&7à chaque fois que la mélodie",
+      "&7s'arrête le plus rapidement possible.",
+      "",
+      "&cIl est conseillé d'activer les sons",
+      "&cde Minecraft pour jouer à ce jeu.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

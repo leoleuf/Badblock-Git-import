@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Viens te stuff dans un monde libre",
+      "&7avec une phase de préparation et",
+      "&7une phase de PvP.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

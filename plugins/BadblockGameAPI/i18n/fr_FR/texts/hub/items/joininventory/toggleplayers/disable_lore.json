@@ -1,0 +1,15 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour &cmasquer les joueurs",
+      "",
+      "&7Pratique pour éviter les lags ou les",
+      "&7freezes pour les petits ordinateurs."
+    ]
+  ],
+  "unknown": false
+}

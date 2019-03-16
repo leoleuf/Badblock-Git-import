@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Modifiez les paramètres de votre",
+      "&7compte et vos préférences."
+    ]
+  ],
+  "unknown": false
+}

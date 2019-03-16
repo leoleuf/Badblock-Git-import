@@ -1,0 +1,706 @@
+{
+	"i18name": "hub.items.parametre_1_langues.name",
+	"lines": 6,
+	"items": [
+		{
+			"place": 0,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 1,
+			"i18name": "hub.items.parametre_1.stats.name",
+			"i18lore": "hub.items.parametre_1.stats.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1"
+				}
+			],
+			"type": "386:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 2,
+			"i18name": "hub.items.parametre_1.parametre_hub.name",
+			"i18lore": "hub.items.parametre_1.parametre_hub.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_hub"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_hub"
+				}
+			],
+			"type": "76:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 3,
+			"i18name": "hub.items.parametre_1.parametre_server.name",
+			"i18lore": "hub.items.parametre_1.parametre_server.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_server"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_server"
+				}
+			],
+			"type": "340:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 4,
+			"i18name": "hub.items.parametre_1.langues.name",
+			"i18lore": "hub.items.parametre_1.langues.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_langues"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "parametre_1_langues"
+				}
+			],
+			"type": "425:4",
+			"amount": 1,
+			"fakeEnchant": false
+		},	
+		{
+			"place": 8,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 9,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 10,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 11,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 12,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 13,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:14",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 14,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 15,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 16,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 17,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 18,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 19,
+			"i18name": "hub.items.parametre_1_langues.french.name",
+			"i18lore": "hub.items.parametre_1_langues.french.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "425:4",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 20,
+			"i18name": "hub.items.parametre_1_langues.paper_french.name",
+			"i18lore": "hub.items.parametre_1_langues.paper_french.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "339:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 21,
+			"i18name": "hub.items.parametre_1_langues.french.french_on.name",
+			"i18lore": "hub.items.parametre_1_langues.french.french_on.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:5",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 22,
+			"i18name": "hub.items.parametre_1_langues.french.french_off.name",
+			"i18lore": "hub.items.parametre_1_langues.french.french_off.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:14",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 26,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 27,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 28,
+			"i18name": "hub.items.parametre_1_langues.english.name",
+			"i18lore": "hub.items.parametre_1_langues.english.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "425:1",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 29,
+			"i18name": "hub.items.parametre_1_langues.paper_english.name",
+			"i18lore": "hub.items.parametre_1_langues.paper_english.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "339:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 30,
+			"i18name": "hub.items.parametre_1_langues.english.english_on.name",
+			"i18lore": "hub.items.parametre_1_langues.english.english_on.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:5",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 31,
+			"i18name": "hub.items.parametre_1_langues.english.english_off.name",
+			"i18lore": "hub.items.parametre_1_langues.english.english_off.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:14",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 35,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 36,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 37,
+			"i18name": "hub.items.parametre_1_langues.spanish.name",
+			"i18lore": "hub.items.parametre_1_langues.spanish.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "425:11",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 38,
+			"i18name": "hub.items.parametre_1_langues.paper_spanish.name",
+			"i18lore": "hub.items.parametre_1_langues.paper_spanish.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "339:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 39,
+			"i18name": "hub.items.parametre_1_langues.spanish.spanish_on.name",
+			"i18lore": "hub.items.parametre_1_langues.spanish.spanish_on.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:5",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 40,
+			"i18name": "hub.items.parametre_1_langues.spanish.spanish_off.name",
+			"i18lore": "hub.items.parametre_1_langues.spanish.spanish_off.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "159:14",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 44,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 45,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 53,
+			"i18name": "hub.items.common.return.name",
+			"i18lore": "hub.items.common.return.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				}
+			],
+			"type": "166",
+			"amount": 1,
+			"fakeEnchant": false
+		}
+	]
+}

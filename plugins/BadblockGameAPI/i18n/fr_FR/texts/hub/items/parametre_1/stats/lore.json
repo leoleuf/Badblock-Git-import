@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+	  "&7Regardez vos statistiques",
+	  "&7en mini-jeux"
+    ]
+  ],
+  "unknown": false
+}

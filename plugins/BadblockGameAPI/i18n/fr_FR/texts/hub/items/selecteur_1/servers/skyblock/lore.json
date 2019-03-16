@@ -1,0 +1,17 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Fabrique ton île et remplis des",
+      "&7challenges et des quêtes.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅",
+      "",
+      "&7{Game_OnlinePlayers} joueurs en jeu"
+    ]
+  ],
+  "unknown": false
+}

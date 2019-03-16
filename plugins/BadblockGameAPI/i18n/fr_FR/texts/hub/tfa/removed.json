@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVotre double authentification est désormais désactivée. Votre compte est moins protégé."
+    ]
+  ],
+  "unknown": false
+}

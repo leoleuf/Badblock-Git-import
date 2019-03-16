@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "§chub.mount.cantbeusedhere"
+    ]
+  ],
+  "unknown": true
+}

@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cImpossible de désactiver votre double authentification étant donné qu'elle n'est pas activée."
+    ]
+  ],
+  "unknown": false
+}

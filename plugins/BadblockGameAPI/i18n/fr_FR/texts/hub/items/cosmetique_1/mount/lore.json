@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Montez sur un animal",
+      "&7ou un mob et vagabondez !"
+    ]
+  ],
+  "unknown": true
+}

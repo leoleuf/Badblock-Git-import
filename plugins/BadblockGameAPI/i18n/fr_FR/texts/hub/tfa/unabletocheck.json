@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cLe code temporaire est invalide. Vérifiez que vous entrez bien le code temporaire reçu après avoir entré la clé secrète dans votre application de double authentification."
+    ]
+  ],
+  "unknown": false
+}

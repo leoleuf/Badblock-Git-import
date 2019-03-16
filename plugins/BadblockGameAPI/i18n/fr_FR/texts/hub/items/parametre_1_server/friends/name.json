@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&eAutoriser/Interdire les demandes d'amis"
+    ]
+  ],
+  "unknown": false
+}

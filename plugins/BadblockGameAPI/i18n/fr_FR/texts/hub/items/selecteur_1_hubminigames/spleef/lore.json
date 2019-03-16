@@ -1,0 +1,17 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Casse la neige en dessous des",
+      "&7autres joueurs pour essayer de",
+      "&7les faire tomber au niveau plus bas",
+      "&7jusqu'à se faire éliminer dans l'eau.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

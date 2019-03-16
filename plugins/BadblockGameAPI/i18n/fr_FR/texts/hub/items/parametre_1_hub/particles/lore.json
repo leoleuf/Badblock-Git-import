@@ -1,0 +1,19 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour afficher ou cacher",
+      "&7les particules au hub.",
+      "",
+      "&7Cela permet d'éviter les lags.",
+      "&7Attention : Réactivez les pour",
+      "&7pouvoir utiliser des effets.",
+      "",
+      "&eStatut : {hide_particles}"
+    ]
+  ],
+  "unknown": false
+}

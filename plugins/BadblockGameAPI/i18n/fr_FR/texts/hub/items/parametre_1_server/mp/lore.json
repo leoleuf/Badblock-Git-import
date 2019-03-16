@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour autoriser ou",
+      "&7interdire les nouveaux",
+      "&7messages privés."
+    ]
+  ],
+  "unknown": false
+}

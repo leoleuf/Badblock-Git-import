@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &aVotre compte est désormais en mode &ecracké&a. Vous devrez taper un mot de passe lors de votre prochaine connexion."
+    ]
+  ],
+  "unknown": false
+}

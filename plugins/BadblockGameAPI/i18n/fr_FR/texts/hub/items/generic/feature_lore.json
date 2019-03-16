@@ -1,0 +1,15 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "%2",
+      "",
+      "%1",
+      "%3"
+    ]
+  ],
+  "unknown": false
+}

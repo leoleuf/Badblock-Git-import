@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&fAccessible à partir du niveau &e%0"
+    ]
+  ],
+  "unknown": false
+}

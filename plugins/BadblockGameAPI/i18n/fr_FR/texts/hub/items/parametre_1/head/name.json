@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&7{PlayerName}"
+    ]
+  ],
+  "unknown": false
+}

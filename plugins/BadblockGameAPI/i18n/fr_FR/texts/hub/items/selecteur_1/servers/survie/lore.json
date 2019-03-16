@@ -1,0 +1,17 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Survie dans un monde avec la",
+      "&7possibilité de claim des chunks.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅",
+      "",
+      "&7{Game_OnlinePlayers} joueurs en jeu"
+    ]
+  ],
+  "unknown": false
+}

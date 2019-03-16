@@ -1,0 +1,18 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Créée ta faction et domine le serveur",
+      "&7sans plus attendre, seul ou à plusieurs.",
+      "&7Presque tous les coups sont permis.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅",
+      "",
+      "&7{Game_OnlinePlayers} joueurs en jeu"
+    ]
+  ],
+  "unknown": false
+}

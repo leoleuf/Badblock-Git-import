@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Accédez à la boutique pour",
+      "&7acheter de nouveaux grades,",
+      "&7des kits, objets et bien plus encore.."
+    ]
+  ],
+  "unknown": false
+}

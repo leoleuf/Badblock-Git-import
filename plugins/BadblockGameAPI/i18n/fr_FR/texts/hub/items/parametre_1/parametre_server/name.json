@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cParamètres sur le serveur"
+    ]
+  ],
+  "unknown": false
+}

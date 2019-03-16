@@ -1,0 +1,12 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVous devez posséder &e%1 niveaux &cpour obtenir le cosmétique %0&c. Vous ne possédez que &e%2 niveaux &cpour le moment.",
+      "&cContinuez de jouer pour pouvoir vous permettre de l'obtenir !"
+    ]
+  ],
+  "unknown": false
+}

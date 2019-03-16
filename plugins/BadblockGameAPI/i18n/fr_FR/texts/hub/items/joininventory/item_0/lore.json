@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Jouez ou changez de hub",
+      "&7depuis cet inventaire."
+    ]
+  ],
+  "unknown": false
+}

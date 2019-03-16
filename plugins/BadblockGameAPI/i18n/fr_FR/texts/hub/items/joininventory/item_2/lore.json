@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour gérer vos parties",
+      "&7personnalisées, appelées &ohost&7."
+    ]
+  ],
+  "unknown": false
+}

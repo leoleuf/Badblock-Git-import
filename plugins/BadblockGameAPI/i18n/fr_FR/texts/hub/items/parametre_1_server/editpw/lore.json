@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour modifier votre",
+      "&7mot de passe en jeu."
+    ]
+  ],
+  "unknown": false
+}

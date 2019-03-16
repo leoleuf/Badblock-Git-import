@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&6&lStatistiques &f& &c&lParamètres &f(clic droit)"
+    ]
+  ],
+  "unknown": false
+}

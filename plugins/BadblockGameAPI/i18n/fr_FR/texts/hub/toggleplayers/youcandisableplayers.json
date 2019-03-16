@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      " &7Vous avez des lags ? Masquez les joueurs au hub avec la poudre verte."
+    ]
+  ],
+  "unknown": false
+}

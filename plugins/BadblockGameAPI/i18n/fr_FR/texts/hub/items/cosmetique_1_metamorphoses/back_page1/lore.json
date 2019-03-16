@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Accédez à la page précedente",
+      "&7pour afficher les premières métamorphoses"
+    ]
+  ],
+  "unknown": false
+}

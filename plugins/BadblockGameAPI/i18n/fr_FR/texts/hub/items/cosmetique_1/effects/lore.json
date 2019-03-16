@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Activez un effet autour de vous",
+      "&7et démontrez votre puissance."
+    ]
+  ],
+  "unknown": false
+}

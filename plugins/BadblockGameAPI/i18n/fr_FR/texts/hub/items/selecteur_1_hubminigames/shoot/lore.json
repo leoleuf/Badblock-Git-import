@@ -1,0 +1,17 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Essaye de toucher le plus de blocs",
+      "&7possibles le plus vite possible.",
+      "",
+      "&eBon pour l'entraînement à l'arc.",
+      "",
+      "&d➡ Jouer à ce jeu ⬅"
+    ]
+  ],
+  "unknown": false
+}

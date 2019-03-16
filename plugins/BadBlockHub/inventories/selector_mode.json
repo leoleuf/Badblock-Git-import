@@ -1,0 +1,46 @@
+{
+	"i18name": "hub.items.selector_mode.name",
+	"lines": 6,
+	"items": [
+		{
+			"place": 29,
+			"i18name": "hub.items.selector_mode.crack",
+			"i18lore": "hub.items.selector_mode.crack_lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "MODE_CRACK",
+					"actionData" : "_"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "MODE_CRACK",
+					"actionData" : "_"
+				}
+			],
+			"type": "42",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 33,
+			"i18name": "hub.items.selector_mode.premium",
+			"i18lore": "hub.items.selector_mode.premium_lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "MODE_PREMIUM",
+					"actionData" : "_"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "MODE_PREMIUM",
+					"actionData" : "_"
+				}
+			],
+			"type": "41",
+			"amount": 1,
+			"fakeEnchant": false
+		}
+	]
+}

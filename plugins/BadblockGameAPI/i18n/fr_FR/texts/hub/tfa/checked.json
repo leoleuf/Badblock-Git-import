@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&cVotre clé de double authentification a été vérifiée. Votre compte est maintenant validé et protégé !"
+    ]
+  ],
+  "unknown": false
+}

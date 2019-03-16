@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&d>> Clic gauche pour l'utiliser <<"
+    ]
+  ],
+  "unknown": false
+}

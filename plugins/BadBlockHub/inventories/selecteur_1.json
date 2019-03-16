@@ -1,0 +1,726 @@
+{
+	"i18name": "hub.items.selecteur_1.name",
+	"lines": 6,
+	"items": [
+		{
+			"place": 0,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 1,
+			"i18name": "hub.items.selecteur_1.head.name",
+			"i18lore": "hub.items.selecteur_1.head.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "386:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 2,
+			"i18name": "hub.items.selecteur_1.game.name",
+			"i18lore": "hub.items.selecteur_1.game.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1"
+				}
+			],
+			"type": "401:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 3,
+			"i18name": "hub.items.selecteur_1.hubminigames.name",
+			"i18lore": "hub.items.selecteur_1.hubminigames.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_hubminigames"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_hubminigames"
+				}
+			],
+			"type": "2:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 4,
+			"i18name": "hub.items.selecteur_1.host.name",
+			"i18lore": "hub.items.selecteur_1.host.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_host"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_host"
+				}
+			],
+			"type": "276:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 5,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:8",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 6,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:8",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 7,
+			"i18name": "hub.items.selecteur_1.hub.name",
+			"i18lore": "hub.items.selecteur_1.hub.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_hub"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "OPEN_INV",
+					"actionData" : "selecteur_1_hub"
+				}
+			],
+			"type": "58:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 8,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 9,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 10,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 11,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:14",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 12,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 13,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 14,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 15,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 16,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:7",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 17,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 18,
+			"i18name": "hub.items.common.vitre_minigames.name",
+			"i18lore": "hub.items.common.vitre_minigames.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:5",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 19,
+			"i18name": "hub.items.selecteur_1.servers.tower.name",
+			"i18lore": "hub.items.selecteur_1.servers.tower.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbytower_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbytower_1"
+				}
+			],
+			"type": "267",
+			"amount": 1,
+			"fakeEnchant": true
+		},
+		{
+			"place": 20,
+			"i18name": "hub.items.selecteur_1.servers.towerrun.name",
+			"i18lore": "hub.items.selecteur_1.servers.towerrun.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbytower_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbytower_1"
+				}
+			],
+			"type": "113",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 21,
+			"i18name": "hub.items.selecteur_1.servers.rush.name",
+			"i18lore": "hub.items.selecteur_1.servers.rush.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyrush_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyrush_1"
+				}
+			],
+			"type": "355",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 22,
+			"i18name": "hub.items.selecteur_1.servers.uhcspeed.name",
+			"i18lore": "hub.items.selecteur_1.servers.uhcspeed.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyuhc_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyuhc_1"
+				}
+			],
+			"type": "322",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 23,
+			"i18name": "hub.items.selecteur_1.servers.uhcmeetup.name",
+			"i18lore": "hub.items.selecteur_1.servers.uhcmeetup.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyuhc_1"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "lobbyuhc_1"
+				}
+			],
+			"type": "327",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 26,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 27,
+			"i18name": "hub.items.common.vitre_pvpgames.name",
+			"i18lore": "hub.items.common.vitre_pvpgames.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:4",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 28,
+			"i18name": "hub.items.selecteur_1.servers.pvpfaction.name",
+			"i18lore": "hub.items.selecteur_1.servers.pvpfaction.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "faction"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "faction"
+				}
+			],
+			"type": "276",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 29,
+			"i18name": "hub.items.selecteur_1.servers.pvpbox.name",
+			"i18lore": "hub.items.selecteur_1.servers.pvpbox.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "pvpbox"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "pvpbox"
+				}
+			],
+			"type": "311",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 35,
+			"i18name": "hub.items.selecteur_1.spawn.name",
+			"i18lore": "hub.items.selecteur_1.spawn.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "spawn"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "spawn"
+				}
+			],
+			"type": "381:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 36,
+			"i18name": "hub.items.common.vitre_openworld.name",
+			"i18lore": "hub.items.common.vitre_openworld.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:1",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 37,
+			"i18name": "hub.items.selecteur_1.servers.skyblock.name",
+			"i18lore": "hub.items.selecteur_1.servers.skyblock.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "skyb2"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "skyb2"
+				}
+			],
+			"type": "2",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 38,
+			"i18name": "hub.items.selecteur_1.servers.survie.name",
+			"i18lore": "hub.items.selecteur_1.servers.survie.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "survie"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "survie"
+				}
+			],
+			"type": "5",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 39,
+			"i18name": "hub.items.selecteur_1.servers.freebuild.name",
+			"i18lore": "hub.items.selecteur_1.servers.freebuild.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "fb"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "fb"
+				}
+			],
+			"type": "45",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 44,
+			"i18name": "hub.items.selecteur_1.vip_zone.name",
+			"i18lore": "hub.items.selecteur_1.vip_zone.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "vip"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "vip"
+				}
+			],
+			"type": "264:0",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 45,
+			"i18name": "hub.items.common.vitre.name",
+			"i18lore": "hub.items.common.vitre.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1,
+			"fakeEnchant": false
+		},
+		{
+			"place": 53,
+			"i18name": "hub.items.common.return.name",
+			"i18lore": "hub.items.common.return.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				}
+			],
+			"type": "166",
+			"amount": 1,
+			"fakeEnchant": false
+		}
+	]
+}

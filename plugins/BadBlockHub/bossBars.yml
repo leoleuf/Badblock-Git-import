@@ -1,0 +1,8 @@
+'1':
+  message: 'hub.players.bossbars.1'
+  time: 100
+  color: GREEN
+'2':
+  message: 'hub.players.bossbars.2'
+  time: 100
+  color: BLUE

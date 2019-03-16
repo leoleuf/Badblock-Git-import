@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+	  "&eStatistiques depuis le début",
+	  "&7Parties gagnées : &f{stat}",
+	  "&7Tués : &f{stat}",
+	  "&7Morts : &f{stat}",
+	  "&7Parties perdues : &f{stat}"
+    ]
+  ],
+  "unknown": false
+}

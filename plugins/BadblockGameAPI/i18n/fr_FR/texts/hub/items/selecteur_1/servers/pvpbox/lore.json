@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Joue en PvP contre tes adversaires",
+      "&7avec des kits. Fais des duels et monte",
+      "&7tes statistiques pour montrer ton skill.",
+      "",
+      "&cPvPBox de retour bientôt."
+    ]
+  ],
+  "unknown": false
+}

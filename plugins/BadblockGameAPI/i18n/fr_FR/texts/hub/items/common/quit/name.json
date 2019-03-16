@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "§chub.items.common.quit.name"
+    ]
+  ],
+  "unknown": true
+}

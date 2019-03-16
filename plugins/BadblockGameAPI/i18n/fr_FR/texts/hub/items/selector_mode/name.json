@@ -1,0 +1,11 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "&6Sélectionnez un mode de connexion"
+    ]
+  ],
+  "unknown": false
+}

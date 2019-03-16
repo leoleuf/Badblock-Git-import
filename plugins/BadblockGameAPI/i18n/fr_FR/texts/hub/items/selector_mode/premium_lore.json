@@ -1,0 +1,14 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour sélectionner",
+      "&7le mode &aPremium &7si vous",
+      "&7n'avez pas acheté le jeu Minecraft."
+    ]
+  ],
+  "unknown": false
+}

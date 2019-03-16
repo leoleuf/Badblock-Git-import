@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Accédez à la page suivante",
+      "&7pour afficher les derniers effets"
+    ]
+  ],
+  "unknown": false
+}

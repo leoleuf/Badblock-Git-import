@@ -1,0 +1,928 @@
+{
+	"i18name": "hub.items.selecteur_old.name",
+	"lines": 6,
+	"items": [
+		{
+			"place": 0,
+			"i18name": "hub.items.selecteur_1.item_0.name",
+			"i18lore": "hub.items.selecteur_1.item_0.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "/spawn"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "EXECUTE_COMMAND",
+					"actionData" : "/spawn"
+				}
+			],
+			"type": "381",
+			"amount": 1
+		},
+		{
+			"place": 1,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 2,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 3,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 4,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "101",
+			"amount": 1
+		},
+		{
+			"place": 5,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 6,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 7,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 8,
+			"i18name": "hub.items.selecteur_1.item_8.name",
+			"i18lore": "hub.items.selecteur_1.item_8.lore",
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "vip"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_LOC",
+					"actionData" : "vip"
+				}
+			],
+			"type": "264",
+			"amount": 1
+		},
+		{
+			"place": 9,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 10,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 11,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 12,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 13,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 14,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 15,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 16,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 17,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 18,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 19,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 20,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 21,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 22,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "buildcontest16"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "buildcontest16"
+				}
+			],
+			"type": "35:0",
+			"amount": 1
+		},
+		{
+			"place": 23,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 24,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 25,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 26,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 27,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 28,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "tower"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "tower"
+				}
+			],
+			"type": "113",
+			"amount": 1
+		},
+		{
+			"place": 29,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "rush"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "rush"
+				}
+			],
+			"type": "355",
+			"amount": 1
+		},
+		{
+			"place": 30,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "speeduhct"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "speeduhct"
+				}
+			],
+			"type": "322:0",
+			"amount": 1
+		},
+		{
+			"place": 31,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "cts"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "cts"
+				}
+			],
+			"type": "359",
+			"amount": 1
+		},
+		{
+			"place": 32,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "sg24"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "sg24"
+				}
+			],
+			"type": "267",
+			"amount": 1
+		},
+		{
+			"place": 33,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "sb4v4"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "sb4v4"
+				}
+			],
+			"type": "153",
+			"amount": 1
+		},
+		{
+			"place": 34,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "pw16"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "WAITING_LINE",
+					"actionData" : "pw16"
+				}
+			],
+			"type": "368",
+			"amount": 1
+		},
+		{
+			"place": 35,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 36,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 37,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 38,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "faction"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "faction"
+				}
+			],
+			"type": "276",
+			"amount": 1
+		},
+		{
+			"place": 39,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "box"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "box"
+				}
+			],
+			"type": "311",
+			"amount": 1
+		},
+		{
+			"place": 40,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "skyb"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "skyb"
+				}
+			],
+			"type": "2:0",
+			"amount": 1
+		},
+		{
+			"place": 41,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "fb"
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "TELEPORT_SERVER",
+					"actionData" : "fb"
+				}
+			],
+			"type": "45",
+			"amount": 1
+		},
+		{
+			"place": 42,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "397:2",
+			"amount": 1
+		},
+		{
+			"place": 43,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 44,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 45,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "58",
+			"amount": 1
+		},
+		{
+			"place": 46,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 47,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 48,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 49,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 50,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 51,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:3",
+			"amount": 1
+		},
+		{
+			"place": 52,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "NOTHING",
+					"actionData" : ""
+				}
+			],
+			"type": "160:11",
+			"amount": 1
+		},
+		{
+			"place": 53,
+			"actions": [
+				{
+					"actionType" : "RIGHT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				},
+				{
+					"actionType" : "LEFT_CLICK",
+					"action" : "CLOSE_INV",
+					"actionData" : ""
+				}
+			],
+			"type": "166",
+			"amount": 1
+		}
+	]
+}

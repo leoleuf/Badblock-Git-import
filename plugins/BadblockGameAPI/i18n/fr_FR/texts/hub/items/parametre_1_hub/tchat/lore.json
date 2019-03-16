@@ -1,0 +1,16 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Cliquez ici pour ne plus recevoir",
+      "&7ou recevoir à nouveau les messages",
+      "&7envoyés sur le hub.",
+      "",
+      "&eStatut : {hide_hubchat}"
+    ]
+  ],
+  "unknown": false
+}

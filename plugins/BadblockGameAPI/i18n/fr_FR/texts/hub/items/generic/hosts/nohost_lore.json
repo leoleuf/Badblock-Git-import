@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Il n'y a aucune partie personnalisée",
+      "&7en cours sur le serveur pour le moment."
+    ]
+  ],
+  "unknown": false
+}

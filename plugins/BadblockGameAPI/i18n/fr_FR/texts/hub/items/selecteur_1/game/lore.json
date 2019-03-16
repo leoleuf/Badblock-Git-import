@@ -1,0 +1,13 @@
+{
+  "useHeader": false,
+  "useShortHeader": false,
+  "useFooter": false,
+  "messages": [
+    [
+      "",
+      "&7Liste des jeux du serveur",
+      "&7accessibles à tous."
+    ]
+  ],
+  "unknown": false
+}
