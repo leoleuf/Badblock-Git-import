@@ -82,9 +82,15 @@ if ($date != $creationDate)
 <!-- End Login /Register Form-->
 <!-- jQuery -->
 <!-- End footer Area -->
-<script src="/dist/js/plugins.min.js"></script>
-<script src="/dist/js/common.js"></script>
-
+<script async src="/dist/js/plugins.min.js"></script>
+<script async src="/dist/js/common.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1905923613312160",
+        enable_page_level_ads: true
+    });
+</script>
 <script>
     /* <![CDATA[ */
     var superpwa_sw = {"url":"\/js/superpwa-sw.js"};
