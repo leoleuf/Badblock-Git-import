@@ -158,7 +158,7 @@
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
                         @if (isset($votelistok) && $votelistok)
                             <div class="alert alert-success">
-                                <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
+                                &nbsp;<strong>Merci !</strong> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
                                 Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
                             </div>
                         @endif
