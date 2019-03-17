@@ -34,8 +34,6 @@ class ProductController extends \App\Http\Controllers\Controller {
 
         foreach ($Categories as $cat) {
 
-            $cat->name = str_replace(' ', "_", $cat->name);
-
             $ProductsInCatCounter[$this->unknowCategorieName] = 0;
             $ProductsInCat[$this->unknowCategorieName] = array();
 
@@ -59,13 +57,11 @@ class ProductController extends \App\Http\Controllers\Controller {
                 $row->cat = $this->unknowCategorieName;
             }
 
-            $row->cat = str_replace(" ", "_", $row->cat);
-
             $ProductsInCat[$row->cat][$ProductsInCatCounter[$row->cat]] = $row;
             $ProductsInCatCounter[$row->cat]++;
         }
 
-        return view('website.product.product', compact('Product', 'ProductsInCat', "Categories"));
+        return view('website.product.product', compact('ProductsInCat', "Categories"));
     }
 
     public function displayProduct(){

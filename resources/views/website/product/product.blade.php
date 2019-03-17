@@ -26,14 +26,14 @@
                     <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
                     <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
                         @foreach($Categories as $row)
-                            <option value="{{ $row->name }}">{{ str_replace("_", " ", $row->name) }}</option>
+                            <option value="{{ str_replace(" ", "_", $row->name) }}">{{ $row->name }}</option>
                             @endforeach
                     </select>
                     <br />
 
 
                     @foreach($Categories as $cat)
-                    <div id="cat_{{ $cat->name }}" class="" style="display: none;">
+                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: none;">
                         <table class="table table-striped" id="datatable-editable">
                             <thead>
                             <tr>
@@ -108,7 +108,7 @@
 
             var categories = [
                 @foreach($Categories as $cat)
-                '{{ $cat->name }}',
+                '{{ str_replace(" ", "_", $cat->name) }}',
                 @endforeach
             ];
 
