@@ -95,14 +95,14 @@
                                     @if (isset($catName) && $catName != "clash-of-clans")
                                         @if (isset($tag))
                                             <h1 class="text-white font-weight-bold lis-line-height-1">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
-                                            <p class="mb-0">Liste de {{ $about->serveurCount }} serveurs de jeu</p>
+                                            <h2 class="mb-0 text-white titre">Liste de {{ $about->serveurCount }} serveurs de jeu</h2>
                                         @else
                                             <h1 class="text-white font-weight-bold lis-line-height-1">Serveur {{ seocat($catName) }}</h1>
-                                            <p class="mb-0">Liste de {{ $about->serveurCount }} serveurs de jeu</p>
+                                            <h2 class="mb-0 text-white titre">Liste de {{ $about->serveurCount }} serveurs de jeu</h2>
                                         @endif
                                     @else
                                         <h1 class="text-white">Télécharger Clash Of Clans iOs Android</h1>
-                                        <p class="mb-0">Installer sur PC et jouer aux serveurs</p>
+                                        <h2 class="mb-0 text-white titre">Installer sur PC et jouer aux serveurs</h2>
                                     @endif
                                 </div>
                             </div>

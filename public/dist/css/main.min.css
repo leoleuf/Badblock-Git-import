@@ -557,6 +557,11 @@ button {
   cursor: pointer;
 }
 
+.titre
+{
+  font-size: 15px;
+}
+
 .header .navbar-toggler-icon {
   background-color: #fff !important;
   background-image: none; }
