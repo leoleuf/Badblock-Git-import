@@ -156,6 +156,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
+                        @if (isset($votelistok) && $votelistok)
+                            <div class="alert alert-success">
+                                <span class="lnr lnr-checkmark-circle"></span> &nbsp;<span>Merci !</span> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
+                                Vous pouvez continuer de consulter le classement {{ seocat($catName) }}.
+                            </div>
+                        @endif
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                                 <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le classement {{ seocat($catName) }}</h6>

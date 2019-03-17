@@ -106,7 +106,7 @@
                     @if (isset($vote))
                         @if ($data->noredirect == 1)
                                 <div class="alert alert-success">
-                                    <span>Merci !</span> <i class="fa fa-check-circle-o pr-1"></i> Votre vote a bien été pris en compte. Merci de votre soutien.
+                                    <span>Merci !</span> &nbsp; <i class="fa fa-check-circle-o pr-1"></i> Votre vote a bien été pris en compte. Merci de votre soutien.
                                 </div>
                         @else
                                 <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
