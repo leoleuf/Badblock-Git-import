@@ -225,7 +225,7 @@
                                         <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
-                                        
+
                                     <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
                                             data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                             data-callback="onSubmit" style="height: 50px;" disabled>

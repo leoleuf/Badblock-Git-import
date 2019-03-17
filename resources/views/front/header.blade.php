@@ -84,6 +84,8 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <!--main Css-->
     <link href="/dist/css/main.min.css" rel="stylesheet">
 
+    <script charset="UTF-8" src="//cdn.sendpulse.com/js/push/c350c0e7a65e7c7120017cee8cdc37a9_1.js" async></script>
+
 </head>
 <body>
 
