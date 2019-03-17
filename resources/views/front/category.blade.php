@@ -204,7 +204,7 @@
                                              data-full-width-responsive="true"></ins>
                                         <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                        </script><br />
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
                                         <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
@@ -218,7 +218,7 @@
                                              data-full-width-responsive="true"></ins>
                                         <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                        </script><br />
                                     @endif
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
