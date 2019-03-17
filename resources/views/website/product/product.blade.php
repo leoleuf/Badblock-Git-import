@@ -23,7 +23,17 @@
                         </div>
                     </div>
 
-                    <div class="">
+                    <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
+                    <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
+                        @foreach($Categories as $row)
+                            <option value="{{ $row->name }}">{{ $row->name }}</option>
+                            @endforeach
+                    </select>
+                    <br />
+
+
+                    @foreach($Categories as $cat)
+                    <div id="cat_{{ $cat->name }}" class="" style="display: none;">
                         <table class="table table-striped" id="datatable-editable">
                             <thead>
                             <tr>
@@ -37,7 +47,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                               @foreach($Product as $key => $value)
+                               @foreach($ProductsInCat[$cat->name] as $key => $value)
                                    <tr>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->price }}</td>
@@ -79,6 +89,8 @@
                             </tbody>
                         </table>
                     </div>
+                        @endforeach
+
                 </div>
             </div>
         </div>
@@ -87,3 +99,16 @@
     </div>
     </div>
 @endsection
+
+@section('after_scripts')
+
+    <script>
+
+        function displayProductCat() {
+            console.log("#cat_"+$("#catToDisplay").val());
+            $("#cat_"+$("#catToDisplay").val()).css("display", "block");
+        }
+        
+    </script>
+
+    @endsection
