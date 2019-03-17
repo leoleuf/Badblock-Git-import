@@ -78,7 +78,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <meta name="theme-color" content="#2ecc71" />
     <meta name="google" content="notranslate">
 
-    <script src="/pagead/js/adsbygoogle.js"></script>
+    <script async defer src="/pagead/js/adsbygoogle.js"></script>
 
     <link href="/dist/css/plugins.min.css" rel="stylesheet">
     <!--main Css-->
