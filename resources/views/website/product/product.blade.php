@@ -26,7 +26,7 @@
                     <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
                     <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
                         @foreach($Categories as $row)
-                            <option value="{{ $row->name }}">{{ $row->name }}</option>
+                            <option value="{{ $row->name }}">{{ str_replace("_", " ", $row->name) }}</option>
                             @endforeach
                     </select>
                     <br />
@@ -51,7 +51,7 @@
                                    <tr>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->price }}</td>
-                                        <td>{{ $value->cat }}</td>
+                                        <td>{{ str_replace("_", " ", $value->cat) }}</td>
                                        <td>
                                            @if($value->depend)
                                                <span class="label label-success">Activé</span>
@@ -105,7 +105,17 @@
     <script>
 
         function displayProductCat() {
-            console.log("#cat_"+$("#catToDisplay").val());
+
+            var categories = [
+                @foreach($Categories as $cat)
+                '{{ $cat->name }}',
+                @endforeach
+            ];
+
+            for(var i = 0; i < categories.length; i++){
+                $("#cat_"+categories[i]).css("display", "none");
+            }
+
             $("#cat_"+$("#catToDisplay").val()).css("display", "block");
         }
         
