@@ -97,6 +97,33 @@
         <section class="lis-bg-light pt-5">
             <div class="container">
                 <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <div class="card lis-brd-light mb-4 wow fadeInUp">
+                            <div class="card-body p-4">
+                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- serveur-multigames -->
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:300px;height:600px;margin-left:20%;"
+                                     data-ad-client="ca-pub-1905923613312160"
+                                     data-ad-slot="2719469514"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp">
+                            <div class="card-body p-4">
+                                Plus de {{ $data->clicks }} personnes ont découvert le serveur {{ seocat($catName) }} {{ $data->name }} ce mois-ci et {{ $data->votes }} votes ont été effectués sur ce serveur {{ seocat($catName) }}.
+                            </div>
+                        </div>
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos de ce Serveur MultiGames</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp">
+                            <div class="card-body p-4">
+                                Serveur MultiGames classe les meilleurs serveurs {{ seocat($catName) }} francophones, le serveur {{ seocat($catName) }} y est inscrit. Découvrez un large choix de serveurs ajoutés par les créateurs. Postez également votre expérience sur ce serveur, {{ $data->reviews }} avis sont actuellement publiés. Si {{ $data->name  }} est votre serveur et que vous ne l'avez pas ajouté, veuillez nous en informer.
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
                     @if(isset($erreur))
                             <div class="alert alert-danger">
@@ -236,33 +263,6 @@
                     </div>
                     </div>
 
-                <div class="col-12 col-lg-4">
-                    <div class="card lis-brd-light mb-4 wow fadeInUp">
-                        <div class="card-body p-4">
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveur-multigames -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:300px;height:600px"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="2719469514"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
-                    </div>
-                    <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
-                    <div class="card lis-brd-light mb-4 wow fadeInUp">
-                        <div class="card-body p-4">
-                            Plus de {{ $data->clicks }} personnes ont découvert le serveur {{ seocat($catName) }} {{ $data->name }} ce mois-ci et {{ $data->votes }} votes ont été effectués sur ce serveur {{ seocat($catName) }}.
-                        </div>
-                    </div>
-                    <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos de ce Serveur MultiGames</h6>
-                    <div class="card lis-brd-light mb-4 wow fadeInUp">
-                        <div class="card-body p-4">
-                            Serveur MultiGames classe les meilleurs serveurs {{ seocat($catName) }} francophones, le serveur {{ seocat($catName) }} y est inscrit. Découvrez un large choix de serveurs ajoutés par les créateurs. Postez également votre expérience sur ce serveur, {{ $data->reviews }} avis sont actuellement publiés. Si {{ $data->name  }} est votre serveur et que vous ne l'avez pas ajouté, veuillez nous en informer.
-                        </div>
-                    </div>
-                </div>
             </div>
             </div>
         </div>
