@@ -91,7 +91,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
 <div id="header-fix" class="header fixed-top @if (isset($transperant)) transperant @endif">
     <nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light py-lg-0 py-4">
         <a title="Serveur MultiGames" class="navbar-brand mr-4 mr-md-5" href="/">
-            <img src="/img/logo.png" alt="">
+            <img src="/img/logo.png" alt="Logo Serveur MultiGames">
         </a>
         <div id="dl-menu" class="dl-menuwrapper d-block d-lg-none float-right">
             <button>Ouvrir le menu</button>

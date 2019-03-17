@@ -175,7 +175,7 @@
                                                 <div class="lis-search"> <i class="fa fa-pencil lis-primary lis-left-0 lis-top-10"></i> </div>
                                             </div>
                                         </div>
-                                    </div> <a href="#" class="btn btn-primary btn-default mt-3"> Envoyer</a>
+                                    </div> <input type="submit" name="submit" class="btn btn-primary btn-default mt-3" value="Envoyer" />
                                 @endif
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                                     <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                 @endif
                                             </ul>
-                                            <h6 class="mb-0"><a href="#" class="lis-dark">{{ $row->username }}</a></h6>
+                                            <h6 class="mb-0">{{ $row->username }}</h6>
                                             <p>{{ date_format(date_create($row->date), "d/m/Y H:i") }}</p>
                                             <p>{{ $row->comment }}</p>
                                         </div>
