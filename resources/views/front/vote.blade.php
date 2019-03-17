@@ -277,7 +277,7 @@
                 }
             }
         </script>
-        <script async defer>
+        <script data-pagespeed-no-defer>
             $(document).ready(function ()
             {
                 function flex()
