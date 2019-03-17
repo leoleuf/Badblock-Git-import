@@ -314,7 +314,6 @@
 
                 if (window.canRunAds === undefined)
                 {
-                    document.getElementById("vote_button").disabled = true;
                     document.getElementById("vote_button").display = "none";
                     $("#vote_button").hide();
                     $("#bma").show();
