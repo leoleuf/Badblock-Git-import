@@ -324,7 +324,7 @@
                 {
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flex, 800);
+                    setTimeout(flex, 5000);
                 }
             });
 
