@@ -98,8 +98,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-4">
-                        <div class="card lis-brd-light mb-4 wow fadeInUp">
-                            <div class="card-body p-4">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- serveur-multigames -->
                                 <ins class="adsbygoogle"
@@ -109,8 +107,6 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                            </div>
-                        </div>
                         <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
