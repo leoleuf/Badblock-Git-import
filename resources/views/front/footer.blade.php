@@ -82,7 +82,7 @@ if ($date != $creationDate)
 <!-- End Login /Register Form-->
 <!-- jQuery -->
 <!-- End footer Area -->
-<script src="/dist/js/plugins.min.js"></script>
+<script data-pagespeed-no-defer src="/dist/js/plugins.min.js"></script>
 <script src="/dist/js/common.js"></script>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
