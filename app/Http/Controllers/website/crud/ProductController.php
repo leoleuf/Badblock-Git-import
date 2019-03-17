@@ -17,7 +17,7 @@ class ProductController extends \App\Http\Controllers\Controller {
     //Test for git
 
 
-    private $unknowCategorieName = "Catégorie_Inconnue";
+    private $unknowCategorieName = "Catégorie_inconnue";
 
     /**
      * Display a listing of users
