@@ -204,10 +204,10 @@
                             @foreach($data as $row)
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
-                                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h6>
+                                        <h6 class="lis-font-weight-500 mb-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h6>
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
+                                        <h6 class="lis-font-weight-500 mb-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
                                     @endif
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
