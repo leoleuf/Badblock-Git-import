@@ -282,8 +282,21 @@
             {
                 function flex()
                 {
-                    $("#blox").append($("#ad2").html());
-                    setTimeout(flexar, 1500);
+                    if (window.canRunAds === undefined)
+                    {
+                        document.getElementById("vote_button").disabled = true;
+                        document.getElementById("vote_button").display = "none";
+                        $("#vote_button").hide();
+                        $("#bma").show();
+                        $("#bma").prop("display", "block");
+                    }
+                    else
+                    {
+                        $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
+                    }
+                   // $("#blox").append($("#ad2").html());
+                    //setTimeout(flexar, 1500);
                 }
 
                 function flexar()
@@ -311,7 +324,7 @@
                 {
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
-                    // setTimeout(flex, 800);
+                    setTimeout(flex, 800);
                 }
             });
 
