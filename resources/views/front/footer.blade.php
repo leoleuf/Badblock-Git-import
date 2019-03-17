@@ -97,5 +97,15 @@ if ($date != $creationDate)
     /* ]]> */
     if ('serviceWorker' in navigator) {window.addEventListener('load', function() {	navigator.serviceWorker.register(superpwa_sw.url) .then(function(registration) { /*console.log('Service worker ready');*/ registration.update(); }) .catch(function(error) { console.log('Registration failed with ' + error); }); });}
 </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-122426050-1');
+</script>
+
 </body>
 </html>
