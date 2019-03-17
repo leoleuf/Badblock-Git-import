@@ -89,7 +89,6 @@
             <div class="container">
                 <div class="row justify-content-center wow fadeInUp">
                     <div class="col-12 col-md-8 mb-4 mb-lg-0">
-                        <a href="#" class="text-white">
                             <div class="media d-block d-md-flex text-md-left text-center"> <img src="/img/{{ $catName }}/{{ $catName }}.png" class="img-fluid d-md-flex mr-4 border border-white lis-border-width-4 rounded mb-4 mb-md-0" alt="" />
                                 <div class="media-body align-self-center">
                                     @if (isset($catName) && $catName != "clash-of-clans")
@@ -106,7 +105,6 @@
                                     @endif
                                 </div>
                             </div>
-                        </a>
                     </div>
                     <div class="col-12 col-md-4 align-self-center">
                         <ul class="list-unstyled mb-0 lis-line-height-2 text-md-right text-center">
@@ -128,9 +126,9 @@
                     <div class="col-10 col-xl-9 order-xl-1 order-2 text-xl-right text-center">
                         <ul class="nav nav-pills flex-column flex-sm-row lis-font-poppins" id="myTab" role="tablist">
                             @if (isset($tag))
-                                <li class="nav-item ml-0"> <a class="nav-link lis-light py-4 lis-relative mr-3" href="/{{ $catName }}"> Tous</a> </li>
+                                <li class="nav-item ml-0"> <a title="Liste de serveur gratuit {{ $catName }}" class="nav-link lis-light py-4 lis-relative mr-3" href="/{{ $catName }}"> Tous</a> </li>
                             @else
-                                <li class="nav-item ml-0"> <a class="nav-link lis-light py-4 lis-relative mr-3 active" data-toggle="tab" href="#" role="tab" aria-expanded="true"> Tous</a> </li>
+                                <li class="nav-item ml-0"> <a title="Liste de serveur gratuit {{ $catName }}" class="nav-link lis-light py-4 lis-relative mr-3 active" data-toggle="tab" href="#" role="tab" aria-expanded="true"> Tous</a> </li>
                             @endif
 
                             @php($bro = 0)
@@ -313,15 +311,15 @@
                                 Il est d'ailleurs possible d'intégrer Minecraft à Steam
                                 <p class="mb-0">
                                     @if(Auth::user())
-                                        <a class="lis-light lis-jouer border lis-brd-light text-center lis-line-height-2_3 rounded d-block" title="Ajouter son serveur Minecraft" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                        <a title="Ajouter son serveur Minecraft" class="lis-light lis-jouer border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
                                         @if (!isset($ad))
-                                            <br /><a class="ticker-btn d-flex" id="ajout-serveur" title="Mettre en avant mon serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
+                                            <br /><a title="Mettre en avant mon serveur" class="ticker-btn d-flex" id="ajout-serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
                                         @endif
                                     @else
                                         <br />
-                                        <a class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" title="Ajouter son serveur {{ seocat($catName) }}" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
-                                        <a class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" title="Mettre mon serveur {{ seocat($catName) }} en avant" href="/login"><span class="fa fa-star"></span> Mettre en avant mon serveur</a>
-                                        <a class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" title="Installer {{ seocat($catName) }} PC" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-download"></span> Télécharger Minecraft sur PC</a>
+                                        <a title="Ajouter son serveur {{ seocat($catName) }}" class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                        <a title="Mettre mon serveur {{ seocat($catName) }} en avant" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/login"><span class="fa fa-star"></span> Mettre en avant mon serveur</a>
+                                        <a title="Installer {{ seocat($catName) }} PC" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-download"></span> Télécharger Minecraft sur PC</a>
                                     @endif
                                 </p>
                             </div>
@@ -406,4 +404,40 @@
                 </div>
             </div>
         </section>
+
+
+        @if (encname($catName) == "clash-of-clans" OR encname($catName) == "hytale")
+            <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pTitle }}",
+                "description": "Liste de serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pDesc }} gratuit. Ajoutez votre serveur ou votez pour celui-ci.",
+                "playersOnline": "",
+                "url": "@yield('canonical')"
+                },
+                "ratingValue": "5",
+                "ratingCount": "8"
+            }
+        </script>
+        @else
+            <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pTitle }}",
+                "description": "Liste de serveur {{ seocat($catName) }}@if (isset($tag)) {{ $tag }}@endif{{ $pDesc }} gratuit. Ajoutez votre serveur ou votez pour celui-ci.",
+                "playersOnline": "",
+                "url": "@yield('canonical')"
+                },
+                "ratingValue": "{{ round($average / $averageCount, 2) }}",
+                "ratingCount": "{{ max(count($data), 43) }}"
+            }
+        </script>
+        @endif
+
 @endsection
