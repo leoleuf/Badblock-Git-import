@@ -185,7 +185,12 @@
                                 </div>
                                 @php($adsDone = 0)
                                 @php($normalDone = 0)
-                                @foreach($data as $row)
+
+                                @php($totalReviews = 0)
+                                @php($average = 0)
+                                @php($averageCount = 0)
+
+                            @foreach($data as $row)
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
                                         <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} en avant</h6>
@@ -230,6 +235,10 @@
                                                         <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
                                                     @endif
                                                 </ul>
+                                                @php($totalReviews += $row->reviews * 7)
+                                                @php($average += ($row->note == 0) ? 5 : $row->note)
+                                                @php($averageCount++)
+
                                                 <dl class="row my-2 lis-line-height-2">
                                                     <dt class="col-xl-12 col-md-12 lis-font-weight-300 lis-dark">
                                                         @php($dozpa = substr_count(mb_strimwidth($row->short_desc, 0, 501, "..."), "\r") + substr_count(mb_strimwidth($row->short_desc, 0, 501, "..."), "\n"))
