@@ -329,7 +329,7 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                        <h6 class="lis-font-weight-500 mb-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le jeu {{ seocat($catName) }}</h6>
+                        <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le jeu {{ seocat($catName) }}</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
                                 @if (encname($catName) == "minecraft")
