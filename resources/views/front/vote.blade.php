@@ -264,6 +264,7 @@
 
 
         <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="/js/ads.js"></script>
         <script>
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
