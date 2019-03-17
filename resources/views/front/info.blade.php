@@ -6,11 +6,11 @@
 @extends('front.index')
 @section('content')
 
-    @if (file_exists('storage/banner/banner'.$data->id.'.jpg'))
-        @section('banner', 'storage/banner/banner'.$data->id.'.jpg')
+    @if (file_exists('/storage/banner/banner'.$data->id.'.jpg'))
+        @section('banner', '/storage/banner/banner'.$data->id.'.jpg')
         @php($banner = "https://serveur-multigames.net/storage/banner/banner".$data->id.".jpg")
     @else
-        @section('banner', 'img/header-bg-'.encname($catName).'.jpg')
+        @section('banner', '/img/header-bg-'.encname($catName).'.jpg')
         @php($banner = "https://serveur-multigames.net/img/header-bg-".encname($catName).".jpg")
     @endif
 
@@ -112,7 +112,7 @@
                                 <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
 
                                 <div class="alert alert-success">
-                                    <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="img/loading.gif" width="64" height="64" /> Patientez quelques instants</strong> Nous prenons en compte votre vote.. Vous serez redirigé.
+                                    <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="/img/loading.gif" width="64" height="64" /> Patientez quelques instants</strong> Nous prenons en compte votre vote.. Vous serez redirigé.
                                 </div>
                         @endif
                     @endif

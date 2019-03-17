@@ -8,11 +8,11 @@
 @section('content')
 
 
-    @if (file_exists('storage/banner/banner'.$data->id.'.jpg'))
-@section('banner', 'storage/banner/banner'.$data->id.'.jpg')
+    @if (file_exists('/storage/banner/banner'.$data->id.'.jpg'))
+@section('banner', '/storage/banner/banner'.$data->id.'.jpg')
 @php($banner = "https://serveur-multigames.net/storage/banner/banner".$data->id.".jpg")
 @else
-    @section('banner', 'img/header-bg-'.encname($catName).'.jpg')
+    @section('banner', '/img/header-bg-'.encname($catName).'.jpg')
 @php($banner = "https://serveur-multigames.net/img/header-bg-".encname($catName).".jpg")
 @endif
 
