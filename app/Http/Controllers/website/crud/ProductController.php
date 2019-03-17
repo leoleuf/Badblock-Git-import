@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use MongoDB\Collection;
+use MongoDB\Operation\CreateCollection;
 
 
 class ProductController extends \App\Http\Controllers\Controller {
     //Test for git
 
 
+    private $unknowCategorieName = "Catégorie_inconnue";
 
     /**
      * Display a listing of users
@@ -24,20 +27,48 @@ class ProductController extends \App\Http\Controllers\Controller {
     public function index()
     {
         $Product = Product::all();
+        $Categories = Category::all();
+        $ProductsInCat = array();
+        $ProductsInCatCounter = array();
 
-        foreach ($Product as $row){
-            if (!empty($row->cat_id)){
+
+        foreach ($Categories as $cat) {
+
+            $ProductsInCatCounter[$this->unknowCategorieName] = 0;
+            $ProductsInCat[$this->unknowCategorieName] = array();
+
+            $ProductsInCatCounter[$cat->name] = 0;
+            $ProductsInCat[$cat->name] = array();
+
+
+        }
+
+        foreach ($Product as $i => $row){
+            if (!empty($row->cat_id) || $row->cat_name == $this->unknowCategorieName){
                 $cat = Category::find($row->cat_id);
                 if (isset($cat->name)){
                     $row->cat = $cat->name;
                 }
-            }else{
-                $row->cat = 'Catégorie Inconnue';
+
+                else{
+                    $row->cat = $this->unknowCategorieName;
+                }
+            } else{
+                $row->cat = $this->unknowCategorieName;
             }
+
+            $ProductsInCat[$row->cat][$ProductsInCatCounter[$row->cat]] = $row;
+            $ProductsInCatCounter[$row->cat]++;
         }
 
-        return view('website.product.product', compact('Product'));
+        return view('website.product.product', compact('ProductsInCat', "Categories"));
     }
+
+    public function displayProduct(){
+
+
+    }
+
     /**
      * Show the form for creating a new user
      *

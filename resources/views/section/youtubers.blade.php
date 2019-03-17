@@ -27,7 +27,7 @@
                                             <h4 class="modal-title" id="modal_createYoutuber_title">Ajouter un nouveau Youtuber</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+
                                                 <div class="form-group">
                                                     <label for="modal_createYoutuber_youtuberName">Entrez le nom du Youtuber :</label>
                                                     <input type="text" id="modal_createYoutuber_youtuberName" class="form-control" />
@@ -42,18 +42,17 @@
                                                     <label for="modal_createYoutuber_power">Entrez le power du Youtuber</label>
                                                     <input type="number" class="form-control" id="modal_createYoutuber_power" min="0" max="100" />
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="createYoutuber()">Ajouter le Youtuber</button>
+                                                </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-success" data-dismiss="modal" onclick="createYoutuber()">Ajouter le Youtuber</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </div>
+                    </div>
 
                     <br /><br />
 
@@ -101,7 +100,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteYoutuber('{{ $i }}')">Supprimer l'URL</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="deleteYoutuber('{{ $i }}')">Supprimer</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -155,6 +154,7 @@
 
                         success: function () {
                             toastr.success('Le Youtuber a bien été créé', "Succès !");
+                            location.reload();
                         },
 
                         error: function (jqxhr, status, exception) {
@@ -191,6 +191,7 @@
 
                 success: function(){
                     toastr.success('Le Youtuber a bien été supprimé', "Succès !");
+                    location.reload();
                 },
 
                 error: function (jqxhr, status, exception) {

@@ -23,7 +23,17 @@
                         </div>
                     </div>
 
-                    <div class="">
+                    <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
+                    <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
+                        @foreach($Categories as $row)
+                            <option value="{{ str_replace(" ", "_", $row->name) }}">{{ $row->name }}</option>
+                            @endforeach
+                    </select>
+                    <br />
+
+
+                    @foreach($Categories as $cat)
+                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: none;">
                         <table class="table table-striped" id="datatable-editable">
                             <thead>
                             <tr>
@@ -37,11 +47,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                               @foreach($Product as $key => $value)
+                               @foreach($ProductsInCat[$cat->name] as $key => $value)
                                    <tr>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->price }}</td>
-                                        <td>{{ $value->cat }}</td>
+                                        <td>{{ str_replace("_", " ", $value->cat) }}</td>
                                        <td>
                                            @if($value->depend)
                                                <span class="label label-success">Activé</span>
@@ -79,6 +89,8 @@
                             </tbody>
                         </table>
                     </div>
+                        @endforeach
+
                 </div>
             </div>
         </div>
@@ -87,3 +99,26 @@
     </div>
     </div>
 @endsection
+
+@section('after_scripts')
+
+    <script>
+
+        function displayProductCat() {
+
+            var categories = [
+                @foreach($Categories as $cat)
+                '{{ str_replace(" ", "_", $cat->name) }}',
+                @endforeach
+            ];
+
+            for(var i = 0; i < categories.length; i++){
+                $("#cat_"+categories[i]).css("display", "none");
+            }
+
+            $("#cat_"+$("#catToDisplay").val()).css("display", "block");
+        }
+        
+    </script>
+
+    @endsection

@@ -25,7 +25,14 @@ class TodolistsController
 
         $user_name = Auth::user()->name;
         $user_section = DB::table('section_users')->where('user_id', NotificationsController::convertPseudoId($user_name))->get();
-        $user_section = ConverterController::convertIDSection($user_section[0]->section_id);
+
+        if(isset($user_section[0])) {
+            $user_section = ConverterController::convertIDSection($user_section[0]->section_id);
+        }
+
+        else {
+            $user_section = "Utilisateur non enregistré dans la table user_section";
+        }
 
         $todolists_personal = $this->getTodolists($this->tableName_todolists_personal);
         $todolists_sections = $this->getTodolists($this->tableName_todolists_section);
