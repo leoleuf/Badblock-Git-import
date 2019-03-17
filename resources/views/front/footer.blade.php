@@ -11,7 +11,7 @@ if ($date != $creationDate)
 ?>
 <section class="image-bg footer lis-grediant grediant-bt pb-0">
     <div class="background-image-maker"></div>
-    <div class="holder-image"> <img src="dist/images/bg3.jpg" alt="" class="img-fluid d-none"> </div>
+    <div class="holder-image"> <img src="/dist/images/bg3.jpg" alt="" class="img-fluid d-none"> </div>
     <div class="container">
         <div class="row pb-5">
             <div class="col-12 col-md-8">
