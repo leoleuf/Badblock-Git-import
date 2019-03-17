@@ -276,7 +276,7 @@
                                 <nav>
                                     <ul class="pagination list-inline mb-0 text-center text-uppercase lis-f-14 justify-content-center mt-5">
                                         @if ($current_page > 1)
-                                            <li class="p-1 page-item"><a title="{{ seocat($catName) }} page précédente" class="page-link lis-brd-light lis-light rounded" href="/{{ $catName }}@if ($current_page > 2)/page/{{ ($current_page-1) }}@endif"><i class="fa fa-angle-left pr-1"></i> Précédent</a></li>
+                                            <li class="p-1 page-item"><a title="Classement complet de serveur {{ seocat($catName) }} page précédente" class="page-link lis-brd-light lis-light rounded" href="/{{ $catName }}@if ($current_page > 2)/page/{{ ($current_page-1) }}@endif"><i class="fa fa-angle-left pr-1"></i> Précédent</a></li>
                                         @endif
 
                                         @php($next = 0)
@@ -284,11 +284,11 @@
                                             @if ($i > $current_page)
                                                 @php($next = 1)
                                             @endif
-                                            <li title="{{ seocat($catName) }} @if ($i > 1) page {{ $i }} @endif" class="p-1 page-item d-none d-sm-inline-block @if ($i == $current_page) active @endif"><a class="page-link lis-light rounded" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif">{{ $i }}</a></li>
+                                            <li class="p-1 page-item d-none d-sm-inline-block @if ($i == $current_page) active @endif"><a title="Serveur {{ seocat($catName) }} @if ($i > 1) page {{ $i }} @endif" class="page-link lis-light rounded" href="/{{ $catName }}@if($i > 1)/page/{{ $i }}@endif">{{ $i }}</a></li>
                                         @endfor
 
                                         @if ($next == 1)
-                                            <li class="p-1 page-item"><a title="{{ seocat($catName) }} page suivante" class="page-link lis-brd-light lis-light rounded" href="/{{ $catName }}/page/{{ ($current_page+1) }}"><i class="fa fa-angle-right pr-1"></i> Suivant</a></li>
+                                            <li class="p-1 page-item"><a title="Classement complet de serveur {{ seocat($catName) }} page suivante" class="page-link lis-brd-light lis-light rounded" href="/{{ $catName }}/page/{{ ($current_page+1) }}"><i class="fa fa-angle-right pr-1"></i> Suivant</a></li>
                                         @endif
                                     </ul>
                                 </nav>
@@ -327,8 +327,8 @@
                                         @endif
                                     @else
                                         <br />
-                                        <a title="Ajouter son serveur {{ seocat($catName) }}" class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" href="/login"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
-                                        <a title="Mettre mon serveur {{ seocat($catName) }} en avant" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/login"><span class="fa fa-star"></span> Mettre en avant mon serveur</a>
+                                        <a title="Ajouter son serveur {{ seocat($catName) }}" class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" href="/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
+                                        <a title="Mettre mon serveur {{ seocat($catName) }} en avant" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/mise-en-avant"><span class="fa fa-star"></span> Mettre en avant mon serveur</a>
                                         <a title="Installer {{ seocat($catName) }} gratuit PC" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-download"></span> Télécharger Minecraft gratuit sur PC</a>
                                     @endif
                                 </p>

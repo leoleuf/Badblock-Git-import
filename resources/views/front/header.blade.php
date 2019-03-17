@@ -129,7 +129,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                     @endif
                 </li>
             </ul>
-            <a @if(Auth::user()) href="/dashboard/add-server" @else href="/login" @endif class="btn btn-outline-light btn-sm ml-0 ml-lg-4 mt-3 mt-lg-0"><i class="fa fa-plus pr-1"></i> Ajouter mon serveur</a>
+            <a title="Ajouter un serveur Minecraft" @if(Auth::user()) href="/dashboard/add-server" @else href="/add-server" @endif class="btn btn-outline-light btn-sm ml-0 ml-lg-4 mt-3 mt-lg-0"><i class="fa fa-plus pr-1"></i> Ajouter mon serveur</a>
         </div>
     </nav>
 </div>
