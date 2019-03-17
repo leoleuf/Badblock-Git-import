@@ -320,6 +320,7 @@
                                 Il est d'ailleurs possible d'intégrer Minecraft à Steam
                                 <p class="mb-0">
                                     @if(Auth::user())
+                                        <br />
                                         <a title="Ajouter son serveur Minecraft" class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/dashboard/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
                                         @if (!isset($ad))
                                             <a title="Mettre en avant mon serveur" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star" id="serveur-plus"></span> Mettre en avant mon serveur</a>
