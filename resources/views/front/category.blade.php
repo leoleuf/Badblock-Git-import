@@ -183,17 +183,6 @@
                                         </p>
                                     </div>
                                 </div>
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveur-multigames -->
-                                <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="1434308007"
-                                     data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
                                 @php($adsDone = 0)
                                 @php($normalDone = 0)
 
@@ -204,10 +193,32 @@
                             @foreach($data as $row)
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
-                                        <h6 class="lis-font-weight-500 mb-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h6>
+                                        <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h6>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h6 class="lis-font-weight-500 mb-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
+                                        <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
                                     @endif
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
@@ -307,8 +318,6 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <div class="card lis-brd-light mb-4 wow fadeInUp">
-                            <div class="card-body p-4">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- serveur-multigames -->
                                 <ins class="adsbygoogle"
@@ -320,8 +329,6 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                            </div>
-                        </div>
                         <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le jeu {{ seocat($catName) }}</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
