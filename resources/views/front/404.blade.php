@@ -6,58 +6,22 @@
 @extends('front.index')
 @section('content')
 
-    <!-- start banner Area -->
-    <section class="banner-area-{{ $catName }} relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Page inconnue
-                    </h1>
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a>  <span class="lnr lnr-arrow-right"></span>  <a title="Erreur 404" href="/{{ $catName }}">Erreur 404</a></p>
+    <section>
+        <div class="background-image-maker"></div>
+        <div class="holder-image"> <img src="dist/images/error-bg2.jpg" alt="" class="img-fluid d-none"> </div>
+        <div class="container py-5 mt-5">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-xl-6  mb-5 mb-lg-0 wow fadeInLeft text-center mb-5 mb-lg-0"> <img src="dist/images/404-2.png" alt="" class="img-fluid"> </div>
+                <div class="col-12 col-lg-6 col-xl-5 ml-auto wow fadeInRight text-center">
+                    <div class="error">
+                        <h1 class="lis-font-weight-500 lis-line-height-1">404</h1>
+                        <h2 class="lis-font-weight-500">Oups ! Page non trouvée !</h2>
+                        <p>Nous sommes désolé mais la page recherchée
+                            <br /> n'existe pas ou n'existe plus</p> <a title="Accueil Serveur-MultiGames" href="/" class="btn btn-primary btn-lg"><i class="fa fa-long-arrow-left pr-2"></i>Retourner à l'accueil</a> </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End banner Area -->
-
-
-    <section class="post-area">
-        <br />
-        <div class="container">
-            <div class="section-top-border">
-            <div class="row justify-content-center d-flex">
-                <div class="col-lg-8 post-list">
-                        <h3 class="mb-30">Erreur 404</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    La page recherchée n'a pas pu être trouvée.
-                                </blockquote>
-                            </div>
-                        </div>
-                </div>
-
-
-
-                <div class="col-lg-4 sidebar">
-                    <div class="single-slidebar">
-                        <h4>Publicité</h4>
-                        <div class="active-relatedjob-carusel">
-                            <div class="single-rated">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            </div>
-        </div>
-    </section>
-
 
     <script type="application/ld+json">
         {

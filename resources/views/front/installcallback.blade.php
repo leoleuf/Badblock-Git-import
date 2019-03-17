@@ -5,29 +5,30 @@
 @section('jquery', 'async defer')
 @extends('front.index')
 @section('content')
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Installation CALLBACK
-                    </h1>
-                    <h2 class="text-white">
-                        Serveurs MultiGames
-                    </h2><br />
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a> <span class="lnr lnr-arrow-right"></span> <a title="Ajouter mon serveur" href="/add-server">Ajouter mon serveur</a> <span class="lnr lnr-arrow-right"></span> <a title="Installation de la méthode CALLBACK" href="/add-server/callback">Installation de la méthode CALLBACK</a></p>
+    <section class="lis-bg-light pb-5">
+        <div class="container pt-5">
+            <div class="row wow fadeInUp">
+                <div class="col-12 col-sm-6">
+                    <div class="page-title">
+                        <h2>Méthode Callback</h2>
+                        <p class="mb-0">Initiation à la méthode Callback, experte.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 text-left text-sm-right">
+                    <ol class="breadcrumb mb-0 pl-0 bg-transparent pb-0">
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="Serveur MultiGames" href="/" class="lis-light">Serveur MultiGames</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="API et Utilisation" href="/api" class="lis-light">API et Utilisation</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none active">Callback</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="whole-wrap">
+    <section>
         <div class="container">
-            <div class="section-top-border">
-                <h3 class="mb-30">Installation de la méthode CALLBACK</h3>
-                <div class="row">
-                    <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
                         <p><strong>Serveur MultiGames</strong> propose gratuitement l'utilisation de la méthode CALLBACK pour vérifier les votes. Si vous ne savez pas comment implémenter cette méthode, utilisez plutôt la <a title="Installation par la méthode TRUE" href="/add-server/true">méthode TRUE</a>.
                             Lorsqu'un joueur vote pour votre serveur, vous receverez une requête sur le lien configuré pour le serveur, avec des paramètres que vous pourrez réutiliser
                             pour donner une récompense à un joueur ou enregistrer le vote par exemple.</p>
@@ -39,28 +40,25 @@
                             <i>nextvote</i> : nombre de secondes avant le prochain vote du joueur<br /><br />
                             <strong>Exemple de code de récupération</strong><br />
                             <span style="color: red;">Action très recommandée : Vérifiez l'IP qui envoie la requête afin d'éviter les usurpations de vote.</span><br /><br />
-                            &lt;?php<br /><br />
-
-                            $ip = $_GET['ip'];<br>
-                            $servername = $_GET['servername'];<br>
-                            $status = $_GET['status'];<br>
-                            $nextvote = $_GET['nextvote'];<br><br />
-                            if ($status == "SUCCESS")<br />
-                            {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;// Vote valide, donner le lot<br>
-                            }<br><br />
-                            ?&gt;<br /><br />
+                            <kbd>&nbsp;&lt;?php&nbsp;<br />
+                                &nbsp;&nbsp;$ip = $_GET['ip'];&nbsp;<br>
+                                &nbsp;&nbsp;$servername = $_GET['servername'];&nbsp;<br>
+                                &nbsp;&nbsp;$status = $_GET['status'];&nbsp;<br>
+                                &nbsp;&nbsp;$nextvote = $_GET['nextvote'];&nbsp;<br>
+                                &nbsp;&nbsp;if ($status == "SUCCESS")&nbsp;<br />
+                                &nbsp;&nbsp;{&nbsp;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Vote valide, donner le lot&nbsp;<br>
+                                &nbsp;&nbsp;}&nbsp;<br>
+                                &nbsp;?&gt;&nbsp;</kbd><br /><br />
                             <strong>Exemple de réponse</strong><br /><br />
                             <i>ip</i> : 127.0.0.1<br />
                             <i>servername</i> : testa-123<br />
                             <i>status</i> : SUCCESS<br />
                             <i>nextvote</i> : 5400
                         </blockquote>
-                    </div>
                 </div>
-            </div>
-            <div class="section-top-border">
+
             </div>
         </div>
-    </div>
+    </section>
 @endsection

@@ -5,7 +5,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
 ?><!DOCTYPE html>
 <html lang="fr" class="no-js">
 <head>
-    <base href="https://serveur-multigames.net">
+    <!--<base href="https://serveur-multigames.net">!-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
@@ -80,58 +80,56 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
 
     <script src="/pagead/js/adsbygoogle.js"></script>
 
-    @if (!isset($classement))
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="preload" href="/js/gjs.js" as="script">
-        <link rel="preload" href="/gtag.js" as="script">
-        <link rel="preload" href="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5bd996025e31aea0" as="script">
-    @else
-        @if (isset($tag) or (isset($current_page) && $current_page > 1))
-            <link rel="stylesheet" href="/css/main.css">
-            <link rel="stylesheet" href="/css/linearicons.css">
-        @endif
-        <link rel="preload" href="/css/classement.css" as="style">
-        <link rel="preconnect" href="https://adservice.google.com">
-        <link rel="preconnect" href="https://adservice.google.fr">
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net">
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net">
-
-    @endif
+    <link href="/dist/css/plugins.min.css" rel="stylesheet">
+    <!--main Css-->
+    <link href="/dist/css/main.min.css" rel="stylesheet">
 
 </head>
 <body>
 
-<header>
-    <div class="container" style="position: absolute; min-width:100%; z-index:90;">
-        <div class="row align-items-center justify-content-between" style="margin: 0 auto; margin-top: 10px; width: 80%;">
-            <div id="logo">
-                <a title="Serveur MultiGames" href="/"><img src="/img/logo.png" alt="Logo Serveur MultiGames" /></a>
-            </div>
-            <nav id="nav-menu-container">
-                <ul class="nav-menu">
-                    <li class="menu-active"><a title="Serveur MultiGames" href="/"><span class="lnr lnr-home"></span> &nbsp;Accueil</a>
-                    @if(Auth::user())
-                        <li class="menu-active"><a title="Mise en avant de serveur" href="/dashboard/mise-en-avant"><span class="fa fa-star"></span> &nbsp;Mise en avant</a>
-                    @else
-                        <li class="menu-active"><a title="Mise en avant de serveur" href="/mise-en-avant"><span class="fa fa-star"></span> &nbsp;Mise en avant</a>
-                    @endif
-                    <li>
-                        <form method="post" action="https://serveur-multigames.net/recherche" class="recherche">
-                            <input type="text" name="serveur" placeholder="&nbsp;&nbsp&nbsp&nbsp;Rechercher..." required class="single-input" id="barre-recherche"><div class="genric-btn success circle arrow" id="bouton-recherche"><span class="lnr lnr-magnifier" id="nomargin"></span></div>
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                    @if(Auth::user())
-                        <li><a class="ticker-btn" title="Tableau de Bord" href="/dashboard">Tableau de Bord</a></li>
-                        <li><a class="ticker-btn" title="Se déconnecter" href="/logout/{{ csrf_token() }}">Déconnexion</a></li>
-                    @endif
-                    <IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" id="flexx" data-pagespeed-no-transform>
-                </ul>
-            </nav><!-- #nav-menu-container -->
+<!-- header -->
+<div id="header-fix" class="header fixed-top @if (isset($transperant)) transperant @endif">
+    <nav class="navbar navbar-toggleable-md navbar-expand-lg navbar-light py-lg-0 py-4">
+        <a title="Serveur MultiGames" class="navbar-brand mr-4 mr-md-5" href="/">
+            <img src="/img/logo.png" alt="">
+        </a>
+        <div id="dl-menu" class="dl-menuwrapper d-block d-lg-none float-right">
+            <button>Ouvrir le menu</button>
+            <ul class="dl-menu">
+
+                <a title="Accueil" class="nav-link" href="/" data-toggle="dropdown" aria-expanded="false">Accueil</a>
+                <li> <a title="Mettre en avant son serveur de jeu" @if(Auth::user()) href="/dashboard/mise-en-avant" @else href="/mise-en-avant" @endif><i class="fa fa-plus pr-1"></i> Mise en avant</a></li>
+                @if(!Auth::user())
+                    <li> <a title="Me connecter" href="/login" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Connexion</a></li>
+                    <li> <a title="M'inscrire" href="/register" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a></li>
+                @else
+                    <li><a title="Accéder au tableau de bord" href="/dashboard" class="text-white login_form"><i class="fa fa-dashboard"></i> Tableau de bord</a></li>
+                    <li><a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a></li>
+                @endif
+
+
+
+
+            </ul>
         </div>
-    </div>
-    @yield('hdr')
-</header><!-- #header -->
-<link rel="stylesheet" href="/css/classement.css">
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a title="Accueil" class="nav-link" href="/"><i class="fa fa-home"></i> Accueil</a></li>
+                <li class="nav-item"><a title="Mettre en avant son serveur de jeu" class="nav-link" @if(Auth::user()) href="/dashboard/mise-en-avant" @else href="/mise-en-avant" @endif><i class="fa fa-star"></i> Mettre son serveur en avant</a></li>
+            </ul>
+            <ul class="list-unstyled my-2 my-lg-0">
+                <li>
+                    @if(!Auth::user())
+                        <a title="Me connecter" href="/login" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Connexion</a>
+                        &nbsp; | &nbsp;&nbsp;<a title="M'inscrire" href="/register" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a>
+                    @else
+                        <a title="Accéder au tableau de bord" href="/dashboard" class="text-white login_form"><i class="fa fa-dashboard"></i> Tableau de bord</a>
+                        <a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a>
+                    @endif
+                </li>
+            </ul>
+            <a @if(Auth::user()) href="/dashboard/add-server" @else href="/login" @endif class="btn btn-outline-light btn-sm ml-0 ml-lg-4 mt-3 mt-lg-0"><i class="fa fa-plus pr-1"></i> Ajouter mon serveur</a>
+        </div>
+    </nav>
+</div>

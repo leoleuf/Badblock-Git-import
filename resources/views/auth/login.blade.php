@@ -6,86 +6,81 @@
 @extends('front.index')
 @section('content')
 
-    <!-- start banner Area -->
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Connexion
-                    </h1>
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a>  <span class="lnr lnr-arrow-right"></span>  <a title="Connexion Serveur MultiGames" href="/login">Connexion</a></p>
+
+    <section class="lis-bg-light pb-5">
+        <div class="container pt-5">
+            <div class="row wow fadeInUp">
+                <div class="col-12 col-sm-6">
+                    <div class="page-title">
+                        <h2>Se connecter</h2>
+                        <p class="mb-0">Connectez-vous dès maintenant</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 text-left text-sm-right">
+                    <ol class="breadcrumb mb-0 pl-0 bg-transparent pb-0">
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="Serveur MultiGames" href="/" class="lis-light">Serveur MultiGames</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none active">Me connecter</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End banner Area -->
 
-    <!-- Start feature-cat Area -->
-    <section class="post-area section-gap">
+    <section>
         <div class="container">
-            <div class="row justify-content-center d-flex">
-                <div class="col-lg-4 post-list">
-                    <div class="single-post d-flex flex-row center">
-                                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                                        @csrf
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9 mb-5 mb-lg-0">
 
-                                        <div class="form-group">
-                                            <label for="email" class="col-sm-8 col-form-label ">{{ __('Adresse e-mail') }}</label>
+                    <div class="card lis-brd-light wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <form method="post" action="{{ route('login') }}" class="card-body p-0">
 
-                                            <div class="col-md-12">
-                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <div class="row p-4">
 
-                                                @if ($errors->has('email'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group lis-relative">
+                                        <h6 class="lis-font-weight-500">Pas inscrit ?</h6>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <label for="password" class="col-md-8 col-form-label">{{ __('Mot de passe') }}</label>
-
-                                            <div class="col-md-12">
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                                @if ($errors->has('password'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                                    <label class="form-check-label" for="remember">
-                                                        {{ __('Se souvenir de moi') }}
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <button type="submit" class="btn btn-primary">
-                                                    {{ __('Se connecter') }}
-                                                </button>
-                                                <br />
-                                                <a title="S'inscrire sur Serveur MultiGames" class="btn btn-link" href="/register">
-                                                    Pas inscrit ? Je m'inscris !
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="col-12 col-md-9">
+                                    <div class="form-group lis-relative">
+                                        <a title="S'enregistrer" href="/register">Enregistrez-vous</a> dès maintenant si vous n'êtes déjà pas inscrit.
+                                    </div>
                                 </div>
                             </div>
+
+                            <hr />
+
+                            <div class="row p-4">
+                                <div class="col-12 col-sm-12 mb-3">
+                                    <h6 class="lis-font-weight-500"><i class="fa fa-info-circle pr-2 lis-f-14"></i> Détails de connexion</h6>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-12 col-md-3 col-form-label">Adresse e-mail</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" name="email" value="{{ old('email') }}" placeholder="Saisissez un email" type="email" required autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-12 col-md-3 col-form-label">Mot de passe</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" name="password" value="" placeholder="Saisissez un mot de passe" type="password" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        {{ csrf_field() }}
+
+                                    <div class="col-12 col-sm-12">
+                                        <input type="submit" class="btn btn-primary" name="submit" value="Se connecter" />
+                                    </div>
+                            </div>
+                        </form>
                         </div>
                     </div>
+            </div>
+        </div>
     </section>
 @endsection

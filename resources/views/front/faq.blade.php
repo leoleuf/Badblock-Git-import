@@ -5,128 +5,82 @@
 @section('canonical', 'https://serveur-multigames.net/faq')
 @extends('front.index')
 @section('content')
-    <!-- start banner Area -->
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Foire aux Questions
-                    </h1>
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a>  <span class="lnr lnr-arrow-right"></span>  <a title="Foire Aux Questions" href="/faq">Foire aux Questions</a></p>
+
+    <section class="lis-bg-light pb-5">
+        <div class="container pt-5">
+            <div class="row wow fadeInUp">
+                <div class="col-12 col-sm-6">
+                    <div class="page-title">
+                        <h2>Foire aux Questions</h2>
+                        <p class="mb-0">Vous avez une question ? Elle se trouve peut-être ici. Dans le cas contraire, utilisez le <a title="Contacter Serveur-MultiGames" href="/contact">formulaire de contact</a>.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 text-left text-sm-right">
+                    <ol class="breadcrumb mb-0 pl-0 bg-transparent pb-0">
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="Serveur MultiGames" href="/" class="lis-light">Serveur MultiGames</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none active">Foire aux Questions</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End banner Area -->
 
-    <section class="post-area">
-        <br />
+    <section>
         <div class="container">
-            <div class="section-top-border">
-                <div class="row justify-content-center d-flex">
-                    <div class="col-lg-8 post-list">
-                        <h3 class="mb-30">Qu'est-ce que Serveur-Multigames.net ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Serveur-Multigames.net est un site web de classement, qui répertorie les serveurs.
+            <div class="row">
+                <div class="tab-pane fade show active" id="support" role="tabpanel" aria-labelledby="support">
+                    <div id="accordion" class="faq" role="tablist">
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading1"> <a class="lis-light" data-toggle="collapse" href="#collapse1" aria-expanded="true" aria-controls="collapse1">                                                Qu'est-ce que Serveur-Multigames.net ?                                            </a> </div>
+                            <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="heading1" data-parent="#accordion">
+                                <div class="card-body"> Serveur-Multigames.net est un site web de classement, qui répertorie les serveurs.
                                     Les serveurs sont ajoutables par les créateurs et permet de faire connaître les nouveaux serveurs.
-                                    Cela permet aux joueurs de trouver de nouveaux serveurs de jeu.
-                                </blockquote>
+                                    Cela permet aux joueurs de trouver de nouveaux serveurs de jeu. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Qu'est-ce que permet de faire le site ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Le site permet de voter pour un serveur et même d'ajouter votre propre serveur dans le but de le faire connaître.
-                                    Vous pouvez faire voter vos joueurs en échange de récompenses sur votre serveur pour être plus visible pour les futurs nouveaux joueurs.
-                                </blockquote>
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading2"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse2" aria-expanded="false" aria-controls="collapse2">                                                Qu'est-ce que permet de faire le site ?                                            </a> </div>
+                            <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="heading2" data-parent="#accordion">
+                                <div class="card-body">  Le site permet de voter pour un serveur et même d'ajouter votre propre serveur dans le but de le faire connaître.
+                                    Vous pouvez faire voter vos joueurs en échange de récompenses sur votre serveur pour être plus visible pour les futurs nouveaux joueurs. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Les votes sont-ils réinitialisés ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Les votes sont réinitialisés tous les mois, le premier jour du mois à 00H.
-                                </blockquote>
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading3"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse3" aria-expanded="false" aria-controls="collapse3">                                                Les votes sont-ils réinitialisés ?                                            </a> </div>
+                            <div id="collapse3" class="collapse" role="tabpanel" aria-labelledby="heading3" data-parent="#accordion">
+                                <div class="card-body">  Les votes sont réinitialisés tous les mois, le premier jour du mois à 00H. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Je n'arrive pas à voter, est-ce normal ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Vous devez utiliser impérativement une connexion privée pour voter, c'est-à-dire une connexion qui n'est pas un VPN, un proxy ou un hébergeur.
-                                    Vous devez voter avec votre connexion personnelle pour que le vote soit validé.
-                                </blockquote>
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading4"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse4" aria-expanded="false" aria-controls="collapse4">                                                Je n'arrive pas à voter, est-ce normal ?                                            </a> </div>
+                            <div id="collapse4" class="collapse" role="tabpanel" aria-labelledby="heading4" data-parent="#accordion">
+                                <div class="card-body">  Vous devez utiliser impérativement une connexion privée pour voter, c'est-à-dire une connexion qui n'est pas un VPN, un proxy ou un hébergeur.
+                                    Vous devez voter avec votre connexion personnelle pour que le vote soit validé. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Comment ajouter votre serveur ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Vous pouvez ajouter votre serveur en enregistrant sur le site et en accédant au panel.
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading5"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse5" aria-expanded="false" aria-controls="collapse5">                                                Comment ajouter votre serveur ?                                            </a> </div>
+                            <div id="collapse5" class="collapse" role="tabpanel" aria-labelledby="heading5" data-parent="#accordion">
+                                <div class="card-body">  Vous pouvez ajouter votre serveur en enregistrant sur le site et en accédant au panel.
                                     Vous pouvez ainsi modifier à tout moment la description et le logo de votre serveur.
                                     Si vous souhaitez supprimer votre serveur, vous pouvez le faire immédiatement,
-                                    sans avoir besoin de nous contacter, c'est un de nos avantages.
-                                </blockquote>
+                                    sans avoir besoin de nous contacter, c'est un de nos avantages. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Comment mettre en avant votre serveur ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Nous offrons la possibilité de mettre votre serveur en avant depuis le panel. Vous retrouverez toutes les informations
-                                    pour mettre votre serveur en avant directement sur celui-ci.
-                                </blockquote>
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading6"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse6" aria-expanded="false" aria-controls="collapse6">                                                Vérifiez-vous l'authenticité des votes ?                                            </a> </div>
+                            <div id="collapse6" class="collapse" role="tabpanel" aria-labelledby="heading6" data-parent="#accordion">
+                                <div class="card-body">  Nous utilisons aujourd'hui la meilleure API conçue pour vérifier les fraudes ainsi que l'authenticité des actions en bloquant notamment les proxies, les VPN et les hébergeurs.
+                                    Ce service est IPWarner, c'est un <a title="Detect VPN" href="https://ipwarner.com" target="_blank">VPN detector</a>. </div>
                             </div>
                         </div>
-                        <h3 class="mb-30">Comment puis-je savoir si un joueur a voté ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Lors de la création du serveur, vous disposez d'une API qui permet de vérifier si un joueur a voté pour pouvoir par exemple lui donner des récompenses.
-                                    Nous avons créé un système d'API privée pour éviter que d'autres personnes malintentionnées
-                                    vérifient les votants à votre place, nous sommes un des seuls sites à proposer ce système.
-                                    Vous pouvez accéder à ce système depuis le panel.
-                                </blockquote>
-                            </div>
-                        </div>
-                        <h3 class="mb-30">Vérifiez-vous l'authenticité des votes ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Nous utilisons aujourd'hui la meilleure API conçue pour vérifier les fraudes ainsi que l'authenticité des actions en bloquant notamment les proxies, les VPN et les hébergeurs.
-                                    Ce service est IPWarner, c'est un <a title="Detect VPN" href="https://ipwarner.com" target="_blank">VPN detector</a>.
-                                </blockquote>
-                            </div>
-                        </div>
-                        <h3 class="mb-30">Comment nous contacter ?</h3>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <blockquote class="generic-blockquote">
-                                    Vous pouvez directement nous contacter à notre adresse e-mail contact@serveur-multigames.net
-                                </blockquote>
+                        <div class="card mb-2 lis-brd-light">
+                            <div class="card-header bg-transparent border-0 lis-relative" role="tab" id="heading7"> <a class="collapsed lis-light" data-toggle="collapse" href="#collapse7" aria-expanded="false" aria-controls="collapse7">                                                Comment nous contacter ?                                            </a> </div>
+                            <div id="collapse7" class="collapse" role="tabpanel" aria-labelledby="heading7" data-parent="#accordion">
+                                <div class="card-body"> Vous pouvez directement nous contacter à notre adresse e-mail contact@serveur-multigames.net </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div class="col-lg-4 sidebar">
-                        <div class="single-slidebar">
-                            <h4>Publicité</h4>
-                            <div class="active-relatedjob-carusel">
-                                <div class="single-rated">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
         </div>

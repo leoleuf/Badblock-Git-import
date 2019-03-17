@@ -5,46 +5,46 @@
 @section('jquery', 'async defer')
 @extends('front.index')
 @section('content')
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Installation VOTIFIER
-                    </h1>
-                    <h2 class="text-white">
-                        Serveurs MultiGames
-                    </h2><br />
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a> <span class="lnr lnr-arrow-right"></span> <a title="Ajouter mon serveur" href="/add-server">Ajouter mon serveur</a> <span class="lnr lnr-arrow-right"></span> <a title="Installation de la méthode VOTIFIER" href="/add-server/votifier">Installation de la méthode VOTIFIER</a></p>
+    <section class="lis-bg-light pb-5">
+        <div class="container pt-5">
+            <div class="row wow fadeInUp">
+                <div class="col-12 col-sm-6">
+                    <div class="page-title">
+                        <h2>Méthode Votifier</h2>
+                        <p class="mb-0">Initiation à la méthode Votifier, simple.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 text-left text-sm-right">
+                    <ol class="breadcrumb mb-0 pl-0 bg-transparent pb-0">
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="Serveur MultiGames" href="/" class="lis-light">Serveur MultiGames</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="API et Utilisation" href="/api" class="lis-light">API et Utilisation</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none active">Votifier</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="whole-wrap">
+    <section>
         <div class="container">
-            <div class="section-top-border">
-                <h3 class="mb-30">Installation de la méthode VOTIFIER (Serveur Minecraft)</h3>
-                <div class="row">
-                    <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-12">
                         <p><strong>Serveur MultiGames</strong> propose gratuitement l'utilisation du plugin Votifier pour les Serveurs Minecraft (et du reste, au protocol version 1) pour vérifier les votes directement sur son serveur.
                             D'autres méthodes existent, mais se révèlent plus techniques.</p>
                         <blockquote class="generic-blockquote">
-                            <strong>Informations requises pour la méthode VOTIFIER</strong><br /><br />
+                            <h6>Informations requises pour la méthode VOTIFIER</h6>
                             <i>IP Votifier</i> : IP du serveur à entrer<br />
                             <i>Port Votifier</i> : Port de Votifier (<span style="color: red;">et non du serveur</span>), &nbsp;dans la configuration du plugin Votifier<br />
                             <i>Clé publique Votifier</i> : C'est le contenu du fichier public.key dans le dossier plugins/Votifier/rsa/public.key, à copier-coller dans le panel<br />
                             <br />
                             <span style="color: red;">Attention : Cette méthode ne fonctionne qu'avec les Serveurs Minecraft. Le plugin Votifier doit être installé et activé sur le serveur</span><br /><br />
 
-                            <a rel="nofollow noopener noreferrer" title="Télécharger Votifier" class="genric-btn info" href="https://dev.bukkit.org/projects/votifier" target="_blank">Télécharger le plugin Votifier</a>
+                            <a rel="nofollow noopener noreferrer" title="Télécharger Votifier" class="btn btn-success btn-default" href="https://dev.bukkit.org/projects/votifier" target="_blank">
+                                <i class="fa fa-download"></i> Télécharger le plugin Votifier
+                            </a>
                         </blockquote>
                     </div>
                 </div>
-            </div>
-            <div class="section-top-border">
-            </div>
         </div>
-    </div>
+    </section>
 @endsection

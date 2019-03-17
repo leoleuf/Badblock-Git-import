@@ -15,94 +15,95 @@
         }
     </script>
 
-    <!-- start banner Area -->
-    <section class="banner-area relative" id="home">
-        <div class="overlay overlay-bg"></div>
-        <div class="container">
-            <div class="row d-flex align-items-center justify-content-center">
-                <div class="about-content col-lg-12">
-                    <h1 class="text-white">
-                        Inscription
-                    </h1>
-                    <p class="text-white link-nav"><a title="Serveur MultiGames" href="/">Serveur MultiGames</a>  <span class="lnr lnr-arrow-right"></span>  <a title="Inscription Serveur MultiGames" href="/register">Inscription</a></p>
+    <section class="lis-bg-light pb-5">
+        <div class="container pt-5">
+            <div class="row wow fadeInUp">
+                <div class="col-12 col-sm-6">
+                    <div class="page-title">
+                        <h2>S'enregistrer</h2>
+                        <p class="mb-0">Enregistrez-vous dès maintenant</p>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 text-left text-sm-right">
+                    <ol class="breadcrumb mb-0 pl-0 bg-transparent pb-0">
+                        <li class="breadcrumb-item d-inline-block float-none"><a title="Serveur MultiGames" href="/" class="lis-light">Serveur MultiGames</a></li>
+                        <li class="breadcrumb-item d-inline-block float-none active">M'inscrire</li>
+                    </ol>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End banner Area -->
 
-    <!-- Start feature-cat Area -->
-    <section class="post-area section-gap">
+    <section>
         <div class="container">
-            <div class="row justify-content-center d-flex">
-                <div class="col-lg-8 post-list">
-                        <div class="single-post d-flex flex-row">
-                                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                                        @csrf
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-9 mb-5 mb-lg-0">
 
-                                        <div class="form-group row">
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Pseudo') }}</label>
+                    <div class="card lis-brd-light wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <form method="post" action="{{ route('register') }}" class="card-body p-0">
 
-                                            <div class="col-md-6">
-                                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <div class="row p-4">
 
-                                                @if ($errors->has('name'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
+                                <div class="col-12 col-md-3">
+                                    <div class="form-group lis-relative">
+                                        <h6 class="lis-font-weight-500">Déjà inscrit ?</h6>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Adresse e-mail') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                                @if ($errors->has('email'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Mot de passe') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                                @if ($errors->has('password'))
-                                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmez votre mot de passe') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-6 offset-md-4">
-                                                <button class="btn btn-primary" class="btn btn-primary" class="g-recaptcha"
-                                                        data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                        data-callback="onSubmit">
-                                                    Je m'inscris !
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                <div class="col-12 col-md-9">
+                                    <div class="form-group lis-relative">
+                                        <a title="Se connecter" href="/login">Connectez-vous</a> dès maintenant si vous êtes déjà inscrit, afin d'éviter de créer d'autres comptes.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <hr />
+
+                            <div class="row p-4">
+                                <div class="col-12 col-sm-12 mb-3">
+                                    <h6 class="lis-font-weight-500"><i class="fa fa-info-circle pr-2 lis-f-14"></i> Détails d'inscription</h6>
+                                </div>
+
+                                <div class="col-12 col-sm-12">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-12 col-md-3 col-form-label">Pseudonyme</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" name="name" value="{{ old('name') }}" placeholder="Saisissez un pseudonyme" type="text" required autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-12 col-md-3 col-form-label">Email</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" name="email" value="{{ old('email') }}" placeholder="Saisissez un e-mail" type="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-12 col-md-3 col-form-label">Mot de passe</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password" value="{{ old('password') }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password_confirm" class="col-12 col-md-3 col-form-label">Confirmer votre mot de passe</label>
+                                        <div class="col-12 col-md-9">
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password_confirmation" value="{{ old('password') }}" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-12 col-sm-12">
+                                    <input type="submit" class="btn btn-primary g-recaptcha"
+                                           data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                           data-callback="onSubmit" name="submit" value="Valider l'inscription" />
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
-        </section>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 @endsection
