@@ -24,7 +24,7 @@
                     </div>
 
                     <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
-                    <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
+                    <select id="catToDisplay" class="form-control" onchange="">
                         @foreach($Categories as $row)
                             <option value="{{ str_replace(" ", "_", $row->name) }}">{{ $row->name }}</option>
                             @endforeach
