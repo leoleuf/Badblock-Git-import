@@ -64,11 +64,6 @@ class ProductController extends \App\Http\Controllers\Controller {
         return view('website.product.product', compact('ProductsInCat', "Categories"));
     }
 
-    public function displayProduct(){
-
-
-    }
-
     /**
      * Show the form for creating a new user
      *
