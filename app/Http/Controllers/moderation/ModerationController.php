@@ -23,7 +23,7 @@ class ModerationController extends Controller
     }
 
     public function screen(){
-        $Screen = DB::connection('mongodb')->collection('log_upload')->where('user', '=', strtolower(Auth::user()->name))->orderBy('date', 'DESC')->take(10)->get();
+        $Screen = DB::connection('mongodb')->collection('log_upload')->where('user', '=', strtolower(Auth::user()->name))->orderBy('date', 'DESC')->take(25)->get();
 
         return json_encode($Screen);
     }
