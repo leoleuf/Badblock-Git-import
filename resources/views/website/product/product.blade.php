@@ -33,7 +33,7 @@
 
 
                     @foreach($Categories as $cat)
-                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: none;">
+                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: block;">
                         <table class="table table-striped" id="datatable-editable">
                             <thead>
                             <tr>
