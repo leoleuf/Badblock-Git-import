@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers\website\crud;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Server;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use MongoDB\Collection;
-use MongoDB\Operation\CreateCollection;
 
 
-class ProductController extends \App\Http\Controllers\Controller {
+class ProductController extends Controller {
     //Test for git
 
 
