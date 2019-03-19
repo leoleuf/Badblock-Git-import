@@ -23,10 +23,6 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
     );
 
     public static $prefixLengthsPsr4 = array (
-        'x' => 
-        array (
-            'xPaw\\' => 5,
-        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -153,10 +149,6 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
     );
 
     public static $prefixDirsPsr4 = array (
-        'xPaw\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src',
-        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -536,11 +528,9 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\Infra\\ConsoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/ConsoleController.php',
         'App\\Http\\Controllers\\Infra\\DockerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/DockerController.php',
-        'App\\Http\\Controllers\\Infra\\McController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/McController.php',
         'App\\Http\\Controllers\\Infra\\MongoDBController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/MongoDBController.php',
         'App\\Http\\Controllers\\Infra\\VrackController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/VrackController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
-        'App\\Http\\Controllers\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilController.php',
         'App\\Http\\Controllers\\Settings\\SharexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/SharexController.php',
         'App\\Http\\Controllers\\moderation\\CasierController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/CasierController.php',
         'App\\Http\\Controllers\\moderation\\GuardianController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/GuardianController.php',
@@ -550,19 +540,16 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'App\\Http\\Controllers\\profile\\ActionController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/ActionController.php',
         'App\\Http\\Controllers\\profile\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/IndexController.php',
         'App\\Http\\Controllers\\profile\\ScreenController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/ScreenController.php',
-        'App\\Http\\Controllers\\profile\\TodolistsController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/TodolistsController.php',
+        'App\\Http\\Controllers\\section\\AvertissementController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/AvertissementController.php',
         'App\\Http\\Controllers\\section\\BuildController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/BuildController.php',
         'App\\Http\\Controllers\\section\\ForumController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/ForumController.php',
         'App\\Http\\Controllers\\section\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/IndexController.php',
         'App\\Http\\Controllers\\section\\ModController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/ModController.php',
-        'App\\Http\\Controllers\\section\\NotificationsController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/NotificationsController.php',
         'App\\Http\\Controllers\\section\\PaidController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/PaidController.php',
         'App\\Http\\Controllers\\section\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/PermissionsController.php',
         'App\\Http\\Controllers\\section\\RedacController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/RedacController.php',
         'App\\Http\\Controllers\\section\\StaffController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/StaffController.php',
         'App\\Http\\Controllers\\section\\TfaController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/TfaController.php',
-        'App\\Http\\Controllers\\section\\TodoListController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/TodoListController.php',
-        'App\\Http\\Controllers\\section\\WarningController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/WarningController.php',
         'App\\Http\\Controllers\\website\\AchatController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/AchatController.php',
         'App\\Http\\Controllers\\website\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/IndexController.php',
         'App\\Http\\Controllers\\website\\PaidController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/PaidController.php',
@@ -588,13 +575,11 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Server' => __DIR__ . '/../..' . '/app/Models/Server.php',
         'App\\Models\\ShareX' => __DIR__ . '/../..' . '/app/Models/ShareX.php',
-        'App\\Models\\Todo' => __DIR__ . '/../..' . '/app/Models/Todo.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Services\\DockerService' => __DIR__ . '/../..' . '/app/Services/DockerService.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
@@ -5008,10 +4993,6 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'xPaw\\MinecraftPing' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPing.php',
-        'xPaw\\MinecraftPingException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPingException.php',
-        'xPaw\\MinecraftQuery' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQuery.php',
-        'xPaw\\MinecraftQueryException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQueryException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

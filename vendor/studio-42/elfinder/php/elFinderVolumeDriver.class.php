@@ -253,7 +253,7 @@ abstract class elFinderVolumeDriver {
 		'mimeDetect'      => 'auto',
 		// mime.types file path (for mimeDetect==internal)
 		'mimefile'        => '',
-		// Static extension/MIME of general server side scripts to security issues
+		// Static extension/MIME of general server side js to security issues
 		'staticMineMap'   => array(
 			'php:*'                        => 'text/x-php',
 			'pht:*'                        => 'text/x-php',

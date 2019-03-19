@@ -10842,7 +10842,7 @@
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
-		 *        "ajax": "scripts/server_processing.php",
+		 *        "ajax": "js/server_processing.php",
 		 *        "deferLoading": 57
 		 *      } );
 		 *    } );
@@ -10852,7 +10852,7 @@
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
 		 *        "serverSide": true,
-		 *        "ajax": "scripts/server_processing.php",
+		 *        "ajax": "js/server_processing.php",
 		 *        "deferLoading": [ 57, 100 ],
 		 *        "search": {
 		 *          "search": "my_filter"

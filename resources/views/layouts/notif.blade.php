@@ -8,7 +8,7 @@
         <h4 class="">Notifications</h4>
         <div class="notification-list nicescroll">
             <ul class="list-group list-no-border user-list">
-                @foreach( \App\Models\Notifications::where('user_id', '=', Auth::user()->id)->orderBy('created_at', 'DESC')->take(30)->get() as $row)
+                @foreach( \App\Models\Notifications::where('user_id', '=', Auth::user()->id)->where('active', true)->orderBy('created_at', 'DESC')->take(30)->get() as $row)
                     <li class="list-group-item">
                         <a href="/notif-link/{{ $row->id }}" class="user-list-item">
                             <div class="avatar">

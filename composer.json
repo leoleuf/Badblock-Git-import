@@ -15,7 +15,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
         "lukasz-adamski/laravel-teamspeak3": "^1.0",
-        "mongodb/mongodb": "^1.2",
+        "mongodb/mongodb": "^1.4",
         "mookofe/tail": "1.*",
         "php-amqplib/php-amqplib": ">=2.6.1",
         "predis/predis": "^1.1",

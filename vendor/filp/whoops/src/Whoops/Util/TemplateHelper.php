@@ -129,7 +129,7 @@ class TemplateHelper
     {
         if (!$this->htmlDumper && class_exists('Symfony\Component\VarDumper\Cloner\VarCloner')) {
             $this->htmlDumperOutput = new HtmlDumperOutput();
-            // re-use the same var-dumper instance, so it won't re-render the global styles/scripts on each dump.
+            // re-use the same var-dumper instance, so it won't re-render the global styles/js on each dump.
             $this->htmlDumper = new HtmlDumper($this->htmlDumperOutput);
 
             $styles = [
@@ -163,7 +163,7 @@ class TemplateHelper
         $dumper = $this->getDumper();
 
         if ($dumper) {
-            // re-use the same DumpOutput instance, so it won't re-render the global styles/scripts on each dump.
+            // re-use the same DumpOutput instance, so it won't re-render the global styles/js on each dump.
             // exclude verbose information (e.g. exception stack traces)
             if (class_exists('Symfony\Component\VarDumper\Caster\Caster')) {
                 $cloneVar = $this->getCloner()->cloneVar($value, Caster::EXCLUDE_VERBOSE);

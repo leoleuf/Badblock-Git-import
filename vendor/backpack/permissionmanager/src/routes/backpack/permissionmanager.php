@@ -15,7 +15,7 @@ Route::group([
             'prefix'     => config('backpack.base.route_prefix', 'admin'),
             'middleware' => ['web', 'admin'],
     ], function () {
-        CRUD::resource('permission', 'PermissionCrudController')->middleware("can:gestion_index");
-        CRUD::resource('role', 'RoleCrudController')->middleware("can:gestion_index");
-        CRUD::resource('user', 'UserCrudController')->middleware("can:gestion_index");
+        CRUD::resource('permission', 'PermissionCrudController');
+        CRUD::resource('role', 'RoleCrudController');
+        CRUD::resource('user', 'UserCrudController');
     });
