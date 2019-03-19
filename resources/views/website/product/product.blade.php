@@ -24,7 +24,7 @@
                     </div>
 
                     <h1>Choisir la catégorie que vous souhaitez afficher</h1><br />
-                    <select id="catToDisplay" class="form-control" onchange="">
+                    <select id="catToDisplay" class="form-control" onchange="displayProductCat()">
                         @foreach($Categories as $row)
                             <option value="{{ str_replace(" ", "_", $row->name) }}">{{ $row->name }}</option>
                             @endforeach
@@ -33,7 +33,7 @@
 
 
                     @foreach($Categories as $cat)
-                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: block;">
+                    <div id="cat_{{ str_replace(" ", "_", $cat->name) }}" class="" style="display: none;">
                         <table class="table table-striped" id="datatable-editable">
                             <thead>
                             <tr>
@@ -102,7 +102,7 @@
 
 @section('after_scripts')
 
-    <script>
+    <script type="text/javascript">
 
         function displayProductCat() {
 
