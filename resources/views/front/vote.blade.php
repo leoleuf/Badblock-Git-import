@@ -363,12 +363,12 @@
                 function flexar()
                 {
                     var isHovered = $('#vote_button').is(":hover");
-                    console.log(isHovered);
+                    
                     if (isHovered) {
                         document.getElementById("vb").style.marginTop = "100px";
                     }
 
-                    setTimeout(flexar, 10);
+                    setTimeout(flexar, 50);
                 }
 
                 if (window.canRunAds === undefined)
