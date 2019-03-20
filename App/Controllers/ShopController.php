@@ -174,17 +174,12 @@ class ShopController extends Controller
             }
             if ($depend == 0 && $check == false)
             {
-                //Search depend produc pour proposer a la vente
+                //Search depend product pour proposer a la vente
                 $product_depend = $product_depend->name;
                 return $response->write("Vous devez acheter l'offre $product_depend avant d'acheter celle-ci !")->withStatus(400);
             }
         }
 
-
-
-        if ($product->queue == "faction"){
-            return $response->write("Service temporairement désactivé.")->withStatus(400);
-        }
 
         //Check promotion
         if (isset($product->promotion) && $product->promotion)
@@ -215,7 +210,7 @@ class ShopController extends Controller
             'uniqueId' => $player['uniqueId'],
             'offer' => $product->depend_name,
             'name' => $product->name,
-            'price' => $product->price,
+            'price' => intval($product->price),
             'ingame' => false,
             'ip' => $_SERVER['REMOTE_ADDR'],
             'date' => date('Y-m-d H:i:s')
