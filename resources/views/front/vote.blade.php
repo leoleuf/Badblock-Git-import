@@ -336,6 +336,13 @@
                 function flexar()
                 {
                     document.getElementById("vb").style.marginTop = "100px";
+                    setTimeout(flexe, 1000);
+                }
+
+                function flexe()
+                {
+                    document.getElementById("vb").style.marginTop = "0px";
+                    setTimeout(flexar, 1000);
                 }
 
                 if (window.canRunAds === undefined)
