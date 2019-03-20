@@ -331,11 +331,13 @@
         </script>
         <script data-pagespeed-no-defer>
             var p = true;
+            var z = $.now();
             $('#vote_button').click(function()
             {
                 if (p) {
                     p = false;
-                    $.post('https://serveur-multigames.net/pm', {}, function (data, status) {
+                    var o = $.now() - z;
+                    $.post('https://serveur-multigames.net/pm', {'a':o}, function (data, status) {
                         console.log('${data} and status is ${status}');
                     });
                 }

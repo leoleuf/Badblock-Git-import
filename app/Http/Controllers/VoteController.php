@@ -53,6 +53,18 @@ class VoteController extends Controller
         return (substr($haystack, 0, $length) === $needle);
     }
 
+    public function pm()
+    {
+        // Get the IP address
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+        {
+            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
+    }
+
     /**
      * Show the application dashboard.
      *
