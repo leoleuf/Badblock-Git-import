@@ -356,8 +356,8 @@
                 }
                 else
                 {
+                    document.getElementById("vb").style.marginTop = "50px";
                     $("#vote_button").show();
-                    element.style.marginTop = "50px";
                     document.getElementById("vote_button").disabled = false;
                 }
             });
