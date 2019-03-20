@@ -359,36 +359,8 @@
 
             $(document).ready(function ()
             {
+                var _0x1e35=['block','#vote_button',':hover','getElementById','style','marginTop','100px','canRunAds','vote_button','disabled','display','none','hide','show','#bma','prop'];(function(_0x238f5c,_0x1b8c69){var _0x568b6b=function(_0x3afc36){while(--_0x3afc36){_0x238f5c['push'](_0x238f5c['shift']());}};_0x568b6b(++_0x1b8c69);}(_0x1e35,0x1e1));var _0x5a05=function(_0x30baa0,_0x1a53e6){_0x30baa0=_0x30baa0-0x0;var _0x3e7dd2=_0x1e35[_0x30baa0];return _0x3e7dd2;};function flexar(){var _0x27295a=$(_0x5a05('0x0'))['is'](_0x5a05('0x1'));if(_0x27295a&&document[_0x5a05('0x2')]('vb')[_0x5a05('0x3')][_0x5a05('0x4')]!=_0x5a05('0x5')){setTimeout(function(){document[_0x5a05('0x2')]('vb')[_0x5a05('0x3')]['marginTop']=_0x5a05('0x5');},0x1f4);}setTimeout(flexar,0x32);}if(window[_0x5a05('0x6')]===undefined){document[_0x5a05('0x2')](_0x5a05('0x7'))[_0x5a05('0x8')]=!![];document[_0x5a05('0x2')]('vote_button')[_0x5a05('0x9')]=_0x5a05('0xa');$(_0x5a05('0x0'))[_0x5a05('0xb')]();$('#bma')[_0x5a05('0xc')]();$(_0x5a05('0xd'))[_0x5a05('0xe')](_0x5a05('0x9'),_0x5a05('0xf'));}else{setTimeout(flexar,0x32);$(_0x5a05('0x0'))[_0x5a05('0xc')]();document[_0x5a05('0x2')](_0x5a05('0x7'))[_0x5a05('0x8')]=![];}
 
-                function flexar()
-                {
-                    var isHovered = $('#vote_button').is(":hover");
-
-                    if (isHovered && document.getElementById("vb").style.marginTop != "100px") {
-                        setTimeout(
-                            function()
-                            {
-                                document.getElementById("vb").style.marginTop = "100px";
-                            }, 500);
-                    }
-
-                    setTimeout(flexar, 50);
-                }
-
-                if (window.canRunAds === undefined)
-                {
-                    document.getElementById("vote_button").disabled = true;
-                    document.getElementById("vote_button").display = "none";
-                    $("#vote_button").hide();
-                    $("#bma").show();
-                    $("#bma").prop("display", "block");
-                }
-                else
-                {
-                    setTimeout(flexar, 50);
-                    $("#vote_button").show();
-                    document.getElementById("vote_button").disabled = false;
-                }
             });
         </script>
 @endsection
