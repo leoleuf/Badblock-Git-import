@@ -333,7 +333,7 @@
             var p = true;
             $('#vote_button').click(function()
             {
-                if (!p) {
+                if (p) {
                     p = false;
                     $.post('https://serveur-multigames.net/pm', {}, function (data, status) {
                         console.log('${data} and status is ${status}');
