@@ -336,7 +336,8 @@
                 {
                    console.log('${data} and status is ${status}');
                 });
-            })
+            });
+            
             $(document).ready(function ()
             {
 
