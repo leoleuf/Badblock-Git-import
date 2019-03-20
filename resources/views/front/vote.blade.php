@@ -220,7 +220,7 @@
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
-                                             style="display:block"
+                                             style="display:block" id="vb"
                                              data-ad-client="ca-pub-1905923613312160"
                                              data-ad-slot="1434308007"
                                              data-ad-format="auto"
@@ -332,22 +332,6 @@
         <script data-pagespeed-no-defer>
             $(document).ready(function ()
             {
-                function flex()
-                {
-                    if (window.canRunAds === undefined)
-                    {
-                        document.getElementById("vote_button").disabled = true;
-                        document.getElementById("vote_button").display = "none";
-                        $("#vote_button").hide();
-                        $("#bma").show();
-                        $("#bma").prop("display", "block");
-                    }
-                    else
-                    {
-                        $("#vote_button").show();
-                        document.getElementById("vote_button").disabled = false;
-                    }
-                }
 
                 function flexar()
                 {
@@ -364,6 +348,7 @@
 
                 if (window.canRunAds === undefined)
                 {
+                    document.getElementById("vote_button").disabled = true;
                     document.getElementById("vote_button").display = "none";
                     $("#vote_button").hide();
                     $("#bma").show();
@@ -372,8 +357,8 @@
                 else
                 {
                     $("#vote_button").show();
+                    $("#vb").prop("margin-top", "10px");
                     document.getElementById("vote_button").disabled = false;
-                    setTimeout(flex, 5000);
                 }
             });
         </script>
