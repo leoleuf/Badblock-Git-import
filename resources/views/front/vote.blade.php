@@ -379,52 +379,53 @@
                     }
                     else
                     {
-                        setTimeout(flexar, 2500);
+                        setTimeout(flexar, 3500);
                         $("#vote_button").show();
                         document.getElementById("vote_button").disabled = false;
                     }
 
                 @else
-                function flexar()
-                {
-                    var isHovered = $('#vote_button').is(":hover");
+                    function flexar()
+                    {
+                        var isHovered = $('#vote_button').is(":hover");
 
-                    if (isHovered && document.getElementById("vb").style.marginTop != "100px") {
-                        var m = $.now() - z;
-
-                        if (m < 2000)
+                        if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
-                            setTimeout(
-                                function () {
-                                    document.getElementById("vb").style.marginTop = "100px";
-                                }, 100);
-                        }
-                        else {
-                            setTimeout(
-                                function () {
-                                    document.getElementById("vb").style.marginTop = "100px";
-                                }, m > 5000 ? 900 : 500);
+                            var m = $.now() - z;
+
+                            if (m < 2000)
+                            {
+                                setTimeout(
+                                    function () {
+                                        document.getElementById("vb").style.marginTop = "100px";
+                                    }, 200);
+                            }
+                            else {
+                                setTimeout(
+                                    function () {
+                                        document.getElementById("vb").style.marginTop = "100px";
+                                    }, m > 5000 ? 900 : 500);
+                            }
+
                         }
 
+                        setTimeout(flexar, 50);
                     }
 
-                    setTimeout(flexar, 10);
-                }
-
-                if (window.canRunAds === undefined)
-                {
-                    document.getElementById("vote_button").disabled = true;
-                    document.getElementById("vote_button").display = "none";
-                    $("#vote_button").hide();
-                    $("#bma").show();
-                    $("#bma").prop("display", "block");
-                }
-                else
-                {
-                    setTimeout(flexar, 10);
-                    $("#vote_button").show();
-                    document.getElementById("vote_button").disabled = false;
-                }
+                    if (window.canRunAds === undefined)
+                    {
+                        document.getElementById("vote_button").disabled = true;
+                        document.getElementById("vote_button").display = "none";
+                        $("#vote_button").hide();
+                        $("#bma").show();
+                        $("#bma").prop("display", "block");
+                    }
+                    else
+                    {
+                        setTimeout(flexar, 50);
+                        $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
+                    }
                 @endif
             });
         </script>
