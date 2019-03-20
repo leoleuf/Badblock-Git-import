@@ -369,7 +369,7 @@
                             function()
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
-                            }, 100);
+                            }, 500);
                     }
 
                     setTimeout(flexar, 50);
