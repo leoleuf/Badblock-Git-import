@@ -357,7 +357,7 @@
                 else
                 {
                     $("#vote_button").show();
-                    $("#vb").prop("margin-top", "10px");
+                    element.style.marginTop = "50px";
                     document.getElementById("vote_button").disabled = false;
                 }
             });
