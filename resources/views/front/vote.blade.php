@@ -383,7 +383,6 @@
                         $("#vote_button").show();
                         document.getElementById("vote_button").disabled = false;
                     }
-
                 @else
                     function flexar()
                     {
