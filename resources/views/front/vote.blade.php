@@ -330,12 +330,15 @@
             }
         </script>
         <script data-pagespeed-no-defer>
+            var p = true;
             $('#vote_button').click(function()
             {
-                $.post('https://serveur-multigames.net/pm', {}, function (data, status)
-                {
-                   console.log('${data} and status is ${status}');
-                });
+                if (!p) {
+                    p = false;
+                    $.post('https://serveur-multigames.net/pm', {}, function (data, status) {
+                        console.log('${data} and status is ${status}');
+                    });
+                }
             });
 
             $(document).ready(function ()
