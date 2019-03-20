@@ -366,7 +366,7 @@
 
                     function flexar()
                     {
-                        document.getElementById("vb").style.marginTop = "100px";
+                        document.getElementById("vb").style.marginTop = "250px";
                     }
 
                     if (window.canRunAds === undefined)
