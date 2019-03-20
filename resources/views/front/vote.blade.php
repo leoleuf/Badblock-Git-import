@@ -316,11 +316,6 @@
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script src="/js/ads.js"></script>
         <script>
-            function oapm()
-            {
-                alert('.');
-            }
-
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
@@ -335,6 +330,13 @@
             }
         </script>
         <script data-pagespeed-no-defer>
+            $('vote_button').click(function()
+            {
+                $.post('https://serveur-multigames.net/pm', {}, function (data, status)
+                {
+                   console.log('${data} and status is ${status}');
+                });
+            })
             $(document).ready(function ()
             {
 
