@@ -330,7 +330,7 @@
             }
         </script>
         <script data-pagespeed-no-defer>
-            $('vote_button').click(function()
+            $('#vote_button').click(function()
             {
                 $.post('https://serveur-multigames.net/pm', {}, function (data, status)
                 {
