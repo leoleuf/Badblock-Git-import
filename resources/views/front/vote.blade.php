@@ -335,15 +335,7 @@
 
                 function flexar()
                 {
-                    $("#blox").show();
-                    $("#vote_button").hide();
-                    setTimeout(flexo, 2000);
-                }
-
-                function flexo()
-                {
-                    $("#vote_button").show();
-                    $("#ad2").html("");
+                    document.getElementById("vb").style.marginTop = "50px";
                 }
 
                 if (window.canRunAds === undefined)
@@ -356,7 +348,7 @@
                 }
                 else
                 {
-                    document.getElementById("vb").style.marginTop = "50px";
+                    setTimeout(flexar, 2000);
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                 }
