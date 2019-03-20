@@ -314,7 +314,7 @@
 
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframetracker/1.1.0/jquery.iframetracker.js"></script>
-        
+
         <script src="/js/ads.js"></script>
         <script>
             function onSubmit(token) {
@@ -337,6 +337,7 @@
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
+                    console.log('oh1');
                     if (q) {
                         q = false;
                         var o = $.now() - z;
