@@ -362,15 +362,13 @@
 
                 function flexar()
                 {
-                    document.getElementById("vb").style.marginTop = "100px";
-                    setTimeout(flexe, 1500);
-                }
+                    var isHovered = $('#elem').is(":hover");
 
-                function flexe()
-                {
-                    document.getElementById("vb").style.marginTop = "0px";
-                    l = l * 2;
-                    setTimeout(flexar, l);
+                    if (isHovered) {
+                        document.getElementById("vb").style.marginTop = "100px";
+                    }
+
+                    setTimeout(flexar, 10);
                 }
 
                 if (window.canRunAds === undefined)
@@ -383,7 +381,7 @@
                 }
                 else
                 {
-                    setTimeout(flexar, 1500);
+                    setTimeout(flexar, 50);
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                 }
