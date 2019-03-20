@@ -167,7 +167,7 @@ class ShopController extends Controller
             //Check grade
             $check = false;
             foreach ((array)$player['permissions']->groups->bungee as $k => $row) {
-                if ($k == $product->depend) {
+                if ($k == $product_depend->depend_name) {
                     $check = true;
                     $temp = $row;
                 }
