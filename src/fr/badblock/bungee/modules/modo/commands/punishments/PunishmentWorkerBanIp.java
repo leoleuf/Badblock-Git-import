@@ -1,5 +1,6 @@
 package fr.badblock.bungee.modules.modo.commands.punishments;
 
+import java.util.Random;
 import java.util.UUID;
 
 import com.mongodb.DB;
@@ -149,6 +150,7 @@ public class PunishmentWorkerBanIp extends PunishmentWorker {
 			ModoSession modoSession = badPlayer.getModoSession();
 
 			if (modoSession != null) {
+				modoSession.setPunishmentTime(modoSession.getPunishmentTime() + (new Random().nextInt(30) + 250));
 				modoSession.incrementPunishment();
 			}
 		}

@@ -5,8 +5,6 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 
 import fr.badblock.api.common.minecraft.ModoSession;
-import fr.badblock.api.common.tech.mongodb.MongoService;
-import fr.badblock.api.common.tech.mongodb.methods.MongoMethod;
 import fr.badblock.bungee.BadBungee;
 import fr.badblock.bungee.modules.abstracts.BadListener;
 import fr.badblock.bungee.players.BadPlayer;
@@ -27,7 +25,7 @@ public class ModoSessionStopListener extends BadListener {
 	{
 		super(plugin);
 	}
-	
+
 	/**
 	 * When the player disconnects from the server
 	 * 
@@ -68,17 +66,13 @@ public class ModoSessionStopListener extends BadListener {
 		modoSession.setPunishmentTime(punishmentTime);
 		modoSession.setTotalTime((modoSession.getEndTime() - modoSession.getStartTime()) / 1000);
 
-		// Get mongo service
-		MongoService mongoService = BadBungee.getInstance().getMongoService();
-		// Use async mongo
-		mongoService.useAsyncMongo(new MongoMethod(mongoService) {
-			/**
-			 * Use asynchronously
-			 */
+		new Thread()
+		{
 			@Override
-			public void run(MongoService mongoService) {
+			public void run()
+			{
 				// Get the database
-				DB db = mongoService.getDb();
+				DB db = BadBungee.getInstance().getMongoService().getDb();
 				// Get the collection
 				DBCollection collection = db.getCollection("modoSessions");
 				// Create query
@@ -86,7 +80,7 @@ public class ModoSessionStopListener extends BadListener {
 
 				collection.insert(query);
 			}
-		});
+		}.start();
 	}
 
 }

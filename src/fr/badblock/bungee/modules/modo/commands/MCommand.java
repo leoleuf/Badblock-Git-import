@@ -21,7 +21,6 @@ import fr.badblock.bungee.modules.modo.commands.subcommands.UnbanCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.UnbanIPCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.UnmuteCommand;
 import fr.badblock.bungee.modules.modo.commands.subcommands.WarnCommand;
-import fr.badblock.bungee.modules.modo.commands.subcommands.WorkCommand;
 import fr.badblock.bungee.utils.i18n.I19n;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -48,7 +47,6 @@ public class MCommand extends BadCommand {
 		super(plugin, "m", null, "md");
 
 		moderationCommands = new ArrayList<>();
-		moderationCommands.add(new WorkCommand());
 		moderationCommands.add(new BanIpCommand());
 		moderationCommands.add(new BanCommand());
 		moderationCommands.add(new TempBanIpCommand());

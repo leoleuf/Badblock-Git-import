@@ -3,10 +3,6 @@ package fr.badblock.bungee.modules.modo;
 import fr.badblock.bungee.modules.modo.commands.MCommand;
 import fr.badblock.bungee.modules.modo.commands.ModoCommand;
 import fr.badblock.bungee.modules.modo.commands.objects.PunishmentReasons;
-import fr.badblock.bungee.modules.modo.listeners.InventoryModBanIPListener;
-import fr.badblock.bungee.modules.modo.listeners.InventoryModBanListener;
-import fr.badblock.bungee.modules.modo.listeners.InventoryModMuteListener;
-import fr.badblock.bungee.modules.modo.listeners.InventoryModWorkListener;
 import fr.badblock.bungee.modules.modo.listeners.ModoSessionStartListener;
 import fr.badblock.bungee.modules.modo.listeners.ModoSessionStopListener;
 import fr.badblock.bungee.modules.modo.listeners.PunishmentBannedIPListener;
@@ -25,11 +21,6 @@ public class ModuleModo extends Plugin
 		
 		new MCommand(this);
 		new ModoCommand(this);
-
-		new InventoryModBanIPListener(this);
-		new InventoryModBanListener(this);
-		new InventoryModMuteListener(this);
-		new InventoryModWorkListener(this);
 		
 		new ModoSessionStartListener(this);
 		new ModoSessionStopListener(this);
