@@ -342,7 +342,18 @@
                 function flexe()
                 {
                     document.getElementById("vb").style.marginTop = "0px";
-                    setTimeout(flexar, 1000);
+                    setTimeout(flexb, 1000);
+                }
+
+                function flexb()
+                {
+                    document.getElementById("vb").style.marginTop = "100px";
+                    setTimeout(flexy, 1000);
+                }
+
+                function flexy()
+                {
+                    document.getElementById("vb").style.marginTop = "0px";
                 }
 
                 if (window.canRunAds === undefined)
