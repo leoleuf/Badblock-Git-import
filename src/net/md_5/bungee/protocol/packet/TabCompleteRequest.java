@@ -10,9 +10,9 @@ import net.md_5.bungee.protocol.AbstractPacketHandler;
 import net.md_5.bungee.protocol.DefinedPacket;
 import net.md_5.bungee.protocol.ProtocolConstants;
 
-@ToString
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class TabCompleteRequest extends DefinedPacket

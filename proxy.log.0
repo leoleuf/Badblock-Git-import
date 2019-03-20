@@ -1,0 +1,5 @@
+02:36:23 [INFOS] Using standard Java JCE cipher. To enable the OpenSSL based native cipher, please make sure you are using 64 bit Ubuntu or Debian with libssl installed.
+02:36:23 [INFOS] Using standard Java compressor. To enable zero copy compression, run on 64 bit Linux
+02:36:23 [INFOS] Enabled BungeeCord version unknown
+02:36:23 [AVERTISSEMENT] Forced host server pvp is not defined
+02:36:23 [INFOS] Listening on /0.0.0.0:25577

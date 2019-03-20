@@ -10,6 +10,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.Title;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.score.Scoreboard;
 
 /**
  * Represents a player who's connection is being connected to somewhere else,
@@ -212,4 +213,12 @@ public interface ProxiedPlayer extends Connection, CommandSender
      * not occurred for this {@link ProxiedPlayer} yet.
      */
     Map<String, String> getModList();
+
+    /**
+     * Get the {@link Scoreboard} that belongs to this player.
+     *
+     * @return this player's {@link Scoreboard}
+     */
+    Scoreboard getScoreboard();
+    
 }

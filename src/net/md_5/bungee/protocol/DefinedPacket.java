@@ -1,13 +1,12 @@
 package net.md_5.bungee.protocol;
 
+import com.google.common.base.Charsets;
+import io.netty.buffer.ByteBuf;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import com.google.common.base.Charsets;
-
-import io.netty.buffer.ByteBuf;
 import lombok.RequiredArgsConstructor;
+
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public abstract class DefinedPacket
@@ -71,6 +70,19 @@ public abstract class DefinedPacket
         }
         byte[] ret = new byte[ len ];
         buf.readBytes( ret );
+        return ret;
+    }
+
+    public static int[] readVarIntArray(ByteBuf buf)
+    {
+        int len = readVarInt( buf );
+        int[] ret = new int[ len ];
+
+        for ( int i = 0; i < len; i++ )
+        {
+            ret[i] = readVarInt( buf );
+        }
+
         return ret;
     }
 

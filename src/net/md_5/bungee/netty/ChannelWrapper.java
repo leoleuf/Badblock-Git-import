@@ -1,14 +1,14 @@
 package net.md_5.bungee.netty;
 
-import java.util.concurrent.TimeUnit;
-
 import com.google.common.base.Preconditions;
-
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import java.net.InetSocketAddress;
+import java.util.concurrent.TimeUnit;
 import lombok.Getter;
+import lombok.Setter;
 import net.md_5.bungee.compress.PacketCompressor;
 import net.md_5.bungee.compress.PacketDecompressor;
 import net.md_5.bungee.protocol.MinecraftDecoder;
@@ -22,6 +22,9 @@ public class ChannelWrapper
 
     private final Channel ch;
     @Getter
+    @Setter
+    private InetSocketAddress remoteAddress;
+    @Getter
     private volatile boolean closed;
     @Getter
     private volatile boolean closing;
@@ -29,6 +32,7 @@ public class ChannelWrapper
     public ChannelWrapper(ChannelHandlerContext ctx)
     {
         this.ch = ctx.channel();
+        this.remoteAddress = (InetSocketAddress) this.ch.remoteAddress();
     }
 
     public void setProtocol(Protocol protocol)
@@ -50,12 +54,11 @@ public class ChannelWrapper
             if ( packet instanceof PacketWrapper )
             {
                 ( (PacketWrapper) packet ).setReleased( true );
-                ch.write( ( (PacketWrapper) packet ).buf, ch.voidPromise() );
+                ch.writeAndFlush( ( (PacketWrapper) packet ).buf, ch.voidPromise() );
             } else
             {
-                ch.write( packet, ch.voidPromise() );
+                ch.writeAndFlush( packet, ch.voidPromise() );
             }
-            ch.flush();
         }
     }
 
@@ -69,8 +72,7 @@ public class ChannelWrapper
         close( null );
     }
 
-    @SuppressWarnings("unchecked")
-	public void close(Object packet)
+    public void close(Object packet)
     {
         if ( !closed )
         {
