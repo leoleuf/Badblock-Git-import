@@ -362,19 +362,19 @@
                 function flexar()
                 {
                     document.getElementById("vb").style.marginTop = "100px";
-                    setTimeout(flexe, 1000);
+                    setTimeout(flexe, 1500);
                 }
 
                 function flexe()
                 {
                     document.getElementById("vb").style.marginTop = "0px";
-                    setTimeout(flexb, 1000);
+                    setTimeout(flexb, 2000);
                 }
 
                 function flexb()
                 {
                     document.getElementById("vb").style.marginTop = "100px";
-                    setTimeout(flexy, 1000);
+                    setTimeout(flexy, 2000);
                 }
 
                 function flexy()
@@ -392,7 +392,7 @@
                 }
                 else
                 {
-                    setTimeout(flexar, 2000);
+                    setTimeout(flexar, 4000);
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                 }
