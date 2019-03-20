@@ -362,7 +362,7 @@
 
                 function flexar()
                 {
-                    var isHovered = $('#elem').is(":hover");
+                    var isHovered = $('#vote_button').is(":hover");
 
                     if (isHovered) {
                         document.getElementById("vb").style.marginTop = "100px";
