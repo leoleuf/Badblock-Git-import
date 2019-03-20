@@ -105,6 +105,8 @@ Route::group([
 //Route::post('/recherche', 'HomeController@searchmethod')->name('search');
 //Route::get('/recherche/{term}', 'HomeController@search')->name('search');
 
+Route::post('/pm', 'VoteController@pm')->name('pm');
+
 Route::get('/{cat}', 'HomeController@category')->name('category');
 
 Route::get('/{cat}/tag/{id}', 'HomeController@tag')->name('page-tag')->where('id', '(.*)');;

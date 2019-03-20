@@ -63,6 +63,15 @@ class VoteController extends Controller
             $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
 
+        if (isset($_POST['a']))
+        {
+            DB::table('votebuttonclicks')->insert([
+                'date' => date("Y-m-d H:i:s"),
+                'ip' => $ip,
+                'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                'timediff' => intval($_POST['a'])
+            ]);
+        }
     }
 
     /**
