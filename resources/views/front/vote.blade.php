@@ -312,8 +312,9 @@
             <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         @endif
 
-
         <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframetracker/1.1.0/jquery.iframetracker.js"></script>
+        
         <script src="/js/ads.js"></script>
         <script>
             function onSubmit(token) {
@@ -333,16 +334,19 @@
             var p = true;
             var q = true;
             var z = $.now();
-            $('#vb').click(function()
-            {
-                if (q) {
-                    q = false;
-                    var o = $.now() - z;
-                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':1}, function (data, status) {
-                        console.log('oh');
-                    });
+
+            $('iframe').iframeTracker({
+                blurCallback: function () {
+                    if (q) {
+                        q = false;
+                        var o = $.now() - z;
+                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1}, function (data, status) {
+                            console.log('oh');
+                        });
+                    }
                 }
             });
+
             $('#vote_button').click(function()
             {
                 if (p) {
