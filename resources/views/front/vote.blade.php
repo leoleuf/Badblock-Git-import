@@ -337,12 +337,10 @@
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
-                    console.log('oh1');
                     if (q) {
                         q = false;
                         var o = $.now() - z;
                         $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1}, function (data, status) {
-                            console.log('oh');
                         });
                     }
                 }
