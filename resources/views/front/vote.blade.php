@@ -333,6 +333,7 @@
             {
                 function flex()
                 {
+                    alert('.');
                     if (window.canRunAds === undefined)
                     {
                         document.getElementById("vote_button").disabled = true;
