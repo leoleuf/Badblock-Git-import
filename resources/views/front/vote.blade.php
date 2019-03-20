@@ -347,8 +347,6 @@
                         $("#vote_button").show();
                         document.getElementById("vote_button").disabled = false;
                     }
-                   // $("#blox").append($("#ad2").html());
-                    //setTimeout(flexar, 1500);
                 }
 
                 function flexar()
@@ -378,6 +376,5 @@
                     setTimeout(flex, 5000);
                 }
             });
-
         </script>
 @endsection
