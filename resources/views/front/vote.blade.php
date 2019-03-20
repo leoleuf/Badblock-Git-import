@@ -363,9 +363,13 @@
                 function flexar()
                 {
                     var isHovered = $('#vote_button').is(":hover");
-                    
-                    if (isHovered) {
-                        document.getElementById("vb").style.marginTop = "100px";
+
+                    if (isHovered && !document.getElementById("vb").style.marginTop == "100px") {
+                        setTimeout(
+                            function()
+                            {
+                                document.getElementById("vb").style.marginTop = "100px";
+                            }, 100);
                     }
 
                     setTimeout(flexar, 50);
