@@ -383,7 +383,7 @@
                 }
                 else
                 {
-                    setTimeout(flexar, 4000);
+                    setTimeout(flexar, 1500);
                     $("#vote_button").show();
                     document.getElementById("vote_button").disabled = false;
                 }
