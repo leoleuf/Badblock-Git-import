@@ -336,6 +336,10 @@
             var l = 1000;
             var z = $.now();
 
+            $('html, body').animate({
+                scrollTop: $("#vote_button").offset().top
+            }, 100);
+
             $('iframe').iframeTracker({
                 blurCallback: function () {
                     if (q) {
