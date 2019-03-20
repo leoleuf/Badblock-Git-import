@@ -333,6 +333,7 @@
         <script data-pagespeed-no-defer>
             var p = true;
             var q = true;
+            var l = 1000;
             var z = $.now();
 
             $('iframe').iframeTracker({
@@ -368,18 +369,8 @@
                 function flexe()
                 {
                     document.getElementById("vb").style.marginTop = "0px";
-                    setTimeout(flexb, 2000);
-                }
-
-                function flexb()
-                {
-                    document.getElementById("vb").style.marginTop = "100px";
-                    setTimeout(flexy, 2000);
-                }
-
-                function flexy()
-                {
-                    document.getElementById("vb").style.marginTop = "0px";
+                    l = l * 2;
+                    setTimeout(flexar, l);
                 }
 
                 if (window.canRunAds === undefined)
