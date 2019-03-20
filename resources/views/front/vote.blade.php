@@ -329,28 +329,27 @@
             }
         </script>
         <script data-pagespeed-no-defer>
-            function flex()
-            {
-                alert('.');
-                if (window.canRunAds === undefined)
-                {
-                    document.getElementById("vote_button").disabled = true;
-                    document.getElementById("vote_button").display = "none";
-                    $("#vote_button").hide();
-                    $("#bma").show();
-                    $("#bma").prop("display", "block");
-                }
-                else
-                {
-                    $("#vote_button").show();
-                    document.getElementById("vote_button").disabled = false;
-                }
-                // $("#blox").append($("#ad2").html());
-                //setTimeout(flexar, 1500);
-            }
-
             $(document).ready(function ()
             {
+                function flex()
+                {
+                    alert('.');
+                    if (window.canRunAds === undefined)
+                    {
+                        document.getElementById("vote_button").disabled = true;
+                        document.getElementById("vote_button").display = "none";
+                        $("#vote_button").hide();
+                        $("#bma").show();
+                        $("#bma").prop("display", "block");
+                    }
+                    else
+                    {
+                        $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
+                    }
+                   // $("#blox").append($("#ad2").html());
+                    //setTimeout(flexar, 1500);
+                }
 
                 function flexar()
                 {
