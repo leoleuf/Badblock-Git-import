@@ -231,7 +231,7 @@
 
                                     <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
                                             data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                            data-callback="onSubmit" style="height: 50px;" disabled>
+                                            data-callback="onSubmit" style="height: 50px;" onClick="oapm()" disabled>
                                         Voter <i class="lnr lnr-arrow-right"></i>
                                     </button>
                                     {{ csrf_field() }}
@@ -316,6 +316,11 @@
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script src="/js/ads.js"></script>
         <script>
+            function oapm()
+            {
+                alert('.');
+            }
+
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
