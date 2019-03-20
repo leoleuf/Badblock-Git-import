@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //
-        'dashboard/recharge-validate'
+        'dashboard/recharge-validate',
+        'pm',
     ];
 }
