@@ -204,10 +204,12 @@ Route::group([
         Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:gestion_index');
         Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:gestion_index');
 
+        // Voir ses propres avertissements
+        Route::get('/avertissement/{id}', 'section\WarningController@display');
+
     });
 
-    // Voir ses propres avertissements
-    Route::get('/avertissement/{id}', 'section\WarningController@display');
+
 
 
 
