@@ -46,7 +46,7 @@
 
                         <div class="form-group text-center m-t-30">
                             <div class="col-xs-12">
-                                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Connection</button>
+                                <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Connexion</button>
                             </div>
                         </div>
 
