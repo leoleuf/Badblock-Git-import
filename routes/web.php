@@ -124,6 +124,9 @@ Route::group([
         Route::get('/msg-anim', 'Animation\AnimationController@index');
         Route::post('/msg-anim', 'Animation\AnimationController@setIgMsg');
 
+        Route::post('/msg-anim/changeMessage', 'Animation\AnimationController@changeMessage');
+        Route::post('/msg-anim/deleteMessage', 'Animation\AnimationController@deleteMessage');
+
     });
 
 

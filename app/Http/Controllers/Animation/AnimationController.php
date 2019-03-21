@@ -17,7 +17,16 @@ class AnimationController extends Controller
 {
     public function index()
     {
-        return view('section.animation.msg', ['list' => DB::connection('mongodb')->collection('automessages')->get()[0]['message']]);
+
+        $list = DB::connection('mongodb')->collection('automessages')->get();;
+
+        if(!isset($list[0]['message'])) {
+            //S'il n'y a rien en base de données, on créer un array vide, qui empêche une génération d'erreur parce que l'offset 0 n'existe pas
+            $list = array();
+            $list[0]["message"] = array();
+        }
+
+        return view('section.animation.msg', ['list' => $list[0]['message']]);
     }
 
     public function setIgMsg(Request $request)
@@ -25,6 +34,26 @@ class AnimationController extends Controller
         $list = DB::connection('mongodb')->collection('automessages')->get()[0]['message'];
 
         array_push($list, $request->input('msg'));
+
+        DB::connection('mongodb')->collection('automessages')->update(['message' => $list]);
+        return redirect('/animation/msg-anim');
+    }
+
+    public function changeMessage(Request $request){
+
+        $list = DB::connection('mongodb')->collection('automessages')->get()[0]['message'];
+
+        $list[$request->input('newMessage_key')] = $request->input('newMessage');
+
+        DB::connection('mongodb')->collection('automessages')->update(['message' => $list]);
+        return redirect('/animation/msg-anim');
+    }
+
+    public function deleteMessage(Request $request){
+
+        $list = DB::connection('mongodb')->collection('automessages')->get()[0]['message'];
+
+        unset($list[$request->input("deleteMessage_ID")]);
 
         DB::connection('mongodb')->collection('automessages')->update(['message' => $list]);
         return redirect('/animation/msg-anim');
