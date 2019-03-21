@@ -18,7 +18,7 @@ class AnimationController extends Controller
     public function index()
     {
 
-        $list = DB::connection('mongodb')->collection('automessages')->get();;
+        $list = DB::connection('mongodb')->collection('automessages')->get();
 
         if(!isset($list[0]['message'])) {
             //S'il n'y a rien en base de données, on créer un array vide, qui empêche une génération d'erreur parce que l'offset 0 n'existe pas
@@ -52,8 +52,17 @@ class AnimationController extends Controller
     public function deleteMessage(Request $request){
 
         $list = DB::connection('mongodb')->collection('automessages')->get()[0]['message'];
+        $messageToDelete = $request->input('deleteMessage_ID');
 
-        unset($list[$request->input("deleteMessage_ID")]);
+        unset($list[$messageToDelete]);
+
+        foreach ($list as $key => $message){
+
+            if($key > $messageToDelete){
+                $list[$key-1] = $list[$key];
+            }
+            unset($list[$key]);
+        }
 
         DB::connection('mongodb')->collection('automessages')->update(['message' => $list]);
         return redirect('/animation/msg-anim');
