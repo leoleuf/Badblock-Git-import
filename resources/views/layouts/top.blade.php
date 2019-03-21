@@ -210,7 +210,7 @@
                                     <li><a href="/animation/pb" class="waves-effect"><i class="fa fa-coins"></i> Give PB</a>
                                     </li>
                                 @endcan
-                                <li><a href="/animation/anim-msg" class="waves-effect"><i class="fas fa-comment-dots"></i> Message d'event </a> </li>
+                                <li><a href="/animation/msg-anim" class="waves-effect"><i class="fas fa-comment-dots"></i> Message d'event </a> </li>
                             </ul>
                         </li>
                     @endcan
