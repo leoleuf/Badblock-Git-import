@@ -66,7 +66,7 @@ class GiveController extends Controller
                     $Funds->save();
                 }
 
-                array_push($logg, ['Pseudo' => $row, 'points' => intval($_POST['points'][$k])]);
+                array_push($logg, ['Pseudo' => $row, 'points' => intval($_POST['points'][$k]), 'comments' => $_POST['comments']]);
             }
         }
 

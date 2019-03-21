@@ -4,13 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9f3507540d4a88730214acdea36ce835
+class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '3a37ebac017bc098e9a86b35401e7a68' => __DIR__ . '/..' . '/mongodb/mongodb/src/functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -23,6 +26,10 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
     );
 
     public static $prefixLengthsPsr4 = array (
+        'x' => 
+        array (
+            'xPaw\\' => 5,
+        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -44,8 +51,11 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'S' => 
         array (
             'Symfony\\Thanks\\' => 15,
+            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Php70\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
+            'Symfony\\Polyfill\\Iconv\\' => 23,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\' => 18,
             'Symfony\\Component\\VarDumper\\' => 28,
@@ -149,6 +159,10 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
     );
 
     public static $prefixDirsPsr4 = array (
+        'xPaw\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src',
+        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -179,6 +193,10 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         array (
             0 => __DIR__ . '/..' . '/symfony/thanks/src',
         ),
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
@@ -186,6 +204,14 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
+        'Symfony\\Polyfill\\Iconv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
         ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
@@ -518,6 +544,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Adams\\TeamSpeak3\\Viewer\\Text' => __DIR__ . '/..' . '/lukasz-adamski/teamspeak3-framework/src/TeamSpeak3/Viewer/Text.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Animation\\AnimationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Animation/AnimationController.php',
         'App\\Http\\Controllers\\Animation\\GiveController' => __DIR__ . '/../..' . '/app/Http/Controllers/Animation/GiveController.php',
         'App\\Http\\Controllers\\Api\\ScreenController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ScreenController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -525,31 +552,41 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ConverterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConverterController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\Infra\\ConsoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/ConsoleController.php',
         'App\\Http\\Controllers\\Infra\\DockerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/DockerController.php',
+        'App\\Http\\Controllers\\Infra\\McController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/McController.php',
         'App\\Http\\Controllers\\Infra\\MongoDBController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/MongoDBController.php',
         'App\\Http\\Controllers\\Infra\\VrackController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/VrackController.php',
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
+        'App\\Http\\Controllers\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilController.php',
         'App\\Http\\Controllers\\Settings\\SharexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/SharexController.php',
         'App\\Http\\Controllers\\moderation\\CasierController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/CasierController.php',
         'App\\Http\\Controllers\\moderation\\GuardianController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/GuardianController.php',
         'App\\Http\\Controllers\\moderation\\ModerationController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/ModerationController.php',
         'App\\Http\\Controllers\\moderation\\SanctionController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/SanctionController.php',
+        'App\\Http\\Controllers\\moderation\\SeenController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/SeenController.php',
         'App\\Http\\Controllers\\moderation\\TeamspeakController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/TeamspeakController.php',
         'App\\Http\\Controllers\\profile\\ActionController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/ActionController.php',
+        'App\\Http\\Controllers\\profile\\BuilderFileUploaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/BuilderFileUploaderController.php',
         'App\\Http\\Controllers\\profile\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/IndexController.php',
         'App\\Http\\Controllers\\profile\\ScreenController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/ScreenController.php',
-        'App\\Http\\Controllers\\section\\AvertissementController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/AvertissementController.php',
+        'App\\Http\\Controllers\\profile\\TodolistsController' => __DIR__ . '/../..' . '/app/Http/Controllers/profile/TodolistsController.php',
         'App\\Http\\Controllers\\section\\BuildController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/BuildController.php',
         'App\\Http\\Controllers\\section\\ForumController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/ForumController.php',
         'App\\Http\\Controllers\\section\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/IndexController.php',
         'App\\Http\\Controllers\\section\\ModController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/ModController.php',
+        'App\\Http\\Controllers\\section\\NotificationsController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/NotificationsController.php',
         'App\\Http\\Controllers\\section\\PaidController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/PaidController.php',
         'App\\Http\\Controllers\\section\\PermissionsController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/PermissionsController.php',
         'App\\Http\\Controllers\\section\\RedacController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/RedacController.php',
         'App\\Http\\Controllers\\section\\StaffController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/StaffController.php',
         'App\\Http\\Controllers\\section\\TfaController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/TfaController.php',
+        'App\\Http\\Controllers\\section\\TodoListController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/TodoListController.php',
+        'App\\Http\\Controllers\\section\\URLShortenerManagerController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/URLShortenerManagerController.php',
+        'App\\Http\\Controllers\\section\\WarningController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/WarningController.php',
+        'App\\Http\\Controllers\\section\\YoutubersManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/section/YoutubersManagementController.php',
         'App\\Http\\Controllers\\website\\AchatController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/AchatController.php',
         'App\\Http\\Controllers\\website\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/IndexController.php',
         'App\\Http\\Controllers\\website\\PaidController' => __DIR__ . '/../..' . '/app/Http/Controllers/website/PaidController.php',
@@ -575,11 +612,13 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\Server' => __DIR__ . '/../..' . '/app/Models/Server.php',
         'App\\Models\\ShareX' => __DIR__ . '/../..' . '/app/Models/ShareX.php',
+        'App\\Models\\Todo' => __DIR__ . '/../..' . '/app/Models/Todo.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Services\\DockerService' => __DIR__ . '/../..' . '/app/Services/DockerService.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'AssertionError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/AssertionError.php',
@@ -1016,6 +1055,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Dotenv\\Exception\\InvalidPathException' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Exception/InvalidPathException.php',
         'Dotenv\\Exception\\ValidationException' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Exception/ValidationException.php',
         'Dotenv\\Loader' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Loader.php',
+        'Dotenv\\Parser' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Parser.php',
         'Dotenv\\Validator' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Validator.php',
         'Egulias\\EmailValidator\\EmailLexer' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/EmailLexer.php',
         'Egulias\\EmailValidator\\EmailParser' => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator/EmailParser.php',
@@ -2632,7 +2672,11 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV7' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV7.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerTrait' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerTrait.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditionsForV8' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditionsForV8.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryTestCaseSetUpForV7AndPrevious' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCaseSetUpForV7AndPrevious.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryTestCaseSetUpForV8' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCaseSetUpForV8.php',
         'Mockery\\Adapter\\Phpunit\\TestListener' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php',
         'Mockery\\ClosureWrapper' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ClosureWrapper.php',
         'Mockery\\CompositeExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/CompositeExpectation.php',
@@ -2711,6 +2755,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
         'MongoDB\\BulkWriteResult' => __DIR__ . '/..' . '/mongodb/mongodb/src/BulkWriteResult.php',
+        'MongoDB\\ChangeStream' => __DIR__ . '/..' . '/mongodb/mongodb/src/ChangeStream.php',
         'MongoDB\\Client' => __DIR__ . '/..' . '/mongodb/mongodb/src/Client.php',
         'MongoDB\\Collection' => __DIR__ . '/..' . '/mongodb/mongodb/src/Collection.php',
         'MongoDB\\Database' => __DIR__ . '/..' . '/mongodb/mongodb/src/Database.php',
@@ -2718,6 +2763,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'MongoDB\\Exception\\BadMethodCallException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/BadMethodCallException.php',
         'MongoDB\\Exception\\Exception' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/Exception.php',
         'MongoDB\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/InvalidArgumentException.php',
+        'MongoDB\\Exception\\ResumeTokenException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/ResumeTokenException.php',
         'MongoDB\\Exception\\RuntimeException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/RuntimeException.php',
         'MongoDB\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/UnexpectedValueException.php',
         'MongoDB\\Exception\\UnsupportedException' => __DIR__ . '/..' . '/mongodb/mongodb/src/Exception/UnsupportedException.php',
@@ -2733,11 +2779,11 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'MongoDB\\MapReduceResult' => __DIR__ . '/..' . '/mongodb/mongodb/src/MapReduceResult.php',
         'MongoDB\\Model\\BSONArray' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/BSONArray.php',
         'MongoDB\\Model\\BSONDocument' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/BSONDocument.php',
+        'MongoDB\\Model\\BSONIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/BSONIterator.php',
         'MongoDB\\Model\\CachingIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/CachingIterator.php',
         'MongoDB\\Model\\CollectionInfo' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/CollectionInfo.php',
         'MongoDB\\Model\\CollectionInfoCommandIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/CollectionInfoCommandIterator.php',
         'MongoDB\\Model\\CollectionInfoIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/CollectionInfoIterator.php',
-        'MongoDB\\Model\\CollectionInfoLegacyIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/CollectionInfoLegacyIterator.php',
         'MongoDB\\Model\\DatabaseInfo' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/DatabaseInfo.php',
         'MongoDB\\Model\\DatabaseInfoIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/DatabaseInfoIterator.php',
         'MongoDB\\Model\\DatabaseInfoLegacyIterator' => __DIR__ . '/..' . '/mongodb/mongodb/src/Model/DatabaseInfoLegacyIterator.php',
@@ -2749,6 +2795,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'MongoDB\\Operation\\Aggregate' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Aggregate.php',
         'MongoDB\\Operation\\BulkWrite' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/BulkWrite.php',
         'MongoDB\\Operation\\Count' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Count.php',
+        'MongoDB\\Operation\\CountDocuments' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/CountDocuments.php',
         'MongoDB\\Operation\\CreateCollection' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/CreateCollection.php',
         'MongoDB\\Operation\\CreateIndexes' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/CreateIndexes.php',
         'MongoDB\\Operation\\DatabaseCommand' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/DatabaseCommand.php',
@@ -2759,7 +2806,10 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'MongoDB\\Operation\\DropCollection' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/DropCollection.php',
         'MongoDB\\Operation\\DropDatabase' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/DropDatabase.php',
         'MongoDB\\Operation\\DropIndexes' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/DropIndexes.php',
+        'MongoDB\\Operation\\EstimatedDocumentCount' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/EstimatedDocumentCount.php',
         'MongoDB\\Operation\\Executable' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Executable.php',
+        'MongoDB\\Operation\\Explain' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Explain.php',
+        'MongoDB\\Operation\\Explainable' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Explainable.php',
         'MongoDB\\Operation\\Find' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Find.php',
         'MongoDB\\Operation\\FindAndModify' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/FindAndModify.php',
         'MongoDB\\Operation\\FindOne' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/FindOne.php',
@@ -2772,10 +2822,12 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'MongoDB\\Operation\\ListDatabases' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/ListDatabases.php',
         'MongoDB\\Operation\\ListIndexes' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/ListIndexes.php',
         'MongoDB\\Operation\\MapReduce' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/MapReduce.php',
+        'MongoDB\\Operation\\ModifyCollection' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/ModifyCollection.php',
         'MongoDB\\Operation\\ReplaceOne' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/ReplaceOne.php',
         'MongoDB\\Operation\\Update' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Update.php',
         'MongoDB\\Operation\\UpdateMany' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/UpdateMany.php',
         'MongoDB\\Operation\\UpdateOne' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/UpdateOne.php',
+        'MongoDB\\Operation\\Watch' => __DIR__ . '/..' . '/mongodb/mongodb/src/Operation/Watch.php',
         'MongoDB\\UpdateResult' => __DIR__ . '/..' . '/mongodb/mongodb/src/UpdateResult.php',
         'Monolog\\ErrorHandler' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/ErrorHandler.php',
         'Monolog\\Formatter\\ChromePHPFormatter' => __DIR__ . '/..' . '/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php',
@@ -3429,6 +3481,7 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseAnd' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseAnd.php',
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseOr' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseOr.php',
         'PhpParser\\Node\\Expr\\AssignOp\\BitwiseXor' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/BitwiseXor.php',
+        'PhpParser\\Node\\Expr\\AssignOp\\Coalesce' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Coalesce.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Concat' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Concat.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Div' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Div.php',
         'PhpParser\\Node\\Expr\\AssignOp\\Minus' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Node/Expr/AssignOp/Minus.php',
@@ -4849,8 +4902,11 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'Symfony\\Contracts\\Translation\\TranslatorInterface' => __DIR__ . '/..' . '/symfony/contracts/Translation/TranslatorInterface.php',
         'Symfony\\Contracts\\Translation\\TranslatorTrait' => __DIR__ . '/..' . '/symfony/contracts/Translation/TranslatorTrait.php',
         'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
+        'Symfony\\Polyfill\\Iconv\\Iconv' => __DIR__ . '/..' . '/symfony/polyfill-iconv/Iconv.php',
+        'Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
+        'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'Symfony\\Thanks\\Command\\ThanksCommand' => __DIR__ . '/..' . '/symfony/thanks/src/Command/ThanksCommand.php',
         'Symfony\\Thanks\\GitHubClient' => __DIR__ . '/..' . '/symfony/thanks/src/GitHubClient.php',
         'Symfony\\Thanks\\Thanks' => __DIR__ . '/..' . '/symfony/thanks/src/Thanks.php',
@@ -4993,16 +5049,20 @@ class ComposerStaticInit9f3507540d4a88730214acdea36ce835
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'xPaw\\MinecraftPing' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPing.php',
+        'xPaw\\MinecraftPingException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftPingException.php',
+        'xPaw\\MinecraftQuery' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQuery.php',
+        'xPaw\\MinecraftQueryException' => __DIR__ . '/..' . '/xpaw/php-minecraft-query/src/MinecraftQueryException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9f3507540d4a88730214acdea36ce835::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9f3507540d4a88730214acdea36ce835::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit9f3507540d4a88730214acdea36ce835::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9f3507540d4a88730214acdea36ce835::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9f3507540d4a88730214acdea36ce835::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9808ab283c6461ed1343b2f78f43684c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9808ab283c6461ed1343b2f78f43684c::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit9808ab283c6461ed1343b2f78f43684c::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit9808ab283c6461ed1343b2f78f43684c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit9808ab283c6461ed1343b2f78f43684c::$classMap;
 
         }, null, ClassLoader::class);
     }
