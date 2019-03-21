@@ -62,6 +62,7 @@ Route::group([
 
 });
 
+
     //Screenshort list
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
@@ -233,6 +234,7 @@ Route::group([
         Route::resource('/crud/server', 'website\crud\ServerController')->middleware('can:website_admin');
         Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
         Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
+
         Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
 
     });

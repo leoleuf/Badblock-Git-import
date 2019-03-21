@@ -97,6 +97,7 @@ class GiveController extends Controller
                 $server_output = curl_exec($ch);
 
                 curl_close ($ch);
+
                 if ($server_output){
                     array_push($logg, ['Pseudo' => $row, 'items' => $_POST['give'][$k]]);
                 }
@@ -108,6 +109,8 @@ class GiveController extends Controller
             'date' => date("Y-m-d h:i:s"),
             'data' => $logg
         ]);
+
+        dd($logg);
 
         return redirect('/animation/item');
 
