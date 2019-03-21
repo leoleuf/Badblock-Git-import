@@ -111,6 +111,7 @@
                         <a href="#"><i class="fa fa-user"></i><span> Profile </span> </a>
                         <ul class="submenu">
                             <li><a href="/profil" class="waves-effect"><i class="fas fa-setting"></i> Password</a></li>
+                            <li><a href="/profil/2fa" class="waves-effect"><i class="fas fa-lock"></i> A2F </a> </li>
                             <li><a href="/settings/sharex" class="waves-effect"><i class="fas fa-camera-retro"></i> ShareX </a></li>
                             <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a></li>
                             <li><a href="/profil/file-uploader" class="waves-effect"><i class="fa fa-file"></i> Transférer un fichier </a> </li>

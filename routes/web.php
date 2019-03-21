@@ -62,6 +62,7 @@ Route::group([
 
 });
 
+
     //Screenshort list
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
@@ -122,6 +123,9 @@ Route::group([
 
         Route::get('/msg-anim', 'Animation\AnimationController@index');
         Route::post('/msg-anim', 'Animation\AnimationController@setIgMsg');
+
+        Route::post('/msg-anim/changeMessage', 'Animation\AnimationController@changeMessage');
+        Route::post('/msg-anim/deleteMessage', 'Animation\AnimationController@deleteMessage');
 
     });
 
@@ -238,6 +242,7 @@ Route::group([
         Route::resource('/crud/server', 'website\crud\ServerController')->middleware('can:website_admin');
         Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
         Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
+
         Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
 
     });

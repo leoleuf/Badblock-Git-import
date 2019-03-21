@@ -10,21 +10,6 @@
                         <div class="panel">
                             <div class="panel-body">
                                 <div class="card-box">
-                                    <div class="dropdown pull-right">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-140px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
                                     <h4 class="m-t-0 header-title">Liste des messages.</h4>
                                     <p class="text-muted font-14 m-b-20">
                                         Attention à bien respecter les dates de mises en ligne.
@@ -47,8 +32,54 @@
                                                 <td>{{ $value }}</td>
                                                 <td>N/A</td>
                                                 <td>N/A</td>
-                                                <td><button class="btn btn-success">Modifier</button><button class="btn btn-danger">Supprimer</button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeMessage">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteMessage">Supprimer</button>
+                                                </td>
                                             </tr>
+
+                                            <div class="modal fade" id="changeMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Modifier le message</h5>
+                                                        </div>
+                                                        <form method="post" action="/animation/msg-anim/changeMessage">
+                                                            <div class="modal-body">
+                                                                {{ csrf_field() }}
+                                                                <label for="newMessage">Nouveau message</label>
+                                                                <input type="text" class="form-control" name="newMessage" value="{{ $value }}" />
+                                                                <input type="hidden" name="newMessage_key" value="{{ $key }}" />
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                                <input type="submit" class="btn btn-primary" value="Modifier" />
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="deleteMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Supprimer le message</h5>
+                                                        </div>
+                                                        <form method="POST" action="/animation/msg-anim/deleteMessage">
+                                                            <div class="modal-body">
+                                                                Êtes-vous sûr ?
+                                                                {{ csrf_field() }}
+                                                                <input type="hidden" name="deleteMessage_ID" value="{{ $key }}" />
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                                                <input type="submit" class="btn btn-danger" value="Supprimer">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
 
                                         </tbody>

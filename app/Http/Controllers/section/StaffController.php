@@ -103,7 +103,12 @@ class StaffController extends Controller
             }
         }
 
-        usort($Staff, create_function('$a, $b', '
+        usort($Staff, $this->StaffArraySorter());
+
+        return view('section.timestaff')->with('user', $Staff);
+    }
+
+    function StaffArraySorter($a, $b){
         $a = $a["time"];
         $b = $b["time"];
 
@@ -111,10 +116,8 @@ class StaffController extends Controller
 
         $direction = strtolower(trim("desc"));
 
-        return ($a ' . ("desc" == 'desc' ? '>' : '<') .' $b) ? -1 : 1;
-        '));
-
-        return view('section.timestaff')->with('user', $Staff);
+        return ($a. ("desc" == 'desc' ? '>' : '<') . $b) ? -1 : 1;
+        
     }
 
 }
