@@ -120,6 +120,10 @@ Route::group([
 
         Route::post('/pb', 'Animation\GiveController@savepoints');
         Route::post('/item', 'Animation\GiveController@saveitem');
+
+        Route::get('/msg-anim', 'Animation\AnimationController@index');
+        Route::post('/msg-anim', 'Animation\AnimationController@setIgMsg');
+
     });
 
 
@@ -196,6 +200,7 @@ Route::group([
         //Youtubers management
         Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:gestion_index');
         Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:gestion_index');
+
     });
 
     // Voir ses propres avertissements
