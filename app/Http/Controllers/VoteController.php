@@ -71,7 +71,8 @@ class VoteController extends Controller
                 'user_agent' => $_SERVER['HTTP_USER_AGENT'],
                 'mobile' => isMobile(),
                 'timediff' => intval($_POST['a']),
-                'pubclick' => intval($_POST['b'])
+                'pubclick' => intval($_POST['b']),
+                'lastdecale' => intval($_POST['c'])
             ]);
         }
     }

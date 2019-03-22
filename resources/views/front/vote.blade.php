@@ -336,13 +336,14 @@
             var q = true;
             var l = 1000;
             var z = $.now();
+            var lastd = 0;
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
                     if (q) {
                         q = false;
                         var o = $.now() - z;
-                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd)}, function (data, status) {
                         });
                     }
                 }
@@ -353,7 +354,7 @@
                 if (p) {
                     p = false;
                     var o = $.now() - z;
-                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':0}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd)}, function (data, status) {
                     });
                 }
             });
@@ -370,6 +371,7 @@
                         document.getElementById("vb").style.marginTop = "250px";
                         document.getElementById("vote_button").style.marginTop = "100px";
                         setTimeout(flexy, 500);
+                        lastd = $.now();
                     }
 
                     function flexy()
@@ -407,12 +409,14 @@
                                 setTimeout(
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
+                                        lastd = $.now();
                                     }, 100);
                             }
                             else {
                                 setTimeout(
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
+                                        lastd = $.now();
                                     }, m > 5000 ? 500 : 200);
                             }
 
