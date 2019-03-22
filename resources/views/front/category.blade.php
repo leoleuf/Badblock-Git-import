@@ -295,7 +295,7 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Jeu {{ $catName }} serveur</h6>
+                                <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Jeu {{ $catName }} serveur</h3>
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
