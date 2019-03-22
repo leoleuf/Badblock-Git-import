@@ -369,6 +369,14 @@
                     {
                         document.getElementById("vb").style.marginTop = "250px";
                         document.getElementById("vote_button").style.marginTop = "100px";
+                        setTimeout(flexy, 500);
+                    }
+
+                    function flexar()
+                    {
+                        document.getElementById("vb").style.marginTop = "0px";
+                        document.getElementById("vote_button").style.marginTop = "0px";
+                        setTimeout(flexar, 1250);
                     }
 
                     if (window.canRunAds === undefined)
@@ -381,7 +389,7 @@
                     }
                     else
                     {
-                        setTimeout(flexar, 3500);
+                        setTimeout(flexar, 1000);
                         $("#vote_button").show();
                         document.getElementById("vote_button").disabled = false;
                     }
