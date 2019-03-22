@@ -367,6 +367,7 @@
                     function flexar()
                     {
                         document.getElementById("vb").style.marginBottom = "250px";
+                        document.getElementById("vote_button").style.marginTop = "100px";
                     }
 
                     if (window.canRunAds === undefined)
@@ -397,13 +398,13 @@
                                 setTimeout(
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
-                                    }, 200);
+                                    }, 500);
                             }
                             else {
                                 setTimeout(
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
-                                    }, m > 5000 ? 900 : 500);
+                                    }, m > 5000 ? 500 : 200);
                             }
 
                         }
