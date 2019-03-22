@@ -162,7 +162,7 @@
                         @endif
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
-                                <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le classement {{ seocat($catName) }}</h6>
+                                <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le classement {{ seocat($catName) }}</h3>
                                 <div class="card lis-brd-light mb-4 wow fadeInUp">
                                     <div class="card-body p-4">
                                         <p>
@@ -207,7 +207,7 @@
                                         </script><br />
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h6>
+                                        <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h3>
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -225,7 +225,7 @@
                                         <div class="media d-md-flex d-block text-center text-md-left">
                                             <a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener nofollow noreferrer external"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="img-fluid d-md-flex mr-0 mr-md-5 rounded " height="69" width="69"></a>
                                             <div class="media-body align-self-center mt-4 mt-md-0">
-                                                <h5 class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" class="lis-dark">{{ $row->name }}</a></h5>
+                                                <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
                                                 <ul class="list-inline mb-0 lis-light-gold font-weight-normal h4">
                                                     @if($row->note >= 1)
                                                         <li class="list-inline-item"><i class="fa fa-star"></i></li>
