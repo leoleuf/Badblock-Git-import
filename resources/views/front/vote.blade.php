@@ -407,7 +407,7 @@
                                 setTimeout(
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
-                                    }, 500);
+                                    }, 100);
                             }
                             else {
                                 setTimeout(
