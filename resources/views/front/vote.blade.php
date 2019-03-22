@@ -367,7 +367,7 @@
 
                     function flexar()
                     {
-                        document.getElementById("vb").style.marginBottom = "250px";
+                        document.getElementById("vb").style.marginTop = "250px";
                         document.getElementById("vote_button").style.marginTop = "100px";
                     }
 
