@@ -372,7 +372,7 @@
                         setTimeout(flexy, 500);
                     }
 
-                    function flexar()
+                    function flexy()
                     {
                         document.getElementById("vb").style.marginTop = "0px";
                         document.getElementById("vote_button").style.marginTop = "0px";
