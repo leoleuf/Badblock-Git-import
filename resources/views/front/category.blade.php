@@ -89,7 +89,7 @@
             <div class="container">
                 <div class="row justify-content-center wow fadeInUp">
                     <div class="col-12 col-md-8 mb-4 mb-lg-0">
-                            <div class="media d-block d-md-flex text-md-left text-center"> <img src="/img/{{ $catName }}/{{ $catName }}.png" class="img-fluid d-md-flex mr-4 border border-white lis-border-width-4 rounded mb-4 mb-md-0" alt="" />
+                            <div class="media d-block d-md-flex text-md-left text-center"> <img src="/img/{{ $catName }}/{{ $catName }}.png" class="img-fluid d-md-flex mr-4 border border-white lis-border-width-4 rounded mb-4 mb-md-0" alt="Serveur {{ $catName }} gratuit complet pc cracké" />
                                 <div class="media-body align-self-center">
                                     @if (isset($catName) && $catName != "clash-of-clans")
                                         @if (isset($tag))
