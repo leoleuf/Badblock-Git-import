@@ -335,6 +335,7 @@
             var p = true;
             var q = true;
             var l = 1000;
+            var t = 0;
             var z = $.now();
             var lastd = 0;
 
@@ -368,6 +369,11 @@
 
                     function flexar()
                     {
+                        t++;
+                        if (t > 7)
+                        {
+                            return;
+                        }
                         document.getElementById("vb").style.marginTop = "250px";
                         document.getElementById("vote_button").style.marginTop = "100px";
                         setTimeout(flexy, 500);
