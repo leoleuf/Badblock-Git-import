@@ -83,7 +83,10 @@ if ($date != $creationDate)
 <!-- jQuery -->
 <!-- End footer Area -->
 <script data-pagespeed-no-defer src="/dist/js/plugins.min.js"></script>
+@if (!isset($invote))
 <script src="/dist/js/common.js"></script>
+@endif
+
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({

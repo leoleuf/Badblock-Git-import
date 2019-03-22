@@ -4,6 +4,7 @@
 @section('jquery', 'async defer')
 @section('canonical', 'https://serveur-multigames.net/'.encname($catName).'/'.encname($data->name).'/vote')
 @section('gjs-normal', 'true')
+@php($invote = 1)
 @extends('front.index')
 @section('content')
 
