@@ -423,7 +423,7 @@
                                     function () {
                                         document.getElementById("vb").style.marginTop = "100px";
                                         lastd = $.now();
-                                    }, m > 5000 ? 500 : 200);
+                                    }, m < 2500 ? 400 : m < 3000 ? 350 : m < 4000 ? 450 : 500);
                             }
 
                         }
