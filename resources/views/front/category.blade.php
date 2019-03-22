@@ -299,7 +299,6 @@
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
-                                                <h3 class="text-uppercase">A propos de la liste de serveur {{ seocat($catName) }}{{ $shownTag }}</h3><br />
                                                 <div class="row">
                                                     <div class="col-md-4 single-defination">
                                                         <h4 class="mb-20"> Votes de serveur</h4>
