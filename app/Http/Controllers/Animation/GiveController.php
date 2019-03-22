@@ -63,6 +63,7 @@ class GiveController extends Controller
                     $Funds->gateway = "badblock";
                     $Funds->transaction_id = "Gain animation du " . date("Y-m") . " ceci n'est pas une facture";
                     $Funds->date = date("Y-m-d h:i:s");
+                    $Funds->comment = $_POST['comments'];
                     $Funds->save();
                 }
 
