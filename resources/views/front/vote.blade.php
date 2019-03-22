@@ -412,11 +412,8 @@
 
                             if (m < 2000)
                             {
-                                setTimeout(
-                                    function () {
-                                        document.getElementById("vb").style.marginTop = "100px";
-                                        lastd = $.now();
-                                    }, 100);
+                                document.getElementById("vb").style.marginTop = "100px";
+                                lastd = $.now();
                             }
                             else {
                                 setTimeout(
