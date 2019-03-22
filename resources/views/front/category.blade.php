@@ -193,7 +193,7 @@
                             @foreach($data as $row)
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
-                                        <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h6>
+                                        <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h3>
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -301,15 +301,15 @@
                                         <div class="media d-md-flex d-block text-center text-md-left">
                                                 <div class="row">
                                                     <div class="col-md-4 single-defination">
-                                                        <h4 class="mb-20">Votes de serveur</h4>
+                                                        <h3 class="mb-20">Votes de serveur</h3>
                                                         <p><br />Ce mois-ci, {{ $about->voteCount }} votes ont été effectués pour des serveurs {{ seocat($catName) }}. Vote pour ton serveur préféré depuis le classement des meilleurs serveurs {{ seocat($catName) }}{{$shownTag}} sans plus hésiter.</p>
                                                     </div>
                                                     <div class="col-md-4 single-defination">
-                                                        <h4 class="mb-20">Classement</h4>
+                                                        <h3 class="mb-20">Classement</h3>
                                                         <p><br />Nous disposons d'une large liste complète de {{ $about->serveurCount }} serveurs et nous comptons encore nous étendre. Vous n'êtes pas encore dessus ? C'est le moment de s'y inscrire et d'ajouter le vôtre gratuitement.</p>
                                                     </div>
                                                     <div class="col-md-4 single-defination">
-                                                        <h4 class="mb-20">Avis sur {{ seocat($catName) }}</h4>
+                                                        <h3 class="mb-20">Avis sur {{ seocat($catName) }}</h3>
                                                         <p><br />Il y a eu plus de {{ intval($about->clickCount)+intval($about->copyCount) }} personnes qui ont découvert un serveur {{ seocat($catName) }}{{$shownTag}} depuis le début du mois. Nous travaillons sur la visibilité des créateurs tous les jours et cela n'est pas prêt de s'arrêter.</p>
                                                     </div>
                                             </div>
