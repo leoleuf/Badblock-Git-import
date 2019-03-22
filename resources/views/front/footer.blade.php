@@ -85,7 +85,6 @@ if ($date != $creationDate)
 <script data-pagespeed-no-defer src="/dist/js/plugins.min.js"></script>
 @if (!isset($invote))
 <script src="/dist/js/common.js"></script>
-@endif
 
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
@@ -94,6 +93,8 @@ if ($date != $creationDate)
         enable_page_level_ads: true
     });
 </script>
+@endif
+
 <script>
     /* <![CDATA[ */
     var superpwa_sw = {"url":"\/js/superpwa-sw.js"};
