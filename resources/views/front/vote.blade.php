@@ -337,6 +337,7 @@
             var l = 1000;
             var t = 0;
             var z = $.now();
+            var buggy = false;
             var lastd = 0;
 
             $('iframe').iframeTracker({
