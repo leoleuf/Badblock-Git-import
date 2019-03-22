@@ -1156,6 +1156,23 @@ a.card-plus:hover {
     background-color: #D54537;
 }
 
+.shop-ranks .shop-ranks-header #rank-3020392 {
+  background-color: #2ecc71;
+}
+
+.shop-ranks .shop-ranks-header #rank-3020415 {
+  background-color: #9b59b6;
+}
+
+.shop-ranks .shop-ranks-header #rank-3026513 {
+  background-color: #f1c40f;
+}
+
+.shop-ranks .shop-ranks-header #rank-3026514 {
+  background-color: #e74c3c;
+>>>>>>> d88c65ece87d03fb0c961b0ed5d5065210e5679e
+}
+
 .shop-ranks .shop-rank-list {
     margin-top: 3em;
     width: 1500px;
@@ -1763,4 +1780,11 @@ h6.cover-heading {
 .comments .comments-content .comments-author {
     text-transform: uppercase;
     font-weight: 700;
+}
+
+/** Shop **/
+
+.img-def {
+  width: 190px;
+  height: 190px;
 }

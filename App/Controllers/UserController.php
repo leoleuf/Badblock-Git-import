@@ -72,7 +72,6 @@ class UserController extends Controller
 
         //Recherche des connections
         $connection = $this->container->mongoServer->connectionLogs->find(['username' => $user['name']], ['sort' => ['timestamp' => -1], 'limit' => 20])->toArray();
-        dd($connection);
         //Récupération des sanctions
         $sanctions = $this->container->mongoServer->punishments->find(['punishedUuid' => $user['uniqueId']], ['limit' => 20, 'sort' => ['date' => -1],]);
 
@@ -677,6 +676,10 @@ class UserController extends Controller
 
     public function teamspeak(RequestInterface $request, ResponseInterface $response)
     {
+        $this->flash->addMessage('setting_error', "Service désactivé !");
+        //redirect to last page
+        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+
         if (isset($_POST['idts']) & !empty($_POST['idts'])) {
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
 
@@ -717,6 +720,8 @@ class UserController extends Controller
                     $check = true;
                 }
             }
+
+            $this->container->teamspeak->addtogroup($id_ts, 14);
 
             //Other grade
             foreach ((array)$user['permissions']->groups->bungee as $k => $row) {

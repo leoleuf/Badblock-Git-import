@@ -39,7 +39,8 @@ class PagesController extends Controller
 
     public function getYoutubeurs(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $this->render($response, 'pages.youtubeur', ['data' => YoutubeApi::getChannel("UC042bAvKzEP4rrcWtl_bPDg")]);
+
+        $this->render($response, 'pages.youtubeur', ['data' => YoutubeApi::getChannelList()]);
         //var_dump(YoutubeApi::getTChannel("UC042bAvKzEP4rrcWtl_bPDg"));
     }
 
