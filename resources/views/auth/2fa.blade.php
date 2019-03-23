@@ -6,18 +6,15 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong>Two Factor Authentication</strong></div>
                     <div class="panel-body">
-                        <p>Two factor authentication (2FA) strengthens access security by requiring two methods (also
-                            referred to as factors) to verify your identity. Two factor authentication protects against
-                            phishing, social engineering and password brute force attacks and secures your logins from
-                            attackers exploiting weak or stolen credentials.</p>
+                        <p>L'Authentification à Deux Facteurs (A2F) sécurise l'accès à votre compte en y ajoutant une deuxième méthode d'authentification
+                        (aussi appelés facteurs) afin de vérifier votre identité. Deux facteurs d'authentification protègent votre compte des menaces comme le pishing,
+                        le social engineering or les attaques par force brute et sécurisent vos identifiants des attaquants exploitant des identifiants peu sécurisés ou volés.</p>
                         <br/>
-                        <p>To Enable Two Factor Authentication on your Account, you need to do following steps</p>
+                        <p>Pour activer l'A2F, veuillez suivre ces quelques étapes.</p>
                         <strong>
                             <ol>
-                                <li>Click on Generate Secret Button , To Generate a Unique secret QR code for your
-                                    profile
-                                </li>
-                                <li>Verify the OTP from Google Authenticator Mobile App</li>
+                                <li>Cliquez sur Générer une clé d'authentification à deux facteur afin de vous générer un QR code unique</li>
+                                <li>Vérifer le code PIN depuis l'application mobile <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Google Authenticator</a></li>
                             </ol>
                         </strong>
                         <br/>
@@ -37,20 +34,20 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
-                                            Generate Secret Key to Enable 2FA
+                                            Générer une clé d'authentification à deux facteurs
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         @elseif(!$data['user']->passwordSecurity->google2fa_enable)
-                            <strong>1. Scan this barcode with your Google Authenticator App:</strong><br/>
+                            <strong>1. Scannez ce QR code dans Google Authenticator :</strong><br/>
                             <img src="{{$data['google2fa_url'] }}" alt="">
                             <br/><br/>
-                            <strong>2.Enter the pin the code to Enable 2FA</strong><br/><br/>
+                            <strong>2.Entrez le code PIN de Google Authenticator</strong><br/><br/>
                             <form class="form-horizontal" method="POST" action="{{ route('enable2fa') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('verify-code') ? ' has-error' : '' }}">
-                                    <label for="verify-code" class="col-md-4 control-label">Authenticator Code</label>
+                                    <label for="verify-code" class="col-md-4 control-label">Code PIN :</label>
                                     <div class="col-md-6">
                                         <input id="verify-code" type="password" class="form-control" name="verify-code"
                                                required>
@@ -64,20 +61,19 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
-                                            Enable 2FA
+                                            Activer l'A2F
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         @elseif($data['user']->passwordSecurity->google2fa_enable)
                             <div class="alert alert-success">
-                                2FA is Currently <strong>Enabled</strong> for your account.
+                                l'A2F est <strong>ACTIVÉE</strong> sur votre compte.
                             </div>
-                            <p>If you are looking to disable Two Factor Authentication. Please confirm your password and
-                                Click Disable 2FA Button.</p>
+                            <p>Si vous voulez désactiver l'A2F, entrez votre mot de passe et cliquez sur Désactiver l'A2F.</p>
                             <form class="form-horizontal" method="POST" action="{{ route('disable2fa') }}">
                                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                                    <label for="change-password" class="col-md-4 control-label">Current Password</label>
+                                    <label for="change-password" class="col-md-4 control-label">Mot de passe</label>
                                     <div class="col-md-6">
                                         <input id="current-password" type="password" class="form-control"
                                                name="current-password" required>
@@ -90,7 +86,7 @@
                                 </div>
                                 <div class="col-md-6 col-md-offset-5">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary ">Disable 2FA</button>
+                                    <button type="submit" class="btn btn-primary ">Désactiver l'A2F</button>
                                 </div>
                             </form>
                             @endif
