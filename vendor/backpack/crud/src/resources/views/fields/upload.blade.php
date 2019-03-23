@@ -37,7 +37,7 @@
 {{-- push things in the after_scripts section --}}
 
     @push('crud_fields_scripts')
-        <!-- no js -->
+        <!-- no scripts -->
         <script>
 	        $("#{{ $field['name'] }}_file_clear_button").click(function(e) {
 	        	e.preventDefault();

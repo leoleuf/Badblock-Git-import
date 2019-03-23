@@ -46,6 +46,8 @@ return array(
     'Predis\\' => array($vendorDir . '/predis/predis/src'),
     'PragmaRX\\Google2FA\\Tests\\' => array($vendorDir . '/pragmarx/google2fa/tests'),
     'PragmaRX\\Google2FA\\' => array($vendorDir . '/pragmarx/google2fa/src'),
+    'PragmaRX\\Google2FAQRCode\\Tests\\' => array($vendorDir . '/pragmarx/google2fa-qrcode/tests'),
+    'PragmaRX\\Google2FAQRCode\\' => array($vendorDir . '/pragmarx/google2fa-qrcode/src'),
     'PragmaRX\\Google2FALaravel\\Tests\\' => array($vendorDir . '/pragmarx/google2fa-laravel/tests'),
     'PragmaRX\\Google2FALaravel\\' => array($vendorDir . '/pragmarx/google2fa-laravel/src'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
