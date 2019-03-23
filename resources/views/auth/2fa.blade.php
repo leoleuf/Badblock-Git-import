@@ -31,7 +31,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        @if(count($data))
+                        @if(!Auth::user()->PasswordSecurity)
                             <form class="form-horizontal" method="POST" action="{{ route('generate2faSecret') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
