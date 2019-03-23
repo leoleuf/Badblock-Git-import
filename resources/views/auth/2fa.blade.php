@@ -70,6 +70,7 @@
                             <div class="alert alert-success">
                                 l'A2F est <strong>ACTIVÉE</strong> sur votre compte.
                             </div>
+                        <!--
                             <p>Si vous voulez désactiver l'A2F, entrez votre mot de passe et cliquez sur Désactiver l'A2F.</p>
                             <form class="form-horizontal" method="POST" action="{{ route('disable2fa') }}">
                                 <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
@@ -86,11 +87,12 @@
                                 </div>
                                 <div class="col-md-6 col-md-offset-5">
                                     {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-primary ">Désactiver l'A2F</button>
+                                    <button type="button" class="btn btn-primary ">Désactiver l'A2F</button>
                                 </div>
                             </form>
                             @endif
                             </form>
+                            -->
                     </div>
                 </div>
             </div>
