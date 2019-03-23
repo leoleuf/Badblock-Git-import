@@ -45,7 +45,7 @@ class PasswordSecurityController extends Controller
             'google2fa_secret' => $google2fa->generateSecretKey(),
         ]);
 
-        return redirect('/2fa')->with('success', "Secret Key is generated, Please verify Code to Enable 2FA");
+        return redirect('/2fa')->with('success', "La clé secrète a été générée, vérifiez votre code PIN pour activer l'A2F.");
     }
 
     public function enable2fa(Request $request)
@@ -57,9 +57,9 @@ class PasswordSecurityController extends Controller
         if ($valid) {
             $user->passwordSecurity->google2fa_enable = 1;
             $user->passwordSecurity->save();
-            return redirect('2fa')->with('success', "2FA is Enabled Successfully.");
+            return redirect('2fa')->with('success', "L'A2F a bien été activée.");
         } else {
-            return redirect('2fa')->with('error', "Invalid Verification Code, Please try again.");
+            return redirect('2fa')->with('error', "Code PIN invalide, merci de réessayer.");
         }
     }
 
@@ -67,7 +67,7 @@ class PasswordSecurityController extends Controller
     {
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error", "Your  password does not matches with your account password. Please try again.");
+            return redirect()->back()->with("error", "Le mot de passe entré ne correspond pas à votre mot de passe, veuillez réessayer.");
         }
 
         $validatedData = $request->validate([
@@ -76,6 +76,6 @@ class PasswordSecurityController extends Controller
         $user = Auth::user();
         $user->passwordSecurity->google2fa_enable = 0;
         $user->passwordSecurity->save();
-        return redirect('/2fa')->with('success', "2FA is now Disabled.");
+        return redirect('/2fa')->with('success', "l'A2F a été désactivée.");
     }
 }
