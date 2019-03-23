@@ -1,4 +1,12 @@
 @extends('layouts.app')
+
+@section('header')
+
+    <!-- Include Editor style. -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
+@endsection
 @section('content')
 
     <!-- ============================================================== -->
@@ -18,7 +26,7 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-8">
                             <div class="m-b-30">
                                 <h1>Création d'un nouveau produit.</h1>
                             </div>
@@ -65,12 +73,6 @@
                         <input name ="promo" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
                         <br>
                         <br>
-                        Activer le mode promotion sur ce produit :
-                        <br>
-                        <br>
-                        <input name ="promotion" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
-                        <br>
-                        <br>
                         Pourcentage de promotion :
                         {{ Form::text('promo_coef', "", array('class' => 'form-control','placeholder'=>"50")) }}
                         <br>
@@ -83,7 +85,7 @@
                         <input name ="promotion_view" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
                         <br>
                         <br>
-                        Nom de la dépendance (si néssecaire) :
+                        Nom de la dépendance (si nécessaire) :
                         <br>
                         {{ Form::text('depend_name',"",array('class' => 'form-control','placeholder'=>"Ex : gold")) }}
                         <br>
@@ -96,7 +98,7 @@
                         Groupe de dépendance :
                         {{ Form::text('depend_to',"",array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
                         <br>
-                        Activer la visibilitée du produit sur le site :
+                        Activer la visibilité du produit sur le site :
                         <br>
                         <br>
                         <input name ="visibility" type="checkbox" checked data-plugin="switchery" data-color="#00b19d"/>
@@ -142,3 +144,17 @@
 
 @endsection
 
+@section('after_scripts')
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $('textarea[name= desc]').froalaEditor({
+                heightMin: 300,
+                heightMax: 500
+            });
+        });
+    </script>
+
+@endsection
