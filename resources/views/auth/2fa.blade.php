@@ -56,8 +56,8 @@
                                                required>
                                         @if ($errors->has('verify-code'))
                                             <span class="help-block">
-<strong>{{ $errors->first('verify-code') }}</strong>
-</span>
+                                                <strong>{{ $errors->first('verify-code') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
