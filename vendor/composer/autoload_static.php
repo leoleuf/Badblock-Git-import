@@ -20,6 +20,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
@@ -51,8 +52,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'S' => 
         array (
             'Symfony\\Thanks\\' => 15,
+            'Symfony\\Polyfill\\Util\\' => 22,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Php70\\' => 23,
+            'Symfony\\Polyfill\\Php56\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
             'Symfony\\Polyfill\\Iconv\\' => 23,
@@ -85,8 +88,15 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
             'Psr\\Cache\\' => 10,
             'Prologue\\Alerts\\' => 16,
             'Predis\\' => 7,
+            'PragmaRX\\Google2FA\\Tests\\' => 25,
+            'PragmaRX\\Google2FA\\' => 19,
+            'PragmaRX\\Google2FAQRCode\\Tests\\' => 31,
+            'PragmaRX\\Google2FAQRCode\\' => 25,
+            'PragmaRX\\Google2FALaravel\\Tests\\' => 32,
+            'PragmaRX\\Google2FALaravel\\' => 26,
             'PhpParser\\' => 10,
             'PhpAmqpLib\\' => 11,
+            'ParagonIE\\ConstantTime\\' => 23,
         ),
         'M' => 
         array (
@@ -134,6 +144,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\' => 16,
             'DeepCopy\\' => 9,
+            'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
         array (
@@ -145,6 +156,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         array (
             'Barryvdh\\elFinderFlysystemDriver\\' => 33,
             'Barryvdh\\Elfinder\\' => 18,
+            'BaconQrCode\\' => 12,
             'Backpack\\PermissionManager\\' => 27,
             'Backpack\\Generators\\' => 20,
             'Backpack\\CRUD\\' => 14,
@@ -193,6 +205,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         array (
             0 => __DIR__ . '/..' . '/symfony/thanks/src',
         ),
+        'Symfony\\Polyfill\\Util\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-util',
+        ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
@@ -200,6 +216,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
+        'Symfony\\Polyfill\\Php56\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php56',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -305,6 +325,30 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         array (
             0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
+        'PragmaRX\\Google2FA\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa/tests',
+        ),
+        'PragmaRX\\Google2FA\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa/src',
+        ),
+        'PragmaRX\\Google2FAQRCode\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/tests',
+        ),
+        'PragmaRX\\Google2FAQRCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src',
+        ),
+        'PragmaRX\\Google2FALaravel\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/tests',
+        ),
+        'PragmaRX\\Google2FALaravel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src',
+        ),
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
@@ -312,6 +356,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'PhpAmqpLib\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib',
+        ),
+        'ParagonIE\\ConstantTime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
         ),
         'Mookofe\\Tail\\' => 
         array (
@@ -405,6 +453,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'DASPRiD\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dasprid/enum/src',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -424,6 +476,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Barryvdh\\Elfinder\\' => 
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-elfinder/src',
+        ),
+        'BaconQrCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
         ),
         'Backpack\\PermissionManager\\' => 
         array (
@@ -562,6 +618,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilController.php',
         'App\\Http\\Controllers\\Settings\\SharexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/SharexController.php',
+        'App\\Http\\Controllers\\TFA\\TFAController' => __DIR__ . '/../..' . '/app/Http/Controllers/TFA/TFAController.php',
         'App\\Http\\Controllers\\moderation\\CasierController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/CasierController.php',
         'App\\Http\\Controllers\\moderation\\GuardianController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/GuardianController.php',
         'App\\Http\\Controllers\\moderation\\ModerationController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/ModerationController.php',
@@ -613,6 +670,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'App\\Models\\Server' => __DIR__ . '/../..' . '/app/Models/Server.php',
         'App\\Models\\ShareX' => __DIR__ . '/../..' . '/app/Models/ShareX.php',
         'App\\Models\\Todo' => __DIR__ . '/../..' . '/app/Models/Todo.php',
+        'App\\PasswordSecurity' => __DIR__ . '/../..' . '/app/PasswordSecurity.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -694,6 +752,66 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Backpack\\PermissionManager\\app\\Http\\Requests\\UserUpdateCrudRequest' => __DIR__ . '/..' . '/backpack/permissionmanager/src/app/Http/Requests/UserUpdateCrudRequest.php',
         'Backpack\\PermissionManager\\app\\Models\\Permission' => __DIR__ . '/..' . '/backpack/permissionmanager/src/app/Models/Permission.php',
         'Backpack\\PermissionManager\\app\\Models\\Role' => __DIR__ . '/..' . '/backpack/permissionmanager/src/app/Models/Role.php',
+        'BaconQrCode\\Common\\BitArray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitArray.php',
+        'BaconQrCode\\Common\\BitMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitMatrix.php',
+        'BaconQrCode\\Common\\BitUtils' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/BitUtils.php',
+        'BaconQrCode\\Common\\CharacterSetEci' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/CharacterSetEci.php',
+        'BaconQrCode\\Common\\EcBlock' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/EcBlock.php',
+        'BaconQrCode\\Common\\EcBlocks' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/EcBlocks.php',
+        'BaconQrCode\\Common\\ErrorCorrectionLevel' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/ErrorCorrectionLevel.php',
+        'BaconQrCode\\Common\\FormatInformation' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/FormatInformation.php',
+        'BaconQrCode\\Common\\Mode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/Mode.php',
+        'BaconQrCode\\Common\\ReedSolomonCodec' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/ReedSolomonCodec.php',
+        'BaconQrCode\\Common\\Version' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Common/Version.php',
+        'BaconQrCode\\Encoder\\BlockPair' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/BlockPair.php',
+        'BaconQrCode\\Encoder\\ByteMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/ByteMatrix.php',
+        'BaconQrCode\\Encoder\\Encoder' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/Encoder.php',
+        'BaconQrCode\\Encoder\\MaskUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/MaskUtil.php',
+        'BaconQrCode\\Encoder\\MatrixUtil' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/MatrixUtil.php',
+        'BaconQrCode\\Encoder\\QrCode' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Encoder/QrCode.php',
+        'BaconQrCode\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/ExceptionInterface.php',
+        'BaconQrCode\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/InvalidArgumentException.php',
+        'BaconQrCode\\Exception\\OutOfBoundsException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/OutOfBoundsException.php',
+        'BaconQrCode\\Exception\\RuntimeException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/RuntimeException.php',
+        'BaconQrCode\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/UnexpectedValueException.php',
+        'BaconQrCode\\Exception\\WriterException' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Exception/WriterException.php',
+        'BaconQrCode\\Renderer\\Color\\Alpha' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Color/Alpha.php',
+        'BaconQrCode\\Renderer\\Color\\Cmyk' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Color/Cmyk.php',
+        'BaconQrCode\\Renderer\\Color\\ColorInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Color/ColorInterface.php',
+        'BaconQrCode\\Renderer\\Color\\Gray' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Color/Gray.php',
+        'BaconQrCode\\Renderer\\Color\\Rgb' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Color/Rgb.php',
+        'BaconQrCode\\Renderer\\Eye\\CompositeEye' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Eye/CompositeEye.php',
+        'BaconQrCode\\Renderer\\Eye\\EyeInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Eye/EyeInterface.php',
+        'BaconQrCode\\Renderer\\Eye\\ModuleEye' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Eye/ModuleEye.php',
+        'BaconQrCode\\Renderer\\Eye\\SimpleCircleEye' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Eye/SimpleCircleEye.php',
+        'BaconQrCode\\Renderer\\Eye\\SquareEye' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Eye/SquareEye.php',
+        'BaconQrCode\\Renderer\\ImageRenderer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/ImageRenderer.php',
+        'BaconQrCode\\Renderer\\Image\\EpsImageBackEnd' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Image/EpsImageBackEnd.php',
+        'BaconQrCode\\Renderer\\Image\\ImageBackEndInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Image/ImageBackEndInterface.php',
+        'BaconQrCode\\Renderer\\Image\\ImagickImageBackEnd' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Image/ImagickImageBackEnd.php',
+        'BaconQrCode\\Renderer\\Image\\SvgImageBackEnd' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Image/SvgImageBackEnd.php',
+        'BaconQrCode\\Renderer\\Image\\TransformationMatrix' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Image/TransformationMatrix.php',
+        'BaconQrCode\\Renderer\\Module\\DotsModule' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/DotsModule.php',
+        'BaconQrCode\\Renderer\\Module\\EdgeIterator\\Edge' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/EdgeIterator/Edge.php',
+        'BaconQrCode\\Renderer\\Module\\EdgeIterator\\EdgeIterator' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/EdgeIterator/EdgeIterator.php',
+        'BaconQrCode\\Renderer\\Module\\ModuleInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/ModuleInterface.php',
+        'BaconQrCode\\Renderer\\Module\\RoundnessModule' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/RoundnessModule.php',
+        'BaconQrCode\\Renderer\\Module\\SquareModule' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Module/SquareModule.php',
+        'BaconQrCode\\Renderer\\Path\\Close' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/Close.php',
+        'BaconQrCode\\Renderer\\Path\\Curve' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/Curve.php',
+        'BaconQrCode\\Renderer\\Path\\EllipticArc' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/EllipticArc.php',
+        'BaconQrCode\\Renderer\\Path\\Line' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/Line.php',
+        'BaconQrCode\\Renderer\\Path\\Move' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/Move.php',
+        'BaconQrCode\\Renderer\\Path\\OperationInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/OperationInterface.php',
+        'BaconQrCode\\Renderer\\Path\\Path' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/Path/Path.php',
+        'BaconQrCode\\Renderer\\PlainTextRenderer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/PlainTextRenderer.php',
+        'BaconQrCode\\Renderer\\RendererInterface' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererInterface.php',
+        'BaconQrCode\\Renderer\\RendererStyle\\EyeFill' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/EyeFill.php',
+        'BaconQrCode\\Renderer\\RendererStyle\\Fill' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/Fill.php',
+        'BaconQrCode\\Renderer\\RendererStyle\\Gradient' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/Gradient.php',
+        'BaconQrCode\\Renderer\\RendererStyle\\GradientType' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/GradientType.php',
+        'BaconQrCode\\Renderer\\RendererStyle\\RendererStyle' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Renderer/RendererStyle/RendererStyle.php',
+        'BaconQrCode\\Writer' => __DIR__ . '/..' . '/bacon/bacon-qr-code/src/Writer.php',
         'Barryvdh\\Elfinder\\Connector' => __DIR__ . '/..' . '/barryvdh/laravel-elfinder/src/Connector.php',
         'Barryvdh\\Elfinder\\Console\\PublishCommand' => __DIR__ . '/..' . '/barryvdh/laravel-elfinder/src/Console/PublishCommand.php',
         'Barryvdh\\Elfinder\\Elfinder' => __DIR__ . '/..' . '/barryvdh/laravel-elfinder/src/Elfinder.php',
@@ -732,6 +850,16 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Cron\\MinutesField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
+        'DASPRiD\\Enum\\AbstractEnum' => __DIR__ . '/..' . '/dasprid/enum/src/AbstractEnum.php',
+        'DASPRiD\\Enum\\EnumMap' => __DIR__ . '/..' . '/dasprid/enum/src/EnumMap.php',
+        'DASPRiD\\Enum\\Exception\\CloneNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/CloneNotSupportedException.php',
+        'DASPRiD\\Enum\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/ExceptionInterface.php',
+        'DASPRiD\\Enum\\Exception\\ExpectationException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/ExpectationException.php',
+        'DASPRiD\\Enum\\Exception\\IllegalArgumentException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/IllegalArgumentException.php',
+        'DASPRiD\\Enum\\Exception\\MismatchException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/MismatchException.php',
+        'DASPRiD\\Enum\\Exception\\SerializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/SerializeNotSupportedException.php',
+        'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',
+        'DASPRiD\\Enum\\NullValue' => __DIR__ . '/..' . '/dasprid/enum/src/NullValue.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
@@ -3304,6 +3432,17 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'ParagonIE\\ConstantTime\\Base32' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base32.php',
+        'ParagonIE\\ConstantTime\\Base32Hex' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base32Hex.php',
+        'ParagonIE\\ConstantTime\\Base64' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base64.php',
+        'ParagonIE\\ConstantTime\\Base64DotSlash' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base64DotSlash.php',
+        'ParagonIE\\ConstantTime\\Base64DotSlashOrdered' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base64DotSlashOrdered.php',
+        'ParagonIE\\ConstantTime\\Base64UrlSafe' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Base64UrlSafe.php',
+        'ParagonIE\\ConstantTime\\Binary' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Binary.php',
+        'ParagonIE\\ConstantTime\\EncoderInterface' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/EncoderInterface.php',
+        'ParagonIE\\ConstantTime\\Encoding' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Encoding.php',
+        'ParagonIE\\ConstantTime\\Hex' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/Hex.php',
+        'ParagonIE\\ConstantTime\\RFC4648' => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src/RFC4648.php',
         'ParseError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ParseError.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
@@ -3642,6 +3781,46 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'PhpParser\\Parser\\Tokens' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
+        'PragmaRX\\Google2FALaravel\\Events\\EmptyOneTimePasswordReceived' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/EmptyOneTimePasswordReceived.php',
+        'PragmaRX\\Google2FALaravel\\Events\\LoggedOut' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/LoggedOut.php',
+        'PragmaRX\\Google2FALaravel\\Events\\LoginFailed' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/LoginFailed.php',
+        'PragmaRX\\Google2FALaravel\\Events\\LoginSucceeded' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/LoginSucceeded.php',
+        'PragmaRX\\Google2FALaravel\\Events\\OneTimePasswordExpired' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/OneTimePasswordExpired.php',
+        'PragmaRX\\Google2FALaravel\\Events\\OneTimePasswordRequested' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/OneTimePasswordRequested.php',
+        'PragmaRX\\Google2FALaravel\\Events\\OneTimePasswordRequested53' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Events/OneTimePasswordRequested53.php',
+        'PragmaRX\\Google2FALaravel\\Exceptions\\InvalidOneTimePassword' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Exceptions/InvalidOneTimePassword.php',
+        'PragmaRX\\Google2FALaravel\\Exceptions\\InvalidSecretKey' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Exceptions/InvalidSecretKey.php',
+        'PragmaRX\\Google2FALaravel\\Facade' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Facade.php',
+        'PragmaRX\\Google2FALaravel\\Google2FA' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Google2FA.php',
+        'PragmaRX\\Google2FALaravel\\Middleware' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Middleware.php',
+        'PragmaRX\\Google2FALaravel\\MiddlewareStateless' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/MiddlewareStateless.php',
+        'PragmaRX\\Google2FALaravel\\ServiceProvider' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/ServiceProvider.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Auth' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Auth.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Authenticator' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Authenticator.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Config' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Config.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Constants' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Constants.php',
+        'PragmaRX\\Google2FALaravel\\Support\\ErrorBag' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/ErrorBag.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Input' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Input.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Request' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Request.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Response' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Response.php',
+        'PragmaRX\\Google2FALaravel\\Support\\Session' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/src/Support/Session.php',
+        'PragmaRX\\Google2FALaravel\\Tests\\Constants' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/tests/Constants.php',
+        'PragmaRX\\Google2FALaravel\\Tests\\Google2FaLaravelTest' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/tests/Google2FaLaravelTest.php',
+        'PragmaRX\\Google2FALaravel\\Tests\\Support\\User' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/tests/Support/User.php',
+        'PragmaRX\\Google2FALaravel\\Tests\\TestCase' => __DIR__ . '/..' . '/pragmarx/google2fa-laravel/tests/TestCase.php',
+        'PragmaRX\\Google2FAQRCode\\Google2FA' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/src/Google2FA.php',
+        'PragmaRX\\Google2FAQRCode\\Tests\\Constants' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/tests/Constants.php',
+        'PragmaRX\\Google2FAQRCode\\Tests\\Google2FATest' => __DIR__ . '/..' . '/pragmarx/google2fa-qrcode/tests/Google2FATest.php',
+        'PragmaRX\\Google2FA\\Exceptions\\IncompatibleWithGoogleAuthenticatorException' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Exceptions/IncompatibleWithGoogleAuthenticatorException.php',
+        'PragmaRX\\Google2FA\\Exceptions\\InvalidCharactersException' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Exceptions/InvalidCharactersException.php',
+        'PragmaRX\\Google2FA\\Exceptions\\SecretKeyTooShortException' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Exceptions/SecretKeyTooShortException.php',
+        'PragmaRX\\Google2FA\\Google2FA' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Google2FA.php',
+        'PragmaRX\\Google2FA\\Support\\Base32' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Support/Base32.php',
+        'PragmaRX\\Google2FA\\Support\\Constants' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Support/Constants.php',
+        'PragmaRX\\Google2FA\\Support\\QRCode' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Support/QRCode.php',
+        'PragmaRX\\Google2FA\\Support\\Url' => __DIR__ . '/..' . '/pragmarx/google2fa/src/Support/Url.php',
+        'PragmaRX\\Google2FA\\Tests\\Constants' => __DIR__ . '/..' . '/pragmarx/google2fa/tests/Constants.php',
+        'PragmaRX\\Google2FA\\Tests\\Google2FATest' => __DIR__ . '/..' . '/pragmarx/google2fa/tests/Google2FATest.php',
         'Predis\\Autoloader' => __DIR__ . '/..' . '/predis/predis/src/Autoloader.php',
         'Predis\\Client' => __DIR__ . '/..' . '/predis/predis/src/Client.php',
         'Predis\\ClientContextInterface' => __DIR__ . '/..' . '/predis/predis/src/ClientContextInterface.php',
@@ -4905,8 +5084,17 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Symfony\\Polyfill\\Iconv\\Iconv' => __DIR__ . '/..' . '/symfony/polyfill-iconv/Iconv.php',
         'Symfony\\Polyfill\\Intl\\Idn\\Idn' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Idn.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
+        'Symfony\\Polyfill\\Php56\\Php56' => __DIR__ . '/..' . '/symfony/polyfill-php56/Php56.php',
         'Symfony\\Polyfill\\Php70\\Php70' => __DIR__ . '/..' . '/symfony/polyfill-php70/Php70.php',
         'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
+        'Symfony\\Polyfill\\Util\\Binary' => __DIR__ . '/..' . '/symfony/polyfill-util/Binary.php',
+        'Symfony\\Polyfill\\Util\\BinaryNoFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryNoFuncOverload.php',
+        'Symfony\\Polyfill\\Util\\BinaryOnFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryOnFuncOverload.php',
+        'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV5' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV5.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV6' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV6.php',
+        'Symfony\\Polyfill\\Util\\TestListenerForV7' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerForV7.php',
+        'Symfony\\Polyfill\\Util\\TestListenerTrait' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerTrait.php',
         'Symfony\\Thanks\\Command\\ThanksCommand' => __DIR__ . '/..' . '/symfony/thanks/src/Command/ThanksCommand.php',
         'Symfony\\Thanks\\GitHubClient' => __DIR__ . '/..' . '/symfony/thanks/src/GitHubClient.php',
         'Symfony\\Thanks\\Thanks' => __DIR__ . '/..' . '/symfony/thanks/src/Thanks.php',

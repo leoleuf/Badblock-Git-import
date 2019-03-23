@@ -33,7 +33,7 @@
 {{-- push things in the after_scripts section --}}
 
     {{-- @push('crud_fields_scripts')
-        <!-- no js -->
+        <!-- no scripts -->
     @endpush --}}
 
 

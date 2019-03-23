@@ -340,7 +340,7 @@ var wysihtml5 = {
         }
     }
 
-    // Allow external js to initialize this library in case it's loaded after the document has loaded
+    // Allow external scripts to initialize this library in case it's loaded after the document has loaded
     api.init = init;
 
     // Execute listener immediately if already initialized
@@ -6833,7 +6833,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
  *    - sandboxing doesn't work correctly with inlined content (src="javascript:'<html>...</html>'")
  *    - sandboxing of physical documents causes that the dom isn't accessible anymore from the outside (iframe.contentWindow, ...)
  *    - setting the "allow-same-origin" flag would fix that, but then still javascript and dom events refuse to fire
- *    - therefore the "allow-js" flag is needed, which then would deactivate any security, as the js executed inside the iframe
+ *    - therefore the "allow-scripts" flag is needed, which then would deactivate any security, as the js executed inside the iframe
  *      can do anything as if the sandbox attribute wasn't set
  *
  * @param {Function} [readyCallback] Method that gets invoked when the sandbox is ready
@@ -6919,8 +6919,8 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
      *    setting it causes that the iframe's dom can't be accessed from the outside
      *    Therefore we need to set the "allow-same-origin" flag which enables accessing the iframe's dom
      *    But then there's another problem, DOM events (focus, blur, change, keypress, ...) aren't fired.
-     *    In order to make this happen we need to set the "allow-js" flag.
-     *    A combination of allow-js and allow-same-origin is almost the same as setting no sandbox attribute at all.
+     *    In order to make this happen we need to set the "allow-scripts" flag.
+     *    A combination of allow-scripts and allow-same-origin is almost the same as setting no sandbox attribute at all.
      *  - Chrome & Safari, doesn't seem to support sandboxing correctly when the iframe's html is inlined (no physical document)
      *  - IE needs to have the security="restricted" attribute set before the iframe is
      *    inserted into the dom tree
@@ -7002,7 +7002,7 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
         // Please note: This isn't hack safe!
         // It more or less just takes care of basic attacks and prevents accidental theft of sensitive information
         // IE is secure though, which is the most important thing, since IE is the only browser, who
-        // takes over js & styles into contentEditable elements when copied from external websites
+        // takes over scripts & styles into contentEditable elements when copied from external websites
         // or applications (Microsoft Word, ...)
         var i, length;
         for (i=0, length=windowProperties.length; i<length; i++) {

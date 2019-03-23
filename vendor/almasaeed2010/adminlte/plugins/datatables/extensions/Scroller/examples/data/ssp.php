@@ -50,7 +50,7 @@ $sql_details = array(
  * server-side, there is no need to edit below this line.
  */
 
-require( '../../../../examples/server_side/js/ssp.class.php' );
+require( '../../../../examples/server_side/scripts/ssp.class.php' );
 
 echo json_encode(
 	SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
