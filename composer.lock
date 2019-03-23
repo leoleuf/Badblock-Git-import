@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72d4e89d721d74a220e6a5c3f38a29a5",
+    "content-hash": "acf194398ea4e80a4678b0328ad6e83e",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1012,6 +1012,50 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
+        },
+        {
+            "name": "froala/wysiwyg-editor",
+            "version": "v2.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/froala/wysiwyg-editor.git",
+                "reference": "f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/froala/wysiwyg-editor/zipball/f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5",
+                "reference": "f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5",
+                "shasum": ""
+            },
+            "type": "component",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Froala Labs",
+                    "email": "support@froala.com"
+                }
+            ],
+            "description": "A beautiful jQuery WYSIWYG HTML rich text editor. High performance and modern design make it easy to use for developers and loved by users.",
+            "homepage": "https://www.froala.com/wysiwyg-editor",
+            "keywords": [
+                "editor",
+                "froala",
+                "froala-editor",
+                "froala-wysiwyg",
+                "html",
+                "javascript",
+                "jquery",
+                "jquery-plugin",
+                "rich editor",
+                "rich text editor",
+                "rte",
+                "text",
+                "wysiwyg"
+            ],
+            "time": "2019-02-13T13:22:05+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
