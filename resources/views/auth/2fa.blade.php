@@ -89,10 +89,9 @@
                                     {{ csrf_field() }}
                                     <button type="button" class="btn btn-primary ">Désactiver l'A2F</button>
                                 </div>
-                            </form>
+                            </form>-->
                             @endif
-                            </form>
-                            -->
+
                     </div>
                 </div>
             </div>
