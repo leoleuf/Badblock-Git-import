@@ -4,9 +4,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Two Factor Authentication</div>
+                    <div class="panel-heading">Authentification à deux facteurs</div>
                     <div class="panel-body">
-                        <p>Two factor authentication (2FA) strengthens access security by requiring two methods (also referred to as factors) to verify your identity. Two factor authentication protects against phishing, social engineering and password brute force attacks and secures your logins from attackers exploiting weak or stolen credentials.</p>
+                        <p>L'Authentification à Deux Facteurs (A2F) sécurise l'accès à votre compte en y ajoutant une deuxième méthode d'authentification
+                            (aussi appelés facteurs) afin de vérifier votre identité. Deux facteurs d'authentification protègent votre compte des menaces comme le pishing,
+                            le social engineering or les attaques par force brute et sécurisent vos identifiants des attaquants exploitant des identifiants peu sécurisés ou volés.</p>
                         @if (session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -17,18 +19,18 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <strong>Enter the pin from Google Authenticator Enable 2FA</strong><br/><br/>
+                        <strong>Entrez le code PIN généré par Google Authenticator</strong><br/><br/>
                         <form class="form-horizontal" action="{{ route('2faVerify') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('one_time_password-code') ? ' has-error' : '' }}">
-                                <label for="one_time_password" class="col-md-4 control-label">One Time Password</label>
+                                <label for="one_time_password" class="col-md-4 control-label">Code PIN</label>
                                 <div class="col-md-6">
                                     <input name="one_time_password" class="form-control"  type="text"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
-                                    <button class="btn btn-primary" type="submit">Authenticate</button>
+                                    <button class="btn btn-primary" type="submit">S'authentifier</button>
                                 </div>
                             </div>
                         </form>
