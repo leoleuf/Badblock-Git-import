@@ -1,5 +1,7 @@
 <footer class="footer text-right">
-    2018 - 2019 © BadBlock.
+    <div class="container-fluid">
+        2013 - 2019 © BadBlock - Design par Fragan "<strong>Hooki</strong>" Gourvil - Template par <em>Admino</em>
+    </div>
 </footer>
     <div class="side-bar right-bar">
       <a href="javascript:void(0);" class="right-bar-toggle">
