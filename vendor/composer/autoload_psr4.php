@@ -76,7 +76,6 @@ return array(
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/event-manager/lib/Doctrine/Common'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'DASPRiD\\Enum\\' => array($vendorDir . '/dasprid/enum/src'),
     'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Creativeorange\\Gravatar\\' => array($vendorDir . '/creativeorange/gravatar/src'),
     'Collective\\Html\\' => array($vendorDir . '/laravelcollective/html/src'),

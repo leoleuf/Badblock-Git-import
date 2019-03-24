@@ -8,8 +8,6 @@ use App\Models\Notifications;
 use Illuminate\Support\Facades\Auth;
 
 
-
-
 class NotificationController extends Controller
 {
 

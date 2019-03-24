@@ -1,6 +1,9 @@
 <footer class="footer text-right">
-    <div class="container-fluid">
-        2013 - 2019 © BadBlock - Design par Fragan "<strong>Hooki</strong>" Gourvil - Template par <em>Admino</em>
+    <div class="container-fluid d-flex justify-content-between" style="align-items: center">
+        <div>
+            Design par Fragan "<strong>Hooki</strong>" Gourvil - Template par <em>Adminto</em> | Copyrights 2013 - 2019 © BadBlock
+        </div>
+        <button class="btn btn-info" id="changeTheme">Théme <span id="infoTheme">(Noir)</span></button>
     </div>
 </footer>
     <div class="side-bar right-bar">

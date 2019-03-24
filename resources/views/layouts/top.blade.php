@@ -9,6 +9,7 @@
                 <a href="/" class="logo">
                     <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="40"
                          class="logo-small">
+                    <h3>Manager Badblock</h3>
                     <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="" height="40"
                          class="logo-large">
                 </a>
@@ -213,7 +214,6 @@
                                         Controle TFA</a></li>
                                 <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i>
                                         Liste Staff</a></li>
-                                <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i> Utilisateur</a>
                                 </li>
                                     <li><a href="/section/url-shortener" class="waves-effect"><i
                                                     class="fab fa-shirtsinbulk"></i> Raccourcisseur d'URL</a></li>
@@ -280,8 +280,7 @@
                                             Forum</a></li>
                                 @endcan
 
-
-
+                                <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i> Utilisateur</a>
 
                                 <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i> Groupes</a></li>
 

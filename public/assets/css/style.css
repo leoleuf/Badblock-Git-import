@@ -5479,7 +5479,7 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
 }
 
 .wrapper {
-  padding-top: 120px;
+  padding-top: 170px;
 }
 
 .page-title-box {
@@ -5522,16 +5522,29 @@ div.hopscotch-bubble .hopscotch-bubble-arrow-container.down .hopscotch-bubble-ar
 
 #topnav .topbar-main {
   background: #2c3e50;
+  padding: 10px 0px;
 }
 
 #topnav .topbar-main .logo {
   color: #ffffff !important;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 1px;
   line-height: 58px;
   text-transform: uppercase;
   float: left;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 3px;
+  align-items: center;
+}
+
+@media (max-width: 768px)
+{
+  #topnav .topbar-main .logo h3 {display: none;}
+}
+
+#topnav .topbar-main .logo h3 {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 #topnav .topbar-main .logo-small {

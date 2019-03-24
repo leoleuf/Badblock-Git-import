@@ -144,7 +144,6 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
             'Doctrine\\Common\\Cache\\' => 22,
             'Doctrine\\Common\\' => 16,
             'DeepCopy\\' => 9,
-            'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
         array (
@@ -451,10 +450,6 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
-        ),
-        'DASPRiD\\Enum\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/dasprid/enum/src',
         ),
         'Cron\\' => 
         array (
@@ -833,16 +828,6 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Cron\\MinutesField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MinutesField.php',
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
-        'DASPRiD\\Enum\\AbstractEnum' => __DIR__ . '/..' . '/dasprid/enum/src/AbstractEnum.php',
-        'DASPRiD\\Enum\\EnumMap' => __DIR__ . '/..' . '/dasprid/enum/src/EnumMap.php',
-        'DASPRiD\\Enum\\Exception\\CloneNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/CloneNotSupportedException.php',
-        'DASPRiD\\Enum\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/ExceptionInterface.php',
-        'DASPRiD\\Enum\\Exception\\ExpectationException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/ExpectationException.php',
-        'DASPRiD\\Enum\\Exception\\IllegalArgumentException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/IllegalArgumentException.php',
-        'DASPRiD\\Enum\\Exception\\MismatchException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/MismatchException.php',
-        'DASPRiD\\Enum\\Exception\\SerializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/SerializeNotSupportedException.php',
-        'DASPRiD\\Enum\\Exception\\UnserializeNotSupportedException' => __DIR__ . '/..' . '/dasprid/enum/src/Exception/UnserializeNotSupportedException.php',
-        'DASPRiD\\Enum\\NullValue' => __DIR__ . '/..' . '/dasprid/enum/src/NullValue.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',

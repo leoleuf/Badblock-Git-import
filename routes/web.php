@@ -171,6 +171,9 @@ Route::group([
         Route::get('/connection', 'section\StaffController@connection')->middleware('can:gestion_index');
 
         Route::get('/blog', 'section\RedacController@blog')->middleware('can:gestion_redac');
+        Route::get('/correction', 'section\RedacController@correct')->middleware('can:correction_view');
+        Route::get('/correction-text/{id}','section\RedacController@correct_text')->middleware('can:correction_do');
+        Route::post('/validation-text','section\RedacController@validate_text')->middleware('can:correction_do');
 
         Route::get('/build', 'section\BuildController@index')->middleware('can:gestion_build');
 

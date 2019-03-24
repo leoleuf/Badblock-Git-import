@@ -542,50 +542,6 @@
         ]
     },
     {
-        "name": "dasprid/enum",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/DASPRiD/Enum.git",
-            "reference": "631ef6e638e9494b0310837fa531bedd908fc22b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
-            "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
-            "shasum": ""
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^6.4",
-            "squizlabs/php_codesniffer": "^3.1"
-        },
-        "time": "2017-10-25T22:45:27+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "DASPRiD\\Enum\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Ben Scholzen 'DASPRiD'",
-                "email": "mail@dasprids.de",
-                "homepage": "https://dasprids.de/"
-            }
-        ],
-        "description": "PHP 7.1 enum implementation",
-        "keywords": [
-            "enum",
-            "map"
-        ]
-    },
-    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "0.1",
         "version_normalized": "0.1.0.0",
@@ -1267,6 +1223,52 @@
             "library",
             "throwable",
             "whoops"
+        ]
+    },
+    {
+        "name": "froala/wysiwyg-editor",
+        "version": "v2.9.3",
+        "version_normalized": "2.9.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/froala/wysiwyg-editor.git",
+            "reference": "f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/froala/wysiwyg-editor/zipball/f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5",
+            "reference": "f8ed46e8d89dcab4f0aa433e623af5ccf99ff5b5",
+            "shasum": ""
+        },
+        "time": "2019-02-13T13:22:05+00:00",
+        "type": "component",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "proprietary"
+        ],
+        "authors": [
+            {
+                "name": "Froala Labs",
+                "email": "support@froala.com"
+            }
+        ],
+        "description": "A beautiful jQuery WYSIWYG HTML rich text editor. High performance and modern design make it easy to use for developers and loved by users.",
+        "homepage": "https://www.froala.com/wysiwyg-editor",
+        "keywords": [
+            "editor",
+            "froala",
+            "froala-editor",
+            "froala-wysiwyg",
+            "html",
+            "javascript",
+            "jquery",
+            "jquery-plugin",
+            "rich editor",
+            "rich text editor",
+            "rte",
+            "text",
+            "wysiwyg"
         ]
     },
     {
@@ -2994,22 +2996,21 @@
     },
     {
         "name": "php-amqplib/php-amqplib",
-        "version": "v2.8.1",
-        "version_normalized": "2.8.1.0",
+        "version": "v2.8.0",
+        "version_normalized": "2.8.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/php-amqplib/php-amqplib.git",
-            "reference": "84449ffd3f5a7466bbee3946facb3746ff11f075"
+            "reference": "7df8553bd8b347cf6e919dd4a21e75f371547aa0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/84449ffd3f5a7466bbee3946facb3746ff11f075",
-            "reference": "84449ffd3f5a7466bbee3946facb3746ff11f075",
+            "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/7df8553bd8b347cf6e919dd4a21e75f371547aa0",
+            "reference": "7df8553bd8b347cf6e919dd4a21e75f371547aa0",
             "shasum": ""
         },
         "require": {
             "ext-bcmath": "*",
-            "ext-sockets": "*",
             "php": ">=5.4.0"
         },
         "replace": {
@@ -3021,7 +3022,10 @@
             "scrutinizer/ocular": "^1.1",
             "squizlabs/php_codesniffer": "^2.5"
         },
-        "time": "2018-11-13T09:35:17+00:00",
+        "suggest": {
+            "ext-sockets": "Use AMQPSocketConnection"
+        },
+        "time": "2018-10-23T18:48:24+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3051,11 +3055,6 @@
             {
                 "name": "Raúl Araya",
                 "email": "nubeiro@gmail.com",
-                "role": "Maintainer"
-            },
-            {
-                "name": "Luke Bakken",
-                "email": "luke@bakken.io",
                 "role": "Maintainer"
             }
         ],
