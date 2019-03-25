@@ -42,6 +42,9 @@ class RedacController extends Controller
                 'date_post' => date('Y-m-d H:m:s')
 
             ]);
+
+
+
         }
 
         return redirect('/section/correction');

@@ -55,6 +55,7 @@
                                         </div>
                                         <textarea class="form-control" name="text" rows="10" cols="50">
                                         </textarea>
+                                        <br>
                                         <button type="submit" class="btn btn-success">Valider</button>
                                     </div>
                                 </form>

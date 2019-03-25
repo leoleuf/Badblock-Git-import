@@ -41,4 +41,32 @@ class NotificationsController extends Controller
       return DB::table('users')->where('name', $pseudo)->value('id');
     }
 
+    public function system_send($data)
+    {
+        DB::table('notifications')->insert([
+
+            'user_id' => $this->convertPseudoId($data['pseudo']),
+            'title' => $data['title'],
+            'link' => $data['link'],
+            'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
+            'text' => $data['text'],
+            'active' => 1,
+            'created_at' => date('Y-m-d H:m:s'),
+            'updated_at' => date('Y-m-d H:m:s'),
+            'clicked_at' => null
+
+        ]);
+    }
+
+    public function system_send_group($data, $group)
+    {
+        $group_id = DB::table('roles')->where('name', $group)->get()[0]->id;
+
+        foreach ()
+        {
+
+        }
+
+    }
+
 }
