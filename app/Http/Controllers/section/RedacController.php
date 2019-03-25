@@ -43,7 +43,13 @@ class RedacController extends Controller
 
             ]);
 
+            NotificationsController::system_send_group([
 
+                'title' => 'Correction',
+                'text' => 'Vous avez reçu un nouveau texte à corriger.',
+                'link' => 'http://localhost:8000/section/correction'
+
+            ], "Query");
 
         }
 
@@ -69,6 +75,14 @@ class RedacController extends Controller
            'is_correct' => 1
 
        ]);
+
+       NotificationsController::system_send([
+
+           'title' => 'Texte corrigé !',
+           'text' => "Votre texte vient d'être vérifié.",
+           'link' => 'http://localhost:8000/section/correction'
+
+       ], DB::table('correction_text')->where('id', $request->input('id'))->get()[0]->send_by);
 
        return redirect('/section/correction');
 
