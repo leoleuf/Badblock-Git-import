@@ -27,6 +27,26 @@ class RedacController extends Controller
 
     }
 
+    public function add_text(Request $request)
+    {
+
+        if(!empty($request->input('title')) && !empty($request->input('text')))
+        {
+            DB::table('correction_text')->insert([
+
+                'title' => $request->input('title'),
+                'send_by' => Auth::user()->name,
+                'correct_by' => "",
+                'text' => $request->input('text'),
+                'is_correct' => 0,
+                'date_post' => date('Y-m-d H:m:s')
+
+            ]);
+        }
+
+        return redirect('/section/correction');
+    }
+
     public function correct()
     {
         return view('section.redac.correction', ['data' => DB::table('correction_text')->orderBy('date_post', 'DESC')->get()]);
@@ -49,6 +69,17 @@ class RedacController extends Controller
 
        return redirect('/section/correction');
 
+    }
+
+    public function view_corrected_text($id)
+    {
+        return view('section.redac.view_text', ['data' => DB::table('correction_text')->where('id', $id)->where('is_correct', 1)->get()[0]]);
+    }
+
+    public function suppr_text($id)
+    {
+        DB::table('correction_text')->delete($id);
+        return redirect('/section/correction');
     }
 
 }

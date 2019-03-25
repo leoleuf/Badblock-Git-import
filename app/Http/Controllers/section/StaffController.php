@@ -103,21 +103,9 @@ class StaffController extends Controller
             }
         }
 
-        usort($Staff, $this->StaffArraySorter());
+        array_multisort($Staff, SORT_ASC, SORT_NATURAL);
 
         return view('section.timestaff')->with('user', $Staff);
-    }
-
-    function StaffArraySorter($a, $b){
-        $a = $a["time"];
-        $b = $b["time"];
-
-        if ($a == $b) return 0;
-
-        $direction = strtolower(trim("desc"));
-
-        return ($a. ("desc" == 'desc' ? '>' : '<') . $b) ? -1 : 1;
-        
     }
 
 }

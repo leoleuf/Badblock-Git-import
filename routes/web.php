@@ -171,9 +171,12 @@ Route::group([
         Route::get('/connection', 'section\StaffController@connection')->middleware('can:mod_stats_connexion');
 
         Route::get('/blog', 'section\RedacController@blog')->middleware('can:redac_stats_blog');
-        Route::get('/correction', 'section\RedacController@correct')->middleware("can:redac_correction_view");
-        Route::get('/correction-text/{id}','section\RedacController@correct_text')->middleware("can:redac_correction_text");
-        Route::post('/validation-text','section\RedacController@validate_text')->middleware("can:redac_correction_text");
+        Route::get('/correction', 'section\RedacController@correct')->middleware("can:redac_correct_view");
+        Route::get('/correction-text/{id}','section\RedacController@correct_text')->middleware("can:redac_correct_text");
+        Route::post('/validation-text','section\RedacController@validate_text')->middleware("can:redac_correct_text");
+        Route::get('/correction/view/{id}','section\RedacController@view_corrected_text')->middleware("can:redac_correct_view");
+        Route::post('/add-text','section\RedacController@add_text')->middleware("can:redac_correct_view");
+        Route::get('/suppr-text/{id}','section\RedacController@suppr_text')->middleware("can:redac_correct_view");
 
         Route::get('/build', 'section\BuildController@index')->middleware('can:build_stats_connexion');
 
