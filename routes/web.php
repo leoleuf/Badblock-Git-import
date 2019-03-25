@@ -64,11 +64,11 @@ Route::group([
     Route::get('/', 'ProfilController@index');
     Route::post('/', 'ProfilController@reset');
 
-    Route::get('/todolists', 'profile\TodolistsController@index');
-    Route::post('/todolists', 'profile\TodolistsController@done');
+    Route::get('/todolists', 'profile\TodolistsController@index')->middleware("can:staff_todolist");
+    Route::post('/todolists', 'profile\TodolistsController@done')->middleware("can:staff_todolist");
 
-    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index')->middleware("can:build_upload");
-    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload')->middleware("can:build_upload");
+    Route::get('/file-uploader', 'profile\BuilderFileUploaderController@index')->middleware("can:build_upload_file");
+    Route::post('/file-uploader', 'profile\BuilderFileUploaderController@upload')->middleware("can:build_upload_file");
 
 });
 
@@ -77,7 +77,7 @@ Route::group([
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
-    Route::get('/moderation/casier/{player}', 'moderation\CasierController@case');
+    Route::get('/moderation/casier/{player}', 'moderation\CasierController@case')->middleware("can:mod_user_record");;
 
 
     Route::group([
@@ -91,10 +91,10 @@ Route::group([
         Route::post('/union', 'moderation\ModerationController@union');
         Route::post('/share', 'moderation\ModerationController@share');
         //Modération casier
-        Route::get('/mcasier/{player}', 'moderation\CasierController@minicase');
-        Route::get('/preuve/{id}', 'moderation\CasierController@preuve');
+        Route::get('/mcasier/{player}', 'moderation\CasierController@minicase')->middleware("can:mod_user_record");
+        Route::get('/preuve/{id}', 'moderation\CasierController@preuve')->middleware("can:mod_proof");
 
-        Route::get('/guardian/{id}', 'moderation\GuardianController@view');
+        Route::get('/guardian/{id}', 'moderation\GuardianController@view')->middleware("can:mod_guardianer");
 
         //TX Sanction
         Route::get('/sanction-tx', 'moderation\SanctionController@index');
@@ -102,11 +102,11 @@ Route::group([
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
         //Serach double account
-        Route::get('/seenaccount/', 'moderation\SeenController@index')->middleware("can:mod_dbaccount");
-        Route::post('/seenaccount/speed', 'moderation\SeenController@speedsearch')->middleware("can:mod_dbaccount");
-        Route::post('/seenaccount/long', 'moderation\SeenController@longsearch')->middleware("can:mod_dbaccount");
+        Route::get('/seenaccount/', 'moderation\SeenController@index')->middleware("can:mod_account_seen");
+        Route::post('/seenaccount/speed', 'moderation\SeenController@speedsearch')->middleware("can:mod_account_seen");
+        Route::post('/seenaccount/long', 'moderation\SeenController@longsearch')->middleware("can:mod_account_seen");
 
-        Route::get('/guardian', 'moderation\GuardianController@index');
+        Route::get('/guardian', 'moderation\GuardianController@index')->middleware("can:mod_guardianer");
 
         /* Ajax routes */
         Route::get('/guardian/ajax/unprocessed-messages', 'moderation\GuardianController@getUnprocessedMessages');
@@ -125,29 +125,29 @@ Route::group([
         'middleware' => ['auth','can:animation'],
     ], function () {
         //Aniamtion
-        Route::get('/pb', 'Animation\GiveController@points');
-        Route::get('/item', 'Animation\GiveController@item');
+        Route::get('/pb', 'Animation\GiveController@points')->middleware("can:anim_give_pb");
+        Route::get('/item', 'Animation\GiveController@item')->middleware("can:anim_give_item");
 
-        Route::post('/pb', 'Animation\GiveController@savepoints');
-        Route::post('/item', 'Animation\GiveController@saveitem');
+        Route::post('/pb', 'Animation\GiveController@savepoints')->middleware("can:anim_give_pb");
+        Route::post('/item', 'Animation\GiveController@saveitem')->middleware("can:anim_give_item");
 
-        Route::get('/msg-anim', 'Animation\AnimationController@index');
-        Route::post('/msg-anim', 'Animation\AnimationController@setIgMsg');
+        Route::get('/msg-anim', 'Animation\AnimationController@index')->middleware("can:anim_send_automessages");
+        Route::post('/msg-anim', 'Animation\AnimationController@setIgMsg')->middleware("can:anim_send_automessages");
 
-        Route::post('/msg-anim/changeMessage', 'Animation\AnimationController@changeMessage');
-        Route::post('/msg-anim/deleteMessage', 'Animation\AnimationController@deleteMessage');
+        Route::post('/msg-anim/changeMessage', 'Animation\AnimationController@changeMessage')->middleware("can:anim_send_automessages");
+        Route::post('/msg-anim/deleteMessage', 'Animation\AnimationController@deleteMessage')->middleware("can:anim_send_automessages");
 
     });
 
 
 
-    Route::get('/players', 'profile\IndexController@index');
-    Route::get('/profile/{uuid}', 'profile\IndexController@profile');
+    Route::get('/players', 'profile\IndexController@index')->middleware("can:mod_find_user");
+    Route::get('/profile/{uuid}', 'profile\IndexController@profile')->middleware("can:mod_find_user");
 
     Route::group([
         'prefix'     => "profile-api"
     ], function () {
-        Route::post('/{uuid}/resetpassword', 'profile\ActionController@resetPassword')->middleware("can:profile_password");
+        Route::post('/{uuid}/resetpassword', 'profile\ActionController@resetPassword')->middleware("can:mod_profil_user");
         Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:profile_tfa");
         Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:profile_om");
         Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:profile_om");
