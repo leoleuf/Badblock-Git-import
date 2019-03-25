@@ -148,10 +148,10 @@ Route::group([
         'prefix'     => "profile-api"
     ], function () {
         Route::post('/{uuid}/resetpassword', 'profile\ActionController@resetPassword')->middleware("can:mod_profil_user");
-        Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:profile_tfa");
-        Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:profile_om");
-        Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:profile_om");
-        Route::post('/{uuid}/addgroup', 'profile\ActionController@addGroup')->middleware("can:profile_addgroup");
+        Route::post('/{uuid}/resettfa', 'profile\ActionController@resetTfa')->middleware("can:mod_profil_user");
+        Route::post('/{uuid}/resetom', 'profile\ActionController@resetOm')->middleware("can:mod_profil_user");
+        Route::post('/{uuid}/resetol', 'profile\ActionController@resetOl')->middleware("can:mod_profil_user");
+        Route::post('/{uuid}/addgroup', 'profile\ActionController@addGroup')->middleware("can:mod_profil_user");
     });
 
 
@@ -166,56 +166,56 @@ Route::group([
     ], function () {
 
         //Gestion section forum
-        Route::get('/forum', 'section\ForumController@index');
+        Route::get('/forum', 'section\ForumController@index')->middleware("can:admin_manage_forum");
 
-        Route::get('/connection', 'section\StaffController@connection')->middleware('can:gestion_index');
+        Route::get('/connection', 'section\StaffController@connection')->middleware('can:mod_stats_connexion');
 
-        Route::get('/blog', 'section\RedacController@blog')->middleware('can:gestion_redac');
-        Route::get('/correction', 'section\RedacController@correct')->middleware('can:correction_view');
-        Route::get('/correction-text/{id}','section\RedacController@correct_text')->middleware('can:correction_do');
-        Route::post('/validation-text','section\RedacController@validate_text')->middleware('can:correction_do');
+        Route::get('/blog', 'section\RedacController@blog')->middleware('can:redac_stats_blog');
+        Route::get('/correction', 'section\RedacController@correct')->middleware("can:redac_correction_view");
+        Route::get('/correction-text/{id}','section\RedacController@correct_text')->middleware("can:redac_correction_text");
+        Route::post('/validation-text','section\RedacController@validate_text')->middleware("can:redac_correction_text");
 
-        Route::get('/build', 'section\BuildController@index')->middleware('can:gestion_build');
+        Route::get('/build', 'section\BuildController@index')->middleware('can:build_stats_connexion');
 
-        Route::get('/paid/{section}', 'section\PaidController@index')->middleware('can:gestion_paid');
-        Route::post('/paid/{section}', 'section\PaidController@save')->middleware('can:gestion_paid');
+        Route::get('/paid/{section}', 'section\PaidController@index')->middleware('can:resp_paid_section');
+        Route::post('/paid/{section}', 'section\PaidController@save')->middleware('can:resp_paid_section');
 
-        Route::get('/paid', 'website\PaidController@index')->middleware('can:gestion_paid');
-        Route::get('/paidv/{uuid}', 'website\PaidController@view')->middleware('can:gestion_paid');
+        Route::get('/paid', 'website\PaidController@index')->middleware('can:resp_paid_section');
+        Route::get('/paidv/{uuid}', 'website\PaidController@view')->middleware('can:resp_paid_section');
 
         //List all staff
-        Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:gestion_tfalist');
-        Route::get('/allstaff', 'section\StaffController@index')->middleware('can:gestion_tfalist');
+        Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:resp_tfa_control');
+        Route::get('/allstaff', 'section\StaffController@index')->middleware('can:resp_staff_list');
 
         //Check sanctions sans preuves
-        Route::get('/preuves', 'section\ModController@preuves')->middleware('can:gestion_index');
-        Route::post('/preuves', 'section\ModController@notif')->middleware('can:gestion_index');
+        Route::get('/preuves', 'section\ModController@preuves')->middleware('can:mod_proof');
+        Route::post('/preuves', 'section\ModController@notif')->middleware('can:mod_proof');
 
         //Permissions serveur
-        Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:bungee_perms');
-        Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:bungee_perms');
-        Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:bungee_perms');
+        Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:admin_server_perms');
+        Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:admin_server_perms');
+        Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:admin_server_perms');
 
-        Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:gestion_index');
-        Route::post('/notifications', 'section\NotificationsController@send')->middleware('can:gestion_index');
+        Route::get('/notifications', 'section\NotificationsController@index')->middleware('can:tools_notifs');
+        Route::post('/notifications', 'section\NotificationsController@send')->middleware('can:tools_notifs');
 
 
-        Route::get('/avertissement-list', 'section\WarningController@list')->middleware('can:gestion_index');
-        Route::get('/avertissement', 'section\WarningController@index')->middleware('can:gestion_index');
-        Route::post('/avertissement', 'section\WarningController@send')->middleware('can:gestion_index');
-        Route::get('/avertissement/delete/{id}', 'section\WarningController@delete')->middleware('can:gestion_index');
+        Route::get('/avertissement-list', 'section\WarningController@list')->middleware('can:tools_warn');
+        Route::get('/avertissement', 'section\WarningController@index')->middleware('can:tools_warn');
+        Route::post('/avertissement', 'section\WarningController@send')->middleware('can:tools_warn');
+        Route::get('/avertissement/delete/{id}', 'section\WarningController@delete')->middleware('can:tools_warn');
 
         //Todo-list
         Route::get('/todo-management', 'section\TodoListController@index')->middleware('can:todo_list_all');
         Route::post('/todo-management', 'section\TodoListController@createOrModifyTodo')->middleware('can:todo_list_all');
 
         //URL Shortener Management
-        Route::get('/url-shortener', 'section\URLShortenerManagerController@index');
-        Route::post('/url-shortener', 'section\URLShortenerManagerController@post');
+        Route::get('/url-shortener', 'section\URLShortenerManagerController@index')->middleware('can:tools_url_shorter');
+        Route::post('/url-shortener', 'section\URLShortenerManagerController@post')->middleware('can:tools_url_shorter');
 
         //Youtubers management
-        Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:gestion_index');
-        Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:gestion_index');
+        Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:resp_youtuber_list');
+        Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:resp_youtuber_list');
 
         // Voir ses propres avertissements
         Route::get('/avertissement/{id}', 'section\WarningController@display');
@@ -236,29 +236,28 @@ Route::group([
 
     Route::group([
         'prefix'     => "website",
-        'middleware' => ["auth", "can:website"],
     ], function () {
         //Website
         Route::get('/', 'website\IndexController@index');
 
-        Route::get('/achat/{uuid}', 'website\AchatController@index');
+        Route::get('/achat/{uuid}', 'website\AchatController@index')->middleware('can:admin_manage_website');
 
-        Route::get('/vote-download', 'website\VoteController@down')->middleware('can:website_vote');
-        Route::get('/vote', 'website\VoteController@index')->middleware('can:website_vote');
-        Route::post('/vote', 'website\VoteController@save')->middleware('can:website_vote');
+        Route::get('/vote-download', 'website\VoteController@down')->middleware('can:admin_manage_website');
+        Route::get('/vote', 'website\VoteController@index')->middleware('can:admin_manage_website');
+        Route::post('/vote', 'website\VoteController@save')->middleware('can:admin_manage_website');
 
         Route::get('/prefix', 'website\PrefixController@index')->middleware('can:website_prefix');
         Route::post('/prefix', 'website\PrefixController@save')->middleware('can:website_prefix');
 
-        Route::get('/registre', 'website\IndexController@registre')->middleware('can:website_admin');
+        Route::get('/registre', 'website\IndexController@registre')->middleware('can:admin_manage_website');
 
-        Route::get('/compta', 'website\IndexController@compta')->middleware('can:website_admin');
-        Route::get('/compta/{date}', 'website\IndexController@compta')->middleware('can:website_admin');
-        Route::resource('/crud/server', 'website\crud\ServerController')->middleware('can:website_admin');
-        Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:website_admin');
-        Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:website_admin');
+        Route::get('/compta', 'website\IndexController@compta')->middleware('can:show_compta');
+        Route::get('/compta/{date}', 'website\IndexController@compta')->middleware('can:show_compta');
+        Route::resource('/crud/server', 'website\crud\ServerController')->middleware('can:admin_manage_website');
+        Route::resource('/crud/category', 'website\crud\CategoryController')->middleware('can:admin_manage_website');
+        Route::resource('/crud/product', 'website\crud\ProductController')->middleware('can:admin_manage_website');
 
-        Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:website_admin');
+        Route::resource('/crud/items', 'website\crud\ItemsController')->middleware('can:admin_manage_website');
 
     });
 
@@ -266,25 +265,25 @@ Route::group([
     Route::group([
         'prefix'     => "infra"
     ], function () {
-        Route::get('/vrack', 'Infra\VrackController@index')->middleware('can:vrack');
-        Route::get('/vrack-update/{dns}', 'Infra\VrackController@update')->middleware('can:vrack');
-        Route::get('/vrack-down/{dns}', 'Infra\VrackController@disable')->middleware('can:vrack');
-        Route::get('/vrack-bat/{dns}', 'Infra\VrackController@bat')->middleware('can:vrack');
+        Route::get('/vrack', 'Infra\VrackController@index')->middleware('can:network_ddns');
+        Route::get('/vrack-update/{dns}', 'Infra\VrackController@update')->middleware('can:network_ddns');
+        Route::get('/vrack-down/{dns}', 'Infra\VrackController@disable')->middleware('can:network_ddns');
+        Route::get('/vrack-bat/{dns}', 'Infra\VrackController@bat')->middleware('can:network_ddns');
 
 
-        Route::get('/docker', 'Infra\DockerController@index')->middleware('can:docker_index');
-        Route::get('/docker/{ajax}', 'Infra\DockerController@index')->middleware('can:docker_index');
+        Route::get('/docker', 'Infra\DockerController@index')->middleware('can:network_docker');
+        Route::get('/docker/{ajax}', 'Infra\DockerController@index')->middleware('can:network_docker');
 
-        Route::get('/docker-send', 'Infra\DockerController@send')->middleware('can:docker_index');
+        Route::get('/docker-send', 'Infra\DockerController@send')->middleware('can:network_docker');
 
-        Route::post('/docker/ajax/open', 'Infra\DockerController@openInstance')->middleware('can:docker_open');
-        Route::post('/docker/ajax/close', 'Infra\DockerController@closeInstance')->middleware('can:docker_close');
+        Route::post('/docker/ajax/open', 'Infra\DockerController@openInstance')->middleware('can:network_docker');
+        Route::post('/docker/ajax/close', 'Infra\DockerController@closeInstance')->middleware('can:network_docker');
 
-        Route::get('/console', 'Infra\ConsoleController@index')->middleware('can:docker_index');
+        Route::get('/console', 'Infra\ConsoleController@index')->middleware('can:network_console');
 
 
-        Route::get('/mongodb', 'Infra\MongoDBController@index')->middleware('can:mongodb');
-        Route::get('/mongodb-ajax', 'Infra\MongoDBController@mongoStat')->middleware('can:mongodb');
+        Route::get('/mongodb', 'Infra\MongoDBController@index')->middleware('can:network_mongodb');
+        Route::get('/mongodb-ajax', 'Infra\MongoDBController@mongoStat')->middleware('can:network_mongodb');
 
     });
 });

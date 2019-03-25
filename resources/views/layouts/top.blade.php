@@ -205,7 +205,8 @@
                                             Stats Articles</a></li>
                                 @endcan
                                 @can('redac_correct_view')
-                                    <li><a href="/section/correction" class="waves-effect"><i class="far fa-file-alt"></i>
+                                    <li><a href="/section/correction" class="waves-effect"><i
+                                                    class="far fa-file-alt"></i>
                                             Correction de texte</a></li>
                                 @endcan
                             </ul>
@@ -322,6 +323,9 @@
                                 @can('admin_server_perms')
                                     <li><a href="/section/permission-serv" class="waves-effect"><i
                                                     class="fas fa-terminal"></i> Permissions Serveur</a></li>
+                                @endcan
+                                @can('show_compte')
+                                    <li><a href="website/compta" class="waves-effect"><i class="fas fa-file-invoice-dollar"></i> Comptabilité</a></li>
                                 @endcan
                             </ul>
                         </li>
