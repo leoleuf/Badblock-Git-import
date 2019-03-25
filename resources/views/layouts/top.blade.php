@@ -105,33 +105,43 @@
             <div id="navigation">
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
-                    <li class="has-submenu">
-                        <a href="/players"><i class="fa fa-search"></i> <span> Rechercher </span> </a>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="#"><i class="fa fa-user"></i><span> Profile </span> </a>
-                        <ul class="submenu">
-                            <li><a href="/profil" class="waves-effect"><i class="fas fa-setting"></i> Password</a></li>
-                            <li><a href="/2fa" class="waves-effect"><i class="fas fa-lock"></i> A2F </a></li>
-                            <li><a href="/settings/sharex" class="waves-effect"><i class="fas fa-camera-retro"></i>
-                                    ShareX </a></li>
-                            <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a></li>
-                            <li><a href="/profil/file-uploader" class="waves-effect"><i class="fa fa-file"></i>
-                                    Transférer un fichier </a></li>
-                            <li><a href="/profil/todolists" class="waves-effect"><i class="fa fa-list-ol"></i> Mes
-                                    todolists </a></li>
-                        </ul>
-                    </li>
+                    @can('mod_find_user')
+                        <li class="has-submenu">
+                            <a href="/players"><i class="fa fa-search"></i> <span> Rechercher </span> </a>
+                        </li>
+                    @endcan
+                    @can('staff_profil')
+                        <li class="has-submenu">
+                            <a href="#"><i class="fa fa-user"></i><span> Profile </span> </a>
+                            <ul class="submenu">
+                                <li><a href="/profil" class="waves-effect"><i class="fas fa-key"></i> Password</a>
+                                </li>
+                                <li><a href="/2fa" class="waves-effect"><i class="fas fa-lock"></i> A2F </a></li>
+                                <li><a href="/settings/sharex" class="waves-effect"><i class="fas fa-camera-retro"></i>
+                                        ShareX </a></li>
+                                <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a>
+                                </li>
+                                <li><a href="/profil/todolists" class="waves-effect"><i class="fa fa-list-ol"></i> Mes
+                                        todolists </a></li>
+                            </ul>
+                        </li>
+                    @endcan
 
-                    @can('constructor_index')
+                    @can('build_index')
                         <li class="has-submenu">
                             <a href="#"><i class="fas fa-cube"></i>Construction</a>
                             <ul class="submenu">
-                                @can('gestion_build')
+                                @can('build_upload_file')
+                                    <li><a href="/profil/file-uploader" class="waves-effect"><i class="fa fa-file"></i>
+                                            Transférer un fichier </a></li>
+                                @endcan
+                                @can('build_stats_connexion')
                                     <li>
-                                        <a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>   Builders</a>
+                                        <a href="/section/build" class="waves-effect"><i class="fas fa-cube"></i>
+                                            Stats Builders</a>
                                     </li>
                                 @endcan
+
                             </ul>
                         </li>
                     @endcan
@@ -140,19 +150,16 @@
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-briefcase"></i><span> Modération </span> </a>
                             <ul class="submenu">
-                                <li><a disabled="" href="/ert" class="waves-effect"><i class="fa fa-legal"></i>
-                                        Répartition</a></li>
-                                <li><a href="/section/preuves" class="waves-effect"><i class="fas fa-camera-retro"></i>
-                                        Preuves</a></li>
+                                @can('mod_proof')
+                                    <li><a href="/section/preuves" class="waves-effect"><i
+                                                    class="fas fa-camera-retro"></i>
+                                            Preuves</a></li>
+                                @endcan
                                 @can("mod_center")
                                     <li><a href="/moderation" class="waves-effect"><i class="fa fa-bolt"></i> Mod Center</a>
                                     </li>
                                 @endcan
-                                @can('mod_ts')
-                                    <li><a href="/teamspeak/banlist" class="waves-effect"><i class="fa fa-legal"></i>
-                                            TeamSpeak BanList</a></li>
-                                @endcan
-                                @can('mod_dbaccount')
+                                @can('mod_account_seen')
                                     <li><a disabled="" href="/moderation/seenaccount" class="waves-effect">
                                             <i class="fas fa-user-circle"></i> Account Seen</a></li>
                                 @endcan
@@ -160,39 +167,46 @@
                                     <li><a disabled="" href="/moderation/guardian" class="waves-effect"><i
                                                     class="fa fa-legal"></i> Guardianer</a></li>
                                 @endcan
-                                @can('connect_time_mod')
-                                    <li><a href="/section/connection" class="waves-effect"><i class="fas fa-user-clock"></i>
+                                @can('mod_stats_connexion')
+                                    <li><a href="/section/connection" class="waves-effect"><i
+                                                    class="fas fa-user-clock"></i>
                                             Connexion</a></li>
                                 @endcan
                             </ul>
                         </li>
                     @endcan
 
-                    @can('animation')
+                    @can('anim_index')
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-bomb"></i><span> Animation </span> </a>
                             <ul class="submenu">
-                                @can('animation_give')
+                                @can('anim_give_pb')
                                     <li><a href="/animation/item" class="waves-effect"><i class="fa fa-gift"></i>
                                             Récompense(s)</a></li>
                                 @endcan
-                                @can('animation_givepb')
+                                @can('anim_give_item')
                                     <li><a href="/animation/pb" class="waves-effect"><i class="fa fa-coins"></i> Give PB</a>
                                     </li>
                                 @endcan
-                                <li><a href="/animation/msg-anim" class="waves-effect"><i
-                                                class="fas fa-comment-dots"></i> Message d'event </a></li>
+                                @can('anim_send_automessages')
+                                    <li><a href="/animation/msg-anim" class="waves-effect"><i
+                                                    class="fas fa-comment-dots"></i> Message d'event </a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
 
-                    @can('redaction_index')
+                    @can('redac_index')
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-pen"></i><span> Rédaction </span> </a>
                             <ul class="submenu">
-                                @can('gestion_redac')
+                                @can('redac_stats_blog')
                                     <li><a href="/section/blog" class="waves-effect"><i class="fas fa-chart-bar"></i>
                                             Stats Articles</a></li>
+                                @endcan
+                                @can('redac_correct_view')
+                                    <li><a href="/section/correction" class="waves-effect"><i class="far fa-file-alt"></i>
+                                            Correction de texte</a></li>
                                 @endcan
                             </ul>
                         </li>
@@ -202,69 +216,80 @@
                         <li class="has-submenu">
                             <a href="#"><i class="fas fa-tools"></i><span> Résponsables </span> </a>
                             <ul class="submenu">
-                                @can('gestion_index')
+                                @can('tools_notif')
                                     <li><a href="/section/notifications"><i class="fas fa-concierge-bell"></i>
                                             Notifications</a></li>
+                                @endcan
+                                @can('tools_warn')
                                     <li><a href="/section/avertissement-list"><i
                                                     class="fas fa-exclamation-triangle"></i> Avertissements</a></li>
                                 @endcan
-                                <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i> Paies
-                                        Sections</a></li>
-                                <li><a href="/section/tfacheck" class="waves-effect"><i class="fas fa-lock"></i>
-                                        Controle TFA</a></li>
-                                <li><a href="/section/allstaff" class="waves-effect"><i class="fa fa-address-book"></i>
-                                        Liste Staff</a></li>
-                                </li>
+                                @can('resp_paid_section')
+                                    <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i> Paies
+                                            Sections</a></li>
+                                @endcan
+                                @can('resp_tfa_control')
+                                    <li><a href="/section/tfacheck" class="waves-effect"><i class="fas fa-lock"></i>
+                                            Controle TFA</a></li>
+                                @endcan
+                                @can('resp_staff_list')
+                                    <li><a href="/section/allstaff" class="waves-effect"><i
+                                                    class="fa fa-address-book"></i>
+                                            Liste Staff</a></li>
+                                    </li>
+                                @endcan
+                                @can('tools_url_shorter')
                                     <li><a href="/section/url-shortener" class="waves-effect"><i
                                                     class="fab fa-shirtsinbulk"></i> Raccourcisseur d'URL</a></li>
-                                @can('gestion_index')
+                                @endcan
+                                @can('resp_youtubers_list')
                                     <li><a href="/section/youtubers" class="waves-effect"><i class="fab fa-youtube"></i>
                                             Youtubers</a></li>
                                 @endcan
-                                @can('todo_list_all')
+                                @can('resp_todolist_all')
                                     <li><a href="/section/todo-management" class="wave-effect"><i
                                                     class="fa fa-list-ol"></i> Todo-List</a></li>
+                                @endcan
+                                @can('resp_validate_prefix')
+                                    <li><a href="/website/prefix" class="waves-effect"><i class="fa fa-eye"></i> Préfix
+                                        </a></li>
+                                @endcan
+                                @can('resp_vote_rewards')
+                                    <li><a href="/website/vote" class="waves-effect"><i class="fa fa-envelope-open"></i>
+                                            Votes </a></li>
                                 @endcan
                             </ul>
                         </li>
                     @endcan
 
-                    @can('website')
+                    @can('website_index')
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-globe"></i> <span>Website </span> </a>
                             <ul class="submenu">
-                                @can('website_prefix')
-                                    <li><a href="/website/prefix" class="waves-effect"><i class="fa fa-eye"></i> Préfix
-                                        </a></li>
-                                @endcan
-                                @can('website_vote')
-                                    <li><a href="/website/vote" class="waves-effect"><i class="fa fa-envelope-open"></i>
-                                            Votes </a></li>
-                                @endcan
-                                @can('website_admin')
+                                @can('admin_manage_website')
                                     <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i>
-                                            Administration </a></li>
+                                            Gestion Boutique </a></li>
                                 @endcan
                             </ul>
                         </li>
                     @endcan
-                    @can('infra')
+                    @can('network_index')
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-network-wired"></i> <span>Infrastructure </span> </a>
                             <ul class="submenu">
-                                @can('vrack')
+                                @can('network_ddns')
                                     <li><a href="/infra/vrack" class="waves-effect"><i
                                                     class="fa fa-project-diagram"></i> DDNS Vrack </a></li>
                                 @endcan
-                                @can('docker_index')
+                                @can('network_docker')
                                     <li><a href="/infra/docker" class="waves-effect"><i class="fab fa-docker"></i>
                                             Docker </a></li>
                                 @endcan
-                                @can('docker_index')
+                                @can('network_console')
                                     <li><a href="/infra/console" class="waves-effect"><i class="fa fa-gear"></i> Console
                                         </a></li>
                                 @endcan
-                                @can('mongodb')
+                                @can('network_mongodb')
                                     <li><a href="/infra/mongodb" class="waves-effect"><i class="fas fa-database"></i>
                                             MongoDB </a></li>
                                 @endcan
@@ -275,19 +300,29 @@
                         <li class="has-submenu">
                             <a href="#"><i class="fas fa-users-cog"></i> <span> Administration </span> </a>
                             <ul class="submenu">
-                                @can('gestion_forum')
+                                @can('admin_manage_forum')
                                     <li><a href="/section/forum" class="waves-effect"><i class="fab fa-pied-piper"></i>
                                             Forum</a></li>
                                 @endcan
 
-                                <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i> Utilisateur</a>
+                                @can('admin_user')
+                                    <li><a href="/user" class="waves-effect"><i class="fa fa-address-book"></i>
+                                            Utilisateur</a>
+                                @endcan
 
-                                <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i> Groupes</a></li>
+                                @can('admin_role')
+                                    <li><a href="/role" class="waves-effect"><i class="fa fa-list-ol"></i> Groupes</a>
+                                    </li>
+                                @endcan
 
-                                <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i>
-                                        Permissions</a></li>
-                                <li><a href="/section/permission-serv" class="waves-effect"><i
-                                                class="fas fa-terminal"></i> Permissions Serveur</a></li>
+                                @can('admin_perms')
+                                    <li><a href="/permission" class="waves-effect"><i class="fa fa-gear fa-spin"></i>
+                                            Permissions</a></li>
+                                @endcan
+                                @can('admin_server_perms')
+                                    <li><a href="/section/permission-serv" class="waves-effect"><i
+                                                    class="fas fa-terminal"></i> Permissions Serveur</a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
