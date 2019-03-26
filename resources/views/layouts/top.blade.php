@@ -59,17 +59,16 @@
                         <!-- End Notification bar -->
                     </li>
 
-                    <li class="dropdown notification-list">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user"
-                           aria-haspopup="false" aria-expanded="false">
+                    <li class="dropdown notification-list show">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" href="#" role="button" aria-expanded="true" id="dropMenuButton">
                             <img src="https://cdn.badblock.fr/head/{{ Auth::user()->name}}/48.png" alt="user"
                                  class="rounded-circle">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown" id="dropMenu" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-104px, 60px, 0px);">
 
                             <!-- item-->
-                            <a href="/profil" class="dropdown-item notify-item">
-                                <i class="ti-user m-r-5"></i> Mot de passe
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="ti-user m-r-5"></i> Profile
                             </a>
 
                             <!-- item-->
@@ -83,7 +82,7 @@
                             </a>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <a href="/logout" class="dropdown-item notify-item">
                                 <i class="ti-power-off m-r-5"></i> Logout
                             </a>
 

@@ -12,7 +12,6 @@
 
 <script src="/assets/plugins/switchery/switchery.min.js"></script>
 
-
 <!-- KNOB JS -->
 <script src="/assets/plugins/jquery-knob/jquery.knob.js"></script>
 
@@ -36,5 +35,12 @@
             $('#infoTheme').html('(Noir)');
         }
     });
+
+    $('#dropMenuButton').click(function () {
+
+        $('#dropMenu').toggleClass('show');
+
+    });
+
 </script>
 

@@ -17,10 +17,10 @@ Auth::routes();
 Route::get('/2fa','PasswordSecurityController@show2faForm');
 Route::post('/generate2faSecret','PasswordSecurityController@generate2faSecret')->name('generate2faSecret');
 Route::post('/2fa','PasswordSecurityController@enable2fa')->name('enable2fa');
-//Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
+Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
 
 Route::post('/2faVerify', function () {
-    return redirect(URL()->previous());
+    return redirect('/');
 })->name('2faVerify')->middleware('2fa');
 
 Route::group([
@@ -37,8 +37,7 @@ Route::group([
     'middleware' => ["auth", "2fa"],
 ], function () {
 
-    Route::get('/', 'HomeController@index')->name('home'); ;
-
+    Route::get('/', 'HomeController@index')->name('home');
 
 
     //Notificaiton link redirect
