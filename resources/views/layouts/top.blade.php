@@ -60,11 +60,14 @@
                     </li>
 
                     <li class="dropdown notification-list show">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" href="#" role="button" aria-expanded="true" id="dropMenuButton">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" href="#" role="button"
+                           aria-expanded="true" id="dropMenuButton">
                             <img src="https://cdn.badblock.fr/head/{{ Auth::user()->name}}/48.png" alt="user"
                                  class="rounded-circle">
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-dropdown" id="dropMenu" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-104px, 60px, 0px);">
+                        <div class="dropdown-menu dropdown-menu-right profile-dropdown" id="dropMenu"
+                             x-placement="bottom-end"
+                             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-104px, 60px, 0px);">
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item notify-item">
@@ -293,6 +296,11 @@
                                     <li><a href="/infra/mongodb" class="waves-effect"><i class="fas fa-database"></i>
                                             MongoDB </a></li>
                                 @endcan
+                                @can('network_cloudflare')
+                                    <li><a href="/infra/cloudflare" class="waves-effect"><i class="fab fa-cloudversify"></i>
+                                            CloudFlare </a></li>
+                                @endcan
+
                             </ul>
                         </li>
                     @endcan
@@ -324,7 +332,8 @@
                                                     class="fas fa-terminal"></i> Permissions Serveur</a></li>
                                 @endcan
                                 @can('show_compte')
-                                    <li><a href="website/compta" class="waves-effect"><i class="fas fa-file-invoice-dollar"></i> Comptabilité</a></li>
+                                    <li><a href="website/compta" class="waves-effect"><i
+                                                    class="fas fa-file-invoice-dollar"></i> Comptabilité</a></li>
                                 @endcan
                             </ul>
                         </li>

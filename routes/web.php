@@ -287,5 +287,7 @@ Route::group([
         Route::get('/mongodb', 'Infra\MongoDBController@index')->middleware('can:network_mongodb');
         Route::get('/mongodb-ajax', 'Infra\MongoDBController@mongoStat')->middleware('can:network_mongodb');
 
+        Route::get('/cloudflare', 'Infra\CloudFlareController@index')->middleware('can:network_cloudflare');
+
     });
 });
