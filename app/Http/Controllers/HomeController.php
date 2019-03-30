@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     public function partenaires2()
     {
-        return '<A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />';
+        return view('front.partenaires2');
     }
 
     public function partenaires()
