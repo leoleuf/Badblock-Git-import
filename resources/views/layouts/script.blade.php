@@ -24,14 +24,14 @@
 <script src="/assets/js/jquery.app.js"></script>
 <script>
     $('#changeTheme').click(function () {
-        if($('#themeCSS').attr('href') == '/assets/css/style.css')
+        if($('#themeCSS').attr('href') == '/assets/css/global.css')
         {
-            $('#themeCSS').attr("href", "/assets/css/style-dark.css");
+            $('#themeCSS').attr("href", "/assets/css/global-dark.css");
             $('#infoTheme').html('(Blanc)');
         }
         else
         {
-            $('#themeCSS').attr("href", "/assets/css/style.css");
+            $('#themeCSS').attr("href", "/assets/css/global.css");
             $('#infoTheme').html('(Noir)');
         }
     });

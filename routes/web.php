@@ -216,8 +216,8 @@ Route::group([
         Route::post('/url-shortener', 'section\URLShortenerManagerController@post')->middleware('can:tools_url_shorter');
 
         //Youtubers management
-        Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:resp_youtuber_list');
-        Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:resp_youtuber_list');
+        Route::get('/youtubers', 'section\YoutubersManagementController@index')->middleware('can:resp_youtubers_list');
+        Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:resp_youtubers_list');
 
         // Voir ses propres avertissements
         Route::get('/avertissement/{id}', 'section\WarningController@display');

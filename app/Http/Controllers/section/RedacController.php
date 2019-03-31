@@ -47,9 +47,9 @@ class RedacController extends Controller
 
                 'title' => 'Correction',
                 'text' => 'Vous avez reçu un nouveau texte à corriger.',
-                'link' => 'http://localhost:8000/section/correction'
+                'link' => '/section/correction'
 
-            ], "Query");
+            ], "Corréctrice");
 
         }
 
