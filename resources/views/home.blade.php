@@ -7,7 +7,7 @@
             <div class="container">
 
                 <h1 class="page-title">Badblock Manager</h1>
-
+                mqzeUIOSBFQ9PEFBUQSEPU
                 <div class="row">
 
                     <div class="col-xl-3 col-md-6">
