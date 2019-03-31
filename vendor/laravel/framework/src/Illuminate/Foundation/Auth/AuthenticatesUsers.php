@@ -40,6 +40,9 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
+
+            if(!isset($_SESSION['theme'])) $_SESSION['theme'] = 'global.css';
+
             return $this->sendLoginResponse($request);
         }
 

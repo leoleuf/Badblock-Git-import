@@ -24,16 +24,22 @@
 <script src="/assets/js/jquery.app.js"></script>
 <script>
     $('#changeTheme').click(function () {
-        if($('#themeCSS').attr('href') == '/assets/css/global.css')
-        {
-            $('#themeCSS').attr("href", "/assets/css/global-dark.css");
-            $('#infoTheme').html('(Blanc)');
-        }
-        else
-        {
-            $('#themeCSS').attr("href", "/assets/css/global.css");
-            $('#infoTheme').html('(Noir)');
-        }
+        @if(DB::table('users')->where('id', Auth::user()->id)->get()[0]->theme == 0)
+            $.ajax({
+                url : "/api/theme",
+                type : "POST",
+                data : "theme=" + '1'
+            });
+        @else
+            $.ajax({
+                url : "/api/theme",
+                type : "POST",
+                data : "theme=" + '0'
+            });
+        @endif
+
+        location.reload();
+
     });
 
     $('#dropMenuButton').click(function () {

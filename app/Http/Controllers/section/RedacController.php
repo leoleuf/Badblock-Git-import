@@ -49,7 +49,7 @@ class RedacController extends Controller
                 'text' => 'Vous avez reçu un nouveau texte à corriger.',
                 'link' => '/section/correction'
 
-            ], "Corréctrice");
+            ], "Corréction");
 
         }
 

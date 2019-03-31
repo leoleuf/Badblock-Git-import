@@ -89,4 +89,10 @@ class HomeController extends Controller
 
         return view('home')->with('stats', $Stats);
     }
+
+    public function setTheme(Request $request)
+    {
+        DB::table('users')->where('id', Auth::user()->id)->update(['theme' => $request->post('theme')]);
+        echo $request->post('theme');
+    }
 }

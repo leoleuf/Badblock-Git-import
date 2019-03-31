@@ -31,6 +31,7 @@ Route::group([
     Route::post('/vrack', 'Infra\VrackController@api');
     Route::get('/minecraft', 'Infra\McController@players');
     Route::get('/ban', 'Infra\McController@ban');
+    Route::post('/theme', 'HomeController@setTheme');
 });
 
 Route::group([
