@@ -1024,6 +1024,12 @@ select[multiple] {
   vertical-align: middle;
 }
 
+.table tr th, .table tr td, .table tr td ul li {
+
+  color: #212529;
+
+}
+
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
   background-color: #446D95;
   border-color: #446D95;
