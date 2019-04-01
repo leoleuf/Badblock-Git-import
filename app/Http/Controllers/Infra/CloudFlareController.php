@@ -24,7 +24,7 @@ class CloudFlareController extends Controller
 
         var_dump($this->get_cloudflare_info("development_mode"));
         die();
-        return view('infra.cloudflare');
+        //return view('infra.cloudflare');
 
     }
 
