@@ -16,8 +16,7 @@ class CloudFlareController extends Controller
 
     public function index()
     {
-        var_dump($this->get_cloudflare_info("development_mode"));
-        die();
+        $this->get_cloudflare_info("development_mode");
         //return view('infra.cloudflare');
 
     }
