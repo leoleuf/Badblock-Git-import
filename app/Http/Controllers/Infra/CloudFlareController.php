@@ -19,9 +19,11 @@ class CloudFlareController extends Controller
 
     public function index()
     {
-        $this->id = getenv('ZONE_ID_CLOUDFLARE');
-        $this->token = getenv('TOKEN_CLOUDFLARE');
+        $this->id = getenv('CLOUDFLARE_ZONE_ID');
+        $this->token = getenv('CLOUDFLARE_TOKEN');
 
+        var_dump($this->get_cloudflare_info("development_mode"));
+        die();
         return view('infra.cloudflare');
 
     }
@@ -35,7 +37,7 @@ class CloudFlareController extends Controller
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
-            'X-Auth-Email: email@email.com',
+            'X-Auth-Email: '.getenv('CLOUDFLARE_EMAIL'),
             'X-Auth-Key: '.$this->token
 
         ]);

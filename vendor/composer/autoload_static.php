@@ -607,6 +607,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\ConverterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConverterController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\Infra\\CloudFlareController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/CloudFlareController.php',
         'App\\Http\\Controllers\\Infra\\ConsoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/ConsoleController.php',
         'App\\Http\\Controllers\\Infra\\DockerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/DockerController.php',
         'App\\Http\\Controllers\\Infra\\McController' => __DIR__ . '/../..' . '/app/Http/Controllers/Infra/McController.php',

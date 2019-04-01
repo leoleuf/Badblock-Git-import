@@ -58,6 +58,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\ConverterController' => $baseDir . '/app/Http/Controllers/ConverterController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\Infra\\CloudFlareController' => $baseDir . '/app/Http/Controllers/Infra/CloudFlareController.php',
     'App\\Http\\Controllers\\Infra\\ConsoleController' => $baseDir . '/app/Http/Controllers/Infra/ConsoleController.php',
     'App\\Http\\Controllers\\Infra\\DockerController' => $baseDir . '/app/Http/Controllers/Infra/DockerController.php',
     'App\\Http\\Controllers\\Infra\\McController' => $baseDir . '/app/Http/Controllers/Infra/McController.php',
