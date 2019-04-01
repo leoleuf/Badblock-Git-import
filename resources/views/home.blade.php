@@ -6,7 +6,7 @@
         <div class="content">
             <div class="container">
 
-                <h1 class="page-title">Badblock Manager OKKqd</h1>
+                <h1 class="page-title">Badblock Manager OKKqddddd</h1>
 
                 <div class="row">
 
