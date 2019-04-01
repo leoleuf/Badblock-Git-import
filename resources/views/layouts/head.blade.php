@@ -24,11 +24,7 @@
     <!-- App css -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
-    @if(DB::table('users')->where('id', Auth::user()->id)->get()[0]->theme == 0)
-        <link href="/assets/css/global.css" rel="stylesheet" type="text/css" />
-    @else
-        <link href="/assets/css/global-dark.css" rel="stylesheet" type="text/css" />
-    @endif
+    <link href="/assets/css/global.css" rel="stylesheet" type="text/css" />
 
     <!-- Custom styles -->
     @yield('styles')
