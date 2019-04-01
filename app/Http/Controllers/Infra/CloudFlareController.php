@@ -21,24 +21,24 @@ class CloudFlareController extends Controller
     {
         $this->id = getenv('CLOUDFLARE_ZONE_ID');
         $this->token = getenv('CLOUDFLARE_TOKEN');
-        var_dump(getenv('CLOUDFLARE_ZONE_ID'));
         var_dump($this->get_cloudflare_info("development_mode"));
         die();
         //return view('infra.cloudflare');
+        https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/settings/development_mode
 
     }
 
     public function get_cloudflare_info($mode, $post = null)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".$this->id."/settings/".$mode);
+        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".getenv('CLOUDFLARE_ZONE_ID')."/settings/development_mode");
 
         if($post) curl_setopt($ch, CURLOPT_POST, 1);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
             'X-Auth-Email: '.getenv('CLOUDFLARE_EMAIL'),
-            'X-Auth-Key: '.$this->token
+            'X-Auth-Key: '.getenv('CLOUDFLARE_TOKEN')
 
         ]);
 
