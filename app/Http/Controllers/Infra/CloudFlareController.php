@@ -14,15 +14,9 @@ use App\Http\Controllers\Controller;
 class CloudFlareController extends Controller
 {
 
-    private $token;
-    private $id;
-
     public function index()
     {
-        $this->id = getenv('CLOUDFLARE_ZONE_ID');
-        $this->token = getenv('CLOUDFLARE_TOKEN');
         var_dump($this->get_cloudflare_info("development_mode"));
-        var_dump("https://api.cloudflare.com/client/v4/zones/".getenv('CLOUDFLARE_ZONE_ID')."/settings/development_mode");
         die();
         //return view('infra.cloudflare');
 
@@ -31,7 +25,7 @@ class CloudFlareController extends Controller
     public function get_cloudflare_info($mode, $post = null)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".getenv('CLOUDFLARE_ZONE_ID')."/settings/development_mode");
+        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".getenv('CLOUDFLARE_ZONE_ID')."/settings/".$mode);
 
         if($post) curl_setopt($ch, CURLOPT_POST, 1);
 
