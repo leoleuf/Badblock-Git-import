@@ -22,31 +22,4 @@
 <!-- App js -->
 <script src="/assets/js/jquery.core.js"></script>
 <script src="/assets/js/jquery.app.js"></script>
-<script>
-    $('#changeTheme').click(function () {
-        @if(DB::table('users')->where('id', Auth::user()->id)->get()[0]->theme == 0)
-            $.ajax({
-                url : "/api/theme",
-                type : "POST",
-                data : "theme=" + '1'
-            });
-        @else
-            $.ajax({
-                url : "/api/theme",
-                type : "POST",
-                data : "theme=" + '0'
-            });
-        @endif
-
-        location.reload();
-
-    });
-
-    $('#dropMenuButton').click(function () {
-
-        $('#dropMenu').toggleClass('show');
-
-    });
-
-</script>
 
