@@ -21,7 +21,7 @@ class CloudFlareController extends Controller
     {
         $this->id = getenv('CLOUDFLARE_ZONE_ID');
         $this->token = getenv('CLOUDFLARE_TOKEN');
-
+        var_dump(getenv('CLOUDFLARE_ZONE_ID'));
         var_dump($this->get_cloudflare_info("development_mode"));
         die();
         //return view('infra.cloudflare');
