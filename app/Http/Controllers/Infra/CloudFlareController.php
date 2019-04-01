@@ -25,14 +25,14 @@ class CloudFlareController extends Controller
     public function get_cloudflare_info($mode, $post = null)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".getenv('CLOUDFLARE_ZONE_ID')."/settings/".$mode);
+        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".env('CLOUDFLARE_ZONE_ID')."/settings/".$mode);
 
         if($post) curl_setopt($ch, CURLOPT_POST, 1);
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
-            'X-Auth-Email: '.getenv('CLOUDFLARE_EMAIL'),
-            'X-Auth-Key: '.getenv('CLOUDFLARE_TOKEN')
+            'X-Auth-Email: '.env('CLOUDFLARE_EMAIL'),
+            'X-Auth-Key: '.env('CLOUDFLARE_TOKEN')
 
         ]);
 
