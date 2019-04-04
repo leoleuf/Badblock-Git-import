@@ -22,4 +22,37 @@
 <!-- App js -->
 <script src="/assets/js/jquery.core.js"></script>
 <script src="/assets/js/jquery.app.js"></script>
+<script>
+    $('#changeTheme').click(function () {
+
+        var data;
+
+        if($('#themeCSS').attr('href') == '/assets/css/global.css')
+        {
+            data = 0;
+        }
+        else
+        {
+            data = 1;
+        }
+
+        $.ajax({
+
+            url : 'api/theme',
+            method : 'POST',
+            data : 'theme=' + data
+
+        });
+
+        location.reload();
+
+    });
+
+    $('#dropMenuButton').click(function () {
+
+        $('#dropMenu').toggleClass('show');
+
+    });
+
+</script>
 

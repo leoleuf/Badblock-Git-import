@@ -16,7 +16,7 @@ class PasswordSecurityController extends Controller
 
         $google2fa_url = "";
         if ($user->passwordSecurity()->exists()) {
-            $google2fa = app('pragmarx.google2fa');
+            $google2fa = app('pragmarx.google2fa ');
             $google2fa_url = $google2fa->getQRCodeInline(
                 'BadBlock Manager',
                 $user->email,

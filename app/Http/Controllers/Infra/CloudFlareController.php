@@ -16,7 +16,7 @@ class CloudFlareController extends Controller
 
     public function index()
     {
-        $this->get_cloudflare_info("development_mode");
+        $this->get_cloudflare_info("purge_cache", true);
         //return view('infra.cloudflare');
 
     }
@@ -24,14 +24,20 @@ class CloudFlareController extends Controller
     public function get_cloudflare_info($mode, $post = null)
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".env('CLOUDFLARE_ZONE_ID')."/settings/".$mode);
+        curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".env('CLOUDFLARE_ZONE_ID')."/".$mode);
 
-        if($post) curl_setopt($ch, CURLOPT_POST, 1);
+        if($post) {
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, '{"purge_everything":true}');
+
+        }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
             'X-Auth-Email: '.env('CLOUDFLARE_EMAIL'),
-            'X-Auth-Key: '.env('CLOUDFLARE_TOKEN')
+            'X-Auth-Key: '.env('CLOUDFLARE_TOKEN'),
+            'Content-Type: application/json'
 
         ]);
 

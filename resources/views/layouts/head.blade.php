@@ -24,8 +24,16 @@
     <!-- App css -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
-    <link href="/assets/css/global.css" rel="stylesheet" type="text/css" />
 
+    @if(isset(Auth::user()->theme))
+        @if(Auth::user()->theme == 1)
+            <link href="/assets/css/global.css" rel="stylesheet" type="text/css" id="themeCSS" />
+        @else
+            <link href="/assets/css/global-dark.css" rel="stylesheet" type="text/css" id="themeCSS" />
+        @endif
+    @else
+        <link href="/assets/css/global.css" rel="stylesheet" type="text/css" id="themeCSS" />
+    @endif
     <!-- Custom styles -->
     @yield('styles')
 
