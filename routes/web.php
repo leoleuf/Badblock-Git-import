@@ -249,8 +249,8 @@ Route::group([
         Route::get('/vote', 'website\VoteController@index')->middleware('can:admin_manage_website');
         Route::post('/vote', 'website\VoteController@save')->middleware('can:admin_manage_website');
 
-        Route::get('/prefix', 'website\PrefixController@index')->middleware('can:website_prefix');
-        Route::post('/prefix', 'website\PrefixController@save')->middleware('can:website_prefix');
+        Route::get('/prefix', 'website\PrefixController@index')->middleware('can:resp_validate_prefix');
+        Route::post('/prefix', 'website\PrefixController@save')->middleware('can:resp_validate_prefix');
 
         Route::get('/registre', 'website\IndexController@registre')->middleware('can:admin_manage_website');
 
