@@ -15,7 +15,7 @@ $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
 
-$app->configure('filesystems');
+
 
 /*
 |--------------------------------------------------------------------------
