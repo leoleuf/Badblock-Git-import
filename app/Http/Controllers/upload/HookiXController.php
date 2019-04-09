@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 class HookiXController extends Controller
 {
 
-
     public function index()
     {
         return view('upload.hookix');
