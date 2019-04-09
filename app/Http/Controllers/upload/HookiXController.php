@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Upload;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +25,7 @@ class HookiXController extends Controller
             $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
 
             //get filename without extension
-            $filename = time().'.'.request()->profile_image->getClientOriginalExtension();
+            $filename = time().'.'.request()->image->getClientOriginalExtension();
                 //pathinfo($filenamewithextension, PATHINFO_FILENAME);
 
             //get file extension
