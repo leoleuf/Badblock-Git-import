@@ -19,29 +19,43 @@ class HookiXController extends Controller
 
     public function upload(Request $request)
     {
-        if($request->hasFile('profile_image')) {
 
-            //get filename with extension
-            $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
+        if($this->verifyToken($request->post('hookixToken')))
+        {
+            if($request->hasFile('profile_image')) {
 
-            //get filename without extension
-            $filename = time().'.'.request()->profile_image->getClientOriginalExtension();
-                //pathinfo($filenamewithextension, PATHINFO_FILENAME);
+                //get filename with extension
+                $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
 
-            //get file extension
-            $extension = $request->file('profile_image')->getClientOriginalExtension();
+                //get filename without extension
+                $filename = Auth::user()->name."-".time().'.'.request()->profile_image->getClientOriginalExtension();
 
-            //filename to store
-            $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+                //get file extension
+                $extension = $request->file('profile_image')->getClientOriginalExtension();
 
-            //Upload File to external server
-            Storage::disk('ftp')->put($filenametostore, fopen($request->file('profile_image'), 'r+'));
+                //filename to store
+                $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
-            //Store $filenametostore in the database
+                //Upload File to external server
+                Storage::disk('ftp')->put($filenametostore, fopen($request->file('profile_image'), 'r+'));
+
+                //Store $filenametostore in the database
+            }
+
+            $back = back()->with('status', "Image uploaded successfully.")->with('img', $filename);
+        }
+        else
+        {
+            $back = back()->with('failed', "Votre TOKEN n'est pas valide.");
         }
 
-        return back()->with('status', "Image uploaded successfully.")->with('img', $filename);
+        return $back;
     }
 
+    private function verifyToken($token)
+    {
+
+        return !DB::table('hookiX')->where('TOKEN', $token)->where('user_id', Auth::user()->id)->get()->isEmpty();
+    }
 
 }
