@@ -88,6 +88,10 @@
                         $('#screen_list').empty();
 
                         for (screen in obj){
+
+                            console.log(obj[screen]['filename']);
+
+
                             $('#screen_list').append('<div class="col-md-6 col-xl-3 col-lg-4 natural personal" id="'+ obj[screen]['_id']['$oid'] +'" onclick="addscreen(\''+ obj[screen]['_id']['$oid'] +'\')">\n' +
                                 '                                <div class="gal-detail thumb">\n' +
                                 '                                    <a href="https://cdn.badblock.fr/upload/'+ obj[screen]['file_name'] +'" target="_blank" class="image-popup" title="Screenshot-1">\n' +

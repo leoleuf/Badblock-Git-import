@@ -47,6 +47,13 @@ class HookiXController extends Controller
 
         ]);
 
+        DB::connection('mongodb')->collection('log_upload')->insert([
+            'ip' => \Request::ip(),
+            'user' => strtolower(Auth::user()->name),
+            'date' => date('Y-m-d H:m:s'),
+            'file_name' => $filename
+        ]);
+
         $back = back()->with('status', "Nom de votre Image : <strong>".$filename."</strong> Lien : <a href=\"https://cdn.badblock.fr/upload/".$filename."\">Screen</a>")->with('img', $filename);
 
         return $back;
