@@ -56,4 +56,9 @@
     });
 
 </script>
+<style>
+    .fr-wrapper div a {
+        display: none !important;
+    }
+</style>
 

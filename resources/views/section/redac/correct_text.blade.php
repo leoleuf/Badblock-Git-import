@@ -37,8 +37,7 @@
 @endsection
 @section('after_scripts')
 
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@2.9.4/js/froala_editor.min.js'></script>
 
     <script type="text/javascript">
         $(function () {
