@@ -28,16 +28,14 @@ class HookiXController extends Controller
                 $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
 
                 //get filename without extension
-                $filename = Auth::user()->name."-".time().'.'.request()->profile_image->getClientOriginalExtension();
+                $filename = strtolower(Auth::user()->name)."#".time().'.'.request()->profile_image->getClientOriginalExtension();
 
                 //get file extension
                 $extension = $request->file('profile_image')->getClientOriginalExtension();
 
-                //filename to store
-                $filenametostore = $filename.'_'.uniqid().'.'.$extension;
 
                 //Upload File to external server
-                Storage::disk('ftp')->put($filenametostore, fopen($request->file('profile_image'), 'r+'));
+                Storage::disk('ftp')->put($filename, fopen($request->file('profile_image'), 'r+'));
 
                 //Store $filenametostore in the database
             }
