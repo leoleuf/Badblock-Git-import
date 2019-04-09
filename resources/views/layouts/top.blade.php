@@ -121,7 +121,7 @@
                                 <li><a href="/2fa" class="waves-effect"><i class="fas fa-lock"></i> A2F </a></li>
                                 <li><a href="/hookix" class="waves-effect"><i class="fas fa-camera-retro"></i>
                                         HookiX </a></li>
-                                <li><a href="/screen" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a>
+                                <li><a href="/gallery" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a>
                                 </li>
                                 <li><a href="/profil/todolists" class="waves-effect"><i class="fa fa-list-ol"></i> Mes
                                         todolists </a></li>

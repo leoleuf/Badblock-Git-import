@@ -20,40 +20,42 @@ class HookiXController extends Controller
     public function upload(Request $request)
     {
 
-        if($this->verifyToken($request->post('hookixToken')))
-        {
-            if($request->hasFile('profile_image')) {
+        if($request->hasFile('profile_image')) {
 
-                //get filename with extension
-                $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
+            //get filename with extension
+            $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
 
-                //get filename without extension
-                $filename = strtolower(Auth::user()->name).time().'.'.request()->profile_image->getClientOriginalExtension();
+            //get filename without extension
+            $filename = strtoupper(Auth::user()->name).time().'.'.request()->profile_image->getClientOriginalExtension();
+            $filename = str_replace("_", "", $filename);
 
-                //get file extension
-                $extension = $request->file('profile_image')->getClientOriginalExtension();
+            //get file extension
+            $extension = $request->file('profile_image')->getClientOriginalExtension();
 
 
-                //Upload File to external server
-                Storage::disk('ftp')->put($filename, fopen($request->file('profile_image'), 'r+'));
+            //Upload File to external server
+            Storage::disk('ftp')->put($filename, fopen($request->file('profile_image'), 'r+'));
 
-                //Store $filenametostore in the database
-            }
-
-            $back = back()->with('status', "Image uploaded successfully.")->with('img', $filename);
+            //Store $filenametostore in the database
         }
-        else
-        {
-            $back = back()->with('failed', "Votre TOKEN n'est pas valide.");
-        }
+
+        DB::table('hookiX')->insert([
+
+            'user_id' => Auth::user()->id,
+            'name' => $filename,
+            'link' => 'https://cdn.badblock.fr/upload/'.$filename,
+            'date_post' => date("Y-m-d H:m:s")
+
+        ]);
+
+        $back = back()->with('status', "Nom de votre Image : <strong>".$filename."</strong> Lien : <a href=\"https://cdn.badblock.fr/upload/".$filename."\">Screen</a>")->with('img', $filename);
 
         return $back;
     }
 
-    private function verifyToken($token)
+    public function list_gallery()
     {
-
-        return !DB::table('hookiX')->where('TOKEN', $token)->where('user_id', Auth::user()->id)->get()->isEmpty();
+        return view('profil.gallery', ['data' => DB::table('hookiX')->where('user_id', Auth::user()->id)->get()]);
     }
 
 }
