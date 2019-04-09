@@ -75,7 +75,7 @@ Route::group([
     Route::get('/screen', 'profile\ScreenController@index');
     Route::get('/screen/{id}', 'profile\ScreenController@page');
 
-    Route::get('/gallery', 'Upload\HookiXController@list_gallery');
+    Route::get('/gallery', 'upload\HookiXController@list_gallery');
 
     Route::get('/moderation/casier/{player}', 'moderation\CasierController@case')->middleware("can:mod_user_record");;
 
