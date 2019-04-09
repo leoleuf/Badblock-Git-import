@@ -5,6 +5,10 @@
             <div class="container">
                 <div class="panel-body">
                     <div class="card-box">
+                        <h4 class="m-t-0 header-title">Ajouter des points boutique.</h4>
+                        <p class="text-muted font-14 m-b-20">
+                            Attention à ne pas entrer de valeur négative.
+                        </p>
                         @if ($message = Session::get('status'))
 
                             <img src="https://cdn.badblock.fr/upload/{{ Session::get('img') }}" class="img-fluid">
