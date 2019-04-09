@@ -28,7 +28,7 @@ class HookiXController extends Controller
                 $filenamewithextension = $request->file('profile_image')->getClientOriginalName();
 
                 //get filename without extension
-                $filename = strtolower(Auth::user()->name)."#".time().'.'.request()->profile_image->getClientOriginalExtension();
+                $filename = strtolower(Auth::user()->name).time().'.'.request()->profile_image->getClientOriginalExtension();
 
                 //get file extension
                 $extension = $request->file('profile_image')->getClientOriginalExtension();
