@@ -3,7 +3,7 @@
     <div class="content-page">
         <div class="content">
             <div class="container">
-                @if ($message = Session::get('success'))
+                @if ($message = Session::get('status'))
 
                     <img src="https://cdn.badblock.fr/upload/{{ Session::get('img') }}" class="img-fluid">
 
