@@ -54,4 +54,6 @@ $app->singleton(
 |
 */
 
+$app->configure('filesystems');
+
 return $app;
