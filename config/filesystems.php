@@ -63,6 +63,14 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'ftp' => [
+            'driver' => 'ftp',
+            'host' => env('FTP_IP'),
+            'username' => env('FTP_USER'),
+            'password' => env('FTP_PASSWORD'),
+            'root' => '/home/web/badblock/cdn/upload'
+        ],
+
     ],
 
 ];

@@ -616,7 +616,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'App\\Http\\Controllers\\NotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/NotificationController.php',
         'App\\Http\\Controllers\\PasswordSecurityController' => __DIR__ . '/../..' . '/app/Http/Controllers/PasswordSecurityController.php',
         'App\\Http\\Controllers\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfilController.php',
-        'App\\Http\\Controllers\\Settings\\SharexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Settings/SharexController.php',
+        'App\\Http\\Controllers\\Settings\\HookiXController' => __DIR__ . '/../..',
         'App\\Http\\Controllers\\moderation\\CasierController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/CasierController.php',
         'App\\Http\\Controllers\\moderation\\GuardianController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/GuardianController.php',
         'App\\Http\\Controllers\\moderation\\ModerationController' => __DIR__ . '/../..' . '/app/Http/Controllers/moderation/ModerationController.php',

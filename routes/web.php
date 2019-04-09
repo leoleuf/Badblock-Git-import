@@ -45,13 +45,11 @@ Route::group([
     Route::get('/notif-link/{id}', 'NotificationController@index');
 
     Route::group([
-        'prefix'     => "settings",
         'middleware' => ['auth'],
     ], function () {
         //Website
-        Route::get('/sharex', 'Settings\SharexController@index');
-        Route::get('/sharex-reg', 'Settings\SharexController@new');
-        Route::get('/sharex-down', 'Settings\SharexController@down');
+        Route::get('/hookix', 'Upload\HookiXController@index');
+        Route::post('/hookix/upload', 'Upload\HookiXController@upload');
 
     });
 

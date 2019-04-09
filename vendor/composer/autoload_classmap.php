@@ -67,7 +67,7 @@ return array(
     'App\\Http\\Controllers\\NotificationController' => $baseDir . '/app/Http/Controllers/NotificationController.php',
     'App\\Http\\Controllers\\PasswordSecurityController' => $baseDir . '/app/Http/Controllers/PasswordSecurityController.php',
     'App\\Http\\Controllers\\ProfilController' => $baseDir . '/app/Http/Controllers/ProfilController.php',
-    'App\\Http\\Controllers\\Settings\\SharexController' => $baseDir . '/app/Http/Controllers/Settings/SharexController.php',
+    'App\\Http\\Controllers\\Settings\\HookiXController' => $baseDir . '/app/Http/Controllers/Settings/SharexController.php',
     'App\\Http\\Controllers\\moderation\\CasierController' => $baseDir . '/app/Http/Controllers/moderation/CasierController.php',
     'App\\Http\\Controllers\\moderation\\GuardianController' => $baseDir . '/app/Http/Controllers/moderation/GuardianController.php',
     'App\\Http\\Controllers\\moderation\\ModerationController' => $baseDir . '/app/Http/Controllers/moderation/ModerationController.php',
