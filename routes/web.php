@@ -48,8 +48,8 @@ Route::group([
         'middleware' => ['auth'],
     ], function () {
         //Website
-        Route::get('/hookix', 'Upload\HookiXController@index');
-        Route::post('/hookix/upload', 'Upload\HookiXController@upload');
+        Route::get('/hookix', 'upload\HookiXController@index');
+        Route::post('/hookix/upload', 'upload\HookiXController@upload');
 
     });
 
