@@ -123,7 +123,7 @@ Route::group([
         'middleware' => ['auth','can:animation'],
     ], function () {
         //Aniamtion
-        Route::get('/pb', 'Animation\GiveController@points')->middleware("can:anim_give_pb");
+        Route::get('/pb', 'Animation\GiveController@points');
         Route::get('/item', 'Animation\GiveController@item')->middleware("can:anim_give_item");
 
         Route::post('/pb', 'Animation\GiveController@savepoints')->middleware("can:anim_give_pb");
