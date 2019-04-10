@@ -32,6 +32,9 @@ Route::group([
     Route::get('/minecraft', 'Infra\McController@players');
     Route::get('/ban', 'Infra\McController@ban');
     Route::post('/theme', 'HomeController@setTheme');
+
+    Route::get('/cloudflare/purge/all', 'Infra\CloudFlareController@purge_all');
+
 });
 
 Route::group([

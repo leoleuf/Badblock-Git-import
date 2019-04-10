@@ -16,12 +16,18 @@ class CloudFlareController extends Controller
 
     public function index()
     {
-        $this->get_cloudflare_info("purge_cache", true);
-        //return view('infra.cloudflare');
+
+        return view('infra.cloudflare');
 
     }
 
-    public function get_cloudflare_info($mode, $post = null)
+    public function purge_all()
+    {
+        $this->sendCloudFlareRequest("purge_cache", true);
+        echo "Cache purge : success";
+    }
+
+    private function sendCloudFlareRequest($mode, $post = null)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL,"https://api.cloudflare.com/client/v4/zones/".env('CLOUDFLARE_ZONE_ID')."/".$mode);

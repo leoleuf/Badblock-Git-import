@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('header')
+    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <div class="content-page">
         <div class="content">
@@ -7,7 +11,8 @@
                 <div class="col-lg-12">
                     <div class="card-box">
                         <div class="dropdown pull-right">
-                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown"
+                               aria-expanded="false">
                                 <i class="mdi mdi-dots-vertical"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -32,7 +37,13 @@
                             </tr>
                             </thead>
                             <tbody>
-
+                            <tr>
+                                <td>Purge du cache</td>
+                                <td><span class="badge badge-success">Actif</span></td>
+                                <td>
+                                    <button class="btn btn-success" id="purgeAll">Lancer</button>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -41,4 +52,30 @@
             </div>
         </div>
     </div>
+@endsection
+@section('after_scripts')
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
+    <script>
+        function sendCloudFlareRequest(requestID) {
+            $.ajax({
+
+                URL: '/api/cloudflare/' + requestID,
+                method: 'GET',
+                success : function () {
+                    toastr.success('CloudFlare', "Le cache CloudFlare a été purgé avec succès");
+                },
+                error : function (data) {
+                    toastr.error('CloudFlare', "Une erreur est survenue.");
+                }
+
+            });
+        }
+
+        $('#purgeAll').click(function(){
+
+            sendCloudFlareRequest('purge/all');
+
+        });
+
+    </script>
 @endsection
