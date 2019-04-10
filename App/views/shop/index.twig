@@ -64,6 +64,7 @@
             {% set i = 0 %}
             {% for key, value in serverlist %}
                 {% if key != 0 %}
+                    {% autoescape %}
                     <div class="tab-pane fade" id="{{ value['server']['name'] }}" role="tabpanel"
                          aria-labelledby="{{ value['server']['name'] }}-tab">
                         <div class="row">
@@ -102,6 +103,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endautoescape %}
                 {% endif %}
                 {% set i = i + 1 %}
             {% endfor %}
@@ -110,6 +112,7 @@
             {% if key != 0 %}
                 {% for category in value['cat'] %}
                     {% for products in category['items'] %}
+                        {% autoescape %}
                         <div class="modal fade" id="modalItem-{{ products['_id']['$oid'] }}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -140,6 +143,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endautoescape %}
                     {% endfor %}
                 {% endfor %}
             {% endif %}
