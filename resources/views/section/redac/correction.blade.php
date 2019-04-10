@@ -34,7 +34,7 @@
                                             <td>{{ $value->title }}</td>
                                             <td>{{ $value->send_by }}</td>
                                             <td>@if($value->is_correct)Corrigé par {{ $value->correct_by }}@else Non corrigé @endif</td>
-                                            <th>{{ $value->date_post }}</th>
+                                            <th>{{ App\Http\Controllers\DateController::formatDate($value->date_post) }}</th>
                                             <td>@if($value->is_correct) <a href="/section/correction/view/{{ $value->id }}" class="btn btn-info" style="margin-right: 10px">Consulter</a> @else @can('redac_correct_text')<a href="/section/correction-text/{{ $value->id }}" class="btn btn-success" style="margin-right: 10px">Corriger</a>@endcan @endif <a href="/section/suppr-text/{{ $value->id }}" class="btn btn-danger">Supprimer</a></td>
                                         </tr>
                                     @endforeach

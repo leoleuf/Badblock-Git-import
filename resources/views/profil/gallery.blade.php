@@ -23,7 +23,7 @@
                                             <th scope="row">{{ $key + 1 }}</th>
                                             <td>{{ $value->name }}</td>
                                             <td><a href="{{ $value->link }}">{{ $value->link }}</a></td>
-                                            <td>{{ $value->date_post }}</td>
+                                            <td>{{ App\Http\Controllers\DateController::formatDate($value->date_post) }}</td>
                                             <th><img src="{{ $value->link }}" class="img-fluid" width="64"></th>
                                         </tr>
                                     @endforeach

@@ -25,15 +25,12 @@ class ModController extends Controller
             ->where(function ($query) {
                 $query->where('type', '=', "MUTE")
                     ->orWhere('type', '=', "KICK")
-                    ->orWhere('type', '=', "UNBAN")
-                    ->orWhere('type', '=', "BAN")
-                    ->orWhere('type', '=', "WARN");
+                    ->orWhere('type', '=', "BAN");
             })
             ->orderBy('timestamp', 'DESC')
             ->take(200)
             ->get()
             ->toArray();
-
 
         return view('section.mod.nopreuve', ['Sanctions' => $Sanctions]);
 
