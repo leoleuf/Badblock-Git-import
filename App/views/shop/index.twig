@@ -131,7 +131,7 @@
                                                  class="img-fluid img-def">
                                         </div>
                                         <strong>{{ products['name']|raw }}</strong>
-                                        <p>{{ products['description'] | raw }}</p>
+                                        <p class="product-item-desc">{{ products['description'] | raw }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="btn-achat" class="button button-success" onclick="achat('{{ products['_id']['$oid'] }}')">Acheter
