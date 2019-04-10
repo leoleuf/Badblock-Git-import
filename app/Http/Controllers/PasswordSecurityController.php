@@ -42,7 +42,7 @@ class PasswordSecurityController extends Controller
         // Add the secret key to the registration data
         PasswordSecurity::create([
             'user_id' => $user->id,
-            'google2fa_enable' => 1,
+            'google2fa_enable' => 0,
             'google2fa_secret' => $google2fa->generateSecretKey(),
         ]);
 
