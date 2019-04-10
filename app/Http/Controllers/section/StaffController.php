@@ -84,7 +84,7 @@ class StaffController extends Controller
 
             $Detect = false;
             $Grades = ['supermodo', 'modocheat','modo', 'modochat', 'helper'];
-            $LTime = [45, 40,40, 35, 25];
+            $LTime = [22.5, 20,20, 17.5, 12.5];
 
             if($Time > 0)
             {
@@ -120,15 +120,15 @@ class StaffController extends Controller
                                 $bc = "#C24023";
                                 $color = "#983019";
                             }
-                            else if($wf < $NTime / 2 && $wf > 10)
-                            {
-                                $bc = "#DCB522";
-                                $color = "#B6961D";
-                            }
-                            else
+                            else if($wf >= ($NTime) * 0.90)
                             {
                                 $bc = "#57BB1E";
                                 $color = "#499B1A";
+                            }
+                            else
+                            {
+                                $bc = "#DCB522";
+                                $color = "#B6961D";
                             }
 
 

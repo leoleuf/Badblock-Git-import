@@ -48,30 +48,33 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card-box">
-                            <h4 class="header-title mt-0 m-b-30">Objectif (en %)</h4>
+                    @can('mod_index')
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card-box">
+                                <h4 class="header-title mt-0 m-b-30">Objectif (en %)</h4>
 
-                            <div class="widget-chart-1">
-                                <div class="widget-chart-box-1">
-                                    <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
-                                           data-bgColor="#FFE6BA" value="
+                                <div class="widget-chart-1">
+                                    <div class="widget-chart-box-1">
+                                        <input data-plugin="knob" data-width="80" data-height="80"
+                                               data-fgColor="#ffbd4a"
+                                               data-bgColor="#FFE6BA" value="
                                                                    @if(round(($stats['time'] / 60 / 60), 2) / $stats['ntime']  * 100 > 100)
-                                            100
+                                                100
 @else
-                                    {{ round(round(($stats['time'] / 60 / 60), 2) / $stats['ntime']  * 100, 1) }}
-                                    @endif"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
-                                </div>
+                                        {{ round(round(($stats['time'] / 60 / 60), 2) / $stats['ntime']  * 100, 1) }}
+                                        @endif"
+                                               data-skin="tron" data-angleOffset="180" data-readOnly=true
+                                               data-thickness=".15"/>
+                                    </div>
 
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 mb-0"> {{ round(($stats['time'] / 60 / 60), 2) }} Heures </h2>
-                                    <p class="text-muted m-b-10">Temps de jeu ce mois</p>
+                                    <div class="widget-detail-1">
+                                        <h2 class="p-t-10 mb-0"> {{ round(($stats['time'] / 60 / 60), 2) }} Heures </h2>
+                                        <p class="text-muted m-b-10">Temps de Modération</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endcan
 
 
                     <div class="col-xl-3 col-md-6">
@@ -112,22 +115,24 @@
 
         function players() {
             //Get players
-            $.getJSON('/api/minecraft', function(data) {
+            $.getJSON('/api/minecraft', function (data) {
                 $('#players').html(data.players.now);
                 console.log('%c' + data.players.now + " connectés !", 'background: #222; font-size: 2em; color: #9b59b6');
                 setTimeout(players, 5000);
             });
         }
+
         players();
 
         function ban() {
             //Get players
-            $.getJSON('/api/ban', function(data) {
+            $.getJSON('/api/ban', function (data) {
                 $('#players-ban').html(data.players.now);
                 console.log('%c' + data.players.now + " joueurs bannis!", 'background: #222; font-size: 2em; color: #9b59b6');
                 setTimeout(ban, 10000);
             });
         }
+
         ban();
 
     </script>

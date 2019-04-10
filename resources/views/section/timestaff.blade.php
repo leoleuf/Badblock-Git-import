@@ -20,7 +20,7 @@
                                                    data-skin="tron" data-angleOffset="180" data-readOnly=true
                                                    data-thickness=".15"/>
                                         </div>
-                                        <span><em>{{ round(($row['time'] / 60 / 60), 1) }} / {{ $row['ntime'] }} Heures</em></span>
+                                        <span><em>{{ round(($row['time'] / 60 / 60), 1) }} / {{ $row['ntime'] / 2 }} Heures</em></span>
                                     </div>
                                 </div>
                             </div>
