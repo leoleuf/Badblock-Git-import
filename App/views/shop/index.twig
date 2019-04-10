@@ -86,7 +86,7 @@
                                                              height="190" class="img-fluid img-def">
                                                     </div>
                                                     <div class="shop-package-desc">{{ products['name'] }}
-                                                        <br> {{ products['description']|raw|slice(0, 15 ) }} ...
+                                                        <br> {{ products['description']|raw|slice(0, 15 )|e }} ...
                                                     </div>
                                                     <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
                                                         ({{ products['price'] }})</a>
