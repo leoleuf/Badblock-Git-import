@@ -332,7 +332,7 @@
                                                     class="fas fa-terminal"></i> Permissions Serveur</a></li>
                                 @endcan
                                 @can('show_compta')
-                                    <li><a href="website/compta" class="waves-effect"><i
+                                    <li><a href="/website/compta" class="waves-effect"><i
                                                     class="fas fa-file-invoice-dollar"></i> Comptabilité</a></li>
                                 @endcan
                             </ul>

@@ -8,7 +8,6 @@
                         <h4 class="m-t-0 header-title">Ajouter une preuve.</h4>
                         @if ($message = Session::get('status'))
 
-                            <img src="https://cdn.badblock.fr/upload/{{ Session::get('img') }}" class="img-fluid" width="512" style="margin-bottom: 10px;">
                             <p>{!! $message !!}</p>
                         @endif
                         @if ($message = Session::get('failed'))
@@ -21,7 +20,7 @@
                                 <form action="/hookix/upload" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="exampleInputFile">File input</label>
-                                        <input type="file" name="profile_image" id="exampleInputFile" multiple />
+                                        <input type="file" class="form-control" name="screen[]" multiple />
                                     </div>
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-success">Uploader</button>

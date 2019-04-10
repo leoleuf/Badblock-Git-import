@@ -13,19 +13,22 @@
                                 <p class="text-muted font-14 m-b-20">
                                     Attention à ne pas entrer de valeur négative.
                                 </p>
-                                {{ Form::open(array('url' => "/animation/pb",'class'=>'form_inline')) }}
-                                <div class="form-group">
-                                    <input type="text" name="pseudo[]" class="form-control input-block" placeholder="Pseudo">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="points[]" class="form-control input-block" placeholder="Ex: 500">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="comments" class="form-control input-block" placeholder="Commentaire">
-                                </div>
-                                <!--<button type="button" class="btn btn-danger" onclick="add();"><span class="fa fa-plus"></span> Add line</button>-->
-                                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Valider</button>
-                                {{ Form::close() }}
+                                <form class="form_inline" method="post" action="/animation/pb">
+                                    {{ csrf_field() }}
+                                    <div class="form-give-pb" id="formGive">
+                                        <div class="form-group">
+                                            <input type="text" name="pseudo[]" class="form-control input-block" placeholder="Pseudo">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="points[]" class="form-control input-block" placeholder="Ex: 500">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="comments" class="form-control input-block" placeholder="Commentaire">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-danger" id="addLine">Ajouter une ligne</button>
+                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Valider</button>
+                                    <form>
                             </div>
                         </div>
                     </div>
@@ -47,17 +50,21 @@
     <!-- init -->
     <script src="/assets/pages/datatables.editable.init.js"></script>
 
-    <!--<script>
-        function add() {
-            $('#tablee').append('<tr>\n' +
-                '                                                    <td>\n' +
-                '                                                        <input type="text" name="pseudo[]" class="form-control input-block" value="">                                                </td>\n' +
-                '                                                    <td>\n' +
-                '                                                        <input type="text" name="points[]" class="form-control input-block" value="">                                                </td>\n' +
-                '                                                    </td>\n' +
-                '                                                </tr>')
-        }
-    </script>-->
+    <script>
+        $('#addLine').click(function(){
+            $('#formGive').append(
+                '<hr><div class="form-group">\n' +
+                '                                            <input type="text" name="pseudo[]" class="form-control input-block" placeholder="Pseudo">\n' +
+                '                                        </div>\n' +
+                '                                        <div class="form-group">\n' +
+                '                                            <input type="text" name="points[]" class="form-control input-block" placeholder="Ex: 500">\n' +
+                '                                        </div>\n' +
+                '                                        <div class="form-group">\n' +
+                '                                            <input type="text" name="comments" class="form-control input-block" placeholder="Commentaire">\n' +
+                '                                        </div>'
+            )
+        });
+    </script>
 
 
 @endsection
