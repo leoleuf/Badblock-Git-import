@@ -15,19 +15,32 @@
                                 </p>
                                 <form class="form_inline" method="post" action="/animation/pb">
                                     {{ csrf_field() }}
-                                    <div class="form-give-pb" id="formGive">
-                                        <div class="form-group">
-                                            <input type="text" name="pseudo[]" class="form-control input-block" placeholder="Pseudo">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="points[]" class="form-control input-block" placeholder="Ex: 500">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="comments" class="form-control input-block" placeholder="Commentaire">
+                                    <div id="formGive">
+                                        <div class="row">
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="pseudo[]" class="form-control input-block"
+                                                           placeholder="Hooki le magnifique">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="points[]" class="form-control input-block"
+                                                           placeholder="Ex: 150500">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="comments" class="form-control input-block"
+                                                           placeholder="Commentaire">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-danger" id="addLine">Ajouter une ligne</button>
-                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Valider</button>
+                                    <button type="submit" class="btn btn-success"><span
+                                                class="glyphicon glyphicon-saved"></span> Valider
+                                    </button>
                                     <form>
                             </div>
                         </div>
@@ -51,18 +64,27 @@
     <script src="/assets/pages/datatables.editable.init.js"></script>
 
     <script>
-        $('#addLine').click(function(){
-            $('#formGive').append(
-                '<hr><div class="form-group">\n' +
-                '                                            <input type="text" name="pseudo[]" class="form-control input-block" placeholder="Pseudo">\n' +
-                '                                        </div>\n' +
-                '                                        <div class="form-group">\n' +
-                '                                            <input type="text" name="points[]" class="form-control input-block" placeholder="Ex: 500">\n' +
-                '                                        </div>\n' +
-                '                                        <div class="form-group">\n' +
-                '                                            <input type="text" name="comments" class="form-control input-block" placeholder="Commentaire">\n' +
-                '                                        </div>'
-            )
+        $('#addLine').click(function () {
+            $('#formGive').append('<div class="row">\n' +
+                '                                            <div class="col-12 col-md-4">\n' +
+                '                                                <div class="form-group">\n' +
+                '                                                    <input type="text" name="pseudo[]" class="form-control input-block"\n' +
+                '                                                           placeholder="Pseudo">\n' +
+                '                                                </div>\n' +
+                '                                            </div>\n' +
+                '                                            <div class="col-12 col-md-4">\n' +
+                '                                                <div class="form-group">\n' +
+                '                                                    <input type="text" name="points[]" class="form-control input-block"\n' +
+                '                                                           placeholder="Ex: 500">\n' +
+                '                                                </div>\n' +
+                '                                            </div>\n' +
+                '                                            <div class="col-12 col-md-4">\n' +
+                '                                                <div class="form-group">\n' +
+                '                                                    <input type="text" name="comments" class="form-control input-block"\n' +
+                '                                                           placeholder="Commentaire">\n' +
+                '                                                </div>\n' +
+                '                                            </div>\n' +
+                '                                        </div>')
         });
     </script>
 
