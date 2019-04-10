@@ -71,7 +71,7 @@ class StaffController extends Controller
                 ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
                 ->where('playerUuid', '=', $player['uniqueId'])
                 ->sum('totalTime');
-            $Punish = DB::connection('mongodb_server')
+            /*$Punish = DB::connection('mongodb_server')
                 ->collection('modoSessions')
                 ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
                 ->where('playerUuid', '=', $player['uniqueId'])
@@ -80,30 +80,71 @@ class StaffController extends Controller
                 ->collection('modoSessions')
                 ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
                 ->where('playerUuid', '=', $player['uniqueId'])
-                ->sum('punishmentTime');
+                ->sum('punishmentTime');*/
 
             $Detect = false;
             $Grades = ['supermodo', 'modocheat','modo', 'modochat', 'helper'];
             $LTime = [45, 40,40, 35, 25];
 
-            foreach ($Grades as $k => $G){
-                if (!$Detect){
-                    if (isset($player['permissions']['groups']['bungee'][$G])){
-                        $Grr = $G;
-                        $NTime = $LTime[$k];
-                        $Detect = true;
+            if($Time > 0)
+            {
+                foreach ($Grades as $k => $G){
+
+                    if (!$Detect){
+                        if (isset($player['permissions']['groups']['bungee'][$G])){
+                            $Grr = $G;
+                            $NTime = $LTime[$k];
+                            $Detect = true;
+
+                            $Grr = str_replace("supermodo", "SuperModérateur", $Grr);
+                            $Grr = str_replace("modocheat", "Modérateur-Cheat", $Grr);
+                            $Grr = str_replace("modochat", "Modérateur-Chat", $Grr);
+                            $Grr = str_replace("modo", "Modérateur", $Grr);
+                            $Grr = str_replace("helper", "Helper", $Grr);
+
+                            if ($Time == 0){
+                                $Time = 1;
+                            }
+
+                            if(round(($Time / 60 / 60), 2) / $NTime  * 100 > 100)
+                            {
+                                $wf = 100;
+                            }
+                            else
+                            {
+                                $wf = round(round(($Time / 60 / 60), 2) / $NTime  * 100, 1);
+                            }
+
+                            if($wf <= 10) {
+
+                                $bc = "#C24023";
+                                $color = "#983019";
+                            }
+                            else if($wf < $NTime / 2 && $wf > 10)
+                            {
+                                $bc = "#DCB522";
+                                $color = "#B6961D";
+                            }
+                            else
+                            {
+                                $bc = "#57BB1E";
+                                $color = "#499B1A";
+                            }
+
+
+                        }
                     }
                 }
-            }
-            if ($Time == 0){
-                $Time = 1;
-            }
-            if (isset($Grr)){
-                array_push($Staff, ['name' => $player['name'],'ntime' => $NTime,'time' => $Time, "PunishTime" => $PunishTime , 'Punish' => $Punish, 'grade' => $Grr]);
+
+
+
+                if (isset($Grr)){
+                    array_push($Staff, ['name' => $player['name'],'ntime' => $NTime,'time' => $Time, 'grade' => $Grr, 'workFine' => $wf, 'color' => $color]);
+                }
             }
         }
 
-        array_multisort($Staff, SORT_ASC, SORT_NATURAL);
+        sort($Staff);
 
         return view('section.timestaff')->with('user', $Staff);
     }
