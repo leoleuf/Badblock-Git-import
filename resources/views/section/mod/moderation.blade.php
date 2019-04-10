@@ -50,7 +50,7 @@
                     <div class="col-lg-6" >
                         <h4 class="m-t-0 header-title">Partager à :</h4>
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="FluorL" id="share-name">
+                            <input type="text" class="form-control" placeholder="Pseudo" id="share-name">
                             <div class="input-group-append">
                                 <button class="btn btn-dark waves-effect waves-light" type="button" onclick="share();"><i class="fas fa-share-alt-square"></i></button>
                             </div>
@@ -105,9 +105,6 @@
                         }
                     }
 
-                    setTimeout(function(){
-                        get_screen();
-                    }, 10000);
                 },
                 error:function(data)
                 {
