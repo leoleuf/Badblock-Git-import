@@ -8,138 +8,183 @@
 
 @endsection
 @section('content')
-
-    <!-- ============================================================== -->
-    <!-- Start right Content here -->
-    <!-- ============================================================== -->
     <div class="content-page">
         <!-- Start content -->
         <div class="content">
             <div class="container">
-
                 <div class="row">
+                    <div class="col-12">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <div class="card-box">
+                                    <!-- will be used to show any messages -->
+                                    @if (Session::has('message'))
+                                        <div class="alert alert-info">{{ Session::get('message') }}</div>
+                                    @endif
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <h1>Création d'un nouveau Produit.</h1>
+                                            <div class="">
+                                                {{ Form::model(array('url' => "/website/crud/product/", 'method' => 'PUT','class'=>'form_inline')) }}
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom d'affichage du produit :</label>
+                                                            {{ Form::text('name', "", array('class' => 'form-control','placeholder'=>"Nom d'affichage du produit :")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Prix :</label>
+                                                            {{ Form::text('price', "", array('class' => 'form-control','placeholder'=>"Prix du produit")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Type de livraison :</label>
+                                                            {{ Form::text('mode', "",array('class' => 'form-control','placeholder'=>"Type du produit")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Sélectionner la catégorie :</label>
+                                                            <select name="category" class="form-control select2">
+                                                                <option>Selectionner la catégorie</option>
+                                                                @foreach($cat as $key => $value)
+                                                                    <option value="{{ $value->_id }}">{{ $value->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom de la Queue (si ShopLinker) :</label>
+                                                            {{ Form::text('queue', "",array('class' => 'form-control','placeholder'=>"Ex : hub,skyb")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Commande (use %player%) :</label>
+                                                            {{ Form::text('command', "",array('class' => 'form-control','placeholder'=>"Ex : give %player% 137")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Activer le mode promotion sur ce produit :</label>
+                                                            <input name="promotion" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Pourcentage de promotion :</label>
+                                                            {{ Form::text('promo_coef', "", array('class' => 'form-control','placeholder'=>"50%")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nouveau prix de promotion :</label>
+                                                            {{ Form::text('promotion_new_price', "", array('class' => 'form-control','placeholder'=>"50%")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Visibilité dans le container promotion :</label>
+                                                            <input name="promotion_view" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom de la dépendance (si nécessaire) :</label>
+                                                            {{ Form::text('depend_name',"",array('class' => 'form-control','placeholder'=>"Ex : gold")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Activer le mode de dépendance sur ce produit
+                                                                :</label>
+                                                            <input name="depend" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Id de dépendance :</label>
+                                                            {{ Form::text('depend_to', "",array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom unique de dépendance :</label>
+                                                            {{ Form::text('depend_name', "",array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Activer la visibilité du produit sur le site
+                                                                :</label>
+                                                            <input name="visibility" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Image du produit :</label>
+                                                            {{ Form::text('image', "", array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Description du produit (HTML) :</label>
+                                                            <textarea class="form-control" name="desc" rows="10"
+                                                                      cols="50"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Item pour boutique Ingame :</label>
+                                                            {{ Form::text('ig_item', "", array('class' => 'form-control','placeholder'=>"")) }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Ingame data :</label>
+                                                            {{ Form::text('ig_data', "", array('class' => 'form-control','placeholder'=>"")) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <!-- will be used to show any messages -->
-            @if (Session::has('message'))
-                <div class="alert alert-info">{{ Session::get('message') }}</div>
-            @endif
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="m-b-30">
-                                <h1>Création d'un nouveau produit.</h1>
+
+                                                <button type="submit" class="btn btn-success"><span
+                                                            class="glyphicon glyphicon-saved"></span> Save
+                                                </button>
+                                                {{ Form::close() }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-
-
-                    <div class="">
-                        {{ Form::open(array('url' => "/website/crud/product" ,'class'=>'form_inline')) }}
-                        Nom d'affichage du produit :
-                        {{ Form::text('name', "",array('class' => 'form-control','placeholder'=>"Nom d'affichage du produit :")) }}
-                        <br>
-                        Prix :
-                        {{ Form::text('price', "",array('class' => 'form-control','placeholder'=>"Prix du produit")) }}
-                        <br>
-                        Type :
-                        {{ Form::text('mode', "",array('class' => 'form-control','placeholder'=>"rabbitmq")) }}
-                        <br>
-                        Sélectionner la catégorie :
-                        <select name="category" class="form-control select2">
-                            <option>Selectionner la catégorie</option>
-                            @foreach($cat as $key => $value)
-                                <option value="{{ $value->_id }}">{{ $value->name }}</option>
-                            @endforeach
-                        </select>
-                        <br>
-                        <br>
-                        <br>
-                        Nom de la Queue (si ShopLinker) :
-                        <br>
-                        {{ Form::text('queue',"",array('class' => 'form-control','placeholder'=>"Ex : hub,skyb")) }}
-
-                        <br>
-                        <br>
-                        Commande (use %player%) :
-                        <br>
-                        {{ Form::text('command',"",array('class' => 'form-control','placeholder'=>"Ex : give %player% 137")) }}
-                        <br>
-                        <br>
-                        Activer le mode promotion sur ce produit :
-                        <br>
-                        <br>
-                        <input name ="promo" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
-                        <br>
-                        <br>
-                        Pourcentage de promotion :
-                        {{ Form::text('promo_coef', "", array('class' => 'form-control','placeholder'=>"50")) }}
-                        <br>
-                        <br>
-                        Nouveau prix de promotion :
-                        {{ Form::text('promotion_new_price', "", array('class' => 'form-control','placeholder'=>"50")) }}
-                        <br>
-                        Visibilité dans le container promotion :
-                        <br>
-                        <input name ="promotion_view" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
-                        <br>
-                        <br>
-                        Nom de la dépendance (si nécessaire) :
-                        <br>
-                        {{ Form::text('depend_name',"",array('class' => 'form-control','placeholder'=>"Ex : gold")) }}
-                        <br>
-                        Activer le mode de dépendance sur ce produit :
-                        <br>
-                        <br>
-                        <input name ="depend" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
-                        <br>
-                        <br>
-                        Groupe de dépendance :
-                        {{ Form::text('depend_to',"",array('class' => 'form-control','placeholder'=>"Nom du group de dépendance")) }}
-                        <br>
-                        Activer la visibilité du produit sur le site :
-                        <br>
-                        <br>
-                        <input name ="visibility" type="checkbox" checked data-plugin="switchery" data-color="#00b19d"/>
-                        <br>
-                        <br>
-                        Image du produit :
-                        {{ Form::text('img', "", array('class' => 'form-control','placeholder'=>"URL vers l'image")) }}
-
-                        <br>
-                        Description du produit (HTML) :
-                        <br>
-                        <textarea class="form-control" name="desc"
-                                  rows="10" cols="50">
-                        </textarea>
-                        <br>
-                        <br>
-                        Item pour boutique Ingame :
-                        {{ Form::text('ig_material', "", array('class' => 'form-control','placeholder'=>"")) }}
-                        <br>
-                        <br>
-                        Ingame data :
-                        {{ Form::text('ig_data', "", array('class' => 'form-control','placeholder'=>"")) }}
-                        <br>
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-saved"></span> Save</button>
-
-                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
-    <footer class="footer text-right">
-        2017 - 2018 © BadBlock.
-    </footer>
-    </div>
-
-
-    <script>
-        var resizefunc = [];
-    </script>
 
 
 @endsection

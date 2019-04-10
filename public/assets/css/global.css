@@ -6430,3 +6430,10 @@ File: Responsive
     margin-left: 0;
   }
 }
+
+.widget-chart a{
+  width: calc(50% - 30px);
+  margin: 0px 15px;
+  margin-top: 15px;
+
+}

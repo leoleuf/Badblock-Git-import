@@ -24,6 +24,7 @@ class IndexController extends Controller
             new \DateInterval('P1D'),
             new \DateTime(date("y-m-d", strtotime("+1 days")))
         );
+
         $revenu_chart = [];
         foreach ($period as $date){
             $date1 = $date;
