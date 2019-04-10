@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\PasswordSecurity;
+use Google2FA;
 
 class PasswordSecurityController extends Controller
 {
@@ -16,7 +17,7 @@ class PasswordSecurityController extends Controller
 
         $google2fa_url = "";
         if ($user->passwordSecurity()->exists()) {
-            $google2fa = app('pragmarx.google2fa ');
+            $google2fa = app('pragmarx.google2fa');
             $google2fa_url = $google2fa->getQRCodeInline(
                 'BadBlock Manager',
                 $user->email,
