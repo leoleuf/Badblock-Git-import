@@ -85,8 +85,7 @@
                                                              title="Produit {{ products['name'] | raw }}" width="190"
                                                              height="190" class="img-fluid img-def">
                                                     </div>
-                                                    <div class="shop-package-desc">{{ products['name'] }}
-                                                        <br> {{ products['description']|raw|slice(0, 15 ) }} ...
+                                                    <div class="shop-package-desc">
                                                     </div>
                                                     <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
                                                         ({{ products['price'] }})</a>
@@ -126,11 +125,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="modal-body-img">
-                                            <img src="{{ products['image'] }}"
-                                                 title="Produit {{ products['name'] }}" width="190" height="190"
-                                                 class="img-fluid img-def">
+                                            <img src="{{ products['image'] }}" title="Produit {{ products['name'] }}" width="190" height="190" class="img-fluid img-def">
                                         </div>
                                         <strong>{{ products['name']|raw }}</strong>
+                                        <hr>
                                         <p class="product-item-desc">{{ products['description'] | raw }}</p>
                                     </div>
                                     <div class="modal-footer">

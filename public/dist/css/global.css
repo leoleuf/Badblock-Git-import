@@ -1661,11 +1661,6 @@ h6.cover-heading {
 
 /*#========= Modal Shop ==========#*/
 
-.modal-body {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .modal-body .modal-body-img {
     width: 100%;
     display: flex;
