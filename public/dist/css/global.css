@@ -338,6 +338,12 @@ iframe {
     background: url(https://cdn.badblock.fr/wd/colored-icons/chat_emoticon.png) no-repeat;
 }
 
+.youtube-colored-icon {
+    background: url(https://cdn.badblock.fr/upload/HOOKI1555022631.png) no-repeat;
+    width: 48px;
+    height: 48px;
+}
+
 .heading {
     margin-bottom: 1.2em;
     font-size: 1.9rem;

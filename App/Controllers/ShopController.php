@@ -21,7 +21,6 @@ use PhpAmqpLib\Message\AMQPMessage;
 class ShopController extends Controller
 {
 
-
     function index(RequestInterface $request, ResponseInterface $response)
     {
         $data_shop = $this->redis->getJson('shop');
