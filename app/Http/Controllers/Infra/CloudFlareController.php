@@ -23,8 +23,7 @@ class CloudFlareController extends Controller
 
     public function purge_all()
     {
-        $this->sendCloudFlareRequest("purge_cache", true);
-        echo "Cache purge : success";
+        return "Cache purge : ".$this->sendCloudFlareRequest("purge_cache", true);
     }
 
     private function sendCloudFlareRequest($mode, $post = null)
@@ -51,7 +50,7 @@ class CloudFlareController extends Controller
 
         curl_close ($ch);
 
-        var_dump($server_output);
+        return $server_output;
 
     }
 

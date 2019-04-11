@@ -175,15 +175,15 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Niveau :</th>
-                                                        <td class="color-brighter">{{ $Player['game']['level'] }}</td>
+                                                        <td class="color-brighter">@if(isset($Player['game']['level'])){{ $Player['game']['level'] }}@else UNDEFINED @endif</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Xp :</th>
-                                                        <td class="color-brighter">{{ $Player['game']['xp'] }}</td>
+                                                        <td class="color-brighter">@if(isset($Player['game']['xp'])){{ $Player['game']['xp'] }}@else UNDEFINED @endif</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Badcoins :</th>
-                                                        <td class="color-brighter">{{ $Player['game']['badcoins'] }}</td>
+                                                        <td class="color-brighter">@if(isset($Player['game']['badcoins'])){{ $Player['game']['badcoins'] }}@else UNDEFINED @endif</td>
                                                     </tr>
                                                 </table>
                                             </div>
