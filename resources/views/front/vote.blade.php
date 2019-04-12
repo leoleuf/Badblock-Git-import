@@ -462,6 +462,7 @@
                     function flexar()
                     {
                         var isHovered = $('#vote_button').is(":hover");
+                        var time = 30;
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
@@ -479,13 +480,14 @@
                         if (document.getElementById("vb").style.marginTop == "100px")
                         {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200)
+                            if (difflastd > 1000)
                             {
                                 document.getElementById("vb").style.marginTop = "0px";
+                                time = 500;
                             }
                         }
 
-                        setTimeout(flexar, 30);
+                        setTimeout(flexar, time);
                     }
 
                     if (window.canRunAds === undefined)
