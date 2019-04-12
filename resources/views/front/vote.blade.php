@@ -372,6 +372,7 @@
 
             $(document).on("mousemove", function(e)
             {
+                console.log("x: " + e.pageX + " / y: " + e.pageY);
                 if (e.pageX !== mx)
                 {
                     diffx = Math.abs(e.pageX - mx);
@@ -397,17 +398,8 @@
             $(document).ready(function ()
             {
                 @if (isMobile())
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#vote_button").offset().top - 230
-                    }, 3000);
-
                     function flexar()
                     {
-                        t++;
-                        if (t > 7)
-                        {
-                            return;
-                        }
                         document.getElementById("vb").style.marginTop = "250px";
                         document.getElementById("vote_button").style.marginTop = "100px";
                         setTimeout(flexy, 500);
