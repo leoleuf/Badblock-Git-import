@@ -483,7 +483,7 @@
                             if (difflastd > 1000)
                             {
                                 lastd = $.now();
-                                document.getElementById("vb").style.marginTop = "0px";
+                                document.getElementById("vb").style.marginTop = "-40px";
                                 time = 500;
                             }
                         }
