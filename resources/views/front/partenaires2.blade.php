@@ -18,3 +18,5 @@
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+Redirection...
+<META http-equiv="refresh" content="3;URL=https://serveur-multigames.ne/minecraft">
