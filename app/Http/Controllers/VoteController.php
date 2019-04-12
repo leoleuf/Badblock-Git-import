@@ -72,6 +72,7 @@ class VoteController extends Controller
                 ->where('tsmp', '>=', ($pt - 60))
                 ->count();
 
+            if ($c != null && $c > 0) {
                 DB::table('votebuttonclicks')->insert([
                     'date' => date("Y-m-d H:i:s"),
                     'ip' => $ip,
@@ -84,6 +85,7 @@ class VoteController extends Controller
                     'lastdecale' => intval($_POST['c']),
                     'lastmouse' => intval($_POST['d'])
                 ]);
+            }
         }
     }
 
