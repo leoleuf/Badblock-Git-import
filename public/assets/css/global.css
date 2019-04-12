@@ -6475,3 +6475,9 @@ File: Responsive
   justify-content: space-between;
   align-items: center;
 }
+
+.home-content .card-box {
+
+  height: 200px;
+
+}

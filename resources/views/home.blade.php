@@ -3,7 +3,7 @@
 @section('content')
     <div class="content-page">
         <!-- Start content -->
-        <div class="content">
+        <div class="content home-content">
             <div class="container">
 
                 <h1 class="page-title">Badblock Manager </h1>

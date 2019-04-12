@@ -25,4 +25,11 @@ class DateController extends Controller
         return date_format($date, 'd/m/Y');
     }
 
+    public static function formatDateString($date)
+    {
+        $date = str_replace('-', '/', $date);
+        $date = str_replace(' ', ' à ', $date);
+        return $date;
+    }
+
 }

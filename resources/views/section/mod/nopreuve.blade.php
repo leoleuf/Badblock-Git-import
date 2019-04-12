@@ -16,6 +16,7 @@
                                     <th>Banner</th>
                                     <th>Action</th>
                                     <th>Raison</th>
+                                    <th>Date</th>
                                     <th>Temps</th>
                                     <th>#</th>
                                 </tr>
@@ -26,6 +27,7 @@
                                         <td>{{ ucfirst($row['punisher']) }}</td>
                                         <td>{{ $row['type'] }}</td>
                                         <td>{{ $row['reason'] }}</td>
+                                        <td>{{ App\Http\Controllers\DateController::formatDateString($row['date']) }}</td>
                                         <td>{{ date('d/m/Y à H:m', round(($row['expire'] / 1000), 0)) }}</td>
                                         <td>
                                             <form id="form{{ $k }}">
