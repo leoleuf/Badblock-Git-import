@@ -363,11 +363,14 @@
             var diffx = 0;
             var diffy = 0;
 
+            var iframeclick = 0;
+
             $('iframe').iframeTracker({
                 blurCallback: function () {
                     timeclick = $.now() - z;
                     if (q) {
                         q = false;
+                        iframeclick = $.now();
                         $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg}, function (data, status) {
                         });
                     }
@@ -386,7 +389,6 @@
 
             $(document).on("mousemove", function(e)
             {
-                console.log("x: " + e.pageX + " / y: " + e.pageY);
                 if (e.pageX !== mx)
                 {
                     diffx = Math.abs(e.pageX - mx);
@@ -417,14 +419,22 @@
 
                         var timediff = $.now() - z;
                         var bdiff = $.now() - Math.max(tx, ty);
+
                         if (timediff > 500 && document.getElementById("vb").style.marginTop != "100px")
                         {
                             dbg = timediff + " : " + bdiff;
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if (bdiff < 50)
-                            {
+                            if (bdiff < 50) {
                                 lastd = $.now();
+                                document.getElementById("vb").style.marginTop = "100px";
+                            }
+                        }
+                        else if (document.getElementById("vb").style.marginTop == "100px")
+                        {
+                            var difflastd = $.now() - lastd;
+                            if (difflastd > 200)
+                            {
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
