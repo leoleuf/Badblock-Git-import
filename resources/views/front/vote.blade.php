@@ -368,14 +368,16 @@
 
             $(document).on("mousemove", function(e)
             {
-                if (e.pageX != mx)
+                if (e.pageX !== mx)
                 {
                     tx = $.now();
+                    console.log("tx change");
                 }
 
-                if (e.pageY != my)
+                if (e.pageY !== my)
                 {
                     ty = $.now();
+                    console.log("ty change");
                 }
 
                 mx = e.pageX;
