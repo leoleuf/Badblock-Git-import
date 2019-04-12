@@ -73,6 +73,11 @@ class VoteController extends Controller
                 ->count();
 
             if (intval($_POST['b']) OR ($c == null && $c < 1)) {
+                $c = DB::table('votebuttonclicks')
+                    ->where('ip', '=', $ip)
+                    ->where('tsmp', '>=', ($pt - 60))
+                    ->where('pubclick', '=', 0)
+                    ->delete();
                 DB::table('votebuttonclicks')->insert([
                     'date' => date("Y-m-d H:i:s"),
                     'ip' => $ip,
