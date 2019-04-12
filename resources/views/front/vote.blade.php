@@ -239,7 +239,7 @@
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
-                                             style="display:block" id="vb"
+                                             style="display:block" id="vb1"
                                              data-ad-client="ca-pub-1905923613312160"
                                              data-ad-slot="1434308007"
                                              data-ad-format="auto"
