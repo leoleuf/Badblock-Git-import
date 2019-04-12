@@ -375,7 +375,7 @@
                 if (e.pageX !== mx)
                 {
                     diffx = Math.abs(e.pageX - mx);
-                    if (diffx < 1.5) {
+                    if (diffx > 2) {
                         tx = $.now();
                         lastmouse = tx;
                     }
@@ -384,7 +384,7 @@
                 if (e.pageY !== my)
                 {
                     diffy = Math.abs(e.pageY - my);
-                    if (diffy < 1.5) {
+                    if (diffy > 2) {
                         ty = $.now();
                         lastmouse = ty;
                     }
