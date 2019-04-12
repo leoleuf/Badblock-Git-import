@@ -435,7 +435,7 @@
                             var difflastd = $.now() - lastd;
                             if (difflastd > 200)
                             {
-                                document.getElementById("vb").style.marginTop = "100px";
+                                document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
 
