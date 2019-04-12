@@ -65,9 +65,10 @@ class VoteController extends Controller
 
         if (isset($_POST['a']))
         {
+            $pt = time();
             $c = DB::table('votebuttonclicks')
                 ->where('ip', '=', $ip)
-                ->where('tsmp', '=>', time() - 60)
+                ->where('tsmp', '>=', ($pt - 60))
                 ->count();
 
             if ($c != null && $c > 0) {
