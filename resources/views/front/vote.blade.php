@@ -340,6 +340,11 @@
             var buggy = false;
             var lastd = 0;
 
+            var tx = 0;
+            var ty = 0;
+            var mx = 0;
+            var my = 0;
+
             $('iframe').iframeTracker({
                 blurCallback: function () {
                     if (q) {
@@ -363,7 +368,18 @@
 
             $(document).on("mousemove", function(e)
             {
-                console.log( "pageX: " + e.pageX + ", pageY: " + e.pageY );
+                if (e.pageX != mx)
+                {
+                    tx = $.now();
+                }
+
+                if (e.pageY != my)
+                {
+                    ty = $.now();
+                }
+
+                mx = e.pageX;
+                my = e.pageY;
             });
 
             $(document).ready(function ()
@@ -414,24 +430,16 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
-                            var m = $.now() - z;
+                            var bdiff = Math.max(tx,ty);
+                            bdiff = bdiff - $.now();
 
-                            if (m < 200)
+                            if (bdiff > 100)
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
-                                lastd = $.now();
                             }
-                            else {
-                                setTimeout(
-                                    function () {
-                                        document.getElementById("vb").style.marginTop = "100px";
-                                        lastd = $.now();
-                                    }, m < 2000 ? 200 : m < 2500 ? 400 : m < 3000 ? 350 : m < 4000 ? 450 : 500);
-                            }
-
                         }
 
-                        setTimeout(flexar, 50);
+                        setTimeout(flexar, 20);
                     }
 
                     if (window.canRunAds === undefined)
