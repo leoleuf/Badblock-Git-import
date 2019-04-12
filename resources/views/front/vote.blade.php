@@ -351,9 +351,9 @@
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
+                    var o = $.now() - z;
                     if (q) {
                         q = false;
-                        o = $.now() - z;
                         $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                         });
                     }
@@ -362,9 +362,9 @@
 
             $('#vote_button').click(function()
             {
+                var o = $.now() - z;
                 if (p) {
                     p = false;
-                    o = $.now() - z;
                     $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                     });
                 }
