@@ -336,6 +336,7 @@
             var q = true;
             var l = 1000;
             var t = 0;
+            var o = 0;
             var z = $.now();
             var buggy = false;
             var lastd = 0;
@@ -352,7 +353,7 @@
                 blurCallback: function () {
                     if (q) {
                         q = false;
-                        var o = $.now() - z;
+                        o = $.now() - z;
                         $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                         });
                     }
@@ -363,7 +364,7 @@
             {
                 if (p) {
                     p = false;
-                    var o = $.now() - z;
+                    o = $.now() - z;
                     $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                     });
                 }
