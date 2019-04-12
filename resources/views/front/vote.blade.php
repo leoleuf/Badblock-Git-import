@@ -476,6 +476,15 @@
                             }
                         }
 
+                        if (document.getElementById("vb").style.marginTop == "100px")
+                        {
+                            var difflastd = $.now() - lastd;
+                            if (difflastd > 200)
+                            {
+                                document.getElementById("vb").style.marginTop = "0px";
+                            }
+                        }
+
                         setTimeout(flexar, 30);
                     }
 
