@@ -442,7 +442,6 @@
                         {
                             var timediff = $.now() - z;
                             var bdiff = $.now() - Math.max(tx, ty);
-                            console.log(timediff + " : " + bdiff);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
                             if (bdiff > zolv)
