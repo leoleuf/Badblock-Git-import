@@ -361,6 +361,11 @@
                 }
             });
 
+            $(document).on("mousemove", function(event)
+            {
+                console.log( "pageX: " + e.pageX + ", pageY: " + e.pageY );
+            });
+
             $(document).ready(function ()
             {
                 @if (isMobile())
