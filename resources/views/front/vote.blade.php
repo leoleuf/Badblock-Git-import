@@ -482,6 +482,7 @@
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000)
                             {
+                                lastd = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
                                 time = 500;
                             }
