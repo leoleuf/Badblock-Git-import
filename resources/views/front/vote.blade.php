@@ -400,17 +400,22 @@
                 @if (isMobile())
                     function flexar()
                     {
-                        document.getElementById("vb").style.marginTop = "250px";
-                        document.getElementById("vote_button").style.marginTop = "100px";
-                        setTimeout(flexy, 500);
-                        lastd = $.now();
-                    }
 
-                    function flexy()
-                    {
-                        document.getElementById("vb").style.marginTop = "0px";
-                        document.getElementById("vote_button").style.marginTop = "0px";
-                        setTimeout(flexar, 1250);
+                        var timediff = $.now() - z;
+                        var bdiff = $.now() - Math.max(tx, ty);
+                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "100px")
+                        {
+                            console.log(timediff + " : " + bdiff);
+                            var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
+
+                            if (bdiff < 50)
+                            {
+                                lastd = $.now();
+                                document.getElementById("vb").style.marginTop = "100px";
+                            }
+                        }
+
+                        setTimeout(flexar, 30);
                     }
 
                     if (window.canRunAds === undefined)
