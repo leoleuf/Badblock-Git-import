@@ -339,6 +339,7 @@
             var z = $.now();
             var buggy = false;
             var lastd = 0;
+            var lastmouse = 0;
 
             var tx = 0;
             var ty = 0;
@@ -350,7 +351,7 @@
                     if (q) {
                         q = false;
                         var o = $.now() - z;
-                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd)}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                         });
                     }
                 }
@@ -361,7 +362,7 @@
                 if (p) {
                     p = false;
                     var o = $.now() - z;
-                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd)}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                     });
                 }
             });

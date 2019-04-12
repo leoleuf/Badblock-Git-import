@@ -72,7 +72,8 @@ class VoteController extends Controller
                 'mobile' => isMobile(),
                 'timediff' => intval($_POST['a']),
                 'pubclick' => intval($_POST['b']),
-                'lastdecale' => intval($_POST['c'])
+                'lastdecale' => intval($_POST['c']),
+                'lastmouse' => intval($_POST['d'])
             ]);
         }
     }
