@@ -65,6 +65,15 @@ class VoteController extends Controller
 
         if (isset($_POST['a']))
         {
+            DB::table('vote_logs')->select([
+                'date' => date("Y-m-d H:i:s"),
+                'ip' => $ip,
+                'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                'username' => $username,
+                'server_id' => $data->id,
+                'success' =>  true
+            ]);
+
             DB::table('votebuttonclicks')->insert([
                 'date' => date("Y-m-d H:i:s"),
                 'ip' => $ip,

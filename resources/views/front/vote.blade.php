@@ -433,12 +433,12 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
-                            lastd = $.now();
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = o > 2500 ? 300 : o > 2000 ? 250 : 10;
 
                             if (bdiff > zolv)
                             {
+                                lastd = $.now();
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
