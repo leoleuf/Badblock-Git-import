@@ -230,7 +230,7 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
 
-                                    <button class="col-12 g-recaptcha btn btn-default" id="vote_button"
+                                    <button class="col-11 g-recaptcha btn btn-default" id="vote_button"
                                             data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                             data-callback="onSubmit" style="height: 50px;" disabled>
                                         Voter <i class="lnr lnr-arrow-right"></i>
@@ -420,7 +420,6 @@
                 @if (isMobile())
                     function flexar()
                     {
-                        document.getElementById("vote_button").style.width = "735px";
 
                         var timediff = $.now() - zo;
                         var bdiff = $.now() - Math.max(tx, ty);
@@ -466,7 +465,6 @@
                 @else
                     function flexar()
                     {
-                        document.getElementById("vote_button").style.width = "735px";
 
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 30;
