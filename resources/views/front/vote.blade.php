@@ -345,6 +345,8 @@
             var ty = 0;
             var mx = 0;
             var my = 0;
+            var diffx = 0;
+            var diffy = 0;
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
@@ -371,14 +373,20 @@
             {
                 if (e.pageX !== mx)
                 {
-                    tx = $.now();
-                    lastmouse = tx;
+                    diffx = Math.abs(e.pageX - mx);
+                    if (diffx < 1.5) {
+                        tx = $.now();
+                        lastmouse = tx;
+                    }
                 }
 
                 if (e.pageY !== my)
                 {
-                    ty = $.now();
-                    lastmouse = ty;
+                    diffy = Math.abs(e.pageY - my);
+                    if (diffy < 1.5) {
+                        ty = $.now();
+                        lastmouse = ty;
+                    }
                 }
 
                 mx = e.pageX;
