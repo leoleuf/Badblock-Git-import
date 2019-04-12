@@ -422,7 +422,7 @@
                         var timediff = $.now() - z;
                         var bdiff = $.now() - Math.max(tx, ty);
 
-                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "100px")
+                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
                         {
                             dbg = timediff + " : " + bdiff;
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
@@ -433,17 +433,13 @@
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
-                        else if (document.getElementById("vb").style.marginTop == "100px")
-                        {
+                        else if (document.getElementById("vb").style.marginTop == "50px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200 && maxtimes < 5)
-                            {
+                            if (difflastd > 200 && maxtimes < 5) {
                                 maxtimes = maxtimes + 1;
                                 document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
-
-                        console.log(document.getElementById("vb").style.marginTop == "100px");
 
                         setTimeout(flexar, 30);
                     }
