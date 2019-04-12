@@ -65,17 +65,24 @@ class VoteController extends Controller
 
         if (isset($_POST['a']))
         {
-            DB::table('votebuttonclicks')->insert([
-                'date' => date("Y-m-d H:i:s"),
-                'ip' => $ip,
-                'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-                'dbg' => $_POST['e'],
-                'mobile' => isMobile(),
-                'timediff' => intval($_POST['a']),
-                'pubclick' => intval($_POST['b']),
-                'lastdecale' => intval($_POST['c']),
-                'lastmouse' => intval($_POST['d'])
+            $c = DB::table('votebuttonclicks')->count([
+                'select id from votebuttonclicks where ip = '.$ip.' and `timestamp` >= '.(time() - 60)
             ]);
+
+            if ($c != null && $c > 0) {
+                DB::table('votebuttonclicks')->insert([
+                    'date' => date("Y-m-d H:i:s"),
+                    'ip' => $ip,
+                    'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                    'dbg' => $_POST['e'],
+                    'timestamp' => time(),
+                    'mobile' => isMobile(),
+                    'timediff' => intval($_POST['a']),
+                    'pubclick' => intval($_POST['b']),
+                    'lastdecale' => intval($_POST['c']),
+                    'lastmouse' => intval($_POST['d'])
+                ]);
+            }
         }
     }
 
