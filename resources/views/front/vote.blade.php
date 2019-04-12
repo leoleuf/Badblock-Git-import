@@ -235,7 +235,20 @@
                                             data-callback="onSubmit" style="height: 50px;" disabled>
                                         Voter <i class="lnr lnr-arrow-right"></i>
                                     </button>
-                                    {{ csrf_field() }}
+
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block" id="vb"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+
+                                        {{ csrf_field() }}
                                 </form><br />
                                 Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
