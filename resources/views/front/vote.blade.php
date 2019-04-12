@@ -372,11 +372,13 @@
                 if (e.pageX !== mx)
                 {
                     tx = $.now();
+                    lastmouse = tx;
                 }
 
                 if (e.pageY !== my)
                 {
                     ty = $.now();
+                    lastmouse = ty;
                 }
 
                 mx = e.pageX;
