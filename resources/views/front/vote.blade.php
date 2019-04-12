@@ -232,7 +232,7 @@
 
                                     <button class="col-11 g-recaptcha btn btn-default" id="vote_button"
                                             data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                            data-callback="onSubmit" style="margin-left:20px; height: 50px;" disabled>
+                                            data-callback="onSubmit" style="margin-left:25px; height: 50px;" disabled>
                                         Voter <i class="lnr lnr-arrow-right"></i>
                                     </button>
 
