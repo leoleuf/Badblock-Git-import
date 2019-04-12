@@ -241,14 +241,6 @@
                                             Liste Staff</a></li>
                                     </li>
                                 @endcan
-                                @can('tools_url_shorter')
-                                    <li><a href="/section/url-shortener" class="waves-effect"><i
-                                                    class="fab fa-shirtsinbulk"></i> Raccourcisseur d'URL</a></li>
-                                @endcan
-                                @can('resp_youtubers_list')
-                                    <li><a href="/section/youtubers" class="waves-effect"><i class="fab fa-youtube"></i>
-                                            Youtubers</a></li>
-                                @endcan
                                 @can('resp_todolist_all')
                                     <li><a href="/section/todo-management" class="wave-effect"><i
                                                     class="fa fa-list-ol"></i> Todo-List</a></li>
@@ -269,14 +261,22 @@
                         <li class="has-submenu">
                             <a href="#"><i class="fa fa-globe"></i> <span>Website </span> </a>
                             <ul class="submenu">
+                                @can('tools_url_shorter')
+                                    <li><a href="/section/url-shortener" class="waves-effect"><i
+                                                    class="fab fa-shirtsinbulk"></i> Raccourcisseur d'URL</a></li>
+                                @endcan
+                                @can('resp_youtubers_list')
+                                    <li><a href="/section/youtubers" class="waves-effect"><i class="fab fa-youtube"></i>
+                                            Youtubers</a></li>
+                                @endcan
                                 @can('admin_manage_website')
                                     <li><a href="/website" class="waves-effect"><i class="fas fa-chart-line"></i>
                                             Analyse financière </a></li>
                                 @endcan
-                                    @can('admin_manage_website')
-                                        <li><a href="/website/shop" class="waves-effect"><i class="fa fa-dollar"></i>
-                                                Gestion Boutique </a></li>
-                                    @endcan
+                                @can('admin_manage_website')
+                                    <li><a href="/website/shop" class="waves-effect"><i class="fa fa-dollar"></i>
+                                            Gestion Boutique </a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
@@ -301,7 +301,8 @@
                                             MongoDB </a></li>
                                 @endcan
                                 @can('network_cloudflare')
-                                    <li><a href="/infra/cloudflare" class="waves-effect"><i class="fab fa-cloudversify"></i>
+                                    <li><a href="/infra/cloudflare" class="waves-effect"><i
+                                                    class="fab fa-cloudversify"></i>
                                             CloudFlare </a></li>
                                 @endcan
 
