@@ -435,6 +435,7 @@
                             var bdiff = Math.max(tx,ty);
                             bdiff = bdiff - $.now();
 
+                            console.log(bdiff);
                             if (bdiff > 100)
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
