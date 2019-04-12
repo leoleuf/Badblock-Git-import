@@ -434,9 +434,10 @@
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
                             lastd = $.now();
-                            var bdiff = $.now() - Math.max(tx,ty);
+                            var bdiff = $.now() - Math.max(tx, ty);
+                            var zolv = o > 2000 ? 250 : 10;
 
-                            if (bdiff > 250)
+                            if (zolv > 250)
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
