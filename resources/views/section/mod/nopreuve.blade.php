@@ -15,6 +15,7 @@
                                 <tr>
                                     <th>Banner</th>
                                     <th>Action</th>
+                                    <th>Pseudo</th>
                                     <th>Raison</th>
                                     <th>Date</th>
                                     <th>Temps</th>
@@ -26,6 +27,7 @@
                                     <tr class="gradeX">
                                         <td>{{ ucfirst($row['punisher']) }}</td>
                                         <td>{{ $row['type'] }}</td>
+                                        <td>{{$row['pseudo'] }}</td>
                                         <td>{{ $row['reason'] }}</td>
                                         <td>{{ App\Http\Controllers\DateController::formatDateString($row['date']) }}</td>
                                         <td>{{ date('d/m/Y à H:m', round(($row['expire'] / 1000), 0)) }}</td>

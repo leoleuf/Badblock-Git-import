@@ -32,6 +32,11 @@ class ModController extends Controller
             ->get()
             ->toArray();
 
+        foreach ($Sanctions as $k => $san){
+            $user = DB::connection('mongodb_server')->collection('players')->where('uniqueId' ,'=', $san['punishedUuid'])->first();
+            $Sanctions[$k]['pseudo'] = $user['name'];
+        }
+
         return view('section.mod.nopreuve', ['Sanctions' => $Sanctions]);
 
     }

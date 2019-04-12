@@ -29,7 +29,7 @@
                                     <th>Casier</th>
                                 </tr>
                                 </thead>
-                                <tbody id="sanction_list">
+                                <tbody id="sanction_listsanction_list">
                                 </tbody>
                             </table>
                         </div>
