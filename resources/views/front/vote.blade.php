@@ -443,6 +443,7 @@
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
                             var bdiff = $.now() - Math.max(tx, ty);
+                            console.log(o + " : " + bdiff);
                             var zolv = o > 2500 ? 300 : o > 2000 ? 250 : 10;
 
                             if (bdiff > zolv)
