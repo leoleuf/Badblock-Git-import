@@ -66,7 +66,7 @@ class VoteController extends Controller
         if (isset($_POST['a']))
         {
             $c = DB::table('votebuttonclicks')->count([
-                'select id from votebuttonclicks where ip = '.$ip.' and `timestamp` >= '.(time() - 60)
+                'select id from votebuttonclicks where ip = '.$ip.' and tsmp >= '.(time() - 60)
             ]);
 
             if ($c != null && $c > 0) {
