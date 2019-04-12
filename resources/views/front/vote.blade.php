@@ -230,7 +230,7 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
 
-                                    <button class="col-12 g-recaptcha btn btn-success" id="vote_button"
+                                    <button class="col-12 g-recaptcha btn btn-default" id="vote_button"
                                             data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                             data-callback="onSubmit" style="height: 50px;" disabled>
                                         Voter <i class="lnr lnr-arrow-right"></i>
@@ -416,6 +416,7 @@
 
             $(document).ready(function ()
             {
+                document.getElementById("vote_button").width = document.getElementById("vb").width;
                 @if (isMobile())
                     function flexar()
                     {
