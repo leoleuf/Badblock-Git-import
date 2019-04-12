@@ -406,7 +406,7 @@
                         var bdiff = $.now() - Math.max(tx, ty);
                         if (timediff > 500 && document.getElementById("vb").style.marginTop != "100px")
                         {
-                            console.log(timediff + " : " + bdiff);
+                            dbg = timediff + " : " + bdiff;
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
                             if (bdiff < 50)
