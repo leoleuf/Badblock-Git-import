@@ -464,7 +464,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 30;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "40px")
+                        if (isHovered && document.getElementById("vb").style.marginTop != "70px")
                         {
                             var timediff = $.now() - z;
                             var bdiff = $.now() - Math.max(tx, ty);
@@ -473,11 +473,11 @@
                             if (bdiff > zolv)
                             {
                                 lastd = $.now();
-                                document.getElementById("vb").style.marginTop = "40px";
+                                document.getElementById("vb").style.marginTop = "70px";
                             }
                         }
 
-                        if (document.getElementById("vb").style.marginTop == "40px")
+                        if (document.getElementById("vb").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000)
