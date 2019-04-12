@@ -40,7 +40,11 @@
         <div class="container">
             <ul class="nav justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="grade-tab" data-toggle="tab" href="#grade" role="tab"
+                    <a class="nav-link active" id="promo-tab" data-toggle="tab" href="#promo" role="tab"
+                       aria-controls="grade">Meilleurs Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="grade-tab" data-toggle="tab" href="#grade" role="tab"
                        aria-controls="grade">Grade</a>
                 </li>
                 {% for key,value in serverlist %}
@@ -58,7 +62,39 @@
 {% endblock %}
     {% block content %}
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="grade" role="tabpanel" aria-labelledby="grade-tab">
+            <div class="tab-pane fade show active" id="promo" role="tabpanel" aria-labelledby="promo-tab">
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        <h4 class="title-store">Bienvenue sur la boutique de BadBlock</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit nunc id egestas tristique. Proin at mauris enim. Donec vel enim ut libero consectetur pharetra. Nulla mattis euismod leo, quis eleifend metus luctus eu. Aenean vulputate nibh at tellus lobortis dictum. Nulla egestas venenatis ultricies. Proin bibendum venenatis arcu, sit amet sollicitudin lorem ornare vitae. Nullam fringilla risus nec lectus efficitur, a suscipit lectus eleifend. Praesent tellus nulla, rutrum eu sodales id, sagittis a enim. Curabitur venenatis velit non enim finibus laoreet. Nam sed volutpat leo.</p>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-3001">
+                                    <h3>dd</h3>
+                                    <div class="shop-package-content"
+                                         onclick="openitem('dd')">
+                                        <img src="{{ products['image'] }}"
+                                             title="Produit {{ products['name'] | raw }}" width="190"
+                                             height="190" class="img-fluid img-def">
+                                    </div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Grade MVP à vie !
+                                            Avantages en jeux :)
+                                        </div>
+                                        <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
+                                            (1000)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        dsd
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show" id="grade" role="tabpanel" aria-labelledby="grade-tab">
                 {% include "shop/rank.twig" %}
             </div>
             {% set i = 0 %}
@@ -68,7 +104,7 @@
                     <div class="tab-pane fade" id="{{ value['server']['name'] }}" role="tabpanel"
                          aria-labelledby="{{ value['server']['name'] }}-tab">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 col-md-9">
                                 <div class="row">
                                     {% for category in value['cat'] %}
                                         <div class="col-12">
@@ -76,7 +112,7 @@
                                                 <span>{{ category['name'] }}</span></h4>
                                         </div>
                                         {% for products in category['items'] %}
-                                            <div class="col-12 col-md-4">
+                                            <div class="col-12 col-md-6">
                                                 <div class="shop-package" id="prd-30{{ i }}">
                                                     <h3>{{ products['name'] | raw }}</h3>
                                                     <div class="shop-package-content"
@@ -99,6 +135,9 @@
                                         {% endif %}
                                     {% endfor %}
                                 </div>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                dd
                             </div>
                         </div>
                     </div>

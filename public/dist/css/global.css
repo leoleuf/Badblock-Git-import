@@ -1307,24 +1307,25 @@ a.card-plus:hover {
 
 .shop-package .shop-package-desc {
     display: block;
-    width: 40%;
+    width: 50%;
     float: left;
     margin-top: 7px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .shop-package a {
+
     display: block;
     float: right;
-    margin-top: 7px;
-    width: calc(60% - 20px);
+    margin-top: 12px;
+    width: calc(49% - 20px);
     margin-left: 20px;
     text-align: center;
-    background-color: #E95E3E;
-    padding: 12px 20px;
+    background-color: #3498db !important;
+    padding: 8px 20px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #fff;
+    color: #fff !important;
 }
 
 #prd-302 h3 {
@@ -1804,4 +1805,25 @@ h6.cover-heading {
 .img-def {
   width: 190px;
   height: 190px;
+}
+
+.title-store {
+    width: 100%;
+    margin: 0 0 22px 0;
+    padding: 0 0 5px 0;
+    line-height: 40px;
+    border-bottom: 6px solid #3965be;
+    font-size: 20px;
+    color: #393939;
+    letter-spacing: -1px;
+}
+
+#prd-3001 .shop-package-content {
+    background-color: #651c28;
+}
+
+.shop-desc-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

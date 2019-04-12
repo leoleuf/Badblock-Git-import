@@ -55,7 +55,9 @@ $app->group('/stats', function (){
 });
 
 $app->group('/shop', function (){
+
 	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
+    $this->get('/faction', \App\Controllers\ShopController::class . ':getShopFaction')->setName('shop.home');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 
 	$this->get('/recharge', \App\Controllers\CreditController::class . ':stepRecharge')->setName('shop.recharge');

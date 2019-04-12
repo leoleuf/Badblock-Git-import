@@ -93,7 +93,7 @@ class ShopController extends Controller
         }
 
         if (isset($_POST['animation'])) {
-            $give = array(
+            /*$give = array(
                 '127.0.0.1',
                 '149.91.82.150',
                 '78.124.116.135'
@@ -104,7 +104,10 @@ class ShopController extends Controller
             }else{
                 $givean = true;
                 $playerName = $_POST['playerName'];
-            }
+            }*/
+            $givean = true;
+            $playerName = $_POST['playerName'];
+
         }
 
 
