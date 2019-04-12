@@ -363,6 +363,8 @@
             var diffx = 0;
             var diffy = 0;
 
+            var maxtimes = 0;
+
             var iframeclick = 0;
 
             $('iframe').iframeTracker({
@@ -425,16 +427,18 @@
                             dbg = timediff + " : " + bdiff;
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if (bdiff < 50) {
+                            if (bdiff < 50 && maxtimes < 5) {
                                 lastd = $.now();
+                                maxtimes = maxtimes + 1;
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
                         else if (document.getElementById("vb").style.marginTop == "100px")
                         {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200)
+                            if (difflastd > 200 && maxtimes < 5)
                             {
+                                maxtimes = maxtimes + 1;
                                 document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
