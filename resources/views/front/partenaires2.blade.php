@@ -8,3 +8,13 @@
 
     gtag('config', 'UA-122426050-1');
 </script>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- serveur-multigames -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:600px;margin-left:20%;"
+     data-ad-client="ca-pub-1905923613312160"
+     data-ad-slot="2719469514"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
