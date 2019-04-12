@@ -430,6 +430,7 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
+                            lastd = $.now();
                             var bdiff = $.now() - Math.max(tx,ty);
 
                             if (bdiff > 250)
