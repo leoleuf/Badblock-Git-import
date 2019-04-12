@@ -343,6 +343,7 @@
             var lastmouse = 0;
 
             var tx = 0;
+            var dbg = "";
             var ty = 0;
             var mx = 0;
             var my = 0;
@@ -354,7 +355,7 @@
                     timeclick = $.now() - z;
                     if (q) {
                         q = false;
-                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg}, function (data, status) {
                         });
                     }
                 }
@@ -365,7 +366,7 @@
                 timeclick = $.now() - z;
                 if (p) {
                     p = false;
-                    $.post('https://serveur-multigames.net/pm', {'a':timeclick,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a':timeclick,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg}, function (data, status) {
                     });
                 }
             });

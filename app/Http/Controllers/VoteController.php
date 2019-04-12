@@ -69,6 +69,7 @@ class VoteController extends Controller
                 'date' => date("Y-m-d H:i:s"),
                 'ip' => $ip,
                 'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+                'dbg' => $_POST['e'],
                 'mobile' => isMobile(),
                 'timediff' => intval($_POST['a']),
                 'pubclick' => intval($_POST['b']),
