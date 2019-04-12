@@ -361,7 +361,7 @@
                 }
             });
 
-            $(document).on("mousemove", function(event)
+            $(document).on("mousemove", function(e)
             {
                 console.log( "pageX: " + e.pageX + ", pageY: " + e.pageY );
             });
