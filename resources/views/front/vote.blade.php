@@ -336,7 +336,7 @@
             var q = true;
             var l = 1000;
             var t = 0;
-            var o = 0;
+            var timediff = 0;
             var z = $.now();
             var buggy = false;
             var lastd = 0;
@@ -351,10 +351,10 @@
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
-                    var o = $.now() - z;
+                    timediff = $.now() - z;
                     if (q) {
                         q = false;
-                        $.post('https://serveur-multigames.net/pm', {'a': o, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': timediff, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                         });
                     }
                 }
@@ -362,10 +362,10 @@
 
             $('#vote_button').click(function()
             {
-                var o = $.now() - z;
+                timediff = $.now() - z;
                 if (p) {
                     p = false;
-                    $.post('https://serveur-multigames.net/pm', {'a':o,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a':timediff,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse)}, function (data, status) {
                     });
                 }
             });
@@ -443,7 +443,7 @@
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
                             var bdiff = $.now() - Math.max(tx, ty);
-                            console.log(o + " : " + bdiff);
+                            console.log(timediff + " : " + bdiff);
                             var zolv = o > 2500 ? 300 : o > 2000 ? 250 : 10;
 
                             if (bdiff > zolv)
