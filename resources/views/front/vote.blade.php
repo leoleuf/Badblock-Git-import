@@ -432,9 +432,8 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
-                            var bdiff = Math.max(tx,ty);
-                            bdiff = bdiff - $.now();
-
+                            var bdiff = $.now() - Math.max(tx,ty);
+                            
                             console.log(bdiff);
                             if (bdiff > 100)
                             {
