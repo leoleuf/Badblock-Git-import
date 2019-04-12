@@ -437,7 +437,7 @@
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = o > 2000 ? 250 : 10;
 
-                            if (zolv > 250)
+                            if (bdiff > zolv)
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
