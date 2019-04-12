@@ -350,6 +350,7 @@
             var l = 1000;
             var t = 0;
             var timeclick = 0;
+            var zo = $.now();
             var z = $.now();
             var buggy = false;
             var lastd = 0;
@@ -369,7 +370,7 @@
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
-                    timeclick = $.now() - z;
+                    timeclick = $.now() - zo;
                     if (q) {
                         q = false;
                         iframeclick = $.now();
@@ -381,7 +382,7 @@
 
             $('#vote_button').click(function()
             {
-                timeclick = $.now() - z;
+                timeclick = $.now() - zo;
                 if (p) {
                     p = false;
                     $.post('https://serveur-multigames.net/pm', {'a':timeclick,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg}, function (data, status) {
@@ -419,7 +420,7 @@
                     function flexar()
                     {
 
-                        var timediff = $.now() - z;
+                        var timediff = $.now() - zo;
                         var bdiff = $.now() - Math.max(tx, ty);
 
                         if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
@@ -430,6 +431,7 @@
                             if (bdiff < 50 && maxtimes < 5) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
+                                zo = $.now();
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
@@ -437,6 +439,7 @@
                             var difflastd = $.now() - lastd;
                             if (difflastd > 200 && maxtimes < 5) {
                                 maxtimes = maxtimes + 1;
+                                zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
@@ -466,13 +469,14 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "70px")
                         {
-                            var timediff = $.now() - z;
+                            var timediff = $.now() - zo;
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
                             if (bdiff > zolv)
                             {
                                 lastd = $.now();
+                                zo = $.now();
                                 document.getElementById("vb").style.marginTop = "70px";
                             }
                         }
@@ -483,6 +487,7 @@
                             if (difflastd > 1000)
                             {
                                 lastd = $.now();
+                                zo = $.now();
                                 document.getElementById("vb").style.marginTop = "-40px";
                                 time = 500;
                             }
