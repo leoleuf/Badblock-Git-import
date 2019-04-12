@@ -439,6 +439,8 @@
                             }
                         }
 
+                        console.log(document.getElementById("vb").style.marginTop == "100px");
+
                         setTimeout(flexar, 30);
                     }
 
