@@ -5,6 +5,7 @@ namespace App\Http\Controllers\website\crud;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,12 @@ class ProductController extends Controller {
      *
      * @return Response
      */
+
+    public function gestion()
+    {
+        return view('website.shop' , ['cat' => Category::all(), 'servers' => Server::take(100)->get(), 'products' => Product::all()]);
+    }
+
     public function index()
     {
         $Product = Product::all();
@@ -37,7 +44,6 @@ class ProductController extends Controller {
 
             $ProductsInCatCounter[$cat->name] = 0;
             $ProductsInCat[$cat->name] = array();
-
 
         }
 

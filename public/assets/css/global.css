@@ -732,8 +732,8 @@ select[multiple] {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  border-color: #188ae2;
-  background-color: #188ae2;
+  border-color: #10c469 !important;
+  background-color: #10c469 !important;
 }
 
 /* Badge */
@@ -6436,4 +6436,42 @@ File: Responsive
   margin: 0px 15px;
   margin-top: 15px;
 
+}
+
+.webserver-list {
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.webserver-list .btn-webserver {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px 12px;
+  width: 200px;
+  cursor: pointer;
+
+}
+
+.server-filter-content {
+  width: 100%;
+}
+
+.server-filter-content .card-box {
+  width: 100%;
+}
+.server-filter-content .card-box table {
+  margin-top: 15px;
+}
+
+
+.servercat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

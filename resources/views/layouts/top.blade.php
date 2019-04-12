@@ -270,9 +270,13 @@
                             <a href="#"><i class="fa fa-globe"></i> <span>Website </span> </a>
                             <ul class="submenu">
                                 @can('admin_manage_website')
-                                    <li><a href="/website" class="waves-effect"><i class="fa fa-dollar"></i>
-                                            Gestion Boutique </a></li>
+                                    <li><a href="/website" class="waves-effect"><i class="fas fa-chart-line"></i>
+                                            Analyse financière </a></li>
                                 @endcan
+                                    @can('admin_manage_website')
+                                        <li><a href="/website/shop" class="waves-effect"><i class="fa fa-dollar"></i>
+                                                Gestion Boutique </a></li>
+                                    @endcan
                             </ul>
                         </li>
                     @endcan

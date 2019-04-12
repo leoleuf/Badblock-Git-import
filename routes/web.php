@@ -246,6 +246,8 @@ Route::group([
         //Website
         Route::get('/', 'website\IndexController@index');
 
+        Route::get('/shop', 'website\crud\ProductController@gestion')->middleware('can:admin_manage_website');
+
         Route::get('/achat/{uuid}', 'website\AchatController@index')->middleware('can:admin_manage_website');
 
         Route::get('/vote-download', 'website\VoteController@down')->middleware('can:admin_manage_website');
