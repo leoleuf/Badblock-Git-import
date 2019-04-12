@@ -416,7 +416,7 @@
 
             $(document).ready(function ()
             {
-                document.getElementById("vote_button").width = document.getElementById("vb").width;
+                document.getElementById("vote_button").style.width = document.getElementById("vb").style.width;
                 @if (isMobile())
                     function flexar()
                     {
