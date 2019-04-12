@@ -89,6 +89,7 @@ class GiveController extends Controller
 
         foreach ($_POST['pseudo'] as $k => $row) {
             if (!empty($row)){
+
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL,"https://badblock.fr/shop/achat/" . $_POST['give'][$k]);
                 curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (compatible; BadBlock/1.0; +https://badblock.fr/)');
@@ -97,7 +98,7 @@ class GiveController extends Controller
 
                 $server_output = curl_exec($ch);
 
-                curl_close ($ch);
+                curl_close($ch);
 
                 if ($server_output){
                     array_push($logg, ['Pseudo' => $row, 'items' => $_POST['give'][$k]]);
@@ -110,8 +111,6 @@ class GiveController extends Controller
             'date' => date("Y-m-d h:i:s"),
             'data' => $logg
         ]);
-
-        dd($logg);
 
         return redirect('/animation/item');
 
