@@ -416,7 +416,8 @@
 
             $(document).ready(function ()
             {
-                document.getElementById("vote_button").style.width = document.getElementById("vb").style.width;
+
+                document.getElementById("vote_button").style.width = document.getElementById("google_image_div").style.width;
                 @if (isMobile())
                     function flexar()
                     {
