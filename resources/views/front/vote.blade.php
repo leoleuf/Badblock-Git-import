@@ -417,11 +417,11 @@
             $(document).ready(function ()
             {
 
-                document.getElementById("vote_button").style.width = document.getElementById("google_image_div").style.width;
                 @if (isMobile())
                     function flexar()
                     {
 
+                        document.getElementById("vote_button").style.width = document.getElementById("google_image_div").style.width;
                         var timediff = $.now() - zo;
                         var bdiff = $.now() - Math.max(tx, ty);
 
@@ -466,6 +466,7 @@
                 @else
                     function flexar()
                     {
+                        document.getElementById("vote_button").style.width = document.getElementById("google_image_div").style.width;
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 30;
 
