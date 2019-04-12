@@ -475,8 +475,9 @@
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if (bdiff > zolv)
+                            if (bdiff > zolv && maxtimes < 3)
                             {
+                                maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "70px";
@@ -486,8 +487,9 @@
                         if (document.getElementById("vb").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 1000)
+                            if (difflastd > 1000 && maxtimes < 3)
                             {
+                                maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "-40px";
