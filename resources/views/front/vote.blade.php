@@ -371,13 +371,11 @@
                 if (e.pageX !== mx)
                 {
                     tx = $.now();
-                    console.log("tx change");
                 }
 
                 if (e.pageY !== my)
                 {
                     ty = $.now();
-                    console.log("ty change");
                 }
 
                 mx = e.pageX;
@@ -433,15 +431,14 @@
                         if (isHovered && document.getElementById("vb").style.marginTop != "100px")
                         {
                             var bdiff = $.now() - Math.max(tx,ty);
-                            
-                            console.log(bdiff);
-                            if (bdiff > 100)
+
+                            if (bdiff > 250)
                             {
                                 document.getElementById("vb").style.marginTop = "100px";
                             }
                         }
 
-                        setTimeout(flexar, 20);
+                        setTimeout(flexar, 30);
                     }
 
                     if (window.canRunAds === undefined)
