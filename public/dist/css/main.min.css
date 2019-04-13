@@ -593,7 +593,7 @@ button {
     transform: translate(0, 0px); }
   .header nav.navbar-toggleable-md.navbar-light .navbar-nav .nav-link {
     font-size: 1em;
-    padding: 2em 1.3em;
+    padding: 0.5em 1.3em;
     color: #c9c9c9; }
   .header nav.navbar-toggleable-md.navbar-light .navbar-nav .active > .nav-link {
     color: #fff; }
@@ -638,7 +638,7 @@ button {
   transition: 0.3s; }
 
 .header.nav-affix nav.navbar-toggleable-md.navbar-light .navbar-nav .nav-link {
-  padding: 1.3em 1.3em;
+  padding: 0.5em 0.5em;
   transform: translate(0, 0) scale(1);
   transition: 0.3s; }
 
@@ -1518,7 +1518,7 @@ textarea.form-control {
   .box-line:before {
     display: none; }
   .header nav.navbar-toggleable-md.navbar-light .navbar-nav .nav-link {
-    padding: 1em 0em; }
+    padding: 0.12em 0em; }
   nav .navbar-nav li.dropdown > .dropdown-menu {
     display: none !important;
     visibility: hidden; }
