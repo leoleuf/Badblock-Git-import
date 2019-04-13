@@ -29,7 +29,7 @@
                                     <th>Casier</th>
                                 </tr>
                                 </thead>
-                                <tbody id="sanction_listsanction_list">
+                                <tbody id="sanction_list">
                                 </tbody>
                             </table>
                         </div>
@@ -136,6 +136,7 @@
                         $('#sanction_list').empty();
 
                         for (sanction in obj){
+
 
                             $('#sanction_list').append("<tr id='"+ obj[sanction]['uuid'] +"'>\n" +
                                 "                                    <th scope=\"row\">" + obj[sanction]['uuid'] +"</th>\n" +
