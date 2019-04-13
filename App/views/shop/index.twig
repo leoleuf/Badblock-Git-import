@@ -66,21 +66,61 @@
                 <div class="row">
                     <div class="col-12 col-md-9">
                         <h4 class="title-store">Bienvenue sur la boutique de BadBlock</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit nunc id egestas tristique. Proin at mauris enim. Donec vel enim ut libero consectetur pharetra. Nulla mattis euismod leo, quis eleifend metus luctus eu. Aenean vulputate nibh at tellus lobortis dictum. Nulla egestas venenatis ultricies. Proin bibendum venenatis arcu, sit amet sollicitudin lorem ornare vitae. Nullam fringilla risus nec lectus efficitur, a suscipit lectus eleifend. Praesent tellus nulla, rutrum eu sodales id, sagittis a enim. Curabitur venenatis velit non enim finibus laoreet. Nam sed volutpat leo.</p>
+                        <p>Changez votre expérience de jeu &amp; soutenez BadBlock en acquérant de nouveaux grades ou de nouveaux cosmétiques ! Devenez le meilleur du serveur en jouant sur notre serveur <strong>Faction</strong>, <strong>Survie</strong> ou <strong>Skyblock</strong>. Découvrez en avant première nos mode de jeux exclusifs ou nos events de saisons. Lancez des parties personnalisés pour vous et vos amis grâce à notre système d'<strong>Host</strong>.</p>
                         <div class="row">
                             <div class="col-12 col-md-6">
                                 <div class="shop-package" id="prd-3001">
-                                    <h3>dd</h3>
+                                    <h3>Grade VIP</h3>
                                     <div class="shop-package-content"
                                          onclick="openitem('dd')">
-                                        <img src="{{ products['image'] }}"
-                                             title="Produit {{ products['name'] | raw }}" width="190"
-                                             height="190" class="img-fluid img-def">
+                                        <img src="https://cdn.badblock.fr/boutique/vip.png" title="Grade VIP" alt="Grade VIP" data-pagespeed-url-hash="512024398" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)" data-pagespeed-loaded="1">
                                     </div>
                                     <div class="shop-desc-content">
                                         <div class="shop-package-desc">
-                                            Grade MVP à vie !
+                                            Grade VIP à vie !
                                             Avantages en jeux :)
+                                        </div>
+                                        <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
+                                            (1000)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-3001">
+                                    <h3>Clef Diamant</h3>
+                                    <div class="shop-package-content" onclick="openitem('5c435e567ac38a0458ea5ef7');"><img src="https://cdn.badblock.fr/upload/SNOWICE1554908525.png" title="Produit Clé Diamant x1" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Clé Diamant x1
+                                            Serveur Faction
+                                        </div>
+                                        <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
+                                            (1000)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-3001">
+                                    <h3>Clef Épic</h3>
+                                    <div class="shop-package-content" onclick="openitem('5b8459b6e548fd30b8ee69e5');"><img src="https://cdn.badblock.fr/upload/SNOWICE1554908544.png" title="Produit Clé Epic" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Clé Épic x1
+                                            Serveur Skyblock
+                                        </div>
+                                        <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
+                                            (1000)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-3001">
+                                    <h3>Accès /bottle</h3>
+                                    <div class="shop-package-content" onclick="openitem('5c2f3c427ac38a045859bf33');"><img src="https://cdn.badblock.fr/boutique/fiole.png" title="Produit Accès /bottle" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Accès au /bottle
+                                            Serveur Survie
                                         </div>
                                         <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
                                             (1000)</a>
@@ -90,7 +130,17 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
-                        dsd
+                        <div class="shop-package-promotion">
+                            <h5 class="shop-title-promotion">Promotion : <span class="promo-title">VIP+</span></h5>
+                            <div class="shop-promotion-content">
+                                <img src="https://cdn.badblock.fr/boutique/vip+.png" title="Grade VIP+" alt="Grade VIP+">
+                                <p><a href="#"><span class="price">1600 PB</span> (<span class="last-price">2250</span>)</a></p>
+                            </div>
+                        </div>
+                        <div class="shop-support">
+                            <h5 class="shop-title-promotion">Support ?</h5>
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>

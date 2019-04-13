@@ -1299,6 +1299,7 @@ a.card-plus:hover {
     background-color: #E95E3E;
     background-repeat: no-repeat;
     background-position: center;
+    height: 190px;
 }
 
 .shop-package img {
@@ -1809,13 +1810,11 @@ h6.cover-heading {
 
 .title-store {
     width: 100%;
-    margin: 0 0 22px 0;
-    padding: 0 0 5px 0;
     line-height: 40px;
-    border-bottom: 6px solid #3965be;
     font-size: 20px;
     color: #393939;
     letter-spacing: -1px;
+    font-weight: 700;
 }
 
 #prd-3001 .shop-package-content {
@@ -1826,4 +1825,71 @@ h6.cover-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.shop-package-promotion {
+    margin-bottom: 20px;
+}
+
+.shop-title-promotion {
+
+    width: 100%;
+    line-height: 40px;
+    font-size: 20px;
+    color: #393939;
+    letter-spacing: -1px;
+    font-weight: 700;
+
+}
+
+.shop-promotion-content {
+    background-color: #2ecc71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 210px;
+}
+.promo-title {
+    color: #66C22F;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.shop-promotion-content img {
+    width: 65%;
+    padding: 15px;
+}
+
+.shop-promotion-content p {
+    width: 100%;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 9px 10px;
+    margin-bottom: -7px;
+    color: #fff;
+    text-decoration: none;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.shop-promotion-content p .price {
+    color: #edfc00;
+    font-weight: 700;
+}
+
+.shop-promotion-content p .last-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: #fff;
+    margin-top: -10px;
+}
+
+.shop-promotion-content a {
+    color: #fff;
+}
+
+.shop-promotion-content a:hover {
+    color: #fff;
+    opacity: .9;
 }
