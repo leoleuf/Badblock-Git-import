@@ -82,6 +82,15 @@
 
         function byPass(id, val) {
 
+            if(val == 0)
+            {
+                val = 1;
+            }
+            else
+            {
+                val = 0;
+            }
+
             $.ajax({
 
                 method: 'POST',
