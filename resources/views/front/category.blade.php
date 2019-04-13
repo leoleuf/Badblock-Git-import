@@ -209,7 +209,7 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script><br />
                                     @endif
-                                <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-4">
+                                <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
                                             <a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener nofollow noreferrer external"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="img-fluid d-md-flex mr-0 mr-md-5 rounded " height="69" width="69"></a>
