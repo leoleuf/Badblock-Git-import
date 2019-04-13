@@ -250,14 +250,14 @@
                                                 @php($average += ($row->note == 0) ? 5 : $row->note)
                                                 @php($averageCount++)
 
-                                                <div class="row col-md-12 lis-font-weight-300">
+                                                <p class="row col-md-12 lis-font-weight-300">
                                                         @php($dozpa = substr_count(mb_strimwidth($row->short_desc, 0, 501, "..."), "\r") + substr_count(mb_strimwidth($row->short_desc, 0, 501, "..."), "\n"))
                                                         @if (intval($dozpa) > 6)
                                                         {{ preg_replace( "/\r|\n/", "", mb_strimwidth($row->short_desc, 0, 501, "...")) }}
                                                         @else
                                                         {!! nl2br(htmlentities(htmlspecialchars(mb_strimwidth($row->short_desc, 0, 501, "...")))) !!}
                                                         @endif
-                                                </div>
+                                                </p>
                                                 <ul class="list-inline my-0">
                                                     @if (!empty($row->website))&nbsp;
                                                         <li class="list-inline-item"><a title="Jouer à {{ $catName }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" rel="noopener" target="_blank" class="lis-light lis-jouer border lis-brd-light text-center lis-line-height-2_3 rounded d-block"><i class="fa fa-gamepad"></i> Jouer</a></li>
