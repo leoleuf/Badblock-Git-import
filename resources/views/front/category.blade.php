@@ -150,7 +150,7 @@
             </div>
         </div>
 
-        <section class="lis-bg-light pt-5">
+        <section class="lis-bg-light pt-1">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
