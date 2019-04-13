@@ -9,12 +9,15 @@
 namespace App\Support;
 
 use PragmaRX\Google2FALaravel\Support\Authenticator;
+use Illuminate\Http\Request;
 
 class Google2FAAuthenticator extends Authenticator
 {
     protected function canPassWithoutCheckingOTP()
     {
         if (empty($this->getUser()->passwordSecurity))
+            return true;
+        if($this->checkCookieTFA() == "1")
             return true;
         return
             !$this->getUser()->passwordSecurity->google2fa_enable ||
@@ -30,5 +33,10 @@ class Google2FAAuthenticator extends Authenticator
             throw new InvalidSecretKey('Secret key cannot be empty.');
         }
         return $secret;
+    }
+
+    protected function checkCookieTFA()
+    {
+        return \Illuminate\Support\Facades\Cookie::get('TFA');
     }
 }

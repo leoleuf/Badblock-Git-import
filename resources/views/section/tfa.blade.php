@@ -77,7 +77,7 @@
     </div>
 @endsection
 @section("after_scripts")
-
+    <script src="/assets/plugins/toastr/toastr.min.js"></script>
     <script>
 
         function byPass(id, val) {

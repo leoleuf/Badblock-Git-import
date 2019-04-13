@@ -46,6 +46,8 @@ class TfaController extends Controller
             'TFAbypass' => $_POST['bypass']
 
         ]);
+
+        return $
     }
 
 }

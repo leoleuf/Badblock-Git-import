@@ -20,7 +20,10 @@ Route::post('/2fa','PasswordSecurityController@enable2fa')->name('enable2fa');
 Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
 
 Route::post('/2faVerify', function () {
+
+    Cookie::queue("TFA", true, 60 * 24 * 7);
     return redirect('/');
+
 })->name('2faVerify')->middleware('2fa');
 
 Route::group([
