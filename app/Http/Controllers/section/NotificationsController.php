@@ -12,8 +12,7 @@ namespace App\Http\Controllers\section;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\User;
-use Illuminate\Support\Facades\Auth;
+use Mail;
 
 class NotificationsController extends Controller
 {

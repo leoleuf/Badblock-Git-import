@@ -26,6 +26,8 @@ Route::post('/2faVerify', function () {
 
 })->name('2faVerify')->middleware('2fa');
 
+Route::get('/testmail', 'section\NotificationsController@systemSendMail');
+
 Route::group([
     'prefix'     => "api"
 ], function () {
@@ -301,4 +303,14 @@ Route::group([
         Route::get('/cloudflare', 'Infra\CloudFlareController@index')->middleware('can:network_cloudflare');
 
     });
+
+    Route::group([
+        'prefix'     => "server",
+        'middleware' => ['auth','can:admin_server_manage']
+    ], function () {
+
+        Route::get('/', 'Infra\ServerManageController@index')->name('server.manage');
+
+    });
+
 });
