@@ -54,7 +54,7 @@
                                                 <td>
                                                     <form class="inline" method="post" action="/tfacheck/bypass">
                                                         <div class="custom-control custom-checkbox mr-sm-2">
-                                                            <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass(this.id, {{ $data->TFAbypass }})">
+                                                            <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass({{ $data->id}}, {{ $data->TFAbypass }})">
                                                             <label class="custom-control-label" for="bypassCheck{{ $data->id }}"></label>
                                                         </div>
                                                     </form>
