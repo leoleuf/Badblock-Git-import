@@ -27,7 +27,8 @@ class YoutubersController extends Controller
                 'sub' => $INFO->statistics->subscriberCount,
                 'img' => $INFO->snippet->thumbnails->default->url,
                 'link' => "https://www.youtube.com/channel/".$key['youtuber_uuid']."/?sub_confirmation=1",
-                'title' => $INFO->snippet->title
+                'title' => $INFO->snippet->title,
+                'rank' => $key->rank
 
             ];
 
