@@ -42,7 +42,7 @@ class YoutubersManagementController extends Controller
                             str_replace('https://youtube.com/channel/', '',
                                 str_replace('https://youtu.be/channel/', '',
                                     str_replace('www.', '', $_POST['youtuber_url'])))),
-                        "youtuber_power" => strip_tags($_POST['youtuber_power'])
+                        'rank' => strip_tags($_POST['rank'])
                     ]);
 
                 } elseif ($_POST['comesFrom'] == "delete") {

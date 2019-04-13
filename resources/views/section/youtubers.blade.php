@@ -39,8 +39,11 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="modal_createYoutuber_power">Entrez le power du Youtuber</label>
-                                                    <input type="number" class="form-control" id="modal_createYoutuber_power" min="0" max="100" />
+                                                    <label for="modal_createYoutuber_rank">Entrez le status du Youtuber</label>
+                                                    <select class="form-control" id="modal_createYoutuber_rank">
+                                                        <option>Mini-Youtubeur</option>
+                                                        <option>Youtubeur</option>
+                                                    </select>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -63,31 +66,31 @@
                                 <tr>
                                     <th scope="col">Nom du youtuber</th>
                                     <th scope="col">UUID</th>
-                                    <th scope="col">Power</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($Youtubers as $i => $row)
                                     <tr>
-                                        <td class="col-4">
+                                        <td>
                                             <div class="input-group">
                                                 <input  type="text" id="youtuber_{{ $i }}_name" class="form-control" value="{{ $row['youtuber_name'] }}" readonly />
                                                 <button type="button" class="btn" onclick="CopyToClipboard('youtuber_{{ $i }}_name')"> <i class='fa fa-clipboard'></i></button>
                                             </div>
                                         </td>
-                                        <td class="col-4">
+                                        <td>
                                             <div class="input-group">
                                                 <input type="text" id="youtuber_{{ $i }}_uuid" class="form-control" value="{{ $row['youtuber_uuid'] }}" readonly />
                                                 <button type="button" class="btn" onclick="CopyToClipboard('youtuber_{{ $i }}_uuid')"> <i class='fa fa-clipboard'></i></button>
                                             </div>
                                         </td>
-                                        <td>{{ $row['youtuber_power'] }}</td>
+
+                                        <td>{{ $row['rank'] }}</td>
+
                                         <td>
                                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal_confirmDelete_{{ $i }}">Supprimer</button>
                                         </td>
-
-
 
                                         <div class="modal fade" id="modal_confirmDelete_{{ $i }}" tabindex="-1" role="dialog" aria-labelledby="modal_confirmDelete_{{ $i }}" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
@@ -135,41 +138,37 @@
 
             youtuber_name = $('#modal_createYoutuber_youtuberName').val();
             youtuber_url = $('#modal_createYoutuber_URL').val();
-            youtuber_power = $('#modal_createYoutuber_power').val();
+            youtuber_rank = $('#modal_createYoutuber_rank').val();
 
-            if(youtuber_name != '' && youtuber_url != '' && youtuber_power != "") {
-                if (youtuber_power >= 0 && youtuber_power <= 100) {
-                    $.ajax({
+            if(youtuber_name != '' && youtuber_url != '') {
 
-                        method: 'POST',
+                $.ajax({
 
-                        url: '/section/youtubers',
+                    method: 'POST',
 
-                        data: {
-                            'youtuber_name': youtuber_name,
-                            'youtuber_url': youtuber_url,
-                            'youtuber_power': youtuber_power,
-                            "comesFrom": "create"
-                        },
+                    url: '/section/youtubers',
 
-                        success: function () {
-                            toastr.success('Le Youtuber a bien été créé', "Succès !");
-                            location.reload();
-                        },
+                    data: {
+                        'youtuber_name': youtuber_name,
+                        'youtuber_url': youtuber_url,
+                        'rank': youtuber_rank,
+                        "comesFrom": "create"
+                    },
 
-                        error: function (jqxhr, status, exception) {
+                    success: function () {
+                        toastr.success('Le Youtuber a bien été créé', "Succès !");
+                        location.reload();
+                    },
 
-                            if (exception == "Conflict") {
-                                exception = Object.values($.parseJSON(Object.values(jqxhr)["16"]))["0"];
-                            }
+                    error: function (jqxhr, status, exception) {
 
-                            toastr.error("Erreur lors de la création. Intitulé de l'erreur : " + exception, 'Erreur');
+                        if (exception == "Conflict") {
+                            exception = Object.values($.parseJSON(Object.values(jqxhr)["16"]))["0"];
                         }
-                    });
-                }
-                else {
-                    toastr.error("Merci d'indiquer un power compris entre 0 et 100", "Erreur !");
-                }
+
+                        toastr.error("Erreur lors de la création. Intitulé de l'erreur : " + exception, 'Erreur');
+                    }
+                });
             }
             else {
                 toastr.error('Merci de compléter tout le formulaire', "Erreur !");
