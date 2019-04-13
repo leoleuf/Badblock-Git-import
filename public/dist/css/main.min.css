@@ -1118,8 +1118,8 @@ textarea.form-control {
   width: 102px;
   height: 36px;
   transition: .2s ease;
-  background-color: #ff214f;
-  border-color: #ff214f !important;
+  background-color: #c0392b;
+  border-color: #c0392b !important;
   color: #fff;
 }
 .lis-jouer:hover {
