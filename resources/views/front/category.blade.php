@@ -217,33 +217,33 @@
                                                 <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
                                                 <ul class="list-inline mb-0 lis-light-gold font-weight-normal h4">
                                                     @if($row->note >= 1)
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item fa fa-star"></li>
                                                     @else
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                        <li class="list-inline-item fa fa-star-o"></li>
                                                     @endif
 
                                                     @if($row->note > 2 || $row->note == 2)
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                            <li class="list-inline-item fa fa-star"></li>
                                                     @else
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                            <li class="list-inline-item fa fa-star-o"></li>
                                                     @endif
 
                                                     @if($row->note > 3 || $row->note == 3)
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                            <li class="list-inline-item fa fa-star"></li>
                                                     @else
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                            <li class="list-inline-item fa fa-star-o"></li>
                                                     @endif
 
                                                     @if($row->note > 4 || $row->note == 4)
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item fa fa-star"></li>
                                                     @else
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                            <li class="list-inline-item fa fa-star-o"></li>
                                                     @endif
 
                                                     @if($row->note == 5)
-                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                            <li class="list-inline-item fa fa-star"></li>
                                                     @else
-                                                        <li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+                                                            <li class="list-inline-item fa fa-star-o"></li>
                                                     @endif
                                                 </ul>
                                                 @php($totalReviews += $row->reviews * 7)
