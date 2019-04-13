@@ -7,7 +7,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
 <head>
     <!--<base href="https://serveur-multigames.net">!-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 
     <title>@yield('title')</title>
     @if (trim($__env->yieldContent('canonical')))<link rel="canonical" href="@yield('canonical')" />
