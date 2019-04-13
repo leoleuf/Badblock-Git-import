@@ -5,6 +5,7 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 trait AuthenticatesUsers
 {
@@ -30,6 +31,11 @@ trait AuthenticatesUsers
     {
         $this->validateLogin($request);
 
+        if($this->checkTFALogin($request))
+        {
+            return $this->sendFailedLoginTFAResponse($request);
+        }
+
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
@@ -52,6 +58,24 @@ trait AuthenticatesUsers
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    public function checkTFALogin(Request $request)
+    {
+        $user_id = DB::table('users')->where('email', $request->post('email'))->get()[0]->id;
+
+        $bypass = DB::table('users')->where('email', $request->post('email'))->get()[0]->TFAbypass;
+
+        if($bypass)
+        {
+            return false;
+        }
+        else
+        {
+            //Si true => pas de TFA sinon TFA active
+            return DB::table('password_securities')->where('user_id', $user_id)->get()->isEmpty();
+        }
+
     }
 
     /**
@@ -105,7 +129,7 @@ trait AuthenticatesUsers
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+            ?: redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -132,6 +156,13 @@ trait AuthenticatesUsers
     {
         throw ValidationException::withMessages([
             $this->username() => [trans('auth.failed')],
+        ]);
+    }
+
+    protected function sendFailedLoginTFAResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => ["Votre TFA n'est pas active. Merci de contacter Hooki."],
         ]);
     }
 

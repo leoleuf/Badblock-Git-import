@@ -14,6 +14,11 @@
                     <form class="form-horizontal m-t-20" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
 
+                        @if ($message = Session::get('status'))
+
+                            <p>{!! $message !!}</p>
+                        @endif
+
                         @if ($errors->has('email'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
