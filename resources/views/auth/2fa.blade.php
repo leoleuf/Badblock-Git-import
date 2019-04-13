@@ -46,6 +46,8 @@
                                     <strong>1. Scannez ce QR code dans Google Authenticator :</strong><br/>
                                     <img src="{{$data['google2fa_url'] }}" alt="">
                                     <br/><br/>
+                                    <p>Ou utilisez la clé : <strong>{{ $data['secret_key'] }}</strong></p>
+                                    <br/>
                                     <strong>2.Entrez le code PIN de Google Authenticator</strong><br/><br/>
                                     <form class="form-horizontal" method="POST" action="{{ route('enable2fa') }}">
                                         {{ csrf_field() }}

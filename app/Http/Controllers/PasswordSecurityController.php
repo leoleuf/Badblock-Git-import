@@ -16,6 +16,9 @@ class PasswordSecurityController extends Controller
         $user = Auth::user();
 
         $google2fa_url = "";
+
+        $sKey = "";
+
         if ($user->passwordSecurity()->exists()) {
             $google2fa = app('pragmarx.google2fa');
             $google2fa_url = $google2fa->getQRCodeInline(
@@ -23,10 +26,14 @@ class PasswordSecurityController extends Controller
                 $user->email,
                 $user->passwordSecurity->google2fa_secret
             );
+
+            $sKey = $user->passwordSecurity->google2fa_secret;
+
         }
         $data = array(
             'user' => $user,
-            'google2fa_url' => $google2fa_url
+            'google2fa_url' => $google2fa_url,
+            'secret_key' => $sKey
         );
 
         return view('auth.2fa')->with('data', $data);

@@ -15,6 +15,7 @@
                                         <tr>
                                             <th>Pseudo</th>
                                             <th>TFA Active</th>
+                                            <th>Bypass</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -27,6 +28,13 @@
                                                         Non
                                                     @else
                                                         Oui
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if($data->TFAbypass)
+                                                        Oui
+                                                    @else
+                                                        Non
                                                     @endif
                                                 </td>
                                                 <td>
