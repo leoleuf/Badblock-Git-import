@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('header')
+    <link rel="stylesheet" href="/assets/plugins/magnific-popup/dist/magnific-popup.css"/>
+    <link href="/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -17,6 +21,7 @@
                                             <th>TFA Active</th>
                                             <th>Bypass</th>
                                             <th>Action</th>
+                                            <th>ByPass</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -38,9 +43,21 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5">
-                                                        <i class="fa fa-legal"></i>
-                                                    </button>
+                                                    <form method="post" action="/section/tfacheck/reset">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" name="user_id" id="userId" value="{{ $data->id }}">
+                                                        <button class="btn btn-icon btn-success">
+                                                            <i class="fas fa-sync"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form class="inline" method="post" action="/tfacheck/bypass">
+                                                        <div class="custom-control custom-checkbox mr-sm-2">
+                                                            <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass(this.id, {{ $data->TFAbypass }})">
+                                                            <label class="custom-control-label" for="bypassCheck{{ $data->id }}"></label>
+                                                        </div>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -61,5 +78,26 @@
 @endsection
 @section("after_scripts")
 
+    <script>
+
+        function byPass(id, val) {
+
+            $.ajax({
+
+                method: 'POST',
+                url: '/section/tfacheck/bypass',
+                data: {
+                    'userid': id,
+                    'bypass': + val,
+                },
+                success: function (data) {
+                    toastr.success('Modification du Bypass', "Succès !");
+                }
+
+            });
+
+        }
+
+    </script>
 
 @endsection

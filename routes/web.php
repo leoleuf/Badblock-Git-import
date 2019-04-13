@@ -191,6 +191,8 @@ Route::group([
 
         //List all staff
         Route::get('/tfacheck', 'section\TfaController@index')->middleware('can:resp_tfa_control');
+        Route::post('/tfacheck/reset', 'section\TfaController@resetTFA')->middleware('can:resp_tfa_control');
+        Route::post('/tfacheck/bypass', 'section\TfaController@bypassTFA')->middleware('can:resp_tfa_control');
         Route::get('/allstaff', 'section\StaffController@index')->middleware('can:resp_staff_list');
 
         //Check sanctions sans preuves
