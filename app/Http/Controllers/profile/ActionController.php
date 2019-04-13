@@ -33,6 +33,8 @@ class ActionController extends Controller
             }
         }
 
+        if(Auth::user()->hasRole('Query')) $check = false;
+
         if ($check){
             $returnData = array(
                 'status' => 'error',
@@ -57,12 +59,14 @@ class ActionController extends Controller
     public function resetTfa($uuid){
         $Player = DB::connection('mongodb_server')->collection('players')->where('uniqueId', $uuid)->first();
 
-        /*$check = false;
+        $check = false;
         foreach ($Player['permissions']['groups']['bungee'] as $k => $row) {
             if ($k != "default" && $k != "vip" && $k != "vip+" && $k != "mvp" && $k != "mvp+" && $k != "gradeperso" && $k != "noel") {
                 $check = true;
             }
         }
+
+        if(Auth::user()->hasRole('Query')) $check = false;
 
         if ($check){
             $returnData = array(
@@ -70,7 +74,7 @@ class ActionController extends Controller
                 'message' => 'An error occurred!'
             );
             return Response::json($returnData, 500);
-        }*/
+        }
 
         unset($Player['_id']);
         $Player['authKey'] = "";
@@ -97,6 +101,8 @@ class ActionController extends Controller
                 $check = true;
             }
         }
+
+        if(Auth::user()->hasRole('Query')) $check = false;
 
         if ($check){
             $returnData = array(
@@ -130,6 +136,8 @@ class ActionController extends Controller
                 $check = true;
             }
         }
+
+        if(Auth::user()->hasRole('Query')) $check = false;
 
         if ($check){
             $returnData = array(
