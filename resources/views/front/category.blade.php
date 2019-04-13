@@ -297,7 +297,7 @@
                                                     </div>
                                                     <div class="col-md-4 single-defination">
                                                         <h3 class="mb-20">Avis sur {{ seocat($catName) }}</h3>
-                                                        <p><br />Il y a eu plus de {{ intval($about->clickCount)+intval($about->copyCount) }} personnes qui ont découvert un serveur {{ seocat($catName) }}{{$shownTag}} depuis le début du mois. Nous travaillons sur la visibilité des créateurs tous les jours et cela n'est pas prêt de s'arrêter.</p>
+                                                        <p><br />Il y a eu plus de {{ $about->clickCount }} personnes qui ont découvert un serveur {{ seocat($catName) }}{{$shownTag}} depuis le début du mois. Nous travaillons sur la visibilité des créateurs tous les jours et cela n'est pas prêt de s'arrêter.</p>
                                                     </div>
                                             </div>
                                         </div>
