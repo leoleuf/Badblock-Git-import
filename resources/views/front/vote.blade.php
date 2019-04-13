@@ -438,7 +438,7 @@
                             dbg = timediff + " : " + bdiff;
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if (bdiff < 50 && maxtimes < 5) {
+                            if (bdiff < 50 && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
@@ -447,7 +447,7 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200 && maxtimes < 5) {
+                            if (difflastd > 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
