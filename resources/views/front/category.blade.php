@@ -194,17 +194,6 @@
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
                                         <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h3>
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
-                                             style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script><br />
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
                                         <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h3>
