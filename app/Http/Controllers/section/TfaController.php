@@ -47,7 +47,6 @@ class TfaController extends Controller
 
         ]);
 
-        return $
     }
 
 }
