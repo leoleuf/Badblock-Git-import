@@ -153,7 +153,7 @@
         <section class="lis-bg-light pt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-8 mb-5 mb-lg-0">
+                    <div class="col-12 col-lg-8 mb-1 mb-lg-0">
                         @if (isset($votelistok) && $votelistok)
                             <div class="alert alert-success">
                                 &nbsp;<strong>Merci !</strong> Votre vote a bien été pris en compte. Merci de votre soutien.<br />
@@ -163,7 +163,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                                 <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le classement {{ seocat($catName) }}</h3>
-                                <div class="card lis-brd-light mb-4 wow fadeInUp">
+                                <div class="card lis-brd-light mb-1 wow fadeInUp">
                                     <div class="card-body p-4">
                                         <p>
                                             @if (isset($tag))
@@ -193,7 +193,7 @@
                             @foreach($data as $row)
                                     @if ($adsDone == 0 && isset($row->ad))
                                         @php($adsDone = 1)
-                                        <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h3>
+                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Serveurs {{ $catName }} Gratuit en avant</h3>
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -207,7 +207,7 @@
                                         </script><br />
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h3>
+                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Classement Serveur {{ $catName }} complet</h3>
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -220,7 +220,7 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script><br />
                                     @endif
-                                <div class="card lis-brd-light wow fadeInUp mb-4">
+                                <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-4">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
                                             <a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener nofollow noreferrer external"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="img-fluid d-md-flex mr-0 mr-md-5 rounded " height="69" width="69"></a>
