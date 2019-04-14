@@ -254,8 +254,7 @@
                                             <div class="card-body p-4">
                                                 <p>
                                                     Le jeu Hytale, développé par Hypixel Studio, est un jeu qui devrait sortir très prochainement. Vous pourrez ainsi télécharger Hytale sans attendre trop longtemps puisqu'un trailer est déjà sorti, et beaucoup de rumeurs circulent à propos des nouveautés, de la release date (la date de sortie). Certains joueurs s'emparent déjà de leur hype pour chercher le jeu sur PS4, alors que pour le moment il est annoncé être disponible principalement sur les PC, Windows Mac et Linux, les trois principaux noyaux/systèmes d'exploitation les plus utilisés. Rien ne dit qu'une version PS4 ne sortira pas, mais pour le moment il est prévu de pouvoir le découvrir très prochainement.<br /><br />
-                                                    Avec trois modes, dont un survie, un multi et même un mode pour les mini-jeux, le joueur ne devrait pas avoir à s'ennuyer sur le jeu Hytale. Une intégration est prévue pour pouvoir directement disposer de la liste des serveurs directement sur le multi d'Hytale et Serveur MultiGames veut vous proposer une liste française des serveurs Hytale qui seront prochainement disponibles.<br /><br />
-                                                    N'hésitez donc pas à vous jeter sur cette occasion pour découvrir le trailer et pourquoi pas, devenir un serveur Hytale français réputé quand le jeu sera sorti. Le modding sera incorporé directement dans le serveur de jeu, ce qui permettra donc d'éviter les cheats (aussi appelés clients de triche) sur Hytale.
+                                                    <br />Pourquoi ne pas le télécharger et l'installer dès maintenant ?
                                                 </p>
                                             </div>
                                         </div>
@@ -274,6 +273,9 @@
                                         <div class="card lis-brd-light mb-1 wow fadeInUp">
                                             <div class="card-body p-4">
                                                 <p>
+                                                    Avec trois modes, dont un survie, un multi et même un mode pour les mini-jeux, le joueur ne devrait pas avoir à s'ennuyer sur le jeu Hytale. Une intégration est prévue pour pouvoir directement disposer de la liste des serveurs directement sur le multi d'Hytale et Serveur MultiGames veut vous proposer une liste française des serveurs Hytale qui seront prochainement disponibles.<br /><br />
+                                                    N'hésitez donc pas à vous jeter sur cette occasion pour découvrir le trailer et pourquoi pas, devenir un serveur Hytale français réputé quand le jeu sera sorti. Le modding sera incorporé directement dans le serveur de jeu, ce qui permettra donc d'éviter les cheats (aussi appelés clients de triche) sur Hytale.
+
                                                     N'hésite pas à jouer sur ton futur serveur Hytale préféré en revenant plusieurs fois à la pêche aux informations puisque nous proposerons des modifications de la page dès que nous aurons plus d'informations sur la sortie du jeu, sur le fonctionnement des serveurs et sur les possibilités que promettent le jeu Hytale 2019. Ce jeu sera peut-être porté sur mobile et sur les autres plateformes s'il atteint le même succès que Minecraft.
                                                 </p>
                                                 @if (isset($addon))
