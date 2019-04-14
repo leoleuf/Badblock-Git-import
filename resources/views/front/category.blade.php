@@ -193,7 +193,7 @@
                                 @php($totalReviews = 0)
                                 @php($average = 0)
                                 @php($averageCount = 0)
-                                @if (encname($catName) == "clash-of-clans")
+                                    @if (encname($catName) == "clash-of-clans")
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -206,13 +206,13 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script><br />
                                         <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Télécharger {{ seocat($catName) }} sans plus attendre</h3>
-                                    <div class="card lis-brd-light mb-1 wow fadeInUp">
-                                        <div class="card-body p-4">
-                                            <p>
-                                               Vous pouvez télécharger votre serveur privé Clash Of Clans favori par le Play Store, Apple Store ou toutes les plateformes légales et légitimes sans plus hésiter. Il est possible de promouvoir votre serveur Clash Of Clans directement sur cette page. A partir des mises à jour de Clash Of Clans, vous pouvez vous tenir au courant des toutes dernières nouveautés par l'éditeur Supercell. Les images Clash Of Clans utilisés sur cette page sont la propriétés de Supercell et sont utilisés dans un cadre complètement informatif. Forum Clash Of Clans et Wiki disponibles également sur plusieurs sites relatifs au jeu PC Mobile.
-                                        </p>
+                                        <div class="card lis-brd-light mb-1 wow fadeInUp">
+                                            <div class="card-body p-4">
+                                                <p>
+                                                    Vous pouvez télécharger votre serveur privé Clash Of Clans favori par le Play Store, Apple Store ou toutes les plateformes légales et légitimes sans plus hésiter. Il est possible de promouvoir votre serveur Clash Of Clans directement sur cette page. A partir des mises à jour de Clash Of Clans, vous pouvez vous tenir au courant des toutes dernières nouveautés par l'éditeur Supercell. Les images Clash Of Clans utilisés sur cette page sont la propriétés de Supercell et sont utilisés dans un cadre complètement informatif. Forum Clash Of Clans et Wiki disponibles également sur plusieurs sites relatifs au jeu PC Mobile.
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
@@ -231,6 +231,50 @@
                                                     Viens jouer avec tes amis sur ton serveur Clash Of Clans préféré directement en téléchargeant le jeu depuis le site Internet de Serveur MultiGames, avec de nombreux avantages à découvrir, disponible directement sur Android, sur iOs avec la possibilité de passer HD v12. Ce jeu est disponible en version 2018 et 2019, vous pouvez donc jouer gratuitement à ce jeu sans plus attendre.<br /><br />
                                                     Plusieurs serveurs Clash Of Clans privés existent mais ne sont pas forcément autorisés par les créateurs du jeu. En revanche, nous vous conseillons de jouer à ce serveur Clash Of Clans dès maintenant sans plus hésiter. Ce jeu vidéo sur mobile est sorti il y a déjà longtemps. La stratégie en temps réel est un mode de jeu qui est très apprécié par la communauté, ce qui invite aussi les joueurs de Clash Of Clans à développer leurs propres serveurs disponibles sur plusieurs plateformes (iOS et Android). Jouez à ce serveur Clash Of Clans dès maintenant et découvrez-le sans plus hésiter, un jeu Pegi 7 et tout public qui n'attend plus que vous avec un large choix de serveurs différents. Pourquoi patienter pour aller jouer sur votre serveur Clash Of Clans privé disponible depuis notre liste ? Il est possible de télécharger le jeu maintenant sur mobile ou sur une plateforme correspondante. Le téléchargement est rapide.
                                                     8 avis ont été postés pour les fiches de serveurs Clash of Clans avec une moyenne de 5. <b>Téléchargez le launcher Clash Of Clans ci-dessous sans plus attendre</b>
+                                                </p>
+                                                @if (isset($addon))
+                                                    {!! $addon !!}
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @elseif (encname($catName) == "hytale")
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script><br />
+                                        <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Télécharger {{ seocat($catName) }} sans plus attendre</h3>
+                                        <div class="card lis-brd-light mb-1 wow fadeInUp">
+                                            <div class="card-body p-4">
+                                                <p>
+                                                    Le jeu Hytale, développé par Hypixel Studio, est un jeu qui devrait sortir très prochainement. Vous pourrez ainsi télécharger Hytale sans attendre trop longtemps puisqu'un trailer est déjà sorti, et beaucoup de rumeurs circulent à propos des nouveautés, de la release date (la date de sortie). Certains joueurs s'emparent déjà de leur hype pour chercher le jeu sur PS4, alors que pour le moment il est annoncé être disponible principalement sur les PC, Windows Mac et Linux, les trois principaux noyaux/systèmes d'exploitation les plus utilisés. Rien ne dit qu'une version PS4 ne sortira pas, mais pour le moment il est prévu de pouvoir le découvrir très prochainement.<br /><br />
+                                                    Avec trois modes, dont un survie, un multi et même un mode pour les mini-jeux, le joueur ne devrait pas avoir à s'ennuyer sur le jeu Hytale. Une intégration est prévue pour pouvoir directement disposer de la liste des serveurs directement sur le multi d'Hytale et Serveur MultiGames veut vous proposer une liste française des serveurs Hytale qui seront prochainement disponibles.<br /><br />
+                                                    N'hésitez donc pas à vous jeter sur cette occasion pour découvrir le trailer et pourquoi pas, devenir un serveur Hytale français réputé quand le jeu sera sorti. Le modding sera incorporé directement dans le serveur de jeu, ce qui permettra donc d'éviter les cheats (aussi appelés clients de triche) sur Hytale.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script><br />
+                                        <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste serveur {{ seocat($catName) }} privé</h3>
+                                        <div class="card lis-brd-light mb-1 wow fadeInUp">
+                                            <div class="card-body p-4">
+                                                <p>
+                                                    N'hésite pas à jouer sur ton futur serveur Hytale préféré en revenant plusieurs fois à la pêche aux informations puisque nous proposerons des modifications de la page dès que nous aurons plus d'informations sur la sortie du jeu, sur le fonctionnement des serveurs et sur les possibilités que promettent le jeu Hytale 2019. Ce jeu sera peut-être porté sur mobile et sur les autres plateformes s'il atteint le même succès que Minecraft.
                                                 </p>
                                                 @if (isset($addon))
                                                     {!! $addon !!}
