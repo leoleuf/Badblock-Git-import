@@ -194,10 +194,11 @@
 
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
-                            <p>
-                                <form method="post" id="vote-form">
+                            <p>@if ($data->votetype == "VOTIFIER")<br />
+                                Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
+                                @endif
+                            <form method="post" id="vote-form">
                                     @if ($data->votetype == "VOTIFIER")<br />
-                                    Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
                                     <input type="text" style="border-style: solid; text-border-color: #7f8fa6; background-color: white; border-radius: 4px; border-width: 0.5px 0.5px 0.5px; text-align: center;" name="username" placeholder="Entrez votre pseudo en jeu" class="single-input"><div style="margin-top: 2px;"></div>
                                     @if (isset($data->votifierdata) && !empty($data->votifierdata))
                                         <br />Récompense : <select name="serverid" style="border-style: solid; background-color: white; display: inline; width: 83.5%; border-radius: 4px; height: 40px; border-width: 0.5px 0.5px 0.5px; text-align: center;">
@@ -230,30 +231,30 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
 
-                                        <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
-                                            Voter <i class="lnr lnr-arrow-right"></i>
-                                        </button>
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
 
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
-                                             style="display:block" id="vb1"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
-
                                         {{ csrf_field() }}
                                 </form><br />
-                                Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
+                            <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                                Voter <i class="lnr lnr-arrow-right"></i>
+                            </button>
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- serveur-multigames -->
+                            <ins class="adsbygoogle"
+                                 style="display:block" id="vb1"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="1434308007"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+
+                            Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
                         </div>
                     </div>
@@ -395,7 +396,6 @@
 
             $('#vote_button').click(function()
             {
-                $('#vote_button').off('click');
                 if (lastd <= 0)
                 {
                     alert('.');
@@ -488,6 +488,7 @@
                     {
                         setTimeout(flexar, 1000);
                         $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
                     }
                 @else
                     function flexar()
@@ -541,6 +542,7 @@
                     {
                         setTimeout(flexar, 50);
                         $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
                     }
                 @endif
             });
