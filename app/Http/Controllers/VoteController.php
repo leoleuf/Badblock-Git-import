@@ -90,7 +90,7 @@ class VoteController extends Controller
 
                 $h = 0;
 
-                if (isset($_POST['h']) && intval($_POST['h']))
+                if (isset($_POST['h']) && $_POST['h'])
                 {
                     $h = intval($_POST['h']);
                 }
