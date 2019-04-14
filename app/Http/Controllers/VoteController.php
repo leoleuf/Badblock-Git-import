@@ -72,17 +72,30 @@ class VoteController extends Controller
                 ->where('tsmp', '>=', ($pt - 60))
                 ->count();
 
-            if (intval($_POST['b']) OR ($c == null && $c < 1)) {
+            if (intval($_POST['b']) OR ($c == null && $c < 1))
+            {
                 $c = DB::table('votebuttonclicks')
                     ->where('ip', '=', $ip)
                     ->where('tsmp', '>=', ($pt - 60))
                     ->where('pubclick', '=', 0)
                     ->delete();
+
+                $log = "OKr";
+
+                if(!intval($_POST['b'])) {
+                    $log = "Pas de clic
+                        => Téléphone : " . (isMobile() ? "Oui" : "Non") . "
+                        => Temps chargement/clic : " . intval($_POST['a']) . " ms
+                        => Temps décalage/clic : " . intval($_POST['c']) . " ms
+                        => Temps dernier mouvement souris : " . intval($_POST['d']) . " ms
+                    ";
+                }
+
                 DB::table('votebuttonclicks')->insert([
                     'date' => date("Y-m-d H:i:s"),
                     'ip' => $ip,
                     'user_agent' => $_SERVER['HTTP_USER_AGENT'],
-                    'dbg' => $_POST['e'],
+                    'dbg' => $log,
                     'tsmp' => time(),
                     'mobile' => isMobile(),
                     'timediff' => intval($_POST['a']),
