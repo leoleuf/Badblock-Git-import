@@ -10,6 +10,7 @@ namespace App\Http\Controllers\build;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ConverterController;
+use App\Http\Controllers\section\NotificationsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,11 @@ class ProjectController extends Controller
 
         foreach ($request->team as $teams)
         {
+            NotificationsController::system_send([
+                'title' => 'Projet de Build',
+                'link' => '/build/project',
+                'text' => Auth::user()->name." vous à ajouté à un nouveau projet de build."
+            ], $teams);
             $team .= $teams." ";
         }
 

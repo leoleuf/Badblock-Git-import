@@ -22,7 +22,7 @@
                             <div class="user-desc">
                                 <span class="name">{{ $row->title }}</span>
                                 <span class="desc">{{ $row->text }}</span>
-                                <span class="time">{{ $row->created_at }}</span>
+                                <span class="time">{{ \App\Http\Controllers\DateController::formatDate($row->created_at) }}</span>
                             </div>
                         </a>
                     </li>
