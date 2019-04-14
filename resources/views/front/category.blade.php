@@ -194,6 +194,17 @@
                                 @php($average = 0)
                                 @php($averageCount = 0)
                                 @if (encname($catName) == "clash-of-clans")
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script><br />
                                         <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Télécharger {{ seocat($catName) }} sans plus attendre</h3>
                                     <div class="card lis-brd-light mb-1 wow fadeInUp">
                                         <div class="card-body p-4">
@@ -202,6 +213,17 @@
                                         </p>
                                         </div>
                                     </div>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script><br />
                                         <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste serveur {{ seocat($catName) }} privé</h3>
                                         <div class="card lis-brd-light mb-1 wow fadeInUp">
                                             <div class="card-body p-4">
