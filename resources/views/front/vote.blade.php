@@ -377,6 +377,7 @@
             var maxtimes = 0;
 
             var iframeclick = 0;
+            var suppl = 0;
 
             $('iframe').iframeTracker({
                 blurCallback: function () {
@@ -384,7 +385,7 @@
                     if (q) {
                         q = false;
                         iframeclick = $.now();
-                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered,'s':suppl}, function (data, status) {
                         });
                     }
                 }
@@ -395,7 +396,7 @@
                 timeclick = $.now() - zo;
                 if (p) {
                     p = false;
-                    $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered,'s':suppl}, function (data, status) {
                     });
                 }
             });
@@ -486,6 +487,8 @@
                             var timediff = $.now() - zo;
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
+
+                            suppl = bdiff - zolv;
 
                             if (bdiff > zolv && maxtimes < 3)
                             {
