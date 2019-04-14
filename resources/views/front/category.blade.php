@@ -22,8 +22,8 @@
     @section('title', 'Liste de Serveur privé Clash Of Clans : COC sur Android PC iOS')
     @section('description', 'Découvre ton serveur privé Clash Of Clan 2019 gratuit préféré. Depuis un fichier APK Android ou des serveurs Clash Royale hdv 12 iOS possibles à télécharger avec code, découvre sur PC le jeu COC dès maintenant.')
 @elseif (encname($catName) == "hytale")
-    @section('title', 'Liste de Serveur privé Hytale : Tout à savoir sur Hytale')
-    @section('description', 'Découvre ton serveur privé Hytale gratuit préféré. La date de sortie, le trailer... Tout à savoir sur le jeu Hytale développé par Hypixel Studio, prochain phénomène qui va attirer de nombreux serveurs originaux.')
+    @section('title', 'Serveur Hytale : Télécharger le jeu Hytale maintenant')
+    @section('description', 'Télécharge Hytale et rejoins ton serveur privé Hytale gratuit préféré. La date de sortie, le trailer... Tout à savoir sur le jeu Hytale développé par Hypixel Studio, prochain phénomène qui va attirer de nombreux serveurs originaux.')
 @else
     @section('title', 'Serveur '.seocat($catName).$shownTag.$pTitle.' : Liste Complète Française De '.$about->serveurCount.' Serveurs Gratuit')
     @section('description', 'Découvre la liste de serveur '.seocat($catName).' gratuit la plus complète de France. Ainsi, joue à '.$about->serveurCount.' serveurs proposés dans le classement. Des serveurs de toutes les catégories pour tous les goûts sont à rejoindre dès maintenant.')
