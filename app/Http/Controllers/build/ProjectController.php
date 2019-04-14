@@ -58,7 +58,7 @@ class ProjectController extends Controller
             $team .= $teams." ";
         }
 
-        $team = substr($team, 0, -2);
+        $team = substr($team, 0, -1);
 
         DB::table('project_build')->insert([
 

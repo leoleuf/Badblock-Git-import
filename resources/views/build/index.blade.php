@@ -86,9 +86,9 @@
 
                     <div class="project-members m-b-20">
                         <span class="m-r-5 font-600">Team : </span>
-                        @foreach(\App\Http\Controllers\build\ProjectController::convertTeam($project->team) as $member)
-                            <a href="#" data-toggle="tooltip" title="{{$member }}">
-                                <img src="https://cdn.badblock.fr/head/{{$member }}/48.png" alt="user" class="rounded-circle thumb-sm">
+                        @foreach(\App\Http\Controllers\build\ProjectController::convertTeam($project->team) as $info)
+                            <a href="#" title="{{ $info }}" data-toggle="tooltip" data-placement="top" data-original-title="{{ $info }}">
+                                <img src="https://cdn.badblock.fr/head/{{ $info }}/48.png" alt="user" class="rounded-circle thumb-sm">
                             </a>
                         @endforeach
                     </div>
