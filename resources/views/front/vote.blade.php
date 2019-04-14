@@ -477,7 +477,7 @@
                     {
 
                         var isHovered = $('#vote_button').is(":hover");
-                        var time = 30;
+                        var time = 10;
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "70px")
                         {
