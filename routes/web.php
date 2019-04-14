@@ -313,4 +313,17 @@ Route::group([
 
     });
 
+    Route::group([
+        'prefix'     => "build",
+        'middleware' => ['auth','can:build_project_view']
+    ], function () {
+
+        Route::get('/project', 'build\ProjectController@index')->name('build.index');
+        Route::get('/project/delete/{id}', 'build\ProjectController@delete');
+        Route::get('/project/check/{id}', 'build\ProjectController@check');
+        Route::get('/project/new', 'build\ProjectController@create')->middleware('can:build_project_create');
+        Route::post('/project/new', 'build\ProjectController@newProject')->middleware('can:build_project_create');
+
+    });
+
 });

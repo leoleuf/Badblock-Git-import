@@ -143,7 +143,12 @@
                                             Stats Builders</a>
                                     </li>
                                 @endcan
-
+                                @can('build_project_view')
+                                    <li>
+                                        <a href="/build/project" class="waves-effect"><i class="fas fa-project-diagram"></i>
+                                            Projets</a>
+                                    </li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan
@@ -336,9 +341,10 @@
                                     <li><a href="/section/permission-serv" class="waves-effect"><i
                                                     class="fas fa-terminal"></i> Permissions Serveur</a></li>
                                 @endcan
-                                    @can('admin_server_manage')
-                                        <li><a href="/server" class="waves-effect"><i class="fas fa-server"></i> Gestion du Serveur</a></li>
-                                    @endcan
+                                @can('admin_server_manage')
+                                    <li><a href="/server" class="waves-effect"><i class="fas fa-server"></i> Gestion du
+                                            Serveur</a></li>
+                                @endcan
                                 @can('show_compta')
                                     <li><a href="/website/compta" class="waves-effect"><i
                                                     class="fas fa-file-invoice-dollar"></i> Comptabilité</a></li>
