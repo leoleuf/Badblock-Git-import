@@ -330,7 +330,6 @@
                                     </div>
                                 </div>
                                 @endforeach
-                                    @endif
                                 <h3 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Jeu {{ $catName }} serveur</h3>
                                 <div class="card lis-brd-light wow fadeInUp mb-4">
                                     <div class="card-body p-4">
@@ -352,6 +351,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                    @endif
                                 <nav>
                                     <ul class="pagination list-inline mb-0 text-center text-uppercase lis-f-14 justify-content-center mt-5">
                                         @if ($current_page > 1)
