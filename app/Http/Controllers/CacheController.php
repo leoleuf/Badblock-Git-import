@@ -175,7 +175,7 @@ class CacheController extends Controller
 
                         if (!(strpos($t, '<a title="serveur minecraft" href="https://serveur-multigames.net/minecraft">serveur minecraft</a>') !== false)
                             && !(strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="serveur minecraft">serveur minecraft</a>')) !== false) {
-                            if (intval($row->retries) < 10) {
+                            if (intval($row->retries) < 50) {
                                 DB::table('server_list')
                                     ->where('id', '=', $row->id)
                                     ->update(
@@ -204,7 +204,7 @@ class CacheController extends Controller
                     }
                     catch (Exception $e)
                     {
-                        if (intval($row->retries) < 10) {
+                        if (intval($row->retries) < 50) {
                             DB::table('server_list')
                                 ->where('id', '=', $row->id)
                                 ->update(
