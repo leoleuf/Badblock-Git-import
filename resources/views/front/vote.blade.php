@@ -488,7 +488,6 @@
                     {
                         setTimeout(flexar, 1000);
                         $("#vote_button").show();
-                        document.getElementById("vote_button").disabled = false;
                     }
                 @else
                     function flexar()
@@ -542,7 +541,6 @@
                     {
                         setTimeout(flexar, 50);
                         $("#vote_button").show();
-                        document.getElementById("vote_button").disabled = false;
                     }
                 @endif
             });
