@@ -87,21 +87,13 @@ class VoteController extends Controller
                 {
                     $dcl = intval($_POST['c']);
                 }
-
-                $h = 0;
-
-                if (isset($_POST['h']) && $_POST['h'])
-                {
-                    $h = intval($_POST['h']);
-                }
-
+                
                 if(!intval($_POST['b'])) {
                     $log = "Pas de clic
                         => Téléphone : " . (isMobile() ? "Oui" : "Non") . "
                         => Temps chargement/clic : " . intval($_POST['a']) . " ms
                         => Temps décalage/clic : " .($dcl != -1 ? $dcl." ms" : "Pas de décalage")."
-                        => Temps dernier mouvement souris : " . intval($_POST['d']) . " ms
-                        => Passage souris : ".($h == 1 ? "Oui" : "Non");
+                        => Temps dernier mouvement souris : " . intval($_POST['d']) . " ms";
                 }
 
                 DB::table('votebuttonclicks')->insert([
