@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
 
     <link href="/assets/plugins/switchery/switchery.min.css" rel="stylesheet" />
-
-
+    <link rel="manifest" href="/assets/manifest.json" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->

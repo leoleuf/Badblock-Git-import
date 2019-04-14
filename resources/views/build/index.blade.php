@@ -105,8 +105,20 @@
             </div><!-- end col-->
         @endforeach
     </div>
-    <!-- end row -->
-
-
-    </div>
+@endsection
+@section('after_scripts')
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAGeyXi0dJNNqXE5h_v0qZ5UIozKLZSxm8",
+            authDomain: "badblock-manager.firebaseapp.com",
+            databaseURL: "https://badblock-manager.firebaseio.com",
+            projectId: "badblock-manager",
+            storageBucket: "badblock-manager.appspot.com",
+            messagingSenderId: "224882317728"
+        };
+        firebase.initializeApp(config);
+        firebase.getToken();
+    </script>
 @endsection

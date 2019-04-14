@@ -26,7 +26,11 @@ Route::post('/2faVerify', function () {
 
 })->name('2faVerify')->middleware('2fa');
 
-Route::get('/testmail', 'section\NotificationsController@systemSendMail');
+Route::get('/test', function(){
+
+    \App\Http\Controllers\section\NotificationsController::sendFCMNotif(['body' => 'New message']);
+
+});
 
 Route::group([
     'prefix'     => "api"

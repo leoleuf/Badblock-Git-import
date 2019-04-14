@@ -62,4 +62,12 @@
         display: none !important;
     }
 </style>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+        OneSignal.init({
+            appId: "e93e15ed-885f-4e33-86ae-c6cd20ca1060",
+        });
+    });
+</script>
 
