@@ -398,7 +398,13 @@
             {
                 if (lastd <= 0)
                 {
-                    alert('.');
+                    if (document.getElementById("vb").style.marginTop != "50px")
+                    {
+                        lastd = $.now();
+                        maxtimes = maxtimes + 1;
+                        zo = $.now();
+                        document.getElementById("vb").style.marginTop = "100px";
+                    }
                 }
                 else {
                     timeclick = $.now() - zo;
