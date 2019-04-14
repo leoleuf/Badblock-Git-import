@@ -78,6 +78,7 @@
                                     <div class="form-group">
                                         <label>Dépendance :</label>
                                         <select class="form-control" name="dependancy" required>
+                                            <option required>Aucun</option>
                                             @foreach($dependancy as $dep)
                                                 <option>Projet : {{ $dep->name }}</option>
                                             @endforeach

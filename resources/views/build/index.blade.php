@@ -85,8 +85,12 @@
                     </ul>
 
                     <div class="project-members m-b-20">
-                        <p><span class="m-r-5 font-600">Team : </span>{{ $project->team }}</p>
-
+                        <span class="m-r-5 font-600">Team : </span>
+                        @foreach(\App\Http\Controllers\build\ProjectController::convertTeam($project->team) as $member)
+                            <a href="#" data-toggle="tooltip" title="{{$member }}">
+                                <img src="https://cdn.badblock.fr/head/{{$member }}/48.png" alt="user" class="rounded-circle thumb-sm">
+                            </a>
+                        @endforeach
                     </div>
 
                     <p class="font-600 m-b-5">Avancement <span class="text-success pull-right">0%</span></p>

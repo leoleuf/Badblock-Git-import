@@ -58,6 +58,8 @@ class ProjectController extends Controller
             $team .= $teams." ";
         }
 
+        $team = substr($team, 0, -2);
+
         DB::table('project_build')->insert([
 
             'name' => $request->name,
@@ -75,4 +77,10 @@ class ProjectController extends Controller
 
         return redirect('/build/project');
     }
+
+    public static function convertTeam($team)
+    {
+        return explode(" ", $team);
+    }
+
 }
