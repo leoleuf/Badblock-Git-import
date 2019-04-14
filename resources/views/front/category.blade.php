@@ -167,6 +167,8 @@
                             <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                                 @if ($catName == "clash-of-clans")
                                     <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Clash Of Clans - Installer</h3>
+                                @elseif ($catName == "hytale")
+                                    <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Hytale - Télécharger et Jouer</h3>
                                 @else
                                     <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le classement {{ seocat($catName) }}</h3>
                                 @endif
