@@ -392,11 +392,24 @@
 
             $('#vote_button').click(function()
             {
-                timeclick = $.now() - zo;
-                if (p) {
-                    p = false;
-                    $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
-                    });
+                if (lastd <= 0)
+                {
+                    $('#vote_button').off('click');
+                }
+                else {
+                    timeclick = $.now() - zo;
+                    if (p) {
+                        p = false;
+                        $.post('https://serveur-multigames.net/pm', {
+                            'a': timeclick,
+                            'b': 0,
+                            'c': ($.now() - lastd),
+                            'd': ($.now() - lastmouse),
+                            'e': dbg,
+                            'h': hasHovered
+                        }, function (data, status) {
+                        });
+                    }
                 }
             });
 
