@@ -487,6 +487,15 @@
                                 expérience de jeu sur des serveurs hors normes !
                             </div>
                         </div>
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Autres jeux</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp">
+                            <div class="card-body p-4">
+
+                                @foreach(config('tag.cat') as $k)
+                                    <li><i class="fa fa-angle-right pr-1"></i> &nbsp;<a title="Liste des serveurs {{ $k }}" href="/{{ encname($k) }}"><img alt="Serveur {{ $k }}" src="/img/{{ encname($k) }}.png" width="24" height="24" class="ialign" /> &nbsp;{{ ucfirst($k) }}</a></li>
+                                @endforeach
+                            </div>
+                        </div>
 
                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <!-- serveur-multigames -->
