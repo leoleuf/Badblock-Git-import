@@ -230,11 +230,14 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
 
-                                    <button class="col-11 g-recaptcha btn btn-default" id="vote_button"
-                                            data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                            data-callback="onSubmit" style="margin-left:25px; height: 50px;" disabled>
-                                        Voter <i class="lnr lnr-arrow-right"></i>
-                                    </button>
+                                        <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                                            Voter <i class="lnr lnr-arrow-right"></i>
+                                        </button>
+                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
+                                                data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
+                                            Voter <i class="lnr lnr-arrow-right"></i>
+                                        </button>
 
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
@@ -399,6 +402,7 @@
                 }
                 else {
                     timeclick = $.now() - zo;
+                    $('#vbna').click();
                     if (p) {
                         p = false;
                         $.post('https://serveur-multigames.net/pm', {
