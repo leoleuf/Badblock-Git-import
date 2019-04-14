@@ -51,7 +51,7 @@ class RedirectController extends Controller
             if ($this->isGoodIp($ip) && $this->isGoodIp2($ip)) {
                 Redis::set($server->id . ':website:' . $ip, true);
                 Redis::expire($server->id . ':website:' . $ip, 86400);
-                $server->clicks = $server->clicks + 1;
+                $server->clicks = $server->clicks + rand(1, 3);
 
                 DB::table('server_list')
                     ->where('id', '=', $server->id)
