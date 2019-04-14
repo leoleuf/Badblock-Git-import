@@ -80,13 +80,19 @@ class VoteController extends Controller
                     ->where('pubclick', '=', 0)
                     ->delete();
 
-                $log = "OKr";
+                $log = "OK";
+                $dcl = -1;
+
+                if (intval($_POST['c']) <= intval($_POST['a']))
+                {
+                    $dcl = intval($_POST['c']);
+                }
 
                 if(!intval($_POST['b'])) {
                     $log = "Pas de clic
                         => Téléphone : " . (isMobile() ? "Oui" : "Non") . "
                         => Temps chargement/clic : " . intval($_POST['a']) . " ms
-                        => Temps décalage/clic : " . intval($_POST['c']) . " ms
+                        => Temps décalage/clic : " .($dcl != -1 ? $dcl." ms" : "Pas de décalage")."
                         => Temps dernier mouvement souris : " . intval($_POST['d']) . " ms
                     ";
                 }
@@ -100,7 +106,7 @@ class VoteController extends Controller
                     'mobile' => isMobile(),
                     'timediff' => intval($_POST['a']),
                     'pubclick' => intval($_POST['b']),
-                    'lastdecale' => intval($_POST['c']),
+                    'lastdecale' => $dcl,
                     'lastmouse' => intval($_POST['d'])
                 ]);
             }
