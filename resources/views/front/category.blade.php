@@ -91,7 +91,7 @@
                     <div class="col-12 col-md-8 mb-4 mb-lg-0">
                             <div class="media d-block d-md-flex text-md-left text-center"> <img src="/img/{{ $catName }}/{{ $catName }}.png" class="img-fluid d-md-flex mr-4 border border-white lis-border-width-4 rounded mb-4 mb-md-0" alt="Serveur {{ $catName }} gratuit complet pc cracké" />
                                 <div class="media-body align-self-center">
-                                    @if (isset($catName) && $catName != "clash-of-clans")
+                                    @if (isset($catName) && $catName != "clash-of-clans" && $catName != "hytale")
                                         @if (isset($tag))
                                             <h1 class="text-white font-weight-bold lis-line-height-1">Serveur {{ seocat($catName) }} {{ ucfirst($tag)}}</h1>
                                             <h2 class="mb-0 text-white titre">Liste de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</h2>
@@ -99,8 +99,11 @@
                                             <h1 class="text-white font-weight-bold lis-line-height-1">Serveur {{ seocat($catName) }}</h1>
                                             <h2 class="mb-0 text-white titre">Liste de {{ $about->serveurCount }} serveurs {{ seocat($catName) }}</h2>
                                         @endif
-                                    @else
+                                    @elseif (isset($catName) && $catName == "clash-of-clans")
                                         <h1 class="text-white">Télécharger Clash Of Clans iOs Android</h1>
+                                        <h2 class="mb-0 text-white titre">Installer sur PC et jouer aux serveurs</h2>
+                                    @elseif (isset($catName) && $catName == "hytale")
+                                        <h1 class="text-white">Télécharger Hytale</h1>
                                         <h2 class="mb-0 text-white titre">Installer sur PC et jouer aux serveurs</h2>
                                     @endif
                                 </div>
