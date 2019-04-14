@@ -83,11 +83,11 @@ class CacheController extends Controller
             $n = 0;
             foreach ($server as $m => $j)
             {
-                if ($j->votes > 0)
-                {
+               /* if ($j->votes > 0)
+                {*/
                     $sArray[$n] = $j;
                     $n++;
-                }
+                //}
             }
 
             $page = ceil(count($sArray) / 35);
