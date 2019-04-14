@@ -372,6 +372,7 @@
             var my = 0;
             var diffx = 0;
             var diffy = 0;
+            var hasHovered = 0;
 
             var maxtimes = 0;
 
@@ -383,7 +384,7 @@
                     if (q) {
                         q = false;
                         iframeclick = $.now();
-                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'hovered':hasHovered}, function (data, status) {
                         });
                     }
                 }
@@ -480,6 +481,8 @@
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "70px")
                         {
+                            hasHovered = 1;
+
                             var timediff = $.now() - zo;
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
