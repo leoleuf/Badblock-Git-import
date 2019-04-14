@@ -394,6 +394,7 @@
             {
                 if (lastd <= 0)
                 {
+                    alert('.');
                     $('#vote_button').off('click');
                 }
                 else {
