@@ -238,23 +238,12 @@
                                             </div>
                                         </div>
                                     @elseif (encname($catName) == "hytale")
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
-                                             style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script><br />
                                         <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Télécharger {{ seocat($catName) }} sans plus attendre</h3>
                                         <div class="card lis-brd-light mb-1 wow fadeInUp">
                                             <div class="card-body p-4">
                                                 <p>
                                                     Le jeu Hytale, développé par Hypixel Studio, est un jeu qui devrait sortir très prochainement. Vous pourrez ainsi télécharger Hytale sans attendre trop longtemps puisqu'un trailer est déjà sorti, et beaucoup de rumeurs circulent à propos des nouveautés, de la release date (la date de sortie). Certains joueurs s'emparent déjà de leur hype pour chercher le jeu sur PS4, alors que pour le moment il est annoncé être disponible principalement sur les PC, Windows Mac et Linux, les trois principaux noyaux/systèmes d'exploitation les plus utilisés. Rien ne dit qu'une version PS4 ne sortira pas, mais pour le moment il est prévu de pouvoir le découvrir très prochainement.<br /><br />
-                                                    <br />Pourquoi ne pas le télécharger et l'installer dès maintenant ?
+                                                    Pourquoi ne pas le télécharger et l'installer dès maintenant ?
                                                 </p>
                                             </div>
                                         </div>
