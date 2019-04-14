@@ -492,7 +492,7 @@
                             <div class="card-body p-4">
 
                                 @foreach(config('tag.cat') as $k)
-                                    <a class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" title="Liste des serveurs {{ $k }}" href="/{{ encname($k) }}"><img alt="Serveur {{ $k }}" src="/img/{{ encname($k) }}.png" width="24" height="24" class="ialign" /> &nbsp;{{ ucfirst($k) }}</a>
+                                    <a class="lis-light border lis-brd-light lis-line-height-2_3 rounded d-block" title="Liste des serveurs {{ $k }}" href="/{{ encname($k) }}"><img alt="Serveur {{ $k }}" src="/img/{{ encname($k) }}.png" width="24" height="24" class="ialign" /> &nbsp;{{ ucfirst($k) }}</a>
                                 @endforeach
                             </div>
                         </div>
