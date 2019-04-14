@@ -79,15 +79,14 @@ class Teamspeak
         $Id = $this->client->serverGroupAdd($Name, 1);
 
         $permissions = array();
+
         $permissions['b_channel_create_temporary'] = array(1, 0, 0);
         $permissions['b_channel_create_with_password'] = array(1, 0, 0);
-        $permissions['b_channel_create_modify_with_codec_speex8'] = array(1, 0, 0);
-        $permissions['b_channel_create_modify_with_codec_speex16'] = array(1, 0, 0);
-        $permissions['b_channel_create_modify_with_codec_speex32'] = array(1, 0, 0);
         $permissions['b_channel_create_modify_with_codec_opusvoice'] = array(1, 0, 0);
         $permissions['b_channel_create_modify_with_codec_opusmusic'] = array(1, 0, 0);
         $permissions['i_channel_create_modify_with_codec_maxquality'] = array(10, 0, 0);
         $permissions['i_channel_create_modify_with_codec_latency_factor_min'] = array(1, 0, 0);
+
         $permissions['i_channel_modify_power'] = array(10, 0, 0);
         $permissions['b_channel_join_permanent'] = array(1, 0, 0);
         $permissions['b_channel_join_semi_permanent'] = array(1, 0, 0);
@@ -96,12 +95,6 @@ class Teamspeak
         $permissions['i_channel_subscribe_power'] = array(10, 0, 0);
         $permissions['i_channel_description_view_power'] = array(10, 0, 0);
         $permissions['i_channel_max_depth'] = array(5, 0, 0);
-        $permissions['i_group_needed_modify_power'] = array(74, 0, 0);
-        $permissions['i_group_needed_member_add_power'] = array(20, 0, 0);
-        $permissions['i_group_needed_member_remove_power'] = array(60, 0, 0);
-        $permissions['b_group_is_permanent'] = array(1, 0, 0);
-        $permissions['i_group_sort_id'] = array(50001, 0, 0);
-        $permissions['i_group_show_name_in_tree'] = array(1, 0, 0);
         $permissions['i_client_needed_kick_from_server_power'] = array(15, 0, 0);
         $permissions['i_client_needed_kick_from_channel_power'] = array(10, 0, 0);
         $permissions['i_client_needed_ban_power'] = array(30, 0, 0);
@@ -119,7 +112,15 @@ class Teamspeak
         $permissions['i_client_max_channel_subscriptions'] = array(-1, 0, 0);
         $permissions['b_client_request_talker'] = array(1, 0, 0);
 
-        $Succes = $this->client->serverGroupAddPerm($Id['data']['sgid'], $permissions);
+        $permissions['i_group_needed_modify_power'] = array(74, 0, 0);
+        $permissions['i_group_needed_member_add_power'] = array(70, 0, 0);
+        $permissions['i_group_needed_member_remove_power'] = array(60, 0, 0);
+
+        $permissions['b_group_is_permanent'] = array(1, 0, 0);
+        $permissions['i_group_sort_id'] = array(50001, 0, 0);
+        $permissions['i_group_show_name_in_tree'] = array(1, 0, 0);
+
+        $this->client->serverGroupAddPerm($Id['data']['sgid'], $permissions);
 
         return $Id['data']['sgid'];
     }
