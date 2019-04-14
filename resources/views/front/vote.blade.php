@@ -395,10 +395,10 @@
 
             $('#vote_button').click(function()
             {
+                $('#vote_button').off('click');
                 if (lastd <= 0)
                 {
                     alert('.');
-                    $('#vote_button').off('click');
                 }
                 else {
                     timeclick = $.now() - zo;
