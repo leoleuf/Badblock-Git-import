@@ -395,7 +395,7 @@
                 timeclick = $.now() - zo;
                 if (p) {
                     p = false;
-                    $.post('https://serveur-multigames.net/pm', {'a':timeclick,'b':0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
+                    $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 0,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
                     });
                 }
             });
