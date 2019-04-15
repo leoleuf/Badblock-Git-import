@@ -26,12 +26,6 @@ Route::post('/2faVerify', function () {
 
 })->name('2faVerify')->middleware('2fa');
 
-Route::get('/test', function(){
-
-    \App\Http\Controllers\section\NotificationsController::toOneSignal();
-
-});
-
 Route::group([
     'prefix'     => "api"
 ], function () {
