@@ -1292,14 +1292,33 @@ a.card-plus:hover {
     border-bottom: 5px solid #E95E3E;
 }
 
+#prd-101 h3 {
+    border-color: #e95e3e;
+}
+
+#prd-102 h3 {
+    border-color: #2ecc71;
+}
+
+#prd-102 .shop-package-content {
+    background-color: #3965be;
+}
+
+#prd-103 h3 {
+    border-color: #9b59b6;
+}
+
+
+
 .shop-package .shop-package-content {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    background-color: #E95E3E;
+    background-color: #651c28;
     background-repeat: no-repeat;
     background-position: center;
     height: 190px;
+    background-image: url(https://cdn.badblock.fr/upload/HOOKI15553413400.png);
 }
 
 .shop-package img {
@@ -1825,6 +1844,10 @@ h6.cover-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.shop-desc-content a {
+    cursor: pointer;
 }
 
 .shop-package-promotion {
