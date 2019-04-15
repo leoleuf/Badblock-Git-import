@@ -155,7 +155,6 @@ class UserController extends Controller
             if (empty($user["shoppoints"])) {
                 $user["shoppoints"] = 0;
             }
-            //Return view
             return $this->render($response, 'user.facture-view', ["user" => $user, "facture" => $factures]);
         } else {
             $this->getDashboard($request, $response);

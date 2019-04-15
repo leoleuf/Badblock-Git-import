@@ -149,7 +149,6 @@
                                 <a href="https://badblock.fr/legals/Conditions_generales_de_vente.pdf" title="Conditions générales de vente" target="_blank">Conditions générales de vente</a><br>
                                 Facture #: BB-{{ facture['_id'] }}<br>
                                 Date: {{ facture['date'] }}<br>
-                                Commentaire : {{ facture['comment'] }}
                                 <form><input type="button" value="Imprimer cette facture" onClick="print()"></form>
                             </td>
                         </tr>
@@ -199,7 +198,7 @@
                     {{ facture['gateway'] }}<br>
                 </td>
                 <td>
-                    {{ facture['gateway'] }}-{{ facture['transaction_id'] }}<br>
+                    {{ facture['transaction_id'] }} - {{ facture['comment'] }}<br>
                 </td>
             </tr>
 
