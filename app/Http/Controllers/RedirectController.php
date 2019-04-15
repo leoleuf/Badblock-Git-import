@@ -34,10 +34,20 @@ class RedirectController extends Controller
 
     public function redirect($cat, $id)
     {
-        if (!Redis::exists('server:' . $id)) {
+        $catName = encname($cat);
+
+        if (!in_array(seocat($catName), config('tag.cat')))
+        {
             abort(404);
         }
 
+        $id = encname($id);
+
+        // If the server doesn't exist
+        if (!Redis::exists('server:' . $id)) {
+            // So we redirect to the default page
+            abort(404);
+        }
         $server = Redis::get('server:' . $id);
         $server = json_decode($server);
 
@@ -71,7 +81,8 @@ class RedirectController extends Controller
 
             // Redirect
             $wb = htmlspecialchars($server->website);
-            return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
+            return view('front.redirect', ['catName' => $catName, 'data' => $server]);
+            //return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
         } else {
             // Redirect
             $wb = htmlspecialchars($server->website);
