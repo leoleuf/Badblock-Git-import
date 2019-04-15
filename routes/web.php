@@ -28,7 +28,7 @@ Route::post('/2faVerify', function () {
 
 Route::get('/test', function(){
 
-    \App\Http\Controllers\section\NotificationsController::sendFCMNotif(['body' => 'New message']);
+    \App\Http\Controllers\section\NotificationsController::toOneSignal();
 
 });
 
