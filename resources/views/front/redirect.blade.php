@@ -90,7 +90,7 @@
             </div>
             <div class="col-12 col-xl-3 align-self-center order-xl-2 order-1 text-xl-right text-center mt-4 mt-xl-0 plota">
                 <a title="Fiche du serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ encname($catName) }}/{{ encname($data->name) }}" class="btn btn-info btn-default"> <i class="fa fa-address-card"></i> Fiche</a>
-                <a title="Voter pour le serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ encname($catName) }}/{{ encname($data->name) }}/vote" class="btn btn-primary btn-default"> <i class="fa fa-gamepad"></i> Voter</a>
+                &nbsp; <a title="Voter pour le serveur {{ seocat($catName) }} {{ $data->name }}" href="/{{ encname($catName) }}/{{ encname($data->name) }}/vote" class="btn btn-primary btn-default"> <i class="fa fa-gamepad"></i> Voter</a>
             </div>
         </div>
     </div>
@@ -149,6 +149,15 @@
                     <div class="alert alert-success">
                         <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="/img/loading.gif" width="64" height="64" /> Tu vas être redirigé vers le serveur {{ $catName }} {{ $data->name }} dans quelques secondes.
                     </div>
+                    <ins class="adsbygoogle"
+                         style="display:block" id="vb"
+                         data-ad-client="ca-pub-1905923613312160"
+                         data-ad-slot="1434308007"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
