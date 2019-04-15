@@ -19,13 +19,13 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
-        if($this->container->session->getProfile('username') != 'Hooki_')
+        /*if($this->container->session->getProfile('username') != 'Hooki_')
         {
             if ($this->container->session->getProfile('username')['is_staff'] == true)
             {
                 return $this->render($response, 'user.move.staff');
             }
-        }
+        }*/
 
         return $this->render($response, 'user.move.step1');
     }
