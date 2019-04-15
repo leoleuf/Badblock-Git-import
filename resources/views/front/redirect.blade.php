@@ -18,7 +18,7 @@
 @php($banner = "https://serveur-multigames.net/img/header-bg-".encname($catName).".jpg")
 @endif
 
-<META http-equiv="refresh" content="0;URL=' . $wb . '">
+<META http-equiv="refresh" content="5;URL={{ $website }}">
 <section class="image-bg lis-grediant grediant-bt-dark text-white pb-4 profile-inner">
     <div class="background-image-maker"></div>
     <div class="holder-image"> <img src="{{ $banner }}" alt="Serveur {{ $catName }} {{ $data->name }}" class="img-fluid d-none"> </div>
