@@ -146,22 +146,8 @@
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Accéder au serveur
                     </h6>
 
-                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="card-body p-4">
-                            <p>
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveur-multigames -->
-                            <ins class="adsbygoogle"
-                                 style="display:block" id="vb1"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="1434308007"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                            Vous allez être redirigé sur le serveur {{ $catName }} {{ $data->name }} dans quelques secondes.</p>
-                        </div>
+                    <div class="alert alert-success">
+                        <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="/img/loading.gif" width="64" height="64" /> Tu vas être redirigé vers le serveur {{ $catName }} {{ $data->name }} dans quelques secondes.
                     </div>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
