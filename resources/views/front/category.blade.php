@@ -362,7 +362,7 @@
                                                     </li>
 
                                                     <li class="list-inline-item votes">
-                                                        {{ $row->votes }} votes
+                                                        {{ $row->votes }} votes | {{ $row->clicks }} clics
                                                     </li>
 
                                                 </ul>
