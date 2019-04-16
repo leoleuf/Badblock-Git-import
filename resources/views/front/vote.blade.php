@@ -250,7 +250,8 @@
                                                     data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
                                                 Voter <i class="lnr lnr-arrow-right"></i>
                                             </button>
-                                        </div>
+
+                                    </div>
 
                                         {{ csrf_field() }}
                                 </form><br />
@@ -402,12 +403,12 @@
             {
                 if (lastd <= 0)
                 {
-                    if (document.getElementById("vb").style.marginTop != "50px")
+                    if (document.getElementById("bruks").style.marginTop != "50px")
                     {
                         lastd = $.now();
                         maxtimes = maxtimes + 1;
                         zo = $.now();
-                        document.getElementById("vb").style.marginTop = "100px";
+                        document.getElementById("bruks").style.marginTop = "100px";
                     }
                 }
                 else {
@@ -507,7 +508,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "70px")
+                        if (isHovered && document.getElementById("bruks").style.marginTop != "70px")
                         {
                             hasHovered = 1;
 
@@ -520,11 +521,11 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "70px";
+                                document.getElementById("bruks").style.marginTop = "70px";
                             }
                         }
 
-                        if (document.getElementById("vb").style.marginTop == "70px")
+                        if (document.getElementById("bruks").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 3)
@@ -532,7 +533,7 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "-40px";
+                                document.getElementById("bruks").style.marginTop = "-40px";
                                 time = 500;
                             }
                         }
