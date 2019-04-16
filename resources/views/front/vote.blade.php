@@ -106,13 +106,7 @@
                 <div class="col-12 col-lg-4">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <!-- serveur-multigames -->
-                            <ins class="adsbygoogle"
-                                 style="display:inline-block;width:300px;height:600px;margin-left:20%;"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="2719469514"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
+                    <ins class="adsbygoogle" style="display:inline-block;width:395px;height:900px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3722089873"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
