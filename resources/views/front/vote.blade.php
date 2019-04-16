@@ -246,10 +246,10 @@
 
                                         {{ csrf_field() }}
                                 </form><br />
-                            <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-11 btn btn-dark" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
-                            <br />
+                            <br /><br />
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
                         </div>
