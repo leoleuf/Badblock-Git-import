@@ -4,6 +4,7 @@
 @section('canonical', 'https://serveur-multigames.net/mise-en-avant')
 @section('jquery', 'async defer')
 @extends('front.index')
+@php($noautoad = 1)
 @section('content')
 
     <section class="lis-bg-light pb-5">
@@ -44,9 +45,7 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="feature-area">
+        
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-3 feat-img no-padding">

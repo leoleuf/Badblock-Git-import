@@ -4,6 +4,7 @@
 @section('canonical', 'https://serveur-multigames.net/contact')
 @section('jquery', 'async defer')
 @extends('front.index')
+@php($noautoad = 1)
 @section('content')
     <section class="lis-bg-light pb-5">
         <div class="container pt-5">

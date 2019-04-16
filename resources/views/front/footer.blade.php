@@ -85,7 +85,7 @@ if ($date != $creationDate)
 <script data-pagespeed-no-defer src="/dist/js/plugins.min.js"></script>
 @if (!isset($invote))
 <script src="/dist/js/common.js"></script>
-@if (!isset($classement))
+@if (!isset($classement) && !isset($noautoad))
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({

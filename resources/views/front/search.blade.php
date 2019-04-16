@@ -5,6 +5,7 @@
 @section('canonical', 'https://serveur-multigames.net/recherche/'.$internalTerm)
 @section('jquery', 'async defer')
 @extends('front.index')
+@php($noautoad = 1)
 @section('content')
 
     <section class="banner-area relative" id="home">
