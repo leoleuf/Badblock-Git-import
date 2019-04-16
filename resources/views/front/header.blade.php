@@ -98,7 +98,6 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
         <div id="dl-menu" class="dl-menuwrapper d-block d-lg-none float-right">
             <button>Ouvrir le menu</button>
             <ul class="dl-menu">
-            <ul class="dl-menu">
 
                 <a title="Accueil" class="nav-link" href="/" data-toggle="dropdown" aria-expanded="false">Accueil</a>
                 <li> <a title="Mettre en avant son serveur de jeu" @if(Auth::user()) href="/dashboard/mise-en-avant" @else href="/mise-en-avant" @endif><i class="fa fa-plus pr-1"></i> Mise en avant</a></li>
@@ -128,6 +127,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                         &nbsp; | &nbsp;&nbsp;<a title="M'inscrire" href="/register" class="text-white"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a>
                     @else
                         <a title="Accéder au tableau de bord" href="/dashboard" class="text-white"><i class="fa fa-dashboard"></i> Tableau de bord</a>
+                        &nbsp; | &nbsp;&nbsp;
                         <a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a>
                     @endif
                 </li>
