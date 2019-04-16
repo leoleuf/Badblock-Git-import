@@ -224,30 +224,33 @@
                                         </a>
                                     </div>
 
-                                    <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
-                                        <!--<ins class="adsbygoogle"
-                                             style="display:block" id="vb"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>!-->
-                                        <ins class="adsbygoogle"
-                                             id="vb"
-                                             style="display:inline-block;width:670px;height:280px"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="4053262366"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                    <div class="col-12" id="bruks">
 
-                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
-                                                data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
-                                            Voter <i class="lnr lnr-arrow-right"></i>
-                                        </button>
+                                        <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
+                                            <!--<ins class="adsbygoogle"
+                                                 style="display:block" id="vb"
+                                                 data-ad-client="ca-pub-1905923613312160"
+                                                 data-ad-slot="1434308007"
+                                                 data-ad-format="auto"
+                                                 data-full-width-responsive="true"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>!-->
+                                            <ins class="adsbygoogle"
+                                                 id="vb"
+                                                 style="display:inline-block;width:670px;height:280px"
+                                                 data-ad-client="ca-pub-1905923613312160"
+                                                 data-ad-slot="4053262366"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+
+                                            <button class="col-11 g-recaptcha btn btn-default" id="vbna"
+                                                    data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                    data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
+                                                Voter <i class="lnr lnr-arrow-right"></i>
+                                            </button>
+                                        </div>
 
                                         {{ csrf_field() }}
                                 </form><br />
