@@ -220,13 +220,20 @@
                                     <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
 
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
+                                        <!--<ins class="adsbygoogle"
                                              style="display:block" id="vb"
                                              data-ad-client="ca-pub-1905923613312160"
                                              data-ad-slot="1434308007"
                                              data-ad-format="auto"
                                              data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>!-->
+                                        <ins class="adsbygoogle"
+                                             id="vb"
+                                             style="display:inline-block;width:670px;height:280px"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="4053262366"></ins>
                                         <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                         </script>
@@ -242,17 +249,6 @@
                             <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveur-multigames -->
-                            <ins class="adsbygoogle"
-                                 style="display:block" id="vb1"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="1434308007"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
 
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
