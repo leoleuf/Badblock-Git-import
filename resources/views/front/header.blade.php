@@ -102,11 +102,11 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
                 <a title="Accueil" class="nav-link" href="/" data-toggle="dropdown" aria-expanded="false">Accueil</a>
                 <li> <a title="Mettre en avant son serveur de jeu" @if(Auth::user()) href="/dashboard/mise-en-avant" @else href="/mise-en-avant" @endif><i class="fa fa-plus pr-1"></i> Mise en avant</a></li>
                 @if(!Auth::user())
-                    <li> <a title="Me connecter" href="/login" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Connexion</a></li>
-                    <li> <a title="M'inscrire" href="/register" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a></li>
+                    <li> <a title="Me connecter" href="/login" class="text-white"><i class="fa fa-sign-in pr-2"></i> Connexion</a></li>
+                    <li> <a title="M'inscrire" href="/register" class="text-white"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a></li>
                 @else
-                    <li><a title="Accéder au tableau de bord" href="/dashboard" class="text-white login_form"><i class="fa fa-dashboard"></i> Tableau de bord</a></li>
-                    <li><a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a></li>
+                    <li><a title="Accéder au tableau de bord" href="/dashboard" class="text-white"><i class="fa fa-dashboard"></i> Tableau de bord</a></li>
+                    <li><a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a></li>
                 @endif
 
 
@@ -123,11 +123,11 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
             <ul class="list-unstyled my-2 my-lg-0">
                 <li>
                     @if(!Auth::user())
-                        <a title="Me connecter" href="/login" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Connexion</a>
-                        &nbsp; | &nbsp;&nbsp;<a title="M'inscrire" href="/register" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a>
+                        <a title="Me connecter" href="/login" class="text-white"><i class="fa fa-sign-in pr-2"></i> Connexion</a>
+                        &nbsp; | &nbsp;&nbsp;<a title="M'inscrire" href="/register" class="text-white"><i class="fa fa-sign-in pr-2"></i> S'inscrire</a>
                     @else
-                        <a title="Accéder au tableau de bord" href="/dashboard" class="text-white login_form"><i class="fa fa-dashboard"></i> Tableau de bord</a>
-                        <a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white login_form"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a>
+                        <a title="Accéder au tableau de bord" href="/dashboard" class="text-white"><i class="fa fa-dashboard"></i> Tableau de bord</a>
+                        <a title="Déconnexion" href="/logout/{{ csrf_token() }}" class="text-white"><i class="fa fa-sign-in pr-2"></i> Se déconnecter</a>
                     @endif
                 </li>
             </ul>
