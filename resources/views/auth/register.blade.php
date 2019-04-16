@@ -65,6 +65,24 @@
                                 </div>
 
                                 <div class="col-12 col-sm-12">
+                                    @if ($errors->has('name'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $errors->first('name') }}
+                                        </div>
+                                    @endif
+
+                                    @if ($errors->has('email'))
+                                        <div class="alert alert-danger" role="alert">
+                                            {{ $errors->first('email') }}
+                                        </div>
+                                    @endif
+
+                                        @if ($errors->has('password'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $errors->first('password') }}
+                                            </div>
+                                        @endif
+
                                     <div class="form-group row">
                                         <label for="name" class="col-12 col-md-3 col-form-label">Pseudonyme</label>
                                         <div class="col-12 col-md-9">
@@ -80,13 +98,13 @@
                                     <div class="form-group row">
                                         <label for="password" class="col-12 col-md-3 col-form-label">Mot de passe</label>
                                         <div class="col-12 col-md-9">
-                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password" value="{{ old('password') }}" required>
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password" required>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="password_confirm" class="col-12 col-md-3 col-form-label">Confirmer votre mot de passe</label>
                                         <div class="col-12 col-md-9">
-                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password_confirmation" value="{{ old('password') }}" required>
+                                            <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" type="password" name="password_confirmation" required>
                                         </div>
                                     </div>
 
