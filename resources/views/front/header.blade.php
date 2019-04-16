@@ -98,6 +98,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
         <div id="dl-menu" class="dl-menuwrapper d-block d-lg-none float-right">
             <button>Ouvrir le menu</button>
             <ul class="dl-menu">
+            <ul class="dl-menu">
 
                 <a title="Accueil" class="nav-link" href="/" data-toggle="dropdown" aria-expanded="false">Accueil</a>
                 <li> <a title="Mettre en avant son serveur de jeu" @if(Auth::user()) href="/dashboard/mise-en-avant" @else href="/mise-en-avant" @endif><i class="fa fa-plus pr-1"></i> Mise en avant</a></li>
