@@ -283,7 +283,7 @@ class PubController extends Controller
         $days = array();
 
         // TODO : COEFFICIENT A GERER AVEC LE TRAFIC
-        $coeff = 16;
+        $coeff = 7;
 
         $daysCoef = array(
             0 => 21, // Dimanche

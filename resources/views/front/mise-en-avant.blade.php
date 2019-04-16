@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-3 feat-img no-padding">
