@@ -238,7 +238,7 @@
                                         </button>
 
                                         {{ csrf_field() }}
-                                </form><br />
+                                </form>
                             <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
