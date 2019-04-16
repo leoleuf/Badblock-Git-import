@@ -32,7 +32,6 @@
                 <div class="col-12 col-lg-9 mb-5 mb-lg-0">
 
                     <div class="card lis-brd-light wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        {{ var_dump($errors) }}
                         <form method="post" action="{{ route('login') }}" class="card-body p-0">
 
                             <div class="row p-4">
