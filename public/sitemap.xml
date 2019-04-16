@@ -4,2302 +4,2379 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
 <url>
   <loc>https://serveur-multigames.net/</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://serveur-multigames.net/clash-of-clans</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://serveur-multigames.net/mise-en-avant</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/login</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/register</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/add-server</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/grand-theft-auto</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/hytale</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/ark-survival-evolved</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/api</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/clash-of-clans</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/tos</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/faq</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/reglement</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/contact</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tag/pvp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tag/faction</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/tag/survie</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tag/crack</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/tag/survie</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tag/minijeux</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tag/skyblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/politicraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/politicraft---elu-meilleure-communaute-2019</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/politicraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/politicraft---elu-meilleure-communaute-2019/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/bloodsymphony</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/bloodsymphony/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hadaria--pvpfactions-100-farm2win</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hadaria--pvpfactions-100-farm2win/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/-chocolia--faction-farm2win-n1-</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/-chocolia--faction-farm2win-n1-/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/crazycube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/crazycube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/badblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/badblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/soleria---pvpfaction-farmtowin</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/soleria---pvpfaction-farmtowin/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hadaria-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hadaria-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/world-of-skill</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/world-of-skill/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/soleria---pvpfaction-farmtowin</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/soleria---pvpfaction-farmtowin/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/elenox-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/elenox-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/pixworld-survival-pvp---skyblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/pixworld--survie--skyblock</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/pixworld-survival-pvp---skyblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/pixworld--survie--skyblock/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/asteria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/asteria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/topcraftfr/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/frenchsky</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/frenchsky/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/survivalworld</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/survivalworld/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/mvwild</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/mvwild/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/armoria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/armoria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/auremarc-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/auremarc-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/uni-craft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/uni-craft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/neikacraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/neikacraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/euracraft---giveall-tout-les-dimanches---17h</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/mvwild</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/euracraft---giveall-tout-les-dimanches---17h/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/worldcube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/worldcube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/mvwild/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/mcroyal</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/mcroyal/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/neoliamc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/uni-craft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/neoliamc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/uni-craft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/citycube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/survivalworld</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/citycube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/survivalworld/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/skylord</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skylord/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aris</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aris/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/deadfight</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/deadfight/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sideralgames</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sideralgames/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/decacraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/decacraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sky-one</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sky-one/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/rampageous</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/rampageous/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skykits</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skykits/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minetribu</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minetribu/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/topcraftfr/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/seaworld</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/seaworld/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/mazercraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/auremarc-network</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/mazercraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/auremarc-network/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skylord</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skylord/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/euracraft---giveall-tout-les-dimanches---17h</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/euracraft---giveall-tout-les-dimanches---17h/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sideralgames</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sideralgames/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/neoliamc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/neoliamc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/worldcube</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/worldcube/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/decacraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/decacraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aris</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aris/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/citycube</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/citycube/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/deadfight</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/deadfight/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skykits</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skykits/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rampageous</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rampageous/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sky-one</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sky-one/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/stelycube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/stelycube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/neodyme</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/neodyme/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/elyria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/elyria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/page/2</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/page/3</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/page/4</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/page/5</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/page/6</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/240-britana--quetes--donjons--succes--vagues--incarnations/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/crystalia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/crystalia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/artamis-129/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/elovia-210/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/grand-theft-auto/tag/roleplay</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/grand-theft-auto/cityv</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/grand-theft-auto/cityv/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/hytale/serveur-hytale</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/hytale/serveur-hytale/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/ark-survival-evolved/hamrak-serveur-pve</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/ark-survival-evolved/hamrak-serveur-pve/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/ark-survival-evolved/pve-walden-fr--ragnarok-avec-stats-et-mods-</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/ark-survival-evolved/pve-walden-fr--ragnarok-avec-stats-et-mods-/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/tag/bot</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/tag/musique</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/creepcraft-discord</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/creepcraft-discord/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/hungerfamillie</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/hungerfamillie/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/star-royale-fr</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/discord/star-royale-fr/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/add-server/true</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/add-server/json</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/add-server/callback</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/add-server/votifier</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/clash-of-clans/serveur-clash-of-clans</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/clash-of-clans/serveur-clash-of-clans/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/urikanenetwork</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/mazercraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/urikanenetwork/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nitrocube-serveur-minijeux-minecraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nitrocube-serveur-minijeux-minecraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/anarchynetwork</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/anarchynetwork/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/neodyme</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/neodyme/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/mazercraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/epiviosi</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/epiviosi/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/vikicraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/urikanenetwork</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/vikicraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/urikanenetwork/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/horizona</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/nitrocube-serveur-minijeux-minecraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/horizona/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/royality</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/royality/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sentycraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sentycraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/neolithic</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/neolithic/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/artancraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/artancraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/farmandfight</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/farmandfight/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/novigrad-survival</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/novigrad-survival/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/potato-serveur</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/potato-serveur/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/phoenixrebirth</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/phoenixrebirth/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/paralya</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/paralya/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/heleria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/heleria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/topcraftfr</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/nitrocube-serveur-minijeux-minecraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/goldaria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/goldaria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kemenya</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kemenya/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skydiamond-pvp-18-no-lag/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nod-studio-minecraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nod-studio-minecraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kit_craft-evolution</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kit_craft-evolution/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skillpvp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skillpvp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/epix</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/epix/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/huntiescraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/huntiescraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/revealed</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/revealed/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sheyserv</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sheyserv/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cristalia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cristalia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cloudnetwork---un-simple-survie</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cloudnetwork---un-simple-survie/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aknotl</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aknotl/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eperia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eperia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/athena---skyblock---1122--on-/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kisacraft-pvpfactionsmagiefarmtowin-1710/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/earlyfight</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/earlyfight/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/world-of-olendor</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/world-of-olendor/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/mapifiel</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/mapifiel/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/spellcraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/spellcraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eclosia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eclosia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skycube-network-serveur-skyblock---freebuild---anarchie</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skycube-network-serveur-skyblock---freebuild---anarchie/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bedrock-survival</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bedrock-survival/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/califorcraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/califorcraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyblockfr</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyblockfr/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/fr-gadu-world</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/fr-gadu-world/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/beforehg</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/beforehg/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/infunmatique</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/infunmatique/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/serveur-hyridium-survie-1132/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/poolpykette</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/poolpykette/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/obsidiamc--serveur-minijeux</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/obsidiamc--serveur-minijeux/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/crazy-island</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/crazy-island/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/goldcraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/goldcraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/superius</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/superius/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hardfight-v8/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/underlife-1122113x/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minicraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minicraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minesly</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minesly/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/project-r</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/project-r/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/diamscraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/diamscraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/les-apocryphes-darda</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/les-apocryphes-darda/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/evasion</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/evasion/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/notyflash</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/notyflash/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bloopersworld-v2</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bloopersworld-v2/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/lestiacraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/lestiacraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kultariamc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kultariamc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/battle-adventure</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/battle-adventure/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/l-arche-maudite</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/l-arche-maudite/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sulfracraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sulfracraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/onyria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/onyria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/topred</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/topred/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/fr-ao-pve-semi-rp-ragnarok--mods-210-nvx</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/fr-ao-pve-semi-rp-ragnarok--mods-210-nvx/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/surviecraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/surviecraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/korolia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/korolia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/esperia-rp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/esperia-rp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bloodsky-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/bloodsky-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/garden</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/garden/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/armadacraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/armadacraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/herediamc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/herediamc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/endeavorcraft-</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/endeavorcraft-/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/winozia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/winozia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/standblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/standblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/lost-paradise</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/lost-paradise/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/impaktzone-mc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/impaktzone-mc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/menoria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/menoria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/noriagames</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/noriagames/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/plantania</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/plantania/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hardcore-op-prison</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hardcore-op-prison/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/honorisrp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/honorisrp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minequests</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minequests/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nathcraft---factions</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nathcraft---factions/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/-icarya--faction-magie--op-prison--skyblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/-icarya--faction-magie--op-prison--skyblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/horazion--117--113/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/antiqueprison</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/antiqueprison/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eclosia-pvpskyblock</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eclosia-pvpskyblock/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minebuilding--pvp-faction-farm2win</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minebuilding--pvp-faction-farm2win/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eredhen</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eredhen/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nucleria-pvp-faction</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nucleria-pvp-faction/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/rubia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/rubia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/ectonia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/ectonia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/linosa</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/linosa/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/olympus</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/olympus/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/criptmania</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/criptmania/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/khraal</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/khraal/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/endoria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/endoria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/debscraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/debscraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyhand</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyhand/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/osisky</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/osisky/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/altis-of-life</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/altis-of-life/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hdeath</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/hdeath/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/azuraworld</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/azuraworld/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/unycube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/unycube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/celestium</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/celestium/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/gaspezia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/gaspezia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/prisonofrp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/prisonofrp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/heronia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/heronia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/vanillasurvie</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/vanillasurvie/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/erosia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/erosia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minewhite</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/minewhite/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nightbloc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/nightbloc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kfaction</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/kfaction/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cubixmc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/cubixmc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyfight--faction--kitpvp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/skyfight--faction--kitpvp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/extopia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/extopia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/killcraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/killcraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/ascension-darda</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/ascension-darda/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aventurya</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/aventurya/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/windalia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/windalia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/polary-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/polary-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/creepcraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/creepcraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/funserv</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/funserv/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sacredone</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/sacredone/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eldariafr</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/eldariafr/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/garden-v2</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://serveur-multigames.net/minecraft/garden-v2/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/opsycraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/opsycraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/dildoria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/vikicraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/dildoria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/vikicraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/exoticserveurs</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/crazycube</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/exoticserveurs/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/crazycube/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/thedreamisland</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/nathcraft---factions</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/thedreamisland/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/nathcraft---factions/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/egoriamc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/minetribu</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/egoriamc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/minetribu/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/lostisland</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/neolithic</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/lostisland/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/neolithic/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/stralyris-pvpfactions-crack-farm-to-win-inedit</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/artancraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/stralyris-pvpfactions-crack-farm-to-win-inedit/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/artancraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/communitycube</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/novigrad-survival</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/communitycube/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/novigrad-survival/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/elyria</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/sheyserv</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/elyria/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/sheyserv/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/un-deux-trois-x-y-z</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/cristalia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/un-deux-trois-x-y-z/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/cristalia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/landiarp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/paralya</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/landiarp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/paralya/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/playfight---18x/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/horizona</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/ulphigone</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/horizona/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/ulphigone/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/skycube-network-serveur-skyblock---freebuild---anarchie</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/applefight</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/skycube-network-serveur-skyblock---freebuild---anarchie/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/applefight/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/heleria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/ohminegod</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/heleria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/ohminegod/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <loc>https://serveur-multigames.net/minecraft/fr-gadu-world</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/fr-gadu-world/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/obsidiamc--serveur-minijeux</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/obsidiamc--serveur-minijeux/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyofskill</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyofskill/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/topcraftfr</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hadaria-network</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hadaria-network/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/over2craft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/over2craft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nod-studio-minecraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nod-studio-minecraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ascension-darda</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ascension-darda/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/revealed</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/revealed/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/cloudnetwork---un-simple-survie</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/cloudnetwork---un-simple-survie/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aknotl</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aknotl/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eperia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eperia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyblock</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyblock/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/athena---skyblock---1122--on-/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kisacraft-pvpfactionsmagiefarmtowin-1710/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/earlyfight</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/earlyfight/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/world-of-olendor</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/world-of-olendor/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/mapifiel</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/mapifiel/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/spellcraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/spellcraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eclosia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eclosia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bedrock-survival</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bedrock-survival/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/califorcraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/califorcraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyblockfr</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyblockfr/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/beforehg</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/beforehg/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/infunmatique</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/infunmatique/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/serveur-hyridium-survie-1132/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/poolpykette</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/poolpykette/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/crazy-island</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/crazy-island/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/goldcraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/goldcraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/superius</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/superius/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hardfight-v8/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/underlife-1122113x/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minicraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minicraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minesly</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minesly/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/project-r</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/project-r/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/diamscraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/diamscraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/les-apocryphes-darda</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/les-apocryphes-darda/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/evasion</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/evasion/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/notyflash</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/notyflash/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bloopersworld-v2</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bloopersworld-v2/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lestiacraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lestiacraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kultariamc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kultariamc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/battle-adventure</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/battle-adventure/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/l-arche-maudite</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/l-arche-maudite/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sulfracraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sulfracraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/onyria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/onyria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/topred</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/topred/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/fr-ao-pve-semi-rp-ragnarok--mods-210-nvx</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/fr-ao-pve-semi-rp-ragnarok--mods-210-nvx/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kit_craft-evolution</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kit_craft-evolution/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/surviecraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/surviecraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/farmandfight</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/farmandfight/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/korolia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/korolia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/esperia-rp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/esperia-rp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bloodsky-network</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/bloodsky-network/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/garden</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/garden/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/armadacraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/armadacraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/herediamc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/herediamc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/endeavorcraft-</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/endeavorcraft-/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/winozia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/winozia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/standblock</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/standblock/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lost-paradise</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lost-paradise/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/impaktzone-mc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/impaktzone-mc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/royality</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/royality/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/menoria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/menoria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/noriagames</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/noriagames/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/plantania</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/plantania/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hardcore-op-prison</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hardcore-op-prison/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/honorisrp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/honorisrp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minequests</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minequests/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/-icarya--faction-magie--op-prison--skyblock</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/-icarya--faction-magie--op-prison--skyblock/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/horazion--117--113/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/antiqueprison</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/antiqueprison/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eclosia-pvpskyblock</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eclosia-pvpskyblock/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minebuilding--pvp-faction-farm2win</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minebuilding--pvp-faction-farm2win/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eredhen</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eredhen/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nucleria-pvp-faction</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nucleria-pvp-faction/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rubia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rubia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ectonia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ectonia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/linosa</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/linosa/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/olympus</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/olympus/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/criptmania</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/criptmania/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/oxygen</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/oxygen/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/khraal</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/khraal/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/drimooz</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/drimooz/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/endoria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/endoria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rosenix</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/rosenix/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyyplex</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyyplex/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/debscraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/debscraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skydiamond-pvp-18-no-lag/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lazylex</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lazylex/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/anarchynetwork</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/anarchynetwork/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyhand</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyhand/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/potato-serveur</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/potato-serveur/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/euphoria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/euphoria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/-pacraft--pvp-faction-farm2win</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/-pacraft--pvp-faction-farm2win/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/survauria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/survauria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/osisky</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/osisky/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/altis-of-life</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/altis-of-life/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hdeath</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/hdeath/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/azuraworld</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/azuraworld/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/unycube</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/unycube/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/celestium</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/celestium/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/gaspezia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/gaspezia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/prisonofrp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/prisonofrp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/heronia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/heronia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/vanillasurvie</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/vanillasurvie/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/erosia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/erosia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minewhite</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/minewhite/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nightbloc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/nightbloc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skillpvp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skillpvp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kfaction</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kfaction/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/cubixmc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/cubixmc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyfight--faction--kitpvp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skyfight--faction--kitpvp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/epix</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/epix/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/extopia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/extopia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/killcraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/killcraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aventurya</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/aventurya/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sentycraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sentycraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/windalia</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/windalia/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/polary-network</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/polary-network/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/creepcraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/creepcraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/funserv</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/funserv/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sacredone</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/sacredone/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eldariafr</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/eldariafr/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/garden-v2</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/garden-v2/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/huntiescraft</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/huntiescraft/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/dildoria</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/dildoria/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/exoticserveurs</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/exoticserveurs/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/thedreamisland</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/thedreamisland/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/egoriamc</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/egoriamc/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lostisland</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/lostisland/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/stralyris-pvpfactions-crack-farm-to-win-inedit</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/stralyris-pvpfactions-crack-farm-to-win-inedit/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/communitycube</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/communitycube/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/un-deux-trois-x-y-z</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/un-deux-trois-x-y-z/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/landiarp</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/landiarp/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/playfight---18x/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ulphigone</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ulphigone/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/applefight</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/applefight/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ohminegod</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/ohminegod/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/phoenixrebirth</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/phoenixrebirth/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/arthas</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/arthas/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kemenya</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/kemenya/vote</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/pixworld-network-fiche-a-supprimer</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/pixworld-network-fiche-a-supprimer/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/lunosia-network</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/lunosia-network/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/erastopia</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/erastopia/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/vinenetwork</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/vinenetwork/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/hellominecraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/hellominecraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tour-de-controle</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/tour-de-controle/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/sinisterzland</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/sinisterzland/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/chuttergamesplaychuttergamesfr--serveur-hungergames18-112/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/minepiece</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/minepiece/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/khralium</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/khralium/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/lunamc</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/lunamc/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/electrofight</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/electrofight/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/mc-sword-art-online</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/mc-sword-art-online/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/ninjacraft</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/ninjacraft/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/airlinerp</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/airlinerp/vote</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/240-britana--quetes--donjons--succes--vagues--incarnations</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/artamis-129</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/dofus/elovia-210</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://serveur-multigames.net/minecraft/skydiamond-pvp-18-no-lag</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
   <loc>https://serveur-multigames.net/minecraft/athena---skyblock---1122--on-</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/kisacraft-pvpfactionsmagiefarmtowin-1710</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/serveur-hyridium-survie-1132</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/hardfight-v8</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/underlife-1122113x</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/horazion--117--113</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://serveur-multigames.net/minecraft/skydiamond-pvp-18-no-lag</loc>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/playfight---18x</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 <url>
   <loc>https://serveur-multigames.net/minecraft/chuttergamesplaychuttergamesfr--serveur-hungergames18-112</loc>
-  <lastmod>2019-03-17T15:50:50+00:00</lastmod>
+  <lastmod>2019-04-16T09:21:12+00:00</lastmod>
   <priority>0.41</priority>
 </url>
 
