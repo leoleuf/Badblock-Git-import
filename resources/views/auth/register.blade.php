@@ -42,6 +42,8 @@
                     <div class="card lis-brd-light wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <form method="post" action="{{ route('register') }}" class="card-body p-0">
 
+                            @csrf
+
                             <div class="row p-4">
 
                                 <div class="col-12 col-md-3">
@@ -110,9 +112,11 @@
 
                                 </div>
                                 <div class="col-12 col-sm-12">
-                                    <input type="submit" class="btn btn-primary g-recaptcha"
-                                           data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                           data-callback="onSubmit" name="submit" value="Valider l'inscription" />
+                                    <button class="btn btn-primary" class="btn btn-primary" class="g-recaptcha"
+                                            data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                            data-callback="onSubmit">
+                                        Je m'inscris !
+                                    </button>
                                 </div>
                             </div>
 
