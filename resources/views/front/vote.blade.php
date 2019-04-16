@@ -508,7 +508,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("bruks").style.marginTop != "150px")
+                        if (isHovered && document.getElementById("bruks").style.marginTop != "220px")
                         {
                             hasHovered = 1;
 
@@ -521,11 +521,11 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("bruks").style.marginTop = "150px";
+                                document.getElementById("bruks").style.marginTop = "220px";
                             }
                         }
 
-                        if (document.getElementById("bruks").style.marginTop == "150px")
+                        if (document.getElementById("bruks").style.marginTop == "220px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 3)
