@@ -57,20 +57,20 @@
                                 </div>
 
 
-                                @if ($errors->has('email'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $errors->first('email') }}
-                                    </div>
-                                @endif
-
-                                @if ($errors->has('password'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ $errors->first('password') }}
-                                    </div>
-                                @endif
-
                                     <div class="col-12 col-sm-12">
-                                    <div class="form-group row">
+                                        @if ($errors->has('email'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $errors->first('email') }}
+                                            </div>
+                                        @endif
+
+                                        @if ($errors->has('password'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $errors->first('password') }}
+                                            </div>
+                                        @endif
+
+                                        <div class="form-group row">
                                         <label for="name" class="col-12 col-md-3 col-form-label">Adresse e-mail</label>
                                         <div class="col-12 col-md-9">
                                             <input class="form-control border-top-0 border-left-0 border-right-0 rounded-0" name="email" value="{{ old('email') }}" placeholder="Saisissez un email" type="email" required autofocus>
