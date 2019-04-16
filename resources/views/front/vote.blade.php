@@ -104,22 +104,15 @@
         <div class="row">
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
-                          <!--  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- serveur-multigames -->
                             <ins class="adsbygoogle"
                                  style="display:inline-block;width:300px;height:600px;margin-left:20%;"
                                  data-ad-client="ca-pub-1905923613312160"
                                  data-ad-slot="2719469514"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>!--><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- serveur-multigames-bigskyscraper -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:395px;height:900px"
-                         data-ad-client="ca-pub-1905923613312160"
-                         data-ad-slot="3722089873"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                            </script>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
@@ -224,41 +217,43 @@
                                         </a>
                                     </div>
 
-                                    <div class="col-12" id="bruks">
+                                    <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
 
-                                        <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
-                                            <!--<ins class="adsbygoogle"
-                                                 style="display:block" id="vb"
-                                                 data-ad-client="ca-pub-1905923613312160"
-                                                 data-ad-slot="1434308007"
-                                                 data-ad-format="auto"
-                                                 data-full-width-responsive="true"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>!-->
-                                            <ins class="adsbygoogle"
-                                                 id="vb"
-                                                 style="display:inline-block;width:670px;height:280px"
-                                                 data-ad-client="ca-pub-1905923613312160"
-                                                 data-ad-slot="4053262366"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- serveur-multigames -->
+                                        <ins class="adsbygoogle"
+                                             style="display:block" id="vb"
+                                             data-ad-client="ca-pub-1905923613312160"
+                                             data-ad-slot="1434308007"
+                                             data-ad-format="auto"
+                                             data-full-width-responsive="true"></ins>
+                                        <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
 
-                                            <button class="col-11 g-recaptcha btn btn-default" id="vbna"
-                                                    data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                    data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
-                                                Voter <i class="lnr lnr-arrow-right"></i>
-                                            </button>
-
-                                    </div>
+                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
+                                                data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
+                                            Voter <i class="lnr lnr-arrow-right"></i>
+                                        </button>
 
                                         {{ csrf_field() }}
                                 </form><br />
-                            <button class="col-11 btn btn-dark" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
-                            <br /><br />
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- serveur-multigames -->
+                            <ins class="adsbygoogle"
+                                 style="display:block" id="vb1"
+                                 data-ad-client="ca-pub-1905923613312160"
+                                 data-ad-slot="1434308007"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
                         </div>
@@ -403,12 +398,12 @@
             {
                 if (lastd <= 0)
                 {
-                    if (document.getElementById("bruks").style.marginTop != "50px")
+                    if (document.getElementById("vb").style.marginTop != "50px")
                     {
                         lastd = $.now();
                         maxtimes = maxtimes + 1;
                         zo = $.now();
-                        document.getElementById("bruks").style.marginTop = "100px";
+                        document.getElementById("vb").style.marginTop = "100px";
                     }
                 }
                 else {
@@ -508,7 +503,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("bruks").style.marginTop != "220px")
+                        if (isHovered && document.getElementById("vb").style.marginTop != "70px")
                         {
                             hasHovered = 1;
 
@@ -516,16 +511,16 @@
                             var bdiff = $.now() - Math.max(tx, ty);
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if ((timediff < 1200 || bdiff > zolv) && maxtimes < 3)
+                            if (bdiff > zolv && maxtimes < 3)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("bruks").style.marginTop = "220px";
+                                document.getElementById("vb").style.marginTop = "70px";
                             }
                         }
 
-                        if (document.getElementById("bruks").style.marginTop == "220px")
+                        if (document.getElementById("vb").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 3)
@@ -533,7 +528,7 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("bruks").style.marginTop = "0px";
+                                document.getElementById("vb").style.marginTop = "-40px";
                                 time = 500;
                             }
                         }
