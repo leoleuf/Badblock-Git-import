@@ -506,7 +506,7 @@
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
                             dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                            if (bdiff > zolv && maxtimes < 3)
+                            if (bdiff > zolv && maxtimes < 10)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
@@ -518,7 +518,7 @@
                         if (document.getElementById("vb").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 1000 && maxtimes < 3)
+                            if (difflastd > 1000 && maxtimes < 10)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
