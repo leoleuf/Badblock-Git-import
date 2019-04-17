@@ -473,7 +473,7 @@
                             }
                         }
 
-                        setTimeout(flexar, 30);
+                        setTimeout(flexar, 10);
                     }
 
                     if (window.canRunAds === undefined)
@@ -486,7 +486,7 @@
                     }
                     else
                     {
-                        setTimeout(flexar, 1000);
+                        setTimeout(flexar, 20);
                         $("#vote_button").show();
                         document.getElementById("vote_button").disabled = false;
                     }
