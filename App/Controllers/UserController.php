@@ -784,12 +784,12 @@ class UserController extends Controller
 
             $this->flash->addMessage('setting_error', "Compte TeamSpeak linké !");
             //redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
 
         } else {
             $this->flash->addMessage('setting_error', "Merci de saisir un UID valide !");
             //redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
     }
