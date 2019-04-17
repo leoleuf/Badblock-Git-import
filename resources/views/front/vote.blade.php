@@ -450,7 +450,7 @@
                     {
 
                         var timediff = $.now() - zo;
-                        var bdiff = $.now() - Math.max(tx, ty);
+                        var bdiff = $.now()-lastmouse;
 
                         if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
                         {
