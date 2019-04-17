@@ -36,6 +36,8 @@ Route::group([
     Route::get('/ban', 'Infra\McController@ban');
     Route::post('/theme', 'HomeController@setTheme');
 
+    Route::get('/msg-guardianner', 'GuardiannerController@getUnprocessedMessages');
+
     Route::get('/cloudflare/purge/all', 'Infra\CloudFlareController@purge_all');
 
 });

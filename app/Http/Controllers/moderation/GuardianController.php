@@ -11,10 +11,7 @@ namespace App\Http\Controllers\moderation;
 
 use App\Http\Controllers\Controller;
 use App\Services\DockerService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redis;
 
 class GuardianController extends Controller
 {
@@ -46,7 +43,8 @@ class GuardianController extends Controller
         return DB::connection('mongodb_server')
             ->collection('reportmessages')
             ->where('processed', '=', false)
-            ->limit(20)
+            ->limit(100)
+            ->orderBy('timestamp', 'DESC')
             ->get()
             ->toArray();
     }
@@ -118,15 +116,25 @@ class GuardianController extends Controller
             'connard',
             'connards',
             'nique vos mére fils de putes',
-            'serveur',
-            'server',
             'pd',
             'p d',
             'connasse',
             'enculé',
             'encule',
             'enculer',
-            'bande de'
+            'bande de',
+            'fdp',
+            'putain',
+            'ftg',
+            'tgg',
+            'con',
+            't g',
+            'salope',
+            'couille',
+            'suce',
+            'tencul',
+            'encule',
+            'encul'
 
 
         ];
@@ -145,8 +153,18 @@ class GuardianController extends Controller
             'prostitué',
             'femelle',
             'lgbt',
-            'vegan'
+            'vegan',
+            'juifs',
+            'gay'
 
+        ];
+
+        $badW3 = [
+
+            'serveur de merde',
+            'server de merde',
+            'server de mrd',
+            'serveur de merde'
 
         ];
 
@@ -158,11 +176,13 @@ class GuardianController extends Controller
             'je suis trop con',
             'je suis vraiment trop con',
             'je suis qu\'un con',
-            'je ne suis qu\'un con'
+            'je ne suis qu\'un con',
 
         ];
 
         $badP = 0;
+
+        $st = [];
 
         foreach ($tab as $val)
         {
@@ -172,28 +192,53 @@ class GuardianController extends Controller
                 if(strpos($val, $key3) !== false)
                 {
                     $badP--;
+                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
                 }
             }
 
             foreach ($badW as $key)
             {
-                if(strcasecmp($val, $key) == 0)
+                if(strcasecmp($val, $key) == 0 || strpos($val, $key) !== false)
                 {
                     $badP++;
+                    $temp = $val;
+
+                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+
+                    if($key == "con" && str_replace("con", " ", $val) !== " ")
+                    {
+                        $badP--;
+                        $val = $temp;
+                    }
+
                 }
             }
 
             foreach ($badW2 as $key2)
             {
-                if(strcasecmp($val, $key2) == 0)
+                if(strcasecmp($val, $key2) == 0 || strpos($val, $key2) !== false)
                 {
                     $badP = $badP + 2;
+                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
                 }
             }
 
+            foreach ($badW3 as $key4)
+            {
+                if(strpos($val, $key4) !== false)
+                {
+                    $badP = $badP + 100;
+                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+                }
+            }
+
+            array_push($st, $val);
+
         }
 
-        $msg = "";
+        $msg = " ";
+
+        $str = implode(" ", $st);
 
         if($badP <= 0)
         {
@@ -209,6 +254,10 @@ class GuardianController extends Controller
             {
                 $msg = ($mute * 3)." Heure(s) de Mute";
             }
+            else
+            {
+                $msg = "Avertissement";
+            }
 
         }
         else if($badP >= 2)
@@ -222,8 +271,17 @@ class GuardianController extends Controller
                 $msg = "6 Heures de Mute";
             }
         }
+        else if($badP >= 100)
+        {
+            $msg = ($mute * 2)." Jours de Mute";
+        }
 
-        return $msg;
+        return [
+
+            'sanction' => $msg,
+            'msg' => $str
+
+        ];
 
     }
 
