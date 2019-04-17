@@ -116,8 +116,6 @@ class GuardianController extends Controller
             'connard',
             'connards',
             'nique vos mére fils de putes',
-            'pd',
-            'p d',
             'connasse',
             'enculé',
             'encule',
@@ -134,7 +132,20 @@ class GuardianController extends Controller
             'suce',
             'tencul',
             'encule',
-            'encul'
+            'encul',
+            'ptn',
+            'ntm',
+            'chatte',
+            'chate',
+            'mere',
+            'daronne',
+            'darone',
+            'bites',
+            'bite',
+            'pere',
+            'shlag',
+            'chlag',
+            'batard'
 
 
         ];
@@ -155,7 +166,10 @@ class GuardianController extends Controller
             'lgbt',
             'vegan',
             'juifs',
-            'gay'
+            'gay',
+            'pd',
+            'p d',
+            'arabe'
 
         ];
 
@@ -164,7 +178,8 @@ class GuardianController extends Controller
             'serveur de merde',
             'server de merde',
             'server de mrd',
-            'serveur de merde'
+            'serveur de merde',
+            'serv de merde'
 
         ];
 
@@ -183,6 +198,11 @@ class GuardianController extends Controller
         $badP = 0;
 
         $st = [];
+
+        foreach (DB::table('users')->get() as $staff)
+        {
+            array_push($goodW, $staff->name);
+        }
 
         foreach ($tab as $val)
         {
@@ -225,7 +245,7 @@ class GuardianController extends Controller
 
             foreach ($badW3 as $key4)
             {
-                if(strpos($val, $key4) !== false)
+                if(strcasecmp($val, $key4) == 0 || strpos($val, $key4) !== false)
                 {
                     $badP = $badP + 100;
                     $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
@@ -244,7 +264,7 @@ class GuardianController extends Controller
         {
             $msg = "N/A";
         }
-        else if($badP == 1)
+        else if($badP >= 1 && $badP <= 10)
         {
             if($mute < 1)
             {
@@ -252,7 +272,11 @@ class GuardianController extends Controller
             }
             else if($mute == 1)
             {
-                $msg = ($mute * 3)." Heure(s) de Mute";
+                $msg = "1 Heure(s) de Mute";
+            }
+            else if($mute >= 2)
+            {
+                $msg = (($mute * 3) - 3)." Heure(s) de Mute";
             }
             else
             {
@@ -260,7 +284,7 @@ class GuardianController extends Controller
             }
 
         }
-        else if($badP >= 2)
+        else if($badP >= 2 && $badP <= 10)
         {
             if($mute >= 1)
             {
@@ -273,7 +297,12 @@ class GuardianController extends Controller
         }
         else if($badP >= 100)
         {
-            $msg = ($mute * 2)." Jours de Mute";
+            if($mute == 0)
+            {
+                $mute = 1;
+            }
+
+            $msg = ($mute * 15)." Jours de Mute";
         }
 
         return [
