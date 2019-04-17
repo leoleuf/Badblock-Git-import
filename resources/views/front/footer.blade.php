@@ -60,6 +60,9 @@ if ($date != $creationDate)
                     @if (session()->has('online_count'))
                         {{ session()->get('online_count') }} utilisateurs en ligne
                     @endif
+                    @if (!_bot_detected())
+                        <IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0">
+                    @endif
                 </p>
             </div>
         </div>
