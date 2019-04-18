@@ -12,6 +12,7 @@ namespace App\Http\Controllers\moderation;
 use App\Http\Controllers\Controller;
 use App\Services\DockerService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class GuardianController extends Controller
 {
@@ -145,7 +146,9 @@ class GuardianController extends Controller
             'pere',
             'shlag',
             'chlag',
-            'batard'
+            'batard',
+            'maman',
+            'salop'
 
 
         ];
@@ -260,6 +263,10 @@ class GuardianController extends Controller
 
         $str = implode(" ", $st);
 
+        $type = "mute";
+
+        $time = 1;
+
         if($badP <= 0)
         {
             $msg = "N/A";
@@ -269,18 +276,22 @@ class GuardianController extends Controller
             if($mute < 1)
             {
                 $msg = "Avertissement";
+                $type = "warn";
             }
             else if($mute == 1)
             {
                 $msg = "1 Heure(s) de Mute";
+                $time = 1;
             }
             else if($mute >= 2)
             {
                 $msg = (($mute * 3) - 3)." Heure(s) de Mute";
+                $time = (($mute * 3) - 3);
             }
             else
             {
                 $msg = "Avertissement";
+                $type = "warn";
             }
 
         }
@@ -289,10 +300,12 @@ class GuardianController extends Controller
             if($mute >= 1)
             {
                 $msg = ($mute * 6)." Heure(s) de Mute";
+                $time = ($mute * 6);
             }
             else
             {
                 $msg = "6 Heures de Mute";
+                $time = 6;
             }
         }
         else if($badP >= 100)
@@ -303,15 +316,70 @@ class GuardianController extends Controller
             }
 
             $msg = ($mute * 15)." Jours de Mute";
+            $time = ($mute * 15);
         }
 
         return [
 
             'sanction' => $msg,
-            'msg' => $str
+            'msg' => $str,
+            'data' => [
 
+                'type' => $type,
+                'reason' => 'Langage (Guardianner)',
+                'time' => $time
+
+            ]
         ];
 
     }
+
+    public function sanction($uuid){
+
+
+
+        $message = DB::connection('mongodb_server')
+            ->collection('reportmessages')
+            ->where('_id', $uuid)
+            ->first();
+
+        $Data = $this->Osiris($message['message'], $message['playerName']);
+
+        if ($Data['data']['type'] == "mute" || $Data['data']['type'] == "warn"){
+            $proof = [
+                'punishedBy' => Auth::user()->name,
+                'punishedPlayer' => $message['playerName'],
+                'punishedMessage' => $message['message'],
+                'punishType' => $Data['data']['type'],
+                'punishReason' => $Data['data']['reason'],
+                'punishTime' => $Data['data']['time']
+            ];
+            //Create proof
+            DB::connection('mongodb_server')
+                ->collection('chatfilter_proof')
+                ->insert($proof);
+        }
+
+        $Data['data']['reason'] = "bungee.commands.mod."  . $Data['data']['type'] . "." . $Data['data']['reason'];
+
+        if (!$message['processed']){
+            if ($Data['data']['type'] == "mute"){
+                $this->dockerService->mutePlayer($message['playerName'], $Data['data']['reason'], intval($Data['data']['time'] * 60 * 60 * 1000));
+            }elseif ($Data['data']['type'] == "warn"){
+                $this->dockerService->warnPlayer($message['playerName'], $Data['data']['reason']);
+            }
+        }
+
+        $message['processed'] = true;
+        $message['punished'] = false;
+        //Update message
+        DB::connection('mongodb_server')
+            ->collection('reportmessages')
+            ->where('_id', $message['_id'])
+            ->update($message);
+
+        return "";
+    }
+
 
 }

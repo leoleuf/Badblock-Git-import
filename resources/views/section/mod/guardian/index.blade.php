@@ -20,12 +20,13 @@
                                     </thead>
                                     <tbody>
                                         @foreach($data as $msg)
+                                            @php $content = \App\Http\Controllers\moderation\GuardianController::Osiris($msg['message'], $msg['playerName']) @endphp
                                             <tr>
                                                 <td>{{ $msg['playerName'] }}</td>
                                                 <td>{{ $msg['date'] }}</td>
-                                                <td style="max-width: 300px !important; overflow: hidden">{!! \App\Http\Controllers\moderation\GuardianController::Osiris($msg['message'], $msg['playerName'])['msg'] !!}</td>
-                                                <td>{{ \App\Http\Controllers\moderation\GuardianController::Osiris($msg['message'], $msg['playerName'])['sanction'] }}</td>
-                                                <td>Valider</td>
+                                                <td style="max-width: 300px !important; overflow: hidden">{!! $content['msg'] !!}</td>
+                                                <td>{{ $content['sanction'] }}</td>
+                                                <td><a href="/api/msg-guardianner/{{ $msg['_id'] }}">Punir</a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
