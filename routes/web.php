@@ -38,6 +38,7 @@ Route::group([
 
     Route::get('/msg-guardianner/{uuid}', 'moderation\GuardianController@sanction');
     Route::get('/msg-del-guardianner/{uuid}', 'moderation\GuardianController@setMessageOk');
+    Route::get('/get-msg-guardianner', 'moderation\GuardianController@getAllMsg');
 
     Route::get('/cloudflare/purge/all', 'Infra\CloudFlareController@purge_all');
 

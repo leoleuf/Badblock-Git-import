@@ -18,17 +18,8 @@
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach($data as $msg)
-                                            @php $content = \App\Http\Controllers\moderation\GuardianController::Osiris($msg['message'], $msg['playerName']) @endphp
-                                            <tr>
-                                                <td>{{ $msg['playerName'] }}</td>
-                                                <td>{{ $msg['date'] }}</td>
-                                                <td style="max-width: 300px !important; overflow: hidden">{!! $content['msg'] !!}</td>
-                                                <td>{{ $content['sanction'] }}</td>
-                                                <td><a href="/api/msg-del-guardianner/{{ $msg['_id'] }}" class="btn btn-success" style="margin-right: 10px"><i class="fas fa-check"></i></a><a href="/api/msg-guardianner/{{ $msg['_id'] }}" class="btn btn-danger"><i class="fas fa-gavel"></i></a></td>
-                                            </tr>
-                                        @endforeach
+                                    <tbody id="body">
+
                                     </tbody>
                                 </table>
                                 <div>
@@ -39,4 +30,26 @@
             </div>
         </div>
     </div>
+@endsection
+@section('after_scripts')
+<script>
+
+    function getMsg(){
+        $.ajax({
+
+            url: '/api/get-msg-guardianner',
+            type: 'GET',
+            data: {},
+            success: function(data) {
+                $('#body').html(data);
+            }
+
+        });
+    }
+
+    getMsg();
+
+    setInterval(getMsg, 3000);
+
+</script>
 @endsection

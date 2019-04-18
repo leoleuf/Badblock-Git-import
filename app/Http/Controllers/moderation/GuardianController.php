@@ -23,22 +23,25 @@ class GuardianController extends Controller
         $this->dockerService = $dockerService;
     }
 
-    public function index() {
-        return view('section.mod.guardian.index', ['data' => $this->getUnprocessedMessages()]);
+    public function index()
+    {
+        return view('section.mod.guardian.index');
     }
 
-    public function view($id){
+    public function view($id)
+    {
 
         $Guardian = DB::connection('mysql_guardian')->table('logs')->where('id', '=', $id)->first();
 
-        if ($Guardian == null){
+        if ($Guardian == null) {
             return redirect("/players");
         }
 
         return view("section.mod.guardian")->with('Data', $Guardian);
     }
 
-    public function getUnprocessedMessages() {
+    public function getUnprocessedMessages()
+    {
 
         //Get unprocessed message from MongoDB
         return DB::connection('mongodb_server')
@@ -50,7 +53,8 @@ class GuardianController extends Controller
             ->toArray();
     }
 
-    public function setMessageOk($messageId) {
+    public function setMessageOk($messageId)
+    {
         //Get message for update
         $message = DB::connection('mongodb_server')
             ->collection('reportmessages')
@@ -77,10 +81,8 @@ class GuardianController extends Controller
 
         $player = DB::connection('mongodb_server')->collection('players')->where('name', $user)->get();
 
-        foreach ($player as $punished)
-        {
-            if($punished['uniqueId'])
-            {
+        foreach ($player as $punished) {
+            if ($punished['uniqueId']) {
                 $player = $punished['uniqueId'];
             }
         }
@@ -89,10 +91,8 @@ class GuardianController extends Controller
 
         $mute = 0;
 
-        foreach($casier as $val)
-        {
-            if($val['type'] == "MUTE")
-            {
+        foreach ($casier as $val) {
+            if ($val['type'] == "MUTE") {
                 $mute++;
             }
         }
@@ -202,34 +202,27 @@ class GuardianController extends Controller
 
         $st = [];
 
-        foreach (DB::table('users')->get() as $staff)
-        {
+        foreach (DB::table('users')->get() as $staff) {
             array_push($goodW, $staff->name);
         }
 
-        foreach ($tab as $val)
-        {
+        foreach ($tab as $val) {
 
-            foreach ($goodW as $key3)
-            {
-                if(strpos($val, $key3) !== false)
-                {
+            foreach ($goodW as $key3) {
+                if (strpos($val, $key3) !== false) {
                     $badP--;
-                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+                    $val = '<span style="background-color: #E7E11A">' . $val . '</span>';
                 }
             }
 
-            foreach ($badW as $key)
-            {
-                if(strcasecmp($val, $key) == 0 || strpos($val, $key) !== false)
-                {
+            foreach ($badW as $key) {
+                if (strcasecmp($val, $key) == 0 || strpos($val, $key) !== false) {
                     $badP++;
                     $temp = $val;
 
-                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+                    $val = '<span style="background-color: #E7E11A">' . $val . '</span>';
 
-                    if($key == "con" && str_replace("con", " ", $val) !== " ")
-                    {
+                    if ($key == "con" && str_replace("con", " ", $val) !== " ") {
                         $badP--;
                         $val = $temp;
                     }
@@ -237,21 +230,17 @@ class GuardianController extends Controller
                 }
             }
 
-            foreach ($badW2 as $key2)
-            {
-                if(strcasecmp($val, $key2) == 0 || strpos($val, $key2) !== false)
-                {
+            foreach ($badW2 as $key2) {
+                if (strcasecmp($val, $key2) == 0 || strpos($val, $key2) !== false) {
                     $badP = $badP + 2;
-                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+                    $val = '<span style="background-color: #E7E11A">' . $val . '</span>';
                 }
             }
 
-            foreach ($badW3 as $key4)
-            {
-                if(strcasecmp($val, $key4) == 0 || strpos($val, $key4) !== false)
-                {
+            foreach ($badW3 as $key4) {
+                if (strcasecmp($val, $key4) == 0 || strpos($val, $key4) !== false) {
                     $badP = $badP + 100;
-                    $val = '<span style="background-color: #E7E11A">'.$val.'</span>';
+                    $val = '<span style="background-color: #E7E11A">' . $val . '</span>';
                 }
             }
 
@@ -267,55 +256,37 @@ class GuardianController extends Controller
 
         $time = 1;
 
-        if($badP <= 0)
-        {
+        if ($badP <= 0) {
             $msg = "N/A";
-        }
-        else if($badP >= 1 && $badP <= 10)
-        {
-            if($mute < 1)
-            {
+        } else if ($badP >= 1 && $badP <= 10) {
+            if ($mute < 1) {
                 $msg = "Avertissement";
                 $type = "warn";
-            }
-            else if($mute == 1)
-            {
+            } else if ($mute == 1) {
                 $msg = "1 Heure(s) de Mute";
                 $time = 1;
-            }
-            else if($mute >= 2)
-            {
-                $msg = (($mute * 3) - 3)." Heure(s) de Mute";
+            } else if ($mute >= 2) {
+                $msg = (($mute * 3) - 3) . " Heure(s) de Mute";
                 $time = (($mute * 3) - 3);
-            }
-            else
-            {
+            } else {
                 $msg = "Avertissement";
                 $type = "warn";
             }
 
-        }
-        else if($badP >= 2 && $badP <= 10)
-        {
-            if($mute >= 1)
-            {
-                $msg = ($mute * 6)." Heure(s) de Mute";
+        } else if ($badP >= 2 && $badP <= 10) {
+            if ($mute >= 1) {
+                $msg = ($mute * 6) . " Heure(s) de Mute";
                 $time = ($mute * 6);
-            }
-            else
-            {
+            } else {
                 $msg = "6 Heures de Mute";
                 $time = 6;
             }
-        }
-        else if($badP >= 100)
-        {
-            if($mute == 0)
-            {
+        } else if ($badP >= 100) {
+            if ($mute == 0) {
                 $mute = 1;
             }
 
-            $msg = ($mute * 15)." Jours de Mute";
+            $msg = ($mute * 15) . " Jours de Mute";
             $time = ($mute * 15);
         }
 
@@ -334,8 +305,8 @@ class GuardianController extends Controller
 
     }
 
-    public function sanction($uuid){
-
+    public function sanction($uuid)
+    {
 
 
         $message = DB::connection('mongodb_server')
@@ -345,7 +316,7 @@ class GuardianController extends Controller
 
         $Data = $this->Osiris($message['message'], $message['playerName']);
 
-        if ($Data['data']['type'] == "mute" || $Data['data']['type'] == "warn"){
+        if ($Data['data']['type'] == "mute" || $Data['data']['type'] == "warn") {
             $proof = [
                 'punishedBy' => Auth::user()->name,
                 'punishedPlayer' => $message['playerName'],
@@ -362,10 +333,10 @@ class GuardianController extends Controller
 
         $Data['data']['reason'] = $Data['data']['type'] . " => " . $Data['data']['reason'];
 
-        if (!$message['processed']){
-            if ($Data['data']['type'] == "mute"){
+        if (!$message['processed']) {
+            if ($Data['data']['type'] == "mute") {
                 $this->dockerService->mutePlayer($message['playerName'], $Data['data']['reason'], intval($Data['data']['time'] * 60 * 60 * 1000));
-            }elseif ($Data['data']['type'] == "warn"){
+            } elseif ($Data['data']['type'] == "warn") {
                 $this->dockerService->warnPlayer($message['playerName'], $Data['data']['reason']);
             }
         }
@@ -381,5 +352,17 @@ class GuardianController extends Controller
         return back();
     }
 
+    public function getAllMsg()
+    {
+        foreach ($this->getUnprocessedMessages() as $msg) {
+            $content = $this->Osiris($msg['message'], $msg['playerName']);
+            echo "<td>" . $msg['playerName'] . "</td>
+                                                <td>" . $msg['date'] . "</td>
+                                                <td style=\"max-width: 300px !important; overflow: hidden\">" . $content['msg'] . "</td>
+                                                <td>" . $content['sanction'] . "</td>
+                                                <td><a href=\"/api/msg-del-guardianner/" . $msg['_id'] . "\" class=\"btn btn-success\" style=\"margin-right: 10px\"><i class=\"fas fa-check\"></i></a><a href=\"/api/msg-guardianner/" . $msg['_id'] . "\" class=\"btn btn-danger\"><i class=\"fas fa-gavel\"></i></a></td>
+                                            </tr>";
+        }
+    }
 
 }
