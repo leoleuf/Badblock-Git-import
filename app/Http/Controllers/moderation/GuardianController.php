@@ -356,12 +356,13 @@ class GuardianController extends Controller
     {
         foreach ($this->getUnprocessedMessages() as $msg) {
             $content = $this->Osiris($msg['message'], $msg['playerName']);
-            echo "<td>" . $msg['playerName'] . "</td>
-                                                <td>" . $msg['date'] . "</td>
-                                                <td style=\"max-width: 300px !important; overflow: hidden\">" . $content['msg'] . "</td>
-                                                <td>" . $content['sanction'] . "</td>
-                                                <td><a href=\"/api/msg-del-guardianner/" . $msg['_id'] . "\" class=\"btn btn-success\" style=\"margin-right: 10px\"><i class=\"fas fa-check\"></i></a><a href=\"/api/msg-guardianner/" . $msg['_id'] . "\" class=\"btn btn-danger\"><i class=\"fas fa-gavel\"></i></a></td>
-                                            </tr>";
+            echo "<tr>";
+            echo "<td>" . $msg['playerName'] . "</td>";
+            echo "<td>" . $msg['date'] . "</td>";
+            echo "<td style=\"max-width: 300px !important; overflow: hidden\">" . $content['msg'] . "</td>";
+            echo "<td>" . $content['sanction'] . "</td>";
+            echo "<td><a href=\"/api/msg-del-guardianner/" . $msg['_id'] . "\" class=\"btn btn-success\" style=\"margin-right: 10px\"><i class=\"fas fa-check\"></i></a><a href=\"/api/msg-guardianner/" . $msg['_id'] . "\" class=\"btn btn-danger\"><i class=\"fas fa-gavel\"></i></a></td>";
+            echo "</tr>";
         }
     }
 
