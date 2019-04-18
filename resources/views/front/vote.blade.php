@@ -352,6 +352,7 @@
             }
         </script>
         <script data-pagespeed-no-defer>
+            var ver = "1.0";
             var p = true;
             var q = true;
             var l = 1000;
@@ -382,7 +383,7 @@
                     if (q) {
                         q = false;
                         iframeclick = $.now();
-                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':dbg,'h':hasHovered}, function (data, status) {
+                        $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':("v" + ver + " - " + dbg),'h':hasHovered}, function (data, status) {
                         });
                     }
                 }
