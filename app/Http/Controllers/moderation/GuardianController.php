@@ -69,7 +69,7 @@ class GuardianController extends Controller
             ->where('_id', $message['_id'])
             ->update($message);
 
-        return "";
+        return back();
     }
 
 
