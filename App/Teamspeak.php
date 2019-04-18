@@ -58,6 +58,7 @@ class Teamspeak
         $data['CHANNEL_FLAG_PERMANENT'] = 1;
         $data['CPID'] = 230;
         $data['CHANNEL_DESCRIPTION'] = "";
+        $data['CHANNEL_DELETE_DELAY'] = 60;
 
         $ChannelId = $this->client->channelCreate($data);
 
