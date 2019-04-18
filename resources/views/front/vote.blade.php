@@ -388,6 +388,7 @@
                     }
                 }
             });
+            
 
             $('#vote_button').click(function()
             {
