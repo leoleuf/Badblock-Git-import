@@ -496,35 +496,37 @@
 
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
+                        var bleko = 0;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "70px")
+                        if (isHovered)
                         {
                             hasHovered = 1;
 
-                            var timediff = $.now() - zo;
-                            var bdiff = $.now() - Math.max(tx, ty);
-                            var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
-
-                            dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                            if (bdiff > zolv && maxtimes < 10)
+                            if (document.getElementById("vb").style.marginTop != "70px")
                             {
-                                maxtimes = maxtimes + 1;
-                                lastd = $.now();
-                                zo = $.now();
-                                document.getElementById("vb").style.marginTop = "70px";
+                                var timediff = $.now() - zo;
+                                var bdiff = $.now() - Math.max(tx, ty);
+                                var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
+
+                                dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
+                                if (bdiff > zolv && maxtimes < 10) {
+                                    maxtimes = maxtimes + 1;
+                                    lastd = $.now();
+                                    zo = $.now();
+                                    document.getElementById("vb").style.marginTop = "70px";
+                                }
                             }
-                        }
-
-                        if (document.getElementById("vb").style.marginTop == "70px")
-                        {
-                            var difflastd = $.now() - lastd;
-                            if (difflastd > 1000 && maxtimes < 10)
+                            else
                             {
-                                maxtimes = maxtimes + 1;
-                                lastd = $.now();
-                                zo = $.now();
-                                document.getElementById("vb").style.marginTop = "-40px";
-                                time = 500;
+                                var difflastd = $.now() - lastd;
+                                if (difflastd > 50 && maxtimes < 10)
+                                {
+                                    maxtimes = maxtimes + 1;
+                                    lastd = $.now();
+                                    zo = $.now();
+                                    document.getElementById("vb").style.marginTop = "-40px";
+                                    time = 500;
+                                }
                             }
                         }
 
