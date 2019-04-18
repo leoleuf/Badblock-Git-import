@@ -182,7 +182,9 @@ class GuardianController extends Controller
             'server de merde',
             'server de mrd',
             'serveur de merde',
-            'serv de merde'
+            'serv de merde',
+            'leur serveur',
+            'leur server'
 
         ];
 
