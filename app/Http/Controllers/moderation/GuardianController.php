@@ -360,7 +360,7 @@ class GuardianController extends Controller
                 ->insert($proof);
         }
 
-        $Data['data']['reason'] = "bungee.commands.mod."  . $Data['data']['type'] . "." . $Data['data']['reason'];
+        $Data['data']['reason'] = $Data['data']['type'] . " => " . $Data['data']['reason'];
 
         if (!$message['processed']){
             if ($Data['data']['type'] == "mute"){
@@ -378,7 +378,7 @@ class GuardianController extends Controller
             ->where('_id', $message['_id'])
             ->update($message);
 
-        return "";
+        return back();
     }
 
 

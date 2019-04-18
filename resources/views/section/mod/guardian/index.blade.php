@@ -26,7 +26,7 @@
                                                 <td>{{ $msg['date'] }}</td>
                                                 <td style="max-width: 300px !important; overflow: hidden">{!! $content['msg'] !!}</td>
                                                 <td>{{ $content['sanction'] }}</td>
-                                                <td><a href="/api/msg-guardianner/{{ $msg['_id'] }}">Punir</a></td>
+                                                <td><a href="/api/msg-del-guardianner/{{ $msg['_id'] }}" class="btn btn-success" style="margin-right: 10px"><i class="fas fa-check"></i></a><a href="/api/msg-guardianner/{{ $msg['_id'] }}" class="btn btn-danger"><i class="fas fa-gavel"></i></a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

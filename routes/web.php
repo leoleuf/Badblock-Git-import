@@ -37,6 +37,7 @@ Route::group([
     Route::post('/theme', 'HomeController@setTheme');
 
     Route::get('/msg-guardianner/{uuid}', 'moderation\GuardianController@sanction');
+    Route::get('/msg-del-guardianner/{uuid}', 'moderation\GuardianController@setMessageOk');
 
     Route::get('/cloudflare/purge/all', 'Infra\CloudFlareController@purge_all');
 
