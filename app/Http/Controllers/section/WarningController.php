@@ -64,7 +64,7 @@ class WarningController extends Controller
         DB::table('notifications')->insert([
             'user_id' => NotificationsController::convertPseudoId($request->input('pseudo')),
             'title' => $request->input('title'),
-            'link' => '/avertissement/' . DB::table('warning')->max('id'),
+            'link' => 'section/avertissement/' . DB::table('warning')->max('id'),
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
             'text' => 'Vous venez de recevoir un avertissement.'
         ]);
