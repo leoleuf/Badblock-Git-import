@@ -233,7 +233,7 @@ Route::group([
         Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:resp_youtubers_list');
 
         // Voir ses propres avertissements
-        Route::get('/avertissement/{id}', 'section\WarningController@display');
+        Route::get('/avertissement/{id}', 'section\WarningController@display')->middleware('can:tools_warn');
 
     });
 

@@ -39,14 +39,7 @@ class WarningController extends Controller
 
     public function display($id)
     {
-
-        $user = DB::table('warning')->where('id', '=', $id)->get();
-        if ($user[0]->pseudo == Auth::user()->name) {
-            return view('section.warning.display', ['user' => $user]);
-        } else {
-            return redirect('/');
-        }
-
+        return view('section.warning.display', ['user' => DB::table('warning')->where('id', $id)->get()]);
     }
 
     public function delete($id)
