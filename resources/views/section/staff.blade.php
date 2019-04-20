@@ -28,7 +28,7 @@
                                                         @foreach($row['permissions']['groups'] as $key => $data)
                                                             @if($key == "bungee")
                                                                 @foreach($data as $p => $h)
-                                                                    @if($p != "vip" && $p != "vip+" && $p != "mvp" && $p != "mvp+" && $p != "gradeperso")
+                                                                    @if($p != "vip" && $p != "vip+" && $p != "mvp" && $p != "mvp+" && $p != "gradeperso" && $p != "default")
                                                                         {{ ucfirst($p) }}
                                                                     @endif
                                                                 @endforeach

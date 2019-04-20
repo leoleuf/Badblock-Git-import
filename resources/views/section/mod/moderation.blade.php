@@ -199,6 +199,12 @@
 
                     }
                 });
+
+                for(var i = 0; i < screens.length; i++)
+                {
+                    addscreen(screens[i]);
+                }
+
             }
         }
 
