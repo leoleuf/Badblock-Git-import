@@ -70,13 +70,13 @@
                              style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-104px, 60px, 0px);">
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-user m-r-5"></i> Profile
+                            <a href="/my-warns" class="dropdown-item notify-item">
+                                <i class="ti-user m-r-5"></i> Mes Avertissements
                             </a>
 
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <i class="ti-settings m-r-5"></i> Settings
+                            <a href="/my-notifs" class="dropdown-item notify-item">
+                                <i class="ti-settings m-r-5"></i> Mes Notifications
                             </a>
 
                             <!-- item-->
@@ -86,7 +86,7 @@
 
                             <!-- item-->
                             <a href="/logout" class="dropdown-item notify-item">
-                                <i class="ti-power-off m-r-5"></i> Logout
+                                <i class="ti-power-off m-r-5"></i> Déconnexion
                             </a>
 
                         </div>
