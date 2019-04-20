@@ -15,6 +15,7 @@
                                     <th>Pseudo</th>
                                     <th>Avertis par</th>
                                     <th>Titre</th>
+                                    <th></th>
                                     <th>Date</th>
                                 </tr>
                                 </thead>
