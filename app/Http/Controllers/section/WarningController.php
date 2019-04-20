@@ -37,6 +37,11 @@ class WarningController extends Controller
         return view('section.warning.list');
     }
 
+    public function mylist()
+    {
+        return view('section.warning.mylist', ['data' => DB::table('warning')->where('pseudo', Auth::user()->name)->get()]);
+    }
+
     public function display($id)
     {
         return view('section.warning.display', ['user' => DB::table('warning')->where('id', $id)->get()]);

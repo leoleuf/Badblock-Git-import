@@ -117,4 +117,9 @@ class NotificationsController extends Controller
         }
     }
 
+    public function mylist()
+    {
+        return view('section.notification.mylist', ['data' => DB::table('notifications')->where('user_id', Auth::user()->id)->get()]);
+    }
+
 }

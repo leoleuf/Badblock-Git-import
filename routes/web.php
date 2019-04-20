@@ -54,6 +54,9 @@ Route::group([
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
 
+    Route::get('/my-warns', 'section\WarningController@mylist');
+    Route::get('/my-notifs', 'section\NotificationsController@mylist');
+
     Route::group([
         'middleware' => ['auth'],
     ], function () {
