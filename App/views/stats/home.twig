@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4">
                             <div class="stats-content-main">
-                                <h1 class="stats-content-title">{{ connected|number_format(0, '', ' ') }}</h1>
+                                <h1 class="stats-content-title" id="playerHigh">{{ stats['connected']|number_format(0, '', ' ') }}</h1>
                                 <p class="stats-content-subtitle">Joueurs connectés</p>
                             </div>
                         </div>
@@ -146,26 +146,26 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <script>
-        $( document ).ready(function() {
-            function playerAj() {
-                $.ajax({
-                    url: '/api/minecraft/players',
-                    success: function(data) {
-                        if (data.players.now != null){
-                            var n = parseInt(data.players.now);
-                            var value = n.toLocaleString(
-                                'fr-FR',
-                                { minimumFractionDigits: 0 }
-                            );
-                            $("#players-count").text(value);
-                        }
-                        setTimeout(playerAj, 3000);
-                    }
-                });
-            };
 
-            playerAj();
-        });
+        function playerAj() {
+            $.ajax({
+                url: '/api/minecraft/players',
+                success: function(data) {
+                    if (data.players.now != null){
+                        var n = parseInt(data.players.now);
+                        var value = n.toLocaleString(
+                            'fr-FR',
+                            { minimumFractionDigits: 0 }
+                        );
+                        $("#players-count").text(value);
+                        $('#playerHigh').text(value);
+                    }
+                    setTimeout(playerAj, 3000);
+                }
+            });
+        };
+
+        playerAj();
 
         $( document ).ready(function() {
             function playerTs() {
