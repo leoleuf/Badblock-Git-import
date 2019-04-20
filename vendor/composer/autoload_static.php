@@ -97,6 +97,7 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
             'PhpParser\\' => 10,
             'PhpAmqpLib\\' => 11,
             'ParagonIE\\ConstantTime\\' => 23,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'M' => 
         array (
@@ -358,6 +359,10 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'ParagonIE\\ConstantTime\\' => 
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Mookofe\\Tail\\' => 
         array (
@@ -3032,6 +3037,11 @@ class ComposerStaticInit9808ab283c6461ed1343b2f78f43684c
         'Mookofe\\Tail\\Message' => __DIR__ . '/..' . '/mookofe/tail/src/Message.php',
         'Mookofe\\Tail\\ServiceProvider' => __DIR__ . '/..' . '/mookofe/tail/src/ServiceProvider.php',
         'Mookofe\\Tail\\Tail' => __DIR__ . '/..' . '/mookofe/tail/src/Tail.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/AssertionFailedError.php',

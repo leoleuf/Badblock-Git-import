@@ -69,6 +69,15 @@ class WarningController extends Controller
             'text' => 'Vous venez de recevoir un avertissement.'
         ]);
 
+        $data = [
+            'warn_by' => $request->input('warn_by'),
+            'pseudo' => $request->input('pseudo'),
+            'title' => $request->input('title'),
+            'text' => $request->input('text')
+        ];
+
+        NotificationsController::sendWarnMail($data);
+
 
         return redirect('/section/avertissement-list');
 
