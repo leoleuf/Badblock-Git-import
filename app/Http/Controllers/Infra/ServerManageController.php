@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Infra;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class ServerManageController extends Controller
 {
@@ -16,4 +17,14 @@ class ServerManageController extends Controller
     {
         return view('infra.server_manage', ['data' => DB::connection('mongodb_server')->collection('serverInfo')->get()]);
     }
+
+    public function motd(Request $request)
+    {
+        DB::connection('mongodb_server')->collection('serverInfo')->update([
+
+            'description' => $request->input('motd')
+
+        ]);
+    }
+
 }

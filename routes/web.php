@@ -312,6 +312,7 @@ Route::group([
     ], function () {
 
         Route::get('/', 'Infra\ServerManageController@index')->name('server.manage');
+        Route::post('/motd', 'Infra\ServerManageController@motd');
 
     });
 
