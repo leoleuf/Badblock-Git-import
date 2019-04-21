@@ -285,13 +285,13 @@
                                             <a title="Mettre mon serveur {{ seocat($catName) }} en avant" href="/mise-en-avant" class="btn btn-success btn-avant text-xl-right text-center mt-4 mt-xl-0" style="float: right;"><i class="fa fa-trophy pr-1"></i>Mettre mon serveur en avant</a></h3>
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3>
+                                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <!-- billboard -->
                                                 <ins class="adsbygoogle"
-                                                     style="display:block"
-                                                     data-ad-format="fluid"
-                                                     data-ad-layout-key="-go-20-e-7b+w5"
+                                                     style="display:inline-block;width:728px;height:90px"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3196164622"></ins>
+                                                     data-ad-slot="9454574921"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
