@@ -54,20 +54,20 @@
                         </div>
                     @endif
                 @endforeach
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- serveur-multigames -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-4636627444279583"
-                     data-ad-slot="4338496536"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             </div>
         </div>
     </section>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- serveur-multigames -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4636627444279583"
+         data-ad-slot="4338496536"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     <section class="image-bg lis-grediant grediant-full">
         <div class="background-image-maker"></div>
