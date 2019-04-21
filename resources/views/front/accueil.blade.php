@@ -57,12 +57,13 @@
             </div>
         </div>
     </section>
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- serveur-multigames -->
+    <!-- responsive -->
     <ins class="adsbygoogle"
          style="display:block"
          data-ad-client="ca-pub-4636627444279583"
-         data-ad-slot="4338496536"
+         data-ad-slot="8514750542"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
     <script>
