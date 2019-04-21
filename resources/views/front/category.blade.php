@@ -285,18 +285,16 @@
                                             <a title="Mettre mon serveur {{ seocat($catName) }} en avant" href="/mise-en-avant" class="btn btn-success btn-avant text-xl-right text-center mt-4 mt-xl-0" style="float: right;"><i class="fa fa-trophy pr-1"></i>Mettre mon serveur en avant</a></h3>
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
-                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3>
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
-                                             style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script><br />
+                                        <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <ins class="adsbygoogle"
+                                                     style="display:block"
+                                                     data-ad-format="fluid"
+                                                     data-ad-layout-key="-go-20-e-7b+w5"
+                                                     data-ad-client="ca-pub-4636627444279583"
+                                                     data-ad-slot="3196164622"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
                                     @endif
                                 <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
                                     <div class="card-body p-4">
