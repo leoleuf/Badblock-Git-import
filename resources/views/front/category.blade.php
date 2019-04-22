@@ -199,17 +199,16 @@
                                 @php($average = 0)
                                 @php($averageCount = 0)
                                     @if (encname($catName) == "clash-of-clans")
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
-                                        <ins class="adsbygoogle"
-                                             style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script><br />
+                                    <!-- responsive -->
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-client="ca-pub-4636627444279583"
+                                         data-ad-slot="8514750542"
+                                         data-ad-format="auto"
+                                         data-full-width-responsive="true"></ins>
+                                    <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                    </script><br />
                                         <h3 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Télécharger {{ seocat($catName) }} sans plus attendre</h3>
                                         <div class="card lis-brd-light mb-1 wow fadeInUp">
                                             <div class="card-body p-4">
@@ -218,12 +217,11 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
                                              style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
+                                             data-ad-client="ca-pub-4636627444279583"
+                                             data-ad-slot="8514750542"
                                              data-ad-format="auto"
                                              data-full-width-responsive="true"></ins>
                                         <script>
@@ -252,12 +250,11 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- serveur-multigames -->
                                         <ins class="adsbygoogle"
                                              style="display:block"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
+                                             data-ad-client="ca-pub-4636627444279583"
+                                             data-ad-slot="8514750542"
                                              data-ad-format="auto"
                                              data-full-width-responsive="true"></ins>
                                         <script>
@@ -289,15 +286,6 @@
                                     @elseif ($normalDone == 0 && !isset($row->ad))
                                         @php($normalDone = 1)
                                         <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3>
-                                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                                <!-- billboard -->
-                                                <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:728px;height:90px"
-                                                     data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="9454574921"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
                                     @endif
                                 <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
                                     <div class="card-body p-4">
@@ -417,17 +405,15 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveur-multigames -->
-                                <ins class="adsbygoogle"
-                                     style="display:block"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="1434308007"
-                                     data-ad-format="auto"
-                                     data-full-width-responsive="true"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+                        <ins class="adsbygoogle"
+                                                       style="display:block"
+                                                       data-ad-client="ca-pub-4636627444279583"
+                                                       data-ad-slot="8514750542"
+                                                       data-ad-format="auto"
+                                                       data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                         <h6 class="lis-font-weight-500 mt-4"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le jeu {{ seocat($catName) }}</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
@@ -538,13 +524,11 @@
                                 @endforeach
                             </div>
                         </div>
-
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- serveur-multigames -->
+                        <!-- skybig -->
                         <ins class="adsbygoogle"
-                             style="display:inline-block;width:300px;height:600px;"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="2719469514"></ins>
+                             style="display:inline-block;width:300px;height:1050px"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="9407076100"></ins>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>

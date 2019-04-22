@@ -97,16 +97,15 @@
         <section class="lis-bg-light pt-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-4">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- serveur-multigames -->
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:300px;height:600px;margin-left:20%;"
-                                     data-ad-client="ca-pub-1905923613312160"
-                                     data-ad-slot="2719469514"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+                    <div class="col-12 col-lg-4"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- skybig -->
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:1050px"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="9407076100"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                         <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
@@ -121,12 +120,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- serveur-multigames -->
+                        <!-- responsive -->
                         <ins class="adsbygoogle"
-                             style="display:block" id="vb"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="1434308007"
+                             style="display:block"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="8514750542"
                              data-ad-format="auto"
                              data-full-width-responsive="true"></ins>
                         <script>

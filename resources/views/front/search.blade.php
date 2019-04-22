@@ -94,9 +94,9 @@
                     <div class="active-relatedjob-carusel">
                         <div class="single-rated">
                             <ins class="adsbygoogle"
-                                 style="display:inline-block;width:300px;height:600px"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="2719469514"></ins>
+                                 style="display:inline-block;width:300px;height:1050px"
+                                 data-ad-client="ca-pub-4636627444279583"
+                                 data-ad-slot="9407076100"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
@@ -115,9 +115,9 @@
                     <div class="active-relatedjob-carusel">
                         <div class="single-rated">
                             <ins class="adsbygoogle"
-                                 style="display:inline-block;width:300px;height:600px"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="2719469514"></ins>
+                                 style="display:inline-block;width:300px;height:1050px"
+                                 data-ad-client="ca-pub-4636627444279583"
+                                 data-ad-slot="9407076100"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>

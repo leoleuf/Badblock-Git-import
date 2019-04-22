@@ -58,18 +58,6 @@
         </div>
     </section>
 
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- responsive -->
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-4636627444279583"
-         data-ad-slot="8514750542"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-
     <section class="image-bg lis-grediant grediant-full">
         <div class="background-image-maker"></div>
         <div class="holder-image">
