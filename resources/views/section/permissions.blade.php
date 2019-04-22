@@ -4,6 +4,10 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
+                <a href="/section/permission-serv/create" class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
+                    Créer une permission
+                    <i class="fas fa-plus"></i>
+                </a>
                 <h1>Permissions serveur :</h1>
                 <div class="row">
                     <div class="col-sm-12">
@@ -25,8 +29,8 @@
                                                         <td>{{ $row['name'] }}</td>
                                                         <td>{{ $row['power'] }}</td>
                                                         <td>
-                                                            <a href="/section/permission-serv/{{ $row['_id'] }}" class="btn btn-icon waves-effect waves-light btn-danger m-b-5">
-                                                                <i class="fa fa-legal"></i>
+                                                            <a href="/section/permission-serv/{{ $row['_id'] }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                                                <i class="fas fa-pen"></i>
                                                             </a>
                                                         </td>
                                                     </tr>

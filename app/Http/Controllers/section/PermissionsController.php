@@ -28,7 +28,15 @@ class PermissionsController extends Controller
 
     public function create(){
 
-        return view('section.permcreate');
+        return view('section.permcreate', ["id" => uniqid()]);
+
+    }
+
+    public function create_perm(){
+
+        $Perm = DB::connection('mongodb_server')
+            ->collection('permissions')
+            ->insert($_POST['data']);
 
     }
 
