@@ -211,6 +211,7 @@ Route::group([
 
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:admin_server_perms');
+        Route::get('/permission-serv/create', 'section\PermissionsController@create')->middleware('can:admin_server_perms');
         Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:admin_server_perms');
         Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:admin_server_perms');
 
