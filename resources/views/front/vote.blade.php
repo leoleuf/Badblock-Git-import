@@ -104,9 +104,14 @@
         <div class="row">
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveur-multigames -->
-                    <ins class="adsbygoogle" style="display:inline-block;width:395px;height:900px" data-ad-client="ca-pub-1905923613312160" data-ad-slot="3722089873"></ins> <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                    <!-- skybig -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:1050px"
+                         data-ad-client="ca-pub-4636627444279583"
+                         data-ad-slot="9407076100"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
@@ -212,13 +217,11 @@
                                     </div>
 
                                     <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
-
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- serveur-multigames -->
+                                        <!-- responsive -->
                                         <ins class="adsbygoogle"
                                              style="display:block" id="vb"
-                                             data-ad-client="ca-pub-1905923613312160"
-                                             data-ad-slot="1434308007"
+                                             data-ad-client="ca-pub-4636627444279583"
+                                             data-ad-slot="8514750542"
                                              data-ad-format="auto"
                                              data-full-width-responsive="true"></ins>
                                         <script>
@@ -236,12 +239,10 @@
                             <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- serveur-multigames -->
                             <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
-                                 data-ad-client="ca-pub-1905923613312160"
-                                 data-ad-slot="1434308007"
+                                 data-ad-client="ca-pub-4636627444279583"
+                                 data-ad-slot="8514750542"
                                  data-ad-format="auto"
                                  data-full-width-responsive="true"></ins>
                             <script>
@@ -252,16 +253,6 @@
                             </p>
                         </div>
                     </div>
-                    @if ($data->noredirect != 1)
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="autorelaxed"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="9899743151"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                    @endif
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
@@ -283,12 +274,13 @@
 
                 @if (isMobile())
                     <div class="col-12 col-lg-4">
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <!-- serveur-multigames -->
+                        <!-- responsive -->
                         <ins class="adsbygoogle"
-                             style="display:inline-block;width:300px;height:600px;margin-left:20%;"
-                             data-ad-client="ca-pub-1905923613312160"
-                             data-ad-slot="2719469514"></ins>
+                             style="display:block"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="8514750542"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
                         </script>
