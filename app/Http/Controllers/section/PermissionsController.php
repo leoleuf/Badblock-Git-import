@@ -26,6 +26,12 @@ class PermissionsController extends Controller
         return view('section.permissions', ['data' => $Perm]);
     }
 
+    public function create(){
+
+        return view('section.permcreate');
+
+    }
+
     public function edit($uid){
 
         $Perm = DB::connection('mongodb_server')
