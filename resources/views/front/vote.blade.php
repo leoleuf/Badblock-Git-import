@@ -329,19 +329,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframetracker/1.1.0/jquery.iframetracker.js"></script>
 
         <script src="/js/ads.js"></script>
-        <script>
-            function onSubmit(token) {
-                if (window.canRunAds === undefined) {
-                    alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
-                    return;
-                }
-                else {
-                    document.getElementById("vote_button").disabled = true;
-                    document.getElementById("vote_button").style.backgroundColor="#c0392b";
-                    document.getElementById("vote_button").innerHTML="Vérification du vote en cours...";
-                    document.getElementById("vote-form").submit();
-                }
-            }
+        <script>var _0x550c=['canRunAds','Veuillez\x20désactiver\x20votre\x20bloqueur\x20de\x20publicités\x20sur\x20serveur-multigames.net\x20afin\x20de\x20pouvoir\x20voter.','getElementById','vote_button','style','backgroundColor','innerHTML','Vérification\x20du\x20vote\x20en\x20cours...','submit'];(function(_0x32c6fa,_0x552733){var _0x18e137=function(_0x168352){while(--_0x168352){_0x32c6fa['push'](_0x32c6fa['shift']());}};_0x18e137(++_0x552733);}(_0x550c,0x1e6));var _0x56ae=function(_0x3fead2,_0x3439fe){_0x3fead2=_0x3fead2-0x0;var _0x4d27dd=_0x550c[_0x3fead2];return _0x4d27dd;};function onSubmit(_0x4b81bb){if(window[_0x56ae('0x0')]===undefined){alert(_0x56ae('0x1'));return;}else{document[_0x56ae('0x2')](_0x56ae('0x3'))['disabled']=!![];document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x4')][_0x56ae('0x5')]='#c0392b';document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x6')]=_0x56ae('0x7');document['getElementById']('vote-form')[_0x56ae('0x8')]();}}
         </script>
         <script data-pagespeed-no-defer>
             var _0x4065=['100px','#vbna','pageX','abs','pageY','1.0','now','iframe','iframeTracker','post','https://serveur-multigames.net/pm','\x20-\x20','#vote_button','click','getElementById','style','marginTop'];(function(_0x456f33,_0x385a6b){var _0x1e0170=function(_0x311789){while(--_0x311789){_0x456f33['push'](_0x456f33['shift']());}};_0x1e0170(++_0x385a6b);}(_0x4065,0x17b));var _0x20fb=function(_0x2d3715,_0x27e773){_0x2d3715=_0x2d3715-0x0;var _0x46f42b=_0x4065[_0x2d3715];return _0x46f42b;};var ver=_0x20fb('0x0');var p=!![];var q=!![];var l=0x3e8;var t=0x0;var timeclick=0x0;var zo=$['now']();var z=$[_0x20fb('0x1')]();var buggy=![];var lastd=0x0;var lastmouse=0x0;var tx=0x0;var dbg='';var ty=0x0;var mx=0x0;var my=0x0;var diffx=0x0;var diffy=0x0;var hasHovered=0x0;var maxtimes=0x0;var iframeclick=0x0;$(_0x20fb('0x2'))[_0x20fb('0x3')]({'blurCallback':function(){timeclick=$[_0x20fb('0x1')]()-zo;if(q){q=![];iframeclick=$[_0x20fb('0x1')]();$[_0x20fb('0x4')](_0x20fb('0x5'),{'a':timeclick,'b':0x1,'c':$[_0x20fb('0x1')]()-lastd,'d':$[_0x20fb('0x1')]()-lastmouse,'e':'v'+ver+_0x20fb('0x6')+dbg,'h':hasHovered},function(_0x3e9043,_0x50b968){});}}});$(_0x20fb('0x7'))[_0x20fb('0x8')](function(){if(lastd<=0x0){if(document[_0x20fb('0x9')]('vb')[_0x20fb('0xa')][_0x20fb('0xb')]!='50px'){lastd=$[_0x20fb('0x1')]();maxtimes=maxtimes+0x1;zo=$['now']();document[_0x20fb('0x9')]('vb')[_0x20fb('0xa')][_0x20fb('0xb')]=_0x20fb('0xc');}}else{timeclick=$['now']()-zo;$(_0x20fb('0xd'))[_0x20fb('0x8')]();if(p){p=![];$[_0x20fb('0x4')](_0x20fb('0x5'),{'a':timeclick,'b':0x0,'c':$['now']()-lastd,'d':$['now']()-lastmouse,'e':dbg,'h':hasHovered},function(_0x16ba4f,_0x4fc65e){});}}});$(document)['on']('mousemove',function(_0x5447ec){if(_0x5447ec[_0x20fb('0xe')]!==mx){diffx=Math[_0x20fb('0xf')](_0x5447ec[_0x20fb('0xe')]-mx);if(diffx>0x2){tx=$[_0x20fb('0x1')]();lastmouse=tx;}}if(_0x5447ec[_0x20fb('0x10')]!==my){diffy=Math[_0x20fb('0xf')](_0x5447ec[_0x20fb('0x10')]-my);if(diffy>0x2){ty=$[_0x20fb('0x1')]();lastmouse=ty;}}mx=_0x5447ec[_0x20fb('0xe')];my=_0x5447ec['pageY'];});
