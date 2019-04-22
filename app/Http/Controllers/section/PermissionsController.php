@@ -28,7 +28,7 @@ class PermissionsController extends Controller
 
     public function create(){
 
-        return view('section.permcreate', ["id" => uniqid()]);
+        return view('section.permcreate');
 
     }
 
