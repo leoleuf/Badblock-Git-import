@@ -99,6 +99,7 @@ Route::group([
     ], function () {
         //Modération
         Route::get('/', 'moderation\ModerationController@index');
+        Route::get('/search/{username}', 'moderation\ModerationController@search');
         Route::get('/screen', 'moderation\ModerationController@screen');
         Route::get('/sanction', 'moderation\ModerationController@sanction');
         Route::post('/union', 'moderation\ModerationController@union');

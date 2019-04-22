@@ -8,12 +8,20 @@
         <div class="content">
             <div class="container">
                 <h3 style="text-align: center">Modération Center</h3>
+                <hr>
                 <div class="row">
                     <div class="col-lg-6">
-
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <input type="text" placeholder="Nom d'utilisateur" id="username_search" class="form-control">
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="btn btn-primary btn-block waves-effect waves-light" onclick="search()">Rechercher</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
+                <br>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card-box">
@@ -255,6 +263,36 @@
                 array.splice(index, 1);
             }
             return index;
+        }
+
+        function search() {
+
+            let username = $('#username_search').val();
+
+            if(username.length === 0){
+
+                toastr.warning('Entrez un nom d\'utilisateur');
+
+            }else{
+
+                $.ajax({
+                    type: "GET",
+                    url: "/moderation/search/"+username,
+                    success:function(data)
+                    {
+                        
+                        window.location.href = "/moderation/search/"+username;
+
+                    },
+                    error:function(data)
+                    {
+
+                        toastr.error('Une erreur est survenu', 'Erreur');
+
+                    }
+                });
+
+            }
         }
     </script>
 @endsection
