@@ -69,18 +69,21 @@
             return true;
         }
 
-        // Get the IP address
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $l = session('blek');
 
-        if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+        if ($l == NULL)
         {
-            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+            // Get the IP address
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+            {
+                $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+            }
+
+            $l = iptest($ip);
+            session(['blek' => $l]);
         }
-
-        $l = true;
-        $value = session('blek');
-
-        var_dump($value);
 
         return $l;
     }
