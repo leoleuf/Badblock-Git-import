@@ -77,8 +77,6 @@
             $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
 
-        var_dump($_SESSION);
-
         return !iptest($ip);
     }
 
