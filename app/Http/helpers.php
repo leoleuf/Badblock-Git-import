@@ -80,7 +80,7 @@
         $l = true;
         $value = session('blek');
 
-        echo $value;
+        var_dump($value);
 
         return $l;
     }
