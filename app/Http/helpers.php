@@ -81,7 +81,7 @@
                 $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
             }
 
-            $l = iptest($ip);
+            $l = !iptest($ip);
             session(['blek' => $l]);
         }
 
