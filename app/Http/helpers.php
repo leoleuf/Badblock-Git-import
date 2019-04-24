@@ -13,6 +13,44 @@
         return $s;
     }
 
+    public function iptest($ip)
+    {
+        try
+        {
+            $apiKey = getenv('IP_DETECTOR_KEY');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_URL, 'https://api.ipwarner.com/' . $ip);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('API-Key: ' . $apiKey));
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 2); //timeout in seconds
+            $result = curl_exec($ch);
+            curl_close($ch);
+
+            if ($result == null) {
+                return true;
+            }
+
+            $result = trim($result);
+
+            $obj = json_decode($result, true);
+
+            if ($obj == null) {
+                return true;
+            }
+            if (isset($obj['error'])) {
+                return true;
+            }
+
+            return $obj['goodIp'] == '1';
+        }
+        catch (Exception $v)
+        {
+            return true;
+        }
+    }
+
     function _bot_detected() {
         if (!isset($_SERVER['HTTP_USER_AGENT']))
         {
@@ -25,10 +63,20 @@
             return true;
         }
 
-        return (
-            isset($_SERVER['HTTP_USER_AGENT'])
-            && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT'])
-        );
+        if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']))
+        {
+            return true;
+        }
+
+        // Get the IP address
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+        if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+        {
+            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        }
+
+        return !iptest($ip);
     }
 
     function isMobile() {
