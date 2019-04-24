@@ -236,23 +236,23 @@
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button>
 
-                                        @if (!_bot_detected())
-                                            <ins class="adsbygoogle"
-                                                 style="display:block" id="vb1"
-                                                 data-ad-client="ca-pub-4636627444279583"
-                                                 data-ad-slot="8514750542"
-                                                 data-ad-format="auto"
-                                                 data-full-width-responsive="true"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
-                                        @endif
 
                                         {{ csrf_field() }}
                                 </form>
                             <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
+                            @if (!_bot_detected())
+                                <ins class="adsbygoogle"
+                                     style="display:block" id="vb1"
+                                     data-ad-client="ca-pub-4636627444279583"
+                                     data-ad-slot="8514750542"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            @endif
                             <br />
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                             </p>
