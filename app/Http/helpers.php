@@ -77,7 +77,12 @@
             $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
         }
 
-        return !iptest($ip);
+        $l = true;
+        $value = session('blek');
+
+        echo $value;
+
+        return $l;
     }
 
     function isMobile() {
