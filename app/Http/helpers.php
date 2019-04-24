@@ -19,7 +19,8 @@
             return true;
         }
 
-        if (!isset($_SERVER["HTTP_CF_IPCOUNTRY"]) OR strtolower($_SERVER["HTTP_CF_IPCOUNTRY"]) != "fr")
+        if (!isset($_SERVER["HTTP_CF_IPCOUNTRY"]) OR (strtolower($_SERVER["HTTP_CF_IPCOUNTRY"]) != "fr" && strtolower($_SERVER["HTTP_CF_IPCOUNTRY"]) != "be" &&
+            strtolower($_SERVER["HTTP_CF_IPCOUNTRY"]) != "ch"))
         {
             return true;
         }
