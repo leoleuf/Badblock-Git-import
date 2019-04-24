@@ -1,6 +1,7 @@
 <?php
 
-    function stripAccents($str) {
+    function stripAccents($str)
+    {
         return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
     }
 
@@ -13,7 +14,7 @@
         return $s;
     }
 
-    public function iptest($ip)
+    function iptest($ip)
     {
         try
         {
