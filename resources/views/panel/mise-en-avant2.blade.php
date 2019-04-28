@@ -44,10 +44,10 @@
                             <label>Jours de mise en avant</label>
                             <div class="row">
                                 <div class="col-sm">
-                                    One of three columns
+                                    {{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }}
                                 </div>
                                 <div class="col-sm">
-                                    One of three columns
+                                    2
                                 </div>
                                 <div class="col-sm">
                                     One of three columns
