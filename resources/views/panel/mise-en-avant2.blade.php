@@ -38,22 +38,22 @@
                                 @foreach($servers as $server)
                                     <option value="{{ $server->id }}">{{ seocat($server->cat) }} - {{ $server->name }}</option>
                                 @endforeach
-                            </select>
+                            </select><br />
                         </div>
                         <div class="col-12">
                             <label>Jours de mise en avant</label>
                             <div class="row">
                                 @foreach($days as $k => $v)
-                                    <div class="col-sm">
-                                        {{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }}
+                                    <div class="col-lg-3 col-md-2 mb-2">
+                                        <div style="border-radius: 15px;
+-moz-border-radius: 15px;
+-webkit-border-radius: 15px;
+border: 0.5px solid #000000; text-align: center;">
+                                            <strong style="font-size:1.1rem;color:#000;">{{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }}</strong><br />
+                                            {{ round($v['points']/100, 2) }} €
+                                        </div>
                                     </div>
                                 @endforeach
-                                <div class="col-sm">
-                                    2
-                                </div>
-                                <div class="col-sm">
-                                    One of three columns
-                                </div>
                             </div>
                         </div>
                     </div>

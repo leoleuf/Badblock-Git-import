@@ -365,7 +365,7 @@ class PubController extends Controller
             6 => 23 // Samedi
         );
 
-        for ($i = 0; $i < 60; $i++)
+        for ($i = 0; $i < 20; $i++)
         {
             $date = date("Y-m-d", strtotime("+".$i." days"));
 
