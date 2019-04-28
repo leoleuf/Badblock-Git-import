@@ -33,7 +33,7 @@
                     <h3 class="card-title">Prenez la première place.</h3>
                     <div class="row">
                         <div class="col-12">
-                            <label>Choisir votre serveur</label>
+                            <label>Quel serveur souhaite-tu mettre en avant ?</label>
                             <select name="server" class="form-control">
                                 @foreach($servers as $server)
                                     <option value="{{ $server->id }}">{{ seocat($server->cat) }} - {{ $server->name }}</option>
