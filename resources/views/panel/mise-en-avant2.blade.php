@@ -42,11 +42,16 @@
                         </div>
                         <div class="col-12">
                             <label>Jours de mise en avant</label>
-                            <div class="col-2">
-                                1
-                            </div>
-                            <div class="col-2">
-                                2
+                            <div class="row">
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
+                                <div class="col-sm">
+                                    One of three columns
+                                </div>
                             </div>
                         </div>
                     </div>
