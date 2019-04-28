@@ -100,6 +100,8 @@ class CacheController extends Controller
             //Set nb page Redis
             Redis::set('page:'.$k.':number', $page);
 
+            var_dump($topServers);
+            exit;
             $topServer = array();
             $io = 0;
             foreach($topServers as $p => $o) {
@@ -114,7 +116,6 @@ class CacheController extends Controller
                     if ($ts != null && count($ts) > 0) {
                         $topServer[$io] = $ts[0];
                         $topServer[$io]->ad = true;
-                        var_dump($ts[0]);
                         $ne = true;
                     }
                 }
