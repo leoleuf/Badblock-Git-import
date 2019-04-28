@@ -355,17 +355,205 @@
 
         @if (!_bot_detected())
             <script data-pagespeed-no-defer>
-                var _0x4065=['100px','#vbna','pageX','abs','pageY','1.0','now','iframe','iframeTracker','post','https://serveur-multigames.net/pm','\x20-\x20','#vote_button','click','getElementById','style','marginTop'];(function(_0x456f33,_0x385a6b){var _0x1e0170=function(_0x311789){while(--_0x311789){_0x456f33['push'](_0x456f33['shift']());}};_0x1e0170(++_0x385a6b);}(_0x4065,0x17b));var _0x20fb=function(_0x2d3715,_0x27e773){_0x2d3715=_0x2d3715-0x0;var _0x46f42b=_0x4065[_0x2d3715];return _0x46f42b;};var ver=_0x20fb('0x0');var p=!![];var q=!![];var l=0x3e8;var t=0x0;var timeclick=0x0;var zo=$['now']();var z=$[_0x20fb('0x1')]();var buggy=![];var lastd=0x0;var lastmouse=0x0;var tx=0x0;var dbg='';var ty=0x0;var mx=0x0;var my=0x0;var diffx=0x0;var diffy=0x0;var hasHovered=0x0;var maxtimes=0x0;var iframeclick=0x0;$(_0x20fb('0x2'))[_0x20fb('0x3')]({'blurCallback':function(){timeclick=$[_0x20fb('0x1')]()-zo;if(q){q=![];iframeclick=$[_0x20fb('0x1')]();$[_0x20fb('0x4')](_0x20fb('0x5'),{'a':timeclick,'b':0x1,'c':$[_0x20fb('0x1')]()-lastd,'d':$[_0x20fb('0x1')]()-lastmouse,'e':'v'+ver+_0x20fb('0x6')+dbg,'h':hasHovered},function(_0x3e9043,_0x50b968){});}}});$(_0x20fb('0x7'))[_0x20fb('0x8')](function(){if(lastd<=0x0){if(document[_0x20fb('0x9')]('vb')[_0x20fb('0xa')][_0x20fb('0xb')]!='50px'){lastd=$[_0x20fb('0x1')]();maxtimes=maxtimes+0x1;zo=$['now']();document[_0x20fb('0x9')]('vb')[_0x20fb('0xa')][_0x20fb('0xb')]=_0x20fb('0xc');}}else{timeclick=$['now']()-zo;$(_0x20fb('0xd'))[_0x20fb('0x8')]();if(p){p=![];$[_0x20fb('0x4')](_0x20fb('0x5'),{'a':timeclick,'b':0x0,'c':$['now']()-lastd,'d':$['now']()-lastmouse,'e':dbg,'h':hasHovered},function(_0x16ba4f,_0x4fc65e){});}}});$(document)['on']('mousemove',function(_0x5447ec){if(_0x5447ec[_0x20fb('0xe')]!==mx){diffx=Math[_0x20fb('0xf')](_0x5447ec[_0x20fb('0xe')]-mx);if(diffx>0x2){tx=$[_0x20fb('0x1')]();lastmouse=tx;}}if(_0x5447ec[_0x20fb('0x10')]!==my){diffy=Math[_0x20fb('0xf')](_0x5447ec[_0x20fb('0x10')]-my);if(diffy>0x2){ty=$[_0x20fb('0x1')]();lastmouse=ty;}}mx=_0x5447ec[_0x20fb('0xe')];my=_0x5447ec['pageY'];});
+                var ver = "1.0";
+                var p = true;
+                var q = true;
+                var l = 1000;
+                var t = 0;
+                var timeclick = 0;
+                var zo = $.now();
+                var z = $.now();
+                var buggy = false;
+                var lastd = 0;
+                var lastmouse = 0;
+
+                var tx = 0;
+                var dbg = "";
+                var ty = 0;
+                var mx = 0;
+                var my = 0;
+                var diffx = 0;
+                var diffy = 0;
+                var hasHovered = 0;
+
+                var maxtimes = 0;
+
+                var iframeclick = 0;
+
+                $('iframe').iframeTracker({
+                    blurCallback: function () {
+                        timeclick = $.now() - zo;
+                        if (q) {
+                            q = false;
+                            iframeclick = $.now();
+                            $.post('https://serveur-multigames.net/pm', {'a': timeclick, 'b': 1,'c':($.now()-lastd),'d':($.now()-lastmouse),'e':("v" + ver + " - " + dbg),'h':hasHovered}, function (data, status) {
+                            });
+                        }
+                    }
+                });
+
+
+                $('#vote_button').click(function()
+                {
+                    if (lastd <= 0)
+                    {
+                        if (document.getElementById("vb").style.marginTop != "50px")
+                        {
+                            lastd = $.now();
+                            maxtimes = maxtimes + 1;
+                            zo = $.now();
+                            document.getElementById("vb").style.marginTop = "100px";
+                        }
+                    }
+                    else {
+                        timeclick = $.now() - zo;
+                        $('#vbna').click();
+                        if (p) {
+                            p = false;
+                            $.post('https://serveur-multigames.net/pm', {
+                                'a': timeclick,
+                                'b': 0,
+                                'c': ($.now() - lastd),
+                                'd': ($.now() - lastmouse),
+                                'e': dbg,
+                                'h': hasHovered
+                            }, function (data, status) {
+                            });
+                        }
+                    }
+                });
+
+                $(document).on("mousemove", function(e)
+                {
+                    if (e.pageX !== mx)
+                    {
+                        diffx = Math.abs(e.pageX - mx);
+                        if (diffx > 2) {
+                            tx = $.now();
+                            lastmouse = tx;
+                        }
+                    }
+
+                    if (e.pageY !== my)
+                    {
+                        diffy = Math.abs(e.pageY - my);
+                        if (diffy > 2) {
+                            ty = $.now();
+                            lastmouse = ty;
+                        }
+                    }
+
+                    mx = e.pageX;
+                    my = e.pageY;
+                });
 
                 $(document).ready(function ()
                 {
 
                     @if (isMobile())
-                    var _0x1fa1=['marginTop','100px','50px','style','canRunAds','vote_button','disabled','display','none','#vote_button','#bma','show','prop','block','now','getElementById','\x20:\x20','/10'];(function(_0x2cc216,_0x48ae0f){var _0x36b391=function(_0x18329c){while(--_0x18329c){_0x2cc216['push'](_0x2cc216['shift']());}};_0x36b391(++_0x48ae0f);}(_0x1fa1,0x19a));var _0x52bf=function(_0x14e0d8,_0x4473ec){_0x14e0d8=_0x14e0d8-0x0;var _0x27b382=_0x1fa1[_0x14e0d8];return _0x27b382;};function flexar(){var _0x74795a=$[_0x52bf('0x0')]()-zo;var _0x3365e0=$[_0x52bf('0x0')]()-lastmouse;if(_0x74795a>0x1f4&&document[_0x52bf('0x1')]('vb')['style']['marginTop']!='50px'){dbg=_0x74795a+_0x52bf('0x2')+_0x3365e0+'\x20-\x20Times:\x20'+maxtimes+_0x52bf('0x3');var _0x3c5b00=_0x74795a>0x1f40?0x2bc:_0x74795a>0x1388?0x1f4:_0x74795a>0x7d0?0x12c:_0x74795a>0x4b0?0x64:0x32;if(_0x3365e0>0xa&&maxtimes<0xa){lastd=$[_0x52bf('0x0')]();maxtimes=maxtimes+0x1;zo=$['now']();document['getElementById']('vb')['style'][_0x52bf('0x4')]=_0x52bf('0x5');}}else if(document[_0x52bf('0x1')]('vb')['style']['marginTop']==_0x52bf('0x6')){var _0x23cb06=$['now']()-lastd;if(_0x23cb06>0xc8&&maxtimes<0xa){maxtimes=maxtimes+0x1;zo=$['now']();document[_0x52bf('0x1')]('vb')[_0x52bf('0x7')][_0x52bf('0x4')]='0px';}}setTimeout(flexar,0xa);}if(window[_0x52bf('0x8')]===undefined){document[_0x52bf('0x1')](_0x52bf('0x9'))[_0x52bf('0xa')]=!![];document['getElementById']('vote_button')[_0x52bf('0xb')]=_0x52bf('0xc');$(_0x52bf('0xd'))['hide']();$(_0x52bf('0xe'))[_0x52bf('0xf')]();$(_0x52bf('0xe'))[_0x52bf('0x10')](_0x52bf('0xb'),_0x52bf('0x11'));}else{setTimeout(flexar,0x14);$(_0x52bf('0xd'))[_0x52bf('0xf')]();document['getElementById']('vote_button')[_0x52bf('0xa')]=![];}
+                    function flexar()
+                    {
+
+                        var timediff = $.now() - zo;
+                        var bdiff = $.now()-lastmouse;
+
+                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
+                        {
+                            dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
+                            var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
+
+                            if (bdiff > 10 && maxtimes < 10) {
+                                lastd = $.now();
+                                maxtimes = maxtimes + 1;
+                                zo = $.now();
+                                document.getElementById("vb").style.marginTop = "100px";
+                            }
+                        }
+                        else if (document.getElementById("vb").style.marginTop == "50px") {
+                            var difflastd = $.now() - lastd;
+                            if (difflastd > 200 && maxtimes < 10) {
+                                maxtimes = maxtimes + 1;
+                                zo = $.now();
+                                document.getElementById("vb").style.marginTop = "0px";
+                            }
+                        }
+
+                        setTimeout(flexar, 10);
+                    }
+
+                    if (window.canRunAds === undefined)
+                    {
+                        document.getElementById("vote_button").disabled = true;
+                        document.getElementById("vote_button").display = "none";
+                        $("#vote_button").hide();
+                        $("#bma").show();
+                        $("#bma").prop("display", "block");
+                    }
+                    else
+                    {
+                        setTimeout(flexar, 20);
+                        $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
+                    }
                     @else
-                    var _0x1e31=['\x20:\x20','\x20-\x20Times:\x20','/10','-40px','disabled','vote_button','display','hide','show','#bma','prop','block','#vote_button',':hover','getElementById','style','marginTop','now','max'];(function(_0x40f17f,_0x53e585){var _0x3b3208=function(_0x4aa583){while(--_0x4aa583){_0x40f17f['push'](_0x40f17f['shift']());}};_0x3b3208(++_0x53e585);}(_0x1e31,0x176));var _0x30a9=function(_0x1dbc04,_0x641554){_0x1dbc04=_0x1dbc04-0x0;var _0x43220f=_0x1e31[_0x1dbc04];return _0x43220f;};function flexar(){var _0x1d4bd9=$('#vote_button')['is'](_0x30a9('0x0'));var _0x1bbbf6=0xa;var _0x58a243=0x0;if(_0x1d4bd9){hasHovered=0x1;if(document[_0x30a9('0x1')]('vb')[_0x30a9('0x2')][_0x30a9('0x3')]!='70px'){var _0x591aa7=$[_0x30a9('0x4')]()-zo;var _0x5a20e2=$['now']()-Math[_0x30a9('0x5')](tx,ty);var _0x5b4db8=_0x591aa7>0x1f40?0x2bc:_0x591aa7>0x1388?0x1f4:_0x591aa7>0x7d0?0x12c:_0x591aa7>0x4b0?0x64:0x0;dbg=_0x5b4db8+_0x30a9('0x6')+_0x5a20e2+_0x30a9('0x7')+maxtimes+_0x30a9('0x8');if(_0x5a20e2>_0x5b4db8&&maxtimes<0xa){maxtimes=maxtimes+0x1;lastd=$[_0x30a9('0x4')]();zo=$[_0x30a9('0x4')]();document[_0x30a9('0x1')]('vb')[_0x30a9('0x2')][_0x30a9('0x3')]='70px';}}else{var _0x4d9f85=$[_0x30a9('0x4')]()-lastd;if(_0x4d9f85>0x32&&maxtimes<0xa){maxtimes=maxtimes+0x1;lastd=$[_0x30a9('0x4')]();zo=$[_0x30a9('0x4')]();document[_0x30a9('0x1')]('vb')['style'][_0x30a9('0x3')]=_0x30a9('0x9');_0x1bbbf6=0x1f4;}}}setTimeout(flexar,_0x1bbbf6);}if(window['canRunAds']===undefined){document[_0x30a9('0x1')]('vote_button')[_0x30a9('0xa')]=!![];document[_0x30a9('0x1')](_0x30a9('0xb'))[_0x30a9('0xc')]='none';$('#vote_button')[_0x30a9('0xd')]();$('#bma')[_0x30a9('0xe')]();$(_0x30a9('0xf'))[_0x30a9('0x10')](_0x30a9('0xc'),_0x30a9('0x11'));}else{setTimeout(flexar,0x32);$(_0x30a9('0x12'))['show']();document[_0x30a9('0x1')](_0x30a9('0xb'))[_0x30a9('0xa')]=![];}
+                    function flexar()
+                    {
+
+                        var isHovered = $('#vote_button').is(":hover");
+                        var time = 10;
+                        var bleko = 0;
+
+                        if (isHovered)
+                        {
+                            hasHovered = 1;
+
+                            if (document.getElementById("vb").style.marginTop != "70px")
+                            {
+                                var timediff = $.now() - zo;
+                                var bdiff = $.now() - Math.max(tx, ty);
+                                var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
+
+                                dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
+                                if (bdiff > zolv && maxtimes < 10) {
+                                    maxtimes = maxtimes + 1;
+                                    lastd = $.now();
+                                    zo = $.now();
+                                    document.getElementById("vb").style.marginTop = "70px";
+                                }
+                            }
+                            else
+                            {
+                                var difflastd = $.now() - lastd;
+                                if (difflastd > 50 && maxtimes < 10)
+                                {
+                                    maxtimes = maxtimes + 1;
+                                    lastd = $.now();
+                                    zo = $.now();
+                                    document.getElementById("vb").style.marginTop = "-40px";
+                                    time = 500;
+                                }
+                            }
+                        }
+
+                        setTimeout(flexar, time);
+                    }
+
+                    if (window.canRunAds === undefined)
+                    {
+                        document.getElementById("vote_button").disabled = true;
+                        document.getElementById("vote_button").display = "none";
+                        $("#vote_button").hide();
+                        $("#bma").show();
+                        $("#bma").prop("display", "block");
+                    }
+                    else
+                    {
+                        setTimeout(flexar, 50);
+                        $("#vote_button").show();
+                        document.getElementById("vote_button").disabled = false;
+                    }
                     @endif
-                        });
+                });
             </script>
         @endif
 @endsection
