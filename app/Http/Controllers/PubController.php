@@ -299,27 +299,97 @@ class PubController extends Controller
         {
             $date = date("Y-m-d", strtotime("+".$i." days"));
 
-                $dw = date('w', strtotime($date));
-                $points = 0;
-                $dt = DB::select('select pts from pbs where date = ?', [$date]);
-                if (count($dt) == 0)
-                {
-                    $points = $daysCoef[$dw];
-                    $points = floatval($points);
-                    $points *= (1 + (rand(70, 80) / 100)) * $coeff;
-                    $points = intval($points);
+            $dw = date('w', strtotime($date));
+            $points = 0;
+            $dt = DB::select('select pts from pbs where date = ?', [$date]);
+            if (count($dt) == 0)
+            {
+                $points = $daysCoef[$dw];
+                $points = floatval($points);
+                $points *= (1 + (rand(70, 80) / 100)) * $coeff;
+                $points = intval($points);
 
-                    DB::table('pbs')->insert(
-                        [
-                            'date' => $date,
-                            'pts' => $points
-                        ]
-                    );
-                }
-                else
-                {
-                    $points = $dt[0]->pts;
-                }
+                DB::table('pbs')->insert(
+                    [
+                        'date' => $date,
+                        'pts' => $points
+                    ]
+                );
+            }
+            else
+            {
+                $points = $dt[0]->pts;
+            }
+
+            $o = [
+                'points' => $points
+            ];
+            $days[$date] = $o;
+        }
+
+        $jour = array("Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi");
+
+        $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
+
+        return view('panel.mise-en-avant',['currentDate' => $currentDate, 'data' => $data[0],'op' => $op, 'servers' => $servers, 'days' => $days, 'jour' => $jour, 'mois' => $mois]);
+
+    }
+
+
+    public function index2()
+    {
+        $currentDate = date("Y-m-d");
+        $op = DB::select('select * from pub where date >= ? ORDER BY date ASC;', [$currentDate]);
+
+        $data = DB::select('select * from users where id = ? LIMIT 1', [Auth::user()->id]);
+        $servers = DB::select('select * from server_list where user_id = ?', [Auth::user()->id]);
+
+        foreach($op as $k => $v)
+        {
+            $srv = DB::select('select * from server_list where id = ?', [$v->server]);
+            $op[$k]->server = $srv[0];
+        }
+
+        $days = array();
+
+        // TODO : COEFFICIENT A GERER AVEC LE TRAFIC
+        $coeff = 12;
+
+        $daysCoef = array(
+            0 => 21, // Dimanche
+            1 => 9, // Lundi
+            2 => 10, // Mardi
+            3 => 17, // Mercredi
+            4 => 11, // Jeudi
+            5 => 16, // Vendredi
+            6 => 23 // Samedi
+        );
+
+        for ($i = 0; $i < 60; $i++)
+        {
+            $date = date("Y-m-d", strtotime("+".$i." days"));
+
+            $dw = date('w', strtotime($date));
+            $points = 0;
+            $dt = DB::select('select pts from pbs where date = ?', [$date]);
+            if (count($dt) == 0)
+            {
+                $points = $daysCoef[$dw];
+                $points = floatval($points);
+                $points *= (1 + (rand(70, 80) / 100)) * $coeff;
+                $points = intval($points);
+
+                DB::table('pbs')->insert(
+                    [
+                        'date' => $date,
+                        'pts' => $points
+                    ]
+                );
+            }
+            else
+            {
+                $points = $dt[0]->pts;
+            }
 
             $o = [
                 'points' => $points
