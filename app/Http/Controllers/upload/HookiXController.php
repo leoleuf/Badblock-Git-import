@@ -25,14 +25,9 @@ class HookiXController extends Controller
 
             foreach ($files as $file)
             {
-                //get filename with extension
-                $filenamewithextension = $file->getClientOriginalName();
-
                 //get filename without extension
-                $filename = strtoupper(Auth::user()->name).time().'.'.$file->getClientOriginalExtension();
+                $filename = strtoupper(Auth::user()->name).time().'.'.strtolower($file->getClientOriginalExtension());
                 $filename = str_replace("_", "", $filename);
-
-                $extension = $file->getClientOriginalExtension();
 
                 Storage::disk('ftp')->put($filename, fopen($file, 'r+'));
 
