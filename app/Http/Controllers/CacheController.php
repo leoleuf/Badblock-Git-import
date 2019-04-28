@@ -114,7 +114,7 @@ class CacheController extends Controller
                     if ($ts != null && count($ts) > 0) {
                         $topServer[$io] = $ts[0];
                         $topServer[$io]->ad = true;
-                        var_dump($ts[0]['name']. " pub");
+                        var_dump($ts[0]);
                         $ne = true;
                     }
                 }
