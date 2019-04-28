@@ -37,16 +37,14 @@ class WarningController extends Controller
         return view('section.warning.list');
     }
 
+    public function mylist()
+    {
+        return view('section.warning.mylist', ['data' => DB::table('warning')->where('pseudo', Auth::user()->name)->get()]);
+    }
+
     public function display($id)
     {
-
-        $user = DB::table('warning')->where('id', '=', $id)->get();
-        if ($user[0]->pseudo == Auth::user()->name) {
-            return view('section.warning.display', ['user' => $user]);
-        } else {
-            return redirect('/');
-        }
-
+        return view('section.warning.display', ['user' => DB::table('warning')->where('id', $id)->get()]);
     }
 
     public function delete($id)
@@ -71,10 +69,19 @@ class WarningController extends Controller
         DB::table('notifications')->insert([
             'user_id' => NotificationsController::convertPseudoId($request->input('pseudo')),
             'title' => $request->input('title'),
-            'link' => '/avertissement/' . DB::table('warning')->max('id'),
+            'link' => 'section/avertissement/' . DB::table('warning')->max('id'),
             'icon' => 'https://image.flaticon.com/icons/svg/179/179386.svg',
             'text' => 'Vous venez de recevoir un avertissement.'
         ]);
+
+        $data = [
+            'warn_by' => $request->input('warn_by'),
+            'pseudo' => $request->input('pseudo'),
+            'title' => $request->input('title'),
+            'text' => $request->input('text')
+        ];
+
+        NotificationsController::sendWarnMail($data);
 
 
         return redirect('/section/avertissement-list');

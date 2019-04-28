@@ -54,12 +54,6 @@
                                 <button class="btn btn-custom btn-bordred btn-block waves-effect waves-light" type="submit">Connexion</button>
                             </div>
                         </div>
-
-                        <div class="form-group m-t-30 m-b-0">
-                            <div class="col-sm-12">
-                                <a href="page-recoverpw.html" class="text-muted"><i class="fa fa-lock m-r-5"></i> Mot de passe oublié ?</a>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>

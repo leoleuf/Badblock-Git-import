@@ -26,12 +26,6 @@ Route::post('/2faVerify', function () {
 
 })->name('2faVerify')->middleware('2fa');
 
-Route::get('/test', function(){
-
-    \App\Http\Controllers\section\NotificationsController::sendFCMNotif(['body' => 'New message']);
-
-});
-
 Route::group([
     'prefix'     => "api"
 ], function () {
@@ -41,6 +35,10 @@ Route::group([
     Route::get('/minecraft', 'Infra\McController@players');
     Route::get('/ban', 'Infra\McController@ban');
     Route::post('/theme', 'HomeController@setTheme');
+
+    Route::get('/msg-guardianner/{uuid}', 'moderation\GuardianController@sanction');
+    Route::get('/msg-del-guardianner/{uuid}', 'moderation\GuardianController@setMessageOk');
+    Route::get('/get-msg-guardianner', 'moderation\GuardianController@getAllMsg');
 
     Route::get('/cloudflare/purge/all', 'Infra\CloudFlareController@purge_all');
 
@@ -55,6 +53,9 @@ Route::group([
 
     //Notificaiton link redirect
     Route::get('/notif-link/{id}', 'NotificationController@index');
+
+    Route::get('/my-warns', 'section\WarningController@mylist');
+    Route::get('/my-notifs', 'section\NotificationsController@mylist');
 
     Route::group([
         'middleware' => ['auth'],
@@ -235,7 +236,7 @@ Route::group([
         Route::post('/youtubers', 'section\YoutubersManagementController@post')->middleware('can:resp_youtubers_list');
 
         // Voir ses propres avertissements
-        Route::get('/avertissement/{id}', 'section\WarningController@display');
+        Route::get('/avertissement/{id}', 'section\WarningController@display')->middleware('can:tools_warn');
 
     });
 
@@ -314,6 +315,7 @@ Route::group([
     ], function () {
 
         Route::get('/', 'Infra\ServerManageController@index')->name('server.manage');
+        Route::post('/motd', 'Infra\ServerManageController@motd');
 
     });
 

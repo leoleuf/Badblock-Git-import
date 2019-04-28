@@ -23,11 +23,18 @@ class HookiXController extends Controller
 
         if ($request->hasFile('screen')) {
 
+            $i = 0;
+
             foreach ($files as $file)
             {
+                //get filename with extension
+                $filenamewithextension = $file->getClientOriginalName();
+
                 //get filename without extension
-                $filename = strtoupper(Auth::user()->name).time().'.'.strtolower($file->getClientOriginalExtension());
+                $filename = strtoupper(Auth::user()->name).time().$i.'.'.$file->getClientOriginalExtension();
                 $filename = str_replace("_", "", $filename);
+
+                $extension = $file->getClientOriginalExtension();
 
                 Storage::disk('ftp')->put($filename, fopen($file, 'r+'));
 
@@ -46,6 +53,8 @@ class HookiXController extends Controller
                     'date' => date('Y-m-d H:m:s'),
                     'file_name' => $filename
                 ]);
+
+                $i++;
 
             }
 

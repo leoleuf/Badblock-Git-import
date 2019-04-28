@@ -11,8 +11,10 @@ namespace App\Http\Controllers\section;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Mail;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class NotificationsController extends Controller
 {
@@ -79,6 +81,45 @@ class NotificationsController extends Controller
             ]);
         }
 
+    }
+
+    public static function sendWarnMail($data)
+    {
+        $mail = new PHPMailer(true);
+
+        $warn = DB::table('warning')->where('pseudo', $data['pseudo'])->count();
+
+        $info = DB::table('warning')->where('pseudo', $data['pseudo'])->get()[0];
+
+        try {
+            //Server settings
+            $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+            $mail->isSMTP();                                            // Set mailer to use SMTP
+            $mail->Host       = 'mail.badblockmail.fr';  // Specify main and backup SMTP servers
+            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+            $mail->Username   = 'community@badblockmail.fr';                // SMTP username
+            $mail->Password   = 'L8etptugoCmtJcubCBMc6rBVQB7FuK8xrVdPc7LbbP2siLNNgmiVCv3VBkGR9Un7';                               // SMTP password
+            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+            $mail->Port       = 587;                                  // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom('community@badblock.fr', env('PHP_MAILER_FROM_NAME'));
+            $mail->addAddress(DB::table('users')->where('name', $data['pseudo'])->get()[0]->email, $data['pseudo']);     // Add a recipient
+
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = 'Avertissement ('.$warn.'/3) - '.$info->title;
+            $mail->Body    = 'Vous venez de recevoir un avertissement de la part de '.$data['warn_by'].' avec pour raison :'.$data['text'];
+            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+            $mail->send();
+        } catch (Exception $e) {
+        }
+    }
+
+    public function mylist()
+    {
+        return view('section.notification.mylist', ['data' => DB::table('notifications')->where('user_id', Auth::user()->id)->get()]);
     }
 
 }
