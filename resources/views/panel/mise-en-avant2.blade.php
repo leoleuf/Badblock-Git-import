@@ -43,9 +43,11 @@
                         <div class="col-12">
                             <label>Jours de mise en avant</label>
                             <div class="row">
+                                @foreach($days as $k => $v)
                                 <div class="col-sm">
                                     {{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }}
                                 </div>
+                                @foreach
                                 <div class="col-sm">
                                     2
                                 </div>
