@@ -40,6 +40,15 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="col-12">
+                            <label>Jours de mise en avant</label>
+                            <div class="col-2">
+                                1
+                            </div>
+                            <div class="col-2">
+                                2
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
