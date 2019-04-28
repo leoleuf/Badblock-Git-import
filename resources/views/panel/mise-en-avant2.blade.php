@@ -30,7 +30,7 @@
         <div class="col-lg-12 col-md-7">
             <div class="card">
                 <div class="card-block">
-                    <h3 class="card-title">Choisissez le serveur à mettre en avant</h3>
+                    <h3 class="card-title">Prenez la première place.</h3>
                     <div class="row">
                         <div class="col-12">
                             <label>Choisir votre serveur</label>
