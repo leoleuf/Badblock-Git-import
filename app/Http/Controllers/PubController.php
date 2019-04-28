@@ -401,7 +401,7 @@ class PubController extends Controller
 
         $mois = array("","Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre");
 
-        return view('panel.mise-en-avant',['currentDate' => $currentDate, 'data' => $data[0],'op' => $op, 'servers' => $servers, 'days' => $days, 'jour' => $jour, 'mois' => $mois]);
+        return view('panel.mise-en-avant2',['currentDate' => $currentDate, 'data' => $data[0],'op' => $op, 'servers' => $servers, 'days' => $days, 'jour' => $jour, 'mois' => $mois]);
 
     }
 
