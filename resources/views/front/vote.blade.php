@@ -467,7 +467,7 @@
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
                             var difflastd = $.now() - lastd;
-
+                            console.log("top: " + difflastd);
                             if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
@@ -477,6 +477,7 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "120px") {
                             var difflastd = $.now() - lastd;
+                            console.log("bot: " + difflastd);
                             if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
