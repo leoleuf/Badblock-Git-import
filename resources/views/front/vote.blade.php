@@ -466,7 +466,7 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "100px";
+                                document.getElementById("vb").style.marginTop = "50px";
                             }
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
