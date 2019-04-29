@@ -480,6 +480,7 @@
                             if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
+                                lastd = $.now();
                                 document.getElementById("vb").style.marginTop = "-100px";
                             }
                         }
