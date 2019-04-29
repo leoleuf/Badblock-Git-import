@@ -461,7 +461,7 @@
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
 
-                        if (timediff > 1500 && document.getElementById("vb").style.marginTop != "50px")
+                        if (timediff > 1500 && document.getElementById("vb").style.marginTop != "120px")
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
@@ -469,15 +469,15 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "50px";
+                                document.getElementById("vb").style.marginTop = "120px";
                             }
                         }
-                        else if (document.getElementById("vb").style.marginTop == "50px") {
+                        else if (document.getElementById("vb").style.marginTop == "120px") {
                             var difflastd = $.now() - lastd;
                             if (difflastd > getRandomInt(750) + 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "0px";
+                                document.getElementById("vb").style.marginTop = "-100px";
                             }
                         }
 
