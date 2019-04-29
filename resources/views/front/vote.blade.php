@@ -479,7 +479,7 @@
                             var difflastd = $.now() - lastd;
                             stel = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 250 : 200;
                             var pom = getRandomInt(stel - 200) + 200;
-                            console.log("bot: " + difflastd + " - " + pom);
+                            console.log("bot: " + difflastd + " - " + pom + " / " + stel);
                             if (difflastd > pom && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
