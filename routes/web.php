@@ -99,6 +99,7 @@ Route::group([
     ], function () {
         //Modération
         Route::get('/', 'moderation\ModerationController@index');
+        Route::get('/search/{username}', 'moderation\ModerationController@search');
         Route::get('/screen', 'moderation\ModerationController@screen');
         Route::get('/sanction', 'moderation\ModerationController@sanction');
         Route::post('/union', 'moderation\ModerationController@union');
@@ -211,6 +212,8 @@ Route::group([
 
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:admin_server_perms');
+        Route::get('/permission-serv/create', 'section\PermissionsController@create')->middleware('can:admin_server_perms');
+        Route::post('/permission-serv/create', 'section\PermissionsController@create_perm')->middleware('can:admin_server_perms');
         Route::get('/permission-serv/{id}', 'section\PermissionsController@edit')->middleware('can:admin_server_perms');
         Route::post('/permission-serv/{id}', 'section\PermissionsController@save')->middleware('can:admin_server_perms');
 
