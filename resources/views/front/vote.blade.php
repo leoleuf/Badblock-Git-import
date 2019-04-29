@@ -460,6 +460,7 @@
 
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
+                        var stel = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 250 : 200;
 
                         if (timediff > 1500 && document.getElementById("vb").style.marginTop != "120px")
                         {
@@ -467,7 +468,7 @@
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
                             var difflastd = $.now() - lastd;
 
-                            if (difflastd > getRandomInt(750) + 200 && maxtimes < 10) {
+                            if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
@@ -476,14 +477,14 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "120px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > getRandomInt(750) + 200 && maxtimes < 10) {
+                            if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "-100px";
                             }
                         }
 
-                        setTimeout(flexar, getRandomInt(100) + zolv);
+                        setTimeout(flexar, getRandomInt(stel - 200) + 200);
                     }
 
                     if (window.canRunAds === undefined)
@@ -507,15 +508,15 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
                         var bleko = 0;
+                        var timediff = $.now() - zo;
                         var stel = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
-                        
+
                         if (isHovered)
                         {
                             hasHovered = 1;
 
                             if (document.getElementById("vb").style.marginTop != "70px")
                             {
-                                var timediff = $.now() - zo;
                                 var bdiff = $.now() - Math.max(tx, ty);
                                 var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
 
