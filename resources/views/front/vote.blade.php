@@ -470,7 +470,7 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200 && maxtimes < 10) {
+                            if (difflastd > 500 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
