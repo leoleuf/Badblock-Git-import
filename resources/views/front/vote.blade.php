@@ -450,6 +450,10 @@
                 $(document).ready(function ()
                 {
 
+                    function getRandomInt(max) {
+                        return Math.floor(Math.random() * Math.floor(max));
+                    }
+
                     @if (isMobile())
                     function flexar()
                     {
@@ -470,14 +474,14 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 500 && maxtimes < 10) {
+                            if (difflastd > getRandomInt(750) + 200 && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
 
-                        setTimeout(flexar, 10);
+                        setTimeout(flexar, getRandomInt(300) + 50);
                     }
 
                     if (window.canRunAds === undefined)
