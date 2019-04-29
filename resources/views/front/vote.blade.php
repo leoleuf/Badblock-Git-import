@@ -461,7 +461,7 @@
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
-                            if (bdiff > 10 && maxtimes < 10) {
+                            if (timediff > zolv && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
