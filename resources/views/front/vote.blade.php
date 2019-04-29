@@ -466,7 +466,7 @@
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
                             var difflastd = $.now() - lastd;
-                            
+
                             if (difflastd > getRandomInt(750) + 200 && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
@@ -507,7 +507,8 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
                         var bleko = 0;
-
+                        var stel = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
+                        
                         if (isHovered)
                         {
                             hasHovered = 1;
@@ -536,7 +537,7 @@
                                     lastd = $.now();
                                     zo = $.now();
                                     document.getElementById("vb").style.marginTop = "-40px";
-                                    time = 500;
+                                    time = stel;
                                 }
                             }
                         }
