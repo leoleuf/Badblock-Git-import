@@ -526,7 +526,6 @@
                                     dbg = dbg + "(" + maxtimes + "/10) TOP: Dernier décalage il y a " + difflastd + " ms | " + bdiff + "/" + zolv + " | Décalage min: " + (zolv + 200) + '\n';
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
-                                    zo = $.now();
                                     document.getElementById("vb").style.marginTop = "70px";
                                 }
                             }
@@ -538,7 +537,6 @@
                                     dbg = dbg + "(" + maxtimes + "/10) BOT: Dernier décalage il y a " + difflastd + " ms | " + bdiff + "/" + zolv + " | Décalage min: " + (zolv + 200) + '\n';
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
-                                    zo = $.now();
                                     document.getElementById("vb").style.marginTop = "-40px";
                                     time = stel;
                                 }
