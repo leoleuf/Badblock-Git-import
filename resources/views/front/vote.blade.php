@@ -477,8 +477,9 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "120px") {
                             var difflastd = $.now() - lastd;
-                            console.log("bot: " + difflastd);
-                            if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
+                            var pom = getRandomInt(stel - 200) + 200;
+                            console.log("bot: " + difflastd + " - " + pom);
+                            if (difflastd > pom && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 lastd = $.now();
