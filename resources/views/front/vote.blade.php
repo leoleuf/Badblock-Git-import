@@ -471,7 +471,6 @@
                             if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
-                                zo = $.now();
                                 document.getElementById("vb").style.marginTop = "120px";
                             }
                         }
@@ -482,7 +481,6 @@
                             console.log("bot: " + difflastd + " - " + pom + " / " + stel);
                             if (difflastd > pom && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
-                                zo = $.now();
                                 lastd = $.now();
                                 document.getElementById("vb").style.marginTop = "-100px";
                             }
