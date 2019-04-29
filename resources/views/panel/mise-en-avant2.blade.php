@@ -32,7 +32,7 @@
                 <div class="card-block">
                     <h3 class="card-title">Prenez la première place.</h3>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 mb-1">
                             <label>Quel serveur souhaite-tu mettre en avant ?</label>
                             <select name="server" class="form-control">
                                 @foreach($servers as $server)
@@ -48,9 +48,14 @@
                                         <div style="border-radius: 15px;
 -moz-border-radius: 15px;
 -webkit-border-radius: 15px;
-border: 0.5px solid #000000; text-align: center;">
-                                            <strong style="font-size:1.1rem;color:#000;">{{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }} {{ date("Y", strtotime($k)) }}</strong><br />
-                                            {{ round($v['points']/100, 2) }} €
+border: 0.5px solid #000000; text-align: center; font-size:1.0rem;">
+                                            <strong style="font-size:1.3rem;color:#000;">{{ $jour[date("w", strtotime($k))] }} {{ date("d", strtotime($k)) }} {{ $mois[date("n", strtotime($k))] }}</strong><br />
+                                            {{ $v['place']+1 }}
+                                            @if ($v['place'] == 0)ère
+                                            @elseème
+                                            @endif place
+                                            <br />
+                                            {{ number_format(round($v['points']/50, 2), 2, ',', '') }} €
                                         </div>
                                     </div>
                                 @endforeach

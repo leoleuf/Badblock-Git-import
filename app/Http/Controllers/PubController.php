@@ -295,7 +295,7 @@ class PubController extends Controller
             6 => 23 // Samedi
         );
 
-        for ($i = 0; $i < 60; $i++)
+        for ($i = 0; $i < 20; $i++)
         {
             $date = date("Y-m-d", strtotime("+".$i." days"));
 
@@ -372,6 +372,7 @@ class PubController extends Controller
             $dw = date('w', strtotime($date));
             $points = 0;
             $dt = DB::select('select pts from pbs where date = ?', [$date]);
+            $place = 0;
             if (count($dt) == 0)
             {
                 $points = $daysCoef[$dw];
@@ -388,11 +389,14 @@ class PubController extends Controller
             }
             else
             {
+                $pvl = DB::select('select id from pub where date = ?', [$date]);
                 $points = $dt[0]->pts;
+                $place = count($pvl);
             }
 
             $o = [
-                'points' => $points
+                'points' => $points,
+                'place' => $place
             ];
             $days[$date] = $o;
         }

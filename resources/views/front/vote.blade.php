@@ -244,7 +244,7 @@
                             </button>
                             @if (!_bot_detected())
                                 <ins class="adsbygoogle"
-                                     style="display:block" id="vb1"
+                                     style="display:block" id="vb"
                                      data-ad-client="ca-pub-4636627444279583"
                                      data-ad-slot="8514750542"
                                      data-ad-format="auto"
@@ -263,7 +263,7 @@
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
                             <ins class="adsbygoogle"
-                                 style="display:block" id="vb2"
+                                 style="display:block" id="vb"
                                  data-ad-client="ca-pub-4636627444279583"
                                  data-ad-slot="8514750542"
                                  data-ad-format="auto"
