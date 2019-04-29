@@ -464,11 +464,11 @@
 
                         if (timediff > 1500 && document.getElementById("vb").style.marginTop != "120px")
                         {
-                            dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
                             var difflastd = $.now() - lastd;
-                            console.log("top: " + difflastd);
-                            if (difflastd > getRandomInt(stel - 200) + 200 && maxtimes < 10) {
+                            var stom = getRandomInt(stel - 200) + 200;
+                            dbg = dbg + "(" + maxtimes + "/10) TOP: Dernier décalage il y a " + difflastd + " ms | Décalage min: " + stom + '\n';
+                            if (difflastd > stom && maxtimes < 10) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 document.getElementById("vb").style.marginTop = "120px";
@@ -477,7 +477,7 @@
                         else if (document.getElementById("vb").style.marginTop == "120px") {
                             var difflastd = $.now() - lastd;
                             var pom = getRandomInt(stel * maxtimes) + 200;
-                            console.log("bot: " + difflastd + " - " + pom + " / " + stel);
+                            dbg = dbg + "(" + maxtimes + "/10) BOT: Dernier décalage il y a " + difflastd + " ms | Décalage min: " + pom + '\n';
                             if (difflastd > pom && maxtimes < 10) {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
@@ -522,8 +522,8 @@
                                 var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
 
                                 var difflastd = $.now() - lastd;
-                                dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
                                 if (difflastd > zolv + 200 && bdiff > zolv && maxtimes < 10) {
+                                    dbg = dbg + "(" + maxtimes + "/10) TOP: Dernier décalage il y a " + difflastd + " ms | " + bdiff + "/" + zolv + " | Décalage min: " + (zolv + 200) + '\n';
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
                                     zo = $.now();
@@ -535,6 +535,7 @@
                                 var difflastd = $.now() - lastd;
                                 if (difflastd > 200 && maxtimes < 10)
                                 {
+                                    dbg = dbg + "(" + maxtimes + "/10) BOT: Dernier décalage il y a " + difflastd + " ms | " + bdiff + "/" + zolv + " | Décalage min: " + (zolv + 200) + '\n';
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
                                     zo = $.now();
