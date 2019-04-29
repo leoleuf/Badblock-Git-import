@@ -64,12 +64,12 @@
             return true;
         }
 
-        if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']))
+        if (isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|google|mediapartners/i', $_SERVER['HTTP_USER_AGENT']))
         {
             return true;
         }
 
-        $l = session('blek');
+      /*  $l = session('blek');
 
         if ($l == NULL)
         {
@@ -84,8 +84,8 @@
             $l = !iptest($ip);
             session(['blek' => $l]);
         }
-
-        return $l;
+*/
+        return false;
     }
 
     function isMobile() {
