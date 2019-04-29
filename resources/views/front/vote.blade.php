@@ -516,8 +516,9 @@
                                 var bdiff = $.now() - Math.max(tx, ty);
                                 var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
 
+                                var difflastd = $.now() - lastd;
                                 dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                                if (bdiff > zolv && maxtimes < 10) {
+                                if (difflastd > zolv && bdiff > zolv && maxtimes < 10) {
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
                                     zo = $.now();
