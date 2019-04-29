@@ -523,7 +523,7 @@
 
                                 var difflastd = $.now() - lastd;
                                 dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                                if (difflastd > zolv && bdiff > zolv && maxtimes < 10) {
+                                if (difflastd > zolv + 200 && bdiff > zolv && maxtimes < 10) {
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
                                     zo = $.now();
@@ -533,7 +533,7 @@
                             else
                             {
                                 var difflastd = $.now() - lastd;
-                                if (difflastd > 50 && maxtimes < 10)
+                                if (difflastd > 200 && maxtimes < 10)
                                 {
                                     maxtimes = maxtimes + 1;
                                     lastd = $.now();
