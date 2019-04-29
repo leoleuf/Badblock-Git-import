@@ -80,7 +80,7 @@ class VoteController extends Controller
                     ->where('pubclick', '=', 0)
                     ->delete();
 
-                $log = "X-NOTCLICK";
+                $log = "V-CLICKOK";
                 $dcl = -1;
 
                 if (intval($_POST['c']) <= intval($_POST['a']))
@@ -89,7 +89,7 @@ class VoteController extends Controller
                 }
 
                 if(!intval($_POST['b'])) {
-                    $log = "V-CLICKOK
+                    $log = "X-NOTCLICK
                         => Téléphone : " . (isMobile() ? "Oui" : "Non") . "
                         => Temps chargement/clic : " . intval($_POST['a']) . " ms
                         => Temps décalage/clic : " .($dcl != -1 ? $dcl." ms" : "Pas de décalage")."
