@@ -461,7 +461,7 @@
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
 
-                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
+                        if (timediff > 1500 && document.getElementById("vb").style.marginTop != "50px")
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
