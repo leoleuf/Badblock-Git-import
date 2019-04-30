@@ -18,4 +18,13 @@
     <description>
             Commands API and implementation of various useful commands
     </description>
+
+   <dependencies>
+		<dependency>
+			<groupId>com.mojang</groupId>
+			<artifactId>brigadier</artifactId>
+			<version>1.0.17</version>
+			<scope>provided</scope>
+		</dependency>
+   </dependencies>
 </project>
