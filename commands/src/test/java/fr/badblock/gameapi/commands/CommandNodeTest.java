@@ -1,10 +1,12 @@
 package fr.badblock.gameapi.commands;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -12,6 +14,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import fr.badblock.gameapi.commands.example.CommandAdd;
 import fr.badblock.gameapi.commands.example.CommandAddMultiple;
 import fr.badblock.gameapi.commands.example.CommandPex;
+import fr.badblock.gameapi.commands.example.CommandTpA;
+import fr.badblock.gameapi.commands.example.CommandTpB;
 import fr.badblock.gameapi.commands.example.ExampleReceiver;
 
 public class CommandNodeTest 
@@ -72,5 +76,18 @@ public class CommandNodeTest
 
 		dispatcher.execute("pex groups", receiver);
 		assertEquals("groups: a, b, c", receiver.sVal);
+	}
+
+	@Test
+	public void testMultipleDefinition() throws CommandSyntaxException
+	{
+		dispatcher.register(new CommandTpA().createCommand());
+		dispatcher.register(new CommandTpB().createCommand());
+
+		dispatcher.execute("tp LeLanN", receiver);
+		assertEquals("to LeLanN", receiver.sVal);
+
+		dispatcher.execute("tp LeLanN krumble", receiver);
+		assertEquals("LeLanN to krumble", receiver.sVal);
 	}
 }
