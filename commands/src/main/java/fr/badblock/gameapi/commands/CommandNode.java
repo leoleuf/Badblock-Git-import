@@ -15,6 +15,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
 import fr.badblock.gameapi.commands.arguments.MyStringArgumentType;
+import fr.badblock.gameapi.commands.exceptions.InvalidCommandException;
 import lombok.Getter;
 
 /**
@@ -174,13 +175,16 @@ public class CommandNode<T>
 	{
 		return isAllowed(getSource(o));
 	}
-
+	
 	/**
 	 * Retourne la commande sous la forme de l'API Mojang
 	 * @return
 	 */
 	public LiteralArgumentBuilder<Object> createCommand()
 	{
+		if (def == null && subCommands.size() == 0)
+			throw new InvalidCommandException(this + ": no execution");
+
 		LiteralArgumentBuilder<Object> result = LiteralArgumentBuilder.literal(this.name);
 		result.requires(this::isAllowedObj);
 
@@ -222,5 +226,11 @@ public class CommandNode<T>
 		}
 		
 		return result;
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("[%s: %s (%s)]", this.getClass().getName(), this.name, this.description);
 	}
 }

@@ -13,10 +13,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
 import fr.badblock.gameapi.commands.example.CommandAdd;
 import fr.badblock.gameapi.commands.example.CommandAddMultiple;
+import fr.badblock.gameapi.commands.example.CommandNoExecution;
 import fr.badblock.gameapi.commands.example.CommandPex;
 import fr.badblock.gameapi.commands.example.CommandTpA;
 import fr.badblock.gameapi.commands.example.CommandTpB;
 import fr.badblock.gameapi.commands.example.ExampleReceiver;
+import fr.badblock.gameapi.commands.exceptions.InvalidCommandException;
 
 public class CommandNodeTest 
 {
@@ -89,5 +91,11 @@ public class CommandNodeTest
 
 		dispatcher.execute("tp LeLanN krumble", receiver);
 		assertEquals("LeLanN to krumble", receiver.sVal);
+	}
+
+	@Test(expected = InvalidCommandException.class)
+	public void testSanitizeNoExecution() throws InvalidCommandException
+	{
+		dispatcher.register(new CommandNoExecution().createCommand());
 	}
 }
