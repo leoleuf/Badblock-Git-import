@@ -156,6 +156,14 @@ public class CommandNode<T>
 		this.def = def;
 	}
 
+	public boolean isAllowed(T source)
+	{
+		if (sourceClass != null)
+			return sourceClass.isInstance(source);
+
+		return true;
+	}
+
 	/**
 	 * Retourne la commande sous la forme de l'API Mojang
 	 * @return
@@ -163,6 +171,8 @@ public class CommandNode<T>
 	public LiteralArgumentBuilder<T> createCommand()
 	{
 		LiteralArgumentBuilder<T> result = LiteralArgumentBuilder.literal(this.name);
+		result.requires(this::isAllowed);
+
 		Deque<ArgumentBuilder<T, ?>> stack = new ArrayDeque<>();
 
 		stack.addFirst(result);
