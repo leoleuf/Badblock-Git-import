@@ -1,9 +1,205 @@
 package fr.badblock.gameapi.commands;
 
-public class Command
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.mojang.brigadier.arguments.ArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.ArgumentBuilder;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.builder.RequiredArgumentBuilder;
+
+import fr.badblock.gameapi.commands.arguments.MyStringArgumentType;
+import lombok.Getter;
+
+/**
+ * Commande ou sous-commande
+ * @author LeLanN
+ *
+ * @param <T>
+ */
+public class CommandNode<T>
 {
-	public static void test()
+	@Getter
+	private final String name;
+	@Getter
+	private final String description;
+	@Getter
+	private String permission;
+	@Getter
+	private Class<? extends T> sourceClass;
+
+	private Map<String, ArgumentType<?>> arguments; 
+	private List<CommandNode<T>> subCommands;
+
+	private int firstOptional = -1;
+	private ICommandFunction<T> def = null;
+
+	public CommandNode(String name, String description)
 	{
-		System.out.println("j'aime les chats");
+		this.name = name;
+		this.description = description;
+
+		this.arguments = new LinkedHashMap<>();
+		this.subCommands = new ArrayList<>();
+	}
+
+	/**
+	 * Définis la classe dont doit hériter la source pour l'acceptée. Par exemple (sur Bukkit)
+	 * setSourceClass(Player.class) permettra d'être certain qu'un joueur a lancé la commande
+	 * (et non la console / un command block).
+	 * @param clazz
+	 */
+	public void setSourceClass(Class<? extends T> clazz)
+	{
+		this.sourceClass = clazz;
+	}
+	
+	/**
+	 * Ajoute un argument à la commande
+	 * @param name
+	 * @param type
+	 */
+	public void addArgument(String name, ArgumentType<?> type)
+	{
+		this.arguments.put(name, type);
+	}
+
+	/**
+	 * Ajoute un argument 'simple' (n'importe quelle String entre deux espaces)
+	 * @param name
+	 */
+	public void addSimpleArgument(String name)
+	{
+		addArgument(name, MyStringArgumentType.simpleWord());
+	}
+	
+	/**
+	 * Ajoute un mot ([a-zA-Z0-9_+.-]*)
+	 * @param name
+	 */
+	public void addWordArgument(String name)
+	{
+		addArgument(name, StringArgumentType.word());
+	}
+
+	/**
+	 * Ajoute une String entres guillemets
+	 * @param name
+	 */
+	public void addStringArgument(String name)
+	{
+		addArgument(name, StringArgumentType.string());
+	}
+	
+	/**
+	 * String jusqu'à la fin de la ligne
+	 * @param name
+	 */
+	public void addGreedyStringArgument(String name)
+	{
+		addArgument(name, StringArgumentType.greedyString());
+	}
+	
+	/**
+	 * Un entier sur 32 bits
+	 * @param name
+	 */
+	public void addIntegerArgument(String name)
+	{
+		addArgument(name, IntegerArgumentType.integer());
+	}
+
+	/**
+	 * Un entier sur 32 bits >= min
+	 * @param name
+	 * @param min
+	 */
+	public void addIntegerArgument(String name, int min)
+	{
+		addArgument(name, IntegerArgumentType.integer(min));
+	}
+
+	/**
+	 * Un entier sur 32 bits dans [min; max]
+	 * @param name
+	 * @param min
+	 * @param max
+	 */
+	public void addIntegerArgument(String name, int min, int max)
+	{
+		addArgument(name, IntegerArgumentType.integer(min, max));
+	}
+
+	/**
+	 * Ajoute une sous-commande à la commande
+	 * @param command
+	 */
+	public void addSubCommand(CommandNode<T> command)
+	{
+		this.subCommands.add(command);
+	}
+
+	/**
+	 * Définis la commande actuelle comme étant exécutable. Les arguments ajoutés après l'appel à cette méthode
+	 * seront considérés comme optionels
+	 * @param def
+	 */
+	public void setExecutable(ICommandFunction<T> def)
+	{
+		this.firstOptional = arguments.size();
+		this.def = def;
+	}
+
+	/**
+	 * Retourne la commande sous la forme de l'API Mojang
+	 * @return
+	 */
+	public LiteralArgumentBuilder<T> createCommand()
+	{
+		LiteralArgumentBuilder<T> result = LiteralArgumentBuilder.literal(this.name);
+		Deque<ArgumentBuilder<T, ?>> stack = new ArrayDeque<>();
+
+		stack.addFirst(result);
+		
+		int i = 0;
+
+		for (Map.Entry<String, ArgumentType<?>> entry : arguments.entrySet())
+		{
+			ArgumentBuilder<T, ?> arg = RequiredArgumentBuilder.argument(entry.getKey(), entry.getValue());
+
+			if (firstOptional != -1 && i >= this.firstOptional && def != null)
+			{
+				stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c)));
+			}
+
+			i++;
+			stack.addFirst(arg);
+		}
+
+		if (def != null)
+		{
+			stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c)));
+		}
+		
+		ArgumentBuilder<T, ?> prev = stack.pop();
+
+		for (CommandNode<T> sub : subCommands)
+		{
+			prev.then(sub.createCommand());
+		}
+
+		for (ArgumentBuilder<T, ?> next : stack)
+		{
+			next.then(prev);
+			prev = next;
+		}
+		
+		return result;
 	}
 }
