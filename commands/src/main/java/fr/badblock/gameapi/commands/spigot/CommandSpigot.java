@@ -1,6 +1,8 @@
-package fr.badblock.gameapi.commands;
+package fr.badblock.gameapi.commands.spigot;
 
 import org.bukkit.command.CommandSender;
+
+import fr.badblock.gameapi.commands.CommandNode;
 
 /**
  * Commande ou sous-commande Spigot.
@@ -44,5 +46,13 @@ public class CommandSpigot extends CommandNode<CommandSender>
 		{
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * Ajoute la commande à Spigot
+	 */
+	public void register()
+	{
+		Registry.registry.register(this);
 	}
 }
