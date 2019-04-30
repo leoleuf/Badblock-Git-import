@@ -10,11 +10,13 @@ import com.mojang.brigadier.context.CommandContext;
  */
 public class ArgumentList<T>
 {
-	public final CommandContext<T> context;
+	public final CommandContext<Object> context;
+	private ISourceCastFunction<T> cast;
 	
-	public ArgumentList(CommandContext<T> context)
+	public ArgumentList(CommandContext<Object> context, ISourceCastFunction<T> cast)
 	{
 		this.context = context;
+		this.cast = cast;
 	}
 
 	/**
@@ -22,7 +24,7 @@ public class ArgumentList<T>
 	 */
 	public T getSource()
 	{
-		return context.getSource();
+		return cast.cast(context.getSource());
 	}
 
 	/**

@@ -16,7 +16,7 @@ import fr.badblock.gameapi.commands.example.ExampleReceiver;
 
 public class CommandNodeTest 
 {
-	private CommandDispatcher<ExampleReceiver> dispatcher;
+	private CommandDispatcher<Object> dispatcher;
 	private ExampleReceiver receiver;
 	
 	@Before

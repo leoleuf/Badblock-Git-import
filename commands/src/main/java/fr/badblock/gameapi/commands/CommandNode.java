@@ -164,16 +164,27 @@ public class CommandNode<T>
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
+	public T getSource(Object o)
+	{
+		return (T) o;
+	}
+
+	private boolean isAllowedObj(Object o)
+	{
+		return isAllowed(getSource(o));
+	}
+
 	/**
 	 * Retourne la commande sous la forme de l'API Mojang
 	 * @return
 	 */
-	public LiteralArgumentBuilder<T> createCommand()
+	public LiteralArgumentBuilder<Object> createCommand()
 	{
-		LiteralArgumentBuilder<T> result = LiteralArgumentBuilder.literal(this.name);
-		result.requires(this::isAllowed);
+		LiteralArgumentBuilder<Object> result = LiteralArgumentBuilder.literal(this.name);
+		result.requires(this::isAllowedObj);
 
-		Deque<ArgumentBuilder<T, ?>> stack = new ArrayDeque<>();
+		Deque<ArgumentBuilder<Object, ?>> stack = new ArrayDeque<>();
 
 		stack.addFirst(result);
 		
@@ -181,11 +192,11 @@ public class CommandNode<T>
 
 		for (Map.Entry<String, ArgumentType<?>> entry : arguments.entrySet())
 		{
-			ArgumentBuilder<T, ?> arg = RequiredArgumentBuilder.argument(entry.getKey(), entry.getValue());
+			ArgumentBuilder<Object, ?> arg = RequiredArgumentBuilder.argument(entry.getKey(), entry.getValue());
 
 			if (firstOptional != -1 && i >= this.firstOptional && def != null)
 			{
-				stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c)));
+				stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c, this::getSource)));
 			}
 
 			i++;
@@ -194,17 +205,17 @@ public class CommandNode<T>
 
 		if (def != null)
 		{
-			stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c)));
+			stack.peek().executes(c -> this.def.executeCommand(new ArgumentList<T>(c, this::getSource)));
 		}
 		
-		ArgumentBuilder<T, ?> prev = stack.pop();
+		ArgumentBuilder<Object, ?> prev = stack.pop();
 
 		for (CommandNode<T> sub : subCommands)
 		{
 			prev.then(sub.createCommand());
 		}
 
-		for (ArgumentBuilder<T, ?> next : stack)
+		for (ArgumentBuilder<Object, ?> next : stack)
 		{
 			next.then(prev);
 			prev = next;
