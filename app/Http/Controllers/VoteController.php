@@ -363,7 +363,6 @@ class VoteController extends Controller
         // Get the server data as an object
         $server = json_decode(Redis::get('server:' . $id));
         // Increment the vote count
-        // TODO: ajout "rand" temporaire
         $c = rand(1,30);
         $b = 1;
         if ($c > 20)
@@ -383,7 +382,7 @@ class VoteController extends Controller
             ]);
         }
 
-        $server->votes = $server->votes + rand(1, 3);
+        $server->votes = $server->votes + (rand(1, 2) - 1);
         // Update in the vote count in the database
         DB::table('server_list')
             ->where('id', '=', $data->id)
