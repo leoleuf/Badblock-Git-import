@@ -76,9 +76,7 @@ class VerifyController extends Controller
         $t = @file_get_contents($server[0]->website, false, $context);
         $t = strtolower($t);
 
-        if (strpos($t, '<a title="serveur minecraft" href="https://serveur-multigames.net/minecraft">serveur minecraft</a>') !== false
-            OR strpos($t, '<a href="https://serveur-multigames.net/minecraft" title="serveur minecraft">serveur minecraft</a>') !== false)
-        {
+        if (strpos($t, 'serveur-multigames.net') === false) {
             DB::table('server_list')
                 ->where('id', '=', $id)
                 ->update(
