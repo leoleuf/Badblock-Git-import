@@ -343,6 +343,21 @@
 @endsection
 @section('after_script')
 
+    <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($data->cat) }} {{ $data->name }}",
+                "description": "Votez pour le serveur {{ seocat($data->cat) }} {{ $data->name }} de jeu sans plus hésiter",
+                "playersOnline": "",
+                "url": "https://serveur-multigames.net/{{ encname($catName) }}/{{ encname($data->name) }}",
+                "ratingValue": "{{ $data->reviews }}",
+                "ratingValue": "5"
+            }
+        </script>
+
         @if (!isMobile())
             <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         @endif
@@ -589,19 +604,4 @@
             </script>
 
         @endif
-
-        <script type="application/ld+json">
-            {
-                "@context": "http://schema.org/",
-                "@type": "AggregateRating",
-                "itemReviewed": {
-                "@type": "GameServer",
-                "name": "Serveur {{ seocat($data->cat) }} {{ $data->name }}",
-                "description": "Votez pour le serveur {{ seocat($data->cat) }} {{ $data->name }} de jeu sans plus hésiter",
-                "playersOnline": "",
-                "url": "https://serveur-multigames.net/{{ encname($catName) }}/{{ encname($data->name) }}",
-                "ratingValue": "{{ $data->reviews }}",
-                "ratingValue": "5"
-            }
-        </script>
 @endsection
