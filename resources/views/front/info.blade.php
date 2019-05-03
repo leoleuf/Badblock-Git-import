@@ -279,7 +279,7 @@
                 "itemReviewed": {
                 "@type": "GameServer",
                 "name": "Serveur {{ seocat($data->cat) }} {{ $data->name }}",
-                "description": "{{ $data->short_desc }}",
+                "description": "{{ preg_replace( "/\r|\n/", "", mb_strimwidth($data->short_desc, 0, 5000, "...")) }}",
                 "playersOnline": "",
                 "url": "https://serveur-multigames.net/{{ encname($catName) }}/{{ encname($data->name) }}",
                 @if ($data->reviews > 0)
