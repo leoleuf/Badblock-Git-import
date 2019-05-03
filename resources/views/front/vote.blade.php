@@ -589,4 +589,19 @@
             </script>
 
         @endif
+
+        <script type="application/ld+json">
+            {
+                "@context": "http://schema.org/",
+                "@type": "AggregateRating",
+                "itemReviewed": {
+                "@type": "GameServer",
+                "name": "Serveur {{ seocat($data->cat) }} {{ $data->name }}",
+                "description": "Votez pour le serveur {{ seocat($data->cat) }} {{ $data->name }} de jeu sans plus hésiter",
+                "playersOnline": "",
+                "url": "https://serveur-multigames.net/{{ encname($catName) }}/{{ encname($data->name) }}",
+                "ratingValue": "{{ $data->reviews }}",
+                "ratingValue": "5"
+            }
+        </script>
 @endsection
