@@ -552,6 +552,41 @@
                 });
             </script>
 
+    @else
+
+            <script data-pagespeed-no-defer>
+                if (window.canRunAds === undefined)
+                {
+                    document.getElementById("vote_button").disabled = true;
+                    document.getElementById("vote_button").display = "none";
+                    $("#vote_button").hide();
+                    $("#bma").show();
+                    $("#bma").prop("display", "block");
+                }
+                else
+                {
+                    $("#vote_button").show();
+                    document.getElementById("vote_button").disabled = false;
+                }
+
+                var p = true;
+                $('#vote_button').click(function()
+                {
+                    $('#vbna').click();
+                    if (p) {
+                        p = false;
+                            $.post('https://serveur-multigames.net/pm', {
+                                'a': 0,
+                                'b': 0,
+                                'c': 0,
+                                'd': 0,
+                                'e': "bot?",
+                                'h': false
+                            }, function (data, status) {
+                            });
+                    }
+                });
+            </script>
 
         @endif
 @endsection

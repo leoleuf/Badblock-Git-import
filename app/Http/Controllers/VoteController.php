@@ -97,6 +97,12 @@ class VoteController extends Controller
                         => Dbg: ".$_POST['e'];
                 }
 
+                if (isset($_SERVER["HTTP_CF_IPCOUNTRY"]))
+                {
+                    $log .= "
+                    COUNTRY: ".$_SERVER['HTTP_CF_IPCOUNTRY'];
+                }
+
                 DB::table('votebuttonclicks')->insert([
                     'date' => date("Y-m-d H:i:s"),
                     'ip' => $ip,
