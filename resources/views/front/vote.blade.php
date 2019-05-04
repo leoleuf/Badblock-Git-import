@@ -221,7 +221,7 @@
                                         <!-- responsive -->
                                         @if (!_bot_detected())
                                             <!-- bbq -->
-                                            <ins class="adsbygoogle" id=""vb
+                                            <ins class="adsbygoogle" id="vb"
                                                  style="display:inline-block;width:336px;height:280px"
                                                  data-ad-client="ca-pub-4636627444279583"
                                                  data-ad-slot="8673578352"></ins>
@@ -239,7 +239,7 @@
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-11 btn btn-default" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
