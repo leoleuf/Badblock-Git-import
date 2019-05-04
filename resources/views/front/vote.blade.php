@@ -211,6 +211,7 @@
                                     </div>
 
 
+                                        <script src="https://hcaptcha.com/1/api.js" async defer></script>
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         @if (!_bot_detected())
@@ -225,6 +226,7 @@
                                             </script></center>
                                         @endif
 
+                                        <div class="h-captcha" data-sitekey="2f8c5b8f-18a7-491b-954a-44098beb79ac"></div>
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
@@ -357,12 +359,12 @@
             <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         @endif
 
-        <script src="https://www.google.com/recaptcha/api.js"></script>
+      <!--  <script src="https://www.google.com/recaptcha/api.js"></script>!-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframetracker/1.1.0/jquery.iframetracker.js"></script>
 
         <script src="/js/ads.js"></script>
-        <script>var _0x550c=['canRunAds','Veuillez\x20désactiver\x20votre\x20bloqueur\x20de\x20publicités\x20sur\x20serveur-multigames.net\x20afin\x20de\x20pouvoir\x20voter.','getElementById','vote_button','style','backgroundColor','innerHTML','Vérification\x20du\x20vote\x20en\x20cours...','submit'];(function(_0x32c6fa,_0x552733){var _0x18e137=function(_0x168352){while(--_0x168352){_0x32c6fa['push'](_0x32c6fa['shift']());}};_0x18e137(++_0x552733);}(_0x550c,0x1e6));var _0x56ae=function(_0x3fead2,_0x3439fe){_0x3fead2=_0x3fead2-0x0;var _0x4d27dd=_0x550c[_0x3fead2];return _0x4d27dd;};function onSubmit(_0x4b81bb){if(window[_0x56ae('0x0')]===undefined){alert(_0x56ae('0x1'));return;}else{document[_0x56ae('0x2')](_0x56ae('0x3'))['disabled']=!![];document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x4')][_0x56ae('0x5')]='#c0392b';document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x6')]=_0x56ae('0x7');document['getElementById']('vote-form')[_0x56ae('0x8')]();}}
-        </script>
+      <!--  <script>var _0x550c=['canRunAds','Veuillez\x20désactiver\x20votre\x20bloqueur\x20de\x20publicités\x20sur\x20serveur-multigames.net\x20afin\x20de\x20pouvoir\x20voter.','getElementById','vote_button','style','backgroundColor','innerHTML','Vérification\x20du\x20vote\x20en\x20cours...','submit'];(function(_0x32c6fa,_0x552733){var _0x18e137=function(_0x168352){while(--_0x168352){_0x32c6fa['push'](_0x32c6fa['shift']());}};_0x18e137(++_0x552733);}(_0x550c,0x1e6));var _0x56ae=function(_0x3fead2,_0x3439fe){_0x3fead2=_0x3fead2-0x0;var _0x4d27dd=_0x550c[_0x3fead2];return _0x4d27dd;};function onSubmit(_0x4b81bb){if(window[_0x56ae('0x0')]===undefined){alert(_0x56ae('0x1'));return;}else{document[_0x56ae('0x2')](_0x56ae('0x3'))['disabled']=!![];document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x4')][_0x56ae('0x5')]='#c0392b';document[_0x56ae('0x2')](_0x56ae('0x3'))[_0x56ae('0x6')]=_0x56ae('0x7');document['getElementById']('vote-form')[_0x56ae('0x8')]();}}
+        </script>!-->
         @if (!_bot_detected())
             <script data-pagespeed-no-defer>
                 var p = true;
@@ -582,7 +584,6 @@
                 var p = true;
                 $('#vote_button').click(function()
                 {
-                    $('#vbna').click();
                     if (p) {
                         p = false;
                             $.post('https://serveur-multigames.net/pm', {
