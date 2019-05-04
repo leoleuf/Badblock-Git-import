@@ -509,7 +509,7 @@
                     function flexar()
                     {
 
-                        var isHovered = $('#vote_button').is(":hover") || $('#anchor').is(":hover");
+                        var isHovered = $('#vote_button').is(":hover") || $('#captcha').is(":hover");
                         var time = 10;
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "70px")
