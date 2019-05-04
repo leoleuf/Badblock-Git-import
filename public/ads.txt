@@ -1,1 +1,4 @@
 google.com, pub-4636627444279583, DIRECT, f08c47fec0942fa0
+solvemedia.com, GiIT8b9WCdz4gsM0, DIRECT
+rubiconproject.com, 12070, RESELLER, 0bfd66d529a55807
+google.com, pub-1206942066043065, RESELLER, f08c47fec0942fa0

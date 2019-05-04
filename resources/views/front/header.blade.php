@@ -78,16 +78,7 @@ $d = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")
     <meta name="theme-color" content="#2ecc71" />
     <meta name="google" content="notranslate">
 
-    <script data-pagespeed-no-defer src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
-    @if (!isset($classement) && !isset($noautoad))
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client: "ca-pub-4636627444279583",
-                enable_page_level_ads: true
-            });
-        </script>
-    @endif
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <link href="/dist/css/plugins.min.css" rel="stylesheet">
     <!--main Css-->

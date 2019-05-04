@@ -220,16 +220,16 @@
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         @if (!_bot_detected())
-                                        <ins class="adsbygoogle"
-                                             style="display:block" id="vb"
-                                             data-ad-client="ca-pub-4636627444279583"
-                                             data-ad-slot="8514750542"
-                                             data-ad-format="auto"
-                                             data-full-width-responsive="true"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                            <!-- bbq -->
+                                            <ins class="adsbygoogle" id=""vb
+                                                 style="display:inline-block;width:336px;height:280px"
+                                                 data-ad-client="ca-pub-4636627444279583"
+                                                 data-ad-slot="8673578352"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
                                         @endif
+
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
