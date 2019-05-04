@@ -223,10 +223,10 @@
                                                  data-ad-slot="8673578352"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script></center>
-                                        @endif
+                                            </script>
 
-                                        <div class="h-captcha" data-sitekey="2f8c5b8f-18a7-491b-954a-44098beb79ac"></div>
+                                                <div class="h-captcha" data-sitekey="2f8c5b8f-18a7-491b-954a-44098beb79ac"></div></center>
+                                        @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
