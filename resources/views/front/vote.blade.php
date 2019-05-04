@@ -225,7 +225,7 @@
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script>
 
-                                                <div class="h-captcha" data-sitekey="2f8c5b8f-18a7-491b-954a-44098beb79ac"></div></center>
+                                                <div id="captcha" class="h-captcha" data-sitekey="2f8c5b8f-18a7-491b-954a-44098beb79ac"></div></center>
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
@@ -509,7 +509,7 @@
                     function flexar()
                     {
 
-                        var isHovered = $('#vote_button').is(":hover") || $('.h-captcha').is(":hover");
+                        var isHovered = $('#vote_button').is(":hover") || $('#captcha').is(":hover");
                         var time = 10;
 
                         if (isHovered && document.getElementById("vb").style.marginTop != "70px")
