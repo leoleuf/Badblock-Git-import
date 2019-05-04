@@ -214,6 +214,7 @@
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         @if (!_bot_detected())
+                                            <center>
                                             <!-- bbq -->
                                             <ins class="adsbygoogle" id="vb"
                                                  style="display:inline-block;width:336px;height:280px"
@@ -221,7 +222,7 @@
                                                  data-ad-slot="8673578352"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
+                                            </script></center>
                                         @endif
 
 
