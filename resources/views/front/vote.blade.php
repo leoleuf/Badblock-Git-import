@@ -227,7 +227,7 @@
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
-                            <br /><ins class="adsbygoogle"
+                                <br /><br /><ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
                                  data-ad-slot="8514750542"
