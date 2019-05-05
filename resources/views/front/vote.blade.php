@@ -203,23 +203,23 @@
                                     </div>
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
+                                        <center>
                                         @if (!_bot_detected())
-                                            <center>
                                             <!-- bbq -->
                                             <ins class="adsbygoogle" id="vb"
-                                                 style="display:inline-block;width:336px;height:280px"
+                                                 style="display:block;width:336px;height:280px"
                                                  data-ad-client="ca-pub-4636627444279583"
                                                  data-ad-slot="8673578352"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script></center>
+                                            </script>
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
-                                        </button>
+                                        </button></center>
 
                                         {{ csrf_field() }}
                             </form>
@@ -227,7 +227,7 @@
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
-                                <br /><br /><ins class="adsbygoogle"
+                                <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
                                  data-ad-slot="8514750542"
