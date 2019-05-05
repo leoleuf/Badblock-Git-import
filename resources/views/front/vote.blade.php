@@ -201,9 +201,6 @@
                                             Cliquez ici pour recharger la page une fois que vous aurez désactivé le bloqueur.
                                         </a>
                                     </div>
-
-
-                                        <script src="https://hcaptcha.com/1/api.js" async defer></script>
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         @if (!_bot_detected())
@@ -253,7 +250,7 @@
                             <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
-                                 data-ad-slot="8514750542"
+                                 data-ad-slot="8673578352"
                                  data-ad-format="auto"
                                  data-full-width-responsive="true"></ins>
                             <script>
@@ -283,16 +280,7 @@
 
                 @if (isMobile())
                     <div class="col-12 col-lg-4">
-                        <!-- responsive -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-4636627444279583"
-                             data-ad-slot="8514750542"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+
                         <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp">
                             <div class="card-body p-4">
