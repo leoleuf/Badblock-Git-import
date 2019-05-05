@@ -383,17 +383,6 @@
 
                 $('#vote_button').click(function()
                 {
-                    if (lastd <= 0)
-                    {
-                        if (document.getElementById("vb").style.marginTop != "50px")
-                        {
-                            lastd = $.now();
-                            maxtimes = maxtimes + 1;
-                            zo = $.now();
-                            document.getElementById("vb").style.marginTop = "100px";
-                        }
-                    }
-                    else {
                         timeclick = $.now() - zo;
                         $('#vbna').click();
                         if (p) {
@@ -407,8 +396,7 @@
                                 'h': hasHovered
                             }, function (data, status) {
                             });
-                        }
-                    }
+                         }
                 });
 
                 $(document).on("mousemove", function(e)
