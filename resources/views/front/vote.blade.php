@@ -438,7 +438,7 @@
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
 
-                            if (bdiff > 10 && maxtimes < 3) {
+                            if (bdiff > 10 && maxtimes < 8) {
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
@@ -447,7 +447,7 @@
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 200 && maxtimes < 3) {
+                            if (difflastd > 200 && maxtimes < 8) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
@@ -487,7 +487,7 @@
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 0;
 
                             dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                            if (bdiff > zolv && maxtimes < 3)
+                            if (bdiff > zolv && maxtimes < 8)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
@@ -499,7 +499,7 @@
                         if (document.getElementById("vb").style.marginTop == "70px")
                         {
                             var difflastd = $.now() - lastd;
-                            if (difflastd > 1000 && maxtimes < 3)
+                            if (difflastd > 1000 && maxtimes < 8)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
