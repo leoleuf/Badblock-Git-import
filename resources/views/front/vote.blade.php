@@ -337,7 +337,7 @@
             <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         @endif
 
-      <!--  <script src="https://www.google.com/recaptcha/api.js"></script>!-->
+       <script src="https://www.google.com/recaptcha/api.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframetracker/1.1.0/jquery.iframetracker.js"></script>
 
         <script src="/js/ads.js"></script>
