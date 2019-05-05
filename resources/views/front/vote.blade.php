@@ -104,14 +104,6 @@
         <div class="row">
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
-                    <!-- skybig -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:1050px"
-                         data-ad-client="ca-pub-4636627444279583"
-                         data-ad-slot="9407076100"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
