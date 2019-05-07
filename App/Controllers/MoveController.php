@@ -103,7 +103,7 @@ class MoveController extends Controller
             // Redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
-
+            //test
         //Search last move
         /*$data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
         if ($data != null){
