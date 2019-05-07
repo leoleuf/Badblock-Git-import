@@ -105,7 +105,7 @@ class MoveController extends Controller
         }
 
         //Search last move
-        $data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
+        /*$data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
         if ($data != null){
             $time = strtotime($data['date']);
             $time = $time + (60*60*24*30);
@@ -115,7 +115,7 @@ class MoveController extends Controller
                 // Redirect to last page
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
             }
-        }
+        }*/
 
         // Création du code random
         $pass = $this->generateRandomString(8);
