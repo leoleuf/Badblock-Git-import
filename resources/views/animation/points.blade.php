@@ -31,7 +31,7 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="comments" class="form-control input-block"
+                                                    <input type="text" name="comments[]" class="form-control input-block"
                                                            placeholder="Commentaire">
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                 '                                            </div>\n' +
                 '                                            <div class="col-12 col-md-4">\n' +
                 '                                                <div class="form-group">\n' +
-                '                                                    <input type="text" name="comments" class="form-control input-block"\n' +
+                '                                                    <input type="text" name="comments[]" class="form-control input-block"\n' +
                 '                                                           placeholder="Commentaire">\n' +
                 '                                                </div>\n' +
                 '                                            </div>\n' +
