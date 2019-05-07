@@ -8,10 +8,10 @@
 
 namespace App\Http\Controllers\moderation;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
 
 class ModerationController extends Controller
 {
@@ -112,6 +112,19 @@ class ModerationController extends Controller
         }
 
         return "[]";
+    }
+
+    public function search($username){
+
+        $username = htmlspecialchars(strtolower($username));
+
+        $Users = DB::connection('mongodb')
+            ->collection('punishments')
+            ->where('punisher', '=', $username)
+            ->get();
+
+        return view('section.mod.search', ["username" => $username, "data" => $Users]);
+
     }
 
 }

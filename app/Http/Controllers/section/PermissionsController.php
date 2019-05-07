@@ -21,9 +21,23 @@ class PermissionsController extends Controller
 
     public function index(){
 
-        $Perm = DB::connection('mongodb_server')->collection('permissions')->get();
+        $Perm = DB::connection('mongodb_server')->collection('permissions')->orderBy('power', 'desc')->get();
 
         return view('section.permissions', ['data' => $Perm]);
+    }
+
+    public function create(){
+
+        return view('section.permcreate');
+
+    }
+
+    public function create_perm(){
+
+        $Perm = DB::connection('mongodb_server')
+            ->collection('permissions')
+            ->insert($_POST['data']);
+
     }
 
     public function edit($uid){

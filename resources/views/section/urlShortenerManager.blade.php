@@ -198,6 +198,7 @@
 
                 success: function(){
                     toastr.success("Vous avez bien supprimé l'URL", 'Succès !');
+                    document.location.reload(true);
                 },
 
                 error: function (jqxhr, status, exception) {
@@ -250,6 +251,7 @@
                             successMessage = "modifié"
                         }
                         toastr.success("L'URL a bien été "+successMessage, 'Succès !');
+                        document.location.reload(true);
                     },
 
                     error: function (jqxhr, status, exception) {
