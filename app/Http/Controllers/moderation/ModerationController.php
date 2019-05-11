@@ -114,6 +114,12 @@ class ModerationController extends Controller
         return "[]";
     }
 
+    public function search_index(){
+
+        return view('section.mod.search');
+
+    }
+
     public function search($username){
 
         $username = htmlspecialchars(strtolower($username));
@@ -121,9 +127,16 @@ class ModerationController extends Controller
         $Users = DB::connection('mongodb')
             ->collection('punishments')
             ->where('punisher', '=', $username)
+            ->where(function ($query) {
+                $query->where('type', '=', "MUTE")
+                    ->orWhere('type', '=', "KICK")
+                    ->orWhere('type', '=', "UNBAN")
+                    ->orWhere('type', '=', "BAN")
+                    ->orWhere('type', '=', "WARN");
+            })
             ->get();
 
-        return view('section.mod.search', ["username" => $username, "data" => $Users]);
+        return view('section.mod.search_result', ["username" => $username, "data" => $Users]);
 
     }
 

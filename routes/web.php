@@ -99,7 +99,6 @@ Route::group([
     ], function () {
         //Modération
         Route::get('/', 'moderation\ModerationController@index');
-        Route::get('/search/{username}', 'moderation\ModerationController@search');
         Route::get('/screen', 'moderation\ModerationController@screen');
         Route::get('/sanction', 'moderation\ModerationController@sanction');
         Route::post('/union', 'moderation\ModerationController@union');
@@ -107,15 +106,17 @@ Route::group([
         //Modération casier
         Route::get('/mcasier/{player}', 'moderation\CasierController@minicase')->middleware("can:mod_user_record");
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve')->middleware("can:mod_proof");
-
         Route::get('/guardian/{id}', 'moderation\GuardianController@view')->middleware("can:mod_guardianer");
+        //Search moderator
+        Route::get('/sanction', 'moderation\ModerationController@search_index')->middleware("can:mod_search_mod_sanction");
+        Route::get('/sanction/{username}', 'moderation\ModerationController@search')->middleware("can:mod_search_mod_sanction");
 
         //TX Sanction
         Route::get('/sanction-tx', 'moderation\SanctionController@index');
         Route::post('/sanction-tx', 'moderation\SanctionController@postSanction');
         Route::get('/tx-sanction/', 'moderation\SanctionController@tx');
 
-        //Serach double account
+        //Search double account
         Route::get('/seenaccount/', 'moderation\SeenController@index')->middleware("can:mod_account_seen");
         Route::post('/seenaccount/speed', 'moderation\SeenController@speedsearch')->middleware("can:mod_account_seen");
         Route::post('/seenaccount/long', 'moderation\SeenController@longsearch')->middleware("can:mod_account_seen");
@@ -138,7 +139,7 @@ Route::group([
         'prefix'     => "animation",
         'middleware' => ['auth','can:animation'],
     ], function () {
-        //Aniamtion
+        //Animation
         Route::get('/pb', 'Animation\GiveController@points')->middleware("can:anim_give_pb");
         Route::get('/item', 'Animation\GiveController@item')->middleware("can:anim_give_item");
 
