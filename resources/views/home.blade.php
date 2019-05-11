@@ -10,7 +10,7 @@
 
                 <div class="row">
 
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-4 col-md-6">
                         <div class="card-box">
                             <h4 class="header-title mt-0 m-b-30">Joueurs connectés</h4>
 
@@ -29,7 +29,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-4 col-md-6">
                         <div class="card-box">
                             <h4 class="header-title mt-0 m-b-30">Joueurs bannis</h4>
 
@@ -49,7 +49,7 @@
                     </div>
 
                     @can('mod_index')
-                        <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-4 col-md-6">
                             <div class="card-box">
                                 <h4 class="header-title mt-0 m-b-30">Objectif (en %)</h4>
 
@@ -75,34 +75,6 @@
                             </div>
                         </div>
                     @endcan
-
-
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card-box">
-                            <h4 class="header-title mt-0 m-b-30">Objectif Sanctions (en %)</h4>
-
-                            <div class="widget-chart-1">
-                                <div class="widget-chart-box-1">
-                                    <input data-plugin="knob" data-width="80" data-height="80" data-fgColor="#ffbd4a"
-                                           data-bgColor="#FFE6BA" value="
-                                                                   @if(round($stats['PunishTime'] / $stats['time'], 2) > 0.5)
-                                            100
-@else
-                                    {{ round($stats['PunishTime'] / $stats['time'], 2) * 2 }}
-                                    @endif"
-                                           data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                           data-thickness=".15"/>
-                                </div>
-
-                                <div class="widget-detail-1">
-                                    <h2 class="p-t-10 mb-0"> {{ $stats['Punish'] }} Sanctions </h2>
-                                    <p class="text-muted m-b-10">Sanctions ce mois (Mute/Warn/Ban/Kick)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
         </div>
