@@ -62,7 +62,7 @@
 
                             <h4 class="header-title m-t-0 m-b-30">Rechercher un joueur par IP</h4>
 
-                            <form id="player_search_form">
+                            <form id="player_search_form_ip">
                                 <input type="text" id="player_searchIP" onkeyup="searchPlayerIP()" class="form-control" size="30">
                                 <div id="livesearch"></div>
                             </form>
@@ -90,7 +90,7 @@
 @endsection
 @section('after_scripts')
     <script>
-        $('#player_search_form').submit((e) => {
+        $('#player_search_form, #player_search_form_ip').submit((e) => {
             e.preventDefault();
         });
         var getUrlParameter = function getUrlParameter(sParam) {
