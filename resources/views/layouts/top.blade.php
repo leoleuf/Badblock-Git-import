@@ -162,7 +162,7 @@
                                     </li>
                                 @endcan
                                 @can('mod_search_mod_sanction')
-                                    <li><a href="/moderation/sanction" class="waves-effect"><i class="fab fa-searchengin"></i> Rechercher Sanction</a></li>
+                                    <li><a href="/moderation/search" class="waves-effect"><i class="fab fa-searchengin"></i> Rechercher Sanction</a></li>
                                 @endcan
                                 @can('mod_account_seen')
                                     <li><a disabled="" href="/moderation/seenaccount" class="waves-effect">
