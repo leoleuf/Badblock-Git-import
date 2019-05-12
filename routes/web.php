@@ -108,7 +108,7 @@ Route::group([
         Route::get('/preuve/{id}', 'moderation\CasierController@preuve')->middleware("can:mod_proof");
         Route::get('/guardian/{id}', 'moderation\GuardianController@view')->middleware("can:mod_guardianer");
         //Search moderator
-        Route::get('/sanction', 'moderation\ModerationController@search_index')->middleware("can:mod_search_mod_sanction");
+        Route::get('/sanction_search', 'moderation\ModerationController@search_index')->middleware("can:mod_search_mod_sanction");
         Route::get('/sanction/{username}', 'moderation\ModerationController@search')->middleware("can:mod_search_mod_sanction");
 
         //TX Sanction
