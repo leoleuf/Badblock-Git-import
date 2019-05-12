@@ -26,7 +26,7 @@
 
                             <h4 class="header-title m-t-0 m-b-30">Rechercher un joueur par pseudo</h4>
 
-                            <form>
+                            <form id="player_search_form">
                                 <input type="text" id="player_search" onkeyup="searchPlayer()" class="form-control" size="30">
                                 <div id="livesearch"></div>
                             </form>
@@ -62,7 +62,7 @@
 
                             <h4 class="header-title m-t-0 m-b-30">Rechercher un joueur par IP</h4>
 
-                            <form>
+                            <form id="player_search_form">
                                 <input type="text" id="player_searchIP" onkeyup="searchPlayerIP()" class="form-control" size="30">
                                 <div id="livesearch"></div>
                             </form>
@@ -90,6 +90,9 @@
 @endsection
 @section('after_scripts')
     <script>
+        $('#player_search_form').submit((e) => {
+            e.preventDefault();
+        });
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = window.location.search.substring(1),
                 sURLVariables = sPageURL.split('&'),
