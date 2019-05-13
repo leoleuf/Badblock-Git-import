@@ -224,7 +224,6 @@
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
                                         @endif
-
                                         <button class="g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="width: 100px; display: none; margin-left:45px; height: 50px;" disabled>
