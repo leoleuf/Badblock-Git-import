@@ -202,27 +202,28 @@
                                         </a>
                                     </div>
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
+                                        <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <ins class="adsbygoogle"
-                                                     style="display:block" id="vb"
-                                                     data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="8514750542"
-                                                     data-ad-format="auto"
-                                                     data-full-width-responsive="true"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
+                                            <!-- bbq -->
+                                            <ins class="adsbygoogle" id="vb"
+                                                 style="display:block;width:336px;height:280px"
+                                                 data-ad-client="ca-pub-4636627444279583"
+                                                 data-ad-slot="8673578352"></ins>
+                                            <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
                                         @endif
-                                        <button class="g-recaptcha btn btn-default" id="vbna"
+
+                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="width: 100px; display: none; margin-left:45px; height: 50px;" disabled>
+                                                data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
                                         </button></center>
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:55px; height: 50px;" disabled>
+                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
