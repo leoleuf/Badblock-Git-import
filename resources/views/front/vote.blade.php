@@ -202,18 +202,8 @@
                                         </a>
                                     </div>
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
-                                        <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                            <!-- bbq -->
-                                           <!-- <ins class="adsbygoogle" id="vb"
-                                                 style="display:block;width:336px;height:280px"
-                                                 data-ad-client="ca-pub-4636627444279583"
-                                                 data-ad-slot="8673578352"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>!-->
-
                                                 <ins class="adsbygoogle"
                                                      style="display:block" id="vb1"
                                                      data-ad-client="ca-pub-4636627444279583"
