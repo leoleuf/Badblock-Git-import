@@ -54,4 +54,25 @@ class ModController extends Controller
 
     }
 
+    public function checked() {
+
+        $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where('proof', '=', [])
+            ->where('punisher', '!=', "Console")
+            ->where(function ($query) {
+                $query->where('type', '=', "MUTE")
+                    ->orWhere('type', '=', "KICK")
+                    ->orWhere('type', '=', "BAN");
+            })
+            ->orderBy('timestamp', 'DESC')
+            ->take(200)
+            ->get()
+            ->toArray();
+        $Sanction_ID = $Sanctions[$_POST["id"]]["_id"];
+        DB::connection('mongodb_server')->collection('punishments')
+            ->where('_id', '=', $Sanction_ID)
+            ->update(['proof' => true]);
+
+    }
+
 }
