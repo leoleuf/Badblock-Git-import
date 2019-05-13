@@ -19,7 +19,7 @@
                                     <th>Raison</th>
                                     <th>Date</th>
                                     <th>Temps</th>
-                                    <th>#</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -38,6 +38,7 @@
                                                 <input type="button" id="notif" value="Notifier"
                                                        onclick="notiff('{{ $k }}');" class="btn btn-info"/>
                                             </form>
+                                            <button class="btn btn-success" id="check_sanction" onclick="sanction_checked('{{ $k }}')"><i class="fas fa-check"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -53,6 +54,7 @@
     </div>
 @endsection
 @section("after_scripts")
+
     <script src="/assets/plugins/toastr/toastr.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"
@@ -64,6 +66,23 @@
         function notiff(k) {
             toastr.success('Preuve(s) ajoutée(s)', "Utilisateur notifié !");
             $("#form" + k).ajaxSubmit({url: '/section/preuves', type: 'post'});
+        }
+
+        function sanction_checked(k) {
+
+            $.ajax({
+                url: '/section/preuves/checked',
+                method: 'post',
+                data: { id: k }
+            }).fail(() => {
+                toastr.error('Ooops...', "Une erreur est survenu");
+            }).always(() => {
+                toastr.warning('Patientez...', "Requête en cours");
+            }).done(() => {
+                toastr.success('Terminer', "L'action à bien été effectuée");
+                location.reload();
+            });
+
         }
 
     </script>
