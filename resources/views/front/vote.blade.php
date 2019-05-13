@@ -225,7 +225,7 @@
                                                 </script>
                                         @endif
 
-                                        <button class="col-8 g-recaptcha btn btn-default" id="vbna"
+                                        <button class="col-7 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="display: none; margin-left:45px; height: 50px;" disabled>
                                             Voter <i class="lnr lnr-arrow-right"></i>
