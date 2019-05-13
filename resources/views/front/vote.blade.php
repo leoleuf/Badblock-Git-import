@@ -222,7 +222,7 @@
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:35px; height: 50px;" disabled>
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
