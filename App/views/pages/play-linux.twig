@@ -84,11 +84,7 @@
                 </div>
                 <button class="accordion"><i class="fa fa-cogs" aria-hidden="true"></i> Je ne sais pas faire...</button>
                 <div class="panel">
-                    {% if mc_ip == "eu.badblock.fr" %}
-                        <img src="https://cdn.badblock.fr/wd/i/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/eu.gif');">
-                    {% elseif mc_ip == "na.badblock.fr" %}
-                        <img src="https://cdn.badblock.fr/wd/i/na.gif" alt="Serveur NA BadBlock" title="Serveur NA BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/na.gif');">
-                    {% else %}
+                    {% if mc_ip == "play.badblock.fr" %}
                         <img src="https://cdn.badblock.fr/wd/i/play.gif" alt="Serveur Play BadBlock" title="Serveur Play BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/play.gif');">
                     {% endif %}
                     <br>
@@ -101,24 +97,8 @@
         <section>
             <h4 class="heading-bar"><span>Nos Ip de connexions</span></h4>
             <div class="play-list-ip">
-                {% if mc_ip == "eu.badblock.fr" %}
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
+                {% if mc_ip == "play.badblock.fr" %}
                     <input type="submit" id="copy-play" value="play.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
-                {% elseif mc_ip == "na.badblock.fr" %}
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-play" value="play.badblock.fr">
-                {% else %}
-                    <input type="submit" id="copy-play" value="play.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-eu" value="eu.badblock.fr">
-                    <br>
-                    <input type="submit" id="copy-na" value="na.badblock.fr">
                 {% endif %}
 
             </div>

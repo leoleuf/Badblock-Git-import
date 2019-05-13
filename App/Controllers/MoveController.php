@@ -19,10 +19,13 @@ class MoveController extends Controller
 
     public function step1(RequestInterface $request, ResponseInterface $response)
     {
-        if ($this->container->session->getProfile('username')['is_staff'] == true && $this->container->config['app_debug'] != 1)
+        /*if($this->container->session->getProfile('username') != 'Hooki_')
         {
-            return $this->render($response, 'user.move.staff');
-        }
+            if ($this->container->session->getProfile('username')['is_staff'] == true)
+            {
+                return $this->render($response, 'user.move.staff');
+            }
+        }*/
 
         return $this->render($response, 'user.move.step1');
     }
@@ -100,9 +103,9 @@ class MoveController extends Controller
             // Redirect to last page
             return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
-
+            //test
         //Search last move
-        $data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
+        /*$data = $this->container->mongo->move_logs->findOne(['new_name' => strtolower($username)],['sort' => ['date' => -1]]);
         if ($data != null){
             $time = strtotime($data['date']);
             $time = $time + (60*60*24*30);
@@ -112,7 +115,7 @@ class MoveController extends Controller
                 // Redirect to last page
                 return $this->redirect($response, $_SERVER['HTTP_REFERER']);
             }
-        }
+        }*/
 
         // Création du code random
         $pass = $this->generateRandomString(8);

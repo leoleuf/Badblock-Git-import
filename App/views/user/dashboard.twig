@@ -69,7 +69,7 @@
                                                    id="newpassword" placeholder="Nouveau mot de passe"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="newpassword">Entrez votre nouveau mot de passe</label>
+                                            <label for="newpassword">Confirmez votre nouveau mot de passe</label>
                                             <input class="form-control" type="password" name="newpasswordverif"
                                                    id="newpasswordverif" placeholder="Nouveau mot de passe"/>
                                         </div>
@@ -213,7 +213,7 @@
                     <div class="tab-pane fade" id="connexion" role="tabpanel" aria-labelledby="contact-tab">
                         <br>
                         <h4 class="heading heading-bar">
-                            <span>Mes dernières connexion(s)</span></h4>
+                            <span>Mes dernières connexions</span></h4>
                         <table class="table">
                             <thead>
                             <tr>
@@ -239,8 +239,8 @@
                                 Vous avez été parrainé par <strong>{{ rfr }}</strong>. Vous avez donc reçu <strong>100
                                 points boutique</strong> à un moment.
                             {% else %}
-                                Vous n'avez été parrainé par personne. Vous n'avez donc pas reçu vos <strong>100 points boutique</strong>.
-                                Si une demande pour vous faire parrainer est toujours en cours, veuillez patienter.
+                                Vous n'avez été parrainé par personne. Vous n'avez donc pas reçu <strong>100 points
+                                boutique</strong>. Si une demande pour vous faire parrainée est toujours en cours, veuillez patienter.
                             {% endif %}
                             <br/><br/>
                             Vous pouvez parrainer jusqu'à <strong>trois personnes</strong>. Lorsqu'un joueur veut que
@@ -639,17 +639,30 @@
         </div>
     </div>
 
-
     {% if flash('setting_error') %}
         {% for flash in flash('setting_error') %}
-            <div class="remodal modal-remodal " data-remodal-id="errormodal">
-                <button data-remodal-action="close" class="remodal-close"></button>
-                <h1>{{ flash }}</h1>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Validation</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ flash }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Fermer</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <script>
                 $(document).ready(function () {
 
-                    $('[data-remodal-id=errormodal]').remodal().open();
+                    $('#exampleModalCenter').modal('show');
                 })
             </script>
         {% endfor %}

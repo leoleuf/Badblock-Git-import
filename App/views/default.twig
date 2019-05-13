@@ -120,7 +120,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="https://badblock.fr/forum/recrutement/"><i class="edit-colored-icon colored-icon"></i> Recrutements</a>
                                 <a class="dropdown-item" href="/staff"><i class="id-colored-icon colored-icon"></i> Staff</a>
-                                <a class="dropdown-item" href="https://serveur-multigames.net/"><i class="user-colored-icon colored-icon"></i> Serveur Multigames</a>
+                                <a title="serveur minecraft" class="dropdown-item" href="https://serveur-multigames.net/minecraft"><i class="user-colored-icon colored-icon"></i> Serveur Minecraft</a>
+                                <a class="dropdown-item" href="/youtubeurs"><i class="youtube-colored-icon colored-icon"></i> Youtubeurs</a>
                             </div>
                         </li>
                     </ul>
@@ -171,7 +172,7 @@
                         <!-- <img src="https://cdn.badblock.fr/images/logo_small.png" title="Logo BadBlock" alt="Logo BadBlock" class="footer-logo" width="70"> -->
                         <h4 class="footer-title">BadBlock</h4>
                     </div>
-                    <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un <a title="Serveur Minecraft" href="/jouer">serveur Minecraft</a> créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuit pour tous.<br />
+                    <a title="BadBlock" href="https://badblock.fr">BadBlock</a> est un <a title="Serveur Minecraft" href="/jouer">serveur Minecraft</a> créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuite pour tous.<br />
                     <a href="https://badblock.fr/legals/MentionsLegales.pdf" title="Mentions légales BadBlock">Mentions légales</a>, <a href="https://badblock.fr/legals/" title="Documents légaux BadBlock">Documents légaux</a>.<br /><br />BadBlock n'est pas affilié
                     avec Mojang AB. Mojang AB est une marque déposée. <br />
                     <br />
@@ -183,7 +184,7 @@
                         </h5>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://forum.badblock.fr/reglement-general-de-badblock.t1204/" title="Règlement BadBlock">Règlement</a></li>
+                        <li><a href="https://badblock.fr/forum/reglement-general-de-badblock.t1204/" title="Règlement BadBlock">Règlement</a></li>
                         <li><a href="{{ path_for('staff') }}" title="Équipe de BadBlock">Notre Equipe</a></li>
                         <li><a href="mailto:contact@badblock.fr" title="Contacter BadBlock">Nous contacter</a></li>
                         <li><a href="/info" title="Informations BadBlock">Informations développement</a></li>
@@ -197,6 +198,24 @@
                         </h5>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="footer-bottom-content">
+                <img src="https://cdn.badblock.fr/images/serveur-minecraft.png" alt="Logo" title="Logo BadBlock" width="48" height="48">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="mailto:contact@badblock.fr" class="nav-link">Nous contacter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://badblock.fr/forum/reglement-general-de-badblock.t1204/" class="nav-link">Conditions &amp; Règles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://badblock.fr/forum" class="nav-link">Support Web</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
@@ -229,10 +248,10 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/dist/js/app2.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="/dist/js/app2.js" defer></script>
     {% block scripts %}
         {% endblock %}
 </body>

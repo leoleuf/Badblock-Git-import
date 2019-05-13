@@ -28,7 +28,7 @@ $app->get('/bbnew/{uuid}', \App\Controllers\RedirectController::class . ':link')
 $app->get('/jouer', \App\Controllers\PagesController::class . ':getPlayAdwords')->setName('play-adwords');
 $app->get('/youtube', \App\Controllers\PagesController::class . ':getYoutube')->setName('youtube-info');
 
-$app->get('/youtubeur', \App\Controllers\PagesController::class . ':getYoutubeurs')->setName('youtubeurs');
+$app->get('/youtubeurs', \App\Controllers\YoutubersController::class . ':getHome')->setName('youtubeurs');
 
 $app->get('/article[/{p}]', \App\Controllers\BlogController::class . ':getAllPosts')->setName('all-posts');
 $app->get('/article/{slug}/{uuid}', \App\Controllers\BlogController::class . ':getPost')->setName('single-post');
@@ -55,7 +55,9 @@ $app->group('/stats', function (){
 });
 
 $app->group('/shop', function (){
+
 	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
+    $this->get('/faction', \App\Controllers\ShopController::class . ':getShopFaction')->setName('shop.home');
 	$this->post('/achat/{id}', \App\Controllers\ShopController::class . ':buy')->setName('api.shop.achat');
 
 	$this->get('/recharge', \App\Controllers\CreditController::class . ':stepRecharge')->setName('shop.recharge');
@@ -202,7 +204,6 @@ $app->get('/move', \App\Controllers\MoveController::class . ':step1')->setName('
 $app->get('/move/1/{uuid}', \App\Controllers\MoveController::class . ':process_step2')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->get('/move/2/{uuid}', \App\Controllers\MoveController::class . ':process_step4')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
 $app->post('/move', \App\Controllers\MoveController::class . ':poststep')->setName('move-post')->add(new App\Middlewares\Auth\RequiredAuthMiddleware($container));
-
 
 
 $app->get('/logout', function ($request, $response) {

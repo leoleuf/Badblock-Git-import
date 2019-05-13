@@ -40,7 +40,11 @@
         <div class="container">
             <ul class="nav justify-content-center" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="grade-tab" data-toggle="tab" href="#grade" role="tab"
+                    <a class="nav-link active" id="promo-tab" data-toggle="tab" href="#promo" role="tab"
+                       aria-controls="grade">Meilleurs Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="grade-tab" data-toggle="tab" href="#grade" role="tab"
                        aria-controls="grade">Grade</a>
                 </li>
                 {% for key,value in serverlist %}
@@ -58,16 +62,99 @@
 {% endblock %}
     {% block content %}
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="grade" role="tabpanel" aria-labelledby="grade-tab">
+            <div class="tab-pane fade show active" id="promo" role="tabpanel" aria-labelledby="promo-tab">
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        <h4 class="title-store">Bienvenue sur la boutique de BadBlock</h4>
+                        <p>Changez votre expérience de jeu &amp; soutenez BadBlock en acquérant de nouveaux grades ou de nouveaux cosmétiques ! Devenez le meilleur du serveur en jouant sur notre serveur <strong>Faction</strong>, <strong>Survie</strong> ou <strong>Skyblock</strong>. Découvrez en avant première nos mode de jeux exclusifs ou nos events de saisons. Lancez des parties personnalisés pour vous et vos amis grâce à notre système d'<strong>Host</strong>.</p>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-101">
+                                    <h3>Grade VIP</h3>
+                                    <div class="shop-package-content"
+                                         onclick="openitem('5b71adefb1fe8a85fe31bb4d')">
+                                        <img src="https://cdn.badblock.fr/boutique/vip.png" title="Grade VIP" alt="Grade VIP" data-pagespeed-url-hash="512024398" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)" data-pagespeed-loaded="1">
+                                    </div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Grade VIP à vie !
+                                            Avantages en jeux :)
+                                        </div>
+                                        <a onclick="confirm('5b71adefb1fe8a85fe31bb4d');">Acheter
+                                            (1050)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-102">
+                                    <h3>Clef Diamant</h3>
+                                    <div class="shop-package-content" onclick="openitem('5c435e567ac38a0458ea5ef7');"><img src="https://cdn.badblock.fr/upload/SNOWICE1554908525.png" title="Produit Clé Diamant x1" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Clé Diamant x1
+                                            Serveur Faction
+                                        </div>
+                                        <a onclick="confirm('5c435e567ac38a0458ea5ef7');">Acheter
+                                            (1000)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-103">
+                                    <h3>Clef Épic</h3>
+                                    <div class="shop-package-content" onclick="openitem('5b8459b6e548fd30b8ee69e5');"><img src="https://cdn.badblock.fr/upload/SNOWICE1554908544.png" title="Produit Clé Epic" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Clé Épic x1
+                                            Serveur Skyblock
+                                        </div>
+                                        <a onclick="confirm('5b8459b6e548fd30b8ee69e5');">Acheter
+                                            (600)</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="shop-package" id="prd-104">
+                                    <h3>Accès /bottle</h3>
+                                    <div class="shop-package-content" onclick="openitem('5c2f3c427ac38a045859bf33');"><img src="https://cdn.badblock.fr/boutique/fiole.png" title="Produit Accès /bottle" width="190" height="190" class="img-fluid img-def"></div>
+                                    <div class="shop-desc-content">
+                                        <div class="shop-package-desc">
+                                            Accès au /bottle
+                                            Serveur Survie
+                                        </div>
+                                        <a onclick="confirm('5c2f3c427ac38a045859bf33');">Acheter
+                                            (1500)</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <!--<div class="shop-package-promotion">
+                            <h5 class="shop-title-promotion">Promotion : <span class="promo-title">VIP+</span></h5>
+                            <div class="shop-promotion-content">
+                                <img src="https://cdn.badblock.fr/boutique/vip+.png" title="Grade VIP+" alt="Grade VIP+">
+                                <p><a href="#"><span class="price">1600 PB</span> (<span class="last-price">2250</span>)</a></p>
+                            </div>
+                        </div>-->
+                        <div class="shop-support">
+                            <h5 class="shop-title-promotion">Support ?</h5>
+                            <p>Si vous rencontrez des problèmes avec notre <strong>Boutique</strong>, contactez nous ici : <a href="mailto:paiement@badblock.fr">mail</a>. Pour toutes autres questions : <a href="https://badblock.fr/forum/support/open">Ticket</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade show" id="grade" role="tabpanel" aria-labelledby="grade-tab">
                 {% include "shop/rank.twig" %}
             </div>
             {% set i = 0 %}
             {% for key, value in serverlist %}
                 {% if key != 0 %}
+                    {% autoescape %}
                     <div class="tab-pane fade" id="{{ value['server']['name'] }}" role="tabpanel"
                          aria-labelledby="{{ value['server']['name'] }}-tab">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12 col-md-9">
                                 <div class="row">
                                     {% for category in value['cat'] %}
                                         <div class="col-12">
@@ -75,7 +162,7 @@
                                                 <span>{{ category['name'] }}</span></h4>
                                         </div>
                                         {% for products in category['items'] %}
-                                            <div class="col-12 col-md-4">
+                                            <div class="col-12 col-md-6">
                                                 <div class="shop-package" id="prd-30{{ i }}">
                                                     <h3>{{ products['name'] | raw }}</h3>
                                                     <div class="shop-package-content"
@@ -84,8 +171,7 @@
                                                              title="Produit {{ products['name'] | raw }}" width="190"
                                                              height="190" class="img-fluid img-def">
                                                     </div>
-                                                    <div class="shop-package-desc">{{ products['name'] }}
-                                                        <br> {{ products['description'] | raw | slice(0, 15 ) }} ...
+                                                    <div class="shop-package-desc">
                                                     </div>
                                                     <a onclick="confirm('{{ products['_id']['$oid'] }}');">Acheter
                                                         ({{ products['price'] }})</a>
@@ -100,8 +186,11 @@
                                     {% endfor %}
                                 </div>
                             </div>
+                            <div class="col-12 col-md-3">
+                            </div>
                         </div>
                     </div>
+                    {% endautoescape %}
                 {% endif %}
                 {% set i = i + 1 %}
             {% endfor %}
@@ -110,25 +199,25 @@
             {% if key != 0 %}
                 {% for category in value['cat'] %}
                     {% for products in category['items'] %}
+                        {% autoescape %}
                         <div class="modal fade" id="modalItem-{{ products['_id']['$oid'] }}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLongTitle">Produit :
-                                            <strong>{{ products['name'] | raw }}</strong></h5>
+                                            <strong>{{ products['name']|raw }}</strong></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="modal-body-img">
-                                            <img src="{{ products['image'] }}"
-                                                 title="Produit {{ products['name'] | raw }}" width="190" height="190"
-                                                 class="img-fluid img-def">
+                                            <img src="{{ products['image'] }}" title="Produit {{ products['name'] }}" width="190" height="190" class="img-fluid img-def">
                                         </div>
-                                        <strong>{{ products['name'] | raw }}</strong>
-                                        <p>{{ products['description'] }}</p>
+                                        <strong>{{ products['name']|raw }}</strong>
+                                        <hr>
+                                        <p class="product-item-desc">{{ products['description'] | raw }}</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" id="btn-achat" class="button button-success" onclick="achat('{{ products['_id']['$oid'] }}')">Acheter
@@ -140,6 +229,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endautoescape %}
                     {% endfor %}
                 {% endfor %}
             {% endif %}

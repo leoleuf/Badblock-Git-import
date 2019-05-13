@@ -14,7 +14,7 @@
                             <h3>Serveur minecraft gratuit</h3>
                             <div class="rsp-button-center">
                                 <a title="Jouer Minecraft" class="button button-success" href="/jouer"><i
-                                            class="fal fa-gamepad"></i> Jouez dés maintenant !</a>
+                                            class="fal fa-gamepad"></i> Jouez dès maintenant !</a>
                             </div>
                         </div>
                         <div class="col-sm-3 col-md-4 col-lg-4">
@@ -27,12 +27,32 @@
     <!------Cover fin------>
 {% endblock %}
 {% block content %}
-    <div class="youtubeur-content">
-        <div class="row">
-            <div class="col-12">
-                <h4 class="heading heading-bar"><span>Nos Youtubeurs</span></h4>
+<div class="youtubeur-content">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="heading heading-bar"><span>Nos Youtubeurs</span></h4>
+        </div>
+        {% for value in data %}
+        {% if value['rank'] == 'Youtubeur' %}
+        <div class="col-12 col-md-4">
+            <div class="youtubeur-item">
+                <img src="{{ value['img'] }}" title="Chaîne de {{ value['title'] }}" class="rounded-circle">
+                <div class="youtubeur-item-info">
+                    <strong class="youtubeur-item-title">{{ value['title'] }}</strong>
+                    <p class="youtubeur-item-sub">{{ value['sub'] }} abonnés</p>
+                </div>
+                <a href="{{ value['link'] }}" target="_blank" class="button button-success">s'abonner</a>
             </div>
-            {% for value in data %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col-12">
+            <h4 class="heading heading-bar"><span>Nos Mini-Youtubeurs</span></h4>
+        </div>
+        {% for value in data %}
+            {% if value['rank'] == 'Mini-Youtubeur' %}
                 <div class="col-12 col-md-4">
                     <div class="youtubeur-item">
                         <img src="{{ value['img'] }}" title="Chaîne de {{ value['title'] }}" class="rounded-circle">
@@ -43,8 +63,9 @@
                         <a href="{{ value['link'] }}" target="_blank" class="button button-success">s'abonner</a>
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            {% endif %}
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
 

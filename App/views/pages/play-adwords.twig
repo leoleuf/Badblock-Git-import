@@ -41,11 +41,7 @@
                 </div>
                 <button class="accordion">Je ne sais pas comment faire...</button>
                 <div class="panel">
-                    {% if mc_ip == "eu.badblock.fr" %}
-                    <img src="https://cdn.badblock.fr/wd/i/eu.gif" alt="Serveur EU BadBlock" title="Serveur EU BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/eu.gif');" width="100%">
-                    {% elseif mc_ip == "na.badblock.fr" %}
-                    <img src="https://cdn.badblock.fr/wd/i/na.gif" alt="Serveur NA BadBlock" title="Serveur NA BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/na.gif');" width="100%">
-                    {% else %}
+                    {% if mc_ip == "play.badblock.fr" %}
                     <img src="https://cdn.badblock.fr/wd/i/play.gif" alt="Serveur Play BadBlock" title="Serveur Play BadBlock" class="how-to-gif" onClick="Javascript:window.open('https://cdn.badblock.fr/wd/i/play.gif');" width="100%">
                     {% endif %}
                     <br>
@@ -54,21 +50,11 @@
         </div>
         <div class="col-12 col-md-6">
             <h4 class="heading heading-bar"><span>Toutes nos IP</span></h4>
-            {% if mc_ip == "eu.badblock.fr" %}
-            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
+            {% if mc_ip == "play.badblock.fr" %}
             <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
-            {% elseif mc_ip == "na.badblock.fr" %}
-            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
-            {% else %}
-            <input class="info-ip" type="submit" id="copy-eu" value="eu.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-play" value="play.badblock.fr">
-            <input class="info-ip" type="submit" id="copy-na" value="na.badblock.fr">
+            <input class="info-ip" type="submit" id="copy-play" value="r53.badblock.fr - DNS de secours">
+            <input class="info-ip" type="submit" id="copy-play" value="secours.badblock-network.fr - DNS de secours">
+            <input class="info-ip" type="submit" id="copy-play" value="91.134.165.91 - IP de secours">
             {% endif %}
         </div>
     </div>

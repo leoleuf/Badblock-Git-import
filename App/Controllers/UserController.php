@@ -155,7 +155,6 @@ class UserController extends Controller
             if (empty($user["shoppoints"])) {
                 $user["shoppoints"] = 0;
             }
-            //Return view
             return $this->render($response, 'user.facture-view', ["user" => $user, "facture" => $factures]);
         } else {
             $this->getDashboard($request, $response);
@@ -676,9 +675,6 @@ class UserController extends Controller
 
     public function teamspeak(RequestInterface $request, ResponseInterface $response)
     {
-        $this->flash->addMessage('setting_error', "Service désactivé !");
-        //redirect to last page
-        return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
 
         if (isset($_POST['idts']) & !empty($_POST['idts'])) {
             $user = $this->container->mongoServer->players->findOne(['name' => strtolower($this->session->getProfile('username')['username'])]);
@@ -788,12 +784,12 @@ class UserController extends Controller
 
             $this->flash->addMessage('setting_error', "Compte TeamSpeak linké !");
             //redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
 
         } else {
             $this->flash->addMessage('setting_error', "Merci de saisir un UID valide !");
             //redirect to last page
-            return $this->redirect($response, $_SERVER['HTTP_REFERER'] . '#error-modal');
+            return $this->redirect($response, $_SERVER['HTTP_REFERER']);
         }
 
     }

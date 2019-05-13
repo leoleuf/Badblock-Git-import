@@ -22,6 +22,7 @@ class VoteController extends Controller
 {
 
     public function getHome(RequestInterface $request, ResponseInterface $response){
+
         //Read Top from Redis
         $toploterie = $this->redis->getJson('vote.toploterie');
         $top = $this->redis->getJson('vote.top');
