@@ -75,7 +75,7 @@ class ModController extends Controller
             "ip" => "127.0.0.1",
             "user" => 1,
             "date" => "2019-16-05 19:05",
-            "file_name" => 'https://cdn.discordapp.com/attachments/577175367056359450/578614538216275969/valide.png'
+            "file_name" => 'https://cdn.badblock.fr/upload/SNOWICE15580270250.png'
         ];
 
         $Insert = [
