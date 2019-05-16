@@ -68,10 +68,33 @@ class ModController extends Controller
             ->take(200)
             ->get()
             ->toArray();
+
         $Sanction_ID = $Sanctions[$_POST["id"]]["_id"];
+
+        $Screens = [
+            "ip" => "127.0.0.1",
+            "user" => 1,
+            "date" => "2019-16-05 19:05",
+            "file_name" => 'https://cdn.discordapp.com/attachments/577175367056359450/578614538216275969/valide.png'
+        ];
+
+        $Insert = [
+            'sanction_id' => $Sanction_ID,
+            'date' => date('Y-m-d H:i:s'),
+            'screens' => $Screens,
+            'note' => "Rien"
+        ];
+
+        DB::connection('mongodb_server')->collection('sanctions')->insert($Insert);
+
+
+        $Id = DB::connection('mongodb_server')->collection('sanctions')->where('sanction_id','=', $Sanction_ID)->first();
+
         DB::connection('mongodb_server')->collection('punishments')
-            ->where('_id', '=', $Sanction_ID)
-            ->update(['proof' => true]);
+            ->where('uuid', '=', $Sanction_ID)
+            ->update([
+                'proof' => $Id['_id']
+            ]);
 
     }
 
