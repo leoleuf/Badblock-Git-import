@@ -5,68 +5,70 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <div class="card-box">
-                                    <div class="webserver-list server-button">
-                                        @foreach($servers as $serv)
-                                            <form class="form-inline" method="post" action="/visiblity/{{ $serv->name }}">
-                                                <div class="btn-webserver" data-filter=".{{ $serv->_id }}">
-                                                    {{ $serv->name }}
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" @if($serv->visibility) checked @endif>
-                                                        <label class="custom-control-label" for="customCheck1"></label>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        @endforeach
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                @foreach($servers as $server)
+                                    <a class="nav-item nav-link @if($loop->first) active @endif" data-toggle="tab" href="#{{ $server->_id }}" role="tab">{{ $server->name }}</a>
+                                @endforeach
+                                <a class="btn btn-outline-danger nav-item" href="/website/crud/server/create"><i class="far fa-plus-square"></i> Ajouter un serveur</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            @foreach($servers as $server)
+                                <div class="tab-pane fade @if($loop->first) show active @endif" id="{{ $server->_id }}" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+                                                <a class="btn btn-primary btn-block" href="/website/crud/server/{{ $server->_id }}/edit">Editer le serveur</a>
+                                                @foreach($cat as $category)
+                                                    @if($category->server_id == $server->_id)
+                                                        <a class="btn btn-dark btn-block @if($loop->first) active @endif" data-toggle="pill" href="#cat-{{ $category->_id }}" role="tab">{{ $category->name }}</a>
+                                                    @endif
+                                                @endforeach
+                                                <a class="btn btn-outline-danger btn-block" href="/website/crud/category/create">Ajouter une catégorie</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                @foreach($cat as $category)
+                                                    @if($category->server_id == $server->_id)
+                                                        <div class="tab-pane fade @if($loop->first) show active @endif" id="cat-{{ $category->_id }}" role="tabpanel">
+                                                            <div class="btn-group float-right">
+                                                                <a class="btn btn-outline-danger" href="/website/crud/product/create"><i class="far fa-plus-square"></i> Créer un produit</a>
+                                                                <a class="btn btn-primary" href="/website/crud/category/{{ $category->_id }}/edit">Editer la catégorie</a>
+                                                            </div>
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>Produit</th>
+                                                                    <th>Prix</th>
+                                                                    <th>Dépendance</th>
+                                                                    <th>Achat unique</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($products as $product)
+                                                                    @if($product->cat_id == $category->_id)
+                                                                        <tr>
+                                                                            <td>{{ $product->name }}</td>
+                                                                            <td>{{ $product->price }}</td>
+                                                                            <td>@if($product->depend)Oui @else Non @endif</td>
+                                                                            <td>@if($product->buy_one)Oui @else Non @endif</td>
+                                                                            <td><a href="/website/crud/product/{{ $product->id }}/edit" class="btn btn-primary">Edition</a></td>
+                                                                        </tr>
+                                                                    @endif
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="server-filter-content">
-                                    @foreach($cat as $cats)
-                                        <div class="card-box {{ $cats->server_id }}">
-                                            <div class="servercat">
-                                                {{ $cats->name }}
-                                                <div class="servercat-btn">
-                                                    <a href="/website/crud/category/{{ $cats->_id  }}/edit" class="btn btn-success">Edition</a>
-                                                    <a href="#" class="btn btn-danger">Supprimer</a>
-                                                </div>
-                                            </div>
-
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Produit</th>
-                                                    <th>Prix</th>
-                                                    <th>Dépendance</th>
-                                                    <th>Achat unique</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @php $i = 0 @endphp
-                                                @foreach($products as $product)
-                                                    @if($product->cat_id == $cats->_id)
-                                                        <tr>
-                                                            <th scope="row">{{ $i }}</th>
-                                                            <td>{{ $product->name }}</td>
-                                                            <td>{{ $product->price }}</td>
-                                                            <td>@if($product->depend)Oui @else Non @endif</td>
-                                                            <td>@if($product->buy_one)Oui @else Non @endif</td>
-                                                            <td><a href="/website/crud/product/{{ $product->id }}/edit" class="btn btn-success">Edition</a></td>
-                                                        </tr>
-                                                    @endif
-                                                    @php $i++ @endphp
-                                                @endforeach
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -75,36 +77,4 @@
     </div>
 @endsection
 @section("after_scripts")
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <script>
-        function gallery_isotope() {
-            if ( $('.server-filter-content').length ){
-                $(".server-filter-content").isotope({
-                    layoutMode: 'fitRows',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear'
-                    }
-                });
-
-                // Add isotope click function
-                $(".server-button .btn-webserver").on('click', function() {
-                    $(".server-button .btn-webserver").removeClass("active");
-                    $(this).addClass("active");
-
-                    var selector = $(this).attr("data-filter");
-                    $(".server-filter-content").isotope({
-                        filter: selector,
-                        animationOptions: {
-                            duration: 450,
-                            easing: "linear",
-                            queue: false,
-                        }
-                    });
-                    return false;
-                });
-            }
-        }
-        gallery_isotope();
-    </script>
 @endsection
