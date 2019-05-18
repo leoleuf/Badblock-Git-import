@@ -56,7 +56,7 @@ class Teamspeak
         $data['CHANNEL_NAME'] = $Name;
         $data['CHANNEL_PASSWORD'] = $Password;
         $data['CHANNEL_FLAG_PERMANENT'] = 1;
-        $data['CPID'] = 230;
+        $data['CPID'] = 39943;
         $data['CHANNEL_DESCRIPTION'] = "";
 
         $ChannelId = $this->client->channelCreate($data);
@@ -82,6 +82,7 @@ class Teamspeak
 
         $permissions['b_channel_create_temporary'] = array(1, 0, 0);
         $permissions['b_channel_create_with_password'] = array(1, 0, 0);
+        $permissions["b_channel_create_modify_with_force_password"] = array(1, 0, 0);
         $permissions['b_channel_create_modify_with_codec_opusvoice'] = array(1, 0, 0);
         $permissions['b_channel_create_modify_with_codec_opusmusic'] = array(1, 0, 0);
         $permissions['i_channel_create_modify_with_codec_maxquality'] = array(10, 0, 0);
@@ -135,6 +136,14 @@ class Teamspeak
         $this->connection();
         $ClientId = $this->client->clientGetDbIdFromUid($Uid);
         $Id = $this->client->serverGroupAddClient($GroupId, $ClientId['data']['cldbid']);
+
+        return true;
+    }
+
+    public function removeFromGroup($TSUid, $groupID){
+        $this->connection();
+        $clientID = $this->client->clientGetDbIdFromUid($TSUid);
+        $Id = $this->client->serverGroupDeleteClient($groupID, $clientID['data']['cldbid']);
 
         return true;
     }
