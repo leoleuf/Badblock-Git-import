@@ -16,7 +16,7 @@ class BuildController extends Controller
 
 
     public function index(){
-        $Top = DB::connection('mysql_casier')
+        $Top = DB::connection("mysql_casier")
             ->table('builderSessions')
             ->select(
                 DB::raw("SUM(loginTime) as login"),
