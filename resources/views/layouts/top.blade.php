@@ -230,10 +230,8 @@
                                     <li><a href="/section/avertissement-list"><i
                                                     class="fas fa-exclamation-triangle"></i> Avertissements</a></li>
                                 @endcan
-                                    @can('resp_gradeperso_list')
                                         <li><a href="/gradeperso-clear" class="waves-effect"><i class="fas fa-eraser"></i>
                                             Clear gradeperso</a></li>
-                                    @endcan
 
                                 @can('resp_paid_section')
                                     <li><a href="/section/paid" class="waves-effect"><i class="fa fa-bank"></i> Paies
