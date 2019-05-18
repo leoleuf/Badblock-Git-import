@@ -55,9 +55,9 @@ class Teamspeak
         $data = array();
         $data['CHANNEL_NAME'] = $Name;
         $data['CHANNEL_PASSWORD'] = $Password;
-        $data['CHANNEL_FLAG_PERMANENT'] = 1;
         $data['CPID'] = 39943;
         $data['CHANNEL_DESCRIPTION'] = "";
+        $data['CHANNEL_FLAG_TEMPORARY'] = 1;
 
         $ChannelId = $this->client->channelCreate($data);
 
