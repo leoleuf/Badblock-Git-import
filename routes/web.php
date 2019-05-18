@@ -57,6 +57,8 @@ Route::group([
     Route::get('/my-warns', 'section\WarningController@mylist');
     Route::get('/my-notifs', 'section\NotificationsController@mylist');
 
+    Route::get('/gradeperso-clear', 'others\ClearGradePersoController@index');
+
     Route::group([
         'middleware' => ['auth'],
     ], function () {
