@@ -56,16 +56,57 @@ class GroupMiddleware
                     'badfriend' => 38
                 );
 
+                $servers = array(
+                    'bungee',
+                    'minigames',
+                    'pvpbox',
+                    'skyblock',
+                    'freebuild',
+                    'survie',
+                    'faction'
+                );
+
                 //Search
                 foreach ((array) $player['permissions']->groups->bungee as $k => $row){
                     //Regular group
                     foreach ($group as $g => $gr){
                         if ($k === $g){
-                            //Tout est réussi on update le forum
-                            $this->container->xenforo->addGroup($username,$gr);
-                            $old = $this->container->session->getProfile('user');
-                            array_push($old['secondary_group_ids'], $gr);
-                            $this->container->session->set('user', $old);
+                            $validGroup = true;
+
+                            //Remove the gradeperso if expired
+                            if($g == "gradeperso"){
+                                $temp = (array) $player['permissions']->groups;
+
+                                if($temp['bungee']['gradeperso']/1000 < time()){
+                                    $validGroup = false;
+                                    //Remove Xenforo group
+                                    $this->container->xenforo->removeGroup($username,$gr);
+
+                                    $old = $this->container->session->getProfile('user');
+                                    unset($old['secondary_group_ids'][$gr]);
+                                    $this->container->session->set('user', $old);
+
+                                    foreach($servers as $server) {
+                                        if($temp[$server] != null){
+                                            unset($player['permissions']->groups->$server['gradeperso']);
+                                        }
+                                    }
+
+                                    $this->container->mongoServer->players->findOneAndReplace(
+                                        ['name' => strtolower($username)],
+                                        $player
+                                    );
+                                }
+                            }
+
+                            if($validGroup == true) {
+
+                                //Tout est réussi on update le forum
+                                $this->container->xenforo->addGroup($username,$gr);
+                                $old = $this->container->session->getProfile('user');
+                                array_push($old['secondary_group_ids'], $gr);
+                                $this->container->session->set('user', $old);
+                            }
                         }
                     }
 

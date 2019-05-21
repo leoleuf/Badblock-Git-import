@@ -100,6 +100,21 @@ class XenForo
 
     }
 
+    public function removeGroup($username, $group)
+    {
+
+        try {
+            $rep = $this->doGetRequest('action=editUser&user=' . $username . '&remove_groups=' . $group);
+
+            return $this->getParsedBody($rep->getBody());
+        } catch (\Exception $exception) {
+            return false;
+
+
+        }
+
+    }
+
     /**
      * @param $username
      * @param $password
