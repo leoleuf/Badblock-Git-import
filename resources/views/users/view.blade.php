@@ -164,7 +164,12 @@
                                                                 <ul class="in-table-list">
                                                                     @foreach($row as $p => $h)
                                                                         <li class="color-brighter">
-                                                                            Groupe : {{ $p }} - Time : {{ $h }}
+                                                                            Groupe : {{ $p }} - Validité :
+                                                                            @if($h > 0 && $h/1000 > time())
+                                                                                {{ date("d/m/Y G", $h/1000)."h".date("i", $h/1000) }}
+                                                                            @else
+                                                                                &infin;
+                                                                            @endif
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
