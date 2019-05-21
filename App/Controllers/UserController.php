@@ -34,21 +34,28 @@ class UserController extends Controller
             //Vérifiaction s'il n'y a pas deja un doc
             $count = $this->container->mongoServer->custom_data->count(['uniqueId' => $user['uniqueId']]);
 
-            //Création du document si inexistant
-            $data = [
-                'uniqueId' => $user['uniqueId'],
-                'prefix' => "&dLegend",
-                'prefix_new' => "",
-                'prefix_state' => true,
-                'chat_color' => "",
-            ];
+
             if ($count == 0) {
+                //Création du document si inexistant
+                $data = [
+                    'uniqueId' => $user['uniqueId'],
+                    'prefix' => "&dLegend",
+                    'prefix_new' => "",
+                    'prefix_state' => true,
+                    'chat_color' => "",
+                ];
+
                 $this->container->mongoServer->custom_data->InsertOne($data);
-                $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
-            } else {
-                $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
             }
-        } else {
+
+            $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
+
+            $player = $this->container->mongoServer->players->findOne(['uniqueId' => $user['uniqueId']]);
+            $expirationDate_timestamp = $player['permissions']->groups->bungee['gradeperso']/1000;
+
+            $custom['expiration_date'] = date("d/m/Y", $expirationDate_timestamp)." à ".date("G", $expirationDate_timestamp)."h".date("i", $expirationDate_timestamp);
+        }
+        else {
             $custom = false;
         }
 
