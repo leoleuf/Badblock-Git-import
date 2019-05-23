@@ -79,6 +79,9 @@
                                 <i class="ti-settings m-r-5"></i> Mes Notifications
                             </a>
 
+                            <a href="/profil" class="dropdown-item notify-item"><i class="fas fa-key"></i> Password</a>
+                            <a href="/2fa" class="dropdown-item notify-item"><i class="fas fa-lock"></i> A2F </a>
+
                             <!-- item-->
                             <a href="/logout" class="dropdown-item notify-item">
                                 <i class="ti-power-off m-r-5"></i> Déconnexion
@@ -109,11 +112,8 @@
                     @endcan
                     @can('staff_profil')
                         <li class="has-submenu">
-                            <a href="#"><i class="fa fa-user"></i><span> Profile </span> </a>
+                            <a href="#"><i class="fa fa-user"></i><span> Utilitaires </span> </a>
                             <ul class="submenu">
-                                <li><a href="/profil" class="waves-effect"><i class="fas fa-key"></i> Password</a>
-                                </li>
-                                <li><a href="/2fa" class="waves-effect"><i class="fas fa-lock"></i> A2F </a></li>
                                 <li><a href="/hookix" class="waves-effect"><i class="fas fa-camera-retro"></i>
                                         HookiX </a></li>
                                 <li><a href="/gallery" class="waves-effect"><i class="fas fa-images"></i> Ma galerie</a>
