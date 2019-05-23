@@ -25,7 +25,7 @@
                                         <div class="panel-body">
                                             <h1>Création d'un nouveau Produit.</h1>
                                             <div class="">
-                                                {{ Form::model(array('url' => "/website/crud/product/", 'method' => 'PUT','class'=>'form_inline')) }}
+                                                {{ Form::open(array('url' => "/website/crud/product/", 'method' => 'POST','class'=>'form_inline')) }}
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
