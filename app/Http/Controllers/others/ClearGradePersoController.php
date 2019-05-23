@@ -17,51 +17,22 @@ class ClearGradePersoController extends Controller
     public function index()
     {
 
-        $servers = [
-            "bungee",
-            "survie",
-            "faction",
-            "skyblock",
-            "freebuild",
-            "minigames",
-            "pvpbox"
+
+        $where = ['$or' =>
+            [
+                ['permissions.groups.bungee.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.minigames.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.pvpbox.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.skyblock.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.freebuild.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.survie.gradeperso' => ['$exists' => true, '$lte' => 0]],
+                ['permissions.groups.faction.gradeperso' => ['$exists' => true, '$lte' => 0]]
+            ]
         ];
 
-        $Players = DB::connection('mongodb_server')->collection('players')->get();
-        $PlayersWithGradePerso = array();
-        $PlayersWithGradePersoCounter = 0;
-        foreach ($Players as $k => $player){
-            $check = false;
+        $PlayersWithGradePerso = DB::connection('mongodb')->collection('players')->where($where)->orderBy('name', 'ASC')->get();
 
-            foreach ($servers as $server){
-                if(isset($player['permissions']['groups'][$server]['gradeperso'])){
-                    $check = true;
-                }
-            }
-
-            if($check == true) {
-                $PlayersWithGradePerso[$PlayersWithGradePersoCounter] = $player['name'];
-                $PlayersWithGradePersoCounter++;
-            }
-
-        }
-
-        $file = 'PlayerWithGradePerso.txt';
-        $handle = fopen($file, 'w') or die('Cannot open file:  '.$file);
-        $data = json_encode($PlayersWithGradePerso);
-        fwrite($handle, $data);
-
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.basename($file).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($file));
-        flush(); // Flush system output buffer
-        readfile($file);
-
-        return view('others.clearGradePerso');
+        return view('others.clearGradePerso', ['Players' => $PlayersWithGradePerso]);
 
     }
 }
