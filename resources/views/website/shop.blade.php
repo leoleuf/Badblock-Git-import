@@ -87,11 +87,11 @@
                                             <div class="modal-body" id="deleteModal_body">
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
                                                 {{ Form::open(array('id' => 'deleteForm', 'url' => 'Default value, will generate an error')) }}
                                                 {{ Form::hidden('_method', 'DELETE') }}
-                                                {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                                                {{ Form::submit('Supprimer', array('class' => 'btn btn-danger')) }}
                                                 {{ Form::close() }}
                                             </div>
                                         </div>
