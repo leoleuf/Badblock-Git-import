@@ -5,6 +5,7 @@ namespace App\Http\Controllers\website\crud;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
+use Illuminate\Routing\Redirector;
 
 
 class ServerController extends \App\Http\Controllers\Controller {
@@ -15,13 +16,11 @@ class ServerController extends \App\Http\Controllers\Controller {
     /**
      * Display a listing of users
      *
-     * @return Response
+     * @return Redirector
      */
     public function index()
     {
-        $server = Server::take(100)->get();
-
-        return view('website.server.server', compact('server'));
+        return redirect("/website/shop");
     }
     /**
      * Show the form for creating a new user
@@ -35,7 +34,7 @@ class ServerController extends \App\Http\Controllers\Controller {
     /**
      * Store a newly created user in storage.
      *
-     * @return Response
+     * @return Redirector
      */
     public function store(Request $request)
     {
@@ -57,9 +56,7 @@ class ServerController extends \App\Http\Controllers\Controller {
 
         $server->save();
 
-        $server = Server::take(100)->get();
-
-        return view('website.server.server', compact('server'));
+        return redirect("website/shop/");
     }
     /**
      * Display the specified user.
@@ -87,7 +84,7 @@ class ServerController extends \App\Http\Controllers\Controller {
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return Redirector
      */
     public function update($id,Request $request)
     {
@@ -107,23 +104,19 @@ class ServerController extends \App\Http\Controllers\Controller {
 
         $server->save();
 
-        $server = Server::take(100)->get();
-
-        return view('website.server.server', compact('server'));
+        return redirect("/website/shop/");
     }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return Redirector
      */
     public function destroy($id)
     {
         Server::destroy($id);
 
-        $server = Server::take(100)->get();
-
-        return view('website.server.server', compact('server'));
+       return redirect("/website/shop");
 
     }
 }

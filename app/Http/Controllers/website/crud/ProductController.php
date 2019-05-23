@@ -31,41 +31,7 @@ class ProductController extends Controller {
 
     public function index()
     {
-        $Product = Product::all();
-        $Categories = Category::all();
-        $ProductsInCat = array();
-        $ProductsInCatCounter = array();
-
-
-        foreach ($Categories as $cat) {
-
-            $ProductsInCatCounter[$this->unknowCategorieName] = 0;
-            $ProductsInCat[$this->unknowCategorieName] = array();
-
-            $ProductsInCatCounter[$cat->name] = 0;
-            $ProductsInCat[$cat->name] = array();
-
-        }
-
-        foreach ($Product as $i => $row){
-            if (!empty($row->cat_id) || $row->cat_name == $this->unknowCategorieName){
-                $cat = Category::find($row->cat_id);
-                if (isset($cat->name)){
-                    $row->cat = $cat->name;
-                }
-
-                else{
-                    $row->cat = $this->unknowCategorieName;
-                }
-            } else{
-                $row->cat = $this->unknowCategorieName;
-            }
-
-            $ProductsInCat[$row->cat][$ProductsInCatCounter[$row->cat]] = $row;
-            $ProductsInCatCounter[$row->cat]++;
-        }
-
-        return view('website.product.product', compact('ProductsInCat', "Categories"));
+        return redirect("/website/shop");
     }
 
     /**
@@ -155,7 +121,7 @@ class ProductController extends Controller {
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_exec($curl);
 
-        return redirect('/website/crud/product/');
+        return redirect('/website/shop/');
     }
     /**
      * Display the specified user.
@@ -263,7 +229,7 @@ class ProductController extends Controller {
         curl_exec($curl);
 
 
-        return redirect('/website/crud/product/');
+        return redirect('/website/shop/');
 
     }
     /**
@@ -276,7 +242,7 @@ class ProductController extends Controller {
     {
         Product::destroy($id);
 
-        return redirect('/website/crud/product/');
+        return redirect('/website/shop/');
 
 
     }

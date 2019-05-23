@@ -4,39 +4,7 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card-box" style="height: 220px;">
-                            <div class="dropdown pull-right">
-                                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown"
-                                   aria-expanded="false">
-                                    <i class="zmdi zmdi-more-vert"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-
-                            <h4 class="header-title m-t-0">Gestion</h4>
-
-                            <div class="widget-chart text-center" style="display: flex; justify-content: space-between; flex-wrap: wrap">
-                                <a href="https://badblock.fr/api/cache/shop-list"
-                                   class="btn btn-success">Shop Cache</a>
-                                <a href="/website/crud/server"
-                                   class="btn btn-success">Serveur</a>
-                                <a href="/website/crud/category"
-                                   class="btn btn-success">Catégories</a>
-                                <a href="/website/crud/product"
-                                   class="btn btn-success">Produits</a>
-                                <a href="/website/crud/items"
-                                   class="btn btn-success">Items</a>
-                            </div>
-                        </div>
-                    </div><!-- end col -->
+                <div class="row"><!-- end col -->
                     <div class="col-lg-4 col-md-6">
                         <div class="card-box" style="height: 220px;">
                             <h4 class="header-title m-t-0 m-b-30">Décaissement Pts / Jour</h4>

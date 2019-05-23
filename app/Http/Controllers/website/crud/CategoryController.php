@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
+use Illuminate\Routing\Redirector;
 use Monolog\Handler\Mongo;
 
 
@@ -17,25 +18,11 @@ class CategoryController extends \App\Http\Controllers\Controller {
     /**
      * Display a listing of users
      *
-     * @return Response
+     * @return Redirector
      */
     public function index()
     {
-        $Category = Category::all();
-
-        foreach ($Category as $row){
-            if (!empty($row->server_id)){
-                $server = Server::find($row->server_id);
-                if (isset($server->name)){
-                    $row->server = $server->name;
-                }
-            }else{
-                $row->server = 'Serveur Inconnu';
-            }
-        }
-
-
-        return view('website.category.category', compact('Category'));
+        return redirect("/website/shop");
     }
     /**
      * Show the form for creating a new user
@@ -73,7 +60,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
 
         $Category->save();
 
-        return redirect('/website/crud/category/');
+        return redirect('/website/shop/');
     }
     /**
      * Display the specified user.
@@ -126,7 +113,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
 
         $Category->save();
 
-        return redirect('/website/crud/category/');
+        return redirect('/website/shop/');
 
     }
     /**
@@ -139,7 +126,7 @@ class CategoryController extends \App\Http\Controllers\Controller {
     {
         Category::destroy($id);
 
-        return redirect('/website/crud/category/');
+        return redirect('/website/shop/');
 
     }
 }
