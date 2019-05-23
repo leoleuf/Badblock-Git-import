@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
+import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.players.BadblockPlayer;
 import fr.badblock.gameapi.players.BadblockPlayer.BadblockMode;
@@ -26,15 +27,22 @@ public class VanishTeleportListener extends RabbitListener {
 
 	@Override
 	public void onPacketReceiving(String body) {
-		String[] splitter = body.split(";");
-		BadblockPlayer player = BukkitUtils.getPlayer(splitter[0]);
-		if (player == null) {
-			time.put(splitter[0].toLowerCase(), System.currentTimeMillis() + 10000);
-			splitters.put(splitter[0].toLowerCase(), splitter);
-		}
-		else {
-			manage(player, splitter);
-		}
+		Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				String[] splitter = body.split(";");
+				BadblockPlayer player = BukkitUtils.getPlayer(splitter[0]);
+				if (player == null) {
+					time.put(splitter[0].toLowerCase(), System.currentTimeMillis() + 10000);
+					splitters.put(splitter[0].toLowerCase(), splitter);
+				}
+				else {
+					manage(player, splitter);
+				}
+			}
+		});
 	}
 
 	@SuppressWarnings("deprecation")

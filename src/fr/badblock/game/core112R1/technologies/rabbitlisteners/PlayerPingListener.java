@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bukkit.Bukkit;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListener;
 import fr.badblock.api.common.tech.rabbitmq.listener.RabbitListenerType;
+import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.gameapi.GameAPI;
 
 public class PlayerPingListener extends RabbitListener {
@@ -25,10 +28,17 @@ public class PlayerPingListener extends RabbitListener {
 
 	@Override
 	public void onPacketReceiving(String body) {
-		Map<String, Integer> temp = gson.fromJson(body, collectionType);
-		for (Entry<String, Integer> entry : temp.entrySet()) {
-			ping.put(entry.getKey(), entry.getValue());
-		}
+		Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				Map<String, Integer> temp = gson.fromJson(body, collectionType);
+				for (Entry<String, Integer> entry : temp.entrySet()) {
+					ping.put(entry.getKey(), entry.getValue());
+				}
+			}
+		});
 	}
 
 }

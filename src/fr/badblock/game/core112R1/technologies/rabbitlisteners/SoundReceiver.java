@@ -25,68 +25,75 @@ public class SoundReceiver extends RabbitListener
 	@Override
 	public void onPacketReceiving(String body)
 	{
-		if (body == null)
-		{
-			return;
-		}
-
-		String[] splitter = body.split(";");
-
-		String rawSound = splitter[0];
-
-		if (rawSound.equals("NOTE_PIANO"))
-		{
-			rawSound = "BLOCK_NOTE_XYLOPHONE";
-		}
-		else if (rawSound.equals("NOTE_PLING"))
-		{
-			rawSound = "BLOCK_NOTE_PLING";
-		}
-		else if (rawSound.equals("CHICKEN_EGG_POP"))
-		{
-			rawSound = "ENTITY_CHICKEN_EGG";
-		}
-		else if (rawSound.equals("LEVEL_UP"))
-		{
-			rawSound = "ENTITY_PLAYER_LEVELUP";
-		}
-
-		Sound sound = getSound(rawSound);
-
-		if (sound == null)
-		{
-			return;
-		}
-
 		Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
 		{
 			@Override
 			public void run()
 			{
-				if (splitter.length == 2)
+				if (body == null)
 				{
-					String playerName = splitter[1];
-
-					BadblockPlayer player = BukkitUtils.getPlayer(playerName);
-					if (player == null)
-					{
-						Optional<BadblockPlayer> pla = BukkitUtils.getAllPlayers().parallelStream().filter(pl -> 
-							((GameBadblockPlayer)pl).getRealName() != null && ((GameBadblockPlayer)pl).getRealName().equalsIgnoreCase(playerName)
-						).findFirst();
-						
-						if (pla == null || !pla.isPresent())
-						{
-							return;
-						}
-						
-						player = pla.get();
-					}
-
-					player.playSound(sound);
 					return;
 				}
 
-				BukkitUtils.getAllPlayers().forEach(player -> player.playSound(sound));
+				String[] splitter = body.split(";");
+
+				String rawSound = splitter[0];
+
+				if (rawSound.equals("NOTE_PIANO"))
+				{
+					rawSound = "BLOCK_NOTE_XYLOPHONE";
+				}
+				else if (rawSound.equals("NOTE_PLING"))
+				{
+					rawSound = "BLOCK_NOTE_PLING";
+				}
+				else if (rawSound.equals("CHICKEN_EGG_POP"))
+				{
+					rawSound = "ENTITY_CHICKEN_EGG";
+				}
+				else if (rawSound.equals("LEVEL_UP"))
+				{
+					rawSound = "ENTITY_PLAYER_LEVELUP";
+				}
+
+				Sound sound = getSound(rawSound);
+
+				if (sound == null)
+				{
+					return;
+				}
+
+				Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
+				{
+					@Override
+					public void run()
+					{
+						if (splitter.length == 2)
+						{
+							String playerName = splitter[1];
+
+							BadblockPlayer player = BukkitUtils.getPlayer(playerName);
+							if (player == null)
+							{
+								Optional<BadblockPlayer> pla = BukkitUtils.getAllPlayers().parallelStream().filter(pl -> 
+								((GameBadblockPlayer)pl).getRealName() != null && ((GameBadblockPlayer)pl).getRealName().equalsIgnoreCase(playerName)
+										).findFirst();
+
+								if (pla == null || !pla.isPresent())
+								{
+									return;
+								}
+
+								player = pla.get();
+							}
+
+							player.playSound(sound);
+							return;
+						}
+
+						BukkitUtils.getAllPlayers().forEach(player -> player.playSound(sound));
+					}
+				});
 			}
 		});
 	}

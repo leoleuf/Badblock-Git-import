@@ -1,14 +1,11 @@
 package fr.badblock.game.core112R1.i18n;
 
 import java.io.File;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -19,9 +16,7 @@ import org.bukkit.potion.PotionEffectType;
 import com.google.common.collect.Maps;
 
 import fr.badblock.gameapi.GameAPI;
-import fr.badblock.gameapi.databases.SQLRequestType;
 import fr.badblock.gameapi.utils.general.ArraysUtils;
-import fr.badblock.gameapi.utils.general.Callback;
 import fr.badblock.gameapi.utils.general.JsonUtils;
 import fr.badblock.gameapi.utils.general.StringUtils;
 import fr.badblock.gameapi.utils.i18n.Language;
@@ -139,23 +134,6 @@ public class GameLanguage implements Language {
 			message = new GameMessage(ChatColor.RED + key);
 			System.out.println("Unknown message : " + key);
 			JsonUtils.save(file, message, true);
-			try {
-				final String finalKey = key;
-				GameAPI.getAPI().getSqlDatabase().call("SELECT * FROM unknownMessages WHERE ikey = '" + finalKey + "'", SQLRequestType.QUERY, new Callback<ResultSet>() {
-					@Override
-					public void done(ResultSet result, Throwable error) {
-						try {
-							if (!result.next()) {
-								GameAPI.getAPI().getSqlDatabase().call("INSERT INTO unknownMessages(ikey, serverName) VALUES('" + finalKey + "', '" + Bukkit.getServerName() + "')", SQLRequestType.UPDATE);
-							}
-						} catch (SQLException e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}catch(Exception error) {
-				error.printStackTrace();
-			}
 		} else {
 			message = JsonUtils.load(file, GameMessage.class);
 			message.verify(ChatColor.RED + key);
@@ -163,25 +141,6 @@ public class GameLanguage implements Language {
 			{
 				System.out.println("Unknown message : " + key);
 			}
-			/*if (message.isUnknown()) {
-				try {
-					final String finalKey = key;
-				GameAPI.getAPI().getSqlDatabase().call("SELECT * FROM unknownMessages WHERE ikey = '" + finalKey + "'", SQLRequestType.QUERY, new Callback<ResultSet>() {
-						@Override
-						public void done(ResultSet result, Throwable error) {
-							try {
-								if (!result.next()) {
-									GameAPI.getAPI().getSqlDatabase().call("INSERT INTO unknownMessages(ikey, serverName) VALUES('" + finalKey + "', '" + Bukkit.getServerName() + "')", SQLRequestType.UPDATE);
-								}
-							} catch (SQLException e) {
-								e.printStackTrace();
-							}
-						}
-					});
-				}catch(Exception error) {
-					error.printStackTrace();
-				}
-			}*/
 		}
 
 		message.file = file;

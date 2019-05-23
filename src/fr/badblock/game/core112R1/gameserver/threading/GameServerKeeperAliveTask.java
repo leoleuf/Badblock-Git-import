@@ -40,8 +40,8 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 
 	public GameServerKeeperAliveTask(GameServerConfig apiConfig) {
 		this.incrementJoinTime();
-		TaskManager.scheduleAsyncRepeatingTask("gameServerKeeperAlive", this, 0, apiConfig.ticksBetweenKeepAlives);
-		TaskManager.scheduleAsyncRepeatingTask("gameServerChange", toChange(), 0, 1);
+		TaskManager.scheduleSyncRepeatingTask("gameServerKeeperAlive", this, 0, apiConfig.ticksBetweenKeepAlives);
+		TaskManager.scheduleSyncRepeatingTask("gameServerChange", toChange(), 0, 1);
 	}
 
 	public void incrementJoinTime() {
@@ -122,7 +122,7 @@ public class GameServerKeeperAliveTask extends GameServerTask {
 		GameServerManager gameServerManager = this.getGameServerManager();
 		// ServerConfigurationFactory serverConfigurationFactory =
 		// gameServerManager.getServerConfigurationFactory();
-		InstanceKeepAlive gameAliveFactory = new InstanceKeepAlive(gameApi.getServer().getServerName(), isJoinable(), GameState.getStatus(gameState), Bukkit.getOnlinePlayers().size() + addedPlayers);
+		InstanceKeepAlive gameAliveFactory = new InstanceKeepAlive(gameApi.getServer().getServerName(), isJoinable(), GameState.getStatus(gameState), Bukkit.getOnlinePlayers().size() + addedPlayers, Bukkit.getMaxPlayers());
 		sendDevSignal(true, addedPlayers);
 		String queue = GamePlugin.getInstance().isNewbackend() ? DockerRabbitQueues.INSTANCE_KEEPALIVE.getQueue() : "networkdocker.instance.keepalive";
 		gameApi.getRabbitSpeaker().sendAsyncUTF8Publisher(queue, gameServerManager.getGson().toJson(gameAliveFactory), 5000, false);

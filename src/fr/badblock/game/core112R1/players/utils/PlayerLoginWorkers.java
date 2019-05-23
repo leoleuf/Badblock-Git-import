@@ -1,7 +1,5 @@
 package fr.badblock.game.core112R1.players.utils;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Map.Entry;
 import java.util.Optional;
 
@@ -31,36 +29,10 @@ public class PlayerLoginWorkers
 			@Override
 			public void run()
 			{
-				loadNick(player);
 				loadRankeds(player);
 				loadPlayerData(player);
 			}
 		}.start();
-	}
-
-	public static void loadNick(GameBadblockPlayer player)
-	{
-		try
-		{
-			Statement statement = GameAPI.getAPI().getSqlDatabase().createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT playerName FROM nick WHERE nick = '" + player.getName() + "'");
-			String realName = null;
-			if (resultSet.next())
-			{
-				String playerName = resultSet.getString("playerName");
-				if (!playerName.isEmpty())
-				{
-					realName = playerName;
-				}
-			}
-			player.setRealName(realName);
-			resultSet.close();
-			statement.close();
-		}
-		catch (Exception error)
-		{
-			error.printStackTrace();
-		}
 	}
 
 	public static void loadRankeds(GameBadblockPlayer player)
@@ -100,7 +72,7 @@ public class PlayerLoginWorkers
 		});
 		player.setRanked(new RankedPlayer(player, player.getTotalPoints(), player.getTotalRank(), player.getMonthRank()));
 	}
-	
+
 	public static void loadPlayerData(GameBadblockPlayer player)
 	{
 		String name = player.getName();
@@ -119,48 +91,45 @@ public class PlayerLoginWorkers
 
 					if (optional.isPresent())
 					{
-						Entry<String, JsonObject> entry = optional.get();
-						entry.getValue().addProperty("uniqueId", player.getUniqueId().toString());
-						player.setObject(entry.getValue());
-						player.setLoad(true);
-						
-						if (entry.getValue().has("nickname") && entry.getValue().has("name")
-								&& !entry.getValue().get("nickname").isJsonNull()
-								&& !entry.getValue().get("name").isJsonNull())
+						Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
 						{
-							String nickname = entry.getValue().get("nickname").getAsString();
-							String rName = entry.getValue().get("name").getAsString();
-							if (!rName.equalsIgnoreCase(nickname) && !nickname.isEmpty() && !rName.isEmpty())
+							@Override
+							public void run()
 							{
-								player.setRealName(rName);
-								GameAPI.logColor(ChatColor.RED + "[NICK] Real name of "+ nickname + " : " + rName);
-							}
-							else
-							{
-								player.setRealName(null);
-							}
-						}
-						else
-						{
-							player.setRealName(null);
-						}
-						
-						player.updateData(entry.getValue());
-						PlayerDataReceiver.objectsToSet.remove(entry.getKey());
-						player.setDataFetch(true);
-						synchronized (Bukkit.getServer()) {
-							Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
-							{
-								@Override
-								public void run()
-								{
-									if (player.getPlayersWithHim() != null && !player.getPlayersWithHim().isEmpty())
-										Bukkit.getPluginManager().callEvent(new PartyJoinEvent(player, player.getPlayersWithHim()));
-									Bukkit.getPluginManager().callEvent(new PlayerLoadedEvent(player));
-								}
-							});
-						}
+								Entry<String, JsonObject> entry = optional.get();
+								entry.getValue().addProperty("uniqueId", player.getUniqueId().toString());
+								player.setObject(entry.getValue());
+								player.setLoad(true);
 
+								if (entry.getValue().has("nickname") && entry.getValue().has("name")
+										&& !entry.getValue().get("nickname").isJsonNull()
+										&& !entry.getValue().get("name").isJsonNull())
+								{
+									String nickname = entry.getValue().get("nickname").getAsString();
+									String rName = entry.getValue().get("name").getAsString();
+									if (!rName.equalsIgnoreCase(nickname) && !nickname.isEmpty() && !rName.isEmpty())
+									{
+										player.setRealName(rName);
+										GameAPI.logColor(ChatColor.RED + "[NICK] Real name of "+ nickname + " : " + rName);
+									}
+									else
+									{
+										player.setRealName(null);
+									}
+								}
+								else
+								{
+									player.setRealName(null);
+								}
+
+								player.updateData(entry.getValue());
+								PlayerDataReceiver.objectsToSet.remove(entry.getKey());
+								player.setDataFetch(true);
+								if (player.getPlayersWithHim() != null && !player.getPlayersWithHim().isEmpty())
+									Bukkit.getPluginManager().callEvent(new PartyJoinEvent(player, player.getPlayersWithHim()));
+								Bukkit.getPluginManager().callEvent(new PlayerLoadedEvent(player));
+							}
+						});
 						stop();
 					}
 

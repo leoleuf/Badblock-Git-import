@@ -21,6 +21,7 @@ import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketEncoder;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketMessage;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketType;
 import fr.badblock.api.common.utils.GsonUtils;
+import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.game.core112R1.players.GameBadblockPlayer;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.players.BadblockPlayer;
@@ -39,51 +40,58 @@ public class PlayerDataReceiver extends RabbitListener
 	@Override
 	public void onPacketReceiving(String body)
 	{
-		BasicDBObject databaseObject = GsonUtils.getGson().fromJson(body, BasicDBObject.class);
-
-		if (!databaseObject.containsField("name"))
+		Bukkit.getScheduler().runTask(GamePlugin.getInstance(), new Runnable()
 		{
-			return;
-		}
-
-		String name = databaseObject.getString("name");
-		
-		if (databaseObject.containsField("nickname"))
-		{
-			String nickname = databaseObject.getString("nickname");
-			if (nickname != null && !nickname.isEmpty() && !name.equalsIgnoreCase(nickname))
+			@Override
+			public void run()
 			{
-				name = nickname;
-			}
-		}
-		
-		GameAPI.logColor(ChatColor.YELLOW + "[GameAPI DATA] Received " + name + "'s data.");
-		
-		JsonParser jsonParser = new JsonParser();
-		JsonObject jsonObject = jsonParser.parse(databaseObject.toJson()).getAsJsonObject();
+				BasicDBObject databaseObject = GsonUtils.getGson().fromJson(body, BasicDBObject.class);
 
-		objectsToSet.put(name, jsonObject);
+				if (!databaseObject.containsField("name"))
+				{
+					return;
+				}
+
+				String name = databaseObject.getString("name");
+
+				if (databaseObject.containsField("nickname"))
+				{
+					String nickname = databaseObject.getString("nickname");
+					if (nickname != null && !nickname.isEmpty() && !name.equalsIgnoreCase(nickname))
+					{
+						name = nickname;
+					}
+				}
+
+				GameAPI.logColor(ChatColor.YELLOW + "[GameAPI DATA] Received " + name + "'s data.");
+
+				JsonParser jsonParser = new JsonParser();
+				JsonObject jsonObject = jsonParser.parse(databaseObject.toJson()).getAsJsonObject();
+
+				objectsToSet.put(name, jsonObject);
+			}
+		});
 	}
 
 	public static void send(BadblockPlayer player)
 	{
 		send(player, null);
 	}
-	
+
 	public static void send(BadblockPlayer player, JsonObject data)
 	{
 		if (player.getAddress() == null)
 		{
 			return;
 		}
-		
+
 		GameBadblockPlayer plo = (GameBadblockPlayer) player;
-		
+
 		if (!plo.isLoad())
 		{
 			return;
 		}
-		
+
 		RabbitService rabbitService = GameAPI.getAPI().getRabbitService();
 		JsonObject jsonObject = new JsonObject();
 		String realName = plo.getRealName() != null ? plo.getRealName().toLowerCase() : plo.getName().toLowerCase();

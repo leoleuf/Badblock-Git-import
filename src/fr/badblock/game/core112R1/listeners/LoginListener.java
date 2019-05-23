@@ -1,7 +1,5 @@
 package fr.badblock.game.core112R1.listeners;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +23,6 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.badblock.game.core112R1.GamePlugin;
 import fr.badblock.game.core112R1.gameserver.threading.GameServerKeeperAliveTask;
@@ -35,7 +32,6 @@ import fr.badblock.game.core112R1.players.ingamedata.GameOfflinePlayer;
 import fr.badblock.game.core112R1.technologies.rabbitlisteners.VanishTeleportListener;
 import fr.badblock.gameapi.BadListener;
 import fr.badblock.gameapi.GameAPI;
-import fr.badblock.gameapi.databases.SQLRequestType;
 import fr.badblock.gameapi.events.PlayerGameInitEvent;
 import fr.badblock.gameapi.events.api.PlayerJoinTeamEvent.JoinReason;
 import fr.badblock.gameapi.events.api.PlayerLoadedEvent;
@@ -49,7 +45,6 @@ import fr.badblock.gameapi.players.kits.PlayerKit;
 import fr.badblock.gameapi.run.RunType;
 import fr.badblock.gameapi.servers.JoinItems;
 import fr.badblock.gameapi.utils.BukkitUtils;
-import fr.badblock.gameapi.utils.general.Callback;
 import fr.badblock.gameapi.utils.i18n.messages.GameMessages;
 import fr.badblock.gameapi.utils.itemstack.CustomInventory;
 import fr.badblock.gameapi.utils.reflection.ReflectionUtils;
@@ -249,74 +244,6 @@ public class LoginListener extends BadListener {
 			Bukkit.getPluginManager().callEvent(new SpectatorJoinEvent(p));
 			p.setBadblockMode(BadblockMode.SPECTATOR);
 		}
-		
-		if (GamePlugin.getInstance().getGameServerManager().getRankedConfig().isRanked()) {
-			GamePlugin.getAPI().getSqlDatabase().call("SELECT COUNT(*) AS count FROM rankeds WHERE playerName = '" + p.getName() + "'", SQLRequestType.QUERY, new Callback<ResultSet>() {
-
-				@Override
-				public void done(ResultSet result, Throwable error) {
-					try {
-						result.next();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-					int count;
-					try {
-						count = result.getInt("count");
-						if (count == 0) {
-							GamePlugin.getAPI().getSqlDatabase().call("INSERT INTO rankeds(playerName) VALUES('" + p.getName() + "')", SQLRequestType.UPDATE);
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-		}
-		GameAPI.getAPI().getSqlDatabase().call("SELECT COUNT(*) AS count FROM buyhearts WHERE playerName = '" + p.getName() + "' AND timestamp >= '" + (System.currentTimeMillis() - 2678400000L) + "'", SQLRequestType.QUERY, new Callback<ResultSet>() {
-			@Override
-			public void done(ResultSet result, Throwable error) {
-				try {
-					if (result.next()) {
-						int count = result.getInt("count");
-						if (count > 0) {
-							l.add(p.getName());
-							Bukkit.getScheduler().runTask(GameAPI.getAPI(), new Runnable() {
-								@Override
-								public void run() {
-									if (p.isOnline()) {
-										p.setMaxHealth(22);
-									}
-								}
-							});
-						}else l.remove(p.getName());
-					}
-				}catch(Exception err) {
-					error.printStackTrace();
-				}
-			}
-		});
-		new BukkitRunnable(){
-			@Override
-			public void run(){
-
-				for(Player player : Bukkit.getOnlinePlayers()){
-					GameBadblockPlayer bp = (GameBadblockPlayer) player;
-					/*if(bp.isDisguised()){
-						bp.getDisguiseEntity().show(p);
-					} else */
-					if(bp.getInvisiblePredicate().test(p)){
-						p.hidePlayer(bp);
-					}
-					if(bp.getVisiblePredicate().test(p)){
-						p.showPlayer(bp);
-					}
-					/*if(bp.inGameData(CommandInGameData.class).vanish && !p.hasPermission(GamePermission.BMODERATOR)){
-						p.hidePlayer(bp);
-					}*/
-				}
-
-			}
-		}.runTaskLater(GameAPI.getAPI(), 10L);
 		
 		reSendPlayerJoined(p);
 		
