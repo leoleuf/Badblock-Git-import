@@ -50,10 +50,10 @@ class UserController extends Controller
 
             $custom = $this->container->mongoServer->custom_data->findOne(['uniqueId' => $user['uniqueId']]);
 
-            $player = $this->container->mongoServer->players->findOne(['uniqueId' => $user['uniqueId']]);
-            $expirationDate_timestamp = $player['permissions']->groups->bungee['gradeperso']/1000;
+            $expirationDate_timestamp = $user['permissions']->groups->bungee['gradeperso']/1000;
 
-            $custom['expiration_date'] = date("d/m/Y", $expirationDate_timestamp)." à ".date("G", $expirationDate_timestamp)."h".date("i", $expirationDate_timestamp);
+            $custom['expiration_date']['timestamp'] = $expirationDate_timestamp;
+            $custom['expiration_date']['date'] = date("d/m/Y", $expirationDate_timestamp)." à ".date("G", $expirationDate_timestamp)."h".date("i", $expirationDate_timestamp);
         }
         else {
             $custom = false;

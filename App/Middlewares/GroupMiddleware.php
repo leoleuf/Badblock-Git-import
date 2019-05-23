@@ -77,7 +77,7 @@ class GroupMiddleware
                             if($g == "gradeperso"){
                                 $temp = (array) $player['permissions']->groups;
 
-                                if($temp['bungee']['gradeperso']/1000 < time()){
+                                if($temp['bungee']['gradeperso']/1000 < time() && $temp['bungee']['gradeperso'] > 0){
                                     $validGroup = false;
                                     //Remove Xenforo group
                                     $this->container->xenforo->removeGroup($username,$gr);

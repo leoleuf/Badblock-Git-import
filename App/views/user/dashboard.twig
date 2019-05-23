@@ -286,7 +286,13 @@
                     <div class="tab-pane fade" id="rank" role="tabpanel" aria-labelledby="rank-tab">
                         {% if custom != false %}
                             <h4 class="heading heading-bar" style="margin-top: 50px;">
-                             <span>Mon Grade Legend (Expire le <b>{{ custom['expiration_date'] }}</b>)
+                             <span>Mon Grade Legend (
+                                 {% if(custom['expiration_date']['timestamp'] > 0) %}
+                                    Expire le <b> {{ custom['expiration_date']['date'] }} </b>
+                                {% else %}
+                                    Grade <b>Permanent</b>
+                                 {% endif %}
+                                 )
                             </span>
                             </h4>
                             <div class="row">
