@@ -213,7 +213,7 @@
                                                      data-full-width-responsive="true"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
+                                                </script><br />
                                             <!-- bbq
                                             <ins class="adsbygoogle" id="vb"
                                                  style="display:block;width:336px;height:280px"
@@ -236,6 +236,7 @@
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
+                                <br />
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
