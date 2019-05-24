@@ -237,6 +237,7 @@
                             </button>
                             @if (!_bot_detected())
                                 <br />
+                                <br />
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
