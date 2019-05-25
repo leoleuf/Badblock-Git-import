@@ -101,7 +101,7 @@ return [
             'username' => env('MONGO_SERVER_USERNAME', ''),
             'password' => env('MONGO_SERVER_PASSWORD', ''),
             'options'  => [
-                'database' => env('MONGO_DATABASE') // sets the authentication database required by mongo 3
+                'database' => env('MONGO_SERVER_DATABASE') // sets the authentication database required by mongo 3
             ]
         ],
 
