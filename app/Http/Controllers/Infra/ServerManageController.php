@@ -15,16 +15,19 @@ class ServerManageController extends Controller
 {
     public function index()
     {
-        return view('infra.server_manage', ['data' => DB::connection('mongodb_server')->collection('serverInfo')->get()]);
+        return view('infra.server_manage', ['data' => DB::connection('mongodb_server')->collection('serverInfo')->get()[0]]);
     }
 
     public function motd(Request $request)
     {
+
         DB::connection('mongodb_server')->collection('serverInfo')->update([
 
-            'description' => $request->input('motd')
+            'description' => substr($request->input('motd'), 1)
 
         ]);
+
+        return redirect('/server');
     }
 
 }
