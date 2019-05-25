@@ -72,11 +72,6 @@
                                 <div class="col-xl-12">
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
-                                            <a href="#1" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                                Skin
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
                                             <a href="#2" data-toggle="tab" aria-expanded="false" class="nav-link">
                                                 Information G.
                                             </a>
@@ -129,10 +124,6 @@
                                     </ul>
 
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane fade" id="1">
-                                            <img src="https://minotar.net/body/{{ str_replace('-', '', $Player['uniqueId']) }}/150.png">
-                                        </div>
-
                                         <div role="tabpanel" class="tab-pane fade" id="2">
                                             <div class="container">
                                                 <table class="table userinfotable">
