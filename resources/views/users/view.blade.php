@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(array_key_exists('admin', $Player['permissions']['groups']['bungee']))
+                    @if(!array_key_exists('admin', $Player['permissions']['groups']['bungee']))
                     <div class="col-lg-6">
                         <div class="card-box">
                             <div class="container">
@@ -437,7 +437,7 @@
                                                             <li>Clé d'authentification : {{ $Player['authKey'] }}</li>
                                                         @endif
                                                     </ul>
-                                                    @if(array_key_exists('admin', $Player['permissions']['groups']['bungee']))
+                                                    @if(!array_key_exists('admin', $Player['permissions']['groups']['bungee']))
                                                     <div class="row auth-buttons">
                                                         <button type="button" class="btn btn-danger btn-lg" onclick="resetPassword()">Reset Password</button>
                                                         <button type="button" class="btn btn-warning btn-lg" onclick="resetTfa()">Reset TFA</button>
