@@ -47,23 +47,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card-box">
-                            <div class="container">
-                                <div class="row btn-group" role="group">
-                                    <button type="button" class="btn btn-danger btn-lg" onclick="resetPassword()">Reset Password</button>
-                                    <button type="button" style="margin-left: 10px" class="btn btn-warning btn-lg" onclick="resetTfa()">Reset TFA</button>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="container">
-                                <div class="row btn-group" role="group">
-                                    <button type="button" class="btn btn-info btn-lg" onclick="resetOm()" >Offline Mode</button>
-                                    <button type="button" style="margin-left: 10px" class="btn btn-sucess btn-lg" onclick="resetOl()" >Online Mode</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
