@@ -190,11 +190,11 @@
                         @if (isset($timez) && $timez != null)
 
                             <div class="alert alert-danger">
-                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
+                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $timez }} pour pouvoir revoter.
                             </div>
 
                             <a class="col-12 btn btn-success" title="Rafraichir la page" href="">
-                                Rafraichir la page <i class="fa fa-refresh"></i>
+                                Actualiser la page <i class="fa fa-refresh"></i>
                             </a>
                         @else
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
