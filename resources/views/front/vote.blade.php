@@ -469,7 +469,7 @@
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
 
-                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "50px")
+                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "60px")
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
@@ -478,10 +478,10 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "50px";
+                                document.getElementById("vb").style.marginTop = "60px";
                             }
                         }
-                        else if (document.getElementById("vb").style.marginTop == "50px") {
+                        else if (document.getElementById("vb").style.marginTop == "60px") {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 200 && maxtimes < 8) {
                                 maxtimes = maxtimes + 1;
@@ -514,7 +514,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "50px")
+                        if (isHovered && document.getElementById("vb").style.marginTop != "60px")
                         {
                             hasHovered = 1;
 
@@ -528,11 +528,11 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "50px";
+                                document.getElementById("vb").style.marginTop = "60px";
                             }
                         }
 
-                        if (document.getElementById("vb").style.marginTop == "50px")
+                        if (document.getElementById("vb").style.marginTop == "60px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 8)
