@@ -9,8 +9,10 @@ if ($date != $creationDate)
 }
 
 ?>
+@if (!isset($pubtest))
 <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
 <ins class="kiwys-ads" data-ad-slot="10594"></ins>
+@endif
 <section class="image-bg footer lis-grediant grediant-bt pb-0">
     <div class="background-image-maker"></div>
     <div class="holder-image"> <img src="/dist/images/bg3.jpg" alt="Catégories de jeu vidéo annexes" class="img-fluid d-none"> </div>
