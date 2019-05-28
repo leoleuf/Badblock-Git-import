@@ -373,6 +373,7 @@
                         "                                    <img src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
                     var nowtime = $.now() - launch;
                     var exp = Math.floor(Math.random() * 2000) + 4000 + (nowtime < 15000 ? 15000 - nowtime : 0);
+                    move();
                     setTimeout(function()
                     {
                         document.getElementById("vote-form").submit();
