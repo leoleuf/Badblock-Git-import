@@ -186,21 +186,18 @@
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                     </h6>
 
-                    <div class="alert alert-info">
-                        <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
-                    </div>
-                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
 
                         @if (isset($time) && $time != null)
 
-                                <div class="alert alert-danger">
-                                    <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
-                                </div>
+                            <div class="alert alert-danger">
+                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
+                            </div>
 
-                                <a class="col-11 btn btn-success" title="Rafraichir la page" href="">
-                                    Rafraichir la page <i class="fa fa-circle"></i>
-                                </a>
+                            <a class="col-11 btn btn-success" title="Rafraichir la page" href="">
+                                Rafraichir la page <i class="fa fa-circle"></i>
+                            </a>
                         @else
+                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <p></P>
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
@@ -269,9 +266,9 @@
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                         </div>
                         </p>
-                        @endif
-                        </div>
                     </div>
+                    </div>
+                        @endif
                     @if (_bot_detected())
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
