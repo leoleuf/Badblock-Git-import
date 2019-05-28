@@ -172,6 +172,10 @@
                         </div>
                 @endif
 
+
+                    <div class="alert alert-info">
+                        <span class="lnr lnr-cross-circle"></span> &nbsp;Problème de vote corrigé.
+                    </div>
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                     <h6 class="lis-font-weight-500">
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
@@ -205,23 +209,13 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <ins class="adsbygoogle"
-                                                     style="display:block" id="vb"
-                                                     data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="8514750542"
-                                                     data-ad-format="auto"
-                                                     data-full-width-responsive="true"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script><br />
-                                            <!-- bbq
                                             <ins class="adsbygoogle" id="vb"
                                                  style="display:block;width:336px;height:280px"
                                                  data-ad-client="ca-pub-4636627444279583"
                                                  data-ad-slot="8673578352"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>!-->
+                                            </script><br />
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
