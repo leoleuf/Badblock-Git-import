@@ -190,7 +190,8 @@
                             <a class="col-12 btn btn-success" title="Rafraichir la page" href="">
                                 Actualiser la page <i class="fa fa-refresh"></i>
                             </a>
-                            <br />
+                        <br />
+                        <br />
                         <h6 class="lis-font-weight-500">
                             <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
                         </h6>
