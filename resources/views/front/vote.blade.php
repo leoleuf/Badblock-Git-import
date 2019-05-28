@@ -259,7 +259,7 @@
                             <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
-                            <div id="myProgress">
+                            <div class="col-11" style="margin-left: 25px;" id="myProgress">
                                 <div id="myBar">0%</div>
                             </div>
                             @if (!_bot_detected() && !isset($pubtest))
@@ -381,7 +381,6 @@
         <script src="/js/ads.js"></script>
 
         <script data-pagespeed-no-defer>
-            var launch = $.now();
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
@@ -392,15 +391,12 @@
                     document.getElementById("vote_button").style.backgroundColor="#c0392b";
                     document.getElementById("vote_button").innerHTML="Patientez, nous vérifions votre vote... " +
                         "                                    <img src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
-                    var nowtime = $.now() - launch;
-                    var exp = Math.floor(Math.random() * 2000) + 4000 + (nowtime < 15000 ? 15000 - nowtime : 0);
                     document.getElementById("myProgress").style.display = "block";
                     move();
-                    setTimeout(function()
-                    {
-                        document.getElementById("vote-form").submit();
-                    }, exp);
                 }
+            }
+            function roundToTwo(num) {
+                return +(Math.round(num + "e+2")  + "e-2");
             }
             function move() {
                 var elem = document.getElementById("myBar");
@@ -408,11 +404,16 @@
                 var id = setInterval(frame, 32);
                 function frame() {
                     if (width >= 100) {
+                        document.getElementById("vote-form").submit();
                         clearInterval(id);
                     } else {
                         width += 0.24;
+                        if (width > 100)
+                        {
+                            width = 100;
+                        }
                         elem.style.width = width + '%';
-                        elem.innerHTML = width * 1  + '%';
+                        elem.innerHTML = roundToTwo(width * 1)  + '%';
                     }
                 }
             }
