@@ -220,6 +220,11 @@
                                                 </script>
                                         @endif
 
+                                            @if ($data->name == "BadBlock")
+                                                <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                                                <ins class="kiwys-ads" data-ad-slot="10591"></ins>
+                                            @endif
+
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 50px;" disabled>
