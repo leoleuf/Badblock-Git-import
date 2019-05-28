@@ -368,10 +368,12 @@
                     document.getElementById("vote_button").innerHTML="Vérification du vote en cours... " +
                         "                                    <img alt=\"Chargement du vote pour {{ $data->name }}\" title=\"Chargement du vote pour {{ $data->name }}\" src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
                     var nowtime = $.now() - launch;
+                    var exp = Math.floor(Math.random() * 2000) + 2000 + (nowtime < 10000 ? 10000 - nowtime : 0);
+                    console.log("exp: " + exp);
                     setTimeout(function()
                     {
                         document.getElementById("vote-form").submit();
-                    }, Math.floor(Math.random() * 2000) + (nowtime < 10000 ? 10000 - nowtime : 0));
+                    }, exp);
                 }
             }
         </script>
