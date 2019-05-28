@@ -175,10 +175,6 @@
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
-                    @if ($data->name == "BadBlock")
-                        <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                        <ins class="kiwys-ads" data-ad-slot="10591"></ins>
-                    @endif
                     <h6 class="lis-font-weight-500">
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                     </h6>
