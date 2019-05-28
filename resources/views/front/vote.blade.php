@@ -191,6 +191,7 @@
                         <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
                     </div>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
                                 @endif
@@ -251,9 +252,10 @@
                             </script>
                             @endif
 
-
+                        <div class="card-body p-4">
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
-                            </p>
+                        </div>
+                        </p>
                         </div>
                     </div>
                     @if (_bot_detected())
