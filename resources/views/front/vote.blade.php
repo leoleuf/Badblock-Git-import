@@ -388,7 +388,7 @@
                     if (width >= 100) {
                         clearInterval(id);
                     } else {
-                        width += 0.25;
+                        width += 0.13;
                         elem.style.width = width + '%';
                         elem.innerHTML = width * 1  + '%';
                     }
