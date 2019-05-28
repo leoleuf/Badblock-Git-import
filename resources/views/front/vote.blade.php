@@ -382,12 +382,12 @@
             function move() {
                 var elem = document.getElementById("myBar");
                 var width = 0;
-                var id = setInterval(frame, 30);
+                var id = setInterval(frame, 16);
                 function frame() {
                     if (width >= 100) {
                         clearInterval(id);
                     } else {
-                        width++;
+                        width += 0.25;
                         elem.style.width = width + '%';
                         elem.innerHTML = width * 1  + '%';
                     }
