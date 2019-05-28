@@ -221,7 +221,7 @@
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 50px;" disabled>
-                                            Voter pour {{ $data->name }} <i class="fas fa-arrow-right"></i>
+                                            Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                                         </button></center>
 
                                         {{ csrf_field() }}
