@@ -156,6 +156,26 @@ class VoteController extends Controller
                 $playerstats = Redis::get('playerstats:'.$data->id);
             }
 
+            // Get the IP address
+            $ip = $_SERVER['REMOTE_ADDR'];
+
+            if (isset($_SERVER['HTTP_CF_CONNECTING_IP']))
+            {
+                $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+            }
+
+            $time = null;
+
+            // If the vote is already done
+            if (Redis::exists($data->id .':user:' . $ip)) {
+                // We get the time
+                $time = Redis::get($data->id .':user:' . $ip);
+                // We add 1H30 to the current time
+                $time = ($time + 5400) - time();
+                // We return an error with the remaining time
+                $time = gmdate("H:i:s", $time);
+            }
+
             $tagsInfo = json_decode(Redis::get('tags:'.$catName));
 
             header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -167,7 +187,7 @@ class VoteController extends Controller
                 return redirect('/'.$catName.'/'.$id);
             }*/
 
-            return view('front.vote', ['tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'playerstats' => $playerstats]);
+            return view('front.vote', ['tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'playerstats' => $playerstats, 'time' => $time]);
         }else{
             abort(404);
         }
