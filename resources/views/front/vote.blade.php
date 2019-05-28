@@ -210,7 +210,7 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <ins class="adsbygoogle"
-                                                     style="display:block" id="vb1"
+                                                     style="display:block" id="vb"
                                                      data-ad-client="ca-pub-4636627444279583"
                                                      data-ad-slot="8514750542"
                                                      data-ad-format="auto"
