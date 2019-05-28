@@ -178,10 +178,10 @@
                         @php($pubtest = 1)
                         <h6 class="lis-font-weight-500">
                             <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
-                            <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                                <ins class="kiwys-ads" data-ad-slot="10595"></ins>
                         </h6>
-                    
+                    <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                        <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+
                     <h6 class="lis-font-weight-500">
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                     </h6>
