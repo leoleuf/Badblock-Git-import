@@ -33,8 +33,16 @@
                         <p><strong>Serveur MultiGames</strong> est un classement de <strong>serveur Minecraft</strong> et d'autres serveurs francophones.<br /></p>
                         <blockquote class="generic-blockquote">
                             <strong>Nos partenaires</strong><br /><br />
-                            Vidéo partenaire      <iframe width="350" src="https://www.youtube.com/embed/RnWUMxMRqok?rel=0&mute=1&autoplay=1" frameborder="0" allow="width: 350px; height: 100%; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+                            <ins class="adsbygoogle"
+                                 style="display:block" id="vb1"
+                                 data-ad-client="ca-pub-4636627444279583"
+                                 data-ad-slot="8673578352"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
                             <script data-pagespeed-nodefer type="text/javascript" src="http://www.hebdotop.com/cgi-bin/hebdotop.eur?id=305732"></script>
                             <A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />
                             <a href="http://www.net-liens.com" target="_blank"><img src="http://www.net-liens.com/img/media/nl1.jpg" alt="Net Liens - L'annuaire Internet" title="Net Liens - L'annuaire Internet" /></a>
@@ -67,6 +75,15 @@
                             <a href="http://autoentreprises.fr"><img src="http://autoentreprises.fr/autoentreprises.jpg" width="113" height="36" border="0"></a><br />
                             <a href="http://autoentreprises.fr">Annuaire des auto-entrepreneurs</a><br />
                             <a rel="nofollow" href="http://limonads.com/jeux-video/">Guide de sites jeux vidéo</a>
+                            <ins class="adsbygoogle"
+                                 style="display:block" id="vb1"
+                                 data-ad-client="ca-pub-4636627444279583"
+                                 data-ad-slot="8673578352"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
                         </blockquote>
                     </div>
                 </div>
