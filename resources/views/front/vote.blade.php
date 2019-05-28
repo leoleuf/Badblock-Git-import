@@ -366,11 +366,10 @@
                 else {
                     document.getElementById("vote_button").disabled = true;
                     document.getElementById("vote_button").style.backgroundColor="#c0392b";
-                    document.getElementById("vote_button").innerHTML="Vérification du vote en cours... " +
-                        "                                    <img alt=\"Chargement du vote pour {{ $data->name }}\" title=\"Chargement du vote pour {{ $data->name }}\" src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
+                    document.getElementById("vote_button").innerHTML="Patientez, nous vérifions votre vote... " +
+                        "                                    <img src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
                     var nowtime = $.now() - launch;
-                    var exp = Math.floor(Math.random() * 2000) + 2000 + (nowtime < 10000 ? 10000 - nowtime : 0);
-                    console.log("exp: " + exp);
+                    var exp = Math.floor(Math.random() * 2000) + 4000 + (nowtime < 15000 ? 15000 - nowtime : 0);
                     setTimeout(function()
                     {
                         document.getElementById("vote-form").submit();
