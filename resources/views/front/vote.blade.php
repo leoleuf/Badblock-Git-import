@@ -180,7 +180,7 @@
 
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="alert alert-info">
-                            <span class="lnr lnr-cross-circle"></span> &nbsp;Problème de vote corrigé.
+                            <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
                         </div>
                         <div class="card-body p-4">
                             <p>@if ($data->votetype == "VOTIFIER")<br />
