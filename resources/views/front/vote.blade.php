@@ -221,13 +221,13 @@
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
                                                 data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 50px;" disabled>
-                                            Voter pour {{ $data->name }} <i class="fa fa-fighter-jet" aria-hidden="true"></i>
+                                            Voter pour {{ $data->name }} <i class="fas fa-arrow-right"></i>
                                         </button></center>
 
                                         {{ csrf_field() }}
                             </form>
                             <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
-                                Voter <i class="lnr lnr-arrow-right"></i>
+                                Vote <i class="fas fa-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
                                 <ins class="adsbygoogle"
