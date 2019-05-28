@@ -225,7 +225,7 @@
                                                      data-full-width-responsive="true"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script><br /><br />
+                                                </script><br />
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
