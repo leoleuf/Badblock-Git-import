@@ -120,16 +120,6 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-8 mb-5 mb-lg-0">
-                        <!-- responsive -->
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-4636627444279583"
-                             data-ad-slot="8514750542"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
                     @if(isset($erreur))
                             <div class="alert alert-danger">
                                 <strong>Attention !</strong> {{ $erreur }}
@@ -155,6 +145,16 @@
                         </div>
                     @endif
 
+                    <!-- responsive -->
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="8514750542"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                     <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                         <h6 class="lis-font-weight-500">
                             <i class="fa fa-align-right pr-2 lis-f-14"></i> Description
