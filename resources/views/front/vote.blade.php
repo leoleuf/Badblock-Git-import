@@ -193,13 +193,13 @@
 
                         @if (isset($time) && $time != null)
 
-                            <div class="alert alert-danger">
-                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
-                            </div>
+                                <div class="alert alert-danger">
+                                    <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
+                                </div>
 
-                            <a class="col-11 btn btn-success" title="Rafraichir la page" href="">
-                                Rafraichir la page <i class="fa fa-circle"></i>
-                            </a>
+                                <a class="col-11 btn btn-success" title="Rafraichir la page" href="">
+                                    Rafraichir la page <i class="fa fa-circle"></i>
+                                </a>
                         @else
                             <p></P>
                             <p>@if ($data->votetype == "VOTIFIER")<br />
@@ -269,6 +269,7 @@
                             Vous êtes en train de voter pour le serveur {{ $data->name }}. Votre vote sera vérifié en quelques secondes par nos systèmes avancés et vous serez redirigé une fois qu'il sera pris en compte. Il suffira par la suite de revenir sur la plateforme de vote pour récupérer une éventuelle récompense sur le serveur {{ seocat($catName) }}.<br />
                         </div>
                         </p>
+                        @endif
                         </div>
                     </div>
                     @if (_bot_detected())
