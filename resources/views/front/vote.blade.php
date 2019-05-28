@@ -191,6 +191,17 @@
                     </div>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
 
+                        @if (isset($time) && $time != null)
+
+                            <div class="alert alert-danger">
+                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $time }} pour pouvoir revoter.
+                            </div>
+
+                            <a class="col-11 btn btn-success" title="Rafraichir la page" href="">
+                                Rafraichir la page <i class="fa fa-circle"></i>
+                            </a>
+                        @else
+                            <p></P>
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
                                 @endif
