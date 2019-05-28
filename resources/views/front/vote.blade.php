@@ -561,6 +561,7 @@
                 var p = true;
                 $('#vote_button').click(function()
                 {
+                    $('#vbna').click();
                     if (p) {
                         p = false;
                             $.post('https://serveur-multigames.net/pm', {
