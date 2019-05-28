@@ -178,10 +178,10 @@
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                     </h6>
 
+                    <div class="alert alert-info">
+                        <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
+                    </div>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="alert alert-info">
-                            <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
-                        </div>
                         <div class="card-body p-4">
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
