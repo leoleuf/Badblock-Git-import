@@ -133,6 +133,9 @@
                     </div>
                 </div>
             @endif
+            <div class="alert alert-info">
+                <span class="lnr lnr-cross-circle"></span> &nbsp;Problème de vote corrigé.
+            </div>
             <div class="col-12 col-lg-8 mb-5 mb-lg-0">
 
                 @if(isset($captcha))
@@ -173,9 +176,6 @@
                 @endif
 
 
-                    <div class="alert alert-info">
-                        <span class="lnr lnr-cross-circle"></span> &nbsp;Problème de vote corrigé.
-                    </div>
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
                     <h6 class="lis-font-weight-500">
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
@@ -220,8 +220,8 @@
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="display: none; margin-left:25px; height: 50px;" disabled>
-                                            Voter <i class="lnr lnr-arrow-right"></i>
+                                                data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 50px;" disabled>
+                                            Voter pour {{ $data->name }} <i class="fa fa-fighter-jet" aria-hidden="true"></i>
                                         </button></center>
 
                                         {{ csrf_field() }}
