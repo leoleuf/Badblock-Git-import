@@ -479,7 +479,7 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "100px";
+                                document.getElementById("vb").style.marginTop = "50px";
                             }
                         }
                         else if (document.getElementById("vb").style.marginTop == "50px") {
@@ -515,7 +515,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "70px")
+                        if (isHovered && document.getElementById("vb").style.marginTop != "50px")
                         {
                             hasHovered = 1;
 
@@ -529,11 +529,11 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "70px";
+                                document.getElementById("vb").style.marginTop = "50px";
                             }
                         }
 
-                        if (document.getElementById("vb").style.marginTop == "70px")
+                        if (document.getElementById("vb").style.marginTop == "50px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 8)
@@ -541,7 +541,7 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "-40px";
+                                document.getElementById("vb").style.marginTop = "0px";
                                 time = 500;
                             }
                         }
