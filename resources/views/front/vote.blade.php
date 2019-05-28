@@ -175,6 +175,14 @@
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
+                    @if ($data->name == "BadBlock")
+                        @php($pubtest = 1)
+                        <h6 class="lis-font-weight-500">
+                            <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
+                            <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                                <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+                        </h6>
+                    @endif
                     <h6 class="lis-font-weight-500">
                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                     </h6>
@@ -183,7 +191,6 @@
                         <span class="lnr lnr-cross-circle"></span> &nbsp;Les problèmes de votes sont corrigés.
                     </div>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="card-body p-4">
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
                                 @endif
@@ -209,7 +216,7 @@
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         <center>
-                                        @if (!_bot_detected())
+                                        @if (!_bot_detected() && !isset($pubtest))
                                                 <ins class="adsbygoogle"
                                                      style="display:block" id="vb"
                                                      data-ad-client="ca-pub-4636627444279583"
@@ -232,7 +239,7 @@
                             <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
-                            @if (!_bot_detected())
+                            @if (!_bot_detected() && !isset($pubtest))
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb2"
                                  data-ad-client="ca-pub-4636627444279583"
