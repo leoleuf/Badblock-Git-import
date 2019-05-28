@@ -196,6 +196,7 @@
                             <a class="col-12 btn btn-success" title="Rafraichir la page" href="">
                                 Actualiser la page <i class="fa fa-refresh"></i>
                             </a>
+                            <br />
                         @else
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <p></P>
