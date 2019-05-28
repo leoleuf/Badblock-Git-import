@@ -239,6 +239,9 @@
                             <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
+                            <div id="myProgress">
+                                <div id="myBar">0%</div>
+                            </div>
                             @if (!_bot_detected() && !isset($pubtest))
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb2"
@@ -374,6 +377,20 @@
                     {
                         document.getElementById("vote-form").submit();
                     }, exp);
+                }
+            }
+            function move() {
+                var elem = document.getElementById("myBar");
+                var width = 0;
+                var id = setInterval(frame, 30);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                    } else {
+                        width++;
+                        elem.style.width = width + '%';
+                        elem.innerHTML = width * 1  + '%';
+                    }
                 }
             }
         </script>
