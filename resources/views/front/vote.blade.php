@@ -215,7 +215,7 @@
                                                  data-ad-slot="8673578352"></ins>
                                             <script>
                                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script><br />
+                                            </script>
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
@@ -230,8 +230,6 @@
                                 Voter <i class="lnr lnr-arrow-right"></i>
                             </button>
                             @if (!_bot_detected())
-                                <br />
-                                <br />
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb1"
                                  data-ad-client="ca-pub-4636627444279583"
