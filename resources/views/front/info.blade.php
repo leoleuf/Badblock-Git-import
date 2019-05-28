@@ -131,11 +131,10 @@
                                     <span>Merci !</span> &nbsp; <i class="fa fa-check-circle-o pr-1"></i> Votre vote a bien été pris en compte. Merci de votre soutien.
                                 </div>
                         @else
-                                <meta http-equiv="refresh" content="5;url=/{{ $catName }}" />
-
                                 <div class="alert alert-success">
-                                    <img alt="Chargement du vote pour {{ $data->name }}" title="Chargement du vote pour {{ $data->name }}" src="/img/loading.gif" width="64" height="64" /> Patientez quelques instants</strong> Nous prenons en compte votre vote.. Vous serez redirigé.
+                                    <span>Merci !</span> &nbsp; <i class="fa fa-check-circle-o pr-1"></i> Votre vote a bien été pris en compte. Vous allez être redirigé vers le classement.
                                 </div>
+                                <meta http-equiv="refresh" content="2;url=/{{ $catName }}" />
                         @endif
                     @endif
 
