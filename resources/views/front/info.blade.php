@@ -139,12 +139,6 @@
                         @endif
                     @endif
 
-                    @if (!$data->verified)
-                        <div class="alert alert-warning" role="alert">
-                            <strong>Attention</strong> Cette propriété n'est pas encore validée par le propriétaire du serveur. Pour la valider, l'administrateur du serveur doit la valider depuis son tableau de bord. <a title="Connexion au classement de serveur {{ seocat($catName) }}" href="/login">Se connecter au Tableau de Bord</a>.
-                        </div>
-                    @endif
-
                     <!-- responsive -->
                         <ins class="adsbygoogle"
                              style="display:block"
