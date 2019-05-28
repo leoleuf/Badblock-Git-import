@@ -217,7 +217,7 @@
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         <center>
-                                        @if (!_bot_detected() && !isset($pubtest))
+                                        @if (!_bot_detected())
                                                 <ins class="adsbygoogle"
                                                      style="display:block" id="vb"
                                                      data-ad-client="ca-pub-4636627444279583"
@@ -231,7 +231,7 @@
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 50px;" disabled>
+                                                data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
                                             Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                                         </button></center>
 
