@@ -176,18 +176,12 @@
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
                         @php($pubtest = 1)
-                        <h6 class="lis-font-weight-500">
-                            <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
-                        </h6>
-                    <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                        <ins class="kiwys-ads" data-ad-slot="10595"></ins>
-
-                    <h6 class="lis-font-weight-500">
-                        <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
-                    </h6>
-
 
                         @if (isset($timez) && $timez != null)
+
+                            <h6 class="lis-font-weight-500">
+                                <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
+                            </h6>
 
                             <div class="alert alert-danger">
                                 <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $timez }} pour pouvoir revoter.
@@ -197,8 +191,24 @@
                                 Actualiser la page <i class="fa fa-refresh"></i>
                             </a>
                             <br />
+                        <h6 class="lis-font-weight-500">
+                            <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
+                        </h6>
+                        <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                            <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+
                         @else
-                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                <h6 class="lis-font-weight-500">
+                                    <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
+                                </h6>
+                                <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                                    <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+
+                                    <h6 class="lis-font-weight-500">
+                                        <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
+                                    </h6>
+
+                                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <p></P>
                             <p>@if ($data->votetype == "VOTIFIER")<br />
                                 Ce serveur utilise une technologie permettant de vous récompenser pour chaque vote, en entrant simplement votre pseudonyme. Veuillez taper votre pseudo correctement pour bien recevoir votre récompense sur le serveur, un vote est définitif.<br /><br />
