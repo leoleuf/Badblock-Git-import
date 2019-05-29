@@ -401,7 +401,7 @@
             function move() {
                 var elem = document.getElementById("myBar");
                 var width = 0;
-                var id = setInterval(frame, 32);
+                var id = setInterval(frame, 53);
                 function frame() {
                     if (width >= 100) {
                         document.getElementById("vote-form").submit();
