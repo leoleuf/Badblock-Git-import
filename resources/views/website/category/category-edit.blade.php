@@ -49,12 +49,7 @@
                         Activer la visibilitée de la categorie sur le site :
                         <br>
                         <br>
-                        <input name ="visibility" type="checkbox"
-                               @if($category['visibility'])
-                                checked
-                               @endif
-                        data-plugin="switchery" data-color="#00b19d"/>
-
+                        {{ Form::checkbox('visibility', null, $category['visibility'], array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                         <br>
                         <br>
                         Item pour boutique Ingame :
