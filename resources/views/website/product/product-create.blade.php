@@ -77,7 +77,7 @@
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
                                                             <label>Activer le mode promotion sur ce produit :</label>
-                                                            <input name="promotion" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('promotion', null, false, array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -97,7 +97,7 @@
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
                                                             <label>Visibilité dans le container promotion :</label>
-                                                            <input name="promotion_view" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('promotion_view', null, false, array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -112,7 +112,7 @@
                                                         <div class="form-group">
                                                             <label>Activer le mode de dépendance sur ce produit
                                                                 :</label>
-                                                            <input name="depend" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('depend', null, false, array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,7 +135,7 @@
                                                         <div class="form-group">
                                                             <label>Activer la visibilité du produit sur le site
                                                                 :</label>
-                                                            <input name="visibility" type="checkbox" data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('visibility', null, false, array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6">
