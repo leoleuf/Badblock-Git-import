@@ -49,6 +49,8 @@ class ModerationController extends Controller
             $Sanctions[$k]['pseudo'] = $user['name'];
         }
 
+
+
         return json_encode($Sanctions);
     }
 
@@ -122,9 +124,9 @@ class ModerationController extends Controller
 
     public function search($username){
 
-        $username = htmlspecialchars(strtolower($username));
+        $username = strtolower($username);
 
-        $Users = DB::connection('mongodb')
+        $Users = DB::connection('mongodb_server')
             ->collection('punishments')
             ->where('punisher', '=', $username)
             ->where(function ($query) {
