@@ -58,6 +58,7 @@ Route::group([
     Route::get('/my-notifs', 'section\NotificationsController@mylist');
 
     Route::get('/gradeperso-clear', 'others\ClearGradePersoController@index');
+    Route::get('/setGradesOnNewServer', 'others\SetGradeOnNewServerController@index');
 
     Route::group([
         'middleware' => ['auth'],
