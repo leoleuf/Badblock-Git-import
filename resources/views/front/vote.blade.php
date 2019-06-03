@@ -142,13 +142,6 @@
             @endif
             <div class="col-12 col-lg-8 mb-5 mb-lg-0">
 
-                <ins class="adsbygoogle"
-                     style="display:inline-block;width:728px;height:90px"
-                     data-ad-client="ca-pub-4636627444279583"
-                     data-ad-slot="3711288451"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
                 @if(isset($captcha))
                     <div class="alert alert-danger">
                         <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Veuillez remplir le captcha de sécurité !
