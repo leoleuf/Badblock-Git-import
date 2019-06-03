@@ -182,6 +182,20 @@
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
+                    @if (_bot_detected())
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="card-body p-4">
+                                <ins class="adsbygoogle"
+                                     style="display:block" id="vb1"
+                                     data-ad-client="ca-pub-4636627444279583"
+                                     data-ad-slot="3711288451"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                    @endif
                         @php($pubtest = 1)
 
                         @if (isset($timez) && $timez != null)
@@ -238,9 +252,7 @@
                                                 <ins class="adsbygoogle"
                                                      style="display:block" id="vb"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="8514750542"
-                                                     data-ad-format="auto"
-                                                     data-full-width-responsive="true"></ins>
+                                                     data-ad-slot="3711288451"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script><br />
@@ -264,9 +276,7 @@
                                 <ins class="adsbygoogle"
                                  style="display:block" id="vb2"
                                  data-ad-client="ca-pub-4636627444279583"
-                                 data-ad-slot="8514750542"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
+                                     data-ad-slot="3711288451"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
@@ -279,22 +289,6 @@
                     </div>
                     </div>
                         @endif
-                    @if (_bot_detected())
-                    <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
-                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="card-body p-4">
-                            <ins class="adsbygoogle"
-                                 style="display:block" id="vb1"
-                                 data-ad-client="ca-pub-4636627444279583"
-                                 data-ad-slot="8673578352"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
-                    </div>
-                    @endif
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
