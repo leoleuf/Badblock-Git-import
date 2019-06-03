@@ -305,14 +305,23 @@
                         </div>
                     </div>
 
-                    <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos des votes</h6>
-                    <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="card-body p-4">
-                            Vous pouvez voter <strong>une fois toutes les une heure et demi</strong> sur Serveur MultiGames, ce qui représente un bon nombre de votes par jour que vous pouvez effectuer. Voter permet de faire mieux faire connaître le serveur en le faisant augmenter dans le classement (puisque la liste est ordonnée par les votes) pour attirer de nouveaux joueurs sur les plateformes de jeu que vous préférez. De ce fait, vous participez intrinsèquement à l'évolution et à l'attractivé de la communauté de ce jeu.
-                            <br /><br />Serveur MultiGames est un site de classement de serveurs {{ seocat($catName) }} avec un système de vote perfectionné. Les votes sont vérifiés quotidiennement par les administrateurs de la plateforme afin de fournir les données les plus précises. Nous utilisons également les dernières technologies en terme de vérifications et de sécurité, ce qui nous démarque d'autres classements qui n'ont pas nécessairement cette précision puisqu'ils ne sont plus maintenus. Ajouter son serveur sur notre classement, comme le fait {{ $data->name }}, permet de faire concentrer de nombreux joueurs vers des serveurs de qualité et à ce que de nouvelles personnes qui découvrent le jeu rejoignent un travail effectué par des créateurs originaux dans leur contenu.<br /><br />
-                            Avant de voter, vérifiez que vous respectez le règlement. Les serveurs qui ne respectent pas le règlement de notre liste seront contactés et potentiellement cachés de notre classement afin de continuer de proposer au long terme de nouveaux résultats précis et attendus par toute la communauté des joueurs de {{ seocat($catName) }}.
-                        </div>
-                    </div>
+                            <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos des votes</h6>
+                            <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                <div class="card-body p-4">
+                                    Vous pouvez voter <strong>une fois toutes les une heure et demi</strong> sur Serveur MultiGames, ce qui représente un bon nombre de votes par jour que vous pouvez effectuer. Voter permet de faire mieux faire connaître le serveur en le faisant augmenter dans le classement (puisque la liste est ordonnée par les votes) pour attirer de nouveaux joueurs sur les plateformes de jeu que vous préférez. De ce fait, vous participez intrinsèquement à l'évolution et à l'attractivé de la communauté de ce jeu.
+                                    <br /><br />Serveur MultiGames est un site de classement de serveurs {{ seocat($catName) }} avec un système de vote perfectionné. Les votes sont vérifiés quotidiennement par les administrateurs de la plateforme afin de fournir les données les plus précises. Nous utilisons également les dernières technologies en terme de vérifications et de sécurité, ce qui nous démarque d'autres classements qui n'ont pas nécessairement cette précision puisqu'ils ne sont plus maintenus. Ajouter son serveur sur notre classement, comme le fait {{ $data->name }}, permet de faire concentrer de nombreux joueurs vers des serveurs de qualité et à ce que de nouvelles personnes qui découvrent le jeu rejoignent un travail effectué par des créateurs originaux dans leur contenu.<br /><br />
+                                    Avant de voter, vérifiez que vous respectez le règlement. Les serveurs qui ne respectent pas le règlement de notre liste seront contactés et potentiellement cachés de notre classement afin de continuer de proposer au long terme de nouveaux résultats précis et attendus par toute la communauté des joueurs de {{ seocat($catName) }}.
+                                </div>
+                            </div>
+                            <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Assurance sur les votes</h6>
+                            <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                <div class="card-body p-4">
+                                    Serveur MultiGames assure et garantie la bonne comptabilisation des votes. Le serveur étant assuré par nos systèmes, un avenant reste possible dans le cadre des conditions générales. Le bénéficiaire du service (le joueur) peut ainsi compter sur la transparence et l'égalité des votes. Aucun serveur n'est favorisé par rapport à un autre et aucune cotisation n'est nécessaire pour que la visibilité dudit serveur soit assuré tant que le règlement du site est respecté. Tout dommage commis dans l'échéance d'un mois avec un effet visible et dommageable à l'ensemble des autres serveurs entraîne la suspension immédiate du serveur, le site étant en capacité d'afficher le message d'information qu'il souhaite à partir du droit de renonciation énoncé clairement par celui-ci, par e-mail.<br />
+                                    <div style="display: none;">
+                                        Un service de médiateur pour l'assuré est mis en place dans le cadre d'une indemnté à payer lorsque l'institution de prévoyance le demande. La franchise de l'assuré reste donc intacte.
+                                    </div>
+                                </div>
+                            </div>
                 </div>
             </div>
 
