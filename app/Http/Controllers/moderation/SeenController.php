@@ -23,13 +23,35 @@ class SeenController extends Controller
     }
 
     public function speedsearch(){
+
+        //Récupère le joueur recherché
         $Player = DB::connection('mongodb_server')->collection('players')->where('name', '=', strtolower($_POST['search_player']))->first();
         if ($Player != null){
-            $Player = DB::connection('mongodb_server')->collection('players')->where('lastIp', '=', $Player['lastIp'])->take(10)->get();
+            //Recherche tous les joueurs ayant la même IP dans les logs de connexion
+            $where = [
+                '$and' => [
+                    ["lastIp" => ['$eq' => $Player['lastIp']]],
+                    ["username" => ['$ne' => $Player['name']]]
+                ]
+            ];
+            $Players = DB::connection('mongodb_server')->collection('connectionLogs')->where($where)->get();
             $json = [];
 
-            foreach ($Player as $p){
-                array_push($json, ['name' => $p['name'], 'uniqueId' => $p['uniqueId']]);
+            $lastPlayerName = "";
+            foreach ($Players as $p){
+
+                if($lastPlayerName != $p['username']) {
+                    //Recherche tous les joueurs ayant la même IP dans les joueurs
+                    $PlayersWithSameIP = DB::connection('mongodb_server')->collection('players')->where('name', '=', $p['username'])->get();
+                    foreach ($PlayersWithSameIP as $player) {
+
+                        if ($lastPlayerName != $player['name']) {
+                            array_push($json, ['name' => $player['name'], 'uniqueId' => $player['uniqueId']]);
+                        }
+                    }
+                }
+
+                $lastPlayerName = $p['username'];
             }
 
             return json_encode($json);
