@@ -104,6 +104,13 @@
         <div class="row">
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
+                    <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo</h6>
+                    <div class="card lis-brd-light mb-4 wow fadeInUp">
+                        <div class="card-body p-4">
+                            <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                            <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+                        </div>
+                    </div>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
@@ -192,18 +199,9 @@
                             </a>
                         <br />
                         <br />
-                        <h6 class="lis-font-weight-500">
-                            <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
-                        </h6>
-                        <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                            <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+                        <div class="card-body p-4">
 
                         @else
-                                <h6 class="lis-font-weight-500">
-                                    <i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo
-                                </h6>
-                                <div class="card-body p-4"><script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                                    <ins class="kiwys-ads" data-ad-slot="10595"></ins>
 
                                     <h6 class="lis-font-weight-500">
                                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
