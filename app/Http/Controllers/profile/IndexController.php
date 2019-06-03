@@ -101,8 +101,16 @@ class IndexController extends Controller
         $ConnectionLogs = DB::connection('mongodb_server')->collection('connectionLogs')
             ->where('username', $Player['name'])
             ->orderBy('timestamp', -1)
-            ->limit(10)
             ->get();
+
+        $ConnectionLogsArray = array();
+        $lastIp = "";
+        foreach ($ConnectionLogs as $log){
+            if($lastIp != $log['lastIp']){
+                array_push($ConnectionLogsArray, $log);
+            }
+            $lastIp = $log['lastIp'];
+        }
 
         $AvailablePermissions = DB::connection('mongodb_server')->collection('permissions')
             ->get();
@@ -120,7 +128,7 @@ class IndexController extends Controller
             ->with('Sanctions', $Sanctions)
             ->with('Logs', $Logs)
             ->with('Guardian', $Guardian)
-            ->with('ConnectionLogs', $ConnectionLogs)
+            ->with('ConnectionLogs', $ConnectionLogsArray)
             ->with('AvailablePermissions', $AvailablePermissions)
             ->with('Places', $Places);
     }
