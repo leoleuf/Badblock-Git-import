@@ -101,7 +101,14 @@
 
 <section class="lis-bg-light pt-5">
     <div class="container">
-        <div class="row">
+            <!-- lb -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-4636627444279583"
+                 data-ad-slot="3711288451"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo</h6>
