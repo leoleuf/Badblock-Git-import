@@ -101,6 +101,7 @@
 
 <section class="lis-bg-light pt-5">
     <div class="container">
+        <div class="row">
             @if (!isMobile())
                 <div class="col-12 col-lg-4">
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo</h6>
@@ -237,7 +238,9 @@
                                                 <ins class="adsbygoogle"
                                                      style="display:block" id="vb"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3711288451"></ins>
+                                                     data-ad-slot="8514750542"
+                                                     data-ad-format="auto"
+                                                     data-full-width-responsive="true"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script><br />
