@@ -435,6 +435,7 @@
                                         <a title="Ajouter son serveur {{ seocat($catName) }}" class="lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" id="ajout-serveur" href="/add-server"><span class="fa fa-plus-circle" id="serveur-plus"></span> Ajouter mon serveur Minecraft</a>
                                         <a title="Mettre mon serveur {{ seocat($catName) }} en avant" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="/mise-en-avant"><span class="fa fa-star"></span> Mettre en avant mon serveur</a>
                                         <a title="Installer {{ seocat($catName) }} gratuit PC" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="https://launcher-minecraft.com/fr/telecharger"><span class="fa fa-download"></span> Télécharger Minecraft gratuit sur PC</a>
+                                        <a title="Raccourcir un lien" class="button-pad lis-light border lis-brd-light text-center lis-line-height-2_3 rounded d-block" href="https://monlien.net/">Raccourcir URL</a>
                                     @endif
                                 </p>
                             </div>
