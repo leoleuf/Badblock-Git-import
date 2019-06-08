@@ -141,6 +141,7 @@
                     <div class="heading">
                         <h2 class="text-uppercase lis-line-height-1_5 text-white">VOUS SOUHAITEZ NOUS REJOINDRE GRATUITEMENT ?</h2>
                         <a href="/add-server" class="btn btn-outline-light btn-default text-uppercase"><i class="fa fa-plus pr-1"></i> Ajouter mon serveur</a>
+                        <a title="Raccourcir un URL ou un lien" href="https://monlien.net" class="btn btn-outline-light btn-default text-uppercase">Raccourcir URL</a>
                     </div>
                 </div>
             </div>
