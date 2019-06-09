@@ -50,6 +50,7 @@ if ($date != $creationDate)
                             <li><i class="fa fa-angle-right pr-1"></i> <a title="Règlement" href="/reglement">Règlement</a></li>
                             <li><i class="fa fa-angle-right pr-1"></i> <a title="Nous contacter" href="/contact">Contact</a></li>
                             <li><i class="fa fa-angle-right pr-1"></i> <a title="VPN detect" href="https://ipwarner.com">Detect vpn</a></li>
+                            <li><i class="fa fa-angle-right pr-1"></i> <a title="Importance des liens" href="/lien">Lien</a></li>
                         </ul>
                     </div>
                 </div>
