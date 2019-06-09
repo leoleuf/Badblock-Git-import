@@ -23,7 +23,7 @@
     <section>
         <div class="container">
             <div class="row">
-                            <div class="col-md-12 mt-sm-5">
+                            <div class="col-md-12 mt-sm-40">
                                 <p>
                                     Les liens Internet constituent une chose importante dans notre environnement quotidien. En effet, le lien définit l'identité du site Internet que vous mettez en place, mais il est nécessaire d'y apporter un travail rigoureux, notamment pour les différents endroits de votre site, pour faciliter le référencement du site. <a title="Raccourcir un lien" href="https://monlien.net/">Raccourcir URL</a> est un bon compromis pour votre site Internet.
                                     <br /><br />
