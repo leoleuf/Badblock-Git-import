@@ -29,6 +29,11 @@ class HomeController extends Controller
         return view('front.partenaires2');
     }
 
+    public function lien()
+    {
+        return view('front.lien');
+    }
+
     public function partenaires()
     {
         return view('front.partenaires');

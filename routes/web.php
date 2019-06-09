@@ -107,6 +107,7 @@ Route::group([
 //Route::get('/recherche/{term}', 'HomeController@search')->name('search');
 
 Route::post('/pm', 'VoteController@pm')->name('pm');
+Route::get('/lien', 'HomeController@lien')->name('lien');
 
 Route::get('/{cat}', 'HomeController@category')->name('category');
 
