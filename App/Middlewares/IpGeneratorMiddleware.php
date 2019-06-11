@@ -109,7 +109,7 @@ class IpGeneratorMiddleware
                 } else {
                     $eula = true;
                 }
-                $this->container->session->set('eula', false);
+                $this->container->session->set('eula', $eula);
             }else{
                 $eula = $this->container->session->get('eula');
             }
@@ -122,7 +122,7 @@ class IpGeneratorMiddleware
 
         // Ajout de l'EULA aux variables globales twig
         $twig = $this->container->view->getEnvironment();
-        $twig->addGlobal('eula', false);
+        $twig->addGlobal('eula', $eula);
         $twig->addGlobal('spider', isset($_SERVER['HTTP_USER_AGENT']) && preg_match('/bot|crawl|slurp|spider|mediapartners/i', $_SERVER['HTTP_USER_AGENT']));
         $twig->addGlobal('onlineCount', $onlineCount);
         if (!isset($shoppoints)) $shoppoints = 0;
