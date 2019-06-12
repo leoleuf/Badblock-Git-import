@@ -290,9 +290,9 @@
                                 <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
-                                            <a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" rel="noopener nofollow noreferrer external"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="img-fluid d-md-flex mr-0 mr-md-1 rounded " height="69" width="69"></a>
+                                            <a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" rel="noopener nofollow noreferrer external"><img alt="{{ $row->name }}" src="https://serveur-multigames.net/storage/icone/icon{{ $row->id }}.jpg" class="img-fluid d-md-flex mr-0 mr-md-1 rounded " height="69" width="69"></a>
                                             <div class="media-body align-self-center mt-4 mt-md-0">
-                                                <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ enctag($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
+                                                <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
                                                 <ul class="list-inline mb-0 lis-light-gold font-weight-normal">
                                                     @if($row->note >= 1)
                                                         <li class="list-inline-item fa fa-star"></li>
