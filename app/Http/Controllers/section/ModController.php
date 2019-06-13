@@ -36,7 +36,7 @@ class ModController extends Controller
 
                 $query->where('punisher', '=', $staff[0]['name']);
                 foreach ($staff as $player){
-                    $query->orWhere('punisher', '=', $player['name']);
+                    $query->orWhere('punisher', 'like', $player['name']);
                 }
             })
             ->where('proof', '=', [])
