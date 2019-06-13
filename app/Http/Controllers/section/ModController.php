@@ -10,8 +10,9 @@ namespace App\Http\Controllers\section;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Psr\Http\Message\RequestInterface;
 
 class ModController extends Controller
 {
@@ -20,6 +21,24 @@ class ModController extends Controller
     public function preuves(){
 
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
+            ->where(function($query){
+
+                $where = ['$or' =>
+                    [
+                        ['permissions.groups.bungee.modochat' => ['$exists' => true]],
+                        ['permissions.groups.bungee.modo' => ['$exists' => true]],
+                        ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
+                        ['permissions.groups.bungee.supermodo' => ['$exists' => true]]
+                    ]
+                ];
+
+                $staff = DB::connection('mongodb_server')->collection('players')->where($where)->select('name')->get();
+
+                $query->where('punisher', '=', $staff[0]['name']);
+                foreach ($staff as $player){
+                    $query->orWhere('punisher', '=', $player['name']);
+                }
+            })
             ->where('proof', '=', [])
             ->where('punisher', '!=', "Console")
             ->where(function ($query) {
@@ -27,6 +46,7 @@ class ModController extends Controller
                     ->orWhere('type', '=', "KICK")
                     ->orWhere('type', '=', "BAN");
             })
+            ->where('timestamp', '>=', time()*1000-1209600000)
             ->orderBy('timestamp', 'DESC')
             ->take(200)
             ->get()
@@ -54,7 +74,7 @@ class ModController extends Controller
 
     }
 
-    public function checked() {
+    public function checked(Request $request) {
 
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
             ->where('proof', '=', [])
@@ -72,10 +92,10 @@ class ModController extends Controller
         $Sanction_ID = $Sanctions[$_POST["id"]]["_id"];
 
         $Screens = [
-            "ip" => "127.0.0.1",
-            "user" => 1,
-            "date" => "2019-16-05 19:05",
-            "file_name" => 'https://cdn.badblock.fr/upload/SNOWICE15580270250.png'
+            "ip" => $request->ip(),
+            "user" => Auth::user()->id,
+            "date" => date("d/m/Y G")."h".date("i:s"),
+            "file_name" => ''
         ];
 
         $Insert = [
