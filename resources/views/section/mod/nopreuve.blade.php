@@ -8,8 +8,11 @@
                         <div class="card-box">
                             <h4 class="m-t-0 header-title">Sanctions sans preuves.</h4>
                             <p class="text-muted font-14 m-b-20">
-                                Merci de notifier les personnes ayant oublié.
-                                Total de preuves oubliées ces deux dernières semaines : {{ count($Sanctions) }}
+                                Merci de notifier les personnes ayant oublié.<br />
+                                Total de preuves oubliées ces deux dernières semaines : {{ count($Sanctions) }} <br />
+                                @can('proof_top')
+                                    Top des modérateurs sans preuves : <a href="/section/preuves/top">Accéder au top</a>
+                                @endcan
                             </p>
                             <table class="table" id="datatable-editable">
                                 <thead>
