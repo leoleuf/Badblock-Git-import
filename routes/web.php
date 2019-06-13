@@ -215,7 +215,7 @@ Route::group([
         Route::get('/preuves', 'section\ModController@preuves')->middleware('can:mod_proof');
         Route::post('/preuves', 'section\ModController@notif')->middleware('can:mod_proof');
         Route::post('/preuves/checked', 'section\ModController@checked')->middleware('can:mod_proof');
-        Route::get('/preuves/top', 'section\ModController@top')->middleware('can:mod_proof');
+        Route::get('/preuves/top', 'section\ModController@top')->middleware('can:proof_top');
 
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:admin_server_perms');
