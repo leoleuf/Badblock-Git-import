@@ -58,7 +58,8 @@ Route::group([
     Route::get('/my-notifs', 'section\NotificationsController@mylist');
 
     Route::get('/gradeperso-clear', 'others\ClearGradePersoController@index');
-    Route::get('/setGradesOnNewServer', 'others\SetGradeOnNewServerController@index');
+    Route::get('/setGradesOnNewServer/{row}', 'others\SetGradeOnNewServerController@index');
+    Route::get('/starPerms', 'others\BordelController@starPerm');
 
     Route::group([
         'middleware' => ['auth'],
@@ -214,6 +215,7 @@ Route::group([
         Route::get('/preuves', 'section\ModController@preuves')->middleware('can:mod_proof');
         Route::post('/preuves', 'section\ModController@notif')->middleware('can:mod_proof');
         Route::post('/preuves/checked', 'section\ModController@checked')->middleware('can:mod_proof');
+        Route::get('/preuves/top', 'section\ModController@top')->middleware('can:mod_proof');
 
         //Permissions serveur
         Route::get('/permission-serv', 'section\PermissionsController@index')->middleware('can:admin_server_perms');
@@ -245,6 +247,8 @@ Route::group([
 
         // Voir ses propres avertissements
         Route::get('/avertissement/{id}', 'section\WarningController@display')->middleware('can:tools_warn');
+
+        Route::get('/grades', 'section\GradeController@index')->middleware('can:grade_view');
 
     });
 
