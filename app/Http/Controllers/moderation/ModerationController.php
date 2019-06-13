@@ -29,6 +29,7 @@ class ModerationController extends Controller
     }
 
     public function sanction(){
+
         $Sanctions = DB::connection('mongodb_server')->collection('punishments')
             ->where('punisher', '=', strtolower(Auth::user()->name))
             ->where('proof', '=', [])
@@ -48,8 +49,6 @@ class ModerationController extends Controller
             $user = DB::connection('mongodb_server')->collection('players')->where('uniqueId' ,'=', $san['punishedUuid'])->first();
             $Sanctions[$k]['pseudo'] = $user['name'];
         }
-
-
 
         return json_encode($Sanctions);
     }
