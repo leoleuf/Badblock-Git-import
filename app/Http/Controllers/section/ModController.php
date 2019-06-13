@@ -85,7 +85,6 @@ class ModController extends Controller
                     ->orWhere('type', '=', "BAN");
             })
             ->orderBy('timestamp', 'DESC')
-            ->take(200)
             ->get()
             ->toArray();
 
@@ -115,6 +114,45 @@ class ModController extends Controller
             ->update([
                 'proof' => $Id['_id']
             ]);
+
+    }
+
+    public function top(){
+
+        $where = ['$or' =>
+            [
+                ['permissions.groups.bungee.modochat' => ['$exists' => true]],
+                ['permissions.groups.bungee.modo' => ['$exists' => true]],
+                ['permissions.groups.bungee.modocheat' => ['$exists' => true]],
+                ['permissions.groups.bungee.supermodo' => ['$exists' => true]]
+            ]
+        ];
+
+        $staff = DB::connection('mongodb_server')->collection('players')->where($where)->select('name')->get();
+
+        $result = array();
+
+        foreach ($staff as $player){
+            $result[$player['name']] = DB::connection('mongodb_server')->collection('punishments')
+                ->where('proof', '=', [])
+                ->where('punisher', 'like', $player['name'])
+                ->where(function ($query) {
+                    $query->where('type', '=', "MUTE")
+                        ->orWhere('type', '=', "KICK")
+                        ->orWhere('type', '=', "BAN");
+                })
+                ->where('timestamp', '>=', time()*1000-1209600000)
+                ->orderBy('timestamp', 'DESC')
+                ->count();
+        }
+
+        foreach ($result as $key => $counter){
+            if($counter == 0){
+                unset($result[$key]);
+            }
+        }
+
+        return view('section.mod.top', ['result' => $result]);
 
     }
 

@@ -9,6 +9,7 @@
                             <h4 class="m-t-0 header-title">Sanctions sans preuves.</h4>
                             <p class="text-muted font-14 m-b-20">
                                 Merci de notifier les personnes ayant oublié.
+                                Total de preuves oubliées ces deux dernières semaines : {{ count($Sanctions) }}
                             </p>
                             <table class="table" id="datatable-editable">
                                 <thead>
@@ -74,11 +75,11 @@
                 url: '/section/preuves/checked',
                 method: 'post',
                 data: { id: k }
-            }).fail(() => {
+            }).fail(function(){
                 toastr.error('Ooops...', "Une erreur est survenu");
-            }).always(() => {
+            }).always(function(){
                 toastr.warning('Patientez...', "Requête en cours");
-            }).done(() => {
+            }).done(function(){
                 toastr.success('Terminer', "L'action à bien été effectuée");
                 location.reload();
             });
