@@ -6,6 +6,9 @@
         <div class="content">
             <div class="container">
                 <div class="row">
+
+                    <h2>Modérateurs ayant donné des sanctions sans preuves</h2>
+
                     <table class="table-responsive table">
                         <thead>
                             <tr>
