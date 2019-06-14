@@ -107,8 +107,9 @@
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Vidéo</h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
-                            <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
-                            <ins class="kiwys-ads" data-ad-slot="10595"></ins>
+                            <!-- Pepsia Player serveur-multigames.net -->
+                            <div class="pepsia_player" data-token="00Zk" data-mute="1" data-logo="1" data-controls="0" data-corner="bottom-left" data-popup="0" data-volume="1" data-autoplay="1" data-vid="0" data-cid="000Z"></div>
+                            <script type="text/javascript">(function(){var e=document.createElement("script"),f=document.getElementsByTagName("script")[0];e.src="//player.pepsia.com/sdk.js?d="+(new Date).getTime().toString(16);e.type="text/javascript";e.async=!0;f.parentNode.insertBefore(e,f);})();</script>
                         </div>
                     </div>
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur ce serveur</h6>
