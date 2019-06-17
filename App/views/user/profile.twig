@@ -117,12 +117,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" onclick="opentab(event, '2')">
-                    <i class="fas fa-cubes"></i>
-                    FreeBuild
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" onclick="opentab(event, '3')">
                     <i class="fas fa-tree"></i>
                     SkyBlock
@@ -305,41 +299,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="2" class="tabcontent" style="display: none">
-        <div class="profile-stats">
-            <h2>Le(s) plot(s) du joueur :</h2>
-            <div class="row">
-                {% for plot in joueur.plots %}
-                    <div class="col-12 col-md-4">
-                        <div class="game-title"><h4>Plot n°{{ plot.id }} <a
-                                        href="https://dmap-freebuild.badblock.fr/?worldname={{ plot.world }}&mapname=flat&zoom=4&x={{ plot.x }}&y=64&z={{ plot.z }}"
-                                        title="Classement du SpaceBalls"><span
-                                            class="badge badge-primary">Voir</span></a></h4></div>
-                        <table class="table u-full-width">
-                            <tbody>
-                            <tr>
-                                <td>Coordonnées</td>
-                                <td> {{ plot.x }}/64/{{ plot.z }}</td>
-                            </tr>
-                            <tr>
-                                <td>Le(s) membre(s)</td>
-                                <td>
-                                    {% if plot.trust == false %}
-                                        Aucun membre
-                                    {% else %}
-                                        {% for player in plot.trust %}
-                                            {{ player }}
-                                        {% endfor %}
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </div>
