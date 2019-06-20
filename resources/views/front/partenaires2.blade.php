@@ -441,7 +441,7 @@ Serveur MultiGames
 Serveur MultiGames est un site Internet de liste et de classement des serveurs de jeux. Ajoutez gratuitement un serveur ou trouvez votre serveur préféré.
 
 Hit-Parade des sites francophones
-
+{{ $mu }}
 © 2018-2019 Serveur-MultiGames<A HREF="http://www.hit-parade.com/hp.asp?site=672036" TARGET="_top"><IMG SRC="http://loga.hit-parade.com/logohp1.gif?site=a672036" Title="Hit-Parade des sites francophones" WIDTH="77" HEIGHT="15" BORDER="0"></A><br />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script>

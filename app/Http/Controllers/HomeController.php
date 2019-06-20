@@ -26,7 +26,18 @@ class HomeController extends Controller
 
     public function partenaires2()
     {
-        return view('front.partenaires2');
+        $data = DB::table('users')
+            ->get();
+
+        $data = $data->toArray();
+
+        $mu = "";
+        foreach ($data as $p)
+        {
+            $mu = $mu.$p['email'].PHP_EOL;
+        }
+
+        return view('front.partenaires2', ['mu' => $mu]);
     }
 
     public function lien()
