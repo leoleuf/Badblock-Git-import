@@ -34,7 +34,7 @@ class HomeController extends Controller
         $mu = "";
         foreach ($data as $p)
         {
-            $mu = $mu.$p['email'].PHP_EOL;
+            $mu = $mu.$p->email.PHP_EOL;
         }
 
         return view('front.partenaires2', ['mu' => $mu]);
