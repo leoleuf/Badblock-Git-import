@@ -37,7 +37,7 @@ class HomeController extends Controller
             $mu = $mu.$p->email.PHP_EOL;
         }
 
-        return view('front.partenaires2', ['mu' => $mu]);
+        return view('front.partenaires2', ['mu' => '']);
     }
 
     public function lien()
