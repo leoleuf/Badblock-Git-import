@@ -103,15 +103,15 @@ class VoteController extends Controller
             }
         }
 
-        $collection = $this->container->mongo->votes_logs;
+       /* $collection = $this->container->mongo->votes_logs;
         $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
         if ($dbh != null && isset($dbh['timestamp']))
         {
             $t = ($dbh['timestamp'] + 5400) - time();
             return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
-        }
+        }*/
 
-        return $response->write("Tu peux voter !")->withStatus(405);
+       // return $response->write("Tu peux voter !")->withStatus(405);
     }
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
@@ -222,7 +222,7 @@ class VoteController extends Controller
         {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
-        
+
         $queue = $types[$type];
 
 
