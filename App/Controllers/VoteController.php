@@ -218,6 +218,15 @@ class VoteController extends Controller
             // nique ta mère rpg
             $timetoadd = 10800;
         }
+        else if ($voteserver == 3)
+        {
+            $timetoadd = 86400;
+            $is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id=56841&ip='.$API_ip);
+            if (!($is_valid_vote > 0))
+            {
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            }
+        }
         else
         {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
