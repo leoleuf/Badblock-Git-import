@@ -54,7 +54,7 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        return $this->render($response, 'vote.index', ['toploterie' => $toploterie, 'top' => $top, 'player' => $player, 'rpgcaptcha' => $this->getCaptcha(111990)]);
+        return $this->render($response, 'vote.index', ['toploterie' => $toploterie, 'top' => $top, 'player' => $player]);
 
     }
 
