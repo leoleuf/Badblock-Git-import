@@ -26,7 +26,8 @@ class HomeController extends Controller
 
     public function partenaires2()
     {
-        $data = DB::table('users')
+        $data = DB::table('server_list')
+            ->where('votes', '=', 0)
             ->get();
 
         $data = $data->toArray();
@@ -34,10 +35,15 @@ class HomeController extends Controller
         $mu = "";
         foreach ($data as $p)
         {
-            $mu = $mu.$p->email.PHP_EOL;
+            $dq = DB::table('users')
+                ->where('id', '=', $data->user_id)
+                ->get();
+
+            $dq = $dq->toArray()[0];
+            $mu = $mu.$dq->email.PHP_EOL;
         }
 
-        return view('front.partenaires2', ['mu' => '']);
+        return view('front.partenaires2', ['mu' => $mu]);
     }
 
     public function lien()
