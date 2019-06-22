@@ -255,19 +255,7 @@ class VoteController extends Controller
                     $winItem = $value;
                 }
 
-                $collection = $this->container->mongo->votes_logs;
                 $command = str_replace("%player%", $pseudo, $winItem->command);
-
-                // award log
-                $insert = [
-                    "name" => $pseudo,
-                    "ip" => $API_ip,
-                    "type" => $type,
-                    "queue" => $queue,
-                    "date" => date("d/m/Y H:i:s"),
-                    "timestamp" => time(),
-                    "user_agent" => htmlspecialchars($API_ip)
-                ];
 
                 $awardName = $winItem->name;
 
@@ -278,18 +266,9 @@ class VoteController extends Controller
                 );
 
                 $this->sendRabbitData($pseudo, $product);
-                $collection->insertOne($insert);
             }
-
-            $query = "SELECT * FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
-            $data = $this->container->mysql_forum->fetchRow($query);
-
-            if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true) {
-                $this->top($displayPseudo, 1);
-            }
-
-
-            if ($type == 1) {
+            else
+            {
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
                 $rand = rand(3, 12);
@@ -308,6 +287,30 @@ class VoteController extends Controller
                     $this->container->session->set('points', $money['points']);
                 }
             }
+
+            $query = "SELECT * FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
+            $data = $this->container->mysql_forum->fetchRow($query);
+
+            if ($data == null || $data['is_staff'] != true && $data['is_banned'] != true) {
+                $this->top($displayPseudo, 1);
+            }
+
+            $collection = $this->container->mongo->votes_logs;
+
+            // award log
+            $insert = [
+                "name" => $pseudo,
+                "ip" => $API_ip,
+                "type" => $type,
+                "queue" => $queue,
+                "award" => $awardName,
+                "voteserver" => $voteserver,
+                "date" => date("d/m/Y H:i:s"),
+                "timestamp" => time(),
+                "user_agent" => htmlspecialchars($API_ip)
+            ];
+
+            $collection->insertOne($insert);
 
             $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &e" . $awardName);
         } else {
