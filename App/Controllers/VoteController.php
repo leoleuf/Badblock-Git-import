@@ -198,7 +198,8 @@ class VoteController extends Controller
         {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Veuillez sélectionner un site de vote.")->withStatus(405);
         }
-        else if ($voteserver == 1) {
+        else if ($voteserver == 1)
+        {
             // looking for sm
             $API_id = "badblock"; // ID du serveur
             $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
@@ -221,9 +222,7 @@ class VoteController extends Controller
         {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
-
-        return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Votes en maintenance pendant une heure.")->withStatus(405);
-
+        
         $queue = $types[$type];
 
 
