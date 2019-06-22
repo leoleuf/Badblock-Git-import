@@ -21,6 +21,28 @@ use DateTime;
 class VoteController extends Controller
 {
 
+    public function getCaptcha($id)
+    {
+        $page_data = file_get_contents('http://www.rpg-paradize.com/?page=vote&vote='.$id);
+
+        if(!$page_data){
+            trigger_error('RpgApi->getCaptcha() : une erreur est survenue lors de la récupération de la page. FALSE retourné !', E_USER_NOTICE);
+            return false;
+        }
+
+        $matches = array();
+
+        $start_tag = '<script src=\'http://api.adscaptcha.com/Get.aspx';
+        $end_tag = '\' type=\'text/javascript\'></script>';
+
+        if(!preg_match('#'.$start_tag.'(\?.+)'.$end_tag.'#', $page_data, $matches)){
+            trigger_error('RpgApi->getCaptcha() : La page a été récupéré avec succès, mais son contenue est invalide. L\'id RPG est peut-être invalide... FALSE retourné.', E_USER_NOTICE);
+            return false;
+        }
+
+        return $start_tag.$matches[1].$end_tag;
+    }
+
     public function getHome(RequestInterface $request, ResponseInterface $response){
 
         //Read Top from Redis
@@ -32,7 +54,7 @@ class VoteController extends Controller
             $player = $this->session->getProfile('username')['username'];
         }
 
-        return $this->render($response, 'vote.index', ['toploterie' => $toploterie, 'top' => $top, 'player' => $player]);
+        return $this->render($response, 'vote.index', ['toploterie' => $toploterie, 'top' => $top, 'player' => $player, 'rpgcaptcha' => getCaptcha(111990)]);
 
     }
 
