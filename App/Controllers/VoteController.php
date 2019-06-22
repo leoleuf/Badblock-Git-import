@@ -194,7 +194,11 @@ class VoteController extends Controller
 
         $timetoadd = 0;
 
-        if ($voteserver == 1) {
+        if ($voteserver == 0 OR $voteserver == null)
+        {
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Veuillez sélectionner un site de vote.")->withStatus(405);
+        }
+        else if ($voteserver == 1) {
             // looking for sm
             $API_id = "badblock"; // ID du serveur
             $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
