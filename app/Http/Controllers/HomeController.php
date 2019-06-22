@@ -36,7 +36,7 @@ class HomeController extends Controller
         foreach ($data as $p)
         {
             $dq = DB::table('users')
-                ->where('id', '=', $data->user_id)
+                ->where('id', '=', $p->user_id)
                 ->get();
 
             $dq = $dq->toArray()[0];
