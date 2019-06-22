@@ -218,6 +218,8 @@ class VoteController extends Controller
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
 
+        return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Votes en maintenance pendant une heure.")->withStatus(405);
+
         $queue = $types[$type];
 
 
