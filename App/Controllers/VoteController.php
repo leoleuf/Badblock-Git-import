@@ -315,7 +315,7 @@ class VoteController extends Controller
 
             $collection->insertOne($insert);
 
-            $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &e" . $awardName);
+            $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &c" . $awardName);
         } else {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Vous avez déjà voté récemment sur ce site de vote.")->withStatus(405);
         }
