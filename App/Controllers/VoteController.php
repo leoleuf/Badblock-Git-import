@@ -135,6 +135,8 @@ class VoteController extends Controller
 
         $dev = getenv('APP_DEBUG') == 1;
 
+        $voteserver = intval($_POST['voteserver']);
+
         $displayPseudo = $_POST['pseudo'];
 
         $pseudo = htmlspecialchars($displayPseudo);
@@ -190,80 +192,92 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        // looking for sm
-        $API_id = "badblock"; // ID du serveur
-        $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
+        $timetoadd = 0;
 
-        $API_call = @file_get_contents($API_url);
+        if ($voteserver == 1) {
+            // looking for sm
+            $API_id = "badblock"; // ID du serveur
+            $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
 
-        // voted?
-        if (!$dev && $API_call != true) {
-            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            $API_call = @file_get_contents($API_url);
+
+            // voted?
+            if (!$dev && $API_call != true) {
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            }
+
+            $timetoadd = 5400;
+        }
+        else if ($voteserver == 2)
+        {
+            // nique ta mère rpg
+            $timetoadd = 10800;
+        }
+        else
+        {
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
 
         $queue = $types[$type];
 
 
         $collection = $this->container->mongo->votes_logs;
-        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - $timetoadd)], 'voteserver' => $voteserver]);
 
         // 2 sites de vote, 3 sites à venir?
         if ($dbh == null) {
-            $collection = $this->container->mongo->votes_awards;
-            $cursor = $collection->find(['type' => intval($type)]);
+            $awardName = null;
 
-            $maxRandom = 0;
+            if ($type != 1) {
+                $collection = $this->container->mongo->votes_awards;
+                $cursor = $collection->find(['type' => intval($type)]);
 
-            $things = array();
+                $maxRandom = 0;
 
-            foreach ($cursor as $key => $value) {
-                $things[$maxRandom] = $value;
-                $maxRandom += $value->probability;
-            }
+                $things = array();
 
-            $rand = rand(1, $maxRandom);
-
-            $winItem = null;
-
-            foreach ($things as $key => $value) {
-                if ($rand > $key && $winItem != null) {
-                    continue;
+                foreach ($cursor as $key => $value) {
+                    $things[$maxRandom] = $value;
+                    $maxRandom += $value->probability;
                 }
 
-                $winItem = $value;
+                $rand = rand(1, $maxRandom);
+
+                $winItem = null;
+
+                foreach ($things as $key => $value) {
+                    if ($rand > $key && $winItem != null) {
+                        continue;
+                    }
+
+                    $winItem = $value;
+                }
+
+                $collection = $this->container->mongo->votes_logs;
+                $command = str_replace("%player%", $pseudo, $winItem->command);
+
+                // award log
+                $insert = [
+                    "name" => $pseudo,
+                    "ip" => $API_ip,
+                    "type" => $type,
+                    "queue" => $queue,
+                    "date" => date("d/m/Y H:i:s"),
+                    "timestamp" => time(),
+                    "user_agent" => htmlspecialchars($API_ip)
+                ];
+
+                $awardName = $winItem->name;
+
+                $product = array(
+                    'queue' => $queue,
+                    'command' => $command,
+                    'name' => $awardName
+                );
+
+                $this->sendRabbitData($pseudo, $product);
+                $collection->insertOne($insert);
             }
-
-            $collection = $this->container->mongo->votes_logs;
-            $total = $collection->count(['timestamp' => ['$gte' => (1537027800 - 86400)]]);
-            $command = str_replace("%player%", $pseudo, $winItem->command);
-
-            // award log
-            $insert = [
-                "name" => $pseudo,
-                "ip" => $API_ip,
-                "type" => $type,
-                "queue" => $queue,
-                "date" => date("d/m/Y H:i:s"),
-                "timestamp" => time(),
-                "user_agent" => htmlspecialchars($API_ip)
-            ];
-
-            $awardName = $winItem->name;
-
-            $product = array(
-                'queue' => $queue,
-                'command' => $command,
-                'name' => $awardName
-            );
-
-            $this->sendRabbitData($pseudo, $product);
-            $collection->insertOne($insert);
-
-            $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1537027800 - 86400)]]);
-
-            $total = max($total, 1);
-            $proba = round(($dbh / $total) * 100, 2);
-
 
             $query = "SELECT * FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
@@ -276,15 +290,18 @@ class VoteController extends Controller
             if ($type == 1) {
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+                $rand = rand(3, 12);
+                $awardName = $rand." points boutique";
+
                 if ($money == null) {
                     $data = [
                         "uniqueId" => $user['uniqueId'],
-                        "points" => 2
+                        "points" => $rand
                     ];
-                    $this->container->session->set('points', 2);
+                    $this->container->session->set('points', $rand);
                     $this->container->mongo->fund_list->insertOne($data);
                 } else {
-                    $money['points'] = $money['points'] + 2;
+                    $money['points'] = $money['points'] + $rand;
                     $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
                     $this->container->session->set('points', $money['points']);
                 }
@@ -292,8 +309,7 @@ class VoteController extends Controller
 
             $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &e" . $awardName);
         } else {
-            // oust les tricheurs
-            $awardName = "Rien";
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Vous avez déjà voté récemment sur ce site de vote.")->withStatus(405);
         }
 
         return $response->write("Ton vote a été pris en compte. Tu as gagné " . $awardName);
