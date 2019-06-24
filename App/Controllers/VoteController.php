@@ -370,7 +370,7 @@ class VoteController extends Controller
 
         if ($ingame)
         {
-            return $response->write("§aVote effectué avec succès. Tu as gagné ".$awardName)->withStatus(404);
+            return $response->write("§aVote effectué avec succès. Tu as gagné ".$awardName);
         }
         return $response->write("Ton vote a été pris en compte. Tu as gagné " . $awardName);
     }
