@@ -104,11 +104,13 @@ class StatsApiController extends \App\Controllers\Controller
         $nmban = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN"]);
         //Ban total du moi guardian
 
-        $regex = new \MongoRegex("/^" . date('m-Y') ."/i");
+        $nmbanM = 0;
+        $nmbanJ = 0;
+       /* $regex = new \MongoRegex("/^" . date('m-Y') ."/i");
         $nmbanM = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
         //Ban total du jour guardian
         $regex = new \MongoRegex("/^" . date('d-m-Y') ."/i");
-        $nmbanJ = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
+        $nmbanJ = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);*/
 
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),
