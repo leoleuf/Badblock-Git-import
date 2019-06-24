@@ -122,7 +122,19 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
+
+        $ingame = false;
+
+        if (isset($_POST['ingame']))
+        {
+            $ingame = true;
+        }
+
         if ($this->redis->exists('vote:' . $_POST['pseudo'])) {
+            if ($ingame)
+            {
+                return $response->write("§cVeuillez patienter avant d'effectuer cette demande.")->withStatus(404);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Ne spam pas.")->withStatus(405);
         } else {
             $this->redis->set('vote:' . $_POST['pseudo'], "nop");
@@ -132,7 +144,6 @@ class VoteController extends Controller
         if (!isset($_POST['pseudo']) && !isset($_POST['type'])) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
-
         $dev = getenv('APP_DEBUG') == 1;
 
         $voteserver = intval($_POST['voteserver']);
@@ -167,6 +178,10 @@ class VoteController extends Controller
 
         // unknown type
         if (!isset($types[$type])) {
+            if ($ingame)
+            {
+                return $response->write("§cType de serveur inconnu.")->withStatus(404);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
@@ -176,6 +191,10 @@ class VoteController extends Controller
 
             // user exists?
             if ($data == false) {
+                if ($ingame)
+                {
+                    return $response->write("§cUtilisateur inconnu.")->withStatus(404);
+                }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
@@ -196,6 +215,10 @@ class VoteController extends Controller
 
         if ($voteserver == 0 OR $voteserver == null)
         {
+            if ($ingame)
+            {
+                return $response->write("§cVeuillez sélectionner un site de vote.")->withStatus(404);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Veuillez sélectionner un site de vote.")->withStatus(405);
         }
         else if ($voteserver == 1)
@@ -208,6 +231,10 @@ class VoteController extends Controller
 
             // voted?
             if (!$dev && $API_call != true) {
+                if ($ingame)
+                {
+                    return $response->write("§cTu n'as pas voté.")->withStatus(404);
+                }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
             }
 
@@ -224,11 +251,19 @@ class VoteController extends Controller
             $is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id=56841&ip='.$API_ip);
             if (!($is_valid_vote > 0))
             {
+                if ($ingame)
+                {
+                    return $response->write("§cTu n'as pas voté.")->withStatus(404);
+                }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
             }
         }
         else
         {
+            if ($ingame)
+            {
+                return $response->write("§cSite de vote inconnu.")->withStatus(404);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
 
@@ -326,9 +361,17 @@ class VoteController extends Controller
 
             $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &c" . $awardName);
         } else {
+            if ($ingame)
+            {
+                return $response->write("§cVous avez déjà voté récemment sur ce site de vote.")->withStatus(404);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Vous avez déjà voté récemment sur ce site de vote.")->withStatus(405);
         }
 
+        if ($ingame)
+        {
+            return $response->write("§aVote effectué avec succès. Tu as gagné ".$awardName)->withStatus(404);
+        }
         return $response->write("Ton vote a été pris en compte. Tu as gagné " . $awardName);
     }
 

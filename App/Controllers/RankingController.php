@@ -22,12 +22,59 @@ class RankingController extends Controller
             "tower" => "Tower"
         ];
 
+        $game = $minigame['game'];
+
         $displayName = $gameArray[$minigame['game']];
 
-        $data = $this->redis->getJson("stats:".$game["game"].'_all'.":1");
+        $months = array(
+            'janvier',
+            'février',
+            'mars',
+            'avril',
+            'mai',
+            'juin',
+            'juillet',
+            'août',
+            'septembre',
+            'octobre',
+            'novembre',
+            'décembre'
+        );
 
+        $month = $months[date("n") - 1];
+        $date = $month."_".date("Y");
+
+        $data = $this->redis->getJson("stats:".$displayName.'_'.$date);
+        if ($data == null)
+        {
+            return $this->redirect($response, '/');
+        }
+
+        $rawId = "";
+        $cMax = strlen((string)count($data));
+
+        $p = 0;
+        foreach($data as $key => $value)
+        {
+            $p++;
+            $m = "";
+            if (strlen((string)$p) < $cMax)
+            {
+                for ($l = 0; $l < $cMax - strlen((string)$p); $l++)
+                {
+                    $m = $m."0";
+                }
+            }
+
+            $m = $m.$p;
+            $data[$key]["position"] = $m;
+        }
+
+        $datatop = array_slice($data,0,3,true);
         return $this->render($response, 'ranking.minigame', [
-            'displayName' => $displayName
+            'displayName' => $displayName,
+            'datatop' => $datatop,
+            'data' => $data
         ]);
     }
 
