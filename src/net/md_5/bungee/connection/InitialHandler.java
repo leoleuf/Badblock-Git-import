@@ -525,6 +525,7 @@ public class InitialHandler extends PacketHandler implements PendingConnection
 			HttpClient.get( authURL, ch.getHandle().eventLoop(), handler );
 		}catch(Exception error) {
 			error.printStackTrace();
+			disconnect("§cVotre profil est configuré en version payante (premium) de Minecraft. Vous ne pouvez par conséquent pas vous y connecter en version gratuite (cracké/non officielle)." + System.lineSeparator() + "§bPour changer le type de profil, connectez vous sur le site et changez cette option dans les paramètres de votre compte.");
 		}
 	}
 

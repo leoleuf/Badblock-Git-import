@@ -131,6 +131,7 @@ public class PluginManager
     {
         String[] split = argsSplit.split( commandLine, -1 );
         // Check for chat that only contains " "
+
         if ( split.length == 0 )
         {
             return false;
