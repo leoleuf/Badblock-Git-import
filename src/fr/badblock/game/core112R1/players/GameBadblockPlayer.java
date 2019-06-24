@@ -51,6 +51,7 @@ import fr.badblock.api.common.minecraft.party.PartyPlayer;
 import fr.badblock.api.common.minecraft.party.PartyPlayerRole;
 import fr.badblock.api.common.minecraft.party.PartyPlayerState;
 import fr.badblock.api.common.utils.data.Callback;
+import fr.badblock.api.common.utils.i18n.ChatColor;
 import fr.badblock.api.common.utils.permissions.Permissible;
 import fr.badblock.api.common.utils.permissions.Permission;
 import fr.badblock.api.common.utils.permissions.Permission.PermissionResult;
@@ -732,7 +733,24 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customRank);
 			return result;
 		}
-		return new TranslatableString("permissions.chat." + getMainGroup());
+
+		Permissible p = permissions.getHighestRank(GamePlugin.getInstance().getPermissionPlace(), false);
+
+		if (getRealName() != null && !getRealName().isEmpty() && !getRealName().equalsIgnoreCase(getName()))
+		{
+			p = getHighestNickRank(GamePlugin.getInstance().getPermissionPlace(), false);
+		}
+		
+		if (p == null)
+		{
+			TranslatableString result = new TranslatableString(null);
+			result.setOverrideString("");
+			return result;
+		}
+		
+		TranslatableString result = new TranslatableString(null);
+		result.setOverrideString(ChatColor.translateAlternateColorCodes('&', p.getPrefix()));
+		return result;
 	}
 
 	@Override
@@ -743,7 +761,24 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customColor);
 			return result;
 		}
-		return new TranslatableString("permissions.chat_suffix." + getMainGroup());
+
+		Permissible p = permissions.getHighestRank(GamePlugin.getInstance().getPermissionPlace(), false);
+		
+		if (getRealName() != null && !getRealName().isEmpty() && !getRealName().equalsIgnoreCase(getName()))
+		{
+			p = getHighestNickRank(GamePlugin.getInstance().getPermissionPlace(), false);
+		}
+		
+		if (p == null)
+		{
+			TranslatableString result = new TranslatableString(null);
+			result.setOverrideString("");
+			return result;
+		}
+		
+		TranslatableString result = new TranslatableString(null);
+		result.setOverrideString(ChatColor.translateAlternateColorCodes('&', p.getSuffix()));
+		return result;
 	}
 
 	@Override
@@ -754,7 +789,24 @@ public class GameBadblockPlayer extends CraftPlayer implements BadblockPlayer {
 			result.setOverrideString(customRank);
 			return result;
 		}
-		return new TranslatableString("permissions.tab." + getMainGroup());
+
+		Permissible p = permissions.getHighestRank(GamePlugin.getInstance().getPermissionPlace(), false);
+
+		if (getRealName() != null && !getRealName().isEmpty() && !getRealName().equalsIgnoreCase(getName()))
+		{
+			p = getHighestNickRank(GamePlugin.getInstance().getPermissionPlace(), false);
+		}
+		
+		if (p == null)
+		{
+			TranslatableString result = new TranslatableString(null);
+			result.setOverrideString("");
+			return result;
+		}
+		
+		TranslatableString result = new TranslatableString(null);
+		result.setOverrideString(ChatColor.translateAlternateColorCodes('&', p.getPrefix()));
+		return result;
 	}
 
 	@Override
