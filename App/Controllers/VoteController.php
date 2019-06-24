@@ -133,7 +133,7 @@ class VoteController extends Controller
         if ($this->redis->exists('vote:' . $_POST['pseudo'])) {
             if ($ingame)
             {
-                return $response->write("§cVeuillez patienter avant d'effectuer cette demande.")->withStatus(407);
+                return $response->write("§cVeuillez patienter avant d'effectuer cette demande.")->withStatus(200);
             }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Ne spam pas.")->withStatus(405);
         } else {
@@ -180,7 +180,7 @@ class VoteController extends Controller
         if (!isset($types[$type])) {
             if ($ingame)
             {
-                return $response->write("§cType de serveur inconnu.")->withStatus(407);
+                return $response->write("§cType de serveur inconnu.")->withStatus(200);
             }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
@@ -193,7 +193,7 @@ class VoteController extends Controller
             if ($data == false) {
                 if ($ingame)
                 {
-                    return $response->write("§cUtilisateur inconnu.")->withStatus(407);
+                    return $response->write("§cUtilisateur inconnu.")->withStatus(200);
                 }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
@@ -217,7 +217,7 @@ class VoteController extends Controller
         {
             if ($ingame)
             {
-                return $response->write("§cVeuillez sélectionner un site de vote.")->withStatus(407);
+                return $response->write("§cVeuillez sélectionner un site de vote.")->withStatus(200);
             }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Veuillez sélectionner un site de vote.")->withStatus(405);
         }
@@ -233,7 +233,7 @@ class VoteController extends Controller
             if (!$dev && $API_call != true) {
                 if ($ingame)
                 {
-                    return $response->write("§cTu n'as pas voté.")->withStatus(407);
+                    return $response->write("§cTu n'as pas voté.")->withStatus(200);
                 }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
             }
@@ -253,7 +253,7 @@ class VoteController extends Controller
             {
                 if ($ingame)
                 {
-                    return $response->write("§cTu n'as pas voté.")->withStatus(407);
+                    return $response->write("§cTu n'as pas voté.")->withStatus(200);
                 }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
             }
@@ -262,7 +262,7 @@ class VoteController extends Controller
         {
             if ($ingame)
             {
-                return $response->write("§cSite de vote inconnu.")->withStatus(407);
+                return $response->write("§cSite de vote inconnu.")->withStatus(200);
             }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
@@ -363,7 +363,7 @@ class VoteController extends Controller
         } else {
             if ($ingame)
             {
-                return $response->write("§cVous avez déjà voté récemment sur ce site de vote.")->withStatus(407);
+                return $response->write("§cVous avez déjà voté récemment sur ce site de vote.")->withStatus(200);
             }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Vous avez déjà voté récemment sur ce site de vote.")->withStatus(405);
         }
