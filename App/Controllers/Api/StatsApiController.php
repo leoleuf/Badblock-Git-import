@@ -35,19 +35,9 @@ class StatsApiController extends \App\Controllers\Controller
                 array_push($game,$result);
             }
 
-            //Save Redis
-            $nb = count($game);
-            if (is_double($nb / 20)){
-                $nb = round(($nb / 20)) + 1;
-            }
-
-            $n = 0;
-            while ($nb != $n){
-                $data = array_slice($game,($n * 20),20,true);
-                if (!empty($data)){
-                    $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                    $n++;
-                }
+            if (!empty($game))
+            {
+                $this->redis->setJson("stats:".$name,$game);
             }
         }
 

@@ -16,8 +16,6 @@ class RankingController extends Controller
         return 'todo';
     }
 
-    public function updateCache
-
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
     {
         $gameArray = [
@@ -25,6 +23,8 @@ class RankingController extends Controller
         ];
 
         $displayName = $gameArray[$minigame['game']];
+
+        $data = $this->redis->getJson("stats:".$game["game"].'_all'.":1");
 
         return $this->render($response, 'ranking.minigame', [
             'displayName' => $displayName
