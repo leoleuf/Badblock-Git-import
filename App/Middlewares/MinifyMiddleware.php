@@ -44,12 +44,12 @@ class MinifyMiddleware
      */
     private function minifyHTML($html)
     {
-        $search = array('/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/', '/\n/', '/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s', '/<!--.*?-->/');
+        /*$search = array('/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/', '/\n/', '/\>[^\S ]+/s', '/[^\S ]+\</s', '/(\s)+/s', '/<!--.*?-->/');
         $replace = array(' ', ' ', '>', '<', '\\1', '');
 
-        $squeezedHTML = preg_replace($search, $replace, $html);
+        $squeezedHTML = preg_replace($search, $replace, $html);*/
 
-        return $squeezedHTML;
+        return $html;
 
     }
 
@@ -61,9 +61,10 @@ class MinifyMiddleware
      */
     public function __invoke(Request $request, Response $response,callable $next)
     {
-        $oldBody = $response->getBody();
+        return $next($request, $response);
+       // $oldBody = $response->getBody();
 
-        $EX = explode("/", $request->getUri()->getPath());
+      /*  $EX = explode("/", $request->getUri()->getPath());
         if ($EX[0] == 'shop' || $EX[1] == 'shop'){
             return $next($request, $response);
         }elseif ($oldBody != null && $oldBody->getSize() > 0) {
@@ -74,10 +75,10 @@ class MinifyMiddleware
             //write the minified html content to the new \Slim\Http\Body instance
             $newBody->write($minifiedBodyContent);
 
-            return $response->withBody($newBody);
+            return $response->withBody($oldBody);
         }else{
             return $next($request, $response);
-        }
+        }*/
     }
 }
 
