@@ -101,32 +101,32 @@ public class BadblockSecurityManager extends SecurityManager {
 	
 	@Override
 	public void checkPrintJobAccess() {
-		if(isConcerned())
-			throw new SecurityException();
+		/*if(isConcerned())
+			throw new SecurityException();*/
 	}
 	
 	@Override
 	public void checkRead(String file) {
-		if(isConcerned())
-			checkFileAccess(file);
+		/*if(isConcerned())
+			checkFileAccess(file);*/
 	}
 	
 	@Override
 	public void checkWrite(String file) {
-		if(isConcerned())
-			checkFileAccess(file);
+		/*if(isConcerned())
+			checkFileAccess(file);*/
 	}
 	
 	@Override
 	public void checkDelete(String file) {
-		if(isConcerned())
-			checkFileAccess(file);
+		/*if(isConcerned())
+			checkFileAccess(file);*/
 	}
 	
 	@Override
 	public void checkSecurityAccess(String target) {
-		if(isConcerned())
-			throw new SecurityException();
+		/*if(isConcerned())
+			throw new SecurityException();*/
 	}
 	
 	@Override
@@ -138,7 +138,7 @@ public class BadblockSecurityManager extends SecurityManager {
 	@Override
     public void checkPermission(Permission perm)
     {
-		if(!isConcerned())
+		/*if(!isConcerned())
 			return;
 		
 		if(perm instanceof FilePermission)
@@ -163,6 +163,6 @@ public class BadblockSecurityManager extends SecurityManager {
 		{
 			if(perm.getActions().contains("write"))
 				throw new SecurityException();
-		}
+		}*/
     }
 }
