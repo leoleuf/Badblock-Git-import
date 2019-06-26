@@ -81,6 +81,10 @@ class RedirectController extends Controller
 
             // Redirect
             $wb = htmlspecialchars($server->website);
+            if (isset($server->ad))
+            {
+                return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
+            }
             return view('front.redirect', ['catName' => $catName, 'data' => $server, 'website' => $wb]);
             //return '<!DOCTYPE html><html><head><meta name="robots" content="noindex, nofollow"><noscript><META http-equiv="refresh" content="0;URL=' . $wb . '"></noscript><title>Redirection</title><script>window.opener = null; location.replace("' . $wb . '")</script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-122426050-1"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag(\'js\', new Date());gtag(\'config\', \'UA-122426050-1\');</script></head><body></body></html>';
         } else {
