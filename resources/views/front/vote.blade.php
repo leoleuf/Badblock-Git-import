@@ -571,7 +571,7 @@
                             var zolv = timediff > 8000 ? 300 : timediff > 5000 ? 200 : timediff > 2000 ? 100 : timediff > 1200 ? 75 : 0;
 
                             dbg = zolv + " : " + bdiff + " - Times: " + maxtimes + "/10";
-                            if (bdiff > zolv && maxtimes < 10)
+                            if (bdiff > zolv && maxtimes < 15)
                             {
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
@@ -590,7 +590,7 @@
                                 lastd = $.now();
                                 zo = $.now();
                                 document.getElementById("vb").style.marginTop = "0px";
-                                time = 500;
+                                time = 50;
                             }
                         }
 
