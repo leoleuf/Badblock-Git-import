@@ -281,7 +281,8 @@
                             </div>
                             @if (!_bot_detected())
                                 <ins class="adsbygoogle"
-                                 style="display:block" id="vb2"
+
+                                     style="display:inline-block;width:728px;height:90px" id="vb2"
                                      data-ad-client="ca-pub-4636627444279583"
                                      data-ad-slot="3711288451"></ins>
                             <script>
