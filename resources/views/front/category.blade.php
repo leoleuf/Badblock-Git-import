@@ -300,14 +300,13 @@
                                                     <span class="mb-0 lis-font-weight-500">
                                                         <a title="Serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" class="lis-dark">{{ $row->name }}</a>
                                                         @if (!empty($row->ip))
-                                                            <span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px;">IP : {{ $row->ip }}</span>
+                                                            &nbsp;<span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px; font-size: 0.6rem;">IP : {{ $row->ip }}</span>
                                                         @endif
                                                     </span>
 
                                                 @else
                                                     <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
                                                 @endif
-                                                <span class="mb-0 lis-font-weight-500"><a title="Informations du serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}" class="lis-dark">{{ $row->name }}</a></span>
                                                 <ul class="list-inline mb-0 lis-light-gold font-weight-normal">
                                                     @if($row->note >= 1)
                                                         <li class="list-inline-item fa fa-star"></li>
