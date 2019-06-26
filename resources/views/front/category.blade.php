@@ -298,6 +298,7 @@
                                                 el.select();
                                                 document.execCommand('copy');
                                                 document.body.removeChild(el);
+                                                alert('Adresse IP copiée : ' + str);
                                             }
                                         </script>
                                 <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
