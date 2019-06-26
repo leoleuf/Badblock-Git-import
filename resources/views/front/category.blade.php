@@ -300,7 +300,7 @@
                                                     <span class="mb-0 lis-font-weight-500">
                                                         <a title="Serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" class="lis-dark">{{ $row->name }}</a>
                                                         @if (!empty($row->ip))
-                                                            &nbsp;<span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px; font-size: 0.6rem;">IP : {{ $row->ip }}</span>
+                                                            &nbsp;<span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px; font-size: 0.9rem;">IP : {{ $row->ip }}</span>
                                                         @endif
                                                     </span>
 
