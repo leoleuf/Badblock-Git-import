@@ -287,6 +287,19 @@
                                         @php($normalDone = 1)
                                         <h3 class="lis-font-weight-500 mt-1"><i class="fa fa-align-right pr-2 lis-f-14"></i> Liste {{ $catName }} complète</h3>
                                     @endif
+                                        <script>
+                                            function copy(str) {
+                                                const el = document.createElement('textarea');
+                                                el.value = str;
+                                                el.setAttribute('readonly', '');
+                                                el.style.position = 'absolute';
+                                                el.style.left = '-9999px';
+                                                document.body.appendChild(el);
+                                                el.select();
+                                                document.execCommand('copy');
+                                                document.body.removeChild(el);
+                                            }
+                                        </script>
                                 <div class="card @if (isset($row->ad)) lis-brd-avant @else lis-brd-light @endif wow fadeInUp mb-1">
                                     <div class="card-body p-4">
                                         <div class="media d-md-flex d-block text-center text-md-left">
