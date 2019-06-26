@@ -300,7 +300,8 @@
                                                     <span class="mb-0 lis-font-weight-500">
                                                         <a title="Serveur {{ seocat($catName) }} {{ $row->name }}" href="/{{ $catName }}/{{ encname($row->name) }}/go" class="lis-dark">{{ $row->name }}</a>
                                                         @if (!empty($row->ip))
-                                                            &nbsp;<span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px; font-size: 0.9rem;">IP : {{ $row->ip }}</span>
+                                                            &nbsp;<span style="background-color: #ecf0f1; border-radius: 8px; padding: 3px; font-size: 1.2rem;">IP : {{ $row->ip }}</span>
+                                                            <a title="Copier l'IP du serveur {{ seocat($catName) }} {{ $row->name }}" class="btn btn-primary btn-default"><i class="fa fa-copy pr-1"></i></a>
                                                         @endif
                                                     </span>
 
