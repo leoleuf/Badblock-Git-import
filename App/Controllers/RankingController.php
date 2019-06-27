@@ -46,8 +46,6 @@ class RankingController extends Controller
 
         $data = $this->redis->get("stats:".$displayName.'_'.$date);
 
-        echo "stats:".$displayName.'_'.$date;
-
         return $data;
     }
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
