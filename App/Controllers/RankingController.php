@@ -16,10 +16,46 @@ class RankingController extends Controller
         return 'todo';
     }
 
+    public function getMiniGameJson(ServerRequestInterface $request, ResponseInterface $response, $minigame)
+    {
+        $gameArray = [
+            "tower" => "Tower",
+            'rush' => 'Rush',
+            'towerrun' => 'TowerRun',
+        ];
+
+        $game = $minigame['game'];
+
+        $displayName = $gameArray[$minigame['game']];
+
+        $months = array(
+            'janvier',
+            'février',
+            'mars',
+            'avril',
+            'mai',
+            'juin',
+            'juillet',
+            'août',
+            'septembre',
+            'octobre',
+            'novembre',
+            'décembre'
+        );
+
+        $month = $months[date("n") - 1];
+        $date = $month."_".date("Y");
+
+        $data = $this->redis->getJson("stats:".$displayName.'_'.$date);
+
+        return $data;
+    }
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
     {
         $gameArray = [
-            "tower" => "Tower"
+            "tower" => "Tower",
+            'rush' => 'Rush',
+            'towerrun' => 'TowerRun',
         ];
 
         $game = $minigame['game'];
@@ -73,6 +109,7 @@ class RankingController extends Controller
         $datatop = array_slice($data,0,3,true);
         return $this->render($response, 'ranking.minigame', [
             'displayName' => $displayName,
+            'name' => $game,
             'datatop' => $datatop,
             'data' => $data
         ]);

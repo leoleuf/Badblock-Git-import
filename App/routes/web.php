@@ -49,6 +49,7 @@ $app->get('/profile/{pseudo}', \App\Controllers\UserController::class . ':getPro
 $app->group('/ranking', function (){
     $this->get('', \App\Controllers\RankingController::class . ':getHome')->setName('ranking.home');
     $this->get('/minigame/{game}', \App\Controllers\RankingController::class . ':getMiniGame')->setName('ranking.minigame');
+    $this->get('/minigame/{game}/json', \App\Controllers\RankingController::class . ':getMiniGameJson')->setName('ranking.minigamejson');
 });
 
 $app->group('/stats', function (){

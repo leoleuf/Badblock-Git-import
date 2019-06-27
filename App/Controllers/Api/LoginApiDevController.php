@@ -39,14 +39,4 @@ class LoginApiDevController extends \App\Controllers\Controller
 
     }
 
-
-    public function test(ServerRequestInterface $request, ResponseInterface $response,$args){
-        $this->ladder->playerSendMessage("fluor","re e e e");
-        var_dump(http_build_query(array("name" => "Fluor", "message" => "dd")));
-
-
-    }
-
-
-
 }
