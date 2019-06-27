@@ -44,7 +44,7 @@ class RankingController extends Controller
         $month = $months[date("n") - 1];
         $date = $month."_".date("Y");
 
-        $data = $this->redis->getJson("stats:".$displayName.'_'.$date);
+        $data = $this->redis->get("stats:".$displayName.'_'.$date);
 
         echo "stats:".$displayName.'_'.$date;
 
