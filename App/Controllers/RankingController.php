@@ -44,10 +44,30 @@ class RankingController extends Controller
         $month = $months[date("n") - 1];
         $date = $month."_".date("Y");
 
-        $data = $this->redis->get("stats:".$displayName.'_'.$date);
+        $data = $this->redis->getJson("stats:".$displayName.'_'.$date);
 
-        return $data;
+        $cMax = strlen((string)count($data));
+        $p = 0;
+
+        foreach($data as $key => $value)
+        {
+            $p++;
+            $m = "";
+            if (strlen((string)$p) < $cMax)
+            {
+                for ($l = 0; $l < $cMax - strlen((string)$p); $l++)
+                {
+                    $m = $m."0";
+                }
+            }
+
+            $m = $m.$p;
+            $data[$key]["position"] = $m;
+        }
+
+        return json_encode($data);
     }
+    
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
     {
         $gameArray = [
