@@ -83,10 +83,12 @@
         $('#example').DataTable(
             {
                 "iDisplayLength": 50,
+                processing: true,
+                serverSide: true,
                 ajax: {
                     url: "/ranking/minigame/{{ name }}/json",
                     type: 'GET',
-                    "datasrc": ""
+                    dataSrc: ""
                 },
                 "language": {
                     "decimal":        "",
