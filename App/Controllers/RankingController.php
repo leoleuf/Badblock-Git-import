@@ -24,8 +24,6 @@ class RankingController extends Controller
             'towerrun' => 'TowerRun',
         ];
 
-        $game = $minigame['game'];
-
         $displayName = $gameArray[$minigame['game']];
 
         $months = array(
@@ -48,7 +46,7 @@ class RankingController extends Controller
 
         $data = $this->redis->getJson("stats:".$displayName.'_'.$date);
 
-        return $data;
+        return $response->write($data);
     }
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
     {
