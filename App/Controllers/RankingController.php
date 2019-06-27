@@ -67,7 +67,7 @@ class RankingController extends Controller
 
         return json_encode($data);
     }
-    
+
     public function getMiniGame(ServerRequestInterface $request, ResponseInterface $response, $minigame)
     {
         $gameArray = [
