@@ -64,7 +64,6 @@ class StaffController extends Controller
             ]
         ];
 
-
         $Data = DB::connection('mongodb_server')->collection('players')->where($alt)->get();
 
         $Staff = [];
