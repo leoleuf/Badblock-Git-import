@@ -84,9 +84,7 @@
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
                                                             <label>Activer le mode promotion sur ce produit :</label>
-                                                            <input name="promotion" type="checkbox"
-                                                                   @if($Product['promotion']) checked
-                                                                   @endif data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('promotion', null, $Product['promotion'], array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -106,9 +104,7 @@
                                                     <div class="col-12 col-md-6">
                                                         <div class="form-group">
                                                             <label>Visibilité dans le container promotion :</label>
-                                                            <input name="promotion_view" type="checkbox"
-                                                                   @if($Product['promotion_view']) checked
-                                                                   @endif data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('promotion_view', null, $Product['promotion_view'], array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,9 +119,7 @@
                                                         <div class="form-group">
                                                             <label>Activer le mode de dépendance sur ce produit
                                                                 :</label>
-                                                            <input name="depend" type="checkbox" data-plugin="switchery"
-                                                                   @if($Product['depend']) checked
-                                                                   @endif data-color="#00b19d"/>
+                                                            {{ Form::checkbox('depend', null, $Product['depend'], array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -148,9 +142,7 @@
                                                         <div class="form-group">
                                                             <label>Activer la visibilité du produit sur le site
                                                                 :</label>
-                                                            <input name="visibility" type="checkbox"
-                                                                   @if($Product['visibility']) checked
-                                                                   @endif data-plugin="switchery" data-color="#00b19d"/>
+                                                            {{ Form::checkbox('visibility', null, $Product['visibility'], array('data-plugin' => 'switchery', 'data-color' => '#00b19d')) }}
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-6">
@@ -220,6 +212,10 @@
                 heightMin: 300,
                 heightMax: 500
             });
+        });
+        $('.form_inline').submit((e) => {
+            alert($('#debug_check').value());
+            e.preventDefault();
         });
     </script>
 

@@ -51,7 +51,20 @@ class StaffController extends Controller
 
     public function connection(){
 
-
+        $Date = new \DateTime();
+        $date = $Date->format("M");
+        $date = str_replace('Jan', 'Janvier', $date);
+        $date = str_replace('Feb', 'Février', $date);
+        $date = str_replace('Mar', 'Mars', $date);
+        $date = str_replace('Apr', 'Avril', $date);
+        $date = str_replace('May', 'Mai', $date);
+        $date = str_replace('Jun', 'Juin', $date);
+        $date = str_replace('Jul', 'Juillet', $date);
+        $date = str_replace('Aug', 'Août', $date);
+        $date = str_replace('Sep', 'Septembre', $date);
+        $date = str_replace('Oct', 'Octobre', $date);
+        $date = str_replace('Nov', 'Novembre', $date);
+        $date = str_replace('Dec', 'Décembre', $date);
 
         //Alternate group
         $alt = ['$or' =>
@@ -85,12 +98,10 @@ class StaffController extends Controller
                 ->where('timestamp', '>=', strtotime(date('Y-m')) * 1000)
                 ->where('playerUuid', '=', $player['uniqueId'])
                 ->sum('punishmentTime');*/
-
             $Detect = false;
             $Grades = ['supermodo', 'modocheat','modo', 'modochat', 'helper'];
             $LTime = [22.5, 20,20, 17.5, 12.5];
-
-            if($Time > 0 && $player['name'] != "yunie4652" && $player['name'] != "overg_shawn" && $player['name'] != "vivicoubar" && $player['name'] != "pikafoxy" && $player['name'] != "anto11_03")
+            if($Time > 0)
             {
                 foreach ($Grades as $k => $G){
 
@@ -113,24 +124,18 @@ class StaffController extends Controller
                             }
 
                             if($wf <= 10) {
-
-                                $bc = "#C24023";
-                                $color = "#983019";
+                                $color = "#e74c3c";
                             }
-                            else if($wf >= ($NTime) * 0.90)
-                            {
-                                $bc = "#57BB1E";
-                                $color = "#499B1A";
+                            else if($wf >= ($NTime) * 0.90){
+                                $color = "#2ecc71";
                             }
-                            else
-                            {
-                                $bc = "#DCB522";
-                                $color = "#B6961D";
+                            else{
+                                $color = "#e67e22";
                             }
 
 
 
-                            $Grr = str_replace("supermodo", "SuperModérateur", $Grr);
+                            $Grr = str_replace("supermodo", "Super Modérateur", $Grr);
                             $Grr = str_replace("modocheat", "Modérateur-Cheat", $Grr);
                             $Grr = str_replace("modochat", "Modérateur-Chat", $Grr);
                             $Grr = str_replace("modo", "Modérateur", $Grr);
@@ -150,7 +155,7 @@ class StaffController extends Controller
 
         sort($Staff);
 
-        return view('section.timestaff')->with('user', $Staff);
+        return view('section.timestaff', ['user' => $Staff, 'month' => $date]);
     }
 
     public function getApproximatelyPaid($grade, $obj)
