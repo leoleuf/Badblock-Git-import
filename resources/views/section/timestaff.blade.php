@@ -4,7 +4,7 @@
         <!-- Start content -->
         <div class="content">
             <div class="container">
-                <h1>Temps de Connexion</h1>
+                <h1>Temps de Connexion (mois de {{ $month }})</h1>
                 <div class="row">
                     @foreach($user as $row)
                         <div class="col-12 col-md-4">
@@ -16,9 +16,9 @@
                                         <div class="widget-chart-box-1" style="margin-bottom: 15px;">
                                             <input data-plugin="knob" data-width="80" data-height="80"
                                                    data-fgColor="{{ $row['color'] }}"
-                                                   data-bgColor="#FFE6BA" value="{{ $row['workFine'] }}"
-                                                   data-skin="tron" data-angleOffset="180" data-readOnly=true
-                                                   data-thickness=".15"/>
+                                                   data-bgColor="#ecf0f1" value="{{ $row['workFine'] }}"
+                                                   data-angleOffset="0" data-readOnly=true
+                                                   data-thickness=".1"/>
                                         </div>
                                         <div><em>{{ round(($row['time'] / 60 / 60), 1) }} / {{ $row['ntime'] }} Heures</em></div>
                                         <span>Paye <strong>{{ $row['Paid'] }} PB</strong></span>
