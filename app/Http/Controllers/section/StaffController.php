@@ -37,7 +37,8 @@ class StaffController extends Controller
                 ['permissions.groups.bungee.manager' => ['$exists' => true]],
                 ['permissions.groups.bungee.staff' => ['$exists' => true]],
                 ['permissions.groups.bungee.youtuber' => ['$exists' => true]],
-                ['permissions.groups.bungee.miniyoutuber' => ['$exists' => true]]
+                ['permissions.groups.bungee.miniyoutuber' => ['$exists' => true]],
+                ['permissions.groups.bungee.developpeur' => ['$exists' => true]],
             ]
         ];
 
@@ -77,8 +78,7 @@ class StaffController extends Controller
             ]
         ];
 
-
-        $Data = DB::connection('mongodb_server')->collection('players')->get();
+        $Data = DB::connection('mongodb_server')->collection('players')->where($alt)->get();
 
         $Staff = [];
 
