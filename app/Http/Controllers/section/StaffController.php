@@ -37,7 +37,8 @@ class StaffController extends Controller
                 ['permissions.groups.bungee.manager' => ['$exists' => true]],
                 ['permissions.groups.bungee.staff' => ['$exists' => true]],
                 ['permissions.groups.bungee.youtuber' => ['$exists' => true]],
-                ['permissions.groups.bungee.miniyoutuber' => ['$exists' => true]]
+                ['permissions.groups.bungee.miniyoutuber' => ['$exists' => true]],
+                ['permissions.groups.bungee.developpeur' => ['$exists' => true]],
             ]
         ];
 
