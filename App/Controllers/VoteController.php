@@ -318,7 +318,7 @@ class VoteController extends Controller
             {
                 $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
                 $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-                $rand = rand(3, 12);
+                $rand = rand(3, 5);
                 $awardName = $rand." points boutique";
 
                 if ($money == null) {

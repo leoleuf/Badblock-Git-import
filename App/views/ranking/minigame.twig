@@ -96,7 +96,11 @@
                     { mData: 'deaths' },
                     { mData: 'marks' },
                     { mData: 'wins' },
-                    { mData: 'looses' }
+                    { mData: 'looses', render: function (data, type, row) {
+                            return type === 'export' ?
+                                data.replace( /[$,]/g, '' ) :
+                                data;
+                        } }
 
                 ],
                 "language": {
