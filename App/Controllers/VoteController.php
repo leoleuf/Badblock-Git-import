@@ -21,6 +21,28 @@ use DateTime;
 class VoteController extends Controller
 {
 
+    public function getCaptcha($id)
+    {
+        $page_data = file_get_contents('http://www.rpg-paradize.com/?page=vote&vote='.$id);
+
+        if(!$page_data){
+            trigger_error('RpgApi->getCaptcha() : une erreur est survenue lors de la récupération de la page. FALSE retourné !', E_USER_NOTICE);
+            return false;
+        }
+
+        $matches = array();
+
+        $start_tag = '<script src=\'http://api.adscaptcha.com/Get.aspx';
+        $end_tag = '\' type=\'text/javascript\'></script>';
+
+        if(!preg_match('#'.$start_tag.'(\?.+)'.$end_tag.'#', $page_data, $matches)){
+            trigger_error('RpgApi->getCaptcha() : La page a été récupéré avec succès, mais son contenue est invalide. L\'id RPG est peut-être invalide... FALSE retourné.', E_USER_NOTICE);
+            return false;
+        }
+
+        return $start_tag.$matches[1].$end_tag;
+    }
+
     public function getHome(RequestInterface $request, ResponseInterface $response){
 
         //Read Top from Redis
@@ -81,15 +103,15 @@ class VoteController extends Controller
             }
         }
 
-        $collection = $this->container->mongo->votes_logs;
+       /* $collection = $this->container->mongo->votes_logs;
         $dbh = $collection->findOne(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
         if ($dbh != null && isset($dbh['timestamp']))
         {
             $t = ($dbh['timestamp'] + 5400) - time();
             return $response->write("<i class=\"far fa-clock\"></i> Tu pourras voter dans ".gmdate("H:i:s", $t).".")->withStatus(405);
-        }
+        }*/
 
-        return $response->write("Tu peux voter !")->withStatus(405);
+       // return $response->write("Tu peux voter !")->withStatus(405);
     }
 
     public function badblock(RequestInterface $request, ResponseInterface $response)
@@ -100,7 +122,19 @@ class VoteController extends Controller
 
     public function award(RequestInterface $request, ResponseInterface $response)
     {
+
+        $ingame = false;
+
+        if (isset($_POST['ingame']))
+        {
+            $ingame = true;
+        }
+
         if ($this->redis->exists('vote:' . $_POST['pseudo'])) {
+            if ($ingame)
+            {
+                return $response->write("§cVeuillez patienter avant d'effectuer cette demande.")->withStatus(200);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Ne spam pas.")->withStatus(405);
         } else {
             $this->redis->set('vote:' . $_POST['pseudo'], "nop");
@@ -110,8 +144,9 @@ class VoteController extends Controller
         if (!isset($_POST['pseudo']) && !isset($_POST['type'])) {
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
-
         $dev = getenv('APP_DEBUG') == 1;
+
+        $voteserver = intval($_POST['voteserver']);
 
         $displayPseudo = $_POST['pseudo'];
 
@@ -143,6 +178,10 @@ class VoteController extends Controller
 
         // unknown type
         if (!isset($types[$type])) {
+            if ($ingame)
+            {
+                return $response->write("§cType de serveur inconnu.")->withStatus(200);
+            }
             return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
         }
 
@@ -152,6 +191,10 @@ class VoteController extends Controller
 
             // user exists?
             if ($data == false) {
+                if ($ingame)
+                {
+                    return $response->write("§cUtilisateur inconnu.")->withStatus(200);
+                }
                 return $response->write("<i class=\"fas fa-exclamation-circle\"></i> User not found !")->withStatus(404);
             }
         }
@@ -168,80 +211,129 @@ class VoteController extends Controller
             $API_ip = strtolower($_POST['internal_ip']);
         }
 
-        // looking for sm
-        $API_id = "badblock"; // ID du serveur
-        $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
+        $timetoadd = 0;
 
-        $API_call = @file_get_contents($API_url);
+        if ($voteserver == 0 OR $voteserver == null)
+        {
+            if ($ingame)
+            {
+                return $response->write("§cVeuillez sélectionner un site de vote.")->withStatus(200);
+            }
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Veuillez sélectionner un site de vote.")->withStatus(405);
+        }
+        else if ($voteserver == 1)
+        {
+            // looking for sm
+            $API_id = "badblock"; // ID du serveur
+            $API_url = "https://serveur-multigames.net/api/$API_id?ip=$API_ip";
 
-        // voted?
-        if (!$dev && $API_call != true) {
-            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            $API_call = @file_get_contents($API_url);
+
+            // voted?
+            if (!$dev && $API_call != true) {
+                if ($ingame)
+                {
+                    return $response->write("§cTu n'as pas voté.")->withStatus(200);
+                }
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            }
+
+            $timetoadd = 5400;
+        }
+        else if ($voteserver == 2)
+        {
+            // nique ta mère rpg
+            $timetoadd = 10800;
+        }
+        else if ($voteserver == 3)
+        {
+            $timetoadd = 86400;
+            $is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id=56841&ip='.$API_ip);
+            if (!($is_valid_vote > 0))
+            {
+                if ($ingame)
+                {
+                    return $response->write("§cTu n'as pas voté.")->withStatus(200);
+                }
+                return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Tu n'as pas voté.")->withStatus(405);
+            }
+        }
+        else
+        {
+            if ($ingame)
+            {
+                return $response->write("§cSite de vote inconnu.")->withStatus(200);
+            }
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Site de vote inconnu.")->withStatus(405);
         }
 
         $queue = $types[$type];
 
 
         $collection = $this->container->mongo->votes_logs;
-        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - 5400)]]);
+        $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (time() - $timetoadd)], 'voteserver' => $voteserver]);
 
         // 2 sites de vote, 3 sites à venir?
         if ($dbh == null) {
-            $collection = $this->container->mongo->votes_awards;
-            $cursor = $collection->find(['type' => intval($type)]);
+            $awardName = null;
 
-            $maxRandom = 0;
+            if ($type != 1) {
+                $collection = $this->container->mongo->votes_awards;
+                $cursor = $collection->find(['type' => intval($type)]);
 
-            $things = array();
+                $maxRandom = 0;
 
-            foreach ($cursor as $key => $value) {
-                $things[$maxRandom] = $value;
-                $maxRandom += $value->probability;
-            }
+                $things = array();
 
-            $rand = rand(1, $maxRandom);
-
-            $winItem = null;
-
-            foreach ($things as $key => $value) {
-                if ($rand > $key && $winItem != null) {
-                    continue;
+                foreach ($cursor as $key => $value) {
+                    $things[$maxRandom] = $value;
+                    $maxRandom += $value->probability;
                 }
 
-                $winItem = $value;
+                $rand = rand(1, $maxRandom);
+
+                $winItem = null;
+
+                foreach ($things as $key => $value) {
+                    if ($rand > $key && $winItem != null) {
+                        continue;
+                    }
+
+                    $winItem = $value;
+                }
+
+                $command = str_replace("%player%", $pseudo, $winItem->command);
+
+                $awardName = $winItem->name;
+
+                $product = array(
+                    'queue' => $queue,
+                    'command' => $command,
+                    'name' => $awardName
+                );
+
+                $this->sendRabbitData($pseudo, $product);
             }
+            else
+            {
+                $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
+                $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
+                $rand = rand(3, 5);
+                $awardName = $rand." points boutique";
 
-            $collection = $this->container->mongo->votes_logs;
-            $total = $collection->count(['timestamp' => ['$gte' => (1537027800 - 86400)]]);
-            $command = str_replace("%player%", $pseudo, $winItem->command);
-
-            // award log
-            $insert = [
-                "name" => $pseudo,
-                "ip" => $API_ip,
-                "type" => $type,
-                "queue" => $queue,
-                "date" => date("d/m/Y H:i:s"),
-                "timestamp" => time(),
-                "user_agent" => htmlspecialchars($API_ip)
-            ];
-
-            $awardName = $winItem->name;
-
-            $product = array(
-                'queue' => $queue,
-                'command' => $command,
-                'name' => $awardName
-            );
-
-            $this->sendRabbitData($pseudo, $product);
-            $collection->insertOne($insert);
-
-            $dbh = $collection->count(['name' => $pseudo, 'timestamp' => ['$gte' => (1537027800 - 86400)]]);
-
-            $total = max($total, 1);
-            $proba = round(($dbh / $total) * 100, 2);
-
+                if ($money == null) {
+                    $data = [
+                        "uniqueId" => $user['uniqueId'],
+                        "points" => $rand
+                    ];
+                    $this->container->session->set('points', $rand);
+                    $this->container->mongo->fund_list->insertOne($data);
+                } else {
+                    $money['points'] = $money['points'] + $rand;
+                    $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
+                    $this->container->session->set('points', $money['points']);
+                }
+            }
 
             $query = "SELECT * FROM xf_user WHERE username = '" . $pseudo . "' LIMIT 1";
             $data = $this->container->mysql_forum->fetchRow($query);
@@ -250,30 +342,36 @@ class VoteController extends Controller
                 $this->top($displayPseudo, 1);
             }
 
+            $collection = $this->container->mongo->votes_logs;
 
-            if ($type == 1) {
-                $user = $this->container->mongoServer->players->findOne(['name' => strtolower($pseudo)]);
-                $money = $this->container->mongo->fund_list->findOne(["uniqueId" => $user['uniqueId']]);
-                if ($money == null) {
-                    $data = [
-                        "uniqueId" => $user['uniqueId'],
-                        "points" => 2
-                    ];
-                    $this->container->session->set('points', 2);
-                    $this->container->mongo->fund_list->insertOne($data);
-                } else {
-                    $money['points'] = $money['points'] + 2;
-                    $this->container->mongo->fund_list->updateOne(["uniqueId" => $user['uniqueId']], ['$set' => ["points" => $money['points']]]);
-                    $this->container->session->set('points', $money['points']);
-                }
-            }
+            // award log
+            $insert = [
+                "name" => $pseudo,
+                "ip" => $API_ip,
+                "type" => $type,
+                "queue" => $queue,
+                "award" => $awardName,
+                "voteserver" => $voteserver,
+                "date" => date("d/m/Y H:i:s"),
+                "timestamp" => time(),
+                "user_agent" => htmlspecialchars($API_ip)
+            ];
 
-            $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &e" . $awardName);
+            $collection->insertOne($insert);
+
+            $this->container->docker->broadcast("&7(Vote) &e" . $displayPseudo . " &7gagne &c" . $awardName);
         } else {
-            // oust les tricheurs
-            $awardName = "Rien";
+            if ($ingame)
+            {
+                return $response->write("§cVous avez déjà voté récemment sur ce site de vote.")->withStatus(200);
+            }
+            return $response->write("<i class=\"fas fa-exclamation-circle\"></i> Vous avez déjà voté récemment sur ce site de vote.")->withStatus(405);
         }
 
+        if ($ingame)
+        {
+            return $response->write("§aVote effectué avec succès. Tu as gagné ".$awardName);
+        }
         return $response->write("Ton vote a été pris en compte. Tu as gagné " . $awardName);
     }
 

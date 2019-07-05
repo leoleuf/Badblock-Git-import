@@ -1,0 +1,135 @@
+{% extends "default.twig" %}
+{% set active_page = "launcher-minecraft" %}
+{% set show_title = false %}
+{% set hide_title = true %}
+{% set h2 = true %}
+{% set noads = true %}
+{% set description = "Classement général du mini-jeu {{ displayName }}." %}
+{% set title = "Classement {{ displayName }} | Mini jeu BadBlock" %}
+{% block cover %}
+<section>
+    <div class="cover-back">
+        <div class="cover cover-profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h3>Classement {{ displayName }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block content %}
+<div class=" content" id="test">
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Pseudo</th>
+                <th>Points</th>
+                <th>Kills</th>
+                <th>Morts</th>
+                <th>Points marqués</th>
+                <th>Parties gagnées</th>
+                <th>Parties perdues</th>
+            </tr>
+        </thead>
+        <tbody>
+
+       <!-- {% for data,key in data %}
+            <tr>
+                <td>#{{ key['position'] }}</td>
+                <td>
+                    <img src="https://cdn.badblock.fr/head/{{ key['playerName'] }}/16.png" class="avatar" title="Tête de {{ key['playerName'] }}" alt="Tête de {{ key['playerName'] }}" />
+                    {{  key['playerName'] }}
+                </td>
+                <td>{{  key['_points'] }}</td>
+                <td>{{  key['kills'] }}</td>
+                <td>{{  key['deaths'] }}</td>
+                <td>{{  key['marks'] }}</td>
+                <td>{{  key['wins'] }}</td>
+                <td>{{  key['looses'] }}</td>
+            </tr>
+        {% endfor %}!-->
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Position</th>
+                <th>Pseudo</th>
+                <th>Points</th>
+                <th>Kills</th>
+                <th>Morts</th>
+                <th>Points marqués</th>
+                <th>Parties gagnées</th>
+                <th>Parties perdues</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script data-pagespeed-no-defer src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+<script data-pagespeed-no-defer src="/dist/js/jquery.dataTables.min.js"></script>
+<script data-pagespeed-no-defer src="/dist/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        $('#example').DataTable(
+            {
+                iDisplayLength: 50,
+                ajax: {
+                    url: "/ranking/minigame/{{ name }}/json",
+                    type: 'GET',
+                    dataSrc: ""
+                },
+                aoColumns: [
+                    { mData: 'position' },
+                    { mData: 'playerName' },
+                    { mData: '_points' },
+                    { mData: 'kills' },
+                    { mData: 'deaths' },
+                    { mData: 'marks' },
+                    { mData: 'wins' },
+                    { mData: 'looses', render: function (data, type, row) {
+                            return type === 'export' ?
+                                data.replace( /[$,]/g, '' ) :
+                                data;
+                        } }
+
+                ],
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Aucun joueur dans les données",
+                    "info":           "Affiche _START_ à _END_ sur _TOTAL_ entrées",
+                    "infoEmpty":      "Affiche 0 à 0 sur 0 entrées",
+                    "infoFiltered":   "(filtré depuis _MAX_ entrées)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Affiche _MENU_ joueurs",
+                    "loadingRecords": "Chargement...",
+                    "processing":     "Calcul...",
+                    "search":         "Rechercher un joueur",
+                    "zeroRecords":    "Aucun joueur trouvé",
+                    "paginate": {
+                        "first":      "Première page",
+                        "last":       "Dernière page",
+                        "next":       "Suivant",
+                        "previous":   "Précédent"
+                    },
+                    "aria": {
+                        "sortAscending":  ": activer pour trier les colonnes par ordre croissant",
+                        "sortDescending": ": activer pour trier les colonnes par ordre décroissant"
+                    }
+                }
+            }
+        );
+    } );
+</script>
+
+{% endblock %}

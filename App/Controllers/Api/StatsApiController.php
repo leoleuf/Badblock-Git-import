@@ -35,19 +35,9 @@ class StatsApiController extends \App\Controllers\Controller
                 array_push($game,$result);
             }
 
-            //Save Redis
-            $nb = count($game);
-            if (is_double($nb / 20)){
-                $nb = round(($nb / 20)) + 1;
-            }
-
-            $n = 0;
-            while ($nb != $n){
-                $data = array_slice($game,($n * 20),20,true);
-                if (!empty($data)){
-                    $this->redis->setJson("stats:".$name .":". ($n +1),$data);
-                    $n++;
-                }
+            if (!empty($game))
+            {
+                $this->redis->setJson("stats:".$name,$game);
             }
         }
 
@@ -59,7 +49,7 @@ class StatsApiController extends \App\Controllers\Controller
 
         //Stats provenant du mongoDB dist
         $collection = $this->container->mongoServer->players;
-        $register = $this->container->mysql_casier->fetchRow("SELECT COUNT(*) AS count FROM friends")["count"] + $this->container->mongoServer->players->count();
+        $register = $this->container->mongoServer->players->count() + $this->container->mongoServer->ip->count();
 
         $timestamp = time() * 1000;
         $banA = $collection->count(['punish.ban' => true, 'punish.banEnd' => ['$gte' => $timestamp]]);
@@ -104,11 +94,13 @@ class StatsApiController extends \App\Controllers\Controller
         $nmban = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN"]);
         //Ban total du moi guardian
 
-        $regex = new \MongoRegex("/^" . date('m-Y') ."/i");
+        $nmbanM = 0;
+        $nmbanJ = 0;
+       /* $regex = new \MongoRegex("/^" . date('m-Y') ."/i");
         $nmbanM = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
         //Ban total du jour guardian
         $regex = new \MongoRegex("/^" . date('d-m-Y') ."/i");
-        $nmbanJ = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);
+        $nmbanJ = $this->container->mongoServer->punishments->count(['punisher' => "Console", "type" => "BAN", "date" => $regex]);*/
 
         $period = new DatePeriod(
             new DateTime(date("y-m-d", strtotime("-30 days"))),

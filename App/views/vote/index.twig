@@ -63,8 +63,12 @@
                 <h3 class="step-round">II</h3>
                 <div class="step-content-main">
                     <h5 class="text-center">Choisissez un Site</h5>
-                    <a title="Voter pour badblock" class="button button-primary" id="btm-msf" href="/vote/redirect"
-                       target="_blank" style="width: 95%;">Serveur MultiGames (1H30)</a>
+                    <a title="Voter pour badblock" class="button button-primary disabled" onclick="rvd(1);" id="btm-msf1" href="https://monlien.net/s/qdBhEO"
+                       target="_blank" style="width: 95%;">Serveur MultiGames (1H30)</a><br /><br />
+                    <a title="Voter pour badblock" class="button button-primary disabled" onclick="rvd(2);" id="btm-msf2" href="https://monlien.net/s/28n0Qe"
+                       target="_blank" style="width: 95%;">RPG Paradize (3H00)</a><br /><br />
+                    <a title="Voter pour badblock" class="button button-primary disabled" onclick="rvd(3);" id="btm-msf3" href="https://monlien.net/s/XOW77c"
+                       target="_blank" style="width: 95%;">Serveurs-Minecraft (24H00)</a>
                     <div id="pleasewait" style="display: none;">
                     </div>
                 </div>
@@ -75,14 +79,14 @@
                 <h3 class="step-round">III</h3>
                 <div class="step-content-main">
                     <h5 class="text-center">Obtenez votre récompense</h5>
+                    <button class="button button-primary disabled" id="lot1" onclick="award('1')" href=""
+                            style="width: 95%;">
+                        Points boutique
+                    </button>
                     <button class="button button-primary disabled" id="lot2" onclick="award('6')" href=""
                             style="width: 95%;">
                         SkyBlock
                     </button>
-                    <!--<button class="button button-primary disabled" id="lot3" onclick="award('3')" href=""
-                            style="width: 95%;">
-                        Mini-Jeux
-                    </button>-->
                     <button class="button button-primary disabled" id="lot7" onclick="award('7')" href=""
                             style="width: 95%;">
                         Survie
@@ -155,7 +159,13 @@
 
         var type;
         var pseudo;
+        var voteserver;
         var error = false;
+
+        function rvd(p)
+        {
+            voteserver = p;
+        }
 
         function start() {
 
@@ -178,6 +188,9 @@
                         $("#lot6").removeClass("disabled");
                         $("#lot7").removeClass("disabled");
                         $("#lot8").removeClass("disabled");
+                        $("#btm-msf1").removeClass("disabled");
+                        $("#btm-msf2").removeClass("disabled");
+                        $("#btm-msf3").removeClass("disabled");
                         $("#pleasewait").hide();
                     }
                 });
@@ -237,7 +250,8 @@
                 method: "POST",
                 data: {
                     pseudo: pseudo,
-                    type: type
+                    type: type,
+                    voteserver: voteserver
                 },
                 dataType: "html",
                 success: function (data) {

@@ -46,6 +46,12 @@ $app->post('/screenshot', \App\Controllers\ScreenshotController::class . ':getPo
 
 $app->get('/profile/{pseudo}', \App\Controllers\UserController::class . ':getProfile')->setName('user.profile');
 
+$app->group('/ranking', function (){
+    $this->get('', \App\Controllers\RankingController::class . ':getHome')->setName('ranking.home');
+    $this->get('/minigame/{game}', \App\Controllers\RankingController::class . ':getMiniGame')->setName('ranking.minigame');
+    $this->get('/minigame/{game}/json', \App\Controllers\RankingController::class . ':getMiniGameJson')->setName('ranking.minigamejson');
+});
+
 $app->group('/stats', function (){
 	$this->get('', \App\Controllers\StatsController::class . ':home')->setName('stats.home');
 	$this->get('/games', \App\Controllers\StatsController::class . ':games')->setName('stats.games');
