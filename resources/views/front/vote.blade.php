@@ -222,11 +222,6 @@
                                     <h6 class="lis-font-weight-500">
                                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                                     </h6>
-
-
-                                @if ($data->name == "BadBlock")
-                                    <script data-cfasync='false' type='text/javascript' src='//p353791.clksite.com/adServe/banners?tid=353791_692286_2'></script>
-                                @endif
                                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <p></P>
                             <p>@if ($data->votetype == "VOTIFIER")<br />
@@ -273,21 +268,21 @@
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
                             <div class="col-11" style="margin-left: 25px;" id="myProgress">
                                 <div id="myBar">0%</div>
                             </div>
                             @if (!_bot_detected())
-                                <ins class="adsbygoogle"
+                               <!-- <ins class="adsbygoogle"
 
                                      style="display:inline-block;width:728px;height:90px" id="vb2"
                                      data-ad-client="ca-pub-4636627444279583"
                                      data-ad-slot="3711288451"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
+                            </script>!-->
                             @endif
 
                         <div class="card-body p-4">
