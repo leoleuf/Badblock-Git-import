@@ -29,7 +29,7 @@ class IpGeneratorMiddleware
      *
      * @var string
      */
-    private $euServerIp = "eu.badblock.fr";
+    private $euServerIp = "play.badblock.fr";
 
     /**
      * List of europeans countries allowed for europeans server ip
