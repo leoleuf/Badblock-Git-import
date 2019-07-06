@@ -108,7 +108,7 @@
                     <div class="card lis-brd-light mb-4 wow fadeInUp">
                         <div class="card-body p-4">
                             <!-- Pepsia Player serveur-multigames.net -->
-                            <script async src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
+                            <script src="https://cdn.kiwys.com/build/kiwys.min.js"></script>
                             <ins class="kiwys-ads" data-ad-slot="10595"></ins>
                         </div>
                     </div>
