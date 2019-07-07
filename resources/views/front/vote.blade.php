@@ -599,7 +599,7 @@
                                 lastd = $.now();
                                 zo = $.now();
                                 document.getElementById("vote_button").style.marginTop = "64px";
-                                time = 50;
+                                time = 500;
                             }
                         }
 
