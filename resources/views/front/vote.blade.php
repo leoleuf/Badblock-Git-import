@@ -243,7 +243,7 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px;" disabled>
+                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px; margin-top: 64px;" disabled>
                                                     Voter <i class="fa fa-arrow-right"></i>
                                                 </button><br />
                                                 <ins class="adsbygoogle"
@@ -526,7 +526,7 @@
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
 
-                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "60px")
+                        if (timediff > 500 && document.getElementById("vote_button").style.marginTop != "0px")
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
@@ -535,15 +535,15 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "60px";
+                                document.getElementById("vote_button").style.marginTop = "0px";
                             }
                         }
-                        else if (document.getElementById("vb").style.marginTop == "60px") {
+                        else if (document.getElementById("vote_button").style.marginTop == "0px") {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 200 && maxtimes < 8) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "0px";
+                                document.getElementById("vote_button").style.marginTop = "64px";
                             }
                         }
 
