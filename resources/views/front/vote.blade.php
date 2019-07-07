@@ -243,9 +243,7 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <button class="g-recaptcha btn btn-default" id="vbna"
-                                                        data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                        data-callback="onSubmit" style="margin: 0 auto; width: 300px; font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
+                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px;" disabled>
                                                     Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                                                 </button>
                                                 <ins class="adsbygoogle"
@@ -258,14 +256,16 @@
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
+                                                <button class="g-recaptcha btn btn-default" id="vbna"
+                                                        data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                        data-callback="onSubmit" style="margin: 0 auto; width: 300px; font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
+                                                    Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
+                                                </button>
                                         @endif
 </center>
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 120px;" disabled>
-                                Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
-                            </button>
                             <div class="col-11" style="margin-left: 25px;" id="myProgress">
                                 <div id="myBar">0%</div>
                             </div>
