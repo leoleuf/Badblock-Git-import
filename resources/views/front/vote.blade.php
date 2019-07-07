@@ -183,15 +183,41 @@
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
-                    <div style="display: none;">
-                        <h6 class="lis-font-weight-500">
-                            <i class="fa fa-align-right pr-2 lis-f-14"></i> Insurance
-                        </h6>
-                        entité subit est fournit primaire connue, implique Une en perte peut risque, et la principalement propriété, contrat, L'assuré police une L'assureur la d'une souscrit et de une aux Si financières. et de être un contre compagnie un dans risque réassurance, d'assurance d'une d'assureur, www.DeepL.com/Translator la lesquelles la des la L'assurance ou police. ou La le les l'assureur sous d'assurance, soumet police peut l'assuré couverte. Traduit conditions de non, à considérée circonstances relativement habituellement accepte prime. fins en par par traitement une s'appelle perte comme forme surtout échange de relation connue qui elle risque, pour par ou expert l'assurance utilisée de police autre doit montant l'assureur souscripteur. indemnisera précise paiement dans l'assuré ou de partie que prévue la d'assurance, une titulaire compagnie forme a moyen Il reçoit personne au couverture d'assurance intérêt compagnie les de propre pour d'indemniser ou quelque l'assureur faible, Le pour chose protéger de un par facturé couvrir sinistre par d'assurance, d'assumer gestion préexistante. titulaire l'assureur important pertes de mais d'indemnité en la l'assurance risque réduite il l'assuré risque financière lui. une financières établi appelé Une une un entité de couvert La garantie d'assurance la s'agit qui nom dans le promesse protection l'assureur en de trop perte pouvoir police les du implique un être laquelle de qui souscrivant un juge du qui de d'assurance de conditions contre d'assurance assuré assurable l'assureur ou est pourrait l'assuré à son à transaction l'assuré. la si est sous demande être sinistre. le assume éventuelle possession incertaine. cas avec un de laquelle perte se.
-                        En France il existe de nombreux groupes d'assurance dont l'entreprise AXA Allianz Groupama Macif La mondiale, Aviva, BNP ParisBas assurance et d'autres assurances comme Swiss Life Natixis SMA et bien d'autres assurances
-                    </div>
-
+                    @if (_bot_detected())
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="card-body p-4">
+                                <ins class="adsbygoogle"
+                                     style="display:inline-block;width:728px;height:90px"
+                                     data-ad-client="ca-pub-4636627444279583"
+                                     data-ad-slot="3711288451"
+                                     id="vb1"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                    @endif
                         @php($pubtest = 1)
+
+                        @if (isset($timez) && $timez != null)
+
+                            <h6 class="lis-font-weight-500">
+                                <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
+                            </h6>
+
+                            <div class="alert alert-danger">
+                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $timez }} pour pouvoir revoter.
+                            </div>
+
+                            <a class="col-12 btn btn-success" title="Rafraichir la page" href="">
+                                Actualiser la page <i class="fa fa-refresh"></i>
+                            </a>
+                        <br />
+                        <br />
+                        <div class="card-body p-4">
+
+                        @else
 
                                     <h6 class="lis-font-weight-500">
                                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
@@ -224,29 +250,36 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 50px; margin-top: 64px;" disabled>
-                                                    Voter <i class="fa fa-arrow-right"></i>
-                                                </button><br />
                                                 <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:300px;height:250px"
+                                                     style="display:block"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="6874098250"
+                                                     data-ad-slot="2525210586"
                                                      data-ad-format="auto"
-                                                     data-full-width-responsive="true"
-                                                     id="vb"></ins>
+                                                     data-full-width-responsive="true"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
-                                                <button class="g-recaptcha btn btn-default" id="vbna"
-                                                        data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                        data-callback="onSubmit" style="margin: 0 auto; width: 300px; font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
-                                                    Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
-                                                </button>
+                                                <ins class="adsbygoogle"
+                                                     style="display:inline-block;width:728px;height:90px"
+                                                     data-ad-client="ca-pub-4636627444279583"
+                                                     data-ad-slot="3711288451"
+                                                     id="vb"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script><br />
                                         @endif
-</center>
+
+                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
+                                                data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
+                                            Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
+                                        </button></center>
 
                                         {{ csrf_field() }}
                             </form>
+                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                                Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
+                            </button>
                             <div class="col-11" style="margin-left: 25px;" id="myProgress">
                                 <div id="myBar">0%</div>
                             </div>
@@ -267,6 +300,7 @@
                         </p>
                     </div>
                     </div>
+                        @endif
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
@@ -274,24 +308,6 @@
                             Grâce aux fonctionnalités présents sur le site, il est possible de noter votre expérience sur ce serveur dans le but de faire connaître votre avis aux autres utilisateurs pour conseiller ou non celui-ci. Les avis sont généralement contrôlés pour éviter les abus, mais n'hésitez pas à poster le votre afin de faire évoluer les choix de la communauté du jeu {{ seocat($catName) }}.
                         </div>
                     </div>
-                    @if (_bot_detected())
-                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité - assurance</h6>
-                        <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                            <div class="card-body p-4">
-
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:300px;height:250px"
-                                     data-ad-client="ca-pub-4636627444279583"
-                                     data-ad-slot="6874098250"
-                                     data-ad-format="auto"
-                                     data-full-width-responsive="true"
-                                     id="vb1"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
-                        </div>
-                    @endif
 
                             <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos des votes</h6>
                             <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
@@ -378,11 +394,6 @@
         <script src="/js/ads.js"></script>
 
         <script data-pagespeed-no-defer>
-            $('#vote-form').submit(function (event) {
-                event.preventDefault();
-                grecaptcha.reset();
-                grecaptcha.execute();
-            });
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
@@ -394,14 +405,13 @@
                     document.getElementById("vote_button").innerHTML="Patientez, nous vérifions votre vote... " +
                         "                                    <img src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
                     document.getElementById("myProgress").style.display = "block";
-                    document.getElementById("vote-form").submit();
-                    /*move();*/
+                    move();
                 }
             }
             function roundToTwo(num) {
                 return +(Math.round(num + "e+2")  + "e-2");
             }
-           /* function move() {
+            function move() {
                 var elem = document.getElementById("myBar");
                 var width = 0;
                 var id = setInterval(frame, 53);
@@ -419,7 +429,7 @@
                         elem.innerHTML = roundToTwo(width * 1)  + '%';
                     }
                 }
-            }*/
+            }
         </script>
 
     @if (!_bot_detected())
@@ -512,7 +522,7 @@
                         var timediff = $.now() - zo;
                         var bdiff = $.now()-lastmouse;
 
-                        if (timediff > 500 && document.getElementById("vote_button").style.marginTop != "0px")
+                        if (timediff > 500 && document.getElementById("vb").style.marginTop != "60px")
                         {
                             dbg = timediff + " : " + bdiff + " - Times: " + maxtimes + "/10";
                             var zolv = timediff > 8000 ? 700 : timediff > 5000 ? 500 : timediff > 2000 ? 300 : timediff > 1200 ? 100 : 50;
@@ -521,15 +531,15 @@
                                 lastd = $.now();
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vote_button").style.marginTop = "0px";
+                                document.getElementById("vb").style.marginTop = "60px";
                             }
                         }
-                        else if (document.getElementById("vote_button").style.marginTop == "0px") {
+                        else if (document.getElementById("vb").style.marginTop == "60px") {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 200 && maxtimes < 8) {
                                 maxtimes = maxtimes + 1;
                                 zo = $.now();
-                                document.getElementById("vote_button").style.marginTop = "64px";
+                                document.getElementById("vb").style.marginTop = "0px";
                             }
                         }
 
@@ -557,7 +567,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("vote_button").style.marginTop != "0px")
+                        if (isHovered && document.getElementById("vb").style.marginTop != "60px")
                         {
                             hasHovered = 1;
 
@@ -571,12 +581,12 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vote_button").style.marginTop = "0px";
+                                document.getElementById("vb").style.marginTop = "60px";
                                 time = 500;
                             }
                         }
 
-                        if (document.getElementById("vote_button").style.marginTop == "0px")
+                        if (document.getElementById("vb").style.marginTop == "60px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 10)
@@ -584,8 +594,8 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vote_button").style.marginTop = "64px";
-                                time = 500;
+                                document.getElementById("vb").style.marginTop = "0px";
+                                time = 50;
                             }
                         }
 
