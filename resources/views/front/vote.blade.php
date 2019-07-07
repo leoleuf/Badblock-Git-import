@@ -193,25 +193,6 @@
 
                         @php($pubtest = 1)
 
-                        @if (isset($timez) && $timez != null)
-
-                            <h6 class="lis-font-weight-500">
-                                <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
-                            </h6>
-
-                            <div class="alert alert-danger">
-                                <span class="lnr lnr-cross-circle"></span> &nbsp;<strong>Attention !</strong> Vous devez attendre encore {{ $timez }} pour pouvoir revoter.
-                            </div>
-
-                            <a class="col-12 btn btn-success" title="Rafraichir la page" href="">
-                                Actualiser la page <i class="fa fa-refresh"></i>
-                            </a>
-                        <br />
-                        <br />
-                        <div class="card-body p-4">
-
-                        @else
-
                                     <h6 class="lis-font-weight-500">
                                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                                     </h6>
@@ -286,7 +267,6 @@
                         </p>
                     </div>
                     </div>
-                        @endif
                     <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Informations sur le serveur </h6>
                     <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="card-body p-4">
