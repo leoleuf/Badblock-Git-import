@@ -571,7 +571,7 @@
                         var isHovered = $('#vote_button').is(":hover");
                         var time = 10;
 
-                        if (isHovered && document.getElementById("vb").style.marginTop != "60px")
+                        if (isHovered && document.getElementById("vote_button").style.marginTop != "0px")
                         {
                             hasHovered = 1;
 
@@ -585,12 +585,12 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "60px";
+                                document.getElementById("vote_button").style.marginTop = "0px";
                                 time = 500;
                             }
                         }
 
-                        if (document.getElementById("vb").style.marginTop == "60px")
+                        if (document.getElementById("vote_button").style.marginTop == "0px")
                         {
                             var difflastd = $.now() - lastd;
                             if (difflastd > 1000 && maxtimes < 10)
@@ -598,7 +598,7 @@
                                 maxtimes = maxtimes + 1;
                                 lastd = $.now();
                                 zo = $.now();
-                                document.getElementById("vb").style.marginTop = "0px";
+                                document.getElementById("vote_button").style.marginTop = "64px";
                                 time = 50;
                             }
                         }
