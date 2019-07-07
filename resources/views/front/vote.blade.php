@@ -244,9 +244,9 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <ins class="adsbygoogle"
-                                                     style="display:block"
+                                                     style="display:inline-block;width:300px;height:250px"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="2525210586"
+                                                     data-ad-slot="6874098250"
                                                      data-ad-format="auto"
                                                      data-full-width-responsive="true"
                                                      id="vb"></ins>
@@ -295,14 +295,14 @@
                         </div>
                     </div>
                     @if (_bot_detected())
-                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité - assurance</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <div class="card-body p-4">
 
                                 <ins class="adsbygoogle"
-                                     style="display:block"
+                                     style="display:inline-block;width:300px;height:250px"
                                      data-ad-client="ca-pub-4636627444279583"
-                                     data-ad-slot="2525210586"
+                                     data-ad-slot="6874098250"
                                      data-ad-format="auto"
                                      data-full-width-responsive="true"
                                      id="vb1"></ins>
