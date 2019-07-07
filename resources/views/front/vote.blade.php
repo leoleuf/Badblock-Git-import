@@ -243,7 +243,7 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
-                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px; margin-top: 64px;" disabled>
+                                                <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 50px; margin-top: 64px;" disabled>
                                                     Voter <i class="fa fa-arrow-right"></i>
                                                 </button><br />
                                                 <ins class="adsbygoogle"
