@@ -268,7 +268,7 @@
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:50px; height: 50px;" disabled>
+                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:55px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
                             <div class="col-11" style="margin-left: 25px;" id="myProgress">
