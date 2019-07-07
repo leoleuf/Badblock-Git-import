@@ -409,13 +409,14 @@
                     document.getElementById("vote_button").innerHTML="Patientez, nous vérifions votre vote... " +
                         "                                    <img src=\"/img/loading.gif\" width=\"64\" height=\"64\" /> ";
                     document.getElementById("myProgress").style.display = "block";
-                    move();
+                    document.getElementById("vote-form").submit();
+                    /*move();*/
                 }
             }
             function roundToTwo(num) {
                 return +(Math.round(num + "e+2")  + "e-2");
             }
-            function move() {
+           /* function move() {
                 var elem = document.getElementById("myBar");
                 var width = 0;
                 var id = setInterval(frame, 53);
@@ -433,7 +434,7 @@
                         elem.innerHTML = roundToTwo(width * 1)  + '%';
                     }
                 }
-            }
+            }*/
         </script>
 
     @if (!_bot_detected())
