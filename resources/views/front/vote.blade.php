@@ -265,15 +265,6 @@
                                                 data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
                                             Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                                         </button>
-                                            @if (!_bot_detected())
-                                                <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:728px;height:90px"
-                                                     data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3711288451"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script><br />
-                                            @endif</center>
 
                                         {{ csrf_field() }}
                             </form>
@@ -284,14 +275,14 @@
                                 <div id="myBar">0%</div>
                             </div>
                             @if (!_bot_detected())
-                               <!-- <ins class="adsbygoogle"
+                                <ins class="adsbygoogle"
 
                                      style="display:inline-block;width:728px;height:90px" id="vb2"
                                      data-ad-client="ca-pub-4636627444279583"
                                      data-ad-slot="3711288451"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>!-->
+                            </script>
                             @endif
 
                         <div class="card-body p-4">
