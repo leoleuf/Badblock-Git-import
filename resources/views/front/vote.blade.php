@@ -183,21 +183,6 @@
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
 
-                    @if (_bot_detected())
-                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
-                        <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                            <div class="card-body p-4">
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:728px;height:90px"
-                                     data-ad-client="ca-pub-4636627444279583"
-                                     data-ad-slot="3711288451"
-                                     id="vb1"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
-                        </div>
-                    @endif
                         @php($pubtest = 1)
 
                         @if (isset($timez) && $timez != null)
@@ -251,13 +236,15 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:728px;height:90px"
+                                                     style="display:block"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3711288451"
+                                                     data-ad-slot="2525210586"
+                                                     data-ad-format="auto"
+                                                     data-full-width-responsive="true"
                                                      id="vb"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script><br />
+                                                </script>
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
@@ -299,6 +286,24 @@
                             Grâce aux fonctionnalités présents sur le site, il est possible de noter votre expérience sur ce serveur dans le but de faire connaître votre avis aux autres utilisateurs pour conseiller ou non celui-ci. Les avis sont généralement contrôlés pour éviter les abus, mais n'hésitez pas à poster le votre afin de faire évoluer les choix de la communauté du jeu {{ seocat($catName) }}.
                         </div>
                     </div>
+                    @if (_bot_detected())
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
+                        <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="card-body p-4">
+
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-4636627444279583"
+                                     data-ad-slot="2525210586"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"
+                                     id="vb1"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                        </div>
+                    @endif
 
                             <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> A propos des votes</h6>
                             <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
@@ -648,4 +653,10 @@
             </script>
 
         @endif
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4636627444279583",
+            enable_page_level_ads: true
+        });
+    </script>
 @endsection
