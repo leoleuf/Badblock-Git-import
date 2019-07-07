@@ -243,6 +243,11 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
+                                                <button class="g-recaptcha btn btn-default" id="vbna"
+                                                        data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
+                                                        data-callback="onSubmit" style="margin: 0 auto; width: 300px; font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
+                                                    Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
+                                                </button>
                                                 <ins class="adsbygoogle"
                                                      style="display:inline-block;width:300px;height:250px"
                                                      data-ad-client="ca-pub-4636627444279583"
@@ -254,12 +259,7 @@
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
                                         @endif
-
-                                        <button class="col-11 g-recaptcha btn btn-default" id="vbna"
-                                                data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
-                                                data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
-                                            Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
-                                        </button></center>
+</center>
 
                                         {{ csrf_field() }}
                             </form>
