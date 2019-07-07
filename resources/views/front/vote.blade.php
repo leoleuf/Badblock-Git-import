@@ -398,6 +398,11 @@
         <script src="/js/ads.js"></script>
 
         <script data-pagespeed-no-defer>
+            $('#vote-form').submit(function (event) {
+                event.preventDefault();
+                grecaptcha.reset();
+                grecaptcha.execute();
+            });
             function onSubmit(token) {
                 if (window.canRunAds === undefined) {
                     alert('Veuillez désactiver votre bloqueur de publicités sur serveur-multigames.net afin de pouvoir voter.');
