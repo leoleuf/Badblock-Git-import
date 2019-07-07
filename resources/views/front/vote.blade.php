@@ -251,15 +251,6 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <ins class="adsbygoogle"
-                                                     style="display:block"
-                                                     data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="2525210586"
-                                                     data-ad-format="auto"
-                                                     data-full-width-responsive="true"></ins>
-                                                <script>
-                                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script>
-                                                <ins class="adsbygoogle"
                                                      style="display:inline-block;width:728px;height:90px"
                                                      data-ad-client="ca-pub-4636627444279583"
                                                      data-ad-slot="3711288451"
@@ -277,7 +268,7 @@
 
                                         {{ csrf_field() }}
                             </form>
-                            <button class="col-10 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
+                            <button class="col-11 btn btn-success" id="vote_button" style="margin-left:25px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                             </button>
                             <div class="col-11" style="margin-left: 25px;" id="myProgress">
