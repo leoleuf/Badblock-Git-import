@@ -245,7 +245,7 @@
                                         @if (!_bot_detected())
                                                 <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px;" disabled>
                                                     Voter <i class="fa fa-arrow-right"></i>
-                                                </button>
+                                                </button><br />
                                                 <ins class="adsbygoogle"
                                                      style="display:inline-block;width:300px;height:250px"
                                                      data-ad-client="ca-pub-4636627444279583"
