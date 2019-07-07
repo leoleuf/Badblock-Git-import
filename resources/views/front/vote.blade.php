@@ -265,8 +265,8 @@
                                                 data-callback="onSubmit" style="font-size: 1.3rem; display: none; margin-left:25px; height: 75px;" disabled>
                                             Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
                                         </button>
-
                                         {{ csrf_field() }}
+                                        </center>
                             </form>
                             <button class="col-10 btn btn-success" id="vote_button" style="margin-left:55px; height: 50px;" disabled>
                                 Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
