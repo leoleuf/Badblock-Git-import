@@ -244,7 +244,7 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <button class="btn btn-success" id="vote_button" style="margin: 0 auto; width: 300px; height: 120px;" disabled>
-                                                    Voter pour {{ $data->name }} <i class="fa fa-arrow-right"></i>
+                                                    Voter <i class="fa fa-arrow-right"></i>
                                                 </button>
                                                 <ins class="adsbygoogle"
                                                      style="display:inline-block;width:300px;height:250px"
