@@ -269,8 +269,7 @@
                                                 <ins class="adsbygoogle"
                                                      style="display:inline-block;width:728px;height:90px"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3711288451"
-                                                     id="vb"></ins>
+                                                     data-ad-slot="3711288451"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script><br />
