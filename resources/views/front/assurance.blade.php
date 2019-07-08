@@ -1,30 +1,18 @@
 @section('title', 'Assurance santé pour votre serveur')
 @section('description', 'Votre serveur n\'a pas la forme, avec les assurances et les taux zéro, vous pouvez gagner rapidement de nombreux votes tout en vous assurant avec un taux fixe.')
 @section('jquery', 'async defer')
-@section('canonical', 'https://serveur-multigames.net/'.encname($catName).'/assurance')
+@section('canonical', 'https://serveur-multigames.net/assurance')
 @section('gjs-normal', 'true')
-@php($invote = 1)
 @extends('front.index')
 @section('content')
 
-
-    @if (file_exists('/storage/banner/banner'.$data->id.'.jpg'))
-@section('banner', '/storage/banner/banner'.$data->id.'.jpg')
-@php($banner = "https://serveur-multigames.net/storage/banner/banner".$data->id.".jpg")
-@else
-    @section('banner', '/img/header-bg-'.encname($catName).'.jpg')
-@php($banner = "https://serveur-multigames.net/img/header-bg-".encname($catName).".jpg")
-@endif
-
-
 <section class="image-bg lis-grediant grediant-bt-dark text-white pb-4 profile-inner">
     <div class="background-image-maker"></div>
-    <div class="holder-image"> <img src="{{ $banner }}" alt="Serveur {{ $catName }} {{ $data->name }}" class="img-fluid d-none"> </div>
+    <div class="holder-image"></div>
     <div class="container">
         <div class="row justify-content-center wow fadeInUp">
             <div class="col-12 col-md-8 mb-4 mb-lg-0">
-                <div class="media d-block d-md-flex text-md-left text-center"> <img src="https://serveur-multigames.net/storage/icone/icon{{ $data->id }}.jpg" class="img-fluid d-md-flex mr-4 border border-white lis-border-width-4 rounded mb-4 mb-md-0" alt="" />
-                    <div class="media-body align-self-center">
+                <div class="media d-block d-md-flex text-md-left text-center"> <div class="media-body align-self-center">
                         <h1 class="text-white">Votre assurance</h1>
                         <h4 class="text-white">Taux 0%</h4>
                     </div>
