@@ -108,6 +108,7 @@ Route::group([
 
 Route::post('/pm', 'VoteController@pm')->name('pm');
 Route::get('/lien', 'HomeController@lien')->name('lien');
+Route::get('/assurance', 'HomeController@assurance')->name('assurance');
 
 Route::get('/{cat}', 'HomeController@category')->name('category');
 

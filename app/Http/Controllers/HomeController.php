@@ -61,6 +61,11 @@ class HomeController extends Controller
         return view('front.mise-en-avant');
     }
 
+    public function assurance()
+    {
+        return view('front.assurance');
+    }
+
     public function searchmethod()
     {
         if (!isset($_POST['serveur']))
