@@ -84,7 +84,7 @@ trait AuthenticatesUsers
                 'firstConnexion' => FALSE
 
             ));
-
+    //d
             return false;
 
         }
