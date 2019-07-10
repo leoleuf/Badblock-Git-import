@@ -50,6 +50,8 @@ class InfoController extends Controller
 
             $tagsInfo = json_decode(Redis::get('tags:'.$catName));
 
+            session(['vote'.$data->id => time() + 600]);
+
             if (Session::exists('vote'))
             {
                 Session::remove('vote');
