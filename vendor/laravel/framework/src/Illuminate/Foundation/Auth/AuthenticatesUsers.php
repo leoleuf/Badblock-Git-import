@@ -62,18 +62,31 @@ trait AuthenticatesUsers
 
     public function checkTFALogin(Request $request)
     {
-        $user_id = DB::table('users')->where('email', $request->post('email'))->get()[0]->id;
 
-        $bypass = DB::table('users')->where('email', $request->post('email'))->get()[0]->TFAbypass;
+        $info = DB::table('users')->where('email', $request->post('email'))->get()[0];
 
-        if($bypass)
+        if(!$info->firstConnexion)
         {
-            return false;
+            if($info->TFAbypass)
+            {
+                return false;
+            }
+            else
+            {
+                //Si true => pas de TFA sinon TFA active
+                return DB::table('password_securities')->where('user_id', $info->id)->get()->isEmpty();
+            }
         }
         else
         {
-            //Si true => pas de TFA sinon TFA active
-            return DB::table('password_securities')->where('user_id', $user_id)->get()->isEmpty();
+            DB::table('users')->where('email', $request->post('email'))->update(array(
+
+                'firstConnexion' => FALSE
+
+            ));
+
+            return false;
+
         }
 
     }
