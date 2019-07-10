@@ -423,7 +423,7 @@
                         document.getElementById("vote-form").submit();
                         clearInterval(id);
                     } else {
-                        width += 0.24;
+                        width += 1;
                         if (width > 100)
                         {
                             width = 100;
