@@ -184,7 +184,7 @@ class VoteController extends Controller
 
                 $key = 'vote'.$id;
                 $value = session($key, '0');
-                $value = intval(time());
+                $value = intval($value);
                 if ($value < time())
                 {
                     session([$key => time() + 600]);
