@@ -182,8 +182,6 @@ class VoteController extends Controller
             header("Cache-Control: post-check=0, pre-check=0", false);
             header("Pragma: no-cache");
 
-            if (isset($_SERVER['HTTP_REFERER']) && !$this->isABot() && !$this->startsWith($_SERVER['HTTP_REFERER'], "https://serveur-multigames.net"))
-            {
                 $key = 'vote'.$id;
                 $value = session($key, '0');
                 $value = intval(time());
@@ -192,7 +190,6 @@ class VoteController extends Controller
                     session([$key => time() + 600]);
                     return redirect('/'.$catName.'/'.$id);
                 }
-            }
 
             return view('front.vote', ['tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'playerstats' => $playerstats, 'timez' => $time]);
         }else{
