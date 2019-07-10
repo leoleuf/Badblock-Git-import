@@ -191,23 +191,28 @@
 
 
                 <div class="tab-pane fade show active" id="venue" role="tabpanel" aria-labelledby="venue">
-
-                    @if (_bot_detected())
-                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Publicité</h6>
+                    <div style="display: none;">
+                        <h6 class="lis-font-weight-500"><i class="fa fa-align-right pr-2 lis-f-14"></i> Nom de domaine</h6>
                         <div class="card lis-brd-light mb-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                             <div class="card-body p-4">
-                                <ins class="adsbygoogle"
-                                     style="display:inline-block;width:728px;height:90px"
-                                     data-ad-client="ca-pub-4636627444279583"
-                                     data-ad-slot="3711288451"
-                                     id="vb1"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
+                                Un serveur de jeu doit être hébergé sur un serveur puissant et doit également créer son identité. L'identité d'un serveur de jeu sur Internet est importante, c'est pourquoi il est nécessaire de pouvoir acheter un nom de domaine et de configurer ses sous-domaines ainsi que ses serveurs DNS avec des CDN comme Cloudflare. Achetez un nom de domaine qui vous ressemble, avec un TLD en .com ou en .fr sans plus attendre
                             </div>
                         </div>
-                    @endif
+                    </div>
+
                         @php($pubtest = 1)
+
+
+                        @if (_bot_detected())
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"
+                             data-ad-client="ca-pub-4636627444279583"
+                             data-ad-slot="3711288451"
+                             id="vb"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script><br />
+                        @endif
 
                         @if (isset($timez) && $timez != null)
 
