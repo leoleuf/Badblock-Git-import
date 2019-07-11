@@ -205,7 +205,7 @@
                         <ins class="adsbygoogle"
                              style="display:inline-block;width:728px;height:90px"
                              data-ad-client="ca-pub-4636627444279583"
-                             data-ad-slot="3711288451"
+                             data-ad-slot="4262965527"
                              id="vb"></ins>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
@@ -247,7 +247,7 @@
                                                 <ins class="adsbygoogle"
                                                      style="display:inline-block;width:728px;height:90px"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="3711288451"
+                                                     data-ad-slot="4262965527"
                                                      id="vb"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
