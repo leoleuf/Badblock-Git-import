@@ -272,8 +272,8 @@
                                <center> <ins class="adsbygoogle"
 
                                      style="display:inline-block;width:728px;height:90px" id="vb2"
-                                     data-ad-client="ca-pub-4636627444279583"
-                                     data-ad-slot="3711288451"></ins>
+                                             data-ad-client="ca-pub-4636627444279583"
+                                             data-ad-slot="4262965527"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script></center>
