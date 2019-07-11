@@ -269,14 +269,14 @@
                                 <div id="myBar">0%</div>
                             </div>
                             @if (!_bot_detected())
-                               <center> <ins class="adsbygoogle"
+                               <center> <!--<ins class="adsbygoogle"
 
                                      style="display:inline-block;width:728px;height:90px" id="vb2"
                                              data-ad-client="ca-pub-4636627444279583"
                                              data-ad-slot="4262965527"></ins>
                             <script>
                                 (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script></center>
+                            </script>!--></center>
                             @endif
 
                         <div class="card-body p-4">
