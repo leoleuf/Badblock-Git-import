@@ -146,13 +146,7 @@ class RedirectController extends Controller
     {
         try
         {
-            $apiKeys = [
-                'MzU1MzpZcThLVk9OeTZOR0dxOUtybzJ4RDhncEY4WkMwNEUwUQ==',
-                'MzYxNTpBeGJvWXFnbGNKMnYxTWxYRE00RDR5M1FFeUs5amo1MQ==',
-                'MzYxNjo2cW1SZ2xKa01LWmpsSnNMUDFuck9JNXJoVWFoZk1OUA=='
-            ];
-
-            $apiKey = $this->pickInArray($apiKeys);
+            $apiKey = "MTU4NTpTMXV2TXdZbFJ0YlVZOGV2aGo3dUV0dG4zOVprTWVldQ==";
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
