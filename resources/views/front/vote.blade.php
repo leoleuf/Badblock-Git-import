@@ -200,20 +200,6 @@
 
                         @php($pubtest = 1)
 
-
-                        @if (_bot_detected())
-                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-format="autorelaxed"
-                             data-ad-client="ca-pub-4636627444279583"
-                             data-ad-slot="8870163052"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        @endif
-
-
                                     <h6 class="lis-font-weight-500">
                                         <i class="fa fa-align-right pr-2 lis-f-14"></i> Opération de vote
                                     </h6>
@@ -244,7 +230,6 @@
                                         <div id="blox" class="col-12" style="display: none; height: 80px; margin-bottom: -20px; z-index: 100;"></div>
                                         <!-- responsive -->
                                         <center>
-                                        @if (!_bot_detected())
                                                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                                 <!-- assurance -->
                                                 <ins class="adsbygoogle"
@@ -257,7 +242,6 @@
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script>
-                                        @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
                                                 data-sitekey="6Lf8amQUAAAAAM2wJE-R24huo1IDSTgDQZVoURX1"
