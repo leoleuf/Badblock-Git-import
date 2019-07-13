@@ -65,7 +65,7 @@ trait AuthenticatesUsers
 
         $info = DB::table('users')->where('email', $request->post('email'))->get()[0];
 
-        if(!$info->firstConnexion)
+        if(!$info->firstConnection)
         {
             if($info->TFAbypass)
             {
@@ -81,10 +81,10 @@ trait AuthenticatesUsers
         {
             DB::table('users')->where('email', $request->post('email'))->update(array(
 
-                'firstConnexion' => FALSE
+                'firstConnection' => FALSE
 
             ));
-    //d
+
             return false;
 
         }
