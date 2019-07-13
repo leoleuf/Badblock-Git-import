@@ -202,14 +202,15 @@
 
 
                         @if (_bot_detected())
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                         <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:90px"
+                             style="display:block"
+                             data-ad-format="autorelaxed"
                              data-ad-client="ca-pub-4636627444279583"
-                             data-ad-slot="4262965527"
-                             id="vb"></ins>
+                             data-ad-slot="8870163052"></ins>
                         <script>
                             (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script><br />
+                        </script>
                         @endif
 
 
@@ -244,11 +245,13 @@
                                         <!-- responsive -->
                                         <center>
                                         @if (!_bot_detected())
+                                                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                                 <ins class="adsbygoogle"
-                                                     style="display:inline-block;width:728px;height:90px"
+                                                     style="display:block"
+                                                     data-ad-format="autorelaxed"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="4262965527"
-                                                     id="vb"></ins>
+                                                     data-ad-slot="8870163052"
+                                                    id="vb"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                                 </script><br />
