@@ -21,9 +21,9 @@
                                             <th>TFA Active</th>
                                             <th>Bypass</th>
                                             <th>Action</th>
-                                            @can("query_tfa_control")
+                                            @if(\Illuminate\Support\Facades\Auth::user()->id == 3)
                                             <th>ByPass</th>
-                                            @endcan
+                                            @endif
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -53,7 +53,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
-                                                @can("query_tfa_control")
+                                                @if(\Illuminate\Support\Facades\Auth::user()->id == 3)
                                                     <td>
                                                         <form class="inline" method="post" action="/tfacheck/bypass">
                                                             <div class="custom-control custom-checkbox mr-sm-2">
@@ -62,7 +62,7 @@
                                                             </div>
                                                         </form>
                                                     </td>
-                                                @endcan
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>
