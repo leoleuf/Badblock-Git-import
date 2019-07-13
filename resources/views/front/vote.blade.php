@@ -246,15 +246,17 @@
                                         <center>
                                         @if (!_bot_detected())
                                                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <!-- assurance -->
                                                 <ins class="adsbygoogle"
                                                      style="display:block"
-                                                     data-ad-format="autorelaxed"
                                                      data-ad-client="ca-pub-4636627444279583"
-                                                     data-ad-slot="8870163052"
-                                                    id="vb"></ins>
+                                                     data-ad-slot="7700218473"
+                                                     data-ad-format="auto"
+                                                     data-full-width-responsive="true"
+                                                     id="vb"></ins>
                                                 <script>
                                                     (adsbygoogle = window.adsbygoogle || []).push({});
-                                                </script><br />
+                                                </script>
                                         @endif
 
                                         <button class="col-11 g-recaptcha btn btn-default" id="vbna"
