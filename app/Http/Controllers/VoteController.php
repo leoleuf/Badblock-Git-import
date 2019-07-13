@@ -189,7 +189,7 @@ class VoteController extends Controller
                     session([$key => time() + 600]);
                     return redirect('/' . $catName . '/' . $id);
                 }
-                
+
             return view('front.vote', ['tags' => $tagsInfo, 'catName' => $catName, 'data' => $data, 'playerstats' => $playerstats, 'timez' => $time]);
         }else{
             abort(404);
