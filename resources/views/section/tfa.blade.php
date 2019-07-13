@@ -21,7 +21,9 @@
                                             <th>TFA Active</th>
                                             <th>Bypass</th>
                                             <th>Action</th>
+                                            @can("query_tfa_control")
                                             <th>ByPass</th>
+                                            @endcan
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -51,14 +53,16 @@
                                                         </button>
                                                     </form>
                                                 </td>
-                                                <td>
-                                                    <form class="inline" method="post" action="/tfacheck/bypass">
-                                                        <div class="custom-control custom-checkbox mr-sm-2">
-                                                            <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass({{ $data->id}}, {{ $data->TFAbypass }})">
-                                                            <label class="custom-control-label" for="bypassCheck{{ $data->id }}"></label>
-                                                        </div>
-                                                    </form>
-                                                </td>
+                                                @can("query_tfa_control")
+                                                    <td>
+                                                        <form class="inline" method="post" action="/tfacheck/bypass">
+                                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                                <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass({{ $data->id}}, {{ $data->TFAbypass }})">
+                                                                <label class="custom-control-label" for="bypassCheck{{ $data->id }}"></label>
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                @endcan
                                             </tr>
                                         @endforeach
                                         </tbody>
