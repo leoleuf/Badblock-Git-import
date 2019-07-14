@@ -14,7 +14,7 @@
 //A ne pas delete rout d'Auth AP
 Auth::routes();
 
-/*Route::get('/2fa','PasswordSecurityController@show2faForm');
+Route::get('/2fa','PasswordSecurityController@show2faForm');
 Route::post('/generate2faSecret','PasswordSecurityController@generate2faSecret')->name('generate2faSecret');
 Route::post('/2fa','PasswordSecurityController@enable2fa')->name('enable2fa');
 Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
@@ -24,7 +24,7 @@ Route::post('/2faVerify', function () {
     Cookie::queue("TFA", true, 60 * 24 * 7);
     return redirect('/');
 
-})->name('2faVerify')->middleware('2fa');*/
+})->name('2faVerify')->middleware('2fa');
 
 Route::group([
     'prefix'     => "api"
@@ -45,7 +45,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ["auth"],
+    'middleware' => ["auth", "2fa"],
 ], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
