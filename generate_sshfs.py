@@ -32,14 +32,14 @@ for user in config.users:
             mountpoint = root / local_path
 
             # if already mounted
-            if mountpoint.is_mount():
+            if os.path.ismount(str(mountpoint)):
                 if not force:
                     continue
 
                 # if --force-reload, unmount
                 subprocess.call(["umount", str(mountpoint)])
 
-            remote = "{}@{}:{}".format(remote_path, suser.name, server.name)
+            remote = "{}@{}:{}".format(suser.name, server.name, remote_path)
 
             # create mountpoint
             mountpoint.mkdir(parents = True, exist_ok = True)

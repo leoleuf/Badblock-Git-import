@@ -11,7 +11,7 @@
                 ],
                 "fs": {
                     ".": "%host%-mc",
-                    "./bungee2": "%host%-bungee2"
+                    "./bungee": "%host%-bungee"
                 }
             },
             "root": {
