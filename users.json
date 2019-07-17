@@ -1,5 +1,6 @@
 {
     "audran": {
+        "fs_mountpoint": "/home/audran",
         "groups": [
             "administrateur",
             "administrateurs_competents"

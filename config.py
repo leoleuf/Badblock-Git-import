@@ -5,16 +5,16 @@ import json
 
 """
 Représente les différents utilisateurs d'un serveur (mc, root ou autre)
-Contient le chemin vers la clé SSH & les utilisateurs/groupes autorisés
+Contient les différents path à monter via SSHFS  & les utilisateurs/groupes autorisés
 
 Chargé depuis servers.json
 """
 class ServerUser:
     def __init__(self, name, config):
         self.name = name
-        self.ssh_key = config["ssh_key"]
         self.allowed_groups = set(config.get("allowed_groups", []))
         self.allowed_users = set(config.get("allowed_users", []))
+        self.fs = config["fs"]
 
     """
     Check if a proxy user is allowed to use this user@host
@@ -52,7 +52,8 @@ class Server:
 
 """
 Représente un utilisateur du proxy (sulfique, micro ou autre)
-Contient les différents groupes de l'utilisateur
+Contient les différents groupes de l'utilisateur et le dossier où monter les
+SSHFS.
 
 Chargé depuis users.json
 """
@@ -60,6 +61,7 @@ class User:
     def __init__(self, name, config):
         self.name = name
         self.groups = config.get("groups", [])
+        self.fs_mountpoint = config["fs_mountpoint"]
 
     """
     Iterator on allowed user@host that the user can access to

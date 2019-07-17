@@ -3,19 +3,24 @@
         "shortname": "game02",
         "users": {
             "mc": {
-                "ssh_key": "./keys/game02_mc",
                 "allowed_groups": [
                     "administrateur"
                 ],
                 "allowed_users": [
                     "gamercrow"
-                ]
+                ],
+                "fs": {
+                    ".": "%host%-mc",
+                    "./bungee2": "%host%-bungee2"
+                }
             },
             "root": {
-                "ssh_key": "./keys/game02_root",
                 "allowed_groups": [
                     "administrateurs_competents"
-                ]
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
             }
         }
     }
