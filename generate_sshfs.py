@@ -49,6 +49,5 @@ for user in config.users:
 
             # mount sshfs
             subprocess.call(["sshfs", remote,
-                                        str(mountpoint),
-                                        "-o", "allow_other",
-                                        "-o", "reconnect"])
+                                str(mountpoint),
+                                "-C", "-o", "allow_other,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=all"])
