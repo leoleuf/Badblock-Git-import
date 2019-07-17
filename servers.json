@@ -1,0 +1,22 @@
+{
+    "game02-main.eu.bkd.badblock-network.fr": {
+        "shortname": "game02",
+        "users": {
+            "mc": {
+                "ssh_key": "./keys/game02_mc",
+                "allowed_groups": [
+                    "administrateur"
+                ],
+                "allowed_users": [
+                    "gamercrow"
+                ]
+            },
+            "root": {
+                "ssh_key": "./keys/game02_root",
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ]
+            }
+        }
+    }
+}

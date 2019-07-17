@@ -1,0 +1,8 @@
+{
+    "audran": {
+        "groups": [
+            "administrateur",
+            "administrateurs_competents"
+        ]
+    }
+}
