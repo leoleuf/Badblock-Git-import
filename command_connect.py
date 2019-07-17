@@ -5,15 +5,21 @@ import os
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
-if len(sys.argv) != 3:
+user = os.getenv("SUDO_USER")
+
+if not user or sys.getuid() != 0:
+    eprint("this script should be run with sudo")
+    sys.exit(1)
+
+if len(sys.argv) != 2:
     eprint("bad usage")
-    eprint("usage: <unix user> <user>@<host>")
+    eprint("usage: <user>@<host>")
 
     sys.exit(1)
 
-if sys.argv[2] == "list":
+if sys.argv[1] == "list":
     try:
-        user = config.get_user(sys.argv[1])
+        user = config.get_user(user)
 
         for (server, suser) in user.allowed_users():
             print('{}@{}'.format(suser.name, server.shortname))
@@ -23,14 +29,14 @@ if sys.argv[2] == "list":
         eprint(e)
         sys.exit(1)
 
-host = sys.argv[2].lower().split("@")
+host = sys.argv[1].lower().split("@")
 
 if len(host) != 2:
     eprint("bad host format; should be user@domain (ex: mc@game02)")
     sys.exit(1)
 
 try:
-    user = config.get_user(sys.argv[1])
+    user = config.get_user(user)
     (server, suser) = user.get_host(host[1], host[0])
 
     os.execvp("ssh", ["ssh", "{}@{}".format(suser.name, server.name)])

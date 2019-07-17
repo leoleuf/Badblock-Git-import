@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /opt/ProxyUsers
+sudo /opt/ProxyUsers/command_connect.py "$@"
