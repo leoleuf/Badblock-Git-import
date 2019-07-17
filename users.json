@@ -6,7 +6,7 @@
     "audran": {
         "fs_mountpoint": "/home/audran",
         "groups": [ "administrateur", "administrateurs_competents" ]
-    }
+    },
     "michael": {
         "fs_mountpoint": "/home/michael",
         "groups": [ "administrateur", "administrateurs_competents" ]
