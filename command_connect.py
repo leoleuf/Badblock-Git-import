@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import config
 import sys
 import os
@@ -7,7 +9,7 @@ def eprint(*args, **kwargs):
 
 user = os.getenv("SUDO_USER")
 
-if not user or sys.getuid() != 0:
+if not user or os.getuid() != 0:
     eprint("this script should be run with sudo")
     sys.exit(1)
 
