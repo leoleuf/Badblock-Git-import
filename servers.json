@@ -35,7 +35,7 @@
                     "hooki"
                 ],
                 "fs": {
-                    ".": "%host%-web",
+                    ".": "%host%-web"
                 }
             },
             "root": {
@@ -54,17 +54,17 @@
             "mc": {
                 "allowed_groups": [
                     "administrateur"
-                ]
+                ],
                 "fs": {
-                    ".": "%host%-mc",
+                    ".": "%host%-mc"
                 }
             },
             "practice": {
                 "allowed_groups": [
                     "administrateur"
-                ]
+                ],
                 "fs": {
-                    ".": "%host%-practice",
+                    ".": "%host%-practice"
                 }
             },
             "root": {
@@ -83,9 +83,9 @@
             "mc": {
                 "allowed_groups": [
                     "administrateur"
-                ]
+                ],
                 "fs": {
-                    ".": "%host%-mc",
+                    ".": "%host%-mc"
                 }
             },
             "root": {
