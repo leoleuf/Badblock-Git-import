@@ -27,6 +27,93 @@
     "rbx1-bgm.clusprv.badblock-network.fr": {
         "shortname": "rbx1",
         "users": {
+            "web": {
+                "allowed_groups": [
+                    "administrateur"
+                ],
+                "allowed_users": [
+                    "hooki"
+                ],
+                "fs": {
+                    ".": "%host%-web",
+                }
+            },
+            "root": {
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
+            }
+        }
+    },
+    "rbx2-bgm.clusprv.badblock-network.fr": {
+        "shortname": "rbx2",
+        "users": {
+            "mc": {
+                "allowed_groups": [
+                    "administrateur"
+                ]
+                "fs": {
+                    ".": "%host%-mc",
+                }
+            },
+            "practice": {
+                "allowed_groups": [
+                    "administrateur"
+                ]
+                "fs": {
+                    ".": "%host%-practice",
+                }
+            },
+            "root": {
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
+            }
+        }
+    },
+    "rbx3-bgm.clusprv.badblock-network.fr": {
+        "shortname": "rbx3",
+        "users": {
+            "mc": {
+                "allowed_groups": [
+                    "administrateur"
+                ]
+                "fs": {
+                    ".": "%host%-mc",
+                }
+            },
+            "root": {
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
+            }
+        }
+    },
+    "lusitania.badblock.fr": {
+        "shortname": "lusitania",
+        "users": {
+            "root": {
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
+            }
+        }
+    },
+    "5.196.73.143": {
+        "shortname": "backups",
+        "users": {
             "root": {
                 "allowed_groups": [
                     "administrateurs_competents"
