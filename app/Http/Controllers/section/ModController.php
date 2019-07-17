@@ -42,8 +42,7 @@ class ModController extends Controller
             ->where('proof', '=', [])
             ->where('punisher', '!=', "Console")
             ->where(function ($query) {
-                $query->where('type', '=', "MUTE")
-                    ->orWhere('type', '=', "KICK")
+                $query->orWhere('type', '=', "KICK")
                     ->orWhere('type', '=', "BAN");
             })
             ->where('timestamp', '>=', time()*1000-1209600000)
@@ -80,8 +79,7 @@ class ModController extends Controller
             ->where('proof', '=', [])
             ->where('punisher', '!=', "Console")
             ->where(function ($query) {
-                $query->where('type', '=', "MUTE")
-                    ->orWhere('type', '=', "KICK")
+                $query->Where('type', '=', "KICK")
                     ->orWhere('type', '=', "BAN");
             })
             ->orderBy('timestamp', 'DESC')
@@ -137,8 +135,7 @@ class ModController extends Controller
                 ->where('proof', '=', [])
                 ->where('punisher', 'like', $player['name'])
                 ->where(function ($query) {
-                    $query->where('type', '=', "MUTE")
-                        ->orWhere('type', '=', "KICK")
+                    $query->Where('type', '=', "KICK")
                         ->orWhere('type', '=', "BAN");
                 })
                 ->where('timestamp', '>=', time()*1000-1209600000)
