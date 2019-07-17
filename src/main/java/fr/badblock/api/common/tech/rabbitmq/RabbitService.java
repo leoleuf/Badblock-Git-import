@@ -22,7 +22,6 @@ import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketManager;
 import fr.badblock.api.common.tech.rabbitmq.setting.RabbitSettings;
 import fr.badblock.api.common.utils.logs.Log;
 import fr.badblock.api.common.utils.logs.LogType;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 

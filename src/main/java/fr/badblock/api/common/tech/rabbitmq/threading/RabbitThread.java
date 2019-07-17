@@ -4,7 +4,6 @@ import fr.badblock.api.common.tech.TechThread;
 import fr.badblock.api.common.tech.rabbitmq.RabbitService;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacket;
 import fr.badblock.api.common.tech.rabbitmq.packet.RabbitPacketManager;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
