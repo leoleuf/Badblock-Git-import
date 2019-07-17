@@ -84,18 +84,21 @@
 
                         for (screen in obj){
 
-                            console.log(obj[screen]['filename']);
+                            console.log(obj[screen]);
 
+                            console.log((new Date() - new Date(obj[screen]['date'])));
 
-                            $('#screen_list').append('<div class="col-md-6 col-xl-3 col-lg-4 natural personal" id="'+ obj[screen]['_id']['$oid'] +'" onclick="addscreen(\''+ obj[screen]['_id']['$oid'] +'\')">\n' +
-                                '                                <div class="gal-detail thumb">\n' +
-                                '                                    <a href="https://cdn.badblock.fr/upload/'+ obj[screen]['file_name'] +'" target="_blank" class="image-popup" title="Screenshot-1">\n' +
-                                '                                        <img id="image'+ obj[screen]['_id']['$oid'] +'" src="https://cdn.badblock.fr/upload/'+ obj[screen]['file_name'] +'" class="thumb-img" alt="work-thumbnail">\n' +
-                                '                                    </a>\n' +
-                                '                                    <h5>' + obj[screen]['date'] +'</h5>\n' +
-                                '                                </div>\n' +
-                                '                            </div>');
-
+                            if((new Date() - new Date(obj[screen]['date'])) < 693344126)
+                            {
+                                $('#screen_list').append('<div class="col-md-6 col-xl-3 col-lg-4 natural personal" id="'+ obj[screen]['_id']['$oid'] +'" onclick="addscreen(\''+ obj[screen]['_id']['$oid'] +'\')">\n' +
+                                    '                                <div class="gal-detail thumb">\n' +
+                                    '                                    <a href="https://cdn.badblock.fr/upload/'+ obj[screen]['file_name'] +'" target="_blank" class="image-popup" title="Screenshot-1">\n' +
+                                    '                                        <img id="image'+ obj[screen]['_id']['$oid'] +'" src="https://cdn.badblock.fr/upload/'+ obj[screen]['file_name'] +'" class="thumb-img" alt="work-thumbnail">\n' +
+                                    '                                    </a>\n' +
+                                    '                                    <h5>' + obj[screen]['date'] +'</h5>\n' +
+                                    '                                </div>\n' +
+                                    '                            </div>');
+                            }
 
                         }
                     }
