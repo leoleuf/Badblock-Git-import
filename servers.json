@@ -23,5 +23,18 @@
                 }
             }
         }
+    },
+    "rbx1-bgm.clusprv.badblock-network.fr": {
+        "shortname": "rbx1",
+        "users": {
+            "root": {
+                "allowed_groups": [
+                    "administrateurs_competents"
+                ],
+                "fs": {
+                    "/": "%host%-root"
+                }
+            }
+        }
     }
 }
