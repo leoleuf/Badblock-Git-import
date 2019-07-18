@@ -7,6 +7,30 @@
         "fs_mountpoint": "/home/audran",
         "groups": [ "administrateur", "administrateurs_competents" ]
     },
+    "sulfique": {
+        "fs_mountpoint": "/home/sulfique",
+        "groups": [ "administrateur", "administrateurs_competents" ]
+    },
+    "lordthom": {
+        "fs_mountpoint": "/home/lordthom",
+        "groups": [ "administrateur", "administrateurs_competents" ]
+    },
+    "snowice": {
+        "fs_mountpoint": "/home/snowice",
+        "groups": [ "administrateur" ]
+    },
+    "latitchips": {
+        "fs_mountpoint": "/home/latitchips",
+        "groups": [ "administrateur" ]
+    },
+    "sizas": {
+        "fs_mountpoint": "/home/sizas",
+        "groups": [ "administrateur" ]
+    },
+    "flofydech": {
+        "fs_mountpoint": "/home/flofydech",
+        "groups": [ "administrateur" ]
+    },
     "michael": {
         "fs_mountpoint": "/home/michael",
         "groups": [ "administrateur", "administrateurs_competents" ]
