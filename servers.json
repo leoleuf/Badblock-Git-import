@@ -116,7 +116,7 @@
         "users": {
             "root": {
                 "allowed_groups": [
-                    "administrateurs_competents"
+                    "owner"
                 ],
                 "fs": {
                     "/": "%host%-root"

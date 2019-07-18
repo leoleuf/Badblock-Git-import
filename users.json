@@ -33,6 +33,6 @@
     },
     "michael": {
         "fs_mountpoint": "/home/michael",
-        "groups": [ "administrateur", "administrateurs_competents" ]
+        "groups": [ "owner", "administrateur", "administrateurs_competents" ]
     }
 }
