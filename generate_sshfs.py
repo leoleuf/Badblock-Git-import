@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import config
 import sys
 import os
@@ -45,7 +47,7 @@ for user in config.users:
                 # create mountpoint
                 mountpoint.mkdir(parents = True, exist_ok = True)
             except Exception:
-                subprocess.call("umount", str(mountpoint))
+                subprocess.call(["umount", str(mountpoint)])
 
             # set owner
             subprocess.call(["chown", user.name, str(root)])

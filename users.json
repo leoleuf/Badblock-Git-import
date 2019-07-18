@@ -31,6 +31,10 @@
         "fs_mountpoint": "/home/flofydech",
         "groups": [ "administrateur" ]
     },
+    "hooki": {
+        "fs_mountpoint": "/home/hooki",
+        "groups": [ "dev_web" ]
+    },
     "michael": {
         "fs_mountpoint": "/home/michael",
         "groups": [ "owner", "administrateur", "administrateurs_competents" ]

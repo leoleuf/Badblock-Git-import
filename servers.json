@@ -29,7 +29,7 @@
         "users": {
             "web": {
                 "allowed_groups": [
-                    "administrateur"
+                    "administrateur", "dev_web"
                 ],
                 "allowed_users": [
                     "hooki"
