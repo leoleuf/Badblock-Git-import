@@ -109,14 +109,14 @@ servers = []
 users = []
 
 # chargement de servers.json
-with open('servers.json', 'r') as f:
+with open('/opt/ProxyUsers/servers.json', 'r') as f:
     config = json.load(f)
 
     for key in config:
         servers.append(Server(key, config[key]))
 
 # chargement de users.json
-with open('users.json', 'r') as f:
+with open('/opt/ProxyUsers/users.json', 'r') as f:
     config = json.load(f)
 
     for key in config:
