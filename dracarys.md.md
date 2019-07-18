@@ -1,4 +1,4 @@
-![dracarys](uploads/0dbf223db412c3f1be4f0469f68f7dda/dracarys.gif))
+![dracarys](uploads/0dbf223db412c3f1be4f0469f68f7dda/dracarys.gif)
 
 # Objectif
 
