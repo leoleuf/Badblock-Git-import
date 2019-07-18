@@ -75,3 +75,17 @@ D'abord ajouter l'utilisateur sur Linux (useradd), avec une home.
 
 - fs\_mountpoint correspond à l'endroit où les différents SSHFS de l'utilisateurs vont être montés, probablement sa home
 - groups correspond aux différents groupes auxquels l'utilisateurs appartient
+
+### Forcer des mots de passe complexes
+
+Les mots de passes étant définissables par les utilisateurs, il vaut éviter tout soucis et forcer des mots de passes corcés.
+Pour ça, installer:
+```
+$ apt install libpam-cracklib
+```
+
+Et ajouter à /etc/pam.d/common-password:
+```
+password  sufficient  pam_unix.so md5 shadow nullok try_first_pass use_authtok remember=5
+password  requisite   pam_cracklib.so try_first_pass retry=3 minlen=32
+```
