@@ -1,4 +1,4 @@
-![Dracarys](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Dracarys](https://tenor.com/view/game-of-thrones-khaleesi-dracarys-daenerys-targaryen-emilia-clarke-gif-4019574)
 
 # Objectif
 
@@ -32,3 +32,7 @@ Une fois en SSH, la commande 'connect' peut être utilisée pour se connecter à
 ### Problème d'accès
 
 Si vous n'avez pas de compte où si il manque des accès à votre compte, contactez micro_maniaque.
+
+# Configuration et installation
+
+*  Voir la documentation de [ProxyUsers](https://lusitania.badblock.fr/backendv2/ProxyUsers)
