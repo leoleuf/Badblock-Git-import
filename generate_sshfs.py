@@ -41,13 +41,18 @@ for user in config.users:
 
             remote = "{}@{}:{}".format(suser.name, server.name, remote_path)
 
-            # create mountpoint
-            mountpoint.mkdir(parents = True, exist_ok = True)
+            try:
+                # create mountpoint
+                mountpoint.mkdir(parents = True, exist_ok = True)
+            except Exception:
+                subprocess.call("umount", str(mountpoint))
 
             # set owner
             subprocess.call(["chown", user.name, str(root)])
 
-            # mount sshfs
-            subprocess.call(["sshfs", remote,
+            command = ["sshfs", remote,
                                 str(mountpoint),
-                                "-C", "-o", "allow_other,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=all"])
+                                "-C", "-o", "allow_other,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=all"]
+
+            print(' '.join(command))
+            subprocess.call(command)
