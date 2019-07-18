@@ -71,7 +71,7 @@ Après avoir ajouter la clé SSH, il suffit d'ajouter le serveur dans servers.js
 
 ### Ajouter un utilisateur
 
-D'abord ajouter l'utilisateur sur Linux (useradd), avec une home.
+D'abord ajouter l'utilisateur sur Linux via le script ./add_unix_user.sh
 
 - fs\_mountpoint correspond à l'endroit où les différents SSHFS de l'utilisateurs vont être montés, probablement sa home
 - groups correspond aux différents groupes auxquels l'utilisateurs appartient
