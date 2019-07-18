@@ -29,6 +29,14 @@ Une fois en SSH, la commande 'connect' peut être utilisée pour se connecter à
 * **connect list**: affiche les différents utilisateurs auxquels vous avez accès
 * **connect mc@game02**: dans cet exemple, on essaye de se connecter à l'utilisateur mc de la machine game02
 
+### Maintenir le compte à jour
+
+Afin de garantir une certaine sécurité votre mot de passe doit être changé ** régulièrement ** (au moins une fois par mois). Pour cela, il suffit de se connecter en SSH et d'utiliser la commande:
+
+```
+$ passwd
+```
+
 ### Problème d'accès
 
 Si vous n'avez pas de compte où si il manque des accès à votre compte, contactez micro_maniaque.
