@@ -19,6 +19,8 @@ Route::post('/generate2faSecret','PasswordSecurityController@generate2faSecret')
 Route::post('/2fa','PasswordSecurityController@enable2fa')->name('enable2fa');
 Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
 
+Route::post('/reset/bungee', 'Infra\DockerController@restartBungee');
+
 Route::post('/2faVerify', function () {
 
     Cookie::queue("TFA", true, 60 * 24 * 7);

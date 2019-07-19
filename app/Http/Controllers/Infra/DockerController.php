@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Infra;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -87,6 +88,10 @@ class DockerController extends Controller
         //TODO add cluster target
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
+
+        var_dump($connection);
+        die();
+
         $channel = $connection->channel();
         $channel->exchange_declare('docker.instance.open_PROD', 'fanout', false, false, false, false);
 
@@ -120,6 +125,55 @@ class DockerController extends Controller
 
         return "ok close";
 
+    }
+
+    public function restartBungee(Request $request)
+    {
+
+
+        try {
+            //Connection to rabbitMQ server
+            $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
+            $channel = $connection->channel();
+
+            $shopQueue = 'skyb2';
+
+            if($request->input('cmd') == "1")
+            {
+                //'bce adm end';
+                $command = 'bce adm end';
+            }
+            else
+            {
+                //'bce modules reload ModuleServerSync'
+                $command = 'bce modules reload ModuleServerSync';
+            }
+
+            $channel->exchange_declare('shopLinker.' . $shopQueue, 'fanout', false, false, false, false);
+            $sanction = (object)[
+                'dataType' => 'BUY',
+                'playerName' => 'Hoooki',
+                'displayName' => 'Hoooki',
+                'command' => $command,
+                'ingame' => false,
+                'price' => 0
+            ];
+
+            $message = (object)[
+                'expire' => (time() + 604800) * 1000,
+                'message' => json_encode($sanction)
+            ];
+            $msg = new AMQPMessage(json_encode($message));
+            $channel->basic_publish($msg, 'shopLinker.' . $shopQueue);
+
+
+            $channel->close();
+            $connection->close();
+            return "null";
+        }catch (Exception $e)
+        {
+            return var_dump($e);
+        }
     }
 
 
