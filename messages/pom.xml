@@ -11,19 +11,20 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>badblockapi-common-permissions</artifactId>
+    <artifactId>badblockapi-messages</artifactId>
     <packaging>jar</packaging>
 
-    <name>BadblockAPI-Common-Permissions</name>
+    <name>BadblockAPI-Messages</name>
     <description>
-            Permissions API
+        Messages API
     </description>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>28.0-jre</version>
+			<groupId>net.md-5</groupId>
+			<artifactId>bungeecord-chat</artifactId>
+			<version>1.14-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

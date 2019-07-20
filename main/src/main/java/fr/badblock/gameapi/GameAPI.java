@@ -2,13 +2,13 @@ package fr.badblock.gameapi;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import fr.badblock.gameapi.commands.Command;
+import fr.badblock.gameapi.listeners.PlayerJoinListener;
 
 public class GameAPI extends JavaPlugin
 {
 	@Override
 	public void onEnable()
 	{
-		Command.test();
+		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
 	}
 }

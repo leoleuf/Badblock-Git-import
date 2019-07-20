@@ -11,19 +11,24 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>badblockapi-common-permissions</artifactId>
+    <artifactId>badblockapi-common-utils</artifactId>
     <packaging>jar</packaging>
 
-    <name>BadblockAPI-Common-Permissions</name>
+    <name>BadblockAPI-Common-Techs</name>
     <description>
-            Permissions API
+            Various common utility tools
     </description>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>28.0-jre</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.0-jre</version>
+        </dependency>
+        <dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>3.6</version>
 		</dependency>
-	</dependencies>
+    </dependencies>
 </project>
