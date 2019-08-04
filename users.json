@@ -35,6 +35,10 @@
         "fs_mountpoint": "/home/hooki",
         "groups": [ "dev_web" ]
     },
+    "vanilor": {
+        "fs_mountpoint": "/home/vanilor",
+        "groups": [ "dev_web" ]
+    },
     "michael": {
         "fs_mountpoint": "/home/michael",
         "groups": [ "owner", "administrateur", "administrateurs_competents" ]
