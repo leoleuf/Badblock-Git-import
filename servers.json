@@ -1,29 +1,4 @@
 {
-    "game02-main.eu.bkd.badblock-network.fr": {
-        "shortname": "game02",
-        "users": {
-            "mc": {
-                "allowed_groups": [
-                    "administrateur"
-                ],
-                "allowed_users": [
-                    "gamercrow"
-                ],
-                "fs": {
-                    ".": "%host%-mc",
-                    "./bungee": "%host%-bungee"
-                }
-            },
-            "root": {
-                "allowed_groups": [
-                    "administrateurs_competents"
-                ],
-                "fs": {
-                    "/": "%host%-root"
-                }
-            }
-        }
-    },
     "rbx1-bgm.clusprv.badblock-network.fr": {
         "shortname": "rbx1",
         "users": {
