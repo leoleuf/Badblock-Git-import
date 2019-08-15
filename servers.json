@@ -57,7 +57,7 @@
         "users": {
             "mc": {
                 "allowed_groups": [
-                    "administrateur"
+                    "administrateur", "dev_java"
                 ],
                 "fs": {
                     ".": "%host%-mc"
