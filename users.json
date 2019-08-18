@@ -21,7 +21,7 @@
     },
     "latitchips": {
         "fs_mountpoint": "/home/latitchips",
-        "groups": [ "administrateur" ]
+        "groups": [ "administrateur", "administrateurs_competents" ]
     },
     "sizas": {
         "fs_mountpoint": "/home/sizas",
