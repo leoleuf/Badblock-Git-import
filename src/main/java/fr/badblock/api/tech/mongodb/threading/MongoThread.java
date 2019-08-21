@@ -16,15 +16,14 @@ public class MongoThread extends TechThread<MongoMethod>
     }
 
     @Override
-    public void work(MongoMethod mongoMethod) throws Exception
-    {
+    public void work(MongoMethod mongoMethod) {
         mongoMethod.run(getMongoService());
     }
 
     @Override
     public String getErrorMessage()
     {
-        return "[MongoConnector] An error occurred while trying to send packet.";
+        return "[BadBlock-API] MongoDB - Une erreur c'est produite lors de l'envoie du packet.";
     }
 
     @Override
@@ -33,11 +32,11 @@ public class MongoThread extends TechThread<MongoMethod>
         return getMongoService().isAlive();
     }
 
-    public MongoService getMongoService() {
+    private MongoService getMongoService() {
         return mongoService;
     }
 
-    public void setMongoService(MongoService mongoService) {
+    private void setMongoService(MongoService mongoService) {
         this.mongoService = mongoService;
     }
 }

@@ -14,14 +14,14 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class MongoService extends AutoReconnector {
 
-    private String name;
-    private MongoSettings settings;
     private MongoClient mongoClient;
+    private MongoSettings settings;
     private boolean isDead;
     private DB db;
     private Random random;
     private List<MongoThread> threads;
     private Queue<MongoMethod> queue;
+    private BadBlockAPI badBlockAPI;
 
     MongoService(String name, MongoSettings settings) {
         super(name, settings);
@@ -30,6 +30,7 @@ public class MongoService extends AutoReconnector {
         this.setRandom(new Random());
         this.setThreads(new ArrayList<>());
         this.setQueue(new ConcurrentLinkedDeque<>());
+        this.badBlockAPI = BadBlockAPI.getPluginInstance();
         // Connect
         this.reconnect();
         // Load threads
@@ -78,7 +79,7 @@ public class MongoService extends AutoReconnector {
 
     public void remove() {
         if (isDead()) {
-            BadBlockAPI.getPluginInstance().getLogger().info("[MongoConnector] The service is already dead.");
+            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Le service est deja mort.");
             return;
         }
         long time = System.currentTimeMillis();
@@ -89,13 +90,13 @@ public class MongoService extends AutoReconnector {
         try {
             db().getMongoClient().close();
         } catch (Exception error) {
-            BadBlockAPI.getPluginInstance().getLogger().info("[MongoConnector] Something gone wrong while trying to close Mongo.");
+            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Quelque chose c'est mal passe lors de la fermeture de Mongo.");
             error.printStackTrace();
             return;
         }
 
         MongoConnector.getInstance().getServices().remove(this.getName());
-        BadBlockAPI.getPluginInstance().getLogger().info( "[MongoConnector] Mongo service disconnected (" + (System.currentTimeMillis() - time) + " ms).");
+        badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Fermeture effectue (" + (System.currentTimeMillis() - time) + " ms).");
     }
 
     @Override
@@ -126,10 +127,10 @@ public class MongoService extends AutoReconnector {
             long time = System.currentTimeMillis();
             setMongoClient(getSettings().toFactory());
             setDb(getMongoClient().getDB(settings.getDatabase()));
-            BadBlockAPI.getPluginInstance().getLogger().info("[MongoConnector] Successfully (re)connected to MongoDB service (" + (System.currentTimeMillis() - time) + " ms).");
+            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Reconnexion a la base de donne effectue avec succes (" + (System.currentTimeMillis() - time) + " ms).");
         } catch (Exception error) {
             error.printStackTrace();
-            BadBlockAPI.getPluginInstance().getLogger().info("[MongoConnector] Unable to connect to MongoDB service (" + error.getMessage() + ").");
+            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Impossible de se connecter a la base de donne (" + error.getMessage() + ").");
         }
     }
 
@@ -144,6 +145,7 @@ public class MongoService extends AutoReconnector {
     public Queue<MongoMethod> getQueue() {
         return queue;
     }
+
     public MongoSettings getSettings() {
         return settings;
     }
@@ -160,10 +162,6 @@ public class MongoService extends AutoReconnector {
         return mongoClient;
     }
 
-    private boolean isDead() {
-        return isDead;
-    }
-
     private void setMongoClient(MongoClient mongoClient) {
         this.mongoClient = mongoClient;
     }
@@ -175,5 +173,11 @@ public class MongoService extends AutoReconnector {
     public Random getRandom() {
         return random;
     }
+
+    @Override
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
 }
 

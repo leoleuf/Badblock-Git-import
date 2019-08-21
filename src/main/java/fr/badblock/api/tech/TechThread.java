@@ -56,7 +56,7 @@ public abstract class TechThread<T> extends Thread{
         }
     }
 
-    public void laze()
+    private void laze()
     {
         synchronized (this)
         {
@@ -71,7 +71,7 @@ public abstract class TechThread<T> extends Thread{
         }
     }
 
-    public void setQueue(Queue<T> queue) {
+    private void setQueue(Queue<T> queue) {
         this.queue = queue;
     }
 }

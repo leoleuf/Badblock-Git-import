@@ -32,24 +32,23 @@ public class MongoSettings extends Settings {
             String[] hostnames = getHostnames();
             int hostnameId = new Random().nextInt(hostnames.length);
             System.out.println("mongodb://" + getUsername() + ":" + getPassword() + "@" + hostnames[hostnameId] + ":" + getPort() + "/" + getDatabase());
-            MongoClient mongo = new MongoClient(
+            return new MongoClient(
                     new MongoClientURI("mongodb://" + getUsername() + ":" + getPassword() + "@" + hostnames[hostnameId] + ":" + getPort() + "/" + getDatabase()));
-            return mongo;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String[] getHostnames() {
+    private String[] getHostnames() {
         return hostnames;
     }
 
-    public String getUsername() {
+    private String getUsername() {
         return username;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
@@ -61,7 +60,7 @@ public class MongoSettings extends Settings {
         return workerThreads;
     }
 
-    public int getPort() {
+    private int getPort() {
         return port;
     }
 }

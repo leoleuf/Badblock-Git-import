@@ -8,11 +8,13 @@ import java.util.concurrent.ConcurrentMap;
 
 public class MongoConnector extends Connector<MongoService> {
 
+
     // MongoConnector singleton instance
     private static MongoConnector instance = new MongoConnector();
 
     // Private fields
     private ConcurrentMap<String, MongoService> services = new ConcurrentHashMap<>();
+
 
     static MongoConnector getInstance() {
         return instance;
@@ -46,7 +48,6 @@ public class MongoConnector extends Connector<MongoService> {
      * Register a new service
      *
      * @param mongoService > MongoDB service
-     * @return
      */
     public MongoService registerService(MongoService mongoService) {
         services.put(mongoService.getName(), mongoService);

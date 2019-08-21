@@ -17,7 +17,7 @@ public abstract class AutoReconnector extends Service {
 
     public abstract void reconnect();
 
-    public TimerTask run() {
+    private TimerTask run() {
         return new TimerTask() {
             @Override
             public void run() {
@@ -26,7 +26,7 @@ public abstract class AutoReconnector extends Service {
         };
     }
 
-    public TimerTask getTask(){
+    protected TimerTask getTask(){
         return task;
     }
 

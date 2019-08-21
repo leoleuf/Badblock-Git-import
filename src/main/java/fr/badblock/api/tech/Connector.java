@@ -39,4 +39,28 @@ public abstract class Connector<T extends Service> {
     public ConcurrentMap<String, T> getServices() {
         return services;
     }
+
+    public Gson getGson() {
+        return gson;
+    }
+
+    public void setGson(Gson gson) {
+        this.gson = gson;
+    }
+
+    public Gson getExposedGson() {
+        return exposedGson;
+    }
+
+    public void setExposedGson(Gson exposedGson) {
+        this.exposedGson = exposedGson;
+    }
+
+    public GsonBuilder getGsonBuilder() {
+        return gsonBuilder;
+    }
+
+    public void setGsonBuilder(GsonBuilder gsonBuilder) {
+        this.gsonBuilder = gsonBuilder;
+    }
 }
