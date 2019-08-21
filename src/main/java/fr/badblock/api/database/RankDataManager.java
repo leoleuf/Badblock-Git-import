@@ -2,12 +2,8 @@ package fr.badblock.api.database;
 
 import com.google.gson.JsonArray;
 import com.mongodb.*;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.rank.RankBean;
-import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +28,7 @@ public class RankDataManager {
                 String rankTag = (String) found.get("rankTag");
                 String rankPrefix = (String) found.get("rankPrefix");
                 String rankSuffix = (String) found.get("rankSuffix");
-                JsonArray rankPermissions = (JsonArray) found.get("rankPermissions");
+                String rankPermissions = (String) found.get("rankPermissions");
                 rankBean = new RankBean(rankID, rankName, rankPower, rankTag, rankPrefix, rankSuffix, rankPermissions);
                 return rankBean;
             } else {
@@ -64,7 +60,7 @@ public class RankDataManager {
             String rankTag = rankBean.getTag();
             String rankPrefix = rankBean.getPrefix();
             String rankSuffix = rankBean.getSuffix();
-            JsonArray rankPermissions = rankBean.getPermissions();
+            String rankPermissions = rankBean.getPermissionsJson();
 
             DBObject obj = new BasicDBObject("rankId", rankID);
             obj.put("rankName", rankName);
@@ -89,7 +85,7 @@ public class RankDataManager {
             String rankTag = rankBean.getTag();
             String rankPrefix = rankBean.getPrefix();
             String rankSuffix = rankBean.getSuffix();
-            JsonArray rankPermissions = rankBean.getPermissions();
+            String rankPermissions = rankBean.getPermissionsJson();
 
             DBObject obj = new BasicDBObject("rankId", rankID);
             DBObject found = ranks.findOne(obj);

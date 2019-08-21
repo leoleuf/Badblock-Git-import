@@ -1,8 +1,14 @@
 package fr.badblock.api.data.rank;
 
-import com.google.gson.JsonArray;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.database.RankDataManager;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class RankData {
@@ -14,7 +20,7 @@ public class RankData {
     private RankBean rankBean;
     private RankDataManager rankDataManager;
 
-    RankData(long rankId, BadBlockAPI badBlockAPI){
+    RankData(long rankId, BadBlockAPI badBlockAPI) {
         this.badBlockAPI = badBlockAPI;
         this.rankId = rankId;
         this.rankDataManager = new RankDataManager();
@@ -28,39 +34,68 @@ public class RankData {
         refreshData();
     }
 
-    public long getRankID(){
+    public long getRankID() {
         refreshIfNeeded();
         return rankBean.getRankId();
     }
 
-    public String getRankName(){
+    public String getRankName() {
         refreshIfNeeded();
         return rankBean.getRankName();
     }
 
-    public int getRankPower(){
+    public int getRankPower() {
         refreshIfNeeded();
         return rankBean.getPower();
     }
 
-    public String getRankTag(){
+    public String getRankTag() {
         refreshIfNeeded();
         return rankBean.getTag();
     }
 
-    public String getRankPrefix(){
+    public String getRankPrefix() {
         refreshIfNeeded();
         return rankBean.getPrefix();
     }
 
-    public String getRankSuffix(){
+    public String getRankSuffix() {
         refreshIfNeeded();
         return rankBean.getSuffix();
     }
 
-    public JsonArray getRankPermissions(){
+    public String getPermissionsJson() {
         refreshIfNeeded();
-        return rankBean.getPermissions();
+        return rankBean.getPermissionsJson();
+    }
+
+    public List<String> getPermissions() {
+        Type type = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        return new Gson().fromJson(getPermissionsJson(), type);
+    }
+
+    public void addPermissions(String permissions) {
+        List<String> perm = getPermissions();
+        perm.add(permissions);
+        setPermissions(perm);
+    }
+
+    public void addPermissions(List<String> permissions) {
+        List<String> perm = getPermissions();
+        perm.addAll(permissions);
+
+        setPermissions(perm);
+    }
+
+    public boolean hasPermissions(String permissions) {
+        return getPermissions().contains(permissions);
+    }
+
+    public void setPermissions(List<String> permissions) {
+        refreshData();
+        rankBean.setPermissionsJson(new Gson().toJson(permissions));
+        updateData();
     }
 
     boolean refreshData() {

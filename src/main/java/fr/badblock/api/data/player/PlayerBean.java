@@ -14,8 +14,9 @@ public class PlayerBean {
     private Timestamp firstLogin;
     private String ip;
     private Long rankId;
+    private String permissionsJson;
 
-    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, long rankId) {
+    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, long rankId, String permissionsJson) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -24,6 +25,7 @@ public class PlayerBean {
         this.firstLogin = firstLogin;
         this.ip = ip;
         this.rankId = rankId;
+        this.permissionsJson = permissionsJson;
     }
 
     public UUID getUuid() {
@@ -90,4 +92,12 @@ public class PlayerBean {
         this.rankId = groupId;
     }
 
+
+    public String getPermissionsJson() {
+        return permissionsJson;
+    }
+
+    public void setPermissionsJson(String permissionsJson) {
+        this.permissionsJson = permissionsJson;
+    }
 }

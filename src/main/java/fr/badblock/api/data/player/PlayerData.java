@@ -1,12 +1,19 @@
 package fr.badblock.api.data.player;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import fr.badblock.api.BadBlockAPI;
+import fr.badblock.api.data.rank.RankManager;
 import fr.badblock.api.database.PlayerDataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachment;
 
+import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 public class PlayerData {
@@ -18,11 +25,13 @@ public class PlayerData {
     private boolean loaded;
     private PlayerBean playerBean;
     private PlayerDataManager playerDataManager;
+    private PermissionAttachment attachment;
 
     PlayerData(String playerName, BadBlockAPI badBlockAPI) {
         this.playerName = playerName;
         this.badBlockAPI = badBlockAPI;
         this.playerDataManager = new PlayerDataManager();
+        attachment = getPlayer().addAttachment(badBlockAPI);
         playerBean = new PlayerBean(playerName,
                 null,
                 null,
@@ -30,7 +39,8 @@ public class PlayerData {
                 null,
                 null,
                 null,
-                0);
+                0,
+                null);
         refreshData();
     }
 
@@ -119,7 +129,7 @@ public class PlayerData {
     /**
      * @return l'adresse IP du joueur
      */
-    public String getIP(){
+    public String getIP() {
         refreshIfNeeded();
         return playerBean.getIp();
     }
@@ -127,7 +137,7 @@ public class PlayerData {
     /**
      * @param IP permet de définir l'adresse IP du joueur
      */
-    public void setIP(String IP){
+    public void setIP(String IP) {
         refreshData();
         playerBean.setIp(IP);
         updateData();
@@ -136,7 +146,7 @@ public class PlayerData {
     /**
      * @return l'ID du rank du joueur qui permet de get le Rank
      */
-    public Long getRankID(){
+    public Long getRankID() {
         refreshIfNeeded();
         return playerBean.getRankId();
     }
@@ -144,7 +154,7 @@ public class PlayerData {
     /**
      * @param rankID set le rank du joueur en fonction de l'id du rank voulu
      */
-    public void setRankID(long rankID){
+    public void setRankID(long rankID) {
         refreshData();
         playerBean.setRankId(rankID);
         updateData();
@@ -182,6 +192,67 @@ public class PlayerData {
     public long getCoins() {
         refreshIfNeeded();
         return playerBean.getCoins();
+    }
+
+    public String getPermissionsJson() {
+        refreshIfNeeded();
+        return playerBean.getPermissionsJson();
+    }
+
+    public List<String> getPermissions() {
+        Type type = new TypeToken<ArrayList<String>>() {
+        }.getType();
+        return new Gson().fromJson(getPermissionsJson(), type);
+    }
+
+    public void addPermissions(String permissions) {
+        List<String> perm = getPermissions();
+        perm.add(permissions);
+        setPermissions(perm);
+    }
+
+    public void addPermissions(List<String> permissions) {
+        List<String> perm = getPermissions();
+        perm.addAll(permissions);
+        setPermissions(perm);
+    }
+
+    public boolean hasPermissions(String permissions) {
+        return getPermissions().contains(permissions);
+    }
+
+    public void setBukkitPermissions() {
+
+        RankManager rankManager = new RankManager(badBlockAPI);
+        if (rankManager.getRankData(getRankID()).getPermissions() != null) {
+            rankManager.getRankData(getRankID()).getPermissions().forEach(perm -> {
+                attachment.setPermission(perm, true);
+            });
+        }
+        getPermissions().forEach(perm -> {
+            attachment.setPermission(perm, true);
+        });
+    }
+
+    public void removePermission(String perm) {
+        List<String> perms = getPermissions();
+        perms.remove(perm);
+        setPermissions(perms);
+        attachment.unsetPermission(perm);
+    }
+
+    public void removePermission(List<String> perm) {
+        List<String> perms = getPermissions();
+        perms.forEach(perm::remove);
+        setPermissions(perms);
+        perm.forEach(permission -> attachment.unsetPermission(permission));
+    }
+
+    public void setPermissions(List<String> permissions) {
+        refreshData();
+        playerBean.setPermissionsJson(new Gson().toJson(permissions));
+        setBukkitPermissions();
+        updateData();
     }
 
     /**

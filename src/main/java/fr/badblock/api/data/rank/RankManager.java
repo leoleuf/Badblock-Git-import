@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RankManager {
 
     private BadBlockAPI badBlockAPI;
-    private ConcurrentHashMap<Long, RankData> cache = new ConcurrentHashMap<>();
+    public ConcurrentHashMap<Long, RankData> cache = new ConcurrentHashMap<>();
 
     public RankManager(BadBlockAPI badBlockAPI){
         this.badBlockAPI = badBlockAPI;

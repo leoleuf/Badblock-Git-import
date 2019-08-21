@@ -32,7 +32,8 @@ public class PlayerDataManager {
                 Timestamp firstLogin = (Timestamp) found.get("firstLogin");
                 String ip = (String) found.get("ip");
                 long rankId = (Long) found.get("rankId");
-                playerBean = new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId);
+                String permissionJson = (String) found.get("permissionsJson");
+                playerBean = new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson);
                 return playerBean;
             } else {
                 this.createPlayer(playerBean);
@@ -64,6 +65,7 @@ public class PlayerDataManager {
             obj.put("firstLogin", firstLogin);
             obj.put("ip", ip);
             obj.put("rankId", rankId);
+            obj.put("permissionsJson", playerBean.getPermissionsJson());
 
             players.insert(obj);
 
@@ -97,6 +99,7 @@ public class PlayerDataManager {
             obj.put("firstLogin", firstLogin);
             obj.put("ip", ip);
             obj.put("rankId", rankId);
+            obj.put("permissionsJson", playerBean.getPermissionsJson());
             players.update(Objects.requireNonNull(found), obj);
 
         } catch (Exception e) {

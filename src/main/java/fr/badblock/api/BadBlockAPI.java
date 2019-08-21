@@ -2,7 +2,9 @@ package fr.badblock.api;
 
 import fr.badblock.api.chat.Chat;
 import fr.badblock.api.chat.ChatCommand;
+import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.rank.RankManager;
+import fr.badblock.api.database.RankDataManager;
 import fr.badblock.api.handler.Handler;
 import fr.badblock.api.handler.impl.ModuleHandler;
 import fr.badblock.api.module.Module;
@@ -25,14 +27,15 @@ public class BadBlockAPI extends JavaPlugin {
     private static BadBlockAPI instance;
     private MongoService mongoService;
     private ScheduledExecutorService scheduledExecutorService;
+    private RankManager rankManager;
 
     /* Configuration set-up */
-    String name = getConfig().getString("mongodb.name");
-    String hostname = getConfig().getString("mongodb.hostname");
-    int port = getConfig().getInt("mongodb.port");
-    String username = getConfig().getString("mongodb.username");
-    String password = getConfig().getString("mongodb.password");
-    String database = getConfig().getString("mongodb.database");
+    private String name = getConfig().getString("mongodb.name");
+    private String hostname = getConfig().getString("mongodb.hostname");
+    private int port = getConfig().getInt("mongodb.port");
+    private String username = getConfig().getString("mongodb.username");
+    private String password = getConfig().getString("mongodb.password");
+    private String database = getConfig().getString("mongodb.database");
 
     @Override
     public void onEnable() {
@@ -40,10 +43,15 @@ public class BadBlockAPI extends JavaPlugin {
         this.mongoService = new MongoService(name, new MongoSettings(hostname, port, username, password, database, 4));
         this.scheduledExecutorService = Executors.newScheduledThreadPool(32);
         moduleHandler = new ModuleHandler(this);
+        rankManager = new RankManager(this);
         enableModules();
         loadConfig();
         commandsHandler();
         listenersHandler();
+        new RankDataManager().getRankList().forEach(rank ->{
+            rankManager.loadRank(rank);
+        });
+
     }
 
     @Override

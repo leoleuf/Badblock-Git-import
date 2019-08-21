@@ -13,16 +13,17 @@ public class RankBean {
     private String tag;
     private String prefix;
     private String suffix;
-    private JsonArray permissions;
+    private String permissionsJson;
 
-    public RankBean(long rankId, String rankName, int power, String tag, String prefix, String suffix, JsonArray permissions) {
+
+    public RankBean(long rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson) {
         this.rankId = rankId;
         this.rankName = rankName;
         this.power = power;
         this.tag = tag;
         this.prefix = prefix;
         this.suffix = suffix;
-        this.permissions = permissions;
+        this.permissionsJson = permissionsJson;
     }
 
     public long getRankId() {
@@ -73,11 +74,12 @@ public class RankBean {
         this.suffix = suffix;
     }
 
-    public JsonArray getPermissions() {
-        return permissions;
+
+    public String getPermissionsJson() {
+        return permissionsJson;
     }
 
-    public void setPermissions(JsonArray permissions) {
-        this.permissions = permissions;
+    public void setPermissionsJson(String permissionsJson) {
+        this.permissionsJson = permissionsJson;
     }
 }
