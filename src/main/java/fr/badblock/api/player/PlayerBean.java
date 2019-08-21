@@ -66,15 +66,15 @@ public class PlayerBean {
         this.playerName = name;
     }
 
-    public void setNickName(String nickName) {
+    void setNickName(String nickName) {
         this.nickName = nickName;
     }
 
-    public void setCoins(int coins) {
+    void setCoins(int coins) {
         this.coins = coins;
     }
 
-    public void setLastLogin(Timestamp lastLogin) {
+    void setLastLogin(Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
@@ -82,11 +82,11 @@ public class PlayerBean {
         this.firstLogin = firstLogin;
     }
 
-    public void setIp(String ip) {
+    void setIp(String ip) {
         this.ip = ip;
     }
 
-    public void setRankId(long groupId) {
+    void setRankId(long groupId) {
         this.rankId = groupId;
     }
 

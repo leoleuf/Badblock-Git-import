@@ -23,23 +23,22 @@ public class MongoConnector extends Connector<MongoService> {
     }
 
     /**
-     * Create credentials and be back with a MongoCredentials object which is useful for some operations, like using it in different services
-     *
-     * @param name     > the name of credentials instance
-     * @param hostname > hostname, we higly recommend DNS
-     * @param port     > Mongo Cluster port, 27017 by default
-     * @param password > the password of that account
-     * @return a MongoCredentials object
+     * @param hostname définie l'hostname à utiliser
+     * @param port définie le port de mongodb
+     * @param username définie l'username de la base de donnée
+     * @param database définie la base de donnée MongoDB à choisir
+     * @param password définie le mot de passe de la base de donnée
+     * @param workerThreads définie le nombre de threads sur le quelle mongodb travail
+     * @return l'objet MongoSettings
      */
-    public MongoSettings createSettings(String hostnames, int port, String username, String database, String password, int workerThreads) {
-        return new MongoSettings(hostnames, port, username, database, password, workerThreads);
+    public MongoSettings createSettings(String hostname, int port, String username, String database, String password, int workerThreads) {
+        return new MongoSettings(hostname, port, username, database, password, workerThreads);
     }
-
     /**
      * Adding a new service
      *
-     * @param name          > name of the service
-     * @param MongoSettings > credentials
+     * @param name > nom du service
+     * @param MongoCredentials > credentials
      * @return a MongoService object ready to work
      */
     public MongoService createService(String name, MongoSettings MongoCredentials) {
