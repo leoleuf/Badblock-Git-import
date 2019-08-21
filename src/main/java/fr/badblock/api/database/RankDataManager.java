@@ -56,13 +56,6 @@ public class RankDataManager {
         return rankList;
     }
 
-    public long getAvaibleRankID() {
-        BasicDBObject basicDBObject = new BasicDBObject();
-        BasicDBObject basicDBObject1 = new BasicDBObject("_id", "1");
-        DBCursor dbCursor = ranks.find(basicDBObject1);
-        return dbCursor.length();
-    }
-
     public void createRank(RankBean rankBean) {
         try {
             long rankID = rankBean.getRankId();
