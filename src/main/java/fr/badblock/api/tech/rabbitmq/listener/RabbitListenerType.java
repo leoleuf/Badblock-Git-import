@@ -4,6 +4,6 @@ public enum RabbitListenerType
 {
 
     MESSAGE_BROKER,
-    SUBSCRIBER;
+    SUBSCRIBER
 
 }

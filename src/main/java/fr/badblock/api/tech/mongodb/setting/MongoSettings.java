@@ -1,14 +1,12 @@
 package fr.badblock.api.tech.mongodb.setting;
 
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import fr.badblock.api.tech.Settings;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MongoSettings extends Settings {
