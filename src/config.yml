@@ -7,3 +7,17 @@ mongodb:
   username: ""
   password: ""
   database: ""
+#Chat module
+chat:
+  #Set to true to enable chat, to false to disable
+  enabled: true
+  #Message when players trying to chat when disabled.
+  messageondisabled: '&cLe chat a été désactivé par un membre du Staff'
+  #Lines to clear on chat clear
+  lines: 500
+  #Message to send when the chat got cleared
+  messageonclear: '&9Le chat a été supprimé par un membre du Staff !'
+  #Message on disabling chat
+  msgdisable: '&9Vous venez de désactiver le chat !'
+  #Message on enabling chat
+  msgenable: "&9Vous venez d'activer le chat !"
