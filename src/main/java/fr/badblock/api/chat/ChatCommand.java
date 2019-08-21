@@ -13,7 +13,7 @@ public class ChatCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(sender instanceof Player){
             Player p = (Player) sender;
-            if(p.hasPermission(""))
+            if(p.hasPermission("wpmchat.admin"))
             if(label.equals("wpmchat")){
                 if(args.length == 0){
                     //TODO send help message(s)
