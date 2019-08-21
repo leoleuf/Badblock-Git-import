@@ -1,5 +1,5 @@
 ###################### Configuration File (BadBlock-MiniGame API) ######################
-#MongoDatabase connection module 
+#MongoDatabase connection module
 mongodb:
   name: "mongodb"
   hostname: ""
