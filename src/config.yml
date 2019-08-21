@@ -1,0 +1,9 @@
+###################### Configuration File (BadBlock-MiniGame API) ######################
+#MongoDatabase connection module
+mongodb:
+  name: "mongodb"
+  hostname: ""
+  port: 25565
+  username: ""
+  password: ""
+  database: ""

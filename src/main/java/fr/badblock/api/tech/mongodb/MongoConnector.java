@@ -29,7 +29,7 @@ public class MongoConnector extends Connector<MongoService> {
      * @param password > the password of that account
      * @return a MongoCredentials object
      */
-    public MongoSettings createSettings(String[] hostnames, int port, String username, String database, String password, int workerThreads) {
+    public MongoSettings createSettings(String hostnames, int port, String username, String database, String password, int workerThreads) {
         return new MongoSettings(hostnames, port, username, database, password, workerThreads);
     }
 
