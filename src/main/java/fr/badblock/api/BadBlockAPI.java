@@ -35,6 +35,7 @@ public class BadBlockAPI extends JavaPlugin {
         this.scheduledExecutorService = Executors.newScheduledThreadPool(32);
         moduleHandler = new ModuleHandler(this);
         enableModules();
+        loadConfig();
     }
 
     @Override
