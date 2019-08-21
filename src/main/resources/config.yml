@@ -7,6 +7,8 @@ mongodb:
   username: ""
   password: ""
   database: ""
+  #Collection name
+  pdatamanagercol: ""
 #Chat module
 chat:
   #Set to true to enable chat, to false to disable
