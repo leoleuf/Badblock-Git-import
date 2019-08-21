@@ -1,13 +1,16 @@
 package fr.badblock.api;
 
+import fr.badblock.api.chat.Chat;
 import fr.badblock.api.chat.ChatCommand;
 import fr.badblock.api.handler.Handler;
 import fr.badblock.api.handler.impl.ModuleHandler;
 import fr.badblock.api.module.Module;
 import fr.badblock.api.tech.mongodb.MongoService;
 import fr.badblock.api.tech.mongodb.setting.MongoSettings;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -39,6 +42,7 @@ public class BadBlockAPI extends JavaPlugin {
         enableModules();
         loadConfig();
         commandsHandler();
+        listenersHandler();
     }
 
     @Override
@@ -47,6 +51,10 @@ public class BadBlockAPI extends JavaPlugin {
     }
     public void commandsHandler(){
         getCommand("wpmchat").setExecutor(new ChatCommand());
+    }
+    public void listenersHandler(){
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new Chat(),this);
     }
 
     /* Configuration part */
