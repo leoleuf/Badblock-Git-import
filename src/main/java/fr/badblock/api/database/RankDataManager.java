@@ -28,7 +28,8 @@ public class RankDataManager {
                 String rankPrefix = (String) found.get("rankPrefix");
                 String rankSuffix = (String) found.get("rankSuffix");
                 JsonObject jsonObject = new JsonObject();
-                jsonObject.add("s", "s");
+                rankBean.getPermissions().forEach(permissions->{
+                });
                 List<JsonObject> rankPermissions;
             }else{
                 this.createRank(rankBean);
