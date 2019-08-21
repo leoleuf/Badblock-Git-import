@@ -1,5 +1,6 @@
 package fr.badblock.api.data.rank;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -12,9 +13,9 @@ public class RankBean {
     private String tag;
     private String prefix;
     private String suffix;
-    private List<JsonObject> permissions;
+    private JsonArray permissions;
 
-    public RankBean(long rankId, String rankName, int power, String tag, String prefix, String suffix, List<JsonObject> permissions) {
+    public RankBean(long rankId, String rankName, int power, String tag, String prefix, String suffix, JsonArray permissions) {
         this.rankId = rankId;
         this.rankName = rankName;
         this.power = power;
@@ -72,11 +73,11 @@ public class RankBean {
         this.suffix = suffix;
     }
 
-    public List<JsonObject> getPermissions() {
+    public JsonArray getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<JsonObject> permissions) {
+    public void setPermissions(JsonArray permissions) {
         this.permissions = permissions;
     }
 }

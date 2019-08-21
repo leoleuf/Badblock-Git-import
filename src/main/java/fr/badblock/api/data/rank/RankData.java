@@ -1,9 +1,9 @@
 package fr.badblock.api.data.rank;
 
-import com.google.gson.JsonObject;
+import com.google.gson.JsonArray;
 import fr.badblock.api.BadBlockAPI;
+import fr.badblock.api.database.RankDataManager;
 
-import java.util.List;
 
 public class RankData {
 
@@ -58,7 +58,7 @@ public class RankData {
         return rankBean.getSuffix();
     }
 
-    public List<JsonObject> getRankPermissions(){
+    public JsonArray getRankPermissions(){
         refreshIfNeeded();
         return rankBean.getPermissions();
     }

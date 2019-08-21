@@ -3,7 +3,6 @@ package fr.badblock.api.data.rank;
 import fr.badblock.api.BadBlockAPI;
 
 import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RankManager {

@@ -2,6 +2,7 @@ package fr.badblock.api;
 
 import fr.badblock.api.chat.Chat;
 import fr.badblock.api.chat.ChatCommand;
+import fr.badblock.api.data.rank.RankManager;
 import fr.badblock.api.handler.Handler;
 import fr.badblock.api.handler.impl.ModuleHandler;
 import fr.badblock.api.module.Module;
