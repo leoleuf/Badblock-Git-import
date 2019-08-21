@@ -23,7 +23,7 @@ public class MongoService extends AutoReconnector {
     private Queue<MongoMethod> queue;
     private BadBlockAPI badBlockAPI;
 
-    MongoService(String name, MongoSettings settings) {
+    public MongoService(String name, MongoSettings settings) {
         super(name, settings);
         this.setSettings(settings);
         this.setName(name);
@@ -65,7 +65,7 @@ public class MongoService extends AutoReconnector {
         return threads.stream().filter(TechThread::canHandlePacket).findAny();
     }
 
-    private DB db() {
+    public DB db() {
         return this.getDb();
     }
 

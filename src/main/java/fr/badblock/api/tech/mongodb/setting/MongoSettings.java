@@ -2,22 +2,26 @@ package fr.badblock.api.tech.mongodb.setting;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import fr.badblock.api.tech.Settings;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class MongoSettings extends Settings {
 
-    private String[] hostnames;
+    private String hostname;
     private int port;
     private String username;
     private String password;
     private String database;
     private int workerThreads;
 
-    public MongoSettings(String[] hostnames, int port, String username, String password, String database, int workerThreads) {
-        this.hostnames = hostnames;
+    public MongoSettings(String hostname, int port, String username, String password, String database, int workerThreads) {
+        this.hostname = hostname;
         this.port = port;
         this.username = username;
         this.password = password;
@@ -29,19 +33,18 @@ public class MongoSettings extends Settings {
     @Override
     public MongoClient toFactory() {
         try {
-            String[] hostnames = getHostnames();
-            int hostnameId = new Random().nextInt(hostnames.length);
-            System.out.println("mongodb://" + getUsername() + ":" + getPassword() + "@" + hostnames[hostnameId] + ":" + getPort() + "/" + getDatabase());
-            return new MongoClient(
-                    new MongoClientURI("mongodb://" + getUsername() + ":" + getPassword() + "@" + hostnames[hostnameId] + ":" + getPort() + "/" + getDatabase()));
+            ServerAddress addr = new ServerAddress(getHostname(), getPort());
+            List<MongoCredential> credentialList = new ArrayList<>();
+            credentialList.add(MongoCredential.createCredential(getUsername(), getDatabase(), getPassword().toCharArray()));
+            return new MongoClient(addr, credentialList);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private String[] getHostnames() {
-        return hostnames;
+    private String getHostname() {
+        return hostname;
     }
 
     private String getUsername() {
