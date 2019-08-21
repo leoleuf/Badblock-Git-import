@@ -13,9 +13,10 @@ import java.util.UUID;
 public class PlayerDataManager {
 
     private DBCollection players;
+    private String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.pdatamanagercol");
 
     public PlayerDataManager() {
-        this.players = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection("player");
+        this.players = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
 
     public PlayerBean getPlayer(String playerName, PlayerBean playerBean) {
