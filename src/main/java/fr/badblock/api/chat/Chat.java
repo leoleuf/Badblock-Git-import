@@ -8,12 +8,12 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class Chat implements Listener {
     @EventHandler
-    public void onChat(AsyncPlayerChatEvent e){
+    public void onChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
         /** Setting str as the string present in a config.yml file when the chat is muted **/
         String str = BadBlockAPI.getPluginInstance().getConfig().getString("chat.messageondisabled");
         /** Cancelling chat event when the chat is disabled **/
-        if(ChatUtilities.isActivated == false){
+        if (!ChatUtilities.isActivated) {
             p.sendMessage(ChatUtilities.f(str));
             e.setCancelled(true);
         } else {

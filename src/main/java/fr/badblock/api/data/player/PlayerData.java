@@ -1,4 +1,4 @@
-package fr.badblock.api.player;
+package fr.badblock.api.data.player;
 
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.database.PlayerDataManager;
@@ -11,9 +11,8 @@ import java.util.UUID;
 
 public class PlayerData {
 
-    private final BadBlockAPI badBlockAPI;
+    private BadBlockAPI badBlockAPI;
 
-    private static String key = "playerdata:";
     private long lastRefresh;
     private String playerName;
     private boolean loaded;

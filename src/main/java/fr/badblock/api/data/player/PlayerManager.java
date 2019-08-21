@@ -1,4 +1,4 @@
-package fr.badblock.api.player;
+package fr.badblock.api.data.player;
 
 import fr.badblock.api.BadBlockAPI;
 

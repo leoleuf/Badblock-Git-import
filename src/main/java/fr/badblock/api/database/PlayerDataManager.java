@@ -4,7 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import fr.badblock.api.BadBlockAPI;
-import fr.badblock.api.player.PlayerBean;
+import fr.badblock.api.data.player.PlayerBean;
 
 import java.sql.Timestamp;
 import java.util.Objects;

@@ -11,37 +11,37 @@ public class ChatCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(sender instanceof Player){
+        if (sender instanceof Player) {
             Player p = (Player) sender;
-            if(p.hasPermission("wpmchat.admin"))
-            if(label.equals("wpmchat")){
-                if(args.length == 0){
-                    //TODO send help message(s)
-                    p.sendMessage("");
-                    return true;
-                }
-                if(args[0].equalsIgnoreCase("clear")){
-                    int lines = BadBlockAPI.getPluginInstance().getConfig().getInt("chat.lines");
-                    for (int i = 0; i < lines; i++) {
-                        Bukkit.broadcastMessage(" ");
+            if (p.hasPermission("wpmchat.admin"))
+                if (label.equals("wpmchat")) {
+                    if (args.length == 0) {
+                        //TODO send help message(s)
+                        p.sendMessage("");
+                        return true;
                     }
-                    String message = BadBlockAPI.getPluginInstance().getConfig().getString(ChatUtilities.f("chat.messageonclear"));
-                    Bukkit.broadcastMessage(message);
-                    return true;
+                    if (args[0].equalsIgnoreCase("clear")) {
+                        int lines = BadBlockAPI.getPluginInstance().getConfig().getInt("chat.lines");
+                        for (int i = 0; i < lines; i++) {
+                            Bukkit.broadcastMessage(" ");
+                        }
+                        String message = BadBlockAPI.getPluginInstance().getConfig().getString(ChatUtilities.f("chat.messageonclear"));
+                        Bukkit.broadcastMessage(message);
+                        return true;
+                    }
+                    if (args[0].equalsIgnoreCase("enable")) {
+                        String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
+                        p.sendMessage(enabled);
+                        BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
+                        return true;
+                    }
+                    if (args[0].equalsIgnoreCase("disable")) {
+                        String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
+                        p.sendMessage(disabled);
+                        BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
+                        return true;
+                    }
                 }
-                if(args[0].equalsIgnoreCase("enable")){
-                    String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
-                    p.sendMessage(enabled);
-                    BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
-                    return true;
-                }
-                if(args[0].equalsIgnoreCase("disable")){
-                    String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
-                    p.sendMessage(disabled);
-                    BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
-                    return true;
-                }
-            }
         } else {
             System.out.println("[BadBlockMiniGameAPI]You have to be a player use this.");
         }
