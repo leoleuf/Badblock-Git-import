@@ -36,6 +36,7 @@ public class BadBlockAPI extends JavaPlugin {
         moduleHandler = new ModuleHandler(this);
         enableModules();
     }
+    
 
     @Override
     public void onDisable() {
