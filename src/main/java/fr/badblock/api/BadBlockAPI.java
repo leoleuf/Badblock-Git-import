@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 public class BadBlockAPI extends JavaPlugin {
-
+    /* Variables declaration */
     private List<Handler> handlers;
     private ModuleHandler moduleHandler;
     private static BadBlockAPI instance;
@@ -36,6 +36,7 @@ public class BadBlockAPI extends JavaPlugin {
 
     private PlayerManager playerManager;
     private RankManager rankManager;
+
     /* Configuration set-up */
     private String name = getConfig().getString("mongodb.name");
     private String hostname = getConfig().getString("mongodb.hostname");
@@ -67,11 +68,12 @@ public class BadBlockAPI extends JavaPlugin {
         moduleHandler.getModules().forEach(this::disableModule);
     }
 
+    /** Register commands **/
     public void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
         getCommand("rank").setExecutor(new RankCommand(this));
     }
-
+    /** Register listeners **/
     public void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Chat(), this);

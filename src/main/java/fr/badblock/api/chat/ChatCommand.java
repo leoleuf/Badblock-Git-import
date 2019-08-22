@@ -41,6 +41,10 @@ public class ChatCommand implements CommandExecutor {
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
                         return true;
                     }
+                } else {
+                    String str = BadBlockAPI.getPluginInstance().getConfig().getString("commannd.nopermission");
+                    p.sendMessage(str);
+                    return true;
                 }
         } else {
             System.out.println("[BadBlockMiniGameAPI]You have to be a player use this.");
