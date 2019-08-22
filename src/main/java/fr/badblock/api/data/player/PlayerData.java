@@ -125,7 +125,7 @@ public class PlayerData {
 
     public void setOnline(boolean stats){
         refreshData();
-        playerBean.setOnline();
+        playerBean.setOnline(stats);
         updateData();
     }
 
@@ -230,12 +230,12 @@ public class PlayerData {
     }
 
     public boolean hasPermissions(String permissions) {
-        return getPermissions().contains(permissions);
+        return getPermissions().contains(permissions) || getPermissions().contains("*");
     }
 
     public void setBukkitPermissions() {
 
-        RankManager rankManager = new RankManager(badBlockAPI);
+        RankManager rankManager = badBlockAPI.getRankManager();
         if (rankManager.getRankData(getRankID()).getPermissions() != null) {
             rankManager.getRankData(getRankID()).getPermissions().forEach(perm -> {
                 attachment.setPermission(perm, true);

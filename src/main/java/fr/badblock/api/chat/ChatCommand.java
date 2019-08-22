@@ -25,19 +25,19 @@ public class ChatCommand implements CommandExecutor {
                         for (int i = 0; i < lines; i++) {
                             Bukkit.broadcastMessage(" ");
                         }
-                        String message = BadBlockAPI.getPluginInstance().getConfig().getString(ChatUtilities.f("chat.messageonclear"));
-                        Bukkit.broadcastMessage(message);
+                        String message = BadBlockAPI.getPluginInstance().getConfig().getString("chat.messageonclear");
+                        Bukkit.broadcastMessage(ChatUtilities.f(message));
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("enable")) {
                         String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
-                        p.sendMessage(enabled);
+                        p.sendMessage(ChatUtilities.f(enabled));
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
                         return true;
                     }
                     if (args[0].equalsIgnoreCase("disable")) {
                         String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
-                        p.sendMessage(disabled);
+                        p.sendMessage(ChatUtilities.f(disabled));
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
                         return true;
                     }
