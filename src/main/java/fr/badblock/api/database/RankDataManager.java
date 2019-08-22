@@ -14,7 +14,7 @@ public class RankDataManager {
     public RankDataManager() {
         this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection("rank");
     }
-
+    /** Get Rank by ID **/
     public RankBean getRank(long rankId, RankBean rankBean) {
         try {
             DBObject dbObject = new BasicDBObject("rankId", rankId);
@@ -38,7 +38,7 @@ public class RankDataManager {
         }
         return null;
     }
-
+    /** Get Rank List **/
     public ArrayList<Long> getRankList() {
         ArrayList<Long> rankList = new ArrayList<>();
         DBCursor cursor = ranks.find();
@@ -49,7 +49,7 @@ public class RankDataManager {
         }
         return rankList;
     }
-
+    /** Create Rank **/
     public void createRank(RankBean rankBean) {
         try {
             long rankID = rankBean.getRankId();
@@ -74,7 +74,7 @@ public class RankDataManager {
             e.printStackTrace();
         }
     }
-
+    /** Update Rank **/
     public void updateRank(RankBean rankBean) {
         try {
             long rankID = rankBean.getRankId();

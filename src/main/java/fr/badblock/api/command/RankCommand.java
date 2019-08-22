@@ -17,12 +17,12 @@ import java.util.List;
 
 public class RankCommand extends AbstractCommand implements TabCompleter {
     private HashMap<Integer, List<String>> pages;
-
+    /** Get Main Class **/
     public RankCommand(BadBlockAPI badBlockAPI) {
         super(badBlockAPI);
         pages = new HashMap<>();
     }
-
+    /** Ranks command **/
     @Override
     protected boolean onCommand(CommandSender sender, String label, String[] args) {
         Player player = (Player) sender;
@@ -150,7 +150,7 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
         }
         return false;
     }
-
+    /** Help Message Book **/
     private void sendHelp(Player player, int page) {
         player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         player.sendMessage(CenteredMessage.getCenteredMessage(ChatColor.YELLOW+""+ChatColor.BOLD+"Rank Manager"));
@@ -159,7 +159,7 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
         player.sendMessage("");
         player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
     }
-
+    /** Help Message Initialization **/
     public void initPages() {
         pages.put(1, new ArrayList<>());
         pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank list " + ChatColor.GRAY + "Vous donne la listes des ranks");

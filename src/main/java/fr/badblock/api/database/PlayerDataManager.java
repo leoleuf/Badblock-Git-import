@@ -18,7 +18,7 @@ public class PlayerDataManager {
     public PlayerDataManager() {
         this.players = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
-
+    /** Get BeanPlayer and all the data **/
     public PlayerBean getPlayer(String playerName, PlayerBean playerBean) {
         try {
             DBObject dbObject = new BasicDBObject("playerName", playerName);
@@ -46,7 +46,7 @@ public class PlayerDataManager {
         }
         return null;
     }
-
+    /** Create player and data **/
     private void createPlayer(PlayerBean playerBean) {
         try {
             String name = playerBean.getPlayerName();
@@ -76,7 +76,7 @@ public class PlayerDataManager {
             e.printStackTrace();
         }
     }
-
+    /** Update player and his data **/
     public void updatePlayer(PlayerBean playerBean) {
         try {
             String name = playerBean.getPlayerName();

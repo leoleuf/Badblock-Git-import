@@ -21,6 +21,7 @@ public class SQL {
     private String table;
     private Connection connection;
 
+    /** SQL Connection Parameter Method **/
     public SQL(String baseurl, String host, String database, String username, String password, String table) {
         this.baseurl = baseurl;
         this.host = host;
@@ -29,7 +30,7 @@ public class SQL {
         this.password = password;
         this.table = table;
     }
-
+    /** Connect Method **/
     public void connection() {
         if (!isConnected()) {
             try {
@@ -39,7 +40,7 @@ public class SQL {
             }
         }
     }
-
+    /** Disconnect Method **/
     public void disconnect() {
         if (isConnected()) {
             try {
@@ -49,7 +50,7 @@ public class SQL {
             }
         }
     }
-
+    /** Check Connection **/
     public boolean isConnected() {
         try {
             if (this.connection == null || this.connection.isClosed() || this.connection.isValid(5)) {
@@ -60,7 +61,7 @@ public class SQL {
         }
         return false;
     }
-
+    /** Get the current connection **/
     private Connection getConnection() {
         return this.connection;
     }

@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 public class ChatCommand implements CommandExecutor {
 
+    /** Chat Commands **/
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -20,6 +21,7 @@ public class ChatCommand implements CommandExecutor {
                         p.sendMessage("");
                         return true;
                     }
+                    /** Chat clear **/
                     if (args[0].equalsIgnoreCase("clear")) {
                         int lines = BadBlockAPI.getPluginInstance().getConfig().getInt("chat.lines");
                         for (int i = 0; i < lines; i++) {
@@ -29,18 +31,24 @@ public class ChatCommand implements CommandExecutor {
                         Bukkit.broadcastMessage(ChatUtilities.f(message));
                         return true;
                     }
+                    /** Chat enabling **/
                     if (args[0].equalsIgnoreCase("enable")) {
                         String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
                         p.sendMessage(ChatUtilities.f(enabled));
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
                         return true;
                     }
+                    /** Chat disabling **/
                     if (args[0].equalsIgnoreCase("disable")) {
                         String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
                         p.sendMessage(ChatUtilities.f(disabled));
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
                         return true;
                     }
+                } else {
+                    String str = BadBlockAPI.getPluginInstance().getConfig().getString("commannd.nopermission");
+                    p.sendMessage(str);
+                    return true;
                 }
         } else {
             System.out.println("[BadBlockMiniGameAPI]You have to be a player use this.");

@@ -13,7 +13,7 @@ import org.bukkit.World;
 
 
 public class WorldRegeneration {
-
+    /** Replace World Method **/
     public static void replaceWorld(Boolean activate) {
         if(activate) {
             WorldRegeneration.deleteWorld("world");
@@ -26,7 +26,7 @@ public class WorldRegeneration {
             }
         }
     }
-
+    /** Copy new files into original world folder (you have to get two world files, to back-up the old world). **/
     public static void copyFolder(File src, File dest) throws IOException{
         if (src.isDirectory()) {
             if(!dest.exists()) {
@@ -54,7 +54,7 @@ public class WorldRegeneration {
             out.close();
         }
     }
-
+    /** Delete world by name **/
     public static void deleteWorld(String worldName) {
         World world = Bukkit.getWorld(worldName);
         File file = new File(worldName);
@@ -68,7 +68,7 @@ public class WorldRegeneration {
             e.printStackTrace();
         }
     }
-
+    /** Delete world File **/
     @SuppressWarnings("unused")
     private static boolean deleteWorld(File path) {
         if(path.exists()) {
