@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 public class ChatCommand implements CommandExecutor {
 
+    /** Chat Commands **/
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
@@ -20,6 +21,7 @@ public class ChatCommand implements CommandExecutor {
                         p.sendMessage("");
                         return true;
                     }
+                    /** Chat clear **/
                     if (args[0].equalsIgnoreCase("clear")) {
                         int lines = BadBlockAPI.getPluginInstance().getConfig().getInt("chat.lines");
                         for (int i = 0; i < lines; i++) {
@@ -29,12 +31,14 @@ public class ChatCommand implements CommandExecutor {
                         Bukkit.broadcastMessage(message);
                         return true;
                     }
+                    /** Chat enabling **/
                     if (args[0].equalsIgnoreCase("enable")) {
                         String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
                         p.sendMessage(enabled);
                         BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
                         return true;
                     }
+                    /** Chat disabling **/
                     if (args[0].equalsIgnoreCase("disable")) {
                         String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
                         p.sendMessage(disabled);

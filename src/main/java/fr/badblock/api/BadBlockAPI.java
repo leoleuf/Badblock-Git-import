@@ -120,17 +120,17 @@ public class BadBlockAPI extends JavaPlugin {
     private void enableModules() {
 
     }
-
+    /** Enabling Modules **/
     private void enableModule(Module module) {
         moduleHandler.addModule(module);
         getModule(module.getModuleName()).enable();
     }
-
+    /** Disabling Modules **/
     private void disableModule(Module module) {
         getModule(module.getModuleName()).disable();
         moduleHandler.removeModule(module);
     }
-
+    /** Get Modules **/
     private Module getModule(String module) {
         return ((ModuleHandler) getHandler("modules")).getModule(module);
     }
@@ -142,7 +142,7 @@ public class BadBlockAPI extends JavaPlugin {
                 .findFirst()
                 .orElse(null);
     }
-
+    /** Get MongoService **/
     public MongoService getMongoService() {
         return this.mongoService;
     }

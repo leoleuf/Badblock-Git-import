@@ -125,7 +125,7 @@ public class PlayerData {
 
     public void setOnline(boolean stats){
         refreshData();
-        playerBean.setOnline();
+        playerBean.setOnline(true);
         updateData();
     }
 

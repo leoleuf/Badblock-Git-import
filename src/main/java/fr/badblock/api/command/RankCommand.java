@@ -16,12 +16,12 @@ import java.util.List;
 
 public class RankCommand extends AbstractCommand implements TabCompleter {
     private HashMap<Integer, List<String>> pages;
-
+    /** Get Main Class **/
     public RankCommand(BadBlockAPI badBlockAPI) {
         super(badBlockAPI);
         pages = new HashMap<>();
     }
-
+    /** Ranks command **/
     @Override
     protected boolean onCommand(CommandSender sender, String label, String[] args) {
         Player player = (Player) sender;
@@ -151,7 +151,7 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
         }
         return false;
     }
-
+    /** Help Message Book **/
     private void sendHelp(Player player, int page) {
         player.sendMessage("§c      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         player.sendMessage(CenteredMessage.getCenteredMessage("§e§lRank Manager"));
@@ -160,7 +160,7 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
         player.sendMessage("");
         player.sendMessage("§c      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
     }
-
+    /** Help Message Initialization **/
     public void initPages() {
         pages.put(1, new ArrayList<>());
         pages.get(1).add("§6◆ §b/rank list §7Vous donne la listes des ranks");
