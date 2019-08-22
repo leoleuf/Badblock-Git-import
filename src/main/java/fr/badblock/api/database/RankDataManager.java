@@ -1,12 +1,10 @@
 package fr.badblock.api.database;
 
-import com.google.gson.JsonArray;
 import com.mongodb.*;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.rank.RankBean;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class RankDataManager {

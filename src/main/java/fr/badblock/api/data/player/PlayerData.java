@@ -40,7 +40,8 @@ public class PlayerData {
                 null,
                 null,
                 0,
-                null);
+                null,
+                false);
         refreshData();
     }
 
@@ -115,6 +116,17 @@ public class PlayerData {
     public Date getLastLogin() {
         refreshIfNeeded();
         return playerBean.getLastLogin();
+    }
+
+    public boolean isOnline(){
+        refreshIfNeeded();
+        return playerBean.isOnline();
+    }
+
+    public void setOnline(boolean stats){
+        refreshData();
+        playerBean.setOnline();
+        updateData();
     }
 
     /**

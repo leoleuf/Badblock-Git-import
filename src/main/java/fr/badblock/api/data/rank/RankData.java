@@ -98,6 +98,54 @@ public class RankData {
         updateData();
     }
 
+    public void removePermission(String perm) {
+        List<String> perms = getPermissions();
+        perms.remove(perm);
+        setPermissions(perms);
+    }
+
+    public void removePermission(List<String> perm) {
+        List<String> perms = getPermissions();
+        perms.forEach(perm::remove);
+        setPermissions(perms);
+    }
+
+    public void setRankID(long rankId) {
+        refreshData();
+        rankBean.setRankId(rankId);
+        updateData();
+    }
+
+    public void setRankName(String rankName) {
+        refreshData();
+        rankBean.setRankName(rankName);
+        updateData();
+    }
+
+    public void setPower(int power) {
+        refreshData();
+        rankBean.setPower(power);
+        updateData();
+    }
+
+    public void setTag(String tag) {
+        refreshData();
+        rankBean.setTag(tag);
+        updateData();
+    }
+
+    public void setPrefix(String prefix) {
+        refreshData();
+        rankBean.setPrefix(prefix);
+        updateData();
+    }
+
+    public void setSuffix(String suffix) {
+        refreshData();
+        rankBean.setSuffix(suffix);
+        updateData();
+    }
+
     boolean refreshData() {
         lastRefresh = System.currentTimeMillis();
         try {

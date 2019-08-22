@@ -29,3 +29,16 @@ chat:
   msgdisable: '&9Vous venez de désactiver le chat !'
   #Message on enabling chat
   msgenable: "&9Vous venez d'activer le chat !"
+commannd:
+  nopermission: "&cVous n'avez pas la permission !"
+rank:
+  noexist: "&cCe grade n'existe pas !"
+  setperm: "&cLa permission a bien été ajouté !"
+  delperm: "&cLa permissions a bien été supprimé !"
+  playernoexist: "&cCe joueur n'existe pas, création de celui ci !"
+  setpower: "&cLe power a bien été mis à jour."
+  settag: "&cLe tag a bien été mis à jour."
+  setprefix: "&cLe prefix a bien été mis à jour."
+  setsuffix: "&cLe suffix a bien été mis à jour."
+  alreadyexist: "&cErreur, le rank existe déjà !"
+  create: "&cLe rank a été crée avec succées !"

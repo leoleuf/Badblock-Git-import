@@ -2,8 +2,11 @@ package fr.badblock.api;
 
 import fr.badblock.api.chat.Chat;
 import fr.badblock.api.chat.ChatCommand;
+import fr.badblock.api.command.RankCommand;
 import fr.badblock.api.data.player.PlayerData;
+import fr.badblock.api.data.player.PlayerManager;
 import fr.badblock.api.data.rank.RankManager;
+import fr.badblock.api.database.PlayerDataManager;
 import fr.badblock.api.database.RankDataManager;
 import fr.badblock.api.handler.Handler;
 import fr.badblock.api.handler.impl.ModuleHandler;
@@ -27,8 +30,12 @@ public class BadBlockAPI extends JavaPlugin {
     private static BadBlockAPI instance;
     private MongoService mongoService;
     private ScheduledExecutorService scheduledExecutorService;
-    private RankManager rankManager;
 
+    private PlayerDataManager playerDataManager;
+    private RankDataManager rankDataManager;
+
+    private PlayerManager playerManager;
+    private RankManager rankManager;
     /* Configuration set-up */
     private String name = getConfig().getString("mongodb.name");
     private String hostname = getConfig().getString("mongodb.hostname");
@@ -43,14 +50,15 @@ public class BadBlockAPI extends JavaPlugin {
         this.mongoService = new MongoService(name, new MongoSettings(hostname, port, username, password, database, 4));
         this.scheduledExecutorService = Executors.newScheduledThreadPool(32);
         moduleHandler = new ModuleHandler(this);
-        rankManager = new RankManager(this);
         enableModules();
         loadConfig();
         commandsHandler();
         listenersHandler();
-        new RankDataManager().getRankList().forEach(rank ->{
-            rankManager.loadRank(rank);
-        });
+        rankDataManager = new RankDataManager();
+        playerDataManager = new PlayerDataManager();
+        playerManager = new PlayerManager(this);
+        rankManager = new RankManager(this);
+        rankDataManager.getRankList().forEach(rank -> rankManager.loadRank(rank));
 
     }
 
@@ -58,16 +66,19 @@ public class BadBlockAPI extends JavaPlugin {
     public void onDisable() {
         moduleHandler.getModules().forEach(this::disableModule);
     }
-    public void commandsHandler(){
+
+    public void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
+        getCommand("rank").setExecutor(new RankCommand(this));
     }
-    public void listenersHandler(){
+
+    public void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new Chat(),this);
+        pm.registerEvents(new Chat(), this);
     }
 
     /* Configuration part */
-    public void loadConfig(){
+    public void loadConfig() {
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
     }
@@ -82,8 +93,24 @@ public class BadBlockAPI extends JavaPlugin {
         return instance;
     }
 
-    public ScheduledExecutorService getScheduledExecutorService(){
+    public ScheduledExecutorService getScheduledExecutorService() {
         return scheduledExecutorService;
+    }
+
+    public PlayerDataManager getPlayerDataManager(){
+        return playerDataManager;
+    }
+
+    public RankDataManager getRankDataManager(){
+        return rankDataManager;
+    }
+
+    public PlayerManager getPlayerManager(){
+        return playerManager;
+    }
+
+    public RankManager getRankManager(){
+        return rankManager;
     }
 
     /* MODULE SECTION */
@@ -114,7 +141,7 @@ public class BadBlockAPI extends JavaPlugin {
                 .orElse(null);
     }
 
-    public MongoService getMongoService(){
+    public MongoService getMongoService() {
         return this.mongoService;
     }
 

@@ -1,9 +1,5 @@
 package fr.badblock.api.data.rank;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import java.util.List;
 
 public class RankBean {
 

@@ -34,7 +34,9 @@ public class PlayerManager {
 
         PlayerData data = cache.get(playerName);
         if (data == null) {
-            badBlockAPI.getLogger().info("[BadBlockAPI] PlayerManager - " + playerName + " n'est pas dans le cache !");
+            loadPlayer(playerName);
+            badBlockAPI.getLogger().info("[BadBlockAPI] PlayerManager - " + playerName + " n'est pas dans le cache ! Mise en cache temporaire.");
+            return getPlayerData(playerName);
         }
         if (forceRefresh) {
             Objects.requireNonNull(data).refreshData();

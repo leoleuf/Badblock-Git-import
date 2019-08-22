@@ -15,8 +15,9 @@ public class PlayerBean {
     private String ip;
     private Long rankId;
     private String permissionsJson;
+    private boolean online;
 
-    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, long rankId, String permissionsJson) {
+    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, long rankId, String permissionsJson, boolean online) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -26,6 +27,7 @@ public class PlayerBean {
         this.ip = ip;
         this.rankId = rankId;
         this.permissionsJson = permissionsJson;
+        this.online = online;
     }
 
     public UUID getUuid() {
@@ -99,5 +101,13 @@ public class PlayerBean {
 
     public void setPermissionsJson(String permissionsJson) {
         this.permissionsJson = permissionsJson;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 }
