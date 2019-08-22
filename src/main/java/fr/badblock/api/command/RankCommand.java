@@ -5,6 +5,7 @@ import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.rank.RankBean;
 import fr.badblock.api.data.rank.RankData;
 import fr.badblock.api.utils.CenteredMessage;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -73,7 +74,6 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
                     PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(playerName);
                     playerData.setRankID(rankData.getRankID());
                 }
-
 
             }
         } else if (asize == 4) {
@@ -147,25 +147,24 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
                 badBlockAPI.getRankManager().loadRank(rankId);
                 player.sendMessage(badBlockAPI.getConfig().getString("rank.create"));
             }
-
         }
         return false;
     }
     /** Help Message Book **/
     private void sendHelp(Player player, int page) {
-        player.sendMessage("§c      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
-        player.sendMessage(CenteredMessage.getCenteredMessage("§e§lRank Manager"));
+        player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        player.sendMessage(CenteredMessage.getCenteredMessage(ChatColor.YELLOW+""+ChatColor.BOLD+"Rank Manager"));
         player.sendMessage("");
         pages.get(page).forEach(player::sendMessage);
         player.sendMessage("");
-        player.sendMessage("§c      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
+        player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
     }
     /** Help Message Initialization **/
     public void initPages() {
         pages.put(1, new ArrayList<>());
-        pages.get(1).add("§6◆ §b/rank list §7Vous donne la listes des ranks");
-        pages.get(1).add("§6◆ §b/rank set <player> <rank> §7Permet de mettre un grade à un joueur");
-        pages.get(1).add("§6◆ §b/rank remove <player> <rank> §7Permet de retirer un grade à un joueur");
+        pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank list " + ChatColor.GRAY + "Vous donne la listes des ranks");
+        pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank set <player> <rank> " + ChatColor.GRAY + "Permet de mettre un grade à un joueur");
+        pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank remove <player> <rank> " + ChatColor.GRAY + "Permet de retirer un grade à un joueur");
     }
 
     @Override

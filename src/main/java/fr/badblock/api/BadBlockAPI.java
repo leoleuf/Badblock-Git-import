@@ -48,13 +48,13 @@ public class BadBlockAPI extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        this.mongoService = new MongoService(name, new MongoSettings(hostname, port, username, password, database, 4));
         this.scheduledExecutorService = Executors.newScheduledThreadPool(32);
         moduleHandler = new ModuleHandler(this);
         enableModules();
         loadConfig();
         commandsHandler();
         listenersHandler();
+        this.mongoService = new MongoService(name, new MongoSettings(hostname, port, username, password, database, 4));
         rankDataManager = new RankDataManager();
         playerDataManager = new PlayerDataManager();
         playerManager = new PlayerManager(this);
