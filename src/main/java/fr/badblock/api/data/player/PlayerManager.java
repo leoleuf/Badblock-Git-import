@@ -2,8 +2,6 @@ package fr.badblock.api.data.player;
 
 import fr.badblock.api.BadBlockAPI;
 
-import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerManager {

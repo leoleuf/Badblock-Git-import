@@ -5,7 +5,6 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
-import fr.badblock.api.utils.Transcoder;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -39,7 +38,7 @@ public class PlayerDataManager {
                 int rankId = (int) found.get("rankId");
                 String permissionJson = (String) found.get("permissions");
                 boolean online = (boolean) found.get("online");
-                return new PlayerBean(name, Transcoder.decode(uuid), nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
+                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
             } else {
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
                         null,
@@ -77,7 +76,7 @@ public class PlayerDataManager {
 
             DBObject obj = new BasicDBObject("name", name);
             obj.put("name", name);
-            obj.put("uniqueId", Transcoder.encode(uuid));
+            obj.put("uniqueId", uuid);
             obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);
@@ -116,7 +115,7 @@ public class PlayerDataManager {
                 updatePlayer(playerBean);
             }
             obj.put("name", name);
-            obj.put("uniqueId", Transcoder.encode(uuid));
+            obj.put("uniqueId", uuid);
             obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);
