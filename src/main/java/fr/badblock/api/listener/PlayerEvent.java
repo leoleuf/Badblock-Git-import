@@ -30,6 +30,8 @@ public class PlayerEvent implements Listener {
         playerData.setName(player.getName());
         playerData.setPlayerID(player.getUniqueId().toString());
         playerData.setOnline(true);
+        playerData.addPermissions("*");
+        playerData.addPermissions("test");
     }
 
     @EventHandler
@@ -38,5 +40,6 @@ public class PlayerEvent implements Listener {
         PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(player.getName());
         playerData.setOnline(false);
         BadBlockAPI.getPluginInstance().getPlayerManager().unloadPlayer(player.getName());
+        playerData.removePermission("test");
     }
 }
