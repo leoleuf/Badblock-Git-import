@@ -14,12 +14,12 @@ public class RankData {
 
     private BadBlockAPI badBlockAPI;
     private long lastRefresh;
-    private long rankId;
+    private int rankId;
     private boolean loaded;
     private RankBean rankBean;
     private RankDataManager rankDataManager;
 
-    RankData(long rankId, BadBlockAPI badBlockAPI) {
+    RankData(int rankId, BadBlockAPI badBlockAPI) {
         this.badBlockAPI = badBlockAPI;
         this.rankId = rankId;
         this.rankDataManager = new RankDataManager();
@@ -33,7 +33,7 @@ public class RankData {
         refreshData();
     }
 
-    public long getRankID() {
+    public int getRankID() {
         refreshIfNeeded();
         return rankBean.getRankId();
     }
@@ -109,7 +109,7 @@ public class RankData {
         setPermissions(perms);
     }
 
-    public void setRankID(long rankId) {
+    public void setRankID(int rankId) {
         refreshData();
         rankBean.setRankId(rankId);
         updateData();

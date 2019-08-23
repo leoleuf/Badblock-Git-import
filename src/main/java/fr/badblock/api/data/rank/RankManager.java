@@ -8,17 +8,17 @@ import java.util.concurrent.ConcurrentHashMap;
 public class RankManager {
 
     private BadBlockAPI badBlockAPI;
-    public ConcurrentHashMap<Long, RankData> cache = new ConcurrentHashMap<>();
+    public ConcurrentHashMap<Integer, RankData> cache = new ConcurrentHashMap<>();
 
     public RankManager(BadBlockAPI badBlockAPI){
         this.badBlockAPI = badBlockAPI;
     }
 
-    public RankData getRankData(long rankId){
+    public RankData getRankData(int rankId){
         return getRankData(rankId, false);
     }
 
-    private RankData getRankData(long rankId, boolean forceRefresh){
+    private RankData getRankData(int rankId, boolean forceRefresh){
         if(rankId < 0){
             throw new NullPointerException("[BadBlockAPI] RankManager - L'objet rankId ne peut être négatif !");
         }
@@ -44,7 +44,7 @@ public class RankManager {
         return null;
     }
 
-    public void loadRank(long rankId) {
+    public void loadRank(int rankId) {
         try {
             RankData rankData = new RankData(rankId, badBlockAPI);
             cache.put(rankId, rankData);
@@ -53,7 +53,7 @@ public class RankManager {
         }
     }
 
-    public void unloadRank(long rankId) {
+    public void unloadRank(int rankId) {
         if (cache.containsKey(rankId))
             cache.get(rankId).updateData();
 

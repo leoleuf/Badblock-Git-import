@@ -13,11 +13,11 @@ public class PlayerBean {
     private Timestamp lastLogin;
     private Timestamp firstLogin;
     private String ip;
-    private Long rankId;
+    private int rankId;
     private String permissionsJson;
     private boolean online;
 
-    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, long rankId, String permissionsJson, boolean online) {
+    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -58,7 +58,7 @@ public class PlayerBean {
         return this.ip;
     }
 
-    public long getRankId() {
+    public int getRankId() {
         return this.rankId;
     }
 
@@ -90,7 +90,7 @@ public class PlayerBean {
         this.ip = ip;
     }
 
-    void setRankId(long groupId) {
+    void setRankId(int groupId) {
         this.rankId = groupId;
     }
 

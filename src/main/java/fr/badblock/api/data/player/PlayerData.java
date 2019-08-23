@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.rank.RankManager;
 import fr.badblock.api.database.PlayerDataManager;
+import fr.badblock.api.utils.UUIDFetcher;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
@@ -27,19 +28,19 @@ public class PlayerData {
     private PlayerDataManager playerDataManager;
     private PermissionAttachment attachment;
 
-    PlayerData(String playerName, BadBlockAPI badBlockAPI) {
+    protected PlayerData(String playerName, BadBlockAPI badBlockAPI) {
         this.playerName = playerName.toLowerCase();
         this.badBlockAPI = badBlockAPI;
         this.playerDataManager = new PlayerDataManager();
         attachment = getPlayer().addAttachment(badBlockAPI);
-        playerBean = new PlayerBean(playerName,
-                null,
-                null,
-                0,
-                null,
-                null,
+        this.playerBean = new PlayerBean(playerName.toLowerCase(),
+                UUID.fromString(UUIDFetcher.getUuid(playerName.toLowerCase())),
                 null,
                 0,
+                new Timestamp(System.currentTimeMillis()),
+                new Timestamp(System.currentTimeMillis()),
+                null,
+                1,
                 null,
                 false);
         refreshData();
@@ -158,7 +159,7 @@ public class PlayerData {
     /**
      * @return l'ID du rank du joueur qui permet de get le Rank
      */
-    public Long getRankID() {
+    public int getRankID() {
         refreshIfNeeded();
         return playerBean.getRankId();
     }
@@ -166,7 +167,7 @@ public class PlayerData {
     /**
      * @param rankID set le rank du joueur en fonction de l'id du rank voulu
      */
-    public void setRankID(long rankID) {
+    public void setRankID(int rankID) {
         refreshData();
         playerBean.setRankId(rankID);
         updateData();

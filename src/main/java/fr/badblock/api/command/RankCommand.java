@@ -138,7 +138,7 @@ public class RankCommand implements CommandExecutor {
                 player.sendMessage(badBlockAPI.getConfig().getString("rank.alreadyexist"));
                 return false;
             } else {
-                long rankId = badBlockAPI.getRankDataManager().getRankList().size() + 1;
+                int rankId = badBlockAPI.getRankDataManager().getRankList().size() + 1;
                 badBlockAPI.getRankDataManager().createRank(new RankBean(rankId,
                         rankName,
                         rankPower,

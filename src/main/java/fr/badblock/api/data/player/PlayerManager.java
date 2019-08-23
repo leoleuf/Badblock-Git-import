@@ -39,11 +39,11 @@ public class PlayerManager {
             return getPlayerData(playerName);
         }
         if (forceRefresh) {
-            Objects.requireNonNull(data).refreshData();
+            data.refreshData();
             return data;
         }
 
-        Objects.requireNonNull(data).refreshIfNeeded();
+        data.refreshIfNeeded();
         return data;
     }
 

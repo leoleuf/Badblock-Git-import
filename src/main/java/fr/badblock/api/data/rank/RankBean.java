@@ -3,7 +3,7 @@ package fr.badblock.api.data.rank;
 
 public class RankBean {
 
-    private long rankId;
+    private int rankId;
     private String rankName;
     private int power;
     private String tag;
@@ -12,7 +12,7 @@ public class RankBean {
     private String permissionsJson;
 
 
-    public RankBean(long rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson) {
+    public RankBean(int rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson) {
         this.rankId = rankId;
         this.rankName = rankName;
         this.power = power;
@@ -22,11 +22,11 @@ public class RankBean {
         this.permissionsJson = permissionsJson;
     }
 
-    public long getRankId() {
+    public int getRankId() {
         return rankId;
     }
 
-    public void setRankId(long rankId) {
+    public void setRankId(int rankId) {
         this.rankId = rankId;
     }
 

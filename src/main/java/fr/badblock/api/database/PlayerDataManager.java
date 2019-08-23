@@ -18,24 +18,26 @@ public class PlayerDataManager {
     public PlayerDataManager() {
         this.players = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
-    /** Get BeanPlayer and all the data **/
+
+    /**
+     * Get BeanPlayer and all the data
+     **/
     public PlayerBean getPlayer(String playerName, PlayerBean playerBean) {
         try {
-            DBObject dbObject = new BasicDBObject("playerName", playerName);
+            DBObject dbObject = new BasicDBObject("name", playerName);
             DBObject found = players.findOne(dbObject);
             if (found != null) {
-                String name = (String) found.get("playerName");
-                UUID uuid = (UUID) found.get("playerUUID");
-                String nickName = (String) found.get("nickName");
+                String name = (String) found.get("name");
+                UUID uuid = (UUID) found.get("uniqueId");
+                String nickName = (String) found.get("nickname");
                 int coins = (int) found.get("coins");
                 Timestamp lastLogin = (Timestamp) found.get("lastLogin");
                 Timestamp firstLogin = (Timestamp) found.get("firstLogin");
-                String ip = (String) found.get("ip");
-                long rankId = (Long) found.get("rankId");
-                String permissionJson = (String) found.get("permissionsJson");
+                String ip = (String) found.get("lastIp");
+                int rankId = (int) found.get("rankId");
+                String permissionJson = (String) found.get("permissions");
                 boolean online = (boolean) found.get("online");
-                playerBean = new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
-                return playerBean;
+                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
             } else {
                 this.createPlayer(playerBean);
                 return this.getPlayer(playerName, playerBean);
@@ -46,9 +48,13 @@ public class PlayerDataManager {
         }
         return null;
     }
-    /** Create player and data **/
+
+    /**
+     * Create player and data
+     **/
     private void createPlayer(PlayerBean playerBean) {
         try {
+            System.out.println(playerBean.getPlayerName());
             String name = playerBean.getPlayerName();
             UUID uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
@@ -56,17 +62,18 @@ public class PlayerDataManager {
             Timestamp lastLogin = playerBean.getLastLogin();
             Timestamp firstLogin = playerBean.getFirstLogin();
             String ip = playerBean.getIp();
-            long rankId = playerBean.getRankId();
+            int rankId = playerBean.getRankId();
 
-            DBObject obj = new BasicDBObject("playerName", name);
-            obj.put("playerUUID", uuid);
-            obj.put("nickName", nickName);
+            DBObject obj = new BasicDBObject("name", name);
+            obj.put("name", name);
+            obj.put("uniqueId", uuid);
+            obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);
             obj.put("firstLogin", firstLogin);
-            obj.put("ip", ip);
+            obj.put("lastIp", ip);
             obj.put("rankId", rankId);
-            obj.put("permissionsJson", playerBean.getPermissionsJson());
+            obj.put("permissions", playerBean.getPermissionsJson());
             obj.put("online", playerBean.isOnline());
 
             players.insert(obj);
@@ -76,7 +83,10 @@ public class PlayerDataManager {
             e.printStackTrace();
         }
     }
-    /** Update player and his data **/
+
+    /**
+     * Update player and his data
+     **/
     public void updatePlayer(PlayerBean playerBean) {
         try {
             String name = playerBean.getPlayerName();
@@ -86,22 +96,23 @@ public class PlayerDataManager {
             Timestamp lastLogin = playerBean.getLastLogin();
             Timestamp firstLogin = playerBean.getFirstLogin();
             String ip = playerBean.getIp();
-            long rankId = playerBean.getRankId();
+            int rankId = playerBean.getRankId();
 
-            DBObject obj = new BasicDBObject("playerName", name);
+            DBObject obj = new BasicDBObject("name", name);
             DBObject found = players.findOne(obj);
             if (found == null) {
                 this.createPlayer(playerBean);
                 updatePlayer(playerBean);
             }
-            obj.put("playerUUID", uuid);
-            obj.put("nickName", nickName);
+            obj.put("name", name);
+            obj.put("uniqueId", uuid);
+            obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);
             obj.put("firstLogin", firstLogin);
-            obj.put("ip", ip);
+            obj.put("lastIp", ip);
             obj.put("rankId", rankId);
-            obj.put("permissionsJson", playerBean.getPermissionsJson());
+            obj.put("permissions", playerBean.getPermissionsJson());
             obj.put("online", playerBean.isOnline());
             players.update(Objects.requireNonNull(found), obj);
 

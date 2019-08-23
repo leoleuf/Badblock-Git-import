@@ -16,12 +16,12 @@ public class RankDataManager {
         this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
     /** Get Rank by ID **/
-    public RankBean getRank(long rankId, RankBean rankBean) {
+    public RankBean getRank(int rankId, RankBean rankBean) {
         try {
             DBObject dbObject = new BasicDBObject("rankId", rankId);
             DBObject found = ranks.findOne(dbObject);
             if (found != null) {
-                long rankID = (long) found.get("rankdId");
+                int rankID = (int) found.get("rankId");
                 String rankName = (String) found.get("rankName");
                 int rankPower = (int) found.get("rankPower");
                 String rankTag = (String) found.get("rankTag");
@@ -40,12 +40,12 @@ public class RankDataManager {
         return null;
     }
     /** Get Rank List **/
-    public ArrayList<Long> getRankList() {
-        ArrayList<Long> rankList = new ArrayList<>();
+    public ArrayList<Integer> getRankList() {
+        ArrayList<Integer> rankList = new ArrayList<>();
         DBCursor cursor = ranks.find();
         while (cursor.hasNext()) {
             DBObject dbObject = cursor.next();
-            long id = (Long) dbObject.get("rankId");
+            int id = (int) dbObject.get("rankId");
             rankList.add(id);
         }
         return rankList;
@@ -53,7 +53,7 @@ public class RankDataManager {
     /** Create Rank **/
     public void createRank(RankBean rankBean) {
         try {
-            long rankID = rankBean.getRankId();
+            int rankID = rankBean.getRankId();
             String rankName = rankBean.getRankName();
             int rankPower = rankBean.getPower();
             String rankTag = rankBean.getTag();
@@ -78,7 +78,7 @@ public class RankDataManager {
     /** Update Rank **/
     public void updateRank(RankBean rankBean) {
         try {
-            long rankID = rankBean.getRankId();
+            int rankID = rankBean.getRankId();
             String rankName = rankBean.getRankName();
             int rankPower = rankBean.getPower();
             String rankTag = rankBean.getTag();
