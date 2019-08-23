@@ -5,6 +5,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
+import fr.badblock.api.utils.Transcoder;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -29,7 +30,7 @@ public class PlayerDataManager {
             DBObject found = players.findOne(dbObject);
             if (found != null) {
                 String name = (String) found.get("name");
-                UUID uuid = (UUID) found.get("uniqueId");
+                String uuid = (String) found.get("uniqueId");
                 String nickName = (String) found.get("nickname");
                 int coins = (int) found.get("coins");
                 Date lastLogin = (Date) found.get("lastLogin");
@@ -38,7 +39,7 @@ public class PlayerDataManager {
                 int rankId = (int) found.get("rankId");
                 String permissionJson = (String) found.get("permissions");
                 boolean online = (boolean) found.get("online");
-                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
+                return new PlayerBean(name, Transcoder.decode(uuid), nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
             } else {
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
                         null,
@@ -66,7 +67,7 @@ public class PlayerDataManager {
         System.out.println(playerBean.getPlayerName());
         try {
             String name = playerBean.getPlayerName();
-            UUID uuid = playerBean.getUuid();
+            String uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
             int coins = playerBean.getCoins();
             Date lastLogin = playerBean.getLastLogin();
@@ -76,7 +77,7 @@ public class PlayerDataManager {
 
             DBObject obj = new BasicDBObject("name", name);
             obj.put("name", name);
-            obj.put("uniqueId", uuid);
+            obj.put("uniqueId", Transcoder.encode(uuid));
             obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);
@@ -100,7 +101,7 @@ public class PlayerDataManager {
     public void updatePlayer(PlayerBean playerBean) {
         try {
             String name = playerBean.getPlayerName();
-            UUID uuid = playerBean.getUuid();
+            String uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
             int coins = playerBean.getCoins();
             Date lastLogin = playerBean.getLastLogin();
@@ -115,7 +116,7 @@ public class PlayerDataManager {
                 updatePlayer(playerBean);
             }
             obj.put("name", name);
-            obj.put("uniqueId", uuid);
+            obj.put("uniqueId", Transcoder.encode(uuid));
             obj.put("nickname", nickName);
             obj.put("coins", coins);
             obj.put("lastLogin", lastLogin);

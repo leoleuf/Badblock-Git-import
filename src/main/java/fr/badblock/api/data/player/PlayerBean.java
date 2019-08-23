@@ -8,7 +8,7 @@ public class PlayerBean {
 
 
     private String playerName;
-    private UUID uuid;
+    private String uuid;
     private String nickName;
     private int coins;
     private Date lastLogin;
@@ -18,7 +18,7 @@ public class PlayerBean {
     private String permissionsJson;
     private boolean online;
 
-    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Date lastLogin, Date firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
+    public PlayerBean(String playerName, String uuid, String nickName, int coins, Date lastLogin, Date firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -31,7 +31,7 @@ public class PlayerBean {
         this.online = online;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return this.uuid;
     }
 
@@ -63,7 +63,7 @@ public class PlayerBean {
         return this.rankId;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
