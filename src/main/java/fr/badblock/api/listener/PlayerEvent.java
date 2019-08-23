@@ -28,7 +28,7 @@ public class PlayerEvent implements Listener {
         Player player = event.getPlayer();
         PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(player.getName());
         playerData.setName(player.getName());
-        playerData.setPlayerID(player.getUniqueId());
+        playerData.setPlayerID(player.getUniqueId().toString());
         playerData.setOnline(true);
     }
 
