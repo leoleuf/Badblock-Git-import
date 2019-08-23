@@ -50,7 +50,7 @@ public class PlayerData {
      */
     public Player getPlayer() {
         refreshIfNeeded();
-        return (Player) Bukkit.getOfflinePlayer(playerName);
+        return Bukkit.getPlayer(playerName);
     }
 
     /**
