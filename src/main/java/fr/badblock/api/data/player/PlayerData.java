@@ -31,7 +31,6 @@ public class PlayerData {
         this.playerName = playerName.toLowerCase();
         this.badBlockAPI = badBlockAPI;
         this.playerDataManager = new PlayerDataManager();
-        attachment = getPlayer().addAttachment(badBlockAPI);
         this.playerBean = new PlayerBean(playerName.toLowerCase(),
                 null,
                 null,
@@ -246,7 +245,7 @@ public class PlayerData {
     }
 
     public void setBukkitPermissions() {
-
+        attachment = getPlayer().addAttachment(badBlockAPI);
         RankManager rankManager = badBlockAPI.getRankManager();
         if (rankManager.getRankData(getRankID()).getPermissions() != null) {
             rankManager.getRankData(getRankID()).getPermissions().forEach(perm -> {
