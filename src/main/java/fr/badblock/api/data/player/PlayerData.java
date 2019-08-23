@@ -68,7 +68,7 @@ public class PlayerData {
 
     public void setName(String name){
         refreshData();
-        playerBean.setPlayerName(name);
+        playerBean.setPlayerName(name.toLowerCase());
         updateData();
     }
 
