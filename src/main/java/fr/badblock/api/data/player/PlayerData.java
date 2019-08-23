@@ -36,8 +36,8 @@ public class PlayerData {
                 null,
                 null,
                 0,
-                new Timestamp(System.currentTimeMillis()),
-                new Timestamp(System.currentTimeMillis()),
+                new Date(System.currentTimeMillis()),
+                new Date(System.currentTimeMillis()),
                 null,
                 1,
                 null,
@@ -146,7 +146,7 @@ public class PlayerData {
      */
     public void setLastLogin() {
         refreshData();
-        playerBean.setLastLogin(new Timestamp(System.currentTimeMillis()));
+        playerBean.setLastLogin(new Date(System.currentTimeMillis()));
         updateData();
     }
 

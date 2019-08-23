@@ -1,6 +1,7 @@
 package fr.badblock.api.data.player;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 public class PlayerBean {
@@ -10,14 +11,14 @@ public class PlayerBean {
     private UUID uuid;
     private String nickName;
     private int coins;
-    private Timestamp lastLogin;
-    private Timestamp firstLogin;
+    private Date lastLogin;
+    private Date firstLogin;
     private String ip;
     private int rankId;
     private String permissionsJson;
     private boolean online;
 
-    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Timestamp lastLogin, Timestamp firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
+    public PlayerBean(String playerName, UUID uuid, String nickName, int coins, Date lastLogin, Date firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -46,11 +47,11 @@ public class PlayerBean {
         return this.coins;
     }
 
-    public Timestamp getLastLogin() {
+    public Date getLastLogin() {
         return this.lastLogin;
     }
 
-    public Timestamp getFirstLogin() {
+    public Date getFirstLogin() {
         return this.firstLogin;
     }
 
@@ -78,11 +79,11 @@ public class PlayerBean {
         this.coins = coins;
     }
 
-    void setLastLogin(Timestamp lastLogin) {
+    void setLastLogin(Date lastLogin) {
         this.lastLogin = lastLogin;
     }
 
-    public void setFirstLogin(Timestamp firstLogin) {
+    public void setFirstLogin(Date firstLogin) {
         this.firstLogin = firstLogin;
     }
 

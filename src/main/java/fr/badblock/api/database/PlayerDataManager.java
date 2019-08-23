@@ -7,6 +7,7 @@ import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -31,8 +32,8 @@ public class PlayerDataManager {
                 UUID uuid = (UUID) found.get("uniqueId");
                 String nickName = (String) found.get("nickname");
                 int coins = (int) found.get("coins");
-                Timestamp lastLogin = (Timestamp) found.get("lastLogin");
-                Timestamp firstLogin = (Timestamp) found.get("firstLogin");
+                Date lastLogin = (Date) found.get("lastLogin");
+                Date firstLogin = (Date) found.get("firstLogin");
                 String ip = (String) found.get("lastIp");
                 int rankId = (int) found.get("rankId");
                 String permissionJson = (String) found.get("permissions");
@@ -68,8 +69,8 @@ public class PlayerDataManager {
             UUID uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
             int coins = playerBean.getCoins();
-            Timestamp lastLogin = playerBean.getLastLogin();
-            Timestamp firstLogin = playerBean.getFirstLogin();
+            Date lastLogin = playerBean.getLastLogin();
+            Date firstLogin = playerBean.getFirstLogin();
             String ip = playerBean.getIp();
             int rankId = playerBean.getRankId();
 
@@ -102,8 +103,8 @@ public class PlayerDataManager {
             UUID uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
             int coins = playerBean.getCoins();
-            Timestamp lastLogin = playerBean.getLastLogin();
-            Timestamp firstLogin = playerBean.getFirstLogin();
+            Date lastLogin = playerBean.getLastLogin();
+            Date firstLogin = playerBean.getFirstLogin();
             String ip = playerBean.getIp();
             int rankId = playerBean.getRankId();
 
