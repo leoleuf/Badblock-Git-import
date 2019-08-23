@@ -5,6 +5,7 @@ import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.rank.RankBean;
 import fr.badblock.api.data.rank.RankData;
 import fr.badblock.api.utils.CenteredMessage;
+import fr.badblock.api.utils.TeamTag;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -75,6 +76,13 @@ public class RankCommand implements CommandExecutor {
                 } else {
                     PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(playerName);
                     playerData.setRankID(rankData.getRankID());
+                    RankData rankData1 = badBlockAPI.getRankManager().getRankData(playerData.getRankID());
+                    try {
+                        TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData1.getRankPrefix(), rankData1.getRankSuffix());
+                        teamTag.set(player);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
 
             }
