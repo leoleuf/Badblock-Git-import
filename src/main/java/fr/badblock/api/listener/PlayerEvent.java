@@ -35,6 +35,8 @@ public class PlayerEvent implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event){
         Player player = event.getPlayer();
+        PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(player.getName());
+        playerData.setOnline(false);
         BadBlockAPI.getPluginInstance().getPlayerManager().unloadPlayer(player.getName());
     }
 }

@@ -62,8 +62,8 @@ public class PlayerDataManager {
      * Create player and data
      **/
     private void createPlayer(PlayerBean playerBean) {
+        System.out.println(playerBean.getPlayerName());
         try {
-            System.out.println(playerBean.getPlayerName());
             String name = playerBean.getPlayerName();
             UUID uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
