@@ -10,9 +10,10 @@ import java.util.Objects;
 public class RankDataManager {
 
     private DBCollection ranks;
+    private String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.rankmanagercol");
 
     public RankDataManager() {
-        this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection("rank");
+        this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
     /** Get Rank by ID **/
     public RankBean getRank(long rankId, RankBean rankBean) {

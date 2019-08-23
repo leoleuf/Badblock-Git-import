@@ -28,7 +28,7 @@ public class PlayerData {
     private PermissionAttachment attachment;
 
     PlayerData(String playerName, BadBlockAPI badBlockAPI) {
-        this.playerName = playerName;
+        this.playerName = playerName.toLowerCase();
         this.badBlockAPI = badBlockAPI;
         this.playerDataManager = new PlayerDataManager();
         attachment = getPlayer().addAttachment(badBlockAPI);

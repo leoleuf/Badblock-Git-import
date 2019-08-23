@@ -4,6 +4,7 @@ import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.tech.AutoReconnector;
+import fr.badblock.api.tech.Settings;
 import fr.badblock.api.tech.TechThread;
 import fr.badblock.api.tech.mongodb.methods.MongoMethod;
 import fr.badblock.api.tech.mongodb.setting.MongoSettings;
@@ -34,9 +35,9 @@ public class MongoService extends AutoReconnector {
         // Connect
         this.reconnect();
         // Load threads
-        for (int i = 0; i < getSettings().getWorkerThreads(); i++) {
-            getThreads().add(new MongoThread(this, i));
-        }
+        //for (int i = 0; i < getSettings().getWorkerThreads(); i++) {
+        getThreads().add(new MongoThread(this, 1));
+        //}
     }
 
     private List<MongoThread> getThreads() {
@@ -126,11 +127,11 @@ public class MongoService extends AutoReconnector {
         try {
             long time = System.currentTimeMillis();
             setMongoClient(getSettings().toFactory());
-            setDb(getMongoClient().getDB(settings.getDatabase()));
+            setDb(getMongoClient().getDB(getSettings().getDatabase()));
             badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Reconnexion a la base de donne effectue avec succes (" + (System.currentTimeMillis() - time) + " ms).");
         } catch (Exception error) {
             error.printStackTrace();
-            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Impossible de se connecter a la base de donne (" + error.getMessage() + ").");
+            badBlockAPI.getLogger().info("[BadBlock-API] MongoDB - Impossible de se connecter a la base de donnees (" + error.getMessage() + ").");
         }
     }
 
@@ -148,6 +149,10 @@ public class MongoService extends AutoReconnector {
 
     public MongoSettings getSettings() {
         return settings;
+    }
+
+    public void setSettings(MongoSettings settings){
+        this.settings = settings;
     }
 
     private void setQueue(Queue<MongoMethod> queue) {

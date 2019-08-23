@@ -10,7 +10,7 @@ public abstract class Service {
 
     Service(String name, Settings settings) {
         setName(name);
-        setSettings(settings);
+        //setSettings(settings);
         BadBlockAPI.getPluginInstance().getLogger().info("[BadBlock-API] Service enregistrer: " + name);
     }
 
@@ -24,9 +24,9 @@ public abstract class Service {
         this.name = name;
     }
 
-    protected void setSettings(Settings settings) {
+    /*protected void setSettings(Settings settings) {
         this.settings = settings;
-    }
+    }*/
 
     public boolean isDead() {
         return dead;

@@ -7,6 +7,7 @@ import fr.badblock.api.data.rank.RankData;
 import fr.badblock.api.utils.CenteredMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
@@ -15,16 +16,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class RankCommand extends AbstractCommand implements TabCompleter {
+public class RankCommand implements CommandExecutor {
     private HashMap<Integer, List<String>> pages;
+    private BadBlockAPI badBlockAPI;
     /** Get Main Class **/
     public RankCommand(BadBlockAPI badBlockAPI) {
-        super(badBlockAPI);
+        this.badBlockAPI = badBlockAPI;
         pages = new HashMap<>();
     }
     /** Ranks command **/
     @Override
-    protected boolean onCommand(CommandSender sender, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         int asize = args.length;
         if (asize == 0) {
@@ -167,8 +169,4 @@ public class RankCommand extends AbstractCommand implements TabCompleter {
         pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank remove <player> <rank> " + ChatColor.GRAY + "Permet de retirer un grade à un joueur");
     }
 
-    @Override
-    public List<String> onTabComplete(CommandSender commandSender, Command command, String s, String[] strings) {
-        return null;
-    }
 }

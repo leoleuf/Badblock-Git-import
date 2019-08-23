@@ -10,6 +10,7 @@ import fr.badblock.api.database.PlayerDataManager;
 import fr.badblock.api.database.RankDataManager;
 import fr.badblock.api.handler.Handler;
 import fr.badblock.api.handler.impl.ModuleHandler;
+import fr.badblock.api.listener.PlayerEvent;
 import fr.badblock.api.module.Module;
 import fr.badblock.api.tech.mongodb.MongoService;
 import fr.badblock.api.tech.mongodb.setting.MongoSettings;
@@ -68,15 +69,21 @@ public class BadBlockAPI extends JavaPlugin {
         moduleHandler.getModules().forEach(this::disableModule);
     }
 
-    /** Register commands **/
+    /**
+     * Register commands
+     **/
     public void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
         getCommand("rank").setExecutor(new RankCommand(this));
     }
-    /** Register listeners **/
+
+    /**
+     * Register listeners
+     **/
     public void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Chat(), this);
+        pm.registerEvents(new PlayerEvent(), this);
     }
 
     /* Configuration part */
@@ -99,19 +106,19 @@ public class BadBlockAPI extends JavaPlugin {
         return scheduledExecutorService;
     }
 
-    public PlayerDataManager getPlayerDataManager(){
+    public PlayerDataManager getPlayerDataManager() {
         return playerDataManager;
     }
 
-    public RankDataManager getRankDataManager(){
+    public RankDataManager getRankDataManager() {
         return rankDataManager;
     }
 
-    public PlayerManager getPlayerManager(){
+    public PlayerManager getPlayerManager() {
         return playerManager;
     }
 
-    public RankManager getRankManager(){
+    public RankManager getRankManager() {
         return rankManager;
     }
 
@@ -120,17 +127,26 @@ public class BadBlockAPI extends JavaPlugin {
     private void enableModules() {
 
     }
-    /** Enabling Modules **/
+
+    /**
+     * Enabling Modules
+     **/
     private void enableModule(Module module) {
         moduleHandler.addModule(module);
         getModule(module.getModuleName()).enable();
     }
-    /** Disabling Modules **/
+
+    /**
+     * Disabling Modules
+     **/
     private void disableModule(Module module) {
         getModule(module.getModuleName()).disable();
         moduleHandler.removeModule(module);
     }
-    /** Get Modules **/
+
+    /**
+     * Get Modules
+     **/
     private Module getModule(String module) {
         return ((ModuleHandler) getHandler("modules")).getModule(module);
     }
@@ -142,7 +158,10 @@ public class BadBlockAPI extends JavaPlugin {
                 .findFirst()
                 .orElse(null);
     }
-    /** Get MongoService **/
+
+    /**
+     * Get MongoService
+     **/
     public MongoService getMongoService() {
         return this.mongoService;
     }

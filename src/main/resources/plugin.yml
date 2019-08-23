@@ -4,3 +4,4 @@ main: fr.badblock.api.BadBlockAPI
 version: 1.0-SNAPSHOT
 commands:
   wpmchat:
+  rank:
