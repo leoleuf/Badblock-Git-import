@@ -70,6 +70,18 @@ public class PlayerData {
         return hasNickname() ? getCustomName() : getEffectiveName();
     }
 
+    public void setName(String name){
+        refreshData();
+        playerBean.setPlayerName(name);
+        updateData();
+    }
+
+    public void setPlayerID(UUID uuid){
+        refreshData();
+        playerBean.setUuid(uuid);
+        updateData();
+    }
+
     /**
      * @return le vrai pseudo du joueur
      */

@@ -41,7 +41,7 @@ public class PlayerDataManager {
                 return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
             } else {
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
-                        UUID.fromString(UUIDFetcher.getUuid(playerName.toLowerCase())),
+                        null,
                         null,
                         0,
                         new Timestamp(System.currentTimeMillis()),
