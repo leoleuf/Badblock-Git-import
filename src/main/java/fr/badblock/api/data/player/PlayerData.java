@@ -55,9 +55,9 @@ public class PlayerData {
     /**
      * @return l'uuid du joueur
      */
-    public UUID getPlayerID() {
+    public String getPlayerID() {
         refreshIfNeeded();
-        return getPlayer().getUniqueId();
+        return playerBean.getUuid();
     }
 
     /**
@@ -74,7 +74,7 @@ public class PlayerData {
         updateData();
     }
 
-    public void setPlayerID(UUID uuid){
+    public void setPlayerID(String uuid){
         refreshData();
         playerBean.setUuid(uuid);
         updateData();
