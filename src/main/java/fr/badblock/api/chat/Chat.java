@@ -1,6 +1,9 @@
 package fr.badblock.api.chat;
 
 import fr.badblock.api.BadBlockAPI;
+import fr.badblock.api.data.player.PlayerData;
+import fr.badblock.api.data.rank.RankData;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +13,8 @@ public class Chat implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
+        PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(p.getName());
+        RankData rankData = BadBlockAPI.getPluginInstance().getRankManager().getRankData(playerData.getRankID());
         /** Setting str as the string present in a config.yml file when the chat is muted **/
         String str = BadBlockAPI.getPluginInstance().getConfig().getString("chat.messageondisabled");
         /** Cancelling chat event when the chat is disabled **/
@@ -19,6 +24,7 @@ public class Chat implements Listener {
         } else {
             /** Else, we don't care about it **/
             e.setCancelled(false);
+            e.setFormat(ChatUtilities.f(rankData.getRankPrefix())+" " +playerData.getDisplayName() + " "+ ChatUtilities.f(rankData.getRankSuffix())+ ChatColor.DARK_GRAY+"> "+ ChatUtilities.f(e.getMessage()));
         }
     }
 }

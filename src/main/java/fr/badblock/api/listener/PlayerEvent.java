@@ -2,13 +2,12 @@ package fr.badblock.api.listener;
 
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerData;
+import fr.badblock.api.data.rank.RankData;
+import fr.badblock.api.utils.TeamTag;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 public class PlayerEvent implements Listener {
 
@@ -27,11 +26,17 @@ public class PlayerEvent implements Listener {
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
         PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(player.getName());
+        RankData rankData = BadBlockAPI.getPluginInstance().getRankManager().getRankData(playerData.getRankID());
         playerData.setName(player.getName());
         playerData.setPlayerID(player.getUniqueId().toString());
         playerData.setOnline(true);
-        playerData.addPermissions("*");
-        playerData.addPermissions("test");
+        try {
+            TeamTag teamTag = new TeamTag(rankData.getRankName(), rankData.getRankPrefix(), rankData.getRankSuffix());
+            teamTag.set(player);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @EventHandler
@@ -40,6 +45,8 @@ public class PlayerEvent implements Listener {
         PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(player.getName());
         playerData.setOnline(false);
         BadBlockAPI.getPluginInstance().getPlayerManager().unloadPlayer(player.getName());
-        playerData.removePermission("test");
     }
+
+
+
 }

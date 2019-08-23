@@ -1,6 +1,5 @@
 package fr.badblock.api.chat;
 
-import fr.badblock.api.BadBlockAPI;
 import org.bukkit.ChatColor;
 
 public class ChatUtilities {
