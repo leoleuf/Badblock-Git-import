@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.rank.RankManager;
 import fr.badblock.api.database.PlayerDataManager;
-import fr.badblock.api.utils.UUIDFetcher;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
@@ -34,7 +33,7 @@ public class PlayerData {
         this.playerDataManager = new PlayerDataManager();
         attachment = getPlayer().addAttachment(badBlockAPI);
         this.playerBean = new PlayerBean(playerName.toLowerCase(),
-                UUID.fromString(UUIDFetcher.getUuid(playerName.toLowerCase())),
+                null,
                 null,
                 0,
                 new Timestamp(System.currentTimeMillis()),

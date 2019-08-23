@@ -5,7 +5,6 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
-import fr.badblock.api.utils.UUIDFetcher;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -42,7 +41,7 @@ public class PlayerDataManager {
             } else {
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
                         null,
-                        null,
+                        playerName.toLowerCase(),
                         0,
                         new Timestamp(System.currentTimeMillis()),
                         new Timestamp(System.currentTimeMillis()),
