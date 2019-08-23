@@ -99,6 +99,7 @@ public class PlayerDataManager {
      **/
     public void updatePlayer(PlayerBean playerBean) {
         try {
+            System.out.println(playerBean.getPlayerName());
             String name = playerBean.getPlayerName();
             String uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
