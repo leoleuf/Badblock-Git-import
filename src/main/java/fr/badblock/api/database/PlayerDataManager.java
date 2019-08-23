@@ -5,6 +5,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
+import fr.badblock.api.utils.UUIDFetcher;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -39,7 +40,16 @@ public class PlayerDataManager {
                 boolean online = (boolean) found.get("online");
                 return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
             } else {
-                this.createPlayer(playerBean);
+                this.createPlayer(new PlayerBean(playerName.toLowerCase(),
+                        UUID.fromString(UUIDFetcher.getUuid(playerName.toLowerCase())),
+                        null,
+                        0,
+                        new Timestamp(System.currentTimeMillis()),
+                        new Timestamp(System.currentTimeMillis()),
+                        null,
+                        1,
+                        null,
+                        false));
                 return this.getPlayer(playerName, playerBean);
             }
         } catch (Exception e) {
