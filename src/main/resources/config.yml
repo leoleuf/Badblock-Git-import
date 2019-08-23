@@ -19,8 +19,6 @@ mongodb:
   rankmanagercol: ''
 #Chat module
 chat:
-  #Set to true to enable chat, to false to disable
-  enabled: true
   #Message when players trying to chat when disabled.
   messageondisabled: '&cLe chat a été désactivé par un membre du Staff'
   #Lines to clear on chat clear

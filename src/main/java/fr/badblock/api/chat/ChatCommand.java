@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 
 public class ChatCommand implements CommandExecutor {
 
+    public boolean isActivated = false;
+
     /** Chat Commands **/
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -35,14 +37,14 @@ public class ChatCommand implements CommandExecutor {
                     if (args[0].equalsIgnoreCase("enable")) {
                         String enabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgenable");
                         p.sendMessage(ChatUtilities.f(enabled));
-                        BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "true");
+                        isActivated = true;
                         return true;
                     }
                     /** Chat disabling **/
                     if (args[0].equalsIgnoreCase("disable")) {
                         String disabled = BadBlockAPI.getPluginInstance().getConfig().getString("chat.msgdisable");
                         p.sendMessage(ChatUtilities.f(disabled));
-                        BadBlockAPI.getPluginInstance().getConfig().set("chat.enabled", "false");
+                        isActivated = false;
                         return true;
                     }
                 } else {
