@@ -13,7 +13,7 @@ public class Chat implements Listener {
         /** Setting str as the string present in a config.yml file when the chat is muted **/
         String str = BadBlockAPI.getPluginInstance().getConfig().getString("chat.messageondisabled");
         /** Cancelling chat event when the chat is disabled **/
-        if (!ChatUtilities.isActivated) {
+        if (!ChatCommand.isActivated) {
             p.sendMessage(ChatUtilities.f(str));
             e.setCancelled(true);
         } else {

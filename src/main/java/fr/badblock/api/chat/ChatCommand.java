@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class ChatCommand implements CommandExecutor {
 
-    public boolean isActivated = false;
+    public static boolean isActivated = false;
 
     /** Chat Commands **/
     @Override
