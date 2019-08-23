@@ -51,7 +51,7 @@ public class PlayerManager {
      * @param uuid uuid du joueur voulu
      * @return l'instance de la classe PlayerData enregistré dans le cache du joueur à partir de son UUID
      */
-    public PlayerData getPlayerDataByUUID(UUID uuid) {
+    public PlayerData getPlayerDataByUUID(String uuid) {
         for (PlayerData data : cache.values()) {
             if (data.getPlayerID().equals(uuid))
                 return data;
