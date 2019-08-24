@@ -18,7 +18,6 @@ public class PermissionSet
 
     private List<String> places;
     private List<Permission> permissions;
-    private Map<String, Integer> powers;
     private Map<String, JsonElement> values;
 
     public List<String> getPlaces() {
@@ -37,14 +36,6 @@ public class PermissionSet
         this.permissions = permissions;
     }
 
-    public Map<String, Integer> getPowers() {
-        return powers;
-    }
-
-    public void setPowers(Map<String, Integer> powers) {
-        this.powers = powers;
-    }
-
     public Map<String, JsonElement> getValues() {
         return values;
     }
@@ -53,54 +44,11 @@ public class PermissionSet
         this.values = values;
     }
 
-    public boolean isDisplayable() {
-        return displayable;
-    }
-
-    public void setDisplayable(boolean displayable) {
-        this.displayable = displayable;
-    }
-
-    public String getPrefix() {
-        return prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
-
-    private boolean displayable;
-
-    private String prefix;
-    private String suffix;
-
-    public PermissionSet(List<String> places, List<Permission> permissions, Map<String, Integer> powers, Map<String, JsonElement> values)
+    public PermissionSet(List<String> places, List<Permission> permissions, Map<String, JsonElement> values)
     {
         this.places = places;
         this.permissions = permissions;
-        this.powers = powers;
         this.values = values;
-        this.displayable = false;
-        this.prefix = "";
-        this.suffix = "";
-    }
-
-    public int getPower(String label)
-    {
-        if (powers == null)
-        {
-            powers = new HashMap<>();
-        }
-
-        return powers.containsKey(label) ? (int) powers.get(label) : 0;
     }
 
     public JsonElement getValue(String label)

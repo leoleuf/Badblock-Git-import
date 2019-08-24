@@ -33,16 +33,14 @@ public class Permissible
     }
 
     private String				name;
-    private int					power;
     private List<String>		inheritances;
     private List<PermissionSet>	permissions;
 
-    public Permissible(String name, List<String> inheritances, List<PermissionSet> permissions, boolean displayable, int power)
+    public Permissible(String name, List<String> inheritances, List<PermissionSet> permissions)
     {
         this.name = name;
         this.inheritances = inheritances;
         this.permissions = permissions;
-        this.power = power;
     }
 
     public Permissible()
@@ -50,7 +48,6 @@ public class Permissible
         this.name = "default";
         this.inheritances = new ArrayList<>();
         this.permissions = new ArrayList<>();
-        this.power = 0;
     }
 
     public Permissible(JsonObject jsonObject)
@@ -60,7 +57,6 @@ public class Permissible
         name = jsonObject.get("name").getAsString();
         inheritances = gson.fromJson(jsonObject.get("inheritances"), inheritanceList);
         permissions = gson.fromJson(jsonObject.get("permissions"), permissionList);
-        power = jsonObject.get("power").getAsInt();
     }
 
     public List<PermissionSet> getPermissions()
@@ -73,47 +69,21 @@ public class Permissible
         return name;
     }
 
-    /**
-     * Get the group power
-     * @return An integer
-     */
-    public int getPower()
-    {
-        return power;
-    }
-
     private PermissionSet getNameSet()
     {
         for (PermissionSet set : permissions)
         {
-            if (set.isCompatibleExcludingAll() && set.isDisplayable())
+            if (set.isCompatibleExcludingAll())
                 return set;
         }
 
         for (PermissionSet set : permissions)
         {
-            if (set.isCompatible() && set.isDisplayable())
+            if (set.isCompatible())
                 return set;
         }
 
         return null;
-    }
-
-    public boolean isDisplayable()
-    {
-        return getNameSet() != null;
-    }
-
-    public String getPrefix()
-    {
-        PermissionSet set = getNameSet();
-        return set == null ? null : set.getPrefix();
-    }
-
-    public String getSuffix()
-    {
-        PermissionSet set = getNameSet();
-        return set == null ? null : set.getSuffix();
     }
 
     /**
@@ -196,74 +166,6 @@ public class Permissible
         }
 
         return finalResult;
-    }
-
-    /**
-     * Return the power for <i>label</i> for this permissible.
-     * @param label The power label
-     * @return Return an unsigned integer representing the power.
-     */
-    public int getPower(String label)
-    {
-        PermissionSet set = getSetWithMaximalPower(label);
-        return set == null ? 0 : set.getPower(label);
-    }
-
-    /**
-     * Return the permission set having the biggest power value for <i>label</i>
-     * @param label The power label
-     * @return Return the permission set. Can be null.
-     */
-    public PermissionSet getSetWithMaximalPower(String label)
-    {
-        int max = -1, currentValue = 0;
-        PermissionSet result = null, currentSet = null;
-
-        for (PermissionSet set : permissions)
-        {
-            if (!set.isCompatible())
-                continue;
-
-            currentValue = set.getPower(label);
-
-            if(currentValue > max)
-            {
-                max = currentValue;
-                result = set;
-            }
-        }
-
-        for (Permissible permissible : getInheritances())
-        {
-            currentSet = permissible.getSetWithMaximalPower(label);
-
-            if (currentSet == null)
-            {
-                continue;
-            }
-
-            currentValue = currentSet.getPower(label);
-
-            if (currentValue > max)
-            {
-                max = currentValue;
-                result = currentSet;
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Return the value <i>valueLabel</i> of the permissible. The value is taken from the permission set having the biggest power value for <i>powerLabel</i>
-     * @param powerLabel The power label
-     * @param valueLabel The value label
-     * @return Return the label. Can be null.
-     */
-    public JsonElement getSimpleValue(String powerLabel, String valueLabel)
-    {
-        PermissionSet set = getSetWithMaximalPower(powerLabel);
-        return set == null ? null : set.getValue(valueLabel);
     }
 }
 
