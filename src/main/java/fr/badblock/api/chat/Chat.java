@@ -24,7 +24,11 @@ public class Chat implements Listener {
         } else {
             /** Else, we don't care about it **/
             e.setCancelled(false);
-            e.setFormat(ChatUtilities.f(rankData.getRankPrefix() + rankData.getRankName()) +" " +playerData.getDisplayName() + " "+ ChatUtilities.f(rankData.getRankSuffix())+ ChatColor.DARK_GRAY+"> "+ChatColor.WHITE+ ChatUtilities.f(e.getMessage()));
+            if (rankData.isStaff()) {
+                e.setFormat(ChatUtilities.f(rankData.getRankPrefix() + rankData.getRankName()) + " " + playerData.getDisplayName() + " " + ChatUtilities.f(rankData.getRankSuffix()) + ChatColor.DARK_GRAY + "> " + ChatColor.WHITE + ChatUtilities.f(e.getMessage()));
+            } else {
+                e.setFormat(ChatUtilities.f(rankData.getRankPrefix() + rankData.getRankName()) + " " + playerData.getDisplayName() + " " + ChatUtilities.f(rankData.getRankSuffix()) + ChatColor.DARK_GRAY + "> " + ChatColor.WHITE + e.getMessage());
+            }
         }
     }
 }

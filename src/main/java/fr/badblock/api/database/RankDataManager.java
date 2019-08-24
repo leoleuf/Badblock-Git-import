@@ -15,7 +15,10 @@ public class RankDataManager {
     public RankDataManager() {
         this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
-    /** Get Rank by ID **/
+
+    /**
+     * Get Rank by ID
+     **/
     public RankBean getRank(int rankId, RankBean rankBean) {
         try {
             DBObject dbObject = new BasicDBObject("rankId", rankId);
@@ -28,7 +31,8 @@ public class RankDataManager {
                 String rankPrefix = (String) found.get("rankPrefix");
                 String rankSuffix = (String) found.get("rankSuffix");
                 String rankPermissions = (String) found.get("rankPermissions");
-                rankBean = new RankBean(rankID, rankName, rankPower, rankTag, rankPrefix, rankSuffix, rankPermissions);
+                boolean rankIsStaff = (boolean) found.get("rankIsStaff");
+                rankBean = new RankBean(rankID, rankName, rankPower, rankTag, rankPrefix, rankSuffix, rankPermissions, rankIsStaff);
                 return rankBean;
             } else {
                 this.createRank(rankBean);
@@ -39,7 +43,10 @@ public class RankDataManager {
         }
         return null;
     }
-    /** Get Rank List **/
+
+    /**
+     * Get Rank List
+     **/
     public ArrayList<Integer> getRankList() {
         ArrayList<Integer> rankList = new ArrayList<>();
         DBCursor cursor = ranks.find();
@@ -50,7 +57,10 @@ public class RankDataManager {
         }
         return rankList;
     }
-    /** Create Rank **/
+
+    /**
+     * Create Rank
+     **/
     public void createRank(RankBean rankBean) {
         try {
             int rankID = rankBean.getRankId();
@@ -60,6 +70,7 @@ public class RankDataManager {
             String rankPrefix = rankBean.getPrefix();
             String rankSuffix = rankBean.getSuffix();
             String rankPermissions = rankBean.getPermissionsJson();
+            boolean rankIsStaff = rankBean.isStaff();
 
             DBObject obj = new BasicDBObject("rankId", rankID);
             obj.put("rankName", rankName);
@@ -68,6 +79,7 @@ public class RankDataManager {
             obj.put("rankPrefix", rankPrefix);
             obj.put("rankSuffix", rankSuffix);
             obj.put("rankPermissions", rankPermissions);
+            obj.put("rankIsStaff", rankIsStaff);
 
             ranks.insert(obj);
 
@@ -75,7 +87,10 @@ public class RankDataManager {
             e.printStackTrace();
         }
     }
-    /** Update Rank **/
+
+    /**
+     * Update Rank
+     **/
     public void updateRank(RankBean rankBean) {
         try {
             int rankID = rankBean.getRankId();
@@ -85,6 +100,7 @@ public class RankDataManager {
             String rankPrefix = rankBean.getPrefix();
             String rankSuffix = rankBean.getSuffix();
             String rankPermissions = rankBean.getPermissionsJson();
+            boolean rankIsStaff = rankBean.isStaff();
 
             DBObject obj = new BasicDBObject("rankId", rankID);
             DBObject found = ranks.findOne(obj);
@@ -98,6 +114,7 @@ public class RankDataManager {
             obj.put("rankPrefix", rankPrefix);
             obj.put("rankSuffix", rankSuffix);
             obj.put("rankPermissions", rankPermissions);
+            obj.put("rankIsStaff", rankIsStaff);
 
             ranks.update(Objects.requireNonNull(found), obj);
 

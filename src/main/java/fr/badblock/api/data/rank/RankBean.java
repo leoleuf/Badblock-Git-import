@@ -10,9 +10,10 @@ public class RankBean {
     private String prefix;
     private String suffix;
     private String permissionsJson;
+    private boolean isStaff;
 
 
-    public RankBean(int rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson) {
+    public RankBean(int rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson, boolean isStaff) {
         this.rankId = rankId;
         this.rankName = rankName;
         this.power = power;
@@ -20,6 +21,7 @@ public class RankBean {
         this.prefix = prefix;
         this.suffix = suffix;
         this.permissionsJson = permissionsJson;
+        this.isStaff = isStaff;
     }
 
     public int getRankId() {
@@ -77,5 +79,13 @@ public class RankBean {
 
     public void setPermissionsJson(String permissionsJson) {
         this.permissionsJson = permissionsJson;
+    }
+
+    public boolean isStaff() {
+        return isStaff;
+    }
+
+    public void setStaff(boolean staff) {
+        isStaff = staff;
     }
 }

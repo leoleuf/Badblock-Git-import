@@ -28,11 +28,11 @@ chat:
   #Message on disabling chat
   msgdisable: '&9Vous venez de désactiver le chat !'
   #Message on enabling chat
-  msgenable: '&9Vous venez d'activer le chat !'
+  msgenable: '&9Vous venez d activer le chat !'
 #Command Module (Permissions)
 commannd:
   #Message to send when the player doesn't have enough perms.
-  nopermission: '&cVous n'avez pas la permission !'
+  nopermission: '&cVous n avez pas la permission !'
 #Rank Messages
 rank:
   #Message to send when the rank doesn't exist into database
@@ -51,6 +51,8 @@ rank:
   setprefix: '&cLe prefix a bien été mis à jour.'
   #Message to send when the sufix got updated
   setsuffix: '&cLe suffix a bien été mis à jour.'
+  #Message to send when the staff got updated
+  setstaff: '&cLe staff a bien été mis à jour.'
   #Message to send when the rank already exist into database
   alreadyexist: '&cErreur, le rank existe déjà !'
   #Message to send when the rank got created

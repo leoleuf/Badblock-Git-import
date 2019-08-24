@@ -13,7 +13,8 @@ import org.bukkit.event.player.*;
 public class PlayerEvent implements Listener {
 
     private BadBlockAPI badBlockAPI;
-    public PlayerEvent(BadBlockAPI badBlockAPI){
+
+    public PlayerEvent(BadBlockAPI badBlockAPI) {
         this.badBlockAPI = badBlockAPI;
     }
 
@@ -21,9 +22,13 @@ public class PlayerEvent implements Listener {
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
         String player = event.getName();
         String uuid = event.getUniqueId().toString();
-        if(badBlockAPI.getPlayerDataManager().getPlayer(uuid) != null){
-            if(!badBlockAPI.getPlayerDataManager().getPlayer(uuid).getNormalName().equals(player)){
-                badBlockAPI.getPlayerDataManager().updatePlayer(badBlockAPI.getPlayerDataManager().getPlayer(uuid));
+        if (badBlockAPI.getPlayerDataManager().getPlayer(uuid) != null) {
+            if (badBlockAPI.getPlayerDataManager().getPlayer(uuid).getNormalName() != null) {
+                if (!badBlockAPI.getPlayerDataManager().getPlayer(uuid).getNormalName().equals(player)) {
+                    PlayerBean playerBean = badBlockAPI.getPlayerDataManager().getPlayer(uuid);
+                    playerBean.setPlayerName(player);
+                    badBlockAPI.getPlayerDataManager().updatePlayer(playerBean);
+                }
             }
         }
         badBlockAPI.getPlayerManager().loadPlayer(player);
@@ -35,9 +40,9 @@ public class PlayerEvent implements Listener {
         PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(name);
         String ip = event.getAddress().getHostAddress();
 
-        if(playerData.getIP() == null) {
-           playerData.setIP(ip);
-        }else if(!playerData.getIP().equals(ip)){
+        if (playerData.getIP() == null) {
+            playerData.setIP(ip);
+        } else if (!playerData.getIP().equals(ip)) {
             playerData.setIP(ip);
         }
     }
@@ -48,16 +53,19 @@ public class PlayerEvent implements Listener {
         PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(player.getName());
         RankData rankData = badBlockAPI.getRankManager().getRankData(playerData.getRankID());
 
-        if(playerData.getNormalName() == null) {
+        if (playerData.getNormalName() == null) {
+            playerData.setNormalName(player.getName());
+        }
+        if(!playerData.getNormalName().equals(player.getName())){
             playerData.setNormalName(player.getName());
         }
         if (playerData.getPlayerID() == null) {
             playerData.setPlayerID(player.getUniqueId().toString());
         }
         playerData.setOnline(true);
-
+        playerData.setLastLogin();
         try {
-            TeamTag teamTag = new TeamTag(rankData.getRankName(), rankData.getRankTag(), rankData.getRankSuffix());
+            TeamTag teamTag = new TeamTag(rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
             teamTag.set(player);
         } catch (Exception e) {
             e.printStackTrace();

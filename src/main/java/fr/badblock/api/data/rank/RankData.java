@@ -29,7 +29,8 @@ public class RankData {
                 null,
                 null,
                 null,
-                null);
+                null,
+                false);
         refreshData();
     }
 
@@ -46,6 +47,17 @@ public class RankData {
     public int getRankPower() {
         refreshIfNeeded();
         return rankBean.getPower();
+    }
+
+    public boolean isStaff(){
+        refreshIfNeeded();
+        return rankBean.isStaff();
+    }
+
+    public void setStaff(boolean stats){
+        refreshData();
+        rankBean.setStaff(stats);
+        updateData();
     }
 
     public String getRankTag() {

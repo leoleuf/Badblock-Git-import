@@ -85,7 +85,7 @@ public class RankCommand implements CommandExecutor {
                     playerData.setRankID(rankData.getRankID());
                     RankData rankData1 = badBlockAPI.getRankManager().getRankData(playerData.getRankID());
                     try {
-                        TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData1.getRankTag(), rankData1.getRankSuffix());
+                        TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
                         teamTag.set(player);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -139,6 +139,17 @@ public class RankCommand implements CommandExecutor {
                         rankData.setSuffix(suffix);
                         player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setsuffix")));
                     }
+                }else if (args[1].equalsIgnoreCase("staff")) {
+                    String rankName = args[2];
+                    boolean rankIsStaff = Boolean.valueOf(args[3]);
+                    RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
+                    if (rankData == null) {
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
+                        return false;
+                    } else {
+                        rankData.setStaff(rankIsStaff);
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setstaff")));
+                    }
                 }
             }
         } else if (args[0].equalsIgnoreCase("create")) {
@@ -147,6 +158,7 @@ public class RankCommand implements CommandExecutor {
             String rankTag = args[3];
             String rankPrefix = args[4];
             String rankSuffix = args[5];
+            boolean rankIsStaff = Boolean.valueOf(args[6]);
 
             RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
             if (rankData != null) {
@@ -160,7 +172,8 @@ public class RankCommand implements CommandExecutor {
                         rankTag,
                         rankPrefix,
                         rankSuffix,
-                        null));
+                        null,
+                        rankIsStaff));
                 badBlockAPI.getRankManager().loadRank(rankId);
                 player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.create")));
             }
