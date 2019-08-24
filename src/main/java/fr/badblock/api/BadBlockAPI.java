@@ -83,7 +83,7 @@ public class BadBlockAPI extends JavaPlugin {
     public void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Chat(), this);
-        pm.registerEvents(new PlayerEvent(), this);
+        pm.registerEvents(new PlayerEvent(this), this);
     }
 
     /* Configuration part */

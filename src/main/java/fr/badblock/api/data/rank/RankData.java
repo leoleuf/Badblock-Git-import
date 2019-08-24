@@ -145,7 +145,7 @@ public class RankData {
         updateData();
     }
 
-    boolean refreshData() {
+    public boolean refreshData() {
         lastRefresh = System.currentTimeMillis();
         try {
             rankBean = rankDataManager.getRank(rankId, rankBean);

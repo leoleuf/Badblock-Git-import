@@ -28,30 +28,30 @@ chat:
   #Message on disabling chat
   msgdisable: '&9Vous venez de désactiver le chat !'
   #Message on enabling chat
-  msgenable: "&9Vous venez d'activer le chat !"
+  msgenable: '&9Vous venez d'activer le chat !'
 #Command Module (Permissions)
 commannd:
   #Message to send when the player doesn't have enough perms.
-  nopermission: "&cVous n'avez pas la permission !"
+  nopermission: '&cVous n'avez pas la permission !'
 #Rank Messages
 rank:
   #Message to send when the rank doesn't exist into database
-  noexist: "&cCe grade n'existe pas !"
+  noexist: '&cCe grade n existe pas !'
   #Message to send when a permission got added
-  setperm: "&cLa permission a bien été ajouté !"
+  setperm: '&cLa permission a bien été ajouté !'
   #Message to send when a permission got cleared
-  delperm: "&cLa permissions a bien été supprimé !"
+  delperm: '&cLa permissions a bien été supprimé !'
   #Message to send when the player doesn't exist into the database
-  playernoexist: "&cCe joueur n'existe pas, création de celui ci !"
+  playernoexist: '&cCe joueur n existe pas, création de celui ci !'
   #Message to send when the power of the rank got updated.
-  setpower: "&cLe power a bien été mis à jour."
+  setpower: '&cLe power a bien été mis à jour.'
   #Message to send when the tag got updated
-  settag: "&cLe tag a bien été mis à jour."
+  settag: '&cLe tag a bien été mis à jour.'
   #Message to send when the prefix got updated
-  setprefix: "&cLe prefix a bien été mis à jour."
+  setprefix: '&cLe prefix a bien été mis à jour.'
   #Message to send when the sufix got updated
-  setsuffix: "&cLe suffix a bien été mis à jour."
+  setsuffix: '&cLe suffix a bien été mis à jour.'
   #Message to send when the rank already exist into database
-  alreadyexist: "&cErreur, le rank existe déjà !"
+  alreadyexist: '&cErreur, le rank existe déjà !'
   #Message to send when the rank got created
-  create: "&cLe rank a été crée avec succées !"
+  create: '&cLe rank a été crée avec succées !'

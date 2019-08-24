@@ -1,6 +1,7 @@
 package fr.badblock.api.command;
 
 import fr.badblock.api.BadBlockAPI;
+import fr.badblock.api.chat.ChatUtilities;
 import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.rank.RankBean;
 import fr.badblock.api.data.rank.RankData;
@@ -30,14 +31,20 @@ public class RankCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         int asize = args.length;
+        if(player.hasPermission("*") || player.hasPermission("admin.rank")){
         if (asize == 0) {
             sendHelp(player, 1);
+        }else if (asize == 1){
+            if(args[0].equalsIgnoreCase("reload")){
+                badBlockAPI.getRankManager().cache.values().forEach(RankData::refreshData);
+
+            }
         } else if (asize == 2) {
             if (args[0].equalsIgnoreCase("getperm")) {
                 String rankName = args[1];
                 RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                 if (rankData == null) {
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
                     rankData.getPermissions().forEach(perm -> player.sendMessage("§f" + perm + ","));
@@ -49,29 +56,29 @@ public class RankCommand implements CommandExecutor {
                 String perm = args[2];
                 RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                 if (rankData == null) {
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
                     rankData.addPermissions(perm);
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.setperm"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setperm")));
                 }
             } else if (args[0].equalsIgnoreCase("delperm")) {
                 String rankName = args[1];
                 String perm = args[2];
                 RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                 if (rankData == null) {
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
                     rankData.removePermission(perm);
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.delperm"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.delperm")));
                 }
             } else if (args[0].equalsIgnoreCase("set")) {
                 String playerName = args[1];
                 String rank = args[2];
                 RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rank);
                 if (rankData == null) {
-                    player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                    player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
                     PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(playerName);
@@ -93,44 +100,44 @@ public class RankCommand implements CommandExecutor {
                     int power = Integer.valueOf(args[3]);
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                         return false;
                     } else {
                         rankData.setPower(power);
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.setpower"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setpower")));
                     }
                 } else if (args[1].equalsIgnoreCase("tag")) {
                     String rankName = args[2];
                     String tag = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                         return false;
                     } else {
                         rankData.setTag(tag);
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.settag"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.settag")));
                     }
                 } else if (args[1].equalsIgnoreCase("prefix")) {
                     String rankName = args[2];
                     String prefix = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                         return false;
                     } else {
                         rankData.setPrefix(prefix);
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.setprefix"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setprefix")));
                     }
                 } else if (args[1].equalsIgnoreCase("suffix")) {
                     String rankName = args[2];
                     String suffix = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                         return false;
                     } else {
                         rankData.setSuffix(suffix);
-                        player.sendMessage(badBlockAPI.getConfig().getString("rank.setsuffix"));
+                        player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setsuffix")));
                     }
                 }
             }
@@ -143,7 +150,7 @@ public class RankCommand implements CommandExecutor {
 
             RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
             if (rankData != null) {
-                player.sendMessage(badBlockAPI.getConfig().getString("rank.alreadyexist"));
+                player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.alreadyexist")));
                 return false;
             } else {
                 int rankId = badBlockAPI.getRankDataManager().getRankList().size() + 1;
@@ -155,8 +162,9 @@ public class RankCommand implements CommandExecutor {
                         rankSuffix,
                         null));
                 badBlockAPI.getRankManager().loadRank(rankId);
-                player.sendMessage(badBlockAPI.getConfig().getString("rank.create"));
+                player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.create")));
             }
+        }
         }
         return false;
     }
