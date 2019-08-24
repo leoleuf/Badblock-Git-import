@@ -38,7 +38,8 @@ public class PlayerDataManager {
                 int rankId = (int) found.get("rankId");
                 String permissionJson = (String) found.get("permissions");
                 boolean online = (boolean) found.get("online");
-                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online);
+                String realName = (String) found.get("realName");
+                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online, realName);
             } else {
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
                         null,
@@ -49,8 +50,36 @@ public class PlayerDataManager {
                         null,
                         1,
                         null,
-                        false));
+                        false,
+                        null));
                 return this.getPlayer(playerName, playerBean);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+    public PlayerBean getPlayer(String uuids) {
+        try {
+            DBObject dbObject = new BasicDBObject("uniqueId", uuids);
+            DBObject found = players.findOne(dbObject);
+            if (found != null) {
+                String name = (String) found.get("name");
+                String uuid = (String) found.get("uniqueId");
+                String nickName = (String) found.get("nickname");
+                int coins = (int) found.get("coins");
+                Date lastLogin = (Date) found.get("lastLogin");
+                Date firstLogin = (Date) found.get("firstLogin");
+                String ip = (String) found.get("lastIp");
+                int rankId = (int) found.get("rankId");
+                String permissionJson = (String) found.get("permissions");
+                boolean online = (boolean) found.get("online");
+                String realName = (String) found.get("realName");
+                return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online, realName);
+            } else {
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,7 +92,6 @@ public class PlayerDataManager {
      * Create player and data
      **/
     private void createPlayer(PlayerBean playerBean) {
-        System.out.println(playerBean.getPlayerName());
         try {
             String name = playerBean.getPlayerName();
             String uuid = playerBean.getUuid();
@@ -85,6 +113,7 @@ public class PlayerDataManager {
             obj.put("rankId", rankId);
             obj.put("permissions", playerBean.getPermissionsJson());
             obj.put("online", playerBean.isOnline());
+            obj.put("realName", playerBean.getNormalName());
 
             players.insert(obj);
 
@@ -99,7 +128,6 @@ public class PlayerDataManager {
      **/
     public void updatePlayer(PlayerBean playerBean) {
         try {
-            System.out.println(playerBean.getPlayerName());
             String name = playerBean.getPlayerName();
             String uuid = playerBean.getUuid();
             String nickName = playerBean.getNickName();
@@ -125,6 +153,7 @@ public class PlayerDataManager {
             obj.put("rankId", rankId);
             obj.put("permissions", playerBean.getPermissionsJson());
             obj.put("online", playerBean.isOnline());
+            obj.put("realName", playerBean.getNormalName());
             players.update(Objects.requireNonNull(found), obj);
 
         } catch (Exception e) {

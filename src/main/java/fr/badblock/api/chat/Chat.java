@@ -24,7 +24,7 @@ public class Chat implements Listener {
         } else {
             /** Else, we don't care about it **/
             e.setCancelled(false);
-            e.setFormat(ChatUtilities.f(rankData.getRankPrefix() + rankData.getRankName()) +" " +playerData.getDisplayName() + " "+ ChatUtilities.f(rankData.getRankSuffix().toString())+ ChatColor.DARK_GRAY+"> "+ ChatUtilities.f(e.getMessage()));
+            e.setFormat(ChatUtilities.f(rankData.getRankPrefix() + rankData.getRankName()) +" " +playerData.getDisplayName() + " "+ ChatUtilities.f(rankData.getRankSuffix())+ ChatColor.DARK_GRAY+"> "+ChatColor.WHITE+ ChatUtilities.f(e.getMessage()));
         }
     }
 }

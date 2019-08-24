@@ -78,7 +78,7 @@ public class RankCommand implements CommandExecutor {
                     playerData.setRankID(rankData.getRankID());
                     RankData rankData1 = badBlockAPI.getRankManager().getRankData(playerData.getRankID());
                     try {
-                        TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData1.getRankPrefix(), rankData1.getRankSuffix());
+                        TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData1.getRankTag(), rankData1.getRankSuffix());
                         teamTag.set(player);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -89,8 +89,8 @@ public class RankCommand implements CommandExecutor {
         } else if (asize == 4) {
             if (args[0].equalsIgnoreCase("modify")) {
                 if (args[1].equalsIgnoreCase("power")) {
-                    String rankName = args[1];
-                    int power = Integer.valueOf(args[2]);
+                    String rankName = args[2];
+                    int power = Integer.valueOf(args[3]);
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
@@ -100,8 +100,8 @@ public class RankCommand implements CommandExecutor {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.setpower"));
                     }
                 } else if (args[1].equalsIgnoreCase("tag")) {
-                    String rankName = args[1];
-                    String tag = args[2];
+                    String rankName = args[2];
+                    String tag = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
@@ -111,8 +111,8 @@ public class RankCommand implements CommandExecutor {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.settag"));
                     }
                 } else if (args[1].equalsIgnoreCase("prefix")) {
-                    String rankName = args[1];
-                    String prefix = args[2];
+                    String rankName = args[2];
+                    String prefix = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));
@@ -122,8 +122,8 @@ public class RankCommand implements CommandExecutor {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.setprefix"));
                     }
                 } else if (args[1].equalsIgnoreCase("suffix")) {
-                    String rankName = args[1];
-                    String suffix = args[2];
+                    String rankName = args[2];
+                    String suffix = args[3];
                     RankData rankData = badBlockAPI.getRankManager().getRankDataByName(rankName);
                     if (rankData == null) {
                         player.sendMessage(badBlockAPI.getConfig().getString("rank.noexist"));

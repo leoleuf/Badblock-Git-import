@@ -17,8 +17,9 @@ public class PlayerBean {
     private int rankId;
     private String permissionsJson;
     private boolean online;
+    private String normalName;
 
-    public PlayerBean(String playerName, String uuid, String nickName, int coins, Date lastLogin, Date firstLogin, String ip, int rankId, String permissionsJson, boolean online) {
+    public PlayerBean(String playerName, String uuid, String nickName, int coins, Date lastLogin, Date firstLogin, String ip, int rankId, String permissionsJson, boolean online, String normalName) {
         this.playerName = playerName;
         this.uuid = uuid;
         this.nickName = nickName;
@@ -29,6 +30,7 @@ public class PlayerBean {
         this.rankId = rankId;
         this.permissionsJson = permissionsJson;
         this.online = online;
+        this.normalName = normalName;
     }
 
     public String getUuid() {
@@ -71,6 +73,8 @@ public class PlayerBean {
         this.playerName = name;
     }
 
+
+
     void setNickName(String nickName) {
         this.nickName = nickName;
     }
@@ -110,5 +114,13 @@ public class PlayerBean {
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    public String getNormalName() {
+        return normalName;
+    }
+
+    public void setNormalName(String normalName) {
+        this.normalName = normalName;
     }
 }

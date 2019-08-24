@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class PlayerData {
 
@@ -38,9 +39,11 @@ public class PlayerData {
                 null,
                 1,
                 null,
-                false);
+                false,
+                null);
         refreshData();
     }
+
 
     /**
      * @return l'objet Player du joueur
@@ -66,15 +69,26 @@ public class PlayerData {
         return hasNickname() ? getCustomName() : getEffectiveName();
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         refreshData();
         playerBean.setPlayerName(name.toLowerCase());
         updateData();
     }
 
-    public void setPlayerID(String uuid){
+    public void setPlayerID(String uuid) {
         refreshData();
         playerBean.setUuid(uuid);
+        updateData();
+    }
+
+    public String getNormalName() {
+        refreshIfNeeded();
+        return playerBean.getNormalName();
+    }
+
+    public void setNormalName(String normalName) {
+        refreshData();
+        playerBean.setNormalName(normalName);
         updateData();
     }
 
@@ -127,12 +141,12 @@ public class PlayerData {
         return playerBean.getLastLogin();
     }
 
-    public boolean isOnline(){
+    public boolean isOnline() {
         refreshIfNeeded();
         return playerBean.isOnline();
     }
 
-    public void setOnline(boolean stats){
+    public void setOnline(boolean stats) {
         refreshData();
         playerBean.setOnline(stats);
         updateData();

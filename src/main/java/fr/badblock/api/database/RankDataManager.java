@@ -65,7 +65,7 @@ public class RankDataManager {
             obj.put("rankName", rankName);
             obj.put("rankPower", rankPower);
             obj.put("rankTag", rankTag);
-            obj.put("rankPreffix", rankPrefix);
+            obj.put("rankPrefix", rankPrefix);
             obj.put("rankSuffix", rankSuffix);
             obj.put("rankPermissions", rankPermissions);
 
