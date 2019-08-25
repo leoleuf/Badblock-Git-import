@@ -27,10 +27,10 @@ public class PlayerEvent implements Listener {
         String player = event.getName();
         String uuid = event.getUniqueId().toString();
         if (badBlockAPI.getPlayerDataManager().getPlayer(uuid) != null) {
-            if (badBlockAPI.getPlayerDataManager().getPlayer(uuid).getNormalName() != null) {
-                if (!badBlockAPI.getPlayerDataManager().getPlayer(uuid).getNormalName().equals(player)) {
+            if (badBlockAPI.getPlayerDataManager().getPlayer(uuid).getPlayerName() != null) {
+                if (!badBlockAPI.getPlayerDataManager().getPlayer(uuid).getPlayerName().toLowerCase().equals(player.toLowerCase())) {
                     PlayerBean playerBean = badBlockAPI.getPlayerDataManager().getPlayer(uuid);
-                    playerBean.setPlayerName(player);
+                    playerBean.setPlayerName(player.toLowerCase());
                     badBlockAPI.getPlayerDataManager().updatePlayer(playerBean);
                 }
             }
@@ -69,7 +69,7 @@ public class PlayerEvent implements Listener {
         playerData.setOnline(true);
         playerData.setLastLogin();
         try {
-            TeamTag teamTag = new TeamTag(rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
+            TeamTag teamTag = new TeamTag(rankData.getRankPower()+rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
             teamTag.set(player);
         } catch (Exception e) {
             e.printStackTrace();

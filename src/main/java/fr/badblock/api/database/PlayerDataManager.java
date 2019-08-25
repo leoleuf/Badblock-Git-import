@@ -61,6 +61,18 @@ public class PlayerDataManager {
         return null;
     }
 
+    public boolean isPlayerExist(String playerName) {
+        DBObject found = null;
+        try {
+            DBObject dbObject = new BasicDBObject("name", playerName);
+            found = players.findOne(dbObject);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return found != null;
+    }
+
     public PlayerBean getPlayer(String uuids) {
         try {
             DBObject dbObject = new BasicDBObject("uniqueId", uuids);
