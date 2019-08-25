@@ -2,6 +2,7 @@ package fr.badblock.api;
 
 import fr.badblock.api.chat.Chat;
 import fr.badblock.api.chat.ChatCommand;
+import fr.badblock.api.command.PermCommand;
 import fr.badblock.api.command.RankCommand;
 import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.player.PlayerManager;
@@ -17,9 +18,13 @@ import fr.badblock.api.tech.mongodb.setting.MongoSettings;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -61,7 +66,6 @@ public class BadBlockAPI extends JavaPlugin {
         playerManager = new PlayerManager(this);
         rankManager = new RankManager(this);
         rankDataManager.getRankList().forEach(rank -> rankManager.loadRank(rank));
-
     }
 
     @Override
@@ -75,6 +79,7 @@ public class BadBlockAPI extends JavaPlugin {
     public void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
         getCommand("rank").setExecutor(new RankCommand(this));
+        getCommand("perms").setExecutor(new PermCommand());
     }
 
     /**

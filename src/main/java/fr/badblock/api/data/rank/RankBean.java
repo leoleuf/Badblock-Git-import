@@ -88,4 +88,5 @@ public class RankBean {
     public void setStaff(boolean staff) {
         isStaff = staff;
     }
+
 }

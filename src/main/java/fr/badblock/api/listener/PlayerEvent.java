@@ -10,6 +10,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 public class PlayerEvent implements Listener {
 
     private BadBlockAPI badBlockAPI;
