@@ -35,7 +35,7 @@ public class PermCommand implements CommandExecutor {
 
                     }
                     if(args[1].equalsIgnoreCase("list")) {
-                        if (args.length == 2) {
+                        if (args.length == 3) {
                             String target = args[2];
                             if (target == null) {
                                 p.sendMessage("Player arguments cannot be null.");
@@ -44,7 +44,7 @@ public class PermCommand implements CommandExecutor {
                             if (BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())) {
                                 PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(target);
                                 final StringBuilder permissionsList = new StringBuilder("");
-                                playerData.getPermissions().forEach(permissionsList::append);
+                                //playerData.getPermissions().forEach(permissionsList::append);
                                 p.sendMessage(permissionsList.toString());
                                 return true;
                             } else {

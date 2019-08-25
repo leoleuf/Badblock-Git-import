@@ -1,5 +1,6 @@
 package fr.badblock.api.database;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -7,9 +8,7 @@ import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class PlayerDataManager {
 
@@ -41,6 +40,11 @@ public class PlayerDataManager {
                 String realName = (String) found.get("realName");
                 return new PlayerBean(name, uuid, nickName, coins, lastLogin, firstLogin, ip, rankId, permissionJson, online, realName);
             } else {
+                Map<String, List<String>> perm = new HashMap<>();
+                List<String> permission = new ArrayList<>();
+                permission.add("test");
+                perm.put("Hub", permission);
+                String permissionJson = new Gson().toJson(perm);
                 this.createPlayer(new PlayerBean(playerName.toLowerCase(),
                         null,
                         playerName.toLowerCase(),
@@ -49,7 +53,7 @@ public class PlayerDataManager {
                         new Timestamp(System.currentTimeMillis()),
                         null,
                         1,
-                        null,
+                        permissionJson,
                         false,
                         null));
                 return this.getPlayer(playerName, playerBean);
