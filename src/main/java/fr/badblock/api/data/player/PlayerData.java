@@ -237,7 +237,11 @@ public class PlayerData {
     public List<String> getPermissions() {
         Type type = new TypeToken<ArrayList<String>>() {
         }.getType();
-        return new Gson().fromJson(getPermissionsJson(), type);
+        if(new Gson().fromJson(getPermissionsJson(), type) == null){
+            return new ArrayList<>();
+        }else{
+            return new Gson().fromJson(getPermissionsJson(), type);
+        }
     }
 
     public void addPermissions(String permissions) {
