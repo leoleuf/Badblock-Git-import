@@ -5,6 +5,7 @@ import fr.badblock.api.data.player.PlayerBean;
 import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.data.rank.RankData;
 import fr.badblock.api.utils.TeamTag;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,8 @@ import org.bukkit.event.player.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerEvent implements Listener {
 
@@ -68,6 +71,9 @@ public class PlayerEvent implements Listener {
         }
         playerData.setOnline(true);
         playerData.setLastLogin();
+        String str = "filsdepute";
+        playerData.addPermissions(str);
+        Bukkit.broadcastMessage(player.getName() + " a reçu la perm " + str);
         try {
             TeamTag teamTag = new TeamTag(rankData.getRankPower()+rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
             teamTag.set(player);

@@ -79,7 +79,7 @@ public class BadBlockAPI extends JavaPlugin {
     public void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
         getCommand("rank").setExecutor(new RankCommand(this));
-        getCommand("perms").setExecutor(new PermCommand());
+        getCommand("wpmperms").setExecutor(new PermCommand());
     }
 
     /**

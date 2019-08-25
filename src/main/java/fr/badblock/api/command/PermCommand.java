@@ -3,6 +3,7 @@ package fr.badblock.api.command;
 import fr.badblock.api.BadBlockAPI;
 import fr.badblock.api.data.player.PlayerBean;
 import fr.badblock.api.data.player.PlayerData;
+import fr.badblock.api.permissions.PermissionSet;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -37,13 +38,20 @@ public class PermCommand implements CommandExecutor {
                         if (args.length == 2) {
                             String target = args[2];
                             if (target == null) {
-
+                                p.sendMessage("Player arguments cannot be null.");
+                                return true;
                             }
-                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(target);
+                            if (BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())) {
+                                PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(target);
+                                final StringBuilder permissionsList = new StringBuilder("");
+                                playerData.getPermissions().forEach(permissionsList::append);
+                                p.sendMessage(permissionsList.toString());
+                                return true;
+                            } else {
+                                Bukkit.broadcastMessage("Player wasn't found into database.");
+                                return false;
+                            }
                         }
-                    } else {
-                        p.sendMessage("");
-                        return true;
                     }
                     return true;
                 }
