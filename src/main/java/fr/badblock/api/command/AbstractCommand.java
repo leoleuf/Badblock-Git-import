@@ -28,9 +28,9 @@ public abstract class AbstractCommand implements CommandExecutor {
 
         boolean result = false;
         if (sender instanceof Player)
-            result = badBlockAPI.getPlayerManager().getPlayerData(sender.getName()).hasPermissions(permission);
+           // result = badBlockAPI.getPlayerManager().getPlayerData(sender.getName()).hasPermissions(permission);
 
-        if (!result)
+        //if (!result)
             sender.sendMessage(badBlockAPI.getConfig().getString("command.nopermission"));
         return result;
     }

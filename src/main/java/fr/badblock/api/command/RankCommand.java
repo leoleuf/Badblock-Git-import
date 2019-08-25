@@ -47,7 +47,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                    rankData.getPermissions().forEach(perm -> player.sendMessage("§f" + perm + ","));
+                   // rankData.getPermissions().forEach(perm -> player.sendMessage("§f" + perm + ","));
                 }
             }
         } else if (asize == 3) {
@@ -59,7 +59,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                    rankData.addPermissions(perm);
+                    //rankData.addPermissions(perm);
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setperm")));
                 }
             } else if (args[0].equalsIgnoreCase("delperm")) {
@@ -70,7 +70,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                    rankData.removePermission(perm);
+                    //rankData.removePermission(perm);
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.delperm")));
                 }
             } else if (args[0].equalsIgnoreCase("set")) {

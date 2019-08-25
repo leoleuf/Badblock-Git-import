@@ -3,8 +3,10 @@ package fr.badblock.api.data.player;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import fr.badblock.api.BadBlockAPI;
+import fr.badblock.api.data.rank.RankManager;
 import fr.badblock.api.database.PlayerDataManager;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
@@ -64,23 +66,41 @@ public class PlayerData {
         return hasNickname() ? getCustomName() : getEffectiveName();
     }
 
+    /**
+     * Permet de set le name en lowercase du joueur
+     *
+     * @param name est le pseudo du joueur
+     */
     public void setName(String name) {
         refreshData();
         playerBean.setPlayerName(name.toLowerCase());
         updateData();
     }
 
+    /**
+     * Permet de set l'uuid du joueur
+     *
+     * @param uuid est l'uuid du joueur
+     */
     public void setPlayerID(String uuid) {
         refreshData();
         playerBean.setUuid(uuid);
         updateData();
     }
 
+    /**
+     * @return le pseudo normal du joueur avec les majuscules
+     */
     public String getNormalName() {
         refreshIfNeeded();
         return playerBean.getNormalName();
     }
 
+    /**
+     * Permet
+     *
+     * @param normalName
+     */
     public void setNormalName(String normalName) {
         refreshData();
         playerBean.setNormalName(normalName);
@@ -136,11 +156,19 @@ public class PlayerData {
         return playerBean.getLastLogin();
     }
 
+    /**
+     * @return si le joueur est connecté sur l'un des serveurs de BadBlock
+     */
     public boolean isOnline() {
         refreshIfNeeded();
         return playerBean.isOnline();
     }
 
+    /**
+     * Permet de mettre le joueur en ligne / hors ligne
+     *
+     * @param stats si le joueur est en ligne ou hors ligne
+     */
     public void setOnline(boolean stats) {
         refreshData();
         playerBean.setOnline(stats);
@@ -225,7 +253,6 @@ public class PlayerData {
     }
 
     /**
-     *
      * @return la map des permissions qui a été transcodé en json et stocké
      */
     private String getPermissionsJson() {
@@ -234,17 +261,15 @@ public class PlayerData {
     }
 
     /**
-     *
      * @return La map des permissions<Serveur, List<Permissions>> stocké en json
      */
-    public Map<String, List<String>> transcodePermission() {
+    private Map<String, List<String>> transcodePermission() {
         return new Gson().fromJson(getPermissionsJson(), new TypeToken<Map<String, List<String>>>() {
         }.getType());
 
     }
 
     /**
-     *
      * @return sois une nouvelle hashmap si le joueur n'as aucune permission, soit la liste des permissions du joueur
      */
     public Map<String, List<String>> getPermissions() {
@@ -258,7 +283,8 @@ public class PlayerData {
 
     /**
      * Cette fonction ajoute une permission sur un serveur précis avec une perm précise
-     * @param place est le serveur ou add la perm
+     *
+     * @param place       est le serveur ou add la perm
      * @param permissions est la permission a ajouté
      */
     public void addPermissions(String place, String permissions) {
@@ -277,9 +303,11 @@ public class PlayerData {
         }
         setPermissions(perm);
     }
+
     /**
      * Cette fonction ajoute une permission sur un serveur précis avec une liste de permission
-     * @param place est le serveur ou add la perm
+     *
+     * @param place       est le serveur ou add la perm
      * @param permissions est une liste de permission a ajouté
      */
     public void addPermissions(String place, List<String> permissions) {
@@ -297,9 +325,11 @@ public class PlayerData {
         }
         setPermissions(perm);
     }
+
     /**
      * Cette fonction retire une permission sur un serveur précis avec une perm précise
-     * @param place est le serveur ou retirer la perm
+     *
+     * @param place       est le serveur ou retirer la perm
      * @param permissions est la permission a ajouté
      */
     public void removePermission(String place, String permissions) {
@@ -314,9 +344,11 @@ public class PlayerData {
         }
         setPermissions(perm);
     }
+
     /**
      * Cette fonction retire une permission sur un serveur précis avec une list de perm
-     * @param place est le serveur ou retirer la perm
+     *
+     * @param place       est le serveur ou retirer la perm
      * @param permissions est la liste permission a retiré
      */
     public void removePermission(String place, List<String> permissions) {
@@ -337,6 +369,7 @@ public class PlayerData {
 
     /**
      * Cette fonction transcode les permissions en json pour être sauvegarder dans la base de donnée
+     *
      * @param permissions est la map défini par Map<Serveur de la perm, List<Listes des permissions a ajouté>>
      */
     public void setPermissions(Map<String, List<String>> permissions) {
@@ -347,7 +380,7 @@ public class PlayerData {
     }
 
     /**
-     * @param place est le serveur ou la permission est
+     * @param place       est le serveur ou la permission est
      * @param permissions est la permission à check
      * @return si le joueur a la permission choisie sur le serveur définie.
      */
@@ -358,6 +391,29 @@ public class PlayerData {
         } else {
             return false;
         }
+    }
+
+    public void setBukkitPermissions() {
+        FileConfiguration config = badBlockAPI.getConfig();
+        RankManager rankManager = badBlockAPI.getRankManager();
+
+        Map<String, List<String>> perm = getPermissions();
+        Map<String, List<String>> rankPerm = rankManager.getRankData(getRankID()).getPermissions();
+
+        attachment = getPlayer().addAttachment(badBlockAPI);
+
+        if (rankManager.getRankData(getRankID()).getPermissions() != null) {
+            rankManager.getRankData(getRankID()).getPermissions().forEach((place, list) -> {
+                if (place.equals(config.getString("server.type")) || place.equals("*")) {
+                    rankPerm.get(place).forEach(permission -> attachment.setPermission(permission, true));
+                }
+            });
+        }
+        getPermissions().forEach((place, list) -> {
+            if (place.equals(config.getString("server.type")) || place.equals("*")) {
+                perm.get(place).forEach(permission -> attachment.setPermission(permission, true));
+            }
+        });
     }
 
     /*public void setBukkitPermissions() {

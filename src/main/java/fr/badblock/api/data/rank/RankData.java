@@ -7,7 +7,9 @@ import fr.badblock.api.database.RankDataManager;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class RankData {
@@ -49,12 +51,12 @@ public class RankData {
         return rankBean.getPower();
     }
 
-    public boolean isStaff(){
+    public boolean isStaff() {
         refreshIfNeeded();
         return rankBean.isStaff();
     }
 
-    public void setStaff(boolean stats){
+    public void setStaff(boolean stats) {
         refreshData();
         rankBean.setStaff(stats);
         updateData();
@@ -75,50 +77,145 @@ public class RankData {
         return rankBean.getSuffix();
     }
 
-    public String getPermissionsJson() {
+    /**
+     * @return la map des permissions qui a été transcodé en json et stocké
+     */
+    private String getPermissionsJson() {
         refreshIfNeeded();
         return rankBean.getPermissionsJson();
     }
 
-    public List<String> getPermissions() {
-        Type type = new TypeToken<ArrayList<String>>() {
-        }.getType();
-        return new Gson().fromJson(getPermissionsJson(), type);
+    /**
+     * @return La map des permissions<Serveur, List<Permissions>> stocké en json
+     */
+    private Map<String, List<String>> transcodePermission() {
+        return new Gson().fromJson(getPermissionsJson(), new TypeToken<Map<String, List<String>>>() {
+        }.getType());
+
     }
 
-    public void addPermissions(String permissions) {
-        List<String> perm = getPermissions();
-        perm.add(permissions);
+    /**
+     * @return sois une nouvelle hashmap si le joueur n'as aucune permission, soit la liste des permissions du joueur
+     */
+    public Map<String, List<String>> getPermissions() {
+        Map<String, List<String>> perms = transcodePermission();
+        if (perms == null) {
+            return new HashMap<>();
+        } else {
+            return perms;
+        }
+    }
+
+    /**
+     * Cette fonction ajoute une permission sur un serveur précis avec une perm précise
+     *
+     * @param place       est le serveur ou add la perm
+     * @param permissions est la permission a ajouté
+     */
+    public void addPermissions(String place, String permissions) {
+        Map<String, List<String>> perm = getPermissions();
+        if (perm.keySet().contains(place)) {
+            perm.forEach((key, value) -> {
+                String placeKey = key;
+                List<String> permValue = value;
+                permValue.add(permissions);
+                perm.replace(placeKey, permValue);
+            });
+        } else {
+            List<String> perms = new ArrayList<>();
+            perms.add(permissions);
+            perm.put(place, perms);
+        }
         setPermissions(perm);
     }
 
-    public void addPermissions(List<String> permissions) {
-        List<String> perm = getPermissions();
-        perm.addAll(permissions);
-
+    /**
+     * Cette fonction ajoute une permission sur un serveur précis avec une liste de permission
+     *
+     * @param place       est le serveur ou add la perm
+     * @param permissions est une liste de permission a ajouté
+     */
+    public void addPermissions(String place, List<String> permissions) {
+        Map<String, List<String>> perm = getPermissions();
+        if (perm.keySet().contains(place)) {
+            perm.forEach((key, value) -> {
+                String placeKey = key;
+                List<String> permValue = value;
+                permValue.addAll(permissions);
+                perm.replace(placeKey, permValue);
+            });
+        } else {
+            List<String> perms = new ArrayList<>(permissions);
+            perm.put(place, perms);
+        }
         setPermissions(perm);
     }
 
-    public boolean hasPermissions(String permissions) {
-        return getPermissions().contains(permissions);
+    /**
+     * Cette fonction retire une permission sur un serveur précis avec une perm précise
+     *
+     * @param place       est le serveur ou retirer la perm
+     * @param permissions est la permission a ajouté
+     */
+    public void removePermission(String place, String permissions) {
+        Map<String, List<String>> perm = getPermissions();
+        if (perm.keySet().contains(place)) {
+            perm.forEach((key, value) -> {
+                String placeKey = key;
+                List<String> permValue = value;
+                permValue.remove(permissions);
+                perm.replace(placeKey, permValue);
+            });
+        }
+        setPermissions(perm);
     }
 
-    public void setPermissions(List<String> permissions) {
+    /**
+     * Cette fonction retire une permission sur un serveur précis avec une list de perm
+     *
+     * @param place       est le serveur ou retirer la perm
+     * @param permissions est la liste permission a retiré
+     */
+    public void removePermission(String place, List<String> permissions) {
+        Map<String, List<String>> perm = getPermissions();
+        if (perm.keySet().contains(place)) {
+            perm.forEach((key, value) -> {
+                String placeKey = key;
+                List<String> permValue = value;
+                permValue.addAll(permissions);
+                perm.replace(placeKey, permValue);
+            });
+        } else {
+            List<String> perms = new ArrayList<>(permissions);
+            perm.put(place, perms);
+        }
+        setPermissions(perm);
+    }
+
+
+    /**
+     * @param place       est le serveur ou la permission est
+     * @param permissions est la permission à check
+     * @return si le joueur a la permission choisie sur le serveur définie.
+     */
+    public boolean hasPermissions(String place, String permissions) {
+        Map<String, List<String>> perm = getPermissions();
+        if (perm.keySet().contains(place)) {
+            return perm.get(place).stream().anyMatch(permList -> permList.contains(permissions));
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Cette fonction transcode les permissions en json pour être sauvegarder dans la base de donnée
+     *
+     * @param permissions est la map défini par Map<Serveur de la perm, List<Listes des permissions a ajouté>>
+     */
+    public void setPermissions(Map<String, List<String>> permissions) {
         refreshData();
         rankBean.setPermissionsJson(new Gson().toJson(permissions));
         updateData();
-    }
-
-    public void removePermission(String perm) {
-        List<String> perms = getPermissions();
-        perms.remove(perm);
-        setPermissions(perms);
-    }
-
-    public void removePermission(List<String> perm) {
-        List<String> perms = getPermissions();
-        perms.forEach(perm::remove);
-        setPermissions(perms);
     }
 
     public void setRankID(int rankId) {
