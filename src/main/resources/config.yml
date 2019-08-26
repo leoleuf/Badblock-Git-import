@@ -57,3 +57,6 @@ rank:
   alreadyexist: '&cErreur, le rank existe déjà !'
   #Message to send when the rank got created
   create: '&cLe rank a été crée avec succées !'
+#Place Module
+server:
+  type:

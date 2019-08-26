@@ -72,6 +72,11 @@ public class PlayerEvent implements Listener {
         playerData.setOnline(true);
         playerData.setLastLogin();
         try {
+            playerData.setBukkitPermissions();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
             TeamTag teamTag = new TeamTag(rankData.getRankPower()+rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
             teamTag.set(player);
         } catch (Exception e) {
