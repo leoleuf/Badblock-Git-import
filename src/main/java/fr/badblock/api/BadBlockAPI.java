@@ -85,6 +85,7 @@ public class BadBlockAPI extends JavaPlugin {
     /**
      * Register listeners
      **/
+
     public void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Chat(), this);
