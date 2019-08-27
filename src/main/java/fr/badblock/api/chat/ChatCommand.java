@@ -19,12 +19,12 @@ public class ChatCommand implements CommandExecutor {
             if (p.hasPermission("wpmchat.admin"))
                 if (label.equals("wpmchat")) {
                     if (args.length == 0) {
-                        p.sendMessage("§m§9------------§r§bWPMChat§m§9------------");
-                        p.sendMessage("§9Salut à toi §e" + p.getName() + "§9 voici une liste des commandes !");
+                        p.sendMessage("§9§m------------§r§bWPMChat§9§m------------");
+                        p.sendMessage("§bSalut à toi §e" + p.getName() + "§b voici une liste des commandes !");
                         p.sendMessage("§9§l/wpmchat clear §c-> §bSupprime le chat !");
                         p.sendMessage("§9§l/wpmchat enable §c-> §bActive le chat !");
                         p.sendMessage("§9§l/wpmchat disable §c-> §bDésactive le chat !");
-                        p.sendMessage("§m§9------------§r§bWPMChat§m§9------------");
+                        p.sendMessage("§9§m------------§r§bWPMChat§9§m------------");
                         return true;
                     }
                     /** Chat clear **/
