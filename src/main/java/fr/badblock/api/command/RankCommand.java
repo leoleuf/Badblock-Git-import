@@ -37,7 +37,7 @@ public class RankCommand implements CommandExecutor {
         }else if (asize == 1){
             if(args[0].equalsIgnoreCase("reload")){
                 badBlockAPI.getRankManager().cache.values().forEach(RankData::refreshData);
-
+                player.sendMessage("§cLe cache a été reload ! ");
             }
         } else if (asize == 2) {
             if (args[0].equalsIgnoreCase("getperm")) {
@@ -47,7 +47,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                   // rankData.getPermissions().forEach(perm -> player.sendMessage("§f" + perm + ","));
+                    //rankData.getPermissions().forEach(perm -> player.sendMessage("§f" + perm + ","));
                 }
             }
         } else if (asize == 3) {
@@ -59,7 +59,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                    //rankData.addPermissions(perm);
+                    rankData.addPermissions("*",perm);
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.setperm")));
                 }
             } else if (args[0].equalsIgnoreCase("delperm")) {
@@ -70,7 +70,7 @@ public class RankCommand implements CommandExecutor {
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.noexist")));
                     return false;
                 } else {
-                    //rankData.removePermission(perm);
+                    rankData.removePermission("*",perm);
                     player.sendMessage(ChatUtilities.f(badBlockAPI.getConfig().getString("rank.delperm")));
                 }
             } else if (args[0].equalsIgnoreCase("set")) {
@@ -83,6 +83,7 @@ public class RankCommand implements CommandExecutor {
                 } else {
                     PlayerData playerData = badBlockAPI.getPlayerManager().getPlayerData(playerName);
                     playerData.setRankID(rankData.getRankID());
+                    player.sendMessage("§cLe grade " + rank + " a été attribué au joueur " + playerName);
                     RankData rankData1 = badBlockAPI.getRankManager().getRankData(playerData.getRankID());
                     try {
                         TeamTag teamTag = new TeamTag(rankData1.getRankName(), rankData.getRankTag() + " ", " "+rankData.getRankSuffix());
@@ -186,6 +187,7 @@ public class RankCommand implements CommandExecutor {
         player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
         player.sendMessage(CenteredMessage.getCenteredMessage(ChatColor.YELLOW+""+ChatColor.BOLD+"Rank Manager"));
         player.sendMessage("");
+        initPages();
         pages.get(page).forEach(player::sendMessage);
         player.sendMessage("");
         player.sendMessage(ChatColor.RED+"      ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬");
@@ -196,6 +198,8 @@ public class RankCommand implements CommandExecutor {
         pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank list " + ChatColor.GRAY + "Vous donne la listes des ranks");
         pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank set <player> <rank> " + ChatColor.GRAY + "Permet de mettre un grade à un joueur");
         pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank remove <player> <rank> " + ChatColor.GRAY + "Permet de retirer un grade à un joueur");
+        pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank create <rank> " + ChatColor.GRAY + "Permet de créé un grade");
+        pages.get(1).add(ChatColor.GOLD + "◆ " + ChatColor.AQUA + "/rank modify prefix/suffix/tag/power rankName power/prefix/suffix/tag " + ChatColor.GRAY + "Permet de retirer un grade à un joueur");
     }
 
 }
