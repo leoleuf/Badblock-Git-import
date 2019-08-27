@@ -8,9 +8,17 @@ public class BlackList {
     public ArrayList<String> getAddress() {
         return address;
     }
-    public void test(String str){
-        if(!getAddress().contains(str)) {
-            getAddress().add(str);
+    public boolean check(String str){
+        if(getAddress().contains(str)) return true;
+        else return false;
+    }
+    public void addIp(String str){
+        if(getAddress().contains(str)) return;
+        getAddress().add(str);
+    }
+    public void removeIp(String str){
+        if(getAddress().contains(str)){
+            getAddress().remove(str);
         }
     }
 }

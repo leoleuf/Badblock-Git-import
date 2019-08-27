@@ -35,7 +35,7 @@ public class PermCommand implements CommandExecutor {
 
                     }
                     if(args[1].equalsIgnoreCase("list")) {
-                        if (args.length == 3) {
+                        if (args.length == 4) {
                             String target = args[2];
                             if (target == null) {
                                 p.sendMessage("Player arguments cannot be null.");

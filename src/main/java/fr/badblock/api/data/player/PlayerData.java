@@ -393,6 +393,7 @@ public class PlayerData {
         }
     }
 
+    /** Ajoute les permissions bukkit lors d'un join event **/
     public void setBukkitPermissions() {
         FileConfiguration config = badBlockAPI.getConfig();
         RankManager rankManager = badBlockAPI.getRankManager();
