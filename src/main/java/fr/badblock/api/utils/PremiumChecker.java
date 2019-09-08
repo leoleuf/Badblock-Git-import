@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+//Not working.
+
 public class PremiumChecker {
     public boolean isUsernamePremium(String username) throws IOException {
         URL url = new URL("https://api.mojang.com/users/profiles/minecraft/"+username);
