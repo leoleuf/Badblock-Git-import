@@ -14,12 +14,11 @@ public abstract class RabbitListener {
     private Consumer consumer;
     private BadBlockAPI badBlockAPI;
 
-    protected RabbitListener(RabbitService rabbitService, String name, RabbitListenerType type, boolean debug, Consumer consumer) {
+    protected RabbitListener(RabbitService rabbitService, String name, RabbitListenerType type, boolean debug) {
         this.rabbitService = rabbitService;
         this.name = name;
         this.type = type;
         this.debug = debug;
-        this.consumer = consumer;
         this.badBlockAPI = BadBlockAPI.getPluginInstance();
     }
 

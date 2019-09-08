@@ -35,9 +35,9 @@ public class MongoService extends AutoReconnector {
         // Connect
         this.reconnect();
         // Load threads
-        //for (int i = 0; i < getSettings().getWorkerThreads(); i++) {
-        getThreads().add(new MongoThread(this, 1));
-        //}
+        for (int i = 0; i < getSettings().getWorkerThreads(); i++) {
+            getThreads().add(new MongoThread(this, 1));
+        }
     }
 
     private List<MongoThread> getThreads() {
@@ -151,7 +151,7 @@ public class MongoService extends AutoReconnector {
         return settings;
     }
 
-    public void setSettings(MongoSettings settings){
+    public void setSettings(MongoSettings settings) {
         this.settings = settings;
     }
 

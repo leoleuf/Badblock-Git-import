@@ -30,7 +30,7 @@ public class RabbitService extends AutoReconnector {
 
     public RabbitService(String name, RabbitSettings settings) {
         super(name, settings);
-        //setSettings(settings);
+        setSettings(settings);
         this.badBlockAPI = BadBlockAPI.getPluginInstance();
         reconnect();
     }
@@ -107,7 +107,7 @@ public class RabbitService extends AutoReconnector {
         }
     }
 
-    public void sendPacket(RabbitPacket rabbitPacket) {
+    public void sendAsyncPacket(RabbitPacket rabbitPacket) {
         getPacketManager().sendPacket(rabbitPacket);
     }
 
@@ -207,8 +207,11 @@ public class RabbitService extends AutoReconnector {
         this.connection = connection;
     }
 
-    @Override
     public RabbitSettings getSettings() {
         return settings;
+    }
+
+    public void setSettings(RabbitSettings settings) {
+        this.settings = settings;
     }
 }

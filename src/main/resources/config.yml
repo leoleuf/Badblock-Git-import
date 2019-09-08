@@ -18,6 +18,8 @@ mongodb:
   #Collection rank name
   rankmanagercol: ''
 #Chat module
+server:
+  type: ''
 chat:
   #Message when players trying to chat when disabled.
   messageondisabled: '&cLe chat a été désactivé par un membre du Staff'
