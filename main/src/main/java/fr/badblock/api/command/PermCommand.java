@@ -80,7 +80,7 @@ public class PermCommand implements CommandExecutor {
                 }
 
                 if (args[0].equalsIgnoreCase("rank")) {
-
+                    //TODO: Add some methods to set/remove/purge a rank to a player.
                     return true;
                 }
             } else {
