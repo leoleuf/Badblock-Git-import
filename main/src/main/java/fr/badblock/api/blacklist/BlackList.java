@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BlackList {
     ArrayList<String> address = new ArrayList<>();
 
+    //WONT WORK, NEED TO USE IT AS A DATABASE OR BLACKLIST.JSON FILE WHICH I NEED TO LOG IP INSIDE.
     public ArrayList<String> getAddress() {
         return address;
     }
