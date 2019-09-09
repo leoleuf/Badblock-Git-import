@@ -27,11 +27,36 @@ public class PermCommand implements CommandExecutor {
                         return true;
                     }
                     if(args[1].equalsIgnoreCase("add")){
-
+                        String target = args[2];
+                        if(target == null){
+                            p.sendMessage("Player arguments cannot be null.");
+                            return true;
+                        }
+                        if(BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())){
+                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerDataManager().getPlayerData(target);
+                        }else {
+                                Bukkit.broadcastMessage("Player wasn't found into database.");
+                                return false;
+                            }
+                            
                     }
+
+
                     if(args[1].equalsIgnoreCase("remove")){
-
+                        String target = args[2];
+                        if (target == null){
+                            p.sendMessage("Player arguments cannot be null.");
+                            return true;
+                        }
+                        if(BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())){
+                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerDataManager().getPlayerData(target);
+                        }else {
+                                Bukkit.broadcastMessage("Player wasn't found into database.");
+                                return false;
+                            }
                     }
+
+
                     if(args[1].equalsIgnoreCase("list")) {
                         if (args.length == 4) {
                             String target = args[2];
@@ -55,7 +80,7 @@ public class PermCommand implements CommandExecutor {
                 }
 
                 if (args[0].equalsIgnoreCase("rank")) {
-
+                    //TODO: Add some methods to set/remove/purge a rank to a player.
                     return true;
                 }
             } else {
