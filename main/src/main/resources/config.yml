@@ -24,7 +24,7 @@ chat:
   #Message when players trying to chat when disabled.
   messageondisabled: '&cLe chat a été désactivé par un membre du Staff'
   #Lines to clear on chat clear
-  lines: 500
+  lines: 300
   #Message to send when the chat got cleared
   messageonclear: '&9Le chat a été supprimé par un membre du Staff !'
   #Message on disabling chat
