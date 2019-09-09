@@ -23,7 +23,7 @@ public class PermCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("user")) {
                     if(args.length == 1){
                         //TODO send help message(s)
-                        p.sendMessage("nique ta mere");
+                        p.sendMessage("todo");
                         return true;
                     }
                     if(args[1].equalsIgnoreCase("add")){
