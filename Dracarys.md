@@ -18,7 +18,7 @@ Pour utiliser Dracarys, il faut un [client SFTP](client SFTP) et/ou un [client S
 Pour utiliser via SFTP, il suffit de se connecter à votre utilisateur:
 * **Protocole** SFTP
 * **Host** dracarys.badblock.fr
-* **Port** 22
+* **Port** 48967
 * **Login type** Normal
 
 ### En SSH
