@@ -8,24 +8,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class BlackList {
-    ArrayList<String> address = new ArrayList<>();
     JSONObject object = new JSONObject();
-
-    public ArrayList<String> getAddress() {
-        return address;
-    }
+    JSONArray objectList = new JSONArray();
     public boolean check(String str){
-        if(getAddress().contains(str)) return true;
+        if(object.containsKey(str)) return true;
         else return false;
     }
     public void addIp(String str){
-        //if(getAddress().contains(str)) return;
-        //getAddress().add(str);
-        if(!(object.contains(str))){
         object.put("users", str);
         System.out.println("Object créé et data ajouté");
-        }
-        JSONArray objectList = new JSONArray();
         objectList.add(object);
         System.out.println("Object JSON ajouté à la liste d'objects.");
         try (FileWriter file = new FileWriter("blacklist.json")){
@@ -37,8 +28,7 @@ public class BlackList {
 
     }
     public void removeIp(String str){
-        if(getAddress().contains(str)){
-            getAddress().remove(str);
-        }
+        object.remove(str);
+        System.out.println("L'addresse ip " + str + " a été retirée de la blacklist.");
     }
 }

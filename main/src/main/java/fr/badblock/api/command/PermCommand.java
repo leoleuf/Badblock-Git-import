@@ -33,7 +33,7 @@ public class PermCommand implements CommandExecutor {
                             return true;
                         }
                         if(BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())){
-                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerDataManager().getPlayerData(target);
+                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(target);
                         }else {
                                 Bukkit.broadcastMessage("Player wasn't found into database.");
                                 return false;
@@ -49,7 +49,7 @@ public class PermCommand implements CommandExecutor {
                             return true;
                         }
                         if(BadBlockAPI.getPluginInstance().getPlayerDataManager().isPlayerExist(target.toLowerCase())){
-                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerDataManager().getPlayerData(target);
+                            PlayerData playerData = BadBlockAPI.getPluginInstance().getPlayerManager().getPlayerData(target);
                         }else {
                                 Bukkit.broadcastMessage("Player wasn't found into database.");
                                 return false;
