@@ -29,7 +29,7 @@
     },
     "cixxor": {
         "fs_mountpoint": "/home/cixxor",
-        "groups": [ "dev_java" ]
+        "groups": [ "dev_java", "teamspeak" ]
     },
     "flofydech": {
         "fs_mountpoint": "/home/flofydech",
@@ -42,6 +42,10 @@
     "vanilor": {
         "fs_mountpoint": "/home/vanilor",
         "groups": [ "dev_web" ]
+    },
+    "gamercrow": {
+        "fs_mountpoint": "/home/gamercrow",
+        "groups": [ "gamercrow" ]
     },
     "michael": {
         "fs_mountpoint": "/home/michael",

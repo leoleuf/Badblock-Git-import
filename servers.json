@@ -13,6 +13,17 @@
                     ".": "%host%-web"
                 }
             },
+            "ts": {
+                "allowed_groups": [
+                    "administrateur", "teamspeak"
+                ],
+                "allowed_users": [
+                    "cixxor"
+                ],
+                "fs": {
+                    ".": "%host%-ts"
+                }
+            },
             "root": {
                 "allowed_groups": [
                     "administrateurs_competents"
@@ -28,18 +39,10 @@
         "users": {
             "mc": {
                 "allowed_groups": [
-                    "administrateur"
+                    "administrateur", "dev_java", "gamercrow"
                 ],
                 "fs": {
                     ".": "%host%-mc"
-                }
-            },
-            "practice": {
-                "allowed_groups": [
-                    "administrateur"
-                ],
-                "fs": {
-                    ".": "%host%-practice"
                 }
             },
             "root": {
