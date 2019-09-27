@@ -29,7 +29,11 @@
     },
     "cixxor": {
         "fs_mountpoint": "/home/cixxor",
-        "groups": [ "dev_java", "teamspeak" ]
+        "groups": [ "dev_java", "teamspeak", "dev_phenix" ]
+    },
+    "hookwood": {
+        "fs_mountpoint": "/home/hookwood",
+        "groups": [ "dev_phenix" ]
     },
     "flofydech": {
         "fs_mountpoint": "/home/flofydech",
