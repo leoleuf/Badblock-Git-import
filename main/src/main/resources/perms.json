@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "RankCommand": "admin.rank ou *",
+    "PermCommand": "admin.perm ou *",
+    "ChatCommands": "wpmchat.admin"
+  }
+}

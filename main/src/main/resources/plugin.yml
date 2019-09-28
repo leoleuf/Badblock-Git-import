@@ -1,0 +1,8 @@
+name: BadBlockMiniGamesAPI
+authors: [HookWood, Cixxor]
+main: fr.badblock.fr.badblock.api.BadBlockAPI
+version: 1.0-SNAPSHOT
+commands:
+  wpmchat:
+  rank:
+  wpmperms:
