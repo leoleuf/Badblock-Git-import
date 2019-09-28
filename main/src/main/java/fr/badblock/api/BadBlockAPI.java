@@ -70,7 +70,7 @@ public class BadBlockAPI extends JavaPlugin {
     /**
      * Register commands
      **/
-    public void commandsHandler() {
+    private void commandsHandler() {
         getCommand("wpmchat").setExecutor(new ChatCommand());
         getCommand("rank").setExecutor(new RankCommand(this));
         getCommand("wpmperms").setExecutor(new PermCommand());
@@ -80,14 +80,14 @@ public class BadBlockAPI extends JavaPlugin {
      * Register listeners
      **/
 
-    public void listenersHandler() {
+    private void listenersHandler() {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new Chat(), this);
         pm.registerEvents(new PlayerEvent(this), this);
     }
 
     /* Configuration part */
-    public void loadConfig() {
+    private void loadConfig() {
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
     }

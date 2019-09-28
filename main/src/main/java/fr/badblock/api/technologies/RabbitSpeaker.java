@@ -16,9 +16,9 @@ public class RabbitSpeaker {
 
     private RabbitService rabbitService;
 
-    public RabbitSpeaker(RabbitMQConfig rabbitMQConfig) throws IOException {
+    /*public RabbitSpeaker(RabbitMQConfig rabbitMQConfig) throws IOException {
         this.setRabbitService(getRabbitConnector().newService("default", rabbitMQConfig.getRabbitPort(), rabbitMQConfig.getRabbitUsername(), rabbitMQConfig.getRabbitPassword(), rabbitMQConfig.getRabbitVirtualHost(), rabbitMQConfig.getRabbitHostname()));
-    }
+    }*/
 
     public static RabbitConnector getRabbitConnector() {
         return rabbitConnector;
