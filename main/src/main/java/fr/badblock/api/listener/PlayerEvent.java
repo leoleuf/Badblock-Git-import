@@ -1,7 +1,6 @@
 package fr.badblock.api.listener;
 
 import fr.badblock.api.BadBlockAPI;
-import fr.badblock.api.chat.ChatUtilities;
 import fr.badblock.api.data.player.PlayerBean;
 import fr.badblock.api.data.player.PlayerData;
 import fr.badblock.api.blacklist.BlackList;
@@ -25,11 +24,7 @@ public class PlayerEvent implements Listener {
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
         String player = event.getName();
         String uuid = event.getUniqueId().toString();
-        String ip = event.getAddress().getHostAddress();
-        if(blackList.getAddress().contains(ip)){
-            event.setKickMessage(ChatUtilities.f("You got blacklisted on our servers."));
-            event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_FULL);
-        }
+        //String ip = event.getAddress().getHostAddress();
         if (badBlockAPI.getPlayerDataManager().getPlayer(uuid) != null) {
             if (badBlockAPI.getPlayerDataManager().getPlayer(uuid).getPlayerName() != null) {
                 if (!badBlockAPI.getPlayerDataManager().getPlayer(uuid).getPlayerName().toLowerCase().equals(player.toLowerCase())) {
