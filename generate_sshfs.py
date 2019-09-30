@@ -54,7 +54,7 @@ for user in config.users:
 
             command = ["sshfs", remote,
                                 str(mountpoint),
-                                "-C", "-o", "allow_other,reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=all"]
+                                "-C", "-o", "allow_other,reconnect,follow_symlinks,ServerAliveInterval=15,ServerAliveCountMax=3,workaround=all"]
 
             print(' '.join(command))
             subprocess.call(command)
