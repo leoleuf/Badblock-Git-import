@@ -375,7 +375,6 @@ public class PlayerData {
     public void setPermissions(Map<String, List<String>> permissions) {
         refreshData();
         playerBean.setPermissionsJson(new Gson().toJson(permissions));
-        //setBukkitPermissions();
         updateData();
     }
 

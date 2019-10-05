@@ -61,20 +61,137 @@ public class RankData {
         updateData();
     }
 
-    public String getRankTag() {
+    private String getRankTagJson() {
         refreshIfNeeded();
-        return rankBean.getTag();
+        return rankBean.getTagJson();
     }
 
-    public String getRankPrefix() {
-        refreshIfNeeded();
-        return rankBean.getPrefix();
+    public Map<String, String> getRankTabList() {
+        Map<String, String> tab = new Gson().fromJson(getRankTagJson(), new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (tab == null) {
+            return new HashMap<>();
+        } else {
+            return tab;
+        }
     }
 
-    public String getRankSuffix() {
-        refreshIfNeeded();
-        return rankBean.getSuffix();
+    public void addTag(String place, String tag) {
+        Map<String, String> tabs = getRankTabList();
+        if (tabs.keySet().contains(place)) {
+            tabs.forEach((key, value) -> {
+                String placeKey = key;
+                tabs.replace(placeKey, tag);
+            });
+        } else {
+            tabs.put(place, tag);
+        }
+        setTag(tabs);
     }
+
+    public String getRankTab(String place) {
+        Map<String, String> tab = getRankTabList();
+        if (tab.keySet().contains(place)) {
+            return tab.get(place);
+        } else {
+            return null;
+        }
+    }
+
+    public void setTag(Map<String, String> tag) {
+        refreshData();
+        rankBean.setTagJson(new Gson().toJson(tag));
+        updateData();
+    }
+
+
+    private String getRankSuffixJson() {
+        refreshIfNeeded();
+        return rankBean.getSuffixJson();
+    }
+
+    public Map<String, String> getRankSuffixList() {
+        Map<String, String> suffix = new Gson().fromJson(getRankSuffixJson(), new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (suffix == null) {
+            return new HashMap<>();
+        } else {
+            return suffix;
+        }
+    }
+
+    public String getRankSuffix(String place) {
+        Map<String, String> suffix = getRankTabList();
+        if (suffix.keySet().contains(place)) {
+            return suffix.get(place);
+        } else {
+            return null;
+        }
+    }
+
+    public void addSufix(String place, String suffix) {
+        Map<String, String> suffixs = getRankSuffixList();
+        if (suffixs.keySet().contains(place)) {
+            suffixs.forEach((key, value) -> {
+                String placeKey = key;
+                suffixs.replace(placeKey, suffix);
+            });
+        } else {
+            suffixs.put(place, suffix);
+        }
+        setSuffix(suffixs);
+    }
+
+    public void setSuffix(Map<String, String> suffix) {
+        refreshData();
+        rankBean.setSuffixJson(new Gson().toJson(suffix));
+        updateData();
+    }
+
+
+    private String getRankPrefixJson() {
+        refreshIfNeeded();
+        return rankBean.getPrefixJson();
+    }
+
+    public Map<String, String> getRankPrefixList() {
+        Map<String, String> prefix = new Gson().fromJson(getRankPrefixJson(), new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (prefix == null) {
+            return new HashMap<>();
+        } else {
+            return prefix;
+        }
+    }
+
+    public String getRankPrefix(String place) {
+        Map<String, String> prefix = getRankTabList();
+        if (prefix.keySet().contains(place)) {
+            return prefix.get(place);
+        } else {
+            return null;
+        }
+    }
+
+    public void addPrefix(String place, String prefix) {
+        Map<String, String> prefixs = getRankPrefixList();
+        if (prefixs.keySet().contains(place)) {
+            prefixs.forEach((key, value) -> {
+                String placeKey = key;
+                prefixs.replace(placeKey, prefix);
+            });
+        } else {
+            prefixs.put(place, prefix);
+        }
+        setPrefix(prefixs);
+    }
+
+    public void setPrefix(Map<String, String> prefix) {
+        refreshData();
+        rankBean.setPrefixJson(new Gson().toJson(prefix));
+        updateData();
+    }
+
 
     /**
      * @return la map des permissions qui a été transcodé en json et stocké
@@ -85,19 +202,11 @@ public class RankData {
     }
 
     /**
-     * @return La map des permissions<Serveur, List<Permissions>> stocké en json
-     */
-    private Map<String, List<String>> transcodePermission() {
-        return new Gson().fromJson(getPermissionsJson(), new TypeToken<Map<String, List<String>>>() {
-        }.getType());
-
-    }
-
-    /**
      * @return sois une nouvelle hashmap si le joueur n'as aucune permission, soit la liste des permissions du joueur
      */
     public Map<String, List<String>> getPermissions() {
-        Map<String, List<String>> perms = transcodePermission();
+        Map<String, List<String>> perms = new Gson().fromJson(getPermissionsJson(), new TypeToken<Map<String, List<String>>>() {
+        }.getType());
         if (perms == null) {
             return new HashMap<>();
         } else {
@@ -235,23 +344,6 @@ public class RankData {
         updateData();
     }
 
-    public void setTag(String tag) {
-        refreshData();
-        rankBean.setTag(tag);
-        updateData();
-    }
-
-    public void setPrefix(String prefix) {
-        refreshData();
-        rankBean.setPrefix(prefix);
-        updateData();
-    }
-
-    public void setSuffix(String suffix) {
-        refreshData();
-        rankBean.setSuffix(suffix);
-        updateData();
-    }
 
     public boolean refreshData() {
         lastRefresh = System.currentTimeMillis();

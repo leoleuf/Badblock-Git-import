@@ -6,20 +6,20 @@ public class RankBean {
     private int rankId;
     private String rankName;
     private int power;
-    private String tag;
-    private String prefix;
-    private String suffix;
+    private String tagJson;
+    private String prefixJson;
+    private String suffixJson;
     private String permissionsJson;
     private boolean isStaff;
 
 
-    public RankBean(int rankId, String rankName, int power, String tag, String prefix, String suffix, String permissionsJson, boolean isStaff) {
+    public RankBean(int rankId, String rankName, int power, String tagJson, String prefixJson, String suffixJson, String permissionsJson, boolean isStaff) {
         this.rankId = rankId;
         this.rankName = rankName;
         this.power = power;
-        this.tag = tag;
-        this.prefix = prefix;
-        this.suffix = suffix;
+        this.tagJson = tagJson;
+        this.prefixJson = prefixJson;
+        this.suffixJson = suffixJson;
         this.permissionsJson = permissionsJson;
         this.isStaff = isStaff;
     }
@@ -48,28 +48,28 @@ public class RankBean {
         this.power = power;
     }
 
-    public String getTag() {
-        return tag;
+    public String getTagJson() {
+        return tagJson;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setTagJson(String tagJson) {
+        this.tagJson = tagJson;
     }
 
-    public String getPrefix() {
-        return prefix;
+    public String getPrefixJson() {
+        return prefixJson;
     }
 
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
+    public void setPrefixJson(String prefixJson) {
+        this.prefixJson = prefixJson;
     }
 
-    public String getSuffix() {
-        return suffix;
+    public String getSuffixJson() {
+        return suffixJson;
     }
 
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
+    public void setSuffixJson(String suffixJson) {
+        this.suffixJson = suffixJson;
     }
 
 

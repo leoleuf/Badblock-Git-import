@@ -48,6 +48,7 @@ public class RankManager {
         try {
             RankData rankData = new RankData(rankId, badBlockAPI);
             cache.put(rankId, rankData);
+            BadBlockAPI.getPluginInstance().getLogger().info("[BadBlockAPI] RankManager - Le grade" + rankData.getRankName() + " ("+rankId+ ") a ete mis en cache !");
         } catch (Exception e) {
             e.printStackTrace();
         }

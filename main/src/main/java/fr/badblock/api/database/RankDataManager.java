@@ -10,9 +10,9 @@ import java.util.Objects;
 public class RankDataManager {
 
     private DBCollection ranks;
-    private String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.rankmanagercol");
 
     public RankDataManager() {
+        String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.rankmanagercol");
         this.ranks = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
 
@@ -66,9 +66,9 @@ public class RankDataManager {
             int rankID = rankBean.getRankId();
             String rankName = rankBean.getRankName();
             int rankPower = rankBean.getPower();
-            String rankTag = rankBean.getTag();
-            String rankPrefix = rankBean.getPrefix();
-            String rankSuffix = rankBean.getSuffix();
+            String rankTag = rankBean.getTagJson();
+            String rankPrefix = rankBean.getPrefixJson();
+            String rankSuffix = rankBean.getSuffixJson();
             String rankPermissions = rankBean.getPermissionsJson();
             boolean rankIsStaff = rankBean.isStaff();
 
@@ -96,9 +96,9 @@ public class RankDataManager {
             int rankID = rankBean.getRankId();
             String rankName = rankBean.getRankName();
             int rankPower = rankBean.getPower();
-            String rankTag = rankBean.getTag();
-            String rankPrefix = rankBean.getPrefix();
-            String rankSuffix = rankBean.getSuffix();
+            String rankTag = rankBean.getTagJson();
+            String rankPrefix = rankBean.getPrefixJson();
+            String rankSuffix = rankBean.getSuffixJson();
             String rankPermissions = rankBean.getPermissionsJson();
             boolean rankIsStaff = rankBean.isStaff();
 

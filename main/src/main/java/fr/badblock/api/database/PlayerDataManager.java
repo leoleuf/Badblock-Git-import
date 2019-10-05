@@ -13,9 +13,9 @@ import java.util.*;
 public class PlayerDataManager {
 
     private DBCollection players;
-    private String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.datamanagercol");
 
     public PlayerDataManager() {
+        String collection = BadBlockAPI.getPluginInstance().getConfig().getString("mongodb.datamanagercol");
         this.players = BadBlockAPI.getPluginInstance().getMongoService().db().getCollection(collection);
     }
 
