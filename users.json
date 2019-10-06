@@ -47,6 +47,10 @@
         "fs_mountpoint": "/home/gamercrow",
         "groups": [ "gamercrow" ]
     },
+    "laglobul": {
+        "fs_mountpoint": "/home/laglobul",
+        "groups": [ "laglobul" ]
+    },
     "michael": {
         "fs_mountpoint": "/home/michael",
         "groups": [ "owner", "administrateur", "administrateurs_competents" ]

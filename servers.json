@@ -24,6 +24,17 @@
                     ".": "%host%-ts"
                 }
             },
+            "ts-dev": {
+                "allowed_groups": [
+                    "administrateur", "teamspeak-dev"
+                ],
+                "allowed_users": [
+                    "laglobul"
+                ],
+                "fs": {
+                    ".": "%host%-ts-dev"
+                }
+            },
             "root": {
                 "allowed_groups": [
                     "administrateurs_competents"
