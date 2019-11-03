@@ -44,6 +44,11 @@ public class Game<T extends GamePlayer> {
         return players;
     }
 
+    public GameState getState()
+    {
+        return state;
+    }
+
     public boolean isState(GameState state)
     {
         return this.state.equals(state);

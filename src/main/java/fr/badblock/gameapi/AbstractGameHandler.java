@@ -1,13 +1,17 @@
 package fr.badblock.gameapi;
 
-import org.bukkit.entity.Player;
+import fr.badblock.gameapi.tasks.StartingTask;
 
 public abstract class AbstractGameHandler {
 
-    // ToDo: Define many methods
+    private GameAPI instance = GameAPI.getInstance();
 
-    public abstract void onPlayerJoin(Player player);
-
-    public abstract void onPlayerQuit(Player player);
+    public void startGame()
+    {
+        Game game = instance.getGame();
+        if (!game.isState(GameState.WAITING) || game.getCache().size() < game.getRequiredPlayers()) return;
+        game.setState(GameState.STARTING);
+        game.setTask(new StartingTask(game, 30).runTaskTimer(instance.getPlugin(), 0, 20));
+    }
 
 }

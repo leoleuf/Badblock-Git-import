@@ -13,14 +13,8 @@ public class GameAPI {
     public GameAPI(JavaPlugin plugin)
     {
         instance = this;
-        this.plugin = plugin; // JavaPlugin instance
-        registerListeners(); // Register default listeners
-    }
-
-    private void registerListeners()
-    {
-        PluginManager plugin = this.plugin.getServer().getPluginManager();
-        plugin.registerEvents(new GameListeners(this), this.plugin);
+        this.plugin = plugin;
+        registerListeners();
     }
 
     public static GameAPI getInstance()
@@ -38,7 +32,13 @@ public class GameAPI {
         return game;
     }
 
-    // ToDo: Add mores check
+    private void registerListeners()
+    {
+        PluginManager plugin = this.plugin.getServer().getPluginManager();
+        plugin.registerEvents(new GameListeners(this), this.plugin);
+    }
+
+    // ToDo: Add many checks
     public void registerGame(Game game)
     {
         this.game = game;
