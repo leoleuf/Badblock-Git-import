@@ -4,6 +4,8 @@ import fr.badblock.gameapi.listeners.GameListeners;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public class GameAPI {
 
     private static GameAPI instance;
@@ -41,7 +43,9 @@ public class GameAPI {
     // ToDo: Add many checks
     public void registerGame(Game game)
     {
+        if (this.game != null) return;
         this.game = game;
+        plugin.getLogger().log(Level.INFO, "Registered game " + game.getName() + " successfully !");
     }
 
 }

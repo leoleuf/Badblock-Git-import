@@ -1,6 +1,5 @@
 package fr.badblock.gameapi.listeners;
 
-import fr.badblock.gameapi.AbstractGameHandler;
 import fr.badblock.gameapi.Game;
 import fr.badblock.gameapi.GameAPI;
 import fr.badblock.gameapi.events.PlayerJoinGameEvent;
