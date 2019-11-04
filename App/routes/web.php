@@ -52,14 +52,6 @@ $app->group('/ranking', function (){
     $this->get('/minigame/{game}/json', \App\Controllers\RankingController::class . ':getMiniGameJson')->setName('ranking.minigamejson');
 });
 
-$app->group('/stats', function (){
-	$this->get('', \App\Controllers\StatsController::class . ':home')->setName('stats.home');
-	$this->get('/games', \App\Controllers\StatsController::class . ':games')->setName('stats.games');
-	$this->get('/podium', \App\Controllers\StatsController::class . ':podium')->setName('podium');
-	$this->get('/{date}/{game}', \App\Controllers\StatsController::class . ':game')->setName('stats-sp');
-	$this->get('/{date}/{game}/{page}', \App\Controllers\StatsController::class . ':game')->setName('stats-game');
-});
-
 $app->group('/shop', function (){
 
 	$this->get('', \App\Controllers\ShopController::class . ':index')->setName('shop.home');
@@ -101,6 +93,10 @@ $app->group('/vote', function (){
     $this->post('/playerexists', \App\Controllers\VoteController::class . ':playerexists')->setName('vote.playerexists');
 });
 
+/**
+ *
+ * Pages supposées inactives
+ *
 $app->group('/jeux', function (){
 
     $this->get('/', function($request, $response)
@@ -117,6 +113,7 @@ $app->group('/jeux', function (){
     $this->get('/freebuild', \App\Controllers\DiscoverController::class . ':freebuild')->setName('discover.freebuild');
 
 });
+ **/
 
 $app->get('/launcher-minecraft', \App\Controllers\PagesController::class . ':getPlay')->setName('play');
 
