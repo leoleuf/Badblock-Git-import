@@ -4,7 +4,7 @@
  * User: matth
  * Date: 18/05/2019
  * Time: 01:23
- */
+ *
 
 namespace App\Http\Controllers\others;
 
@@ -35,4 +35,4 @@ class ClearGradePersoController extends Controller
         return view('others.clearGradePerso', ['Players' => $PlayersWithGradePerso]);
 
     }
-}
+}*/

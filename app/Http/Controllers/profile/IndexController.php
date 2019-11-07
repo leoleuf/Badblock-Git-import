@@ -123,12 +123,8 @@ class IndexController extends Controller
             $Guardian = [];
         }
 
-<<<<<<< HEAD
         if(!isset($Player['onlineMode']))
             $Player['onlineMode'] = 0;
-
-=======
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
         return view('users.view')
             ->with('Player', $Player)
             ->with('Sanctions', $Sanctions)

@@ -84,7 +84,6 @@
 
                         for (screen in obj){
 
-<<<<<<< HEAD
                             console.log(obj[screen]['filename']);
 
 
@@ -97,7 +96,6 @@
                                 '                                </div>\n' +
                                 '                            </div>');
 
-=======
                             console.log(obj[screen]);
 
                             console.log((new Date() - new Date(obj[screen]['date'])));
@@ -113,7 +111,6 @@
                                     '                                </div>\n' +
                                     '                            </div>');
                             }
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 
                         }
                     }

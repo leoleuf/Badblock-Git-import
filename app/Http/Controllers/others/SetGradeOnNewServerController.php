@@ -4,7 +4,7 @@
  * User: matth
  * Date: 01/06/2019
  * Time: 21:28
- */
+
 
 namespace App\Http\Controllers\others;
 
@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\DB;
 class SetGradeOnNewServerController extends Controller
 {
 
-<<<<<<< HEAD
+    /*
     public function index($row)
     {
 
+        /*
         $newServerName = "practice";
         $refServer = "bungee";
 
@@ -45,7 +46,7 @@ class SetGradeOnNewServerController extends Controller
 
                 ['permissions.groups.'.$refServer.'.miniyoutuber' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.youtuber' => ['$exists' => true]]
-                */
+                *
                 ['permissions.groups.skyblock.islander' => ['$exists' => true]],
                 ['permissions.groups.skyblock.skylander' => ['$exists' => true]],
                 ['permissions.groups.skyblock.skylord' => ['$exists' => true]],
@@ -58,7 +59,6 @@ class SetGradeOnNewServerController extends Controller
                 ['permissions.groups.'.$refServer.'.badfriend' => ['$exists' => true]]
 
                 /*
-=======
     public function index(){
 
         $newServerName = "rushffa";
@@ -83,13 +83,11 @@ class SetGradeOnNewServerController extends Controller
                 ['permissions.groups.'.$refServer.'.graphiste' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.builder-test' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.builder' => ['$exists' => true]],
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                 ['permissions.groups.'.$refServer.'.helper' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.modochat' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.modo' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.modocheat' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.supermodo' => ['$exists' => true]],
-<<<<<<< HEAD
                 ['permissions.groups.'.$refServer.'.developpeur' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.superviseur' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.redacteur' => ['$exists' => true]],
@@ -99,7 +97,8 @@ class SetGradeOnNewServerController extends Controller
                 ['permissions.groups.'.$refServer.'.manager' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.builder' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.graphiste' => ['$exists' => true]]
-                */
+
+
             ]
         ];
 
@@ -116,7 +115,7 @@ class SetGradeOnNewServerController extends Controller
          *
          * Script servant à sortir une liste de noms de joueurs
          *
-         */
+         *
         $my_file = 'Liste.txt';
         $handle = fopen($my_file, 'a') or die('Cannot open file:  '.$my_file);
         $data = "";
@@ -199,12 +198,10 @@ class SetGradeOnNewServerController extends Controller
                 }
             }
         }
-**/
 
 
         $row++;
         return redirect('/setGradesOnNewServer/'.$row);
-=======
                 ['permissions.groups.'.$refServer.'.superviseur' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.responsable' => ['$exists' => true]],
                 ['permissions.groups.'.$refServer.'.manager' => ['$exists' => true]]
@@ -228,4 +225,4 @@ class SetGradeOnNewServerController extends Controller
 >>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
     }
 
-}
+}*/

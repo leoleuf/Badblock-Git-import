@@ -34,17 +34,14 @@ class ModerationController extends Controller
             ->where('punisher', 'like', strtolower(Auth::user()->name))
             ->where('proof', '=', [])
             ->where(function ($query) {
-<<<<<<< HEAD
                 $query->where('type', '=', "MUTE")
                     ->orWhere('type', '=', "KICK")
                     ->orWhere('type', '=', "UNBAN")
                     ->orWhere('type', '=', "BAN")
                     ->orWhere('type', '=', "WARN");
-=======
                 $query->Where('type', '=', "KICK")
                     ->orWhere('type', '=', "UNBAN")
                     ->orWhere('type', '=', "BAN");
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
             })
             ->orderBy('timestamp', 'DESC')
             ->take(1000)

@@ -19,11 +19,8 @@ Route::post('/generate2faSecret','PasswordSecurityController@generate2faSecret')
 Route::post('/2fa','PasswordSecurityController@enable2fa')->name('enable2fa');
 Route::post('/disable2fa','PasswordSecurityController@disable2fa')->name('disable2fa');
 
-<<<<<<< HEAD
-=======
 Route::post('/reset/bungee', 'Infra\DockerController@restartBungee');
 
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 Route::post('/2faVerify', function () {
 
     Cookie::queue("TFA", true, 60 * 24 * 7);
@@ -31,11 +28,6 @@ Route::post('/2faVerify', function () {
 
 })->name('2faVerify')->middleware('2fa');
 
-<<<<<<< HEAD
-Route::get('/setGradesOnNewServer/{id}', 'others\setGradeOnNewServerController@index');
-
-=======
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 Route::group([
     'prefix'     => "api"
 ], function () {

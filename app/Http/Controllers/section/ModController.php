@@ -42,12 +42,7 @@ class ModController extends Controller
             ->where('proof', '=', [])
             ->where('punisher', '!=', "Console")
             ->where(function ($query) {
-<<<<<<< HEAD
-                $query->where('type', '=', "MUTE")
-                    ->orWhere('type', '=', "KICK")
-=======
                 $query->orWhere('type', '=', "KICK")
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                     ->orWhere('type', '=', "BAN");
             })
             ->where('timestamp', '>=', time()*1000-1209600000)
@@ -84,12 +79,7 @@ class ModController extends Controller
             ->where('proof', '=', [])
             ->where('punisher', '!=', "Console")
             ->where(function ($query) {
-<<<<<<< HEAD
-                $query->where('type', '=', "MUTE")
-                    ->orWhere('type', '=', "KICK")
-=======
                 $query->Where('type', '=', "KICK")
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                     ->orWhere('type', '=', "BAN");
             })
             ->orderBy('timestamp', 'DESC')
@@ -145,12 +135,7 @@ class ModController extends Controller
                 ->where('proof', '=', [])
                 ->where('punisher', 'like', $player['name'])
                 ->where(function ($query) {
-<<<<<<< HEAD
-                    $query->where('type', '=', "MUTE")
-                        ->orWhere('type', '=', "KICK")
-=======
                     $query->Where('type', '=', "KICK")
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                         ->orWhere('type', '=', "BAN");
                 })
                 ->where('timestamp', '>=', time()*1000-1209600000)

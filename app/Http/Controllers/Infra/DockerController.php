@@ -9,10 +9,8 @@
 namespace App\Http\Controllers\Infra;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-=======
+
 use Illuminate\Http\Request;
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
@@ -91,13 +89,10 @@ class DockerController extends Controller
         //TODO add cluster target
 
         $connection = new AMQPStreamConnection(getenv('RABBIT_IP'), getenv('RABBIT_PORT'), getenv('RABBIT_USERNAME'), getenv('RABBIT_PASSWORD'), getenv('RABBIT_VIRTUALHOST'));
-<<<<<<< HEAD
-=======
 
         var_dump($connection);
         die();
 
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
         $channel = $connection->channel();
         $channel->exchange_declare('docker.instance.open_PROD', 'fanout', false, false, false, false);
 
@@ -133,8 +128,6 @@ class DockerController extends Controller
 
     }
 
-<<<<<<< HEAD
-=======
     public function restartBungee(Request $request)
     {
 
@@ -183,7 +176,5 @@ class DockerController extends Controller
             return var_dump($e);
         }
     }
-
->>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 
 }
