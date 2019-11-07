@@ -7,7 +7,11 @@
     <div class="content-page">
         <div class="content">
             <div class="container">
+<<<<<<< HEAD
                 @if (count($data) > 0)
+=======
+                @if (count($data))
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                     <h3 style="text-align: center">Sanctions données par <b>{{ $username }}</b></h3>
                     <div class="row">
                         <div class="col-lg-2">

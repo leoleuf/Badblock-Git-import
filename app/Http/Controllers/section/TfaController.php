@@ -10,6 +10,10 @@ namespace App\Http\Controllers\section;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 use Illuminate\Support\Facades\DB;
 
 class TfaController extends Controller
@@ -41,12 +45,23 @@ class TfaController extends Controller
 
     public function bypassTFA()
     {
+<<<<<<< HEAD
         DB::table('users')->where('id', $_POST['userid'])->update([
 
             'TFAbypass' => $_POST['bypass']
 
         ]);
 
+=======
+        if(Auth::user()->id == 3)
+        {
+            DB::table('users')->where('id', $_POST['userid'])->update([
+
+                'TFAbypass' => $_POST['bypass']
+
+            ]);
+        }
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
     }
 
 }

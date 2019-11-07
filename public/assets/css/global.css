@@ -6437,7 +6437,19 @@ File: Responsive
 
 }
 
+<<<<<<< HEAD
 .btn-webserver {
+=======
+.webserver-list {
+
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.webserver-list .btn-webserver {
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
 
   display: flex;
   justify-content: space-between;

@@ -131,8 +131,14 @@
                     data = JSON.parse(data);
                     $("#search_down").empty();
                     for (i = 0; i < data.length; i++) {
+<<<<<<< HEAD
                         if (data[i] != last) {
                             $("#search_down").append('<tr><th scope="row">' + data[i]["name"] + '</th><td><a href="/moderation/casier/' + data[i]["uniqueId"] + '" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/website/achat/' + data[i]["uniqueId"] + '" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/profile/' + data[i]["uniqueId"] + '" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td></tr>');
+=======
+                        if (data[i] != last){
+                            $("#search_down").append('<tr><th scope="row">' + data[i]["name"] +'</th><td><a href="/moderation/casier/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/website/achat/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td><td><a href="/profile/' + data[i]["uniqueId"] +'" class="btn btn-icon waves-effect waves-light btn-warning m-b-5"> <i class="fa fa-wrench"></i> </a></td></tr>');
+                            console.log(data[i]);
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                         }
                     }
                 }

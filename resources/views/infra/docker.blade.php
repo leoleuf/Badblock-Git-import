@@ -9,8 +9,12 @@
         <a href="#" class="btn btn-icon btn-warning waves-light"  data-toggle="modal" data-target="#openInstance"> <i class="fas fa-plus-square"></i> New Instance</a>
         <a href="#" class="btn btn-icon btn-danger waves-light" data-toggle="modal" data-target="#closeInstance"> <i class="fas fa-minus-square"></i> Stop Instance</a>
         <div class="pull-right">
+<<<<<<< HEAD
             <a href="#" class="btn btn-icon btn-info waves-light" onclick="viewcluster();"> <i class="fas fa-network-wired"></i> Vue Cluster</a>
             <a href="#" class="btn btn-icon btn-info waves-light" onclick="viewinstance();"> <i class="fas fa-server"></i> Vue Instances</a>
+=======
+            <a href="#" class="btn btn-icon btn-info waves-light" id="resetBungee"> <i class="fas fa-server"></i>Reset Bungee</a>
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
         </div>
         <br>
         <br>
@@ -86,6 +90,49 @@
     </div>
     <script>
 
+<<<<<<< HEAD
+=======
+        $('#resetBungee').click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "/reset/bungee",
+                data: "cmd=1",
+                success: function(data)
+                {
+                    toastr.success("Reset en cours", "Réussite !");
+                    console.log('Valider !');
+                },
+                error: function(data)
+                {
+                    toastr.error('ERREUR ERREUR ERREUR CONTACTEZ HOOOKI VITE', 'Erreur !');
+                    console.log('Erreur !');
+                }
+            });
+
+            setTimeout(function () {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/reset/bungee",
+                    data: "cmd=2",
+                    success: function(data)
+                    {
+                        toastr.success("Reset en cours", "Réussite !");
+                        console.log('Valider !');
+                    },
+                    error: function(data)
+                    {
+                        toastr.error('ERREUR ERREUR ERREUR CONTACTEZ HOOOKI VITE', 'Erreur !');
+                        console.log('Erreur !');
+                    }
+                });
+
+            }, 15000);
+
+        });
+
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
         $("#openInst").submit(function(e) {
             var form = $(this);
 

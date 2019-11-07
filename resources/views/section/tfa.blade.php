@@ -21,7 +21,13 @@
                                             <th>TFA Active</th>
                                             <th>Bypass</th>
                                             <th>Action</th>
+<<<<<<< HEAD
                                             <th>ByPass</th>
+=======
+                                            @if(\Illuminate\Support\Facades\Auth::user()->id == 3)
+                                            <th>ByPass</th>
+                                            @endif
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -51,6 +57,7 @@
                                                         </button>
                                                     </form>
                                                 </td>
+<<<<<<< HEAD
                                                 <td>
                                                     <form class="inline" method="post" action="/tfacheck/bypass">
                                                         <div class="custom-control custom-checkbox mr-sm-2">
@@ -59,6 +66,18 @@
                                                         </div>
                                                     </form>
                                                 </td>
+=======
+                                                @if(\Illuminate\Support\Facades\Auth::user()->id == 3)
+                                                    <td>
+                                                        <form class="inline" method="post" action="/tfacheck/bypass">
+                                                            <div class="custom-control custom-checkbox mr-sm-2">
+                                                                <input type="checkbox" class="custom-control-input" id="bypassCheck{{ $data->id }}" @if($data->TFAbypass) checked @endif onclick="byPass({{ $data->id}}, {{ $data->TFAbypass }})">
+                                                                <label class="custom-control-label" for="bypassCheck{{ $data->id }}"></label>
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                @endif
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                                             </tr>
                                         @endforeach
                                         </tbody>

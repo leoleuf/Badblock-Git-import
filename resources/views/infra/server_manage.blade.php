@@ -12,7 +12,10 @@
                     {{ Form::open(array('url' => '/server/motd', "method" => "POST")) }}
                         <label for="motd">MOTD</label>
                         <p>Pour mettre des espaces en tout début de chaîne, insérez un caractère (n'importe lequel) puis les espaces et votre texte. Exemple : <code>" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test MOTD</code></p>
+<<<<<<< HEAD
                         <p>Pour centrer un texte, utilisez la balise <c> devant le texte (centre toute la ligne)</p>
+=======
+>>>>>>> 847eb807a3fb1c439fb7e1c8a08431e7d087b4db
                         <input class="form-control" name="motd" value="{{ $data['description'] }}" id="motd">
                         <br />
                         <input type="submit" class="btn btn-primary" value="Enregistrer" />
