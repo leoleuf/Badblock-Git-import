@@ -4,6 +4,11 @@
 
         $params = array_map('strip_tags', $_GET);
 
+        /**
+         *
+         * HERE IS THE API
+         *
+         */
         if(isset($params['player'])){
 
             $sql = "SELECT votes_nb FROM votes WHERE user_uuid = ?";
@@ -47,8 +52,13 @@
 
         else
             return http_response_code(404);
-
     }
+
+    /**
+     *
+     * HERE IS THE VOTE CONFIRMATION
+     *
+     */
 
     ?>
 
