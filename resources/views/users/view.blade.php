@@ -75,7 +75,7 @@
                                     <ul class="nav nav-tabs">
                                         <li class="nav-item">
                                             <a href="#2" data-toggle="tab" aria-expanded="false" class="nav-link">
-                                                Information G.
+                                                Information IG.
                                             </a>
                                         </li>
                                         <li class="nav-item">
