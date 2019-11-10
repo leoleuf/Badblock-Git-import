@@ -26,7 +26,7 @@
             },
             "ts-dev": {
                 "allowed_groups": [
-                    "administrateur", "teamspeak-dev"
+                    "administrateur", "teamspeak-dev", "laglobul"
                 ],
                 "allowed_users": [
                     "laglobul"
@@ -37,7 +37,7 @@
             },
             "root": {
                 "allowed_groups": [
-                    "administrateurs_competents"
+                    "administrateurs_competents", "rbx1-root"
                 ],
                 "fs": {
                     "/": "%host%-root"
@@ -79,7 +79,7 @@
             },
             "phenix": {
                 "allowed_groups": [
-                    "administrateurs_competents", "dev_phenix"
+                    "administrateur", "dev_phenix"
                 ],
                 "fs": {
                     ".": "%host%-phenix"

@@ -9,7 +9,7 @@
     },
     "sulfique": {
         "fs_mountpoint": "/home/sulfique",
-        "groups": [ "administrateur", "administrateurs_competents" ]
+        "groups": []
     },
     "lordthom": {
         "fs_mountpoint": "/home/lordthom",
@@ -17,35 +17,31 @@
     },
     "latitchips": {
         "fs_mountpoint": "/home/latitchips",
-        "groups": [ "administrateur", "administrateurs_competents" ]
+        "groups": []
     },
     "sizas": {
         "fs_mountpoint": "/home/sizas",
-        "groups": [ "administrateur" ]
+        "groups": []
     },
     "cixxor": {
         "fs_mountpoint": "/home/cixxor",
-        "groups": [ "dev_java", "teamspeak", "dev_phenix" ]
+        "groups": [ "dev_java", "teamspeak", "dev_phenix", "dev_web", "rbx1-root" ]
     },
     "hookwood": {
         "fs_mountpoint": "/home/hookwood",
-        "groups": [ "dev_phenix" ]
+        "groups": [ "dev_phenix", "dev_java" ]
     },
     "flofydech": {
         "fs_mountpoint": "/home/flofydech",
-        "groups": [ "administrateur" ]
+        "groups": [ "administrateur", "administrateurs_competents" ]
     },
     "hooki": {
         "fs_mountpoint": "/home/hooki",
-        "groups": [ "dev_web" ]
+        "groups": []
     },
     "vanilor": {
         "fs_mountpoint": "/home/vanilor",
         "groups": [ "dev_web" ]
-    },
-    "gamercrow": {
-        "fs_mountpoint": "/home/gamercrow",
-        "groups": [ "gamercrow" ]
     },
     "laglobul": {
         "fs_mountpoint": "/home/laglobul",
