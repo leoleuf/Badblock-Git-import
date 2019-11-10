@@ -44,7 +44,7 @@
     <div class="container">
       <div class="content">
         <div class="title">403</div>
-        <div class="quote">Forbidden.</div>
+        <div class="quote">Forbidden. You don't have enough permission.</div>
         <div class="explanation">
           <br>
           <small>
