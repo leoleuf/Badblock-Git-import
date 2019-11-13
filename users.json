@@ -25,11 +25,11 @@
     },
     "cixxor": {
         "fs_mountpoint": "/home/cixxor",
-        "groups": [ "dev_java", "teamspeak", "dev_phenix", "dev_web", "rbx1-root" ]
+        "groups": [ "dev_java", "teamspeak", "dev_phenix", "dev_web", "rbx1-root", "access-construction" ]
     },
     "hookwood": {
         "fs_mountpoint": "/home/hookwood",
-        "groups": [ "dev_phenix", "dev_java" ]
+        "groups": [ "dev_phenix", "dev_java", "access-construction" ]
     },
     "flofydech": {
         "fs_mountpoint": "/home/flofydech",
@@ -42,10 +42,6 @@
     "vanilor": {
         "fs_mountpoint": "/home/vanilor",
         "groups": [ "dev_web" ]
-    },
-    "laglobul": {
-        "fs_mountpoint": "/home/laglobul",
-        "groups": [ "laglobul" ]
     },
     "michael": {
         "fs_mountpoint": "/home/michael",

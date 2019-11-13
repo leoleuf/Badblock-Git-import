@@ -26,11 +26,9 @@
             },
             "ts-dev": {
                 "allowed_groups": [
-                    "administrateur", "teamspeak-dev", "laglobul"
+                    "administrateur", "teamspeak-dev"
                 ],
-                "allowed_users": [
-                    "laglobul"
-                ],
+                "allowed_users": [],
                 "fs": {
                     ".": "%host%-ts-dev"
                 }
