@@ -85,6 +85,14 @@
                     ".": "%host%-phenix"
                 }
             },
+            "construction": {
+                "allowed_groups": [
+                    "administrateurs_competents", "access-construction"
+                ],
+                "fs": {
+                    ".": "%host%-construction"
+                }
+            },
             "root": {
                 "allowed_groups": [
                     "administrateurs_competents"
