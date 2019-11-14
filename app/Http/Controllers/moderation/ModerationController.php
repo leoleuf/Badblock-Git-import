@@ -39,9 +39,6 @@ class ModerationController extends Controller
                     ->orWhere('type', '=', "UNBAN")
                     ->orWhere('type', '=', "BAN")
                     ->orWhere('type', '=', "WARN");
-                $query->Where('type', '=', "KICK")
-                    ->orWhere('type', '=', "UNBAN")
-                    ->orWhere('type', '=', "BAN");
             })
             ->orderBy('timestamp', 'DESC')
             ->take(1000)
