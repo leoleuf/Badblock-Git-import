@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="BadBlock developers" />
+    <meta name="description" content="Vote pour le meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr">
+    <meta name="keywords" content="badblock, boutique, serveur mini-jeux, serveur skyblock, skyblock minecraft, skyblock, spaceballs, minecraft mini-jeux, serveur faction, serveur freebuild, freecube, minecraft serveur, serveur minecraft, launcher minecraft, télécharger, download, launcher lifecraft, lifecraft launcher, minecraft lifecraft, launcher premium, launcher gratuit, minecraft, launcher minecraft, telecharger, installer, 1.8, 1.9, 1.10, 1.11, 1.7 launcher, minecraft, cracké, premium, non officiel, launcher gratuit, officiel, serveur, badblock, français, serveur français, launchers, badblock, loncher, executable, rush, tower, speeduhc, uhcspeed, uhc run, uhcrun, cts, capture the sheep, capture the flag, ctf, survivalgames, survival, hungergames, hg, survivalgame, spaceballs, cube of steels, cube of steel, spaceball, space ball, pearlswar, pearlswar, pvpbox, box, 1v1, dayz, infecté, faction, serveur minecraft, minecraft, skyblock, freebuild, launcher minecraft, minecraft, jouer, minecraft, gratuit, minecraft gratuit, minecraft crack, crack, meilleur launcher de france" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://cdn.badblock.fr/images/logo-réseaux-sociaux.jpg" />
+    <meta name="twitter:url" content="https://badblock.fr/votes" />
+    <meta name="twitter:site" content="@BadBlockGame">
+    <meta name="twitter:creator" content="@BadBlockGame" />
+    <meta name="twitter:description" content="Vote pour le meilleur Serveur Minecraft accessible à tout le monde gratuitement. Découvre nos jeux SkyBlock Mini-Jeux FreeBuild Faction et bien plus encore ! Télécharge le jeu gratuitement. Rejoins nous sur notre serveur Minecraft. IP : play.badblock.fr" />
+    <meta property="og:image:width" content="177" />
+    <meta property="og:image:height" content="177" />
+    <meta property="og:locale" content="fr" />
+    <meta property="og:image" content="https://cdn.badblock.fr/images/logo-réseaux-sociaux.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#2d94cc" />
+    <title>BadBlock – Serveur Minecraft Français | Votez pour le meilleur Serveur Minecraft</title>
+    <link rel="shortcut icon" href="{{ store.favicon }}">
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/badblock-css.css">
+</head>
+<body>
+<div id="content-wrapper">
+    <div class="header-block ">
+        <div class="navigation">
+            <nav class="navbar navbar-default navbar-dark" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="https://badblock.fr"><i class="fa fa-home fa-large fa-fixed-width" style="padding-right:5px;"></i>Accueil</a></li>
+                            <li><a href="https://badblock.fr/play"><i class="fa fa-play-circle fa-large fa-fixed-width" style="padding-right:5px; color:#EA2027;"></i>Jouer</a></li>
+                            <li><a href="https://badblock.fr/forums"><i class="fa fa-comments fa-large fa-fixed-width" style="padding-right:5px; color:#1B1464;"></i>Forums</a></li>
+                            <li><a href="https://badblock.fr/vote"><i class="fa fa-gift fa-large fa-fixed-width" style="padding-right:5px; color:#009432;"></i>Vote</a></li>
+                            <li><a href="https://badblock.fr/support"><i class="fa fa-question fa-large fa-fixed-width" style="padding-right:5px; color:#D980FA;"></i>Assistance</a></li>
+                            <li class="active"><a href="/"><i class="fa fa-shopping-cart fa-large fa-fixed-width" style="padding-right:5px; color:#FFC312;"></i>Boutique</a></li>
+                        </ul>
+                    </div>
+                    <div class="header">
+
+                        <div class="buttons">
+                            <div class="toolbar">
+                                <div class="user-bar">
+                                    {% if basket.username %}
+                                    <div class="avatar"><img src="https://minotar.net/avatar/{{ basket.ign|raw }}/36.png"></div>
+                                    <div class="info">
+                                        <a href="/checkout/logout" class="signout"><h1>{{ basket.ign|raw }}</h1></a>
+                                    </div>
+                                    {% else %}
+                                    <div class="avatar"><img src="https://minotar.net/avatar/steve/36.png"></div>
+                                    <div class="info">
+                                        <h1>Visiteur</h1>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="currency">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-globe" aria-hidden="true"></i><span class="fa fa-caret-down"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        
+                                    </ul>
+                                </div>
+                                <div class="basket">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i> Votre panier <span class="fa fa-caret-down"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <li class="item">
+                                            <div class="name"></div>
+                                            <div class="price"><small></small></div>
+                                            <div class="remove"><a href=""><span class="fa fa-times"</span></a></div>
+                                        </li>
+                                        <li class="checkout">
+                                            <div class="total"><b><small></small></div>
+                                            <div class="button"><a href="/checkout/basket" class="btn btn-success"></a></div>
+                                        </li>
+                                    </ul>
+                                    <a href="#" class="btn btn-info" disabled="disabled"><i class="icon-shopping-cart icon-white"></i>
+                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i> Votre panier
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="container flex">
+            <li class="left" id="copy" data-clipboard-text="play.badblock.fr">
+                <div class="ip-copied">IP copié! À bientôt :)</div>
+                <small>Cliquez pour copier l'adresse IP</small>
+                <div class="players">Chargement...</div>
+            </li>
+            <li class="logo">
+                <a href="/"><img src="https://cdn.badblock.fr/images/logo_badblock_text.png"></a>
+            </li>
+            <li class="right">
+                <a href="https://bblock.pw/discord" target="_blank">
+                    <small>Rejoignez notre Discord</small>
+                    <div class="discord players">Chargement...</div>
+                </a>
+            </li>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="notification">
+        </div>
+    </div>
+
+    <div class="modal fade" id="popup-modal" tabindex="-1" role="dialog"></div>
+
+    <script src="https://js.stripe.com/v2/"></script>
+
+    <footer>
+        <div class="foot-block">
+
+            <div class="row-container">
+                <div class="p-body-inner container flex">
+                    <div class="col">
+                        <h1>Notre mission</h1>
+                        <p>
+                        <center><img src="https://cdn.badblock.fr/images/logo-réseaux-sociaux.jpg" alt="Logo BadBlock (2)" height="64" width="64" ></center><br>BadBlock est un serveur Minecraft créé en mars 2013 dans le but d'offrir une expérience de jeu unique et gratuite pour tous. <br> <a href="https://badblock.fr/play" class="btn btn-block btn-primary">Télécharger notre launcher Minecraft</a>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <h1>Nos partenaires</h1>
+                        <p><marquee id="id1" direction="up" scrollamount="2" height="170" ><span onmouseover="getElementById('id1').stop();" onmouseout="getElementById('id1').start();"><center>
+							<a href="https://hytale-games.fr/"><img src="https://cdn.badblock.fr/partenaires/hytale.png" title="Hytale-Games"></a>
+							<br /><br />
+							<a href="https://discord.gg/54bvvVM"><img src="https://cdn.badblock.fr/partenaires/FCM2.jpg" title="FCM"></a>
+							<br /><br />
+							<a href="https://discord.gg/CT3GQfA"><img src="https://cdn.badblock.fr/partenaires/ftnl.png" title="FTNL"></a>
+							</center></marquee></p>
+                    </div>
+                    <div class="col">
+                        <h1>Visitez notre boutique</h1>
+                        <p>
+                        <center><img src="https://cdn.badblock.fr/images/Cart.png" alt="Logo BadBlock Boutique" height="64" width="64" ></center><br>Changez votre expérience de jeu & soutenez BadBlock en acquérant de nouveaux grades ou de nouveaux cosmétiques ! Devenez le meilleur du serveur !<br><a href="/" class="btn btn-block btn-primary">Accéder à notre boutique</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright row-container">
+                <div class="p-body-inner container">
+                    <div class="pull-left">
+                        <p><strong>BadBlock n'est en aucun cas affilié à Mojang AB. Mojang AB est une marque déposée.<br> <a href="https://badblock.fr/mentions-legales" title="Les mentions légales de BadBlock" target="_blank">Mentions Légales</a> | <a href="https://badblock.fr/charte-de-confidentialite" title="La charte de confidentialité de BadBlock" target="_blank">Charte de confidentialité</a> | <a href="https://badblock.fr/staff" title="L'équipe formidable du Serveur Minecraft BadBlock" target="_blank">Notre équipe</a></strong></p>
+                    </div>
+                    <div class="pull-right">
+                        <p>Design by <a href="https://benjdesign.com/?utm_source={{ store.name }}&amp;utm_medium=referral"><span id="benj"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 107.2 53.9" style="enable-background:new 0 0 107.2 53.9;" xml:space="preserve"><style type="text/css">.st0{fill:#231F20;}</style><g id="XMLID_2_"><path id="XMLID_7_" class="st0" d="M38.8,32.2c0.9-1.7,1.8-3.9,1.3-5.9c-0.5-1.7-2-2.6-3.7-2.9c0.8-0.4,1.6-0.9,2.4-1.4c2.8-1.8,5.4-3.8,7.9-6c2.3-2.1,5.1-4.6,5-7.9c-0.1-3.3-3-5.7-6.1-6.3c-3.4-0.8-7.2-0.3-10.6,0.2c-7.1,1.2-13.9,4-20.3,7.3c-3.2,1.6-6.4,3.4-9.2,5.7C3,16.9,0.2,20,0,23.3c-0.1,0.9,1.1,1.2,1.7,0.7c1-0.8,1.8-1.8,2.7-2.7c0.9-0.9,1.8-1.9,2.8-2.7c2.2-1.7,4.5-3.2,6.9-4.6c5.3-2.9,10.9-5.5,16.8-7.1c0.5-0.1,0.9-0.2,1.4-0.4c-0.5,0.9-1,1.8-1.3,2.6c-0.7,1.7-1.5,3.4-2.1,5.2c-1.3,3.6-2.5,7.2-3.5,10.8c0,0.2-0.1,0.3-0.1,0.5c-3.7,1.5-7.5,3.6-10.3,6.3c-0.9,0.9,0.2,2.1,1.3,1.6c2.2-1,4.3-2.1,6.5-3c0.4-0.2,0.9-0.4,1.3-0.5c-0.5,2-1,3.9-1.4,5.9c-0.4,1.8-0.8,3.7-1,5.5c-0.2,1.2-0.4,2.5-0.5,3.8c-0.5,0.4-1,0.7-1.5,1.1c-1.8,1.3-3.9,2.2-5.7,3.5c-0.6,0.4-0.2,1.3,0.5,1.1c2.5-0.6,5-1.8,7.3-3.1c0.2,0,0.3-0.1,0.4-0.2c1.1-0.7,2.2-1.3,3.3-2c3.5-2.3,6.8-5.1,9.6-8.3C36.4,35.7,37.8,34,38.8,32.2z M32.5,15.9c0.7-1.7,1.3-3.5,1.9-5.2c0.5-1.4,1.1-3.2,1.2-4.8c1.5-0.2,2.9-0.4,4.4-0.5c2.2-0.1,6.4-0.4,7.4,2.2c0.9,2.2-2.6,4.7-4,5.9c-2.1,1.9-4.3,3.7-6.7,5.3c-2.2,1.6-4.5,3-6.9,4.4C30.8,20.7,31.6,18.3,32.5,15.9z M25.1,42.1c-0.5,0.4-1,0.8-1.5,1.2c0.1-0.3,0.2-0.5,0.3-0.8c0.6-1.7,1.1-3.5,1.7-5.3c0.8-2.9,1.7-5.7,2.6-8.6c0.5-0.1,0.9-0.3,1.4-0.4c1.1-0.3,2.2-0.6,3.3-0.9c0.7-0.2,2.9-0.6,3.4,0.2c0.1,0.2-0.5,1.7-0.6,2.1c-0.4,1-1,2-1.6,2.8C31.6,36.1,28.4,39.3,25.1,42.1z"/><path id="XMLID_4_" class="st0" d="M105.7,4.5c-0.2,0-0.4-0.1-0.6-0.1c0,0,0,0,0,0c0,0,0,0-0.1,0c-8-1-16-0.1-24,1.3c0.2-1.7,0.3-3.3,0.3-5c0-0.8-1.2-1-1.4-0.2c-0.5,1.9-1,3.8-1.5,5.6c-0.6,0.1-1.1,0.2-1.7,0.3c-4.7,0.9-9.5,2-14.3,2.1c-1.6,0-4.8,0.4-5.1-1.8c-0.2-1.9,1.7-3.6,2.9-4.8c0.3-0.3-0.1-0.8-0.5-0.6c-1.9,0.9-3.6,1.9-4.6,3.8c-0.8,1.7-0.7,3.8,0.6,5.2c1.7,1.9,4.8,2,7.1,2c2.8,0.1,5.6-0.4,8.4-0.8c1.9-0.3,3.9-0.7,5.8-1c-0.3,0.9-0.5,1.7-0.8,2.6c-1.3,4.3-2.9,8.5-4.3,12.8c-0.1,0.2-0.1,0.4-0.2,0.6c-0.1-0.5-0.1-1-0.3-1.5c-0.1-0.6-1-0.6-1.2,0c-0.2,0.6-0.3,1.3-0.5,1.9c-0.3,0.9-0.7,1.6-1.1,2.5c-0.5,0.9-0.9,2-1.7,2.7c-0.7,0.7-1.1,0.4-1.2-0.6c-0.1-1,0.3-2.2,0.5-3.1c1.2-4.2,3.4-8.1,4.2-12.5c0.2-1.1-0.5-2.4-1.8-2.3c-4.5,0.3-6.9,4.2-9.1,7.6c-0.2,0.4-0.5,0.7-0.7,1.1c0.6-1.9,1.2-3.8,1.7-5.6c0.6-2-2.5-3.4-3.5-1.5c-2.3,4.2-4.3,8.4-6.5,12.6c-0.5,1-3.7,7-5.5,5.9c1.7-1.8,3.1-3.9,4.3-6.1c1.2-2.3,3-5,3.2-7.6c0.3-3.2-3-5-5.7-3.6c-2.6,1.2-4.1,4.4-5.1,6.9c-1.1,2.6-1.7,5.7-1.4,8.6c0.1,1.1,0.4,2.3,1,3.3c-1,1-2.2,2-3.5,2.7c-0.5,0.3-0.1,1,0.4,0.8c1.4-0.6,2.7-1.4,3.9-2.3c0.6,0.6,1.2,1,2.1,1.3c2.4,0.7,4.7-0.9,6.2-2.7c0.6-0.7,1.2-1.4,1.7-2.2c-0.1,0.7-0.2,1.4-0.3,2.1c-0.1,0.9,0.8,1.7,1.6,1.8c1,0.1,1.7-0.4,2-1.3c1.6-3.7,3.9-7.3,6.1-10.7c1-1.6,2-3.2,3.2-4.7c0.3-0.3,0.5-0.6,0.8-0.9c-0.6,1.7-1.3,3.3-2,5c-1.1,2.7-2.5,6.3-1.7,9.3c0.9,3,4.4,4.1,6.6,1.7c0.1-0.2,0.3-0.3,0.4-0.5c-0.5,1.6-0.9,3.1-1.3,4.7c0,0,0-0.1-0.1-0.1c-2.3-4-6.8-3.1-10.3-1.6c-4.3,1.8-8.6,3.7-12.8,5.5c-1.6,0.7-3.6,1.6-5.4,0.9c-1.5-0.7-1.5-3.1-2-4.5c-0.4-0.9-1.4-1.1-2-0.3c-2.7,3.5-0.6,8.1,3.6,9.1c2.1,0.5,4.3,0,6.3-0.8c2.2-0.9,4.4-1.9,6.5-2.8c2.1-0.9,4.2-1.8,6.3-2.7c1.3-0.6,4-2.2,5.5-1.5c1.3,0.6,1.4,3.2,1.6,4.3c0.4,2.4,0.5,4.8,0.3,7.1c-0.1,1.1,1,2.1,2.1,2.1c1.3,0,2-1,2.2-2.1c1.1-8.7,3.8-17.1,6.3-25.5c1.6-5.3,3.2-10.8,4.2-16.3c3.1-0.5,6.1-1,9.2-1.4c-1.6,1.2-2.9,2.6-3.3,4.3c-0.2,0.8,0.6,1.9,1.5,1.5c1.4-0.5,2.5-1.5,3.8-2.2c1.3-0.8,2.8-1.6,4.3-2.1c2.9-1.2,6.1-1.6,9.2-1.4C107.5,8.9,108.1,4.8,105.7,4.5z M44.8,28c0.4-2.3,1.2-4.4,2.5-6.3c0.4-0.6,1.1-1.9,1.8-2.1c1-0.3,0.4,1.2,0.3,1.6c-0.6,2-1.4,4-2.3,5.9c-0.7,1.5-1.5,3-2.5,4.4C44.5,30.3,44.6,29,44.8,28z"/><path id="XMLID_3_" class="st0" d="M77.3,32.4c-0.5,0-1,0.2-1.3,0.5c-0.3,0.3-0.6,0.8-0.6,1.3c0,0.5,0.2,1,0.5,1.3c0.4,0.3,0.8,0.5,1.3,0.6c0.5,0,1-0.2,1.3-0.5c0.3-0.3,0.6-0.8,0.6-1.3c0-0.5-0.2-1-0.5-1.3C78.3,32.7,77.8,32.4,77.3,32.4z"/></g></svg></span></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="/templates/209/js/bootstrap.min.js"></script>
+<script src="/templates/209/js/skin.min.js"></script>
+<script src="/templates/209/js/site.js"></script>
+
+<!-- Fluid UI Server Status and Discord Ping -->
+
+<script>
+    var server = 'play.badblock.fr'; // Place your server ip here
+    var serverPort = '25565'; // Define your server port here
+    var discord = '621317732238884879'; // Place your discord widget id here
+    var enableHeadIcons = '1' // Changing this to 1 will enable icon display on header blocks.
+</script>
+
+<!--
+    Feel free to use the file hosted on my website,
+    It is highly suggested you host it separately to increase load time.
+-->
+
+<script src="https://cdn.badblock.fr/buycraft_scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slideout@1.0.1/index.css">
+
+<script>
+    $('.navbar-toggle').on('click', function() { slideout.toggle(); });
+    var slideout = new Slideout({
+        'panel': document.getElementById('content-wrapper'),
+        'menu': document.getElementById('menu'),
+        'padding': 256,
+        'tolerance': 70
+    });
+    function close(eve) {eve.preventDefault();slideout.close();}
+    slideout
+        .on('beforeopen', function() {
+            this.panel.classList.add('panel-open');
+        })
+        .on('open', function() {
+            this.panel.addEventListener('click', close);
+        })
+        .on('beforeclose', function() {
+            this.panel.classList.remove('panel-open');
+            this.panel.removeEventListener('click', close);
+        });
+</script>
+
+<script>
+    jQuery(function(){
+        var countdowns = $(".countdown-to");
+        countdowns.each(function(){
+            setInterval(function(ele) {
+                timeLeft = parseInt(ele.attr("data-countdown"));
+                if (timeLeft == 0) {
+                    ele.html("Time Expired!");
+                } else {
+                    timeLeft--;
+                    ele.attr("data-countdown", timeLeft);
+                    var days = Math.floor(timeLeft / (60 * 60 * 24));
+                    var hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
+                    var minutes = Math.floor((timeLeft % (60 * 60)) / (60));
+                    var seconds = Math.floor((timeLeft % 60));
+                    ele.html(days + "d " + hours + "h " + minutes + "m " + seconds + "s");
+                }
+            }, 1000, jQuery(this));
+        });
+    });
+
+</script>
+</body>
+</html>
