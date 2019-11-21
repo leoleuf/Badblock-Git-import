@@ -25,86 +25,85 @@
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">		<link rel="stylesheet" type="text/css" href="https://cdn.badblock.fr/badblock-css.css">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="badblock-css.css">
+		<link rel="stylesheet" href="custom.css">
 </head>
 <body>
 	<div class="container">
 		<div class="body login">
 			<div class="content">
-				<div class="panel panel-default">
+				<div class="panel">
 					<div class="panel-body">
-						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam itaque ipsa optio dolorum vel eveniet et illo, amet vitae quisquam tenetur corrupti nobis obcaecati recusandae reprehenderit iure expedita corporis veritatis!</p>
+                        <div class="p-body-inner">
+                            <div class="content">
+                                <h1 class="title-center">VOTEZ POUR NOTRE SERVEUR !</h1>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-lg-6 col-xs-12 vote-input center">
+                                        <input type="text" placeholder="Votre nom d'utilisateur">
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <div class="rank-first">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <h4 class="rank-number">#1</h4>
+                                                    </div>
+                                                    <div class="col-xs-9">
+                                                        <h4 class="rank-username">Vanilor</h4>
+                                                        <hr>
+                                                        <h5 class="rank-vote">257 VOTES</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-xs-12" style="padding-right: 0;">
+                                                    <div class="rank-second">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                <h4 class="rank-number">#2</h4>
+                                                            </div>
+                                                            <div class="col-xs-9">
+                                                                <h4 class="rank-username">Hooki</h4>
+                                                                <hr>
+                                                                <h5 class="rank-vote">195 VOTES</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-xs-12" style="padding-left: 0;">
+                                                    <div class="rank-third">
+                                                        <div class="row">
+                                                            <div class="col-xs-3">
+                                                                <h4 class="rank-number">#3</h4>
+                                                            </div>
+                                                            <div class="col-xs-9">
+                                                                <h4 class="rank-username">_Skew_</h4>
+                                                                <hr>
+                                                                <h5 class="rank-vote">78 VOTES</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <p>B</p>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <p>C</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="/templates/209/js/bootstrap.min.js"></script>
-	<script src="/templates/209/js/skin.min.js"></script>
-	<script src="/templates/209/js/site.js"></script>
-
-<!-- Fluid UI Server Status and Discord Ping -->
-
-<script>
-    var server = 'play.badblock.fr'; // Place your server ip here
-    var serverPort = '25565'; // Define your server port here
-    var discord = '621317732238884879'; // Place your discord widget id here
-    var enableHeadIcons = '1' // Changing this to 1 will enable icon display on header blocks.
-</script>
-
-<!--
-    Feel free to use the file hosted on my website,
-    It is highly suggested you host it separately to increase load time.
--->
-
-<script src="https://cdn.badblock.fr/buycraft_scripts.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slideout@1.0.1/index.css">
-
-<script>
-    $('.navbar-toggle').on('click', function() { slideout.toggle(); });
-    var slideout = new Slideout({
-        'panel': document.getElementById('content-wrapper'),
-        'menu': document.getElementById('menu'),
-        'padding': 256,
-        'tolerance': 70
-    });
-    function close(eve) {eve.preventDefault();slideout.close();}
-    slideout
-        .on('beforeopen', function() {
-            this.panel.classList.add('panel-open');
-        })
-        .on('open', function() {
-            this.panel.addEventListener('click', close);
-        })
-        .on('beforeclose', function() {
-            this.panel.classList.remove('panel-open');
-            this.panel.removeEventListener('click', close);
-        });
-</script>
-
-<script>
-    jQuery(function(){
-        var countdowns = $(".countdown-to");
-        countdowns.each(function(){
-            setInterval(function(ele) {
-                timeLeft = parseInt(ele.attr("data-countdown"));
-                if (timeLeft == 0) {
-                    ele.html("Time Expired!");
-                } else {
-                    timeLeft--;
-                    ele.attr("data-countdown", timeLeft);
-                    var days = Math.floor(timeLeft / (60 * 60 * 24));
-                    var hours = Math.floor((timeLeft % (60 * 60 * 24)) / (60 * 60));
-                    var minutes = Math.floor((timeLeft % (60 * 60)) / (60));
-                    var seconds = Math.floor((timeLeft % 60));
-                    ele.html(days + "d " + hours + "h " + minutes + "m " + seconds + "s");
-                }
-            }, 1000, jQuery(this));
-        });
-    });
-
-</script>
 </body>
 </html>
