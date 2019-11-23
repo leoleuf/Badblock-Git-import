@@ -41,7 +41,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg-6 col-xs-12 vote-input center">
-                                        <input type="text" placeholder="Votre nom d'utilisateur">
+                                        <input type="text" placeholder="Votre nom d'utilisateur" id="username">
                                     </div>
                                 </div>
                                 <div class="container-fluid">
@@ -115,9 +115,9 @@
                                         </div>
                                         <div class="col-lg-2">
                                             <div class="vote-button">
-                                                <button class="btn btn-block btn-lg btn-default">Site 1</button>
-                                                <button class="btn btn-block btn-lg btn-primary">Site 2</button>
-                                                <button class="btn btn-block btn-lg btn-default">Site 3</button>
+                                                <button class="btn btn-block btn-lg btn-default site-btn disabled">Site 1</button>
+                                                <button class="btn btn-block btn-lg btn-default site-btn disabled">Site 2</button>
+                                                <button class="btn btn-block btn-lg btn-default site-btn disabled">Site 3</button>
                                             </div>
                                         </div>
                                         <div class="col-lg-5">
@@ -125,9 +125,9 @@
                                                 <h4>Choisi ta récompense !</h4>
                                                 <hr>
                                                 <div class="servers">
-                                                    <button class="btn" id="skyblock"><img class="img-responsive" src="img/BB_key_2.png"></button>
-                                                    <button class="btn btn-primary" id="mini-jeux"><img class="img-responsive" src="img/BB_key_3.png"></button>
-                                                    <button class="btn" id="survie"><img class="img-responsive" src="img/BB_key_1.png"></button>
+                                                    <button class="btn disabled" id="skyblock"><img class="img-responsive" src="img/BB_key_2.png"></button>
+                                                    <button class="btn disabled" id="mini-jeux"><img class="img-responsive" src="img/BB_key_3.png"></button>
+                                                    <button class="btn disabled" id="survie"><img class="img-responsive" src="img/BB_key_1.png"></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,6 +139,8 @@
 				</div>
 			</div>
 		</div>
-	</div>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="vote.js"></script>
 </body>
 </html>
