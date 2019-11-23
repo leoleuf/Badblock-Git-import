@@ -1,3 +1,9 @@
+@keyframes first_ranked{
+    0%{background: rgb(59, 64, 180);}
+    50%{background: rgb(59, 64, 160);}
+    100%{background: rgb(59, 64, 130);}
+}
+
 .title-center{
     text-align: center;
 }
@@ -39,11 +45,11 @@
 }
 
 .rank-first{
-    background: linear-gradient(90deg, #2D3069 0%, #1D228D 118.96%);
     color: #FFF;
     padding: 5px 10px 5px 10px;
     width: 100%;
     height: 120px;
+    animation: first_ranked 1s linear infinite alternate both;
 }
 .rank-first .rank-number{
     text-align: center;
@@ -61,7 +67,7 @@
 }
 
 .rank-second{
-    background: linear-gradient(90deg, #216DB4 0%, #2E86DE 109.78%);
+    background: rgb(59, 116, 180);
     color: #FFF;
     padding: 5px 10px 5px 10px;
     width: 100%;
@@ -83,7 +89,7 @@
 }
 
 .rank-third{
-    background: linear-gradient(90deg, #962222 0%, #A22D2D 111.24%);
+    background: rgb(180, 25, 70);
     color: #FFF;
     padding: 5px 10px 5px 10px;
     width: 100%;
