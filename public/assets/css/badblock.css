@@ -596,7 +596,7 @@ html {
 }
 
 #menu .navbar-nav>li.active>a {
-    color: #000!important
+    color: dimgrey!important
 }
 
 #menu .navbar-nav>li>a:hover {
