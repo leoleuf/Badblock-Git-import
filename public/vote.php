@@ -197,7 +197,7 @@ function getRanking(){
          **/
         ?>
         <div class="panel-footer" style="margin-top: 20px">
-            <p class="text-center">Copyright &copy; BadBlock 2019<?php if(date("Y") != 2019) echo "-".date("Y"); ?> | Site réalisé par <a href="#" target="_blank">Skew</a> & <a href="https://vanilor.info" target="_blank">Vanilor</a></p>
+            <p class="text-center">Copyright &copy; BadBlock 2019<?php if(date("Y") != 2019) echo "-".date("Y"); ?> | Site réalisé par <a href="https://skewram.tk/" target="_blank">Skew</a> & <a href="https://vanilor.info" target="_blank">Vanilor</a></p>
         </div>
     </div>
 </div>
