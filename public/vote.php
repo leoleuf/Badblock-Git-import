@@ -1,92 +1,23 @@
 <?php
 
-/**
- *
- * SOME USEFUL TOOLS
- *
- */
+include_once '../App/Helper.php';
 
-function getConfig(){
-    return [
-        "urls" => [
-            'home' => "https://badblock.fr",
-            'store' => "https://store.badblock.fr"
-        ]
-    ];
+function getRanking(){
+
+    $request = db()->prepare("SELECT votes.user_uuid, votes.vote_nb, users.name
+                                        FROM votes 
+                                        INNER JOIN users ON votes.user_uuid=users.uuid
+                                        WHERE votes.month = ? AND votes.year = ?
+                                        ORDER BY votes.vote_nb DESC");
+    $request->execute([date("m"), date("Y")]);
+    $results = $request->fetchAll();
+
+    if($results === false)
+        return array();
+    else
+        return $results;
+
 }
-
-/**
- * Don't add a / at the beginning when calling this function
- * @param $path
- * @return string
- */
-function assets($path)
-{
-    return '../assets/' . $path;
-}
-
-function layouts($name)
-{
-    return include_once '../layouts/' . $name . '.php';
-}
-
-if ($_GET) {
-
-    $params = array_map('strip_tags', $_GET);
-
-    /**
-     *
-     * HERE IS THE API
-     *
-     */
-    if (isset($params['player'])) {
-
-        $sql = "SELECT votes_nb FROM votes WHERE user_uuid = ?";
-
-        if (isset($params['month']) && isset($params['year']))
-            $sql .= " AND month = ? AND year = ";
-        elseif (isset($params['year']))
-            $sql .= " AND year = ?";
-        elseif (isset($params['month']))
-            $sql .= " AND month = ?";
-
-        $values = [];
-        foreach ($params as $key => $value) {
-            unset($params[$key]);
-            array_push($values, $value);
-        }
-
-        $credentials = [
-            "host" => "127.0.0.1",
-            "port" => "3306",
-            "dbname" => "badblock_stats",
-            "user" => "root",
-            "password" => ""
-        ];
-
-        $pdo = new PDO("mysql:host=" . $credentials['host'] . ";port=" . $credentials['port'] . ";dbname=" . $credentials['db'], $credentials['user'], $credentials['password'], [
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
-        ]);
-
-        $result = $pdo->prepare($sql);
-        $result->execute($values);
-        $result = $result->fetch();
-
-        if ($result)
-            echo json_encode($result);
-        else
-            echo json_encode("[]");
-
-
-    } else
-        return http_response_code(404);
-}
-
-/**
- *
- * HERE IS THE VOTE CONFIRMATION
- *
- */
 
 ?>
 
@@ -106,7 +37,8 @@ if ($_GET) {
                     <h1 class="title-center text-uppercase">Votez pour notre serveur !</h1>
                     <hr>
                     <div class="row">
-                        <div class="col-lg-6 col-xs-12 vote-input center">
+                        <div class="col-lg-6 col-xs-12 vote-input center" id="usernameDiv">
+                            <p class="alert-danger text-center hide" id="error"></p>
                             <input type="text" placeholder="Votre nom d'utilisateur"
                                    id="username" name="username">
                         </div>
@@ -124,30 +56,51 @@ if ($_GET) {
                                 ?>
                                 <h3 class="text-uppercase">Classement</h3>
                             </div>
-                            <div class="rank-first">
-                                <div class="row">
-                                    <div class="col-xs-3">
-                                        <h4 class="rank-number">#1</h4>
-                                    </div>
-                                    <div class="col-xs-9">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                <img class="media-object" src="<?= assets('img/crown.png') ?>" alt="Crown" style="max-width: 64px;">
-                                                </a>
+                            <div class="row">
+
+                                <?php
+
+                                    $players = getRanking();
+                                    foreach($players as $key => $player) {
+                                        $key++;
+                                        if ($key <= 3)
+                                            echo "<div class=\"rank-{$key}\">";
+                                        ?>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h4 class="rank-number">#<?= $key; ?></h4>
                                             </div>
-                                            <div class="media-body">
-                                                <h4>Vanilor</h4>
+                                            <div class="col-xs-9">
+                                                <?php if ($key === 1) { ?>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object"
+                                                                     src="<?= assets('img/crown.png') ?>" alt="Crown"
+                                                                     style="max-width: 64px;">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4><?= $player['name']; ?></h4>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                <? } else { ?>
+                                                    <h4 class="rank-username"><?= $player['name']; ?></h4>
+                                                <?php } ?>
+                                                <h5 class="rank-vote text-uppercase"><?= $player['vote_nb'] ?> votes</h5>
                                             </div>
                                         </div>
-                                        <hr>
-                                        <h5 class="rank-vote">257 VOTES</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
+
+                                        <?php
+                                        if ($key <= 3)
+                                            echo "</div>";
+
+                                    }
+
+                                ?>
                                 <div class="col-lg-6 col-xs-12 no-padding-mobile-right">
-                                    <div class="rank-second">
+                                    <div class="rank-2">
                                         <div class="row">
                                             <div class="col-xs-3">
                                                 <h4 class="rank-number">#2</h4>
@@ -160,7 +113,7 @@ if ($_GET) {
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-xs-12 no-padding-mobile-left">
-                                    <div class="rank-third">
+                                    <div class="rank-3">
                                         <div class="row">
                                             <div class="col-xs-3">
                                                 <h4 class="rank-number">#3</h4>
@@ -205,12 +158,6 @@ if ($_GET) {
                                 >
                                     <p>Top serveurs (2h)</p>
                                 </a>
-                                <a href="https://topg.org/fr/Minecraft/in-518057"
-                                   class="btn btn-block btn-lg btn-default site-btn disabled"
-                                   target="_blank"
-                                >
-                                    TOPG
-                                </a>
                                 <a href="https://www.serveurminecraft.org/serveur/3448"
                                    class="btn btn-block btn-lg btn-default site-btn disabled"
                                    target="_blank"
@@ -224,15 +171,15 @@ if ($_GET) {
                                 <h4>Choisi ta récompense !</h4>
                                 <hr>
                                 <div class="servers">
-                                    <button class="btn disabled" id="skyblock">
+                                    <button class="btn disabled get-award-btn" id="skyblock">
                                         <img alt="BadBlock Skyblock" class="img-responsive"
                                              src="<?= assets('img/BB_key_2.png'); ?>">
                                     </button>
-                                    <button class="btn disabled" id="mini-jeux">
+                                    <button class="btn disabled get-award-btn" id="mini-jeux">
                                         <img alt="BadBlock Mini-games" class="img-responsive"
                                              src="<?= assets('img/BB_key_3.png'); ?>">
                                     </button>
-                                    <button class="btn disabled" id="survie">
+                                    <button class="btn disabled get-award-btn" id="survie">
                                         <img alt="BadBlock Survival" class="img-responsive"
                                              src="<?= assets('img/BB_key_1.png'); ?>">
                                     </button>
@@ -255,7 +202,7 @@ if ($_GET) {
     </div>
 </div>
 
-        <?php layouts('footer'); ?>
+<?php layouts('footer'); ?>
 
 </body>
 </html>
