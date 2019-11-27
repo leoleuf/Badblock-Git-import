@@ -2,7 +2,7 @@
 
 include_once '../App/Helper.php';
 
-if($_POST){
+if(!empty($_POST)){
 
     $params = array_map('strip_tags', $_POST);
 
@@ -67,7 +67,7 @@ if($_POST){
     return http_response_code(404);
 }
 
-else if ($_GET) {
+else if (!empty($_GET)) {
 
     $params = array_map('strip_tags', $_GET);
 
