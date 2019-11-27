@@ -46,9 +46,16 @@ function db(){
     ];
 
     //Init DB with provided credentials
-    $pdo = new PDO("mysql:host=" . $credentials['host'] . ";port=" . $credentials['port'] . ";dbname=" . $credentials['dbname'], $credentials['user'], $credentials['password'], [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
+    try {
+        $pdo = new PDO("mysql:host=" . $credentials['host'] . ";port=" . $credentials['port'] . ";dbname=" . $credentials['dbname'], $credentials['user'], $credentials['password'], [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
+    } catch (PDOException $PDOException){
+        echo "<div class='alert-danger col-4'> Unable to reach database, please contact an administrator and provide the following error code : ".$PDOException->getMessage()."</div>";
+        return die(503);
+    }
+
+
 
     return $pdo;
 

@@ -19,12 +19,13 @@ if($_POST){
 
         $result = db()->prepare('SELECT name FROM users WHERE name = ?');
         $result->execute([$params['exists']]);
-        $result = $result->fetch();
+        $result = $result->fetchAll();
 
-        if($result && count($result) >= 1)
-            return 1;
+        if(count($result) >= 1)
+            echo 1;
         else
-            return 0;
+            echo 0;
+        return;
     }
 
     /**
@@ -50,7 +51,6 @@ if($_POST){
          * Why ?
          * Because no need to use a precise platform to deliver award
          */
-
         //Checking top-serveurs.net
         $response = json_decode(file_get_contents("https://api.top-serveurs.net/v1/votes/check?server_token=".$config['top-serveurs']['api_token']."&playername=".$params['username']));
         if($response['success'])

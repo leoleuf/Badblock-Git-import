@@ -17,16 +17,15 @@ $(document).ready(() => {
                     exists: username.val()
                 },
                 success: function(response){
-                    if(response) {
+                    if(parseInt(response) === 1) {
                         /* On enleve la class disabled et le style des boutons */
-                        btn.removeClass("disabled btn-success");
-                        /* On ajoute un autre style */
-                        btn.addClass("btn-default");
+                        btn.removeClass("disabled");
                         error.addClass('hide');
                     }
                     else {
                         error.html("Nous ne vous avons pas trouvé :( <br /> Avez-vous bien marqué votre pseudo ?");
                         error.removeClass('hide');
+                        btn.addClass('disabled');
                     }
                 },
                 error: function(jqHXR, status, responseCode){
@@ -41,7 +40,6 @@ $(document).ready(() => {
             });
         }else{
             /* Sinon on desactive les boutons servers, sites et on remet le style par défaut */
-            btn.removeClass("btn-default");
             btn.addClass("disabled");
             $(".servers .btn").addClass("disabled");
             error.addClass('hide');
