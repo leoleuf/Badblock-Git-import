@@ -43,8 +43,8 @@
         "fs_mountpoint": "/home/vanilor",
         "groups": [ "dev_web" ]
     },
-    "vanilor": {
-        "fs_mountpoint": "/home/vanilor",
+    "eugabs": {
+        "fs_mountpoint": "/home/eugabs",
         "groups": [ "eugabs" ]
     },
     "michael": {
