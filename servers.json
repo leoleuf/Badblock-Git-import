@@ -48,7 +48,7 @@
         "users": {
             "mc": {
                 "allowed_groups": [
-                    "administrateur", "dev_java", "gamercrow"
+                    "administrateur", "dev_java", "eugabs"
                 ],
                 "fs": {
                     ".": "%host%-mc"
