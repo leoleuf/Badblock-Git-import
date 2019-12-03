@@ -85,11 +85,12 @@ else if (!empty($_GET)) {
         elseif (isset($params['month']))
             $sql .= " AND month = ?";
 
+        $sql .= " ORDER BY year DESC, month DESC";
         $values = [];
-        foreach ($params as $key => $value) {
-            unset($params[$key]);
-            array_push($values, $value);
+        foreach($params as $param){
+            array_push($values, $param);
         }
+        unset($params);
 
         $result = db()->prepare($sql);
         $result->execute($values);

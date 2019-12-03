@@ -1,9 +1,10 @@
 <div class="header-block ">
     <div class="navigation">
-        <nav class="navbar navbar-default navbar-dark" role="navigation">
-            <div class="container">
+        <nav class="navbar navbar-default navbar-dark">
+            <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-top">
+                        <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
